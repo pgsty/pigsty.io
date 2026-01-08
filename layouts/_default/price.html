@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{{ .Title }} - {{ .Site.Title }}</title>
+  <meta name="description" content="{{ .Description | default .Site.Params.description }}">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" href="/img/logo/logo.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:description" content="{{ .Description | default .Site.Params.description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:image" content="{{ .Site.BaseURL }}img/pigsty/banner.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ .Title }}">
+  <meta name="twitter:description" content="{{ .Description | default .Site.Params.description }}">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Landing Page CSS -->
+  <link rel="stylesheet" href="/css/landing.css">
+  <link rel="stylesheet" href="/css/price.css">
+
+  <!-- Analytics -->
+  {{ with .Site.Config.Services.GoogleAnalytics.ID }}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ . }}');
+  </script>
+  {{ end }}
+</head>
+<body class="landing-page price-page">
+
+  <!-- ============================================
+       Navigation Header
+       ============================================ -->
+  <header class="landing-header scrolled">
+    <div class="landing-container">
+      <nav class="landing-nav">
+        <a href="/" class="nav-brand">
+          <img src="/img/logo/logo.svg" alt="Pigsty" class="nav-logo">
+          <span class="nav-title">PIGSTY</span>
+        </a>
+
+        <div class="nav-links">
+          <a href="/docs/" class="nav-link">Docs</a>
+          <a href="https://pgext.cloud" class="nav-link" target="_blank">Exts</a>
+          <a href="/blog/" class="nav-link">Blog</a>
+          <a href="/price/" class="nav-link nav-link--active">Pricing</a>
+          <a href="https://github.com/Vonng/pigsty" class="nav-link nav-link--icon" target="_blank" title="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+
+        <button class="mobile-menu-toggle" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="/docs/" class="mobile-menu-link">Docs</a>
+    <a href="https://pgext.cloud" class="mobile-menu-link" target="_blank">Extensions</a>
+    <a href="/blog/" class="mobile-menu-link">Blog</a>
+    <a href="/price/" class="mobile-menu-link">Pricing</a>
+    <a href="https://github.com/Vonng/pigsty" class="mobile-menu-link" target="_blank">
+      <i class="fab fa-github"></i> GitHub
+    </a>
+  </div>
+
+
+  <!-- ============================================
+       Hero Section
+       ============================================ -->
+  <section class="price-hero">
+    <div class="price-hero-bg">
+      <div class="price-hero-glow"></div>
+      <div class="price-hero-grid"></div>
+    </div>
+    <div class="landing-container">
+      <div class="price-hero-content">
+        <h1 class="price-hero-title">Simple, Transparent Pricing</h1>
+        <p class="price-hero-subtitle">Pigsty offers multiple service tiers, from free open source to enterprise support</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       Pricing Cards Section
+       ============================================ -->
+  <section class="pricing-section">
+    <div class="landing-container">
+      <div class="pricing-grid">
+
+        <!-- OSS Plan -->
+        <div class="pricing-card pricing-card--oss">
+          <div class="pricing-card-header">
+            <div class="pricing-tier">Open Source</div>
+            <div class="pricing-name">OSS</div>
+            <div class="pricing-desc">Self-sufficient OSS Guru</div>
+          </div>
+          <div class="pricing-price">
+            <span class="price-amount">Free</span>
+            <span class="price-period">Forever</span>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> OSS License</li>
+            <li><i class="fas fa-check"></i> PostgreSQL 17</li>
+            <li><i class="fas fa-check"></i> 420+ Extensions</li>
+            <li><i class="fas fa-check"></i> Unlimited nodes</li>
+            <li><i class="fas fa-check"></i> EL9 / D12 / U22</li>
+            <li><i class="fas fa-times muted"></i> <span class="muted">No Warranty</span></li>
+          </ul>
+          <a href="/docs/setup/install/" class="pricing-btn pricing-btn--outline">
+            <i class="fas fa-download"></i> Download Now
+          </a>
+        </div>
+
+        <!-- Standard Plan -->
+        <div class="pricing-card pricing-card--standard">
+          <div class="pricing-card-header">
+            <div class="pricing-tier">Standard</div>
+            <div class="pricing-name">Standard</div>
+            <div class="pricing-desc">SMB, startups and freelancers</div>
+          </div>
+          <div class="pricing-price">
+            <span class="price-currency">$</span>
+            <span class="price-amount">8K</span>
+            <span class="price-period">/year</span>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Commercial license</li>
+            <li><i class="fas fa-check"></i> Warranty & Bug Fix</li>
+            <li><i class="fas fa-check"></i> Up to 5 database nodes</li>
+            <li><i class="fas fa-check"></i> Email support</li>
+            <li><i class="fas fa-check"></i> One-time setup consulting</li>
+            <li><i class="fas fa-check"></i> EL9/D12/U22 + Arm64</li>
+          </ul>
+          <a href="mailto:rh@vonng.com?subject=Pigsty Standard" class="pricing-btn pricing-btn--standard">
+            <i class="fas fa-envelope"></i> Contact Sales
+          </a>
+        </div>
+
+        <!-- Professional Plan -->
+        <div class="pricing-card pricing-card--pro pricing-card--featured">
+          <div class="pricing-badge">Recommended</div>
+          <div class="pricing-card-header">
+            <div class="pricing-tier">Professional</div>
+            <div class="pricing-name">Professional</div>
+            <div class="pricing-desc">Suitable choice for most users</div>
+          </div>
+          <div class="pricing-price">
+            <span class="price-currency">$</span>
+            <span class="price-amount">24K</span>
+            <span class="price-period">/year</span>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Commercial license</li>
+            <li><i class="fas fa-check"></i> Up to 15 database nodes</li>
+            <li><i class="fas fa-check"></i> PostgreSQL 13-17</li>
+            <li><i class="fas fa-check"></i> Offline packages</li>
+            <li><i class="fas fa-check"></i> 5 DBA hours/month</li>
+            <li><i class="fas fa-check"></i> SLA: 5×8, &lt; 4h</li>
+            <li><i class="fas fa-check"></i> EL8/9, D12, U22/24</li>
+          </ul>
+          <a href="mailto:rh@vonng.com?subject=Pigsty Professional" class="pricing-btn pricing-btn--pro">
+            <i class="fas fa-rocket"></i> Subscribe Now
+          </a>
+        </div>
+
+        <!-- Enterprise Plan -->
+        <div class="pricing-card pricing-card--enterprise">
+          <div class="pricing-card-header">
+            <div class="pricing-tier">Enterprise</div>
+            <div class="pricing-name">Enterprise</div>
+            <div class="pricing-desc">Best for Fortune 500 companies</div>
+          </div>
+          <div class="pricing-price">
+            <span class="price-currency">$</span>
+            <span class="price-amount">60K</span>
+            <span class="price-period">/year</span>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Commercial license</li>
+            <li><i class="fas fa-check"></i> Up to 50+ database nodes</li>
+            <li><i class="fas fa-check"></i> PostgreSQL 9.x - 17</li>
+            <li><i class="fas fa-check"></i> 10 DBA hours/month</li>
+            <li><i class="fas fa-check"></i> DBaaS/RDS/OEM/ReDist</li>
+            <li><i class="fas fa-check"></i> SLA: 7×24, &lt; 30m</li>
+            <li><i class="fas fa-check"></i> Any Linux distro</li>
+          </ul>
+          <a href="mailto:rh@vonng.com?subject=Pigsty Enterprise" class="pricing-btn pricing-btn--enterprise">
+            <i class="fas fa-building"></i> Contact Sales
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       Feature Comparison Table
+       ============================================ -->
+  <section class="comparison-section">
+    <div class="landing-container">
+      <div class="section-header">
+        <h2 class="section-title">Feature Comparison</h2>
+        <p class="section-subtitle">Detailed breakdown of plan differences</p>
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th class="feature-col">Feature</th>
+              <th>OSS</th>
+              <th>Standard</th>
+              <th class="highlight">Professional</th>
+              <th>Enterprise</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="category-row">
+              <td colspan="5">Licensing</td>
+            </tr>
+            <tr>
+              <td>License Type</td>
+              <td>OSS</td>
+              <td>Commercial</td>
+              <td class="highlight">Commercial</td>
+              <td>Commercial</td>
+            </tr>
+            <tr>
+              <td>Redistribution Rights</td>
+              <td><i class="fas fa-times"></i></td>
+              <td><i class="fas fa-times"></i></td>
+              <td class="highlight"><i class="fas fa-times"></i></td>
+              <td><i class="fas fa-check"></i></td>
+            </tr>
+
+            <tr class="category-row">
+              <td colspan="5">Scale Limits</td>
+            </tr>
+            <tr>
+              <td>Database Nodes</td>
+              <td>-</td>
+              <td>≤5</td>
+              <td class="highlight">≤15</td>
+              <td>Reference: 50 nodes</td>
+            </tr>
+            <tr>
+              <td>PostgreSQL Versions</td>
+              <td>17</td>
+              <td>17</td>
+              <td class="highlight">13 - 17</td>
+              <td>9.x - 17</td>
+            </tr>
+            <tr>
+              <td>Offline Packages</td>
+              <td><i class="fas fa-times"></i></td>
+              <td><i class="fas fa-times"></i></td>
+              <td class="highlight"><i class="fas fa-check"></i></td>
+              <td><i class="fas fa-check"></i></td>
+            </tr>
+
+            <tr class="category-row">
+              <td colspan="5">Technical Support</td>
+            </tr>
+            <tr>
+              <td>Support Channel</td>
+              <td>Community</td>
+              <td>Email</td>
+              <td class="highlight">Email / Slack</td>
+              <td>Dedicated Channel</td>
+            </tr>
+            <tr>
+              <td>Response Time</td>
+              <td>-</td>
+              <td>Same day</td>
+              <td class="highlight">4 hours</td>
+              <td>30 minutes</td>
+            </tr>
+            <tr>
+              <td>Service Hours</td>
+              <td>-</td>
+              <td>Business hours</td>
+              <td class="highlight">5×8</td>
+              <td>7×24</td>
+            </tr>
+            <tr>
+              <td>Expert Consultation</td>
+              <td>-</td>
+              <td>-</td>
+              <td class="highlight">5 hours/month</td>
+              <td>10 hours/month</td>
+            </tr>
+
+            <tr class="category-row">
+              <td colspan="5">Value-Added Services</td>
+            </tr>
+            <tr>
+              <td>Health Check Reports</td>
+              <td><i class="fas fa-times"></i></td>
+              <td>Annual</td>
+              <td class="highlight">Quarterly</td>
+              <td>Monthly</td>
+            </tr>
+            <tr>
+              <td>Architecture Consulting</td>
+              <td><i class="fas fa-times"></i></td>
+              <td><i class="fas fa-times"></i></td>
+              <td class="highlight"><i class="fas fa-check"></i></td>
+              <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+              <td>Emergency Support</td>
+              <td><i class="fas fa-times"></i></td>
+              <td><i class="fas fa-times"></i></td>
+              <td class="highlight">Paid</td>
+              <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+              <td>Custom Development</td>
+              <td><i class="fas fa-times"></i></td>
+              <td><i class="fas fa-times"></i></td>
+              <td class="highlight">Paid</td>
+              <td>Paid</td>
+            </tr>
+
+            <tr class="price-row">
+              <td>Price</td>
+              <td><strong>Free</strong></td>
+              <td><strong>$8K/year</strong></td>
+              <td class="highlight"><strong>$24K/year</strong></td>
+              <td><strong>$60K/year</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       Additional Services
+       ============================================ -->
+  <section class="services-section">
+    <div class="landing-container">
+      <div class="section-header">
+        <h2 class="section-title">Additional Services</h2>
+        <p class="section-subtitle">Pay-as-you-go professional services</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3 class="service-title">Quick Consultation</h3>
+          <p class="service-desc">Fast diagnosis of a database issue<br>Custom Pigsty offline package</p>
+          <div class="service-price">$30 / issue</div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3 class="service-title">Expert Session</h3>
+          <p class="service-desc">Deep dive into a specific topic<br>Industry-leading expertise sharing</p>
+          <div class="service-price">$400 / session</div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-ambulance"></i>
+          </div>
+          <h3 class="service-title">Emergency Response</h3>
+          <p class="service-desc">Architecture upgrades, data migration<br>Emergency incident response, data recovery</p>
+          <div class="service-price">$4,000 / day</div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-code-branch"></i>
+          </div>
+          <h3 class="service-title">Expert Retainer</h3>
+          <p class="service-desc">Custom development, private deployment<br>Large-scale RDS & DBaaS implementation</p>
+          <div class="service-price">Contact Us</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       FAQ Section
+       ============================================ -->
+  <section class="faq-section">
+    <div class="landing-container">
+      <div class="section-header">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3 class="faq-question">What does the commercial version offer?</h3>
+          <p class="faq-answer">Commercial versions include: commercial license (avoiding AGPLv3 compliance requirements for infra/minio modules), warranty and bug fix guarantee, custom offline packages, exclusive support from industry-leading experts for complex issues, technical support with response time SLA, and broader Linux/PostgreSQL version support.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">How are nodes counted?</h3>
+          <p class="faq-answer">Node count refers to the number of distinct IP addresses managed by Pigsty.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Can I try before I buy?</h3>
+          <p class="faq-answer">Absolutely! The open-source version is fully functional and identical to commercial versions. Evaluate thoroughly before deciding. We also offer a 30-day enterprise trial.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">How do I get invoices and contracts?</h3>
+          <p class="faq-answer">We provide standard invoices and business contracts. Contact rh@vonng.com for commercial details.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">What payment methods are supported?</h3>
+          <p class="faq-answer">We accept wire transfer, PayPal, and major credit cards.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">What if I need more nodes?</h3>
+          <p class="faq-answer">Additional nodes beyond your plan can be purchased separately. Enterprise plans also support custom configurations based on your actual needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       CTA Section
+       ============================================ -->
+  <section class="price-cta">
+    <div class="landing-container">
+      <div class="price-cta-content">
+        <h2 class="price-cta-title">Have Questions? Let's Talk</h2>
+        <p class="price-cta-desc">Our expert team is ready to help you choose the best plan for your needs</p>
+        <div class="price-cta-buttons">
+          <a href="mailto:rh@vonng.com" class="btn btn-primary">
+            <i class="fas fa-envelope"></i> Send Email
+          </a>
+          <a href="https://discord.gg/wDzt5VyWEz" class="btn btn-secondary" target="_blank">
+            <i class="fab fa-discord"></i> Join Discord
+          </a>
+          <a href="/docs/about/service/" class="btn btn-outline">
+            <i class="fas fa-book"></i> Learn More
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       Footer
+       ============================================ -->
+  <footer class="landing-footer">
+    <div class="landing-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="footer-logo">
+            <img src="/img/logo/logo.svg" alt="Pigsty">
+            PIGSTY
+          </a>
+          <p class="footer-tagline">
+            <span class="hl-p">P</span>ostgreSQL <span class="hl-i">I</span>n <span class="hl-g">G</span>reat <span class="hl-s">S</span><span class="hl-t">T</span><span class="hl-y">Y</span>le —<br>
+            Battery-Included PostgreSQL Distribution
+          </p>
+          <p class="footer-slogan">
+            Use the <span class="hl-good">best database</span>, and use it <span class="hl-use">well</span>
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4 class="footer-column-title">Product</h4>
+          <ul class="footer-links">
+            <li><a href="/docs/about/feature/">Features</a></li>
+            <li><a href="/docs/about/module/">Modules</a></li>
+            <li><a href="https://demo.pigsty.cc" target="_blank">Live Demo</a></li>
+            <li><a href="/price/">Pricing</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4 class="footer-column-title">Resources</h4>
+          <ul class="footer-links">
+            <li><a href="/docs/">Documentation</a></li>
+            <li><a href="https://pgext.cloud" target="_blank">Extensions</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/blog/releases/">Releases</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4 class="footer-column-title">Community</h4>
+          <ul class="footer-links">
+            <li><a href="https://github.com/Vonng/pigsty" target="_blank">GitHub</a></li>
+            <li><a href="https://discord.gg/wDzt5VyWEz" target="_blank">Discord</a></li>
+            <li><a href="https://t.me/joinchat/gV9zfZraNPM3YjFh" target="_blank">Telegram</a></li>
+            <li><a href="https://twitter.com/paborgrp" target="_blank">Twitter</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4 class="footer-column-title">About</h4>
+          <ul class="footer-links">
+            <li><a href="https://vonng.com" target="_blank">Author</a></li>
+            <li><a href="/docs/about/license/">License</a></li>
+            <li><a href="/docs/about/privacy/">Privacy</a></li>
+            <li><a href="mailto:rh@vonng.com">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2018-2026 Ruohang Feng (Vonng)</div>
+        <div class="footer-lang-switch">
+          <a href="/price/">English</a>
+          <a href="https://pigsty.cc/price" target="_blank">中文</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+// Mobile menu toggle
+document.querySelector('.mobile-menu-toggle')?.addEventListener('click', function() {
+  this.classList.toggle('active');
+  document.querySelector('.mobile-menu')?.classList.toggle('active');
+});
+</script>
+
+</body>
+</html>

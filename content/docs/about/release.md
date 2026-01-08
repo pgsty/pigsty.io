@@ -1,0 +1,1454 @@
+---
+title: Release Note
+weight: 160
+description: Pigsty historical version release notes
+icon: fa-solid fa-scroll
+categories: [Reference]
+---
+
+The current stable version is [**v3.7.0**](#v370), and the latest beta is [**v4.0.0-b3**](#v400-b3).
+
+|      Version       |  Release Date   | Summary                                                                 |                                       Release Page                                        |
+|:------------------:|:---------------:|-------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------:|
+| [v4.0.0](#v400-c1) |   2026-01-31    | Infra overhaul, security hardening, agent capabilities, fork & clone    |            [v4.0.0-c1](https://github.com/pgsty/pigsty/releases/tag/v4.0.0-c1)            |
+|  [v3.7.0](#v370)   |   2025-12-02    | PG18 default, 437 extensions, EL10 & Debian 13 support, PGEXT.CLOUD     |               [v3.7.0](https://github.com/pgsty/pigsty/releases/tag/v3.7.0)               |
+|  [v3.6.1](#v361)   |   2025-08-15    | Routine PG minor updates, PGDG China mirror, EL10/D13 stubs             |               [v3.6.1](https://github.com/pgsty/pigsty/releases/tag/v3.6.1)               |
+|  [v3.6.0](#v360)   |   2025-07-30    | pgactive, MinIO/ETCD improvements, simplified install, config cleanup   |               [v3.6.0](https://github.com/pgsty/pigsty/releases/tag/v3.6.0)               |
+|  [v3.5.0](#v350)   |   2025-06-16    | PG18 beta, 421 extensions, monitoring upgrade, code refactor            |               [v3.5.0](https://github.com/pgsty/pigsty/releases/tag/v3.5.0)               |
+|  [v3.4.1](#v341)   |   2025-04-05    | OpenHalo & OrioleDB, MySQL compatibility, pgAdmin improvements          |               [v3.4.1](https://github.com/pgsty/pigsty/releases/tag/v3.4.1)               |
+|  [v3.4.0](#v340)   |   2025-03-30    | Backup improvements, auto certs, AGE, IvorySQL all platforms            |               [v3.4.0](https://github.com/pgsty/pigsty/releases/tag/v3.4.0)               |
+|  [v3.3.0](#v330)   |   2025-02-24    | 404 extensions, extension directory, App playbook, Nginx customization  |               [v3.3.0](https://github.com/pgsty/pigsty/releases/tag/v3.3.0)               |
+|  [v3.2.2](#v322)   |   2025-01-23    | 390 extensions, Omnigres, Mooncake, Citus 13 & PG17 support             |               [v3.2.2](https://github.com/pgsty/pigsty/releases/tag/v3.2.2)               |
+|  [v3.2.1](#v321)   |   2025-01-12    | 350 extensions, Ivory4, Citus enhancements, Odoo template               |               [v3.2.1](https://github.com/pgsty/pigsty/releases/tag/v3.2.1)               |
+|  [v3.2.0](#v320)   |   2024-12-24    | Extension CLI, Grafana enhancements, ARM64 extension completion         |               [v3.2.0](https://github.com/pgsty/pigsty/releases/tag/v3.2.0)               |
+|  [v3.1.0](#v310)   |   2024-11-24    | PG17 default, config simplification, Ubuntu24 & ARM support             |               [v3.1.0](https://github.com/pgsty/pigsty/releases/tag/v3.1.0)               |
+|  [v3.0.4](#v304)   |   2024-10-30    | PG17 extensions, OLAP suite, pg_duckdb                                  |               [v3.0.4](https://github.com/pgsty/pigsty/releases/tag/v3.0.4)               |
+|  [v3.0.3](#v303)   |   2024-09-27    | PostgreSQL 17, Etcd improvements, IvorySQL 3.4, PostGIS 3.5             |               [v3.0.3](https://github.com/pgsty/pigsty/releases/tag/v3.0.3)               |
+|  [v3.0.2](#v302)   |   2024-09-07    | Mini install mode, PolarDB 15 support, monitoring view updates          |               [v3.0.2](https://github.com/pgsty/pigsty/releases/tag/v3.0.2)               |
+|  [v3.0.1](#v301)   |   2024-08-31    | Routine bug fixes, Patroni 4 support, Oracle compatibility improvements |               [v3.0.1](https://github.com/pgsty/pigsty/releases/tag/v3.0.1)               |
+|  [v3.0.0](#v300)   |   2024-08-25    | 333 extensions, pluggable kernels, MSSQL/Oracle/PolarDB compatibility   |               [v3.0.0](https://github.com/pgsty/pigsty/releases/tag/v3.0.0)               |
+|  [v2.7.0](#v270)   |   2024-05-20    | Extension explosion, 20+ new powerful extensions, Docker apps           |               [v2.7.0](https://github.com/pgsty/pigsty/releases/tag/v2.7.0)               |
+|  [v2.6.0](#v260)   |   2024-02-28    | PG16 as default, ParadeDB & DuckDB extensions introduced                |               [v2.6.0](https://github.com/pgsty/pigsty/releases/tag/v2.6.0)               |
+|  [v2.5.1](#v251)   |   2023-12-01    | Routine minor update, PG16 key extension support                        |               [v2.5.1](https://github.com/pgsty/pigsty/releases/tag/v2.5.1)               |
+|  [v2.5.0](#v250)   |   2023-09-24    | Ubuntu/Debian support: bullseye, bookworm, jammy, focal                 |               [v2.5.0](https://github.com/pgsty/pigsty/releases/tag/v2.5.0)               |
+|  [v2.4.1](#v241)   |   2023-09-24    | Supabase/PostgresML support with graphql, jwt, pg_net, vault            |               [v2.4.1](https://github.com/pgsty/pigsty/releases/tag/v2.4.1)               |
+|  [v2.4.0](#v240)   |   2023-09-14    | PG16, RDS monitoring, new extensions: FTS/graph/HTTP/embedding          |               [v2.4.0](https://github.com/pgsty/pigsty/releases/tag/v2.4.0)               |
+|  [v2.3.1](#v231)   |   2023-09-01    | PGVector with HNSW, PG16 RC1, doc refresh, Chinese docs, bug fixes      |               [v2.3.1](https://github.com/pgsty/pigsty/releases/tag/v2.3.1)               |
+|  [v2.3.0](#v230)   |   2023-08-20    | Node VIP, FerretDB, NocoDB, MySQL stub, CVE fixes                       |               [v2.3.0](https://github.com/pgsty/pigsty/releases/tag/v2.3.0)               |
+|  [v2.2.0](#v220)   |   2023-08-04    | Dashboard & provisioning overhaul, UOS compatibility                    |               [v2.2.0](https://github.com/pgsty/pigsty/releases/tag/v2.2.0)               |
+|  [v2.1.0](#v210)   |   2023-06-10    | PostgreSQL 12-16beta support                                            |               [v2.1.0](https://github.com/pgsty/pigsty/releases/tag/v2.1.0)               |
+|  [v2.0.2](#v202)   |   2023-03-31    | Added pgvector support, fixed MinIO CVE                                 |               [v2.0.2](https://github.com/pgsty/pigsty/releases/tag/v2.0.2)               |
+|  [v2.0.1](#v201)   |   2023-03-21    | v2 bug fixes, security enhancements, Grafana upgrade                    |               [v2.0.1](https://github.com/pgsty/pigsty/releases/tag/v2.0.1)               |
+|  [v2.0.0](#v200)   |   2023-02-28    | Major architecture upgrade, compatibility/security/maintainability      |               [v2.0.0](https://github.com/pgsty/pigsty/releases/tag/v2.0.0)               |
+|  [v1.5.1](#v151)   |   2022-06-18    | Grafana security hotfix                                                 |               [v1.5.1](https://github.com/pgsty/pigsty/releases/tag/v1.5.1)               |
+|  [v1.5.0](#v150)   |   2022-05-31    | Docker application support                                              |               [v1.5.0](https://github.com/pgsty/pigsty/releases/tag/v1.5.0)               |
+|  [v1.4.1](#v141)   |   2022-04-20    | Bug fixes & full English documentation translation                      |               [v1.4.1](https://github.com/pgsty/pigsty/releases/tag/v1.4.1)               |
+|  [v1.4.0](#v140)   |   2022-03-31    | MatrixDB support, separated INFRA/NODES/PGSQL/REDIS modules             |               [v1.4.0](https://github.com/pgsty/pigsty/releases/tag/v1.4.0)               |
+|  [v1.3.0](#v130)   |   2021-11-30    | PGCAT overhaul & PGSQL enhancement & Redis beta support                 |               [v1.3.0](https://github.com/pgsty/pigsty/releases/tag/v1.3.0)               |
+|  [v1.2.0](#v120)   |   2021-11-03    | Default PGSQL version upgraded to 14                                    |               [v1.2.0](https://github.com/pgsty/pigsty/releases/tag/v1.2.0)               |
+|  [v1.1.0](#v110)   |   2021-10-12    | Homepage, JupyterLab, PGWEB, Pev2 & pgbadger                            |               [v1.1.0](https://github.com/pgsty/pigsty/releases/tag/v1.1.0)               |
+|  [v1.0.0](#v100)   |   2021-07-26    | v1 GA, Monitoring System Overhaul                                       |               [v1.0.0](https://github.com/pgsty/pigsty/releases/tag/v1.0.0)               |
+|  [v0.9.0](#v090)   |   2021-04-04    | Pigsty GUI, CLI, Logging Integration                                    |               [v0.9.0](https://github.com/pgsty/pigsty/releases/tag/v0.9.0)               |
+|  [v0.8.0](#v080)   |   2021-03-28    | Service Provision                                                       |               [v0.8.0](https://github.com/pgsty/pigsty/releases/tag/v0.8.0)               |
+|  [v0.7.0](#v070)   |   2021-03-01    | Monitor only deployment                                                 |               [v0.7.0](https://github.com/pgsty/pigsty/releases/tag/v0.7.0)               |
+|  [v0.6.0](#v060)   |   2021-02-19    | Architecture Enhancement                                                |               [v0.6.0](https://github.com/pgsty/pigsty/releases/tag/v0.6.0)               |
+|  [v0.5.0](#v050)   |   2021-01-07    | Database Customize Template                                             |               [v0.5.0](https://github.com/pgsty/pigsty/releases/tag/v0.5.0)               |
+|  [v0.4.0](#v040)   |   2020-12-14    | PostgreSQL 13 Support, Official Documentation                           |               [v0.4.0](https://github.com/pgsty/pigsty/releases/tag/v0.4.0)               |
+|  [v0.3.0](#v030)   |   2020-10-22    | Provisioning Solution GA                                                |               [v0.3.0](https://github.com/pgsty/pigsty/releases/tag/v0.3.0)               |
+|       v0.2.0       |   2020-07-10    | PGSQL Monitoring v6 GA                                                  | [v0.2.0](https://github.com/pgsty/pigsty/commit/385e33a62a19817e8ba19997260e6b77d99fe2ba) |
+|       v0.1.0       |   2020-06-20    | Validation on Testing Environment                                       | [v0.1.0](https://github.com/pgsty/pigsty/commit/1cf2ea5ee91db071de00ec805032928ff582453b) |
+|       v0.0.5       |   2020-08-19    | Offline Installation Mode                                               | [v0.0.5](https://github.com/pgsty/pigsty/commit/0fe9e829b298fe5e56307de3f78c95071de28245) |
+|       v0.0.4       |   2020-07-27    | Refactor playbooks into Ansible roles                                   | [v0.0.4](https://github.com/pgsty/pigsty/commit/90b44259818d2c71e37df5250fe8ed1078a883d0) |
+|       v0.0.3       |   2020-06-22    | Interface enhancement                                                   | [v0.0.3](https://github.com/pgsty/pigsty/commit/4c5c68ccd57bc32a9e9c98aa3f264aa19f45c7ee) |
+|       v0.0.2       |   2020-04-30    | First Commit                                                            | [v0.0.2](https://github.com/pgsty/pigsty/commit/dd646775624ddb33aef7884f4f030682bdc371f8) |
+|       v0.0.1       |   2019-05-15    | POC                                                                     |   [v0.0.1](https://github.com/Vonng/pg/commit/fa2ade31f8e81093eeba9d966c20120054f0646b)   |
+
+
+------
+
+## v4.0.0-c1
+
+
+```bash
+curl https://pigsty.cc/get | bash -s v4.0.0
+```
+
+**Highlights**
+
+- **Observability Revolution**: Prometheus → VictoriaMetrics (10x perf), Loki+Promtail → VictoriaLogs+Vector
+- **Security Hardening**: Auto-generated passwords, etcd RBAC, firewall/SELinux modes, permission tightening
+- **Database Management**: `pg_databases` state (create/absent/recreate), instant clone with `strategy`
+- **PITR & Fork**: `/pg/bin/pg-fork` for instant CoW cloning, enhanced `pg-pitr` with pre-backup
+- **Multi-Cloud Terraform**: AWS, Azure, GCP, Hetzner, DigitalOcean, Linode, Vultr, TencentCloud templates
+- **AI Agent**: Add support for claude code, opencode and uv
+- **License**: AGPL-3.0 → Apache-2.0
+
+**244 commits**, 554 files changed, +94,508 / -41,374 lines
+
+**Infra Software Versions**
+
+| Package       | Version          | Package             | Version           |
+|---------------|------------------|---------------------|-------------------|
+| grafana       | 12.3.1           | victoria-metrics    | 1.132.0           |
+| victoria-logs | 1.43.1           | vector              | 0.52.0            |
+| alertmanager  | 0.30.0           | blackbox_exporter   | 0.28.0            |
+| etcd          | 3.6.7            | duckdb              | 1.4.3             |
+| pg_exporter   | 1.1.1            | pgbackrest_exporter | 0.22.0            |
+| minio         | 20251203         | pig                 | 0.9.0             |
+| uv            | 0.9.18 (**new**) | opencode            | 1.0.223 (**new**) |
+
+**PostgreSQL Extensions**
+
+**New**: [pg_textsearch](https://github.com/timescale/pg_textsearch) 0.1.0, [pg_clickhouse](https://github.com/clickhouse/pg_clickhouse/) 0.1.0, [pg_ai_query](https://github.com/benodiwal/pg_ai_query) 0.1.1
+
+**Updated**: IvorySQL 5.1, timescaledb 2.24.0, pg_search 0.20.4, pg_duckdb 1.1.1, pg_biscuit 2.0.1, pg_anon 2.5.1, pg_enigma 0.5.0, pg_session_jwt 0.4.0, pg_vectorize 0.26.0, vchord_bm25 0.3.0, wrappers 0.5.7
+
+**PG18 Deb Fixes**: pg_vectorize, pg_tiktoken, pg_tzf, pglite_fusion, pgsmcrypto, pgx_ulid, plprql, pg_summarize, supautils
+
+
+**Breaking Changes**
+
+**Observability Stack**
+
+| Before     | After           |
+|------------|-----------------|
+| Prometheus | VictoriaMetrics |
+| Loki       | VictoriaLogs    |
+| Promtail   | Vector          |
+
+**Parameters**
+
+| Removed                 | Replacement                                         |
+|-------------------------|-----------------------------------------------------|
+| `node_disable_firewall` | `node_firewall_mode` (off/none/zone)                |
+| `node_disable_selinux`  | `node_selinux_mode` (disabled/permissive/enforcing) |
+| `pg_pwd_enc`            | removed                                             |
+| `infra_pip`             | `infra_uv`                                          |
+
+**Defaults Changed**
+
+| Parameter                  | Before → After                         |
+|----------------------------|----------------------------------------|
+| `grafana_clean`            | true → false                           |
+| `effective_io_concurrency` | 1000 → 200                             |
+| `install.yml`              | renamed to `deploy.yml` (symlink kept) |
+
+**Observability**
+
+- Using the new VictoriaMetrics to replace Prometheus — achieving several times the performance with a fraction of the resources.
+- Using the new log collection solution: VictoriaLogs + Vector, replacing Promtail + Loki.
+- Unified log format adjustments for all components, PG logs use UTC timestamp (log_timezone)
+- Adjusted PostgreSQL log rotation method, using weekly truncated log rotation mode
+- Recording temporary file allocations over 1MB in PG logs, enabling PG 17/18 log new parameters in specific templates
+- Added Nginx Access & Error / Syslog / PG CSV / Pgbackrest vector log parsing configurations
+- Datasource registration now runs on all Infra nodes, Victoria datasources automatically registered in Grafana
+- Added `grafana_pgurl` parameter allowing Grafana to use PG as backend metadata storage
+- Added `grafana_view_pgpass` parameter to specify password used by Grafana Meta datasource
+- `pgbackrest_exporter` default options now set a 120s internal cache interval (originally 600s)
+- `grafana_clean` parameter default now changed from `true` to `false`, i.e., not cleaned by default.
+- Added new metric collector `pg_timeline`, collecting more real-time timeline metrics `pg_timeline_id`
+- `pg_exporter` updated to 1.1.1, fixing numerous historical issues.
+
+
+**Interface Improvements**
+
+- `install.yml` playbook now renamed to `deploy.yml` for better semantics.
+- `pg_databases` database provisioning improvements:
+  - Added database removal capability: use `state` field to specify `create`, `absent`, `recreate` states.
+  - Added clone capability: use `strategy` parameter in database definition to specify clone method
+  - Support newer version locale config parameters: `locale_provider`, `icu_locale`, `icu_rules`, `builtin_locale`
+  - Support `is_template` parameter to mark database as template database
+  - Added more type checks, avoiding character parameter injection
+  - Allow specifying `state: absent` in extension to remove extensions
+- `pg_users` user provisioning improvements: added `admin` parameter, similar to `roles`, but with `ADMIN OPTION` permission for re-granting.
+
+**Parameter Optimization**
+
+- `pg_io_method` parameter, auto, sync, worker, io_uring four options available, default worker
+- `idle_replication_slot_timeout`, default 7d, crit template 3d
+- `log_lock_failures`, oltp, crit templates enabled
+- `track_cost_delay_timing`, olap, crit templates enabled
+- `log_connections`, oltp/olap enables authentication logs, crit enables all logs.
+- `maintenance_io_concurrency` set to 100 if using SSD
+- `effective_io_concurrency` reduced from 1000 to 200
+- `file_copy_method` parameter set to `clone` for PG18, providing instant database cloning capability
+- For PG17+, if `pg_checksums` switch is off, explicitly disable checksums during patroni cluster initialization
+- Fixed issue where `duckdb.allow_community_extensions` always took effect
+- Allow specifying HBA trusted "intranet segments" via `node_firewall_intranet`
+- pg_hba and pgbouncer_hba now support IPv6 localhost access
+
+**Architecture Improvements**
+
+- On Infra nodes, set fixed `/infra` symlink pointing to Infra data directory `/data/infra`.
+- Infra data now defaults to `/data/infra` directory, making container usage more convenient.
+- Local software repo now placed at /data/nginx/pigsty, /www now a symlink to /data/nginx for compatibility.
+- DNS resolution records now placed under `/infra/hosts` directory, solving Ansible SELinux race condition issues
+- pg_remove/pg_pitr etcd metadata removal tasks now run on etcd cluster instead of depending on admin_ip management node
+- Simplify the 36-node simu template into the 20-node version.
+- Adapted to upstream changes, removed PGDG sysupdate repo, removed all llvmjit related packages on EL systems
+- Using full OS version numbers (`major.minor`) for EPEL 10 / PGDG 9/10 repos
+- Allow specifying `meta` parameter in repo definitions to override yum repo definition metadata
+- Added `/pg/bin/pg-fork` script for quickly creating CoW replica database instances
+- Adjusted `/pg/bin/pg-pitr` script, now usable for instance-level PITR recovery
+- Ensure vagrant libvirt templates default to 128GB disk, mounted at `/data` with xfs.
+- Ensure pgbouncer no longer modifies `0.0.0.0` listen address to `*`.
+- Multi-cloud Terraform templates: AWS, Azure, GCP, Hetzner, DigitalOcean, Linode, Vultr, TencentCloud
+
+**Security Improvements**
+
+- `configure` now auto-generates random strong passwords, avoiding security risks from default passwords.
+- Removed `node_disable_firewall`, added `node_firewall_mode` supporting off, none, zone three modes.
+- Removed `node_disable_selinux`, added `node_selinux_mode` supporting disabled, permissive, enforcing three modes.
+- Added nginx basic auth support, allowing optional HTTP Basic Auth for Nginx Servers.
+- Fixed ownca certificate validity issues, ensuring Chrome can recognize self-signed certificates.
+- Changed MinIO module default password to avoid conflict with well-known default passwords
+- Enabled etcd RBAC, each cluster can now only manage its own PostgreSQL database cluster.
+- etcd root password now placed in `/etc/etcd/etcd.pass` file, readable only by administrators
+- Configured correct SELinux contexts for HAProxy, Nginx, DNSMasq, Redis and other components
+- Revoked executable script ownership permissions from all non-root users
+- Added admin_ip to Patroni API allowed access IP whitelist
+- Always create admin system user group, patronictl config restricted to admin group users only
+- Added `node_admin_sudo` parameter allowing specification/adjustment of database administrator sudo permission mode (all/nopass)
+- Fixed several `ansible copy content` field empty error issues.
+- Fixed some legacy issues in `pg_pitr`, ensuring no race conditions during patroni cluster recovery.
+
+**Bug Fixes**
+
+- Fixed ownca certificate validity for Chrome compatibility
+- Fixed Vector 0.52 syslog_raw parsing issue
+- Fixed pg_pitr multiple replica clonefrom timing issues
+- Fixed Ansible SELinux race condition in dnsmasq
+- Fixed EL9 aarch64 patroni & llvmjit issues
+- Fixed Debian groupadd path issue
+- Fixed empty sudoers file generation
+- Fixed pgbouncer pid path (`/run/postgresql`)
+- Fixed `duckdb.allow_community_extensions` always active
+- Hidden pg_partman for EL8 due to upstream break
+
+**Checksums**
+
+```bash
+4c38ca59e756f239448e7eb45d2236f0  pigsty-pkg-v4.0.0.d12.aarch64.tgz
+020b0ded1af009d0e758de8a33393239  pigsty-pkg-v4.0.0.d12.x86_64.tgz
+513c98a3ba911eebf10a1364fd70ce90  pigsty-pkg-v4.0.0.d13.aarch64.tgz
+524ca6f1e8ef6ff821eff1f618f8683e  pigsty-pkg-v4.0.0.d13.x86_64.tgz
+b5ad7a6b6dee0515e7a0dd33611b7aba  pigsty-pkg-v4.0.0.el10.aarch64.tgz
+bb20de1730c9cce75f476f3dc444eab5  pigsty-pkg-v4.0.0.el10.x86_64.tgz
+fe2f27406d218216beba9b92d7da3080  pigsty-pkg-v4.0.0.el8.aarch64.tgz
+f2e12f9db85b280df5e4e6504bbf69af  pigsty-pkg-v4.0.0.el8.x86_64.tgz
+73d79ef99e5030cb0daf5ec1bd8afe2f  pigsty-pkg-v4.0.0.el9.aarch64.tgz
+27b59e5b4994dd0bb17d1b4f50eff96a  pigsty-pkg-v4.0.0.el9.x86_64.tgz
+9838065e0c43c67a3ff2274c9b48f354  pigsty-pkg-v4.0.0.u22.aarch64.tgz
+fec238e811b0f838770602ed1c93a5a1  pigsty-pkg-v4.0.0.u22.x86_64.tgz
+0dc4140abd907c872c29db7b77aeb54a  pigsty-pkg-v4.0.0.u24.aarch64.tgz
+3aa158fb40555f34e45422a4177850b7  pigsty-pkg-v4.0.0.u24.x86_64.tgz
+8eeb5d05edf865543aafcc7fcb935825  pigsty-v4.0.0.tgz
+```
+
+
+------
+
+## v3.7.0
+
+**Highlights**
+
+- **PostgreSQL 18 Deep Support:** Now the default major PG version, with full extension readiness!
+- **Expanded OS Support:** Added EL10 and Debian 13, bringing the total supported operating systems to 14.
+- **Extension Growth:** The PostgreSQL extension library now includes 437 entries.
+- **Ansible 2.19 Compatibility:** Full support for Ansible 2.19 following its breaking changes.
+- **Kernel Updates:** Latest versions for Supabase, PolarDB, IvorySQL, and Percona kernels.
+- **Optimized Tuning:** Refined logic for default PG parameters to maximize resource utilization.
+- [**PGEXT.CLOUD**](https://pgext.cloud): Dedicated extension website open-sourced under Apache-2.0 license
+
+**Version Updates**
+
+- PostgreSQL 18.1, 17.7, 16.11, 15.15, 14.20, 13.23
+- Patroni 4.1.0
+- Pgbouncer 1.25.0
+- pg_exporter 1.0.3
+- pgbackrest 2.57.0
+- Supabase 2025-11
+- PolarDB 15.15.5.0
+- FerretDB 2.7.0
+- DuckDB 1.4.2
+- Etcd 3.6.6
+- pig 0.7.4
+
+For detailed version changes, please refer to:
+
+- [INFRA Changelog](/docs/repo/infra/)
+- [RPM Changelog](/docs/repo/pgsql/rpm)
+- [DEB Changelog](/docs/repo/pgsql/deb)
+
+**API Changes**
+
+- Implemented a refined optimization strategy for parallel execution parameters. See **[Tuning Guide](/docs/pgsql/admin/tune)**.
+- The `citus` extension is no longer installed by default in `rich` and `full` templates (PG 18 support pending).
+- Added `duckdb` extension stubs to PostgreSQL parameter templates.
+- Capped `min_wal_size`, `max_wal_size`, and `max_slot_wal_keep_size` at 200 GB, 2000 GB, and 3000 GB, respectively.
+- Capped `temp_file_limit` at 200 GB (2 TB for OLAP workloads).
+- Increased the default connection count for the connection pool.
+- Added `prometheus_port` (default: `9058`) to avoid conflicts with the EL10 RHEL Web Console port.
+- Changed `alertmanager_port` default to `9059` to avoid potential conflicts with Kafka SSL ports.
+- Added a `pg_pre` subtask to `pg_pkg`: removes conflicting LLVM packages (`bpftool`, `python3-perf`) on EL9+ prior to PG installation.
+- Added the `llvm` module to the default repository definition for Debian/Ubuntu.
+- Fixed package removal logic in `infra-rm.yml`.
+
+**Compatibility Fixes**
+
+- **Ubuntu/Debian CA Trust:** Fixed incorrect warning return codes when trusting Certificate Authorities.
+- **Ansible 2.19 Support:** Resolved numerous compatibility issues introduced by Ansible 2.19 to ensure stability across versions:
+  - Added explicit `int` type casting for sequence variables.
+  - Migrated `with_items` syntax to `loop`.
+  - Nested key exchange variables in lists to prevent character iteration on strings in newer versions.
+  - Explicitly cast `range` usage to `list`.
+  - Renamed reserved variables such as `name` and `port`.
+  - Replaced `play_hosts` with `ansible_play_hosts`.
+  - Added string casting for specific variables to prevent runtime errors.
+- **EL10 Adaptation:**
+  - Fixed missing `ansible-collection-community-crypto` preventing key generation.
+  - Fixed missing `ansible` logic packages.
+  - Removed `modulemd_tools`, `flamegraph`, and `timescaledb-tool`.
+  - Replaced `java-17-openjdk` with `java-21-openjdk`.
+  - Resolved aarch64 YUM repository naming issues.
+- **Debian 13 Adaptation:**
+  - Replaced `dnsutils` with `bind9-dnsutils`.
+- **Ubuntu 24 Fixes:**
+  - Temporarily removed `tcpdump` due to upstream dependency crashes.
+
+
+**Checksums**
+
+```bash
+e00d0c2ac45e9eff1cc77927f9cd09df  pigsty-v3.7.0.tgz
+987529769d85a3a01776caefefa93ecb  pigsty-pkg-v3.7.0.d12.aarch64.tgz
+2d8272493784ae35abeac84568950623  pigsty-pkg-v3.7.0.d12.x86_64.tgz
+090cc2531dcc25db3302f35cb3076dfa  pigsty-pkg-v3.7.0.d13.x86_64.tgz
+ddc54a9c4a585da323c60736b8560f55  pigsty-pkg-v3.7.0.el10.aarch64.tgz
+d376e75c490e8f326ea0f0fbb4a8fd9b  pigsty-pkg-v3.7.0.el10.x86_64.tgz
+8c2deeba1e1d09ef3d46d77a99494e71  pigsty-pkg-v3.7.0.el8.aarch64.tgz
+9795e059bd884b9d1b2208011abe43cd  pigsty-pkg-v3.7.0.el8.x86_64.tgz
+08b860155d6764ae817ed25f2fcf9e5b  pigsty-pkg-v3.7.0.el9.aarch64.tgz
+1ac430768e488a449d350ce245975baa  pigsty-pkg-v3.7.0.el9.x86_64.tgz
+e033aaf23690755848db255904ab3bcd  pigsty-pkg-v3.7.0.u22.aarch64.tgz
+cc022ea89181d89d271a9aaabca04165  pigsty-pkg-v3.7.0.u22.x86_64.tgz
+0e978598796db3ce96caebd76c76e960  pigsty-pkg-v3.7.0.u24.aarch64.tgz
+48223898ace8812cc4ea79cf3178476a  pigsty-pkg-v3.7.0.u24.x86_64.tgz
+```
+
+
+------
+
+## v3.6.1
+
+```bash
+curl https://repo.pigsty.cc/get | bash -s v3.6.1
+```
+
+**Highlights**
+
+- PostgreSQL 17.6, 16.10, 15.14, 14.19, 13.22, and 18 Beta 3 Released!
+- PGDG APT/YUM mirror for Mainland China Users
+- New home website https://pgsty.com
+- Add el10, debian 13 stub, add el10 terraform images
+
+**Infra Package Updates**
+
+- Grafana 12.1.0
+- pg_exporter 1.0.2
+- pig 0.6.1
+- vector 0.49.0
+- redis_exporter 1.75.0
+- mongo_exporter 0.47.0
+- victoriametrics 1.123.0
+- victorialogs: 1.28.0
+- grafana-victoriametrics-ds 0.18.3
+- grafana-victorialogs-ds 0.19.3
+- grafana-infinity-ds 3.4.1
+- etcd 3.6.4
+- ferretdb 2.5.0
+- tigerbeetle 0.16.54
+- genai-toolbox 0.12.0
+
+**Extension Package Updates**
+
+- pg_search 0.17.3
+
+**API Changes**
+
+- remove `br_filter` from default `node_kernel_modules`
+- do not use OS minor version dir for pgdg yum repos
+
+**Checksums**
+
+```bash
+045977aff647acbfa77f0df32d863739  pigsty-pkg-v3.6.1.d12.aarch64.tgz
+636b15c2d87830f2353680732e1af9d2  pigsty-pkg-v3.6.1.d12.x86_64.tgz
+700a9f6d0db9c686d371bf1c05b54221  pigsty-pkg-v3.6.1.el8.aarch64.tgz
+2aff03f911dd7be363ba38a392b71a16  pigsty-pkg-v3.6.1.el8.x86_64.tgz
+ce07261b02b02b36a307dab83e460437  pigsty-pkg-v3.6.1.el9.aarch64.tgz
+d598d62a47bbba2e811059a53fe3b2b5  pigsty-pkg-v3.6.1.el9.x86_64.tgz
+13fd68752e59f5fd2a9217e5bcad0acd  pigsty-pkg-v3.6.1.u22.aarch64.tgz
+c25ccfb98840c01eb7a6e18803de55bb  pigsty-pkg-v3.6.1.u22.x86_64.tgz
+0d71e58feebe5299df75610607bf428c  pigsty-pkg-v3.6.1.u24.aarch64.tgz
+4fbbab1f8465166f494110c5ec448937  pigsty-pkg-v3.6.1.u24.x86_64.tgz
+083d8680fa48e9fec3c3fcf481d25d2f  pigsty-v3.6.1.tgz
+```
+
+
+------
+
+## v3.6.0
+
+```bash
+curl https://repo.pigsty.cc/get | bash -s v3.6.0
+```
+
+**Highlights**
+
+- Brand-new documentation site: https://doc.pgsty.com
+- Added `pgsql-pitr` playbook and backup/restore tutorial, improved PITR experience
+- Added kernel support: Percona PG TDE (PG17)
+- Optimized self-hosted Supabase experience, updated to the latest version, and fixed issues with the official template
+- Simplified installation steps, online install by default, bootstrap now part of install script
+
+**Improvements**
+
+- Refactored `ETCD` module with dedicated remove playbook and bin utils
+- Refactored `MinIO` module with plain HTTP mode, better bucket provisioning options.
+- Reorganized and streamlined all configuration templates for easier use
+- Faster Docker Registry mirror for users in mainland China
+- Optimized tuned OS parameter templates for modern hardware and NVMe disks
+- Added extension `pgactive` for multi-master replication and sub-second failover
+- Adjusted default values for `pg_fs_main` / `pg_fs_backup`, simplified file directory structure design
+
+**Bug Fixes**
+
+- Fixed pgbouncer configuration file error by @housei-zzy
+- Fixed OrioleDB issues on Debian platform
+- Fixed tuned shm configuration parameter issue
+- Offline packages now use the PGDG source directly, avoiding out-of-sync mirror sites
+- Fix ivorysql [libxcrypt](https://github.com/IvorySQL/IvorySQL/issues/826) dependencies issues
+- Fix Replace the slow and broken epel mirror
+- Fix `haproxy_enabled` flag not working
+
+**Infra Package Updates**
+
+Added Victoria Metrics / Victoria Logs related packages
+
+- genai-toolbox 0.9.0 (new)
+- victoriametrics 1.120.0 -> 1.121.0 (refactor)
+- vmutils 1.121.0 (rename from victoria-metrics-utils)
+- grafana-victoriametrics-ds 0.15.1 -> 0.17.0
+- victorialogs 1.24.0 -> 1.25.1 (refactor)
+- vslogcli 1.24.0 -> 1.25.1
+- vlagent 1.25.1 (new)
+- grafana-victorialogs-ds 0.16.3 -> 0.18.1
+- prometheus 3.4.1 -> 3.5.0
+- grafana 12.0.0 -> 12.0.2
+- vector 0.47.0 -> 0.48.0
+- grafana-infinity-ds 3.2.1 -> 3.3.0
+- keepalived_exporter 1.7.0
+- blackbox_exporter 0.26.0 -> 0.27.0
+- redis_exporter 1.72.1 -> 1.77.0
+- rclone 1.69.3 -> 1.70.3
+
+**Database Package Updates**
+
+- PostgreSQL 18 Beta2 update
+- pg_exporter 1.0.1, updated to latest dependencies and provides Docker image
+- pig 0.6.0, updated extension and repository list, with `pig install` subcommand
+- vip-manager 3.0.0 -> 4.0.0
+- ferretdb 2.2.0 -> 2.3.1
+- dblab 0.32.0 -> 0.33.0
+- duckdb 1.3.1 -> 1.3.2
+- etcd 3.6.1 -> 3.6.3
+- ferretdb 2.2.0 -> 2.4.0
+- juicefs 1.2.3 -> 1.3.0
+- tigerbeetle 0.16.41 -> 0.16.50
+- pev2 1.15.0 -> 1.16.0
+
+**Extension Package Updates**
+
+- OrioleDB 1.5 beta12
+- OriolePG 17.11
+- plv8 3.2.3 -> 3.2.4
+- postgresql_anonymizer 2.1.1 -> 2.3.0
+- pgvectorscale 0.7.1 -> 0.8.0
+- wrappers 0.5.0 -> 0.5.3
+- supautils 2.9.1 -> 2.10.0
+- citus 13.0.3 -> 13.1.0
+- timescaledb 2.20.0 -> 2.21.1
+- vchord 0.3.0 -> [0.4.3](https://github.com/tensorchord/VectorChord/releases/tag/0.4.3)
+- pgactive 2.1.5 (new)
+- documentdb 0.103.0 -> 0.105.0
+- pg_search 0.17.0
+
+**API Changes**
+
+* `pg_fs_backup`: Renamed to `pg_fs_backup`, default value `/data/backups`.
+* `pg_rm_bkup`: Renamed to `pg_rm_backup`, default value `true`.
+* `pg_fs_main`: Default value adjusted to `/data/postgres`.
+* `nginx_cert_validity`: New parameter to control Nginx self-signed certificate validity, default `397d`.
+* `minio_buckets`: Default value adjusted to create three buckets named `pgsql`, `meta`, `data`.
+* `minio_users`: Removed `dba` user, added `s3user_meta` and `s3user_data` users for `meta` and `data` buckets respectively.
+* `minio_https`: New parameter to allow MinIO to use HTTP mode.
+* `minio_provision`: New parameter to allow skipping MinIO provisioning stage (skip bucket and user creation)
+* `minio_safeguard`: New parameter, abort `minio-rm.yml` when enabled
+* `minio_rm_data`: New parameter, whether to remove minio data directory during `minio-rm.yml`
+* `minio_rm_pkg`: New parameter, whether to uninstall minio package during `minio-rm.yml`
+* `etcd_learner`: New parameter to control whether to init etcd instance as learner
+* `etcd_rm_data`: New parameter, whether to remove etcd data directory during `etcd-rm.yml`
+* `etcd_rm_pkg`: New parameter, whether to uninstall etcd package during `etcd-rm.yml`
+
+**Checksums**
+
+```bash
+ab91bc05c54b88c455bf66533c1d8d43  pigsty-v3.6.0.tgz
+cea861e2b4ec7ff5318e1b3c30b470cb  pigsty-pkg-v3.6.0.d12.aarch64.tgz
+2f253af87e19550057c0e7fca876d37c  pigsty-pkg-v3.6.0.d12.x86_64.tgz
+0158145b9bbf0e4a120b8bfa8b44f857  pigsty-pkg-v3.6.0.el8.aarch64.tgz
+07330d687d04d26e7d569c8755426c5a  pigsty-pkg-v3.6.0.el8.x86_64.tgz
+311df5a342b39e3288ebb8d14d81e0d1  pigsty-pkg-v3.6.0.el9.aarch64.tgz
+92aad54cc1822b06d3e04a870ae14e29  pigsty-pkg-v3.6.0.el9.x86_64.tgz
+c4fadf1645c8bbe3e83d5a01497fa9ca  pigsty-pkg-v3.6.0.u22.aarch64.tgz
+5477ed6be96f156a43acd740df8a9b9b  pigsty-pkg-v3.6.0.u22.x86_64.tgz
+196169afc1be02f93fcc599d42d005ca  pigsty-pkg-v3.6.0.u24.aarch64.tgz
+dbe5c1e8a242a62fe6f6e1f6e6b6c281  pigsty-pkg-v3.6.0.u24.x86_64.tgz
+```
+
+
+
+------
+
+## v3.5.0
+
+**Highlights**
+
+- New website: https://pgsty.com
+- **PostgreSQL 18 (Beta) support**: monitoring via `pg_exporter 1.0.0`, installer alias via `pig 0.4.2`, and a `pg18` template
+- **421 bundled extensions**, now including OrioleDB and OpenHalo kernels on all platforms
+- **`pig do` CLI** replaces legacy `bin/` scripts
+- **Hardening for self-hosted Supabase** (replication lag, key distribution, etc.)
+- **Code & architecture refactor** — slimmer tasks, cleaner defaults for Postgres & PgBouncer
+- **Monitoring stack refresh** — Grafana 12, `pg_exporter 1.0`, new panels & plugins
+- **Run vagrant on Apple Silicon**
+
+```bash
+curl https://repo.pigsty.io/get | bash -s v3.5.0
+```
+
+**Module Changes**
+
+- Add PostgreSQL 18 support
+- PG18 metrics support with pg_exporter 1.0.0+
+- PG18 install support with pig 0.4.1+
+- New config template `pg18.yml`
+- Refactored `pgsql` module
+- Split monitoring into a new **`pg_monitor`** role; removed `clean` logic
+- Pruned duplicate tasks, dropped `dir/utils` block, renamed templates (no `.j2`)
+- All extensions install in **`extensions`** schema (Supabase best-practice)
+- Added `SET search_path=''` to every monitoring function
+- Tuned PgBouncer defaults (larger pool, cleanup query); new `pgbouncer_ignore_param`
+- New `pg_key` task to generate `pgsodium` master keys
+- Enabled `sync_replication_slots` by default on PG 17
+- Retagged subtasks for clearer structure
+- Refactored `pg_remove` module
+- New flags `pg_rm_data`, `pg_rm_bkup`, `pg_rm_pkg` control what gets wiped
+- Clearer role layout & tagging
+- Added new `pg_monitor` module
+- pgbouncer_exporter no longer shares configuration files with `pg_exporter`
+- Added monitoring metrics for TimescaleDB and Citus
+- Using `pg_exporter` 0.9.0 with updated replication slot metrics for PG16/17
+- Using more compact, newly designed collector configuration files
+- Supabase Enhancement (thanks [@lawso017](https://github.com/lawso017) for the contribution)
+- update supabase containers and schemas to the latest version
+- Support `pgsodium` server key loading
+- fix logflare lag issue with `supa-kick` crontab
+- add `set search_path` clause for monitor functions
+- Added new `pig do` command to CLI, allowing command-line tool to replace Shell scripts in `bin/`
+
+**Infra Package Updates**
+
+- pig 0.4.2
+- duckdb 1.3.0
+- etcd 3.6.0
+- vector 0.47.0
+- minio 20250422221226
+- mcli 20250416181326
+- pev 1.5.0
+- rclone 1.69.3
+- mtail 3.0.8 (new)
+
+**Observability Package Updates**
+
+- grafana 12.0.0
+- grafana-victorialogs-ds 0.16.3
+- grafana-victoriametrics-ds 0.15.1
+- grafana-infinity-ds 3.2.1
+- grafana_plugins 12.0.0
+- prometheus 3.4.0
+- pushgateway 1.11.1
+- nginx_exporter 1.4.2
+- pg_exporter [1.0.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.0.0)
+- pgbackrest_exporter 0.20.0
+- redis_exporter 1.72.1
+- keepalived_exporter 1.6.2
+- victoriametrics 1.117.1
+- victoria_logs 1.22.2
+
+**Database Package Updates**
+
+- PostgreSQL 17.5, 16.9, 15.13, 14.18, 13.21
+- PostgreSQL 18beta1 support
+- pgbouncer 1.24.1
+- pgbackrest 2.55
+- pgbadger 13.1
+
+**Extension Package Updates**
+
+- spat [0.1.0a4](https://github.com/Florents-Tselai/spat) new extension
+- pgsentinel [1.1.0](https://github.com/pgsentinel/pgsentinel/releases/tag/v1.1.0) new extension
+- pgdd [0.6.0](https://github.com/rustprooflabs/pgdd) (pgrx 0.14.1) new extension add back
+- convert [0.0.4](https://github.com/rustprooflabs/convert) (pgrx 0.14.1) new extension
+- pg_tokenizer.rs [0.1.0](https://github.com/tensorchord/pg_tokenizer.rs) (pgrx 0.13.1)
+- pg_render [0.1.2](https://github.com/mkaski/pg_render) (pgrx 0.12.8)
+- pgx_ulid [0.2.0](https://github.com/pksunkara/pgx_ulid) (pgrx 0.12.7)
+- pg_idkit [0.3.0](https://github.com/VADOSWARE/pg_idkit) (pgrx 0.14.1)
+- pg_ivm [1.11.0](https://github.com/sraoss/pg_ivm)
+- orioledb [1.4.0 beta11](https://github.com/orioledb/orioledb) rpm & add debian/ubuntu support
+- openhalo [14.10](https://github.com/HaloTech-Co-Ltd/openHalo) add debian/ubuntu support
+- omnigres 20250507 (miss on d12/u22)
+- citus [12.0.3](https://github.com/citusdata/citus/releases/tag/v13.0.3)
+- timescaledb [2.20.0](https://github.com/timescale/timescaledb/releases/tag/2.20.0) (DROP PG14 support)
+- supautils [2.9.2](https://github.com/supabase/supautils/releases/tag/v2.9.2)
+- pg_envvar [1.0.1](https://github.com/theory/pg-envvar/releases/tag/v1.0.1)
+- pgcollection [1.0.0](https://github.com/aws/pgcollection/releases/tag/v1.0.0)
+- aggs_for_vecs [1.4.0](https://github.com/pjungwir/aggs_for_vecs/releases/tag/1.4.0)
+- pg_tracing [0.1.3](https://github.com/DataDog/pg_tracing/releases/tag/v0.1.3)
+- pgmq [1.5.1](https://github.com/pgmq/pgmq/releases/tag/v1.5.1)
+- tzf-pg [0.2.0](https://github.com/ringsaturn/tzf-pg/releases/tag/v0.2.0) (pgrx 0.14.1)
+- pg_search [0.15.18](https://github.com/paradedb/paradedb/releases/tag/v0.15.18) (pgrx 0.14.1)
+- anon [2.1.1](https://gitlab.com/dalibo/postgresql_anonymizer/-/tree/latest/debian?ref_type=heads) (pgrx 0.14.1)
+- pg_parquet [0.4.0](https://github.com/CrunchyData/pg_parquet/releases/tag/v0.3.2) (0.14.1)
+- pg_cardano [1.0.5](https://github.com/Fell-x27/pg_cardano/commits/master/) (pgrx 0.12) -> 0.14.1
+- pglite_fusion [0.0.5](https://github.com/frectonz/pglite-fusion/releases/tag/v0.0.5) (pgrx 0.12.8) -> 14.1
+- vchord_bm25 [0.2.1](https://github.com/tensorchord/VectorChord-bm25/releases/tag/0.2.1) (pgrx 0.13.1)
+- vchord [0.3.0](https://github.com/tensorchord/VectorChord/releases/tag/0.3.0) (pgrx 0.13.1)
+- pg_vectorize [0.22.1](https://github.com/ChuckHend/pg_vectorize/releases/tag/v0.22.1) (pgrx 0.13.1)
+- wrappers [0.4.6](https://github.com/supabase/wrappers/releases/tag/v0.4.6) (pgrx 0.12.9)
+- timescaledb-toolkit [1.21.0](https://github.com/timescale/timescaledb-toolkit/releases/tag/1.21.0) (pgrx 0.12.9)
+- pgvectorscale [0.7.1](https://github.com/timescale/pgvectorscale/releases/tag/0.7.1) (pgrx 0.12.9)
+- pg_session_jwt [0.3.1](https://github.com/neondatabase/pg_session_jwt/releases/tag/v0.3.1) (pgrx 0.12.6) -> 0.12.9
+- pg_timetable 5.13.0
+- ferretdb 2.2.0
+- documentdb [0.103.0](https://github.com/FerretDB/documentdb/releases/tag/v0.103.0-ferretdb-2.2.0) (+aarch64 support)
+- pgml [2.10.0](https://github.com/postgresml/postgresml/releases/tag/v2.10.0) (pgrx 0.12.9)
+- sqlite_fdw [2.5.0](https://github.com/pgspider/sqlite_fdw/releases/tag/v2.5.0) (fix pg17 deb)
+- tzf [0.2.2](https://github.com/ringsaturn/pg-tzf/releases/tag/v0.2.2) 0.14.1 (rename src)
+- pg_vectorize [0.22.2](https://github.com/ChuckHend/pg_vectorize/releases/tag/v0.22.2) (pgrx 0.13.1)
+- wrappers [0.5.0](https://github.com/supabase/wrappers/releases/tag/v0.5.0) (pgrx 0.12.9)
+
+**Checksums**
+
+```bash
+c7e5ce252ddf848e5f034173e0f29345  pigsty-v3.5.0.tgz
+ba31f311a16d615c1ee1083dc5a53566  pigsty-pkg-v3.5.0.d12.aarch64.tgz
+3aa5c56c8f0de53303c7100f2b3934f4  pigsty-pkg-v3.5.0.d12.x86_64.tgz
+a098cb33822633357e6880eee51affd6  pigsty-pkg-v3.5.0.el8.x86_64.tgz
+63723b0aeb4d6c02fff0da2c78e4de31  pigsty-pkg-v3.5.0.el9.aarch64.tgz
+eb91c8921d7b8a135d8330c77468bfe7  pigsty-pkg-v3.5.0.el9.x86_64.tgz
+87ff25e14dfb9001fe02f1dfbe70ae9e  pigsty-pkg-v3.5.0.u22.x86_64.tgz
+18be503856f6b39a59efbd1d0a8556b6  pigsty-pkg-v3.5.0.u24.aarch64.tgz
+2bbef6a18cfa99af9cd175ef0adf873c  pigsty-pkg-v3.5.0.u24.x86_64.tgz
+```
+
+
+
+------
+
+## v3.4.1
+
+GitHub Release Page: [v3.4.1](https://github.com/pgsty/pigsty/releases/tag/v3.4.1)
+
+- Added support for MySQL wire-compatible PostgreSQL kernel on EL systems: [openHalo](/docs/pgsql/kernel/openhalo)
+- Added support for OLTP-enhanced PostgreSQL kernel on EL systems: [orioledb](/docs/pgsql/kernel/orioledb)
+- Optimized pgAdmin 9.2 application template with automatic server list updates and pgpass password population
+- Increased PG default max connections to 250, 500, 1000
+- Removed the `mysql_fdw` extension with dependency errors from EL8
+
+**Infra Updates**
+
+- pig 0.3.4
+- etcd 3.5.21
+- restic 0.18.0
+- ferretdb 2.1.0
+- tigerbeetle 0.16.34
+- pg_exporter 0.8.1
+- node_exporter 1.9.1
+- grafana 11.6.0
+- zfs_exporter 3.8.1
+- mongodb_exporter 0.44.0
+- victoriametrics 1.114.0
+- minio 20250403145628
+- mcli 20250403170756
+
+**Extension Update**
+
+- Bump pg_search to 0.15.13
+- Bump citus to 13.0.3
+- Bump timescaledb to 2.19.1
+- Bump pgcollection RPM to 1.0.0
+- Bump pg_vectorize RPM to 0.22.1
+- Bump pglite_fusion RPM to 0.0.4
+- Bump aggs_for_vecs RPM to 1.4.0
+- Bump pg_tracing RPM to 0.1.3
+- Bump pgmq RPM to 1.5.1
+
+**Checksums**
+
+```bash
+471c82e5f050510bd3cc04d61f098560  pigsty-v3.4.1.tgz
+4ce17cc1b549cf8bd22686646b1c33d2  pigsty-pkg-v3.4.1.d12.aarch64.tgz
+c80391c6f93c9f4cad8079698e910972  pigsty-pkg-v3.4.1.d12.x86_64.tgz
+811bf89d1087512a4f8801242ca8bed5  pigsty-pkg-v3.4.1.el9.x86_64.tgz
+9fe2e6482b14a3e60863eeae64a78945  pigsty-pkg-v3.4.1.u22.x86_64.tgz
+```
+
+
+------
+
+
+
+## v3.4.0
+
+GitHub Release Page: [v3.4.0](https://github.com/pgsty/pigsty/releases/tag/v3.4.0)
+
+Introduction Blog: [**Pigsty v3.4 MySQL Compatibility and Overall Enhancements**](/blog/pigsty/v3.4)
+
+**New Features**
+
+- Added new pgBackRest backup monitoring metrics and dashboards
+- Enhanced Nginx server configuration options, with support for automated Certbot issuance
+- Now prioritizing PostgreSQL's built-in `C`/`C.UTF-8` locale settings
+- IvorySQL 4.4 is now fully supported across all platforms (RPM/DEB on x86/ARM)
+- Added new software packages: Juicefs, Restic, TimescaleDB EventStreamer
+- The Apache AGE graph database extension now fully supports PostgreSQL 13–17 on EL
+- Improved the `app.yml` playbook: launch standard Docker app without extra config
+- Bump Supabase, Dify, and Odoo app templates, bump to their latest versions
+- Add electric app template, local-first PostgreSQL Sync Engine
+
+**Infra Packages**
+
+- **+restic** 0.17.3
+- **+juicefs** 1.2.3
+- **+timescaledb-event-streamer** 0.12.0
+- **Prometheus** 3.2.1
+- **AlertManager** 0.28.1
+- **blackbox_exporter** 0.26.0
+- **node_exporter** 1.9.0
+- **mysqld_exporter** 0.17.2
+- **kafka_exporter** 1.9.0
+- **redis_exporter** 1.69.0
+- **pgbackrest_exporter** 0.19.0-2
+- **DuckDB** 1.2.1
+- **etcd** 3.5.20
+- **FerretDB** 2.0.0
+- **tigerbeetle** 0.16.31
+- **vector** 0.45.0
+- **VictoriaMetrics** 1.113.0
+- **VictoriaLogs** 1.17.0
+- **rclone** 1.69.1
+- **pev2** 1.14.0
+- **grafana-victorialogs-ds** 0.16.0
+- **grafana-victoriametrics-ds** 0.14.0
+- **grafana-infinity-ds** 3.0.0
+
+**PostgreSQL Related**
+
+- **Patroni** 4.0.5
+- **PolarDB** 15.12.3.0-e1e6d85b
+- **IvorySQL** 4.4
+- **pgbackrest** 2.54.2
+- **pev2** 1.14
+- **WiltonDB** 13.17
+
+**PostgreSQL Extensions**
+
+- **pgspider_ext** 1.3.0 (new extension)
+- **apache age** 13–17 el rpm (1.5.0)
+- **timescaledb** 2.18.2 → 2.19.0
+- **citus** 13.0.1 → 13.0.2
+- **documentdb** 1.101-0 → 1.102-0
+- **pg_analytics** 0.3.4 → 0.3.7
+- **pg_search** 0.15.2 → 0.15.8
+- **pg_ivm** 1.9 → 1.10
+- **emaj** 4.4.0 → 4.6.0
+- **pgsql_tweaks** 0.10.0 → 0.11.0
+- **pgvectorscale** 0.4.0 → 0.6.0 (pgrx 0.12.5)
+- **pg_session_jwt** 0.1.2 → 0.2.0 (pgrx 0.12.6)
+- **wrappers** 0.4.4 → 0.4.5 (pgrx 0.12.9)
+- **pg_parquet** 0.2.0 → 0.3.1 (pgrx 0.13.1)
+- **vchord** 0.2.1 → 0.2.2 (pgrx 0.13.1)
+- **pg_tle** 1.2.0 → 1.5.0
+- **supautils** 2.5.0 → 2.6.0
+- **sslutils** 1.3 → 1.4
+- **pg_profile** 4.7 → 4.8
+- **pg_snakeoil** 1.3 → 1.4
+- **pg_jsonschema** 0.3.2 → 0.3.3
+- **pg_incremental** 1.1.1 → 1.2.0
+- **pg_stat_monitor** 2.1.0 → 2.1.1
+- **ddl_historization** 0.7 → 0.0.7 (bug fix)
+- **pg_sqlog** 3.1.7 → 1.6 (bug fix)
+- **pg_random** removed development suffix (bug fix)
+- **asn1oid** 1.5 → 1.6
+- **table_log** 0.6.1 → 0.6.4
+
+**Interface Changes**
+
+- Added new Docker parameters: `docker_data` and `docker_storage_driver` ([#521](https://github.com/pgsty/pigsty/pull/521) by [@waitingsong](https://github.com/waitingsong))
+- Added new Infra parameter: `alertmanager_port`, which lets you specify the AlertManager port
+- Added new Infra parameter: `certbot_sign`, apply for cert during nginx init? (false by default)
+- Added new Infra parameter: `certbot_email`, specifying the email used when requesting certificates via Certbot
+- Added new Infra parameter: `certbot_options`, specifying additional parameters for Certbot
+- Updated IvorySQL to place its default binary under `/usr/ivory-4` starting in IvorySQL 4.4
+- Changed the default for `pg_lc_ctype` and other locale-related parameters from `en_US.UTF-8` to `C`
+- For PostgreSQL 17, if using `UTF8` encoding with `C` or `C.UTF-8` locales, PostgreSQL's built-in localization rules now take priority
+- `configure` automatically detects whether `C.utf8` is supported by both the PG version and the environment, and adjusts locale-related options accordingly
+- Set the default IvorySQL binary path to `/usr/ivory-4`
+- Updated the default value of `pg_packages` to `pgsql-main patroni pgbouncer pgbackrest pg_exporter pgbadger vip-manager`
+- Updated the default value of `repo_packages` to `[node-bootstrap, infra-package, infra-addons, node-package1, node-package2, pgsql-utility, extra-modules]`
+- Removed `LANG` and `LC_ALL` environment variable settings from `/etc/profile.d/node.sh`
+- Now using `bento/rockylinux-8` and `bento/rockylinux-9` as the Vagrant box images for EL
+- Added a new alias, `extra_modules`, which includes additional optional modules
+- Updated PostgreSQL aliases: `postgresql`, `pgsql-main`, `pgsql-core`, `pgsql-full`
+- GitLab repositories are now included among available modules
+- The Docker module has been merged into the Infra module
+- The `node.yml` playbook now includes a `node_pip` task to configure a pip mirror on each node
+- The `pgsql.yml` playbook now includes a `pgbackrest_exporter` task for collecting backup metrics
+- The `Makefile` now allows the use of `META`/`PKG` environment variables
+- Added `/pg/spool` directory as temporary storage for pgBackRest
+- Disabled pgBackRest's `link-all` option by default
+- Enabled block-level incremental backups for MinIO repositories by default
+
+**Bug Fixes**
+
+- Fixed the exit status code in `pg-backup` ([#532](https://github.com/pgsty/pigsty/pull/532) by [@waitingsong](https://github.com/waitingsong))
+- In `pg-tune-hugepage`, restricted PostgreSQL to use only large pages ([#527](https://github.com/pgsty/pigsty/pull/527) by [@waitingsong](https://github.com/waitingsong))
+- Fixed logic errors in the `pg-role` task
+- Corrected type conversion for hugepage configuration parameters
+- Fixed default value issues for `node_repo_modules` in the `slim` template
+
+**Checksums**
+
+```bash
+768bea3bfc5d492f4c033cb019a81d3a  pigsty-v3.4.0.tgz
+7c3d47ef488a9c7961ca6579dc9543d6  pigsty-pkg-v3.4.0.d12.aarch64.tgz
+b5d76aefb1e1caa7890b3a37f6a14ea5  pigsty-pkg-v3.4.0.d12.x86_64.tgz
+42dacf2f544ca9a02148aeea91f3153a  pigsty-pkg-v3.4.0.el8.aarch64.tgz
+d0a694f6cd6a7f2111b0971a60c49ad0  pigsty-pkg-v3.4.0.el8.x86_64.tgz
+7caa82254c1b0750e89f78a54bf065f8  pigsty-pkg-v3.4.0.el9.aarch64.tgz
+8f817e5fad708b20ee217eb2e12b99cb  pigsty-pkg-v3.4.0.el9.x86_64.tgz
+8b2fcaa6ef6fd8d2726f6eafbb488aaf  pigsty-pkg-v3.4.0.u22.aarch64.tgz
+83291db7871557566ab6524beb792636  pigsty-pkg-v3.4.0.u22.x86_64.tgz
+c927238f0343cde82a4a9ab230ecd2ac  pigsty-pkg-v3.4.0.u24.aarch64.tgz
+14cbcb90693ed5de8116648a1f2c3e34  pigsty-pkg-v3.4.0.u24.x86_64.tgz
+```
+
+-------
+
+## v3.3.0
+
+- Total available extensions increased to [**404**](/docs/pgsql/ext/)!
+- PostgreSQL February Minor Updates: 17.4, 16.8, 15.12, 14.17, 13.20
+- New Feature: `app.yml` script for auto-installing apps like Odoo, Supabase, Dify.
+- New Feature: Further Nginx configuration customization in `infra_portal`.
+- New Feature: Added Certbot support for quick free HTTPS certificate requests.
+- New Feature: Pure-text extension list now supported in `pg_default_extensions`.
+- New Feature: Default repositories now include mongo, redis, groonga, haproxy, etc.
+- New Parameter: `node_aliases` to add command aliases for Nodes.
+- Fix: Resolved default EPEL repo address issue in Bootstrap script.
+- Improvement: Added Aliyun mirror for Debian Security repository.
+- Improvement: pgBackRest backup support for IvorySQL kernel.
+- Improvement: ARM64 and Debian/Ubuntu support for PolarDB.
+- pg_exporter 0.8.0 now supports new metrics in pgbouncer 1.24.
+- New Feature: Auto-completion for common commands like `git`, `docker`, `systemctl` [#506](https://github.com/pgsty/pigsty/pull/506) [#507](https://github.com/pgsty/pigsty/pull/507) by [@waitingsong](https://github.com/waitingsong).
+- Improvement: Refined `ignore_startup_parameters` in `pgbouncer` config template [#488](https://github.com/pgsty/pigsty/pull/488) by [@waitingsong](https://github.com/waitingsong).
+- New homepage design: Pigsty's website now features a fresh new look.
+- Extension Directory: Detailed information and download links for RPM/DEB binary packages.
+- Extension Build: `pig` CLI now auto-sets PostgreSQL extension build environment.
+
+**New Extensions**
+
+**12** new PostgreSQL extensions added, bringing the total to [404](https://pgext.cloud/list) available extensions.
+
+- [documentdb](https://github.com/microsoft/documentdb/) 0.101-0
+- [VectorChord-bm25](https://github.com/tensorchord/VectorChord-bm25) (vchord_bm25) 0.1.0
+- [pg_tracing](https://github.com/DataDog/pg_tracing) 0.1.2
+- [pg_curl](https://github.com/RekGRpth/pg_curl) 2.4
+- [pgxicor](https://github.com/Florents-Tselai/pgxicor) 0.1.0
+- [pgsparql](https://github.com/lacanoid/pgsparql) 1.0
+- [pgjq](https://github.com/Florents-Tselai/pgJQ) 0.1.0
+- [hashtypes](https://github.com/adjust/hashtypes/) 0.1.5
+- [db_migrator](https://github.com/cybertec-postgresql/db_migrator) 1.0.0
+- [pg_cooldown](https://github.com/rbergm/pg_cooldown) 0.1
+- [pgcollection](https://github.com/aws/pgcollection) 0.9.1
+- [pg_bzip](https://github.com/steve-chavez/pg_bzip) 1.0.0
+
+**Bump Extension**
+
+- citus 13.0.0 -> 13.0.1
+- pg_duckdb 0.2.0 -> 0.3.1
+- pg_mooncake 0.1.0 -> 0.1.2
+- timescaledb 2.17.2 -> 2.18.2
+- supautils 2.5.0 -> 2.6.0
+- supabase_vault 0.3.1 (become C)
+- VectorChord 0.1.0 -> 0.2.1
+- pg_bulkload 3.1.22 (+pg17)
+- pg_store_plan 1.8 (+pg17)
+- pg_search 0.14 -> 0.15.2
+- pg_analytics 0.3.0 -> 0.3.4
+- pgroonga 3.2.5 -> 4.0.0
+- zhparser 2.2 -> 2.3
+- pg_vectorize 0.20.0 -> 0.21.1
+- pg_net 0.14.0
+- pg_curl 2.4.2
+- table_version 1.10.3 -> 1.11.0
+- pg_duration 1.0.2
+- pg_graphql 1.5.9 -> 1.5.11
+- vchord 0.1.1 -> 0.2.1 ((+13))
+- vchord_bm25 0.1.0 -> 0.1.1
+- pg_mooncake 0.1.1 -> 0.1.2
+- pgddl 0.29
+- pgsql_tweaks 0.11.0
+
+**Infra Updates**
+
+- pig 0.1.3 -> 0.3.0
+- pushgateway 1.10.0 -> 1.11.0
+- alertmanager 0.27.0 -> 0.28.0
+- nginx_exporter 1.4.0 -> 1.4.1
+- pgbackrest_exporter 0.18.0 -> 0.19.0
+- redis_exporter 1.66.0 -> 1.67.0
+- mongodb_exporter 0.43.0 -> 0.43.1
+- VictoriaMetrics 1.107.0 -> 1.111.0
+- VictoriaLogs v1.3.2 -> 1.9.1
+- DuckDB 1.1.3 -> 1.2.0
+- Etcd 3.5.17 -> 3.5.18
+- pg_timetable 5.10.0 -> 5.11.0
+- FerretDB 1.24.0 -> 2.0.0-rc
+- tigerbeetle 0.16.13 -> 0.16.27
+- grafana 11.4.0 -> 11.5.2
+- vector 0.43.1 -> 0.44.0
+- minio 20241218131544 -> 20250218162555
+- mcli 20241121172154 -> 20250215103616
+- rclone 1.68.2 -> 1.69.0
+- vray 5.23 -> 5.28
+
+-------
+
+## v3.2.2
+
+- New Extension(s): [`Omnigres`](https://pgext.cloud/e/omni) 33 extensions, postgres as platform
+- New Extension: [`pg_mooncake`](https://pgext.cloud/e/pg_mooncake): duckdb in postgres
+- New Extensions: [`pg_xxhash`](https://pgext.cloud/e/xxhash)
+- New Extension: [`timescaledb_toolkit`](https://pgext.cloud/e/timescaledb_toolkit)
+- New Extension: [`pg_xenophile`](https://pgext.cloud/e/pg_xenophile)
+- New Extension: [`pg_drop_events`](https://pgext.cloud/e/pg_drop_events)
+- New Extension: [`pg_incremental`](https://pgext.cloud/e/pg_incremental)
+- Bump [`citus`](https://github.com/citusdata/citus/tree/v13.0.0) to 13.0.0 with PostgreSQL 17 support.
+- Bump [`pgml`](https://github.com/postgresml/postgresml/releases/tag/v2.10.0) to 2.10.0
+- Bump [`pg_extra_time`](https://pgext.cloud/e/pg_extra_time) to 2.0.0
+- Bump [`pg_vectorize`](https://pgext.cloud/e/pg_vectorize) to 0.20.0
+
+**What's Changed**
+
+- Bump IvorySQL to 4.2 (PostgreSQL 17.2)
+- Add Arm64 and Debian support for PolarDB kernel
+- Add certbot and certbot-nginx to default `infra_packages`
+- Increase pgbouncer max_prepared_statements to 256
+- remove `pgxxx-citus` package alias
+- hide `pgxxx-olap` category in `pg_extensions` by default
+
+-------
+
+## v3.2.1
+
+**Highlights**
+
+- [**351**](https://pgext.cloud/) PostgreSQL Extensions, including the powerful [postgresql-anonymizer 2.0](https://postgresql-anonymizer.readthedocs.io/en/stable/)
+- IvorySQL 4.0 support for EL 8/9
+- Now use the Pigsty compiled Citus, TimescaleDB and pgroonga on all distros
+- Add self-hosting Odoo template and support
+
+**Bump software versions**
+
+- pig CLI 0.1.2 self-updating capability
+- prometheus 3.1.0
+
+**Add New Extension**
+
+- add pg_anon 2.0.0
+- add omnisketch 1.0.2
+- add ddsketch 1.0.1
+- add pg_duration 1.0.1
+- add ddl_historization 0.0.7
+- add data_historization 1.1.0
+- add schedoc 0.0.1
+- add floatfile 1.3.1
+- add pg_upless 0.0.3
+- add pg_task 1.0.0
+- add pg_readme 0.7.0
+- add vasco 0.1.0
+- add pg_xxhash 0.0.1
+
+**Update Extension**
+
+- lower_quantile 1.0.3
+- quantile 1.1.8
+- sequential_uuids 1.0.3
+- pgmq 1.5.0 (subdir)
+- floatvec 1.1.1
+- pg_parquet 0.2.0
+- wrappers 0.4.4
+- pg_later 0.3.0
+- topn fix for deb.arm64
+- add age 17 on debian
+- powa + pg17, 5.0.1
+- h3 + pg17
+- ogr_fdw + pg17
+- age + pg17 1.5 on debian
+- pgtap + pg17 1.3.3
+- repmgr
+- topn + pg17
+- pg_partman 5.2.4
+- credcheck 3.0
+- ogr_fdw 1.1.5
+- ddlx 0.29
+- postgis 3.5.1
+- tdigest 1.4.3
+- pg_repack 1.5.2
+
+-------
+
+
+## v3.2.0
+
+**Highlights**
+
+- **New CLI**: Introducing the `pig` command-line tool for managing extension plugins.
+- **ARM64 Support**: 390 extensions are now available for ARM64 across five major distributions.
+- **Supabase Update**: Latest Supabase Release Week updates are now supported for self-hosting on all distributions.
+- **Grafana v11.4**: Upgraded Grafana to version 11.4, featuring a new Infinity datasource.
+
+**Package Changes**
+
+- New Extensions
+- Added `timescaledb`, `timescaledb-loader`, `timescaledb-toolkit`, and `timescaledb-tool` to the PIGSTY repository.
+- Added a custom-compiled [pg_timescaledb](https://github.com/timescale/timescaledb) for EL.
+- Added [pgroonga](https://pgext.cloud/e/pgroonga), custom-compiled for all EL variants.
+- Added [vchord](https://github.com/tensorchord/VectorChord) 0.1.0.
+- Added [pg_bestmatch.rs](https://github.com/tensorchord/pg_bestmatch.rs) 0.0.1.
+- Added [pglite_fusion](https://github.com/frectonz/pglite-fusion) 0.0.3.
+- Added [pgpdf](https://github.com/Florents-Tselai/pgpdf) 0.1.0.
+- Updated Extensions
+- **pgvectorscale**: 0.4.0 → 0.5.1
+- **pg_parquet**: 0.1.0 → 0.1.1
+- **pg_polyline**: 0.0.1
+- **pg_cardano**: 1.0.2 → 1.0.3
+- **pg_vectorize**: 0.20.0
+- **pg_duckdb**: 0.1.0 → 0.2.0
+- **pg_search**: 0.13.0 → 0.13.1
+- **aggs_for_vecs**: 1.3.1 → 1.3.2
+- Infrastructure
+- Added **promscale** 0.17.0
+- Added **grafana-plugins** 11.4
+- Added **grafana-infinity-plugins**
+- Added **grafana-victoriametrics-ds**
+- Added **grafana-victorialogs-ds**
+- **vip-manager**: 2.8.0 → 3.0.0
+- **vector**: 0.42.0 → 0.43.0
+- **grafana**: 11.3 → 11.4
+- **prometheus**: 3.0.0 → 3.0.1 (package name changed from `prometheus2` to `prometheus`)
+- **nginx_exporter**: 1.3.0 → 1.4.0
+- **mongodb_exporter**: 0.41.2 → 0.43.0
+- **VictoriaMetrics**: 1.106.1 → 1.107.0
+- **VictoriaLogs**: 1.0.0 → 1.3.2
+- **pg_timetable**: 5.9.0 → 5.10.0
+- **tigerbeetle**: 0.16.13 → 0.16.17
+- **pg_export**: 0.7.0 → 0.7.1
+- New Docker App
+- Add [mattermost](https://github.com/mattermost/mattermost) the open-source Slack alternative self-hosting template
+- Bug Fixes
+- Added `python3-cdiff` for `el8.aarch64` to fix missing Patroni dependency.
+- Added `timescaledb-tools` for `el9.aarch64` to fix missing package in official repo.
+- Added `pg_filedump` for `el9.aarch64` to fix missing package in official repo.
+- Removed Extensions
+- **pg_mooncake**: Removed due to conflicts with `pg_duckdb`.
+- **pg_top**: Removed because of repeated version issues and quality concerns.
+- **hunspell_pt_pt**: Removed because of conflict with official PG dictionary files.
+- **pgml**: Disabled by default (no longer downloaded or installed).
+
+**API Changes**
+
+- [`repo_url_packages`](/docs/infra/param#repo_url_packages) now defaults to an empty array; packages are installed via OS package managers.
+- `grafana_plugin_cache` is deprecated; Grafana plugins are now installed via OS package managers.
+- `grafana_plugin_list` is deprecated for the same reason.
+- The 36-node "production" template has been renamed to `simu`.
+- Auto-generated code under `node_id/vars` now includes `aarch64` support.
+- `infra_packages` now includes the `pig` CLI tool.
+- The `configure` command now updates the version numbers of `pgsql-xxx` aliases in auto-generated config files.
+- Update terraform templates with Makefile shortcuts and better provision experience
+
+**Bug Fix**
+
+- Fix pgbouncer dashboard selector issue [#474](https://github.com/pgsty/pigsty/issues/474)
+- Add `--arg value` support for `pg-pitr` by [@waitingsong](https://github.com/pgsty/pigsty/pulls?q=is%3Apr+author%3Awaitingsong)
+- Fix redis log message typo by [@waitingsong](https://github.com/pgsty/pigsty/pull/476)
+
+**Checksums**
+
+```bash
+c42da231067f25104b71a065b4a50e68  pigsty-pkg-v3.2.0.d12.aarch64.tgz
+ebb818f98f058f932b57d093d310f5c2  pigsty-pkg-v3.2.0.d12.x86_64.tgz
+d2b85676235c9b9f2f8a0ad96c5b15fd  pigsty-pkg-v3.2.0.el9.aarch64.tgz
+649f79e1d94ec1845931c73f663ae545  pigsty-pkg-v3.2.0.el9.x86_64.tgz
+24c0be1d8436f3c64627c12f82665a17  pigsty-pkg-v3.2.0.u22.aarch64.tgz
+0b9be0e137661e440cd4f171226d321d  pigsty-pkg-v3.2.0.u22.x86_64.tgz
+8fdc6a60820909b0a2464b0e2b90a3a6  pigsty-v3.2.0.tgz
+```
+
+
+
+--------
+
+## v3.1.0
+
+2024-11-24 : ARM64 & Ubuntu24, PG17 by Default, Better Supabase & MinIO
+
+https://github.com/pgsty/pigsty/releases/tag/v3.1.0
+
+--------
+
+## v3.0.4
+
+2024-10-28 : PostgreSQL 17 Extensions, Better self-hosting Supabase
+
+https://github.com/pgsty/pigsty/releases/tag/v3.0.4
+
+--------
+
+## v3.0.3
+
+2024-09-27 : PostgreSQL 17, Etcd Enhancement, IvorySQL 3.4, PostGIS 3.5
+
+https://github.com/pgsty/pigsty/releases/tag/v3.0.3
+
+--------
+
+## v3.0.2
+
+2024-09-07 : Mini Install, PolarDB 15, Bloat View Update
+
+https://github.com/pgsty/pigsty/releases/tag/v3.0.2
+
+--------
+
+## v3.0.1
+
+2024-08-31 : Oracle Compatibility, Patroni 4.0, Routine Bug Fix
+
+https://github.com/pgsty/pigsty/releases/tag/v3.0.1
+
+--------
+
+## v3.0.0
+
+2024-08-30 : Extension Exploding & Pluggable Kernels (MSSQL, Oracle)
+
+https://github.com/pgsty/pigsty/releases/tag/v3.0.0
+
+
+--------
+
+## v2.7.0
+
+2024-05-16 : Extension Overwhelming, new docker apps
+
+https://github.com/pgsty/pigsty/releases/tag/v2.7.0
+
+--------
+
+## v2.6.0
+
+2024-02-29 : PG 16 as default version, ParadeDB & DuckDB
+
+https://github.com/pgsty/pigsty/releases/tag/v2.6.0
+
+--------
+
+## v2.5.1
+
+2023-12-01 : Routine update, pg16 major extensions
+
+https://github.com/pgsty/pigsty/releases/tag/v2.5.1
+
+--------
+
+## v2.5.0
+
+2023-10-24 : Ubuntu/Debian Support: bullseye, bookworm, jammy, focal
+
+https://github.com/pgsty/pigsty/releases/tag/v2.5.0
+
+--------
+
+## v2.4.1
+
+2023-09-24 : Supabase/PostgresML support, graphql, jwt, pg_net, vault
+
+https://github.com/pgsty/pigsty/releases/tag/v2.4.1
+
+--------
+
+## v2.4.0
+
+2023-09-14 : PG16, RDS Monitor, New Extensions
+
+https://github.com/pgsty/pigsty/releases/tag/v2.4.0
+
+--------
+
+## v2.3.1
+
+2023-09-01 : PGVector with HNSW, PG16 RC1, Chinese Docs, Bug Fix
+
+https://github.com/pgsty/pigsty/releases/tag/v2.3.1
+
+--------
+
+## v2.3.0
+
+2023-08-20 : PGSQL/REDIS Update, NODE VIP, Mongo/FerretDB, MYSQL Stub
+
+https://github.com/pgsty/pigsty/releases/tag/v2.3.0
+
+--------
+
+## v2.2.0
+
+2023-08-04 : Dashboard & Provision overhaul, UOS compatibility
+
+https://github.com/pgsty/pigsty/releases/tag/v2.2.0
+
+--------
+
+## v2.1.0
+
+2023-06-10 : PostgreSQL 12 ~ 16beta support
+
+https://github.com/pgsty/pigsty/releases/tag/v2.1.0
+
+--------
+
+## v2.0.2
+
+2023-03-31 : Add pgvector support and fix MinIO CVE
+
+https://github.com/pgsty/pigsty/releases/tag/v2.0.2
+
+--------
+
+## v2.0.1
+
+2023-03-21 : v2 Bug Fix, security enhance and bump grafana version
+
+https://github.com/pgsty/pigsty/releases/tag/v2.0.1
+
+--------
+
+## v2.0.0
+
+2023-02-28 : Compatibility Security Maintainability Enhancement
+
+https://github.com/pgsty/pigsty/releases/tag/v2.0.0
+
+
+--------
+
+## v1.5.1
+
+2022-06-18 : Grafana Security Hotfix
+
+https://github.com/pgsty/pigsty/releases/tag/v1.5.1
+
+--------
+
+## v1.5.0
+
+2022-05-31 : Docker Applications
+
+https://github.com/pgsty/pigsty/releases/tag/v1.5.0
+
+--------
+
+## v1.4.1
+
+2022-04-20 : Bug fix & Full translation of English documents.
+
+https://github.com/pgsty/pigsty/releases/tag/v1.4.1
+
+--------
+
+## v1.4.0
+
+2022-03-31 : MatrixDB Support, Separated INFRA, NODES, PGSQL, REDIS
+
+https://github.com/pgsty/pigsty/releases/tag/v1.4.0
+
+--------
+
+## v1.3.0
+
+2021-11-30 : PGCAT Overhaul & PGSQL Enhancement & Redis Support Beta
+
+https://github.com/pgsty/pigsty/releases/tag/v1.3.0
+
+--------
+
+## v1.2.0
+
+2021-11-03 : Upgrade default Postgres to 14, monitoring existing pg
+
+https://github.com/pgsty/pigsty/releases/tag/v1.2.0
+
+--------
+
+## v1.1.0
+
+2021-10-12 : HomePage, JupyterLab, PGWEB, Pev2 & Pgbadger
+
+https://github.com/pgsty/pigsty/releases/tag/v1.1.0
+
+--------
+
+## v1.0.0
+
+2021-07-26 : v1 GA, Monitoring System Overhaul
+
+https://github.com/pgsty/pigsty/releases/tag/v1.0.0
+
+
+--------
+
+## v0.9.0
+
+2021-04-04 : Pigsty GUI, CLI, Logging Integration
+
+https://github.com/pgsty/pigsty/releases/tag/v0.9.0
+
+--------
+
+## v0.8.0
+
+2021-03-28 : Service Provision
+
+https://github.com/pgsty/pigsty/releases/tag/v0.8.0
+
+--------
+
+## v0.7.0
+
+2021-03-01 : Monitor only deployment
+
+https://github.com/pgsty/pigsty/releases/tag/v0.7.0
+
+--------
+
+## v0.6.0
+
+2021-02-19 : Architecture Enhancement
+
+https://github.com/pgsty/pigsty/releases/tag/v0.6.0
+
+--------
+
+## v0.5.0
+
+2021-01-07 : Database Customize Template
+
+https://github.com/pgsty/pigsty/releases/tag/v0.5.0
+
+--------
+
+## v0.4.0
+
+2020-12-14 : PostgreSQL 13 Support, Official Documentation
+
+https://github.com/pgsty/pigsty/releases/tag/v0.4.0
+
+--------
+
+## v0.3.0
+
+2020-10-22 : Provisioning Solution GA
+
+https://github.com/pgsty/pigsty/releases/tag/v0.3.0
+
+--------
+
+## v0.2.0
+
+2020-07-10 : PGSQL Monitoring v6 GA
+
+https://github.com/pgsty/pigsty/commit/385e33a62a19817e8ba19997260e6b77d99fe2ba
+
+--------
+
+## v0.1.0
+
+2020-06-20 : Validation on Testing Environment
+
+https://github.com/pgsty/pigsty/commit/1cf2ea5ee91db071de00ec805032928ff582453b
+
+--------
+
+## v0.0.5
+
+2020-08-19 : Offline Installation Mode
+
+https://github.com/pgsty/pigsty/commit/0fe9e829b298fe5e56307de3f78c95071de28245
+
+--------
+
+## v0.0.4
+
+2020-07-27 : Refactor playbooks into ansible roles
+
+https://github.com/pgsty/pigsty/commit/90b44259818d2c71e37df5250fe8ed1078a883d0
+
+--------
+
+## v0.0.3
+
+2020-06-22 : Interface enhancement
+
+https://github.com/pgsty/pigsty/commit/4c5c68ccd57bc32a9e9c98aa3f264aa19f45c7ee
+
+--------
+
+## v0.0.2
+
+2020-04-30 : First Commit
+
+https://github.com/pgsty/pigsty/commit/dd646775624ddb33aef7884f4f030682bdc371f8
+
+--------
+
+## v0.0.1
+
+2019-05-15 : POC
+
+https://github.com/Vonng/pg/commit/fa2ade31f8e81093eeba9d966c20120054f0646b
+
+--------
