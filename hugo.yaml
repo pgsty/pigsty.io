@@ -171,7 +171,7 @@ params:
       - name: GitHub - Vonng
         url: 'https://github.com/Vonng'
         icon: fab fa-github
-        desc: Pigsty code repository
+        desc: Vonng's GitHub Profile
       - name: X - Vonng
         url: 'https://x.com/RonVonng'
         icon: fab fa-x-twitter

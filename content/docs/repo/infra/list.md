@@ -138,8 +138,8 @@ Pig package manager, PostgreSQL tools, and other database related utilities
 | [`sealos`](https://github.com/labring/sealos)                                           | `5.0.1`  | [Apache-2.0](https://github.com/labring/sealos/blob/main/LICENSE)                       | Battery-included Kubernetes distribution      |
 | [`vray`](https://github.com/v2fly/v2ray-core)                                           | `5.28.0` | [MIT](https://github.com/v2fly/v2ray-core/blob/master/LICENSE)                          | Build proxies to bypass network restrictions  |
 | [`asciinema`](https://github.com/asciinema/asciinema)                                   | `3.0.1`  | [GPL-3.0](https://github.com/asciinema/asciinema/blob/develop/LICENSE)                  | Terminal session recording and playback       |
-| [`postgrest`](https://github.com/PostgREST/postgrest)                                   | `3.6.7`  | [MIT](https://github.com/PostgREST/postgrest/blob/main/LICENSE)                         | RESTful API for PostgreSQL                    |
-| [`npgsqlrest`](https://github.com/vb-consulting/NpgsqlRest)                             | `0.9.0`  | [MIT](https://github.com/vb-consulting/NpgsqlRest/blob/master/LICENSE.md)               | .NET REST API generator for PostgreSQL        |
+| [`postgrest`](https://github.com/PostgREST/postgrest)                                   | `14.3`   | [MIT](https://github.com/PostgREST/postgrest/blob/main/LICENSE)                         | RESTful API for PostgreSQL                    |
+| [`npgsqlrest`](https://github.com/vb-consulting/NpgsqlRest)                             | `3.3.3`  | [MIT](https://github.com/vb-consulting/NpgsqlRest/blob/master/LICENSE.md)               | .NET REST API generator for PostgreSQL        |
 {.stretch-last}
 
 --------
@@ -155,4 +155,6 @@ AI Agent, MCP  tools, python package manager, web IDE, etc...
 | [`code-server`](https://github.com/coder/code-server)          | `4.107.0` | [MIT](https://github.com/coder/code-server/blob/main/LICENSE)               | VS Code in the browser                        |
 | [`genai-toolbox`](https://github.com/googleapis/genai-toolbox) | `0.24.0`  | [Apache-2.0](https://github.com/googleapis/genai-toolbox/blob/main/LICENSE) | Google database MCP server                    |
 | [`uv`](https://github.com/astral-sh/uv)                        | `0.9.18`  | [MIT](https://github.com/astral-sh/uv/blob/main/LICENSE-MIT)                | Next-gen Python package manager               |
+| [`golang`](https://golang.org/)                                | `1.25.5`  | [BSD-3](https://github.com/golang/go/blob/master/LICENSE)                   | Go compiler                                   |
+| [`nodejs`](https://nodejs.org/)                                | `24.12.0` | [MIT/Mixed](https://github.com/nodejs/node/blob/main/LICENSE)               | Run Javascript on serverside                  |
 {.stretch-last}

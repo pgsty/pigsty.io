@@ -2109,6 +2109,11 @@ body.landing-page {
   font-size: 0.85rem;
 }
 
+.footer-copyright a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .footer-lang-switch a {
   color: var(--pigsty-gray-400);
   text-decoration: none;
