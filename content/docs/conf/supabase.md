@@ -37,6 +37,12 @@ Source: [`pigsty/conf/supabase.yml`](https://github.com/pgsty/pigsty/blob/main/c
 
 {{< readfile file="yaml/supabase.yml" code="true" lang="yaml" >}}
 
+--------
+
+## Installation Demo
+
+{{< asciinema file="demo/supabase.cast" markers="0:Check,11:Install,43:Config,307:Docker,321:Domain,340:App,350:Verify" theme="solarized-light" speed="1.3" autoplay="true" loop="true" >}}
+
 
 --------
 
