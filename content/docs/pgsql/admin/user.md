@@ -99,8 +99,8 @@ If you want to redesign your own ACL system, consider customizing the following 
 
 - [`pg_default_roles`](/docs/pgsql/param#pg_default_roles): System-wide roles and global users
 - [`pg_default_privileges`](/docs/pgsql/param#pg_default_privileges): Default privileges for newly created objects
-- [`roles/pgsql/templates/pg-init-role.sql`](https://github.com/Vonng/pigsty/blob/main/roles/pgsql/templates/pg-init-role.sql): Role creation SQL template
-- [`roles/pgsql/templates/pg-init-template.sql`](https://github.com/Vonng/pigsty/blob/main/roles/pgsql/templates/pg-init-template.sql): Privilege SQL template
+- [`roles/pgsql/templates/pg-init-role.sql`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/pg-init-role.sql): Role creation SQL template
+- [`roles/pgsql/templates/pg-init-template.sql`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/pg-init-template.sql): Privilege SQL template
 
 
 

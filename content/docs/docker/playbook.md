@@ -14,7 +14,7 @@ The Docker module provides a default playbook [`docker.yml`](#dockeryml) for ins
 
 ## `docker.yml`
 
-Playbook source file: [`docker.yml`](https://github.com/Vonng/pigsty/blob/main/docker.yml)
+Playbook source file: [`docker.yml`](https://github.com/pgsty/pigsty/blob/main/docker.yml)
 
 Running this playbook will install `docker-ce` and `docker-compose-plugin` on target nodes with the `docker_enabled: true` flag, and enable the `dockerd` service.
 

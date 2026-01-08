@@ -37,7 +37,7 @@ To specify a particular PostgreSQL version (e.g., 17):
 
 ## Content
 
-Source: [`pigsty/conf/pgsql.yml`](https://github.com/Vonng/pigsty/blob/main/conf/pgsql.yml)
+Source: [`pigsty/conf/pgsql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/pgsql.yml)
 
 {{< readfile file="yaml/pgsql.yml" code="true" lang="yaml" >}}
 

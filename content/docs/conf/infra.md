@@ -34,7 +34,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/infra.yml`](https://github.com/Vonng/pigsty/blob/main/conf/infra.yml)
+Source: [`pigsty/conf/infra.yml`](https://github.com/pgsty/pigsty/blob/main/conf/infra.yml)
 
 {{< readfile file="yaml/infra.yml" code="true" lang="yaml" >}}
 

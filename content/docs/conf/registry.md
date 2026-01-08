@@ -31,7 +31,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/app/registry.yml`](https://github.com/Vonng/pigsty/blob/main/conf/app/registry.yml)
+Source: [`pigsty/conf/app/registry.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/registry.yml)
 
 {{< readfile file="yaml/app/registry.yml" code="true" lang="yaml" >}}
 

@@ -363,7 +363,7 @@ Delayed clusters require additional resources, but are much faster than [PITR](/
 
 ## Citus Cluster
 
-Pigsty natively supports Citus. You can refer to [`files/pigsty/citus.yml`](https://github.com/Vonng/pigsty/blob/main/conf/citus.yml) and [`prod.yml`](https://github.com/Vonng/pigsty/blob/main/conf/prod.yml#L298) as examples.
+Pigsty natively supports Citus. You can refer to [`files/pigsty/citus.yml`](https://github.com/pgsty/pigsty/blob/main/conf/citus.yml) and [`prod.yml`](https://github.com/pgsty/pigsty/blob/main/conf/prod.yml#L298) as examples.
 
 To define a Citus cluster, you need to specify the following parameters:
 

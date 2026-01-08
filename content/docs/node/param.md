@@ -443,7 +443,7 @@ Default packages to be installed on all nodes. Default value is a common RPM pac
 
 Packages specified in this variable only require **existence**, not **latest**. If you need to install the latest version, use the [`node_packages`](#node_packages) parameter.
 
-This parameter has no default value (undefined state). If users don't explicitly specify this parameter in the configuration file, Pigsty will load default values from the `node_packages_default` variable defined in [`roles/node_id/vars`](https://github.com/Vonng/pigsty/blob/main/roles/node_id/vars/) based on the current node's OS family.
+This parameter has no default value (undefined state). If users don't explicitly specify this parameter in the configuration file, Pigsty will load default values from the `node_packages_default` variable defined in [`roles/node_id/vars`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/) based on the current node's OS family.
 
 Default value (EL-based systems):
 

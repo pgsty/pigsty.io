@@ -31,7 +31,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/demo/el.yml`](https://github.com/Vonng/pigsty/blob/main/conf/demo/el.yml)
+Source: [`pigsty/conf/demo/el.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/el.yml)
 
 {{< readfile file="yaml/demo/el.yml" code="true" lang="yaml" >}}
 

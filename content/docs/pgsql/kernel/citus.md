@@ -39,7 +39,7 @@ To define a citus cluster, you need to specify the following parameters:
 
 Additionally, you need extra hba rules to allow SSL access from localhost and other data nodes.
 
-You can define each Citus cluster as a separate group, like standard PostgreSQL clusters, as shown in [`conf/dbms/citus.yml`](https://github.com/Vonng/pigsty/blob/main/conf/citus.yml):
+You can define each Citus cluster as a separate group, like standard PostgreSQL clusters, as shown in [`conf/dbms/citus.yml`](https://github.com/pgsty/pigsty/blob/main/conf/citus.yml):
 
 ```yaml
 all:
@@ -70,7 +70,7 @@ all:
       - { user: 'all' ,db: all  ,addr: intra        ,auth: ssl ,title: 'all user ssl access from intranet'  }
 ```
 
-You can also specify identity parameters for all Citus cluster members within a single group, as shown in [`prod.yml`](https://github.com/Vonng/pigsty/blob/main/conf/prod.yml#L298):
+You can also specify identity parameters for all Citus cluster members within a single group, as shown in [`prod.yml`](https://github.com/pgsty/pigsty/blob/main/conf/prod.yml#L298):
 
 ```yaml
 #==========================================================#

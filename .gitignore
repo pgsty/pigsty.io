@@ -19,9 +19,6 @@ _vendor/
 # npm dependencies directory
 node_modules/
 
-# Lock file (not tracked; dependency declarations in package.json)
-package-lock.json
-
 # ==============================================================================
 # IDE and Editors
 # ==============================================================================

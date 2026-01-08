@@ -33,7 +33,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/app/dify.yml`](https://github.com/Vonng/pigsty/blob/main/conf/app/dify.yml)
+Source: [`pigsty/conf/app/dify.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/dify.yml)
 
 {{< readfile file="yaml/app/dify.yml" code="true" lang="yaml" >}}
 

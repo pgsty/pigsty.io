@@ -39,7 +39,7 @@ To specify a particular PostgreSQL version:
 
 ## Content
 
-Source: [`pigsty/conf/fat.yml`](https://github.com/Vonng/pigsty/blob/main/conf/fat.yml)
+Source: [`pigsty/conf/fat.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fat.yml)
 
 {{< readfile file="yaml/fat.yml" code="true" lang="yaml" >}}
 

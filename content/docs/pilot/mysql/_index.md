@@ -89,7 +89,7 @@ Pigsty has the following playbooks related to the [`MYSQL`](/docs/pilot/mysql/) 
 
 ### `mysql.yml`
 
-The playbook [`mysql.yml`](https://github.com/vonng/pigsty/blob/main/mysql.yml) contains the following subtasks:
+The playbook [`mysql.yml`](https://github.com/pgsty/pigsty/blob/main/mysql.yml) contains the following subtasks:
 
 ```bash
 mysql-id       : generate mysql instance identity

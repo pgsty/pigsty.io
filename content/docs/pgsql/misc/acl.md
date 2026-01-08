@@ -200,7 +200,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE "dbrole_admin" {{ priv }};
 {% endfor %}
 ```
 
-This content will be used by the PG cluster initialization template [`pg-init-template.sql`](https://github.com/Vonng/pigsty/blob/main/roles/pgsql/templates/pg-init-template.sql), rendered during cluster initialization and output to `/pg/tmp/pg-init-template.sql`.
+This content will be used by the PG cluster initialization template [`pg-init-template.sql`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/pg-init-template.sql), rendered during cluster initialization and output to `/pg/tmp/pg-init-template.sql`.
 These commands will be executed on `template1` and `postgres` databases, and newly created databases will inherit these default privilege configurations from `template1`.
 
 

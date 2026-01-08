@@ -79,7 +79,7 @@ First, download & [install](/docs/setup/install) pigsty as usual, with the `supa
 > Please change the `pigsty.yml` config file according to your need before deploying Supabase. (**Credentials**)
 > For dev/test/demo purposes, we will just skip that, and comes back later.
 
-Then, run the [`supabase.yml`](https://github.com/Vonng/pigsty/blob/main/supabase.yml) to launch stateless part of supabase.
+Then, run the [`supabase.yml`](https://github.com/pgsty/pigsty/blob/main/supabase.yml) to launch stateless part of supabase.
 
 ```bash
 ./supabase.yml       # launch stateless supabase containers with docker compose
@@ -107,7 +107,7 @@ The container part are stateless, so you can launch / destroy / run multiple sup
 
 ![](/img/pigsty/supa-arch.svg)
 
-The built-in [`supa.yml`](https://github.com/Vonng/pigsty/blob/main/conf/supa.yml) [config](/docs/conf/supabase) template will create a single-node supabase, with a [singleton PostgreSQL](/docs/pgsql) and SNSD [MinIO](/docs/minio) server.
+The built-in [`supa.yml`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml) [config](/docs/conf/supabase) template will create a single-node supabase, with a [singleton PostgreSQL](/docs/pgsql) and SNSD [MinIO](/docs/minio) server.
 You can use [Multinode PostgreSQL Clusters](/docs/pgsql/config#replica) and [MNMD MinIO Clusters](/docs/minio/config#multi-node-multi-drive) / external S3 service instead in production, we will cover that later.
 
 
@@ -124,7 +124,7 @@ Here are checklists for self-hosting
 - [x] [**Admin User**](/docs/deploy/prepare#admin-user): nopass ssh & sudo are recommended for admin user
 - [x] [**Conf Template**](/docs/setup/config): Use the [`supa`](/docs/conf/supabase) config template, if you don't know how to manually configure pigsty
 
-The built-in [`supa.yml`](https://github.com/Vonng/pigsty/blob/main/conf/supa.yml) config template is shown below.
+The built-in [`supa.yml`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml) config template is shown below.
 
 <br>
 
@@ -213,7 +213,7 @@ all:
         #  #all_proxy: http://user:pass@host:port
 
         # these configuration entries will OVERWRITE or APPEND to /opt/supabase/.env file (src template: app/supabase/.env)
-        # check https://github.com/Vonng/pigsty/blob/main/app/supabase/.env for default values
+        # check https://github.com/pgsty/pigsty/blob/main/app/supabase/.env for default values
         supa_config:
 
           # IMPORTANT: CHANGE JWT_SECRET AND REGENERATE CREDENTIAL ACCORDING!!!!!!!!!!!
@@ -366,7 +366,7 @@ For security reasons, you should change the default passwords in the `pigsty.yml
 
 Supabase will use PostgreSQL & MinIO as its backend, so also change the following passwords for supabase business users: 
 
-- [`pg_users`](https://github.com/Vonng/pigsty/blob/main/conf/supa.yml#L49): password for supabase business users in postgres
+- [`pg_users`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml#L49): password for supabase business users in postgres
 - [`minio_users`](/docs/minio/param#minio_secret_key): `minioadmin`, MinIO business user's password
 
 The pgbackrest will take backups and WALs to MinIO, so also change the following passwords reference
@@ -375,16 +375,16 @@ The pgbackrest will take backups and WALs to MinIO, so also change the following
 
 PLEASE check the [Supabase Self-Hosting: Generate API Keys](https://supabase.com/docs/guides/self-hosting/docker#generate-api-keys) to generate supabase credentials:
 
-- [`jwt_secret`](https://github.com/Vonng/pigsty/blob/main/conf/supa.yml#L114): a secret key with at least 40 characters
-- [`anon_key`](https://github.com/Vonng/pigsty/blob/main/conf/supa.yml#L115): a jwt token generate for anonymous users, based on `jwt_secret`
-- [`service_role_key`](https://github.com/Vonng/pigsty/blob/main/conf/supa.yml#L116): a jwt token generate for elevated service roles, based on `jwt_secret`
-- [`dashboard_username`](https://github.com/Vonng/pigsty/blob/main/conf/supa.yml#L117): supabase studio web portal username, `supabase` by default
-- [`dashboard_password`](https://github.com/Vonng/pigsty/blob/main/conf/supa.yml#L128): supabase studio web portal password, `pigsty` by default
+- [`jwt_secret`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml#L114): a secret key with at least 40 characters
+- [`anon_key`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml#L115): a jwt token generate for anonymous users, based on `jwt_secret`
+- [`service_role_key`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml#L116): a jwt token generate for elevated service roles, based on `jwt_secret`
+- [`dashboard_username`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml#L117): supabase studio web portal username, `supabase` by default
+- [`dashboard_password`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml#L128): supabase studio web portal password, `pigsty` by default
 
 If you have chanaged the default password for PostgreSQL and MinIO, you have to update the following parameters as well:
 
-- [`postgres_password`](https://github.com/Vonng/pigsty/blob/main/conf/supa.yml#L126), according to [`pg_users`](/docs/pgsql/admin/user)
-- [`s3_access_key`](https://github.com/Vonng/pigsty/blob/main/conf/supa.yml#136) and [`s3_secret_key`](https://github.com/Vonng/pigsty/blob/main/conf/supa.yml#137), according to [`minio_users`](/docs/minio/param#minio_users)
+- [`postgres_password`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml#L126), according to [`pg_users`](/docs/pgsql/admin/user)
+- [`s3_access_key`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml#136) and [`s3_secret_key`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml#137), according to [`minio_users`](/docs/minio/param#minio_users)
 
 
 
@@ -497,7 +497,7 @@ We recommend using an external S3 when:
 - you just have one single server available, then external s3 gives you a minimal disaster recovery guarantee, with RTO in hours and RPO in MBs.
 - you are operating in the cloud, then using S3 directly is recommended rather than wrap expensively EBS with MinIO 
 
-> The [`terraform/spec/aliyun-meta-s3.tf`](https://github.com/Vonng/pigsty/blob/main/terraform/spec/aliyun-meta-s3.tf) provides an example of how to provision a single node alone with an S3 bucket.
+> The [`terraform/spec/aliyun-meta-s3.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/spec/aliyun-meta-s3.tf) provides an example of how to provision a single node alone with an S3 bucket.
 
 To use an external S3 compatible service, you'll have to update two related references in the `pigsty.yml` config.
 
@@ -736,7 +736,7 @@ all:
         #  #all_proxy: http://user:pass@host:port
 
         # these configuration entries will OVERWRITE or APPEND to /opt/supabase/.env file (src template: app/supabase/.env)
-        # check https://github.com/Vonng/pigsty/blob/main/app/supabase/.env for default values
+        # check https://github.com/pgsty/pigsty/blob/main/app/supabase/.env for default values
         supa_config:
 
           # IMPORTANT: CHANGE JWT_SECRET AND REGENERATE CREDENTIAL ACCORDING!!!!!!!!!!!

@@ -31,7 +31,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/pgtde.yml`](https://github.com/Vonng/pigsty/blob/main/conf/pgtde.yml)
+Source: [`pigsty/conf/pgtde.yml`](https://github.com/pgsty/pigsty/blob/main/conf/pgtde.yml)
 
 {{< readfile file="yaml/pgtde.yml" code="true" lang="yaml" >}}
 

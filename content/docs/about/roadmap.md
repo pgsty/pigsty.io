@@ -21,7 +21,7 @@ Pigsty plans to release one major version update per year. Minor version updates
 Pigsty typically plans 4-6 minor versions per year. For complete release history, please refer to [**Release Notes**](/docs/about/release).
 
 {{% alert title="Deploy with Specific Version Numbers" color="primary" %}}
-Pigsty develops using the **main** trunk branch. Please always use [**Releases**](https://github.com/Vonng/pigsty/releases) with version numbers.
+Pigsty develops using the **main** trunk branch. Please always use [**Releases**](https://github.com/pgsty/pigsty/releases) with version numbers.
 
 Unless you know what you're doing, do not use GitHub's **main** branch. Always check out and use a specific version.
 {{% /alert %}}
@@ -44,7 +44,7 @@ Unless you know what you're doing, do not use GitHub's **main** branch. Always c
 - [ ] Provide richer Docker application templates
 - [ ] [PGLite](https://github.com/electric-sql/pglite) browser-side support
 
-Here are our [**Active Issues**](https://github.com/Vonng/pigsty/issues) and [**Roadmap**](https://github.com/users/Vonng/projects/2/views/3).
+Here are our [**Active Issues**](https://github.com/pgsty/pigsty/issues) and [**Roadmap**](https://github.com/users/Vonng/projects/2/views/3).
 
 
 

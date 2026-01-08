@@ -33,7 +33,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/mssql.yml`](https://github.com/Vonng/pigsty/blob/main/conf/mssql.yml)
+Source: [`pigsty/conf/mssql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/mssql.yml)
 
 {{< readfile file="yaml/mssql.yml" code="true" lang="yaml" >}}
 

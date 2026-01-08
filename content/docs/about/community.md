@@ -15,13 +15,13 @@ tags: []
 
 ## GitHub
 
-Our GitHub repository is: [https://github.com/Vonng/pigsty](https://github.com/Vonng/pigsty). Please give us a ⭐️ [**star**](https://github.com/Vonng/pigsty/stargazers)!
+Our GitHub repository is: [https://github.com/pgsty/pigsty](https://github.com/pgsty/pigsty). Please give us a ⭐️ [**star**](https://github.com/pgsty/pigsty/stargazers)!
 
-We welcome anyone to [submit new Issues](https://github.com/Vonng/pigsty/issues/new) or create [Pull Requests](https://github.com/Vonng/pigsty/pulls), propose feature suggestions, and contribute to Pigsty.
+We welcome anyone to [submit new Issues](https://github.com/pgsty/pigsty/issues/new) or create [Pull Requests](https://github.com/pgsty/pigsty/pulls), propose feature suggestions, and contribute to Pigsty.
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Vonng/pigsty&type=Date)](https://star-history.com/#Vonng/pigsty&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=pgsty/pigsty&type=Date)](https://star-history.com/#pgsty/pigsty&Date)
 
-Please note that for issues related to Pigsty documentation, please submit [Issues](https://github.com/Vonng/pigsty.cc/issues) in the [github.com/Vonng/pigsty.cc](https://github.com/Vonng/pigsty.cc) repository.
+Please note that for issues related to Pigsty documentation, please submit [Issues](https://github.com/pgsty/pigsty.cc/issues) in the [github.com/pgsty/pigsty.cc](https://github.com/pgsty/pigsty.cc) repository.
 
 
 ---------------
@@ -55,7 +55,7 @@ You can also contact me via email: rh@vonng.com
 
 When you encounter problems using Pigsty, you can seek help from the community. The more information you provide, the more likely you are to get help from the community.
 
-Please refer to the [Community Help Guide](https://github.com/Vonng/pigsty/discussions/338) and provide as much information as possible so that community members can help you solve the problem. Here is a reference template for asking for help:
+Please refer to the [Community Help Guide](https://github.com/pgsty/pigsty/discussions/338) and provide as much information as possible so that community members can help you solve the problem. Here is a reference template for asking for help:
 
 
 **What happened?** (**Required**)
@@ -122,8 +122,8 @@ journalctl -u <service name>
 You can also search for related issues from GitHub Issues and Discussions:
 
 - [Pigsty FAQ](/docs/pgsql/faq)
-- [Github Issues](https://github.com/Vonng/pigsty/issues)
-- [Pigsty Discussions](https://github.com/Vonng/pigsty/discussions)
+- [Github Issues](https://github.com/pgsty/pigsty/issues)
+- [Pigsty Discussions](https://github.com/pgsty/pigsty/discussions)
 
 
 **Is there any other information we need to know?**

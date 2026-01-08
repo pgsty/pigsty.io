@@ -35,7 +35,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/demo/minio.yml`](https://github.com/Vonng/pigsty/blob/main/conf/demo/minio.yml)
+Source: [`pigsty/conf/demo/minio.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/minio.yml)
 
 {{< readfile file="yaml/demo/minio.yml" code="true" lang="yaml" >}}
 

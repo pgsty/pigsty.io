@@ -129,12 +129,12 @@ Any component managed by Pigsty is automatically brought under monitoring, inclu
 
 Whether for failure analysis or slow query optimization, capacity assessment or resource planning, Pigsty provides comprehensive data support, truly achieving data-driven operations. In Pigsty, over three thousand types of monitoring metrics are used to describe all aspects of the entire system, and are further processed, aggregated, analyzed, refined, and presented in intuitive visualization modes. From global overview dashboards to CRUD details of individual objects (tables, indexes, functions) in a database instance, everything is visible at a glance. You can drill down, roll up, or jump horizontally freely, browsing current system status and historical trends, and predicting future evolution.
 
-[![pigsty-dashboard.jpg](/img/pigsty/dashboard.jpg)](https://github.com/Vonng/pigsty/wiki/Gallery)
+[![pigsty-dashboard.jpg](/img/pigsty/dashboard.jpg)](https://github.com/pgsty/pigsty/wiki/Gallery)
 
 
 Additionally, Pigsty's monitoring system module can be [**used independently**](/docs/pgsql/monitor/#monitoring-rds) — to monitor existing host nodes and database instances, or cloud RDS services. With just one connection string and one command, you can get the ultimate PostgreSQL observability experience.
 
-Visit the [**Screenshot Gallery**](https://github.com/Vonng/pigsty/wiki/Gallery) and [**Online Demo**](https://demo.pigsty.io) for more details.
+Visit the [**Screenshot Gallery**](https://github.com/pgsty/pigsty/wiki/Gallery) and [**Online Demo**](https://demo.pigsty.io) for more details.
 
 
 

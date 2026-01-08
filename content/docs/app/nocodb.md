@@ -120,4 +120,4 @@ If using local storage, data is saved in the `/data/nocodb` directory.
 - NocoDB Website: https://nocodb.com/
 - Documentation: https://docs.nocodb.com/
 - GitHub Repository: https://github.com/nocodb/nocodb
-- Pigsty Software Template: https://github.com/Vonng/pigsty/tree/main/app/nocodb
+- Pigsty Software Template: https://github.com/pgsty/pigsty/tree/main/app/nocodb

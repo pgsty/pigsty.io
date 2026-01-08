@@ -47,7 +47,7 @@ The `ha/safe` template implements the following security hardening:
 
 ## Content
 
-Source: [`pigsty/conf/ha/safe.yml`](https://github.com/Vonng/pigsty/blob/main/conf/ha/safe.yml)
+Source: [`pigsty/conf/ha/safe.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/safe.yml)
 
 {{< readfile file="yaml/ha/safe.yml" code="true" lang="yaml" >}}
 

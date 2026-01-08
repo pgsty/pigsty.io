@@ -14,7 +14,7 @@ tags: [Visualization]
 
 ## Overview
 
-GitHub Repository: [https://github.com/Vonng/pigsty-app/tree/master/cloud](https://github.com/Vonng/pigsty-app/tree/master/cloud)
+GitHub Repository: [https://github.com/pgsty/pigsty-app/tree/master/cloud](https://github.com/pgsty/pigsty-app/tree/master/cloud)
 
 Online Demo: [https://demo.pigsty.io/d/ecs](https://demo.pigsty.io/d/ecs)
 

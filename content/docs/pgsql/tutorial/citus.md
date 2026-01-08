@@ -22,7 +22,7 @@ Patroni v3.0+ provides native high-availability support for Citus, simplifying t
 
 ## Citus Cluster
 
-Pigsty natively supports Citus. See [`conf/citus.yml`](https://github.com/Vonng/pigsty/blob/main/conf/citus.yml) for reference.
+Pigsty natively supports Citus. See [`conf/citus.yml`](https://github.com/pgsty/pigsty/blob/main/conf/citus.yml) for reference.
 
 Here we use the Pigsty 4-node sandbox to define a Citus cluster `pg-citus`, which includes a 2-node coordinator cluster `pg-citus0` and two Worker clusters `pg-citus1` and `pg-citus2`.
 
@@ -193,7 +193,7 @@ pgbench --select-only -nv -P1 -c10 -T500 postgres://dbuser_citus:DBUser.Citus@10
 
 For production use of Citus, you typically need to set up streaming replication physical replicas for the Coordinator and each Worker cluster.
 
-For example, [`simu.yml`](https://github.com/Vonng/pigsty/blob/main/conf/simu.yml) defines a 10-node Citus cluster:
+For example, [`simu.yml`](https://github.com/pgsty/pigsty/blob/main/conf/simu.yml) defines a 10-node Citus cluster:
 
 ```yaml
 pg-citus: # citus group

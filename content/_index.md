@@ -1,4 +1,4 @@
 ---
-title: "Pigsty - The FLOSS PG RDS"
-description: "Pigsty is a free and open-source PostgreSQL RDS management system, self-hosting postgres like a pro, with 9 kernels, 440 extensions, HA, PITR, and monitoring system"
+title: "PIGSTY - The FLOSS PG RDS"
+description: "Pigsty, the FOSS PostgreSQL RDS, self-host PG like a pro, with Monitoring, HA, PITR, IAC, 9 kernel and 440 PG extensions"
 ---

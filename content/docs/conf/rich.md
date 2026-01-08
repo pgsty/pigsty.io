@@ -6,7 +6,7 @@ icon: fa-solid fa-gem
 categories: [Reference]
 ---
 
-The [`rich`](https://github.com/Vonng/pigsty/blob/main/conf/rich.yml) configuration template is an enhanced version of [`meta`](/docs/conf/meta/), designed for users who need to experience complete functionality.
+The [`rich`](https://github.com/pgsty/pigsty/blob/main/conf/rich.yml) configuration template is an enhanced version of [`meta`](/docs/conf/meta/), designed for users who need to experience complete functionality.
 
 If you want to build a local software repository, use MinIO for backup storage, run Docker applications, or need preconfigured business databases, use this template.
 
@@ -42,7 +42,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/rich.yml`](https://github.com/Vonng/pigsty/blob/main/conf/rich.yml)
+Source: [`pigsty/conf/rich.yml`](https://github.com/pgsty/pigsty/blob/main/conf/rich.yml)
 
 {{< readfile file="yaml/rich.yml" code="true" lang="yaml" >}}
 

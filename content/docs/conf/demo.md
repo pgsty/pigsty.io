@@ -49,7 +49,7 @@ This template enhances the `meta` template with:
 
 ## Content
 
-Source: [`pigsty/conf/demo/demo.yml`](https://github.com/Vonng/pigsty/blob/main/conf/demo/demo.yml)
+Source: [`pigsty/conf/demo/demo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/demo.yml)
 
 {{< readfile file="yaml/demo/demo.yml" code="true" lang="yaml" >}}
 

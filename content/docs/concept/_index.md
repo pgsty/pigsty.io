@@ -10,7 +10,7 @@ main_menu: True
 
 Pigsty is a portable, extensible open-source PostgreSQL distribution for building production-grade database services in local environments with declarative configuration and automation. It has a vast ecosystem providing a complete set of tools, scripts, and best practices to bring PostgreSQL to enterprise-grade RDS service levels.
 
-Pigsty's name comes from **P**ostgreSQL **I**n **G**reat **STY**le, also understood as **P**ostgres, **I**nfras, **G**raphics, **S**ervice, **T**oolbox, it's all **Y**ours—a self-hosted PostgreSQL solution with graphical monitoring that's all yours. You can find the source code on [**GitHub**](https://github.com/Vonng/pigsty), visit the [**official documentation**](https://pigsty.io) for more information, or experience the [**Web UI**](/docs/setup/webui) in the [**online demo**](https://demo.pigsty.io).
+Pigsty's name comes from **P**ostgreSQL **I**n **G**reat **STY**le, also understood as **P**ostgres, **I**nfras, **G**raphics, **S**ervice, **T**oolbox, it's all **Y**ours—a self-hosted PostgreSQL solution with graphical monitoring that's all yours. You can find the source code on [**GitHub**](https://github.com/pgsty/pigsty), visit the [**official documentation**](https://pigsty.io) for more information, or experience the [**Web UI**](/docs/setup/webui) in the [**online demo**](https://demo.pigsty.io).
 
 [![pigsty-banner](/img/pigsty/banner.png)](/docs/deploy/sandbox)
 

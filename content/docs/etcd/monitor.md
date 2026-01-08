@@ -32,7 +32,7 @@ Red bands = instance downtime; blue-gray below = cluster unavailable.
 
 ## Alert Rules
 
-Pigsty provides 5 preset alert rules for etcd, defined in [`files/prometheus/rules/etcd.yml`](https://github.com/Vonng/pigsty/blob/main/files/prometheus/rules/etcd.yml):
+Pigsty provides 5 preset alert rules for etcd, defined in [`files/prometheus/rules/etcd.yml`](https://github.com/pgsty/pigsty/blob/main/files/prometheus/rules/etcd.yml):
 
 - `EtcdServerDown`: etcd node down, CRIT alert
 - `EtcdNoLeader`: etcd cluster no leader, CRIT alert

@@ -105,7 +105,7 @@ Often, expert experience can turn decay into magic with a word, and we provide s
 
 ## About the Team
 
-I am Feng Ruohang, the author of Pigsty. The vast majority of Pigsty's code was [developed by me alone](https://github.com/Vonng/pigsty/pulse), with individual features contributed by the community.
+I am Feng Ruohang, the author of Pigsty. The vast majority of Pigsty's code was [developed by me alone](https://github.com/pgsty/pigsty/pulse), with individual features contributed by the community.
 
 Individual heroism still exists in the software field. Only unique individuals can create unique works — I hope Pigsty can become such a work.
 

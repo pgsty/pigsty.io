@@ -34,7 +34,7 @@ cp conf/build/pro.yml pigsty.yml
 
 ## Content
 
-Source: [`pigsty/conf/build/pro.yml`](https://github.com/Vonng/pigsty/blob/main/conf/build/pro.yml)
+Source: [`pigsty/conf/build/pro.yml`](https://github.com/pgsty/pigsty/blob/main/conf/build/pro.yml)
 
 {{< readfile file="yaml/build/pro.yml" code="true" lang="yaml" >}}
 

@@ -126,4 +126,4 @@ Regularly back up the PostgreSQL database and MinIO buckets to ensure data safet
 - Teable Website: https://teable.io/
 - Documentation: https://help.teable.io/
 - GitHub Repository: https://github.com/teableio/teable
-- Pigsty Software Template: https://github.com/Vonng/pigsty/tree/main/app/teable
+- Pigsty Software Template: https://github.com/pgsty/pigsty/tree/main/app/teable

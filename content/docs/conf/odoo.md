@@ -33,7 +33,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/app/odoo.yml`](https://github.com/Vonng/pigsty/blob/main/conf/app/odoo.yml)
+Source: [`pigsty/conf/app/odoo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/odoo.yml)
 
 {{< readfile file="yaml/app/odoo.yml" code="true" lang="yaml" >}}
 

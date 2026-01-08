@@ -68,7 +68,7 @@ To actually install these modules, execute the following playbooks:
 You can declare PostgreSQL database clusters by installing the [**`PGSQL`**](/docs/pgsql/) module on multiple nodes, making them a service unit:
 
 For example, to deploy a three-node high-availability PostgreSQL cluster using streaming replication on the following three Pigsty-managed nodes,
-you can add the following definition to the `all.children` section of the config file [`pigsty.yml`](https://github.com/Vonng/pigsty/blob/main/pigsty.yml):
+you can add the following definition to the `all.children` section of the config file [`pigsty.yml`](https://github.com/pgsty/pigsty/blob/main/pigsty.yml):
 
 ```yaml
 pg-test:

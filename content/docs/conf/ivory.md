@@ -33,7 +33,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/ivory.yml`](https://github.com/Vonng/pigsty/blob/main/conf/ivory.yml)
+Source: [`pigsty/conf/ivory.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ivory.yml)
 
 {{< readfile file="yaml/ivory.yml" code="true" lang="yaml" >}}
 

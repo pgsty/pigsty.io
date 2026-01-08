@@ -31,7 +31,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/mysql.yml`](https://github.com/Vonng/pigsty/blob/main/conf/mysql.yml)
+Source: [`pigsty/conf/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/mysql.yml)
 
 {{< readfile file="yaml/mysql.yml" code="true" lang="yaml" >}}
 

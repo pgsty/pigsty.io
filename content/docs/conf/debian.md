@@ -31,7 +31,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/demo/debian.yml`](https://github.com/Vonng/pigsty/blob/main/conf/demo/debian.yml)
+Source: [`pigsty/conf/demo/debian.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/debian.yml)
 
 {{< readfile file="yaml/demo/debian.yml" code="true" lang="yaml" >}}
 

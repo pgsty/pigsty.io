@@ -10,7 +10,7 @@ tags: [Migration]
 ---
 
 
-Pigsty includes a built-in playbook [`pgsql-migration.yml`](https://github.com/Vonng/pigsty/blob/main/pgsql-migration.yml) that implements online database migration based on logical replication.
+Pigsty includes a built-in playbook [`pgsql-migration.yml`](https://github.com/pgsty/pigsty/blob/main/pgsql-migration.yml) that implements online database migration based on logical replication.
 
 With pre-generated automation scripts, application downtime can be reduced to just a few seconds. However, note that logical replication requires PostgreSQL 10 or later to work.
 
@@ -23,7 +23,7 @@ Of course, if you have sufficient downtime budget, you can always use the `pg_du
 
 To use Pigsty's online migration playbook, you need to create a definition file that describes the migration task details.
 
-Refer to the task definition file example: [`files/migration/pg-meta.yml`](https://github.com/Vonng/pigsty/blob/main/files/migration/pg-meta.yml).
+Refer to the task definition file example: [`files/migration/pg-meta.yml`](https://github.com/pgsty/pigsty/blob/main/files/migration/pg-meta.yml).
 
 This migration task will online migrate `pg-meta.meta` to `pg-test.test`, where the former is called the **Source Cluster (SRC)** and the latter is called the **Destination Cluster (DST)**.
 

@@ -2,7 +2,7 @@
 # Basics
 #=======================================#
 baseURL: https://pigsty.io/
-title: Pigsty
+title: PIGSTY
 languageCode: en
 defaultContentLanguage: en
 enableRobotsTXT: true
@@ -31,11 +31,6 @@ menu:
       weight: 10
       url: /docs/
       pre: <i class='fa-solid fa-book'></i>
-
-    - weight: 50
-      url: 'https://github.com/pgsty/pigsty/'
-      pre: <i class='fab fa-github'></i>
-
 
 #=======================================#
 # Taxonomies Support
@@ -117,7 +112,7 @@ params:
   github_project_repo: 'https://github.com/pgsty/pigsty'
 
   # Version dropdown menu
-  version_menu: "Version"
+  version_menu: "Ver"
   versions:
     - version: "Pigsty 中文网站"
       url: 'https://pigsty.cc'
@@ -169,18 +164,26 @@ params:
   # Links
   links:
     user:
-      - name: Email
+      - name: Email - Vonng
         url: 'mailto:rh@vonng.com'
         icon: fa fa-envelope
-        desc: Send email to the author
-      - name: GitHub
-        url: 'https://github.com/pgsty/pigsty'
+        desc: Send email to Vonng
+      - name: GitHub - Vonng
+        url: 'https://github.com/Vonng'
         icon: fab fa-github
         desc: Pigsty code repository
-      - name: Twitter
+      - name: X - Vonng
+        url: 'https://x.com/RonVonng'
+        icon: fab fa-x-twitter
+        desc: Follow Vonng on X for updates
+      - name: X - Pigsty
         url: 'https://x.com/PlGSTY'
         icon: fab fa-twitter
         desc: Follow on Twitter for updates
+      - name: LinkedIn - Vonng
+        url: 'https://www.linkedin.com/in/vonng/'
+        icon: fab fa-linkedin
+        desc: Vonng on LinkedIn
     developer:
       - name: Discord
         url: 'https://discord.gg/wDzt5VyWEz'
@@ -192,5 +195,13 @@ params:
         desc: Telegram group
       - name: WeChat
         url: /img/pigsty/pigsty-cc.jpg
-        icon: fa fa-comment
+        icon: fab fa-weixin
         desc: WeChat group & official account
+      - name: Discussion
+        url: 'https://github.com/orgs/pgsty/discussions'
+        icon: fab fa-discourse
+        desc: Pigsty Discussion Forum
+      - name: Repo
+        url: 'https://github.com/pgsty/pigsty'
+        icon: fab fa-github
+        desc: Pigsty Discussion Forum

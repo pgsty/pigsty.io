@@ -54,7 +54,7 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 <p><b>Community support Q&A:</b></p>
 <ul>
 <li><a href="/docs/about/community">WeChat discussion groups</a></li>
-<li><a href="https://github.com/Vonng/pigsty/issues/">GitHub Issues</a></li>
+<li><a href="https://github.com/pgsty/pigsty/issues/">GitHub Issues</a></li>
 <li><a href="https://discord.gg/j5pG8qfKxU">Discord Channel</a></li>
 </ul>
 
@@ -136,7 +136,7 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 
 ## Pigsty Open Source Edition (OSS)
 
-Pigsty Open Source Edition uses the [**AGPLv3**](/docs/about/license) license, provides complete core functionality, requires no fees, but does not guarantee any warranty service. If you find defects in Pigsty, we welcome you to submit an [Issue](https://github.com/Vonng/pigsty/issues/) on Github.
+Pigsty Open Source Edition uses the [**AGPLv3**](/docs/about/license) license, provides complete core functionality, requires no fees, but does not guarantee any warranty service. If you find defects in Pigsty, we welcome you to submit an [Issue](https://github.com/pgsty/pigsty/issues/) on Github.
 
 If you are a regular end user (i.e., users other than public cloud providers and database vendors), we actually enforce the more permissive Apache 2.0 license - even if you perform secondary development on Pigsty, we will not pursue this.
 

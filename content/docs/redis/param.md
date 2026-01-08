@@ -202,11 +202,11 @@ Parameter: `redis_conf`, Type: `string`, Level: `C`
 
 Redis config template path, except for Sentinel.
 
-Default: `redis.conf`, a template file at [`roles/redis/templates/redis.conf`](https://github.com/Vonng/pigsty/blob/main/roles/redis/templates/redis.conf).
+Default: `redis.conf`, a template file at [`roles/redis/templates/redis.conf`](https://github.com/pgsty/pigsty/blob/main/roles/redis/templates/redis.conf).
 
 To use your own Redis config template, place it in the `templates/` directory and set this parameter to the template filename.
 
-Note: Redis Sentinel uses a different template file: [`roles/redis/templates/redis-sentinel.conf`](https://github.com/Vonng/pigsty/blob/main/roles/redis/templates/redis-sentinel.conf).
+Note: Redis Sentinel uses a different template file: [`roles/redis/templates/redis-sentinel.conf`](https://github.com/pgsty/pigsty/blob/main/roles/redis/templates/redis-sentinel.conf).
 
 
 
@@ -222,7 +222,7 @@ Default: `0.0.0.0`, binding to all available IPv4 addresses on the host.
 
 For security in production environments, bind only to internal IPs by setting this to empty string `''`.
 
-When empty, the template [`roles/redis/templates/redis.conf`](https://github.com/Vonng/pigsty/blob/main/roles/redis/templates/redis.conf) uses `inventory_hostname` to render `bind <ip>`, binding to the management address declared in the inventory.
+When empty, the template [`roles/redis/templates/redis.conf`](https://github.com/pgsty/pigsty/blob/main/roles/redis/templates/redis.conf) uses `inventory_hostname` to render `bind <ip>`, binding to the management address declared in the inventory.
 
 
 

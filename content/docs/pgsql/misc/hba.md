@@ -43,7 +43,7 @@ By default, Pigsty enables server-side SSL encryption but does not verify client
 psql 'postgres://dbuser_dba:DBUser.DBA@10.10.10.10:5432/meta?sslkey=/path/to/dbuser_dba.key&sslcert=/path/to/dbuser_dba.crt'
 ```
 
-Client certificates (`CN` = username) can be signed using the local CA with the [`cert.yml`](https://github.com/Vonng/pigsty/blob/main/cert.yml) playbook.
+Client certificates (`CN` = username) can be signed using the local CA with the [`cert.yml`](https://github.com/pgsty/pigsty/blob/main/cert.yml) playbook.
 
 
 
@@ -135,7 +135,7 @@ The alias form allows you to maintain HBA rules in a simpler, clearer, and more 
 
 ### 3. Definition Location
 
-Typically, global HBA is defined in `all.vars`. If you want to modify the global default HBA rules, you can copy one from the [`full.yml`](https://github.com/Vonng/pigsty/blob/main/conf/full.yml#L690) template to `all.vars` and modify it.
+Typically, global HBA is defined in `all.vars`. If you want to modify the global default HBA rules, you can copy one from the [`full.yml`](https://github.com/pgsty/pigsty/blob/main/conf/full.yml#L690) template to `all.vars` and modify it.
 
 - [`pg_default_hba_rules`](/docs/pgsql/param#pg_default_hba_rules): postgres global default HBA rules
 - [`pgb_default_hba_rules`](/docs/pgsql/param#pgb_default_hba_rules): pgbouncer global default HBA rules
@@ -368,7 +368,7 @@ host     all                all                192.168.0.0/16     scram-sha-256
 
 ## Security Hardening
 
-For scenarios requiring higher security, we provide a security hardening configuration template [security.yml](https://github.com/Vonng/pigsty/blob/main/conf/safe.yml), which uses the following default HBA rule set:
+For scenarios requiring higher security, we provide a security hardening configuration template [security.yml](https://github.com/pgsty/pigsty/blob/main/conf/safe.yml), which uses the following default HBA rule set:
 
 ```yaml
 pg_default_hba_rules:             # postgres host-based auth rules by default

@@ -20,7 +20,7 @@ You can browse COVID-19 infection and death cases for each country and region, a
 
 ## Overview
 
-GitHub Repository: [https://github.com/Vonng/pigsty-app/tree/master/covid](https://github.com/Vonng/pigsty-app/tree/master/covid)
+GitHub Repository: [https://github.com/pgsty/pigsty-app/tree/master/covid](https://github.com/pgsty/pigsty-app/tree/master/covid)
 
 Online Demo: [https://demo.pigsty.io/d/covid](https://demo.pigsty.io/d/covid)
 

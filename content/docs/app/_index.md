@@ -2,10 +2,9 @@
 title: Applications
 weight: 550
 description: Software and tools that use PostgreSQL can be managed by the docker daemon
-icon: fa-brands fa-docker
-module: [DOCKER, APP]
+icon: fa-brands fa-app-store-ios
+module: [APP]
 categories: [Reference]
-tags: []
 ---
 
 PostgreSQL is the most popular database in the world, and countless software is built on PostgreSQL, around PostgreSQL, or serves PostgreSQL itself, such as

@@ -64,7 +64,7 @@ Pigsty provides three monitoring dashboards for the [`REDIS`](/docs/redis) modul
 
 ## Alert Rules
 
-Pigsty provides the following six predefined alert rules for Redis, defined in [`files/victoria/rules/redis.yml`](https://github.com/Vonng/pigsty/blob/main/files/victoria/rules/redis.yml):
+Pigsty provides the following six predefined alert rules for Redis, defined in [`files/victoria/rules/redis.yml`](https://github.com/pgsty/pigsty/blob/main/files/victoria/rules/redis.yml):
 
 - `RedisDown`: Redis instance is down
 - `RedisRejectConn`: Redis instance rejecting connections

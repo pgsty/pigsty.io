@@ -33,7 +33,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/polar.yml`](https://github.com/Vonng/pigsty/blob/main/conf/polar.yml)
+Source: [`pigsty/conf/polar.yml`](https://github.com/pgsty/pigsty/blob/main/conf/polar.yml)
 
 {{< readfile file="yaml/polar.yml" code="true" lang="yaml" >}}
 

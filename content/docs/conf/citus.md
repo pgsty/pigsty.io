@@ -31,7 +31,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/citus.yml`](https://github.com/Vonng/pigsty/blob/main/conf/citus.yml)
+Source: [`pigsty/conf/citus.yml`](https://github.com/pgsty/pigsty/blob/main/conf/citus.yml)
 
 {{< readfile file="yaml/citus.yml" code="true" lang="yaml" >}}
 

@@ -33,7 +33,7 @@ After configuration, modify placeholder IP `10.10.10.11` to actual standby node 
 
 ## Content
 
-Source: [`pigsty/conf/ha/dual.yml`](https://github.com/Vonng/pigsty/blob/main/conf/ha/dual.yml)
+Source: [`pigsty/conf/ha/dual.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/dual.yml)
 
 {{< readfile file="yaml/ha/dual.yml" code="true" lang="yaml" >}}
 

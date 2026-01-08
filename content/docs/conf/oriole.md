@@ -31,7 +31,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/oriole.yml`](https://github.com/Vonng/pigsty/blob/main/conf/oriole.yml)
+Source: [`pigsty/conf/oriole.yml`](https://github.com/pgsty/pigsty/blob/main/conf/oriole.yml)
 
 {{< readfile file="yaml/oriole.yml" code="true" lang="yaml" >}}
 

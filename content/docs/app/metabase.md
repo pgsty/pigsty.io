@@ -138,4 +138,4 @@ If using H2 database (default), data is saved in the `/data/metabase` directory.
 - Metabase Website: https://metabase.com/
 - Documentation: https://www.metabase.com/docs/
 - GitHub Repository: https://github.com/metabase/metabase
-- Pigsty Software Template: https://github.com/Vonng/pigsty/tree/main/app/metabase
+- Pigsty Software Template: https://github.com/pgsty/pigsty/tree/main/app/metabase

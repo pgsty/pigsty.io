@@ -905,7 +905,7 @@ pg_packages:
 - `pgsql-main`: Maps to PostgreSQL kernel, client, PL languages, and core extensions like `pg_repack`, `wal2json`, `pgvector` on the current platform.
 - `pgsql-common`: Maps to companion components required for running the database, such as Patroni, Pgbouncer, pgBackRest, pg_exporter, vip-manager, and other daemons.
 
-Alias definitions can be found in `pg_package_map` under [`roles/node_id/vars/`](https://github.com/Vonng/pigsty/tree/main/roles/node_id/vars). Pigsty first resolves aliases based on OS and architecture, then replaces `$v`/`${pg_version}` with the actual major version [`pg_version`](#pg_version), and finally installs the real packages. This shields package name differences between distributions.
+Alias definitions can be found in `pg_package_map` under [`roles/node_id/vars/`](https://github.com/pgsty/pigsty/tree/main/roles/node_id/vars). Pigsty first resolves aliases based on OS and architecture, then replaces `$v`/`${pg_version}` with the actual major version [`pg_version`](#pg_version), and finally installs the real packages. This shields package name differences between distributions.
 
 If additional packages are needed (e.g., specific FDW or extensions), you can append aliases or real package names directly to `pg_packages`. But remember to keep `pgsql-main pgsql-common`, otherwise core components will be missing.
 
@@ -953,7 +953,7 @@ pg_extensions: # extensions to be installed on this cluster
   - gis-stack rag-stack fdw-stack fts-stack etl-stack feat-stack olap-stack supa-stack stat-stack json-stack
 ```
 
-For complete list, see: [`roles/node_id/vars`](https://github.com/Vonng/pigsty/blob/main/roles/node_id/vars/)
+For complete list, see: [`roles/node_id/vars`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/)
 
 
 
@@ -1701,7 +1701,7 @@ Parameter Name: `pg_init`, Type: `string`, Level: `G/C`
 
 Location of the shell script for initializing database templates, default is `pg-init`. This script is copied to `/pg/bin/pg-init` and then executed.
 
-This script is located at [`roles/pgsql/templates/pg-init`](https://github.com/Vonng/pigsty/blob/main/roles/pgsql/templates/pg-init)
+This script is located at [`roles/pgsql/templates/pg-init`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/pg-init)
 
 You can add your own logic to this script, or provide a new script in the `templates/` directory and set `pg_init` to the new script name. When using a custom script, please preserve the existing initialization logic.
 

@@ -11,7 +11,7 @@ Consul is a distributed DCS + KV + DNS + service registry/discovery component.
 
 In the old version (1.x) of Pigsty, Consul was used as the default high-availability DCS. Now this support has been removed, but it will be provided as a separate module in the future.
 
-- https://github.com/Vonng/pigsty/tree/v1.5.1/roles/consul
+- https://github.com/pgsty/pigsty/tree/v1.5.1/roles/consul
 
 
 --------

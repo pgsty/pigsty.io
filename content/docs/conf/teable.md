@@ -31,7 +31,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/app/teable.yml`](https://github.com/Vonng/pigsty/blob/main/conf/app/teable.yml)
+Source: [`pigsty/conf/app/teable.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/teable.yml)
 
 {{< readfile file="yaml/app/teable.yml" code="true" lang="yaml" >}}
 

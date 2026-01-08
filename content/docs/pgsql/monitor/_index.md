@@ -26,8 +26,8 @@ Pigsty uses a modern observability stack for PostgreSQL monitoring:
 
 **Metrics**
 
-PostgreSQL monitoring metrics are fully defined by the pg_exporter configuration file: [`pg_exporter.yml`](https://github.com/Vonng/pigsty/blob/main/roles/pgsql/templates/pg_exporter.yml)
-They are further processed by Prometheus recording rules and alert rules: [`files/prometheus/rules/pgsql.yml`](https://github.com/Vonng/pigsty/blob/main/files/prometheus/rules/pgsql.yml).
+PostgreSQL monitoring metrics are fully defined by the pg_exporter configuration file: [`pg_exporter.yml`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/pg_exporter.yml)
+They are further processed by Prometheus recording rules and alert rules: [`files/prometheus/rules/pgsql.yml`](https://github.com/pgsty/pigsty/blob/main/files/prometheus/rules/pgsql.yml).
 
 Pigsty uses three identity labels: `cls`, `ins`, `ip`, which are attached to all metrics and logs. Additionally, metrics from Pgbouncer, host nodes (NODE), and load balancers are also used by Pigsty, with the same labels used whenever possible for correlation analysis.
 
@@ -200,7 +200,7 @@ You can use more parameters to override default `pg_exporter` options. Here's an
 
 <details><summary>Example: Monitoring Aliyun RDS for PostgreSQL and PolarDB</summary>
 
-For details, refer to: [remote.yml](https://github.com/Vonng/pigsty/blob/main/conf/demo/remote.yml)
+For details, refer to: [remote.yml](https://github.com/pgsty/pigsty/blob/main/conf/demo/remote.yml)
 
 ```yaml
 infra:            # Infra cluster for proxies, monitoring, alerts, etc.

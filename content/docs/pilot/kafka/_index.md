@@ -136,7 +136,7 @@ Pigsty provides 1 playbook related to the Kafka module for managing Kafka cluste
 
 ### `kafka.yml`
 
-The [`kafka.yml`](https://github.com/Vonng/pigsty/blob/main/kafka.yml) playbook for deploying Kafka KRaft mode cluster contains the following subtasks:
+The [`kafka.yml`](https://github.com/pgsty/pigsty/blob/main/kafka.yml) playbook for deploying Kafka KRaft mode cluster contains the following subtasks:
 
 ```bash
 kafka-id       : generate kafka instance identity

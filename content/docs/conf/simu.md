@@ -14,7 +14,7 @@ The `ha/simu` configuration template is a 20-node production environment simulat
 ## Overview
 
 - Config Name: `ha/simu`
-- Node Count: 20 nodes, [`pigsty/vagrant/spec/simu.rb`](https://github.com/Vonng/pigsty/blob/main/vagrant/spec/simu.rb)
+- Node Count: 20 nodes, [`pigsty/vagrant/spec/simu.rb`](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/simu.rb)
 - Description: 20-node production environment simulation, requires powerful host machine
 - OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
 - OS Arch: `x86_64`, `aarch64`
@@ -30,7 +30,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/ha/simu.yml`](https://github.com/Vonng/pigsty/blob/main/conf/ha/simu.yml)
+Source: [`pigsty/conf/ha/simu.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/simu.yml)
 
 {{< readfile file="yaml/ha/simu.yml" code="true" lang="yaml" >}}
 

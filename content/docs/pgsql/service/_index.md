@@ -132,7 +132,7 @@ Pigsty allows you to define your own services:
 - [`haproxy_services`](/docs/node/param#haproxy_services): Directly customize HAProxy service content, can be used for other component access
 
 For PostgreSQL clusters, you typically only need to focus on the first two.
-Each service definition will generate a new configuration file in the configuration directory of all related HAProxy instances: [`/etc/haproxy/<svcname>.cfg`](https://github.com/Vonng/pigsty/blob/main/roles/pgsql/templates/service.j2)
+Each service definition will generate a new configuration file in the configuration directory of all related HAProxy instances: [`/etc/haproxy/<svcname>.cfg`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/service.j2)
 Here's a custom service example `standby`: When you want to provide a read-only service with no replication delay, you can add this record in [`pg_services`](/docs/pgsql/param#pg_services):
 
 ```yaml
@@ -475,4 +475,4 @@ pg_default_services:  [{ name: primary ,port: 10013 ,dest: postgres  ,check: /pr
 
 It's user's responsibility to make sure each delegate service port is **unique** among the proxy cluster.
 
-A dedicated load balancer cluster example is provided in the 43-node production environment simulation [sandbox](/docs/deploy/install#sandbox-environment): [prod.yml](https://github.com/Vonng/pigsty/blob/main/conf/prod.yml#L111)
+A dedicated load balancer cluster example is provided in the 43-node production environment simulation [sandbox](/docs/deploy/install#sandbox-environment): [prod.yml](https://github.com/pgsty/pigsty/blob/main/conf/prod.yml#L111)
