@@ -68,7 +68,7 @@ allow_loading_unsigned_plugins = victoriametrics-logs-datasource,victoriametrics
 
 | Name                                                                      | Version  | License                                                                               | Comment                            |
 |---------------------------------------------------------------------------|----------|---------------------------------------------------------------------------------------|------------------------------------|
-| [`pg_exporter`](https://github.com/Vonng/pg_exporter)                     | `1.1.0`  | [Apache-2.0](https://github.com/Vonng/pg_exporter/blob/master/LICENSE)                | Advanced Postgres metrics exporter |
+| [`pg_exporter`](https://github.com/pgsty/pg_exporter)                     | `1.1.1`  | [Apache-2.0](https://github.com/pgsty/pg_exporter/blob/master/LICENSE)                | Advanced Postgres metrics exporter |
 | [`pgbackrest_exporter`](https://github.com/woblerr/pgbackrest_exporter)   | `0.22.0` | [MIT](https://github.com/woblerr/pgbackrest_exporter/blob/master/LICENSE)             | Expose pgbackrest metrics          |
 | [`node_exporter`](https://github.com/prometheus/node_exporter)            | `1.10.2` | [Apache-2.0](https://github.com/prometheus/node_exporter/blob/master/LICENSE)         | Expose Linux node metrics          |
 | [`keepalived_exporter`](https://github.com/mehdy/keepalived-exporter)     | `1.7.0`  | [GPL-3.0](https://github.com/mehdy/keepalived-exporter/blob/master/LICENSE)           | Expose keepalived/VIP metrics      |
@@ -135,11 +135,24 @@ Pig package manager, PostgreSQL tools, and other database related utilities
 | [`dblab`](https://github.com/danvergara/dblab)                                          | `0.34.2` | [MIT](https://github.com/danvergara/dblab/blob/main/LICENSE)                            | Multi-database CLI tool                       |
 | [`sqlcmd`](https://github.com/microsoft/go-sqlcmd)                                      | `1.8.0`  | [MIT](https://github.com/microsoft/go-sqlcmd/blob/main/LICENSE)                         | MS SQL Server CLI client                      |
 | [`pev2`](https://github.com/dalibo/pev2)                                                | `1.19.0` | [PostgreSQL](https://github.com/dalibo/pev2/blob/master/LICENSE.md)                     | PostgreSQL explain visualizer 2               |
-| [`genai-toolbox`](https://github.com/googleapis/genai-toolbox)                          | `0.23.0` | [Apache-2.0](https://github.com/googleapis/genai-toolbox/blob/main/LICENSE)             | Google database MCP server                    |
 | [`sealos`](https://github.com/labring/sealos)                                           | `5.0.1`  | [Apache-2.0](https://github.com/labring/sealos/blob/main/LICENSE)                       | Battery-included Kubernetes distribution      |
 | [`vray`](https://github.com/v2fly/v2ray-core)                                           | `5.28.0` | [MIT](https://github.com/v2fly/v2ray-core/blob/master/LICENSE)                          | Build proxies to bypass network restrictions  |
-| [`uv`](https://github.com/astral-sh/uv)                                                 | `0.9.18` | [MIT](https://github.com/astral-sh/uv/blob/main/LICENSE-MIT)                            | Next-gen Python package manager               |
-| [`ccm`](https://github.com/foreveryh/claude-code-switch)                                | `2.0.76` | [MIT](https://github.com/foreveryh/claude-code-switch/blob/main/LICENSE)                | Claude API switch tool (and Claude Code)      |
 | [`asciinema`](https://github.com/asciinema/asciinema)                                   | `3.0.1`  | [GPL-3.0](https://github.com/asciinema/asciinema/blob/develop/LICENSE)                  | Terminal session recording and playback       |
+| [`postgrest`](https://github.com/PostgREST/postgrest)                                   | `3.6.7`  | [MIT](https://github.com/PostgREST/postgrest/blob/main/LICENSE)                         | RESTful API for PostgreSQL                    |
+| [`npgsqlrest`](https://github.com/vb-consulting/NpgsqlRest)                             | `0.9.0`  | [MIT](https://github.com/vb-consulting/NpgsqlRest/blob/master/LICENSE.md)               | .NET REST API generator for PostgreSQL        |
 {.stretch-last}
 
+--------
+
+## AI Coding
+
+AI Agent, MCP  tools, python package manager, web IDE, etc...
+
+| Name                                                           | Version   | License                                                                     | Comment                                       |
+|----------------------------------------------------------------|-----------|-----------------------------------------------------------------------------|-----------------------------------------------|
+| [`claude`](https://github.com/anthropics/claude-code)          | `2.1.1`   | [Proprietary](https://www.anthropic.com/legal/terms)                        | Claude Code - Anthropic's agentic coding tool |
+| [`opencode`](https://github.com/opencode-ai/opencode)          | `1.0.223` | [MIT](https://github.com/opencode-ai/opencode/blob/main/LICENSE)            | Terminal-based AI coding assistant            |
+| [`code-server`](https://github.com/coder/code-server)          | `4.107.0` | [MIT](https://github.com/coder/code-server/blob/main/LICENSE)               | VS Code in the browser                        |
+| [`genai-toolbox`](https://github.com/googleapis/genai-toolbox) | `0.24.0`  | [Apache-2.0](https://github.com/googleapis/genai-toolbox/blob/main/LICENSE) | Google database MCP server                    |
+| [`uv`](https://github.com/astral-sh/uv)                        | `0.9.18`  | [MIT](https://github.com/astral-sh/uv/blob/main/LICENSE-MIT)                | Next-gen Python package manager               |
+{.stretch-last}

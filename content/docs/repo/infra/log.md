@@ -9,6 +9,21 @@ categories: [Reference]
 
 -------
 
+## 2026-01-08
+
+| Name            | Old Ver  | New Ver   | Note                        |
+|-----------------|----------|-----------|-----------------------------|
+| `pg_exporter`   | `1.1.0`  | `1.1.1`   | new pg_timeline collector   |
+| `npgsqlrest`    | `0.8.0`  | `0.9.0`   | new                         |
+| `postgrest`     | `3.6.6`  | `3.6.7`   | new                         |
+| `opencode`      |          | `1.0.223` | new                         |
+| `code-server`   |          | `4.107.0` | new                         |
+| `claude`        | `2.0.76` | `2.1.1`   | update                      |
+| `genai-toolbox` | `0.23.0` | `0.24.0`  | remove broken oracle driver |
+
+
+-------
+
 ## 2025-12-25
 
 | Name                        | Old Ver        | New Ver        | Note                       |
