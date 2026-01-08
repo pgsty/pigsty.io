@@ -3,10 +3,11 @@ title: Release Notes
 weight: 5660
 ---
 
-The latest stable version of `pg_exporter` is [v1.1.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.1.0)
+The latest stable version of `pg_exporter` is [v1.1.1](https://github.com/pgsty/pg_exporter/releases/tag/v1.1.1)
 
 |     Version     |    Date    | Summary                                                 |                               GitHub                               |
 |:---------------:|:----------:|---------------------------------------------------------|:------------------------------------------------------------------:|
+| [v1.1.1](#v111) | 2025-12-30 | New pg_timeline collector, pg_sub_16 branch, bug fixes  | [v1.1.1](https://github.com/pgsty/pg_exporter/releases/tag/v1.1.1) |
 | [v1.1.0](#v110) | 2025-12-15 | Update default metrics collectors, bump to go 1.25.5    | [v1.1.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.1.0) |
 | [v1.0.3](#v103) | 2025-11-20 | Routine update on 1.25.4, fix unsupported libpq env     | [v1.0.3](https://github.com/pgsty/pg_exporter/releases/tag/v1.0.3) |
 | [v1.0.2](#v102) | 2025-08-14 | Build for more os arch with goreleaser                  | [v1.0.2](https://github.com/pgsty/pg_exporter/releases/tag/v1.0.2) |
@@ -32,6 +33,42 @@ The latest stable version of `pg_exporter` is [v1.1.0](https://github.com/pgsty/
 | [v0.0.3](#v003) | 2019-12-14 | Production environment testing                          | [v0.0.3](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.3) |
 | [v0.0.2](#v002) | 2019-12-09 | Early testing release                                   | [v0.0.2](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.2) |
 | [v0.0.1](#v001) | 2019-12-06 | Initial release with PgBouncer mode                     | [v0.0.1](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.1) |
+
+
+
+## v1.1.1
+
+Minor release with new collectors and bug fixes.
+
+**New Features:**
+
+- New `pg_timeline` collector for timeline monitoring
+- New `pg_sub_16` collector branch to exclude parallel operations in subscriptions (PostgreSQL 16+ compatibility)
+
+**Bug Fixes:**
+
+- Fix: Add coalesce for slotname in `pg_recv` collector to handle NULL values
+
+**Checksums**
+
+https://github.com/pgsty/pg_exporter/releases/download/v1.1.1/checksums.txt
+
+```bash
+fd5ee96511676fc11b975115a4870ed0c811056519f79ad7f24ab7ec538fa278  pg-exporter_1.1.1-1_amd64.deb
+b90a08d16a6e4707d82f8f3ae282cb76acb331de607e7544532fd0b774b7aa27  pg-exporter_1.1.1-1_arm64.deb
+163955f59a71da48901ffa26bb2f2db0712d31d8aeb1ab3fa463683f719a6d3a  pg-exporter_1.1.1-1_ppc64le.deb
+cf4f8bc12bb8a2d1e55553f891fd31c43324e4348249727972eb44f82cd4e6c8  pg_exporter-1.1.1-1.aarch64.rpm
+5a425b2f61f308b32f2d107372830c34eb685bfb312ee787f11877a20f1c4a2e  pg_exporter-1.1.1-1.ppc64le.rpm
+23606ccea565368971ac2e7f39766455b507021f09457bcf61db13cb10501a16  pg_exporter-1.1.1-1.x86_64.rpm
+ce74624eba92573318f50764cee4f355fa1f35697d209f70a4240f8f9d976188  pg_exporter-1.1.1.darwin-amd64.tar.gz
+35fba12521dbdcc54a3792278ed4822e4ca9e951665b5e53dff7c2a0f7014ae3  pg_exporter-1.1.1.darwin-arm64.tar.gz
+7699bdef15dd306289645beee8d40a123ca75dc988e46d89cdd75a1c1f650bef  pg_exporter-1.1.1.linux-amd64.tar.gz
+f4baba59d27a8eb67f0c5209fed7b9f00f78db796e583cc3487701e7803671c6  pg_exporter-1.1.1.linux-arm64.tar.gz
+810c3817c27358fa667714f8bfe8d52840a7ea010035e29547919ccb7c9fa781  pg_exporter-1.1.1.linux-ppc64le.tar.gz
+3f6df693b3eb92fdaeaeccf99ea7e5977b2c65028a4f00bdfabbc0405b9f5f93  pg_exporter-1.1.1.windows-amd64.tar.gz
+```
+
+https://github.com/pgsty/pg_exporter/releases/tag/v1.1.1
 
 
 

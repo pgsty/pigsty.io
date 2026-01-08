@@ -25,18 +25,22 @@ curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
 
 You can also download `pg_exporter` package (`RPM`/`DEB`/ Tarball) directly from the [Latest GitHub Release Page](https://github.com/pgsty/pg_exporter/releases/latest):
 
-**v1.1.0 Release Files:**
+**v1.1.1 Release Files:**
 
-| Type | File |
-|------|------|
-| DEB (amd64) | [pg-exporter_1.1.0_amd64.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.1.0/pg-exporter_1.1.0_amd64.deb) |
-| DEB (arm64) | [pg-exporter_1.1.0_arm64.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.1.0/pg-exporter_1.1.0_arm64.deb) |
-| RPM (aarch64) | [pg_exporter-1.1.0-1.aarch64.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.1.0/pg_exporter-1.1.0-1.aarch64.rpm) |
-| RPM (x86_64) | [pg_exporter-1.1.0-1.x86_64.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.1.0/pg_exporter-1.1.0-1.x86_64.rpm) |
-| Tarball (Linux amd64) | [pg_exporter-v1.1.0.linux-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.1.0/pg_exporter-v1.1.0.linux-amd64.tar.gz) |
-| Tarball (Linux arm64) | [pg_exporter-v1.1.0.linux-arm64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.1.0/pg_exporter-v1.1.0.linux-arm64.tar.gz) |
-| Tarball (macOS amd64) | [pg_exporter-v1.1.0.darwin-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.1.0/pg_exporter-v1.1.0.darwin-amd64.tar.gz) |
-| Tarball (macOS arm64) | [pg_exporter-v1.1.0.darwin-arm64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.1.0/pg_exporter-v1.1.0.darwin-arm64.tar.gz) |
+| Type                    | File                                                                                                                                           |
+|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| DEB (amd64)             | [pg-exporter_1.1.1-1_amd64.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.1.1/pg-exporter_1.1.1-1_amd64.deb)                   |
+| DEB (arm64)             | [pg-exporter_1.1.1-1_arm64.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.1.1/pg-exporter_1.1.1-1_arm64.deb)                   |
+| DEB (ppc64le)           | [pg-exporter_1.1.1-1_ppc64le.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.1.1/pg-exporter_1.1.1-1_ppc64le.deb)               |
+| RPM (aarch64)           | [pg_exporter-1.1.1-1.aarch64.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.1.1/pg_exporter-1.1.1-1.aarch64.rpm)               |
+| RPM (x86_64)            | [pg_exporter-1.1.1-1.x86_64.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.1.1/pg_exporter-1.1.1-1.x86_64.rpm)                 |
+| RPM (ppc64le)           | [pg_exporter-1.1.1-1.ppc64le.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.1.1/pg_exporter-1.1.1-1.ppc64le.rpm)               |
+| Tarball (Linux amd64)   | [pg_exporter-1.1.1.linux-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.1.1/pg_exporter-1.1.1.linux-amd64.tar.gz)     |
+| Tarball (Linux arm64)   | [pg_exporter-1.1.1.linux-arm64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.1.1/pg_exporter-1.1.1.linux-arm64.tar.gz)     |
+| Tarball (Linux ppc64le) | [pg_exporter-1.1.1.linux-ppc64le.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.1.1/pg_exporter-1.1.1.linux-ppc64le.tar.gz) |
+| Tarball (macOS amd64)   | [pg_exporter-1.1.1.darwin-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.1.1/pg_exporter-1.1.1.darwin-amd64.tar.gz)   |
+| Tarball (macOS arm64)   | [pg_exporter-1.1.1.darwin-arm64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.1.1/pg_exporter-1.1.1.darwin-arm64.tar.gz)   |
+| Tarball (Windows amd64) | [pg_exporter-1.1.1.windows-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.1.1/pg_exporter-1.1.1.windows-amd64.tar.gz) |
 
 You can install it directly with your OS package manager (`rpm`/`dpkg`), or even put the binary in your `$PATH`.
 
