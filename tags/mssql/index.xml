@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MSSQL on PIGSTY</title><link>https://pigsty.io/tags/mssql/</link><description>Recent content in MSSQL on PIGSTY</description><generator>Hugo</generator><language>en</language><lastBuildDate>Thu, 08 Jan 2026 18:48:49 +0800</lastBuildDate><atom:link href="https://pigsty.io/tags/mssql/index.xml" rel="self" type="application/rss+xml"/><item><title>Babelfish</title><link>https://pigsty.io/docs/pgsql/kernel/babelfish/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/babelfish/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="https://babelfishpg.org/"&gt;Babelfish&lt;/a&gt; is an MSSQL (Microsoft SQL Server) compatibility solution based on PostgreSQL, open-sourced by AWS.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Pigsty allows users to create Microsoft SQL Server compatible PostgreSQL clusters using Babelfish and WiltonDB!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://babelfishpg.org/"&gt;Babelfish&lt;/a&gt;: An MSSQL (Microsoft SQL Server) compatibility extension plugin open-sourced by AWS&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/wiltondb/wiltondb"&gt;WiltonDB&lt;/a&gt;: A PostgreSQL kernel distribution focusing on integrating Babelfish&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Babelfish is a PostgreSQL extension, but it only works on a slightly modified PostgreSQL kernel fork. WiltonDB provides compiled fork kernel binaries and extension binary packages on EL/Ubuntu systems.&lt;/p&gt;</description></item><item><title>Can PostgreSQL Replace Microsoft SQL Server?</title><link>https://pigsty.io/blog/pg/pg-replace-mssql/</link><pubDate>Mon, 02 Sep 2024 00:00:00 +0000</pubDate><guid>https://pigsty.io/blog/pg/pg-replace-mssql/</guid><description>&lt;p&gt;&lt;a href="https://vonng.com/en/pg/pg-replace-mssql/"&gt;&lt;img src="https://pigsty.io/img/hero/pg/pg-replace-mssql.jpg" alt="featured"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;PostgreSQL can directly replace Oracle, SQL Server, and MongoDB at the kernel level. Of course, the most thorough replacement is SQL Server - AWS&amp;rsquo;s Babelfish provides wire-protocol-level compatibility. &lt;a href="https://vonng.com/en/pg/pg-replace-mssql/"&gt;&lt;strong&gt;Read more&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

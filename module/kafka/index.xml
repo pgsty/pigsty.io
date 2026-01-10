@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>KAFKA on PIGSTY</title><link>https://pigsty.io/module/kafka/</link><description>Recent content in KAFKA on PIGSTY</description><generator>Hugo</generator><language>en</language><atom:link href="https://pigsty.io/module/kafka/index.xml" rel="self" type="application/rss+xml"/><item><title>Module: Kafka</title><link>https://pigsty.io/docs/pilot/kafka/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pilot/kafka/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="https://kafka.apache.org/"&gt;Kafka&lt;/a&gt; is an open-source distributed event streaming platform: &lt;a href="#installation"&gt;Installation&lt;/a&gt; | &lt;a href="#configuration"&gt;Configuration&lt;/a&gt; | &lt;a href="#administration"&gt;Administration&lt;/a&gt; | &lt;a href="#playbook"&gt;Playbook&lt;/a&gt; | &lt;a href="#monitoring"&gt;Monitoring&lt;/a&gt; | &lt;a href="#parameters"&gt;Parameters&lt;/a&gt; | &lt;a href="#resources"&gt;Resources&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Kafka module is currently available in Pigsty Pro as a Beta Preview.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="installation"&gt;Installation&lt;/h2&gt;
+&lt;p&gt;If you are using the open-source version of Pigsty, you can install Kafka and its Java dependencies on the specified node using the following command.&lt;/p&gt;
+&lt;p&gt;Pigsty provides Kafka 3.8.0 RPM and DEB packages in the official Infra repository, which can be downloaded and installed directly.&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DUCKDB on PIGSTY</title><link>https://pigsty.io/module/duckdb/</link><description>Recent content in DUCKDB on PIGSTY</description><generator>Hugo</generator><language>en</language><atom:link href="https://pigsty.io/module/duckdb/index.xml" rel="self" type="application/rss+xml"/><item><title>Module: DuckDB</title><link>https://pigsty.io/docs/pilot/duckdb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pilot/duckdb/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="https://duckdb.org/"&gt;DuckDB&lt;/a&gt; is a fast in-process analytical database: &lt;a href="#installation"&gt;Installation&lt;/a&gt; | &lt;a href="#resources"&gt;Resources&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;DuckDB is an embedded database, so it does not require deployment or service management. You only need to install the DuckDB package on the node to use it.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="installation"&gt;Installation&lt;/h2&gt;
+&lt;p&gt;Pigsty already provides DuckDB software package (RPM / DEB) in the Infra software repository, you can install it with the following command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./node.yml -t node_install -e &lt;span style="color:#4e9a06"&gt;&amp;#39;{&amp;#34;node_repo_modules&amp;#34;:&amp;#34;infra&amp;#34;,&amp;#34;node_packages&amp;#34;:[&amp;#34;duckdb&amp;#34;]}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="resources"&gt;Resources&lt;/h2&gt;
+&lt;p&gt;There are some DuckDB-related extension plugins provided by Pigsty for PostgreSQL:&lt;/p&gt;</description></item></channel></rss>

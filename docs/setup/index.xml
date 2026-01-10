@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Get Started on PIGSTY</title><link>https://pigsty.io/docs/setup/</link><description>Recent content in Get Started on PIGSTY</description><generator>Hugo</generator><language>en</language><atom:link href="https://pigsty.io/docs/setup/index.xml" rel="self" type="application/rss+xml"/><item><title>Single-Node Installation</title><link>https://pigsty.io/docs/setup/install/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/setup/install/</guid><description>&lt;p&gt;This is the Pigsty single-node install guide. For multi-node HA prod deployment, refer to the &lt;a href="https://pigsty.io/docs/deploy/"&gt;&lt;strong&gt;Deployment&lt;/strong&gt;&lt;/a&gt; docs.&lt;/p&gt;
+&lt;p&gt;Pigsty single-node installation consists of three steps: &lt;a href="#install"&gt;&lt;strong&gt;Install&lt;/strong&gt;&lt;/a&gt;, &lt;a href="#configure"&gt;&lt;strong&gt;Configure&lt;/strong&gt;&lt;/a&gt;, and &lt;a href="#deploy"&gt;&lt;strong&gt;Deploy&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://pigsty.io/docs/deploy/prepare"&gt;&lt;strong&gt;Prepare&lt;/strong&gt;&lt;/a&gt; a &lt;a href="https://pigsty.io/docs/deploy/prepare#node"&gt;&lt;strong&gt;node&lt;/strong&gt;&lt;/a&gt; with &lt;a href="https://pigsty.io/docs/ref/linux/"&gt;&lt;strong&gt;compatible OS&lt;/strong&gt;&lt;/a&gt;, and run as an &lt;a href="https://pigsty.io/docs/deploy/admin"&gt;&lt;strong&gt;admin user&lt;/strong&gt;&lt;/a&gt; with nopass &lt;a href="https://pigsty.io/docs/deploy/admin#ssh"&gt;&lt;strong&gt;&lt;code&gt;ssh&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; and &lt;a href="https://pigsty.io/docs/deploy/admin#sudo"&gt;&lt;strong&gt;&lt;code&gt;sudo&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;:&lt;/p&gt;
+
+
+
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist"&gt;
+ &lt;li class="nav-item"&gt;
+ &lt;button class="nav-link active"
+ id="tabs-00-00-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-00" role="tab"
+ data-td-tp-persist="pigsty.io (global)" aria-controls="tabs-00-00" aria-selected="true"&gt;
+ pigsty.io (Global)
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-01-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-01" role="tab"
+ data-td-tp-persist="pigsty.cc (mirror)" aria-controls="tabs-00-01" aria-selected="false"&gt;
+ pigsty.cc (Mirror)
+ &lt;/button&gt;
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="tab-content" id="tabs-0-content"&gt;
+ &lt;div class="tab-body tab-pane fade show active"
+ id="tabs-00-00" role="tabpanel" aria-labelled-by="tabs-00-00-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;curl -fsSL https://repo.pigsty.io/get &lt;span style="color:#000;font-weight:bold"&gt;|&lt;/span&gt; bash&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-body tab-pane fade"
+ id="tabs-00-01" role="tabpanel" aria-labelled-by="tabs-00-01-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;curl -fsSL https://repo.pigsty.cc/get &lt;span style="color:#000;font-weight:bold"&gt;|&lt;/span&gt; bash&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This command runs the &lt;a href="#install"&gt;&lt;strong&gt;install&lt;/strong&gt;&lt;/a&gt; script, downloads and extracts Pigsty source to your home directory and installs dependencies. Then complete &lt;a href="#configure"&gt;&lt;strong&gt;Configure&lt;/strong&gt;&lt;/a&gt; and &lt;a href="#deploy"&gt;&lt;strong&gt;Deploy&lt;/strong&gt;&lt;/a&gt;:&lt;/p&gt;</description></item><item><title>Web Interface</title><link>https://pigsty.io/docs/setup/webui/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/setup/webui/</guid><description>&lt;p&gt;After &lt;a href="https://pigsty.io/docs/setup/install"&gt;&lt;strong&gt;single-node installation&lt;/strong&gt;&lt;/a&gt;, you&amp;rsquo;ll have the &lt;a href="https://pigsty.io/docs/infra/"&gt;&lt;strong&gt;&lt;code&gt;INFRA&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; module installed on the current node, which includes an out-of-the-box Nginx web server.&lt;/p&gt;
+&lt;p&gt;The default server configuration provides a WebUI graphical interface for displaying monitoring dashboards and unified proxy access to other component web interfaces.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="access"&gt;Access&lt;/h2&gt;
+&lt;p&gt;You can access this graphical interface by entering the deployment node&amp;rsquo;s IP address in your browser. By default, Nginx serves on standard ports &lt;code&gt;80/443&lt;/code&gt;.&lt;/p&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: center"&gt;Direct IP Access&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Domain (HTTP)&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Domain (HTTPS)&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Demo&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="http://10.10.10.10"&gt;&lt;strong&gt;&lt;code&gt;http://10.10.10.10&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="http://i.pigsty"&gt;&lt;strong&gt;&lt;code&gt;http://i.pigsty&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://i.pigsty"&gt;&lt;strong&gt;&lt;code&gt;https://i.pigsty&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://demo.pigsty.io/zh"&gt;&lt;strong&gt;&lt;code&gt;https://demo.pigsty.io&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;a href="https://demo.pigsty.io/zh"&gt;&lt;img src="https://pigsty.io/img/pigsty/home.png" alt=""&gt;&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Getting Started with PostgreSQL</title><link>https://pigsty.io/docs/setup/pgsql/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/setup/pgsql/</guid><description>&lt;p&gt;&lt;a href="https://www.postgresql.org/"&gt;&lt;strong&gt;PostgreSQL&lt;/strong&gt;&lt;/a&gt; (abbreviated as PG) is the world&amp;rsquo;s most advanced and popular open-source relational database. Use it to store and retrieve multi-modal data.&lt;/p&gt;
+&lt;p&gt;This guide is for developers with basic Linux CLI experience but not very familiar with PostgreSQL, helping you quickly get started with PG in Pigsty.&lt;/p&gt;
+&lt;p&gt;We assume you&amp;rsquo;re a personal user deploying in the default single-node mode. For prod multi-node HA cluster access, refer to &lt;a href="https://pigsty.io/docs/pgsql/service/"&gt;&lt;strong&gt;Prod Service Access&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="basics"&gt;Basics&lt;/h2&gt;
+&lt;p&gt;In the default &lt;a href="https://pigsty.io/docs/setup/install"&gt;&lt;strong&gt;single-node installation&lt;/strong&gt;&lt;/a&gt; template, you&amp;rsquo;ll create a PostgreSQL database cluster named &lt;code&gt;pg-meta&lt;/code&gt; on the current node, with only one primary instance.&lt;/p&gt;</description></item><item><title>Customize Pigsty with Configuration</title><link>https://pigsty.io/docs/setup/config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/setup/config/</guid><description>&lt;p&gt;Besides using the &lt;a href="https://pigsty.io/docs/concept/iac/configure"&gt;&lt;strong&gt;configuration wizard&lt;/strong&gt;&lt;/a&gt; to auto-generate configs, you can write Pigsty config files from scratch.
+This tutorial guides you through building a complex &lt;a href="https://pigsty.io/docs/concept/iac/inventory"&gt;&lt;strong&gt;inventory&lt;/strong&gt;&lt;/a&gt; step by step.&lt;/p&gt;
+&lt;p&gt;If you define everything in the &lt;a href="https://pigsty.io/docs/concept/iac/inventory"&gt;&lt;strong&gt;inventory&lt;/strong&gt;&lt;/a&gt; upfront, a single &lt;code&gt;deploy.yml&lt;/code&gt; playbook run completes all deployment—but it hides the details.&lt;/p&gt;
+&lt;p&gt;This doc breaks down all modules and playbooks, showing how to incrementally build from a simple config to a complete deployment.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="minimal-configuration"&gt;Minimal Configuration&lt;/h2&gt;
+&lt;p&gt;The simplest valid config only defines the &lt;a href="https://pigsty.io/docs/infra/param#admin_ip"&gt;&lt;strong&gt;&lt;code&gt;admin_ip&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; variable—the IP address of the node where Pigsty is installed (&lt;strong&gt;admin node&lt;/strong&gt;):&lt;/p&gt;</description></item><item><title>Run Playbooks with Ansible</title><link>https://pigsty.io/docs/setup/playbook/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/setup/playbook/</guid><description>&lt;p&gt;Pigsty uses &lt;a href="https://docs.ansible.com/"&gt;&lt;strong&gt;Ansible&lt;/strong&gt;&lt;/a&gt; to manage clusters, a very popular large-scale/batch/automation ops tool in the SRE community.&lt;/p&gt;
+&lt;p&gt;Ansible can use &lt;strong&gt;declarative&lt;/strong&gt; approach for server configuration management. All module deployments are implemented through a series of idempotent &lt;a href="https://pigsty.io/docs/ref/playbook"&gt;&lt;strong&gt;Ansible playbooks&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For example, in single-node deployment, you&amp;rsquo;ll use the &lt;a href="#deploy-playbook"&gt;&lt;strong&gt;&lt;code&gt;deploy.yml&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; playbook. Pigsty has more &lt;a href="https://pigsty.io/docs/ref/playbook"&gt;&lt;strong&gt;built-in playbooks&lt;/strong&gt;&lt;/a&gt;, you can choose to use as needed.&lt;/p&gt;
+&lt;p&gt;Understanding Ansible basics helps with better use of Pigsty, but this is &lt;strong&gt;not required&lt;/strong&gt;, especially for single-node deployment.&lt;/p&gt;</description></item><item><title>Offline Installation</title><link>https://pigsty.io/docs/setup/offline/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/setup/offline/</guid><description>&lt;p&gt;Pigsty &lt;a href="https://pigsty.io/docs/setup/install/"&gt;&lt;strong&gt;installs&lt;/strong&gt;&lt;/a&gt; from Internet upstream by default, but some envs are isolated from the Internet.
+To address this, Pigsty supports offline installation using &lt;a href="#offline-packages"&gt;&lt;strong&gt;offline packages&lt;/strong&gt;&lt;/a&gt;.
+Think of them as Linux-native Docker images.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Offline packages&lt;/strong&gt; bundle all required RPM/DEB packages and dependencies; they are snapshots of the local APT/YUM repo after a normal &lt;a href="https://pigsty.io/docs/setup/install/"&gt;&lt;strong&gt;installation&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In &lt;a href="https://pigsty.io/docs/deploy"&gt;&lt;strong&gt;serious prod deployments&lt;/strong&gt;&lt;/a&gt;, we &lt;strong&gt;strongly recommend&lt;/strong&gt; using offline packages.
+They ensure all future nodes have consistent software versions with the existing env,
+and avoid online installation failures caused by upstream changes (quite common!),
+guaranteeing you can run it independently forever.&lt;/p&gt;</description></item><item><title>Slim Installation</title><link>https://pigsty.io/docs/setup/slim/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/setup/slim/</guid><description>&lt;p&gt;If you only want HA PostgreSQL database cluster itself without monitoring, infra, etc., consider &lt;strong&gt;Slim Installation&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Slim installation has no &lt;a href="https://pigsty.io/docs/infra/"&gt;&lt;strong&gt;&lt;code&gt;INFRA&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; module, no monitoring, no &lt;a href="https://pigsty.io/docs/setup/offline/"&gt;&lt;strong&gt;local repo&lt;/strong&gt;&lt;/a&gt;—just &lt;a href="https://pigsty.io/docs/etcd/"&gt;&lt;strong&gt;&lt;code&gt;ETCD&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; and &lt;a href="https://pigsty.io/docs/pgsql/"&gt;&lt;strong&gt;&lt;code&gt;PGSQL&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; and partial &lt;a href="https://pigsty.io/docs/node/"&gt;&lt;strong&gt;&lt;code&gt;NODE&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; functionality.&lt;/p&gt;
+&lt;div class="alert alert-success" role="alert"&gt;&lt;div class="h4 alert-heading" role="heading"&gt;Slim installation is suitable for:&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Only needing PostgreSQL database itself, no observability infra required.&lt;/li&gt;
+&lt;li&gt;Extremely resource-constrained envs unwilling to bear infra overhead (~0.2 vCPU / 500MB on single node).&lt;/li&gt;
+&lt;li&gt;Already having external monitoring system, wanting to use your own unified monitoring framework.&lt;/li&gt;
+&lt;li&gt;Not wanting to introduce the AGPLv3-licensed Grafana visualization dashboard component.
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="alert alert-warning" role="alert"&gt;&lt;div class="h4 alert-heading" role="heading"&gt;Limitations of slim installation:&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;No &lt;a href="https://pigsty.io/docs/infra"&gt;&lt;strong&gt;INFRA&lt;/strong&gt;&lt;/a&gt; module, cannot use WebUI and local software repo features.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pigsty.io/docs/setup/offline"&gt;&lt;strong&gt;Offline Install&lt;/strong&gt;&lt;/a&gt; is limited to single-node mode; multi-node slim install can only be done online.
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;To use slim installation, you need to:&lt;/p&gt;</description></item><item><title>Security Tips</title><link>https://pigsty.io/docs/setup/security/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/setup/security/</guid><description>&lt;p&gt;For Demo/Dev single-node deployments, Pigsty&amp;rsquo;s default config is secure enough as long as you &lt;a href="#passwords"&gt;&lt;strong&gt;change default passwords&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If your deployment is exposed to Internet or office network, consider adding &lt;a href="#firewall"&gt;&lt;strong&gt;firewall&lt;/strong&gt;&lt;/a&gt; rules to restrict port access and source IPs for enhanced security.&lt;/p&gt;
+&lt;p&gt;Additionally, we recommend protecting Pigsty&amp;rsquo;s &lt;a href="#files"&gt;&lt;strong&gt;critical files&lt;/strong&gt;&lt;/a&gt; (config files and CA private key) from unauthorized access and backing them up regularly.&lt;/p&gt;
+&lt;p&gt;For enterprise prod envs with strict security requirements, refer to the &lt;a href="https://pigsty.io/docs/deploy/security/"&gt;&lt;strong&gt;Deployment - Security Hardening&lt;/strong&gt;&lt;/a&gt; documentation for advanced configuration.&lt;/p&gt;</description></item></channel></rss>

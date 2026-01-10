@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Citus on PIGSTY</title><link>https://pigsty.io/tags/citus/</link><description>Recent content in Citus on PIGSTY</description><generator>Hugo</generator><language>en</language><atom:link href="https://pigsty.io/tags/citus/index.xml" rel="self" type="application/rss+xml"/><item><title>Citus</title><link>https://pigsty.io/docs/pgsql/kernel/citus/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/citus/</guid><description>&lt;p&gt;Pigsty natively supports Citus. This is a distributed horizontal scaling extension based on the native PostgreSQL kernel.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://pigsty.io/img/pigsty/citus.jpg" alt=""&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="installation"&gt;Installation&lt;/h2&gt;
+&lt;p&gt;Citus is a PostgreSQL &lt;a href="https://pigsty.io/docs/pgsql/ext/"&gt;extension plugin&lt;/a&gt; that can be installed and enabled on a native PostgreSQL cluster following the standard plugin installation process.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./pgsql.yml -t pg_extension -e &lt;span style="color:#4e9a06"&gt;&amp;#39;{&amp;#34;pg_extensions&amp;#34;:[&amp;#34;citus&amp;#34;]}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="configuration"&gt;Configuration&lt;/h2&gt;
+&lt;p&gt;To define a citus cluster, you need to specify the following parameters:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://pigsty.io/docs/pgsql/param#pg_mode"&gt;&lt;code&gt;pg_mode&lt;/code&gt;&lt;/a&gt; must be set to &lt;code&gt;citus&lt;/code&gt; instead of the default &lt;code&gt;pgsql&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;You must define the shard name &lt;a href="https://pigsty.io/docs/pgsql/param#pg_shard"&gt;&lt;code&gt;pg_shard&lt;/code&gt;&lt;/a&gt; and shard number &lt;a href="https://pigsty.io/docs/pgsql/param#pg_group"&gt;&lt;code&gt;pg_group&lt;/code&gt;&lt;/a&gt; on each shard cluster&lt;/li&gt;
+&lt;li&gt;You must define &lt;a href="https://pigsty.io/docs/pgsql/param#pg_primary_db"&gt;&lt;code&gt;pg_primary_db&lt;/code&gt;&lt;/a&gt; to specify the database managed by Patroni&lt;/li&gt;
+&lt;li&gt;If you want to use &lt;code&gt;postgres&lt;/code&gt; from &lt;a href="https://pigsty.io/docs/pgsql/param#pg_dbsu"&gt;&lt;code&gt;pg_dbsu&lt;/code&gt;&lt;/a&gt; instead of the default &lt;a href="https://pigsty.io/docs/pgsql/param#pg_admin_username"&gt;&lt;code&gt;pg_admin_username&lt;/code&gt;&lt;/a&gt; to execute admin commands, then &lt;a href="https://pigsty.io/docs/pgsql/param#pg_dbsu_password"&gt;&lt;code&gt;pg_dbsu_password&lt;/code&gt;&lt;/a&gt; must be set to a non-empty plaintext password&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Additionally, you need extra hba rules to allow SSL access from localhost and other data nodes.&lt;/p&gt;</description></item></channel></rss>

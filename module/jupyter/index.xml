@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>JUPYTER on PIGSTY</title><link>https://pigsty.io/module/jupyter/</link><description>Recent content in JUPYTER on PIGSTY</description><generator>Hugo</generator><language>en</language><atom:link href="https://pigsty.io/module/jupyter/index.xml" rel="self" type="application/rss+xml"/><item><title>Module: Jupyter</title><link>https://pigsty.io/docs/pilot/jupyter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pilot/jupyter/</guid><description>&lt;p&gt;Run Jupyter notebook with Docker, you have to:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Change the default password in &lt;a href=".env"&gt;&lt;code&gt;.env&lt;/code&gt;&lt;/a&gt;: &lt;code&gt;JUPYTER_TOKEN&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Create data dir with proper permission: &lt;code&gt;make dir&lt;/code&gt;, owned by &lt;code&gt;1000:100&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;make up&lt;/code&gt; to pull up Jupyter with docker compose&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87"&gt;cd&lt;/span&gt; ~/pigsty/app/jupyter &lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt; make dir up
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Visit &lt;a href="http://lab.pigsty"&gt;http://lab.pigsty&lt;/a&gt; or http://10.10.10.10:8888, the default password is &lt;code&gt;pigsty&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://lab.pigsty?token=pigsty"&gt;&lt;code&gt;http://lab.pigsty?token=pigsty&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="prepare"&gt;Prepare&lt;/h2&gt;
+&lt;p&gt;Create a data directory &lt;code&gt;/data/jupyter&lt;/code&gt;, with the default uid &amp;amp; gid &lt;code&gt;1000:100&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make dir &lt;span style="color:#8f5902;font-style:italic"&gt;# mkdir -p /data/jupyter; chown -R 1000:100 /data/jupyter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="connect-to-postgres"&gt;Connect to Postgres&lt;/h2&gt;
+&lt;p&gt;Use the Jupyter terminal to install &lt;code&gt;psycopg2-binary&lt;/code&gt; &amp;amp; &lt;code&gt;psycopg2&lt;/code&gt; package.&lt;/p&gt;</description></item></channel></rss>

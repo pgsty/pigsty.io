@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>High Availability on PIGSTY</title><link>https://pigsty.io/docs/concept/ha/</link><description>Recent content in High Availability on PIGSTY</description><generator>Hugo</generator><language>en</language><atom:link href="https://pigsty.io/docs/concept/ha/index.xml" rel="self" type="application/rss+xml"/><item><title>Tradeoffs</title><link>https://pigsty.io/docs/concept/ha/tradeoff/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/ha/tradeoff/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Recovery Time Objective (RTO)&lt;/strong&gt; and &lt;strong&gt;Recovery Point Objective (RPO)&lt;/strong&gt; are two parameters requiring careful tradeoffs when designing high availability clusters.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;RTO&lt;/strong&gt; (Recovery Time Objective) defines the &lt;strong&gt;maximum time needed to restore write capability&lt;/strong&gt; when the primary fails.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RPO&lt;/strong&gt; (Recovery Point Objective) defines the &lt;strong&gt;maximum amount of data that can be lost&lt;/strong&gt; when the primary fails.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The default &lt;strong&gt;RTO&lt;/strong&gt; and &lt;strong&gt;RPO&lt;/strong&gt; values used by Pigsty meet reliability requirements for most scenarios. You can adjust them based on your hardware level, network quality, and business requirements.&lt;/p&gt;</description></item><item><title>Service Access</title><link>https://pigsty.io/docs/concept/ha/svc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/ha/svc/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Split read and write operations, route traffic correctly, and deliver PostgreSQL cluster capabilities reliably.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="#service-overview"&gt;Service&lt;/a&gt; is an abstraction: it represents the form in which database clusters expose their capabilities externally, encapsulating underlying cluster details.&lt;/p&gt;
+&lt;p&gt;Services are crucial for &lt;a href="#access-services"&gt;stable access&lt;/a&gt; in production environments, showing their value during automatic failover in &lt;a href="https://pigsty.io/docs/concept/ha"&gt;high availability&lt;/a&gt; clusters. &lt;a href="#personal-users"&gt;Personal users&lt;/a&gt; typically don&amp;rsquo;t need to worry about this concept.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="personal-users"&gt;Personal Users&lt;/h2&gt;
+&lt;p&gt;The concept of &amp;ldquo;service&amp;rdquo; is for production environments. Personal users with single-node clusters can skip the complexity and directly use instance names or IP addresses to access the database.&lt;/p&gt;</description></item><item><title>Failure Model</title><link>https://pigsty.io/docs/concept/ha/failure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/ha/failure/</guid><description>&lt;h2 id="failure-scenario-analysis"&gt;Failure Scenario Analysis&lt;/h2&gt;
+&lt;h3 id="single-node-failures"&gt;Single Node Failures&lt;/h3&gt;
+&lt;h4 id="primary-process-crash"&gt;Primary Process Crash&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Scenario&lt;/strong&gt;: PostgreSQL primary process is &lt;code&gt;kill -9&lt;/code&gt; or crashes&lt;/p&gt;
+&lt;pre class="mermaid"&gt;flowchart LR
+ subgraph Detection[&amp;#34;🔍 Failure Detection&amp;#34;]
+ D1[&amp;#34;Patroni detects process gone&amp;#34;]
+ D2[&amp;#34;Attempts to restart PostgreSQL&amp;#34;]
+ D3[&amp;#34;Restart fails, stop lease renewal&amp;#34;]
+ D1 --&amp;gt; D2 --&amp;gt; D3
+ end
+
+ subgraph Failover[&amp;#34;🔄 Failover&amp;#34;]
+ F1[&amp;#34;Etcd lease expires (~10s)&amp;#34;]
+ F2[&amp;#34;Trigger election, latest replica wins&amp;#34;]
+ F3[&amp;#34;New primary promoted&amp;#34;]
+ F4[&amp;#34;HAProxy detects new primary&amp;#34;]
+ F1 --&amp;gt; F2 --&amp;gt; F3 --&amp;gt; F4
+ end
+
+ subgraph Impact[&amp;#34;📊 Impact&amp;#34;]
+ I1[&amp;#34;Write service down: 15-30s&amp;#34;]
+ I2[&amp;#34;Read service: brief interruption&amp;#34;]
+ I3[&amp;#34;Data loss: &amp;lt; 1MB or 0&amp;#34;]
+ end
+
+ Detection --&amp;gt; Failover --&amp;gt; Impact
+
+ style D1 fill:#ffcdd2
+ style F3 fill:#c8e6c9
+ style I1 fill:#fff9c4&lt;/pre&gt;
+&lt;h4 id="patroni-process-failure"&gt;Patroni Process Failure&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Scenario&lt;/strong&gt;: Patroni process is killed or crashes&lt;/p&gt;</description></item><item><title>HA Cluster</title><link>https://pigsty.io/docs/concept/ha/ha/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/ha/ha/</guid><description>&lt;p&gt;Pigsty&amp;rsquo;s PostgreSQL clusters come with out-of-the-box high availability, powered by &lt;a href="https://patroni.readthedocs.io/en/latest/"&gt;&lt;strong&gt;Patroni&lt;/strong&gt;&lt;/a&gt;, &lt;a href="https://etcd.io/"&gt;&lt;strong&gt;Etcd&lt;/strong&gt;&lt;/a&gt;, and &lt;a href="http://www.haproxy.org/"&gt;&lt;strong&gt;HAProxy&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;When your PostgreSQL cluster has two or more instances, you automatically have self-healing database high availability without any additional configuration — as long as any instance survives, the cluster can provide complete service. Clients only need to connect to any node to get full service without worrying about primary-replica topology changes.&lt;/p&gt;
+&lt;p&gt;With default configuration, the primary failure Recovery Time Objective (RTO) ≈ 30s, and Recovery Point Objective (RPO) &amp;lt; 1MB; for replica failures, RPO = 0 and RTO ≈ 0 (brief interruption). In consistency-first mode, failover can guarantee zero data loss: RPO = 0. All metrics can be &lt;a href="#tradeoffs"&gt;&lt;strong&gt;configured as needed&lt;/strong&gt;&lt;/a&gt; based on your hardware conditions and reliability requirements.&lt;/p&gt;</description></item></channel></rss>

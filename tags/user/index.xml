@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>User on PIGSTY</title><link>https://pigsty.io/tags/user/</link><description>Recent content in User on PIGSTY</description><generator>Hugo</generator><language>en</language><atom:link href="https://pigsty.io/tags/user/index.xml" rel="self" type="application/rss+xml"/><item><title>User / Role</title><link>https://pigsty.io/docs/pgsql/misc/user/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/misc/user/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;In this context, users refer to logical objects within a database cluster created using the SQL commands &lt;code&gt;CREATE USER/ROLE&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In PostgreSQL, users belong directly to the database cluster rather than to a specific database. Therefore, when creating business databases and business users, you should follow the principle of &amp;ldquo;users first, then databases.&amp;rdquo;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="defining-users"&gt;Defining Users&lt;/h2&gt;
+&lt;p&gt;Pigsty defines roles and users in database clusters through two configuration parameters:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://pigsty.io/docs/pgsql/param#pg_default_roles"&gt;&lt;code&gt;pg_default_roles&lt;/code&gt;&lt;/a&gt;: Defines globally unified roles and users&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pigsty.io/docs/pgsql/param#pg_users"&gt;&lt;code&gt;pg_users&lt;/code&gt;&lt;/a&gt;: Defines business users and roles at the database cluster level&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The former defines roles and users shared across the entire environment, while the latter defines business roles and users specific to individual clusters. Both have the same format and are arrays of user definition objects.&lt;/p&gt;</description></item></channel></rss>
