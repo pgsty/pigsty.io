@@ -1,5 +1,5 @@
 ---
-title: Monitoring Dashboards
+title: Dashboards
 weight: 1901
 description: Pigsty provides many out-of-the-box Grafana monitoring dashboards for
   PostgreSQL

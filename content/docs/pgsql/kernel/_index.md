@@ -1,5 +1,5 @@
 ---
-title: Kernel Forks
+title: PG Kernels
 weight: 2200
 description: How to use other PostgreSQL kernel forks in Pigsty? Such as Citus, Babelfish,
   IvorySQL, PolarDB, etc.

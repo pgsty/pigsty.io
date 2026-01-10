@@ -10,7 +10,7 @@ categories: [Concept]
 
 A **node** is an abstraction of hardware resources and operating systems. It can be a physical machine, bare metal, virtual machine, or container/pod.
 
-Any machine running a Linux OS (with systemd daemon) and standard CPU/memory/disk/network resources can be treated as a node.
+Any machine running a [**Linux OS**](/docs/ref/linux) (with systemd daemon) and standard CPU/memory/disk/network resources can be treated as a node.
 
 Nodes can have [**modules**](/docs/ref/module) installed. Pigsty has several node types, distinguished by which modules are deployed:
 

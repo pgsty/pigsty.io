@@ -11,29 +11,43 @@ Pigsty can help you deploy enterprise-grade Supabase on your own servers (physic
 
 > Pigsty is one of three self-hosting approaches listed on the Supabase official documentation: [Self-hosting: Third-Party Guides](https://supabase.com/docs/guides/self-hosting#third-party-guides)
 
+This tutorial requires basic Linux knowledge. Otherwise, consider using Supabase cloud or plain Docker Compose self-hosting.
+
 
 --------
 
 ## TL;DR
 
-[Prepare](/docs/deploy/prepare) a [**Linux**](/docs/deploy/prepare) server, follow the Pigsty [standard installation](/docs/setup/install) process with the `supabase` configuration template:
+[Prepare](/docs/deploy/prepare) a [**Linux server**](/docs/deploy/prepare), follow the Pigsty [**standard single-node installation**](/docs/setup/install) process with the `supabase` config template:
 
 ```bash
-curl -fsSL https://repo.pigsty.cc/get | bash; cd ~/pigsty
+curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
 ./configure -c supabase    # Use supabase config (change credentials in pigsty.yml)
 vi pigsty.yml              # Edit domain, passwords, keys...
-./deploy.yml               # Install Pigsty
-./docker.yml               # Install Docker Compose components
-./app.yml                  # Start Supabase stateless components with Docker (may take time)
+./deploy.yml               # Standard single-node Pigsty deployment
+./docker.yml               # Install Docker module
+./app.yml                  # Start Supabase stateless components (may be slow)
 ```
 
 After installation, access Supa Studio on port `8000` with username `supabase` and password `pigsty`.
 
-![](/img/docs/supabase-login.png)
+![](/img/pigsty/supabase.webp)
 
 {{< asciinema file="demo/supabase.cast" markers="0:Check,11:Install,43:Config,307:Docker,321:Domain,340:App,350:Verify" theme="solarized-light" speed="1.3" autoplay="true" loop="true" >}}
 
 
+
+--------
+
+## Checklist
+
+- [ ] At least one 1C2G server
+- [ ] Static internal IPv4 address
+- [ ] [**Supported Linux distro**](/docs/ref/linux) installed
+- [ ] [**Standard Pigsty installation**](/docs/setup/install)
+- [ ] Modified config file: domain, passwords, IP address
+- [ ] [**Docker module installed**](/docs/docker), ensure proxy/mirror available
+- [ ] Use Pigsty's [`app.yml`](/docs/docker/playbook) to start Supabase
 
 
 ------
@@ -112,11 +126,11 @@ Let's start with single-node Supabase deployment. We'll cover multi-node high av
 then run [`docker.yml`](/docs/docker/playbook#dockeryml) and `app.yml` to start stateless Supabase containers (default ports `8000`/`8433`).
 
 ```bash
-curl -fsSL https://repo.pigsty.cc/get | bash; cd ~/pigsty
+curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
 ./configure -c supabase    # Use supabase config (change credentials in pigsty.yml)
 vi pigsty.yml              # Edit domain, passwords, keys...
 ./deploy.yml               # Install Pigsty
-./docker.yml               # Install Docker Compose components
+./docker.yml               # Install Docker module
 ./app.yml                  # Start Supabase stateless components with Docker
 ```
 
@@ -184,12 +198,14 @@ These are Pigsty component passwords. Strongly recommended to set before install
 
 Besides Pigsty component passwords, you need to [change Supabase keys](https://supabase.com/docs/guides/self-hosting/docker#securing-your-services), including:
 
-- [`JWT_SECRET`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#131)
-- [`ANON_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L132)
-- [`SERVICE_ROLE_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L133)
-- [`PG_META_CRYPTO_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L134)
-- [`DASHBOARD_USERNAME`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L136): Supabase Studio web UI default username, default `supabase`
-- [`DASHBOARD_PASSWORD`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L137): Supabase Studio web UI default password, default `pigsty`
+- [`JWT_SECRET`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L135): JWT signing key, at least 32 characters
+- [`ANON_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L136): Anonymous user JWT credential
+- [`SERVICE_ROLE_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L137): Service role JWT credential
+- [`PG_META_CRYPTO_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L138): PostgreSQL Meta service encryption key, at least 32 characters
+- [`DASHBOARD_USERNAME`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L140): Supabase Studio web UI default username, default `supabase`
+- [`DASHBOARD_PASSWORD`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L141): Supabase Studio web UI default password, default `pigsty`
+- [`LOGFLARE_PUBLIC_ACCESS_TOKEN`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L144): Logflare public access token, 32-64 random characters
+- [`LOGFLARE_PRIVATE_ACCESS_TOKEN`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L145): Logflare private access token, 32-64 random characters
 
 Please follow the [Supabase tutorial: Securing your services](https://supabase.com/docs/guides/self-hosting/docker#generate-api-keys):
 
