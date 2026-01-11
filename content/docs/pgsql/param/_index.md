@@ -231,7 +231,7 @@ You can define multiple PGSQL clusters and further organize them into a horizont
 
 ## `PG_ID`
 
-Here are commonly used parameters for identifying [entities](/docs/pgsql/arch#er-diagram) in the PGSQL module: clusters, instances, services, etc...
+Here are commonly used parameters for identifying [entities](/docs/pgsql/config#er-diagram) in the PGSQL module: clusters, instances, services, etc...
 
 
 ```yaml
@@ -1895,7 +1895,7 @@ This parameter is identical in format to [`pgb_hba_rules`](#pgb_hba_rules). It's
 
 This section defines variables for [pgBackRest](https://pgbackrest.org/), which is used for PGSQL Point-in-Time Recovery (PITR).
 
-Check [PGSQL Backup & PITR](/docs/pgsql/arch/pitr) for detailed information.
+Check [PGSQL Backup & PITR](/docs/pgsql/backup) for detailed information.
 
 
 ```yaml

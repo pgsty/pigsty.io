@@ -376,4 +376,4 @@ tail -f /pg/log/postgresql-*.log | grep -i auth
 - [**HBA Configuration**](/docs/pgsql/config/hba/): HBA rule configuration syntax and parameter details
 - [**User Management**](/docs/pgsql/admin/user/): User and role management operations
 - [**Access Control**](/docs/pgsql/config/acl/): Role system and permission model
-- [**Security & Compliance**](/docs/pgsql/arch/sec/): PostgreSQL cluster security features
+- [**Security & Compliance**](/docs/concept/sec/): PostgreSQL cluster security features

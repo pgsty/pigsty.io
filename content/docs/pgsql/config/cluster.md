@@ -39,7 +39,7 @@ pg-test:
     pg_cluster: pg-test
 ```
 
-This configuration is concise and self-describing, consisting only of [**identity parameters**](/docs/pgsql/arch/ident). Note that the Ansible Group name should match [`pg_cluster`](/docs/pgsql/param#pg_cluster).
+This configuration is concise and self-describing, consisting only of [**identity parameters**](/docs/pgsql/config#identity-parameters). Note that the Ansible Group name should match [`pg_cluster`](/docs/pgsql/param#pg_cluster).
 
 Use the following command to create this cluster:
 

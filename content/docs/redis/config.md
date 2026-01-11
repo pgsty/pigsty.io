@@ -13,7 +13,7 @@ categories: [Reference]
 
 ## Concept
 
-The entity model of Redis is almost the same as that of [PostgreSQL](/docs/pgsql/arch#er-diagram), which also includes the concepts of **Cluster** and **Instance**. Note that the Cluster here does not refer to the native Redis Cluster mode.
+The entity model of Redis is almost the same as that of [PostgreSQL](/docs/pgsql/config#er-diagram), which also includes the concepts of **Cluster** and **Instance**. Note that the Cluster here does not refer to the native Redis Cluster mode.
 
 The core difference between the REDIS module and the PGSQL module is that Redis uses a **single-node multi-instance** deployment rather than the 1:1 deployment: multiple Redis instances are typically deployed on a physical/virtual machine node to utilize multi-core CPUs fully. Therefore, the ways to [configure](#configuration) and [administer](#administration) Redis instances are slightly different from PGSQL.
 

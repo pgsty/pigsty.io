@@ -82,7 +82,7 @@ psql postgres://dbuser_dba:DBUser.DBA@pg-meta:5436/meta     # pg-meta-default : 
 psql postgres://dbuser_stats:DBUser.Stats@pg-meta:5438/meta # pg-meta-offline : direct connection via offline postgres(5432)
 ```
 
-You can see how these four services work from the sample cluster [architecture diagram](/docs/pgsql/arch):
+You can see how these four services work from the sample cluster [architecture diagram](/docs/pgsql/config):
 
 [![pigsty-ha.png](/img/pigsty/ha.png)](/docs/concept/ha)
 

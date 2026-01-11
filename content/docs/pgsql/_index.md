@@ -21,7 +21,7 @@ sidebar_root_for: self
 
 > Learn key topics and concepts about PostgreSQL.
 
-- [Architecture](/docs/pgsql/arch)
+- [Architecture](/docs/pgsql/config)
 - [Cluster Config](/docs/pgsql/config)
 - [Extensions](/docs/ref/extension)
 - [Users/Roles](/docs/pgsql/config/user)
@@ -30,7 +30,7 @@ sidebar_root_for: self
 - [Auth/HBA](/docs/pgsql/config/hba)
 - [Access Control](/docs/concept/sec/ac/)
 - [Admin SOP](/docs/pgsql/admin)
-- [Backup & Recovery](/docs/pgsql/arch/pitr)
+- [Backup & Recovery](/docs/pgsql/backup)
 - [Monitoring](/docs/pgsql/monitor)
 - [Migration](/docs/pgsql/migration)
 - [Dashboards](/docs/pgsql/monitor/dashboard)
@@ -42,7 +42,7 @@ sidebar_root_for: self
 
 > [Describe](/docs/pgsql/config) your desired PostgreSQL cluster
 
-- [Identity Params](/docs/pgsql/arch#identity-parameters): Define identity params for a PostgreSQL cluster
+- [Identity Params](/docs/pgsql/config#identity-parameters): Define identity params for a PostgreSQL cluster
 - [Primary Instance](/docs/pgsql/config#primary-instance): Create single-instance "cluster" with one primary
 - [Replica Instance](/docs/pgsql/config#replica-instance): Create basic HA cluster with one primary and one replica
 - [Offline Instance](/docs/pgsql/config#offline-instance): Create special read-only instance for OLAP/ETL/interactive queries

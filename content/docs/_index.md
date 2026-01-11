@@ -21,6 +21,6 @@ categories: [Reference]
 
 [**Concept**](/docs/concept/): [Architecture](/docs/concept/arch) | [Cluster Model](/docs/concept/model) | [Monitoring](/docs/concept/monitor) | [IaC](/docs/concept/iac) | [HA](/docs/concept/ha) | [PITR](/docs/concept/pitr) | [Service Access](/docs/pgsql/misc/svc) | [Security](/docs/concept/sec)
 
-[**Reference**](/docs/ref/): [Supported Linux](/docs/ref/linux) | [Fire Hierarchy](/docs/ref/fhs) | [Parameters](/docs/ref/param) | [Playbooks](/docs/ref/playbooks) | [Ports](/docs/ref/port)  | [Comparison](/docs/about/compare) | [Cost](/docs/about/compare/cost) 
+[**Reference**](/docs/ref/): [Supported Linux](/docs/ref/linux) | [Fire Hierarchy](/docs/ref/fhs) | [Parameters](/docs/ref/param) | [Playbooks](/docs/ref/playbook) | [Ports](/docs/ref/port)  | [Comparison](/docs/about/compare) | [Cost](/docs/about/compare/cost) 
 
 [**Modules**](/docs/ref/module): [**`PGSQL`**](/docs/pgsql) | [**`INFRA`**](/docs/infra) | [**`NODE`**](/docs/node) | [**`ETCD`**](/docs/etcd) | [**`MINIO`**](/docs/minio) | [**`REDIS`**](/docs/redis) | [**`FERRET`**](/docs/ferret) | [**`DOCKER`**](/docs/docker) | [**`APP`**](/docs/app/)

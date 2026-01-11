@@ -88,7 +88,7 @@ flowchart TB
 | Section | Description | Core Question |
 |:--------|:------------|:--------------|
 | **Security Overview** | Security capability overview and checklist | What's the overall security architecture? |
-| [**Authentication**](/docs/pgsql/arch/sec) | HBA rules, password policies, certificate auth | How to verify user identity? |
+| [**Authentication**](/docs/pgsql/config/hba) | HBA rules, password policies, certificate auth | How to verify user identity? |
 | [**Access Control**](ac/) | Role system, permission model, database isolation | How to control user permissions? |
 | [**Encrypted Communication**](ca/) | SSL/TLS, local CA, certificate management | How to protect data in transit? |
 | **Compliance Checklist** | Detailed SOC2 mapping | How to meet compliance requirements? |
@@ -390,7 +390,7 @@ pgbackrest_repo:
 Deep dive into security configuration details:
 
 - **Security Overview**: Overall security architecture and checklist
-- [**Authentication**](/docs/pgsql/arch/sec): HBA rules and password policies
+- [**Authentication**](/docs/pgsql/config/hba): HBA rules and password policies
 - [**Access Control**](ac/): Role system and permission model
 - [**Encrypted Communication**](ca/): SSL/TLS and certificate management
 - **Compliance Checklist**: Detailed SOC2 mapping

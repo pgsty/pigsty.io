@@ -607,4 +607,4 @@ head -30 /pg/data/pg_hba.conf
 - [**HBA Management**](/docs/pgsql/admin/hba/): Daily HBA rule management operations
 - [**User Config**](/docs/pgsql/config/user/): User and role configuration
 - [**Access Control**](/docs/pgsql/config/acl/): Role system and permission model
-- [**Security & Compliance**](/docs/pgsql/arch/sec/): PostgreSQL cluster security features
+- [**Security & Compliance**](/docs/concept/sec/): PostgreSQL cluster security features

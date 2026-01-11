@@ -55,7 +55,7 @@ If only PITR is used for failure recovery, RTO and RPO metrics are inferior comp
 * **RTO**: With only standalone + PITR, recovery time depends on backup size and network/disk bandwidth, ranging from tens of minutes to hours or days.
 * **RPO**: With only standalone + PITR, some data may be lost during crashes - one or several WAL segment files may not yet be archived, losing 16 MB to tens of MB of data.
 
-Besides [**PITR**](/docs/pgsql/arch/pitr), you can also use [**delayed clusters**](/docs/pgsql/config#delayed-cluster) in Pigsty to address data deletion/modification caused by human errors or software defects.
+Besides [**PITR**](/docs/pgsql/backup), you can also use [**delayed clusters**](/docs/pgsql/config#delayed-cluster) in Pigsty to address data deletion/modification caused by human errors or software defects.
 
 
 
@@ -69,7 +69,7 @@ Having a **base backup** allows users to restore the database to its state at ba
 
 ![fig-10-02.png](/img/blog/kernel/fig-10-02.png)
 
-For specific operations, refer to [**PGSQL Admin: Backup and Recovery**](/docs/pgsql/arch/pitr).
+For specific operations, refer to [**PGSQL Admin: Backup and Recovery**](/docs/pgsql/backup).
 
 ### Base Backup
 
@@ -96,7 +96,7 @@ If you don't need PITR functionality, you can disable WAL archiving by [**config
 
 ## Implementation
 
-By default, Pigsty provides two preset [backup strategies](/docs/pgsql/arch/pitr#backup-strategy): The default uses local filesystem backup repository, performing one full backup daily to ensure users can roll back to any point within the past day. The alternative strategy uses dedicated MinIO clusters or S3 storage for backups, with weekly full backups, daily incremental backups, and two weeks of backup and WAL archive retention by default.
+By default, Pigsty provides two preset [backup strategies](/docs/pgsql/backup#backup-strategy): The default uses local filesystem backup repository, performing one full backup daily to ensure users can roll back to any point within the past day. The alternative strategy uses dedicated MinIO clusters or S3 storage for backups, with weekly full backups, daily incremental backups, and two weeks of backup and WAL archive retention by default.
 
 Pigsty uses pgBackRest to manage backups, receive WAL archives, and perform PITR. Backup repositories can be flexibly configured ([`pgbackrest_repo`](/docs/pgsql/param#pgbackrest_repo)): defaults to primary's local filesystem (`local`), but can also use other disk paths, or the included optional [MinIO](/docs/minio) service (`minio`) and cloud S3 services.
 
