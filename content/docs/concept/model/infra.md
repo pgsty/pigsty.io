@@ -94,7 +94,16 @@ However, this doesn't change the node's hostname or system identity; nodes still
 
 ## Service Portal
 
-INFRA nodes provide unified web service entry through Nginx. The [**`infra_portal`**](/docs/infra/param#infra_portal) parameter defines services exposed through Nginx:
+INFRA nodes provide unified web service entry through Nginx. The [**`infra_portal`**](/docs/infra/param#infra_portal) parameter defines services exposed through Nginx.
+
+The default configuration only defines the home server:
+
+```yaml
+infra_portal:
+  home : { domain: i.pigsty }
+```
+
+Pigsty automatically configures reverse proxy endpoints for enabled components (Grafana, VictoriaMetrics, AlertManager, etc.). If you need to access these services via separate domains, you can explicitly add configurations:
 
 ```yaml
 infra_portal:
@@ -103,8 +112,6 @@ infra_portal:
   prometheus   : { domain: p.pigsty, endpoint: "${admin_ip}:8428" }   # VMUI
   alertmanager : { domain: a.pigsty, endpoint: "${admin_ip}:9059" }
 ```
-
-Users access different domains, and Nginx routes requests to corresponding backend services:
 
 | Domain        | Service         | Description            |
 |:--------------|:----------------|:-----------------------|

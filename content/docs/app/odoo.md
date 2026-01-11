@@ -206,11 +206,6 @@ psql postgres://dbuser_odoo:DBUser.Odoo@10.10.10.10:5432/odoo
 ```yaml
     infra_portal:                     # Domain names and upstream servers
       home         : { domain: h.pigsty }
-      grafana      : { domain: g.pigsty    ,endpoint: "${admin_ip}:3000" , websocket: true }
-      prometheus   : { domain: p.pigsty    ,endpoint: "${admin_ip}:9058" }
-      alertmanager : { domain: a.pigsty    ,endpoint: "${admin_ip}:9059" }
-      blackbox     : { endpoint: "${admin_ip}:9115" }
-      loki         : { endpoint: "${admin_ip}:3100" }
       odoo         : { domain: odoo.pigsty, endpoint: "127.0.0.1:8069", websocket: true }  # <------ Add this line
 ./infra.yml -t nginx   # Setup nginx infra portal
 ```

@@ -15,7 +15,7 @@ Patroni v3.0+ provides native high-availability support for Citus, simplifying t
 - [What is Citus](https://docs.citusdata.com/en/stable/get_started/what_is_citus.html)
 - [Patroni Citus Support](https://patroni.readthedocs.io/en/latest/citus.html)
 
-> Note: The current Citus version (12.1.6) supports PostgreSQL 16, 15, and 14, but not PostgreSQL 17 yet. There is no official ARM64 support. Pigsty extension repo provides Citus ARM64 packages, but use with caution on ARM architecture.
+> Note: The current Citus version (13.0) supports PostgreSQL 17, 16, 15, and 14. Pigsty extension repo provides Citus ARM64 packages.
 
 
 --------
@@ -35,7 +35,7 @@ pg-citus:
     10.10.10.13: { pg_group: 2, pg_cluster: pg-citus2 ,pg_vip_address: 10.10.10.4/24 ,pg_seq: 1, pg_role: primary }
   vars:
     pg_mode: citus                            # pgsql cluster mode: citus
-    pg_version: 16                            # citus does not have pg16 available
+    pg_version: 17                            # citus 13.0 supports PG 14-17
     pg_shard: pg-citus                        # citus shard name: pg-citus
     pg_primary_db: citus                      # primary database used by citus
     pg_vip_enabled: true                      # enable vip for citus cluster
@@ -210,7 +210,7 @@ pg-citus: # citus group
     10.10.10.59: { pg_group: 4, pg_cluster: pg-citus4 ,pg_vip_address: 10.10.10.64/24 ,pg_seq: 1, pg_role: replica }
   vars:
     pg_mode: citus                            # pgsql cluster mode: citus
-    pg_version: 16                            # citus does not have pg16 available
+    pg_version: 17                            # citus 13.0 supports PG 14-17
     pg_shard: pg-citus                        # citus shard name: pg-citus
     pg_primary_db: citus                      # primary database used by citus
     pg_vip_enabled: true                      # enable vip for citus cluster

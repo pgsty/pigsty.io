@@ -1,10 +1,11 @@
 ---
-title: User Management
+title: Managing PostgreSQL Users, Roles, and Privileges
+linkTitle: User Management
 weight: 20
-description: Creating PostgreSQL users/roles, managing connection pool roles, refreshing expiration times, user password rotation
+description: User management - create, modify, delete users, manage role membership, connection pool user configuration
 icon: fa-solid fa-users
 module: [PGSQL]
-categories: [Admin]
+categories: [Task]
 ---
 
 Pigsty uses an IaC approach for user management: define users in the inventory, then execute playbooks.

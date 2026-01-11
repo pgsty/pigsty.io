@@ -1,9 +1,9 @@
 ---
-title: Version Upgrade
-weight: 2011
-description: How to upgrade (or downgrade) PostgreSQL minor version kernel, and how
-  to perform major version upgrades
-icon: fa-solid fa-circle-up
+title: Upgrading PostgreSQL Major/Minor Versions
+linkTitle: Version Upgrade
+weight: 90
+description: How to upgrade (or downgrade) PostgreSQL minor version kernel, and how to perform major version upgrades.
+icon: fa-solid fa-plane-up
 module: [PGSQL]
 categories: [Task]
 ---

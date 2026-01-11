@@ -99,7 +99,7 @@ cat ~/pigsty/pigsty.yml
 
 Please provide logs related to the error as much as possible. **Please do not paste content like "Failed to start xxx service" that has no informational value**.
 
-You can query logs from Grafana / Loki, or get logs from the following locations:
+You can query logs from Grafana / VictoriaLogs, or get logs from the following locations:
 
 - Syslog:    `/var/log/messages` (rhel) or `/var/log/syslog` (debian)
 - Postgres:   `/pg/log/postgres/*`

@@ -81,7 +81,7 @@ The **`infra`** group in the [**inventory**](/docs/concept/iac/inventory) define
 |   `victoriaLogs`      |  `9428`    | Log collection server               |
 |  `victoriaTraces`     | `10428`    | Trace collection server             |
 |      `vmalert`        |  `8880`    | Alerting and derived metrics        |
-|   `alertmanager`      |  `9093`    | Alert aggregation and routing       |
+|   `alertmanager`      |  `9059`    | Alert aggregation and routing       |
 | `blackbox_exporter`   |  `9115`    | Blackbox probing (ping nodes/VIPs)  |
 |      `dnsmasq`        |   `53`     | Internal DNS resolution             |
 |      `chronyd`        |  `123`     | NTP time server                     |

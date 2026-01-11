@@ -1,8 +1,8 @@
 ---
-title: Cluster Management
-weight: 2004
-description: Standard operation guide for creating/destroying PostgreSQL clusters
-  and scaling existing clusters.
+title: Managing PostgreSQL Clusters
+linkTitle: Cluster Management
+weight: 10
+description: Create/destroy PostgreSQL clusters, scale existing clusters, clone clusters, and set up standby clusters.
 icon: fa-solid fa-circle-up
 module: [PGSQL]
 categories: [Task]
