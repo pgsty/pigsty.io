@@ -26,4 +26,5 @@ Pigsty supports various PostgreSQL kernels and compatible forks, enabling you to
 | [PolarDB](/docs/pgsql/kernel/polardb)       | **Aurora-style RAC**       | RAC, China domestic compliance                 |
 | [Supabase](/docs/pgsql/kernel/supabase)     | **Backend as a Service**   | BaaS based on PostgreSQL, Firebase alternative |
 | [Cloudberry](/docs/pgsql/kernel/cloudberry) | **MPP DW & Analytics**     | Massively parallel processing data warehouse   |
+{.full-width}
 

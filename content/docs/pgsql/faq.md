@@ -76,28 +76,6 @@ To disable `pg_safeguard`, you can set `pg_safeguard` to `false` in the config i
 
 
 
------------------------
-
-## How to Enable HugePages for PostgreSQL?
-
-> Use `node_hugepage_count` and `node_hugepage_ratio` or `/pg/bin/pg-tune-hugepage`
-
-If you plan to enable HugePages, consider using [`node_hugepage_count`](/docs/node/param#node_hugepage_count) and [`node_hugepage_ratio`](/docs/node/param#node_hugepage_ratio), and apply with `./node.yml -t node_tune`.
-
-HugePages have pros and cons for databases. The advantage is that memory is managed exclusively, eliminating concerns about being reallocated and reducing database OOM risk. The disadvantage is that it may negatively impact performance in certain scenarios.
-
-Before PostgreSQL starts, you need to allocate **enough** huge pages. The wasted portion can be reclaimed using the `pg-tune-hugepage` script, but this script is only available for PostgreSQL 15+.
-
-If your PostgreSQL is already running, you can enable huge pages using the following method (PG15+ only):
-
-```bash
-sync; echo 3 > /proc/sys/vm/drop_caches   # Flush disk, release system cache (be prepared for database perf impact)
-sudo /pg/bin/pg-tune-hugepage             # Write nr_hugepages to /etc/sysctl.d/hugepage.conf
-pg restart <cls>                          # Restart postgres to use hugepage
-```
-
-
-
 
 
 
@@ -107,7 +85,7 @@ pg restart <cls>                          # Restart postgres to use hugepage
 
 > Use the `crit.yml` param template, set `pg_rpo` to `0`, or [config the cluster](/docs/pgsql/admin#config-cluster) for sync commit mode.
 
-Consider using [Sync Standby](/docs/pgsql/config#sync-standby) and [Quorum Commit](/docs/pgsql/config#quorum-commit) to ensure zero data loss during failover.
+Consider using [**Sync Standby**](/docs/pgsql/config#sync-standby) and [**Quorum Commit**](/docs/pgsql/config#quorum-commit) to ensure zero data loss during failover.
 
 For more details, see the intro in [Security Considerations - Availability](/docs/setup/security#availability).
 
@@ -124,7 +102,9 @@ If the disk is full and even Shell commands cannot execute, `rm -rf /pg/dummy` c
 
 By default, [`pg_dummy_filesize`](/docs/pgsql/param#pg_dummy_filesize) is set to `64MB`. In prod envs, it's recommended to increase it to `8GB` or larger.
 
-It will be placed at `/pg/dummy` path on the PGSQL main data disk. You can delete this file to free up some emergency space: at least it will allow you to run some shell scripts on that node to further reclaim other space.
+It will be placed at `/pg/dummy` path on the PGSQL main data disk. You can delete this file to free up some emergency space:
+
+At least it will allow you to run some shell scripts on that node to further reclaim other space (e.g., logs/WAL, stale data, WAL archives and backups).
 
 
 

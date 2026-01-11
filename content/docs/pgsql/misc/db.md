@@ -101,7 +101,7 @@ The only required field is `name`, which should be a valid and unique database n
 Newly created databases are forked from the `template1` database by default. This template database will be customized during the [`PG_PROVISION`](/docs/pgsql/param#pg_provision) phase:
 configured with extensions, schemas, and default privileges, so newly created databases will also inherit these configurations unless you explicitly use another database as a template.
 
-For database access privileges, refer to [ACL: Database Privilege](/docs/pgsql/security/#database-privileges) section.
+For database access privileges, refer to [ACL: Database Privilege](/docs/concept/sec/ac/#database-privileges) section.
 
 
 ----------------

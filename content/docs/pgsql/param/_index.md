@@ -478,7 +478,7 @@ Users should **pay close attention** to this section of parameters, as this is w
 * PostgreSQL cluster/instance-specific HBA rules: [`pg_hba_rules`](#pg_hba_rules)
 * Pgbouncer connection pool-specific HBA rules: [`pgb_hba_rules`](#pgb_hba_rules)
 
-[Default](/docs/pgsql/security/#default-users) database users and their credentials. It is strongly recommended to change these user passwords in production environments.
+[Default](/docs/concept/sec/ac/#default-users) database users and their credentials. It is strongly recommended to change these user passwords in production environments.
 
 * PG admin user: [`pg_admin_username`](#pg_admin_username) / [`pg_admin_password`](#pg_admin_password)
 * PG replication user: [`pg_replication_username`](#pg_replication_username) / [`pg_replication_password`](#pg_replication_password)
@@ -1603,9 +1603,9 @@ If you have custom key management requirements (such as using HashiCorp Vault, A
 
 If [`PG_BOOTSTRAP`](#pg_bootstrap) is about creating a new cluster, then PG_PROVISION is about creating default objects in the cluster, including:
 
-* [Default Roles](/docs/pgsql/security/#default-roles)
-* [Default Users](/docs/pgsql/security/#default-users)
-* [Default Privileges](/docs/pgsql/security/#default-privileges)
+* [Default Roles](/docs/concept/sec/ac/#default-roles)
+* [Default Users](/docs/concept/sec/ac/#default-users)
+* [Default Privileges](/docs/concept/sec/ac/#default-privileges)
 * [Default HBA Rules](/docs/pgsql/config/hba#default-hba)
 * Default Schemas
 * Default Extensions
@@ -1718,7 +1718,7 @@ Parameter Name: `pg_default_roles`, Type: `role[]`, Level: `G/C`
 
 Default roles and users in Postgres cluster.
 
-Pigsty has a built-in role system. Please check [PGSQL Access Control: Role System](/docs/pgsql/security/#role-system) for details.
+Pigsty has a built-in role system. Please check [PGSQL Access Control: Role System](/docs/concept/sec/ac/#role-system) for details.
 
 ```yaml
 pg_default_roles:                 # default roles and users in postgres cluster
@@ -1762,7 +1762,7 @@ pg_default_privileges:            # default privileges when admin user creates o
   - GRANT CREATE     ON SCHEMAS   TO dbrole_admin
 ```
 
-Pigsty provides corresponding default privilege settings based on the default role system. Please check [PGSQL Access Control: Privileges](/docs/pgsql/security/#default-privileges) for details.
+Pigsty provides corresponding default privilege settings based on the default role system. Please check [PGSQL Access Control: Privileges](/docs/concept/sec/ac/#default-privileges) for details.
 
 
 

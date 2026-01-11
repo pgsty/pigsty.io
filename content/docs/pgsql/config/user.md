@@ -538,7 +538,7 @@ Default `false` prevents accidentally exposing internal users to the connection 
 
 ## ACL System
 
-Pigsty has a built-in, out-of-the-box access control / [ACL](/docs/pgsql/security/#default-roles) system. You only need to assign these four default roles to business users:
+Pigsty has a built-in, out-of-the-box access control / [ACL](/docs/concept/sec/ac/#default-roles) system. You only need to assign these four default roles to business users:
 
 - `dbrole_readwrite`: Global read-write access role (primary business prod accounts should have this)
 - `dbrole_readonly`: Global read-only access role (for other businesses needing read-only access)
@@ -586,4 +586,4 @@ Note that the [`pgbouncer_auth_query`](/docs/pgsql/param#pgbouncer_auth_query) p
 
 For user management operations, see [User Management](/docs/pgsql/admin/user).
 
-For user access privileges, see [ACL: Role Privileges](/docs/pgsql/security/#default-roles).
+For user access privileges, see [ACL: Role Privileges](/docs/concept/sec/ac/#default-roles).

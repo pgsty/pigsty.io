@@ -9,9 +9,9 @@ categories: [Tutorial]
 
 Pigsty's default configuration is sufficient to cover the security needs of most scenarios.
 
-Pigsty already provides out-of-the-box [authentication](/docs/pgsql/config/hba) and [access control](/docs/pgsql/security/) models that are secure enough for most scenarios.
+Pigsty already provides out-of-the-box [authentication](/docs/pgsql/config/hba) and [access control](/docs/concept/sec/ac/) models that are secure enough for most scenarios.
 
-[![pigsty-acl.jpg](/img/pigsty/acl.jpg)](/docs/pgsql/security/)
+[![pigsty-acl.jpg](/img/pigsty/acl.jpg)](/docs/concept/sec/ac/)
 
 If you want to further harden system security, here are some recommendations:
 

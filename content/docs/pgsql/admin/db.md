@@ -28,6 +28,25 @@ Note that some parameters can only be specified at creation time. Modifying thes
 
 ----------------
 
+## TL;DR
+
+First [**define databases**](/docs/pgsql/config/db) in the [**configuration inventory**](/docs/concept/iac/inventory), then use `bin/pgsql-db <cls> <dbname>` to create or modify.
+
+```yaml
+pg-meta:
+  hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary } }
+  vars:
+    pg_cluster: pg-meta
+    pg_databases: [{ name: some_db }]
+```
+
+```bash
+bin/pgsql-db pg-meta some_db    # Equivalent to: ./pgsql-db.yml -l pg-meta -e dbname=some_db
+```
+
+
+----------------
+
 ## Define Database
 
 Business databases are defined in the cluster parameter [`pg_databases`](/docs/pgsql/param#pg_databases), which is an array of database definition objects. Databases in the array are created in **definition order**, so later-defined databases can use previously-defined databases as **templates**.
@@ -460,71 +479,73 @@ bin/pgsql-db <cls> testdb
 
 ## Clone Database
 
-You can use an existing database as a template to create a new database, enabling quick replication of database structures.
+You can clone a PostgreSQL database via the template mechanism, but no active connections to the template database are allowed during cloning.
 
-### Basic Clone
+To clone the `postgres` database, you must execute these two statements together, ensuring all connections to `postgres` are terminated first:
 
-```yaml
-pg_databases:
-  # 1. First define the template database
-  - name: app_template
-    owner: dbuser_app
-    schemas: [core, api]
-    extensions: [postgis, pg_trgm]
-    baseline: app_schema.sql
-
-  # 2. Create business database using template
-  - name: app_prod
-    template: app_template
-    owner: dbuser_app
+```sql
+SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'postgres';
+CREATE DATABASE pgcopy TEMPLATE postgres STRATEGY FILE_COPY;
 ```
 
-### Specify Clone Strategy (PG15+)
 
-```yaml
-- name: app_staging
-  template: app_template
-  strategy: FILE_COPY        # Or WAL_LOG
-  owner: dbuser_app
+### Instant Clone
+
+If you're using PostgreSQL 18+, Pigsty sets [`file_copy_method`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-FILE-COPY-METHOD) by default.
+This allows O(1) (~200ms) database cloning without copying data files.
+
+You must explicitly use the [`FILE_COPY`](https://www.postgresql.org/docs/current/sql-createdatabase.html#CREATE-DATABASE-STRATEGY) strategy.
+Since PostgreSQL 15, `CREATE DATABASE` defaults to `WAL_LOG`—specify `FILE_COPY` explicitly for instant cloning:
+
+```sql
+SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'meta';
+CREATE DATABASE pgcopy TEMPLATE meta STRATEGY FILE_COPY;
 ```
 
-| Strategy | Description | Use Case |
-|----------|-------------|----------|
-| `FILE_COPY` | Direct data file copy | Large templates, general scenarios |
-| `WAL_LOG` | Copy via WAL logs | Small templates, doesn't block template connections |
+For example, cloning a 30GB database: normal clone (`WAL_LOG`) takes 18 seconds, while instant clone (`FILE_COPY`) takes only ~200ms constant time.
 
-### Use Custom Template Database
+You still need to ensure no active connections to the template database during cloning, but this window can be very brief, making it practical for production.
+Instant clone is excellent for test/dev database copies—it incurs no extra storage overhead due to filesystem CoW (Copy on Write).
 
-When using non-system templates (not `template0`/`template1`), Pigsty automatically terminates connections to the template database to allow cloning.
+Since Pigsty v4.0, use `strategy: FILE_COPY` in [`pg_databases`](/docs/pgsql/param#pg_databases/) for instant cloning:
 
 ```yaml
-- name: new_db
-  template: existing_db      # Use existing business database as template
-  owner: dbuser_app
+pg-meta:
+  hosts:
+    10.10.10.10: { pg_seq: 1, pg_role: primary }
+  vars:
+    pg_cluster: pg-meta
+    pg_version: 18
+    pg_databases:
+      - name: meta
+
+      - name: meta_dev
+        template: meta
+        strategy: FILE_COPY         # <---- Introduced PG15, instant on PG18
+        #comment: "meta clone"      # <---- Database comment
+        #pgbouncer: false           # <---- Exclude from connection pool?
+        #register_datasource: false # <---- Exclude from Grafana datasource?
 ```
 
-### Mark as Template Database
+After configuration, use the standard database creation SOP:
 
-By default, only superusers or database owners can use regular databases as templates.
-Using `is_template: true` allows any user with `CREATEDB` privilege to clone:
-
-```yaml
-- name: shared_template
-  is_template: true          # Allow any user with CREATEDB privilege to clone
-  owner: dbuser_app
+```bash
+bin/pgsql-db pg-meta meta_dev
 ```
 
-### Use ICU Locale Provider
 
-When using the `icu` locale provider, you must specify `template: template0`:
+### Limitations & Notes
 
-```yaml
-- name: myapp_icu
-  template: template0        # Must use template0
-  locale_provider: icu
-  icu_locale: en-US
-  encoding: UTF8
-```
+This feature only works on supported filesystems (xfs, btrfs, zfs, apfs). PostgreSQL will error if unsupported.
+By default, mainstream Linux distributions have xfs with `reflink=1` enabled, so this usually works.
+OpenZFS requires explicit configuration for CoW, but due to data corruption precedents, not recommended for production.
+
+If using PostgreSQL < 15, specifying `strategy` has no effect.
+
+Avoid using `postgres` database as a template—management connections typically connect to `postgres`, blocking clone operations.
+If you must clone `postgres`, connect to another database and execute the SQL manually.
+
+In high-concurrency production environments, use instant clone cautiously—it requires clearing all template database connections within the clone window (~200ms), or cloning fails.
 
 
 ----------------
@@ -686,4 +707,4 @@ PostgreSQL 15+ introduced the `locale_provider` parameter, supporting different 
 5. **Initialize** - Create schemas, install extensions, execute baseline
 6. **Register** - Update Pgbouncer and Grafana data sources
 
-For database access permissions, refer to [ACL: Database Privileges](/docs/pgsql/security/#database-privileges).
+For database access permissions, refer to [ACL: Database Privileges](/docs/concept/sec/ac/#database-privileges).

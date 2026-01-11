@@ -684,4 +684,4 @@ configured with extensions, schemas, and default privileges, so newly created da
 
 For database management operations, see [Database Management](/docs/pgsql/admin/db).
 
-For database access privileges, see [ACL: Database Privileges](/docs/pgsql/security/#database-privileges).
+For database access privileges, see [ACL: Database Privileges](/docs/concept/sec/ac/#database-privileges).

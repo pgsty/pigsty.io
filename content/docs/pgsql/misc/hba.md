@@ -10,7 +10,7 @@ tags: [HBA, Auth]
 
 > Detailed explanation of Host-Based Authentication (HBA) in Pigsty.
 
-Authentication is the foundation of [Access Control](/docs/pgsql/security/) and the [Privilege System](/docs/pgsql/security/#privilege-system). PostgreSQL has multiple [authentication](https://www.postgresql.org/docs/current/client-authentication.html) methods.
+Authentication is the foundation of [Access Control](/docs/concept/sec/ac/) and the [Privilege System](/docs/concept/sec/ac/#privilege-system). PostgreSQL has multiple [authentication](https://www.postgresql.org/docs/current/client-authentication.html) methods.
 
 Here we mainly introduce HBA: Host Based Authentication. HBA rules define which users can access which databases from which locations and in which ways.
 

@@ -28,7 +28,7 @@ sidebar_root_for: self
 - [Databases](/docs/pgsql/config/db)
 - [Services/Access](/docs/pgsql/service/)
 - [Auth/HBA](/docs/pgsql/config/hba)
-- [Access Control](/docs/pgsql/security/)
+- [Access Control](/docs/concept/sec/ac/)
 - [Admin SOP](/docs/pgsql/admin)
 - [Backup & Recovery](/docs/pgsql/arch/pitr)
 - [Monitoring](/docs/pgsql/monitor)

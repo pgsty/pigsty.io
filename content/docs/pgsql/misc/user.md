@@ -78,7 +78,7 @@ Each user/role definition is an object that may include the following fields. Us
 
 **ACL System**
 
-Pigsty has a built-in, out-of-the-box access control / [ACL](/docs/pgsql/security/#default-roles) system. You can easily use it by simply assigning the following four default roles to business users:
+Pigsty has a built-in, out-of-the-box access control / [ACL](/docs/concept/sec/ac/#default-roles) system. You can easily use it by simply assigning the following four default roles to business users:
 
 - `dbrole_readwrite`: Role with global read-write access (production accounts primarily used by business should have database read-write privileges)
 - `dbrole_readonly`: Role with global read-only access (if other businesses need read-only access, use this role)

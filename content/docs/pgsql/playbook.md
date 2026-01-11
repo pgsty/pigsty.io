@@ -44,12 +44,12 @@ When `pg_safeguard` is set to `true`, the [`pgsql-rm.yml`](#pgsql-rmyml) playboo
 
 In addition to `pg_safeguard`, [`pgsql-rm.yml`](#pgsql-rmyml) provides finer-grained control parameters:
 
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| [`pg_safeguard`](/docs/pgsql/param#pg_safeguard) | `false` | Safeguard switch; when `true`, playbook aborts |
-| `pg_rm_data` | `true` | Whether to remove PostgreSQL data directory |
-| `pg_rm_backup` | `true` | Whether to remove pgBackRest backup data (only when removing primary) |
-| `pg_rm_pkg` | `false` | Whether to uninstall PostgreSQL packages |
+| Parameter                                        | Default | Description                                                           |
+|--------------------------------------------------|---------|-----------------------------------------------------------------------|
+| [`pg_safeguard`](/docs/pgsql/param#pg_safeguard) | `false` | Safeguard switch; when `true`, playbook aborts                        |
+| `pg_rm_data`                                     | `true`  | Whether to remove PostgreSQL data directory                           |
+| `pg_rm_backup`                                   | `true`  | Whether to remove pgBackRest backup data (only when removing primary) |
+| `pg_rm_pkg`                                      | `false` | Whether to uninstall PostgreSQL packages                              |
 
 These parameters allow precise control over removal behavior:
 
@@ -604,13 +604,13 @@ This playbook contains the following subtasks:
 
 **Recovery Target Types**
 
-| Type | Description | Example |
-|------|-------------|---------|
-| `latest` | Recover to end of WAL archive stream (latest state) | `{"pg_pitr": {}}` |
-| `time` | Recover to specific point in time | `{"pg_pitr": {"time": "2025-07-13 10:00:00"}}` |
-| `xid` | Recover to specific transaction ID | `{"pg_pitr": {"xid": "250000"}}` |
-| `name` | Recover to named restore point | `{"pg_pitr": {"name": "before_ddl"}}` |
-| `lsn` | Recover to specific LSN | `{"pg_pitr": {"lsn": "0/4001C80"}}` |
-| `immediate` | Stop immediately after reaching consistent state | `{"pg_pitr": {"type": "immediate"}}` |
+| Type        | Description                                         | Example                                        |
+|-------------|-----------------------------------------------------|------------------------------------------------|
+| `latest`    | Recover to end of WAL archive stream (latest state) | `{"pg_pitr": {}}`                              |
+| `time`      | Recover to specific point in time                   | `{"pg_pitr": {"time": "2025-07-13 10:00:00"}}` |
+| `xid`       | Recover to specific transaction ID                  | `{"pg_pitr": {"xid": "250000"}}`               |
+| `name`      | Recover to named restore point                      | `{"pg_pitr": {"name": "before_ddl"}}`          |
+| `lsn`       | Recover to specific LSN                             | `{"pg_pitr": {"lsn": "0/4001C80"}}`            |
+| `immediate` | Stop immediately after reaching consistent state    | `{"pg_pitr": {"type": "immediate"}}`           |
 
 For details, see: [Backup & Recovery Tutorial](/docs/pgsql/backup/restore/)

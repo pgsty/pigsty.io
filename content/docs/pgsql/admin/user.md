@@ -1,12 +1,35 @@
 ---
 title: User Management
-weight: 2005
-description: Creating PostgreSQL users/roles, managing connection pool roles, refreshing
-  expiration times, user password rotation
+weight: 20
+description: Creating PostgreSQL users/roles, managing connection pool roles, refreshing expiration times, user password rotation
 icon: fa-solid fa-users
 module: [PGSQL]
-categories: [Task]
+categories: [Admin]
 ---
+
+Pigsty uses an IaC approach for user management: define users in the inventory, then execute playbooks.
+
+The `pgsql-user.yml` playbook is idempotent. It adjusts users in the specified cluster to the target state defined in the inventory.
+
+
+----------------
+
+## TL;DR
+
+First [**define users**](/docs/pgsql/config/user) in the [**inventory**](/docs/concept/iac/inventory), then use `bin/pgsql-user <cls> <username>` to create or modify users.
+
+```yaml
+pg-meta:
+  hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary } }
+  vars:
+    pg_cluster: pg-meta
+    pg_users:
+      - { name: your_user ,password: 'your_password' }
+```
+
+```bash
+bin/pgsql-user pg-meta your_user    # equivalent to ./pgsql-user.yml -l pg-meta -e username=your_user
+```
 
 
 ----------------
@@ -88,7 +111,7 @@ Each user/role definition is an object that may include the following fields, us
 
 **ACL System**
 
-Pigsty has a built-in, out-of-the-box access control / [ACL](/docs/pgsql/security/#default-roles) system. You can easily use it by assigning the following four default roles to business users:
+Pigsty has a built-in, out-of-the-box access control / [ACL](/docs/concept/sec/ac/#default-roles) system. You can easily use it by assigning the following four default roles to business users:
 
 - `dbrole_readwrite`: Role with global read-write access (production accounts primarily used by business should have database read-write permissions)
 - `dbrole_readonly`: Role with global read-only access (if other businesses want read-only access, they can use this role)

@@ -14,14 +14,16 @@ categories: [Admin]
 
 ## Quick Reference
 
-| Operation | Command |
-|-----------|---------|
-| Refresh cluster HBA | `bin/pgsql-hba <cls>` |
-| Refresh specific instances | `bin/pgsql-hba <cls> <ip>...` |
-| Refresh PostgreSQL only | `./pgsql.yml -l <cls> -t pg_hba,pg_reload` |
-| Refresh Pgbouncer only | `./pgsql.yml -l <cls> -t pgbouncer_hba,pgbouncer_reload` |
-| View current HBA | `psql -c "TABLE pg_hba_file_rules"` |
-| Verify HBA config | `psql -c "SELECT pg_reload_conf()"` |
+| Operation                | Command                                                    |
+|--------------------------|-----------------------------------------------------------|
+| Refresh cluster HBA      | `bin/pgsql-hba <cls>`                                     |
+| Refresh specific instances | `bin/pgsql-hba <cls> <ip>...`                           |
+| Refresh PostgreSQL only  | `./pgsql.yml -l <cls> -t pg_hba,pg_reload`               |
+| Refresh Pgbouncer only   | `./pgsql.yml -l <cls> -t pgbouncer_hba,pgbouncer_reload` |
+| View current HBA (Bash)  | `cat /pg/data/pg_hba.conf`                               |
+| View current HBA (SQL)   | `psql -c "TABLE pg_hba_file_rules"`                      |
+| Reload HBA config        | `psql -c "SELECT pg_reload_conf()"`                      |
+{.full-width}
 
 
 ----------------
