@@ -1,6 +1,7 @@
 ---
-title: INFRA Node Model
-weight: 1105
+title: E-R Model of Infra Cluster
+linkTitle: Infra Cluster
+weight: 10
 description: Entity-Relationship model for INFRA infrastructure nodes in Pigsty, component composition, and naming conventions.
 icon: fa-solid fa-bank
 module: [INFRA]

@@ -1,6 +1,7 @@
 ---
-title: Redis Cluster Model
-weight: 1104
+title: E-R Model of Redis Cluster
+linkTitle: Redis Cluster
+weight: 60
 description: Entity-Relationship model for Redis clusters in Pigsty, including E-R diagram, entity definitions, and naming conventions.
 icon: fa-solid fa-layer-group
 module: [REDIS]

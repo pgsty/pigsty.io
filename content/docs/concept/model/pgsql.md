@@ -1,6 +1,7 @@
 ---
-title: PGSQL Cluster Model
-weight: 1101
+title: E-R Model of PostgreSQL Cluster
+linkTitle: PGSQL Cluster
+weight: 20
 description: Entity-Relationship model for PostgreSQL clusters in Pigsty, including E-R diagram, entity definitions, and naming conventions.
 icon: fa-solid fa-share-nodes
 module: [PGSQL]

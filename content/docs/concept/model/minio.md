@@ -1,6 +1,7 @@
 ---
-title: MinIO Cluster Model
-weight: 1103
+title: E-R Model of MinIO Cluster
+linkTitle: MinIO Cluster 
+weight: 50
 description: Entity-Relationship model for MinIO clusters in Pigsty, including E-R diagram, entity definitions, and naming conventions.
 icon: fa-solid fa-boxes-stacked
 module: [MINIO]

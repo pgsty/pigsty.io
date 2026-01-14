@@ -1,6 +1,7 @@
 ---
-title: ETCD Cluster Model
-weight: 1102
+title: E-R Model of Etcd Cluster
+linkTitle: Etcd Cluster
+weight: 40
 description: Entity-Relationship model for ETCD clusters in Pigsty, including E-R diagram, entity definitions, and naming conventions.
 icon: fa-solid fa-gears
 module: [ETCD]

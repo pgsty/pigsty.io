@@ -1,5 +1,5 @@
 ---
-title: Parameter Tuning
+title: Failure Model
 weight: 30
 description: Detailed analysis of worst-case, best-case, and average RTO calculation logic and results across three classic failure detection/recovery paths
 icon: fa-solid fa-bomb
