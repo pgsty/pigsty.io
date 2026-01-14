@@ -1,6 +1,6 @@
 ---
 title: Bind a L2 VIP to PostgreSQL Primary with VIP-Manager
-linkTitle: 'PGSQL VIP: Bind a L2 VIP'
+linkTitle: 'Bind a L2 PG VIP'
 weight: 2102
 icon: fa-solid fa-arrows-split-up-and-left
 module: [PGSQL]

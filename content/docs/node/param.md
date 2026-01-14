@@ -1001,12 +1001,18 @@ Scheduled tasks defined in node's `/etc/crontab`. Default is `[]` (empty array).
 
 Each array element is a string representing one scheduled task line. Use standard cron format for definition.
 
-For example, the following configuration will execute a full backup task as the postgres user at 1am every day:
+For example, the following configuration will execute a system task as root at 3am every day:
 
 ```yaml
 node_crontab:
-  - '00 01 * * * postgres /pg/bin/pg-backup full' ] # make a full backup every 1am
+  - '00 03 * * * root /usr/bin/some-system-task'
 ```
+
+> **Note**: For PostgreSQL backup tasks and other postgres user cron jobs, use the [`pg_crontab`](/docs/pgsql/param#pg_crontab) parameter
+> instead of `node_crontab`. Because `node_crontab` is written to `/etc/crontab` during NODE initialization, the `postgres` user may not exist yet,
+> which will cause cron to report `bad username` and ignore the entire crontab file.
+
+When [`node_crontab_overwrite`](#node_crontab_overwrite) is `true` (default), the default `/etc/crontab` will be restored when removing the node.
 
 
 

@@ -6,11 +6,11 @@ icon: fa-solid fa-scroll
 categories: [Reference]
 ---
 
-The current stable version is [**v3.7.0**](#v370), and the latest beta is [**v4.0.0-b3**](#v400-b3).
+The current stable version is [**v4.0.0-c1**](#v400-c1), GA expected before 2026-01-31.
 
-|      Version       |  Release Date   | Summary                                                                 |                                       Release Page                                        |
-|:------------------:|:---------------:|-------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------:|
-| [v4.0.0](#v400-c1) |   2026-01-31    | Infra overhaul, security hardening, agent capabilities, fork & clone    |            [v4.0.0-c1](https://github.com/pgsty/pigsty/releases/tag/v4.0.0-c1)            |
+|        Version         |  Release Date   | Summary                                                                 |                                       Release Page                                        |
+|:----------------------:|:---------------:|-------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------:|
+| [v4.0.0-c1](#v400-c1)  |   2026-01-07    | Infra overhaul, security hardening, agent capabilities, fork & clone    |            [v4.0.0-c1](https://github.com/pgsty/pigsty/releases/tag/v4.0.0-c1)            |
 |  [v3.7.0](#v370)   |   2025-12-02    | PG18 default, 437 extensions, EL10 & Debian 13 support, PGEXT.CLOUD     |               [v3.7.0](https://github.com/pgsty/pigsty/releases/tag/v3.7.0)               |
 |  [v3.6.1](#v361)   |   2025-08-15    | Routine PG minor updates, PGDG China mirror, EL10/D13 stubs             |               [v3.6.1](https://github.com/pgsty/pigsty/releases/tag/v3.6.1)               |
 |  [v3.6.0](#v360)   |   2025-07-30    | pgactive, MinIO/ETCD improvements, simplified install, config cleanup   |               [v3.6.0](https://github.com/pgsty/pigsty/releases/tag/v3.6.0)               |
@@ -70,7 +70,7 @@ The current stable version is [**v3.7.0**](#v370), and the latest beta is [**v4.
 
 
 ```bash
-curl https://pigsty.cc/get | bash -s v4.0.0
+curl https://pigsty.io/get | bash -s v4.0.0
 ```
 
 **Highlights**

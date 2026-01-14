@@ -1,149 +1,179 @@
 ---
-title: HBA Management
-weight: 2002
-description: "PostgreSQL and Pgbouncer HBA rule management operations: refresh, reload, verify, and troubleshoot."
+title: Managing PostgreSQL HBA Rules
+linkTitle: HBA Admin
+weight: 50
+description: HBA management - refresh rules, verify config, troubleshoot, Pgbouncer HBA
+draft: trues
 icon: fa-solid fa-key
 module: [PGSQL]
-categories: [Admin]
+categories: [Task]
 ---
 
-> HBA rule changes require re-rendering configuration files and reloading services. This article covers HBA rule daily management operations.
+## Quick Start
+
+Pigsty uses declarative management: first [**define HBA rules**](/docs/pgsql/config/hba) in the [**inventory**](/docs/concept/iac/inventory), then use `bin/pgsql-hba <cls>` to refresh.
+
+```yaml
+pg-meta:
+  hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary } }
+  vars:
+    pg_cluster: pg-meta
+    pg_hba_rules:                            # <--- Define HBA rules here!
+      - {user: dbuser_app, db: app, addr: intra, auth: pwd, title: 'app access'}
+      - {user: dbuser_api, db: all, addr: world, auth: ssl, title: 'api ssl access'}
+```
 
 
-----------------
+{{< tabpane text=true persist=header >}}
+{{% tab header="Script" %}}
+```bash
+bin/pgsql-hba <cls>              # Refresh PostgreSQL and Pgbouncer HBA rules for cluster
+bin/pgsql-hba <cls> <ip>...      # Refresh HBA rules for specific instances
+```
+{{% /tab %}}
+{{% tab header="Playbook" %}}
+```bash
+./pgsql.yml -l <cls> -t pg_hba,pg_reload                 # Refresh PostgreSQL HBA only
+./pgsql.yml -l <cls> -t pgbouncer_hba,pgbouncer_reload   # Refresh Pgbouncer HBA only
+./pgsql.yml -l <cls> -t pg_hba,pg_reload,pgbouncer_hba,pgbouncer_reload  # Refresh both
+```
+{{% /tab %}}
+{{% tab header="Example" %}}
+```bash
+bin/pgsql-hba pg-meta                      # Refresh pg-meta cluster HBA rules
+bin/pgsql-hba pg-meta 10.10.10.10          # Refresh specific instance only
+bin/pgsql-hba pg-meta 10.10.10.11 10.10.10.12  # Refresh multiple instances
+```
+{{% /tab %}}
+{{< /tabpane >}}
 
-## Quick Reference
+For complete HBA rule definition reference, see [**HBA Configuration**](/docs/pgsql/config/hba). For overall access control design, see [**Security & Compliance**](/docs/concept/sec/).
 
-| Operation                | Command                                                    |
-|--------------------------|-----------------------------------------------------------|
-| Refresh cluster HBA      | `bin/pgsql-hba <cls>`                                     |
-| Refresh specific instances | `bin/pgsql-hba <cls> <ip>...`                           |
-| Refresh PostgreSQL only  | `./pgsql.yml -l <cls> -t pg_hba,pg_reload`               |
-| Refresh Pgbouncer only   | `./pgsql.yml -l <cls> -t pgbouncer_hba,pgbouncer_reload` |
-| View current HBA (Bash)  | `cat /pg/data/pg_hba.conf`                               |
-| View current HBA (SQL)   | `psql -c "TABLE pg_hba_file_rules"`                      |
-| Reload HBA config        | `psql -c "SELECT pg_reload_conf()"`                      |
+| Action                             | Description                              | Risk |
+|:-----------------------------------|:-----------------------------------------|:----:|
+| [**Refresh HBA Rules**](#refresh-hba-rules) | Re-render config files and reload service | Low  |
+| [**Verify HBA Rules**](#verify-hba-rules) | View current rules, test connection auth | Read |
+| [**Common Scenarios**](#common-scenarios) | Add rules, block IP, role-based, post-expansion | Low  |
+| [**Troubleshooting**](#troubleshooting) | Connection rejected, auth failed, rules not applied | -    |
+| [**Pgbouncer HBA**](#pgbouncer-hba) | Pgbouncer connection pool HBA management | Low  |
 {.full-width}
+
+
+{{< asciinema file="demo/pgsql-hba.cast" markers="" speed="1.2" autoplay="true" loop="true" >}}
 
 
 ----------------
 
 ## Refresh HBA Rules
 
-After modifying HBA rules in `pigsty.yml`, you need to re-render configuration files and reload services.
+After modifying HBA rules in `pigsty.yml`, re-render config files and reload services.
 
-
-### Using the Admin Script
-
-The recommended approach is using the `bin/pgsql-hba` script to refresh PostgreSQL and Pgbouncer HBA in one step:
-
+{{< tabpane text=true persist=header >}}
+{{% tab header="Script" %}}
 ```bash
-# Refresh entire cluster's HBA rules
-bin/pgsql-hba pg-meta
-
-# Refresh specific instances (multiple IPs separated by spaces)
-bin/pgsql-hba pg-meta 10.10.10.10
-bin/pgsql-hba pg-meta 10.10.10.11 10.10.10.12
-
-# View script help
-bin/pgsql-hba --help
+bin/pgsql-hba <cls>              # Refresh entire cluster HBA (PostgreSQL + Pgbouncer)
+bin/pgsql-hba <cls> <ip>...      # Refresh specific instances (multiple IPs space-separated)
 ```
-
-The script internally executes:
-
+{{% /tab %}}
+{{% tab header="Playbook" %}}
 ```bash
-./pgsql.yml -l <cluster> -t pg_hba,pg_reload,pgbouncer_hba,pgbouncer_reload
+./pgsql.yml -l <cls> -t pg_hba,pg_reload                 # Refresh PostgreSQL HBA only
+./pgsql.yml -l <cls> -t pgbouncer_hba,pgbouncer_reload   # Refresh Pgbouncer HBA only
+./pgsql.yml -l <cls> -t pg_hba,pg_reload,pgbouncer_hba,pgbouncer_reload  # Refresh both
 ```
-
-
-### Using Ansible Playbook
-
-Directly use the relevant tags from the `pgsql.yml` playbook:
-
+{{% /tab %}}
+{{% tab header="Example" %}}
 ```bash
-# Refresh PostgreSQL HBA and reload
-./pgsql.yml -l pg-meta -t pg_hba,pg_reload
-
-# Refresh Pgbouncer HBA and reload
-./pgsql.yml -l pg-meta -t pgbouncer_hba,pgbouncer_reload
-
-# Refresh both
-./pgsql.yml -l pg-meta -t pg_hba,pg_reload,pgbouncer_hba,pgbouncer_reload
-
-# Use extra variables to force reload
-./pgsql.yml -l pg-meta -e pg_reload=true -t pg_hba,pg_reload
+bin/pgsql-hba pg-meta                      # Refresh pg-meta cluster
+bin/pgsql-hba pg-meta 10.10.10.10          # Refresh 10.10.10.10 instance only
 ```
+{{% /tab %}}
+{{< /tabpane >}}
 
+**Result**: Renders PostgreSQL and Pgbouncer HBA config files based on inventory definitions, then reloads services to apply.
 
-### Related Tags
+**Config file locations**
 
-| Tag | Description |
-|-----|-------------|
-| `pg_hba` | Render PostgreSQL HBA configuration file |
-| `pg_reload` | Reload PostgreSQL config (requires `pg_reload=true`) |
-| `pgbouncer_hba` | Render Pgbouncer HBA configuration file |
-| `pgbouncer_reload` | Reload Pgbouncer config |
+| Service    | Config File Path                  | Template File                             |
+|:-----------|:----------------------------------|:------------------------------------------|
+| PostgreSQL | `/pg/data/pg_hba.conf`            | `roles/pgsql/templates/pg_hba.conf`       |
+| Pgbouncer  | `/etc/pgbouncer/pgb_hba.conf`     | `roles/pgsql/templates/pgbouncer.hba`     |
+{.full-width}
 
+{{% alert title="Don't edit config files directly" color="warning" %}}
+Directly editing `/pg/data/pg_hba.conf` or `/etc/pgbouncer/pgb_hba.conf` works temporarily, but will be overwritten next time Ansible playbook runs. All HBA rule changes should be in `pigsty.yml`, then execute `bin/pgsql-hba` to refresh.
+{{% /alert %}}
 
-----------------
+**Related Tags**
 
-## Configuration File Locations
-
-HBA configuration files are rendered by Ansible:
-
-| Service | Config File Path | Template File |
-|---------|------------------|---------------|
-| PostgreSQL | `/pg/data/pg_hba.conf` | `roles/pgsql/templates/pg_hba.conf` |
-| Pgbouncer | `/etc/pgbouncer/pgb_hba.conf` | `roles/pgsql/templates/pgbouncer.hba` |
-
-> **Warning**: Don't edit these files directly—they will be overwritten the next time a playbook runs. All changes should be made in `pigsty.yml`.
+| Tag              | Description                                  |
+|:-----------------|:---------------------------------------------|
+| `pg_hba`         | Render PostgreSQL HBA config file            |
+| `pg_reload`      | Reload PostgreSQL config (needs `pg_reload=true`) |
+| `pgbouncer_hba`  | Render Pgbouncer HBA config file             |
+| `pgbouncer_reload` | Reload Pgbouncer config                    |
+{.full-width}
 
 
 ----------------
 
 ## Verify HBA Rules
 
-### View Currently Active HBA Rules
+After refreshing HBA rules, verify config is correctly applied.
 
+**View current HBA rules**
+
+{{< tabpane text=true persist=header >}}
+{{% tab header="SQL" %}}
+```sql
+-- View PostgreSQL HBA rules (recommended)
+TABLE pg_hba_file_rules;
+
+-- View matching rules for specific database
+SELECT * FROM pg_hba_file_rules WHERE database @> ARRAY['mydb']::text[];
+```
+{{% /tab %}}
+{{% tab header="Bash" %}}
 ```bash
-# Use psql to view PostgreSQL HBA rules
-psql -c "TABLE pg_hba_file_rules"
-
-# Or view the config file directly
+# View PostgreSQL HBA config file
 cat /pg/data/pg_hba.conf
 
-# View Pgbouncer HBA rules
+# View Pgbouncer HBA config file
 cat /etc/pgbouncer/pgb_hba.conf
+
+# View config file header (confirm if updated)
+head -20 /pg/data/pg_hba.conf
 ```
-
-### Check HBA Configuration Syntax
-
-```bash
-# PostgreSQL config reload (validates syntax)
-psql -c "SELECT pg_reload_conf()"
-
-# If there are syntax errors, check the logs
-tail -f /pg/log/postgresql-*.log
-```
-
-### Test Connection Authentication
-
+{{% /tab %}}
+{{% tab header="Test Connection" %}}
 ```bash
 # Test connection for specific user from specific address
 psql -h <host> -p 5432 -U <user> -d <database> -c "SELECT 1"
 
-# See which HBA rule matches the connection
-psql -c "SELECT * FROM pg_hba_file_rules WHERE database @> ARRAY['<dbname>']::text[]"
+# Test connection through Pgbouncer
+psql -h <host> -p 6432 -U <user> -d <database> -c "SELECT 1"
+```
+{{% /tab %}}
+{{< /tabpane >}}
+
+**Check HBA config syntax**
+
+```bash
+# Reload config (validates syntax)
+psql -c "SELECT pg_reload_conf()"
+
+# If syntax errors, check logs
+tail -f /pg/log/postgresql-*.log
 ```
 
 
 ----------------
 
-## Common Management Scenarios
+## Common Scenarios
 
 ### Add New HBA Rule
 
-1. Edit `pigsty.yml`, add rule to the cluster's `pg_hba_rules`:
+Add rule to cluster config's `pg_hba_rules`, then refresh:
 
 ```yaml
 pg-meta:
@@ -152,8 +182,6 @@ pg-meta:
       - {user: new_user, db: new_db, addr: '192.168.1.0/24', auth: pwd, title: 'new app access'}
 ```
 
-2. Execute refresh:
-
 ```bash
 bin/pgsql-hba pg-meta
 ```
@@ -161,60 +189,49 @@ bin/pgsql-hba pg-meta
 
 ### Emergency IP Block
 
-When detecting a malicious IP, quickly add a blocklist rule:
-
-1. Add high-priority (`order: 0`) deny rule:
+When detecting malicious IP, add high-priority (`order: 0`) deny rule:
 
 ```yaml
 pg_hba_rules:
   - {user: all, db: all, addr: '10.1.1.100/32', auth: deny, order: 0, title: 'emergency block'}
 ```
 
-2. Refresh immediately:
-
 ```bash
-bin/pgsql-hba pg-meta
+bin/pgsql-hba pg-meta    # Refresh immediately
 ```
 
 
 ### Role-Based Rules
 
-Configure different HBA rules for primary and replica:
+Configure different HBA rules for primary and replica using `role` parameter:
 
 ```yaml
 pg_hba_rules:
   # Only primary allows write users
   - {user: writer, db: all, addr: intra, auth: pwd, role: primary, title: 'writer on primary'}
-
   # Replicas allow read-only users
   - {user: reader, db: all, addr: world, auth: ssl, role: replica, title: 'reader on replica'}
 ```
 
-After refresh, rules are automatically enabled or disabled based on the instance's `pg_role`.
+After refresh, rules auto-enable/disable based on instance's `pg_role`.
 
 
-### Refresh HBA After Cluster Expansion
+### Refresh HBA After Expansion
 
-When new instances are added to the cluster, rules using `addr: cluster` need refresh to include new members:
+When cluster adds new instances, rules using `addr: cluster` need refresh to include new members:
 
 ```bash
-# Add new instance
-./pgsql.yml -l 10.10.10.14
-
-# Refresh all instances' HBA (includes new member IPs)
-bin/pgsql-hba pg-meta
+./pgsql.yml -l 10.10.10.14       # Add new instance
+bin/pgsql-hba pg-meta            # Refresh all instances' HBA (includes new member IPs)
 ```
 
 
 ### Refresh HBA After Failover
 
-After Patroni failover, instance `pg_role` may not match the configuration. If HBA rules use `role` filtering:
-
-1. Update role definitions in `pigsty.yml`
-2. Refresh HBA rules
+After Patroni failover, instance `pg_role` may not match config. If HBA rules use `role` filtering, update config and refresh:
 
 ```bash
-# Refresh after updating roles in config file
+# Update role definitions in pigsty.yml then refresh
 bin/pgsql-hba pg-meta
 ```
 
@@ -227,34 +244,40 @@ bin/pgsql-hba pg-meta
 
 **Symptom**: `FATAL: no pg_hba.conf entry for host "x.x.x.x", user "xxx", database "xxx"`
 
-**Troubleshooting steps**:
+**Steps**:
 
-1. Check current HBA rules:
+1. Check current HBA rules, confirm if matching rule exists:
 ```bash
 psql -c "TABLE pg_hba_file_rules"
 ```
 
-2. Confirm if client IP, username, database matches any rule
+2. Confirm client IP, username, database matches any rule
 
-3. Check rule order (first match wins)
+3. Check rule order (HBA uses first-match-wins)
 
-4. Add corresponding rule and refresh
+4. Add corresponding rule and refresh:
+```bash
+bin/pgsql-hba <cls>
+```
 
 
 ### Authentication Failed
 
 **Symptom**: `FATAL: password authentication failed for user "xxx"`
 
-**Troubleshooting steps**:
+**Steps**:
 
 1. Confirm password is correct
-2. Check password encryption method (`pg_pwd_enc`) compatibility with client
-3. Check if user exists: `\du` or `SELECT * FROM pg_roles WHERE rolname = 'xxx'`
+2. Check password encryption method ([**`pg_pwd_enc`**](/docs/pgsql/param#pg_pwd_enc)) compatibility with client
+3. Check if user exists:
+```sql
+SELECT * FROM pg_roles WHERE rolname = 'xxx';
+```
 
 
-### HBA Rules Not Taking Effect
+### HBA Rules Not Applied
 
-**Troubleshooting steps**:
+**Steps**:
 
 1. Confirm refresh command was executed
 2. Check if Ansible execution succeeded
@@ -271,109 +294,68 @@ head -20 /pg/data/pg_hba.conf
 
 ### Rule Order Issues
 
-HBA uses first-match-wins logic. If rules aren't working as expected:
+HBA uses first-match-wins. If rules not working as expected:
 
-1. Check `order` values
+1. Check `order` values in rule definitions
 2. Use `psql -c "TABLE pg_hba_file_rules"` to view actual order
-3. Adjust `order` values or rule positions
+3. Adjust `order` values (lower numbers = higher priority)
 
 
 ----------------
 
-## Online HBA Modification (Not Recommended)
+## Pgbouncer HBA
 
-While you can directly edit `/pg/data/pg_hba.conf` and reload, this is **not recommended**:
+Pgbouncer HBA management is similar to PostgreSQL, with some differences.
 
+**Config differences**
+
+| Difference | PostgreSQL                | Pgbouncer                       |
+|:-----------|:--------------------------|:--------------------------------|
+| Config file | `/pg/data/pg_hba.conf`   | `/etc/pgbouncer/pgb_hba.conf`   |
+| Replication | Supports `db: replication` | Not supported                  |
+| Local auth  | Uses `ident`             | Uses `peer`                     |
+{.full-width}
+
+**Refresh Pgbouncer HBA**
+
+{{< tabpane text=true persist=header >}}
+{{% tab header="Script" %}}
 ```bash
-# Direct edit (not recommended)
-vi /pg/data/pg_hba.conf
-
-# Reload config
-psql -c "SELECT pg_reload_conf()"
-# Or
-pg_ctl reload -D /pg/data
-# Or
-systemctl reload postgresql
+bin/pgsql-hba <cls>    # Refresh both PostgreSQL and Pgbouncer
 ```
-
-**Problem**: Manual changes will be overwritten the next time an Ansible playbook runs.
-
-**Correct approach**: Always modify in `pigsty.yml`, then run `bin/pgsql-hba` to refresh.
-
-
-----------------
-
-## Pgbouncer HBA Management
-
-Pgbouncer HBA management is similar to PostgreSQL, with some differences:
-
-### Configuration Differences
-
-- Config file: `/etc/pgbouncer/pgb_hba.conf`
-- Doesn't support `db: replication`
-- Authentication method: local connections use `peer` instead of `ident`
-
-### Refresh Commands
-
+{{% /tab %}}
+{{% tab header="Playbook" %}}
 ```bash
-# Refresh Pgbouncer HBA only
-./pgsql.yml -l pg-meta -t pgbouncer_hba,pgbouncer_reload
-
-# Or use unified script (refreshes both PostgreSQL and Pgbouncer)
-bin/pgsql-hba pg-meta
+./pgsql.yml -l <cls> -t pgbouncer_hba,pgbouncer_reload   # Refresh Pgbouncer HBA only
 ```
-
-### View Pgbouncer HBA
-
+{{% /tab %}}
+{{% tab header="View" %}}
 ```bash
-cat /etc/pgbouncer/pgb_hba.conf
+cat /etc/pgbouncer/pgb_hba.conf    # View Pgbouncer HBA rules
 ```
+{{% /tab %}}
+{{< /tabpane >}}
 
 
 ----------------
 
 ## Best Practices
 
-1. **Always manage in config files**: Don't directly edit `pg_hba.conf`—all changes through `pigsty.yml`
-2. **Verify in test environment first**: HBA changes can cause connection issues—verify in test environment first
-3. **Use order to control priority**: Blocklist rules use `order: 0` to ensure priority matching
+1. **Always manage in config files**: Don't edit `pg_hba.conf` directly - all changes through `pigsty.yml`
+2. **Test environment first**: HBA changes can cause connection issues - verify in test env first
+3. **Use order for priority**: Blocklist rules use `order: 0` to ensure priority matching
 4. **Refresh promptly**: Refresh HBA after adding/removing instances or failover
-5. **Principle of least privilege**: Only open necessary access—avoid `addr: world` + `auth: trust`
-6. **Monitor authentication failures**: Watch for authentication failures in `pg_stat_activity`
-7. **Backup configuration**: Backup `pigsty.yml` before important changes
-
-
-----------------
-
-## Command Quick Reference
-
-```bash
-# Refresh HBA (recommended)
-bin/pgsql-hba <cluster>
-
-# View PostgreSQL HBA
-psql -c "TABLE pg_hba_file_rules"
-cat /pg/data/pg_hba.conf
-
-# View Pgbouncer HBA
-cat /etc/pgbouncer/pgb_hba.conf
-
-# Reload PostgreSQL config
-psql -c "SELECT pg_reload_conf()"
-
-# Test connection
-psql -h <host> -U <user> -d <db> -c "SELECT 1"
-
-# View authentication failure logs
-tail -f /pg/log/postgresql-*.log | grep -i auth
-```
+5. **Principle of least privilege**: Only open necessary access - avoid `addr: world` + `auth: trust`
+6. **Monitor auth failures**: Watch for auth failures in `pg_stat_activity`
+7. **Backup config**: Backup `pigsty.yml` before important changes
 
 
 ----------------
 
 ## Related Documentation
 
-- [**HBA Configuration**](/docs/pgsql/config/hba/): HBA rule configuration syntax and parameter details
+- [**HBA Configuration**](/docs/pgsql/config/hba/): HBA rule config syntax and parameter details
 - [**User Management**](/docs/pgsql/admin/user/): User and role management operations
 - [**Access Control**](/docs/pgsql/config/acl/): Role system and permission model
 - [**Security & Compliance**](/docs/concept/sec/): PostgreSQL cluster security features
+

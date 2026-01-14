@@ -34,6 +34,10 @@ bin/node-add node-test                # init node cluster 'node-test'
 bin/node-add 10.10.10.10              # init node '10.10.10.10'
 ```
 
+**Example: Add three nodes of PG cluster `pg-test` to Pigsty management**
+
+{{< asciinema file="demo/node-add.cast" markers="4:Execute" speed="1.2" autoplay="true" loop="true" >}}
+
 
 ----------------
 
@@ -49,6 +53,8 @@ bin/node-rm 10.10.10.10              # remove node '10.10.10.10'
 ```
 
 You can also remove an entire cluster at once, or use wildcards to match nodes in the inventory to remove from Pigsty.
+
+{{< asciinema file="demo/node-rm.cast" speed="1.2" autoplay="true" loop="true" >}}
 
 
 ----------------

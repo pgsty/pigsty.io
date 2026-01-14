@@ -128,6 +128,8 @@ Run `infra.yml` to install [**INFRA`**](/docs/infra/) and [**NODE`**](/docs/node
 ./infra.yml   # Install INFRA module on infra group (includes NODE module)
 ```
 
+{{< asciinema file="demo/infra.cast" markers="4:Execute" speed="1.3" autoplay="true" loop="true" >}}
+
 > NODE module is implicitly defined as long as an IP exists. NODE is idempotent—re-running has no side effects.
 
 After completion, you'll have complete observability infrastructure and node monitoring, but PostgreSQL database service is not yet deployed.
@@ -284,6 +286,8 @@ bin/node-add 10.10.10.12
 bin/node-add 10.10.10.13
 ```
 
+{{< asciinema file="demo/node.cast" markers="4:Execute" speed="1.3" autoplay="true" loop="true" >}}
+
 
 --------
 
@@ -304,6 +308,8 @@ all:
         10.10.10.13: { pg_seq: 3, pg_role: replica  }
       vars: { pg_cluster: pg-test }
 ```
+
+{{< asciinema file="demo/pgsql.cast" markers="4:Execute" speed="1.3" autoplay="true" loop="true" >}}
 
 
 --------

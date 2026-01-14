@@ -1,5 +1,6 @@
 ---
-title: 'Citus: Deploy HA Citus Cluster'
+title: 'Deploy HA Citus Cluster'
+linkTitle: 'Setup HA Citus'
 date: 2025-01-11
 weight: 2103
 description: How to deploy a Citus high-availability distributed cluster?

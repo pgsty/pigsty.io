@@ -1,5 +1,6 @@
 ---
 title: 'HA Drill: Handling 2-of-3 Node Failure'
+linkTitle: 'HA Drill: 2/3 Failure'
 date: 2025-01-11
 weight: 2101
 description: 'HA scenario response plan: When two of three nodes fail and auto-failover

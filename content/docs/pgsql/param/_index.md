@@ -68,6 +68,7 @@ You can define multiple PGSQL clusters and further organize them into a horizont
 | [`pg_services`](#pg_services)                         |  `service[]`  | `C`   | postgres business services                                        |
 | [`pg_hba_rules`](#pg_hba_rules)                       |    `hba[]`    | `C`   | business hba rules for postgres                                   |
 | [`pgb_hba_rules`](#pgb_hba_rules)                     |    `hba[]`    | `C`   | business hba rules for pgbouncer                                  |
+| [`pg_crontab`](#pg_crontab)                           |  `string[]`   | `C`   | crontab entries for postgres dbsu                                 |
 | [`pg_replication_username`](#pg_replication_username) |  `username`   | `G`   | postgres replication username, `replicator` by default            |
 | [`pg_replication_password`](#pg_replication_password) |  `password`   | `G`   | postgres replication password, `DBUser.Replicator` by default     |
 | [`pg_admin_username`](#pg_admin_username)             |  `username`   | `G`   | postgres admin username, `dbuser_dba` by default                  |
@@ -477,6 +478,7 @@ Users should **pay close attention** to this section of parameters, as this is w
 * Cluster-specific service definition: [`pg_services`](#pg_services) (global definition: [`pg_default_services`](#pg_default_services))
 * PostgreSQL cluster/instance-specific HBA rules: [`pg_hba_rules`](#pg_hba_rules)
 * Pgbouncer connection pool-specific HBA rules: [`pgb_hba_rules`](#pgb_hba_rules)
+* Cron job (crontab) definition: [`pg_crontab`](#pg_crontab)
 
 [Default](/docs/concept/sec/ac/#default-users) database users and their credentials. It is strongly recommended to change these user passwords in production environments.
 
@@ -491,6 +493,7 @@ pg_databases: []                  # postgres business databases
 pg_services: []                   # postgres business services
 pg_hba_rules: []                  # business hba rules for postgres
 pgb_hba_rules: []                 # business hba rules for pgbouncer
+pg_crontab: []                    # crontab entries for postgres dbsu
 # global credentials, overwrite in global vars
 pg_dbsu_password: ''              # dbsu password, empty string means no dbsu password by default
 pg_replication_username: replicator
@@ -664,6 +667,30 @@ This parameter is similar to [`pg_hba_rules`](#pg_hba_rules), both are arrays of
 [`pgb_default_hba_rules`](#pgb_default_hba_rules) is similar to this parameter, but it's used to define global connection pool HBA rules, while this parameter is typically used to customize HBA rules for specific connection pool clusters/instances.
 
 
+
+
+
+
+### `pg_crontab`
+
+Parameter Name: `pg_crontab`, Type: `string[]`, Level: `C`
+
+Cron job list for the PostgreSQL database superuser (dbsu, default `postgres`), default value: `[]` empty array.
+
+Each array element is a crontab entry line, using standard user crontab format: `minute hour day month weekday command` (**no need to specify username**).
+
+```yaml
+pg_crontab:
+  - '00 01 * * * /pg/bin/pg-backup full'      # Full backup at 1 AM daily
+  - '00 13 * * * /pg/bin/pg-backup'           # Incremental backup at 1 PM daily
+```
+
+This parameter writes cron jobs to the postgres user's personal crontab file:
+- EL systems: `/var/spool/cron/postgres`
+- Debian systems: `/var/spool/cron/crontabs/postgres`
+
+> **Note**: This parameter replaces the old practice of configuring postgres user tasks in [`node_crontab`](/docs/node/param#node_crontab).
+> Because `node_crontab` is written to `/etc/crontab` during NODE initialization, the `postgres` user may not exist yet, causing cron errors.
 
 
 

@@ -1,33 +1,33 @@
 ---
 title: User/Role
 weight: 1204
-description: User/Role refers to logical objects created by the SQL command `CREATE
-  USER/ROLE` within a database cluster.
+description: How to define and customize PostgreSQL users and roles through configuration?
 icon: fa-solid fa-users
 module: [PGSQL]
 categories: [Reference]
 ---
 
 
-> In this context, user refers to logical objects created by the SQL command `CREATE USER/ROLE` within a database cluster.
+> In this document, "user" refers to a logical object within a database cluster created with `CREATE USER/ROLE`.
 
-In PostgreSQL, users belong directly to the database cluster rather than a specific database. Therefore, when creating business databases and business users, the principle of "users first, databases later" should be followed.
+In PostgreSQL, users belong directly to the database cluster rather than a specific database. Therefore, when creating business databases and users, follow the principle of "users first, databases later".
+
+Pigsty defines roles and users through two config parameters:
+
+- [**`pg_default_roles`**](/docs/pgsql/param#pg_default_roles): Define globally shared roles and users
+- [**`pg_users`**](/docs/pgsql/param#pg_users): Define business users and roles at cluster level
+
+The former defines roles/users shared across the entire environment; the latter defines business roles/users specific to a single cluster. Both have the same format as arrays of user definition objects.
+Users/roles are created sequentially in array order, so later users can belong to roles defined earlier.
+
+By default, all users marked with `pgbouncer: true` are added to the [**Pgbouncer**](/docs/concept/arch/pgsql#pgbouncer) connection pool user list.
 
 
 ----------------
 
 ## Define Users
 
-Pigsty defines roles and users in database clusters through two config parameters:
-
-- [`pg_default_roles`](/docs/pgsql/param#pg_default_roles): Define globally shared roles and users
-- [`pg_users`](/docs/pgsql/param#pg_users): Define business users and roles at the database cluster level
-
-The former defines roles and users shared across the entire env, while the latter defines business roles and users specific to a single cluster. Both have the same format as arrays of user definition objects.
-
-You can define multiple users/roles. They will be created sequentially: first global, then cluster, and finally by array order. So later users can belong to roles defined earlier.
-
-Here is the business user definition in the default `pg-meta` cluster in the Pigsty demo env:
+Example from Pigsty demo `pg-meta` cluster:
 
 ```yaml
 pg-meta:
@@ -46,137 +46,116 @@ pg-meta:
       - {name: dbuser_remove   ,state: absent }  # use state: absent to delete user
 ```
 
-Each user/role definition is an object that may include the following fields, using `dbuser_meta` user as an example:
+Each user/role definition is a complex object. Only `name` is required:
 
 ```yaml
-- name: dbuser_meta               # Required, `name` is the only mandatory field
-  state: create                   # Optional, user state: create (default), absent (delete)
+- name: dbuser_meta               # REQUIRED, `name` is the only mandatory field
+  state: create                   # Optional, user state: create (default), absent
   password: DBUser.Meta           # Optional, password, can be scram-sha-256 hash or plaintext
-  login: true                     # Optional, can login by default
-  superuser: false                # Optional, default false, is it a superuser?
-  createdb: false                 # Optional, default false, can create databases?
-  createrole: false               # Optional, default false, can create roles?
-  inherit: true                   # Optional, can this role use inherited privileges by default?
-  replication: false              # Optional, default false, can this role perform replication?
-  bypassrls: false                # Optional, default false, can bypass row-level security?
-  pgbouncer: true                 # Optional, default false, add to pgbouncer user list? (prod users should set to true)
-  connlimit: -1                   # Optional, user connection limit, default -1 disables limit
-  expire_in: 3650                 # Optional, expire after n days from creation (higher priority than expire_at)
-  expire_at: '2030-12-31'         # Optional, expiration date in YYYY-MM-DD format (lower priority than expire_in)
-  comment: pigsty admin user      # Optional, description and comment string
-  roles: [dbrole_admin]           # Optional, default roles: dbrole_{admin,readonly,readwrite,offline}
-  parameters:                     # Optional, role-level params via `ALTER ROLE SET`
-    search_path: public           # e.g., set default search_path
+  login: true                     # Optional, can login, default true
+  superuser: false                # Optional, is superuser, default false
+  createdb: false                 # Optional, can create databases, default false
+  createrole: false               # Optional, can create roles, default false
+  inherit: true                   # Optional, inherit role privileges, default true
+  replication: false              # Optional, can replicate, default false
+  bypassrls: false                # Optional, bypass row-level security, default false
+  connlimit: -1                   # Optional, connection limit, default -1 (unlimited)
+  expire_in: 3650                 # Optional, expire N days from creation (priority over expire_at)
+  expire_at: '2030-12-31'         # Optional, expiration date in YYYY-MM-DD format
+  comment: pigsty admin user      # Optional, user comment
+  roles: [dbrole_admin]           # Optional, roles array
+  parameters:                     # Optional, role-level config params
+    search_path: public
+  pgbouncer: true                 # Optional, add to connection pool user list, default false
   pool_mode: transaction          # Optional, pgbouncer pool mode, default transaction
-  pool_connlimit: -1              # Optional, user-level max pool connections, -1 disables limit
+  pool_connlimit: -1              # Optional, user-level max pool connections, default -1
 ```
-
-- The only **required** field is `name`, which should be a valid and unique username in the PostgreSQL cluster.
-- Username must match regex `^[a-z_][a-z0-9_]{0,62}$` (lowercase letters, digits, underscores, starts with letter or underscore, max 63 chars).
-- Roles don't need `password`, but for login-able business users, a password is usually needed.
-- `password` can be plaintext or scram-sha-256 / md5 hash string. Please avoid using plaintext passwords.
-- Users/roles are created sequentially in array order, so ensure role/group definitions come before their members.
-- `login`, `superuser`, `createdb`, `createrole`, `inherit`, `replication`, `bypassrls` are boolean flags.
-- `pgbouncer` is disabled by default: to add business users to the pgbouncer user list, you should explicitly set it to `true`.
 
 
 ----------------
 
 ## Parameter Overview
 
-| Field           | Category   | Type       | Mutability | Description                                              |
-|-----------------|------------|------------|------------|----------------------------------------------------------|
-| `name`          | Basic      | `string`   | Required   | Username, must be valid and unique identifier            |
-| `state`         | Basic      | `enum`     | Optional   | User state: `create` (default), `absent`                 |
-| `password`      | Basic      | `string`   | Mutable    | User password, plaintext or hash                         |
-| `comment`       | Basic      | `string`   | Mutable    | User comment/description                                 |
-| `login`         | Privilege  | `bool`     | Mutable    | Can login, default `true`                                |
-| `superuser`     | Privilege  | `bool`     | Mutable    | Is superuser, default `false`                            |
-| `createdb`      | Privilege  | `bool`     | Mutable    | Can create database, default `false`                     |
-| `createrole`    | Privilege  | `bool`     | Mutable    | Can create role, default `false`                         |
-| `inherit`       | Privilege  | `bool`     | Mutable    | Inherit role privileges, default `true`                  |
-| `replication`   | Privilege  | `bool`     | Mutable    | Can replicate, default `false`                           |
-| `bypassrls`     | Privilege  | `bool`     | Mutable    | Can bypass RLS, default `false`                          |
-| `connlimit`     | Privilege  | `int`      | Mutable    | Connection limit, `-1` means no limit                    |
-| `expire_in`     | Validity   | `int`      | Mutable    | Expire N days from now (higher priority than `expire_at`)|
-| `expire_at`     | Validity   | `string`   | Mutable    | Expiration date, `YYYY-MM-DD` format                     |
-| `roles`         | Role       | `array`    | Incremental| Roles array, supports string or object format            |
-| `parameters`    | Params     | `object`   | Mutable    | Role-level parameters                                    |
-| `pgbouncer`     | Pool       | `bool`     | Mutable    | Add to connection pool, default `false`                  |
-| `pool_mode`     | Pool       | `enum`     | Mutable    | Pool mode: `transaction` (default)                       |
-| `pool_connlimit`| Pool       | `int`      | Mutable    | Pool user max connections                                |
+The only **required** field is `name` - a valid, unique username within the cluster. All other params have sensible defaults.
 
-
-### Mutability Notes
-
-| Mutability  | Meaning                                          |
-|-------------|--------------------------------------------------|
-| Required    | Must be specified                                |
-| Optional    | Optional field with default value                |
-| Mutable     | Can be modified by re-running playbook           |
-| Incremental | Only adds new content, doesn't remove existing   |
+| Field                                   | Category  | Type     | Attr     | Description                                |
+|-----------------------------------------|-----------|----------|----------|--------------------------------------------|
+| [**`name`**](#name)                     | Basic     | `string` | Required | Username, must be valid and unique         |
+| [**`state`**](#state)                   | Basic     | `enum`   | Optional | State: `create` (default), `absent`        |
+| [**`password`**](#password)             | Basic     | `string` | Mutable  | User password, plaintext or hash           |
+| [**`comment`**](#comment)               | Basic     | `string` | Mutable  | User comment                               |
+| [**`login`**](#login)                   | Privilege | `bool`   | Mutable  | Can login, default `true`                  |
+| [**`superuser`**](#superuser)           | Privilege | `bool`   | Mutable  | Is superuser, default `false`              |
+| [**`createdb`**](#createdb)             | Privilege | `bool`   | Mutable  | Can create databases, default `false`      |
+| [**`createrole`**](#createrole)         | Privilege | `bool`   | Mutable  | Can create roles, default `false`          |
+| [**`inherit`**](#inherit)               | Privilege | `bool`   | Mutable  | Inherit role privileges, default `true`    |
+| [**`replication`**](#replication)       | Privilege | `bool`   | Mutable  | Can replicate, default `false`             |
+| [**`bypassrls`**](#bypassrls)           | Privilege | `bool`   | Mutable  | Bypass RLS, default `false`                |
+| [**`connlimit`**](#connlimit)           | Privilege | `int`    | Mutable  | Connection limit, `-1` unlimited           |
+| [**`expire_in`**](#expire_in)           | Validity  | `int`    | Mutable  | Expire N days from now (priority)          |
+| [**`expire_at`**](#expire_at)           | Validity  | `string` | Mutable  | Expiration date, `YYYY-MM-DD` format       |
+| [**`roles`**](#roles)                   | Role      | `array`  | Additive | Roles array, string or object format       |
+| [**`parameters`**](#parameters)         | Params    | `object` | Mutable  | Role-level parameters                      |
+| [**`pgbouncer`**](#pgbouncer)           | Pool      | `bool`   | Mutable  | Add to connection pool, default `false`    |
+| [**`pool_mode`**](#pool_mode)           | Pool      | `enum`   | Mutable  | Pool mode: `transaction` (default)         |
+| [**`pool_connlimit`**](#pool_connlimit) | Pool      | `int`    | Mutable  | Pool user max connections                  |
+{.full-width}
 
 
 ----------------
 
-## Basic Parameters
+## Parameter Details
 
 ### `name`
 
-- **Type**: `string`
-- **Mutability**: Required
-- **Description**: Username, unique identifier within cluster
+String, required. Username - must be unique within the cluster.
 
-Username must be a valid PostgreSQL identifier matching regex `^[a-z_][a-z0-9_]{0,62}$`:
-- Starts with lowercase letter or underscore
-- Contains only lowercase letters, digits, underscores
-- Max 63 characters
+Must be a valid PostgreSQL identifier matching **`^[a-z_][a-z0-9_]{0,62}$`**: starts with lowercase letter or underscore, contains only lowercase letters, digits, underscores, max 63 chars.
 
 ```yaml
-- name: dbuser_app         # standard naming
-- name: app_readonly       # underscore separated
-- name: _internal          # underscore prefix (for internal roles)
+- name: dbuser_app         # Standard naming
+- name: app_readonly       # Underscore separated
+- name: _internal          # Underscore prefix (for internal roles)
 ```
 
 ### `state`
 
-- **Type**: `enum`
-- **Mutability**: Optional
-- **Default**: `create`
-- **Values**: `create`, `absent`
-- **Description**: Target user state
+Enum for user operation: `create` or `absent`. Default `create`.
 
 | State    | Description                                |
 |----------|--------------------------------------------|
-| `create` | Create user (default), update if exists    |
-| `absent` | Delete user via `DROP ROLE`                |
+| `create` | Default, create user, update if exists     |
+| `absent` | Delete user with `DROP ROLE`               |
+{.full-width}
 
 ```yaml
 - name: dbuser_app             # state defaults to create
 - name: dbuser_old
-  state: absent                # delete user
+  state: absent                # Delete user
 ```
 
-**Note**: These system users cannot be deleted via `state: absent`:
-- `postgres` (superuser)
-- `replicator` (or `pg_replication_username` configured user)
-- `dbuser_dba` (or `pg_admin_username` configured user)
-- `dbuser_monitor` (or `pg_monitor_username` configured user)
+These system users cannot be deleted via `state: absent` (to prevent cluster failure):
+
+- `postgres`: Database superuser
+- `replicator`: Replication user (or [**`pg_replication_username`**](/docs/pgsql/param#pg_replication_username))
+- `dbuser_dba`: Admin user (or [**`pg_admin_username`**](/docs/pgsql/param#pg_admin_username))
+- `dbuser_monitor`: Monitor user (or [**`pg_monitor_username`**](/docs/pgsql/param#pg_monitor_username))
 
 ### `password`
 
-- **Type**: `string`
-- **Mutability**: Mutable
-- **Default**: None
-- **Description**: User password
+String, mutable. User password - users without password can't login via password auth.
 
-Password can be one of:
-- **Plaintext**: `DBUser.Meta` (not recommended for prod)
-- **SCRAM-SHA-256 hash**: `SCRAM-SHA-256$4096:...` (recommended)
-- **MD5 hash**: `md5...` (legacy compatibility)
+Password can be:
+
+| Format         | Example                              | Description                    |
+|----------------|--------------------------------------|--------------------------------|
+| Plaintext      | `DBUser.Meta`                        | Not recommended, logged to config |
+| SCRAM-SHA-256  | `SCRAM-SHA-256$4096:xxx$yyy:zzz`     | Recommended, PG10+ default     |
+| MD5 hash       | `md5...`                             | Legacy compatibility           |
+{.full-width}
 
 ```yaml
-# Plaintext (logged to config file, not recommended)
+# Plaintext (not recommended, logged to config)
 - name: dbuser_app
   password: MySecretPassword
 
@@ -185,163 +164,225 @@ Password can be one of:
   password: 'SCRAM-SHA-256$4096:xxx$yyy:zzz'
 ```
 
+When setting password, Pigsty temporarily disables logging to prevent leakage:
+
+```sql
+SET log_statement TO 'none';
+ALTER USER "dbuser_app" PASSWORD 'xxx';
+SET log_statement TO DEFAULT;
+```
+
+To generate SCRAM-SHA-256 hash:
+
+```bash
+# Using PostgreSQL (requires pgcrypto extension)
+psql -c "SELECT encode(digest('password' || 'username', 'sha256'), 'hex')"
+```
+
 ### `comment`
 
-- **Type**: `string`
-- **Mutability**: Mutable
-- **Default**: `business user {name}`
-- **Description**: User comment/description
+String, mutable. User comment, defaults to `business user {name}`.
 
-Executes `COMMENT ON ROLE` statement. Supports special chars (single quotes auto-escaped).
+Set via `COMMENT ON ROLE`, supports special chars (quotes auto-escaped).
 
 ```yaml
 - name: dbuser_app
   comment: 'Main business application account'
 ```
 
-
-----------------
-
-## Privilege Parameters
+```sql
+COMMENT ON ROLE "dbuser_app" IS 'Main business application account';
+```
 
 ### `login`
 
-- **Type**: `bool`
-- **Mutability**: Mutable
-- **Default**: `true`
-- **Description**: Can login
+Boolean, mutable. Can login, default `true`.
 
-Set to `false` creates a **Role** rather than User, typically used for permission grouping.
+Setting `false` creates a **Role** rather than User - typically for permission grouping.
+
+In PostgreSQL, `CREATE USER` equals `CREATE ROLE ... LOGIN`.
 
 ```yaml
 # Create login-able user
 - name: dbuser_app
   login: true
 
-# Create role (no login)
+# Create role (no login, for permission grouping)
 - name: dbrole_custom
   login: false
+  comment: custom permission role
+```
+
+```sql
+CREATE USER "dbuser_app" LOGIN;
+CREATE USER "dbrole_custom" NOLOGIN;
 ```
 
 ### `superuser`
 
-- **Type**: `bool`
-- **Mutability**: Mutable
-- **Default**: `false`
-- **Description**: Is superuser
+Boolean, mutable. Is superuser, default `false`.
 
-{{% alert title="Security Warning" color="warning" %}}
-Superusers have full database privileges and can bypass all permission checks.
-Don't create additional superusers unless absolutely necessary.
-{{% /alert %}}
+Superusers have full database privileges, bypassing all permission checks.
+
+```yaml
+- name: dbuser_admin
+  superuser: true            # Dangerous: full privileges
+```
+
+```sql
+ALTER USER "dbuser_admin" SUPERUSER;
+```
+
+Pigsty provides default superuser via [**`pg_admin_username`**](/docs/pgsql/param#pg_admin_username) (`dbuser_dba`). Don't create additional superusers unless necessary.
 
 ### `createdb`
 
-- **Type**: `bool`
-- **Mutability**: Mutable
-- **Default**: `false`
-- **Description**: Can create databases
+Boolean, mutable. Can create databases, default `false`.
+
+```yaml
+- name: dbuser_dev
+  createdb: true             # Allow create database
+```
+
+```sql
+ALTER USER "dbuser_dev" CREATEDB;
+```
+
+Some applications (Gitea, Odoo, etc.) may require `CREATEDB` privilege for their admin users.
+
 
 ### `createrole`
 
-- **Type**: `bool`
-- **Mutability**: Mutable
-- **Default**: `false`
-- **Description**: Can create roles
+Boolean, mutable. Can create other roles, default `false`.
+
+Users with `CREATEROLE` can create, modify, delete other non-superuser roles.
+
+```yaml
+- name: dbuser_admin
+  createrole: true           # Allow manage other roles
+```
+
+```sql
+ALTER USER "dbuser_admin" CREATEROLE;
+```
 
 ### `inherit`
 
-- **Type**: `bool`
-- **Mutability**: Mutable
-- **Default**: `true`
-- **Description**: Auto-inherit privileges from member roles
+Boolean, mutable. Auto-inherit privileges from member roles, default `true`.
 
-Set to `false` requires explicit `SET ROLE` to use inherited privileges.
+Setting `false` requires explicit `SET ROLE` to use member role privileges.
+
+```yaml
+# Auto-inherit role privileges (default)
+- name: dbuser_app
+  inherit: true
+  roles: [dbrole_readwrite]
+
+# Requires explicit SET ROLE
+- name: dbuser_special
+  inherit: false
+  roles: [dbrole_admin]
+```
+
+```sql
+ALTER USER "dbuser_special" NOINHERIT;
+-- User must execute SET ROLE dbrole_admin to get privileges
+```
 
 ### `replication`
 
-- **Type**: `bool`
-- **Mutability**: Mutable
-- **Default**: `false`
-- **Description**: Can initiate streaming replication
+Boolean, mutable. Can initiate streaming replication, default `false`.
 
-Usually only replication users (like `replicator`) need this privilege.
+Usually only replication users (`replicator`) need this. Normal users shouldn't have it unless for logical decoding subscriptions.
+
+```yaml
+- name: replicator
+  replication: true          # Allow streaming replication
+  roles: [pg_monitor, dbrole_readonly]
+```
+
+```sql
+ALTER USER "replicator" REPLICATION;
+```
 
 ### `bypassrls`
 
-- **Type**: `bool`
-- **Mutability**: Mutable
-- **Default**: `false`
-- **Description**: Can bypass row-level security (RLS) policies
+Boolean, mutable. Bypass row-level security (RLS) policies, default `false`.
+
+When enabled, user can access all rows even with RLS policies. Usually only for admins.
+
+```yaml
+- name: dbuser_myappadmin
+  bypassrls: true            # Bypass RLS policies
+```
+
+```sql
+ALTER USER "dbuser_myappadmin" BYPASSRLS;
+```
 
 ### `connlimit`
 
-- **Type**: `int`
-- **Mutability**: Mutable
-- **Default**: `-1` (no limit)
-- **Description**: Max concurrent connections for user
+Integer, mutable. Max concurrent connections, default `-1` (unlimited).
+
+Positive integer limits max simultaneous sessions for this user. Doesn't affect superusers.
 
 ```yaml
 - name: dbuser_app
-  connlimit: 100           # max 100 concurrent connections
+  connlimit: 100             # Max 100 concurrent connections
 
 - name: dbuser_batch
-  connlimit: 10            # limit batch user connections
+  connlimit: 10              # Limit batch user connections
 ```
 
-
-----------------
-
-## Validity Parameters
+```sql
+ALTER USER "dbuser_app" CONNECTION LIMIT 100;
+```
 
 ### `expire_in`
 
-- **Type**: `int`
-- **Mutability**: Mutable
-- **Description**: Expire N days from current date
+Integer, mutable. Expire N days from current date.
 
-This param has higher priority than `expire_at`. Expiration time recalculated on each playbook run.
+This param has higher priority than [**`expire_at`**](#expire_at). Expiration recalculated on each playbook run - good for temp users needing periodic renewal.
 
 ```yaml
 - name: temp_user
-  expire_in: 30            # expire in 30 days
+  expire_in: 30              # Expire in 30 days
 
-- name: long_term_user
-  expire_in: 3650          # expire in ~10 years
+- name: contractor_user
+  expire_in: 90              # Expire in 90 days
+```
+
+Generates SQL:
+
+```sql
+-- expire_in: 30, assuming current date is 2025-01-01
+ALTER USER "temp_user" VALID UNTIL '2025-01-31';
 ```
 
 ### `expire_at`
 
-- **Type**: `string`
-- **Mutability**: Mutable
-- **Description**: Specify expiration date
+String, mutable. Expiration date in `YYYY-MM-DD` format, or special value `infinity`.
 
-Format `YYYY-MM-DD` or special value `infinity` (never expires).
+Lower priority than [**`expire_in`**](#expire_in). Use `infinity` for never-expiring users.
 
 ```yaml
 - name: contractor_user
-  expire_at: '2024-12-31'  # expire on specific date
+  expire_at: '2024-12-31'    # Expire on specific date
 
 - name: permanent_user
-  expire_at: 'infinity'    # never expires
+  expire_at: 'infinity'      # Never expires
 ```
 
-**Note**: `expire_in` has higher priority than `expire_at`. If both specified, only `expire_in` takes effect.
-
-
-----------------
-
-## Role Membership Parameter
+```sql
+ALTER USER "contractor_user" VALID UNTIL '2024-12-31';
+ALTER USER "permanent_user" VALID UNTIL 'infinity';
+```
 
 ### `roles`
 
-- **Type**: `array`
-- **Mutability**: Incremental
-- **Description**: Roles this user belongs to
+Array, additive. Roles this user belongs to. Elements can be strings or objects.
 
-`roles` array supports two formats:
-
-#### Simple Format (String)
+Simple format - strings for role names:
 
 ```yaml
 - name: dbuser_app
@@ -350,37 +391,35 @@ Format `YYYY-MM-DD` or special value `infinity` (never expires).
     - pg_read_all_data
 ```
 
-Generated SQL:
 ```sql
 GRANT "dbrole_readwrite" TO "dbuser_app";
 GRANT "pg_read_all_data" TO "dbuser_app";
 ```
 
-#### Extended Format (Object)
-
-Object format supports finer-grained role membership control:
+Full format - objects for fine-grained control:
 
 ```yaml
 - name: dbuser_app
   roles:
-    - dbrole_readwrite                              # simple string: GRANT role
-    - { name: dbrole_admin, admin: true }           # GRANT WITH ADMIN OPTION
-    - { name: pg_monitor, set: false }              # PG16+: REVOKE SET OPTION
-    - { name: pg_signal_backend, inherit: false }   # PG16+: REVOKE INHERIT OPTION
-    - { name: old_role, state: absent }             # REVOKE role membership
+    - dbrole_readwrite                            # Simple string: GRANT role
+    - { name: dbrole_admin, admin: true }         # WITH ADMIN OPTION
+    - { name: pg_monitor, set: false }            # PG16+: disallow SET ROLE
+    - { name: pg_signal_backend, inherit: false } # PG16+: don't auto-inherit
+    - { name: old_role, state: absent }           # Revoke role membership
 ```
 
-#### Object Format Parameters
+**Object Format Parameters**:
 
 | Param     | Type   | Description                                              |
 |-----------|--------|----------------------------------------------------------|
 | `name`    | string | Role name (required)                                     |
-| `state`   | enum   | `grant` (default) or `absent`/`revoke`: control membership|
-| `admin`   | bool   | `true`: WITH ADMIN OPTION / `false`: REVOKE ADMIN        |
-| `set`     | bool   | PG16+: `true`: WITH SET TRUE / `false`: REVOKE SET       |
-| `inherit` | bool   | PG16+: `true`: WITH INHERIT TRUE / `false`: REVOKE INHERIT|
+| `state`   | enum   | `grant` (default) or `absent`/`revoke`: control membership |
+| `admin`   | bool   | `true`: WITH ADMIN OPTION, `false`: REVOKE ADMIN         |
+| `set`     | bool   | PG16+: `true`: WITH SET TRUE, `false`: REVOKE SET        |
+| `inherit` | bool   | PG16+: `true`: WITH INHERIT TRUE, `false`: REVOKE INHERIT |
+{.full-width}
 
-#### PostgreSQL 16+ New Features
+**PostgreSQL 16+ New Features**:
 
 PostgreSQL 16 introduced finer-grained role membership control:
 
@@ -398,30 +437,21 @@ PostgreSQL 16 introduced finer-grained role membership control:
     # Can grant dbrole_admin to other users
     - { name: dbrole_admin, admin: true }
 
-    # Cannot SET ROLE to pg_monitor (can only inherit privileges)
+    # Cannot SET ROLE to pg_monitor (only inherit privileges)
     - { name: pg_monitor, set: false }
 
-    # Don't auto-inherit pg_execute_server_program privileges (need explicit SET ROLE)
+    # Don't auto-inherit pg_execute_server_program (need explicit SET ROLE)
     - { name: pg_execute_server_program, inherit: false }
 
     # Revoke old_role membership
     - { name: old_role, state: absent }
 ```
 
-**Note**: `set` and `inherit` options only work in PostgreSQL 16+. On earlier versions they're ignored with warning comments.
-
-
-----------------
-
-## Role-Level Parameters
+`set` and `inherit` options only work in PG16+. On earlier versions they're ignored with warning comments.
 
 ### `parameters`
 
-- **Type**: `object`
-- **Mutability**: Mutable
-- **Description**: Role-level config parameters
-
-Set via `ALTER ROLE ... SET`, params apply to all sessions for this user.
+Object, mutable. Role-level config params via `ALTER ROLE ... SET`. Applies to all sessions for this user.
 
 ```yaml
 - name: dbuser_analyst
@@ -432,7 +462,6 @@ Set via `ALTER ROLE ... SET`, params apply to all sessions for this user.
     log_statement: 'all'
 ```
 
-Generated SQL:
 ```sql
 ALTER USER "dbuser_analyst" SET "work_mem" = '256MB';
 ALTER USER "dbuser_analyst" SET "statement_timeout" = '5min';
@@ -440,47 +469,42 @@ ALTER USER "dbuser_analyst" SET "search_path" = 'analytics,public';
 ALTER USER "dbuser_analyst" SET "log_statement" = 'all';
 ```
 
-#### Reset Parameter to Default
-
-Use special value `DEFAULT` (case-insensitive) to reset param to PostgreSQL default:
+Use special value `DEFAULT` (case-insensitive) to reset to PostgreSQL default:
 
 ```yaml
 - name: dbuser_app
   parameters:
-    work_mem: DEFAULT         # reset to PostgreSQL default
-    statement_timeout: '30s'  # set new value
+    work_mem: DEFAULT          # Reset to default
+    statement_timeout: '30s'   # Set new value
 ```
 
-#### Common Role-Level Parameters
+```sql
+ALTER USER "dbuser_app" SET "work_mem" = DEFAULT;
+ALTER USER "dbuser_app" SET "statement_timeout" = '30s';
+```
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| `work_mem` | Query work memory | `'64MB'` |
-| `statement_timeout` | Statement timeout | `'30s'` |
-| `lock_timeout` | Lock wait timeout | `'10s'` |
-| `idle_in_transaction_session_timeout` | Idle transaction timeout | `'10min'` |
-| `search_path` | Schema search path | `'app,public'` |
-| `log_statement` | Log level | `'ddl'` |
-| `temp_file_limit` | Temp file size limit | `'10GB'` |
+Common role-level params:
 
+| Parameter                              | Description          | Example          |
+|----------------------------------------|----------------------|------------------|
+| `work_mem`                             | Query work memory    | `'64MB'`         |
+| `statement_timeout`                    | Statement timeout    | `'30s'`          |
+| `lock_timeout`                         | Lock wait timeout    | `'10s'`          |
+| `idle_in_transaction_session_timeout`  | Idle transaction timeout | `'10min'`    |
+| `search_path`                          | Schema search path   | `'app,public'`   |
+| `log_statement`                        | Log level            | `'ddl'`          |
+| `temp_file_limit`                      | Temp file size limit | `'10GB'`         |
+{.full-width}
 
-----------------
+Query user-level params via [**`pg_db_role_setting`**](https://www.postgresql.org/docs/current/view-pg-db-role-setting.html) system view.
 
-## Connection Pool Parameters
-
-These params control user behavior in Pgbouncer connection pool.
 
 ### `pgbouncer`
 
-- **Type**: `bool`
-- **Mutability**: Mutable
-- **Default**: `false`
-- **Description**: Add user to Pgbouncer user list
+Boolean, mutable. Add user to Pgbouncer user list, default `false`.
 
-{{% alert title="Important" color="primary" %}}
-For prod users needing connection pool access, you must explicitly set `pgbouncer: true`.
-Default `false` prevents accidentally exposing internal users to the connection pool.
-{{% /alert %}}
+For prod users needing connection pool access, must explicitly set `pgbouncer: true`.
+Default `false` prevents accidentally exposing internal users to the pool.
 
 ```yaml
 # Prod user: needs connection pool
@@ -491,22 +515,21 @@ Default `false` prevents accidentally exposing internal users to the connection 
 # Internal user: no connection pool needed
 - name: dbuser_internal
   password: DBUser.Internal
-  pgbouncer: false           # default, can be omitted
+  pgbouncer: false           # Default, can be omitted
 ```
+
+Users with `pgbouncer: true` are added to `/etc/pgbouncer/userlist.txt`.
 
 ### `pool_mode`
 
-- **Type**: `enum`
-- **Mutability**: Mutable
-- **Values**: `transaction`, `session`, `statement`
-- **Default**: `transaction`
-- **Description**: User-level pool mode
+Enum, mutable. User-level pool mode: `transaction`, `session`, or `statement`. Default `transaction`.
 
-| Mode          | Description                        | Use Case                |
-|---------------|------------------------------------|-------------------------|
-| `transaction` | Return connection after txn (default) | Most OLTP apps       |
-| `session`     | Return connection after session    | Apps needing session state |
-| `statement`   | Return connection after statement  | Simple stateless queries |
+| Mode          | Description                     | Use Case                    |
+|---------------|---------------------------------|-----------------------------|
+| `transaction` | Return connection after txn     | Most OLTP apps, default     |
+| `session`     | Return connection after session | Apps needing session state  |
+| `statement`   | Return after each statement     | Simple stateless queries    |
+{.full-width}
 
 ```yaml
 # DBA user: session mode (may need SET commands etc.)
@@ -520,17 +543,21 @@ Default `false` prevents accidentally exposing internal users to the connection 
   pool_mode: transaction
 ```
 
+User-level pool params are configured via `/etc/pgbouncer/useropts.txt`:
+
+```ini
+dbuser_dba      = pool_mode=session max_user_connections=16
+dbuser_monitor  = pool_mode=session max_user_connections=8
+```
+
 ### `pool_connlimit`
 
-- **Type**: `int`
-- **Mutability**: Mutable
-- **Default**: `-1` (no limit)
-- **Description**: User-level max pool connections
+Integer, mutable. User-level max pool connections, default `-1` (unlimited).
 
 ```yaml
 - name: dbuser_app
   pgbouncer: true
-  pool_connlimit: 50         # max 50 pool connections for this user
+  pool_connlimit: 50         # Max 50 pool connections for this user
 ```
 
 
@@ -538,30 +565,54 @@ Default `false` prevents accidentally exposing internal users to the connection 
 
 ## ACL System
 
-Pigsty has a built-in, out-of-the-box access control / [ACL](/docs/concept/sec/ac/#default-roles) system. You only need to assign these four default roles to business users:
+Pigsty provides a built-in, out-of-the-box access control / [**ACL**](/docs/concept/sec/ac/#default-roles) system. Just assign these four default roles to business users:
 
-- `dbrole_readwrite`: Global read-write access role (primary business prod accounts should have this)
-- `dbrole_readonly`: Global read-only access role (for other businesses needing read-only access)
-- `dbrole_admin`: DDL privileges role (business admins, scenarios requiring table creation in apps)
-- `dbrole_offline`: Restricted read-only role (can only access [offline](/docs/pgsql/config/cluster#offline) instances, typically for individual users)
+| Role               | Privileges           | Typical Use Case             |
+|--------------------|----------------------|------------------------------|
+| `dbrole_readwrite` | Global read-write    | Primary business prod accounts |
+| `dbrole_readonly`  | Global read-only     | Other business read-only access |
+| `dbrole_admin`     | DDL privileges       | Business admins, table creation |
+| `dbrole_offline`   | Restricted read-only (offline only) | Individual users, ETL/analytics |
+{.full-width}
 
-If you want to redesign your own ACL system, consider customizing:
+```yaml
+# Typical business user configuration
+pg_users:
+  - name: dbuser_app
+    password: DBUser.App
+    pgbouncer: true
+    roles: [dbrole_readwrite]    # Prod account, read-write
 
-- [`pg_default_roles`](/docs/pgsql/param#pg_default_roles): System-wide roles and global users
-- [`pg_default_privileges`](/docs/pgsql/param#pg_default_privileges): Default privileges for newly created objects
-- [`roles/pgsql/templates/pg-init-role.sql`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/pg-init-role.sql): Role creation SQL template
-- [`roles/pgsql/templates/pg-init-template.sql`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/pg-init-template.sql): Privilege SQL template
+  - name: dbuser_readonly
+    password: DBUser.Readonly
+    pgbouncer: true
+    roles: [dbrole_readonly]     # Read-only account
+
+  - name: dbuser_admin
+    password: DBUser.Admin
+    pgbouncer: true
+    roles: [dbrole_admin]        # Admin, can execute DDL
+
+  - name: dbuser_etl
+    password: DBUser.ETL
+    roles: [dbrole_offline]      # Offline analytics account
+```
+
+To redesign your own ACL system, customize:
+
+- [**`pg_default_roles`**](/docs/pgsql/param#pg_default_roles): System-wide roles and global users
+- [**`pg_default_privileges`**](/docs/pgsql/param#pg_default_privileges): Default privileges for new objects
+- [**`pg-init-role.sql`**](https://github.com/Vonng/pigsty/blob/main/roles/pgsql/templates/pg-init-role.sql): Role creation SQL template
+- [**`pg-init-template.sql`**](https://github.com/Vonng/pigsty/blob/main/roles/pgsql/templates/pg-init-template.sql): Privilege SQL template
 
 
 ----------------
 
 ## Pgbouncer Users
 
-Pgbouncer is enabled by default as connection pool middleware, with users managed automatically.
+Pgbouncer is enabled by default as connection pool middleware. Pigsty adds all users in [**`pg_users`**](/docs/pgsql/param#pg_users) with explicit `pgbouncer: true` flag to the pgbouncer user list.
 
-Pigsty adds all users in [`pg_users`](/docs/pgsql/param#pg_users) with explicit `pgbouncer: true` flag to the pgbouncer user list.
-
-Users in Pgbouncer connection pool are listed in `/etc/pgbouncer/userlist.txt`:
+Users in connection pool are listed in `/etc/pgbouncer/userlist.txt`:
 
 ```ini
 "postgres" ""
@@ -571,19 +622,24 @@ Users in Pgbouncer connection pool are listed in `/etc/pgbouncer/userlist.txt`:
 "dbuser_meta" "SCRAM-SHA-256$4096:leB2RQPcw1OIiRnPnOMUEg==$eyC+NIMKeoTxshJu314+BmbMFpCcspzI3UFZ1RYfNyU=:fJgXcykVPvOfro2MWNkl5q38oz21nSl1dTtM65uYR1Q="
 ```
 
-User-level connection pool params are maintained in `/etc/pgbouncer/useropts.txt`:
+User-level pool params are maintained in `/etc/pgbouncer/useropts.txt`:
 
 ```ini
-dbuser_dba                  = pool_mode=session max_user_connections=16
-dbuser_monitor              = pool_mode=session max_user_connections=8
+dbuser_dba      = pool_mode=session max_user_connections=16
+dbuser_monitor  = pool_mode=session max_user_connections=8
 ```
 
-When you [create users](/docs/pgsql/admin/user#create-user), Pgbouncer's user list definition file will be refreshed and take effect via online config reload, without affecting existing connections.
+When [**creating users**](/docs/pgsql/admin/user#create-user), Pgbouncer user list is refreshed via online reload - doesn't affect existing connections.
 
-Pgbouncer runs with the same `dbsu` as PostgreSQL, defaulting to the `postgres` OS user. You can use the `pgb` alias to access pgbouncer admin functions using dbsu.
+Pgbouncer runs as same `dbsu` as PostgreSQL (default `postgres` OS user). Use `pgb` alias to access pgbouncer admin functions.
 
-Note that the [`pgbouncer_auth_query`](/docs/pgsql/param#pgbouncer_auth_query) param allows dynamic query for connection pool user auth—a compromise when you're lazy about managing pool users.
+[**`pgbouncer_auth_query`**](/docs/pgsql/param#pgbouncer_auth_query) param allows dynamic query for pool user auth - convenient when you prefer not to manually manage pool users.
 
-For user management operations, see [User Management](/docs/pgsql/admin/user).
 
-For user access privileges, see [ACL: Role Privileges](/docs/concept/sec/ac/#default-roles).
+----------------
+
+## Related Resources
+
+For user management operations, see [**User Management**](/docs/pgsql/admin/user).
+
+For user access privileges, see [**ACL: Role Privileges**](/docs/concept/sec/ac/#default-roles).

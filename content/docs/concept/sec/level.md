@@ -4,7 +4,6 @@ linkTitle: Security Models
 weight: 231
 description: How Pigsty provides defense-in-depth across seven security layers, from physical security to user security.
 icon: fa-solid fa-layer-group
-draft: true
 module: [PIGSTY, PGSQL]
 categories: [Concept]
 ---
@@ -16,32 +15,59 @@ Security is not a wall, but a fortress. Pigsty adopts a **defense-in-depth** str
 
 ## Overview
 
-```mermaid
-flowchart TB
-    subgraph L1["🏢 Layer 1: Physical Security"]
-        L1A["Data Checksums · PGTDE Transparent Encryption"]
-    end
-    subgraph L2["🌐 Layer 2: Network Security"]
-        L2A["Firewall · SSL/TLS Encryption · Local CA"]
-    end
-    subgraph L3["🛡️ Layer 3: Perimeter Security"]
-        L3A["HAProxy Proxy · Nginx Gateway"]
-    end
-    subgraph L4["💻 Layer 4: Host Security"]
-        L4A["SELinux · Least Privilege · System Hardening"]
-    end
-    subgraph L5["🐘 Layer 5: Application Security"]
-        L5A["HBA Rules · Password Policy · Connection Pool"]
-    end
-    subgraph L6["🔒 Layer 6: Data Security"]
-        L6A["Backup Encryption · Audit Logs · PITR"]
-    end
-    subgraph L7["👤 Layer 7: User Security"]
-        L7A["Four-Role Model · RBAC · Certificate Auth"]
-    end
-
-    L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> L7
+{{< infographic >}}
 ```
+infographic sequence-pyramid-simple
+data
+  title Seven-Layer Security Model
+  desc Pigsty Defense-in-Depth: Multi-layer protection from physical to user security
+  items
+    - label Physical Security
+      value 100
+      desc Data Checksums · PGTDE Transparent Encryption
+      time L1
+      icon mingcute/building-4-fill
+      illus server-cluster
+    - label Network Security
+      value 95
+      desc Firewall · SSL/TLS Encryption · Local CA
+      time L2
+      icon mingcute/earth-2-fill
+      illus secure-server
+    - label Perimeter Security
+      value 90
+      desc HAProxy Proxy · Nginx Gateway
+      time L3
+      icon mingcute/shield-fill
+      illus firewall-protection
+    - label Host Security
+      value 85
+      desc SELinux · Least Privilege · System Hardening
+      time L4
+      icon mingcute/computer-fill
+      illus server-status
+    - label Application Security
+      value 80
+      desc HBA Rules · Password Policy · Connection Pool
+      time L5
+      icon mingcute/safe-box-fill
+      illus database-security
+    - label Data Security
+      value 75
+      desc Backup Encryption · Audit Logs · PITR
+      time L6
+      icon mingcute/lock-fill
+      illus data-encryption
+    - label User Security
+      value 70
+      desc Four-Role Model · RBAC · Certificate Auth
+      time L7
+      icon mingcute/user-security-fill
+      illus user-flow
+theme light
+  palette pigsty
+```
+{{< /infographic >}}
 
 
 --------
@@ -459,15 +485,32 @@ patroni_watchdog_mode: required  # off | automatic | required
 
 ## Compliance Mapping
 
+### China MLPS Level 3 (GB/T 22239-2019)
+
+| Requirement | Default | Configurable | Implementation |
+|:------------|:-------:|:------------:|:---------------|
+| Unique Identity | ✅ | ✅ | Unique username identifier |
+| Password Complexity | ⚠️ | ✅ | `passwordcheck` extension |
+| Password Rotation | ⚠️ | ✅ | `expire_in` attribute |
+| Two-Factor Auth | ⚠️ | ✅ | Certificate + password (`auth: cert`) |
+| Access Control | ✅ | ✅ | HBA + Four-role model |
+| Least Privilege | ✅ | ✅ | `dbrole_readonly/readwrite/admin` |
+| Encrypted Communication | ✅ | ✅ | SSL/TLS |
+| Audit Logs | ✅ | ✅ | `pgaudit` + connection logs |
+| Data Integrity | ✅ | ✅ | `pg_checksum: true` |
+| Backup & Recovery | ✅ | ✅ | pgBackRest + PITR |
+{.full-width}
+
 ### SOC 2 Type II
 
 | Control Point | Pigsty Support | Implementation |
-|:--|:--:|:--|
+|:--------------|:--------------:|:---------------|
 | CC6.1 Logical Access Control | ✅ | HBA + RBAC |
 | CC6.6 Transmission Encryption | ✅ | SSL/TLS (can enforce) |
 | CC7.2 System Monitoring | ✅ | Prometheus + Grafana |
 | CC9.1 Business Continuity | ✅ | HA + PITR |
 | A1.2 Data Recovery | ✅ | pgBackRest backup |
+{.full-width}
 
 **Legend**: ✅ Default satisfied · ⚠️ Requires additional configuration
 

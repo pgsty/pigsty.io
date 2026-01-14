@@ -1,5 +1,5 @@
 ---
-title: Config Templates
+title: Param Templates
 weight: 2200
 description: Use Pigsty's built-in Patroni config templates or customize your own
 icon: fas fa-paint-roller
