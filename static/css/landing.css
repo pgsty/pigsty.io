@@ -47,7 +47,7 @@
 
   /* Spacing */
   --section-padding: 100px;
-  --container-max: 1280px;
+  --container-max: 1200px;
 
   /* Typography */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -131,16 +131,16 @@ body.landing-page {
 }
 
 .section-title {
-  font-size: 2.25rem;
+  font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 16px;
   letter-spacing: -0.02em;
 }
 
 .section-subtitle {
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   color: var(--pigsty-gray-400);
-  max-width: 700px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
@@ -305,11 +305,7 @@ body.landing-page {
   display: flex;
   align-items: center;
   min-height: 85vh;
-  margin-top: 0;
-  padding-top: 120px;
-  padding-right: 60px;
-  padding-bottom: 60px;
-  padding-left: 60px;
+  padding: 120px 60px 60px;
   background: var(--gradient-hero);
   position: relative;
   overflow: hidden;
@@ -585,7 +581,7 @@ body.landing-page {
 /* Hero Responsive - Large Desktop */
 @media (max-width: 1400px) {
   .hero {
-    padding: 100px 40px 50px;
+    padding: 110px 40px 50px;
   }
 
   .hero-container {
@@ -835,7 +831,7 @@ body.landing-page {
 .pain-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 32px;
   margin-bottom: 48px;
   position: relative;
   z-index: 1;
@@ -845,7 +841,7 @@ body.landing-page {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
-  padding: 32px 24px;
+  padding: 36px 28px;
   text-align: center;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
@@ -889,28 +885,28 @@ body.landing-page {
 .pain-card:nth-child(3) .pain-icon { animation-delay: 1s; }
 
 .pain-title {
-  font-size: 1.05rem;
+  font-size: 1.3rem;
   font-weight: 700;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   color: var(--pigsty-white);
   letter-spacing: -0.01em;
-  line-height: 1.3;
+  line-height: 1.4;
 }
 
 .pain-desc {
   color: var(--pigsty-gray-300);
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.7;
   margin-bottom: 0;
 }
 
 .pain-detail {
-  margin-top: 16px;
-  padding-top: 16px;
+  margin-top: 20px;
+  padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   color: var(--pigsty-gray-500);
-  font-size: 0.85rem;
-  line-height: 1.5;
+  font-size: 0.9rem;
+  line-height: 1.6;
   font-style: italic;
 }
 
@@ -932,22 +928,22 @@ body.landing-page {
 @media (max-width: 992px) {
   .pain-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
-    max-width: 480px;
+    gap: 24px;
+    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .pain-card {
-    padding: 28px 20px;
+    padding: 32px 24px;
   }
 
   .pain-icon {
-    font-size: 2.8rem;
+    font-size: 3rem;
   }
 
   .pain-title {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 }
 
@@ -990,7 +986,7 @@ body.landing-page {
 }
 
 .feature-content {
-  max-width: 600px;
+  max-width: 500px;
 }
 
 /* 技术领域标签 */
@@ -998,43 +994,42 @@ body.landing-page {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--pigsty-blue);
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
+  letter-spacing: 0.05em;
 }
 
 .feature-emoji {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 }
 
 /* 主标题 Slogan */
 .feature-title {
-  font-size: 1.75rem;
+  font-size: 2.25rem;
   font-weight: 700;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
   color: var(--pigsty-white);
   letter-spacing: -0.02em;
-  line-height: 1.25;
+  line-height: 1.3;
 }
 
 /* 功能说明列表 */
 .feature-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 20px 0;
+  margin: 0 0 24px 0;
 }
 
 .feature-list li {
   position: relative;
   padding-left: 0;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   color: var(--pigsty-gray-300);
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.7;
 }
 
 .feature-list li:last-child {
@@ -1048,17 +1043,17 @@ body.landing-page {
 
 /* CTA 区域 */
 .feature-cta {
-  margin-top: 24px;
-  padding-top: 20px;
+  margin-top: 28px;
+  padding-top: 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .feature-value {
   display: block;
   color: var(--pigsty-gray-400);
-  font-size: 0.875rem;
-  line-height: 1.5;
-  margin-bottom: 14px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
   font-style: italic;
 }
 
@@ -1130,23 +1125,19 @@ body.landing-page {
 
 @media (max-width: 1024px) {
   .feature-row {
-    gap: 50px;
+    gap: 60px;
   }
 
   .feature-title {
-    font-size: 1.5rem;
-  }
-
-  .feature-label {
-    white-space: normal;
+    font-size: 2rem;
   }
 }
 
 @media (max-width: 768px) {
   .feature-row {
     grid-template-columns: 1fr;
-    gap: 36px;
-    margin-bottom: 70px;
+    gap: 40px;
+    margin-bottom: 80px;
   }
 
   .feature-row--reverse {
@@ -1158,24 +1149,16 @@ body.landing-page {
   }
 
   .feature-title {
-    font-size: 1.35rem;
-  }
-
-  .feature-label {
-    font-size: 0.75rem;
+    font-size: 1.75rem;
   }
 
   .feature-list li {
-    font-size: 0.85rem;
-  }
-
-  .feature-value {
-    font-size: 0.825rem;
+    font-size: 0.95rem;
   }
 
   .feature-code {
-    padding: 18px;
-    font-size: 0.75rem;
+    padding: 20px;
+    font-size: 0.8rem;
   }
 }
 
@@ -2109,19 +2092,47 @@ body.landing-page {
   font-size: 0.85rem;
 }
 
-.footer-copyright a {
-  color: inherit;
+.footer-copyright a,
+.footer-copyright a:link,
+.footer-copyright a:visited,
+.footer-copyright a:active {
+  color: var(--pigsty-gray-400);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-copyright a:hover {
+  color: var(--pigsty-white);
   text-decoration: none;
 }
 
-.footer-lang-switch a {
+.footer-icp a,
+.footer-icp a:link,
+.footer-icp a:visited,
+.footer-icp a:active {
+  color: var(--pigsty-gray-500);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-icp a:hover {
+  color: var(--pigsty-white);
+  text-decoration: none;
+}
+
+.footer-lang-switch a,
+.footer-lang-switch a:link,
+.footer-lang-switch a:visited,
+.footer-lang-switch a:active {
   color: var(--pigsty-gray-400);
   text-decoration: none;
   margin-left: 16px;
+  transition: color var(--transition-fast);
 }
 
 .footer-lang-switch a:hover {
   color: var(--pigsty-white);
+  text-decoration: none;
 }
 
 @media (max-width: 968px) {
@@ -2491,11 +2502,12 @@ body.landing-page {
 /* ============================================
    Dashboard Gallery Section
    Slow-scrolling showcase with lazy loading
+   Images are 1920x2112 (ratio ~10:11, portrait)
    ============================================ */
 
 .dashboard-gallery-section {
   padding: 48px 0;
-  background: linear-gradient(180deg, var(--pigsty-darker) 0%, var(--pigsty-dark) 100%);
+  background: var(--pigsty-darker);
   overflow: hidden;
 }
 
@@ -2505,14 +2517,14 @@ body.landing-page {
   overflow: hidden;
 }
 
-/* Fade edges */
+/* Fade edges - consistent with extensions-marquee and logos-marquee */
 .dashboard-gallery-marquee::before,
 .dashboard-gallery-marquee::after {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 120px;
+  width: 100px;
   z-index: 10;
   pointer-events: none;
 }
@@ -2524,15 +2536,15 @@ body.landing-page {
 
 .dashboard-gallery-marquee::after {
   right: 0;
-  background: linear-gradient(90deg, transparent 0%, var(--pigsty-dark) 100%);
+  background: linear-gradient(90deg, transparent 0%, var(--pigsty-darker) 100%);
 }
 
 .dashboard-gallery-track {
   display: flex;
-  gap: 24px;
+  gap: 20px;
   width: max-content;
   will-change: transform;
-  animation: dashboard-scroll 300s linear infinite;
+  animation: dashboard-scroll 180s linear infinite;
 }
 
 .dashboard-gallery-track:hover {
@@ -2550,12 +2562,11 @@ body.landing-page {
 
 .dashboard-gallery-slide {
   flex-shrink: 0;
-  width: 560px;
-  height: 350px;
-  border-radius: 16px;
+  /* Height 600px, width calculated by aspect ratio 1920:2112 */
+  height: 600px;
+  aspect-ratio: 1920 / 2112;
+  border-radius: 12px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   transition: all 0.4s ease;
   position: relative;
@@ -2587,14 +2598,13 @@ body.landing-page {
 
 .dashboard-gallery-slide:hover {
   transform: scale(1.02) translateY(-4px);
-  border-color: rgba(59, 130, 246, 0.3);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 0 32px rgba(59, 130, 246, 0.1);
 }
 
 .dashboard-gallery-slide img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill;
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -2610,17 +2620,17 @@ body.landing-page {
   }
 
   .dashboard-gallery-slide {
-    width: 480px;
-    height: 300px;
+    height: 480px;
   }
 
   .dashboard-gallery-track {
-    gap: 20px;
+    gap: 16px;
+    animation-duration: 150s;
   }
 
   .dashboard-gallery-marquee::before,
   .dashboard-gallery-marquee::after {
-    width: 80px;
+    width: 60px;
   }
 }
 
@@ -2630,14 +2640,13 @@ body.landing-page {
   }
 
   .dashboard-gallery-slide {
-    width: 320px;
-    height: 200px;
-    border-radius: 12px;
+    height: 360px;
+    border-radius: 10px;
   }
 
   .dashboard-gallery-track {
-    gap: 16px;
-    animation-duration: 200s;
+    gap: 12px;
+    animation-duration: 120s;
   }
 
   .dashboard-gallery-marquee::before,

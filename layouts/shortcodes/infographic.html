@@ -12,7 +12,7 @@
           desc In Progress
     {{< /infographic >}}
 
-    {{< infographic width="100%" height="600px" >}}
+    {{< infographic height="600px" full="true" >}}
     infographic compare-vs-horizontal
     data
       title PostgreSQL vs MySQL
@@ -26,8 +26,9 @@
     {{< /infographic >}}
 
   Parameters:
-    width   - Container width (default: 100%)
     height  - Container height (default: auto)
+    full    - If true, fills entire container width; if false (default),
+              aligns with content max-width (90% on large screens)
 
   Notes:
     - Uses AntV Infographic DSL syntax (similar to Mermaid)
@@ -36,35 +37,51 @@
     - See: https://infographic.antv.vision/
 */ -}}
 
-{{- $width := .Get "width" | default "100%" -}}
 {{- $height := .Get "height" | default "auto" -}}
+{{- $full := .Get "full" | default false -}}
 {{- $id := printf "infographic-%s" (md5 .Inner) -}}
-
-{{- /* Load Infographic JS only once per page */ -}}
-{{- if not (.Page.Scratch.Get "infographic-loaded") -}}
-  {{- .Page.Scratch.Set "infographic-loaded" true -}}
-<script src="/js/infographic.min.js"></script>
+{{- $containerClass := "infographic-container" -}}
+{{- if not $full -}}
+  {{- $containerClass = "infographic-container td-max-width-on-larger-screens" -}}
 {{- end -}}
 
-<div id="{{ $id }}" class="infographic-container" style="width: {{ $width }}; height: {{ $height }}; margin: 1em 0;"></div>
+<div id="{{ $id }}" class="{{ $containerClass }}"{{ with $height | ne "auto" }} style="height: {{ $height }};"{{ end }}></div>
 
 <script>
 (function() {
-  var dom = document.getElementById('{{ $id }}');
-  if (!dom) return;
+  var containerId = '{{ $id }}';
+  var syntax = {{ .Inner | strings.TrimSpace | safeJS | printf "`%s`" }};
 
-  var syntax = {{ .Inner | safeJS | printf "`%s`" }};
+  function renderInfographic() {
+    var dom = document.getElementById(containerId);
+    if (!dom) { console.error('Infographic: container not found:', containerId); return; }
+    try {
+      var ig = new AntVInfographic.Infographic({
+        container: '#' + containerId,
+        width: dom.offsetWidth || '100%',
+        height: '{{ $height }}',
+      });
+      ig.render(syntax);
+    } catch (e) {
+      console.error('Infographic render error:', e);
+      dom.innerHTML = '<pre style="color: red;">Infographic Error: ' + e.message + '</pre>';
+    }
+  }
 
-  try {
-    var ig = new AntVInfographic.Infographic({
-      container: dom,
-      width: '{{ $width }}',
-      height: '{{ $height }}',
-    });
-    ig.render(syntax);
-  } catch (e) {
-    console.error('Infographic render error:', e);
-    dom.innerHTML = '<pre style="color: red;">Infographic Error: ' + e.message + '</pre>';
+  // Load library dynamically if not already loaded
+  if (typeof AntVInfographic !== 'undefined') {
+    renderInfographic();
+  } else if (!window._infographicLoading) {
+    window._infographicLoading = true;
+    window._infographicCallbacks = [renderInfographic];
+    var script = document.createElement('script');
+    script.src = '/js/infographic.min.js';
+    script.onload = function() {
+      window._infographicCallbacks.forEach(function(cb) { cb(); });
+    };
+    document.head.appendChild(script);
+  } else {
+    window._infographicCallbacks.push(renderInfographic);
   }
 })();
 </script>
