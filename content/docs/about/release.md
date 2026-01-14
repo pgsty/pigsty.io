@@ -342,7 +342,7 @@ cc022ea89181d89d271a9aaabca04165  pigsty-pkg-v3.7.0.u22.x86_64.tgz
 ## v3.6.1
 
 ```bash
-curl https://repo.pigsty.cc/get | bash -s v3.6.1
+curl https://repo.pigsty.io/get | bash -s v3.6.1
 ```
 
 **Highlights**
@@ -401,7 +401,7 @@ c25ccfb98840c01eb7a6e18803de55bb  pigsty-pkg-v3.6.1.u22.x86_64.tgz
 ## v3.6.0
 
 ```bash
-curl https://repo.pigsty.cc/get | bash -s v3.6.0
+curl https://repo.pigsty.io/get | bash -s v3.6.0
 ```
 
 **Highlights**

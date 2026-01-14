@@ -188,7 +188,7 @@ You can [**install**](/docs/deploy/install#install) the latest stable Pigsty sou
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash;         # International
-curl -fsSL https://repo.pigsty.cc/get | bash;         # China Mirror
+curl -fsSL https://repo.pigsty.cc/get | bash;         # Backup Mirror
 ```
 
 To [**install**](/docs/deploy/install#install) a specific version, use the **`-s <version>`** parameter:

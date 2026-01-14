@@ -45,7 +45,7 @@ files/pki/ca/ca.key     # Core CA private key file, must exist; if missing, a ne
 files/pki/ca/ca.crt     # If certificate file is missing, Pigsty auto-generates a new root certificate from the CA private key
 ```
 
-When Pigsty executes the [**`install.yml`**](/docs/infra/#installyml) or [**`infra.yml`**](/docs/infra/#infrayml) playbooks, if a `ca.key` private key file exists in `files/pki/ca`, the existing CA will be used. Since `ca.crt` can be generated from the `ca.key` private key, Pigsty will automatically regenerate the root certificate file if it's missing.
+When Pigsty executes the [**`deploy.yml`**](/docs/infra/#installyml) or [**`infra.yml`**](/docs/infra/#infrayml) playbooks, if a `ca.key` private key file exists in `files/pki/ca`, the existing CA will be used. Since `ca.crt` can be generated from the `ca.key` private key, Pigsty will automatically regenerate the root certificate file if it's missing.
 
 {{% alert title="Note When Using Existing CA" color="secondary" %}}
 You can set the [**`ca_method`**](/docs/infra/param#ca_method) parameter to `copy` to ensure Pigsty errors out and stops if it can't find a local CA, rather than auto-generating a new self-signed CA.

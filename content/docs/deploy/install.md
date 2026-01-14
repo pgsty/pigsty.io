@@ -20,7 +20,7 @@ install a [**compatible Linux OS**](/docs/ref/linux/), then execute with an [**a
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash;         # International
-curl -fsSL https://repo.pigsty.cc/get | bash;         # China Mirror
+curl -fsSL https://repo.pigsty.cc/get | bash;         # Backup Mirror
 ```
 
 This runs the [**install**](#install) script, downloading and extracting Pigsty source to your home directory with dependencies installed. Complete [**configuration**](#configure) and [**deployment**](#deploy) to finish.
@@ -73,7 +73,7 @@ Use the following to automatically install the [**Pigsty source package**](/docs
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash            # Install latest stable version
-curl -fsSL https://repo.pigsty.cc/get | bash            # China mirror
+curl -fsSL https://repo.pigsty.cc/get | bash            # Backup mirror
 curl -fsSL https://repo.pigsty.io/get | bash -s v4.0.0  # Install specific version
 ```
 

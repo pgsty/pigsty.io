@@ -1,5 +1,5 @@
 ---
-title: Clone Database Cluster
+title: Clone PG Cluster
 weight: 1507
 description: How to use PITR to create a new PostgreSQL cluster and restore to a specified point in time?
 icon: fa-solid fa-rotate-left

@@ -232,7 +232,7 @@ Default auth: username `admin`, password configured by [**`haproxy_admin_passwor
 
 ## pg_exporter
 
-[**pg_exporter**](https://github.com/Vonng/pg_exporter) is PostgreSQL's Prometheus metrics exporter for collecting database performance metrics.
+[**pg_exporter**](https://github.com/pgsty/pg_exporter) is PostgreSQL's Prometheus metrics exporter for collecting database performance metrics.
 
 **Start pg_exporter**
 

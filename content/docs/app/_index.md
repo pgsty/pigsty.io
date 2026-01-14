@@ -44,7 +44,7 @@ And Pigsty just have a series of Docker Compose templates for these software, ap
 |             [**pgWeb**](pgweb)              | [pgWeb](https://github.com/sosedoff/pgweb?tab=readme-ov-file) | TOOL | **GA** | 8886  | cli.pigsty  | PostgreSQL Web GUI Client                            |
 |                  SchemaSpy                  |              [SchemaSpy](https://schemaspy.org/)              | TOOL | *TBD*  |       |             | Dump & Visualize PostgreSQL Schema                   |
 |                  pgBadger                   |        [pgBadger](https://github.com/darold/pgbadger)         | TOOL | *TBD*  |       |             | PostgreSQL Log Analysis                              |
-|                 pg_exporter                 |      [pg_exporter](https://github.com/Vonng/pg_exporter)      | TOOL | **GA** | 9630  |             | Expose PostgreSQL & Pgbouncer Metrics for Prometheus |
+|                 pg_exporter                 |      [pg_exporter](https://github.com/pgsty/pg_exporter)      | TOOL | **GA** | 9630  |             | Expose PostgreSQL & Pgbouncer Metrics for Prometheus |
 
 
 {{% alert title="How to prepare Docker?" color="success" %}}

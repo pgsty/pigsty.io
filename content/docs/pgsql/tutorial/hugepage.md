@@ -1,10 +1,10 @@
 ---
-title: 为 PostgreSQL 集群启用 HugePage
-linkTitle: 启用大页支持 
+title: Enabling HugePage for PostgreSQL
+linkTitle: Enable HugePage
 weight: 1708
-description: 为 PostgreSQL 集群启用大页，减少大内存实例的页表开销并提高性能
+description: Enabling HugePage for PostgreSQL to reduce memory fragmentation and improve performance.
 icon: fa-solid fa-file-circle-plus
-categories: [任务]
+categories: [Task]
 ---
 
 

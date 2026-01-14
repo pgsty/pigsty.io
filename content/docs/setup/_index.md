@@ -34,9 +34,9 @@ If you are ready to start serious multi-node production deployment, please refer
 [**Prepare**](/docs/deploy/prepare) a [**node**](/docs/deploy/prepare#node) with [**compatible Linux system**](/docs/ref/linux/), and execute as an [**admin user**](/docs/deploy/admin) with passwordless [**`ssh`**](/docs/deploy/admin#ssh) and [**`sudo`**](/docs/deploy/admin#sudo) privileges:
 
 ```bash
-curl -fsSL https://repo.pigsty.cc/get | bash  # Install Pigsty and dependencies
-cd ~/pigsty; ./configure -g                   # Generate config (use default single-node config template, -g parameter generates random passwords)
-./deploy.yml                                  # Execute deployment playbook to complete deployment
+curl -fsSL https://repo.pigsty.io/get | bash  # Install Pigsty and dependencies
+cd ~/pigsty; ./configure -g                   # Generate config (with 1-node template, -g generates random passwords)
+./deploy.yml                                  # Execute deployment playbook
 ```
 
 Yes, it's that simple. You can use [**pre-configured templates**](/docs/concept/iac/template) to bring up Pigsty with one click without understanding any details.

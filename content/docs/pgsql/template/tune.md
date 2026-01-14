@@ -2,10 +2,10 @@
 title: Parameter Optimization Policy
 linkTitle: Optimize Params
 weight: 10
-description: 了解在 Pigsty 中，预置的四种 Patroni 场景化模板所采用的不同参数优化策略
+description: Learn the parameter optimization strategies Pigsty uses for the 4 different PostgreSQL workload scenarios.
 icon: fa-solid fa-gauge-high
 module: [PGSQL]
-categories: [参考]
+categories: [Reference]
 ---
 
 

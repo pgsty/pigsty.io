@@ -12,7 +12,7 @@ Pigsty provides four playbooks related to the INFRA module:
 - [`deploy.yml`](#deployyml): Deploy all components on all nodes in one pass
 - [`infra.yml`](#infrayml): Initialize Pigsty infrastructure on infra nodes
 - [`infra-rm.yml`](#infra-rmyml): Remove infrastructure components from infra nodes
-- [`install.yml`](#installyml): Perform a complete one-time installation of Pigsty on all nodes
+- [`deploy.yml`](#deployyml): Perform a complete one-time installation of Pigsty on all nodes
 
 
 ----------------
@@ -133,7 +133,7 @@ Common subtasks include:
 
 ----------------
 
-## `install.yml`
+## `deploy.yml`
 
 Perform a complete one-time installation of Pigsty on all nodes.
 

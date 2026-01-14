@@ -96,7 +96,7 @@ repo_extra_packages:
   - pgsql-main docker # <--- Can also be specified here
 ```
 
-The `docker` specified here (which actually corresponds to the `docker-ce` and `docker-compose-plugin` packages) will be automatically downloaded to the local repository during the default [`install.yml`](/docs/setup/playbook#installyml) process.
+The `docker` specified here (which actually corresponds to the `docker-ce` and `docker-compose-plugin` packages) will be automatically downloaded to the local repository during the default [`deploy.yml`](/docs/setup/playbook#installyml) process.
 After downloading, the Docker packages will be available to all nodes via the local repository.
 
 If you've already completed Pigsty installation and the local repository is initialized, you can run `./infra.yml -t repo_build` after modifying the configuration to re-download and rebuild the offline repository.

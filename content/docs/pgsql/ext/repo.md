@@ -81,7 +81,7 @@ EOF
 ### Repository URLs
 
 - International: https://repo.pigsty.io/apt/
-- China: https://repo.pigsty.cc/apt/
+- China Mirror: https://repo.pigsty.cc/apt/
 
 
 --------

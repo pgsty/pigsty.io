@@ -311,7 +311,7 @@ For more information, see: [**Tutorial: VIP Configuration**](/docs/pgsql/tutoria
 
 ## pg_exporter
 
-[**pg_exporter**](https://github.com/Vonng/pg_exporter) exports [PostgreSQL](#postgresql) monitoring metrics, listening on port `9630` by default.
+[**pg_exporter**](https://github.com/pgsty/pg_exporter) exports [PostgreSQL](#postgresql) monitoring metrics, listening on port `9630` by default.
 
 **pg_exporter** runs on each PG node, connecting to [**PostgreSQL**](#postgresql) via local Unix socket,
 exporting rich metrics covering sessions, buffer hits, replication lag, transaction rates, etc., scraped by **VictoriaMetrics** on INFRA nodes.

@@ -28,7 +28,7 @@ Then, run the [`minio.yml`](playbook) playbook provided by Pigsty against the de
 ./minio.yml -l minio
 ```
 
-Note that in [`install.yml`](/docs/setup/playbook#installyml), pre-defined MinIO clusters will be automatically created, so you don't need to manually run the `minio.yml` playbook again.
+Note that in [`deploy.yml`](/docs/setup/playbook#installyml), pre-defined MinIO clusters will be automatically created, so you don't need to manually run the `minio.yml` playbook again.
 
 If you plan to deploy a production-grade large-scale multi-node MinIO cluster, we strongly recommend reading the Pigsty MinIO [configuration documentation](config) and the MinIO [official documentation](https://min.io/docs/minio/linux/operations/concepts.html) before proceeding.
 

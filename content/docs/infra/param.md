@@ -903,7 +903,7 @@ name: `certbot_sign`, type: `bool`, level: `G/A`
 
 Use certbot to sign Nginx certificates during installation? Default value is `false`.
 
-When set to `true`, Pigsty will use certbot to automatically apply for free SSL certificates from Let's Encrypt during the execution of `infra.yml` and `install.yml` playbooks (in the `nginx` role).
+When set to `true`, Pigsty will use certbot to automatically apply for free SSL certificates from Let's Encrypt during the execution of `infra.yml` and `deploy.yml` playbooks (in the `nginx` role).
 
 For domains defined in [`infra_portal`](#infra_portal), if a `certbot` parameter is defined, Pigsty will use certbot to apply for a certificate for that `domain`. The certificate name will be the value of the `certbot` parameter. If multiple servers/domains specify the same `certbot` parameter, Pigsty will merge and apply for certificates for these domains, using the `certbot` parameter value as the certificate name.
 
