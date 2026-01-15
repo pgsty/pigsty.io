@@ -1,6 +1,6 @@
 ---
 title: High Availability
-linkTitle: HA
+linkTitle: High Availability
 weight: 200
 description: Pigsty uses Patroni to implement PostgreSQL high availability, ensuring
   automatic failover when the primary becomes unavailable.

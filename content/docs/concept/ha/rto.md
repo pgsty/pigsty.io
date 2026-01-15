@@ -57,13 +57,13 @@ flowchart LR
 
 Pigsty provides four RTO modes to help users make trade-offs under different network conditions.
 
-| **Name**     |                  **fast**                  |                 **norm**                  |                 **safe**                  |                 **wide**                  |
-|:-----------|:------------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|
-| **Use Case**   |                    Same rack                     |                 Same datacenter (default)                  |                   Same region, cross-DC                   |                  Cross-region/continent                   |
-| **Network**   |                 < 1ms, very stable                  |                 1-5ms, normal                  |                10-50ms, cross-DC                |               100-200ms, public network                |
-| **Target RTO** | <span class="text-success">**30s**</span>  | <span class="text-primary">**45s**</span> | <span class="text-warning">**90s**</span> | <span class="text-danger">**150s**</span> |
-| **False Failover Risk**   | <span class="text-secondary">**Higher**</span> | <span class="text-primary">**Medium**</span>  | <span class="text-success">**Lower**</span>  | <span class="text-success">**Very Low**</span>  |
-| **Configuration**   |               `pg_rto: fast`               |              `pg_rto: norm`               |              `pg_rto: safe`               |              `pg_rto: wide`               |
+| **Name**                |                    **fast**                    |                   **norm**                   |                  **safe**                   |                    **wide**                    |
+|:------------------------|:----------------------------------------------:|:--------------------------------------------:|:-------------------------------------------:|:----------------------------------------------:|
+| **Use Case**            |                   Same rack                    |          Same datacenter (default)           |            Same region, cross-DC            |             Cross-region/continent             |
+| **Network**             |               < 1ms, very stable               |                1-5ms, normal                 |              10-50ms, cross-DC              |           100-200ms, public network            |
+| **Target RTO**          |   <span class="text-success">**30s**</span>    |  <span class="text-primary">**45s**</span>   |  <span class="text-warning">**90s**</span>  |   <span class="text-danger">**150s**</span>    |
+| **False Failover Risk** | <span class="text-secondary">**Higher**</span> | <span class="text-primary">**Medium**</span> | <span class="text-success">**Lower**</span> | <span class="text-success">**Very Low**</span> |
+| **Configuration**       |                 `pg_rto: fast`                 |                `pg_rto: norm`                |               `pg_rto: safe`                |                 `pg_rto: wide`                 |
 {.full-width}
 
 
@@ -127,18 +127,18 @@ series:
 
 The four RTO modes differ in how the following 10 **Patroni** and **HAProxy** HA-related parameters are configured.
 
-|      Component       |             Parameter              | **fast** | **norm** | **safe** | **wide** | Description               |
-|:-------------:|:---------------------------:|:--------:|:--------:|:--------:|:--------:|:-----------------|
-| **`patroni`** |          **`ttl`**          |    20    |    30    |    60    |   120    | Leader lock TTL (seconds)  |
-|               |       **`loop_wait`**       |    5     |    5     |    10    |    20    | HA loop check interval (seconds)     |
-|               |     **`retry_timeout`**     |    5     |    10    |    20    |    30    | DCS operation retry timeout (seconds)    |
-|               | **`primary_start_timeout`** |    15    |    25    |    45    |    95    | Primary restart wait time (seconds)      |
-|               |     **`safety_margin`**     |    5     |    5     |    10    |    15    | Watchdog safety margin (seconds) |
-| **`haproxy`** |         **`inter`**         |    1s    |    2s    |    3s    |    4s    | Normal state check interval         |
-|               |       **`fastinter`**       |   0.5s   |    1s    |   1.5s   |    2s    | State transition check interval        |
-|               |       **`downinter`**       |    1s    |    2s    |    3s    |    4s    | DOWN state check interval      |
-|               |         **`rise`**          |    3     |    3     |    3     |    3     | Consecutive successes to mark UP   |
-|               |         **`fall`**          |    3     |    3     |    3     |    3     | Consecutive failures to mark DOWN |
+|   Component   |          Parameter          | **fast** | **norm** | **safe** | **wide** | Description                           |
+|:-------------:|:---------------------------:|:--------:|:--------:|:--------:|:--------:|:--------------------------------------|
+| **`patroni`** |          **`ttl`**          |    20    |    30    |    60    |   120    | Leader lock TTL (seconds)             |
+|               |       **`loop_wait`**       |    5     |    5     |    10    |    20    | HA loop check interval (seconds)      |
+|               |     **`retry_timeout`**     |    5     |    10    |    20    |    30    | DCS operation retry timeout (seconds) |
+|               | **`primary_start_timeout`** |    15    |    25    |    45    |    95    | Primary restart wait time (seconds)   |
+|               |     **`safety_margin`**     |    5     |    5     |    10    |    15    | Watchdog safety margin (seconds)      |
+| **`haproxy`** |         **`inter`**         |    1s    |    2s    |    3s    |    4s    | Normal state check interval           |
+|               |       **`fastinter`**       |   0.5s   |    1s    |   1.5s   |    2s    | State transition check interval       |
+|               |       **`downinter`**       |    1s    |    2s    |    3s    |    4s    | DOWN state check interval             |
+|               |         **`rise`**          |    3     |    3     |    3     |    3     | Consecutive successes to mark UP      |
+|               |         **`fall`**          |    3     |    3     |    3     |    3     | Consecutive failures to mark DOWN     |
 {.full-width}
 
 
@@ -185,13 +185,13 @@ The longer tolerance window effectively prevents false failovers from network ji
 **wide mode** is suitable for cross-region or even cross-continent deployments with high network latency and possible public-network-level packet loss.
 In such scenarios, stability is more important than recovery speed, so an extremely wide tolerance window ensures very low false failover rate.
 
-| Scenario         | Recommended Mode | Rationale            |
-|:-----------|:-----|:--------------|
-| Dev/Test environment    | fast | Quick feedback, low impact from false failover    |
-| Same-datacenter production    | norm | Default choice, well-balanced     |
-| Same-city active-active/cross-DC DR | safe | Tolerates network jitter, reduces false failover   |
-| Geo-DR/cross-country deployment  | wide | Adapts to high-latency public network, very low false failover rate |
-| Uncertain network quality    | safe | Conservative choice, avoids false failover     |
+| Scenario                            | Recommended Mode | Rationale                                                           |
+|:------------------------------------|:-----------------|:--------------------------------------------------------------------|
+| Dev/Test environment                | fast             | Quick feedback, low impact from false failover                      |
+| Same-datacenter production          | norm             | Default choice, well-balanced                                       |
+| Same-city active-active/cross-DC DR | safe             | Tolerates network jitter, reduces false failover                    |
+| Geo-DR/cross-country deployment     | wide             | Adapts to high-latency public network, very low false failover rate |
+| Uncertain network quality           | safe             | Conservative choice, avoids false failover                          |
 {.full-width}
 
 

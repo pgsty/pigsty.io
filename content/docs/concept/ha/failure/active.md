@@ -12,24 +12,13 @@ categories: [Concept]
 ```
 infographic list-row-simple-horizontal-arrow
 data
-  title Crash Failover Process
-  desc Failover process when Patroni is healthy but PostgreSQL crashes
+  desc When Patroni is healthy but PostgreSQL crashes
   items
-    - label Failure Detection
-      desc Patroni detects PG crash in loop
-      icon mingcute/close-circle-fill
+    - label Crash Found
     - label Restart Timeout
-      desc Patroni tries to restart PG, releases lease after timeout
-      icon mingcute/refresh-2-fill
-    - label Standby Detection
-      desc Standby wakes from loop and finds lease released, starts election
-      icon mingcute/key-2-fill
-    - label Lock & Promote
-      desc Standbys compare and race for lock, winner promotes its PG
-      icon mingcute/radar-fill
-    - label Health Check
-      desc HAProxy detects new primary online, routes traffic
-      icon mingcute/arrow-up-circle-fill
+    - label Replica Detect
+    - label Elect Promote
+    - label HAProxy Check
 theme light
   palette antv
 ```
@@ -46,16 +35,16 @@ var fmt = function(params) { if (!params || !params.length || params[0].name ===
 ```
 ```yaml
 tooltip: { trigger: axis, axisPointer: { type: shadow }, formatter: $fn:fmt }
-legend: { top: 0, itemGap: 12, data: [Failure Detection, Restart Timeout, Standby Detection, Lock & Promote, Health Check] }
+legend: { top: 0, itemGap: 12, data: [ Crash Found, Restart Timeout, Replica Detection, Elect Promote, HAProxy Check] }
 grid: { left: 64, right: 24, bottom: 32, top: 40 }
 xAxis: { type: value, name: Seconds, nameLocation: end, max: 160, axisLine: { show: true }, axisTick: { show: true }, splitLine: { show: true, lineStyle: { type: dashed, opacity: 0.5 } }, minorTick: { show: true, splitNumber: 5 }, minorSplitLine: { show: true, lineStyle: { type: dotted, opacity: 0.2 } } }
 yAxis: { type: category, axisLine: { show: true }, axisTick: { show: true }, splitLine: { show: false }, axisLabel: { fontSize: 10, fontFamily: monospace }, data: [wide-max, wide-avg, wide-min, "", safe-max, safe-avg, safe-min, "", norm-max, norm-avg, norm-min, "", fast-max, fast-avg, fast-min] }
 series:
-  - { name: Failure Detection, type: bar, stack: main, barWidth: 20, z: 2, emphasis: { focus: series }, itemStyle: { color: "#b07aa1" }, data: [20, 10, 0, "-", 10, 5, 0, "-", 5, 3, 0, "-", 5, 3, 0] }
+  - { name: Crash Found, type: bar, stack: main, barWidth: 20, z: 2, emphasis: { focus: series }, itemStyle: { color: "#b07aa1" }, data: [20, 10, 0, "-", 10, 5, 0, "-", 5, 3, 0, "-", 5, 3, 0] }
   - { name: Restart Timeout, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#f28e2c" }, data: [95, 95, 0, "-", 45, 45, 0, "-", 25, 25, 0, "-", 15, 15, 0] }
-  - { name: Standby Detection, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#edc949" }, data: [20, 10, 0, "-", 10, 5, 0, "-", 5, 3, 0, "-", 5, 3, 0] }
-  - { name: Lock & Promote, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#59a14f" }, data: [2, 1, 0, "-", 2, 1, 0, "-", 2, 1, 0, "-", 2, 1, 0] }
-  - { name: Health Check, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#4e79a7" }, data: [8, 6, 4, "-", 6, 5, 3, "-", 4, 3, 2, "-", 2, 2, 1] }
+  - { name: Replica Detect, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#edc949" }, data: [20, 10, 0, "-", 10, 5, 0, "-", 5, 3, 0, "-", 5, 3, 0] }
+  - { name: Elect Promote, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#59a14f" }, data: [2, 1, 0, "-", 2, 1, 0, "-", 2, 1, 0, "-", 2, 1, 0] }
+  - { name: HAProxy Check, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#4e79a7" }, data: [8, 6, 4, "-", 6, 5, 3, "-", 4, 3, 2, "-", 2, 2, 1] }
   - { name: RTO Total, type: bar, barGap: "-100%", barWidth: 20, z: 1, itemStyle: { color: "#888", opacity: 0 }, emphasis: { itemStyle: { opacity: 0 } }, data: [145, 122, 4, "-", 73, 61, 3, "-", 41, 35, 2, "-", 29, 24, 1] }
   - { name: RTO Budget, type: bar, barGap: "-100%", barWidth: 20, z: 0, itemStyle: { color: "rgba(0,0,0,0.08)" }, emphasis: { itemStyle: { color: "rgba(0,0,0,0.12)" } }, data: [150, 150, 150, "-", 90, 90, 90, "-", 45, 45, 45, "-", 30, 30, 30] }
 ```
@@ -67,21 +56,21 @@ series:
 ## Failure Model
 
 
-|    Item    |   Best   |     Worst     |     Average      | Description                                         |
-|:--------:|:------:|:----------:|:-----------:|:-------------------------------------------|
-| **Failure Detection** |  `0`   |   `loop`   |  `loop/2`   | Best: PG crashes right before check<br/>Worst: PG crashes right after check           |
-| **Restart Timeout** |  `0`   |  `start`   |   `start`   | Best: PG recovers instantly<br/>Worst: Wait full start timeout before releasing lease         |
-| **Standby Detection** |  `0`   |   `loop`   |  `loop/2`   | Best: Right at check point<br/>Worst: Just missed check point                    |
-| **Lock & Promote** |  `0`   |    `2`     |     `1`     | Best: Acquire lock and promote directly<br/>Worst: API timeout + Promote          |
-| **Health Check** | `(rise-1) × fastinter` | `(rise-1) × fastinter + inter` | `(rise-1) × fastinter + inter/2` | Best: State changes before check<br/>Worst: State changes right after check |
+|        Item         |          Best          |             Worst              |             Average              | Description                                                                           |
+|:-------------------:|:----------------------:|:------------------------------:|:--------------------------------:|:--------------------------------------------------------------------------------------|
+|   **Crash Found**   |          `0`           |             `loop`             |             `loop/2`             | Best: PG crashes right before check<br/>Worst: PG crashes right after check           |
+| **Restart Timeout** |          `0`           |            `start`             |             `start`              | Best: PG recovers instantly<br/>Worst: Wait full start timeout before releasing lease |
+| **Replica Detect**  |          `0`           |             `loop`             |             `loop/2`             | Best: Right at check point<br/>Worst: Just missed check point                         |
+|  **Elect Promote**  |          `0`           |              `2`               |               `1`                | Best: Acquire lock and promote directly<br/>Worst: API timeout + Promote              |
+|  **HAProxy Check**  | `(rise-1) × fastinter` | `(rise-1) × fastinter + inter` | `(rise-1) × fastinter + inter/2` | Best: State changes before check<br/>Worst: State changes right after check           |
 {.full-width}
 
 **Key Difference Between Active and Passive Failure**:
 
-|       Scenario       | Patroni Status |        Lease Handling        |         Main Wait Time          |
-|:--------------:|:----------:|:------------------:|:-----------------------:|
-| **Active Failure** (PG crash) |   Alive, healthy    | Actively tries to restart PG, releases lease after timeout  | `primary_start_timeout` |
-| **Passive Failure** (node down) |  Dies with node   | Cannot actively release, must wait for TTL expiry | `ttl`          |
+|            Scenario             | Patroni Status |                       Lease Handling                       |     Main Wait Time      |
+|:-------------------------------:|:--------------:|:----------------------------------------------------------:|:-----------------------:|
+|  **Active Failure** (PG crash)  | Alive, healthy | Actively tries to restart PG, releases lease after timeout | `primary_start_timeout` |
+| **Passive Failure** (node down) | Dies with node |     Cannot actively release, must wait for TTL expiry      |          `ttl`          |
 {.full-width}
 
 In active failure scenarios, Patroni remains alive and can **actively detect PG crash and attempt restart**.
@@ -264,14 +253,14 @@ pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, r
 
 **Calculation Results for Four Modes** (unit: seconds, format: min / avg / max)
 
-|   Phase   |        fast        |        norm        |        safe         |         wide          |
-|:------:|:------------------:|:------------------:|:-------------------:|:---------------------:|
-|  Failure Detection  |  `0` / `3` / `5`   |  `0` / `3` / `5`   |  `0` / `5` / `10`   |  `0` / `10` / `20`    |
-|  Restart Timeout  | `0` / `15` / `15`  | `0` / `25` / `25`  | `0` / `45` / `45`   |  `0` / `95` / `95`    |
-|  Standby Detection  |  `0` / `3` / `5`   |  `0` / `3` / `5`   |  `0` / `5` / `10`   |  `0` / `10` / `20`    |
-|  Lock & Promote  |  `0` / `1` / `2`   |  `0` / `1` / `2`   |   `0` / `1` / `2`   |    `0` / `1` / `2`    |
-|  Health Check  |  `1` / `2` / `2`   |  `2` / `3` / `4`   |   `3` / `5` / `6`   |    `4` / `6` / `8`    |
-| **Total** | `1` / `24` / `29`  | `2` / `35` / `41`  | `3` / `61` / `73`   | `4` / `122` / `145`   |
+|       Phase       |       fast        |       norm        |       safe        |        wide         |
+|:-----------------:|:-----------------:|:-----------------:|:-----------------:|:-------------------:|
+| Failure Detection |  `0` / `3` / `5`  |  `0` / `3` / `5`  | `0` / `5` / `10`  |  `0` / `10` / `20`  |
+|  Restart Timeout  | `0` / `15` / `15` | `0` / `25` / `25` | `0` / `45` / `45` |  `0` / `95` / `95`  |
+| Standby Detection |  `0` / `3` / `5`  |  `0` / `3` / `5`  | `0` / `5` / `10`  |  `0` / `10` / `20`  |
+|  Lock & Promote   |  `0` / `1` / `2`  |  `0` / `1` / `2`  |  `0` / `1` / `2`  |   `0` / `1` / `2`   |
+|   Health Check    |  `1` / `2` / `2`  |  `2` / `3` / `4`  |  `3` / `5` / `6`  |   `4` / `6` / `8`   |
+|     **Total**     | `1` / `24` / `29` | `2` / `35` / `41` | `3` / `61` / `73` | `4` / `122` / `145` |
 {.full-width}
 
 
@@ -279,12 +268,12 @@ pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, r
 
 ## Comparison with Passive Failure
 
-|   Phase   | Active Failure (PG crash) | Passive Failure (node down) | Description                         |
-|:------:|:------------:|:------------:|:---------------------------|
-|  Detection Mechanism  |  Patroni active detection  |  TTL passive expiry   | Active detection discovers failure faster                 |
-|  Core Wait  |   `start`    |    `ttl`     | start is usually less than ttl, but requires additional failure detection time |
-|  Lease Handling  |    Active release     |   Passive expiry     | Active release is more timely                    |
-|  Self-healing Possible  |     Yes      |     No     | Active detection can attempt local recovery                |
+|         Phase         | Active Failure (PG crash) | Passive Failure (node down) | Description                                                                    |
+|:---------------------:|:-------------------------:|:---------------------------:|:-------------------------------------------------------------------------------|
+|  Detection Mechanism  | Patroni active detection  |     TTL passive expiry      | Active detection discovers failure faster                                      |
+|       Core Wait       |          `start`          |            `ttl`            | start is usually less than ttl, but requires additional failure detection time |
+|    Lease Handling     |      Active release       |       Passive expiry        | Active release is more timely                                                  |
+| Self-healing Possible |            Yes            |             No              | Active detection can attempt local recovery                                    |
 {.full-width}
 
 **RTO Comparison** (Average case):

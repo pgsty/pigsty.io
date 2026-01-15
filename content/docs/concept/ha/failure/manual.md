@@ -41,15 +41,15 @@ var fmt = function(params) { if (!params || !params.length || params[0].name ===
 ```
 ```yaml
 tooltip: { trigger: axis, axisPointer: { type: shadow }, formatter: $fn:fmt }
-legend: { top: 0, itemGap: 12, data: [Command, Promote, HealthCheck] }
+legend: { top: 0, itemGap: 12, data: [Command, Promote, Health Check] }
 grid: { left: 64, right: 24, bottom: 32, top: 40 }
 xAxis: { type: value, name: sec, nameLocation: end, max: 15, axisLine: { show: true }, axisTick: { show: true }, splitLine: { show: true, lineStyle: { type: dashed, opacity: 0.5 } }, minorTick: { show: true, splitNumber: 5 }, minorSplitLine: { show: true, lineStyle: { type: dotted, opacity: 0.2 } } }
 yAxis: { type: category, axisLine: { show: true }, axisTick: { show: true }, splitLine: { show: false }, axisLabel: { fontSize: 10, fontFamily: monospace }, data: [wide-max, wide-avg, wide-min, "", safe-max, safe-avg, safe-min, "", norm-max, norm-avg, norm-min, "", fast-max, fast-avg, fast-min] }
 series:
   - { name: Command, type: bar, stack: main, barWidth: 20, z: 2, emphasis: { focus: series }, itemStyle: { color: "#b07aa1" }, data: [2, 1, 0, "-", 2, 1, 0, "-", 2, 1, 0, "-", 2, 1, 0] }
   - { name: Promote, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#59a14f" }, data: [1, 0, 0, "-", 1, 0, 0, "-", 1, 0, 0, "-", 1, 0, 0] }
-  - { name: HealthCheck, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#4e79a7" }, data: [8, 6, 4, "-", 6, 5, 3, "-", 4, 3, 2, "-", 2, 2, 1] }
-  - { name: TotalRTO, type: bar, barGap: "-100%", barWidth: 20, z: 1, itemStyle: { color: "#888", opacity: 0 }, emphasis: { itemStyle: { opacity: 0 } }, data: [11, 7, 4, "-", 9, 6, 3, "-", 7, 4, 2, "-", 5, 3, 1] }
+  - { name: Health Check, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#4e79a7" }, data: [8, 6, 4, "-", 6, 5, 3, "-", 4, 3, 2, "-", 2, 2, 1] }
+  - { name: RTO Total, type: bar, barGap: "-100%", barWidth: 20, z: 1, itemStyle: { color: "#888", opacity: 0 }, emphasis: { itemStyle: { opacity: 0 } }, data: [11, 7, 4, "-", 9, 6, 3, "-", 7, 4, 2, "-", 5, 3, 1] }
 ```
 {{< /echarts >}}
 
@@ -59,20 +59,20 @@ series:
 ## Failure Model
 
 
-|    Phase    |           Best           |               Worst               |                Average                | Notes                                  |
-|:--------:|:----------------------:|:------------------------------:|:--------------------------------:|:--------------------------------------|
-| **Command** |          `0`           |              `2`               |               `1`                | Best: API responds immediately<br/>Worst: Network delay or API timeout |
-| **Promote** |          `0`           |              `1`               |               `0`                | Best: Promote completes instantly<br/>Worst: Checkpoint overhead |
+|      Phase       |          Best          |             Worst              |             Average              | Notes                                                                       |
+|:----------------:|:----------------------:|:------------------------------:|:--------------------------------:|:----------------------------------------------------------------------------|
+|   **Command**    |          `0`           |              `2`               |               `1`                | Best: API responds immediately<br/>Worst: Network delay or API timeout      |
+|   **Promote**    |          `0`           |              `1`               |               `0`                | Best: Promote completes instantly<br/>Worst: Checkpoint overhead            |
 | **Health Check** | `(rise-1) × fastinter` | `(rise-1) × fastinter + inter` | `(rise-1) × fastinter + inter/2` | Best: State changes before check<br/>Worst: State changes right after check |
 {.full-width}
 
 **Key difference between manual and automatic switchover**:
 
-|     Mode      |  Lease Expiry  |  Replica Detection  |    Main Delay     |    Typical RTO    |
-|:-------------:|:------:|:------:|:-----------:|:------------:|
-| **Auto** (Expire) | Wait TTL | Wait loop wake | Lease expiry + Replica detection | 16s ~ 150s  |
-| **Auto** (Crash) | Wait restart timeout | Wait loop wake | Restart timeout + Replica detection | 1s ~ 111s   |
-| **Manual** (Failover) | **Skip** | **Skip** |    Health check     | **1s ~ 11s** |
+|         Mode          |     Lease Expiry     | Replica Detection |             Main Delay              | Typical RTO  |
+|:---------------------:|:--------------------:|:-----------------:|:-----------------------------------:|:------------:|
+|   **Auto** (Expire)   |       Wait TTL       |  Wait loop wake   |  Lease expiry + Replica detection   |  16s ~ 150s  |
+|   **Auto** (Crash)    | Wait restart timeout |  Wait loop wake   | Restart timeout + Replica detection |  1s ~ 111s   |
+| **Manual** (Failover) |       **Skip**       |     **Skip**      |            Health check             | **1s ~ 11s** |
 {.full-width}
 
 Manual switchover skips the most time-consuming **lease expiry** and **replica detection** phases, significantly reducing RTO.
@@ -205,12 +205,12 @@ pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, r
 
 **Four mode calculation results** (seconds, format: min / avg / max)
 
-|   Phase   |      fast       |      norm       |      safe       |       wide       |
-|:------:|:---------------:|:---------------:|:---------------:|:----------------:|
-|  Command  | `0` / `1` / `2` | `0` / `1` / `2` | `0` / `1` / `2` | `0` / `1` / `2`  |
-|  Promote  | `0` / `0` / `1` | `0` / `0` / `1` | `0` / `0` / `1` | `0` / `0` / `1`  |
-|  Health Check  | `1` / `2` / `2` | `2` / `3` / `4` | `3` / `5` / `6` | `4` / `6` / `8`  |
-| **Total** | `1` / `3` / `5` | `2` / `4` / `7` | `3` / `6` / `9` | `4` / `7` / `11` |
+|    Phase     |      fast       |      norm       |      safe       |       wide       |
+|:------------:|:---------------:|:---------------:|:---------------:|:----------------:|
+|   Command    | `0` / `1` / `2` | `0` / `1` / `2` | `0` / `1` / `2` | `0` / `1` / `2`  |
+|   Promote    | `0` / `0` / `1` | `0` / `0` / `1` | `0` / `0` / `1` | `0` / `0` / `1`  |
+| Health Check | `1` / `2` / `2` | `2` / `3` / `4` | `3` / `5` / `6` | `4` / `6` / `8`  |
+|  **Total**   | `1` / `3` / `5` | `2` / `4` / `7` | `3` / `6` / `9` | `4` / `7` / `11` |
 {.full-width}
 
 
@@ -252,10 +252,10 @@ theme light
 
 **WAL catch-up time not counted in RTO**: During catch-up, primary can still handle read-only requests, service not completely interrupted.
 
-|     Type      |      Scenario       |   Primary State   | WAL Catch-up |  Data Loss  |       RTO       |
-|:-----------:|:-------------:|:--------:|:------:|:------:|:---------------:|
-| Switchover  | Planned maintenance, rolling upgrade, migration  |   Running normally   |   Wait   |   None    | ≈ Failover RTO  |
-|  Failover   |  Primary failure, emergency switch   |  Failed or unreachable  |   Skip   | May have some  |   1s ~ 11s    |
+|    Type    |                    Scenario                     |     Primary State     | WAL Catch-up |   Data Loss   |      RTO       |
+|:----------:|:-----------------------------------------------:|:---------------------:|:------------:|:-------------:|:--------------:|
+| Switchover | Planned maintenance, rolling upgrade, migration |   Running normally    |     Wait     |     None      | ≈ Failover RTO |
+|  Failover  |        Primary failure, emergency switch        | Failed or unreachable |     Skip     | May have some |    1s ~ 11s    |
 {.full-width}
 
 **WAL catch-up time** depends on replica replication lag. In normal operation scenarios, replicas usually stay synchronized or near-sync, catch-up completes in milliseconds to seconds.
@@ -270,10 +270,10 @@ With synchronous replication, WAL catch-up time is 0, making Switchover and Fail
 2. **Health check is the main delay source**: 60%~75% of total RTO
 3. **Best choice in emergencies**: If admin can respond quickly, manual Failover is the fastest way to restore service
 
-|    Mode    | Manual Failover | Auto (Expire) | Auto (Crash) |   Speedup   |
-|:--------:|:-----------:|:-----------:|:-----------:|:--------:|
-| **fast** |     3s      |    23s     |    24s     |  **8x**  |
-| **norm** |     4s      |    34s     |    30s     |  **8x**  |
-| **safe** |     6s      |    66s     |    46s     | **8~11x** |
-| **wide** |     7s      |   127s     |    87s     | **12~18x** |
+|   Mode   | Manual Failover | Auto (Expire) | Auto (Crash) |  Speedup   |
+|:--------:|:---------------:|:-------------:|:------------:|:----------:|
+| **fast** |       3s        |      23s      |     24s      |   **8x**   |
+| **norm** |       4s        |      34s      |     30s      |   **8x**   |
+| **safe** |       6s        |      66s      |     46s      | **8~11x**  |
+| **wide** |       7s        |     127s      |     87s      | **12~18x** |
 {.full-width}

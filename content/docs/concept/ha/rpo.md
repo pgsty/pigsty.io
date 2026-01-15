@@ -83,16 +83,16 @@ Pigsty provides three protection modes to help users make trade-offs under diffe
 - Suitable for financial transactions, medical records, and other scenarios with extremely high data integrity requirements
 {{% /alert %}}
 
-| **Name**           |            **Maximum Performance**            |                   **Maximum Availability**                   |                  **Maximum Protection**                  |
-|:-------------------|:---------------------------------------------:|:------------------------------------------------------------:|:--------------------------------------------------------:|
-| **Replication**    |               **Asynchronous**                |                       **Synchronous**                        |                   **Strict Synchronous**                 |
-| **Data Loss**      | <span class="text-danger">**Possible**</span> (replication lag) | <span class="text-primary">**Zero normally, minor when degraded**</span> |       <span class="text-success">**Zero**</span>         |
-| **Write Latency**  |    <span class="text-success">**Lowest**</span>    |  <span class="text-warning">**Medium**</span> (+1 network RTT)  | <span class="text-warning">**Medium**</span> (+1 network RTT) |
-| **Throughput**     |   <span class="text-success">**Highest**</span>   |         <span class="text-warning">**Reduced**</span>          |       <span class="text-warning">**Reduced**</span>        |
-| **Replica Failure Impact** | <span class="text-success">**None**</span>   |   <span class="text-primary">**Auto degrade, service continues**</span>   |    <span class="text-danger">**Primary stops writes**</span>    |
-| **RPO**            | <span class="text-warning">**< 1MB**</span>   | <span class="text-primary">**= 0 (normal) / < 1MB (degraded)**</span> |        <span class="text-success">**= 0**</span>         |
-| **Use Case**       |        Typical business, performance first        |               Critical business, safety first                |          Financial core, compliance first           |
-| **Configuration**  |               Default config                  |     [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) = `0`           | [**`pg_conf`**](/docs/pgsql/param#pg_conf): `crit.yml`   |
+| **Name**                   |                     **Maximum Performance**                     |                         **Maximum Availability**                         |                    **Maximum Protection**                     |
+|:---------------------------|:---------------------------------------------------------------:|:------------------------------------------------------------------------:|:-------------------------------------------------------------:|
+| **Replication**            |                        **Asynchronous**                         |                             **Synchronous**                              |                    **Strict Synchronous**                     |
+| **Data Loss**              | <span class="text-danger">**Possible**</span> (replication lag) | <span class="text-primary">**Zero normally, minor when degraded**</span> |          <span class="text-success">**Zero**</span>           |
+| **Write Latency**          |          <span class="text-success">**Lowest**</span>           |      <span class="text-warning">**Medium**</span> (+1 network RTT)       | <span class="text-warning">**Medium**</span> (+1 network RTT) |
+| **Throughput**             |          <span class="text-success">**Highest**</span>          |              <span class="text-warning">**Reduced**</span>               |         <span class="text-warning">**Reduced**</span>         |
+| **Replica Failure Impact** |           <span class="text-success">**None**</span>            |  <span class="text-primary">**Auto degrade, service continues**</span>   |   <span class="text-danger">**Primary stops writes**</span>   |
+| **RPO**                    |           <span class="text-warning">**< 1MB**</span>           |  <span class="text-primary">**= 0 (normal) / < 1MB (degraded)**</span>   |           <span class="text-success">**= 0**</span>           |
+| **Use Case**               |               Typical business, performance first               |                     Critical business, safety first                      |               Financial core, compliance first                |
+| **Configuration**          |                         Default config                          |              [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) = `0`              |    [**`pg_conf`**](/docs/pgsql/param#pg_conf): `crit.yml`     |
 {.full-width}
 
 
@@ -107,11 +107,11 @@ The three protection modes differ in how two core **Patroni** parameters are con
 - **`synchronous_mode_strict = false`**: Default configuration, allows degradation to async mode when replicas fail, **primary continues service** (Maximum Availability)
 - **`synchronous_mode_strict = true`**: Degradation forbidden, **primary stops writes** until sync replica recovers (Maximum Protection)
 
-|    Mode    |            **`synchronous_mode`**            |        **`synchronous_mode_strict`**         | Replication Mode       | Replica Failure Behavior                                |
-|:----------:|:--------------------------------------------:|:--------------------------------------------:|------------------------|:--------------------------------------------------------|
-| **Max Performance** | <span class="text-danger">**`false`**</span> |                      -                       | **Async**              | <span class="text-success">**No impact**</span>         |
+|         Mode         |            **`synchronous_mode`**            |        **`synchronous_mode_strict`**         | Replication Mode       | Replica Failure Behavior                                    |
+|:--------------------:|:--------------------------------------------:|:--------------------------------------------:|------------------------|:------------------------------------------------------------|
+| **Max Performance**  | <span class="text-danger">**`false`**</span> |                      -                       | **Async**              | <span class="text-success">**No impact**</span>             |
 | **Max Availability** | <span class="text-success">**`true`**</span> | <span class="text-danger">**`false`**</span> | **Synchronous**        | <span class="text-primary">**Auto degrade to async**</span> |
-| **Max Protection** | <span class="text-success">**`true`**</span> | <span class="text-success">**`true`**</span> | **Strict Synchronous** | <span class="text-danger">**Primary refuses writes**</span>  |
+|  **Max Protection**  | <span class="text-success">**`true`**</span> | <span class="text-success">**`true`**</span> | **Strict Synchronous** | <span class="text-danger">**Primary refuses writes**</span> |
 {.full-width}
 
 Typically, you only need to set the [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) parameter to `0` to enable the `synchronous_mode` switch, activating **Maximum Availability mode**.

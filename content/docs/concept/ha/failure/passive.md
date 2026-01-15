@@ -12,21 +12,13 @@ categories: [Concept]
 ```
 infographic list-row-simple-horizontal-arrow
 data
-  title Lease Expiration Failover Flow
-  desc When node crashes, Patroni cannot actively release lease, must wait for TTL expiration
+  
+  desc Lease Expiration Stages
   items
     - label Lease Expiration
-      desc Patroni disconnected, passively waiting for primary lease TTL expiration
-      icon mingcute/close-circle-fill
-    - label Replica Detection
-      desc Replica wakes from loop and detects lease expiration, starts election
-      icon mingcute/key-2-fill
-    - label Lock Contest & Promote
-      desc Replicas compare and contest for lock, winner promotes its PG
-      icon mingcute/radar-fill
-    - label Health Check
-      desc HAProxy health check detects new primary online, routes traffic
-      icon mingcute/arrow-up-circle-fill
+    - label Replica Detect
+    - label Elect & Promote
+    - label Haproxy Up
 theme light
   palette antv
 ```
@@ -48,10 +40,10 @@ grid: { left: 64, right: 24, bottom: 32, top: 40 }
 xAxis: { type: value, name: Seconds, nameLocation: end, max: 160, axisLine: { show: true }, axisTick: { show: true }, splitLine: { show: true, lineStyle: { type: dashed, opacity: 0.5 } }, minorTick: { show: true, splitNumber: 5 }, minorSplitLine: { show: true, lineStyle: { type: dotted, opacity: 0.2 } } }
 yAxis: { type: category, axisLine: { show: true }, axisTick: { show: true }, splitLine: { show: false }, axisLabel: { fontSize: 10, fontFamily: monospace }, data: [wide-max, wide-avg, wide-min, "", safe-max, safe-avg, safe-min, "", norm-max, norm-avg, norm-min, "", fast-max, fast-avg, fast-min] }
 series:
-  - { name: Lease Expiration, type: bar, stack: main, barWidth: 20, z: 2, emphasis: { focus: series }, itemStyle: { color: "#e15759" }, data: [120, 110, 100, "-", 60, 55, 50, "-", 30, 27, 25, "-", 20, 17, 15] }
-  - { name: Replica Detection, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#edc949" }, data: [20, 10, 0, "-", 10, 5, 0, "-", 5, 3, 0, "-", 5, 3, 0] }
-  - { name: Lock Contest & Promote, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#59a14f" }, data: [2, 1, 0, "-", 2, 1, 0, "-", 2, 1, 0, "-", 2, 1, 0] }
-  - { name: Health Check, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#4e79a7" }, data: [8, 6, 4, "-", 6, 5, 3, "-", 4, 3, 2, "-", 2, 2, 1] }
+  - { name: Lease Expire, type: bar, stack: main, barWidth: 20, z: 2, emphasis: { focus: series }, itemStyle: { color: "#e15759" }, data: [120, 110, 100, "-", 60, 55, 50, "-", 30, 27, 25, "-", 20, 17, 15] }
+  - { name: Replica Detect, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#edc949" }, data: [20, 10, 0, "-", 10, 5, 0, "-", 5, 3, 0, "-", 5, 3, 0] }
+  - { name: Elect & Promote, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#59a14f" }, data: [2, 1, 0, "-", 2, 1, 0, "-", 2, 1, 0, "-", 2, 1, 0] }
+  - { name: HAProxy Check, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#4e79a7" }, data: [8, 6, 4, "-", 6, 5, 3, "-", 4, 3, 2, "-", 2, 2, 1] }
   - { name: Total RTO, type: bar, barGap: "-100%", barWidth: 20, z: 1, itemStyle: { color: "#888", opacity: 0 }, emphasis: { itemStyle: { opacity: 0 } }, data: [150, 127, 104, "-", 78, 66, 53, "-", 41, 34, 27, "-", 29, 23, 16] }
   - { name: RTO Budget, type: bar, barGap: "-100%", barWidth: 20, z: 0, itemStyle: { color: "rgba(0,0,0,0.08)" }, emphasis: { itemStyle: { color: "rgba(0,0,0,0.12)" } }, data: [150, 150, 150, "-", 90, 90, 90, "-", 45, 45, 45, "-", 30, 30, 30] }
 ```
@@ -63,20 +55,20 @@ series:
 ## Failure Model
 
 
-|    Phase    |           Best           |               Worst               |                Average                | Description                             |
-|:--------:|:----------------------:|:------------------------------:|:--------------------------------:|:-------------------------------|
-| **Lease Expiration** |      `ttl - loop`      |             `ttl`              |          `ttl - loop/2`          | Best: crash just before refresh<br/>Worst: crash right after refresh      |
-| **Replica Detection** |          `0`           |             `loop`             |            `loop / 2`            | Best: exactly at check point<br/>Worst: just missed check point        |
-| **Lock Contest & Promote** |          `0`           |              `2`               |               `1`                | Best: direct lock and promote<br/>Worst: API timeout + Promote |
-| **Health Check** | `(rise-1) × fastinter` | `(rise-1) × fastinter + inter` | `(rise-1) × fastinter + inter/2` | Best: state change before check<br/>Worst: state change right after check    |
+|         Phase         |          Best          |             Worst              |             Average              | Description                                                               |
+|:---------------------:|:----------------------:|:------------------------------:|:--------------------------------:|:--------------------------------------------------------------------------|
+| **Lease Expiration**  |      `ttl - loop`      |             `ttl`              |          `ttl - loop/2`          | Best: crash just before refresh<br/>Worst: crash right after refresh      |
+| **Replica Detect** |          `0`           |             `loop`             |            `loop / 2`            | Best: exactly at check point<br/>Worst: just missed check point           |
+| **Election Promote**  |          `0`           |              `2`               |               `1`                | Best: direct lock and promote<br/>Worst: API timeout + Promote            |
+|   **HAProxy Check**   | `(rise-1) × fastinter` | `(rise-1) × fastinter + inter` | `(rise-1) × fastinter + inter/2` | Best: state change before check<br/>Worst: state change right after check |
 {.full-width}
 
 **Key Difference Between Passive and Active Failover**:
 
-|       Scenario       | Patroni Status |        Lease Handling        |         Primary Wait Time          |
-|:--------------:|:----------:|:------------------:|:-----------------------:|
-| **Active Failover** (PG crash) |   Alive, healthy    | Actively tries to restart PG, releases lease on timeout  | `primary_start_timeout` |
-| **Passive Failover** (Node crash) |  Dies with node   | Cannot actively release, must wait for TTL expiration | `ttl`          |
+|             Scenario              | Patroni Status |                     Lease Handling                      |    Primary Wait Time    |
+|:---------------------------------:|:--------------:|:-------------------------------------------------------:|:-----------------------:|
+|  **Active Failover** (PG crash)   | Alive, healthy | Actively tries to restart PG, releases lease on timeout | `primary_start_timeout` |
+| **Passive Failover** (Node crash) | Dies with node |  Cannot actively release, must wait for TTL expiration  |          `ttl`          |
 {.full-width}
 
 In passive failover scenarios, Patroni dies along with the node and **cannot actively release the Leader Key**.
@@ -231,11 +223,11 @@ pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, r
 
 **Four Mode Calculation Results** (unit: seconds, format: min / avg / max)
 
-|   Phase   |        fast        |        norm        |        safe         |         wide          |
-|:------:|:------------------:|:------------------:|:-------------------:|:---------------------:|
-|  Lease Expiration  | `15` / `17` / `20` | `25` / `27` / `30` | `50` / `55` / `60`  | `100` / `110` / `120` |
-|  Replica Detection  |  `0` / `3` / `5`   |  `0` / `3` / `5`   |  `0` / `5` / `10`   |   `0` / `10` / `20`   |
-|  Lock Contest & Promote  |  `0` / `1` / `2`   |  `0` / `1` / `2`   |   `0` / `1` / `2`   |    `0` / `1` / `2`    |
-|  Health Check  |  `1` / `2` / `2`   |  `2` / `3` / `4`   |   `3` / `5` / `6`   |    `4` / `6` / `8`    |
-| **Total** | `16` / `23` / `29` | `27` / `34` / `41` | `53` / `66` / `78`  | `104` / `127` / `150` |
+|         Phase          |        fast        |        norm        |        safe        |         wide          |
+|:----------------------:|:------------------:|:------------------:|:------------------:|:---------------------:|
+|    Lease Expiration    | `15` / `17` / `20` | `25` / `27` / `30` | `50` / `55` / `60` | `100` / `110` / `120` |
+|   Replica Detection    |  `0` / `3` / `5`   |  `0` / `3` / `5`   |  `0` / `5` / `10`  |   `0` / `10` / `20`   |
+| Lock Contest & Promote |  `0` / `1` / `2`   |  `0` / `1` / `2`   |  `0` / `1` / `2`   |    `0` / `1` / `2`    |
+|      Health Check      |  `1` / `2` / `2`   |  `2` / `3` / `4`   |  `3` / `5` / `6`   |    `4` / `6` / `8`    |
+|       **Total**        | `16` / `23` / `29` | `27` / `34` / `41` | `53` / `66` / `78` | `104` / `127` / `150` |
 {.full-width}

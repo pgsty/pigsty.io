@@ -1,7 +1,7 @@
 ---
 title: Network Partition
 weight: 50
-description: Primary loses DCS connectivity, causing lease expiry and triggering split-brain protection and failover
+description: Primary loses DCS connectivity, causing lease expiration and triggering split-brain protection and failover
 icon: fa-solid fa-network-wired
 draft: true
 module: [PGSQL]
@@ -13,16 +13,16 @@ categories: [Concept]
 infographic list-row-simple-horizontal-arrow
 data
   title Network Partition Failover Flow
-  desc Primary partitioned from DCS, Patroni proactively demotes to prevent split-brain, waits for TTL expiry before switchover
+  desc Primary partitioned from DCS, Patroni proactively demotes to prevent split-brain, waits for TTL expiration before switchover
   items
     - label Primary Demote
       desc Patroni demotes PG after retry timeout
       icon mingcute/shield-fill
-    - label Lease Expiry
+    - label Lease Expiration
       desc Leader Key TTL expires
       icon mingcute/close-circle-fill
     - label Replica Detection
-      desc Replica detects lease expiry, starts election
+      desc Replica detects lease expiration, starts election
       icon mingcute/key-2-fill
     - label Lock & Promote
       desc Replica acquires lock and promotes to new primary
@@ -46,18 +46,18 @@ var fmt = function(params) { if (!params || !params.length || params[0].name ===
 ```
 ```yaml
 tooltip: { trigger: axis, axisPointer: { type: shadow }, formatter: $fn:fmt }
-legend: { top: 0, itemGap: 12, data: [Demote, LeaseExpiry, ReplicaDetect, LockPromote, HealthCheck] }
+legend: { top: 0, itemGap: 12, data: [Primary Demote, Lease Expiration, Replica Detection, Lock & Promote, Health Check] }
 grid: { left: 64, right: 24, bottom: 32, top: 40 }
 xAxis: { type: value, name: sec, nameLocation: end, max: 160, axisLine: { show: true }, axisTick: { show: true }, splitLine: { show: true, lineStyle: { type: dashed, opacity: 0.5 } }, minorTick: { show: true, splitNumber: 5 }, minorSplitLine: { show: true, lineStyle: { type: dotted, opacity: 0.2 } } }
 yAxis: { type: category, axisLine: { show: true }, axisTick: { show: true }, splitLine: { show: false }, axisLabel: { fontSize: 10, fontFamily: monospace }, data: [wide-max, wide-avg, wide-min, "", safe-max, safe-avg, safe-min, "", norm-max, norm-avg, norm-min, "", fast-max, fast-avg, fast-min] }
 series:
-  - { name: Demote, type: bar, stack: main, barWidth: 20, z: 2, emphasis: { focus: series }, itemStyle: { color: "#76b7b2" }, data: [50, 40, 30, "-", 30, 25, 20, "-", 15, 13, 10, "-", 10, 8, 5] }
-  - { name: LeaseExpiry, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#e15759" }, data: [70, 70, 70, "-", 30, 30, 30, "-", 15, 15, 15, "-", 10, 10, 10] }
-  - { name: ReplicaDetect, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#edc949" }, data: [20, 10, 0, "-", 10, 5, 0, "-", 5, 3, 0, "-", 5, 3, 0] }
-  - { name: LockPromote, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#59a14f" }, data: [2, 1, 0, "-", 2, 1, 0, "-", 2, 1, 0, "-", 2, 1, 0] }
-  - { name: HealthCheck, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#4e79a7" }, data: [8, 6, 4, "-", 6, 5, 3, "-", 4, 3, 2, "-", 2, 2, 1] }
-  - { name: TotalRTO, type: bar, barGap: "-100%", barWidth: 20, z: 1, itemStyle: { color: "#888", opacity: 0 }, emphasis: { itemStyle: { opacity: 0 } }, data: [150, 127, 104, "-", 78, 66, 53, "-", 41, 34, 27, "-", 29, 23, 16] }
-  - { name: RTOBudget, type: bar, barGap: "-100%", barWidth: 20, z: 0, itemStyle: { color: "rgba(0,0,0,0.08)" }, emphasis: { itemStyle: { color: "rgba(0,0,0,0.12)" } }, data: [150, 150, 150, "-", 90, 90, 90, "-", 45, 45, 45, "-", 30, 30, 30] }
+  - { name: Primary Demote, type: bar, stack: main, barWidth: 20, z: 2, emphasis: { focus: series }, itemStyle: { color: "#76b7b2" }, data: [50, 40, 30, "-", 30, 25, 20, "-", 15, 13, 10, "-", 10, 8, 5] }
+  - { name: Lease Expiration, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#e15759" }, data: [70, 70, 70, "-", 30, 30, 30, "-", 15, 15, 15, "-", 10, 10, 10] }
+  - { name: Replica Detection, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#edc949" }, data: [20, 10, 0, "-", 10, 5, 0, "-", 5, 3, 0, "-", 5, 3, 0] }
+  - { name: Lock & Promote, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#59a14f" }, data: [2, 1, 0, "-", 2, 1, 0, "-", 2, 1, 0, "-", 2, 1, 0] }
+  - { name: Health Check, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#4e79a7" }, data: [8, 6, 4, "-", 6, 5, 3, "-", 4, 3, 2, "-", 2, 2, 1] }
+  - { name: RTO Total, type: bar, barGap: "-100%", barWidth: 20, z: 1, itemStyle: { color: "#888", opacity: 0 }, emphasis: { itemStyle: { opacity: 0 } }, data: [150, 127, 104, "-", 78, 66, 53, "-", 41, 34, 27, "-", 29, 23, 16] }
+  - { name: RTO Budget, type: bar, barGap: "-100%", barWidth: 20, z: 0, itemStyle: { color: "rgba(0,0,0,0.08)" }, emphasis: { itemStyle: { color: "rgba(0,0,0,0.12)" } }, data: [150, 150, 150, "-", 90, 90, 90, "-", 45, 45, 45, "-", 30, 30, 30] }
 ```
 {{< /echarts >}}
 
@@ -70,7 +70,7 @@ series:
 |    Phase    |            Best            |             Worst              |             Average              | Notes                               |
 |:--------:|:------------------------:|:---------------------------:|:---------------------------:|:---------------------------------|
 | **Demote** |         `retry`          |       `loop + retry`        |       `loop/2 + retry`      | Patroni retries after detecting partition, demotes after timeout |
-| **Lease Expiry** |    `ttl - loop - retry`  |     `ttl - loop - retry`    |     `ttl - loop - retry`    | Remaining TTL time after demotion (approximately constant) |
+| **Lease Expiration** |    `ttl - loop - retry`  |     `ttl - loop - retry`    |     `ttl - loop - retry`    | Remaining TTL time after demotion (approximately constant) |
 | **Replica Detection** |           `0`            |           `loop`            |          `loop/2`           | Best: Right at detection point<br/>Worst: Just missed detection |
 | **Lock & Promote** |           `0`            |            `2`              |             `1`             | Best: Direct lock and promote<br/>Worst: API timeout + Promote |
 | **Health Check** |  `(rise-1) × fastinter`  | `(rise-1) × fastinter + inter` | `(rise-1) × fastinter + inter/2` | Best: State changes before check<br/>Worst: State changes right after check |
@@ -80,8 +80,8 @@ series:
 
 |       Scenario        | Patroni State |    PostgreSQL State     |      Lease Handling       |    Split-brain Risk    |
 |:---------------:|:----------:|:--------------------:|:---------------:|:----------:|
-| **Node Crash** (Expire)  |  Dies with node   |        Completely unavailable         | Passive wait for TTL expiry |     None      |
-| **Network Partition** (This scenario)  | Alive but cannot access DCS |   May still be running (needs active demotion)   | Passive wait for TTL expiry | **Yes, needs protection** |
+| **Node Crash** (Expire)  |  Dies with node   |        Completely unavailable         | Passive wait for TTL expiration |     None      |
+| **Network Partition** (This scenario)  | Alive but cannot access DCS |   May still be running (needs active demotion)   | Passive wait for TTL expiration | **Yes, needs protection** |
 {.full-width}
 
 In network partition scenarios, the primary PostgreSQL may still be running and accepting writes, causing **split-brain** issues.
@@ -118,7 +118,7 @@ loop + retry & \text{worst (partition right after refresh)}
 **Key design**: Patroni requires constraint `loop_wait + 2 × retry_timeout ≤ ttl` to ensure primary demotes before TTL expires.
 
 
-### Phase 2: Lease Expiry
+### Phase 2: Lease Expiration
 
 After primary demotion, Leader Key still exists in DCS, must wait for TTL to naturally expire.
 
@@ -135,7 +135,7 @@ Since the primary has demoted, waiting time during this phase is the remaining T
 T_{expire} = ttl - loop - retry \quad \text{(approximately constant)}
 ```
 
-**Note**: Primary demotion + lease expiry total time still approximately equals `ttl`, same as expire failure.
+**Note**: Primary demotion + lease expiration total time still approximately equals `ttl`, same as expire failure.
 
 
 ### Phase 3: Replica Detection
@@ -215,7 +215,7 @@ T_{haproxy} = \begin{cases}
 
 Sum all phase times to get total RTO.
 
-Since primary demotion + lease expiry ≈ `ttl`, network partition RTO formula is same as expire failure:
+Since primary demotion + lease expiration ≈ `ttl`, network partition RTO formula is same as expire failure:
 
 **Best Case**
 
@@ -268,17 +268,17 @@ pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, r
 
 **Four mode calculation results** (seconds, format: min / avg / max)
 
-|   Phase   |        fast        |        norm        |        safe         |         wide          |
-|:------:|:------------------:|:------------------:|:-------------------:|:---------------------:|
-|  Demote  |  `5` / `8` / `10`  | `10` / `13` / `15` | `20` / `25` / `30`  |  `30` / `40` / `50`   |
-|  Lease Expiry  |       `10`         |        `15`        |        `30`         |         `70`          |
-|  Replica Detect  |  `0` / `3` / `5`   |  `0` / `3` / `5`   |  `0` / `5` / `10`   |   `0` / `10` / `20`   |
-|  Lock & Promote  |  `0` / `1` / `2`   |  `0` / `1` / `2`   |   `0` / `1` / `2`   |    `0` / `1` / `2`    |
-|  Health Check  |  `1` / `2` / `2`   |  `2` / `3` / `4`   |   `3` / `5` / `6`   |    `4` / `6` / `8`    |
-| **Total** | `16` / `23` / `29` | `27` / `34` / `41` | `53` / `66` / `78`  | `104` / `127` / `150` |
+|       Phase        |        fast        |        norm        |        safe         |         wide          |
+|:------------------:|:------------------:|:------------------:|:-------------------:|:---------------------:|
+|   Primary Demote   |  `5` / `8` / `10`  | `10` / `13` / `15` | `20` / `25` / `30`  |  `30` / `40` / `50`   |
+|  Lease Expiration  |       `10`         |        `15`        |        `30`         |         `70`          |
+| Replica Detection  |  `0` / `3` / `5`   |  `0` / `3` / `5`   |  `0` / `5` / `10`   |   `0` / `10` / `20`   |
+|   Lock & Promote   |  `0` / `1` / `2`   |  `0` / `1` / `2`   |   `0` / `1` / `2`   |    `0` / `1` / `2`    |
+|    Health Check    |  `1` / `2` / `2`   |  `2` / `3` / `4`   |   `3` / `5` / `6`   |    `4` / `6` / `8`    |
+|     **Total**      | `16` / `23` / `29` | `27` / `34` / `41` | `53` / `66` / `78`  | `104` / `127` / `150` |
 {.full-width}
 
-**Conclusion**: Network partition RTO is same as expire failure (node crash), as the bottleneck is TTL expiry time.
+**Conclusion**: Network partition RTO is same as expire failure (node crash), as the bottleneck is TTL expiration time.
 
 
 --------
@@ -339,7 +339,7 @@ This is the most common network partition scenario, the main focus of this artic
 ```
 
 - Primary Patroni cannot refresh Leader Key → Active demotion
-- Replica normally detects TTL expiry → Elected as new primary
+- Replica normally detects TTL expiration → Elected as new primary
 - RTO ≈ Expire failure RTO
 
 ### Scenario B: Primary normal, replica partitioned from DCS
@@ -387,9 +387,9 @@ This is the most common network partition scenario, the main focus of this artic
 
 |    Failure Type    |   Primary State   |    Lease Handling    |     RTO      |   Split-brain Risk   |
 |:----------:|:--------:|:----------:|:------------:|:--------:|
-|  **Expire Failure**  |   Node crash   | Passive wait TTL expiry | 16s ~ 150s |    None     |
+|  **Expire Failure**  |   Node crash   | Passive wait TTL expiration | 16s ~ 150s |    None     |
 |  **Crash Failure**  | PG crash, Patroni alive | Release after restart timeout | 1s ~ 111s  |    None     |
-|  **Network Partition**  | Alive but isolated from DCS | Passive wait TTL expiry | 16s ~ 150s | **Yes, needs protection** |
+|  **Network Partition**  | Alive but isolated from DCS | Passive wait TTL expiration | 16s ~ 150s | **Yes, needs protection** |
 |  **Manual Switchover**  |  Normal or failed  |  Direct release/acquire  |  1s ~ 11s  |    None     |
 {.full-width}
 
