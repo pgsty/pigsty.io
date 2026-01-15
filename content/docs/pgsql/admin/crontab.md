@@ -3,7 +3,7 @@ title: Manage PostgreSQL Cron Jobs
 linktitle: Crontab Admin
 weight: 80
 description: Configure crontab to schedule PostgreSQL backups, vacuum freeze, and bloat maintenance tasks
-icon: fa-solid fa-clock
+icon: fa-solid fa-clock-rotate-left
 module: [PGSQL]
 categories: [Admin]
 ---
@@ -13,13 +13,13 @@ Pigsty uses crontab to manage scheduled tasks for routine backups, freezing agin
 
 ## Quick Reference
 
-| Operation                          | Quick Command                                     | Description                   |
-|:----------------------------|:-----------------------------------------|:---------------------|
-| [**Configure Cron Jobs**](#configure-cron-jobs)       | `./pgsql.yml -t pg_crontab -l <cls>`     | Apply pg_crontab config     |
-| [**View Cron Jobs**](#view-cron-jobs)       | `crontab -l`                             | View as postgres user      |
-| [**Physical Backup**](#pg-backup)      | `pg-backup [full\|diff\|incr]`           | Execute backup with pgBackRest   |
-| [**Transaction Freeze**](#pg-vacuum)      | `pg-vacuum [database...]`                | Freeze aging transactions, prevent XID wraparound     |
-| [**Bloat Maintenance**](#pg-repack)      | `pg-repack [database...]`                | Online reorganize bloated tables and indexes          |
+| Operation                                       | Quick Command                        | Description                                       |
+|:------------------------------------------------|:-------------------------------------|:--------------------------------------------------|
+| [**Configure Cron Jobs**](#configure-cron-jobs) | `./pgsql.yml -t pg_crontab -l <cls>` | Apply pg_crontab config                           |
+| [**View Cron Jobs**](#view-cron-jobs)           | `crontab -l`                         | View as postgres user                             |
+| [**Physical Backup**](#pg-backup)               | `pg-backup [full\|diff\|incr]`       | Execute backup with pgBackRest                    |
+| [**Transaction Freeze**](#pg-vacuum)            | `pg-vacuum [database...]`            | Freeze aging transactions, prevent XID wraparound |
+| [**Bloat Maintenance**](#pg-repack)             | `pg-repack [database...]`            | Online reorganize bloated tables and indexes      |
 {.full-width}
 
 For other management tasks, see: [**Backup Management**](/docs/pgsql/backup/), [**Monitoring System**](/docs/pgsql/monitor/), [**HA Management**](/docs/pgsql/admin/patroni).

@@ -3,7 +3,7 @@ title: Managing PostgreSQL HBA Rules
 linkTitle: HBA Admin
 weight: 50
 description: HBA management - refresh rules, verify config, troubleshoot, Pgbouncer HBA
-draft: trues
+draft: true
 icon: fa-solid fa-key
 module: [PGSQL]
 categories: [Task]
@@ -49,13 +49,13 @@ bin/pgsql-hba pg-meta 10.10.10.11 10.10.10.12  # Refresh multiple instances
 
 For complete HBA rule definition reference, see [**HBA Configuration**](/docs/pgsql/config/hba). For overall access control design, see [**Security & Compliance**](/docs/concept/sec/).
 
-| Action                             | Description                              | Risk |
-|:-----------------------------------|:-----------------------------------------|:----:|
-| [**Refresh HBA Rules**](#refresh-hba-rules) | Re-render config files and reload service | Low  |
-| [**Verify HBA Rules**](#verify-hba-rules) | View current rules, test connection auth | Read |
-| [**Common Scenarios**](#common-scenarios) | Add rules, block IP, role-based, post-expansion | Low  |
-| [**Troubleshooting**](#troubleshooting) | Connection rejected, auth failed, rules not applied | -    |
-| [**Pgbouncer HBA**](#pgbouncer-hba) | Pgbouncer connection pool HBA management | Low  |
+| Action                                      | Description                                         | Risk |
+|:--------------------------------------------|:----------------------------------------------------|:----:|
+| [**Refresh HBA Rules**](#refresh-hba-rules) | Re-render config files and reload service           | Low  |
+| [**Verify HBA Rules**](#verify-hba-rules)   | View current rules, test connection auth            | Read |
+| [**Common Scenarios**](#common-scenarios)   | Add rules, block IP, role-based, post-expansion     | Low  |
+| [**Troubleshooting**](#troubleshooting)     | Connection rejected, auth failed, rules not applied |  -   |
+| [**Pgbouncer HBA**](#pgbouncer-hba)         | Pgbouncer connection pool HBA management            | Low  |
 {.full-width}
 
 
@@ -106,12 +106,12 @@ Directly editing `/pg/data/pg_hba.conf` or `/etc/pgbouncer/pgb_hba.conf` works t
 
 **Related Tags**
 
-| Tag              | Description                                  |
-|:-----------------|:---------------------------------------------|
-| `pg_hba`         | Render PostgreSQL HBA config file            |
-| `pg_reload`      | Reload PostgreSQL config (needs `pg_reload=true`) |
-| `pgbouncer_hba`  | Render Pgbouncer HBA config file             |
-| `pgbouncer_reload` | Reload Pgbouncer config                    |
+| Tag                | Description                                       |
+|:-------------------|:--------------------------------------------------|
+| `pg_hba`           | Render PostgreSQL HBA config file                 |
+| `pg_reload`        | Reload PostgreSQL config (needs `pg_reload=true`) |
+| `pgbouncer_hba`    | Render Pgbouncer HBA config file                  |
+| `pgbouncer_reload` | Reload Pgbouncer config                           |
 {.full-width}
 
 
@@ -309,11 +309,11 @@ Pgbouncer HBA management is similar to PostgreSQL, with some differences.
 
 **Config differences**
 
-| Difference | PostgreSQL                | Pgbouncer                       |
-|:-----------|:--------------------------|:--------------------------------|
-| Config file | `/pg/data/pg_hba.conf`   | `/etc/pgbouncer/pgb_hba.conf`   |
-| Replication | Supports `db: replication` | Not supported                  |
-| Local auth  | Uses `ident`             | Uses `peer`                     |
+| Difference  | PostgreSQL                 | Pgbouncer                     |
+|:------------|:---------------------------|:------------------------------|
+| Config file | `/pg/data/pg_hba.conf`     | `/etc/pgbouncer/pgb_hba.conf` |
+| Replication | Supports `db: replication` | Not supported                 |
+| Local auth  | Uses `ident`               | Uses `peer`                   |
 {.full-width}
 
 **Refresh Pgbouncer HBA**

@@ -18,7 +18,7 @@ Pigsty's PostgreSQL clusters come with out-of-the-box high availability, powered
 
 When your PostgreSQL cluster has two or more instances, you automatically have self-healing database high availability without any additional configuration — as long as any instance in the cluster survives, the cluster can provide complete service. Clients only need to connect to any node in the cluster to get full service without worrying about primary-replica topology changes.
 
-With default configuration, the primary failure Recovery Time Objective (RTO) ≈ 30s, and Recovery Point Objective (RPO) < 1MB; for replica failures, RPO = 0 and RTO ≈ 0 (brief interruption). In consistency-first mode, failover can guarantee zero data loss: RPO = 0. All these metrics can be [**configured as needed**](#tradeoffs) based on your actual hardware conditions and reliability requirements.
+With default configuration, the primary failure Recovery Time Objective (RTO) ≈ 45s, and Recovery Point Objective (RPO) < 1MB; for replica failures, RPO = 0 and RTO ≈ 0 (brief interruption). In consistency-first mode, failover can guarantee zero data loss: RPO = 0. All these metrics can be [**configured as needed**](#tradeoffs) based on your actual hardware conditions and reliability requirements.
 
 Pigsty includes built-in HAProxy load balancers for automatic traffic switching, providing DNS/VIP/LVS and other access methods for clients. Failover and switchover are almost transparent to the business side except for brief interruptions - applications don't need to modify connection strings or restart.
 The minimal maintenance window requirements bring great flexibility and convenience: you can perform rolling maintenance and upgrades on the entire cluster without application coordination. The feature that hardware failures can wait until the next day to handle lets developers, operations, and DBAs sleep well during incidents.
@@ -31,7 +31,7 @@ Many large organizations and core institutions have been using Pigsty in product
 
 **What problems does High Availability solve?**
 
-* Elevates data security C/IA availability to a new level: RPO ≈ 0, RTO < 30s.
+* Elevates data security C/IA availability to a new level: RPO ≈ 0, RTO < 45s.
 * Gains seamless rolling maintenance capability, minimizing maintenance window requirements and bringing great convenience.
 * Hardware failures can self-heal immediately without human intervention, allowing operations and DBAs to sleep well.
 * Replicas can handle read-only requests, offloading primary load and fully utilizing resources.
@@ -99,7 +99,7 @@ The default **RTO** and **RPO** values used by Pigsty meet reliability requireme
 Too small an RTO increases false positive rates; too small an RPO reduces the probability of successful automatic failover.
 {{% /alert %}}
 
-The upper limit of unavailability during failover is controlled by the [**`pg_rto`**](/docs/pgsql/param#pg_rto) parameter. **RTO** defaults to `30s`. Increasing it will result in longer primary failure write unavailability, while decreasing it will increase the rate of false positive failovers (e.g., repeated switching due to brief network jitter).
+The upper limit of unavailability during failover is controlled by the [**`pg_rto`**](/docs/pgsql/param#pg_rto) parameter. **RTO** defaults to `45s`. Increasing it will result in longer primary failure write unavailability, while decreasing it will increase the rate of false positive failovers (e.g., repeated switching due to brief network jitter).
 
 The upper limit of potential data loss is controlled by the [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) parameter, defaulting to `1MB`. Reducing this value can lower the data loss ceiling during failover but also increases the probability of refusing automatic failover when replicas are not healthy enough (lagging too far behind).
 
@@ -118,7 +118,7 @@ If you need to ensure zero data loss during failover, you can use the [**`crit.y
 
 Parameter name: `pg_rto`, Type: `int`, Level: `C`
 
-Recovery Time Objective (RTO) in seconds. This is used to calculate Patroni's TTL value, defaulting to `30` seconds.
+Recovery Time Objective (RTO) in seconds. This is used to calculate Patroni's TTL value, defaulting to `45` seconds.
 
 If the primary instance is missing for this long, a new leader election will be triggered. This value is not always better when lower; it involves tradeoffs:
 Reducing this value can decrease unavailability during cluster failover (inability to write), but makes the cluster more sensitive to short-term network jitter, increasing the probability of false positive failover triggers.

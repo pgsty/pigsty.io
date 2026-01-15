@@ -91,7 +91,7 @@ In less than 10 minutes, you'll have a PostgreSQL database cluster with service 
 
 [![pigsty-ha.png](/img/pigsty/ha.png)](/docs/concept/ha)
 
-Hardware failures are covered by the self-healing HA architecture provided by patroni, etcd, and haproxy—in case of primary failure, automatic failover executes within 30 seconds by default.
+Hardware failures are covered by the self-healing HA architecture provided by patroni, etcd, and haproxy—in case of primary failure, automatic failover executes within 45 seconds by default.
 Clients don't need to modify config or restart applications: Haproxy uses patroni health checks for traffic distribution, and read-write requests are automatically routed to the new cluster primary, avoiding split-brain issues.
 This process is seamless—for example, in case of replica failure or planned switchover, clients experience only a momentary flash of the current query.
 

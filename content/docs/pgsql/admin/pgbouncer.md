@@ -1,7 +1,7 @@
 ---
 title: Pgbouncer Connection Pooling
 linkTitle: Pgbouncer Admin
-weight: 35
+weight: 50
 description: Manage Pgbouncer connection pool, including pause, resume, disable, enable, reconnect, kill, and reload operations.
 icon: fa-solid fa-filter
 module: [PGSQL]
@@ -104,20 +104,20 @@ pgbouncer=# SHOW CLIENTS;
 pgbouncer=# SHOW SERVERS;
 ```
 
-| Command                             | Function    | Description                                              |
-|-------------------------------------|-------------|----------------------------------------------------------|
-| [**`PAUSE`**](#pause)               | Pause       | Pause database, wait for txn completion then disconnect  |
-| [**`RESUME`**](#resume)             | Resume      | Resume database paused by PAUSE/KILL/SUSPEND             |
-| [**`DISABLE`**](#disable)           | Disable     | Reject new client connections for database               |
-| [**`ENABLE`**](#enable)             | Enable      | Allow new client connections for database                |
-| [**`RECONNECT`**](#reconnect)       | Reconnect   | Gracefully close and rebuild server connections          |
-| [**`KILL`**](#kill)                 | Kill        | Immediately disconnect all client and server connections |
-| [**`KILL_CLIENT`**](#kill_client)   | Kill Client | Terminate specific client connection                     |
-| [**`SUSPEND`**](#suspend)           | Suspend     | Flush buffers and stop listening, for online restart     |
-| [**`SHUTDOWN`**](#shutdown)         | Shutdown    | Shutdown Pgbouncer process                               |
-| [**`RELOAD`**](#reload)             | Reload      | Reload config files                                      |
+| Command                             | Function    | Description                                                 |
+|-------------------------------------|-------------|-------------------------------------------------------------|
+| [**`PAUSE`**](#pause)               | Pause       | Pause database, wait for txn completion then disconnect     |
+| [**`RESUME`**](#resume)             | Resume      | Resume database paused by PAUSE/KILL/SUSPEND                |
+| [**`DISABLE`**](#disable)           | Disable     | Reject new client connections for database                  |
+| [**`ENABLE`**](#enable)             | Enable      | Allow new client connections for database                   |
+| [**`RECONNECT`**](#reconnect)       | Reconnect   | Gracefully close and rebuild server connections             |
+| [**`KILL`**](#kill)                 | Kill        | Immediately disconnect all client and server connections    |
+| [**`KILL_CLIENT`**](#kill_client)   | Kill Client | Terminate specific client connection                        |
+| [**`SUSPEND`**](#suspend)           | Suspend     | Flush buffers and stop listening, for online restart        |
+| [**`SHUTDOWN`**](#shutdown)         | Shutdown    | Shutdown Pgbouncer process                                  |
+| [**`RELOAD`**](#reload)             | Reload      | Reload config files                                         |
 | [**`WAIT_CLOSE`**](#wait_close)     | Wait Close  | Wait for server connections to close after RECONNECT/RELOAD |
-| [**Monitor Commands**](#monitoring) | Monitor     | View pool status, clients, servers, etc.                 |
+| [**Monitor Commands**](#monitoring) | Monitor     | View pool status, clients, servers, etc.                    |
 {.full-width}
 
 
@@ -300,11 +300,11 @@ SHUTDOWN WAIT_FOR_SERVERS;     -- Wait for server connections to release
 SHUTDOWN WAIT_FOR_CLIENTS;     -- Wait for clients to disconnect (zero-downtime rolling restart)
 ```
 
-| Mode                 | Description                                              |
-|----------------------|----------------------------------------------------------|
-| `SHUTDOWN`           | Immediately shutdown Pgbouncer                           |
-| `WAIT_FOR_SERVERS`   | Stop accepting new connections, wait for server release  |
-| `WAIT_FOR_CLIENTS`   | Stop accepting new connections, wait for all clients disconnect, for rolling restart |
+| Mode               | Description                                                                          |
+|--------------------|--------------------------------------------------------------------------------------|
+| `SHUTDOWN`         | Immediately shutdown Pgbouncer                                                       |
+| `WAIT_FOR_SERVERS` | Stop accepting new connections, wait for server release                              |
+| `WAIT_FOR_CLIENTS` | Stop accepting new connections, wait for all clients disconnect, for rolling restart |
 {.full-width}
 
 ```bash
@@ -409,14 +409,14 @@ For more monitoring command details, see [**Pgbouncer official docs**](https://w
 
 Pgbouncer supports Unix signal control, useful when admin console is unavailable:
 
-| Signal    | Equivalent Command            | Description                    |
-|-----------|-------------------------------|--------------------------------|
-| `SIGHUP`  | `RELOAD`                      | Reload config files            |
-| `SIGTERM` | `SHUTDOWN WAIT_FOR_CLIENTS`   | Graceful shutdown, wait clients|
-| `SIGINT`  | `SHUTDOWN WAIT_FOR_SERVERS`   | Graceful shutdown, wait servers|
-| `SIGQUIT` | `SHUTDOWN`                    | Immediate shutdown             |
-| `SIGUSR1` | `PAUSE`                       | Pause all databases            |
-| `SIGUSR2` | `RESUME`                      | Resume all databases           |
+| Signal    | Equivalent Command          | Description                     |
+|-----------|-----------------------------|---------------------------------|
+| `SIGHUP`  | `RELOAD`                    | Reload config files             |
+| `SIGTERM` | `SHUTDOWN WAIT_FOR_CLIENTS` | Graceful shutdown, wait clients |
+| `SIGINT`  | `SHUTDOWN WAIT_FOR_SERVERS` | Graceful shutdown, wait servers |
+| `SIGQUIT` | `SHUTDOWN`                  | Immediate shutdown              |
+| `SIGUSR1` | `PAUSE`                     | Pause all databases             |
+| `SIGUSR2` | `RESUME`                    | Resume all databases            |
 {.full-width}
 
 ```bash

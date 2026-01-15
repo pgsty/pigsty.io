@@ -1,7 +1,7 @@
 ---
 title: Managing PostgreSQL Extensions
 linktitle: Extension Admin
-weight: 40
+weight: 90
 description: Extension management - download, install, configure, enable, update, and remove extensions
 icon: fas fa-puzzle-piece
 module: [PGSQL]
@@ -456,11 +456,11 @@ sudo apt update
 
 **Difference between extension name and package name**
 
-| Name | Description | Example |
-|:-----|:------------|:--------|
-| Extension name | Name used with `CREATE EXTENSION` | `vector` |
-| Package alias | Standardized name in Pigsty config | `pgvector` |
-| Package name | Actual OS package name | `pgvector_17*` or `postgresql-17-pgvector` |
+| Name           | Description                        | Example                                    |
+|:---------------|:-----------------------------------|:-------------------------------------------|
+| Extension name | Name used with `CREATE EXTENSION`  | `vector`                                   |
+| Package alias  | Standardized name in Pigsty config | `pgvector`                                 |
+| Package name   | Actual OS package name             | `pgvector_17*` or `postgresql-17-pgvector` |
 {.full-width}
 
 **Preloaded extension prevents startup**

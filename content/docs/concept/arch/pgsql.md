@@ -99,7 +99,7 @@ finally, you can swap different [**kernel CPUs**](/docs/pgsql/kernel) and [**ext
 The [**HA**](/docs/concept/ha) subsystem consists of [**Patroni**](#patroni) and [**etcd**](#etcd), responsible for PostgreSQL cluster failure detection, automatic failover, and configuration management.
 
 **How it works**: [Patroni](#patroni) runs on each node, managing the local [PostgreSQL](#postgresql) process and writing cluster state (leader, members, config) to [etcd](#etcd).
-When the primary fails, [Patroni](#patroni) coordinates election via [etcd](#etcd), promoting the healthiest replica to new primary. The entire process is automatic, with RTO typically under 30 seconds.
+When the primary fails, [Patroni](#patroni) coordinates election via [etcd](#etcd), promoting the healthiest replica to new primary. The entire process is automatic, with RTO typically under 45 seconds.
 
 **Key Interactions**:
 - **[PostgreSQL](#postgresql)**: Starts, stops, reloads PG as parent process, controls its lifecycle

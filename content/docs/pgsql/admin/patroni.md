@@ -1,7 +1,7 @@
 ---
 title: Patroni HA Management
 linkTitle: Patroni HA Admin
-weight: 60
+weight: 40
 description: Manage PostgreSQL cluster HA with Patroni, including config changes, status check, switchover, restart, and reinit replica.
 icon: fa-solid fa-infinity
 module: [PGSQL]
@@ -43,23 +43,23 @@ pg ()
 
 ## Available Commands
 
-| Command                           | Function      | Description                                                 |
-|-----------------------------------|---------------|-------------------------------------------------------------|
-| [**`edit-config`**](#edit-config) | Edit Config   | Interactively edit cluster Patroni/PostgreSQL config        |
-| [**`list`**](#list-status)        | List Status   | List cluster members and their status                       |
-| [**`switchover`**](#switchover)   | Switchover    | Switch primary role to specified replica (planned)          |
-| [**`failover`**](#failover)       | Failover      | Force failover to specified replica (emergency)             |
-| [**`restart`**](#restart)         | Restart       | Restart PostgreSQL instance to apply restart-required params|
-| [**`reload`**](#reload)           | Reload        | Reload Patroni config (no restart needed)                   |
-| [**`reinit`**](#reinit-replica)   | Reinit Replica| Reinitialize replica (wipe data and re-clone)               |
-| [**`pause`**](#pause)             | Pause Auto-Failover | Pause Patroni automatic failover                      |
-| [**`resume`**](#resume)           | Resume Auto-Failover| Resume Patroni automatic failover                     |
-| [**`history`**](#history)         | View History  | Show cluster failover history                               |
-| [**`show-config`**](#show-config) | Show Config   | Display current cluster config (read-only)                  |
-| [**`query`**](#query)             | Execute Query | Execute SQL query on cluster members                        |
-| [**`topology`**](#topology)       | View Topology | Display cluster replication topology                        |
-| [**`version`**](#version)         | View Version  | Display Patroni version info                                |
-| [**`remove`**](#remove)           | Remove Member | Remove cluster member from DCS (dangerous)                  |
+| Command                           | Function             | Description                                                  |
+|-----------------------------------|----------------------|--------------------------------------------------------------|
+| [**`edit-config`**](#edit-config) | Edit Config          | Interactively edit cluster Patroni/PostgreSQL config         |
+| [**`list`**](#list-status)        | List Status          | List cluster members and their status                        |
+| [**`switchover`**](#switchover)   | Switchover           | Switch primary role to specified replica (planned)           |
+| [**`failover`**](#failover)       | Failover             | Force failover to specified replica (emergency)              |
+| [**`restart`**](#restart)         | Restart              | Restart PostgreSQL instance to apply restart-required params |
+| [**`reload`**](#reload)           | Reload               | Reload Patroni config (no restart needed)                    |
+| [**`reinit`**](#reinit-replica)   | Reinit Replica       | Reinitialize replica (wipe data and re-clone)                |
+| [**`pause`**](#pause)             | Pause Auto-Failover  | Pause Patroni automatic failover                             |
+| [**`resume`**](#resume)           | Resume Auto-Failover | Resume Patroni automatic failover                            |
+| [**`history`**](#history)         | View History         | Show cluster failover history                                |
+| [**`show-config`**](#show-config) | Show Config          | Display current cluster config (read-only)                   |
+| [**`query`**](#query)             | Execute Query        | Execute SQL query on cluster members                         |
+| [**`topology`**](#topology)       | View Topology        | Display cluster replication topology                         |
+| [**`version`**](#version)         | View Version         | Display Patroni version info                                 |
+| [**`remove`**](#remove)           | Remove Member        | Remove cluster member from DCS (dangerous)                   |
 {.full-width}
 
 

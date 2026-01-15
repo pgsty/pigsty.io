@@ -26,11 +26,11 @@ Pigsty provides:
 
 - **Out-of-the-Box PostgreSQL Distribution**
 
-  Pigsty deeply integrates [**440+ extensions**](https://pgext.cloud/zh/list) from the PostgreSQL ecosystem, providing out-of-the-box distributed, time-series, geographic, spatial, graph, vector, search, and other multi-modal database capabilities. From kernel to RDS distribution, providing production-grade database services for versions 13-18 on EL/Debian/Ubuntu.
+  Pigsty deeply integrates [**440+ extensions**](https://pgext.cloud/list) from the PostgreSQL ecosystem, providing out-of-the-box distributed, time-series, geographic, spatial, graph, vector, search, and other multi-modal database capabilities. From kernel to RDS distribution, providing production-grade database services for versions 13-18 on EL/Debian/Ubuntu.
 
 - **Self-Healing High Availability Architecture**
 
-  A [**high availability architecture**](/docs/concept/ha) built on Patroni, Etcd, and HAProxy enables automatic failover for hardware failures with seamless traffic handoff. Primary failure recovery time RTO < 30s, data recovery point RPO ≈ 0. You can perform rolling maintenance and upgrades on the entire cluster without application coordination.
+  A [**high availability architecture**](/docs/concept/ha) built on Patroni, Etcd, and HAProxy enables automatic failover for hardware failures with seamless traffic handoff. Primary failure recovery time RTO < 45s, data recovery point RPO ≈ 0. You can perform rolling maintenance and upgrades on the entire cluster without application coordination.
 
 - **Complete Point-in-Time Recovery Capability**
 
