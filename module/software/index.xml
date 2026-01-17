@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SOFTWARE on PIGSTY</title><link>https://pigsty.io/module/software/</link><description>Recent content in SOFTWARE on PIGSTY</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 11 Jan 2026 17:41:46 +0800</lastBuildDate><atom:link href="https://pigsty.io/module/software/index.xml" rel="self" type="application/rss+xml"/><item><title>Enterprise Self-Hosted Supabase</title><link>https://pigsty.io/docs/app/supabase/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/supabase/</guid><description>&lt;p&gt;Supabase is great, but having your own Supabase is even better.
+Pigsty can help you deploy enterprise-grade Supabase on your own servers (physical, virtual, or cloud) with a single command — more extensions, better performance, deeper control, and more cost-effective.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Pigsty is one of three self-hosting approaches listed on the Supabase official documentation: &lt;a href="https://supabase.com/docs/guides/self-hosting#third-party-guides"&gt;Self-hosting: Third-Party Guides&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This tutorial requires basic Linux knowledge. Otherwise, consider using Supabase cloud or plain Docker Compose self-hosting.&lt;/p&gt;</description></item><item><title>Odoo: Self-Hosted Open Source ERP</title><link>https://pigsty.io/docs/app/odoo/</link><pubDate>Sun, 23 Jun 2024 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/odoo/</guid><description>&lt;p&gt;&lt;a href="https://www.odoo.com/"&gt;Odoo&lt;/a&gt; is an open-source enterprise resource planning (ERP) software that provides a full suite of business applications, including CRM, sales, purchasing, inventory, production, accounting, and other management functions. Odoo is a typical web application that uses PostgreSQL as its underlying database.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;All your business on one platform — Simple, efficient, yet affordable&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Public Demo (may not always be available): &lt;a href="http://odoo.pigsty.io"&gt;http://odoo.pigsty.io&lt;/a&gt;, username: &lt;code&gt;test@pigsty.io&lt;/code&gt;, password: &lt;code&gt;pigsty&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;On a fresh Linux x86/ARM server running a compatible operating system:&lt;/p&gt;</description></item><item><title>Dify: AI Workflow Platform</title><link>https://pigsty.io/docs/app/dify/</link><pubDate>Sun, 23 Jun 2024 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/dify/</guid><description>&lt;p&gt;&lt;a href="https://dify.ai/"&gt;&lt;strong&gt;Dify&lt;/strong&gt;&lt;/a&gt; is a Generative AI Application Innovation Engine and open-source LLM application development platform. It provides capabilities from Agent building to AI workflow orchestration, RAG retrieval, and model management, helping users easily build and operate generative AI native applications.&lt;/p&gt;
+&lt;p&gt;Pigsty provides support for self-hosted Dify, allowing you to deploy Dify with a single command while storing critical state in externally managed PostgreSQL. You can use pgvector as a vector database in the same PostgreSQL instance, further simplifying deployment.&lt;/p&gt;</description></item><item><title>NocoDB: Open-Source Airtable</title><link>https://pigsty.io/docs/app/nocodb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/nocodb/</guid><description>&lt;p&gt;&lt;a href="https://nocodb.com/"&gt;&lt;strong&gt;NocoDB&lt;/strong&gt;&lt;/a&gt; is an open-source Airtable alternative that turns any database into a smart spreadsheet.&lt;/p&gt;
+&lt;p&gt;It provides a rich user interface that allows you to create powerful database applications without writing code. NocoDB supports PostgreSQL, MySQL, SQL Server, and more, making it ideal for building internal tools and data management systems.&lt;/p&gt;
+&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;Pigsty provides a Docker Compose configuration file for NocoDB in the software template directory:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87"&gt;cd&lt;/span&gt; ~/pigsty/app/nocodb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Review and modify the &lt;code&gt;.env&lt;/code&gt; configuration file (adjust database connections as needed).&lt;/p&gt;</description></item><item><title>Teable: AI No-Code Database</title><link>https://pigsty.io/docs/app/teable/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/teable/</guid><description>&lt;p&gt;&lt;a href="https://teable.io/"&gt;&lt;strong&gt;Teable&lt;/strong&gt;&lt;/a&gt; is an AI-powered no-code database platform designed for team collaboration and automation.&lt;/p&gt;
+&lt;p&gt;Teable perfectly combines the power of databases with the ease of spreadsheets, integrating AI capabilities to help teams efficiently generate, automate, and collaborate on data.&lt;/p&gt;
+&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;Teable requires a complete Pigsty environment (including PostgreSQL, Redis, MinIO).&lt;/p&gt;
+&lt;h3 id="prepare-environment"&gt;Prepare Environment&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87"&gt;cd&lt;/span&gt; ~/pigsty
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./bootstrap &lt;span style="color:#8f5902;font-style:italic"&gt;# Prepare local repo and Ansible&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./configure -c app/teable &lt;span style="color:#8f5902;font-style:italic"&gt;# Important: modify default credentials!&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./deploy.yml &lt;span style="color:#8f5902;font-style:italic"&gt;# Install Pigsty, PostgreSQL, MinIO&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./redis.yml &lt;span style="color:#8f5902;font-style:italic"&gt;# Install Redis instance&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./docker.yml &lt;span style="color:#8f5902;font-style:italic"&gt;# Install Docker and Docker Compose&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./app.yml &lt;span style="color:#8f5902;font-style:italic"&gt;# Install Teable with Docker Compose&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="access-service"&gt;Access Service&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Default URL: &lt;a href="http://teable.pigsty"&gt;http://teable.pigsty&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Alternate URL: http://10.10.10.10:3000&lt;/li&gt;
+&lt;li&gt;First-time access requires registering an administrator account&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="management-commands"&gt;Management Commands&lt;/h2&gt;
+&lt;p&gt;Manage Teable in the Pigsty software template directory:&lt;/p&gt;</description></item><item><title>Gitea: Simple Self-Hosting Git Service</title><link>https://pigsty.io/docs/app/gitea/</link><pubDate>Wed, 25 May 2022 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/gitea/</guid><description>&lt;p&gt;Public Demo: &lt;a href="http://git.pigsty.cc"&gt;http://git.pigsty.cc&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://pigsty.io/img/docs/app/gitea.jpeg" alt=""&gt;&lt;/p&gt;
+&lt;h2 id="tldr"&gt;TL;DR&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87"&gt;cd&lt;/span&gt; ~/pigsty/app/gitea&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt; make up
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Pigsty use &lt;code&gt;8889&lt;/code&gt; port for gitea by default&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://git.pigsty"&gt;http://git.pigsty&lt;/a&gt; or http://10.10.10.10:8889&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make up &lt;span style="color:#8f5902;font-style:italic"&gt;# pull up gitea with docker-compose in minimal mode&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make run &lt;span style="color:#8f5902;font-style:italic"&gt;# launch gitea with docker , local data dir and external PostgreSQL&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make view &lt;span style="color:#8f5902;font-style:italic"&gt;# print gitea access point&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make log &lt;span style="color:#8f5902;font-style:italic"&gt;# tail -f gitea logs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make info &lt;span style="color:#8f5902;font-style:italic"&gt;# introspect gitea with jq&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make stop &lt;span style="color:#8f5902;font-style:italic"&gt;# stop gitea container&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make clean &lt;span style="color:#8f5902;font-style:italic"&gt;# remove gitea container&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make pull &lt;span style="color:#8f5902;font-style:italic"&gt;# pull latest gitea image&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make rmi &lt;span style="color:#8f5902;font-style:italic"&gt;# remove gitea image&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make save &lt;span style="color:#8f5902;font-style:italic"&gt;# save gitea image to /tmp/gitea.tgz&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make load &lt;span style="color:#8f5902;font-style:italic"&gt;# load gitea image from /tmp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="postgresql-preparation"&gt;PostgreSQL Preparation&lt;/h2&gt;
+&lt;p&gt;Gitea use built-in SQLite as default metadata storage, you can let Gitea use external PostgreSQL by setting connection string environment variable&lt;/p&gt;</description></item><item><title>Wiki.js: OSS Wiki Software</title><link>https://pigsty.io/docs/app/wiki/</link><pubDate>Wed, 25 May 2022 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/wiki/</guid><description>&lt;p&gt;Public Demo: &lt;a href="http://wiki.pigsty.cc"&gt;http://wiki.pigsty.cc&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://pigsty.io/img/docs/app/wiki.jpg" alt=""&gt;&lt;/p&gt;
+&lt;h2 id="tl-dr"&gt;TL; DR&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87"&gt;cd&lt;/span&gt; app/wiki &lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt; docker-compose up -d
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="postgres-preparation"&gt;Postgres Preparation&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# postgres://dbuser_wiki:DBUser.Wiki@10.10.10.10:5432/wiki&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;- {&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;name: wiki, owner: dbuser_wiki, revokeconn: true , comment&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;wiki the api gateway database }&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;- {&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;name: dbuser_wiki, password: DBUser.Wiki , pgbouncer: true , roles&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;[&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;dbrole_admin ] }&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-user pg-meta dbuser_wiki
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-db pg-meta wiki
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="configuration"&gt;Configuration&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;version&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#4e9a06"&gt;&amp;#34;3&amp;#34;&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;services&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;wiki&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;container_name&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;wiki&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;image&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;requarks/wiki:2&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;environment&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;DB_TYPE&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;postgres&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;DB_HOST&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#0000cf;font-weight:bold"&gt;10.10.10.10&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;DB_PORT&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#0000cf;font-weight:bold"&gt;5432&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;DB_USER&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;dbuser_wiki&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;DB_PASS&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;DBUser.Wiki&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;DB_NAME&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;wiki&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;restart&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;unless-stopped&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;ports&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;- &lt;span style="color:#4e9a06"&gt;&amp;#34;9002:3000&amp;#34;&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="access"&gt;Access&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Default Port for wiki: 9002&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# add to nginx_upstream&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;- {&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;name: wiki , domain: wiki.pigsty.cc , endpoint&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#4e9a06"&gt;&amp;#34;127.0.0.1:9002&amp;#34;&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;}&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t nginx_config
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ansible all -b -a &lt;span style="color:#4e9a06"&gt;&amp;#39;nginx -s reload&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>Mattermost: Open-Source IM</title><link>https://pigsty.io/docs/app/mattermost/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/mattermost/</guid><description>&lt;p&gt;&lt;a href="https://mattermost.com/"&gt;&lt;strong&gt;Mattermost&lt;/strong&gt;&lt;/a&gt; is an open-source team collaboration and messaging platform.&lt;/p&gt;
+&lt;p&gt;Mattermost provides instant messaging, file sharing, audio/video calls, and more. It&amp;rsquo;s an open-source alternative to Slack and Microsoft Teams, particularly suitable for enterprises requiring self-hosted deployment.&lt;/p&gt;
+&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87"&gt;cd&lt;/span&gt; ~/pigsty/app/mattermost
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make up &lt;span style="color:#8f5902;font-style:italic"&gt;# Start Mattermost with Docker Compose&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Access URL: &lt;a href="http://mattermost.pigsty"&gt;http://mattermost.pigsty&lt;/a&gt; or http://10.10.10.10:8065&lt;/p&gt;
+&lt;p&gt;First-time access requires creating an administrator account.&lt;/p&gt;
+&lt;h2 id="features"&gt;Features&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Instant Messaging&lt;/strong&gt;: Personal and group chat&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Channel Management&lt;/strong&gt;: Public and private channels&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;File Sharing&lt;/strong&gt;: Secure file storage and sharing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Audio/Video Calls&lt;/strong&gt;: Built-in calling functionality&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Integration Capabilities&lt;/strong&gt;: Webhooks, Bots, and plugins support&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mobile Apps&lt;/strong&gt;: iOS and Android clients&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Enterprise-grade&lt;/strong&gt;: SSO, LDAP, compliance features&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="connect-to-postgresql"&gt;Connect to PostgreSQL&lt;/h2&gt;
+&lt;p&gt;Mattermost uses PostgreSQL for data storage. Configure the connection information:&lt;/p&gt;</description></item><item><title>Maybe: Personal Finance</title><link>https://pigsty.io/docs/app/maybe/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/maybe/</guid><description>&lt;p&gt;&lt;a href="https://github.com/maybe-finance/maybe"&gt;&lt;strong&gt;Maybe&lt;/strong&gt;&lt;/a&gt; is an open-source personal finance management application.&lt;/p&gt;
+&lt;p&gt;Maybe provides financial tracking, budget management, investment analysis, and more. It&amp;rsquo;s an open-source alternative to Mint and Personal Capital, giving you complete control over your financial data.&lt;/p&gt;
+&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87"&gt;cd&lt;/span&gt; ~/pigsty/app/maybe
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cp .env.example .env
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;vim .env &lt;span style="color:#8f5902;font-style:italic"&gt;# Must modify SECRET_KEY_BASE&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make up &lt;span style="color:#8f5902;font-style:italic"&gt;# Start Maybe service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Access URL: &lt;a href="http://maybe.pigsty"&gt;http://maybe.pigsty&lt;/a&gt; or http://10.10.10.10:5002&lt;/p&gt;
+&lt;h2 id="configuration"&gt;Configuration&lt;/h2&gt;
+&lt;p&gt;Configure in the &lt;code&gt;.env&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#000"&gt;SECRET_KEY_BASE&lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;your-secret-key-here &lt;span style="color:#8f5902;font-style:italic"&gt;# Must modify!&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#000"&gt;DATABASE_URL&lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;postgresql://...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt;: You must modify &lt;code&gt;SECRET_KEY_BASE&lt;/code&gt; before first deployment!&lt;/p&gt;</description></item><item><title>Metabase: BI Analytics Tool</title><link>https://pigsty.io/docs/app/metabase/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/metabase/</guid><description>&lt;p&gt;&lt;a href="https://metabase.com/"&gt;&lt;strong&gt;Metabase&lt;/strong&gt;&lt;/a&gt; is a fast, easy-to-use open-source business intelligence tool that lets your team explore and visualize data without SQL knowledge.&lt;/p&gt;
+&lt;p&gt;Metabase provides a friendly user interface with rich chart types and supports connecting to various databases, making it an ideal choice for enterprise data analysis.&lt;/p&gt;
+&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;Pigsty provides a Docker Compose configuration file for Metabase in the software template directory:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87"&gt;cd&lt;/span&gt; ~/pigsty/app/metabase
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Review and modify the &lt;code&gt;.env&lt;/code&gt; configuration file:&lt;/p&gt;</description></item><item><title>Kong: the Nginx API Gateway</title><link>https://pigsty.io/docs/app/kong/</link><pubDate>Sat, 21 May 2022 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/kong/</guid><description>&lt;p&gt;&lt;img src="https://pigsty.io/img/docs/app/kong.jpeg" alt=""&gt;&lt;/p&gt;
+&lt;h2 id="tldr"&gt;TL;DR&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87"&gt;cd&lt;/span&gt; app/kong &lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt; docker-compose up -d
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make up &lt;span style="color:#8f5902;font-style:italic"&gt;# pull up kong with docker-compose&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make ui &lt;span style="color:#8f5902;font-style:italic"&gt;# run swagger ui container&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make log &lt;span style="color:#8f5902;font-style:italic"&gt;# tail -f kong logs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make info &lt;span style="color:#8f5902;font-style:italic"&gt;# introspect kong with jq&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make stop &lt;span style="color:#8f5902;font-style:italic"&gt;# stop kong container&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make clean &lt;span style="color:#8f5902;font-style:italic"&gt;# remove kong container&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make rmui &lt;span style="color:#8f5902;font-style:italic"&gt;# remove swagger ui container&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make pull &lt;span style="color:#8f5902;font-style:italic"&gt;# pull latest kong image&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make rmi &lt;span style="color:#8f5902;font-style:italic"&gt;# remove kong image&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make save &lt;span style="color:#8f5902;font-style:italic"&gt;# save kong image to /tmp/kong.tgz&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make load &lt;span style="color:#8f5902;font-style:italic"&gt;# load kong image from /tmp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="scripts"&gt;Scripts&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Default Port: 8000&lt;/li&gt;
+&lt;li&gt;Default SSL Port: 8443&lt;/li&gt;
+&lt;li&gt;Default Admin Port: 8001&lt;/li&gt;
+&lt;li&gt;Default Postgres Database: &lt;code&gt;postgres://dbuser_kong:DBUser.Kong@10.10.10.10:5432/kong&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# postgres://dbuser_kong:DBUser.Kong@10.10.10.10:5432/kong&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;- {&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;name: kong, owner: dbuser_kong, revokeconn: true , comment&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;kong the api gateway database }&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;- {&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;name: dbuser_kong, password: DBUser.Kong , pgbouncer: true , roles&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;[&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;dbrole_admin ] }&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>Registry: Container Image Mirror</title><link>https://pigsty.io/docs/app/registry/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/registry/</guid><description>&lt;p&gt;&lt;a href="https://docs.docker.com/registry/"&gt;&lt;strong&gt;Docker Registry&lt;/strong&gt;&lt;/a&gt; mirror service caches images from Docker Hub and other registries.&lt;/p&gt;
+&lt;p&gt;Particularly useful for users in China or regions with slow Docker Hub access, significantly reducing image pull times.&lt;/p&gt;
+&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87"&gt;cd&lt;/span&gt; ~/pigsty/app/registry
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make up &lt;span style="color:#8f5902;font-style:italic"&gt;# Start Registry mirror service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Access URL: &lt;a href="http://registry.pigsty"&gt;http://registry.pigsty&lt;/a&gt; or http://10.10.10.10:5000&lt;/p&gt;
+&lt;h2 id="features"&gt;Features&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Image Caching&lt;/strong&gt;: Cache images from Docker Hub and other registries&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Web Interface&lt;/strong&gt;: Optional image management UI&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;High Performance&lt;/strong&gt;: Local caching dramatically improves pull speed&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Storage Management&lt;/strong&gt;: Configurable cleanup and management policies&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Health Checks&lt;/strong&gt;: Built-in health check endpoints&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="configure-docker"&gt;Configure Docker&lt;/h2&gt;
+&lt;p&gt;Configure Docker to use the local mirror:&lt;/p&gt;</description></item><item><title>ByteBase: PG Schema Migration</title><link>https://pigsty.io/docs/app/bytebase/</link><pubDate>Fri, 20 May 2022 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/bytebase/</guid><description>&lt;h2 id="bytebase"&gt;ByteBase&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://bytebase.com/"&gt;ByteBase&lt;/a&gt; is a database schema change management tool. The following command will start a ByteBase on the meta node &lt;code&gt;8887&lt;/code&gt; port by default.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;mkdir -p /data/bytebase/data&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;docker run --init --name bytebase --restart always --detach --publish 8887:8887 --volume /data/bytebase/data:/var/opt/bytebase &lt;span style="color:#4e9a06"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; bytebase/bytebase:1.0.4 --data /var/opt/bytebase --host http://ddl.pigsty --port &lt;span style="color:#0000cf;font-weight:bold"&gt;8887&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then visit http://10.10.10.10:8887/ or &lt;a href="http://ddl.pigsty/"&gt;http://ddl.pigsty&lt;/a&gt; to access bytebase console. You have to &amp;ldquo;Create Project&amp;rdquo;, &amp;ldquo;Env&amp;rdquo;, &amp;ldquo;Instance&amp;rdquo;, &amp;ldquo;Database&amp;rdquo; to perform schema migration.&lt;/p&gt;
+&lt;p&gt;Public Demo: &lt;a href="http://ddl.pigsty.cc"&gt;http://ddl.pigsty.cc&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Default username &amp;amp; password: &lt;code&gt;admin&lt;/code&gt; / &lt;code&gt;pigsty&lt;/code&gt;&lt;/p&gt;</description></item><item><title>PGAdmin4: PG Admin GUI Tool</title><link>https://pigsty.io/docs/app/pgadmin/</link><pubDate>Mon, 25 Apr 2022 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/pgadmin/</guid><description>&lt;p&gt;pgAdmin4 is a useful PostgreSQL management tool. Execute the following command to launch the pgadmin service on the admin node:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87"&gt;cd&lt;/span&gt; ~/pigsty/app/pgadmin &lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt; docker-compose up -d
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The default port for pgadmin is &lt;code&gt;8885&lt;/code&gt;, and you can access it through the following address:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://adm.pigsty"&gt;http://adm.pigsty&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="demo"&gt;Demo&lt;/h2&gt;
+&lt;p&gt;Public Demo: &lt;a href="http://adm.pigsty.cc"&gt;http://adm.pigsty.cc&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Credentials: &lt;code&gt;admin@pigsty.cc&lt;/code&gt; / &lt;code&gt;pigsty&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://pigsty.io/img/docs/app/pgadmin.jpeg" alt=""&gt;&lt;/p&gt;
+&lt;h2 id="tl-dr"&gt;TL; DR&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87"&gt;cd&lt;/span&gt; ~/pigsty/app/pgadmin &lt;span style="color:#8f5902;font-style:italic"&gt;# enter docker compose dir&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make up &lt;span style="color:#8f5902;font-style:italic"&gt;# launch pgadmin container&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make conf view &lt;span style="color:#8f5902;font-style:italic"&gt;# load pigsty server list&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Shortcuts:&lt;/p&gt;</description></item><item><title>PGWeb: Browser-based PG Client</title><link>https://pigsty.io/docs/app/pgweb/</link><pubDate>Fri, 18 Mar 2022 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/pgweb/</guid><description>&lt;p&gt;PGWEB: &lt;a href="https://github.com/sosedoff/pgweb"&gt;https://github.com/sosedoff/pgweb&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Simple web-based and cross-platform PostgreSQL database explorer.&lt;/p&gt;
+&lt;p&gt;Public Demo: &lt;a href="http://cli.pigsty.cc"&gt;http://cli.pigsty.cc&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://pigsty.io/img/docs/app/pgweb.jpeg" alt=""&gt;&lt;/p&gt;
+&lt;h2 id="tl-dr"&gt;TL; DR&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87"&gt;cd&lt;/span&gt; ~/pigsty/app/pgweb &lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt; make up
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Visit &lt;a href="http://cli.pigsty"&gt;http://cli.pigsty&lt;/a&gt; or http://10.10.10.10:8886&lt;/p&gt;
+&lt;p&gt;Try connecting with example URLs:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;postgres://dbuser_meta:DBUser.Meta@10.10.10.10:5432/meta?sslmode&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;disable
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;postgres://test:test@10.10.10.11:5432/test?sslmode&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;disable
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make up &lt;span style="color:#8f5902;font-style:italic"&gt;# pull up pgweb with docker compose&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make run &lt;span style="color:#8f5902;font-style:italic"&gt;# launch pgweb with docker&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make view &lt;span style="color:#8f5902;font-style:italic"&gt;# print pgweb access point&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make log &lt;span style="color:#8f5902;font-style:italic"&gt;# tail -f pgweb logs&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make info &lt;span style="color:#8f5902;font-style:italic"&gt;# introspect pgweb with jq&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make stop &lt;span style="color:#8f5902;font-style:italic"&gt;# stop pgweb container&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make clean &lt;span style="color:#8f5902;font-style:italic"&gt;# remove pgweb container&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make pull &lt;span style="color:#8f5902;font-style:italic"&gt;# pull latest pgweb image&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make rmi &lt;span style="color:#8f5902;font-style:italic"&gt;# remove pgweb image&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make save &lt;span style="color:#8f5902;font-style:italic"&gt;# save pgweb image to /tmp/docker/pgweb.tgz&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make load &lt;span style="color:#8f5902;font-style:italic"&gt;# load pgweb image from /tmp/docker/pgweb.tgz&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>PostgREST: Generate REST API from Schema</title><link>https://pigsty.io/docs/app/postgrest/</link><pubDate>Sat, 21 May 2022 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/postgrest/</guid><description>&lt;p&gt;&lt;a href="https://postgrest.org/en/stable/index.html"&gt;PostgREST&lt;/a&gt; is a binary component that automatically generates a REST API
+based on the PostgreSQL database schema.&lt;/p&gt;
+&lt;p&gt;For example, the following command will launch postgrest with docker (local port 8884, using default admin user, and
+expose Pigsty CMDB schema):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;docker run --init --name postgrest --restart always --detach --publish 8884:8081 postgrest/postgrest
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Visit &lt;a href="http://10.10.10.10:8884/"&gt;http://10.10.10.10:8884&lt;/a&gt; will show all auto-generated API definitions and automatically
+expose API documentation using &lt;a href="http://home.pigsty.cc:8883"&gt;Swagger Editor&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you wish to perform CRUD operations and design more fine-grained permission control, please refer
+to &lt;a href="https://postgrest.org/en/stable/tutorials/tut1.html"&gt;Tutorial 1 - The Golden Key&lt;/a&gt; to generate a signed JWT.&lt;/p&gt;</description></item><item><title>Electric: PGLite Sync Engine</title><link>https://pigsty.io/docs/app/electric/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/electric/</guid><description>&lt;p&gt;&lt;a href="https://electric-sql.com/"&gt;&lt;strong&gt;Electric&lt;/strong&gt;&lt;/a&gt; is a PostgreSQL sync engine that solves complex data synchronization problems.&lt;/p&gt;
+&lt;p&gt;Electric supports partial replication, fan-out delivery, and efficient data transfer, making it ideal for building real-time and offline-first applications.&lt;/p&gt;
+&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87"&gt;cd&lt;/span&gt; ~/pigsty/app/electric
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make up &lt;span style="color:#8f5902;font-style:italic"&gt;# Start Electric service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Access URL: &lt;a href="http://electric.pigsty"&gt;http://electric.pigsty&lt;/a&gt; or http://10.10.10.10:3000&lt;/p&gt;
+&lt;h2 id="features"&gt;Features&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Partial Replication&lt;/strong&gt;: Sync only the data you need&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Real-time Sync&lt;/strong&gt;: Millisecond-level data updates&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Offline-first&lt;/strong&gt;: Work offline with automatic sync&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Conflict Resolution&lt;/strong&gt;: Automatic handling of data conflicts&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Type Safety&lt;/strong&gt;: TypeScript support&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="related-links"&gt;Related Links&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Electric Website: &lt;a href="https://electric-sql.com/"&gt;https://electric-sql.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Documentation: &lt;a href="https://electric-sql.com/docs"&gt;https://electric-sql.com/docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;GitHub Repository: &lt;a href="https://github.com/electric-sql/electric"&gt;https://github.com/electric-sql/electric&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Jupyter: AI Notebook &amp; IDE</title><link>https://pigsty.io/docs/app/jupyter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/jupyter/</guid><description>&lt;p&gt;Run jupyter notebook with docker, you have to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;change the default password in &lt;a href=".env"&gt;&lt;code&gt;.env&lt;/code&gt;&lt;/a&gt;: &lt;code&gt;JUPYTER_TOKEN&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start="2"&gt;
+&lt;li&gt;create data dir with proper permission: &lt;code&gt;make dir&lt;/code&gt;, owned by &lt;code&gt;1000:100&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start="3"&gt;
+&lt;li&gt;&lt;code&gt;make up&lt;/code&gt; to pull up jupyter with docker compose&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87"&gt;cd&lt;/span&gt; ~/pigsty/app/jupyter &lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt; make dir up
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Visit &lt;a href="http://lab.pigsty"&gt;http://lab.pigsty&lt;/a&gt; or http://10.10.10.10:8888, the default password is &lt;code&gt;pigsty&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://lab.pigsty?token=pigsty"&gt;&lt;code&gt;http://lab.pigsty?token=pigsty&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="prepare"&gt;Prepare&lt;/h2&gt;
+&lt;p&gt;Create a data directory &lt;code&gt;/data/jupyter&lt;/code&gt;, with the default uid &amp;amp; gid &lt;code&gt;1000:100&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make dir &lt;span style="color:#8f5902;font-style:italic"&gt;# mkdir -p /data/jupyter; chown -R 1000:100 /data/jupyter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="connect-to-postgres"&gt;Connect to Postgres&lt;/h2&gt;
+&lt;p&gt;Use the jupyter terminal to install &lt;code&gt;psycopg2-binary&lt;/code&gt; &amp;amp; &lt;code&gt;psycopg2&lt;/code&gt; package.&lt;/p&gt;</description></item><item><title>Supabase</title><link>https://pigsty.io/docs/pgsql/kernel/supabase/</link><pubDate>Sun, 23 Jun 2024 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/supabase/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="https://supabase.com/"&gt;Supabase&lt;/a&gt; — Build in a weekend, Scale to millions&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Supabase is an open-source Firebase alternative that wraps PostgreSQL and provides authentication, out-of-the-box APIs, edge functions, real-time subscriptions, object storage, and vector embedding capabilities.
+This is a low-code all-in-one backend platform that lets you skip most backend development work, requiring only database design and frontend knowledge to quickly ship products!&lt;/p&gt;
+&lt;p&gt;Supabase&amp;rsquo;s motto is: &amp;ldquo;&lt;strong&gt;Build in a weekend, Scale to millions&lt;/strong&gt;&amp;rdquo;. Indeed, Supabase is &lt;a href="https://supabase.com/pricing"&gt;extremely cost-effective&lt;/a&gt; at small to micro scales (4c8g), like a cyber bodhisattva.
+— But when you really scale to millions of users — you should seriously consider self-hosting Supabase — whether for functionality, performance, or cost considerations.&lt;/p&gt;</description></item><item><title>PostgresML</title><link>https://pigsty.io/docs/pgsql/kernel/pgml/</link><pubDate>Sun, 23 Jun 2024 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/pgml/</guid><description>&lt;p&gt;&lt;a href="https://postgresml.org/"&gt;PostgresML&lt;/a&gt; is a PostgreSQL extension that supports the latest large language models (LLM), vector operations, classical machine learning, and traditional Postgres application workloads.&lt;/p&gt;
+&lt;p&gt;PostgresML (pgml) is a PostgreSQL extension written in Rust. You can run standalone Docker images, but this documentation is not a docker-compose template introduction, for reference only.&lt;/p&gt;
+&lt;p&gt;PostgresML officially supports Ubuntu 22.04, but we also maintain RPM versions for EL 8/9, if you don&amp;rsquo;t need CUDA and NVIDIA-related features.&lt;/p&gt;</description></item></channel></rss>

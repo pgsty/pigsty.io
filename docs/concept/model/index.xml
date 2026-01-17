@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ER Model on PIGSTY</title><link>https://pigsty.io/docs/concept/model/</link><description>Recent content in ER Model on PIGSTY</description><generator>Hugo</generator><language>en</language><atom:link href="https://pigsty.io/docs/concept/model/index.xml" rel="self" type="application/rss+xml"/><item><title>E-R Model of Infra Cluster</title><link>https://pigsty.io/docs/concept/model/infra/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/model/infra/</guid><description>&lt;p&gt;The INFRA module plays a special role in Pigsty: it&amp;rsquo;s not a traditional &amp;ldquo;cluster&amp;rdquo; but rather a management hub composed of a group of &lt;strong&gt;infrastructure nodes&lt;/strong&gt;, providing core services for the entire Pigsty deployment.
+Each INFRA node is an &lt;strong&gt;autonomous&lt;/strong&gt; infrastructure service unit running core components like Nginx, Grafana, and VictoriaMetrics, collectively providing observability and management capabilities for managed database clusters.&lt;/p&gt;
+&lt;p&gt;There are two core entities in Pigsty&amp;rsquo;s INFRA module:&lt;/p&gt;</description></item><item><title>E-R Model of PostgreSQL Cluster</title><link>https://pigsty.io/docs/concept/model/pgsql/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/model/pgsql/</guid><description>&lt;p&gt;The PGSQL module organizes PostgreSQL in production as &lt;strong&gt;clusters&lt;/strong&gt;—&lt;strong&gt;logical entities&lt;/strong&gt; composed of a group of database &lt;strong&gt;instances&lt;/strong&gt; associated by &lt;strong&gt;primary-replica&lt;/strong&gt; relationships.&lt;/p&gt;
+&lt;p&gt;Each cluster is an &lt;strong&gt;autonomous&lt;/strong&gt; business unit consisting of at least one &lt;strong&gt;primary instance&lt;/strong&gt;, exposing capabilities through services.&lt;/p&gt;
+&lt;p&gt;There are four core entities in Pigsty&amp;rsquo;s PGSQL module:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cluster&lt;/strong&gt;: An autonomous PostgreSQL business unit serving as the top-level namespace for other entities.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Service&lt;/strong&gt;: A named abstraction that exposes capabilities, routes traffic, and exposes services using node ports.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Instance&lt;/strong&gt;: A single PostgreSQL server consisting of running processes and database files on a single node.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Node&lt;/strong&gt;: A hardware resource abstraction running Linux + Systemd environment—can be bare metal, VM, container, or Pod.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Along with two business entities—&amp;ldquo;Database&amp;rdquo; and &amp;ldquo;Role&amp;rdquo;—these form the complete logical view as shown below:&lt;/p&gt;</description></item><item><title>E-R Model of Etcd Cluster</title><link>https://pigsty.io/docs/concept/model/etcd/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/model/etcd/</guid><description>&lt;p&gt;The ETCD module organizes ETCD in production as &lt;strong&gt;clusters&lt;/strong&gt;—&lt;strong&gt;logical entities&lt;/strong&gt; composed of a group of ETCD &lt;strong&gt;instances&lt;/strong&gt; associated through the &lt;strong&gt;Raft&lt;/strong&gt; consensus protocol.&lt;/p&gt;
+&lt;p&gt;Each cluster is an &lt;strong&gt;autonomous&lt;/strong&gt; distributed key-value storage unit consisting of at least one &lt;strong&gt;ETCD instance&lt;/strong&gt;, exposing service capabilities through client ports.&lt;/p&gt;
+&lt;p&gt;There are three core entities in Pigsty&amp;rsquo;s ETCD module:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cluster&lt;/strong&gt;: An autonomous ETCD service unit serving as the top-level namespace for other entities.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Instance&lt;/strong&gt;: A single ETCD server process running on a node, participating in Raft consensus.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Node&lt;/strong&gt;: A hardware resource abstraction running Linux + Systemd environment, implicitly declared.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Compared to PostgreSQL clusters, the ETCD cluster model is simpler, without Services or complex Role distinctions.
+All ETCD instances are functionally equivalent, electing a Leader through the Raft protocol while others become Followers.
+During scale-out intermediate states, non-voting Learner instance members are also allowed.&lt;/p&gt;</description></item><item><title>E-R Model of MinIO Cluster</title><link>https://pigsty.io/docs/concept/model/minio/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/model/minio/</guid><description>&lt;p&gt;The MinIO module organizes MinIO in production as &lt;strong&gt;clusters&lt;/strong&gt;—&lt;strong&gt;logical entities&lt;/strong&gt; composed of a group of distributed MinIO &lt;strong&gt;instances&lt;/strong&gt;, collectively providing highly available object storage services.&lt;/p&gt;
+&lt;p&gt;Each cluster is an &lt;strong&gt;autonomous&lt;/strong&gt; S3-compatible object storage unit consisting of at least one &lt;strong&gt;MinIO instance&lt;/strong&gt;, exposing service capabilities through the S3 API port.&lt;/p&gt;
+&lt;p&gt;There are three core entities in Pigsty&amp;rsquo;s MinIO module:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cluster&lt;/strong&gt;: An autonomous MinIO service unit serving as the top-level namespace for other entities.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Instance&lt;/strong&gt;: A single MinIO server process running on a node, managing local disk storage.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Node&lt;/strong&gt;: A hardware resource abstraction running Linux + Systemd environment, implicitly declared.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Additionally, MinIO has the concept of &lt;a href="https://pigsty.io/docs/minio/config#multi-pool-deployment"&gt;&lt;strong&gt;Storage Pool&lt;/strong&gt;&lt;/a&gt;, used for smooth cluster scaling.
+A cluster can contain multiple storage pools, each composed of a group of nodes and disks.&lt;/p&gt;</description></item><item><title>E-R Model of Redis Cluster</title><link>https://pigsty.io/docs/concept/model/redis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/model/redis/</guid><description>&lt;p&gt;The Redis module organizes Redis in production as &lt;strong&gt;clusters&lt;/strong&gt;—&lt;strong&gt;logical entities&lt;/strong&gt; composed of a group of Redis &lt;strong&gt;instances&lt;/strong&gt; deployed on one or more &lt;strong&gt;nodes&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Each cluster is an &lt;strong&gt;autonomous&lt;/strong&gt; high-performance cache/storage unit consisting of at least one &lt;strong&gt;Redis instance&lt;/strong&gt;, exposing service capabilities through ports.&lt;/p&gt;
+&lt;p&gt;There are three core entities in Pigsty&amp;rsquo;s Redis module:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cluster&lt;/strong&gt;: An autonomous Redis service unit serving as the top-level namespace for other entities.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Instance&lt;/strong&gt;: A single Redis server process running on a specific port on a node.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Node&lt;/strong&gt;: A hardware resource abstraction running Linux + Systemd environment, can host multiple Redis instances, implicitly declared.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Unlike PostgreSQL, Redis uses a &lt;strong&gt;single-node multi-instance&lt;/strong&gt; deployment model: one physical/virtual machine node typically deploys &lt;strong&gt;multiple&lt;/strong&gt; Redis instances
+to fully utilize multi-core CPUs. Therefore, nodes and instances have a &lt;strong&gt;1:N&lt;/strong&gt; relationship. Additionally, production typically advises against Redis instances with memory &amp;gt; 12GB.&lt;/p&gt;</description></item></channel></rss>

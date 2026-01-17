@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Administration on PIGSTY</title><link>https://pigsty.io/docs/pgsql/admin/</link><description>Recent content in Administration on PIGSTY</description><generator>Hugo</generator><language>en</language><atom:link href="https://pigsty.io/docs/pgsql/admin/index.xml" rel="self" type="application/rss+xml"/><item><title>Managing PostgreSQL Clusters</title><link>https://pigsty.io/docs/pgsql/admin/cluster/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/admin/cluster/</guid><description>&lt;h2 id="quick-reference"&gt;Quick Reference&lt;/h2&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: left"&gt;Action&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Command&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#create-cluster"&gt;&lt;strong&gt;Create Cluster&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;bin/pgsql-add &amp;lt;cls&amp;gt;&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Create a new PostgreSQL cluster&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#scale-out"&gt;&lt;strong&gt;Expand Cluster&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;bin/pgsql-add &amp;lt;cls&amp;gt; &amp;lt;ip...&amp;gt;&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Add replica to existing cluster&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#scale-in"&gt;&lt;strong&gt;Shrink Cluster&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;bin/pgsql-rm &amp;lt;cls&amp;gt; &amp;lt;ip...&amp;gt;&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Remove instance from cluster&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#remove-cluster"&gt;&lt;strong&gt;Remove Cluster&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;bin/pgsql-rm &amp;lt;cls&amp;gt;&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Destroy entire PostgreSQL cluster&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#reload-service"&gt;&lt;strong&gt;Reload Service&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;bin/pgsql-svc &amp;lt;cls&amp;gt; [ip...]&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Reload cluster load balancer config&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#reload-hba"&gt;&lt;strong&gt;Reload HBA&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;bin/pgsql-hba &amp;lt;cls&amp;gt; [ip...]&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Reload cluster HBA access rules&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#clone-cluster"&gt;&lt;strong&gt;Clone Cluster&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;-&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Clone via standby cluster or PITR&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;For other management tasks, see: &lt;a href="https://pigsty.io/docs/pgsql/admin/patroni"&gt;&lt;strong&gt;HA Management&lt;/strong&gt;&lt;/a&gt;, &lt;a href="https://pigsty.io/docs/pgsql/admin/user/"&gt;&lt;strong&gt;Manage Users&lt;/strong&gt;&lt;/a&gt;, &lt;a href="https://pigsty.io/docs/pgsql/admin/db/"&gt;&lt;strong&gt;Manage Databases&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Managing PostgreSQL Users</title><link>https://pigsty.io/docs/pgsql/admin/user/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/admin/user/</guid><description>&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;Pigsty uses declarative management: first &lt;a href="https://pigsty.io/docs/pgsql/config/user"&gt;&lt;strong&gt;define users&lt;/strong&gt;&lt;/a&gt; in the &lt;a href="https://pigsty.io/docs/concept/iac/inventory"&gt;&lt;strong&gt;inventory&lt;/strong&gt;&lt;/a&gt;, then use &lt;code&gt;bin/pgsql-user &amp;lt;cls&amp;gt; &amp;lt;username&amp;gt;&lt;/code&gt; to create or modify.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg-meta&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;hosts&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;10.10.10.10&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_seq: 1, pg_role&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;primary } }&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;vars&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_cluster&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pg-meta&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_users&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;[&lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;name: dbuser_app, password: &amp;#39;DBUser.App&amp;#39;, pgbouncer&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;true&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;}&lt;span style="color:#000;font-weight:bold"&gt;]&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# &amp;lt;--- Define user list here!&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist"&gt;
+ &lt;li class="nav-item"&gt;
+ &lt;button class="nav-link active"
+ id="tabs-00-00-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-00" role="tab"
+ data-td-tp-persist="script" aria-controls="tabs-00-00" aria-selected="true"&gt;
+ Script
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-01-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-01" role="tab"
+ data-td-tp-persist="playbook" aria-controls="tabs-00-01" aria-selected="false"&gt;
+ Playbook
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-02-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-02" role="tab"
+ data-td-tp-persist="example" aria-controls="tabs-00-02" aria-selected="false"&gt;
+ Example
+ &lt;/button&gt;
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="tab-content" id="tabs-0-content"&gt;
+ &lt;div class="tab-body tab-pane fade show active"
+ id="tabs-00-00" role="tabpanel" aria-labelled-by="tabs-00-00-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-user &amp;lt;cls&amp;gt; &amp;lt;username&amp;gt; &lt;span style="color:#8f5902;font-style:italic"&gt;# Create/modify &amp;lt;username&amp;gt; user on &amp;lt;cls&amp;gt; cluster&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-body tab-pane fade"
+ id="tabs-00-01" role="tabpanel" aria-labelled-by="tabs-00-01-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./pgsql-user.yml -l pg-meta -e &lt;span style="color:#000"&gt;username&lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;dbuser_app &lt;span style="color:#8f5902;font-style:italic"&gt;# Use playbook to create/modify user&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-body tab-pane fade"
+ id="tabs-00-02" role="tabpanel" aria-labelled-by="tabs-00-02-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-user pg-meta dbuser_app &lt;span style="color:#8f5902;font-style:italic"&gt;# Create/modify dbuser_app user on pg-meta cluster&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;For complete user definition reference, see &lt;a href="https://pigsty.io/docs/pgsql/config/user"&gt;&lt;strong&gt;User Configuration&lt;/strong&gt;&lt;/a&gt;. For access permissions, see &lt;a href="https://pigsty.io/docs/concept/sec/ac/#default-roles"&gt;&lt;strong&gt;ACL: Role Privileges&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Managing PostgreSQL Databases</title><link>https://pigsty.io/docs/pgsql/admin/db/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/admin/db/</guid><description>&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;Pigsty uses declarative management: first &lt;a href="https://pigsty.io/docs/pgsql/config/db"&gt;&lt;strong&gt;define databases&lt;/strong&gt;&lt;/a&gt; in the &lt;a href="https://pigsty.io/docs/concept/iac/inventory"&gt;&lt;strong&gt;inventory&lt;/strong&gt;&lt;/a&gt;, then use &lt;code&gt;bin/pgsql-db &amp;lt;cls&amp;gt; &amp;lt;dbname&amp;gt;&lt;/code&gt; to create or modify.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg-meta&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;hosts&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;10.10.10.10&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_seq: 1, pg_role&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;primary } }&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;vars&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_cluster&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pg-meta&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_databases&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;[&lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;name&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;some_db }] &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# &amp;lt;--- Define database list here!&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist"&gt;
+ &lt;li class="nav-item"&gt;
+ &lt;button class="nav-link active"
+ id="tabs-00-00-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-00" role="tab"
+ data-td-tp-persist="script" aria-controls="tabs-00-00" aria-selected="true"&gt;
+ Script
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-01-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-01" role="tab"
+ data-td-tp-persist="playbook" aria-controls="tabs-00-01" aria-selected="false"&gt;
+ Playbook
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-02-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-02" role="tab"
+ data-td-tp-persist="example" aria-controls="tabs-00-02" aria-selected="false"&gt;
+ Example
+ &lt;/button&gt;
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="tab-content" id="tabs-0-content"&gt;
+ &lt;div class="tab-body tab-pane fade show active"
+ id="tabs-00-00" role="tabpanel" aria-labelled-by="tabs-00-00-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-db &amp;lt;cls&amp;gt; &amp;lt;dbname&amp;gt; &lt;span style="color:#8f5902;font-style:italic"&gt;# Create/modify &amp;lt;dbname&amp;gt; database on &amp;lt;cls&amp;gt; cluster&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-body tab-pane fade"
+ id="tabs-00-01" role="tabpanel" aria-labelled-by="tabs-00-01-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./pgsql-db.yml -l pg-meta -e &lt;span style="color:#000"&gt;dbname&lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;some_db &lt;span style="color:#8f5902;font-style:italic"&gt;# Use playbook to create/modify database&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-body tab-pane fade"
+ id="tabs-00-02" role="tabpanel" aria-labelled-by="tabs-00-02-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-db pg-meta some_db &lt;span style="color:#8f5902;font-style:italic"&gt;# Create/modify some_db database on pg-meta cluster&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;For complete database definition reference, see &lt;a href="https://pigsty.io/docs/pgsql/config/db"&gt;&lt;strong&gt;Database Configuration&lt;/strong&gt;&lt;/a&gt;. For access permissions, see &lt;a href="https://pigsty.io/docs/concept/sec/ac/#database-privileges"&gt;&lt;strong&gt;ACL: Database Privileges&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Patroni HA Management</title><link>https://pigsty.io/docs/pgsql/admin/patroni/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/admin/patroni/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Pigsty uses Patroni to manage PostgreSQL clusters. It handles config changes, status checks, switchover, restart, reinit replicas, and more.&lt;/p&gt;
+&lt;p&gt;To use Patroni for management, you need one of the following identities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;From &lt;a href="https://pigsty.io/docs/concept/node#admin-node"&gt;&lt;strong&gt;INFRA node&lt;/strong&gt;&lt;/a&gt; as &lt;a href="https://pigsty.io/docs/deploy/admin"&gt;&lt;strong&gt;admin user&lt;/strong&gt;&lt;/a&gt;, managing all clusters in the environment.&lt;/li&gt;
+&lt;li&gt;From &lt;a href="https://pigsty.io/docs/concept/node#pgsql-node"&gt;&lt;strong&gt;PGSQL node&lt;/strong&gt;&lt;/a&gt; as &lt;a href="https://pigsty.io/docs/pgsql/param#pg_dbsu"&gt;&lt;strong&gt;&lt;code&gt;pg_dbsu&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; (default &lt;code&gt;postgres&lt;/code&gt;), managing the current cluster only.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Patroni provides &lt;a href="https://patroni.readthedocs.io/en/latest/patronictl.html"&gt;&lt;strong&gt;&lt;code&gt;patronictl&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; CLI for management. Pigsty provides a wrapper alias &lt;code&gt;pg&lt;/code&gt; to simplify operations.&lt;/p&gt;
+&lt;details&gt;&lt;summary&gt;Using patronictl via pg alias&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pg &lt;span style="color:#ce5c00;font-weight:bold"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#204a87"&gt;local&lt;/span&gt; &lt;span style="color:#000"&gt;patroni_conf&lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;&lt;span style="color:#4e9a06"&gt;&amp;#34;/infra/conf/patronictl.yml&amp;#34;&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#204a87;font-weight:bold"&gt;if&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;[&lt;/span&gt; ! -r &lt;span style="color:#4e9a06"&gt;${&lt;/span&gt;&lt;span style="color:#000"&gt;patroni_conf&lt;/span&gt;&lt;span style="color:#4e9a06"&gt;}&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;]&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt; &lt;span style="color:#204a87;font-weight:bold"&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#000"&gt;patroni_conf&lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;&lt;span style="color:#4e9a06"&gt;&amp;#34;/etc/patroni/patroni.yml&amp;#34;&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#204a87;font-weight:bold"&gt;if&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;[&lt;/span&gt; ! -r &lt;span style="color:#4e9a06"&gt;${&lt;/span&gt;&lt;span style="color:#000"&gt;patroni_conf&lt;/span&gt;&lt;span style="color:#4e9a06"&gt;}&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;]&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt; &lt;span style="color:#204a87;font-weight:bold"&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#204a87"&gt;echo&lt;/span&gt; &lt;span style="color:#4e9a06"&gt;&amp;#34;error: patronictl config not found&amp;#34;&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#204a87;font-weight:bold"&gt;return&lt;/span&gt; 1&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#204a87;font-weight:bold"&gt;fi&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#204a87;font-weight:bold"&gt;fi&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; patronictl -c &lt;span style="color:#4e9a06"&gt;${&lt;/span&gt;&lt;span style="color:#000"&gt;patroni_conf&lt;/span&gt;&lt;span style="color:#4e9a06"&gt;}&lt;/span&gt; &lt;span style="color:#4e9a06"&gt;&amp;#34;&lt;/span&gt;&lt;span style="color:#000"&gt;$@&lt;/span&gt;&lt;span style="color:#4e9a06"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/details&gt;
+&lt;hr&gt;
+&lt;h2 id="available-commands"&gt;Available Commands&lt;/h2&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Command&lt;/th&gt;
+ &lt;th&gt;Function&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#edit-config"&gt;&lt;strong&gt;&lt;code&gt;edit-config&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Edit Config&lt;/td&gt;
+ &lt;td&gt;Interactively edit cluster Patroni/PostgreSQL config&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#list-status"&gt;&lt;strong&gt;&lt;code&gt;list&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;List Status&lt;/td&gt;
+ &lt;td&gt;List cluster members and their status&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#switchover"&gt;&lt;strong&gt;&lt;code&gt;switchover&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Switchover&lt;/td&gt;
+ &lt;td&gt;Switch primary role to specified replica (planned)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#failover"&gt;&lt;strong&gt;&lt;code&gt;failover&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Failover&lt;/td&gt;
+ &lt;td&gt;Force failover to specified replica (emergency)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#restart"&gt;&lt;strong&gt;&lt;code&gt;restart&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Restart&lt;/td&gt;
+ &lt;td&gt;Restart PostgreSQL instance to apply restart-required params&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#reload"&gt;&lt;strong&gt;&lt;code&gt;reload&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Reload&lt;/td&gt;
+ &lt;td&gt;Reload Patroni config (no restart needed)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#reinit-replica"&gt;&lt;strong&gt;&lt;code&gt;reinit&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Reinit Replica&lt;/td&gt;
+ &lt;td&gt;Reinitialize replica (wipe data and re-clone)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#pause"&gt;&lt;strong&gt;&lt;code&gt;pause&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Pause Auto-Failover&lt;/td&gt;
+ &lt;td&gt;Pause Patroni automatic failover&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#resume"&gt;&lt;strong&gt;&lt;code&gt;resume&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Resume Auto-Failover&lt;/td&gt;
+ &lt;td&gt;Resume Patroni automatic failover&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#history"&gt;&lt;strong&gt;&lt;code&gt;history&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;View History&lt;/td&gt;
+ &lt;td&gt;Show cluster failover history&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#show-config"&gt;&lt;strong&gt;&lt;code&gt;show-config&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Show Config&lt;/td&gt;
+ &lt;td&gt;Display current cluster config (read-only)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#query"&gt;&lt;strong&gt;&lt;code&gt;query&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Execute Query&lt;/td&gt;
+ &lt;td&gt;Execute SQL query on cluster members&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#topology"&gt;&lt;strong&gt;&lt;code&gt;topology&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;View Topology&lt;/td&gt;
+ &lt;td&gt;Display cluster replication topology&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#version"&gt;&lt;strong&gt;&lt;code&gt;version&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;View Version&lt;/td&gt;
+ &lt;td&gt;Display Patroni version info&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#remove"&gt;&lt;strong&gt;&lt;code&gt;remove&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Remove Member&lt;/td&gt;
+ &lt;td&gt;Remove cluster member from DCS (dangerous)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="edit-config"&gt;Edit Config&lt;/h2&gt;
+&lt;p&gt;Use &lt;a href="https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-edit-config"&gt;&lt;strong&gt;&lt;code&gt;edit-config&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; to interactively edit cluster Patroni and PostgreSQL config. This opens an editor to modify config stored in DCS, automatically applying changes to all members. You can change Patroni params (&lt;code&gt;ttl&lt;/code&gt;, &lt;code&gt;loop_wait&lt;/code&gt;, &lt;code&gt;synchronous_mode&lt;/code&gt;, etc.) and PostgreSQL params in &lt;code&gt;postgresql.parameters&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Pgbouncer Connection Pooling</title><link>https://pigsty.io/docs/pgsql/admin/pgbouncer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/admin/pgbouncer/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Pigsty uses &lt;a href="https://www.pgbouncer.org/"&gt;&lt;strong&gt;Pgbouncer&lt;/strong&gt;&lt;/a&gt; as PostgreSQL connection pooling middleware, listening on port &lt;code&gt;6432&lt;/code&gt; by default, proxying access to local PostgreSQL on port &lt;code&gt;5432&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This is an &lt;strong&gt;optional component&lt;/strong&gt;. If you don&amp;rsquo;t have massive connections or need transaction pooling and query metrics, you can disable it, connect directly to the database, or keep it unused.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="user--database-management"&gt;User &amp;amp; Database Management&lt;/h2&gt;
+&lt;p&gt;Pgbouncer users and databases are auto-managed by Pigsty, applying &lt;a href="https://pigsty.io/docs/pgsql/config/db"&gt;&lt;strong&gt;database config&lt;/strong&gt;&lt;/a&gt; and &lt;a href="https://pigsty.io/docs/pgsql/config/user"&gt;&lt;strong&gt;user config&lt;/strong&gt;&lt;/a&gt; when &lt;a href="https://pigsty.io/docs/pgsql/admin/db"&gt;&lt;strong&gt;creating databases&lt;/strong&gt;&lt;/a&gt; and &lt;a href="https://pigsty.io/docs/pgsql/admin/user"&gt;&lt;strong&gt;creating users&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Managing PostgreSQL Component Services</title><link>https://pigsty.io/docs/pgsql/admin/component/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/admin/component/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Pigsty&amp;rsquo;s PGSQL module consists of multiple components, each running as a systemd service on nodes. (&lt;a href="https://pigsty.io/docs/concept/arch/pgsql#pgbackrest"&gt;&lt;strong&gt;pgbackrest&lt;/strong&gt;&lt;/a&gt; is an exception)&lt;/p&gt;
+&lt;p&gt;Understanding these components and their management is essential for maintaining production PostgreSQL clusters.&lt;/p&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: left"&gt;Component&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Port&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Service Name&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Patroni&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;&lt;code&gt;8008&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;patroni&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;HA manager, manages PostgreSQL lifecycle&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;PostgreSQL&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;&lt;code&gt;5432&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;postgres&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Placeholder service, not used, for emergency&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Pgbouncer&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;&lt;code&gt;6432&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;pgbouncer&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Connection pooling middleware, traffic entry&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;PgBackRest&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;-&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;-&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;pgBackRest has no daemon service&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;HAProxy&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;&lt;code&gt;543x&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;haproxy&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Load balancer, exposes database services&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;pg_exporter&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;&lt;code&gt;9630&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;pg_exporter&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;PostgreSQL metrics exporter&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;pgbouncer_exporter&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;&lt;code&gt;9631&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;pgbouncer_exporter&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Pgbouncer metrics exporter&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;vip-manager&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;-&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;vip-manager&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Optional, manages L2 VIP address floating&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class="alert alert-warning" role="alert"&gt;&lt;div class="h4 alert-heading" role="heading"&gt;Important&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Do NOT use systemctl directly to manage PostgreSQL service&lt;/strong&gt;. PostgreSQL is managed by Patroni - use &lt;a href="https://pigsty.io/docs/pgsql/admin/patroni"&gt;&lt;strong&gt;&lt;code&gt;patronictl&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; commands instead.
+Direct PostgreSQL operations may cause Patroni state inconsistency and trigger unexpected failover. The &lt;code&gt;postgres&lt;/code&gt; service is an emergency escape hatch when Patroni fails.&lt;/p&gt;</description></item><item><title>Manage PostgreSQL Cron Jobs</title><link>https://pigsty.io/docs/pgsql/admin/crontab/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/admin/crontab/</guid><description>&lt;p&gt;Pigsty uses crontab to manage scheduled tasks for routine backups, freezing aging transactions, and reorganizing bloated tables and indexes.&lt;/p&gt;
+&lt;h2 id="quick-reference"&gt;Quick Reference&lt;/h2&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: left"&gt;Operation&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Quick Command&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#configure-cron-jobs"&gt;&lt;strong&gt;Configure Cron Jobs&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;./pgsql.yml -t pg_crontab -l &amp;lt;cls&amp;gt;&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Apply pg_crontab config&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#view-cron-jobs"&gt;&lt;strong&gt;View Cron Jobs&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;crontab -l&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;View as postgres user&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#pg-backup"&gt;&lt;strong&gt;Physical Backup&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;pg-backup [full|diff|incr]&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Execute backup with pgBackRest&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#pg-vacuum"&gt;&lt;strong&gt;Transaction Freeze&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;pg-vacuum [database...]&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Freeze aging transactions, prevent XID wraparound&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#pg-repack"&gt;&lt;strong&gt;Bloat Maintenance&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;pg-repack [database...]&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Online reorganize bloated tables and indexes&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;For other management tasks, see: &lt;a href="https://pigsty.io/docs/pgsql/backup/"&gt;&lt;strong&gt;Backup Management&lt;/strong&gt;&lt;/a&gt;, &lt;a href="https://pigsty.io/docs/pgsql/monitor/"&gt;&lt;strong&gt;Monitoring System&lt;/strong&gt;&lt;/a&gt;, &lt;a href="https://pigsty.io/docs/pgsql/admin/patroni"&gt;&lt;strong&gt;HA Management&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Managing PostgreSQL Extensions</title><link>https://pigsty.io/docs/pgsql/admin/ext/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/admin/ext/</guid><description>&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;Pigsty provides &lt;a href="https://pgext.cloud/list"&gt;&lt;strong&gt;440+ extensions&lt;/strong&gt;&lt;/a&gt;. Using extensions involves four steps: &lt;strong&gt;Download&lt;/strong&gt;, &lt;strong&gt;Install&lt;/strong&gt;, &lt;strong&gt;Configure&lt;/strong&gt;, &lt;strong&gt;Enable&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg-meta&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;hosts&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;10.10.10.10&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_seq: 1, pg_role&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;primary } }&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;vars&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_cluster&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pg-meta&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_extensions&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;[&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;postgis, timescaledb, pgvector ] &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# &amp;lt;--- Install extension packages&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_libs&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#4e9a06"&gt;&amp;#39;timescaledb, pg_stat_statements, auto_explain&amp;#39;&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# &amp;lt;--- Configure preload extensions&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_databases&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;- &lt;span style="color:#204a87;font-weight:bold"&gt;name&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;meta&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;extensions&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;[&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;postgis, timescaledb, vector ] &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# &amp;lt;--- Enable in database&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist"&gt;
+ &lt;li class="nav-item"&gt;
+ &lt;button class="nav-link active"
+ id="tabs-00-00-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-00" role="tab"
+ data-td-tp-persist="script" aria-controls="tabs-00-00" aria-selected="true"&gt;
+ Script
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-01-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-01" role="tab"
+ data-td-tp-persist="playbook" aria-controls="tabs-00-01" aria-selected="false"&gt;
+ Playbook
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-02-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-02" role="tab"
+ data-td-tp-persist="example" aria-controls="tabs-00-02" aria-selected="false"&gt;
+ Example
+ &lt;/button&gt;
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="tab-content" id="tabs-0-content"&gt;
+ &lt;div class="tab-body tab-pane fade show active"
+ id="tabs-00-00" role="tabpanel" aria-labelled-by="tabs-00-00-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-ext &amp;lt;cls&amp;gt; &lt;span style="color:#8f5902;font-style:italic"&gt;# Install extensions defined in config on &amp;lt;cls&amp;gt; cluster&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-ext &amp;lt;cls&amp;gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;[&lt;/span&gt;ext...&lt;span style="color:#ce5c00;font-weight:bold"&gt;]&lt;/span&gt; &lt;span style="color:#8f5902;font-style:italic"&gt;# Install extensions specified on command line&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-body tab-pane fade"
+ id="tabs-00-01" role="tabpanel" aria-labelled-by="tabs-00-01-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./pgsql.yml -l pg-meta -t pg_ext &lt;span style="color:#8f5902;font-style:italic"&gt;# Use playbook to install extensions&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-body tab-pane fade"
+ id="tabs-00-02" role="tabpanel" aria-labelled-by="tabs-00-02-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-ext pg-meta &lt;span style="color:#8f5902;font-style:italic"&gt;# Install defined extensions on pg-meta cluster&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-ext pg-meta pg_duckdb pg_mooncake &lt;span style="color:#8f5902;font-style:italic"&gt;# Install specified extensions&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;For complete extension reference, see &lt;a href="https://pigsty.io/docs/pgsql/ext/"&gt;&lt;strong&gt;Extensions&lt;/strong&gt;&lt;/a&gt;. For available extensions, see &lt;a href="https://pgext.cloud/list"&gt;&lt;strong&gt;Extension Catalog&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Upgrading PostgreSQL Major/Minor Versions</title><link>https://pigsty.io/docs/pgsql/admin/upgrade/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/admin/upgrade/</guid><description>&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;PostgreSQL version upgrades fall into two types: &lt;strong&gt;minor version upgrade&lt;/strong&gt; and &lt;strong&gt;major version upgrade&lt;/strong&gt;, with very different risk and complexity.&lt;/p&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: left"&gt;Type&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Example&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Downtime&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Data Compatibility&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Risk&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Minor upgrade&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;17.2 → 17.3&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Seconds (rolling)&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Fully compatible&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Low&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Major upgrade&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;17 → 18&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Minutes&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires data dir upgrade&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Medium&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist"&gt;
+ &lt;li class="nav-item"&gt;
+ &lt;button class="nav-link active"
+ id="tabs-00-00-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-00" role="tab"
+ data-td-tp-persist="minor" aria-controls="tabs-00-00" aria-selected="true"&gt;
+ Minor
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-01-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-01" role="tab"
+ data-td-tp-persist="major" aria-controls="tabs-00-01" aria-selected="false"&gt;
+ Major
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-02-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-02" role="tab"
+ data-td-tp-persist="extension" aria-controls="tabs-00-02" aria-selected="false"&gt;
+ Extension
+ &lt;/button&gt;
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="tab-content" id="tabs-0-content"&gt;
+ &lt;div class="tab-body tab-pane fade show active"
+ id="tabs-00-00" role="tabpanel" aria-labelled-by="tabs-00-00-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Rolling upgrade: replicas first, then primary&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ansible &amp;lt;cls&amp;gt; -b -a &lt;span style="color:#4e9a06"&gt;&amp;#39;yum upgrade -y postgresql17*&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pg restart --role replica --force &amp;lt;cls&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pg switchover &amp;lt;cls&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pg restart &amp;lt;cls&amp;gt; &amp;lt;old-primary&amp;gt; --force
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-body tab-pane fade"
+ id="tabs-00-01" role="tabpanel" aria-labelled-by="tabs-00-01-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Recommended: Logical replication migration&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-add pg-new &lt;span style="color:#8f5902;font-style:italic"&gt;# Create new version cluster&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Configure logical replication to sync data...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Switch traffic to new cluster&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-body tab-pane fade"
+ id="tabs-00-02" role="tabpanel" aria-labelled-by="tabs-00-02-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ansible &amp;lt;cls&amp;gt; -b -a &lt;span style="color:#4e9a06"&gt;&amp;#39;yum upgrade -y postgis36_17*&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;psql -c &lt;span style="color:#4e9a06"&gt;&amp;#39;ALTER EXTENSION postgis UPDATE;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;For detailed online migration process, see &lt;a href="https://pigsty.io/docs/pgsql/migration"&gt;&lt;strong&gt;Online Migration&lt;/strong&gt;&lt;/a&gt; documentation.&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Backup &amp; Restore on PIGSTY</title><link>https://pigsty.io/docs/pgsql/backup/</link><description>Recent content in Backup &amp; Restore on PIGSTY</description><generator>Hugo</generator><language>en</language><atom:link href="https://pigsty.io/docs/pgsql/backup/index.xml" rel="self" type="application/rss+xml"/><item><title>Backup Policy</title><link>https://pigsty.io/docs/pgsql/backup/policy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/backup/policy/</guid><description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;When&lt;/strong&gt;: Backup schedule&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Where&lt;/strong&gt;: Backup repository&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;How&lt;/strong&gt;: Backup method&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="when-to-backup"&gt;When to Backup&lt;/h2&gt;
+&lt;p&gt;The first question is &lt;strong&gt;when&lt;/strong&gt; to backup your database - this is a tradeoff between backup frequency and recovery time.
+Since you need to replay WAL logs from the last backup to the recovery target point, the more frequent the backups, the less WAL logs need to be replayed, and the faster the recovery.&lt;/p&gt;
+&lt;h3 id="daily-full-backup"&gt;Daily Full Backup&lt;/h3&gt;
+&lt;p&gt;For production databases, it&amp;rsquo;s recommended to start with the simplest daily full backup strategy.
+This is also Pigsty&amp;rsquo;s default backup strategy, implemented via &lt;a href="mechanism#scheduled-backups"&gt;crontab&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Backup Mechanism</title><link>https://pigsty.io/docs/pgsql/backup/mechanism/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/backup/mechanism/</guid><description>&lt;p&gt;Backups can be invoked via built-in &lt;a href="#scripts"&gt;scripts&lt;/a&gt;, scheduled using node &lt;a href="#scheduled-backups"&gt;crontab&lt;/a&gt;,
+managed by &lt;a href="https://pgbackrest.org/"&gt;pgbackrest&lt;/a&gt;, and stored in backup repositories,
+which can be local disk filesystems or MinIO / S3, supporting different &lt;a href="#retention-policy"&gt;retention&lt;/a&gt; policies.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="scripts"&gt;Scripts&lt;/h2&gt;
+&lt;p&gt;You can create backups using the &lt;a href="https://pigsty.io/docs/pgsql/param#pg_dbsu"&gt;&lt;code&gt;pg_dbsu&lt;/code&gt;&lt;/a&gt; user (defaults to &lt;code&gt;postgres&lt;/code&gt;) to execute &lt;code&gt;pgbackrest&lt;/code&gt; commands:&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist"&gt;
+ &lt;li class="nav-item"&gt;
+ &lt;button class="nav-link disabled"
+ id="tabs-00-00-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-00" role="tab"
+ aria-controls="tabs-00-00" aria-selected="false"&gt;
+ Backup Commands
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link active"
+ id="tabs-00-01-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-01" role="tab"
+ aria-controls="tabs-00-01" aria-selected="true"&gt;
+ backup
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-02-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-02" role="tab"
+ aria-controls="tabs-00-02" aria-selected="false"&gt;
+ full
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-03-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-03" role="tab"
+ aria-controls="tabs-00-03" aria-selected="false"&gt;
+ diff
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-04-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-04" role="tab"
+ aria-controls="tabs-00-04" aria-selected="false"&gt;
+ incr
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-05-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-05" role="tab"
+ aria-controls="tabs-00-05" aria-selected="false"&gt;
+ info
+ &lt;/button&gt;
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="tab-content" id="tabs-0-content"&gt;
+ &lt;div class="tab-pane fade"
+ id="tabs-00-00" role="tabpanel" aria-labelled-by="tabs-00-00-tab" tabindex="0"&gt;
+ &lt;pre tabindex="0"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-pane fade show active"
+ id="tabs-00-01" role="tabpanel" aria-labelled-by="tabs-00-01-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pgbackrest --stanza&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;pg-meta --type&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;full backup &lt;span style="color:#8f5902;font-style:italic"&gt;# Create full backup for cluster pg-meta&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-pane fade"
+ id="tabs-00-02" role="tabpanel" aria-labelled-by="tabs-00-02-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;$ pgbackrest --stanza&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;pg-meta --type&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;full backup
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:36:57.007 P00 INFO: backup &lt;span style="color:#204a87"&gt;command&lt;/span&gt; begin 2.54.2: --annotation&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;&lt;span style="color:#000"&gt;pg_cluster&lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;pg-meta ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:36:57.030 P00 INFO: execute non-exclusive backup start: backup begins after the requested immediate checkpoint completes
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:36:57.105 P00 INFO: backup start &lt;span style="color:#000"&gt;archive&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 000000010000000000000006, &lt;span style="color:#000"&gt;lsn&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 0/6000028
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:36:58.540 P00 INFO: new backup &lt;span style="color:#000"&gt;label&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 20250715-013657F
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:36:58.588 P00 INFO: full backup &lt;span style="color:#000"&gt;size&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 44.5MB, file &lt;span style="color:#000"&gt;total&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; &lt;span style="color:#0000cf;font-weight:bold"&gt;1437&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:36:58.589 P00 INFO: backup &lt;span style="color:#204a87"&gt;command&lt;/span&gt; end: completed successfully &lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt;1584ms&lt;span style="color:#ce5c00;font-weight:bold"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-pane fade"
+ id="tabs-00-03" role="tabpanel" aria-labelled-by="tabs-00-03-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;$ pgbackrest --stanza&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;pg-meta --type&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;diff backup
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:24.952 P00 INFO: backup &lt;span style="color:#204a87"&gt;command&lt;/span&gt; begin 2.54.2: ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:24.985 P00 INFO: last backup &lt;span style="color:#000"&gt;label&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 20250715-013657F, &lt;span style="color:#000"&gt;version&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 2.54.2
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:26.337 P00 INFO: new backup &lt;span style="color:#000"&gt;label&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 20250715-013657F_20250715-013724D
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:26.381 P00 INFO: diff backup &lt;span style="color:#000"&gt;size&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 424.3KB, file &lt;span style="color:#000"&gt;total&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; &lt;span style="color:#0000cf;font-weight:bold"&gt;1437&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:26.381 P00 INFO: backup &lt;span style="color:#204a87"&gt;command&lt;/span&gt; end: completed successfully &lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt;1431ms&lt;span style="color:#ce5c00;font-weight:bold"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-pane fade"
+ id="tabs-00-04" role="tabpanel" aria-labelled-by="tabs-00-04-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;$ pgbackrest --stanza&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;pg-meta --type&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;incr backup
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:30.305 P00 INFO: backup &lt;span style="color:#204a87"&gt;command&lt;/span&gt; begin 2.54.2: ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:30.337 P00 INFO: last backup &lt;span style="color:#000"&gt;label&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 20250715-013657F_20250715-013724D, &lt;span style="color:#000"&gt;version&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 2.54.2
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:31.356 P00 INFO: new backup &lt;span style="color:#000"&gt;label&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 20250715-013657F_20250715-013730I
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:31.403 P00 INFO: incr backup &lt;span style="color:#000"&gt;size&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 8.3KB, file &lt;span style="color:#000"&gt;total&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; &lt;span style="color:#0000cf;font-weight:bold"&gt;1437&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:31.403 P00 INFO: backup &lt;span style="color:#204a87"&gt;command&lt;/span&gt; end: completed successfully &lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt;1099ms&lt;span style="color:#ce5c00;font-weight:bold"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-pane fade"
+ id="tabs-00-05" role="tabpanel" aria-labelled-by="tabs-00-05-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;$ pgbackrest --stanza&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;pg-meta info
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;stanza: pg-meta
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; status: ok
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; cipher: aes-256-cbc
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; db &lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt;current&lt;span style="color:#ce5c00;font-weight:bold"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; wal archive min/max &lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt;17&lt;span style="color:#ce5c00;font-weight:bold"&gt;)&lt;/span&gt;: 000000010000000000000001/00000001000000000000000A
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; full backup: 20250715-013657F
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; timestamp start/stop: 2025-07-15 01:36:57+00 / 2025-07-15 01:36:58+00
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; wal start/stop: &lt;span style="color:#0000cf;font-weight:bold"&gt;000000010000000000000006&lt;/span&gt; / &lt;span style="color:#0000cf;font-weight:bold"&gt;000000010000000000000006&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; database size: 44.5MB, database backup size: 44.5MB
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; repo1: backup size: 8.7MB
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; diff backup: 20250715-013657F_20250715-013724D
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; timestamp start/stop: 2025-07-15 01:37:24+00 / 2025-07-15 01:37:26+00
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; database size: 44.5MB, database backup size: 424.3KB
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; repo1: backup size: 94KB
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; backup reference total: &lt;span style="color:#0000cf;font-weight:bold"&gt;1&lt;/span&gt; full
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; incr backup: 20250715-013657F_20250715-013730I
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; timestamp start/stop: 2025-07-15 01:37:30+00 / 2025-07-15 01:37:31+00
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; database size: 44.5MB, database backup size: 8.3KB
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; repo1: backup size: 504B
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; backup reference total: &lt;span style="color:#0000cf;font-weight:bold"&gt;1&lt;/span&gt; full, &lt;span style="color:#0000cf;font-weight:bold"&gt;1&lt;/span&gt; diff&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Here the &lt;code&gt;stanza&lt;/code&gt; is the database cluster name: &lt;a href="https://pigsty.io/docs/pgsql/param#pg_cluster"&gt;&lt;code&gt;pg_cluster&lt;/code&gt;&lt;/a&gt;, which is &lt;code&gt;pg-meta&lt;/code&gt; in the default configuration.&lt;/p&gt;</description></item><item><title>Backup Repository</title><link>https://pigsty.io/docs/pgsql/backup/repository/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/backup/repository/</guid><description>&lt;p&gt;You can configure the backup &lt;strong&gt;storage location&lt;/strong&gt; by specifying the &lt;a href="https://pigsty.io/docs/pgsql/param/#pgbackrest_repo"&gt;&lt;code&gt;pgbackrest_repo&lt;/code&gt;&lt;/a&gt; parameter.
+You can define multiple repositories here, and Pigsty will choose which one to use based on the value of &lt;a href="https://pigsty.io/docs/pgsql/param/#pgbackrest_method"&gt;&lt;code&gt;pgbackrest_method&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="default-repositories"&gt;Default Repositories&lt;/h2&gt;
+&lt;p&gt;By default, Pigsty provides two default backup repository definitions: &lt;code&gt;local&lt;/code&gt; and &lt;code&gt;minio&lt;/code&gt; backup repositories.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;local&lt;/code&gt;: &lt;strong&gt;Default option&lt;/strong&gt;, uses local &lt;code&gt;/pg/backup&lt;/code&gt; directory (symlink to &lt;a href="https://pigsty.io/docs/pgsql/param/#pg_fs_backup"&gt;&lt;code&gt;pg_fs_backup&lt;/code&gt;&lt;/a&gt;: &lt;code&gt;/data/backups&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;minio&lt;/code&gt;: Uses SNSD single-node MinIO cluster (supported by Pigsty, but not enabled by default)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pgbackrest_method: local # Choose backup repository method&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;`local`, `minio`, or other custom repository&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pgbackrest_repo: # pgbackrest repository configuration&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;https://pgbackrest.org/configuration.html#section-repository&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;local&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Default pgbackrest repository using local POSIX filesystem&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;path&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;/pg/backup &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Local backup directory, defaults to `/pg/backup`&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;retention_full_type&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;count &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Retain full backups by count&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;retention_full&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#0000cf;font-weight:bold"&gt;2&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Keep 2, up to 3 full backups when using local filesystem repository&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;minio&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Optional minio repository&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;type&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;s3 &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio is S3 compatible&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;s3_endpoint&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;sss.pigsty &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio endpoint domain, defaults to `sss.pigsty`&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;s3_region&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;us-east-1 &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio region, defaults to us-east-1, meaningless for minio&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;s3_bucket&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pgsql &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio bucket name, defaults to `pgsql`&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;s3_key&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pgbackrest &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio user access key for pgbackrest&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;s3_key_secret&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;S3User.Backup &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio user secret for pgbackrest&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;s3_uri_style&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;path &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio uses path-style URIs instead of host-style&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;path&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;/pgbackrest &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio backup path, defaults to `/pgbackrest`&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;storage_port&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#0000cf;font-weight:bold"&gt;9000&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio port, defaults to 9000&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;storage_ca_file&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;/etc/pki/ca.crt &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio CA certificate path, defaults to `/etc/pki/ca.crt`&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;block&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;y&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Enable block-level incremental backup&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;bundle&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;y&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Bundle small files into a single file&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;bundle_limit&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;20MiB &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Bundle size limit, recommended 20MiB for object storage&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;bundle_size&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;128MiB &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Bundle target size, recommended 128MiB for object storage&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;cipher_type&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;aes-256-cbc &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Enable AES encryption for remote backup repository&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;cipher_pass&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pgBackRest &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# AES encryption password, defaults to &amp;#39;pgBackRest&amp;#39;&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;retention_full_type&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;time &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Retain full backups by time&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;retention_full&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#0000cf;font-weight:bold"&gt;14&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Keep full backups from the last 14 days&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="repository-retention-policy"&gt;Repository Retention Policy&lt;/h2&gt;
+&lt;p&gt;If you backup daily but don&amp;rsquo;t delete old backups, the backup repository will grow indefinitely and exhaust disk space.
+You need to define a retention policy to keep only a limited number of backups.&lt;/p&gt;</description></item><item><title>Admin Commands</title><link>https://pigsty.io/docs/pgsql/backup/admin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/backup/admin/</guid><description>&lt;h2 id="enable-backup"&gt;Enable Backup&lt;/h2&gt;
+&lt;p&gt;If &lt;a href="https://pigsty.io/docs/pgsql/param/#pgbackrest_enabled"&gt;&lt;code&gt;pgbackrest_enabled&lt;/code&gt;&lt;/a&gt; is set to &lt;code&gt;true&lt;/code&gt; when the database cluster is created, backups will be automatically enabled.&lt;/p&gt;
+&lt;p&gt;If this value was &lt;code&gt;false&lt;/code&gt; at creation time, you can enable the pgbackrest component with the following command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./pgsql.yml -t pg_backup &lt;span style="color:#8f5902;font-style:italic"&gt;# Run pgbackrest subtask&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="remove-backup"&gt;Remove Backup&lt;/h2&gt;
+&lt;p&gt;When removing the primary instance (&lt;a href="https://pigsty.io/docs/pgsql/param/#pg_role"&gt;&lt;code&gt;pg_role&lt;/code&gt;&lt;/a&gt; = &lt;code&gt;primary&lt;/code&gt;), Pigsty will delete the pgbackrest backup stanza.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./pgsql-rm.yml
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./pgsql-rm.yml -e &lt;span style="color:#000"&gt;pg_rm_backup&lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;&lt;span style="color:#204a87"&gt;false&lt;/span&gt; &lt;span style="color:#8f5902;font-style:italic"&gt;# Keep backups&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./pgsql-rm.yml -t pg_backup &lt;span style="color:#8f5902;font-style:italic"&gt;# Remove backups only&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Use the &lt;code&gt;pg_backup&lt;/code&gt; subtask to remove backups only, and the &lt;a href="https://pigsty.io/docs/pgsql/param/#pg_rm_backup"&gt;&lt;code&gt;pg_rm_backup&lt;/code&gt;&lt;/a&gt; parameter (set to &lt;code&gt;false&lt;/code&gt;) to preserve backups.&lt;/p&gt;</description></item><item><title>Restore Operations</title><link>https://pigsty.io/docs/pgsql/backup/restore/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/backup/restore/</guid><description>&lt;p&gt;You can perform Point-in-Time Recovery (PITR) in Pigsty using pre-configured pgbackrest.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#manual-approach"&gt;&lt;strong&gt;Manual Approach&lt;/strong&gt;&lt;/a&gt;: Manually execute PITR using &lt;code&gt;pg-pitr&lt;/code&gt; prompt scripts, more flexible but more complex.&lt;/li&gt;
+&lt;li&gt;&lt;a href="#playbook-approach"&gt;&lt;strong&gt;Playbook Approach&lt;/strong&gt;&lt;/a&gt;: Automatically execute PITR using &lt;code&gt;pgsql-pitr.yml&lt;/code&gt; playbook, highly automated but less flexible and error-prone.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you are very familiar with the configuration, you can use the fully automated playbook, otherwise manual step-by-step operation is recommended.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;If you want to roll back the &lt;code&gt;pg-meta&lt;/code&gt; cluster to a previous point in time, add the &lt;code&gt;pg_pitr&lt;/code&gt; parameter:&lt;/p&gt;</description></item><item><title>Clone PG Cluster</title><link>https://pigsty.io/docs/pgsql/backup/cluster/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/backup/cluster/</guid><description>&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Create an online replica of an existing cluster using Standby Cluster&lt;/li&gt;
+&lt;li&gt;Create a point-in-time snapshot of an existing cluster using PITR&lt;/li&gt;
+&lt;li&gt;Perform post-PITR cleanup to ensure the new cluster&amp;rsquo;s backup process works properly&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can use the PG PITR mechanism to clone an entire database cluster.&lt;/p&gt;
+&lt;h2 id="reset-a-clusters-state"&gt;Reset a Cluster&amp;rsquo;s State&lt;/h2&gt;
+&lt;p&gt;You can also consider creating a brand new empty cluster, then use PITR to reset it to a specific state of the &lt;code&gt;pg-meta&lt;/code&gt; cluster.&lt;/p&gt;</description></item><item><title>Clone Database</title><link>https://pigsty.io/docs/pgsql/backup/database/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/backup/database/</guid><description>&lt;h2 id="clone-database"&gt;Clone Database&lt;/h2&gt;
+&lt;p&gt;You can copy a PostgreSQL database through the template mechanism, but no active connections to the template database are allowed during this period.&lt;/p&gt;
+&lt;p&gt;If you want to clone the &lt;code&gt;postgres&lt;/code&gt; database, you must execute the following two statements at the same time. Ensure all connections to the &lt;code&gt;postgres&lt;/code&gt; database are cleaned up before executing Clone:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;SELECT&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pg_terminate_backend&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;(&lt;/span&gt;&lt;span style="color:#000"&gt;pid&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;)&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;FROM&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pg_stat_activity&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;WHERE&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;datname&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#4e9a06"&gt;&amp;#39;postgres&amp;#39;&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;CREATE&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;DATABASE&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pgcopy&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;TEMPLATE&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;postgres&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;STRATEGY&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;FILE_COPY&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="instant-clone"&gt;Instant Clone&lt;/h3&gt;
+&lt;p&gt;If you are using PostgreSQL 18 or higher, Pigsty sets &lt;a href="https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-FILE-COPY-METHOD"&gt;&lt;code&gt;file_copy_method&lt;/code&gt;&lt;/a&gt; by default. This parameter allows you to clone a database in O(1) (~200ms) time complexity without copying data files.&lt;/p&gt;</description></item></channel></rss>

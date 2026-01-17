@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Service on PIGSTY</title><link>https://pigsty.io/tags/service/</link><description>Recent content in Service on PIGSTY</description><generator>Hugo</generator><language>en</language><atom:link href="https://pigsty.io/tags/service/index.xml" rel="self" type="application/rss+xml"/><item><title>Service Access</title><link>https://pigsty.io/docs/concept/ha/svc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/ha/svc/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Split read and write operations, route traffic correctly, and deliver PostgreSQL cluster capabilities reliably.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="#service-overview"&gt;Service&lt;/a&gt; is an abstraction: it represents the form in which database clusters expose their capabilities externally, encapsulating underlying cluster details.&lt;/p&gt;
+&lt;p&gt;Services are crucial for &lt;a href="#access-services"&gt;stable access&lt;/a&gt; in production environments, showing their value during automatic failover in &lt;a href="https://pigsty.io/docs/concept/ha"&gt;high availability&lt;/a&gt; clusters. &lt;a href="#personal-users"&gt;Personal users&lt;/a&gt; typically don&amp;rsquo;t need to worry about this concept.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="personal-users"&gt;Personal Users&lt;/h2&gt;
+&lt;p&gt;The concept of &amp;ldquo;service&amp;rdquo; is for production environments. Personal users with single-node clusters can skip the complexity and directly use instance names or IP addresses to access the database.&lt;/p&gt;</description></item></channel></rss>

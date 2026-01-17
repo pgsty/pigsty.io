@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CONSUL on PIGSTY</title><link>https://pigsty.io/module/consul/</link><description>Recent content in CONSUL on PIGSTY</description><generator>Hugo</generator><language>en</language><atom:link href="https://pigsty.io/module/consul/index.xml" rel="self" type="application/rss+xml"/><item><title>Module: Consul</title><link>https://pigsty.io/docs/pilot/consul/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pilot/consul/</guid><description>&lt;p&gt;Consul is a distributed DCS + KV + DNS + service registry/discovery component.&lt;/p&gt;
+&lt;p&gt;In the old version (1.x) of Pigsty, Consul was used as the default high-availability DCS. Now this support has been removed, but it will be provided as a separate module in the future.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/pgsty/pigsty/tree/v1.5.1/roles/consul"&gt;https://github.com/pgsty/pigsty/tree/v1.5.1/roles/consul&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="configuration"&gt;Configuration&lt;/h2&gt;
+&lt;p&gt;To deploy Consul, you need to add the IP addresses and hostnames of all nodes to the &lt;code&gt;consul&lt;/code&gt; group.&lt;/p&gt;
+&lt;p&gt;At least one node should be designated as the consul server with &lt;code&gt;consul_role: server&lt;/code&gt;, while other nodes default to &lt;code&gt;consul_role: node&lt;/code&gt;.&lt;/p&gt;</description></item></channel></rss>

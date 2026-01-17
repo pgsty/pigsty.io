@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TIGERBEETLE on PIGSTY</title><link>https://pigsty.io/module/tigerbeetle/</link><description>Recent content in TIGERBEETLE on PIGSTY</description><generator>Hugo</generator><language>en</language><atom:link href="https://pigsty.io/module/tigerbeetle/index.xml" rel="self" type="application/rss+xml"/><item><title>Module: TigerBeetle</title><link>https://pigsty.io/docs/pilot/tigerbeetle/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pilot/tigerbeetle/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="https://tigerbeetle.com/"&gt;TigerBeetle&lt;/a&gt; is a financial accounting transaction database offering extreme performance and reliability.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The TigerBeetle module is currently available for &lt;strong&gt;Beta&lt;/strong&gt; preview only in the Pigsty Professional Edition.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="installation"&gt;Installation&lt;/h2&gt;
+&lt;p&gt;Pigsty Infra Repo has the RPM / DEB packages for TigerBeetle, use the following command to install:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./node.yml -t node_install -e &lt;span style="color:#4e9a06"&gt;&amp;#39;{&amp;#34;node_repo_modules&amp;#34;:&amp;#34;infra&amp;#34;,&amp;#34;node_packages&amp;#34;:[&amp;#34;tigerbeetle&amp;#34;]}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;After installation, please refer to the official documentation for configuration: &lt;a href="https://github.com/tigerbeetle/tigerbeetle"&gt;https://github.com/tigerbeetle/tigerbeetle&lt;/a&gt;&lt;/p&gt;
+&lt;div class="alert alert-danger" role="alert"&gt;&lt;div class="h4 alert-heading" role="heading"&gt;TigerBeetle Requires Linux Kernel Version 5.5 or Higher!&lt;/div&gt;
+&lt;p&gt;Please note that TigerBeetle supports only Linux kernel version 5.5 or higher, making it incompatible by default with EL7 (3.10) and EL8 (4.18) systems.&lt;/p&gt;</description></item></channel></rss>

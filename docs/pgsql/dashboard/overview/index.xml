@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Overview on PIGSTY</title><link>https://pigsty.io/docs/pgsql/dashboard/overview/</link><description>Recent content in Overview on PIGSTY</description><generator>Hugo</generator><language>en</language><atom:link href="https://pigsty.io/docs/pgsql/dashboard/overview/index.xml" rel="self" type="application/rss+xml"/><item><title>PGSQL Overview</title><link>https://pigsty.io/docs/pgsql/dashboard/overview/pgsql-overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/dashboard/overview/pgsql-overview/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Main dashboard for the PGSQL module: &lt;a href="https://demo.pigsty.io/d/pgsql-overview"&gt;Demo&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;PGSQL Overview is the main dashboard for the PostgreSQL module, providing a global overview of the entire PGSQL module.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://demo.pigsty.io/d/pgsql-overview"&gt;&lt;img src="https://pigsty.io/img/panel/pgsql-overview.webp" alt="pgsql-overview"&gt;&lt;/a&gt;&lt;/p&gt;</description></item><item><title>PGSQL Alert</title><link>https://pigsty.io/docs/pgsql/dashboard/overview/pgsql-alert/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/dashboard/overview/pgsql-alert/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Global key metrics and alert events for PGSQL: &lt;a href="https://demo.pigsty.io/d/pgsql-alert"&gt;Demo&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;PGSQL Alert provides a global overview of core metrics and alert events for PostgreSQL clusters.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://demo.pigsty.io/d/pgsql-alert"&gt;&lt;img src="https://pigsty.io/img/panel/pgsql-alert.webp" alt="pgsql-alert"&gt;&lt;/a&gt;&lt;/p&gt;</description></item><item><title>PGSQL Shard</title><link>https://pigsty.io/docs/pgsql/dashboard/overview/pgsql-shard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/dashboard/overview/pgsql-shard/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Overview of horizontally sharded PGSQL clusters: &lt;a href="https://demo.pigsty.io/d/pgsql-shard"&gt;Demo&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;PGSQL Shard provides cross-shard metric comparison for horizontally sharded PGSQL clusters such as CITUS or GPSQL.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://demo.pigsty.io/d/pgsql-shard"&gt;&lt;img src="https://pigsty.io/img/panel/pgsql-shard.webp" alt="pgsql-shard"&gt;&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

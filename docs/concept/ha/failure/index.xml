@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Failure Model on PIGSTY</title><link>https://pigsty.io/docs/concept/ha/failure/</link><description>Recent content in Failure Model on PIGSTY</description><generator>Hugo</generator><language>en</language><atom:link href="https://pigsty.io/docs/concept/ha/failure/index.xml" rel="self" type="application/rss+xml"/><item><title>Model of Patroni Passive Failure</title><link>https://pigsty.io/docs/concept/ha/failure/passive/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/ha/failure/passive/</guid><description>&lt;div id="infographic-7de234be936c491ca38d917964899ac2" class="infographic-container td-max-width-on-larger-screens"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+(function() {
+ var containerId = 'infographic-7de234be936c491ca38d917964899ac2';
+ var syntax = "````\ninfographic list-row-simple-horizontal-arrow\ndata\n \n desc Lease Expiration Stages\n items\n - label Lease Expiration\n - label Replica Detect\n - label Elect \u0026 Promote\n - label Haproxy Up\ntheme light\n palette antv\n````";
+
+ function renderInfographic() {
+ var dom = document.getElementById(containerId);
+ if (!dom) { console.error('Infographic: container not found:', containerId); return; }
+ try {
+ var ig = new AntVInfographic.Infographic({
+ container: '#' + containerId,
+ width: dom.offsetWidth || '100%',
+ height: 'auto',
+ });
+ ig.render(syntax);
+ } catch (e) {
+ console.error('Infographic render error:', e);
+ dom.innerHTML = '&lt;pre style="color: red;"&gt;Infographic Error: ' + e.message + '&lt;/pre&gt;';
+ }
+ }
+
+ 
+ if (typeof AntVInfographic !== 'undefined') {
+ renderInfographic();
+ } else if (!window._infographicLoading) {
+ window._infographicLoading = true;
+ window._infographicCallbacks = [renderInfographic];
+ var script = document.createElement('script');
+ script.src = '/js/infographic.min.js';
+ script.onload = function() {
+ window._infographicCallbacks.forEach(function(cb) { cb(); });
+ };
+ document.head.appendChild(script);
+ } else {
+ window._infographicCallbacks.push(renderInfographic);
+ }
+})();
+&lt;/script&gt;
+
+&lt;hr&gt;
+&lt;h2 id="rto-timeline"&gt;RTO Timeline&lt;/h2&gt;
+&lt;div id="echarts-0f45ad1cb9c0c76384b068caaba7bbfe" class="echarts-container td-max-width-on-larger-screens" style="height: 520px;"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+(function() {
+ var dom = document.getElementById('echarts-0f45ad1cb9c0c76384b068caaba7bbfe');
+ if (!dom) return;
+
+ 
+ window._echartsFns = window._echartsFns || {};
+
+var fmt = function(params) { if (!params || !params.length || params[0].name === '') return ''; return '&lt;b&gt;' + params[0].name + '&lt;/b&gt;&lt;br/&gt;' + params.filter(p =&gt; p.value !== '-' &amp;&amp; p.value != null).map(p =&gt; p.marker + ' ' + p.seriesName + ': ' + p.value + 's').join('&lt;br/&gt;'); };
+
+ window._echartsFns['fmt'] = fmt;
+ var theme = document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'dark' : null;
+
+ var chart = echarts.init(dom, theme);
+ var optionsJson = {"grid":{"bottom":32,"left":64,"right":24,"top":40},"legend":{"data":["Lease Expiration","Replica Detection","Lock Contest \u0026 Promote","Health Check"],"itemGap":12,"top":0},"series":[{"barWidth":20,"data":[120,110,100,"-",60,55,50,"-",30,27,25,"-",20,17,15],"emphasis":{"focus":"series"},"itemStyle":{"color":"#e15759"},"name":"Lease Expire","stack":"main","type":"bar","z":2},{"data":[20,10,0,"-",10,5,0,"-",5,3,0,"-",5,3,0],"emphasis":{"focus":"series"},"itemStyle":{"color":"#edc949"},"name":"Replica Detect","stack":"main","type":"bar","z":2},{"data":[2,1,0,"-",2,1,0,"-",2,1,0,"-",2,1,0],"emphasis":{"focus":"series"},"itemStyle":{"color":"#59a14f"},"name":"Elect \u0026 Promote","stack":"main","type":"bar","z":2},{"data":[8,6,4,"-",6,5,3,"-",4,3,2,"-",2,2,1],"emphasis":{"focus":"series"},"itemStyle":{"color":"#4e79a7"},"name":"HAProxy Check","stack":"main","type":"bar","z":2},{"barGap":"-100%","barWidth":20,"data":[150,127,104,"-",78,66,53,"-",41,34,27,"-",29,23,16],"emphasis":{"itemStyle":{"opacity":0}},"itemStyle":{"color":"#888","opacity":0},"name":"Total RTO","type":"bar","z":1},{"barGap":"-100%","barWidth":20,"data":[150,150,150,"-",90,90,90,"-",45,45,45,"-",30,30,30],"emphasis":{"itemStyle":{"color":"rgba(0,0,0,0.12)"}},"itemStyle":{"color":"rgba(0,0,0,0.08)"},"name":"RTO Budget","type":"bar","z":0}],"tooltip":{"axisPointer":{"type":"shadow"},"formatter":"$fn:fmt","trigger":"axis"},"xAxis":{"axisLine":{"show":true},"axisTick":{"show":true},"max":160,"minorSplitLine":{"lineStyle":{"opacity":0.2,"type":"dotted"},"show":true},"minorTick":{"show":true,"splitNumber":5},"name":"Seconds","nameLocation":"end","splitLine":{"lineStyle":{"opacity":0.5,"type":"dashed"},"show":true},"type":"value"},"yAxis":{"axisLabel":{"fontFamily":"monospace","fontSize":10},"axisLine":{"show":true},"axisTick":{"show":true},"data":["wide-max","wide-avg","wide-min","","safe-max","safe-avg","safe-min","","norm-max","norm-avg","norm-min","","fast-max","fast-avg","fast-min"],"splitLine":{"show":false},"type":"category"}};
+
+ 
+ function replaceFnRefs(obj) {
+ if (typeof obj === 'string' &amp;&amp; obj.startsWith('$fn:')) {
+ var fnName = obj.substring(4);
+ return window._echartsFns[fnName];
+ }
+ if (Array.isArray(obj)) {
+ return obj.map(replaceFnRefs);
+ }
+ if (obj &amp;&amp; typeof obj === 'object') {
+ var result = {};
+ for (var key in obj) {
+ result[key] = replaceFnRefs(obj[key]);
+ }
+ return result;
+ }
+ return obj;
+ }
+
+ var options = replaceFnRefs(optionsJson);
+ chart.setOption(options);
+
+ 
+ window.addEventListener('resize', function() {
+ chart.resize();
+ });
+ var observer = new MutationObserver(function(mutations) {
+ mutations.forEach(function(mutation) {
+ if (mutation.attributeName === 'data-bs-theme') {
+ var newTheme = document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'dark' : null;
+ chart.dispose();
+ chart = echarts.init(dom, newTheme);
+ chart.setOption(options);
+ }
+ });
+ });
+ observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-bs-theme'] });
+})();
+&lt;/script&gt;
+
+&lt;hr&gt;
+&lt;h2 id="failure-model"&gt;Failure Model&lt;/h2&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: center"&gt;Phase&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Best&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Worst&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Average&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;strong&gt;Lease Expiration&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;ttl - loop&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;ttl&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;ttl - loop/2&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Best: crash just before refresh&lt;br/&gt;Worst: crash right after refresh&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;strong&gt;Replica Detect&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;0&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;loop&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;loop / 2&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Best: exactly at check point&lt;br/&gt;Worst: just missed check point&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;strong&gt;Election Promote&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;0&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;2&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;1&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Best: direct lock and promote&lt;br/&gt;Worst: API timeout + Promote&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;strong&gt;HAProxy Check&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;(rise-1) × fastinter&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;(rise-1) × fastinter + inter&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;(rise-1) × fastinter + inter/2&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Best: state change before check&lt;br/&gt;Worst: state change right after check&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Key Difference Between Passive and Active Failover&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>Model of Patroni Active Failure</title><link>https://pigsty.io/docs/concept/ha/failure/active/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/ha/failure/active/</guid><description>&lt;div id="infographic-83f086194aaa6ee6523bab9450341f7b" class="infographic-container td-max-width-on-larger-screens"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+(function() {
+ var containerId = 'infographic-83f086194aaa6ee6523bab9450341f7b';
+ var syntax = "````\ninfographic list-row-simple-horizontal-arrow\ndata\n desc When Patroni is healthy but PostgreSQL crashes\n items\n - label Crash Found\n - label Restart Timeout\n - label Replica Detect\n - label Elect Promote\n - label HAProxy Check\ntheme light\n palette antv\n````";
+
+ function renderInfographic() {
+ var dom = document.getElementById(containerId);
+ if (!dom) { console.error('Infographic: container not found:', containerId); return; }
+ try {
+ var ig = new AntVInfographic.Infographic({
+ container: '#' + containerId,
+ width: dom.offsetWidth || '100%',
+ height: 'auto',
+ });
+ ig.render(syntax);
+ } catch (e) {
+ console.error('Infographic render error:', e);
+ dom.innerHTML = '&lt;pre style="color: red;"&gt;Infographic Error: ' + e.message + '&lt;/pre&gt;';
+ }
+ }
+
+ 
+ if (typeof AntVInfographic !== 'undefined') {
+ renderInfographic();
+ } else if (!window._infographicLoading) {
+ window._infographicLoading = true;
+ window._infographicCallbacks = [renderInfographic];
+ var script = document.createElement('script');
+ script.src = '/js/infographic.min.js';
+ script.onload = function() {
+ window._infographicCallbacks.forEach(function(cb) { cb(); });
+ };
+ document.head.appendChild(script);
+ } else {
+ window._infographicCallbacks.push(renderInfographic);
+ }
+})();
+&lt;/script&gt;
+
+&lt;hr&gt;
+&lt;h2 id="rto-timeline"&gt;RTO Timeline&lt;/h2&gt;
+&lt;div id="echarts-f4f61a909b7c83448b5c4f436a069fec" class="echarts-container td-max-width-on-larger-screens" style="height: 520px;"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+(function() {
+ var dom = document.getElementById('echarts-f4f61a909b7c83448b5c4f436a069fec');
+ if (!dom) return;
+
+ 
+ window._echartsFns = window._echartsFns || {};
+
+var fmt = function(params) { if (!params || !params.length || params[0].name === '') return ''; return '&lt;b&gt;' + params[0].name + '&lt;/b&gt;&lt;br/&gt;' + params.filter(p =&gt; p.value !== '-' &amp;&amp; p.value != null).map(p =&gt; p.marker + ' ' + p.seriesName + ': ' + p.value + 's').join('&lt;br/&gt;'); };
+
+ window._echartsFns['fmt'] = fmt;
+ var theme = document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'dark' : null;
+
+ var chart = echarts.init(dom, theme);
+ var optionsJson = {"grid":{"bottom":32,"left":64,"right":24,"top":40},"legend":{"data":["Crash Found","Restart Timeout","Replica Detection","Elect Promote","HAProxy Check"],"itemGap":12,"top":0},"series":[{"barWidth":20,"data":[20,10,0,"-",10,5,0,"-",5,3,0,"-",5,3,0],"emphasis":{"focus":"series"},"itemStyle":{"color":"#b07aa1"},"name":"Crash Found","stack":"main","type":"bar","z":2},{"data":[95,95,0,"-",45,45,0,"-",25,25,0,"-",15,15,0],"emphasis":{"focus":"series"},"itemStyle":{"color":"#f28e2c"},"name":"Restart Timeout","stack":"main","type":"bar","z":2},{"data":[20,10,0,"-",10,5,0,"-",5,3,0,"-",5,3,0],"emphasis":{"focus":"series"},"itemStyle":{"color":"#edc949"},"name":"Replica Detect","stack":"main","type":"bar","z":2},{"data":[2,1,0,"-",2,1,0,"-",2,1,0,"-",2,1,0],"emphasis":{"focus":"series"},"itemStyle":{"color":"#59a14f"},"name":"Elect Promote","stack":"main","type":"bar","z":2},{"data":[8,6,4,"-",6,5,3,"-",4,3,2,"-",2,2,1],"emphasis":{"focus":"series"},"itemStyle":{"color":"#4e79a7"},"name":"HAProxy Check","stack":"main","type":"bar","z":2},{"barGap":"-100%","barWidth":20,"data":[145,122,4,"-",73,61,3,"-",41,35,2,"-",29,24,1],"emphasis":{"itemStyle":{"opacity":0}},"itemStyle":{"color":"#888","opacity":0},"name":"RTO Total","type":"bar","z":1},{"barGap":"-100%","barWidth":20,"data":[150,150,150,"-",90,90,90,"-",45,45,45,"-",30,30,30],"emphasis":{"itemStyle":{"color":"rgba(0,0,0,0.12)"}},"itemStyle":{"color":"rgba(0,0,0,0.08)"},"name":"RTO Budget","type":"bar","z":0}],"tooltip":{"axisPointer":{"type":"shadow"},"formatter":"$fn:fmt","trigger":"axis"},"xAxis":{"axisLine":{"show":true},"axisTick":{"show":true},"max":160,"minorSplitLine":{"lineStyle":{"opacity":0.2,"type":"dotted"},"show":true},"minorTick":{"show":true,"splitNumber":5},"name":"Seconds","nameLocation":"end","splitLine":{"lineStyle":{"opacity":0.5,"type":"dashed"},"show":true},"type":"value"},"yAxis":{"axisLabel":{"fontFamily":"monospace","fontSize":10},"axisLine":{"show":true},"axisTick":{"show":true},"data":["wide-max","wide-avg","wide-min","","safe-max","safe-avg","safe-min","","norm-max","norm-avg","norm-min","","fast-max","fast-avg","fast-min"],"splitLine":{"show":false},"type":"category"}};
+
+ 
+ function replaceFnRefs(obj) {
+ if (typeof obj === 'string' &amp;&amp; obj.startsWith('$fn:')) {
+ var fnName = obj.substring(4);
+ return window._echartsFns[fnName];
+ }
+ if (Array.isArray(obj)) {
+ return obj.map(replaceFnRefs);
+ }
+ if (obj &amp;&amp; typeof obj === 'object') {
+ var result = {};
+ for (var key in obj) {
+ result[key] = replaceFnRefs(obj[key]);
+ }
+ return result;
+ }
+ return obj;
+ }
+
+ var options = replaceFnRefs(optionsJson);
+ chart.setOption(options);
+
+ 
+ window.addEventListener('resize', function() {
+ chart.resize();
+ });
+ var observer = new MutationObserver(function(mutations) {
+ mutations.forEach(function(mutation) {
+ if (mutation.attributeName === 'data-bs-theme') {
+ var newTheme = document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'dark' : null;
+ chart.dispose();
+ chart = echarts.init(dom, newTheme);
+ chart.setOption(options);
+ }
+ });
+ });
+ observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-bs-theme'] });
+})();
+&lt;/script&gt;
+
+&lt;hr&gt;
+&lt;h2 id="failure-model"&gt;Failure Model&lt;/h2&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: center"&gt;Item&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Best&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Worst&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Average&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;strong&gt;Crash Found&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;0&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;loop&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;loop/2&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Best: PG crashes right before check&lt;br/&gt;Worst: PG crashes right after check&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;strong&gt;Restart Timeout&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;0&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;start&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;start&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Best: PG recovers instantly&lt;br/&gt;Worst: Wait full start timeout before releasing lease&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;strong&gt;Replica Detect&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;0&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;loop&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;loop/2&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Best: Right at check point&lt;br/&gt;Worst: Just missed check point&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;strong&gt;Elect Promote&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;0&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;2&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;1&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Best: Acquire lock and promote directly&lt;br/&gt;Worst: API timeout + Promote&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;strong&gt;HAProxy Check&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;(rise-1) × fastinter&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;(rise-1) × fastinter + inter&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;(rise-1) × fastinter + inter/2&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Best: State changes before check&lt;br/&gt;Worst: State changes right after check&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Key Difference Between Active and Passive Failure&lt;/strong&gt;:&lt;/p&gt;</description></item></channel></rss>

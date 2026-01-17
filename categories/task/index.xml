@@ -1,0 +1,1568 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Task on PIGSTY</title><link>https://pigsty.io/categories/task/</link><description>Recent content in Task on PIGSTY</description><generator>Hugo</generator><language>en</language><lastBuildDate>Thu, 15 Jan 2026 11:51:06 +0800</lastBuildDate><atom:link href="https://pigsty.io/categories/task/index.xml" rel="self" type="application/rss+xml"/><item><title>Managing PostgreSQL Clusters</title><link>https://pigsty.io/docs/pgsql/admin/cluster/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/admin/cluster/</guid><description>&lt;h2 id="quick-reference"&gt;Quick Reference&lt;/h2&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: left"&gt;Action&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Command&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#create-cluster"&gt;&lt;strong&gt;Create Cluster&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;bin/pgsql-add &amp;lt;cls&amp;gt;&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Create a new PostgreSQL cluster&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#scale-out"&gt;&lt;strong&gt;Expand Cluster&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;bin/pgsql-add &amp;lt;cls&amp;gt; &amp;lt;ip...&amp;gt;&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Add replica to existing cluster&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#scale-in"&gt;&lt;strong&gt;Shrink Cluster&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;bin/pgsql-rm &amp;lt;cls&amp;gt; &amp;lt;ip...&amp;gt;&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Remove instance from cluster&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#remove-cluster"&gt;&lt;strong&gt;Remove Cluster&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;bin/pgsql-rm &amp;lt;cls&amp;gt;&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Destroy entire PostgreSQL cluster&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#reload-service"&gt;&lt;strong&gt;Reload Service&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;bin/pgsql-svc &amp;lt;cls&amp;gt; [ip...]&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Reload cluster load balancer config&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#reload-hba"&gt;&lt;strong&gt;Reload HBA&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;bin/pgsql-hba &amp;lt;cls&amp;gt; [ip...]&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Reload cluster HBA access rules&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#clone-cluster"&gt;&lt;strong&gt;Clone Cluster&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;-&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Clone via standby cluster or PITR&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;For other management tasks, see: &lt;a href="https://pigsty.io/docs/pgsql/admin/patroni"&gt;&lt;strong&gt;HA Management&lt;/strong&gt;&lt;/a&gt;, &lt;a href="https://pigsty.io/docs/pgsql/admin/user/"&gt;&lt;strong&gt;Manage Users&lt;/strong&gt;&lt;/a&gt;, &lt;a href="https://pigsty.io/docs/pgsql/admin/db/"&gt;&lt;strong&gt;Manage Databases&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Managing PostgreSQL Users</title><link>https://pigsty.io/docs/pgsql/admin/user/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/admin/user/</guid><description>&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;Pigsty uses declarative management: first &lt;a href="https://pigsty.io/docs/pgsql/config/user"&gt;&lt;strong&gt;define users&lt;/strong&gt;&lt;/a&gt; in the &lt;a href="https://pigsty.io/docs/concept/iac/inventory"&gt;&lt;strong&gt;inventory&lt;/strong&gt;&lt;/a&gt;, then use &lt;code&gt;bin/pgsql-user &amp;lt;cls&amp;gt; &amp;lt;username&amp;gt;&lt;/code&gt; to create or modify.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg-meta&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;hosts&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;10.10.10.10&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_seq: 1, pg_role&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;primary } }&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;vars&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_cluster&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pg-meta&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_users&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;[&lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;name: dbuser_app, password: &amp;#39;DBUser.App&amp;#39;, pgbouncer&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;true&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;}&lt;span style="color:#000;font-weight:bold"&gt;]&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# &amp;lt;--- Define user list here!&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist"&gt;
+ &lt;li class="nav-item"&gt;
+ &lt;button class="nav-link active"
+ id="tabs-00-00-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-00" role="tab"
+ data-td-tp-persist="script" aria-controls="tabs-00-00" aria-selected="true"&gt;
+ Script
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-01-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-01" role="tab"
+ data-td-tp-persist="playbook" aria-controls="tabs-00-01" aria-selected="false"&gt;
+ Playbook
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-02-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-02" role="tab"
+ data-td-tp-persist="example" aria-controls="tabs-00-02" aria-selected="false"&gt;
+ Example
+ &lt;/button&gt;
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="tab-content" id="tabs-0-content"&gt;
+ &lt;div class="tab-body tab-pane fade show active"
+ id="tabs-00-00" role="tabpanel" aria-labelled-by="tabs-00-00-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-user &amp;lt;cls&amp;gt; &amp;lt;username&amp;gt; &lt;span style="color:#8f5902;font-style:italic"&gt;# Create/modify &amp;lt;username&amp;gt; user on &amp;lt;cls&amp;gt; cluster&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-body tab-pane fade"
+ id="tabs-00-01" role="tabpanel" aria-labelled-by="tabs-00-01-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./pgsql-user.yml -l pg-meta -e &lt;span style="color:#000"&gt;username&lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;dbuser_app &lt;span style="color:#8f5902;font-style:italic"&gt;# Use playbook to create/modify user&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-body tab-pane fade"
+ id="tabs-00-02" role="tabpanel" aria-labelled-by="tabs-00-02-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-user pg-meta dbuser_app &lt;span style="color:#8f5902;font-style:italic"&gt;# Create/modify dbuser_app user on pg-meta cluster&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;For complete user definition reference, see &lt;a href="https://pigsty.io/docs/pgsql/config/user"&gt;&lt;strong&gt;User Configuration&lt;/strong&gt;&lt;/a&gt;. For access permissions, see &lt;a href="https://pigsty.io/docs/concept/sec/ac/#default-roles"&gt;&lt;strong&gt;ACL: Role Privileges&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Managing PostgreSQL Databases</title><link>https://pigsty.io/docs/pgsql/admin/db/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/admin/db/</guid><description>&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;Pigsty uses declarative management: first &lt;a href="https://pigsty.io/docs/pgsql/config/db"&gt;&lt;strong&gt;define databases&lt;/strong&gt;&lt;/a&gt; in the &lt;a href="https://pigsty.io/docs/concept/iac/inventory"&gt;&lt;strong&gt;inventory&lt;/strong&gt;&lt;/a&gt;, then use &lt;code&gt;bin/pgsql-db &amp;lt;cls&amp;gt; &amp;lt;dbname&amp;gt;&lt;/code&gt; to create or modify.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg-meta&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;hosts&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;10.10.10.10&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_seq: 1, pg_role&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;primary } }&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;vars&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_cluster&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pg-meta&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_databases&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;[&lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;name&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;some_db }] &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# &amp;lt;--- Define database list here!&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist"&gt;
+ &lt;li class="nav-item"&gt;
+ &lt;button class="nav-link active"
+ id="tabs-00-00-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-00" role="tab"
+ data-td-tp-persist="script" aria-controls="tabs-00-00" aria-selected="true"&gt;
+ Script
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-01-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-01" role="tab"
+ data-td-tp-persist="playbook" aria-controls="tabs-00-01" aria-selected="false"&gt;
+ Playbook
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-02-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-02" role="tab"
+ data-td-tp-persist="example" aria-controls="tabs-00-02" aria-selected="false"&gt;
+ Example
+ &lt;/button&gt;
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="tab-content" id="tabs-0-content"&gt;
+ &lt;div class="tab-body tab-pane fade show active"
+ id="tabs-00-00" role="tabpanel" aria-labelled-by="tabs-00-00-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-db &amp;lt;cls&amp;gt; &amp;lt;dbname&amp;gt; &lt;span style="color:#8f5902;font-style:italic"&gt;# Create/modify &amp;lt;dbname&amp;gt; database on &amp;lt;cls&amp;gt; cluster&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-body tab-pane fade"
+ id="tabs-00-01" role="tabpanel" aria-labelled-by="tabs-00-01-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./pgsql-db.yml -l pg-meta -e &lt;span style="color:#000"&gt;dbname&lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;some_db &lt;span style="color:#8f5902;font-style:italic"&gt;# Use playbook to create/modify database&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-body tab-pane fade"
+ id="tabs-00-02" role="tabpanel" aria-labelled-by="tabs-00-02-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-db pg-meta some_db &lt;span style="color:#8f5902;font-style:italic"&gt;# Create/modify some_db database on pg-meta cluster&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;For complete database definition reference, see &lt;a href="https://pigsty.io/docs/pgsql/config/db"&gt;&lt;strong&gt;Database Configuration&lt;/strong&gt;&lt;/a&gt;. For access permissions, see &lt;a href="https://pigsty.io/docs/concept/sec/ac/#database-privileges"&gt;&lt;strong&gt;ACL: Database Privileges&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Patroni HA Management</title><link>https://pigsty.io/docs/pgsql/admin/patroni/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/admin/patroni/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Pigsty uses Patroni to manage PostgreSQL clusters. It handles config changes, status checks, switchover, restart, reinit replicas, and more.&lt;/p&gt;
+&lt;p&gt;To use Patroni for management, you need one of the following identities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;From &lt;a href="https://pigsty.io/docs/concept/node#admin-node"&gt;&lt;strong&gt;INFRA node&lt;/strong&gt;&lt;/a&gt; as &lt;a href="https://pigsty.io/docs/deploy/admin"&gt;&lt;strong&gt;admin user&lt;/strong&gt;&lt;/a&gt;, managing all clusters in the environment.&lt;/li&gt;
+&lt;li&gt;From &lt;a href="https://pigsty.io/docs/concept/node#pgsql-node"&gt;&lt;strong&gt;PGSQL node&lt;/strong&gt;&lt;/a&gt; as &lt;a href="https://pigsty.io/docs/pgsql/param#pg_dbsu"&gt;&lt;strong&gt;&lt;code&gt;pg_dbsu&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; (default &lt;code&gt;postgres&lt;/code&gt;), managing the current cluster only.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Patroni provides &lt;a href="https://patroni.readthedocs.io/en/latest/patronictl.html"&gt;&lt;strong&gt;&lt;code&gt;patronictl&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; CLI for management. Pigsty provides a wrapper alias &lt;code&gt;pg&lt;/code&gt; to simplify operations.&lt;/p&gt;
+&lt;details&gt;&lt;summary&gt;Using patronictl via pg alias&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pg &lt;span style="color:#ce5c00;font-weight:bold"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#204a87"&gt;local&lt;/span&gt; &lt;span style="color:#000"&gt;patroni_conf&lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;&lt;span style="color:#4e9a06"&gt;&amp;#34;/infra/conf/patronictl.yml&amp;#34;&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#204a87;font-weight:bold"&gt;if&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;[&lt;/span&gt; ! -r &lt;span style="color:#4e9a06"&gt;${&lt;/span&gt;&lt;span style="color:#000"&gt;patroni_conf&lt;/span&gt;&lt;span style="color:#4e9a06"&gt;}&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;]&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt; &lt;span style="color:#204a87;font-weight:bold"&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#000"&gt;patroni_conf&lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;&lt;span style="color:#4e9a06"&gt;&amp;#34;/etc/patroni/patroni.yml&amp;#34;&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#204a87;font-weight:bold"&gt;if&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;[&lt;/span&gt; ! -r &lt;span style="color:#4e9a06"&gt;${&lt;/span&gt;&lt;span style="color:#000"&gt;patroni_conf&lt;/span&gt;&lt;span style="color:#4e9a06"&gt;}&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;]&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt; &lt;span style="color:#204a87;font-weight:bold"&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#204a87"&gt;echo&lt;/span&gt; &lt;span style="color:#4e9a06"&gt;&amp;#34;error: patronictl config not found&amp;#34;&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#204a87;font-weight:bold"&gt;return&lt;/span&gt; 1&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#204a87;font-weight:bold"&gt;fi&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#204a87;font-weight:bold"&gt;fi&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; patronictl -c &lt;span style="color:#4e9a06"&gt;${&lt;/span&gt;&lt;span style="color:#000"&gt;patroni_conf&lt;/span&gt;&lt;span style="color:#4e9a06"&gt;}&lt;/span&gt; &lt;span style="color:#4e9a06"&gt;&amp;#34;&lt;/span&gt;&lt;span style="color:#000"&gt;$@&lt;/span&gt;&lt;span style="color:#4e9a06"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/details&gt;
+&lt;hr&gt;
+&lt;h2 id="available-commands"&gt;Available Commands&lt;/h2&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Command&lt;/th&gt;
+ &lt;th&gt;Function&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#edit-config"&gt;&lt;strong&gt;&lt;code&gt;edit-config&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Edit Config&lt;/td&gt;
+ &lt;td&gt;Interactively edit cluster Patroni/PostgreSQL config&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#list-status"&gt;&lt;strong&gt;&lt;code&gt;list&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;List Status&lt;/td&gt;
+ &lt;td&gt;List cluster members and their status&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#switchover"&gt;&lt;strong&gt;&lt;code&gt;switchover&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Switchover&lt;/td&gt;
+ &lt;td&gt;Switch primary role to specified replica (planned)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#failover"&gt;&lt;strong&gt;&lt;code&gt;failover&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Failover&lt;/td&gt;
+ &lt;td&gt;Force failover to specified replica (emergency)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#restart"&gt;&lt;strong&gt;&lt;code&gt;restart&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Restart&lt;/td&gt;
+ &lt;td&gt;Restart PostgreSQL instance to apply restart-required params&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#reload"&gt;&lt;strong&gt;&lt;code&gt;reload&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Reload&lt;/td&gt;
+ &lt;td&gt;Reload Patroni config (no restart needed)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#reinit-replica"&gt;&lt;strong&gt;&lt;code&gt;reinit&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Reinit Replica&lt;/td&gt;
+ &lt;td&gt;Reinitialize replica (wipe data and re-clone)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#pause"&gt;&lt;strong&gt;&lt;code&gt;pause&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Pause Auto-Failover&lt;/td&gt;
+ &lt;td&gt;Pause Patroni automatic failover&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#resume"&gt;&lt;strong&gt;&lt;code&gt;resume&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Resume Auto-Failover&lt;/td&gt;
+ &lt;td&gt;Resume Patroni automatic failover&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#history"&gt;&lt;strong&gt;&lt;code&gt;history&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;View History&lt;/td&gt;
+ &lt;td&gt;Show cluster failover history&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#show-config"&gt;&lt;strong&gt;&lt;code&gt;show-config&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Show Config&lt;/td&gt;
+ &lt;td&gt;Display current cluster config (read-only)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#query"&gt;&lt;strong&gt;&lt;code&gt;query&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Execute Query&lt;/td&gt;
+ &lt;td&gt;Execute SQL query on cluster members&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#topology"&gt;&lt;strong&gt;&lt;code&gt;topology&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;View Topology&lt;/td&gt;
+ &lt;td&gt;Display cluster replication topology&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#version"&gt;&lt;strong&gt;&lt;code&gt;version&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;View Version&lt;/td&gt;
+ &lt;td&gt;Display Patroni version info&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#remove"&gt;&lt;strong&gt;&lt;code&gt;remove&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Remove Member&lt;/td&gt;
+ &lt;td&gt;Remove cluster member from DCS (dangerous)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="edit-config"&gt;Edit Config&lt;/h2&gt;
+&lt;p&gt;Use &lt;a href="https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-edit-config"&gt;&lt;strong&gt;&lt;code&gt;edit-config&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; to interactively edit cluster Patroni and PostgreSQL config. This opens an editor to modify config stored in DCS, automatically applying changes to all members. You can change Patroni params (&lt;code&gt;ttl&lt;/code&gt;, &lt;code&gt;loop_wait&lt;/code&gt;, &lt;code&gt;synchronous_mode&lt;/code&gt;, etc.) and PostgreSQL params in &lt;code&gt;postgresql.parameters&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Pgbouncer Connection Pooling</title><link>https://pigsty.io/docs/pgsql/admin/pgbouncer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/admin/pgbouncer/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Pigsty uses &lt;a href="https://www.pgbouncer.org/"&gt;&lt;strong&gt;Pgbouncer&lt;/strong&gt;&lt;/a&gt; as PostgreSQL connection pooling middleware, listening on port &lt;code&gt;6432&lt;/code&gt; by default, proxying access to local PostgreSQL on port &lt;code&gt;5432&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This is an &lt;strong&gt;optional component&lt;/strong&gt;. If you don&amp;rsquo;t have massive connections or need transaction pooling and query metrics, you can disable it, connect directly to the database, or keep it unused.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="user--database-management"&gt;User &amp;amp; Database Management&lt;/h2&gt;
+&lt;p&gt;Pgbouncer users and databases are auto-managed by Pigsty, applying &lt;a href="https://pigsty.io/docs/pgsql/config/db"&gt;&lt;strong&gt;database config&lt;/strong&gt;&lt;/a&gt; and &lt;a href="https://pigsty.io/docs/pgsql/config/user"&gt;&lt;strong&gt;user config&lt;/strong&gt;&lt;/a&gt; when &lt;a href="https://pigsty.io/docs/pgsql/admin/db"&gt;&lt;strong&gt;creating databases&lt;/strong&gt;&lt;/a&gt; and &lt;a href="https://pigsty.io/docs/pgsql/admin/user"&gt;&lt;strong&gt;creating users&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Managing PostgreSQL Component Services</title><link>https://pigsty.io/docs/pgsql/admin/component/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/admin/component/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Pigsty&amp;rsquo;s PGSQL module consists of multiple components, each running as a systemd service on nodes. (&lt;a href="https://pigsty.io/docs/concept/arch/pgsql#pgbackrest"&gt;&lt;strong&gt;pgbackrest&lt;/strong&gt;&lt;/a&gt; is an exception)&lt;/p&gt;
+&lt;p&gt;Understanding these components and their management is essential for maintaining production PostgreSQL clusters.&lt;/p&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: left"&gt;Component&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Port&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Service Name&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Patroni&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;&lt;code&gt;8008&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;patroni&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;HA manager, manages PostgreSQL lifecycle&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;PostgreSQL&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;&lt;code&gt;5432&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;postgres&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Placeholder service, not used, for emergency&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Pgbouncer&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;&lt;code&gt;6432&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;pgbouncer&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Connection pooling middleware, traffic entry&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;PgBackRest&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;-&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;-&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;pgBackRest has no daemon service&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;HAProxy&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;&lt;code&gt;543x&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;haproxy&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Load balancer, exposes database services&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;pg_exporter&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;&lt;code&gt;9630&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;pg_exporter&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;PostgreSQL metrics exporter&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;pgbouncer_exporter&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;&lt;code&gt;9631&lt;/code&gt;&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;pgbouncer_exporter&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Pgbouncer metrics exporter&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;vip-manager&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;-&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;vip-manager&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Optional, manages L2 VIP address floating&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class="alert alert-warning" role="alert"&gt;&lt;div class="h4 alert-heading" role="heading"&gt;Important&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Do NOT use systemctl directly to manage PostgreSQL service&lt;/strong&gt;. PostgreSQL is managed by Patroni - use &lt;a href="https://pigsty.io/docs/pgsql/admin/patroni"&gt;&lt;strong&gt;&lt;code&gt;patronictl&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; commands instead.
+Direct PostgreSQL operations may cause Patroni state inconsistency and trigger unexpected failover. The &lt;code&gt;postgres&lt;/code&gt; service is an emergency escape hatch when Patroni fails.&lt;/p&gt;</description></item><item><title>Managing PostgreSQL Extensions</title><link>https://pigsty.io/docs/pgsql/admin/ext/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/admin/ext/</guid><description>&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;Pigsty provides &lt;a href="https://pgext.cloud/list"&gt;&lt;strong&gt;440+ extensions&lt;/strong&gt;&lt;/a&gt;. Using extensions involves four steps: &lt;strong&gt;Download&lt;/strong&gt;, &lt;strong&gt;Install&lt;/strong&gt;, &lt;strong&gt;Configure&lt;/strong&gt;, &lt;strong&gt;Enable&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg-meta&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;hosts&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;10.10.10.10&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_seq: 1, pg_role&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;primary } }&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;vars&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_cluster&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pg-meta&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_extensions&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;[&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;postgis, timescaledb, pgvector ] &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# &amp;lt;--- Install extension packages&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_libs&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#4e9a06"&gt;&amp;#39;timescaledb, pg_stat_statements, auto_explain&amp;#39;&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# &amp;lt;--- Configure preload extensions&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pg_databases&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;- &lt;span style="color:#204a87;font-weight:bold"&gt;name&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;meta&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;extensions&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;[&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;postgis, timescaledb, vector ] &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# &amp;lt;--- Enable in database&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist"&gt;
+ &lt;li class="nav-item"&gt;
+ &lt;button class="nav-link active"
+ id="tabs-00-00-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-00" role="tab"
+ data-td-tp-persist="script" aria-controls="tabs-00-00" aria-selected="true"&gt;
+ Script
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-01-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-01" role="tab"
+ data-td-tp-persist="playbook" aria-controls="tabs-00-01" aria-selected="false"&gt;
+ Playbook
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-02-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-02" role="tab"
+ data-td-tp-persist="example" aria-controls="tabs-00-02" aria-selected="false"&gt;
+ Example
+ &lt;/button&gt;
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="tab-content" id="tabs-0-content"&gt;
+ &lt;div class="tab-body tab-pane fade show active"
+ id="tabs-00-00" role="tabpanel" aria-labelled-by="tabs-00-00-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-ext &amp;lt;cls&amp;gt; &lt;span style="color:#8f5902;font-style:italic"&gt;# Install extensions defined in config on &amp;lt;cls&amp;gt; cluster&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-ext &amp;lt;cls&amp;gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;[&lt;/span&gt;ext...&lt;span style="color:#ce5c00;font-weight:bold"&gt;]&lt;/span&gt; &lt;span style="color:#8f5902;font-style:italic"&gt;# Install extensions specified on command line&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-body tab-pane fade"
+ id="tabs-00-01" role="tabpanel" aria-labelled-by="tabs-00-01-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./pgsql.yml -l pg-meta -t pg_ext &lt;span style="color:#8f5902;font-style:italic"&gt;# Use playbook to install extensions&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-body tab-pane fade"
+ id="tabs-00-02" role="tabpanel" aria-labelled-by="tabs-00-02-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-ext pg-meta &lt;span style="color:#8f5902;font-style:italic"&gt;# Install defined extensions on pg-meta cluster&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-ext pg-meta pg_duckdb pg_mooncake &lt;span style="color:#8f5902;font-style:italic"&gt;# Install specified extensions&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;For complete extension reference, see &lt;a href="https://pigsty.io/docs/pgsql/ext/"&gt;&lt;strong&gt;Extensions&lt;/strong&gt;&lt;/a&gt;. For available extensions, see &lt;a href="https://pgext.cloud/list"&gt;&lt;strong&gt;Extension Catalog&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Upgrading PostgreSQL Major/Minor Versions</title><link>https://pigsty.io/docs/pgsql/admin/upgrade/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/admin/upgrade/</guid><description>&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;PostgreSQL version upgrades fall into two types: &lt;strong&gt;minor version upgrade&lt;/strong&gt; and &lt;strong&gt;major version upgrade&lt;/strong&gt;, with very different risk and complexity.&lt;/p&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: left"&gt;Type&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Example&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Downtime&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Data Compatibility&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Risk&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Minor upgrade&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;17.2 → 17.3&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Seconds (rolling)&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Fully compatible&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Low&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Major upgrade&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;17 → 18&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Minutes&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires data dir upgrade&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Medium&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist"&gt;
+ &lt;li class="nav-item"&gt;
+ &lt;button class="nav-link active"
+ id="tabs-00-00-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-00" role="tab"
+ data-td-tp-persist="minor" aria-controls="tabs-00-00" aria-selected="true"&gt;
+ Minor
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-01-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-01" role="tab"
+ data-td-tp-persist="major" aria-controls="tabs-00-01" aria-selected="false"&gt;
+ Major
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-02-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-02" role="tab"
+ data-td-tp-persist="extension" aria-controls="tabs-00-02" aria-selected="false"&gt;
+ Extension
+ &lt;/button&gt;
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="tab-content" id="tabs-0-content"&gt;
+ &lt;div class="tab-body tab-pane fade show active"
+ id="tabs-00-00" role="tabpanel" aria-labelled-by="tabs-00-00-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Rolling upgrade: replicas first, then primary&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ansible &amp;lt;cls&amp;gt; -b -a &lt;span style="color:#4e9a06"&gt;&amp;#39;yum upgrade -y postgresql17*&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pg restart --role replica --force &amp;lt;cls&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pg switchover &amp;lt;cls&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pg restart &amp;lt;cls&amp;gt; &amp;lt;old-primary&amp;gt; --force
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-body tab-pane fade"
+ id="tabs-00-01" role="tabpanel" aria-labelled-by="tabs-00-01-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Recommended: Logical replication migration&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-add pg-new &lt;span style="color:#8f5902;font-style:italic"&gt;# Create new version cluster&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Configure logical replication to sync data...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Switch traffic to new cluster&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-body tab-pane fade"
+ id="tabs-00-02" role="tabpanel" aria-labelled-by="tabs-00-02-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;ansible &amp;lt;cls&amp;gt; -b -a &lt;span style="color:#4e9a06"&gt;&amp;#39;yum upgrade -y postgis36_17*&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;psql -c &lt;span style="color:#4e9a06"&gt;&amp;#39;ALTER EXTENSION postgis UPDATE;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;For detailed online migration process, see &lt;a href="https://pigsty.io/docs/pgsql/migration"&gt;&lt;strong&gt;Online Migration&lt;/strong&gt;&lt;/a&gt; documentation.&lt;/p&gt;</description></item><item><title>Point-in-Time Recovery</title><link>https://pigsty.io/docs/concept/pitr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/pitr/</guid><description>&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can restore and roll back your cluster to any point in the past, avoiding data loss caused by software defects and human errors.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Pigsty&amp;rsquo;s PostgreSQL clusters come with auto-configured Point-in-Time Recovery (PITR) capability, powered by the backup component &lt;a href="https://pgbackrest.org/"&gt;&lt;strong&gt;pgBackRest&lt;/strong&gt;&lt;/a&gt; and optional object storage repository &lt;a href="https://min.io/"&gt;&lt;strong&gt;MinIO&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pigsty.io/docs/concept/ha"&gt;&lt;strong&gt;High availability solutions&lt;/strong&gt;&lt;/a&gt; can address hardware failures but are powerless against data deletion/overwriting/database drops caused by software defects and human errors.
+For such situations, Pigsty provides out-of-the-box &lt;strong&gt;Point-in-Time Recovery&lt;/strong&gt; (PITR) capability, enabled by default without additional configuration.&lt;/p&gt;</description></item><item><title>ByteBase: PG Schema Migration</title><link>https://pigsty.io/docs/app/bytebase/</link><pubDate>Fri, 20 May 2022 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/bytebase/</guid><description>&lt;h2 id="bytebase"&gt;ByteBase&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://bytebase.com/"&gt;ByteBase&lt;/a&gt; is a database schema change management tool. The following command will start a ByteBase on the meta node &lt;code&gt;8887&lt;/code&gt; port by default.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;mkdir -p /data/bytebase/data&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;docker run --init --name bytebase --restart always --detach --publish 8887:8887 --volume /data/bytebase/data:/var/opt/bytebase &lt;span style="color:#4e9a06"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; bytebase/bytebase:1.0.4 --data /var/opt/bytebase --host http://ddl.pigsty --port &lt;span style="color:#0000cf;font-weight:bold"&gt;8887&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then visit http://10.10.10.10:8887/ or &lt;a href="http://ddl.pigsty/"&gt;http://ddl.pigsty&lt;/a&gt; to access bytebase console. You have to &amp;ldquo;Create Project&amp;rdquo;, &amp;ldquo;Env&amp;rdquo;, &amp;ldquo;Instance&amp;rdquo;, &amp;ldquo;Database&amp;rdquo; to perform schema migration.&lt;/p&gt;
+&lt;p&gt;Public Demo: &lt;a href="http://ddl.pigsty.cc"&gt;http://ddl.pigsty.cc&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Default username &amp;amp; password: &lt;code&gt;admin&lt;/code&gt; / &lt;code&gt;pigsty&lt;/code&gt;&lt;/p&gt;</description></item><item><title>PGAdmin4: PG Admin GUI Tool</title><link>https://pigsty.io/docs/app/pgadmin/</link><pubDate>Mon, 25 Apr 2022 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/app/pgadmin/</guid><description>&lt;p&gt;pgAdmin4 is a useful PostgreSQL management tool. Execute the following command to launch the pgadmin service on the admin node:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87"&gt;cd&lt;/span&gt; ~/pigsty/app/pgadmin &lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt; docker-compose up -d
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The default port for pgadmin is &lt;code&gt;8885&lt;/code&gt;, and you can access it through the following address:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://adm.pigsty"&gt;http://adm.pigsty&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="demo"&gt;Demo&lt;/h2&gt;
+&lt;p&gt;Public Demo: &lt;a href="http://adm.pigsty.cc"&gt;http://adm.pigsty.cc&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Credentials: &lt;code&gt;admin@pigsty.cc&lt;/code&gt; / &lt;code&gt;pigsty&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://pigsty.io/img/docs/app/pgadmin.jpeg" alt=""&gt;&lt;/p&gt;
+&lt;h2 id="tl-dr"&gt;TL; DR&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87"&gt;cd&lt;/span&gt; ~/pigsty/app/pgadmin &lt;span style="color:#8f5902;font-style:italic"&gt;# enter docker compose dir&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make up &lt;span style="color:#8f5902;font-style:italic"&gt;# launch pgadmin container&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;make conf view &lt;span style="color:#8f5902;font-style:italic"&gt;# load pigsty server list&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Shortcuts:&lt;/p&gt;</description></item><item><title>Administration</title><link>https://pigsty.io/docs/pgsql/admin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/admin/</guid><description/></item><item><title>Backup Policy</title><link>https://pigsty.io/docs/pgsql/backup/policy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/backup/policy/</guid><description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;When&lt;/strong&gt;: Backup schedule&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Where&lt;/strong&gt;: Backup repository&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;How&lt;/strong&gt;: Backup method&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="when-to-backup"&gt;When to Backup&lt;/h2&gt;
+&lt;p&gt;The first question is &lt;strong&gt;when&lt;/strong&gt; to backup your database - this is a tradeoff between backup frequency and recovery time.
+Since you need to replay WAL logs from the last backup to the recovery target point, the more frequent the backups, the less WAL logs need to be replayed, and the faster the recovery.&lt;/p&gt;
+&lt;h3 id="daily-full-backup"&gt;Daily Full Backup&lt;/h3&gt;
+&lt;p&gt;For production databases, it&amp;rsquo;s recommended to start with the simplest daily full backup strategy.
+This is also Pigsty&amp;rsquo;s default backup strategy, implemented via &lt;a href="mechanism#scheduled-backups"&gt;crontab&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Backup Mechanism</title><link>https://pigsty.io/docs/pgsql/backup/mechanism/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/backup/mechanism/</guid><description>&lt;p&gt;Backups can be invoked via built-in &lt;a href="#scripts"&gt;scripts&lt;/a&gt;, scheduled using node &lt;a href="#scheduled-backups"&gt;crontab&lt;/a&gt;,
+managed by &lt;a href="https://pgbackrest.org/"&gt;pgbackrest&lt;/a&gt;, and stored in backup repositories,
+which can be local disk filesystems or MinIO / S3, supporting different &lt;a href="#retention-policy"&gt;retention&lt;/a&gt; policies.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="scripts"&gt;Scripts&lt;/h2&gt;
+&lt;p&gt;You can create backups using the &lt;a href="https://pigsty.io/docs/pgsql/param#pg_dbsu"&gt;&lt;code&gt;pg_dbsu&lt;/code&gt;&lt;/a&gt; user (defaults to &lt;code&gt;postgres&lt;/code&gt;) to execute &lt;code&gt;pgbackrest&lt;/code&gt; commands:&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist"&gt;
+ &lt;li class="nav-item"&gt;
+ &lt;button class="nav-link disabled"
+ id="tabs-00-00-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-00" role="tab"
+ aria-controls="tabs-00-00" aria-selected="false"&gt;
+ Backup Commands
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link active"
+ id="tabs-00-01-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-01" role="tab"
+ aria-controls="tabs-00-01" aria-selected="true"&gt;
+ backup
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-02-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-02" role="tab"
+ aria-controls="tabs-00-02" aria-selected="false"&gt;
+ full
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-03-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-03" role="tab"
+ aria-controls="tabs-00-03" aria-selected="false"&gt;
+ diff
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-04-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-04" role="tab"
+ aria-controls="tabs-00-04" aria-selected="false"&gt;
+ incr
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-05-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-05" role="tab"
+ aria-controls="tabs-00-05" aria-selected="false"&gt;
+ info
+ &lt;/button&gt;
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="tab-content" id="tabs-0-content"&gt;
+ &lt;div class="tab-pane fade"
+ id="tabs-00-00" role="tabpanel" aria-labelled-by="tabs-00-00-tab" tabindex="0"&gt;
+ &lt;pre tabindex="0"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-pane fade show active"
+ id="tabs-00-01" role="tabpanel" aria-labelled-by="tabs-00-01-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pgbackrest --stanza&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;pg-meta --type&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;full backup &lt;span style="color:#8f5902;font-style:italic"&gt;# Create full backup for cluster pg-meta&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-pane fade"
+ id="tabs-00-02" role="tabpanel" aria-labelled-by="tabs-00-02-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;$ pgbackrest --stanza&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;pg-meta --type&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;full backup
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:36:57.007 P00 INFO: backup &lt;span style="color:#204a87"&gt;command&lt;/span&gt; begin 2.54.2: --annotation&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;&lt;span style="color:#000"&gt;pg_cluster&lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;pg-meta ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:36:57.030 P00 INFO: execute non-exclusive backup start: backup begins after the requested immediate checkpoint completes
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:36:57.105 P00 INFO: backup start &lt;span style="color:#000"&gt;archive&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 000000010000000000000006, &lt;span style="color:#000"&gt;lsn&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 0/6000028
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:36:58.540 P00 INFO: new backup &lt;span style="color:#000"&gt;label&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 20250715-013657F
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:36:58.588 P00 INFO: full backup &lt;span style="color:#000"&gt;size&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 44.5MB, file &lt;span style="color:#000"&gt;total&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; &lt;span style="color:#0000cf;font-weight:bold"&gt;1437&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:36:58.589 P00 INFO: backup &lt;span style="color:#204a87"&gt;command&lt;/span&gt; end: completed successfully &lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt;1584ms&lt;span style="color:#ce5c00;font-weight:bold"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-pane fade"
+ id="tabs-00-03" role="tabpanel" aria-labelled-by="tabs-00-03-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;$ pgbackrest --stanza&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;pg-meta --type&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;diff backup
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:24.952 P00 INFO: backup &lt;span style="color:#204a87"&gt;command&lt;/span&gt; begin 2.54.2: ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:24.985 P00 INFO: last backup &lt;span style="color:#000"&gt;label&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 20250715-013657F, &lt;span style="color:#000"&gt;version&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 2.54.2
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:26.337 P00 INFO: new backup &lt;span style="color:#000"&gt;label&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 20250715-013657F_20250715-013724D
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:26.381 P00 INFO: diff backup &lt;span style="color:#000"&gt;size&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 424.3KB, file &lt;span style="color:#000"&gt;total&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; &lt;span style="color:#0000cf;font-weight:bold"&gt;1437&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:26.381 P00 INFO: backup &lt;span style="color:#204a87"&gt;command&lt;/span&gt; end: completed successfully &lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt;1431ms&lt;span style="color:#ce5c00;font-weight:bold"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-pane fade"
+ id="tabs-00-04" role="tabpanel" aria-labelled-by="tabs-00-04-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;$ pgbackrest --stanza&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;pg-meta --type&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;incr backup
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:30.305 P00 INFO: backup &lt;span style="color:#204a87"&gt;command&lt;/span&gt; begin 2.54.2: ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:30.337 P00 INFO: last backup &lt;span style="color:#000"&gt;label&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 20250715-013657F_20250715-013724D, &lt;span style="color:#000"&gt;version&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 2.54.2
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:31.356 P00 INFO: new backup &lt;span style="color:#000"&gt;label&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 20250715-013657F_20250715-013730I
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:31.403 P00 INFO: incr backup &lt;span style="color:#000"&gt;size&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 8.3KB, file &lt;span style="color:#000"&gt;total&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; &lt;span style="color:#0000cf;font-weight:bold"&gt;1437&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:31.403 P00 INFO: backup &lt;span style="color:#204a87"&gt;command&lt;/span&gt; end: completed successfully &lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt;1099ms&lt;span style="color:#ce5c00;font-weight:bold"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-pane fade"
+ id="tabs-00-05" role="tabpanel" aria-labelled-by="tabs-00-05-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;$ pgbackrest --stanza&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;pg-meta info
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;stanza: pg-meta
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; status: ok
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; cipher: aes-256-cbc
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; db &lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt;current&lt;span style="color:#ce5c00;font-weight:bold"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; wal archive min/max &lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt;17&lt;span style="color:#ce5c00;font-weight:bold"&gt;)&lt;/span&gt;: 000000010000000000000001/00000001000000000000000A
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; full backup: 20250715-013657F
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; timestamp start/stop: 2025-07-15 01:36:57+00 / 2025-07-15 01:36:58+00
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; wal start/stop: &lt;span style="color:#0000cf;font-weight:bold"&gt;000000010000000000000006&lt;/span&gt; / &lt;span style="color:#0000cf;font-weight:bold"&gt;000000010000000000000006&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; database size: 44.5MB, database backup size: 44.5MB
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; repo1: backup size: 8.7MB
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; diff backup: 20250715-013657F_20250715-013724D
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; timestamp start/stop: 2025-07-15 01:37:24+00 / 2025-07-15 01:37:26+00
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; database size: 44.5MB, database backup size: 424.3KB
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; repo1: backup size: 94KB
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; backup reference total: &lt;span style="color:#0000cf;font-weight:bold"&gt;1&lt;/span&gt; full
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; incr backup: 20250715-013657F_20250715-013730I
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; timestamp start/stop: 2025-07-15 01:37:30+00 / 2025-07-15 01:37:31+00
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; database size: 44.5MB, database backup size: 8.3KB
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; repo1: backup size: 504B
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; backup reference total: &lt;span style="color:#0000cf;font-weight:bold"&gt;1&lt;/span&gt; full, &lt;span style="color:#0000cf;font-weight:bold"&gt;1&lt;/span&gt; diff&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Here the &lt;code&gt;stanza&lt;/code&gt; is the database cluster name: &lt;a href="https://pigsty.io/docs/pgsql/param#pg_cluster"&gt;&lt;code&gt;pg_cluster&lt;/code&gt;&lt;/a&gt;, which is &lt;code&gt;pg-meta&lt;/code&gt; in the default configuration.&lt;/p&gt;</description></item><item><title>Backup Repository</title><link>https://pigsty.io/docs/pgsql/backup/repository/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/backup/repository/</guid><description>&lt;p&gt;You can configure the backup &lt;strong&gt;storage location&lt;/strong&gt; by specifying the &lt;a href="https://pigsty.io/docs/pgsql/param/#pgbackrest_repo"&gt;&lt;code&gt;pgbackrest_repo&lt;/code&gt;&lt;/a&gt; parameter.
+You can define multiple repositories here, and Pigsty will choose which one to use based on the value of &lt;a href="https://pigsty.io/docs/pgsql/param/#pgbackrest_method"&gt;&lt;code&gt;pgbackrest_method&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="default-repositories"&gt;Default Repositories&lt;/h2&gt;
+&lt;p&gt;By default, Pigsty provides two default backup repository definitions: &lt;code&gt;local&lt;/code&gt; and &lt;code&gt;minio&lt;/code&gt; backup repositories.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;local&lt;/code&gt;: &lt;strong&gt;Default option&lt;/strong&gt;, uses local &lt;code&gt;/pg/backup&lt;/code&gt; directory (symlink to &lt;a href="https://pigsty.io/docs/pgsql/param/#pg_fs_backup"&gt;&lt;code&gt;pg_fs_backup&lt;/code&gt;&lt;/a&gt;: &lt;code&gt;/data/backups&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;minio&lt;/code&gt;: Uses SNSD single-node MinIO cluster (supported by Pigsty, but not enabled by default)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pgbackrest_method: local # Choose backup repository method&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;`local`, `minio`, or other custom repository&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;pgbackrest_repo: # pgbackrest repository configuration&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;https://pgbackrest.org/configuration.html#section-repository&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;local&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Default pgbackrest repository using local POSIX filesystem&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;path&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;/pg/backup &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Local backup directory, defaults to `/pg/backup`&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;retention_full_type&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;count &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Retain full backups by count&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;retention_full&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#0000cf;font-weight:bold"&gt;2&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Keep 2, up to 3 full backups when using local filesystem repository&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;minio&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Optional minio repository&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;type&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;s3 &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio is S3 compatible&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;s3_endpoint&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;sss.pigsty &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio endpoint domain, defaults to `sss.pigsty`&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;s3_region&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;us-east-1 &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio region, defaults to us-east-1, meaningless for minio&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;s3_bucket&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pgsql &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio bucket name, defaults to `pgsql`&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;s3_key&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pgbackrest &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio user access key for pgbackrest&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;s3_key_secret&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;S3User.Backup &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio user secret for pgbackrest&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;s3_uri_style&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;path &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio uses path-style URIs instead of host-style&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;path&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;/pgbackrest &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio backup path, defaults to `/pgbackrest`&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;storage_port&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#0000cf;font-weight:bold"&gt;9000&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio port, defaults to 9000&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;storage_ca_file&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;/etc/pki/ca.crt &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# minio CA certificate path, defaults to `/etc/pki/ca.crt`&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;block&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;y&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Enable block-level incremental backup&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;bundle&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;y&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Bundle small files into a single file&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;bundle_limit&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;20MiB &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Bundle size limit, recommended 20MiB for object storage&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;bundle_size&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;128MiB &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Bundle target size, recommended 128MiB for object storage&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;cipher_type&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;aes-256-cbc &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Enable AES encryption for remote backup repository&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;cipher_pass&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pgBackRest &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# AES encryption password, defaults to &amp;#39;pgBackRest&amp;#39;&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;retention_full_type&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;time &lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Retain full backups by time&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;retention_full&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#0000cf;font-weight:bold"&gt;14&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# Keep full backups from the last 14 days&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="repository-retention-policy"&gt;Repository Retention Policy&lt;/h2&gt;
+&lt;p&gt;If you backup daily but don&amp;rsquo;t delete old backups, the backup repository will grow indefinitely and exhaust disk space.
+You need to define a retention policy to keep only a limited number of backups.&lt;/p&gt;</description></item><item><title>Admin Commands</title><link>https://pigsty.io/docs/pgsql/backup/admin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/backup/admin/</guid><description>&lt;h2 id="enable-backup"&gt;Enable Backup&lt;/h2&gt;
+&lt;p&gt;If &lt;a href="https://pigsty.io/docs/pgsql/param/#pgbackrest_enabled"&gt;&lt;code&gt;pgbackrest_enabled&lt;/code&gt;&lt;/a&gt; is set to &lt;code&gt;true&lt;/code&gt; when the database cluster is created, backups will be automatically enabled.&lt;/p&gt;
+&lt;p&gt;If this value was &lt;code&gt;false&lt;/code&gt; at creation time, you can enable the pgbackrest component with the following command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./pgsql.yml -t pg_backup &lt;span style="color:#8f5902;font-style:italic"&gt;# Run pgbackrest subtask&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="remove-backup"&gt;Remove Backup&lt;/h2&gt;
+&lt;p&gt;When removing the primary instance (&lt;a href="https://pigsty.io/docs/pgsql/param/#pg_role"&gt;&lt;code&gt;pg_role&lt;/code&gt;&lt;/a&gt; = &lt;code&gt;primary&lt;/code&gt;), Pigsty will delete the pgbackrest backup stanza.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./pgsql-rm.yml
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./pgsql-rm.yml -e &lt;span style="color:#000"&gt;pg_rm_backup&lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;&lt;span style="color:#204a87"&gt;false&lt;/span&gt; &lt;span style="color:#8f5902;font-style:italic"&gt;# Keep backups&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./pgsql-rm.yml -t pg_backup &lt;span style="color:#8f5902;font-style:italic"&gt;# Remove backups only&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Use the &lt;code&gt;pg_backup&lt;/code&gt; subtask to remove backups only, and the &lt;a href="https://pigsty.io/docs/pgsql/param/#pg_rm_backup"&gt;&lt;code&gt;pg_rm_backup&lt;/code&gt;&lt;/a&gt; parameter (set to &lt;code&gt;false&lt;/code&gt;) to preserve backups.&lt;/p&gt;</description></item><item><title>Restore Operations</title><link>https://pigsty.io/docs/pgsql/backup/restore/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/backup/restore/</guid><description>&lt;p&gt;You can perform Point-in-Time Recovery (PITR) in Pigsty using pre-configured pgbackrest.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#manual-approach"&gt;&lt;strong&gt;Manual Approach&lt;/strong&gt;&lt;/a&gt;: Manually execute PITR using &lt;code&gt;pg-pitr&lt;/code&gt; prompt scripts, more flexible but more complex.&lt;/li&gt;
+&lt;li&gt;&lt;a href="#playbook-approach"&gt;&lt;strong&gt;Playbook Approach&lt;/strong&gt;&lt;/a&gt;: Automatically execute PITR using &lt;code&gt;pgsql-pitr.yml&lt;/code&gt; playbook, highly automated but less flexible and error-prone.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you are very familiar with the configuration, you can use the fully automated playbook, otherwise manual step-by-step operation is recommended.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;If you want to roll back the &lt;code&gt;pg-meta&lt;/code&gt; cluster to a previous point in time, add the &lt;code&gt;pg_pitr&lt;/code&gt; parameter:&lt;/p&gt;</description></item><item><title>Clone PG Cluster</title><link>https://pigsty.io/docs/pgsql/backup/cluster/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/backup/cluster/</guid><description>&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Create an online replica of an existing cluster using Standby Cluster&lt;/li&gt;
+&lt;li&gt;Create a point-in-time snapshot of an existing cluster using PITR&lt;/li&gt;
+&lt;li&gt;Perform post-PITR cleanup to ensure the new cluster&amp;rsquo;s backup process works properly&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can use the PG PITR mechanism to clone an entire database cluster.&lt;/p&gt;
+&lt;h2 id="reset-a-clusters-state"&gt;Reset a Cluster&amp;rsquo;s State&lt;/h2&gt;
+&lt;p&gt;You can also consider creating a brand new empty cluster, then use PITR to reset it to a specific state of the &lt;code&gt;pg-meta&lt;/code&gt; cluster.&lt;/p&gt;</description></item><item><title>Instance Recovery</title><link>https://pigsty.io/docs/pgsql/tutorial/instance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/tutorial/instance/</guid><description>&lt;p&gt;Pigsty provides two utility scripts for quickly cloning instances and performing point-in-time recovery on the same machine:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#pg-fork"&gt;&lt;code&gt;pg-fork&lt;/code&gt;&lt;/a&gt;: Quickly clone a new PostgreSQL instance on the same machine&lt;/li&gt;
+&lt;li&gt;&lt;a href="#pg-pitr"&gt;&lt;code&gt;pg-pitr&lt;/code&gt;&lt;/a&gt;: Manually perform point-in-time recovery using pgbackrest&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These two scripts can be used together: first use &lt;code&gt;pg-fork&lt;/code&gt; to clone the instance, then use &lt;code&gt;pg-pitr&lt;/code&gt; to restore the cloned instance to a specified point in time.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="pg-fork"&gt;pg-fork&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/pgsty/pigsty/blob/main/files/postgres/pg-fork"&gt;&lt;code&gt;pg-fork&lt;/code&gt;&lt;/a&gt; can quickly clone a new PostgreSQL instance on the same machine.&lt;/p&gt;</description></item><item><title>Clone Database</title><link>https://pigsty.io/docs/pgsql/backup/database/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/backup/database/</guid><description>&lt;h2 id="clone-database"&gt;Clone Database&lt;/h2&gt;
+&lt;p&gt;You can copy a PostgreSQL database through the template mechanism, but no active connections to the template database are allowed during this period.&lt;/p&gt;
+&lt;p&gt;If you want to clone the &lt;code&gt;postgres&lt;/code&gt; database, you must execute the following two statements at the same time. Ensure all connections to the &lt;code&gt;postgres&lt;/code&gt; database are cleaned up before executing Clone:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;SELECT&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pg_terminate_backend&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;(&lt;/span&gt;&lt;span style="color:#000"&gt;pid&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;)&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;FROM&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pg_stat_activity&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;WHERE&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;datname&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#4e9a06"&gt;&amp;#39;postgres&amp;#39;&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;CREATE&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;DATABASE&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pgcopy&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;TEMPLATE&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;postgres&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;STRATEGY&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;FILE_COPY&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="instant-clone"&gt;Instant Clone&lt;/h3&gt;
+&lt;p&gt;If you are using PostgreSQL 18 or higher, Pigsty sets &lt;a href="https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-FILE-COPY-METHOD"&gt;&lt;code&gt;file_copy_method&lt;/code&gt;&lt;/a&gt; by default. This parameter allows you to clone a database in O(1) (~200ms) time complexity without copying data files.&lt;/p&gt;</description></item><item><title>Backup &amp; Restore</title><link>https://pigsty.io/docs/pgsql/backup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/backup/</guid><description>&lt;p&gt;Pigsty uses &lt;a href="https://pgbackrest.org/"&gt;pgBackRest&lt;/a&gt; to manage PostgreSQL backups, arguably the most powerful open-source backup tool in the ecosystem.
+It supports incremental/parallel backup and restore, encryption, &lt;a href="https://pigsty.io/docs/minio"&gt;MinIO&lt;/a&gt;/S3, and many other features. Pigsty configures backup functionality by default for each &lt;a href="https://pigsty.io/docs/pgsql"&gt;PGSQL&lt;/a&gt; cluster.&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Section&lt;/th&gt;
+ &lt;th&gt;Content&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="mechanism"&gt;Mechanism&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Backup scripts, cron jobs, pgbackrest, repository and management&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="policy"&gt;Policy&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Backup strategy, disk planning, recovery window tradeoffs&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="repository"&gt;Repository&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Configuring backup repositories: local, MinIO, S3&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="admin"&gt;Admin&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Common backup management commands&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="restore"&gt;Restore&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Restore to a specific point in time using playbooks&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="example"&gt;Example&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Sandbox example: performing restore operations manually&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class="alert alert-warning" role="alert"&gt;&lt;div class="h4 alert-heading" role="heading"&gt;Disclaimer&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Pigsty makes every effort to provide a reliable PITR solution, but we accept no responsibility for data loss resulting from PITR operations. Use at your own risk. If you need professional support, please consider our &lt;a href="https://pigsty.io/docs/about/service"&gt;professional services&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Troubleshooting</title><link>https://pigsty.io/docs/pgsql/tutorial/failure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/tutorial/failure/</guid><description>&lt;p&gt;This document lists potential failures in PostgreSQL and Pigsty, as well as SOPs for locating, handling, and analyzing issues.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="disk-space-exhausted"&gt;Disk Space Exhausted&lt;/h2&gt;
+&lt;p&gt;Disk space exhaustion is the most common type of failure.&lt;/p&gt;
+&lt;h3 id="symptoms"&gt;Symptoms&lt;/h3&gt;
+&lt;p&gt;When the disk space where the database resides is exhausted, PostgreSQL will not work normally and may exhibit the following symptoms: database logs repeatedly report &amp;ldquo;no space left on device&amp;rdquo; errors, new data cannot be written, and PostgreSQL may even trigger a PANIC and force shutdown.&lt;/p&gt;</description></item><item><title>Data Migration</title><link>https://pigsty.io/docs/pgsql/migration/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/migration/</guid><description>&lt;p&gt;Pigsty includes a built-in playbook &lt;a href="https://github.com/pgsty/pigsty/blob/main/pgsql-migration.yml"&gt;&lt;code&gt;pgsql-migration.yml&lt;/code&gt;&lt;/a&gt; that implements online database migration based on logical replication.&lt;/p&gt;
+&lt;p&gt;With pre-generated automation scripts, application downtime can be reduced to just a few seconds. However, note that logical replication requires PostgreSQL 10 or later to work.&lt;/p&gt;
+&lt;p&gt;Of course, if you have sufficient downtime budget, you can always use the &lt;code&gt;pg_dump | psql&lt;/code&gt; approach for offline migration.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="defining-migration-tasks"&gt;Defining Migration Tasks&lt;/h2&gt;
+&lt;p&gt;To use Pigsty&amp;rsquo;s online migration playbook, you need to create a definition file that describes the migration task details.&lt;/p&gt;</description></item><item><title>Manual Recovery</title><link>https://pigsty.io/docs/pgsql/tutorial/example/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/tutorial/example/</guid><description>&lt;p&gt;You can use the &lt;code&gt;pgsql-pitr.yml&lt;/code&gt; playbook to perform PITR, but in some cases, you may want to manually execute PITR using pgbackrest primitives directly for fine-grained control.
+We will use a &lt;a href="https://pigsty.io/docs/deploy/sandbox"&gt;&lt;strong&gt;four-node sandbox&lt;/strong&gt;&lt;/a&gt; cluster with MinIO backup repository to demonstrate the process.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://pigsty.io/img/pigsty/sandbox.png" alt="pigsty-sandbox"&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="initialize-sandbox"&gt;Initialize Sandbox&lt;/h2&gt;
+&lt;p&gt;Use &lt;a href="https://pigsty.io/docs/deploy/vagrant"&gt;&lt;strong&gt;vagrant&lt;/strong&gt;&lt;/a&gt; or &lt;a href="https://pigsty.io/docs/deploy/terraform"&gt;&lt;strong&gt;terraform&lt;/strong&gt;&lt;/a&gt; to prepare a four-node sandbox environment, then:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;curl https://repo.pigsty.io/get &lt;span style="color:#000;font-weight:bold"&gt;|&lt;/span&gt; bash&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt; &lt;span style="color:#204a87"&gt;cd&lt;/span&gt; ~/pigsty/
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./configure -c full
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./install
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now operate as the admin user (or dbsu) on the admin node.&lt;/p&gt;</description></item><item><title>Enabling HugePage for PostgreSQL</title><link>https://pigsty.io/docs/pgsql/tutorial/hugepage/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/tutorial/hugepage/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Use &lt;code&gt;node_hugepage_count&lt;/code&gt; and &lt;code&gt;node_hugepage_ratio&lt;/code&gt; or &lt;code&gt;/pg/bin/pg-tune-hugepage&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If you plan to enable HugePages, consider using &lt;a href="https://pigsty.io/docs/node/param#node_hugepage_count"&gt;&lt;code&gt;node_hugepage_count&lt;/code&gt;&lt;/a&gt; and &lt;a href="https://pigsty.io/docs/node/param#node_hugepage_ratio"&gt;&lt;code&gt;node_hugepage_ratio&lt;/code&gt;&lt;/a&gt;, and apply with &lt;code&gt;./node.yml -t node_tune&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;HugePages have pros and cons for databases. The advantage is that memory is managed exclusively, eliminating concerns about being reallocated and reducing database OOM risk. The disadvantage is that it may negatively impact performance in certain scenarios.&lt;/p&gt;
+&lt;p&gt;Before PostgreSQL starts, you need to allocate &lt;strong&gt;enough&lt;/strong&gt; huge pages. The wasted portion can be reclaimed using the &lt;code&gt;pg-tune-hugepage&lt;/code&gt; script, but this script is only available for PostgreSQL 15+.&lt;/p&gt;</description></item><item><title>Accidental Deletion</title><link>https://pigsty.io/docs/pgsql/tutorial/drop/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/tutorial/drop/</guid><description>&lt;h2 id="accidental-data-deletion"&gt;Accidental Data Deletion&lt;/h2&gt;
+&lt;p&gt;If it&amp;rsquo;s a small-scale &lt;code&gt;DELETE&lt;/code&gt; misoperation, you can consider using the &lt;a href="https://pgext.cloud/e/pg_surgery"&gt;&lt;code&gt;pg_surgery&lt;/code&gt;&lt;/a&gt; or &lt;a href="https://pgext.cloud/e/pg_dirtyread"&gt;&lt;code&gt;pg_dirtyread&lt;/code&gt;&lt;/a&gt; extension for in-place surgical recovery.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;-- Immediately disable Auto Vacuum on this table and abort Auto Vacuum worker processes for this table
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;ALTER&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;TABLE&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;public&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;.&lt;/span&gt;&lt;span style="color:#000"&gt;some_table&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;SET&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;(&lt;/span&gt;&lt;span style="color:#000"&gt;autovacuum_enabled&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;off&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;,&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;toast&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;.&lt;/span&gt;&lt;span style="color:#000"&gt;autovacuum_enabled&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;off&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;);&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;CREATE&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;EXTENSION&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pg_dirtyread&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;SELECT&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;*&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;FROM&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;pg_dirtyread&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;(&lt;/span&gt;&lt;span style="color:#4e9a06"&gt;&amp;#39;tablename&amp;#39;&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;)&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;AS&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;t&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;(&lt;/span&gt;&lt;span style="color:#000"&gt;col1&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;type1&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;,&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;col2&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;type2&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;,&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;...);&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If the deleted data has already been reclaimed by VACUUM, then use the general accidental deletion recovery process.&lt;/p&gt;</description></item><item><title>Playbook</title><link>https://pigsty.io/docs/pgsql/playbook/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/playbook/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Pigsty provides a series of playbooks for cluster provisioning, scaling, user/database management, monitoring, backup &amp;amp; recovery, and migration.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Playbook&lt;/th&gt;
+ &lt;th&gt;Function&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#pgsqlyml"&gt;&lt;code&gt;pgsql.yml&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Initialize PostgreSQL cluster or add new replicas&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#pgsql-rmyml"&gt;&lt;code&gt;pgsql-rm.yml&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Remove PostgreSQL cluster or specific instances&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#pgsql-useryml"&gt;&lt;code&gt;pgsql-user.yml&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Add new business user to existing PostgreSQL cluster&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#pgsql-dbyml"&gt;&lt;code&gt;pgsql-db.yml&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Add new business database to existing PostgreSQL cluster&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#pgsql-monitoryml"&gt;&lt;code&gt;pgsql-monitor.yml&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Monitor remote PostgreSQL instances&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#pgsql-migrationyml"&gt;&lt;code&gt;pgsql-migration.yml&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Generate migration manual and scripts for existing PostgreSQL&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="#pgsql-pitryml"&gt;&lt;code&gt;pgsql-pitr.yml&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Perform Point-In-Time Recovery (PITR)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="safeguard"&gt;Safeguard&lt;/h2&gt;
+&lt;p&gt;Be &lt;strong&gt;extra cautious&lt;/strong&gt; when using &lt;a href="https://pigsty.io/docs/pgsql"&gt;&lt;code&gt;PGSQL&lt;/code&gt;&lt;/a&gt; playbooks. Misuse of &lt;a href="#pgsqlyml"&gt;&lt;code&gt;pgsql.yml&lt;/code&gt;&lt;/a&gt; and &lt;a href="#pgsql-rmyml"&gt;&lt;code&gt;pgsql-rm.yml&lt;/code&gt;&lt;/a&gt; can lead to accidental database deletion!&lt;/p&gt;</description></item><item><title>HA Drill: Handling 2-of-3 Node Failure</title><link>https://pigsty.io/docs/pgsql/tutorial/drill/</link><pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/tutorial/drill/</guid><description>&lt;p&gt;If a classic 3-node HA deployment experiences simultaneous failure of two nodes (majority), the system typically cannot complete automatic failover and requires manual intervention.&lt;/p&gt;
+&lt;p&gt;First, assess the status of the other two servers. If they can be brought up quickly, prioritize recovering those two servers. Otherwise, enter the &lt;strong&gt;Emergency Recovery Procedure&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Emergency Recovery Procedure assumes your admin node has failed&lt;/strong&gt; and only a single regular database node survives. In this case, the fastest recovery process is:&lt;/p&gt;</description></item><item><title>Bind a L2 VIP to PostgreSQL Primary with VIP-Manager</title><link>https://pigsty.io/docs/pgsql/tutorial/pg-vip/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/tutorial/pg-vip/</guid><description>&lt;p&gt;You can define an &lt;strong&gt;OPTIONAL&lt;/strong&gt; L2 VIP on a PostgreSQL cluster, provided that all nodes in the cluster are in the same L2 network.&lt;/p&gt;
+&lt;p&gt;This VIP works on Master-Backup mode and always points to the node where the primary instance of the database cluster is located.&lt;/p&gt;
+&lt;p&gt;This VIP is managed by the &lt;a href="https://github.com/cybertec-postgresql/vip-manager"&gt;VIP-Manager&lt;/a&gt;, which reads the Leader Key written by Patroni from DCS (etcd) to determine whether it is the master.&lt;/p&gt;</description></item><item><title>Deploy HA Citus Cluster</title><link>https://pigsty.io/docs/pgsql/tutorial/citus/</link><pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/tutorial/citus/</guid><description>&lt;p&gt;Citus is a PostgreSQL extension that transforms PostgreSQL into a distributed database, enabling horizontal scaling across multiple nodes to handle large amounts of data and queries.&lt;/p&gt;
+&lt;p&gt;Patroni v3.0+ provides native high-availability support for Citus, simplifying the setup of Citus clusters. Pigsty also provides native support for this.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.citusdata.com/en/stable/get_started/what_is_citus.html"&gt;What is Citus&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://patroni.readthedocs.io/en/latest/citus.html"&gt;Patroni Citus Support&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: The current Citus version (13.0) supports PostgreSQL 17, 16, 15, and 14. Pigsty extension repo provides Citus ARM64 packages.&lt;/p&gt;</description></item><item><title>Playbook</title><link>https://pigsty.io/docs/infra/playbook/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/infra/playbook/</guid><description>&lt;p&gt;Pigsty provides four playbooks related to the INFRA module:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#deployyml"&gt;&lt;code&gt;deploy.yml&lt;/code&gt;&lt;/a&gt;: Deploy all components on all nodes in one pass&lt;/li&gt;
+&lt;li&gt;&lt;a href="#infrayml"&gt;&lt;code&gt;infra.yml&lt;/code&gt;&lt;/a&gt;: Initialize Pigsty infrastructure on infra nodes&lt;/li&gt;
+&lt;li&gt;&lt;a href="#infra-rmyml"&gt;&lt;code&gt;infra-rm.yml&lt;/code&gt;&lt;/a&gt;: Remove infrastructure components from infra nodes&lt;/li&gt;
+&lt;li&gt;&lt;a href="#deployyml"&gt;&lt;code&gt;deploy.yml&lt;/code&gt;&lt;/a&gt;: Perform a complete one-time installation of Pigsty on all nodes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="deployyml"&gt;&lt;code&gt;deploy.yml&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Deploy all components on all nodes in one pass, resolving INFRA/NODE circular dependency issues.&lt;/p&gt;
+&lt;p&gt;This playbook interleaves subtasks from &lt;code&gt;infra.yml&lt;/code&gt; and &lt;code&gt;node.yml&lt;/code&gt;, completing deployment of all components in the following order:&lt;/p&gt;</description></item><item><title>Administration</title><link>https://pigsty.io/docs/infra/admin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/infra/admin/</guid><description>&lt;p&gt;This section covers daily administration and operations for Pigsty deployments.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="create-infra-module"&gt;Create INFRA Module&lt;/h2&gt;
+&lt;p&gt;Use &lt;a href="https://pigsty.io/docs/infra/playbook#infrayml"&gt;&lt;code&gt;infra.yml&lt;/code&gt;&lt;/a&gt; playbook to install INFRA module on &lt;code&gt;infra&lt;/code&gt; group:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml &lt;span style="color:#8f5902;font-style:italic"&gt;# Install INFRA module on infra group&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="uninstall-infra-module"&gt;Uninstall INFRA Module&lt;/h2&gt;
+&lt;p&gt;Use dedicated &lt;a href="https://pigsty.io/docs/infra/playbook#infra-rmyml"&gt;&lt;code&gt;infra-rm.yml&lt;/code&gt;&lt;/a&gt; playbook to remove INFRA module from &lt;code&gt;infra&lt;/code&gt; group:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra-rm.yml &lt;span style="color:#8f5902;font-style:italic"&gt;# Remove INFRA module from infra group&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="manage-local-repository"&gt;Manage Local Repository&lt;/h2&gt;
+&lt;p&gt;Pigsty includes local yum/apt repo for software packages. Manage repo configuration:&lt;/p&gt;
+&lt;h3 id="repo-variables"&gt;Repo Variables&lt;/h3&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: left"&gt;Variable&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;repo_enabled&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Enable local repo on node&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;repo_upstream&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Upstream repos to include&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;repo_remove&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Remove upstream repos if true&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;repo_url_pkg&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Extra packages to download&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;repo_clean&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Clean repo cache (makecache)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;repo_pkg&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Packages to include&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="repo-tasks"&gt;Repo Tasks&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo &lt;span style="color:#8f5902;font-style:italic"&gt;# Create or update repo&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Repo location: &lt;code&gt;/www/pigsty&lt;/code&gt; served by Nginx.&lt;/p&gt;</description></item><item><title>Ansible</title><link>https://pigsty.io/docs/infra/admin/ansible/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/infra/admin/ansible/</guid><description>&lt;p&gt;Ansible is installed by default on all INFRA nodes and can be used to manage the entire deployment.&lt;/p&gt;
+&lt;p&gt;Pigsty implements automation based on &lt;strong&gt;Ansible&lt;/strong&gt;, following the &lt;strong&gt;Infrastructure-as-Code&lt;/strong&gt; philosophy.&lt;/p&gt;
+&lt;p&gt;Ansible knowledge is useful for managing databases and infrastructure, but &lt;strong&gt;not required&lt;/strong&gt;. You only need to know how to execute &lt;strong&gt;Playbooks&lt;/strong&gt; - YAML files that define a series of automated tasks.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="installation"&gt;Installation&lt;/h2&gt;
+&lt;p&gt;Pigsty automatically installs &lt;code&gt;ansible&lt;/code&gt; and its dependencies during the &lt;a href="https://pigsty.io/docs/setup/install#bootstrap"&gt;bootstrap process&lt;/a&gt;.
+For manual installation, use the following commands:&lt;/p&gt;</description></item><item><title>Playbooks</title><link>https://pigsty.io/docs/infra/admin/playbook/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/infra/admin/playbook/</guid><description>&lt;p&gt;Pigsty uses &lt;strong&gt;idempotent&lt;/strong&gt; Ansible playbooks for management and control. Running playbooks requires &lt;code&gt;ansible-playbook&lt;/code&gt; to be in the system PATH; users must first &lt;a href="./ansible/#installation"&gt;install Ansible&lt;/a&gt; before executing playbooks.&lt;/p&gt;
+&lt;h2 id="available-playbooks"&gt;Available Playbooks&lt;/h2&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Module&lt;/th&gt;
+ &lt;th&gt;Playbook&lt;/th&gt;
+ &lt;th&gt;Purpose&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;INFRA&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;deploy.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;One-click Pigsty installation&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;INFRA&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;infra.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Initialize Pigsty infrastructure on infra nodes&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;INFRA&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;infra-rm.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Remove infrastructure components from infra nodes&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;INFRA&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;cache.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Create offline installation packages from target nodes&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;INFRA&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;cert.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Issue certificates using Pigsty self-signed CA&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;NODE&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;node.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Initialize nodes, configure to desired state&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;NODE&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;node-rm.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Remove nodes from Pigsty&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;PGSQL&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;pgsql.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Initialize HA PostgreSQL cluster, or add new replica&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;PGSQL&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;pgsql-rm.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Remove PostgreSQL cluster, or remove replica&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;PGSQL&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;pgsql-db.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Add new business database to existing cluster&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;PGSQL&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;pgsql-user.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Add new business user to existing cluster&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;PGSQL&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;pgsql-pitr.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Perform point-in-time recovery (PITR) on cluster&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;PGSQL&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;pgsql-monitor.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Monitor remote PostgreSQL using local exporters&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;PGSQL&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;pgsql-migration.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Generate migration manual and scripts for PostgreSQL&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;PGSQL&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;slim.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Install Pigsty with minimal components&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;REDIS&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;redis.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Initialize Redis cluster/node/instance&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;REDIS&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;redis-rm.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Remove Redis cluster/node/instance&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;ETCD&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;etcd.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Initialize ETCD cluster, or add new member&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;ETCD&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;etcd-rm.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Remove ETCD cluster, or remove existing member&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;MINIO&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;minio.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Initialize MinIO cluster&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;MINIO&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;minio-rm.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Remove MinIO cluster&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;DOCKER&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;docker.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Install Docker on nodes&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;DOCKER&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;app.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Install applications using Docker Compose&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;FERRET&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;mongo.yml&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Install Mongo/FerretDB on nodes&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="deployment-strategy"&gt;Deployment Strategy&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;deploy.yml&lt;/code&gt; playbook orchestrates specialized playbooks in the following group order for complete deployment:&lt;/p&gt;</description></item><item><title>Nginx Management</title><link>https://pigsty.io/docs/infra/admin/portal/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/infra/admin/portal/</guid><description>&lt;p&gt;Pigsty installs Nginx on INFRA nodes as the entry point for all web services, listening on standard ports 80/443.&lt;/p&gt;
+&lt;p&gt;In Pigsty, you can configure Nginx to provide various services through inventory:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Expose web interfaces for monitoring components like Grafana, VictoriaMetrics (VMUI), Alertmanager, and VictoriaLogs&lt;/li&gt;
+&lt;li&gt;Serve static files (software repos, documentation sites, websites, etc.)&lt;/li&gt;
+&lt;li&gt;Proxy custom application services (internal apps, database management UIs, Docker application interfaces, etc.)&lt;/li&gt;
+&lt;li&gt;Automatically issue self-signed HTTPS certificates, or use Certbot to obtain free Let&amp;rsquo;s Encrypt certificates&lt;/li&gt;
+&lt;li&gt;Expose services through a single port using different subdomains for unified access&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="basic-configuration"&gt;Basic Configuration&lt;/h2&gt;
+&lt;p&gt;Customize Nginx behavior via &lt;a href="https://pigsty.io/docs/infra/param#infra_portal"&gt;&lt;code&gt;infra_portal&lt;/code&gt;&lt;/a&gt; parameter:&lt;/p&gt;</description></item><item><title>Software Repository</title><link>https://pigsty.io/docs/infra/admin/repo/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/infra/admin/repo/</guid><description>&lt;p&gt;Pigsty supports creating and managing local APT/YUM software repositories for offline deployment or accelerated package installation.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;To add packages to the local repository:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Add packages to &lt;a href="../param/#repo_packages"&gt;&lt;code&gt;repo_packages&lt;/code&gt;&lt;/a&gt; (default packages)&lt;/li&gt;
+&lt;li&gt;Add packages to &lt;a href="../param/#repo_extra_packages"&gt;&lt;code&gt;repo_extra_packages&lt;/code&gt;&lt;/a&gt; (extra packages)&lt;/li&gt;
+&lt;li&gt;Run the build command:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo_build &lt;span style="color:#8f5902;font-style:italic"&gt;# Build local repo from upstream&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./node.yml -t node_repo &lt;span style="color:#8f5902;font-style:italic"&gt;# Refresh node repository cache&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="package-aliases"&gt;Package Aliases&lt;/h2&gt;
+&lt;p&gt;Pigsty predefines common package combinations for batch installation:&lt;/p&gt;
+&lt;h3 id="el-systems-rhelcentosrocky"&gt;EL Systems (RHEL/CentOS/Rocky)&lt;/h3&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Alias&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;node-bootstrap&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Ansible, Python3 tools, SSH related&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;infra-package&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Nginx, etcd, HAProxy, monitoring exporters, MinIO&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;pgsql-utility&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Patroni, pgBouncer, pgBackRest, PG tools&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;pgsql&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Full PostgreSQL (server, client, extensions)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;pgsql-mini&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Minimal PostgreSQL installation&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="debianubuntu-systems"&gt;Debian/Ubuntu Systems&lt;/h3&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Alias&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;node-bootstrap&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Ansible, development tools&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;infra-package&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Infrastructure components (Debian naming)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;pgsql-client&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;PostgreSQL client&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;pgsql-server&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;PostgreSQL server and related packages&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="playbook-tasks"&gt;Playbook Tasks&lt;/h2&gt;
+&lt;h3 id="main-tasks"&gt;Main Tasks&lt;/h3&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Task&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;repo&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Create local repo from internet or offline packages&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;repo_build&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Build from upstream if not exists&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;repo_upstream&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Add upstream repository files&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;repo_pkg&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Download packages and dependencies&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;repo_create&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Create/update YUM or APT repository&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;repo_nginx&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Start Nginx file server&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="complete-task-list"&gt;Complete Task List&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo_dir &lt;span style="color:#8f5902;font-style:italic"&gt;# Create local repository directory&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo_check &lt;span style="color:#8f5902;font-style:italic"&gt;# Check if local repo exists&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo_prepare &lt;span style="color:#8f5902;font-style:italic"&gt;# Use existing repo directly&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo_build &lt;span style="color:#8f5902;font-style:italic"&gt;# Build repo from upstream&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo_upstream &lt;span style="color:#8f5902;font-style:italic"&gt;# Add upstream repositories&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo_remove &lt;span style="color:#8f5902;font-style:italic"&gt;# Delete existing repo files&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo_add &lt;span style="color:#8f5902;font-style:italic"&gt;# Add repo to system directory&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo_url_pkg &lt;span style="color:#8f5902;font-style:italic"&gt;# Download packages from internet&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo_cache &lt;span style="color:#8f5902;font-style:italic"&gt;# Create metadata cache&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo_boot_pkg &lt;span style="color:#8f5902;font-style:italic"&gt;# Install bootstrap packages&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo_pkg &lt;span style="color:#8f5902;font-style:italic"&gt;# Download packages and dependencies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo_create &lt;span style="color:#8f5902;font-style:italic"&gt;# Create local repository&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo_use &lt;span style="color:#8f5902;font-style:italic"&gt;# Add new repo to system&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo_nginx &lt;span style="color:#8f5902;font-style:italic"&gt;# Start Nginx file server&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="common-operations"&gt;Common Operations&lt;/h2&gt;
+&lt;h3 id="add-new-packages"&gt;Add New Packages&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# 1. Configure upstream repositories&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo_upstream
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# 2. Download packages and dependencies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo_pkg
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# 3. Build local repository metadata&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo_create
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="refresh-node-repositories"&gt;Refresh Node Repositories&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./node.yml -t node_repo &lt;span style="color:#8f5902;font-style:italic"&gt;# Refresh repository cache on all nodes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="complete-repository-rebuild"&gt;Complete Repository Rebuild&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml -t repo &lt;span style="color:#8f5902;font-style:italic"&gt;# Create repo from internet or offline packages&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>Domain Management</title><link>https://pigsty.io/docs/infra/admin/domain/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/infra/admin/domain/</guid><description>&lt;p&gt;Use domain names instead of IP addresses to access Pigsty&amp;rsquo;s various web services.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;Add the following static resolution records to &lt;code&gt;/etc/hosts&lt;/code&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;10.10.10.10 i.pigsty g.pigsty p.pigsty a.pigsty
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Replace IP address with your actual Pigsty node&amp;rsquo;s IP.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="why-use-domain-names"&gt;Why Use Domain Names&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Easier to remember than IP addresses&lt;/li&gt;
+&lt;li&gt;Flexible pointing to different IPs&lt;/li&gt;
+&lt;li&gt;Unified service management through Nginx&lt;/li&gt;
+&lt;li&gt;Support for HTTPS encryption&lt;/li&gt;
+&lt;li&gt;Prevent ISP hijacking in some regions&lt;/li&gt;
+&lt;li&gt;Allow access to internally bound services via proxy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="dns-mechanism"&gt;DNS Mechanism&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;DNS Protocol&lt;/strong&gt;: Resolves domain names to IP addresses. Multiple domains can point to same IP.&lt;/p&gt;</description></item><item><title>Module Management</title><link>https://pigsty.io/docs/infra/admin/sop/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/infra/admin/sop/</guid><description>&lt;p&gt;This document covers daily management operations for the INFRA module, including installation, uninstallation, scaling, and component maintenance.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="install-infra-module"&gt;Install INFRA Module&lt;/h2&gt;
+&lt;p&gt;Use the &lt;a href="https://pigsty.io/docs/infra/playbook/#infrayml"&gt;&lt;code&gt;infra.yml&lt;/code&gt;&lt;/a&gt; playbook to install the INFRA module on the &lt;code&gt;infra&lt;/code&gt; group:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra.yml &lt;span style="color:#8f5902;font-style:italic"&gt;# Install INFRA module on infra group&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="uninstall-infra-module"&gt;Uninstall INFRA Module&lt;/h2&gt;
+&lt;p&gt;Use the &lt;a href="https://pigsty.io/docs/infra/playbook/#infra-rmyml"&gt;&lt;code&gt;infra-rm.yml&lt;/code&gt;&lt;/a&gt; playbook to uninstall the INFRA module from the &lt;code&gt;infra&lt;/code&gt; group:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./infra-rm.yml &lt;span style="color:#8f5902;font-style:italic"&gt;# Uninstall INFRA module from infra group&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="scale-out-infra-module"&gt;Scale Out INFRA Module&lt;/h2&gt;
+&lt;p&gt;Assign &lt;a href="https://pigsty.io/docs/infra/param/#infra_seq"&gt;&lt;code&gt;infra_seq&lt;/code&gt;&lt;/a&gt; to new nodes and add them to the &lt;code&gt;infra&lt;/code&gt; group in the inventory:&lt;/p&gt;</description></item><item><title>CA and Certificates</title><link>https://pigsty.io/docs/infra/admin/cert/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/infra/admin/cert/</guid><description>&lt;p&gt;Pigsty uses a &lt;strong&gt;self-signed Certificate Authority (CA)&lt;/strong&gt; by default for internal SSL/TLS encryption. This document covers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#self-signed-ca"&gt;Self-Signed CA&lt;/a&gt;: Default PKI infrastructure&lt;/li&gt;
+&lt;li&gt;&lt;a href="#issue-certificates"&gt;Issue Certificates&lt;/a&gt;: Using &lt;code&gt;cert.yml&lt;/code&gt; to issue additional certificates&lt;/li&gt;
+&lt;li&gt;&lt;a href="#trust-ca-certificate"&gt;Trust CA Certificate&lt;/a&gt;: Installing CA on client machines&lt;/li&gt;
+&lt;li&gt;&lt;a href="#lets-encrypt"&gt;Let&amp;rsquo;s Encrypt&lt;/a&gt;: Using real certificates for public-facing services&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="self-signed-ca"&gt;Self-Signed CA&lt;/h2&gt;
+&lt;p&gt;Pigsty automatically creates a self-signed CA during infrastructure initialization (&lt;code&gt;infra.yml&lt;/code&gt;). The CA signs certificates for:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PostgreSQL server/client SSL&lt;/li&gt;
+&lt;li&gt;Patroni REST API&lt;/li&gt;
+&lt;li&gt;etcd cluster communication&lt;/li&gt;
+&lt;li&gt;MinIO cluster communication&lt;/li&gt;
+&lt;li&gt;Nginx HTTPS (fallback)&lt;/li&gt;
+&lt;li&gt;Infrastructure services&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="pki-directory-structure"&gt;PKI Directory Structure&lt;/h3&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;files/pki/
+├── ca/
+│ ├── ca.key # CA private key (keep secure!)
+│ └── ca.crt # CA certificate
+├── csr/ # Certificate signing requests
+│ ├── misc/ # Miscellaneous certificates (cert.yml output)
+│ ├── etcd/ # ETCD certificates
+│ ├── pgsql/ # PostgreSQL certificates
+│ ├── minio/ # MinIO certificates
+│ ├── nginx/ # Nginx certificates
+│ └── mongo/ # FerretDB certificates
+└── infra/ # Infrastructure certificates
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="ca-variables"&gt;CA Variables&lt;/h3&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: left"&gt;Variable&lt;/th&gt;
+ &lt;th&gt;Default&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;ca_create&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Create CA if not exists, or abort&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;ca_cn&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;pigsty-ca&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;CA certificate common name&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;cert_validity&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;7300d&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;Default validity for issued certificates&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;td&gt;Variable&lt;/td&gt;
+ &lt;td&gt;Default&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;:&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-&lt;/td&gt;
+ &lt;td&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&lt;/td&gt;
+ &lt;td&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;CA Certificate&lt;/td&gt;
+ &lt;td&gt;100 years&lt;/td&gt;
+ &lt;td&gt;Hardcoded (36500 days)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Server/Client&lt;/td&gt;
+ &lt;td&gt;20 years&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;cert_validity&lt;/code&gt; (7300d)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Nginx HTTPS&lt;/td&gt;
+ &lt;td&gt;~1 year&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;nginx_cert_validity&lt;/code&gt; (397d)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&amp;gt; &lt;strong&gt;Note&lt;/strong&gt;: Browser vendors limit trust to 398-day certificates. Nginx uses shorter validity for browser compatibility.&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="using-external-ca"&gt;Using External CA&lt;/h2&gt;
+&lt;p&gt;To use your own enterprise CA instead of auto-generated one:&lt;/p&gt;</description></item><item><title>Playbook</title><link>https://pigsty.io/docs/node/playbook/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/node/playbook/</guid><description>&lt;p&gt;Pigsty provides two playbooks related to the NODE module:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#nodeyml"&gt;&lt;code&gt;node.yml&lt;/code&gt;&lt;/a&gt;: Add nodes to Pigsty and configure them to the desired state&lt;/li&gt;
+&lt;li&gt;&lt;a href="#node-rmyml"&gt;&lt;code&gt;node-rm.yml&lt;/code&gt;&lt;/a&gt;: Remove managed nodes from Pigsty&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Two wrapper scripts are also provided: &lt;code&gt;bin/node-add&lt;/code&gt; and &lt;code&gt;bin/node-rm&lt;/code&gt;, for quickly invoking these playbooks.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="nodeyml"&gt;&lt;code&gt;node.yml&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="https://github.com/pgsty/pigsty/blob/main/node.yml"&gt;&lt;code&gt;node.yml&lt;/code&gt;&lt;/a&gt; playbook for adding nodes to Pigsty contains the following subtasks:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;node-id : generate node identity
+node_name : setup hostname
+node_hosts : setup /etc/hosts records
+node_resolv : setup DNS resolver /etc/resolv.conf
+node_firewall : setup firewall &amp;amp; selinux
+node_ca : add &amp;amp; trust CA certificate
+node_repo : add upstream software repository
+node_pkg : install rpm/deb packages
+node_feature : setup numa, grub, static network
+node_kernel : enable kernel modules
+node_tune : setup tuned profile
+node_sysctl : setup additional sysctl parameters
+node_profile : write /etc/profile.d/node.sh
+node_ulimit : setup resource limits
+node_data : setup data directory
+node_admin : setup admin user and ssh key
+node_timezone : setup timezone
+node_ntp : setup NTP server/client
+node_crontab : add/overwrite crontab tasks
+node_vip : setup optional L2 VIP for node cluster
+haproxy : setup haproxy on node to expose services
+monitor : setup node monitoring: node_exporter &amp;amp; vector
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id="node-rmyml"&gt;&lt;code&gt;node-rm.yml&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="https://github.com/pgsty/pigsty/blob/main/node-rm.yml"&gt;&lt;code&gt;node-rm.yml&lt;/code&gt;&lt;/a&gt; playbook for removing nodes from Pigsty contains the following subtasks:&lt;/p&gt;</description></item><item><title>Administration</title><link>https://pigsty.io/docs/node/admin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/node/admin/</guid><description>&lt;p&gt;Here are common administration operations for the NODE module:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#add-node"&gt;Add Node&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#remove-node"&gt;Remove Node&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#create-admin"&gt;Create Admin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#bind-vip"&gt;Bind VIP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#add-node-monitoring"&gt;Add Node Monitoring&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#other-tasks"&gt;Other Tasks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more questions, see &lt;a href="faq/"&gt;FAQ: NODE&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="add-node"&gt;Add Node&lt;/h2&gt;
+&lt;p&gt;To add a node to Pigsty, you need passwordless ssh/sudo access to that node.&lt;/p&gt;
+&lt;p&gt;You can also add an entire cluster at once, or use wildcards to match nodes in the inventory to add to Pigsty.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# ./node.yml -l &amp;lt;cls|ip|group&amp;gt; # actual playbook to add nodes to Pigsty&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# bin/node-add &amp;lt;selector|ip...&amp;gt; # add node to Pigsty&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/node-add node-test &lt;span style="color:#8f5902;font-style:italic"&gt;# init node cluster &amp;#39;node-test&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/node-add 10.10.10.10 &lt;span style="color:#8f5902;font-style:italic"&gt;# init node &amp;#39;10.10.10.10&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Example: Add three nodes of PG cluster &lt;code&gt;pg-test&lt;/code&gt; to Pigsty management&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Administration</title><link>https://pigsty.io/docs/etcd/admin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/etcd/admin/</guid><description>&lt;p&gt;Common etcd admin SOPs:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#create-cluster"&gt;Create Cluster&lt;/a&gt;: Initialize an etcd cluster&lt;/li&gt;
+&lt;li&gt;&lt;a href="#destroy-cluster"&gt;Destroy Cluster&lt;/a&gt;: Destroy an etcd cluster&lt;/li&gt;
+&lt;li&gt;&lt;a href="#cli-environment"&gt;CLI Environment&lt;/a&gt;: Configure etcd client to access server cluster&lt;/li&gt;
+&lt;li&gt;&lt;a href="#rbac-authentication"&gt;RBAC Authentication&lt;/a&gt;: Use etcd RBAC auth&lt;/li&gt;
+&lt;li&gt;&lt;a href="#reload-config"&gt;Reload Config&lt;/a&gt;: Update etcd server member list for clients&lt;/li&gt;
+&lt;li&gt;&lt;a href="#add-member"&gt;Add Member&lt;/a&gt;: Add new member to existing etcd cluster&lt;/li&gt;
+&lt;li&gt;&lt;a href="#remove-member"&gt;Remove Member&lt;/a&gt;: Remove member from etcd cluster&lt;/li&gt;
+&lt;li&gt;&lt;a href="#utility-scripts"&gt;Utility Scripts&lt;/a&gt;: Simplify ops with &lt;code&gt;bin/etcd-add&lt;/code&gt; and &lt;code&gt;bin/etcd-rm&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more, refer to &lt;a href="faq"&gt;FAQ: ETCD&lt;/a&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="create-cluster"&gt;Create Cluster&lt;/h2&gt;
+&lt;p&gt;Define &lt;code&gt;etcd&lt;/code&gt; cluster in &lt;a href="https://pigsty.io/docs/setup/config#config-inventory"&gt;&lt;strong&gt;config inventory&lt;/strong&gt;&lt;/a&gt;:&lt;/p&gt;</description></item><item><title>Playbook</title><link>https://pigsty.io/docs/etcd/playbook/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/etcd/playbook/</guid><description>&lt;p&gt;The ETCD module provides two core playbooks: &lt;a href="#etcdyml"&gt;&lt;code&gt;etcd.yml&lt;/code&gt;&lt;/a&gt; for installing and configuring etcd clusters, and &lt;a href="#etcd-rmyml"&gt;&lt;code&gt;etcd-rm.yml&lt;/code&gt;&lt;/a&gt; for removing etcd clusters or members.&lt;/p&gt;
+&lt;div class="alert alert-info" role="alert"&gt;&lt;div class="h4 alert-heading" role="heading"&gt;Architecture Change: Pigsty v3.6+&lt;/div&gt;
+&lt;p&gt;Since Pigsty v3.6, the &lt;code&gt;etcd.yml&lt;/code&gt; playbook focuses on cluster installation and member addition. All removal operations have been moved to the dedicated &lt;code&gt;etcd-rm.yml&lt;/code&gt; playbook using the &lt;code&gt;etcd_remove&lt;/code&gt; role.&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="etcdyml"&gt;&lt;code&gt;etcd.yml&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Playbook source: &lt;a href="https://github.com/pgsty/pigsty/blob/main/etcd.yml"&gt;&lt;code&gt;etcd.yml&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This playbook installs and configures an etcd cluster on the hardcoded &lt;code&gt;etcd&lt;/code&gt; group, then launches the etcd service.&lt;/p&gt;</description></item><item><title>Playbook</title><link>https://pigsty.io/docs/minio/playbook/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/minio/playbook/</guid><description>&lt;p&gt;The MinIO module provides two built-in playbooks for cluster management:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#minioyml"&gt;&lt;code&gt;minio.yml&lt;/code&gt;&lt;/a&gt;: Install MinIO cluster&lt;/li&gt;
+&lt;li&gt;&lt;a href="#minio-rmyml"&gt;&lt;code&gt;minio-rm.yml&lt;/code&gt;&lt;/a&gt;: Remove MinIO cluster&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="minioyml"&gt;&lt;code&gt;minio.yml&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Playbook &lt;a href="https://github.com/pgsty/pigsty/blob/main/minio.yml"&gt;&lt;code&gt;minio.yml&lt;/code&gt;&lt;/a&gt; installs the MinIO module on nodes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;minio-id&lt;/code&gt; : Generate/validate minio identity parameters&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;minio_install&lt;/code&gt; : Install minio
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;minio_os_user&lt;/code&gt; : Create OS user minio&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;minio_pkg&lt;/code&gt; : Install minio/mcli packages&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;minio_dir&lt;/code&gt; : Create minio directories&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;minio_config&lt;/code&gt; : Generate minio configuration
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;minio_conf&lt;/code&gt; : Minio main config file&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;minio_cert&lt;/code&gt; : Minio SSL certificate issuance&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;minio_dns&lt;/code&gt; : Minio DNS record insertion&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;minio_launch&lt;/code&gt; : Launch minio service&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;minio_register&lt;/code&gt; : Register minio to monitoring&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;minio_provision&lt;/code&gt; : Create minio aliases/buckets/users
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;minio_alias&lt;/code&gt; : Create minio client alias (on admin node)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;minio_bucket&lt;/code&gt; : Create minio buckets&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;minio_user&lt;/code&gt; : Create minio business users&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Before running the playbook, complete the MinIO cluster &lt;a href="config"&gt;configuration&lt;/a&gt; in the &lt;a href="https://pigsty.io/docs/setup/config"&gt;config inventory&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Administration</title><link>https://pigsty.io/docs/minio/admin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/minio/admin/</guid><description>&lt;hr&gt;
+&lt;h2 id="create-cluster"&gt;Create Cluster&lt;/h2&gt;
+&lt;p&gt;To create a cluster, define it in the config inventory and run the &lt;a href="playbook#minioyml"&gt;&lt;code&gt;minio.yml&lt;/code&gt;&lt;/a&gt; playbook.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;minio&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;hosts&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;10.10.10.10&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;minio_seq: 1 } }, vars&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;{&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#204a87;font-weight:bold"&gt;minio_cluster&lt;/span&gt;&lt;span style="color:#000;font-weight:bold"&gt;:&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt; &lt;/span&gt;&lt;span style="color:#000"&gt;minio } }&lt;/span&gt;&lt;span style="color:#f8f8f8"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For example, the above configuration defines an SNSD &lt;a href="config#single-node-single-disk"&gt;Single-Node Single-Disk&lt;/a&gt; MinIO cluster. Use the following command to create this MinIO cluster:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./minio.yml -l minio &lt;span style="color:#8f5902;font-style:italic"&gt;# Install MinIO module on the minio group&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="remove-cluster"&gt;Remove Cluster&lt;/h2&gt;
+&lt;p&gt;To destroy a cluster, run the dedicated &lt;a href="playbook#minio-rmyml"&gt;&lt;code&gt;minio-rm.yml&lt;/code&gt;&lt;/a&gt; playbook:&lt;/p&gt;</description></item><item><title>Playbook</title><link>https://pigsty.io/docs/redis/playbook/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/redis/playbook/</guid><description>&lt;p&gt;The REDIS module provides two playbooks for deploying/removing Redis clusters/nodes/instances:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#redisyml"&gt;&lt;code&gt;redis.yml&lt;/code&gt;&lt;/a&gt;: Deploy Redis cluster/node/instance&lt;/li&gt;
+&lt;li&gt;&lt;a href="#redis-rmyml"&gt;&lt;code&gt;redis-rm.yml&lt;/code&gt;&lt;/a&gt;: Remove Redis cluster/node/instance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="redisyml"&gt;&lt;code&gt;redis.yml&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="https://github.com/pgsty/pigsty/blob/main/redis.yml"&gt;&lt;code&gt;redis.yml&lt;/code&gt;&lt;/a&gt; playbook for deploying Redis contains the following subtasks:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;redis_node : Init redis node
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - redis_install : Install redis &lt;span style="color:#000;font-weight:bold"&gt;&amp;amp;&lt;/span&gt; redis_exporter
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - redis_user : Create OS user redis
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - redis_dir : Configure redis FHS directory structure
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;redis_exporter : Configure redis_exporter monitoring
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - redis_exporter_config : Generate redis_exporter config
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - redis_exporter_launch : Launch redis_exporter
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;redis_instance : Init and restart redis cluster/node/instance
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - redis_config : Generate redis instance config
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - redis_launch : Launch redis instance
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;redis_register : Register redis to infrastructure
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;redis_ha : Configure redis sentinel &lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt;sentinel mode only&lt;span style="color:#ce5c00;font-weight:bold"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;redis_join : Join redis native cluster &lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt;cluster mode only&lt;span style="color:#ce5c00;font-weight:bold"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="operation-levels"&gt;Operation Levels&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;redis.yml&lt;/code&gt; supports three operation levels, controlled by &lt;code&gt;-l&lt;/code&gt; to limit target scope and &lt;code&gt;-e redis_port=&amp;lt;port&amp;gt;&lt;/code&gt; to specify a single instance:&lt;/p&gt;</description></item><item><title>Administration</title><link>https://pigsty.io/docs/redis/admin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/redis/admin/</guid><description>&lt;p&gt;Here are some common Redis administration task SOPs (Standard Operating Procedures):&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Basic Operations&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#initialize-redis"&gt;Initialize Redis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#remove-redis"&gt;Remove Redis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#reconfigure-redis"&gt;Reconfigure Redis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#using-redis-client"&gt;Using Redis Client&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;High Availability&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#configure-redis-replica"&gt;Configure Redis Replica&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#configure-ha-with-sentinel"&gt;Configure HA with Sentinel&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#initialize-redis-native-cluster"&gt;Initialize Redis Native Cluster&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Scaling &amp;amp; Migration&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#scale-up-redis-nodes"&gt;Scale Up Redis Nodes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#scale-down-redis-nodes"&gt;Scale Down Redis Nodes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#backup-and-restore"&gt;Backup and Restore&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Troubleshooting&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#common-issue-diagnosis"&gt;Common Issue Diagnosis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#performance-tuning"&gt;Performance Tuning&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more questions, please refer to &lt;a href="faq"&gt;FAQ: REDIS&lt;/a&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="initialize-redis"&gt;Initialize Redis&lt;/h3&gt;
+&lt;p&gt;You can use the &lt;a href="playbook#redisyml"&gt;&lt;code&gt;redis.yml&lt;/code&gt;&lt;/a&gt; playbook to initialize Redis clusters, nodes, or instances:&lt;/p&gt;</description></item><item><title>Grafana High Availability: Using PostgreSQL Backend</title><link>https://pigsty.io/docs/infra/admin/grafana/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/infra/admin/grafana/</guid><description>&lt;p&gt;You can use PostgreSQL as Grafana&amp;rsquo;s backend database.&lt;/p&gt;
+&lt;p&gt;This is a great opportunity to understand Pigsty&amp;rsquo;s deployment system. By completing this tutorial, you&amp;rsquo;ll learn:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How to &lt;a href="#create-database-cluster"&gt;create a new database cluster&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;How to &lt;a href="#create-grafana-business-user"&gt;create new business users&lt;/a&gt; in an existing cluster&lt;/li&gt;
+&lt;li&gt;How to &lt;a href="#create-grafana-business-database"&gt;create new business databases&lt;/a&gt; in an existing cluster&lt;/li&gt;
+&lt;li&gt;How to &lt;a href="#use-grafana-business-database"&gt;access databases&lt;/a&gt; created by Pigsty&lt;/li&gt;
+&lt;li&gt;How to &lt;a href="#manage-grafana-dashboards"&gt;manage Grafana dashboards&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;How to manage &lt;a href="#manage-postgres-datasources"&gt;PostgreSQL datasources&lt;/a&gt; in Grafana&lt;/li&gt;
+&lt;li&gt;How to &lt;a href="#one-step-grafana-upgrade"&gt;upgrade Grafana database&lt;/a&gt; in one step&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="tldr"&gt;TL;DR&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;vi pigsty.yml &lt;span style="color:#8f5902;font-style:italic"&gt;# Uncomment DB/User definitions: dbuser_grafana grafana&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-user pg-meta dbuser_grafana
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;bin/pgsql-db pg-meta grafana
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;psql postgres://dbuser_grafana:DBUser.Grafana@meta:5436/grafana -c &lt;span style="color:#4e9a06"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#4e9a06"&gt;&amp;#39;CREATE TABLE t(); DROP TABLE t;&amp;#39;&lt;/span&gt; &lt;span style="color:#8f5902;font-style:italic"&gt;# Verify connection string works&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;vi /etc/grafana/grafana.ini &lt;span style="color:#8f5902;font-style:italic"&gt;# Modify [database] type url&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;systemctl restart grafana-server
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="create-database-cluster"&gt;Create Database Cluster&lt;/h2&gt;
+&lt;p&gt;We can define a new database &lt;code&gt;grafana&lt;/code&gt; on &lt;code&gt;pg-meta&lt;/code&gt;, or create a dedicated Grafana database cluster &lt;code&gt;pg-grafana&lt;/code&gt; on new nodes.&lt;/p&gt;</description></item><item><title>Administration</title><link>https://pigsty.io/docs/ferret/admin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/ferret/admin/</guid><description>&lt;p&gt;This document describes daily administration operations for FerretDB clusters.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="create-ferretdb-cluster"&gt;Create FerretDB Cluster&lt;/h2&gt;
+&lt;p&gt;After &lt;a href="https://pigsty.io/docs/ferret/config"&gt;defining&lt;/a&gt; a FerretDB cluster in the &lt;a href="https://pigsty.io/docs/setup/config"&gt;configuration inventory&lt;/a&gt;, you can install it with the following command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./mongo.yml -l ferret &lt;span style="color:#8f5902;font-style:italic"&gt;# Install FerretDB on the ferret group&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Since FerretDB uses PostgreSQL as its underlying storage, running this playbook multiple times is generally safe (idempotent).&lt;/p&gt;
+&lt;p&gt;The FerretDB service is configured to automatically restart on failure (&lt;code&gt;Restart=on-failure&lt;/code&gt;), providing basic resilience for this stateless proxy layer.&lt;/p&gt;</description></item><item><title>Playbook</title><link>https://pigsty.io/docs/ferret/playbook/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/ferret/playbook/</guid><description>&lt;p&gt;Pigsty provides a built-in playbook &lt;a href="https://github.com/pgsty/pigsty/blob/main/mongo.yml"&gt;&lt;code&gt;mongo.yml&lt;/code&gt;&lt;/a&gt; for installing FerretDB on nodes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt;: This playbook only executes on hosts where &lt;a href="https://pigsty.io/docs/ferret/param#mongo_seq"&gt;&lt;code&gt;mongo_seq&lt;/code&gt;&lt;/a&gt; is defined.
+Running the playbook against hosts without &lt;code&gt;mongo_seq&lt;/code&gt; will skip all tasks safely, making it safe to run against mixed host groups.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="mongoyml"&gt;&lt;code&gt;mongo.yml&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Playbook location: &lt;a href="https://github.com/pgsty/pigsty/blob/main/mongo.yml"&gt;&lt;code&gt;mongo.yml&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Function: Install MongoDB/FerretDB on target hosts where &lt;code&gt;mongo_seq&lt;/code&gt; is defined.&lt;/p&gt;
+&lt;p&gt;This playbook contains the following subtasks:&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Subtask&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;mongo_check&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Check mongo identity parameters&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;mongo_dbsu&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Create OS user mongod&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;mongo_install&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Install ferretdb RPM/DEB packages&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;mongo_purge&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Purge existing FerretDB (not by default)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;mongo_config&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Configure FerretDB service&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;mongo_cert&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Issue FerretDB SSL certificates&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;mongo_launch&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Launch FerretDB service&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;mongo_register&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Register FerretDB to Prometheus&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="task-details"&gt;Task Details&lt;/h2&gt;
+&lt;h3 id="mongo_check"&gt;&lt;code&gt;mongo_check&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Check that required identity parameters are defined:&lt;/p&gt;</description></item><item><title>Playbooks</title><link>https://pigsty.io/docs/docker/playbook/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/docker/playbook/</guid><description>&lt;p&gt;The Docker module provides a default playbook &lt;a href="#dockeryml"&gt;&lt;code&gt;docker.yml&lt;/code&gt;&lt;/a&gt; for installing Docker Daemon and Docker Compose.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="dockeryml"&gt;&lt;code&gt;docker.yml&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Playbook source file: &lt;a href="https://github.com/pgsty/pigsty/blob/main/docker.yml"&gt;&lt;code&gt;docker.yml&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Running this playbook will install &lt;code&gt;docker-ce&lt;/code&gt; and &lt;code&gt;docker-compose-plugin&lt;/code&gt; on target nodes with the &lt;code&gt;docker_enabled: true&lt;/code&gt; flag, and enable the &lt;code&gt;dockerd&lt;/code&gt; service.&lt;/p&gt;
+&lt;p&gt;The following are the available task subsets in the &lt;code&gt;docker.yml&lt;/code&gt; playbook:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;docker_install&lt;/code&gt; : Install Docker and Docker Compose packages on the node&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;docker_admin&lt;/code&gt; : Add specified users to the Docker admin user group&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;docker_alias&lt;/code&gt; : Generate Docker command completion and alias scripts&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;docker_dir&lt;/code&gt; : Create Docker related directories&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;docker_config&lt;/code&gt; : Generate Docker daemon service configuration file&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;docker_launch&lt;/code&gt; : Start the Docker daemon service&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;docker_register&lt;/code&gt; : Register Docker daemon as a Prometheus monitoring target&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;docker_image&lt;/code&gt; : Attempt to load pre-cached image tarballs from &lt;code&gt;/tmp/docker/*.tgz&lt;/code&gt; (if they exist)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The Docker module does not provide a dedicated uninstall playbook. If you need to uninstall Docker, you can manually stop Docker and then remove it:&lt;/p&gt;</description></item><item><title>Installation</title><link>https://pigsty.io/docs/pig/install/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pig/install/</guid><description>&lt;h2 id="script-installation"&gt;Script Installation&lt;/h2&gt;
+&lt;p&gt;The simplest way to install &lt;code&gt;pig&lt;/code&gt; is to run the following installation script:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Default Installation&lt;/strong&gt; (Cloudflare CDN):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;curl -fsSL https://repo.pigsty.io/pig &lt;span style="color:#000;font-weight:bold"&gt;|&lt;/span&gt; bash
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;China Mirror&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;curl -fsSL https://repo.pigsty.cc/pig &lt;span style="color:#000;font-weight:bold"&gt;|&lt;/span&gt; bash
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This script downloads the latest &lt;code&gt;pig&lt;/code&gt; RPM/DEB package from the Pigsty &lt;a href="https://pigsty.io/docs/repo/"&gt;software repository&lt;/a&gt; and installs it using &lt;code&gt;rpm&lt;/code&gt; or &lt;code&gt;dpkg&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="specify-version"&gt;Specify Version&lt;/h2&gt;
+&lt;p&gt;You can specify a particular version to install by passing the version number as an argument:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Default Installation&lt;/strong&gt; (Cloudflare CDN):&lt;/p&gt;</description></item></channel></rss>

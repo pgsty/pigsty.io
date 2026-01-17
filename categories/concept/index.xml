@@ -1,0 +1,1191 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Concept on PIGSTY</title><link>https://pigsty.io/categories/concept/</link><description>Recent content in Concept on PIGSTY</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 16 Jan 2026 00:53:35 +0800</lastBuildDate><atom:link href="https://pigsty.io/categories/concept/index.xml" rel="self" type="application/rss+xml"/><item><title>Model of Patroni Passive Failure</title><link>https://pigsty.io/docs/concept/ha/failure/passive/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/ha/failure/passive/</guid><description>&lt;div id="infographic-7de234be936c491ca38d917964899ac2" class="infographic-container td-max-width-on-larger-screens"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+(function() {
+ var containerId = 'infographic-7de234be936c491ca38d917964899ac2';
+ var syntax = "````\ninfographic list-row-simple-horizontal-arrow\ndata\n \n desc Lease Expiration Stages\n items\n - label Lease Expiration\n - label Replica Detect\n - label Elect \u0026 Promote\n - label Haproxy Up\ntheme light\n palette antv\n````";
+
+ function renderInfographic() {
+ var dom = document.getElementById(containerId);
+ if (!dom) { console.error('Infographic: container not found:', containerId); return; }
+ try {
+ var ig = new AntVInfographic.Infographic({
+ container: '#' + containerId,
+ width: dom.offsetWidth || '100%',
+ height: 'auto',
+ });
+ ig.render(syntax);
+ } catch (e) {
+ console.error('Infographic render error:', e);
+ dom.innerHTML = '&lt;pre style="color: red;"&gt;Infographic Error: ' + e.message + '&lt;/pre&gt;';
+ }
+ }
+
+ 
+ if (typeof AntVInfographic !== 'undefined') {
+ renderInfographic();
+ } else if (!window._infographicLoading) {
+ window._infographicLoading = true;
+ window._infographicCallbacks = [renderInfographic];
+ var script = document.createElement('script');
+ script.src = '/js/infographic.min.js';
+ script.onload = function() {
+ window._infographicCallbacks.forEach(function(cb) { cb(); });
+ };
+ document.head.appendChild(script);
+ } else {
+ window._infographicCallbacks.push(renderInfographic);
+ }
+})();
+&lt;/script&gt;
+
+&lt;hr&gt;
+&lt;h2 id="rto-timeline"&gt;RTO Timeline&lt;/h2&gt;
+&lt;div id="echarts-0f45ad1cb9c0c76384b068caaba7bbfe" class="echarts-container td-max-width-on-larger-screens" style="height: 520px;"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+(function() {
+ var dom = document.getElementById('echarts-0f45ad1cb9c0c76384b068caaba7bbfe');
+ if (!dom) return;
+
+ 
+ window._echartsFns = window._echartsFns || {};
+
+var fmt = function(params) { if (!params || !params.length || params[0].name === '') return ''; return '&lt;b&gt;' + params[0].name + '&lt;/b&gt;&lt;br/&gt;' + params.filter(p =&gt; p.value !== '-' &amp;&amp; p.value != null).map(p =&gt; p.marker + ' ' + p.seriesName + ': ' + p.value + 's').join('&lt;br/&gt;'); };
+
+ window._echartsFns['fmt'] = fmt;
+ var theme = document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'dark' : null;
+
+ var chart = echarts.init(dom, theme);
+ var optionsJson = {"grid":{"bottom":32,"left":64,"right":24,"top":40},"legend":{"data":["Lease Expiration","Replica Detection","Lock Contest \u0026 Promote","Health Check"],"itemGap":12,"top":0},"series":[{"barWidth":20,"data":[120,110,100,"-",60,55,50,"-",30,27,25,"-",20,17,15],"emphasis":{"focus":"series"},"itemStyle":{"color":"#e15759"},"name":"Lease Expire","stack":"main","type":"bar","z":2},{"data":[20,10,0,"-",10,5,0,"-",5,3,0,"-",5,3,0],"emphasis":{"focus":"series"},"itemStyle":{"color":"#edc949"},"name":"Replica Detect","stack":"main","type":"bar","z":2},{"data":[2,1,0,"-",2,1,0,"-",2,1,0,"-",2,1,0],"emphasis":{"focus":"series"},"itemStyle":{"color":"#59a14f"},"name":"Elect \u0026 Promote","stack":"main","type":"bar","z":2},{"data":[8,6,4,"-",6,5,3,"-",4,3,2,"-",2,2,1],"emphasis":{"focus":"series"},"itemStyle":{"color":"#4e79a7"},"name":"HAProxy Check","stack":"main","type":"bar","z":2},{"barGap":"-100%","barWidth":20,"data":[150,127,104,"-",78,66,53,"-",41,34,27,"-",29,23,16],"emphasis":{"itemStyle":{"opacity":0}},"itemStyle":{"color":"#888","opacity":0},"name":"Total RTO","type":"bar","z":1},{"barGap":"-100%","barWidth":20,"data":[150,150,150,"-",90,90,90,"-",45,45,45,"-",30,30,30],"emphasis":{"itemStyle":{"color":"rgba(0,0,0,0.12)"}},"itemStyle":{"color":"rgba(0,0,0,0.08)"},"name":"RTO Budget","type":"bar","z":0}],"tooltip":{"axisPointer":{"type":"shadow"},"formatter":"$fn:fmt","trigger":"axis"},"xAxis":{"axisLine":{"show":true},"axisTick":{"show":true},"max":160,"minorSplitLine":{"lineStyle":{"opacity":0.2,"type":"dotted"},"show":true},"minorTick":{"show":true,"splitNumber":5},"name":"Seconds","nameLocation":"end","splitLine":{"lineStyle":{"opacity":0.5,"type":"dashed"},"show":true},"type":"value"},"yAxis":{"axisLabel":{"fontFamily":"monospace","fontSize":10},"axisLine":{"show":true},"axisTick":{"show":true},"data":["wide-max","wide-avg","wide-min","","safe-max","safe-avg","safe-min","","norm-max","norm-avg","norm-min","","fast-max","fast-avg","fast-min"],"splitLine":{"show":false},"type":"category"}};
+
+ 
+ function replaceFnRefs(obj) {
+ if (typeof obj === 'string' &amp;&amp; obj.startsWith('$fn:')) {
+ var fnName = obj.substring(4);
+ return window._echartsFns[fnName];
+ }
+ if (Array.isArray(obj)) {
+ return obj.map(replaceFnRefs);
+ }
+ if (obj &amp;&amp; typeof obj === 'object') {
+ var result = {};
+ for (var key in obj) {
+ result[key] = replaceFnRefs(obj[key]);
+ }
+ return result;
+ }
+ return obj;
+ }
+
+ var options = replaceFnRefs(optionsJson);
+ chart.setOption(options);
+
+ 
+ window.addEventListener('resize', function() {
+ chart.resize();
+ });
+ var observer = new MutationObserver(function(mutations) {
+ mutations.forEach(function(mutation) {
+ if (mutation.attributeName === 'data-bs-theme') {
+ var newTheme = document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'dark' : null;
+ chart.dispose();
+ chart = echarts.init(dom, newTheme);
+ chart.setOption(options);
+ }
+ });
+ });
+ observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-bs-theme'] });
+})();
+&lt;/script&gt;
+
+&lt;hr&gt;
+&lt;h2 id="failure-model"&gt;Failure Model&lt;/h2&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: center"&gt;Phase&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Best&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Worst&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Average&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;strong&gt;Lease Expiration&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;ttl - loop&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;ttl&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;ttl - loop/2&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Best: crash just before refresh&lt;br/&gt;Worst: crash right after refresh&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;strong&gt;Replica Detect&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;0&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;loop&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;loop / 2&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Best: exactly at check point&lt;br/&gt;Worst: just missed check point&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;strong&gt;Election Promote&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;0&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;2&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;1&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Best: direct lock and promote&lt;br/&gt;Worst: API timeout + Promote&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;strong&gt;HAProxy Check&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;(rise-1) × fastinter&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;(rise-1) × fastinter + inter&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;(rise-1) × fastinter + inter/2&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Best: state change before check&lt;br/&gt;Worst: state change right after check&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Key Difference Between Passive and Active Failover&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>E-R Model of Infra Cluster</title><link>https://pigsty.io/docs/concept/model/infra/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/model/infra/</guid><description>&lt;p&gt;The INFRA module plays a special role in Pigsty: it&amp;rsquo;s not a traditional &amp;ldquo;cluster&amp;rdquo; but rather a management hub composed of a group of &lt;strong&gt;infrastructure nodes&lt;/strong&gt;, providing core services for the entire Pigsty deployment.
+Each INFRA node is an &lt;strong&gt;autonomous&lt;/strong&gt; infrastructure service unit running core components like Nginx, Grafana, and VictoriaMetrics, collectively providing observability and management capabilities for managed database clusters.&lt;/p&gt;
+&lt;p&gt;There are two core entities in Pigsty&amp;rsquo;s INFRA module:&lt;/p&gt;</description></item><item><title>RPO Trade-offs</title><link>https://pigsty.io/docs/concept/ha/rpo/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/ha/rpo/</guid><description>&lt;p&gt;&lt;strong&gt;RPO&lt;/strong&gt; (Recovery Point Objective) defines the &lt;strong&gt;maximum amount of data loss&lt;/strong&gt; allowed when the primary fails.&lt;/p&gt;
+&lt;p&gt;For scenarios where data integrity is critical, such as financial transactions, RPO = 0 is typically required, meaning no data loss is allowed.&lt;/p&gt;
+&lt;p&gt;However, stricter RPO targets come at a cost: higher write latency, reduced system throughput, and the risk that replica failures may cause primary unavailability.
+For typical scenarios, some data loss is acceptable (e.g., up to 1MB) in exchange for higher availability and performance.&lt;/p&gt;</description></item><item><title>Model of Patroni Active Failure</title><link>https://pigsty.io/docs/concept/ha/failure/active/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/ha/failure/active/</guid><description>&lt;div id="infographic-83f086194aaa6ee6523bab9450341f7b" class="infographic-container td-max-width-on-larger-screens"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+(function() {
+ var containerId = 'infographic-83f086194aaa6ee6523bab9450341f7b';
+ var syntax = "````\ninfographic list-row-simple-horizontal-arrow\ndata\n desc When Patroni is healthy but PostgreSQL crashes\n items\n - label Crash Found\n - label Restart Timeout\n - label Replica Detect\n - label Elect Promote\n - label HAProxy Check\ntheme light\n palette antv\n````";
+
+ function renderInfographic() {
+ var dom = document.getElementById(containerId);
+ if (!dom) { console.error('Infographic: container not found:', containerId); return; }
+ try {
+ var ig = new AntVInfographic.Infographic({
+ container: '#' + containerId,
+ width: dom.offsetWidth || '100%',
+ height: 'auto',
+ });
+ ig.render(syntax);
+ } catch (e) {
+ console.error('Infographic render error:', e);
+ dom.innerHTML = '&lt;pre style="color: red;"&gt;Infographic Error: ' + e.message + '&lt;/pre&gt;';
+ }
+ }
+
+ 
+ if (typeof AntVInfographic !== 'undefined') {
+ renderInfographic();
+ } else if (!window._infographicLoading) {
+ window._infographicLoading = true;
+ window._infographicCallbacks = [renderInfographic];
+ var script = document.createElement('script');
+ script.src = '/js/infographic.min.js';
+ script.onload = function() {
+ window._infographicCallbacks.forEach(function(cb) { cb(); });
+ };
+ document.head.appendChild(script);
+ } else {
+ window._infographicCallbacks.push(renderInfographic);
+ }
+})();
+&lt;/script&gt;
+
+&lt;hr&gt;
+&lt;h2 id="rto-timeline"&gt;RTO Timeline&lt;/h2&gt;
+&lt;div id="echarts-f4f61a909b7c83448b5c4f436a069fec" class="echarts-container td-max-width-on-larger-screens" style="height: 520px;"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+(function() {
+ var dom = document.getElementById('echarts-f4f61a909b7c83448b5c4f436a069fec');
+ if (!dom) return;
+
+ 
+ window._echartsFns = window._echartsFns || {};
+
+var fmt = function(params) { if (!params || !params.length || params[0].name === '') return ''; return '&lt;b&gt;' + params[0].name + '&lt;/b&gt;&lt;br/&gt;' + params.filter(p =&gt; p.value !== '-' &amp;&amp; p.value != null).map(p =&gt; p.marker + ' ' + p.seriesName + ': ' + p.value + 's').join('&lt;br/&gt;'); };
+
+ window._echartsFns['fmt'] = fmt;
+ var theme = document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'dark' : null;
+
+ var chart = echarts.init(dom, theme);
+ var optionsJson = {"grid":{"bottom":32,"left":64,"right":24,"top":40},"legend":{"data":["Crash Found","Restart Timeout","Replica Detection","Elect Promote","HAProxy Check"],"itemGap":12,"top":0},"series":[{"barWidth":20,"data":[20,10,0,"-",10,5,0,"-",5,3,0,"-",5,3,0],"emphasis":{"focus":"series"},"itemStyle":{"color":"#b07aa1"},"name":"Crash Found","stack":"main","type":"bar","z":2},{"data":[95,95,0,"-",45,45,0,"-",25,25,0,"-",15,15,0],"emphasis":{"focus":"series"},"itemStyle":{"color":"#f28e2c"},"name":"Restart Timeout","stack":"main","type":"bar","z":2},{"data":[20,10,0,"-",10,5,0,"-",5,3,0,"-",5,3,0],"emphasis":{"focus":"series"},"itemStyle":{"color":"#edc949"},"name":"Replica Detect","stack":"main","type":"bar","z":2},{"data":[2,1,0,"-",2,1,0,"-",2,1,0,"-",2,1,0],"emphasis":{"focus":"series"},"itemStyle":{"color":"#59a14f"},"name":"Elect Promote","stack":"main","type":"bar","z":2},{"data":[8,6,4,"-",6,5,3,"-",4,3,2,"-",2,2,1],"emphasis":{"focus":"series"},"itemStyle":{"color":"#4e79a7"},"name":"HAProxy Check","stack":"main","type":"bar","z":2},{"barGap":"-100%","barWidth":20,"data":[145,122,4,"-",73,61,3,"-",41,35,2,"-",29,24,1],"emphasis":{"itemStyle":{"opacity":0}},"itemStyle":{"color":"#888","opacity":0},"name":"RTO Total","type":"bar","z":1},{"barGap":"-100%","barWidth":20,"data":[150,150,150,"-",90,90,90,"-",45,45,45,"-",30,30,30],"emphasis":{"itemStyle":{"color":"rgba(0,0,0,0.12)"}},"itemStyle":{"color":"rgba(0,0,0,0.08)"},"name":"RTO Budget","type":"bar","z":0}],"tooltip":{"axisPointer":{"type":"shadow"},"formatter":"$fn:fmt","trigger":"axis"},"xAxis":{"axisLine":{"show":true},"axisTick":{"show":true},"max":160,"minorSplitLine":{"lineStyle":{"opacity":0.2,"type":"dotted"},"show":true},"minorTick":{"show":true,"splitNumber":5},"name":"Seconds","nameLocation":"end","splitLine":{"lineStyle":{"opacity":0.5,"type":"dashed"},"show":true},"type":"value"},"yAxis":{"axisLabel":{"fontFamily":"monospace","fontSize":10},"axisLine":{"show":true},"axisTick":{"show":true},"data":["wide-max","wide-avg","wide-min","","safe-max","safe-avg","safe-min","","norm-max","norm-avg","norm-min","","fast-max","fast-avg","fast-min"],"splitLine":{"show":false},"type":"category"}};
+
+ 
+ function replaceFnRefs(obj) {
+ if (typeof obj === 'string' &amp;&amp; obj.startsWith('$fn:')) {
+ var fnName = obj.substring(4);
+ return window._echartsFns[fnName];
+ }
+ if (Array.isArray(obj)) {
+ return obj.map(replaceFnRefs);
+ }
+ if (obj &amp;&amp; typeof obj === 'object') {
+ var result = {};
+ for (var key in obj) {
+ result[key] = replaceFnRefs(obj[key]);
+ }
+ return result;
+ }
+ return obj;
+ }
+
+ var options = replaceFnRefs(optionsJson);
+ chart.setOption(options);
+
+ 
+ window.addEventListener('resize', function() {
+ chart.resize();
+ });
+ var observer = new MutationObserver(function(mutations) {
+ mutations.forEach(function(mutation) {
+ if (mutation.attributeName === 'data-bs-theme') {
+ var newTheme = document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'dark' : null;
+ chart.dispose();
+ chart = echarts.init(dom, newTheme);
+ chart.setOption(options);
+ }
+ });
+ });
+ observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-bs-theme'] });
+})();
+&lt;/script&gt;
+
+&lt;hr&gt;
+&lt;h2 id="failure-model"&gt;Failure Model&lt;/h2&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: center"&gt;Item&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Best&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Worst&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Average&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;strong&gt;Crash Found&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;0&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;loop&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;loop/2&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Best: PG crashes right before check&lt;br/&gt;Worst: PG crashes right after check&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;strong&gt;Restart Timeout&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;0&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;start&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;start&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Best: PG recovers instantly&lt;br/&gt;Worst: Wait full start timeout before releasing lease&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;strong&gt;Replica Detect&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;0&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;loop&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;loop/2&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Best: Right at check point&lt;br/&gt;Worst: Just missed check point&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;strong&gt;Elect Promote&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;0&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;2&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;1&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Best: Acquire lock and promote directly&lt;br/&gt;Worst: API timeout + Promote&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;strong&gt;HAProxy Check&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;(rise-1) × fastinter&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;(rise-1) × fastinter + inter&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;(rise-1) × fastinter + inter/2&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Best: State changes before check&lt;br/&gt;Worst: State changes right after check&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Key Difference Between Active and Passive Failure&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>E-R Model of PostgreSQL Cluster</title><link>https://pigsty.io/docs/concept/model/pgsql/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/model/pgsql/</guid><description>&lt;p&gt;The PGSQL module organizes PostgreSQL in production as &lt;strong&gt;clusters&lt;/strong&gt;—&lt;strong&gt;logical entities&lt;/strong&gt; composed of a group of database &lt;strong&gt;instances&lt;/strong&gt; associated by &lt;strong&gt;primary-replica&lt;/strong&gt; relationships.&lt;/p&gt;
+&lt;p&gt;Each cluster is an &lt;strong&gt;autonomous&lt;/strong&gt; business unit consisting of at least one &lt;strong&gt;primary instance&lt;/strong&gt;, exposing capabilities through services.&lt;/p&gt;
+&lt;p&gt;There are four core entities in Pigsty&amp;rsquo;s PGSQL module:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cluster&lt;/strong&gt;: An autonomous PostgreSQL business unit serving as the top-level namespace for other entities.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Service&lt;/strong&gt;: A named abstraction that exposes capabilities, routes traffic, and exposes services using node ports.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Instance&lt;/strong&gt;: A single PostgreSQL server consisting of running processes and database files on a single node.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Node&lt;/strong&gt;: A hardware resource abstraction running Linux + Systemd environment—can be bare metal, VM, container, or Pod.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Along with two business entities—&amp;ldquo;Database&amp;rdquo; and &amp;ldquo;Role&amp;rdquo;—these form the complete logical view as shown below:&lt;/p&gt;</description></item><item><title>RTO Trade-offs</title><link>https://pigsty.io/docs/concept/ha/rto/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/ha/rto/</guid><description>&lt;p&gt;&lt;strong&gt;RTO&lt;/strong&gt; (Recovery Time Objective) defines the &lt;strong&gt;maximum time required for the system to restore write capability&lt;/strong&gt; when the primary fails.&lt;/p&gt;
+&lt;p&gt;For critical transaction systems where availability is paramount, the shortest possible RTO is typically required, such as under one minute.&lt;/p&gt;
+&lt;p&gt;However, shorter RTO comes at a cost: increased false failover risk. Network jitter may be misinterpreted as a failure, leading to unnecessary failovers.
+For cross-datacenter/cross-region deployments, RTO requirements are typically relaxed (e.g., 1-2 minutes) to reduce false failover risk.&lt;/p&gt;</description></item><item><title>Failure Model</title><link>https://pigsty.io/docs/concept/ha/failure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/ha/failure/</guid><description>&lt;p&gt;Patroni failures can be classified into 10 categories by failure target, and further consolidated into five categories based on detection path, which are detailed in this section.&lt;/p&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;#&lt;/th&gt;
+ &lt;th&gt;Failure Scenario&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;th&gt;Final Path&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;1&lt;/td&gt;
+ &lt;td&gt;PG process crash&lt;/td&gt;
+ &lt;td&gt;crash, OOM killed&lt;/td&gt;
+ &lt;td&gt;&lt;strong&gt;Active Detection&lt;/strong&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;2&lt;/td&gt;
+ &lt;td&gt;PG connection refused&lt;/td&gt;
+ &lt;td&gt;max_connections&lt;/td&gt;
+ &lt;td&gt;&lt;strong&gt;Active Detection&lt;/strong&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;3&lt;/td&gt;
+ &lt;td&gt;PG zombie&lt;/td&gt;
+ &lt;td&gt;Process alive but unresponsive&lt;/td&gt;
+ &lt;td&gt;&lt;strong&gt;Active Detection&lt;/strong&gt; (timeout)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;4&lt;/td&gt;
+ &lt;td&gt;Patroni process crash&lt;/td&gt;
+ &lt;td&gt;kill -9, OOM&lt;/td&gt;
+ &lt;td&gt;&lt;strong&gt;Passive Detection&lt;/strong&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;5&lt;/td&gt;
+ &lt;td&gt;Patroni zombie&lt;/td&gt;
+ &lt;td&gt;Process alive but stuck&lt;/td&gt;
+ &lt;td&gt;&lt;strong&gt;Watchdog&lt;/strong&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;6&lt;/td&gt;
+ &lt;td&gt;Node down&lt;/td&gt;
+ &lt;td&gt;Power outage, hardware failure&lt;/td&gt;
+ &lt;td&gt;&lt;strong&gt;Passive Detection&lt;/strong&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;7&lt;/td&gt;
+ &lt;td&gt;Node zombie&lt;/td&gt;
+ &lt;td&gt;IO hang, CPU starvation&lt;/td&gt;
+ &lt;td&gt;&lt;strong&gt;Watchdog&lt;/strong&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;8&lt;/td&gt;
+ &lt;td&gt;Primary ↔ DCS network failure&lt;/td&gt;
+ &lt;td&gt;Firewall, switch failure&lt;/td&gt;
+ &lt;td&gt;&lt;strong&gt;Network Partition&lt;/strong&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;9&lt;/td&gt;
+ &lt;td&gt;Storage failure&lt;/td&gt;
+ &lt;td&gt;Disk failure, disk full, mount failure&lt;/td&gt;
+ &lt;td&gt;&lt;strong&gt;Active Detection&lt;/strong&gt; or &lt;strong&gt;Watchdog&lt;/strong&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;10&lt;/td&gt;
+ &lt;td&gt;Manual switchover&lt;/td&gt;
+ &lt;td&gt;Switchover/Failover&lt;/td&gt;
+ &lt;td&gt;&lt;strong&gt;Manual Trigger&lt;/strong&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;However, for RTO calculation purposes, all failures ultimately converge to two paths. This section explores the upper bound, lower bound, and average RTO for these two scenarios.&lt;/p&gt;</description></item><item><title>E-R Model of Etcd Cluster</title><link>https://pigsty.io/docs/concept/model/etcd/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/model/etcd/</guid><description>&lt;p&gt;The ETCD module organizes ETCD in production as &lt;strong&gt;clusters&lt;/strong&gt;—&lt;strong&gt;logical entities&lt;/strong&gt; composed of a group of ETCD &lt;strong&gt;instances&lt;/strong&gt; associated through the &lt;strong&gt;Raft&lt;/strong&gt; consensus protocol.&lt;/p&gt;
+&lt;p&gt;Each cluster is an &lt;strong&gt;autonomous&lt;/strong&gt; distributed key-value storage unit consisting of at least one &lt;strong&gt;ETCD instance&lt;/strong&gt;, exposing service capabilities through client ports.&lt;/p&gt;
+&lt;p&gt;There are three core entities in Pigsty&amp;rsquo;s ETCD module:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cluster&lt;/strong&gt;: An autonomous ETCD service unit serving as the top-level namespace for other entities.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Instance&lt;/strong&gt;: A single ETCD server process running on a node, participating in Raft consensus.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Node&lt;/strong&gt;: A hardware resource abstraction running Linux + Systemd environment, implicitly declared.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Compared to PostgreSQL clusters, the ETCD cluster model is simpler, without Services or complex Role distinctions.
+All ETCD instances are functionally equivalent, electing a Leader through the Raft protocol while others become Followers.
+During scale-out intermediate states, non-voting Learner instance members are also allowed.&lt;/p&gt;</description></item><item><title>E-R Model of MinIO Cluster</title><link>https://pigsty.io/docs/concept/model/minio/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/model/minio/</guid><description>&lt;p&gt;The MinIO module organizes MinIO in production as &lt;strong&gt;clusters&lt;/strong&gt;—&lt;strong&gt;logical entities&lt;/strong&gt; composed of a group of distributed MinIO &lt;strong&gt;instances&lt;/strong&gt;, collectively providing highly available object storage services.&lt;/p&gt;
+&lt;p&gt;Each cluster is an &lt;strong&gt;autonomous&lt;/strong&gt; S3-compatible object storage unit consisting of at least one &lt;strong&gt;MinIO instance&lt;/strong&gt;, exposing service capabilities through the S3 API port.&lt;/p&gt;
+&lt;p&gt;There are three core entities in Pigsty&amp;rsquo;s MinIO module:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cluster&lt;/strong&gt;: An autonomous MinIO service unit serving as the top-level namespace for other entities.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Instance&lt;/strong&gt;: A single MinIO server process running on a node, managing local disk storage.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Node&lt;/strong&gt;: A hardware resource abstraction running Linux + Systemd environment, implicitly declared.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Additionally, MinIO has the concept of &lt;a href="https://pigsty.io/docs/minio/config#multi-pool-deployment"&gt;&lt;strong&gt;Storage Pool&lt;/strong&gt;&lt;/a&gt;, used for smooth cluster scaling.
+A cluster can contain multiple storage pools, each composed of a group of nodes and disks.&lt;/p&gt;</description></item><item><title>E-R Model of Redis Cluster</title><link>https://pigsty.io/docs/concept/model/redis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/model/redis/</guid><description>&lt;p&gt;The Redis module organizes Redis in production as &lt;strong&gt;clusters&lt;/strong&gt;—&lt;strong&gt;logical entities&lt;/strong&gt; composed of a group of Redis &lt;strong&gt;instances&lt;/strong&gt; deployed on one or more &lt;strong&gt;nodes&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Each cluster is an &lt;strong&gt;autonomous&lt;/strong&gt; high-performance cache/storage unit consisting of at least one &lt;strong&gt;Redis instance&lt;/strong&gt;, exposing service capabilities through ports.&lt;/p&gt;
+&lt;p&gt;There are three core entities in Pigsty&amp;rsquo;s Redis module:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cluster&lt;/strong&gt;: An autonomous Redis service unit serving as the top-level namespace for other entities.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Instance&lt;/strong&gt;: A single Redis server process running on a specific port on a node.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Node&lt;/strong&gt;: A hardware resource abstraction running Linux + Systemd environment, can host multiple Redis instances, implicitly declared.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Unlike PostgreSQL, Redis uses a &lt;strong&gt;single-node multi-instance&lt;/strong&gt; deployment model: one physical/virtual machine node typically deploys &lt;strong&gt;multiple&lt;/strong&gt; Redis instances
+to fully utilize multi-core CPUs. Therefore, nodes and instances have a &lt;strong&gt;1:N&lt;/strong&gt; relationship. Additionally, production typically advises against Redis instances with memory &amp;gt; 12GB.&lt;/p&gt;</description></item><item><title>Concepts</title><link>https://pigsty.io/docs/concept/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/</guid><description>&lt;p&gt;Pigsty is a portable, extensible open-source PostgreSQL distribution for building production-grade database services in local environments with declarative configuration and automation. It has a vast ecosystem providing a complete set of tools, scripts, and best practices to bring PostgreSQL to enterprise-grade RDS service levels.&lt;/p&gt;
+&lt;p&gt;Pigsty&amp;rsquo;s name comes from &lt;strong&gt;P&lt;/strong&gt;ostgreSQL &lt;strong&gt;I&lt;/strong&gt;n &lt;strong&gt;G&lt;/strong&gt;reat &lt;strong&gt;STY&lt;/strong&gt;le, also understood as &lt;strong&gt;P&lt;/strong&gt;ostgres, &lt;strong&gt;I&lt;/strong&gt;nfras, &lt;strong&gt;G&lt;/strong&gt;raphics, &lt;strong&gt;S&lt;/strong&gt;ervice, &lt;strong&gt;T&lt;/strong&gt;oolbox, it&amp;rsquo;s all &lt;strong&gt;Y&lt;/strong&gt;ours—a self-hosted PostgreSQL solution with graphical monitoring that&amp;rsquo;s all yours. You can find the source code on &lt;a href="https://github.com/pgsty/pigsty"&gt;&lt;strong&gt;GitHub&lt;/strong&gt;&lt;/a&gt;, visit the &lt;a href="https://pigsty.io"&gt;&lt;strong&gt;official documentation&lt;/strong&gt;&lt;/a&gt; for more information, or experience the &lt;a href="https://pigsty.io/docs/setup/webui"&gt;&lt;strong&gt;Web UI&lt;/strong&gt;&lt;/a&gt; in the &lt;a href="https://demo.pigsty.io"&gt;&lt;strong&gt;online demo&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Architecture</title><link>https://pigsty.io/docs/concept/arch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/arch/</guid><description>&lt;p&gt;Pigsty uses a &lt;strong&gt;modular architecture&lt;/strong&gt; with a &lt;strong&gt;declarative interface&lt;/strong&gt;. You can &lt;a href="https://pigsty.io/docs/deploy/planning#common-solutions"&gt;&lt;strong&gt;freely combine modules like building blocks&lt;/strong&gt;&lt;/a&gt; as needed.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pigsty adopts a &lt;a href="https://pigsty.io/docs/deploy/planning"&gt;&lt;strong&gt;modular design&lt;/strong&gt;&lt;/a&gt; that can be freely combined and used on demand (use one or all) to suit different scenarios.&lt;/li&gt;
+&lt;li&gt;Pigsty uses &lt;a href="https://pigsty.io/docs/concept/iac/inventory"&gt;&lt;strong&gt;config inventory&lt;/strong&gt;&lt;/a&gt; and &lt;a href="https://pigsty.io/docs/concept/iac/parameter"&gt;&lt;strong&gt;config parameters&lt;/strong&gt;&lt;/a&gt; to describe the entire deployment environment, implemented via &lt;a href="https://pigsty.io/docs/setup/playbook"&gt;&lt;strong&gt;Ansible playbooks&lt;/strong&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Pigsty can run on any &lt;a href="https://pigsty.io/docs/concept/arch/node"&gt;&lt;strong&gt;node&lt;/strong&gt;&lt;/a&gt;—physical or virtual—as long as the OS is &lt;a href="https://pigsty.io/docs/ref/linux"&gt;&lt;strong&gt;compatible&lt;/strong&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="modules"&gt;Modules&lt;/h2&gt;
+&lt;p&gt;Pigsty uses a modular design with six main default modules: &lt;a href="https://pigsty.io/docs/pgsql"&gt;&lt;code&gt;PGSQL&lt;/code&gt;&lt;/a&gt;, &lt;a href="https://pigsty.io/docs/infra"&gt;&lt;code&gt;INFRA&lt;/code&gt;&lt;/a&gt;, &lt;a href="https://pigsty.io/docs/node"&gt;&lt;code&gt;NODE&lt;/code&gt;&lt;/a&gt;, &lt;a href="https://pigsty.io/docs/etcd"&gt;&lt;code&gt;ETCD&lt;/code&gt;&lt;/a&gt;, &lt;a href="https://pigsty.io/docs/redis"&gt;&lt;code&gt;REDIS&lt;/code&gt;&lt;/a&gt;, and &lt;a href="https://pigsty.io/docs/minio"&gt;&lt;code&gt;MINIO&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Nodes</title><link>https://pigsty.io/docs/concept/arch/node/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/arch/node/</guid><description>&lt;p&gt;A &lt;strong&gt;node&lt;/strong&gt; is an abstraction of hardware resources and operating systems. It can be a physical machine, bare metal, virtual machine, or container/pod.&lt;/p&gt;
+&lt;p&gt;Any machine running a &lt;a href="https://pigsty.io/docs/ref/linux"&gt;&lt;strong&gt;Linux OS&lt;/strong&gt;&lt;/a&gt; (with systemd daemon) and standard CPU/memory/disk/network resources can be treated as a node.&lt;/p&gt;
+&lt;p&gt;Nodes can have &lt;a href="https://pigsty.io/docs/ref/module"&gt;&lt;strong&gt;modules&lt;/strong&gt;&lt;/a&gt; installed. Pigsty has several node types, distinguished by which modules are deployed:&lt;/p&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: center"&gt;Type&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#regular-node"&gt;&lt;strong&gt;Regular Node&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;A node managed by Pigsty&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#admin-node"&gt;&lt;strong&gt;ADMIN Node&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;The node that runs Ansible to issue management commands&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#infra-node"&gt;&lt;strong&gt;INFRA Node&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Nodes with the &lt;a href="https://pigsty.io/docs/infra/"&gt;&lt;strong&gt;INFRA&lt;/strong&gt;&lt;/a&gt; module installed&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#etcd-node"&gt;&lt;strong&gt;ETCD Node&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Nodes with the &lt;a href="https://pigsty.io/docs/etcd/"&gt;&lt;strong&gt;ETCD&lt;/strong&gt;&lt;/a&gt; module for DCS&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#minio-node"&gt;&lt;strong&gt;MINIO Node&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Nodes with the &lt;a href="https://pigsty.io/docs/minio/"&gt;&lt;strong&gt;MINIO&lt;/strong&gt;&lt;/a&gt; module for object storage&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#pgsql-node"&gt;&lt;strong&gt;PGSQL Node&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Nodes with the &lt;a href="https://pigsty.io/docs/pgsql/"&gt;&lt;strong&gt;PGSQL&lt;/strong&gt;&lt;/a&gt; module installed&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&amp;hellip;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Nodes with other modules&amp;hellip;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;In a &lt;a href="https://pigsty.io/docs/setup/install"&gt;&lt;strong&gt;singleton&lt;/strong&gt;&lt;/a&gt; Pigsty deployment, multiple roles converge on one node: it serves as the regular node, admin node, infra node, ETCD node, and database node simultaneously.&lt;/p&gt;</description></item><item><title>ER Model</title><link>https://pigsty.io/docs/concept/model/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/model/</guid><description>&lt;p&gt;The largest entity concept in Pigsty is a &lt;strong&gt;Deployment&lt;/strong&gt;. The main entities and relationships (E-R diagram) in a deployment are shown below:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://pigsty.io/img/pigsty/er-full.svg" alt=""&gt;&lt;/p&gt;
+&lt;p&gt;A deployment can also be understood as an &lt;strong&gt;Environment&lt;/strong&gt;. For example, Production (Prod), User Acceptance Testing (UAT), Staging, Testing, Development (Devbox), etc.
+Each environment corresponds to a Pigsty &lt;a href="https://pigsty.io/docs/concept/iac/inventory"&gt;&lt;strong&gt;inventory&lt;/strong&gt;&lt;/a&gt; that describes all entities and attributes in that environment.&lt;/p&gt;
+&lt;p&gt;Typically, an environment includes shared infrastructure (&lt;a href="https://pigsty.io/docs/infra"&gt;&lt;strong&gt;&lt;code&gt;INFRA&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;), which broadly includes &lt;a href="https://pigsty.io/docs/etcd"&gt;&lt;strong&gt;&lt;code&gt;ETCD&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; (HA DCS) and &lt;a href="https://pigsty.io/docs/minio"&gt;&lt;strong&gt;&lt;code&gt;MINIO&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; (centralized backup repository),
+serving multiple PostgreSQL database clusters (and other database module components). (Exception: there are also &lt;a href="https://pigsty.io/docs/setup/slim"&gt;&lt;strong&gt;deployments without infrastructure&lt;/strong&gt;&lt;/a&gt;)&lt;/p&gt;</description></item><item><title>Infra as Code</title><link>https://pigsty.io/docs/concept/iac/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/iac/</guid><description>&lt;p&gt;Pigsty follows the IaC and GitOPS philosophy: use a declarative &lt;a href="https://pigsty.io/docs/setup/config#inventory"&gt;&lt;strong&gt;config inventory&lt;/strong&gt;&lt;/a&gt; to describe the entire environment, and materialize it through &lt;a href="https://pigsty.io/docs/setup/playbook"&gt;&lt;strong&gt;idempotent playbooks&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Users describe their desired state declaratively through &lt;a href="https://pigsty.io/docs/ref/param"&gt;&lt;strong&gt;parameters&lt;/strong&gt;&lt;/a&gt;, and playbooks idempotently adjust target nodes to reach that state.
+This is similar to Kubernetes CRDs &amp;amp; Operators, but Pigsty implements this functionality on bare metal and virtual machines through Ansible.&lt;/p&gt;
+&lt;p&gt;Pigsty was born to solve the operational management problem of ultra-large-scale PostgreSQL clusters. The idea behind it is simple — we need the ability to replicate the entire infrastructure (100+ database clusters + PG/Redis + observability) on ready servers within ten minutes.
+No GUI + ClickOps can complete such a complex task in such a short time, making CLI + IaC the only choice — it provides precise, efficient control.&lt;/p&gt;</description></item><item><title>High Availability</title><link>https://pigsty.io/docs/concept/ha/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/ha/</guid><description>&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Pigsty&amp;rsquo;s PostgreSQL clusters come with out-of-the-box high availability, powered by &lt;a href="https://patroni.readthedocs.io/en/latest/"&gt;&lt;strong&gt;Patroni&lt;/strong&gt;&lt;/a&gt;, &lt;a href="https://etcd.io/"&gt;&lt;strong&gt;Etcd&lt;/strong&gt;&lt;/a&gt;, and &lt;a href="http://www.haproxy.org/"&gt;&lt;strong&gt;HAProxy&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;When your PostgreSQL cluster has two or more instances, you automatically have self-healing database high availability without any additional configuration — as long as any instance in the cluster survives, the cluster can provide complete service. Clients only need to connect to any node in the cluster to get full service without worrying about primary-replica topology changes.&lt;/p&gt;
+&lt;p&gt;With default configuration, the primary failure Recovery Time Objective (RTO) ≈ 45s, and Recovery Point Objective (RPO) &amp;lt; 1MB; for replica failures, RPO = 0 and RTO ≈ 0 (brief interruption). In consistency-first mode, failover can guarantee zero data loss: RPO = 0. All these metrics can be &lt;a href="#tradeoffs"&gt;&lt;strong&gt;configured as needed&lt;/strong&gt;&lt;/a&gt; based on your actual hardware conditions and reliability requirements.&lt;/p&gt;</description></item><item><title>Infrastructure</title><link>https://pigsty.io/docs/concept/arch/infra/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/arch/infra/</guid><description>&lt;p&gt;Running production-grade, highly available PostgreSQL clusters typically requires a comprehensive set of infrastructure services (foundation) for support, such as monitoring and alerting, log collection, time synchronization, DNS resolution, and local software repositories.
+Pigsty provides the &lt;a href="https://pigsty.io/docs/infra"&gt;&lt;strong&gt;INFRA module&lt;/strong&gt;&lt;/a&gt; to address this—it&amp;rsquo;s an &lt;strong&gt;optional module&lt;/strong&gt;, but we strongly recommend enabling it.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The diagram below shows the architecture of a &lt;a href="https://pigsty.io/docs/setup/install"&gt;&lt;strong&gt;single-node deployment&lt;/strong&gt;&lt;/a&gt;. The right half represents the components included in the &lt;a href="https://pigsty.io/docs/infra"&gt;&lt;strong&gt;INFRA module&lt;/strong&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: left"&gt;Component&lt;/th&gt;
+ &lt;th&gt;Type&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#nginx"&gt;&lt;strong&gt;Nginx&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Web Server&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Unified entry for &lt;a href="https://pigsty.io/docs/setup/webui"&gt;&lt;strong&gt;WebUI&lt;/strong&gt;&lt;/a&gt;, &lt;a href="#repo"&gt;&lt;strong&gt;local repo&lt;/strong&gt;&lt;/a&gt;, reverse proxy for internal services&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#repo"&gt;&lt;strong&gt;Repo&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Software Repo&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;APT/DNF repository with all RPM/DEB packages needed for deployment&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#grafana"&gt;&lt;strong&gt;Grafana&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Visualization&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Displays metrics, logs, and traces; hosts dashboards, reports, and custom data apps&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#victoriametrics"&gt;&lt;strong&gt;VictoriaMetrics&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Time Series DB&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Scrapes all metrics, Prometheus API compatible, provides VMUI query interface&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#victorialogs"&gt;&lt;strong&gt;VictoriaLogs&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Log Platform&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Centralized log storage; all nodes run Vector by default, pushing logs here&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#victoriatraces"&gt;&lt;strong&gt;VictoriaTraces&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Tracing&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Collects slow SQL, service traces, and other tracing data&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#vmalert"&gt;&lt;strong&gt;VMAlert&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Alert Engine&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Evaluates alerting rules, pushes events to Alertmanager&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#alertmanager"&gt;&lt;strong&gt;AlertManager&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Alert Manager&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Aggregates alerts, dispatches notifications via email, Webhook, etc.&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#blackboxexporter"&gt;&lt;strong&gt;BlackboxExporter&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Blackbox Probe&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Probes reachability of IPs/VIPs/URLs&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#dnsmasq"&gt;&lt;strong&gt;DNSMASQ&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;DNS Service&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Provides DNS resolution for domains used within Pigsty [Optional]&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#chronyd"&gt;&lt;strong&gt;Chronyd&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Time Sync&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Provides NTP time synchronization to ensure consistent time across nodes [Optional]&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/concept/sec/ca"&gt;&lt;strong&gt;CA&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Certificate&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Issues encryption certificates within the environment&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/setup/playbook"&gt;&lt;strong&gt;Ansible&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Orchestration&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Batch, declarative, agentless tool for managing large numbers of servers&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;a href="https://pigsty.io/docs/infra/"&gt;&lt;img src="https://pigsty.io/img/pigsty/arch.png" alt="pigsty-arch"&gt;&lt;/a&gt;&lt;/p&gt;</description></item><item><title>PGSQL Arch</title><link>https://pigsty.io/docs/concept/arch/pgsql/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/arch/pgsql/</guid><description>&lt;p&gt;The PGSQL module organizes PostgreSQL in production as &lt;strong&gt;clusters&lt;/strong&gt;—&lt;strong&gt;logical entities&lt;/strong&gt; composed of a group of database &lt;strong&gt;instances&lt;/strong&gt; associated by &lt;strong&gt;primary-replica&lt;/strong&gt; relationships.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The &lt;a href="https://pigsty.io/docs/pgsql"&gt;&lt;strong&gt;PGSQL module&lt;/strong&gt;&lt;/a&gt; includes the following components, working together to provide production-grade PostgreSQL HA cluster services:&lt;/p&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: left"&gt;Component&lt;/th&gt;
+ &lt;th&gt;Type&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#postgresql"&gt;&lt;strong&gt;&lt;code&gt;postgres&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Database&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;The world&amp;rsquo;s most advanced open-source relational database, PGSQL core&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#patroni"&gt;&lt;strong&gt;&lt;code&gt;patroni&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;HA&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Manages PostgreSQL, coordinates failover, leader election, config changes&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#pgbouncer"&gt;&lt;strong&gt;&lt;code&gt;pgbouncer&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Pool&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Lightweight connection pooling middleware, reduces overhead, adds flexibility&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#pgbackrest"&gt;&lt;strong&gt;&lt;code&gt;pgbackrest&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Backup&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Full/incremental backup and WAL archiving, supports local and object storage&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#pg_exporter"&gt;&lt;strong&gt;&lt;code&gt;pg_exporter&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Metrics&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Exports PostgreSQL monitoring metrics for Prometheus scraping&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#pgbouncer_exporter"&gt;&lt;strong&gt;&lt;code&gt;pgbouncer_exporter&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Metrics&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Exports Pgbouncer connection pool metrics&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#pgbackrest_exporter"&gt;&lt;strong&gt;&lt;code&gt;pgbackrest_exporter&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;Metrics&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Exports backup status metrics&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#vip-manager"&gt;&lt;strong&gt;&lt;code&gt;vip-manager&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;VIP&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Binds L2 VIP to current primary node for transparent failover [Optional]&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The &lt;a href="#vip-manager"&gt;&lt;strong&gt;&lt;code&gt;vip-manager&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; is an on-demand component. Additionally, PGSQL uses components from other modules:&lt;/p&gt;</description></item><item><title>Point-in-Time Recovery</title><link>https://pigsty.io/docs/concept/pitr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/pitr/</guid><description>&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can restore and roll back your cluster to any point in the past, avoiding data loss caused by software defects and human errors.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Pigsty&amp;rsquo;s PostgreSQL clusters come with auto-configured Point-in-Time Recovery (PITR) capability, powered by the backup component &lt;a href="https://pgbackrest.org/"&gt;&lt;strong&gt;pgBackRest&lt;/strong&gt;&lt;/a&gt; and optional object storage repository &lt;a href="https://min.io/"&gt;&lt;strong&gt;MinIO&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pigsty.io/docs/concept/ha"&gt;&lt;strong&gt;High availability solutions&lt;/strong&gt;&lt;/a&gt; can address hardware failures but are powerless against data deletion/overwriting/database drops caused by software defects and human errors.
+For such situations, Pigsty provides out-of-the-box &lt;strong&gt;Point-in-Time Recovery&lt;/strong&gt; (PITR) capability, enabled by default without additional configuration.&lt;/p&gt;</description></item><item><title>Configure</title><link>https://pigsty.io/docs/concept/iac/configure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/iac/configure/</guid><description>&lt;p&gt;Pigsty provides a &lt;strong&gt;&lt;code&gt;configure&lt;/code&gt;&lt;/strong&gt; script as a &lt;strong&gt;configuration wizard&lt;/strong&gt; that automatically generates an appropriate &lt;code&gt;pigsty.yml&lt;/code&gt; configuration file based on your current environment.&lt;/p&gt;
+&lt;p&gt;This is an &lt;strong&gt;optional&lt;/strong&gt; script: if you already understand how to configure Pigsty, you can directly edit the &lt;code&gt;pigsty.yml&lt;/code&gt; configuration file and skip the wizard.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;Enter the pigsty source home directory and run &lt;code&gt;./configure&lt;/code&gt; to automatically start the configuration wizard. Without any arguments, it defaults to the &lt;a href="https://pigsty.io/docs/conf/meta"&gt;&lt;strong&gt;&lt;code&gt;meta&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; single-node configuration template:&lt;/p&gt;</description></item><item><title>Parameters</title><link>https://pigsty.io/docs/concept/iac/parameter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/iac/parameter/</guid><description>&lt;p&gt;In the &lt;strong&gt;inventory&lt;/strong&gt;, you can use various parameters to fine-tune Pigsty customization. These parameters cover everything from infrastructure settings to database configuration.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="parameter-list"&gt;Parameter List&lt;/h2&gt;
+&lt;p&gt;Pigsty provides approximately &lt;strong&gt;380+&lt;/strong&gt; configuration parameters distributed across 8 default modules for fine-grained control of various system aspects. See &lt;a href="https://pigsty.io/docs/ref/param"&gt;&lt;strong&gt;Reference - Parameter List&lt;/strong&gt;&lt;/a&gt; for the complete list.&lt;/p&gt;
+&lt;table class="stretch-last"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: left"&gt;Module&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Groups&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;Params&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/pgsql/param"&gt;&lt;strong&gt;PGSQL&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;9&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;123&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Core configuration for PostgreSQL database clusters&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/infra/param"&gt;&lt;strong&gt;INFRA&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;10&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;82&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Infrastructure: repos, Nginx, DNS, monitoring, Grafana, etc.&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/node/param"&gt;&lt;strong&gt;NODE&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;11&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;83&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Host node tuning: identity, DNS, packages, tuning, security, admin, time, VIP, etc.&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/etcd/param"&gt;&lt;strong&gt;ETCD&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;13&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Distributed configuration store and service discovery&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/redis/param"&gt;&lt;strong&gt;REDIS&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;1&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;21&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Redis cache and data structure server&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/minio/param"&gt;&lt;strong&gt;MINIO&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;21&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;S3-compatible object storage service&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/ferret/param"&gt;&lt;strong&gt;FERRET&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;1&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;9&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;MongoDB-compatible database FerretDB&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/docker/param"&gt;&lt;strong&gt;DOCKER&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;1&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;8&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Docker container engine&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="parameter-form"&gt;Parameter Form&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Parameters&lt;/strong&gt; are &lt;strong&gt;key-value pairs&lt;/strong&gt; that describe entities. The &lt;strong&gt;Key&lt;/strong&gt; is a string, and the &lt;strong&gt;Value&lt;/strong&gt; can be one of five types: boolean, string, number, array, or object.&lt;/p&gt;</description></item><item><title>Conf Templates</title><link>https://pigsty.io/docs/concept/iac/template/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/iac/template/</guid><description>&lt;p&gt;In Pigsty, deployment blueprint details are defined by the &lt;a href="https://pigsty.io/docs/setup/config/"&gt;&lt;strong&gt;inventory&lt;/strong&gt;&lt;/a&gt;, which is the &lt;a href="https://github.com/pgsty/pigsty/blob/main/pigsty.yml"&gt;&lt;strong&gt;&lt;code&gt;pigsty.yml&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; configuration file. You can customize it through declarative configuration.&lt;/p&gt;
+&lt;p&gt;However, writing configuration files directly can be daunting for new users. To address this, we provide some ready-to-use configuration templates covering common usage scenarios.&lt;/p&gt;
+&lt;p&gt;Each template is a predefined &lt;code&gt;pigsty.yml&lt;/code&gt; configuration file containing reasonable defaults suitable for specific scenarios.&lt;/p&gt;
+&lt;p&gt;You can choose a template as your customization starting point, then modify it as needed to meet your specific requirements.&lt;/p&gt;</description></item><item><title>Use CMDB as Config Inventory</title><link>https://pigsty.io/docs/concept/iac/cmdb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/iac/cmdb/</guid><description>&lt;p&gt;Pigsty allows you to use a PostgreSQL &lt;strong&gt;metabase&lt;/strong&gt; as a dynamic configuration source, replacing static YAML configuration files for more powerful configuration management capabilities.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;CMDB&lt;/strong&gt; (Configuration Management Database) is a method of storing configuration information in a database for management.&lt;/p&gt;
+&lt;p&gt;In Pigsty, the default configuration source is a static YAML file &lt;code&gt;pigsty.yml&lt;/code&gt;,
+which serves as Ansible&amp;rsquo;s &lt;a href="https://pigsty.io/docs/concept/iac/inventory/"&gt;&lt;strong&gt;inventory&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This approach is simple and direct, but when infrastructure scales and requires complex, fine-grained management and external integration, a single static file becomes insufficient.&lt;/p&gt;</description></item><item><title>Monitoring System</title><link>https://pigsty.io/docs/concept/monitor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/monitor/</guid><description/></item><item><title>Service Access</title><link>https://pigsty.io/docs/concept/ha/svc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/ha/svc/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Split read and write operations, route traffic correctly, and deliver PostgreSQL cluster capabilities reliably.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="#service-overview"&gt;Service&lt;/a&gt; is an abstraction: it represents the form in which database clusters expose their capabilities externally, encapsulating underlying cluster details.&lt;/p&gt;
+&lt;p&gt;Services are crucial for &lt;a href="#access-services"&gt;stable access&lt;/a&gt; in production environments, showing their value during automatic failover in &lt;a href="https://pigsty.io/docs/concept/ha"&gt;high availability&lt;/a&gt; clusters. &lt;a href="#personal-users"&gt;Personal users&lt;/a&gt; typically don&amp;rsquo;t need to worry about this concept.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="personal-users"&gt;Personal Users&lt;/h2&gt;
+&lt;p&gt;The concept of &amp;ldquo;service&amp;rdquo; is for production environments. Personal users with single-node clusters can skip the complexity and directly use instance names or IP addresses to access the database.&lt;/p&gt;</description></item><item><title>Security and Compliance</title><link>https://pigsty.io/docs/concept/sec/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/sec/</guid><description>&lt;h3 id="pigstys-security-philosophy"&gt;Pigsty&amp;rsquo;s Security Philosophy&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Secure by Default&lt;/strong&gt;: Out-of-the-box security configuration—basic protection without additional setup.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Progressive Configuration&lt;/strong&gt;: Enterprise users can gradually enhance security measures through configuration.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Defense in Depth&lt;/strong&gt;: Multiple security layers—even if one layer is breached, others remain protective.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Least Privilege&lt;/strong&gt;: Grant users only the minimum permissions needed to complete tasks, reducing risk.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="default-security-configuration"&gt;Default Security Configuration&lt;/h2&gt;
+&lt;p&gt;Pigsty enables these security features by default:&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: left"&gt;Feature&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Default Config&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;Password Encryption&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;scram-sha-256&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;PostgreSQL&amp;rsquo;s most secure password hash algorithm&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;SSL Support&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Enabled&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Clients can optionally use SSL encrypted connections&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;Local CA&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Auto-generated&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Self-signed CA issues server certificates&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;HBA Layering&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Source-based control&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Different auth strength for different sources&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;Role System&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Four-tier permissions&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Read-only/Read-write/Admin/Offline&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;Data Checksums&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Enabled&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Detects storage-layer data corruption&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;Audit Logs&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Enabled&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Records connections and slow queries&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="enhanced-configuration"&gt;Enhanced Configuration&lt;/h3&gt;
+&lt;p&gt;Additional configuration enables higher security levels:&lt;/p&gt;</description></item><item><title>Local CA</title><link>https://pigsty.io/docs/concept/sec/ca/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/sec/ca/</guid><description>&lt;p&gt;Pigsty enables security best practices by default: using SSL to encrypt network traffic and HTTPS for web interfaces.&lt;/p&gt;
+&lt;p&gt;To achieve this, Pigsty includes a local self-signed CA for issuing SSL certificates and encrypting network communications.&lt;/p&gt;
+&lt;p&gt;By default, SSL and HTTPS are enabled but not enforced. For environments with higher security requirements, you can enforce SSL and HTTPS usage.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="local-ca"&gt;Local CA&lt;/h2&gt;
+&lt;p&gt;During initialization, Pigsty generates a self-signed CA in the Pigsty source directory (&lt;code&gt;~/pigsty&lt;/code&gt;) on the &lt;a href="https://pigsty.io/docs/node/#admin-node"&gt;ADMIN node&lt;/a&gt;. This CA can be used for SSL, HTTPS, digital signatures, issuing database client certificates, and advanced security features.&lt;/p&gt;</description></item><item><title>Seven-Layer Security Model</title><link>https://pigsty.io/docs/concept/sec/level/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/sec/level/</guid><description>&lt;p&gt;Security is not a wall, but a fortress. Pigsty adopts a &lt;strong&gt;defense-in-depth&lt;/strong&gt; strategy, building multiple protections across seven layers. Even if one layer is breached, other layers still provide protection.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;div id="infographic-5c882599098b83b429f94bd07a85bb52" class="infographic-container td-max-width-on-larger-screens"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+(function() {
+ var containerId = 'infographic-5c882599098b83b429f94bd07a85bb52';
+ var syntax = "````\ninfographic sequence-pyramid-simple\ndata\n title Seven-Layer Security Model\n desc Pigsty Defense-in-Depth: Multi-layer protection from physical to user security\n items\n - label Physical Security\n value 100\n desc Data Checksums · PGTDE Transparent Encryption\n time L1\n icon mingcute/building-4-fill\n illus server-cluster\n - label Network Security\n value 95\n desc Firewall · SSL/TLS Encryption · Local CA\n time L2\n icon mingcute/earth-2-fill\n illus secure-server\n - label Perimeter Security\n value 90\n desc HAProxy Proxy · Nginx Gateway\n time L3\n icon mingcute/shield-fill\n illus firewall-protection\n - label Host Security\n value 85\n desc SELinux · Least Privilege · System Hardening\n time L4\n icon mingcute/computer-fill\n illus server-status\n - label Application Security\n value 80\n desc HBA Rules · Password Policy · Connection Pool\n time L5\n icon mingcute/safe-box-fill\n illus database-security\n - label Data Security\n value 75\n desc Backup Encryption · Audit Logs · PITR\n time L6\n icon mingcute/lock-fill\n illus data-encryption\n - label User Security\n value 70\n desc Four-Role Model · RBAC · Certificate Auth\n time L7\n icon mingcute/user-security-fill\n illus user-flow\ntheme light\n palette pigsty\n````";
+
+ function renderInfographic() {
+ var dom = document.getElementById(containerId);
+ if (!dom) { console.error('Infographic: container not found:', containerId); return; }
+ try {
+ var ig = new AntVInfographic.Infographic({
+ container: '#' + containerId,
+ width: dom.offsetWidth || '100%',
+ height: 'auto',
+ });
+ ig.render(syntax);
+ } catch (e) {
+ console.error('Infographic render error:', e);
+ dom.innerHTML = '&lt;pre style="color: red;"&gt;Infographic Error: ' + e.message + '&lt;/pre&gt;';
+ }
+ }
+
+ 
+ if (typeof AntVInfographic !== 'undefined') {
+ renderInfographic();
+ } else if (!window._infographicLoading) {
+ window._infographicLoading = true;
+ window._infographicCallbacks = [renderInfographic];
+ var script = document.createElement('script');
+ script.src = '/js/infographic.min.js';
+ script.onload = function() {
+ window._infographicCallbacks.forEach(function(cb) { cb(); });
+ };
+ document.head.appendChild(script);
+ } else {
+ window._infographicCallbacks.push(renderInfographic);
+ }
+})();
+&lt;/script&gt;
+
+&lt;hr&gt;
+&lt;h2 id="physical-security"&gt;Physical Security&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If physical access is compromised, other layers are rendered useless.&lt;/p&gt;</description></item><item><title>Access Control</title><link>https://pigsty.io/docs/concept/sec/ac/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/sec/ac/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Pigsty provides an out-of-the-box access control model based on the &lt;a href="#role-system"&gt;Role System&lt;/a&gt; and &lt;a href="#permission-system"&gt;Permission System&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Access control is important, but many users struggle to implement it properly. Pigsty provides a streamlined access control model that serves as a security baseline for your cluster.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="role-system"&gt;Role System&lt;/h2&gt;
+&lt;p&gt;Pigsty&amp;rsquo;s default role system includes four &lt;a href="#default-roles"&gt;default roles&lt;/a&gt; and four &lt;a href="#default-users"&gt;default users&lt;/a&gt;:&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Role Name&lt;/th&gt;
+ &lt;th&gt;Attributes&lt;/th&gt;
+ &lt;th&gt;Member Of&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;dbrole_readonly&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;NOLOGIN&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Role: Global read-only&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;dbrole_readwrite&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;NOLOGIN&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;dbrole_readonly&lt;/td&gt;
+ &lt;td&gt;Role: Global read-write&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;dbrole_admin&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;NOLOGIN&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;pg_monitor,dbrole_readwrite&lt;/td&gt;
+ &lt;td&gt;Role: Admin/Object creation&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;dbrole_offline&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;NOLOGIN&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Role: Restricted read-only&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;postgres&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;SUPERUSER&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;System superuser&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;replicator&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;REPLICATION&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;pg_monitor,dbrole_readonly&lt;/td&gt;
+ &lt;td&gt;System replication user&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;dbuser_dba&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;SUPERUSER&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;dbrole_admin&lt;/td&gt;
+ &lt;td&gt;PostgreSQL admin user&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;dbuser_monitor&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;pg_monitor&lt;/td&gt;
+ &lt;td&gt;PostgreSQL monitor user&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;These &lt;a href="https://pigsty.io/docs/pgsql/config/user#define-users"&gt;roles and users&lt;/a&gt; are defined as follows:&lt;/p&gt;</description></item><item><title>Backup Mechanism</title><link>https://pigsty.io/docs/pgsql/backup/mechanism/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/backup/mechanism/</guid><description>&lt;p&gt;Backups can be invoked via built-in &lt;a href="#scripts"&gt;scripts&lt;/a&gt;, scheduled using node &lt;a href="#scheduled-backups"&gt;crontab&lt;/a&gt;,
+managed by &lt;a href="https://pgbackrest.org/"&gt;pgbackrest&lt;/a&gt;, and stored in backup repositories,
+which can be local disk filesystems or MinIO / S3, supporting different &lt;a href="#retention-policy"&gt;retention&lt;/a&gt; policies.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="scripts"&gt;Scripts&lt;/h2&gt;
+&lt;p&gt;You can create backups using the &lt;a href="https://pigsty.io/docs/pgsql/param#pg_dbsu"&gt;&lt;code&gt;pg_dbsu&lt;/code&gt;&lt;/a&gt; user (defaults to &lt;code&gt;postgres&lt;/code&gt;) to execute &lt;code&gt;pgbackrest&lt;/code&gt; commands:&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist"&gt;
+ &lt;li class="nav-item"&gt;
+ &lt;button class="nav-link disabled"
+ id="tabs-00-00-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-00" role="tab"
+ aria-controls="tabs-00-00" aria-selected="false"&gt;
+ Backup Commands
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link active"
+ id="tabs-00-01-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-01" role="tab"
+ aria-controls="tabs-00-01" aria-selected="true"&gt;
+ backup
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-02-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-02" role="tab"
+ aria-controls="tabs-00-02" aria-selected="false"&gt;
+ full
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-03-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-03" role="tab"
+ aria-controls="tabs-00-03" aria-selected="false"&gt;
+ diff
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-04-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-04" role="tab"
+ aria-controls="tabs-00-04" aria-selected="false"&gt;
+ incr
+ &lt;/button&gt;
+ &lt;/li&gt;&lt;li class="nav-item"&gt;
+ &lt;button class="nav-link"
+ id="tabs-00-05-tab" data-bs-toggle="tab" data-bs-target="#tabs-00-05" role="tab"
+ aria-controls="tabs-00-05" aria-selected="false"&gt;
+ info
+ &lt;/button&gt;
+ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="tab-content" id="tabs-0-content"&gt;
+ &lt;div class="tab-pane fade"
+ id="tabs-00-00" role="tabpanel" aria-labelled-by="tabs-00-00-tab" tabindex="0"&gt;
+ &lt;pre tabindex="0"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-pane fade show active"
+ id="tabs-00-01" role="tabpanel" aria-labelled-by="tabs-00-01-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;pgbackrest --stanza&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;pg-meta --type&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;full backup &lt;span style="color:#8f5902;font-style:italic"&gt;# Create full backup for cluster pg-meta&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-pane fade"
+ id="tabs-00-02" role="tabpanel" aria-labelled-by="tabs-00-02-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;$ pgbackrest --stanza&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;pg-meta --type&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;full backup
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:36:57.007 P00 INFO: backup &lt;span style="color:#204a87"&gt;command&lt;/span&gt; begin 2.54.2: --annotation&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;&lt;span style="color:#000"&gt;pg_cluster&lt;/span&gt;&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;pg-meta ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:36:57.030 P00 INFO: execute non-exclusive backup start: backup begins after the requested immediate checkpoint completes
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:36:57.105 P00 INFO: backup start &lt;span style="color:#000"&gt;archive&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 000000010000000000000006, &lt;span style="color:#000"&gt;lsn&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 0/6000028
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:36:58.540 P00 INFO: new backup &lt;span style="color:#000"&gt;label&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 20250715-013657F
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:36:58.588 P00 INFO: full backup &lt;span style="color:#000"&gt;size&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 44.5MB, file &lt;span style="color:#000"&gt;total&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; &lt;span style="color:#0000cf;font-weight:bold"&gt;1437&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:36:58.589 P00 INFO: backup &lt;span style="color:#204a87"&gt;command&lt;/span&gt; end: completed successfully &lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt;1584ms&lt;span style="color:#ce5c00;font-weight:bold"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-pane fade"
+ id="tabs-00-03" role="tabpanel" aria-labelled-by="tabs-00-03-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;$ pgbackrest --stanza&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;pg-meta --type&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;diff backup
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:24.952 P00 INFO: backup &lt;span style="color:#204a87"&gt;command&lt;/span&gt; begin 2.54.2: ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:24.985 P00 INFO: last backup &lt;span style="color:#000"&gt;label&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 20250715-013657F, &lt;span style="color:#000"&gt;version&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 2.54.2
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:26.337 P00 INFO: new backup &lt;span style="color:#000"&gt;label&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 20250715-013657F_20250715-013724D
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:26.381 P00 INFO: diff backup &lt;span style="color:#000"&gt;size&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 424.3KB, file &lt;span style="color:#000"&gt;total&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; &lt;span style="color:#0000cf;font-weight:bold"&gt;1437&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:26.381 P00 INFO: backup &lt;span style="color:#204a87"&gt;command&lt;/span&gt; end: completed successfully &lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt;1431ms&lt;span style="color:#ce5c00;font-weight:bold"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-pane fade"
+ id="tabs-00-04" role="tabpanel" aria-labelled-by="tabs-00-04-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;$ pgbackrest --stanza&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;pg-meta --type&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;incr backup
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:30.305 P00 INFO: backup &lt;span style="color:#204a87"&gt;command&lt;/span&gt; begin 2.54.2: ...
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:30.337 P00 INFO: last backup &lt;span style="color:#000"&gt;label&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 20250715-013657F_20250715-013724D, &lt;span style="color:#000"&gt;version&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 2.54.2
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:31.356 P00 INFO: new backup &lt;span style="color:#000"&gt;label&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 20250715-013657F_20250715-013730I
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:31.403 P00 INFO: incr backup &lt;span style="color:#000"&gt;size&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; 8.3KB, file &lt;span style="color:#000"&gt;total&lt;/span&gt; &lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt; &lt;span style="color:#0000cf;font-weight:bold"&gt;1437&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;2025-07-15 01:37:31.403 P00 INFO: backup &lt;span style="color:#204a87"&gt;command&lt;/span&gt; end: completed successfully &lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt;1099ms&lt;span style="color:#ce5c00;font-weight:bold"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="tab-pane fade"
+ id="tabs-00-05" role="tabpanel" aria-labelled-by="tabs-00-05-tab" tabindex="0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;$ pgbackrest --stanza&lt;span style="color:#ce5c00;font-weight:bold"&gt;=&lt;/span&gt;pg-meta info
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;stanza: pg-meta
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; status: ok
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; cipher: aes-256-cbc
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; db &lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt;current&lt;span style="color:#ce5c00;font-weight:bold"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; wal archive min/max &lt;span style="color:#ce5c00;font-weight:bold"&gt;(&lt;/span&gt;17&lt;span style="color:#ce5c00;font-weight:bold"&gt;)&lt;/span&gt;: 000000010000000000000001/00000001000000000000000A
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; full backup: 20250715-013657F
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; timestamp start/stop: 2025-07-15 01:36:57+00 / 2025-07-15 01:36:58+00
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; wal start/stop: &lt;span style="color:#0000cf;font-weight:bold"&gt;000000010000000000000006&lt;/span&gt; / &lt;span style="color:#0000cf;font-weight:bold"&gt;000000010000000000000006&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; database size: 44.5MB, database backup size: 44.5MB
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; repo1: backup size: 8.7MB
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; diff backup: 20250715-013657F_20250715-013724D
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; timestamp start/stop: 2025-07-15 01:37:24+00 / 2025-07-15 01:37:26+00
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; database size: 44.5MB, database backup size: 424.3KB
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; repo1: backup size: 94KB
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; backup reference total: &lt;span style="color:#0000cf;font-weight:bold"&gt;1&lt;/span&gt; full
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; incr backup: 20250715-013657F_20250715-013730I
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; timestamp start/stop: 2025-07-15 01:37:30+00 / 2025-07-15 01:37:31+00
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; database size: 44.5MB, database backup size: 8.3KB
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; repo1: backup size: 504B
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; backup reference total: &lt;span style="color:#0000cf;font-weight:bold"&gt;1&lt;/span&gt; full, &lt;span style="color:#0000cf;font-weight:bold"&gt;1&lt;/span&gt; diff&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Here the &lt;code&gt;stanza&lt;/code&gt; is the database cluster name: &lt;a href="https://pigsty.io/docs/pgsql/param#pg_cluster"&gt;&lt;code&gt;pg_cluster&lt;/code&gt;&lt;/a&gt;, which is &lt;code&gt;pg-meta&lt;/code&gt; in the default configuration.&lt;/p&gt;</description></item><item><title>HA Drill: Handling 2-of-3 Node Failure</title><link>https://pigsty.io/docs/pgsql/tutorial/drill/</link><pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/tutorial/drill/</guid><description>&lt;p&gt;If a classic 3-node HA deployment experiences simultaneous failure of two nodes (majority), the system typically cannot complete automatic failover and requires manual intervention.&lt;/p&gt;
+&lt;p&gt;First, assess the status of the other two servers. If they can be brought up quickly, prioritize recovering those two servers. Otherwise, enter the &lt;strong&gt;Emergency Recovery Procedure&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Emergency Recovery Procedure assumes your admin node has failed&lt;/strong&gt; and only a single regular database node survives. In this case, the fastest recovery process is:&lt;/p&gt;</description></item><item><title>PostgreSQL</title><link>https://pigsty.io/docs/pgsql/kernel/postgres/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/postgres/</guid><description>&lt;p&gt;&lt;a href="https://www.postgresql.org/"&gt;PostgreSQL&lt;/a&gt; is the world&amp;rsquo;s most advanced and popular open-source database.&lt;/p&gt;
+&lt;p&gt;Pigsty supports PostgreSQL 13 ~ 18 and provides 440 PG extensions.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://pigsty.io/docs/setup/install"&gt;&lt;strong&gt;Install&lt;/strong&gt;&lt;/a&gt; Pigsty using the &lt;a href="https://github.com/pgsty/pigsty/blob/main/conf/pgsql.yml"&gt;&lt;code&gt;pgsql&lt;/code&gt;&lt;/a&gt; configuration template.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./configure -c pgsql &lt;span style="color:#8f5902;font-style:italic"&gt;# Use postgres kernel&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./deploy.yml &lt;span style="color:#8f5902;font-style:italic"&gt;# Set up everything with pigsty&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Most &lt;a href="https://pigsty.io/docs/conf/"&gt;configuration templates&lt;/a&gt; use PostgreSQL kernel by default, for example:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/pgsty/pigsty/blob/main/conf/meta.yml"&gt;&lt;code&gt;meta&lt;/code&gt;&lt;/a&gt; : &lt;strong&gt;Default&lt;/strong&gt;, postgres with core extensions (vector, postgis, timescale)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/pgsty/pigsty/blob/main/conf/rich.yml"&gt;&lt;code&gt;rich&lt;/code&gt;&lt;/a&gt; : postgres with all extensions installed&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/pgsty/pigsty/blob/main/conf/slim.yml"&gt;&lt;code&gt;slim&lt;/code&gt;&lt;/a&gt; : postgres only, no monitoring infrastructure&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/pgsty/pigsty/blob/main/conf/full.yml"&gt;&lt;code&gt;full&lt;/code&gt;&lt;/a&gt; : 4-node sandbox for HA demonstration&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/pgsty/pigsty/blob/main/conf/pgsql.yml"&gt;&lt;code&gt;pgsql&lt;/code&gt;&lt;/a&gt; : minimal postgres kernel configuration example&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="configuration"&gt;Configuration&lt;/h2&gt;
+&lt;p&gt;Vanilla PostgreSQL kernel requires no special adjustments:&lt;/p&gt;</description></item><item><title>Supabase</title><link>https://pigsty.io/docs/pgsql/kernel/supabase/</link><pubDate>Sun, 23 Jun 2024 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/supabase/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="https://supabase.com/"&gt;Supabase&lt;/a&gt; — Build in a weekend, Scale to millions&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Supabase is an open-source Firebase alternative that wraps PostgreSQL and provides authentication, out-of-the-box APIs, edge functions, real-time subscriptions, object storage, and vector embedding capabilities.
+This is a low-code all-in-one backend platform that lets you skip most backend development work, requiring only database design and frontend knowledge to quickly ship products!&lt;/p&gt;
+&lt;p&gt;Supabase&amp;rsquo;s motto is: &amp;ldquo;&lt;strong&gt;Build in a weekend, Scale to millions&lt;/strong&gt;&amp;rdquo;. Indeed, Supabase is &lt;a href="https://supabase.com/pricing"&gt;extremely cost-effective&lt;/a&gt; at small to micro scales (4c8g), like a cyber bodhisattva.
+— But when you really scale to millions of users — you should seriously consider self-hosting Supabase — whether for functionality, performance, or cost considerations.&lt;/p&gt;</description></item><item><title>Deploy HA Citus Cluster</title><link>https://pigsty.io/docs/pgsql/tutorial/citus/</link><pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/tutorial/citus/</guid><description>&lt;p&gt;Citus is a PostgreSQL extension that transforms PostgreSQL into a distributed database, enabling horizontal scaling across multiple nodes to handle large amounts of data and queries.&lt;/p&gt;
+&lt;p&gt;Patroni v3.0+ provides native high-availability support for Citus, simplifying the setup of Citus clusters. Pigsty also provides native support for this.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.citusdata.com/en/stable/get_started/what_is_citus.html"&gt;What is Citus&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://patroni.readthedocs.io/en/latest/citus.html"&gt;Patroni Citus Support&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: The current Citus version (13.0) supports PostgreSQL 17, 16, 15, and 14. Pigsty extension repo provides Citus ARM64 packages.&lt;/p&gt;</description></item><item><title>Percona</title><link>https://pigsty.io/docs/pgsql/kernel/percona/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/percona/</guid><description>&lt;p&gt;&lt;a href="https://www.percona.com/postgresql/software/postgresql-distribution"&gt;Percona Postgres&lt;/a&gt; is a patched Postgres kernel with &lt;a href="https://docs.percona.com/pg-tde/index.html"&gt;&lt;code&gt;pg_tde&lt;/code&gt;&lt;/a&gt; (Transparent Data Encryption) extension.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s compatible with PostgreSQL 18.1 and available on all Pigsty-supported platforms.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://andreas.scherbaum.la/post/2025-06-30_performance-test-for-percona-transparent-data-encryption-tde/"&gt;Performance Test for Percona Transparent Data Encryption (TDE)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;Use Pigsty&amp;rsquo;s &lt;a href="https://pigsty.io/docs/setup/install"&gt;&lt;strong&gt;standard installation process&lt;/strong&gt;&lt;/a&gt; with the &lt;a href="https://github.com/pgsty/pigsty/blob/main/conf/pgtde.yml"&gt;&lt;code&gt;pgtde&lt;/code&gt;&lt;/a&gt; configuration template.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;curl -fsSL https://repo.pigsty.io/get &lt;span style="color:#000;font-weight:bold"&gt;|&lt;/span&gt; bash&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt; &lt;span style="color:#204a87"&gt;cd&lt;/span&gt; ~/pigsty&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./configure -c pgtde &lt;span style="color:#8f5902;font-style:italic"&gt;# Use percona postgres kernel&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./deploy.yml &lt;span style="color:#8f5902;font-style:italic"&gt;# Set up everything with pigsty&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="configuration"&gt;Configuration&lt;/h2&gt;
+&lt;p&gt;The following parameters need to be adjusted to deploy a Percona cluster:&lt;/p&gt;</description></item><item><title>OpenHalo</title><link>https://pigsty.io/docs/pgsql/kernel/openhalo/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/openhalo/</guid><description>&lt;p&gt;&lt;a href="https://www.openhalo.org/"&gt;OpenHalo&lt;/a&gt; is an open-source PostgreSQL kernel that provides MySQL wire protocol compatibility.&lt;/p&gt;
+&lt;p&gt;OpenHalo is based on PostgreSQL 14.10 kernel version and provides wire protocol compatibility with MySQL 5.7.32-log / 8.0 versions.&lt;/p&gt;
+&lt;p&gt;Pigsty provides deployment support for OpenHalo on all supported Linux platforms.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="quick-start"&gt;Quick Start&lt;/h2&gt;
+&lt;p&gt;Use Pigsty&amp;rsquo;s &lt;a href="https://pigsty.io/docs/setup/install"&gt;&lt;strong&gt;standard installation process&lt;/strong&gt;&lt;/a&gt; with the &lt;a href="https://github.com/pgsty/pigsty/blob/main/conf/mysql.yml"&gt;&lt;code&gt;mysql&lt;/code&gt;&lt;/a&gt; configuration template.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;curl -fsSL https://repo.pigsty.io/get &lt;span style="color:#000;font-weight:bold"&gt;|&lt;/span&gt; bash&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt; &lt;span style="color:#204a87"&gt;cd&lt;/span&gt; ~/pigsty&lt;span style="color:#000;font-weight:bold"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./configure -c mysql &lt;span style="color:#8f5902;font-style:italic"&gt;# Use MySQL (openHalo) configuration template&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./deploy.yml &lt;span style="color:#8f5902;font-style:italic"&gt;# Install, for production deployment please modify passwords in pigsty.yml first&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For production deployment, ensure you modify the password parameters in the &lt;code&gt;pigsty.yml&lt;/code&gt; configuration file before running the install playbook.&lt;/p&gt;</description></item><item><title>OrioleDB</title><link>https://pigsty.io/docs/pgsql/kernel/orioledb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/orioledb/</guid><description>&lt;p&gt;&lt;a href="https://orioledb.com/"&gt;OrioleDB&lt;/a&gt; is a PostgreSQL storage engine extension that claims to provide 4x OLTP performance, no xid wraparound and table bloat issues, and &amp;ldquo;cloud-native&amp;rdquo; (data stored in S3) capabilities.&lt;/p&gt;
+&lt;p&gt;OrioleDB&amp;rsquo;s latest version is based on a &lt;a href="https://github.com/orioledb/postgres"&gt;patched PostgreSQL 17.0&lt;/a&gt; and an additional &lt;a href="https://github.com/orioledb/orioledb"&gt;extension&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;You can run OrioleDB as an RDS using Pigsty. It&amp;rsquo;s compatible with PG 17 and available on all supported Linux platforms.
+The latest version is beta12, based on PG 17_11 patch.&lt;/p&gt;</description></item><item><title>PG Kernels</title><link>https://pigsty.io/docs/pgsql/kernel/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/</guid><description>&lt;p&gt;In Pigsty, you can replace the &amp;ldquo;native PG kernel&amp;rdquo; with different &amp;ldquo;&lt;strong&gt;flavors&lt;/strong&gt;&amp;rdquo; of PostgreSQL forks to achieve special features and effects.&lt;/p&gt;
+&lt;p&gt;Pigsty supports various PostgreSQL kernels and compatible forks, enabling you to simulate different database systems while leveraging PostgreSQL&amp;rsquo;s ecosystem. Each kernel provides unique capabilities and compatibility layers.&lt;/p&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: left"&gt;Kernel&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Key Feature&lt;/th&gt;
+ &lt;th style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/pgsql"&gt;PostgreSQL&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;Original Flavor&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Vanilla PostgreSQL with 440 extensions&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/pgsql/kernel/citus"&gt;Citus&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;Horizontal Scaling&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Distributed PostgreSQL via native extension&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/pgsql/kernel/babelfish"&gt;WiltonDB&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;SQL Server Compatible&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;SQL Server wire-protocol compatibility&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/pgsql/kernel/ivorysql"&gt;IvorySQL&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;Oracle Compatible&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Oracle syntax and PL/SQL compatibility&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/pgsql/kernel/openhalo"&gt;OpenHalo&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;MySQL Compatible&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;MySQL wire-protocol compatibility&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/pgsql/kernel/percona"&gt;Percona&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;Transparent Encryption&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Percona Distribution with pg_tde&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/ferret"&gt;FerretDB&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;MongoDB Migration&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;MongoDB wire-protocol compatibility&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/pgsql/kernel/orioledb"&gt;OrioleDB&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;OLTP Optimization&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Zheap, No bloat, S3 Storage&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/pgsql/kernel/polardb"&gt;PolarDB&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;Aurora-style RAC&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;RAC, China domestic compliance&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/pgsql/kernel/supabase"&gt;Supabase&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;Backend as a Service&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;BaaS based on PostgreSQL, Firebase alternative&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/pgsql/kernel/cloudberry"&gt;Cloudberry&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;MPP DW &amp;amp; Analytics&lt;/strong&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Massively parallel processing data warehouse&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;</description></item><item><title>Citus</title><link>https://pigsty.io/docs/pgsql/kernel/citus/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/citus/</guid><description>&lt;p&gt;Pigsty natively supports Citus. This is a distributed horizontal scaling extension based on the native PostgreSQL kernel.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://pigsty.io/img/pigsty/citus.jpg" alt=""&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="installation"&gt;Installation&lt;/h2&gt;
+&lt;p&gt;Citus is a PostgreSQL &lt;a href="https://pigsty.io/docs/pgsql/ext/"&gt;extension plugin&lt;/a&gt; that can be installed and enabled on a native PostgreSQL cluster following the standard plugin installation process.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./pgsql.yml -t pg_extension -e &lt;span style="color:#4e9a06"&gt;&amp;#39;{&amp;#34;pg_extensions&amp;#34;:[&amp;#34;citus&amp;#34;]}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="configuration"&gt;Configuration&lt;/h2&gt;
+&lt;p&gt;To define a citus cluster, you need to specify the following parameters:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://pigsty.io/docs/pgsql/param#pg_mode"&gt;&lt;code&gt;pg_mode&lt;/code&gt;&lt;/a&gt; must be set to &lt;code&gt;citus&lt;/code&gt; instead of the default &lt;code&gt;pgsql&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;You must define the shard name &lt;a href="https://pigsty.io/docs/pgsql/param#pg_shard"&gt;&lt;code&gt;pg_shard&lt;/code&gt;&lt;/a&gt; and shard number &lt;a href="https://pigsty.io/docs/pgsql/param#pg_group"&gt;&lt;code&gt;pg_group&lt;/code&gt;&lt;/a&gt; on each shard cluster&lt;/li&gt;
+&lt;li&gt;You must define &lt;a href="https://pigsty.io/docs/pgsql/param#pg_primary_db"&gt;&lt;code&gt;pg_primary_db&lt;/code&gt;&lt;/a&gt; to specify the database managed by Patroni&lt;/li&gt;
+&lt;li&gt;If you want to use &lt;code&gt;postgres&lt;/code&gt; from &lt;a href="https://pigsty.io/docs/pgsql/param#pg_dbsu"&gt;&lt;code&gt;pg_dbsu&lt;/code&gt;&lt;/a&gt; instead of the default &lt;a href="https://pigsty.io/docs/pgsql/param#pg_admin_username"&gt;&lt;code&gt;pg_admin_username&lt;/code&gt;&lt;/a&gt; to execute admin commands, then &lt;a href="https://pigsty.io/docs/pgsql/param#pg_dbsu_password"&gt;&lt;code&gt;pg_dbsu_password&lt;/code&gt;&lt;/a&gt; must be set to a non-empty plaintext password&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Additionally, you need extra hba rules to allow SSL access from localhost and other data nodes.&lt;/p&gt;</description></item><item><title>Babelfish</title><link>https://pigsty.io/docs/pgsql/kernel/babelfish/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/babelfish/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="https://babelfishpg.org/"&gt;Babelfish&lt;/a&gt; is an MSSQL (Microsoft SQL Server) compatibility solution based on PostgreSQL, open-sourced by AWS.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Pigsty allows users to create Microsoft SQL Server compatible PostgreSQL clusters using Babelfish and WiltonDB!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://babelfishpg.org/"&gt;Babelfish&lt;/a&gt;: An MSSQL (Microsoft SQL Server) compatibility extension plugin open-sourced by AWS&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/wiltondb/wiltondb"&gt;WiltonDB&lt;/a&gt;: A PostgreSQL kernel distribution focusing on integrating Babelfish&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Babelfish is a PostgreSQL extension, but it only works on a slightly modified PostgreSQL kernel fork. WiltonDB provides compiled fork kernel binaries and extension binary packages on EL/Ubuntu systems.&lt;/p&gt;</description></item><item><title>IvorySQL</title><link>https://pigsty.io/docs/pgsql/kernel/ivorysql/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/ivorysql/</guid><description>&lt;p&gt;&lt;a href="https://www.ivorysql.org/"&gt;IvorySQL&lt;/a&gt; is an open-source PostgreSQL kernel fork that aims to provide &amp;ldquo;Oracle compatibility&amp;rdquo; based on PG.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The IvorySQL kernel is supported in the Pigsty open-source version. Your server needs internet access to download relevant packages directly from IvorySQL&amp;rsquo;s official repository.&lt;/p&gt;
+&lt;p&gt;Please note that adding IvorySQL directly to Pigsty&amp;rsquo;s default software repository will affect the installation of the native PostgreSQL kernel. Pigsty Professional Edition provides offline installation solutions including the IvorySQL kernel.&lt;/p&gt;</description></item><item><title>PolarDB PG</title><link>https://pigsty.io/docs/pgsql/kernel/polardb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/polardb/</guid><description>&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Pigsty allows you to create PostgreSQL clusters with &amp;ldquo;domestic innovation qualification&amp;rdquo; credentials using PolarDB!&lt;/p&gt;
+&lt;p&gt;PolarDB for PostgreSQL is essentially equivalent to PostgreSQL 15. Any client tool compatible with the PostgreSQL wire protocol can access PolarDB clusters.&lt;/p&gt;
+&lt;p&gt;Pigsty&amp;rsquo;s PGSQL repository provides PolarDB PG open-source installation packages for EL7 / EL8, but they are not downloaded to the local software repository during Pigsty installation.&lt;/p&gt;
+&lt;p&gt;If you need offline installation support for PolarDB PG, please consider our &lt;a href="https://pigsty.io/docs/about/service"&gt;professional subscription service&lt;/a&gt;&lt;/p&gt;</description></item><item><title>PolarDB Oracle</title><link>https://pigsty.io/docs/pgsql/kernel/polardb-o/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/polardb-o/</guid><description>&lt;p&gt;Pigsty allows you to create PolarDB for Oracle clusters with &amp;ldquo;domestic innovation qualification&amp;rdquo; credentials using PolarDB!&lt;/p&gt;
+&lt;p&gt;According to the &lt;a href="http://www.itsec.gov.cn/aqkkcp/cpgg/202312/t20231226_162074.html"&gt;Security and Reliability Evaluation Results Announcement (No. 1, 2023)&lt;/a&gt;, Appendix 3, Centralized Database. PolarDB v2.0 is an autonomous, controllable, secure, and reliable domestic innovation database.&lt;/p&gt;
+&lt;p&gt;PolarDB for Oracle is an Oracle-compatible version developed based on PolarDB for PostgreSQL. Both share the same kernel, distinguished by the &lt;code&gt;--compatibility-mode&lt;/code&gt; parameter.&lt;/p&gt;
+&lt;p&gt;We collaborate with the Alibaba Cloud kernel team to provide a complete database solution based on PolarDB v2.0 kernel and Pigsty v3.0 RDS. Please contact sales for inquiries, or purchase on Alibaba Cloud Marketplace.&lt;/p&gt;</description></item><item><title>PostgresML</title><link>https://pigsty.io/docs/pgsql/kernel/pgml/</link><pubDate>Sun, 23 Jun 2024 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/pgml/</guid><description>&lt;p&gt;&lt;a href="https://postgresml.org/"&gt;PostgresML&lt;/a&gt; is a PostgreSQL extension that supports the latest large language models (LLM), vector operations, classical machine learning, and traditional Postgres application workloads.&lt;/p&gt;
+&lt;p&gt;PostgresML (pgml) is a PostgreSQL extension written in Rust. You can run standalone Docker images, but this documentation is not a docker-compose template introduction, for reference only.&lt;/p&gt;
+&lt;p&gt;PostgresML officially supports Ubuntu 22.04, but we also maintain RPM versions for EL 8/9, if you don&amp;rsquo;t need CUDA and NVIDIA-related features.&lt;/p&gt;</description></item><item><title>Greenplum</title><link>https://pigsty.io/docs/pgsql/kernel/greenplum/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/greenplum/</guid><description>&lt;p&gt;Pigsty supports deploying Greenplum clusters and its derivative distribution YMatrixDB, and provides the capability to integrate existing Greenplum deployments into Pigsty monitoring.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Greenplum / YMatrix cluster deployment capabilities are only available in the professional/enterprise editions and are not currently open source.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="installation"&gt;Installation&lt;/h2&gt;
+&lt;p&gt;Pigsty provides installation packages for Greenplum 6 (@el7) and Greenplum 7 (@el8). Open source users can install and configure them manually.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# EL 7 Only (Greenplum6)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./node.yml -t node_install -e &lt;span style="color:#4e9a06"&gt;&amp;#39;{&amp;#34;node_repo_modules&amp;#34;:&amp;#34;pgsql&amp;#34;,&amp;#34;node_packages&amp;#34;:[&amp;#34;open-source-greenplum-db-6&amp;#34;]}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# EL 8 Only (Greenplum7)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./node.yml -t node_install -e &lt;span style="color:#4e9a06"&gt;&amp;#39;{&amp;#34;node_repo_modules&amp;#34;:&amp;#34;pgsql&amp;#34;,&amp;#34;node_packages&amp;#34;:[&amp;#34;open-source-greenplum-db-7&amp;#34;]}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="configuration"&gt;Configuration&lt;/h2&gt;
+&lt;p&gt;To define a Greenplum cluster, you need to use &lt;code&gt;pg_mode&lt;/code&gt; = &lt;code&gt;gpsql&lt;/code&gt; and additional identity parameters &lt;code&gt;pg_shard&lt;/code&gt; and &lt;code&gt;gp_role&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Cloudberry</title><link>https://pigsty.io/docs/pgsql/kernel/cloudberry/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/cloudberry/</guid><description>&lt;hr&gt;
+&lt;h2 id="installation"&gt;Installation&lt;/h2&gt;
+&lt;p&gt;Pigsty provides installation packages for Greenplum 6 (@el7) and Greenplum 7 (@el8). Open source users can install and configure them manually.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# EL 7 Only (Greenplum6)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./node.yml -t node_install -e &lt;span style="color:#4e9a06"&gt;&amp;#39;{&amp;#34;node_repo_modules&amp;#34;:&amp;#34;pgsql&amp;#34;,&amp;#34;node_packages&amp;#34;:[&amp;#34;cloudberrydb&amp;#34;]}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#8f5902;font-style:italic"&gt;# EL 8 Only (Greenplum7)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;./node.yml -t node_install -e &lt;span style="color:#4e9a06"&gt;&amp;#39;{&amp;#34;node_repo_modules&amp;#34;:&amp;#34;pgsql&amp;#34;,&amp;#34;node_packages&amp;#34;:[&amp;#34;cloudberrydb&amp;#34;]}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>Neon</title><link>https://pigsty.io/docs/pgsql/kernel/neon/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgsql/kernel/neon/</guid><description>&lt;p&gt;&lt;a href="https://github.com/neondatabase/neon"&gt;&lt;strong&gt;Neon&lt;/strong&gt;&lt;/a&gt; adopts a storage and compute separation architecture, providing seamless autoscaling, scale to zero, and unique database branching capabilities.&lt;/p&gt;
+&lt;p&gt;Neon official website: &lt;a href="https://neon.tech/"&gt;https://neon.tech/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The compiled binaries of Neon are excessively large and are currently not available to open-source users. It is currently in the pilot stage. If you have requirements, please contact Pigsty sales.&lt;/p&gt;</description></item><item><title>Introduction</title><link>https://pigsty.io/docs/pig/intro/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pig/intro/</guid><description>&lt;p&gt;Have you ever struggled with installing or upgrading PostgreSQL extensions? Digging through outdated documentation, cryptic configuration scripts, or searching GitHub for forks and patches?
+Postgres&amp;rsquo;s rich extension ecosystem also means complex deployment processes — especially tricky across multiple distributions and architectures. PIG can solve these headaches for you.&lt;/p&gt;
+&lt;p&gt;This is exactly why &lt;strong&gt;Pig&lt;/strong&gt; was created. Developed in Go, Pig is dedicated to one-stop management of Postgres and its &lt;a href="https://ext.pigsty.io/#/list"&gt;430+&lt;/a&gt; extensions.
+Whether it&amp;rsquo;s TimescaleDB, Citus, PGVector, 30+ Rust extensions, or all the components needed to self-host Supabase — Pig&amp;rsquo;s unified CLI makes everything accessible.
+It completely eliminates source compilation and messy repositories, directly providing version-aligned RPM/DEB packages that perfectly support Debian, Ubuntu, RedHat, and other mainstream distributions on both x86 and Arm architectures — no guessing, no hassle.&lt;/p&gt;</description></item></channel></rss>

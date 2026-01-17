@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FAQ on PIGSTY</title><link>https://pigsty.io/tags/faq/</link><description>Recent content in FAQ on PIGSTY</description><generator>Hugo</generator><language>en</language><atom:link href="https://pigsty.io/tags/faq/index.xml" rel="self" type="application/rss+xml"/><item><title>FAQ</title><link>https://pigsty.io/docs/about/faq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/about/faq/</guid><description>&lt;hr&gt;
+&lt;h3 id="what-is-pigsty-and-what-is-it-not"&gt;What is Pigsty, and what is it not?&lt;/h3&gt;
+&lt;p&gt;Pigsty is a PostgreSQL database distribution, a local-first open-source RDS cloud database solution.
+Pigsty is not a Database Management System (DBMS), but rather a tool, distribution, solution, and best practice for managing DBMS.&lt;/p&gt;
+&lt;p&gt;Analogy: The database is the car, then the DBA is the driver, RDS is the taxi service, and Pigsty is the autonomous driving software.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="what-problem-does-pigsty-solve"&gt;What problem does Pigsty solve?&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;The ability to use databases well&lt;/strong&gt; is extremely scarce: either hire database experts at high cost to self-build (hire drivers), or rent RDS from cloud vendors at sky-high prices (hail a taxi), but now you have a new option: Pigsty (autonomous driving).
+Pigsty helps users use databases well: allowing users to self-build higher-quality and more efficient local cloud database services at less than 1/10 the cost of RDS, without a DBA!&lt;/p&gt;</description></item></channel></rss>

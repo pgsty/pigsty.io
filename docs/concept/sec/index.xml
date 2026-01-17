@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Security and Compliance on PIGSTY</title><link>https://pigsty.io/docs/concept/sec/</link><description>Recent content in Security and Compliance on PIGSTY</description><generator>Hugo</generator><language>en</language><atom:link href="https://pigsty.io/docs/concept/sec/index.xml" rel="self" type="application/rss+xml"/><item><title>Local CA</title><link>https://pigsty.io/docs/concept/sec/ca/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/sec/ca/</guid><description>&lt;p&gt;Pigsty enables security best practices by default: using SSL to encrypt network traffic and HTTPS for web interfaces.&lt;/p&gt;
+&lt;p&gt;To achieve this, Pigsty includes a local self-signed CA for issuing SSL certificates and encrypting network communications.&lt;/p&gt;
+&lt;p&gt;By default, SSL and HTTPS are enabled but not enforced. For environments with higher security requirements, you can enforce SSL and HTTPS usage.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="local-ca"&gt;Local CA&lt;/h2&gt;
+&lt;p&gt;During initialization, Pigsty generates a self-signed CA in the Pigsty source directory (&lt;code&gt;~/pigsty&lt;/code&gt;) on the &lt;a href="https://pigsty.io/docs/node/#admin-node"&gt;ADMIN node&lt;/a&gt;. This CA can be used for SSL, HTTPS, digital signatures, issuing database client certificates, and advanced security features.&lt;/p&gt;</description></item><item><title>Seven-Layer Security Model</title><link>https://pigsty.io/docs/concept/sec/level/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/sec/level/</guid><description>&lt;p&gt;Security is not a wall, but a fortress. Pigsty adopts a &lt;strong&gt;defense-in-depth&lt;/strong&gt; strategy, building multiple protections across seven layers. Even if one layer is breached, other layers still provide protection.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;div id="infographic-5c882599098b83b429f94bd07a85bb52" class="infographic-container td-max-width-on-larger-screens"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+(function() {
+ var containerId = 'infographic-5c882599098b83b429f94bd07a85bb52';
+ var syntax = "````\ninfographic sequence-pyramid-simple\ndata\n title Seven-Layer Security Model\n desc Pigsty Defense-in-Depth: Multi-layer protection from physical to user security\n items\n - label Physical Security\n value 100\n desc Data Checksums · PGTDE Transparent Encryption\n time L1\n icon mingcute/building-4-fill\n illus server-cluster\n - label Network Security\n value 95\n desc Firewall · SSL/TLS Encryption · Local CA\n time L2\n icon mingcute/earth-2-fill\n illus secure-server\n - label Perimeter Security\n value 90\n desc HAProxy Proxy · Nginx Gateway\n time L3\n icon mingcute/shield-fill\n illus firewall-protection\n - label Host Security\n value 85\n desc SELinux · Least Privilege · System Hardening\n time L4\n icon mingcute/computer-fill\n illus server-status\n - label Application Security\n value 80\n desc HBA Rules · Password Policy · Connection Pool\n time L5\n icon mingcute/safe-box-fill\n illus database-security\n - label Data Security\n value 75\n desc Backup Encryption · Audit Logs · PITR\n time L6\n icon mingcute/lock-fill\n illus data-encryption\n - label User Security\n value 70\n desc Four-Role Model · RBAC · Certificate Auth\n time L7\n icon mingcute/user-security-fill\n illus user-flow\ntheme light\n palette pigsty\n````";
+
+ function renderInfographic() {
+ var dom = document.getElementById(containerId);
+ if (!dom) { console.error('Infographic: container not found:', containerId); return; }
+ try {
+ var ig = new AntVInfographic.Infographic({
+ container: '#' + containerId,
+ width: dom.offsetWidth || '100%',
+ height: 'auto',
+ });
+ ig.render(syntax);
+ } catch (e) {
+ console.error('Infographic render error:', e);
+ dom.innerHTML = '&lt;pre style="color: red;"&gt;Infographic Error: ' + e.message + '&lt;/pre&gt;';
+ }
+ }
+
+ 
+ if (typeof AntVInfographic !== 'undefined') {
+ renderInfographic();
+ } else if (!window._infographicLoading) {
+ window._infographicLoading = true;
+ window._infographicCallbacks = [renderInfographic];
+ var script = document.createElement('script');
+ script.src = '/js/infographic.min.js';
+ script.onload = function() {
+ window._infographicCallbacks.forEach(function(cb) { cb(); });
+ };
+ document.head.appendChild(script);
+ } else {
+ window._infographicCallbacks.push(renderInfographic);
+ }
+})();
+&lt;/script&gt;
+
+&lt;hr&gt;
+&lt;h2 id="physical-security"&gt;Physical Security&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If physical access is compromised, other layers are rendered useless.&lt;/p&gt;</description></item><item><title>Access Control</title><link>https://pigsty.io/docs/concept/sec/ac/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/sec/ac/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Pigsty provides an out-of-the-box access control model based on the &lt;a href="#role-system"&gt;Role System&lt;/a&gt; and &lt;a href="#permission-system"&gt;Permission System&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Access control is important, but many users struggle to implement it properly. Pigsty provides a streamlined access control model that serves as a security baseline for your cluster.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="role-system"&gt;Role System&lt;/h2&gt;
+&lt;p&gt;Pigsty&amp;rsquo;s default role system includes four &lt;a href="#default-roles"&gt;default roles&lt;/a&gt; and four &lt;a href="#default-users"&gt;default users&lt;/a&gt;:&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Role Name&lt;/th&gt;
+ &lt;th&gt;Attributes&lt;/th&gt;
+ &lt;th&gt;Member Of&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;dbrole_readonly&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;NOLOGIN&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Role: Global read-only&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;dbrole_readwrite&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;NOLOGIN&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;dbrole_readonly&lt;/td&gt;
+ &lt;td&gt;Role: Global read-write&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;dbrole_admin&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;NOLOGIN&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;pg_monitor,dbrole_readwrite&lt;/td&gt;
+ &lt;td&gt;Role: Admin/Object creation&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;dbrole_offline&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;NOLOGIN&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Role: Restricted read-only&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;postgres&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;SUPERUSER&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;System superuser&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;replicator&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;REPLICATION&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;pg_monitor,dbrole_readonly&lt;/td&gt;
+ &lt;td&gt;System replication user&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;dbuser_dba&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;code&gt;SUPERUSER&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;dbrole_admin&lt;/td&gt;
+ &lt;td&gt;PostgreSQL admin user&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;code&gt;dbuser_monitor&lt;/code&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;pg_monitor&lt;/td&gt;
+ &lt;td&gt;PostgreSQL monitor user&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;These &lt;a href="https://pigsty.io/docs/pgsql/config/user#define-users"&gt;roles and users&lt;/a&gt; are defined as follows:&lt;/p&gt;</description></item></channel></rss>

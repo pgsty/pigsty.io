@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>IaC on PIGSTY</title><link>https://pigsty.io/tags/iac/</link><description>Recent content in IaC on PIGSTY</description><generator>Hugo</generator><language>en</language><atom:link href="https://pigsty.io/tags/iac/index.xml" rel="self" type="application/rss+xml"/><item><title>Use CMDB as Config Inventory</title><link>https://pigsty.io/docs/concept/iac/cmdb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/concept/iac/cmdb/</guid><description>&lt;p&gt;Pigsty allows you to use a PostgreSQL &lt;strong&gt;metabase&lt;/strong&gt; as a dynamic configuration source, replacing static YAML configuration files for more powerful configuration management capabilities.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;CMDB&lt;/strong&gt; (Configuration Management Database) is a method of storing configuration information in a database for management.&lt;/p&gt;
+&lt;p&gt;In Pigsty, the default configuration source is a static YAML file &lt;code&gt;pigsty.yml&lt;/code&gt;,
+which serves as Ansible&amp;rsquo;s &lt;a href="https://pigsty.io/docs/concept/iac/inventory/"&gt;&lt;strong&gt;inventory&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This approach is simple and direct, but when infrastructure scales and requires complex, fine-grained management and external integration, a single static file becomes insufficient.&lt;/p&gt;</description></item></channel></rss>
