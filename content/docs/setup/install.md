@@ -96,7 +96,7 @@ If you prefer not to run a remote script, you can manually [**download**](https:
 
 ```bash
 git clone https://github.com/pgsty/pigsty; cd pigsty;
-git checkout v4.0.0-b4;  # Always checkout a specific version when using git
+git checkout v4.0.0-c2;  # Always checkout a specific version when using git
 ```
 
 For manual download/clone installations, run the [**`bootstrap`**](/docs/setup/offline#bootstrap) script to install Ansible and other dependencies. You can also [**install them yourself**](/docs/setup/playbook#install-ansible).

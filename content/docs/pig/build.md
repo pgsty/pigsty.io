@@ -20,10 +20,12 @@ The `pig build` command is a powerful tool that simplifies the entire workflow o
 | `build tool` | Initialize build tools | Requires sudo or root |
 | `build rust` | Install Rust toolchain | Requires sudo or root |
 | `build pgrx` | Install and initialize pgrx | Requires sudo or root |
-| `build pkg` | Complete build pipeline | Requires sudo or root |
+| `build proxy` | Initialize build proxy | |
 | `build get` | Download source code tarball | |
 | `build dep` | Install extension build dependencies | Requires sudo or root |
 | `build ext` | Build extension package | Requires sudo or root |
+| `build pkg` | Complete build pipeline: get, dep, ext | Requires sudo or root |
+{.full-width}
 
 
 ## Quick Start
@@ -92,7 +94,18 @@ pig build pgrx -v 17             # Install for PG 17
 ```
 
 
-## build pkg
+## build proxy
+
+Setup proxy configuration for build environments with restricted internet access.
+
+```bash
+pig build proxy                  # Interactive setup
+pig build proxy user@host:8080   # Direct configuration
+pig build proxy http://proxy.company.com:3128
+```
+
+
+## build get
 
 Complete build pipeline: download source, install dependencies, build extension.
 

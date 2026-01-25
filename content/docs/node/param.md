@@ -1,6 +1,6 @@
 ---
 title: Parameters
-description: NODE module provides 11 sections with 83 parameters
+description: NODE module provides 11 sections with 85 parameters
 weight: 3230
 icon: fa-solid fa-sliders
 categories: [Reference]
@@ -49,7 +49,7 @@ The [NODE](/docs/node) module tunes target nodes into the desired state and inte
 | [`node_dns_servers`](#node_dns_servers)                 | `string[]`  |    `C`    | dynamic nameserver in `/etc/resolv.conf`         |
 | [`node_dns_options`](#node_dns_options)                 | `string[]`  |    `C`    | dns resolv options in `/etc/resolv.conf`         |
 
-[`NODE_PACKAGE`](#node_package) section configures node software repositories and package installation.
+[`NODE_PACKAGE`](#node_package) section configures node software repositories, package installation, and uv Python virtual environment.
 
 | Parameter                                             |    Type     |  Level  | Description                                        |
 |:------------------------------------------------------|:-----------:|:-------:|:---------------------------------------------------|
@@ -57,6 +57,8 @@ The [NODE](/docs/node) module tunes target nodes into the desired state and inte
 | [`node_repo_remove`](#node_repo_remove)               |   `bool`    |   `C`   | remove existing repo on node when configuring?     |
 | [`node_packages`](#node_packages)                     | `string[]`  |   `C`   | packages to be installed on current nodes          |
 | [`node_default_packages`](#node_default_packages)     | `string[]`  |   `G`   | default packages to be installed on all nodes      |
+| [`node_uv_env`](#node_uv_env)                         |   `path`    |   `C`   | uv venv path, /data/venv by default, empty to skip |
+| [`node_pip_packages`](#node_pip_packages)             |  `string`   |   `C`   | pip packages to install in uv venv                 |
 
 [`NODE_TUNE`](#node_tune) section configures node kernel parameters, feature toggles, and tuning templates.
 
@@ -78,7 +80,7 @@ The [NODE](/docs/node) module tunes target nodes into the desired state and inte
 | Parameter                                                       |    Type     |  Level  | Description                                          |
 |:----------------------------------------------------------------|:-----------:|:-------:|:-----------------------------------------------------|
 | [`node_selinux_mode`](#node_selinux_mode)                       |   `enum`    |   `C`   | SELinux mode: disabled, permissive, enforcing        |
-| [`node_firewall_mode`](#node_firewall_mode)                     |   `enum`    |   `C`   | firewall mode: off, none, zone                       |
+| [`node_firewall_mode`](#node_firewall_mode)                     |   `enum`    |   `C`   | firewall mode: none, off, zone                       |
 | [`node_firewall_intranet`](#node_firewall_intranet)             |  `cidr[]`   |   `C`   | intranet CIDR list for firewall rules                |
 | [`node_firewall_public_port`](#node_firewall_public_port)       |  `port[]`   |   `C`   | public exposed port list, default [22, 80, 443, 5432]|
 
@@ -466,6 +468,30 @@ Same format as [`node_packages`](#node_packages), but this parameter is usually 
 
 
 
+### `node_uv_env`
+
+name: `node_uv_env`, type: `path`, level: `C`
+
+uv virtual environment path, default is `/data/venv`. Set to empty string `''` to skip uv venv configuration.
+
+When non-empty, Pigsty creates a Python virtual environment on the node using `uv venv` and installs pip packages specified in [`node_pip_packages`](#node_pip_packages).
+
+In China region (`region: china`), `/etc/uv/uv.toml` is automatically configured to use Aliyun PyPI mirror for faster downloads.
+
+
+
+
+### `node_pip_packages`
+
+name: `node_pip_packages`, type: `string`, level: `C`
+
+Pip packages to install in uv virtual environment, default is empty string `''`.
+
+Use space-separated package names, e.g.: `'ansible pgcli requests pandas'`.
+
+Only takes effect when [`node_uv_env`](#node_uv_env) is non-empty.
+
+
 
 
 ------------------------------
@@ -651,7 +677,7 @@ Node security related parameters, including SELinux and firewall configuration.
 
 ```yaml
 node_selinux_mode: permissive             # selinux mode: disabled, permissive, enforcing
-node_firewall_mode: zone                  # firewall mode: disabled, zone, rules
+node_firewall_mode: none                  # firewall mode: none (skip), off (disable), zone (enable & config)
 node_firewall_intranet:           # which intranet cidr considered as internal network
   - 10.0.0.0/8
   - 192.168.0.0/16
@@ -691,21 +717,19 @@ Also, SELinux mode changes may require a system reboot to fully take effect.
 
 name: `node_firewall_mode`, type: `enum`, level: `C`
 
-Firewall running mode. Default is `zone`.
+Firewall running mode. Default is `none`.
 
 Options:
 
+* `none`: Do nothing, maintain existing firewall rules unchanged (default)
 * `off`: Turn off and disable firewall (equivalent to old version's `node_disable_firewall: true`)
-* `none`: Do nothing, maintain existing firewall rules unchanged
-* `zone`: Use firewalld / ufw to configure firewall rules: trust intranet, only open specified ports to public
+* `zone`: Enable firewall and configure rules: trust intranet, only open specified ports to public
 
 Uses `firewalld` service on EL systems, `ufw` service on Debian/Ubuntu systems.
 
-If you're deploying in a completely trusted intranet environment, or using cloud provider security groups for access control, you can choose `none` mode to keep existing firewall configuration, or set to `off` to completely disable the firewall.
+If you're deploying in a completely trusted intranet environment, or using cloud provider security groups for access control, you can use the default `none` mode to keep existing firewall configuration, or set to `off` to explicitly disable the firewall.
 
-Production environments recommend using `zone` mode with [`node_firewall_intranet`](#node_firewall_intranet) and [`node_firewall_public_port`](#node_firewall_public_port) for fine-grained access control.
-
-Note that `zone` mode won't automatically enable the firewall for you.
+Production environments with public network exposure should use `zone` mode with [`node_firewall_intranet`](#node_firewall_intranet) and [`node_firewall_public_port`](#node_firewall_public_port) for fine-grained access control. The `zone` mode will enable the firewall if not already running.
 
 
 

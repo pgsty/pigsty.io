@@ -501,7 +501,7 @@ The following tables provide a comprehensive summary of all parameters, organize
 | Parameter | Type | Description |
 |:---|:---:|:---|
 | [`node_selinux_mode`](/docs/node/param#node_selinux_mode) | `enum` | SELinux mode: disabled, permissive, enforcing |
-| [`node_firewall_mode`](/docs/node/param#node_firewall_mode) | `enum` | Firewall mode: off, none, zone |
+| [`node_firewall_mode`](/docs/node/param#node_firewall_mode) | `enum` | Firewall mode: none, off, zone |
 | [`node_firewall_intranet`](/docs/node/param#node_firewall_intranet) | `cidr[]` | Intranet CIDR list for firewall rules |
 | [`node_firewall_public_port`](/docs/node/param#node_firewall_public_port) | `port[]` | Public open port list, default [22, 80, 443, 5432] |
 

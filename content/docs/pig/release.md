@@ -7,10 +7,11 @@ module: [PIG]
 categories: [Reference]
 ---
 
-The latest stable version is [v0.9.0](https://github.com/pgsty/pig/releases/tag/v0.9.0).
+The latest stable version is [v1.0.0](https://github.com/pgsty/pig/releases/tag/v1.0.0).
 
 |     Version     |    Date    | Summary                                    |                           GitHub                           |
 |:---------------:|:----------:|--------------------------------------------|:----------------------------------------------------------:|
+| [v1.0.0](#v100) | 2026-01-18 | 444 extensions, add pig ext avail, Status  | [v1.0.0](https://github.com/pgsty/pig/releases/tag/v1.0.0) |
 | [v0.9.0](#v090) | 2025-12-28 | Adjust pig sty command options, fix alias  | [v0.9.0](https://github.com/pgsty/pig/releases/tag/v0.9.0) |
 | [v0.8.0](#v080) | 2025-12-26 | 440 extensions, remove sysupdate repo      | [v0.8.0](https://github.com/pgsty/pig/releases/tag/v0.8.0) |
 | [v0.7.5](#v075) | 2025-12-12 | Routine extension update, fixed aliyun mirror | [v0.7.5](https://github.com/pgsty/pig/releases/tag/v0.7.5) |
@@ -40,6 +41,23 @@ The latest stable version is [v0.9.0](https://github.com/pgsty/pig/releases/tag/
 | [v0.1.0](#v010) | 2024-12-29 | repo, ext, sty, and self-update            | [v0.1.0](https://github.com/pgsty/pig/releases/tag/v0.1.0) |
 | [v0.0.1](#v001) | 2024-12-23 | Genesis Release                            | [v0.0.1](https://github.com/pgsty/pig/releases/tag/v0.0.1) |
 
+
+
+--------
+
+## v1.0.0
+
+- Total extensions reached 444, added etcd_fdw, pg_ttl_index, documentdb_extended_rum, mobilitydb_datagen
+- citus, age, pg_search, pg_bulkload, documentdb now support PG 18
+- New `pig ext avail` subcommand, supports `--pkg` option to show extension package availability matrix
+- Adjusted `pig ext ls` status field, uses availability matrix to show package status (installed/available/not avail)
+- Allow `pig ext ls` to use `--pkg` option to output package names instead of extension names
+- Fixed `pig ext scan` duplicate extension issue
+- Fixed `pg_weighted_statistics` extension name, now `ext` name is `weighted_statistics`
+- EL default aliases remove llvmjit (only pgsql-full retains it)
+- EL extension package names remove wildcards
+
+Release: https://github.com/pgsty/pig/releases/tag/v1.0.0
 
 
 --------

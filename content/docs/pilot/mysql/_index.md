@@ -1,6 +1,6 @@
 ---
 title: 'Module: MySQL'
-weight: 5020
+weight: 5030
 description: Deploy a MySQL 8.0 cluster with Pigsty for demonstration or benchmarking
   purposes.
 icon: fas fa-fish

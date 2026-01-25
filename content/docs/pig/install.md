@@ -35,13 +35,13 @@ You can specify a particular version to install by passing the version number as
 **Default Installation** (Cloudflare CDN):
 
 ```bash
-curl -fsSL https://repo.pigsty.io/pig | bash -s 0.9.0
+curl -fsSL https://repo.pigsty.io/pig | bash -s 1.0.0
 ```
 
 **China Mirror**:
 
 ```bash
-curl -fsSL https://repo.pigsty.cc/pig | bash -s 0.9.0
+curl -fsSL https://repo.pigsty.cc/pig | bash -s 1.0.0
 ```
 
 
@@ -51,15 +51,15 @@ You can also download `pig` installation packages (`RPM`/`DEB`/tarball) directly
 
 ```
 latest
-└── v0.9.0
-    ├── pig_0.9.0-1_amd64.deb
-    ├── pig_0.9.0-1_arm64.deb
-    ├── pig-0.9.0-1.aarch64.rpm
-    ├── pig-0.9.0-1.x86_64.rpm
-    ├── pig-v0.9.0.linux-amd64.tar.gz
-    ├── pig-v0.9.0.linux-arm64.tar.gz
-    ├── pig-v0.9.0.darwin-amd64.tar.gz
-    └── pig-v0.9.0.darwin-arm64.tar.gz
+└── v1.0.0
+    ├── pig_1.0.0-1_amd64.deb
+    ├── pig_1.0.0-1_arm64.deb
+    ├── pig-1.0.0-1.aarch64.rpm
+    ├── pig-1.0.0-1.x86_64.rpm
+    ├── pig-v1.0.0.linux-amd64.tar.gz
+    ├── pig-v1.0.0.linux-arm64.tar.gz
+    ├── pig-v1.0.0.darwin-amd64.tar.gz
+    └── pig-v1.0.0.darwin-arm64.tar.gz
 ```
 
 After extracting, place the binary file in your system PATH.

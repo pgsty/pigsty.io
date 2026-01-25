@@ -34,29 +34,27 @@ After installation, you can use the `mongosh` command to connect to FerretDB.
 You can access FerretDB using any language's MongoDB driver via a MongoDB connection string. Here's an example using the `mongosh` CLI tool:
 
 ```bash
-$ mongosh
-Current Mongosh Log ID:	67ba8c1fe551f042bf51e943
-Connecting to:		mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.4.0
+$ mongosh 'mongodb://postgres:DBUser.Postgres@10.10.10.10:27017'
+Current Mongosh Log ID:	696b5bb93441875f86284d0b
+Connecting to:		mongodb://<credentials>@10.10.10.10:27017/?directConnection=true&appName=mongosh+2.6.0
 Using MongoDB:		7.0.77
-Using Mongosh:		2.4.0
-
-For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+Using Mongosh:		2.6.0
 
 test>
 ```
 
 ### Using Connection Strings
 
-FerretDB authentication is entirely based on PostgreSQL. Since Pigsty-managed PostgreSQL clusters use `scram-sha-256` authentication by default, you must specify the `PLAIN` authentication mechanism in the connection string:
+FerretDB authentication is entirely based on PostgreSQL. You can directly use PostgreSQL usernames and passwords.
 
 ```bash
-mongosh 'mongodb://dbuser_meta:DBUser.Meta@10.10.10.10:27017?authMechanism=PLAIN'
+mongosh 'mongodb://postgres:DBUser.Postgres@10.10.10.10:27017'
 ```
 
 Connection string format:
 
-```
-mongodb://<username>:<password>@<host>:<port>/<database>?authMechanism=PLAIN
+```bash
+mongodb://<username>:<password>@<host>:<port>/<database>
 ```
 
 ### Using Different Users
@@ -64,14 +62,14 @@ mongodb://<username>:<password>@<host>:<port>/<database>?authMechanism=PLAIN
 You can connect to FerretDB using any user that has been created in PostgreSQL:
 
 ```bash
-# Using dbuser_dba user
-mongosh 'mongodb://dbuser_dba:DBUser.DBA@10.10.10.10:27017?authMechanism=PLAIN'
+# Using dbuser_dba superuser
+mongosh 'mongodb://dbuser_dba:DBUser.DBA@10.10.10.10:27017'
 
-# Using mongod superuser
-mongosh 'mongodb://mongod:DBUser.Mongo@10.10.10.10:27017?authMechanism=PLAIN'
+# Using dbuser_meta admin user
+mongosh 'mongodb://dbuser_meta:DBUser.Meta@10.10.10.10:27017'
 
-# Connecting to a specific database
-mongosh 'mongodb://test:test@10.10.10.11:27017/test?authMechanism=PLAIN'
+# Using dbuser_view readonly user
+mongosh 'mongodb://dbuser_view:DBUser.Viewer@10.10.10.10:27017'
 ```
 
 
@@ -83,28 +81,25 @@ After connecting to FerretDB, you can operate it just like MongoDB. Here are som
 
 ### Database Operations
 
-```javascript
-// Switch to / create database
-use mydb
-
+```js
 // Show all databases
 show dbs
 
+// Show all collections
+show collections
+
+// Switch to / create database
+use mydb
+
 // Drop current database
-db.dropDatabase()
+db.dropDatabase();
 ```
 
 ### Collection Operations
 
 ```javascript
-// Create collection
-db.createCollection('users')
-
-// Show all collections
-show collections
-
-// Drop collection
-db.users.drop()
+db.createCollection('users');     // Create collection
+db.users.drop();                  // Drop collection
 ```
 
 ### Document Operations
@@ -112,45 +107,42 @@ db.users.drop()
 ```javascript
 // Insert a single document
 db.users.insertOne({
-    name: 'Alice',
-    age: 30,
-    email: 'alice@example.com'
-})
+    name: 'Alice', age: 30, email: 'alice@example.com'
+});
 
 // Insert multiple documents
 db.users.insertMany([
     { name: 'Bob', age: 25 },
     { name: 'Charlie', age: 35 }
-])
+]);
 
 // Query documents
-db.users.find()
-db.users.find({ age: { $gt: 25 } })
-db.users.findOne({ name: 'Alice' })
+db.users.find();
+db.users.find({ age: { $gt: 25 } });
+db.users.findOne({ name: 'Alice' });
 
 // Update documents
 db.users.updateOne(
     { name: 'Alice' },
     { $set: { age: 31 } }
-)
+);
 
 // Delete documents
-db.users.deleteOne({ name: 'Bob' })
-db.users.deleteMany({ age: { $lt: 30 } })
+db.users.deleteOne({ name: 'Bob' });
+db.users.deleteMany({ age: { $lt: 30 } });
 ```
 
 ### Index Operations
 
 ```javascript
-// Create indexes
-db.users.createIndex({ name: 1 })
-db.users.createIndex({ age: -1 })
+// Create index
+db.users.createIndex({ age: -1 });
 
 // View indexes
-db.users.getIndexes()
+db.users.getIndexes();
 
 // Drop index
-db.users.dropIndex('name_1')
+db.users.dropIndex('name_1');
 ```
 
 
@@ -182,7 +174,7 @@ In addition to the `mongosh` command-line tool, you can also connect to FerretDB
 ```python
 from pymongo import MongoClient
 
-client = MongoClient('mongodb://dbuser_meta:DBUser.Meta@10.10.10.10:27017/?authMechanism=PLAIN')
+client = MongoClient('mongodb://dbuser_dba:DBUser.DBA@10.10.10.10:27017')
 db = client.test
 collection = db.users
 collection.insert_one({'name': 'Alice', 'age': 30})
@@ -193,7 +185,7 @@ collection.insert_one({'name': 'Alice', 'age': 30})
 ```javascript
 const { MongoClient } = require('mongodb');
 
-const uri = 'mongodb://dbuser_meta:DBUser.Meta@10.10.10.10:27017/?authMechanism=PLAIN';
+const uri = 'mongodb://dbuser_meta:DBUser.Meta@10.10.10.10:27017';
 const client = new MongoClient(uri);
 
 async function run() {
@@ -212,8 +204,6 @@ import (
     "go.mongodb.org/mongo-driver/mongo/options"
 )
 
-uri := "mongodb://dbuser_meta:DBUser.Meta@10.10.10.10:27017/?authMechanism=PLAIN"
+uri := "mongodb://dbuser_meta:DBUser.Meta@10.10.10.10:27017"
 client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
 ```
-
-Key point: All drivers require the `authMechanism=PLAIN` parameter in the connection string.

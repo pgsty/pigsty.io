@@ -57,8 +57,8 @@ The `ivory` template uses Highgo's open-source IvorySQL kernel, providing Oracle
 - Test environments for evaluating IvorySQL features
 
 **Notes**:
-- IvorySQL 4 is based on PostgreSQL 18
+- IvorySQL 5 is based on PostgreSQL 18
 - Using `liboracle_parser` requires loading into `shared_preload_libraries`
 - `pgbackrest` may have checksum issues in Oracle-compatible mode, PITR capability is limited
-- Only supports EL8/EL9 systems, Debian/Ubuntu not supported
+- Primarily supports EL8/EL9 systems, refer to official docs for other OS support
 

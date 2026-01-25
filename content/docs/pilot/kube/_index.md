@@ -1,9 +1,9 @@
 ---
 title: 'Module: Kubernetes'
-weight: 5100
+weight: 5070
 description: Deploy Kubernetes, the Production-Grade Container Orchestration Platform.
 icon: fas fa-dharmachakra
-module: [KUBE]
+module: [PILOT]
 categories: [Reference]
 ---
 

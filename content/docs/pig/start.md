@@ -38,21 +38,22 @@ curl -fsSL https://repo.pigsty.cc/pig | bash
 The PIG binary is approximately 4 MB and will automatically use `rpm` or `dpkg` to install the latest available version on Linux:
 
 ```bash
+root@pg-meta-1:~# curl -fsSL https://repo.pigsty.io/pig | bash
 [INFO] kernel = Linux
 [INFO] machine = x86_64
-[INFO] package = rpm
-[INFO] pkg_url = https://repo.pigsty.io/pkg/pig/v0.9.0/pig-0.9.0-1.x86_64.rpm
-[INFO] download = /tmp/pig-0.7.2-1.x86_64.rpm
-[INFO] downloading pig v0.7.2
-curl -fSL https://repo.pigsty.io/pkg/pig/v0.7.2/pig-0.7.2-1.x86_64.rpm -o /tmp/pig-0.7.2-1.x86_64.rpm
+[INFO] package = deb
+[INFO] pkg_url = https://repo.pigsty.io/pkg/pig/v1.0.0/pig_1.0.0-1_amd64.deb
+[INFO] download = /tmp/pig_1.0.0-1_amd64.deb
+[INFO] downloading pig v1.0.0
+curl -fSL https://repo.pigsty.io/pkg/pig/v1.0.0/pig_1.0.0-1_amd64.deb -o /tmp/pig_1.0.0-1_amd64.deb
 ######################################################################## 100.0%
-[INFO] md5sum = 85d75c16dfd3ce935d9d889fae345430
-[INFO] installing: rpm -ivh /tmp/pig-0.7.2-1.x86_64.rpm
-Verifying...                          ################################# [100%]
-Preparing...                          ################################# [100%]
-Updating / installing...
-   1:pig-0.7.2-1                      ################################# [100%]
-[INFO] pig v0.7.2 installed successfully
+[INFO] md5sum = 274546a010d39f1ce0aed72cf7e17e52
+[INFO] installing: dpkg -i /tmp/pig_1.0.0-1_amd64.deb
+(Reading database ... 166001 files and directories currently installed.)
+Preparing to unpack /tmp/pig_1.0.0-1_amd64.deb ...
+Unpacking pig (1.0.0-1) over (0.8.0-1) ...
+Setting up pig (1.0.0-1) ...
+[INFO] pig v1.0.0 installed successfully
 check https://ext.pigsty.io for details
 ```
 
@@ -63,41 +64,38 @@ check https://ext.pigsty.io for details
 PIG is a Go-written binary program, installed by default at `/usr/bin/pig`. `pig version` prints version information:
 
 ```bash
-$ pig version
-
-pig version 0.7.2 linux/amd64
-build: HEAD 9cdb57a 2025-11-10T11:14:17Z
+root@pg-meta-1:~#  pig version
+pig version 1.0.0 linux/amd64
+build: HEAD 80c89c6 2025-12-28T08:05:39Z
 ```
 
 Use the `pig status` command to print the current environment status, OS code, PG installation status, and repository accessibility with latency.
 
 ```bash
-$ pig status
+root@pg-meta-1:~# pig status
 
 # [Configuration] ================================
-Pig Version      : 0.7.2
+Pig Version      : 1.0.0
 Pig Config       : /root/.pig/config.yml
 Log Level        : info
 Log Path         : stderr
 
 # [OS Environment] ===============================
-OS Distro Code   : el10
+OS Distro Code   : u24
 OS OSArch        : amd64
-OS Package Type  : rpm
-OS Vendor ID     : rocky
-OS Version       : 10
-OS Version Full  : 10.0
-OS Version Code  : el10
+OS Package Type  : deb
+OS Vendor ID     : ubuntu
+OS Version       : 24
+OS Version Full  : 24.04
+OS Version Code  : noble
 
 # [PG Environment] ===============================
-No PostgreSQL installation found
+Installed:
+* PostgreSQL 18.1 (Ubuntu 18.1-1.pgdg24.04+2)  81  Extensions
+- PostgreSQL 17.7 (Ubuntu 17.7-3.pgdg24.04+1)  147 Extensions
 
-No active PostgreSQL found in PATH:
-- /root/.local/bin
-- /root/bin
-- /usr/local/sbin
-- /usr/local/bin
-- /usr/sbin
+Active:
+PG Version      :  PostgreSQL 18.1 (Ubuntu 18.1-1.pgdg24.04+2)
 - /usr/bin
 
 # [Pigsty Environment] ===========================

@@ -7,12 +7,11 @@ icon: fa-solid fa-scroll
 categories: [Task]
 ---
 
-Pigsty provides four playbooks related to the INFRA module:
+Pigsty provides three playbooks related to the INFRA module:
 
 - [`deploy.yml`](#deployyml): Deploy all components on all nodes in one pass
 - [`infra.yml`](#infrayml): Initialize Pigsty infrastructure on infra nodes
 - [`infra-rm.yml`](#infra-rmyml): Remove infrastructure components from infra nodes
-- [`deploy.yml`](#deployyml): Perform a complete one-time installation of Pigsty on all nodes
 
 
 ----------------
@@ -102,7 +101,7 @@ This playbook performs the following tasks:
 #
 # infra: setup infra components
 #   - infra_env      : env_dir, env_pg, env_pgadmin, env_var
-#   - infra_pkg      : infra_pkg_yum, infra_pkg_pip
+#   - infra_pkg      : install infra packages
 #   - infra_user     : setup infra os user group
 #   - infra_cert     : issue cert for infra components
 #   - dns            : dns_config, dns_record, dns_launch
@@ -129,12 +128,3 @@ Common subtasks include:
 ./infra-rm.yml -t data       # Remove retained data on INFRA
 ./infra-rm.yml -t package    # Uninstall packages installed on INFRA
 ```
-
-
-----------------
-
-## `deploy.yml`
-
-Perform a complete one-time installation of Pigsty on all nodes.
-
-This playbook is described in more detail in [Playbook: One-Pass Installation](/docs/setup/playbook/#installyml).

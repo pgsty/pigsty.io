@@ -1,9 +1,9 @@
 ---
 title: 'Module: Consul'
-weight: 5120
+weight: 5080
 description: Deploy Consul, the alternative to Etcd, with Pigsty.
 icon: fas fa-c
-module: [CONSUL]
+module: [PILOT]
 categories: [Reference]
 ---
 

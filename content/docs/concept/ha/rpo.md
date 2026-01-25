@@ -116,6 +116,7 @@ The three protection modes differ in how two core **Patroni** parameters are con
 
 Typically, you only need to set the [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) parameter to `0` to enable the `synchronous_mode` switch, activating **Maximum Availability mode**.
 If you use [**`pg_conf`**](/docs/pgsql/param#pg_conf) = [**`crit.yml`**](/docs/pgsql/template/crit) template, it additionally enables the `synchronous_mode_strict` strict mode switch, activating **Maximum Protection mode**.
+Additionally, you can enable [**watchdog**](/docs/pgsql/param#patroni_watchdog_mode) to fence the primary directly during node/Patroni freeze scenarios instead of degrading, achieving behavior equivalent to Oracle Maximum Protection mode.
 
 You can also directly [**configure**](/docs/pgsql/admin/patroni#modify-config) these Patroni parameters as needed. Refer to Patroni and PostgreSQL documentation to achieve stronger data protection, such as:
 

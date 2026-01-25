@@ -4,12 +4,12 @@
 # Desc      :   pigsty config for running 1-node maybe app
 # Ctime     :   2025-09-08
 # Mtime     :   2025-12-12
-# Docs      :   https://doc.pgsty.com/app/maybe
+# Docs      :   https://pigsty.io/docs/app/maybe
 # License   :   Apache-2.0 @ https://pigsty.io/docs/about/license/
 # Copyright :   2018-2026  Ruohang Feng / Vonng (rh@vonng.com)
 #==============================================================#
 
-# tutorial: https://doc.pgsty.com/app/maybe
+# tutorial: https://pigsty.io/docs/app/maybe
 # how to use this template:
 #
 #  curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
@@ -41,7 +41,7 @@ all:
               APP_DOMAIN: maybe.pigsty                 # Domain name for Maybe
               
               # REQUIRED: Generate with: openssl rand -hex 64
-              SECRET_KEY_BASE: sk-somerandomkey
+              SECRET_KEY_BASE: sk-somerandomkey        # Secret key for maybe
               
               # Database Configuration
               DB_HOST: 10.10.10.10                    # PostgreSQL host
@@ -67,7 +67,7 @@ all:
         pg_hba_rules:
           - { user: maybe ,db: all ,addr: 172.17.0.0/16  ,auth: pwd ,title: 'allow maybe access from local docker network' }
           - { user: dbuser_view , db: all ,addr: infra ,auth: pwd ,title: 'allow grafana dashboard access cmdb from infra nodes' }
-        node_crontab: [ '00 01 * * * postgres /pg/bin/pg-backup full' ] # make a full backup every 1am
+        pg_crontab: [ '00 01 * * * /pg/bin/pg-backup full' ] # make a full backup every 1am
 
     infra: { hosts: { 10.10.10.10: { infra_seq: 1 } } }
     etcd:  { hosts: { 10.10.10.10: { etcd_seq: 1 } }, vars: { etcd_cluster: etcd } }
@@ -100,7 +100,7 @@ all:
     node_repo_modules: node,infra,pgsql
 
     #----------------------------------------------#
-    # PASSWORD : https://doc.pgsty.com/config/security
+    # PASSWORD : https://pigsty.io/docs/setup/security/
     #----------------------------------------------#
     grafana_admin_password: pigsty
     grafana_view_password: DBUser.Viewer

@@ -51,8 +51,8 @@ This command will:
 You can access FerretDB using a MongoDB connection string with any language's MongoDB driver. Here's an example using the [`mongosh`](/docs/ferret/usage#installing-client-tools) command-line tool:
 
 ```bash
-mongosh 'mongodb://dbuser_meta:DBUser.Meta@10.10.10.10:27017?authMechanism=PLAIN'
-mongosh 'mongodb://test:test@10.10.10.11:27017/test?authMechanism=PLAIN'
+mongosh 'mongodb://dbuser_meta:DBUser.Meta@10.10.10.10:27017'
+mongosh 'mongodb://test:test@10.10.10.11:27017/test'
 ```
 
 Pigsty-managed PostgreSQL clusters use `scram-sha-256` as the default authentication method, so you must use `PLAIN` authentication when connecting to FerretDB. See [FerretDB: Authentication](https://docs.ferretdb.io/security/authentication/) for details.
@@ -60,7 +60,7 @@ Pigsty-managed PostgreSQL clusters use `scram-sha-256` as the default authentica
 You can also use other PostgreSQL users to access FerretDB by specifying them in the connection string:
 
 ```bash
-mongosh 'mongodb://dbuser_dba:DBUser.DBA@10.10.10.10:27017?authMechanism=PLAIN'
+mongosh 'mongodb://dbuser_dba:DBUser.DBA@10.10.10.10:27017'
 ```
 
 
@@ -71,7 +71,7 @@ mongosh 'mongodb://dbuser_dba:DBUser.DBA@10.10.10.10:27017?authMechanism=PLAIN'
 After connecting to FerretDB, you can operate it just like MongoDB:
 
 ```bash
-$ mongosh 'mongodb://dbuser_meta:DBUser.Meta@10.10.10.10:27017?authMechanism=PLAIN'
+$ mongosh 'mongodb://dbuser_meta:DBUser.Meta@10.10.10.10:27017'
 ```
 
 MongoDB commands are translated to SQL commands and executed in the underlying PostgreSQL:
@@ -123,7 +123,7 @@ for (let i = 0; i < numDocs; i++) {  // delete
 }
 EOF
 
-mongosh 'mongodb://dbuser_meta:DBUser.Meta@10.10.10.10:27017?authMechanism=PLAIN' benchmark.js
+mongosh 'mongodb://dbuser_meta:DBUser.Meta@10.10.10.10:27017' benchmark.js
 ```
 
 You can check the [MongoDB commands](https://docs.ferretdb.io/reference/supported-commands/) supported by FerretDB, as well as some [known differences](https://docs.ferretdb.io/diff/). For basic usage, these differences usually aren't a significant problem.

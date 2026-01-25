@@ -1,10 +1,10 @@
 ---
 title: 'Module: Victoria'
-weight: 5140
+weight: 5090
 description: Deploy VictoriaMetrics & VictoriaLogs, the in-place replacement for Prometheus
   & Loki.
 icon: fas fa-layer-group
-module: [VICTORIA]
+module: [PILOT]
 categories: [Reference]
 ---
 

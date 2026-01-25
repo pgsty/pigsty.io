@@ -166,7 +166,18 @@ The four RTO modes differ in how the following 10 **Patroni** and **HAProxy** HA
 loop\_wait + 2 \times retry\_timeout \leq ttl
 ```
 
+------
 
+## Data Summary
+
+|  Mode     | Target RTO |       Passive RTO        |      Active RTO       | Scenario           |
+|:---------:|:-----:|:---------------------:|:-------------------:|:-------------|
+|  `fast`   | `30`  |  `16` / `23` / `29`   |  `1` / `24` / `29`  | Same switch, high-quality network   |
+|  `norm`   | `45`  |  `27` / `34` / `41`   |  `2` / `35` / `41`  | Default, same DC, standard network  |
+|  `safe`   | `90`  |  `53` / `66` / `78`   |  `3` / `61` / `73`  | Same-city active-active / cross-DC DR |
+|  `wide`   | `150` | `104` / `127` / `150` | `4` / `122` / `145` | Geo-DR / cross-country  |
+| `default` | `326` |  `22` / `34` / `46`   | `2` / `314` / `326` | Patroni default params |
+{.full-width}
 
 
 ------

@@ -30,6 +30,7 @@ node_firewall : setup firewall & selinux
 node_ca       : add & trust CA certificate
 node_repo     : add upstream software repository
 node_pkg      : install rpm/deb packages
+node_uv       : setup uv Python virtual environment
 node_feature  : setup numa, grub, static network
 node_kernel   : enable kernel modules
 node_tune     : setup tuned profile
@@ -62,6 +63,7 @@ haproxy        : remove haproxy load balancer
 node_exporter  : remove node monitoring: Node Exporter
 vip_exporter   : remove keepalived_exporter (if VIP enabled)
 vector         : remove log collection agent vector
+node_crontab   : restore default /etc/crontab (if node_crontab_overwrite=true)
 profile        : remove /etc/profile.d/node.sh
 ```
 
@@ -106,6 +108,7 @@ bin/node-rm 10.10.10.10                # Remove node '10.10.10.10'
 ./node.yml -t node_ca                  # Setup node CA certificate
 ./node.yml -t node_repo                # Setup node upstream software repository
 ./node.yml -t node_pkg                 # Install yum packages on node
+./node.yml -t node_uv                  # Setup uv Python virtual environment
 ./node.yml -t node_feature             # Setup numa, grub, static network
 ./node.yml -t node_kernel              # Enable kernel modules
 ./node.yml -t node_tune                # Setup tuned profile

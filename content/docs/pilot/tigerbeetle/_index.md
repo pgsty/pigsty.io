@@ -1,10 +1,10 @@
 ---
 title: 'Module: TigerBeetle'
-weight: 5080
+weight: 5060
 description: Deploy TigerBeetle, the Financial Transactions Database that is 1000x
   faster.
 icon: fas fa-bug
-module: [TIGERBEETLE]
+module: [PILOT]
 categories: [Reference]
 ---
 

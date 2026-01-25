@@ -4,7 +4,7 @@
 # Desc      :   Pigsty deployment example for two nodes
 # Ctime     :   2020-05-22
 # Mtime     :   2025-12-12
-# Docs      :   https://doc.pgsty.com/config
+# Docs      :   https://pigsty.io/docs/conf/dual
 # License   :   Apache-2.0 @ https://pigsty.io/docs/about/license/
 # Copyright :   2018-2026  Ruohang Feng / Vonng (rh@vonng.com)
 #==============================================================#
@@ -45,7 +45,10 @@ all:
         pg_users:
           - { name: dbuser_meta ,password: DBUser.Meta   ,pgbouncer: true ,roles: [ dbrole_admin ]    ,comment: pigsty admin user }
           - { name: dbuser_view ,password: DBUser.Viewer ,pgbouncer: true ,roles: [ dbrole_readonly ] ,comment: read-only viewer for meta database }
-        node_crontab: [ '00 01 * * * postgres /pg/bin/pg-backup full' ] # make a full backup every 1am
+        pg_hba_rules:   # https://pigsty.io/docs/pgsql/config/hba
+          - { user: all ,db: all ,addr: intra ,auth: pwd ,title: 'everyone intranet access with password' ,order: 800 }
+        pg_crontab:     # https://pigsty.io/docs/pgsql/admin/crontab
+          - '00 01 * * * /pg/bin/pg-backup full'
         pg_vip_enabled: true
         pg_vip_address: 10.10.10.2/24
         pg_vip_interface: eth1
@@ -71,7 +74,7 @@ all:
     #pg_extensions: [ pg18-time ,pg18-gis ,pg18-rag ,pg18-fts ,pg18-olap ,pg18-feat ,pg18-lang ,pg18-type ,pg18-util ,pg18-func ,pg18-admin ,pg18-stat ,pg18-sec ,pg18-fdw ,pg18-sim ,pg18-etl]
 
     #----------------------------------------------#
-    # PASSWORD : https://doc.pgsty.com/config/security
+    # PASSWORD : https://pigsty.io/docs/setup/security/
     #----------------------------------------------#
     grafana_admin_password: pigsty
     grafana_view_password: DBUser.Viewer

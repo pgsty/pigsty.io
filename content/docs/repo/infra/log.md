@@ -1,83 +1,101 @@
 ---
-title: "Release Log"
+title: 发布日志
 weight: 5442
-description: pigsty-infra repository changelog and observability package release notes
+description: pigsty-infra 仓库变更日志和可观测性包发布说明
 icon: fa-solid fa-clipboard-list
-categories: [Reference]
+categories: [参考]
 ---
 
+## 2026-01-25
+
+| 名称                           | 旧版本     | 新版本      | 备注  |
+|:------------------------------|:---------|:----------|:-----|
+| `alertmanager`                | 0.30.0   | 0.30.1    |      |
+| `victoria-metrics`            | 1.133.0  | 1.134.0   |      |
+| `victoria-traces`             | 0.5.1    | 0.7.1     |      |
+| `grafana-victorialogs-ds`     | 0.23.3   | 0.23.5    |      |
+| `grafana-victoriametrics-ds`  | 0.20.0   | 0.20.1    |      |
+| `npgsqlrest`                  | 3.4.3    | 3.4.7     |      |
+| `claude`                      | 2.1.9    | 2.1.19    |      |
+| `opencode`                    | 1.1.23   | 1.1.34    |      |
+| `caddy`                       | -        | 2.10.2    | 新增   |
+| `hugo`                        | -        | 0.154.5   | 新增   |
+| `cloudflared`                 | -        | 2026.1.1  | 新增   |
+| `headscale`                   | -        | 0.27.1    | 新增   |
+{.stretch-last}
 
 -------
 
 ## 2026-01-16
 
-| Name                           | Old Ver   | New Ver   | Note |
-|:-------------------------------|:----------|:----------|:-----|
-| `prometheus`                   | 3.8.1     | 3.9.1     |      |
-| `victoria-metrics`             | 1.132.0   | 1.133.0   |      |
-| `tigerbeetle`                  | 0.16.65   | 0.16.68   |      |
-| `kafka`                        | 4.0.0     | 4.1.1     |      |
-| `grafana-victoriametrics-ds`   | 0.19.7    | 0.20.0    |      |
-| `grafana-victorialogs-ds`      | 0.23.2    | 0.23.3    |      |
-| `grafana-infinity-ds`          | 3.6.0     | 3.7.0     |      |
-| `uv`                           | 0.9.18    | 0.9.26    |      |
-| `seaweedfs`                    | 4.01      | 4.06      |      |
-| `rustfs`                       | alpha.71  | alpha.80  |      |
-| `v2ray`                        | 5.28.0    | 5.44.1    |      |
-| `sqlcmd`                       | 1.8.0     | 1.9.0     |      |
-| `opencode`                     | 1.0.223   | 1.1.23    |      |
-| `claude`                       | 2.1.1     | 2.1.9     |      |
-| `golang`                       | 1.25.5    | 1.25.6    |      |
-| `asciinema`                    | 3.0.1     | 3.1.0     |      |
-| `code-server`                  | 4.107.0   | 4.108.0   |      |
-| `npgsqlrest`                   | 3.3.0     | 3.4.3     |      |
-| `genai-toolbox`                | 0.24.0    | 0.25.0    |      |
-| `pg_exporter`                  | 1.1.1     | 1.1.2     |      |
-| `pig`                          | 0.9.0     | 0.9.1     |      |
+| 名称                           | 旧版本      | 新版本      | 备注 |
+|:-----------------------------|:---------|:---------|:---|
+| `prometheus`                 | 3.8.1    | 3.9.1    |    |
+| `victoria-metrics`           | 1.132.0  | 1.133.0  |    |
+| `tigerbeetle`                | 0.16.65  | 0.16.68  |    |
+| `kafka`                      | 4.0.0    | 4.1.1    |    |
+| `grafana-victoriametrics-ds` | 0.19.7   | 0.20.0   |    |
+| `grafana-victorialogs-ds`    | 0.23.2   | 0.23.3   |    |
+| `grafana-infinity-ds`        | 3.6.0    | 3.7.0    |    |
+| `uv`                         | 0.9.18   | 0.9.26   |    |
+| `seaweedfs`                  | 4.01     | 4.06     |    |
+| `rustfs`                     | alpha.71 | alpha.80 |    |
+| `v2ray`                      | 5.28.0   | 5.44.1   |    |
+| `sqlcmd`                     | 1.8.0    | 1.9.0    |    |
+| `opencode`                   | 1.0.223  | 1.1.23   |    |
+| `claude`                     | 2.1.1    | 2.1.9    |    |
+| `golang`                     | 1.25.5   | 1.25.6   |    |
+| `asciinema`                  | 3.0.1    | 3.1.0    |    |
+| `code`                       | 1.107.0  | 1.108.0  |    |
+| `code-server`                | 4.107.0  | 4.108.0  |    |
+| `npgsqlrest`                 | 3.3.0    | 3.4.3    |    |
+| `genai-toolbox`              | 0.24.0   | 0.25.0   |    |
+| `pg_exporter`                | 1.1.1    | 1.1.2    |    |
+| `pig`                        | 0.9.0    | 0.9.1    |    |
 
 -------
 
 ## 2026-01-08
 
-| Name            | Old Ver  | New Ver   | Note                        |
-|-----------------|----------|-----------|-----------------------------|
-| `pg_exporter`   | `1.1.0`  | `1.1.1`   | new pg_timeline collector   |
-| `npgsqlrest`    | -        | `3.3.3`   | new                         |
-| `postgrest`     | -        | `14.3`    | new                         |
-| `opencode`      |          | `1.0.223` | new                         |
-| `code-server`   |          | `4.107.0` | new                         |
-| `claude`        | `2.0.76` | `2.1.1`   | update                      |
-| `genai-toolbox` | `0.23.0` | `0.24.0`  | remove broken oracle driver |
-| `golang`        | -        | `1.25.5`  | new                         |
-| `nodejs`        | -        | `24.12.0` | new                         |
+| 名称              | 旧版本      | 新版本       | 备注                 |
+|-----------------|----------|-----------|--------------------|
+| `pg_exporter`   | `1.1.0`  | `1.1.1`   | 新增 pg_timeline 采集器 |
+| `npgsqlrest`    |          | `3.3.3`   | 新增                 |
+| `postgrest`     |          | `14.3`    | 新增                 |
+| `opencode`      |          | `1.0.223` | 新增                 |
+| `code-server`   |          | `4.107.0` | 新增                 |
+| `claude`        | `2.0.76` | `2.1.1`   | 更新                 |
+| `genai-toolbox` | `0.23.0` | `0.24.0`  | 移除损坏的 oracle 驱动    |
+| `golang`        |          | `1.25.5`  | 新增                 |
+| `nodejs`        |          | `24.12.0` | 新增                 |
 {.stretch-last}
 
 -------
 
 ## 2025-12-25
 
-| Name                        | Old Ver        | New Ver        | Note                       |
-|-----------------------------|----------------|----------------|----------------------------|
-| `pig`                       | `0.8.0`        | `0.9.0`        | routine update             |
-| `etcd`                      | `3.6.6`        | `3.6.7`        | routine update             |
-| `uv`                        | -              | `0.9.18`       | new python package manager |
-| `ccm`                       | -              | `2.0.76`       | new claude code            |
-| `asciinema`                 | -              | `3.0.1`        | new terminal recorder      |
-| `ivorysql`                  | `5.0`          | `5.1`          |                            |
-| `grafana`                   | `12.3.0`       | `12.3.1`       |                            |
-| `vector`                    | `0.51.1`       | `0.52.0`       |                            |
-| `prometheus`                | `3.8.0`        | `3.8.1`        |                            |
-| `alertmanager`              | `0.29.0`       | `0.30.0`       |                            |
-| `victoria-logs`             | `1.41.0`       | `1.43.1`       |                            |
-| `pgbackrest_exporter`       | `0.21.0`       | `0.22.0`       |                            |
-| `grafana-victorialogs-ds`   | `0.22.4`       | `0.23.2`       |                            |
+| 名称                        | 旧版本      | 新版本      | 备注             |
+|---------------------------|----------|----------|----------------|
+| `pig`                     | `0.8.0`  | `0.9.0`  | 例行更新           |
+| `etcd`                    | `3.6.6`  | `3.6.7`  | 例行更新           |
+| `uv`                      | -        | `0.9.18` | 新增 PY 包管理器     |
+| `ccm`                     | -        | `2.0.76` | 新增 claude code |
+| `asciinema`               | -        | `3.0.1`  | 新增命令行录屏工具      |
+| `ivorysql`                | `5.0`    | `5.1`    |                |
+| `grafana`                 | `12.3.0` | `12.3.1` |                |
+| `vector`                  | `0.51.1` | `0.52.0` |                |
+| `prometheus`              | `3.8.0`  | `3.8.1`  |                |
+| `alertmanager`            | `0.29.0` | `0.30.0` |                |
+| `victoria-logs`           | `1.41.0` | `1.43.1` |                |
+| `pgbackrest_exporter`     | `0.21.0` | `0.22.0` |                |
+| `grafana-victorialogs-ds` | `0.22.4` | `0.23.2` |                |
 {.stretch-last}
 
 -------
 
 ## 2025-12-16
 
-| Name                | Old Ver          | New Ver          | Note     |
+| 名称                  | 旧版本              | 新版本              | 备注       |
 |---------------------|------------------|------------------|----------|
 | `victoria-metrics`  | `1.131.0`        | `1.132.0`        |          |
 | `victoria-logs`     | `1.40.0`         | `1.41.0`         |          |
@@ -95,128 +113,128 @@ categories: [Reference]
 
 ## 2025-12-04
 
-| Name                        | Old Ver     | New Ver       | Note |
-|-----------------------------|-------------|---------------|------|
-| `rustfs`                    | -           | `1.0.0-a71`   | new  |
-| `seaweedfs`                 | -           | `4.1.0`       | new  |
-| `garage`                    | -           | `2.1.0`       | new  |
-| `rclone`                    | `1.71.2`    | `1.72.0`      |      |
-| `vector`                    | `0.51.0`    | `0.51.1`      |      |
-| `prometheus`                | `3.7.3`     | `3.8.0`       |      |
-| `victoria-metrics`          | `0.130.0`   | `0.131.0`     |      |
-| `victoria-logs`             | `0.38.0`    | `0.40.0`      |      |
-| `victoria-traces`           | -           | `0.5.1`       | new  |
-| `grafana-victorialogs-ds`   | `0.22.1`    | `0.22.4`      |      |
-| `redis_exporter`            | `1.80.0`    | `1.80.1`      |      |
-| `mongodb_exporter`          | `0.47.1`    | `0.47.2`      |      |
-| `genai-toolbox`             | `0.21.0`    | `0.22.0`      |      |
+| 名称                        | 旧版本       | 新版本         | 备注 |
+|---------------------------|-----------|-------------|----|
+| `rustfs`                  | -         | `1.0.0-a71` | 新增 |
+| `seaweedfs`               | -         | `4.1.0`     | 新增 |
+| `garage`                  | -         | `2.1.0`     | 新增 |
+| `rclone`                  | `1.71.2`  | `1.72.0`    |    |
+| `vector`                  | `0.51.0`  | `0.51.1`    |    |
+| `prometheus`              | `3.7.3`   | `3.8.0`     |    |
+| `victoria-metrics`        | `0.130.0` | `0.131.0`   |    |
+| `victoria-logs`           | `0.38.0`  | `0.40.0`    |    |
+| `victoria-traces`         | -         | `0.5.1`     | 新增 |
+| `grafana-victorialogs-ds` | `0.22.1`  | `0.22.4`    |    |
+| `redis_exporter`          | `1.80.0`  | `1.80.1`    |    |
+| `mongodb_exporter`        | `0.47.1`  | `0.47.2`    |    |
+| `genai-toolbox`           | `0.21.0`  | `0.22.0`    |    |
 {.stretch-last}
 
 -------
 
 ## 2025-11-23
 
-| Name                           | Old Ver     | New Ver     | Note                      |
-|--------------------------------|-------------|-------------|---------------------------|
-| `pgschema`                     | -           | `1.4.2`     | new                       |
-| `pgflo`                        | -           | `0.0.15`    | new                       |
-| `vector`                       | `0.51.0`    | `0.51.1`    | bug fix                   |
-| `sealos`                       | `5.0.1`     | `5.1.1`     |                           |
-| `etcd`                         | `3.6.5`     | `3.6.6`     |                           |
-| `duckdb`                       | `1.4.1`     | `1.4.2`     |                           |
-| `pg_exporter`                  | `1.0.2`     | `1.0.3`     |                           |
-| `pig`                          | `0.7.1`     | `0.7.2`     |                           |
-| `grafana`                      | `12.1.0`    | `12.3.0`    |                           |
-| `pg_timetable`                 | `6.1.0`     | `6.2.0`     |                           |
-| `genai-toolbox`                | `0.16.0`    | `0.21.0`    |                           |
-| `timescaledb-tools`            | `0.18.0`    | `0.18.1`    | moved from PGSQL to INFRA |
-| `timescaledb-event-streamer`   | `0.12.0`    | `0.20.0`    |                           |
-| `tigerbeetle`                  | `0.16.60`   | `0.16.65`   |                           |
-| `victoria-metrics`             | `1.129.1`   | `1.130.0`   |                           |
-| `victoria-logs`                | `1.37.2`    | `1.38.0`    |                           |
-| `grafana-victorialogs-ds`      | `0.21.4`    | `0.22.1`    |                           |
-| `grafana-victoriametrics-ds`   | `0.19.6`    | `0.19.7`    |                           |
-| `grafana-plugins`              | `12.0.0`    | `12.3.0`    |                           |
+| 名称                           | 旧版本       | 新版本       | 备注                  |
+|------------------------------|-----------|-----------|---------------------|
+| `pgschema`                   | -         | `1.4.2`   | 新增                  |
+| `pgflo`                      | -         | `0.0.15`  | 新增                  |
+| `vector`                     | `0.51.0`  | `0.51.1`  | 问题修复                |
+| `sealos`                     | `5.0.1`   | `5.1.1`   |                     |
+| `etcd`                       | `3.6.5`   | `3.6.6`   |                     |
+| `duckdb`                     | `1.4.1`   | `1.4.2`   |                     |
+| `pg_exporter`                | `1.0.2`   | `1.0.3`   |                     |
+| `pig`                        | `0.7.1`   | `0.7.2`   |                     |
+| `grafana`                    | `12.1.0`  | `12.3.0`  |                     |
+| `pg_timetable`               | `6.1.0`   | `6.2.0`   |                     |
+| `genai-toolbox`              | `0.16.0`  | `0.21.0`  |                     |
+| `timescaledb-tools`          | `0.18.0`  | `0.18.1`  | 从 PGSQL 移入 INFRA 仓库 |
+| `timescaledb-event-streamer` | `0.12.0`  | `0.20.0`  |                     |
+| `tigerbeetle`                | `0.16.60` | `0.16.65` |                     |
+| `victoria-metrics`           | `1.129.1` | `1.130.0` |                     |
+| `victoria-logs`              | `1.37.2`  | `1.38.0`  |                     |
+| `grafana-victorialogs-ds`    | `0.21.4`  | `0.22.1`  |                     |
+| `grafana-victoriametrics-ds` | `0.19.6`  | `0.19.7`  |                     |
+| `grafana-plugins`            | `12.0.0`  | `12.3.0`  |                     |
 {.stretch-last}
 
 -------
 
 ## 2025-11-11
 
-| Name                           | Old Ver     | New Ver     | Note                |
-|--------------------------------|-------------|-------------|---------------------|
-| `grafana`                      | `12.1.0`    | `12.2.1`    | download url change |
-| `prometheus`                   | `3.6.0`     | `3.7.3`     |                     |
-| `pushgateway`                  | `1.11.1`    | `1.11.2`    |                     |
-| `alertmanager`                 | `0.28.1`    | `0.29.0`    |                     |
-| `nginx_exporter`               | `1.5.0`     | `1.5.1`     |                     |
-| `node_exporter`                | `1.9.1`     | `1.10.2`    |                     |
-| `pgbackrest_exporter`          | `0.20.0`    | `0.21.0`    |                     |
-| `redis_exporter`               | `1.77.0`    | `1.80.0`    |                     |
-| `duckdb`                       | `1.4.0`     | `1.4.1`     |                     |
-| `dblab`                        | `0.33.0`    | `0.34.2`    |                     |
-| `pg_timetable`                 | `5.13.0`    | `6.1.0`     |                     |
-| `vector`                       | `0.50.0`    | `0.51.0`    |                     |
-| `rclone`                       | `1.71.1`    | `1.71.2`    |                     |
-| `victoria-metrics`             | `1.126.0`   | `1.129.1`   |                     |
-| `victoria-logs`                | `1.35.0`    | `1.37.2`    |                     |
-| `grafana-victorialogs-ds`      | `0.21.0`    | `0.21.4`    |                     |
-| `grafana-victoriametrics-ds`   | `0.19.4`    | `0.19.6`    |                     |
-| `grafana-infinity-ds`          | `3.5.0`     | `3.6.0`     |                     |
-| `genai-toolbox`                | `0.16.0`    | `0.18.0`    |                     |
-| `pev2`                         | `1.16.0`    | `1.17.0`    |                     |
-| `pig`                          | `0.6.2`     | `0.7.1`     |                     |
+| 名称                           | 旧版本       | 新版本       | 备注       |
+|------------------------------|-----------|-----------|----------|
+| `grafana`                    | `12.1.0`  | `12.2.1`  | 下载地址发生变化 |
+| `prometheus`                 | `3.6.0`   | `3.7.3`   |          |
+| `pushgateway`                | `1.11.1`  | `1.11.2`  |          |
+| `alertmanager`               | `0.28.1`  | `0.29.0`  |          |
+| `nginx_exporter`             | `1.5.0`   | `1.5.1`   |          |
+| `node_exporter`              | `1.9.1`   | `1.10.2`  |          |
+| `pgbackrest_exporter`        | `0.20.0`  | `0.21.0`  |          |
+| `redis_exporter`             | `1.77.0`  | `1.80.0`  |          |
+| `duckdb`                     | `1.4.0`   | `1.4.1`   |          |
+| `dblab`                      | `0.33.0`  | `0.34.2`  |          |
+| `pg_timetable`               | `5.13.0`  | `6.1.0`   |          |
+| `vector`                     | `0.50.0`  | `0.51.0`  |          |
+| `rclone`                     | `1.71.1`  | `1.71.2`  |          |
+| `victoria-metrics`           | `1.126.0` | `1.129.1` |          |
+| `victoria-logs`              | `1.35.0`  | `1.37.2`  |          |
+| `grafana-victorialogs-ds`    | `0.21.0`  | `0.21.4`  |          |
+| `grafana-victoriametrics-ds` | `0.19.4`  | `0.19.6`  |          |
+| `grafana-infinity-ds`        | `3.5.0`   | `3.6.0`   |          |
+| `genai-toolbox`              | `0.16.0`  | `0.18.0`  |          |
+| `pev2`                       | `1.16.0`  | `1.17.0`  |          |
+| `pig`                        | `0.6.2`   | `0.7.1`   |          |
 {.stretch-last}
 
 -------
 
 ## 2025-10-18
 
-| Name                           | Old Ver          | New Ver          | Note |
-|--------------------------------|------------------|------------------|------|
-| `prometheus`                   | `3.5.0`          | `3.6.0`          |      |
-| `nginx_exporter`               | `1.4.2`          | `1.5.0`          |      |
-| `mysqld_exporter`              | `0.17.2`         | `0.18.0`         |      |
-| `redis_exporter`               | `1.75.0`         | `1.77.0`         |      |
-| `mongodb_exporter`             | `0.47.0`         | `0.47.1`         |      |
-| `victoria-metrics`             | `1.121.0`        | `1.126.0`        |      |
-| `victoria-logs`                | `1.25.1`         | `1.35.0`         |      |
-| `duckdb`                       | `1.3.2`          | `1.4.0`          |      |
-| `etcd`                         | `3.6.4`          | `3.6.5`          |      |
-| `restic`                       | `0.18.0`         | `0.18.1`         |      |
-| `tigerbeetle`                  | `0.16.54`        | `0.16.60`        |      |
-| `grafana-victorialogs-ds`      | `0.19.3`         | `0.21.0`         |      |
-| `grafana-victoriametrics-ds`   | `0.18.3`         | `0.19.4`         |      |
-| `grafana-infinity-ds`          | `3.3.0`          | `3.5.0`          |      |
-| `genai-toolbox`                | `0.9.0`          | `0.16.0`         |      |
-| `grafana`                      | `12.1.0`         | `12.2.0`         |      |
-| `vector`                       | `0.49.0`         | `0.50.0`         |      |
-| `rclone`                       | `1.70.3`         | `1.71.1`         |      |
-| `minio`                        | `20250723155402` | `20250907161309` |      |
-| `mcli`                         | `20250721052808` | `20250813083541` |      |
-{.stretch-last}
+| 名称                           | 旧版本              | 新版本              | 备注 |
+|------------------------------|------------------|------------------|----|
+| `prometheus`                 | `3.5.0`          | `3.6.0`          |    |
+| `nginx_exporter`             | `1.4.2`          | `1.5.0`          |    |
+| `mysqld_exporter`            | `0.17.2`         | `0.18.0`         |    |
+| `redis_exporter`             | `1.75.0`         | `1.77.0`         |    |
+| `mongodb_exporter`           | `0.47.0`         | `0.47.1`         |    |
+| `victoria-metrics`           | `1.121.0`        | `1.126.0`        |    |
+| `victoria-logs`              | `1.25.1`         | `1.35.0`         |    |
+| `duckdb`                     | `1.3.2`          | `1.4.0`          |    |
+| `etcd`                       | `3.6.4`          | `3.6.5`          |    |
+| `restic`                     | `0.18.0`         | `0.18.1`         |    |
+| `tigerbeetle`                | `0.16.54`        | `0.16.60`        |    |
+| `grafana-victorialogs-ds`    | `0.19.3`         | `0.21.0`         |    |
+| `grafana-victoriametrics-ds` | `0.18.3`         | `0.19.4`         |    |
+| `grafana-infinity-ds`        | `3.3.0`          | `3.5.0`          |    |
+| `genai-toolbox`              | `0.9.0`          | `0.16.0`         |    |
+| `grafana`                    | `12.1.0`         | `12.2.0`         |    |
+| `vector`                     | `0.49.0`         | `0.50.0`         |    |
+| `rclone`                     | `1.70.3`         | `1.71.1`         |    |
+| `minio`                      | `20250723155402` | `20250907161309` |    |
+| `mcli`                       | `20250721052808` | `20250813083541` |    |
+{.full-width}
 
 -------
 
 ## 2025-08-15
 
-| Name                           | Old Ver     | New Ver     | Note |
-|--------------------------------|-------------|-------------|------|
-| `grafana`                      | `12.0.0`    | `12.1.0`    |      |
-| `pg_exporter`                  | `1.0.1`     | `1.0.2`     |      |
-| `pig`                          | `0.6.0`     | `0.6.1`     |      |
-| `vector`                       | `0.48.0`    | `0.49.0`    |      |
-| `redis_exporter`               | `1.74.0`    | `1.75.0`    |      |
-| `mongodb_exporter`             | `0.46.0`    | `0.47.0`    |      |
-| `victoria-metrics`             | `1.121.0`   | `1.123.0`   |      |
-| `victoria-logs`                | `1.25.0`    | `1.28.0`    |      |
-| `grafana-victoriametrics-ds`   | `0.17.0`    | `0.18.3`    |      |
-| `grafana-victorialogs-ds`      | `0.18.3`    | `0.19.3`    |      |
-| `grafana-infinity-ds`          | `3.3.0`     | `3.4.1`     |      |
-| `etcd`                         | `3.6.1`     | `3.6.4`     |      |
-| `ferretdb`                     | `2.3.1`     | `2.5.0`     |      |
-| `tigerbeetle`                  | `0.16.50`   | `0.16.54`   |      |
-| `genai-toolbox`                | `0.9.0`     | `0.12.0`    |      |
+| 名称                           | 旧版本       | 新版本       | 备注 |
+|------------------------------|-----------|-----------|----|
+| `grafana`                    | `12.0.0`  | `12.1.0`  |    |
+| `pg_exporter`                | `1.0.1`   | `1.0.2`   |    |
+| `pig`                        | `0.6.0`   | `0.6.1`   |    |
+| `vector`                     | `0.48.0`  | `0.49.0`  |    |
+| `redis_exporter`             | `1.74.0`  | `1.75.0`  |    |
+| `mongodb_exporter`           | `0.46.0`  | `0.47.0`  |    |
+| `victoria-metrics`           | `1.121.0` | `1.123.0` |    |
+| `victoria-logs`              | `1.25.0`  | `1.28.0`  |    |
+| `grafana-victoriametrics-ds` | `0.17.0`  | `0.18.3`  |    |
+| `grafana-victorialogs-ds`    | `0.18.3`  | `0.19.3`  |    |
+| `grafana-infinity-ds`        | `3.3.0`   | `3.4.1`   |    |
+| `etcd`                       | `3.6.1`   | `3.6.4`   |    |
+| `ferretdb`                   | `2.3.1`   | `2.5.0`   |    |
+| `tigerbeetle`                | `0.16.50` | `0.16.54` |    |
+| `genai-toolbox`              | `0.9.0`   | `0.12.0`  |    |
 {.stretch-last}
 
 
@@ -224,237 +242,216 @@ categories: [Reference]
 
 ## 2025-07-24
 
-| Name       | Old Ver | New Ver                | Note                       |
-|------------|---------|------------------------|----------------------------|
-| `ferretdb` | -       | `2.4.0`                | pair with documentdb 1.105 |
-| `etcd`     | -       | `3.6.3`                |                            |
-| `minio`    | -       | `20250723155402`       |                            |
-| `mcli`     | -       | `20250721052808`       |                            |
-| `ivorysql` | -       | `4.5-0ffca11-20250709` | fix libxcrypt dep issue    |
+| 名称         | 旧版本 | 新版本                    | 备注                    |
+|------------|-----|------------------------|-----------------------|
+| `ferretdb` | -   | `2.4.0`                | 与 documentdb 1.105 配合 |
+| `etcd`     | -   | `3.6.3`                |                       |
+| `minio`    | -   | `20250723155402`       |                       |
+| `mcli`     | -   | `20250721052808`       |                       |
+| `ivorysql` | -   | `4.5-0ffca11-20250709` | 修复 libxcrypt 依赖问题     |
 {.stretch-last}
-
--------
 
 ## 2025-07-16
 
-| Name                           | Old Ver     | New Ver     | Note                         |
-|--------------------------------|-------------|-------------|------------------------------|
-| `genai-toolbox`                | `0.8.0`     | `0.9.0`     | MCP toolbox for various DBMS |
-| `victoria-metrics`             | `1.120.0`   | `1.121.0`   | split into various packages  |
-| `victoria-logs`                | `1.24.0`    | `1.25.0`    | split into various packages  |
-| `prometheus`                   | `3.4.2`     | `3.5.0`     |                              |
-| `duckdb`                       | `1.3.1`     | `1.3.2`     |                              |
-| `etcd`                         | `3.6.1`     | `3.6.2`     |                              |
-| `tigerbeetle`                  | `0.16.48`   | `0.16.50`   |                              |
-| `grafana-victoriametrics-ds`   | `0.16.0`    | `0.17.0`    |                              |
-| `rclone`                       | `1.69.3`    | `1.70.3`    |                              |
-| `pig`                          | `0.5.0`     | `0.6.0`     |                              |
-| `pev2`                         | `1.15.0`    | `1.16.0`    |                              |
-| `pg_exporter`                  | `1.0.0`     | `1.0.1`     |                              |
+| 名称                           | 旧版本       | 新版本       | 备注                |
+|------------------------------|-----------|-----------|-------------------|
+| `genai-toolbox`              | `0.8.0`   | `0.9.0`   | 各种 DBMS 的 MCP 工具箱 |
+| `victoria-metrics`           | `1.120.0` | `1.121.0` | 拆分为各种包            |
+| `victoria-logs`              | `1.24.0`  | `1.25.0`  | 拆分为各种包            |
+| `prometheus`                 | `3.4.2`   | `3.5.0`   |                   |
+| `duckdb`                     | `1.3.1`   | `1.3.2`   |                   |
+| `etcd`                       | `3.6.1`   | `3.6.2`   |                   |
+| `tigerbeetle`                | `0.16.48` | `0.16.50` |                   |
+| `grafana-victoriametrics-ds` | `0.16.0`  | `0.17.0`  |                   |
+| `rclone`                     | `1.69.3`  | `1.70.3`  |                   |
+| `pig`                        | `0.5.0`   | `0.6.0`   |                   |
+| `pev2`                       | `1.15.0`  | `1.16.0`  |                   |
+| `pg_exporter`                | `1.0.0`   | `1.0.1`   |                   |
 {.stretch-last}
-
--------
 
 ## 2025-07-04
 
-| Name                           | Old Ver     | New Ver     | Note |
-|--------------------------------|-------------|-------------|------|
-| `prometheus`                   | `3.4.1`     | `3.4.2`     |      |
-| `grafana`                      | `12.0.1`    | `12.0.2`    |      |
-| `vector`                       | `0.47.0`    | `0.48.0`    |      |
-| `rclone`                       | `1.69.0`    | `1.70.2`    |      |
-| `vip-manager`                  | `3.0.0`     | `4.0.0`     |      |
-| `blackbox_exporter`            | `0.26.0`    | `0.27.0`    |      |
-| `redis_exporter`               | `1.72.1`    | `1.74.0`    |      |
-| `duckdb`                       | `1.3.0`     | `1.3.1`     |      |
-| `etcd`                         | `3.6.0`     | `3.6.1`     |      |
-| `ferretdb`                     | `2.2.0`     | `2.3.1`     |      |
-| `dblab`                        | `0.32.0`    | `0.33.0`    |      |
-| `tigerbeetle`                  | `0.16.41`   | `0.16.48`   |      |
-| `grafana-victorialogs-ds`      | `0.16.3`    | `0.18.1`    |      |
-| `grafana-victoriametrics-ds`   | `0.15.1`    | `0.16.0`    |      |
-| `grafana-infinity-ds`          | `3.2.1`     | `3.3.0`     |      |
-| `victoria-logs`                | `1.22.2`    | `1.24.0`    |      |
-| `victoria-metrics`             | `1.117.1`   | `1.120.0`   |      |
+| 名称                           |    旧版本    |    新版本    | 备注 |
+|------------------------------|-----------|-----------|----|
+| `prometheus`                 |  `3.4.1`  |  `3.4.2`  | -  |
+| `grafana`                    | `12.0.1`  | `12.0.2`  | -  |
+| `vector`                     | `0.47.0`  | `0.48.0`  | -  |
+| `rclone`                     | `1.69.0`  | `1.70.2`  | -  |
+| `vip-manager`                |  `3.0.0`  |  `4.0.0`  | -  |
+| `blackbox_exporter`          | `0.26.0`  | `0.27.0`  | -  |
+| `redis_exporter`             | `1.72.1`  | `1.74.0`  | -  |
+| `duckdb`                     |  `1.3.0`  |  `1.3.1`  | -  |
+| `etcd`                       |  `3.6.0`  |  `3.6.1`  | -  |
+| `ferretdb`                   |  `2.2.0`  |  `2.3.1`  | -  |
+| `dblab`                      | `0.32.0`  | `0.33.0`  | -  |
+| `tigerbeetle`                | `0.16.41` | `0.16.48` | -  |
+| `grafana-victorialogs-ds`    | `0.16.3`  | `0.18.1`  | -  |
+| `grafana-victoriametrics-ds` | `0.15.1`  | `0.16.0`  | -  |
+| `grafana-infinity-ds`        |  `3.2.1`  |  `3.3.0`  | -  |
+| `victoria-logs`              | `1.22.2`  | `1.24.0`  | -  |
+| `victoria-metrics`           | `1.117.1` | `1.120.0` | -  |
 {.stretch-last}
-
--------
 
 ## 2025-06-01
 
-| Name                        | Old Ver | New Ver     | Note |
-|-----------------------------|---------|-------------|------|
-| `grafana`                   | -       | `12.0.1`    |      |
-| `prometheus`                | -       | `3.4.1`     |      |
-| `keepalived_exporter`       | -       | `1.7.0`     |      |
-| `redis_exporter`            | -       | `1.73.0`    |      |
-| `victoria-metrics`          | -       | `1.118.0`   |      |
-| `victoria-logs`             | -       | `1.23.1`    |      |
-| `tigerbeetle`               | -       | `0.16.42`   |      |
-| `grafana-victorialogs-ds`   | -       | `0.17.0`    |      |
-| `grafana-infinity-ds`       | -       | `3.2.2`     |      |
+| 名称                        | 旧版本 |    新版本    | 备注 |
+|---------------------------|-----|-----------|----|
+| `grafana`                 |  -  | `12.0.1`  | -  |
+| `prometheus`              |  -  |  `3.4.1`  | -  |
+| `keepalived_exporter`     |  -  |  `1.7.0`  | -  |
+| `redis_exporter`          |  -  | `1.73.0`  | -  |
+| `victoria-metrics`        |  -  | `1.118.0` | -  |
+| `victoria-logs`           |  -  | `1.23.1`  | -  |
+| `tigerbeetle`             |  -  | `0.16.42` | -  |
+| `grafana-victorialogs-ds` |  -  | `0.17.0`  | -  |
+| `grafana-infinity-ds`     |  -  |  `3.2.2`  | -  |
 {.stretch-last}
-
--------
 
 ## 2025-05-22
 
-| Name                           | Old Ver | New Ver          | Note                        |
-|--------------------------------|---------|------------------|-----------------------------|
-| `dblab`                        | -       | `0.32.0`         |                             |
-| `prometheus`                   | -       | `3.4.0`          |                             |
-| `duckdb`                       | -       | `1.3.0`          |                             |
-| `etcd`                         | -       | `3.6.0`          |                             |
-| `pg_exporter`                  | -       | `1.0.0`          |                             |
-| `ferretdb`                     | -       | `2.2.0`          |                             |
-| `rclone`                       | -       | `1.69.3`         |                             |
-| `minio`                        | -       | `20250422221226` | last version with admin GUI |
-| `mcli`                         | -       | `20250416181326` |                             |
-| `nginx_exporter`               | -       | `1.4.2`          |                             |
-| `keepalived_exporter`          | -       | `1.6.2`          |                             |
-| `pgbackrest_exporter`          | -       | `0.20.0`         |                             |
-| `redis_exporter`               | -       | `1.27.1`         |                             |
-| `victoria-metrics`             | -       | `1.117.1`        |                             |
-| `victoria-logs`                | -       | `1.22.2`         |                             |
-| `pg_timetable`                 | -       | `5.13.0`         |                             |
-| `tigerbeetle`                  | -       | `0.16.41`        |                             |
-| `pev2`                         | -       | `1.15.0`         |                             |
-| `grafana`                      | -       | `12.0.0`         |                             |
-| `grafana-victorialogs-ds`      | -       | `0.16.3`         |                             |
-| `grafana-victoriametrics-ds`   | -       | `0.15.1`         |                             |
-| `grafana-infinity-ds`          | -       | `3.2.1`          |                             |
-| `grafana-plugins`              | -       | `12.0.0`         |                             |
+| 名称                           | 旧版本 |       新版本        | 备注              |
+|------------------------------|-----|------------------|-----------------|
+| `dblab`                      |  -  |     `0.32.0`     | -               |
+| `prometheus`                 |  -  |     `3.4.0`      | -               |
+| `duckdb`                     |  -  |     `1.3.0`      | -               |
+| `etcd`                       |  -  |     `3.6.0`      | -               |
+| `pg_exporter`                |  -  |     `1.0.0`      | -               |
+| `ferretdb`                   |  -  |     `2.2.0`      | -               |
+| `rclone`                     |  -  |     `1.69.3`     | -               |
+| `minio`                      |  -  | `20250422221226` | 最后一个带管理 GUI 的版本 |
+| `mcli`                       |  -  | `20250416181326` | -               |
+| `nginx_exporter`             |  -  |     `1.4.2`      | -               |
+| `keepalived_exporter`        |  -  |     `1.6.2`      | -               |
+| `pgbackrest_exporter`        |  -  |     `0.20.0`     | -               |
+| `redis_exporter`             |  -  |     `1.27.1`     | -               |
+| `victoria-metrics`           |  -  |    `1.117.1`     | -               |
+| `victoria-logs`              |  -  |     `1.22.2`     | -               |
+| `pg_timetable`               |  -  |     `5.13.0`     | -               |
+| `tigerbeetle`                |  -  |    `0.16.41`     | -               |
+| `pev2`                       |  -  |     `1.15.0`     | -               |
+| `grafana`                    |  -  |     `12.0.0`     | -               |
+| `grafana-victorialogs-ds`    |  -  |     `0.16.3`     | -               |
+| `grafana-victoriametrics-ds` |  -  |     `0.15.1`     | -               |
+| `grafana-infinity-ds`        |  -  |     `3.2.1`      | -               |
+| `grafana-plugins`            |  -  |     `12.0.0`     | -               |
 {.stretch-last}
-
--------
 
 ## 2025-04-23
 
-| Name                  | Old Ver | New Ver          | Note |
-|-----------------------|---------|------------------|------|
-| `mtail`               | -       | `3.0.8`          | new  |
-| `pig`                 | -       | `0.4.0`          |      |
-| `pg_exporter`         | -       | `0.9.0`          |      |
-| `prometheus`          | -       | `3.3.0`          |      |
-| `pushgateway`         | -       | `1.11.1`         |      |
-| `keepalived_exporter` | -       | `1.6.0`          |      |
-| `redis_exporter`      | -       | `1.70.0`         |      |
-| `victoria-metrics`    | -       | `1.115.0`        |      |
-| `victoria-logs`       | -       | `1.20.0`         |      |
-| `duckdb`              | -       | `1.2.2`          |      |
-| `pg_timetable`        | -       | `5.12.0`         |      |
-| `vector`              | -       | `0.46.1`         |      |
-| `minio`               | -       | `20250422221226` |      |
-| `mcli`                | -       | `20250416181326` |      |
+| 名称                    | 旧版本 |       新版本        | 备注 |
+|-----------------------|-----|------------------|----|
+| `mtail`               |  -  |     `3.0.8`      | 新  |
+| `pig`                 |  -  |     `0.4.0`      | -  |
+| `pg_exporter`         |  -  |     `0.9.0`      | -  |
+| `prometheus`          |  -  |     `3.3.0`      | -  |
+| `pushgateway`         |  -  |     `1.11.1`     | -  |
+| `keepalived_exporter` |  -  |     `1.6.0`      | -  |
+| `redis_exporter`      |  -  |     `1.70.0`     | -  |
+| `victoria-metrics`    |  -  |    `1.115.0`     | -  |
+| `victoria-logs`       |  -  |     `1.20.0`     | -  |
+| `duckdb`              |  -  |     `1.2.2`      | -  |
+| `pg_timetable`        |  -  |     `5.12.0`     | -  |
+| `vector`              |  -  |     `0.46.1`     | -  |
+| `minio`               |  -  | `20250422221226` | -  |
+| `mcli`                |  -  | `20250416181326` | -  |
 {.stretch-last}
-
--------
 
 ## 2025-04-05
 
-| Name               | Old Ver | New Ver          | Note |
-|--------------------|---------|------------------|------|
-| `pig`              | -       | `0.3.4`          |      |
-| `etcd`             | -       | `3.5.21`         |      |
-| `restic`           | -       | `0.18.0`         |      |
-| `ferretdb`         | -       | `2.1.0`          |      |
-| `tigerbeetle`      | -       | `0.16.34`        |      |
-| `pg_exporter`      | -       | `0.8.1`          |      |
-| `node_exporter`    | -       | `1.9.1`          |      |
-| `grafana`          | -       | `11.6.0`         |      |
-| `zfs_exporter`     | -       | `3.8.1`          |      |
-| `mongodb_exporter` | -       | `0.44.0`         |      |
-| `victoria-metrics` | -       | `1.114.0`        |      |
-| `minio`            | -       | `20250403145628` |      |
-| `mcli`             | -       | `20250403170756` |      |
+| 名称                 | 旧版本 |       新版本        | 备注 |
+|--------------------|-----|------------------|----|
+| `pig`              |  -  |     `0.3.4`      | -  |
+| `etcd`             |  -  |     `3.5.21`     | -  |
+| `restic`           |  -  |     `0.18.0`     | -  |
+| `ferretdb`         |  -  |     `2.1.0`      | -  |
+| `tigerbeetle`      |  -  |    `0.16.34`     | -  |
+| `pg_exporter`      |  -  |     `0.8.1`      | -  |
+| `node_exporter`    |  -  |     `1.9.1`      | -  |
+| `grafana`          |  -  |     `11.6.0`     | -  |
+| `zfs_exporter`     |  -  |     `3.8.1`      | -  |
+| `mongodb_exporter` |  -  |     `0.44.0`     | -  |
+| `victoria-metrics` |  -  |    `1.114.0`     | -  |
+| `minio`            |  -  | `20250403145628` | -  |
+| `mcli`             |  -  | `20250403170756` | -  |
 {.stretch-last}
-
--------
 
 ## 2025-03-23
 
-| Name                  | Old Ver | New Ver   | Note    |
-|-----------------------|---------|-----------|---------|
-| `etcd`                | -       | `3.5.20`  |         |
-| `pgbackrest_exporter` | -       | `0.19.0`  | rebuilt |
-| `victoria-logs`       | -       | `1.17.0`  |         |
-| `vlogscli`            | -       | `1.17.0`  |         |
+| 名称                    | 旧版本 |   新版本    | 备注   |
+|-----------------------|-----|----------|------|
+| `etcd`                |  -  | `3.5.20` | -    |
+| `pgbackrest_exporter` |  -  | `0.19.0` | 重新构建 |
+| `victoria-logs`       |  -  | `1.17.0` | -    |
+| `victoria-logs-cli`   |  -  | `1.17.0` | -    |
 {.stretch-last}
-
--------
 
 ## 2025-03-17
 
-| Name                           | Old Ver | New Ver   | Note |
-|--------------------------------|---------|-----------|------|
-| `kafka`                        | -       | `4.0.0`   |      |
-| `prometheus`                   | -       | `3.2.1`   |      |
-| `alertmanager`                 | -       | `0.28.1`  |      |
-| `blackbox_exporter`            | -       | `0.26.0`  |      |
-| `node_exporter`                | -       | `1.9.0`   |      |
-| `mysqld_exporter`              | -       | `0.17.2`  |      |
-| `kafka_exporter`               | -       | `1.9.0`   |      |
-| `redis_exporter`               | -       | `1.69.0`  |      |
-| `duckdb`                       | -       | `1.2.1`   |      |
-| `etcd`                         | -       | `3.5.19`  |      |
-| `ferretdb`                     | -       | `2.0.0`   |      |
-| `tigerbeetle`                  | -       | `0.16.31` |      |
-| `vector`                       | -       | `0.45.0`  |      |
-| `victoria-metrics`             | -       | `1.114.0` |      |
-| `victoria-logs`                | -       | `1.16.0`  |      |
-| `rclone`                       | -       | `1.69.1`  |      |
-| `pev2`                         | -       | `1.14.0`  |      |
-| `grafana-victorialogs-ds`      | -       | `0.16.0`  |      |
-| `grafana-victoriametrics-ds`   | -       | `0.14.0`  |      |
-| `grafana-infinity-ds`          | -       | `3.0.0`   |      |
-| `timescaledb-event-streamer`   | -       | `0.12.0`  | new  |
-| `restic`                       | -       | `0.17.3`  | new  |
-| `juicefs`                      | -       | `1.2.3`   | new  |
+| 名称                           | 旧版本 |    新版本    | 备注 |
+|------------------------------|-----|-----------|----|
+| `kafka`                      |  -  |  `4.0.0`  | -  |
+| `prometheus`                 |  -  |  `3.2.1`  | -  |
+| `alertmanager`               |  -  | `0.28.1`  | -  |
+| `blackbox_exporter`          |  -  | `0.26.0`  | -  |
+| `node_exporter`              |  -  |  `1.9.0`  | -  |
+| `mysqld_exporter`            |  -  | `0.17.2`  | -  |
+| `kafka_exporter`             |  -  |  `1.9.0`  | -  |
+| `redis_exporter`             |  -  | `1.69.0`  | -  |
+| `duckdb`                     |  -  |  `1.2.1`  | -  |
+| `etcd`                       |  -  | `3.5.19`  | -  |
+| `ferretdb`                   |  -  |  `2.0.0`  | -  |
+| `tigerbeetle`                |  -  | `0.16.31` | -  |
+| `vector`                     |  -  | `0.45.0`  | -  |
+| `victoria-metrics`           |  -  | `1.114.0` | -  |
+| `victoria-logs`              |  -  | `1.16.0`  | -  |
+| `rclone`                     |  -  | `1.69.1`  | -  |
+| `pev2`                       |  -  | `1.14.0`  | -  |
+| `grafana-victorialogs-ds`    |  -  | `0.16.0`  | -  |
+| `grafana-victoriametrics-ds` |  -  | `0.14.0`  | -  |
+| `grafana-infinity-ds`        |  -  |  `3.0.0`  | -  |
+| `timescaledb-event-streamer` |  -  | `0.12.0`  | 新  |
+| `restic`                     |  -  | `0.17.3`  | 新  |
+| `juicefs`                    |  -  |  `1.2.3`  | 新  |
 {.stretch-last}
-
--------
 
 ## 2025-02-12
 
-| Name                  | Old Ver          | New Ver          | Note |
-|-----------------------|------------------|------------------|------|
-| `pushgateway`         | `1.10.0`         | `1.11.0`         |      |
-| `alertmanager`        | `0.27.0`         | `0.28.0`         |      |
-| `nginx_exporter`      | `1.4.0`          | `1.4.1`          |      |
-| `pgbackrest_exporter` | `0.18.0`         | `0.19.0`         |      |
-| `redis_exporter`      | `1.66.0`         | `1.67.0`         |      |
-| `mongodb_exporter`    | `0.43.0`         | `0.43.1`         |      |
-| `victoria-metrics`    | `1.107.0`        | `1.111.0`        |      |
-| `victoria-logs`       | `1.3.2`          | `1.9.1`          |      |
-| `duckdb`              | `1.1.3`          | `1.2.0`          |      |
-| `etcd`                | `3.5.17`         | `3.5.18`         |      |
-| `pg_timetable`        | `5.10.0`         | `5.11.0`         |      |
-| `ferretdb`            | `1.24.0`         | `2.0.0`          |      |
-| `tigerbeetle`         | `0.16.13`        | `0.16.27`        |      |
-| `grafana`             | `11.4.0`         | `11.5.1`         |      |
-| `vector`              | `0.43.1`         | `0.44.0`         |      |
-| `minio`               | `20241218131544` | `20250207232109` |      |
-| `mcli`                | `20241121172154` | `20250208191421` |      |
-| `rclone`              | `1.68.2`         | `1.69.0`         |      |
+| 名称                    |       旧版本        |       新版本        | 备注 |
+|-----------------------|------------------|------------------|----|
+| `pushgateway`         |     `1.10.0`     |     `1.11.0`     | -  |
+| `alertmanager`        |     `0.27.0`     |     `0.28.0`     | -  |
+| `nginx_exporter`      |     `1.4.0`      |     `1.4.1`      | -  |
+| `pgbackrest_exporter` |     `0.18.0`     |     `0.19.0`     | -  |
+| `redis_exporter`      |     `1.66.0`     |     `1.67.0`     | -  |
+| `mongodb_exporter`    |     `0.43.0`     |     `0.43.1`     | -  |
+| `victoria-metrics`    |    `1.107.0`     |    `1.111.0`     | -  |
+| `victoria-logs`       |     `1.3.2`      |     `1.9.1`      | -  |
+| `duckdb`              |     `1.1.3`      |     `1.2.0`      | -  |
+| `etcd`                |     `3.5.17`     |     `3.5.18`     | -  |
+| `pg_timetable`        |     `5.10.0`     |     `5.11.0`     | -  |
+| `ferretdb`            |     `1.24.0`     |     `2.0.0`      | -  |
+| `tigerbeetle`         |    `0.16.13`     |    `0.16.27`     | -  |
+| `grafana`             |     `11.4.0`     |     `11.5.1`     | -  |
+| `vector`              |     `0.43.1`     |     `0.44.0`     | -  |
+| `minio`               | `20241218131544` | `20250207232109` | -  |
+| `mcli`                | `20241121172154` | `20250208191421` | -  |
+| `rclone`              |     `1.68.2`     |     `1.69.0`     | -  |
 {.stretch-last}
-
--------
 
 ## 2024-11-19
 
-| Name                  | Old Ver   | New Ver   | Note |
-|-----------------------|-----------|-----------|------|
-| `prometheus`          | `2.54.0`  | `3.0.0`   |      |
-| `victoria-metrics`    | `1.102.1` | `1.106.1` |      |
-| `victoria-logs`       | `0.28.0`  | `1.0.0`   |      |
-| `mysqld_exporter`     | `0.15.1`  | `0.16.0`  |      |
-| `redis_exporter`      | `1.62.0`  | `1.66.0`  |      |
-| `mongodb_exporter`    | `0.41.2`  | `0.42.0`  |      |
-| `keepalived_exporter` | `1.3.3`   | `1.4.0`   |      |
-| `duckdb`              | `1.1.2`   | `1.1.3`   |      |
-| `etcd`                | `3.5.16`  | `3.5.17`  |      |
-| `tigerbeetle`         | `16.8`    | `0.16.13` |      |
-| `grafana`             | -         | `11.3.0`  |      |
-| `vector`              | -         | `0.42.0`  |      |
+| 名称                    |    旧版本    |    新版本    | 备注 |
+|-----------------------|-----------|-----------|----|
+| `prometheus`          | `2.54.0`  |  `3.0.0`  | -  |
+| `victoria-metrics`    | `1.102.1` | `1.106.1` | -  |
+| `victoria-logs`       | `0.28.0`  |  `1.0.0`  | -  |
+| `mysqld_exporter`     | `0.15.1`  | `0.16.0`  | -  |
+| `redis_exporter`      | `1.62.0`  | `1.66.0`  | -  |
+| `mongodb_exporter`    | `0.41.2`  | `0.42.0`  | -  |
+| `keepalived_exporter` |  `1.3.3`  |  `1.4.0`  | -  |
+| `duckdb`              |  `1.1.2`  |  `1.1.3`  | -  |
+| `etcd`                | `3.5.16`  | `3.5.17`  | -  |
+| `tigerbeetle`         |  `16.8`   | `0.16.13` | -  |
+| `grafana`             |     -     | `11.3.0`  | -  |
+| `vector`              |     -     | `0.42.0`  | -  |
 {.stretch-last}
-

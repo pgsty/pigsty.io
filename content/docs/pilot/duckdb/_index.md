@@ -1,9 +1,9 @@
 ---
 title: 'Module: DuckDB'
-weight: 5060
+weight: 5050
 description: Install DuckDB, a high-performance embedded analytical database component.
 icon: fas fa-crow
-module: [DUCKDB]
+module: [PILOT]
 categories: [Reference]
 ---
 

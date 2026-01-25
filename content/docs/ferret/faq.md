@@ -67,7 +67,7 @@ yum install -y mongodb-mongosh
 FerretDB authentication is entirely based on the underlying PostgreSQL. Since Pigsty-managed PostgreSQL clusters use `scram-sha-256` authentication by default, you must specify the `PLAIN` authentication mechanism in the connection string:
 
 ```bash
-mongosh 'mongodb://user:password@host:27017?authMechanism=PLAIN'
+mongosh 'mongodb://user:password@host:27017'
 ```
 
 If you forget to add the `authMechanism=PLAIN` parameter, the connection will fail with an authentication error.

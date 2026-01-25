@@ -15,14 +15,16 @@ It allows users to search, install, remove, update, and manage PostgreSQL extens
 |:---|:---|:---|
 | `ext list` | Search extensions | |
 | `ext info` | Show extension details | |
+| `ext avail` | Show extension availability matrix | |
 | `ext status` | Show installed extensions | |
+| `ext scan` | Scan installed extensions | |
 | `ext add` | Install extensions | Requires sudo or root |
 | `ext rm` | Remove extensions | Requires sudo or root |
 | `ext update` | Update extensions | Requires sudo or root |
-| `ext scan` | Scan installed extensions | |
 | `ext import` | Download for offline use | Requires sudo or root |
 | `ext link` | Link PG version to PATH | Requires sudo or root |
 | `ext reload` | Refresh extension catalog | |
+{.full-width}
 
 
 ## Quick Start
@@ -62,6 +64,21 @@ Display detailed information about specific extensions.
 pig ext info pg_duckdb           # Show pg_duckdb info
 pig ext info vector postgis      # Show info for multiple extensions
 ```
+
+
+## ext avail
+
+Display the availability matrix for extensions, showing availability across different operating systems, architectures, and PostgreSQL versions.
+
+```bash
+pig ext avail                     # Show availability for all packages on current system
+pig ext avail timescaledb         # Show availability matrix for timescaledb
+pig ext avail postgis pg_duckdb   # Show availability for multiple extensions
+pig ext av pgvector               # Show availability for pgvector
+pig ext matrix citus              # Alias for avail command
+```
+
+The availability matrix shows extension availability across operating systems (EL8/9/10, Debian 12/13, Ubuntu 22/24), architectures (x86_64/aarch64), and PostgreSQL versions (13-18).
 
 
 ## ext status

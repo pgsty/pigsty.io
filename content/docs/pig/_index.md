@@ -10,7 +10,7 @@ module: [PIG]
 
 PIG is a command-line tool specifically designed for installing, managing, and building PostgreSQL and its extensions. Developed in Go, it's ready to use out of the box, simple, and lightweight (4MB).
 PIG is not a reinvented wheel, but rather a **PiggyBack** — a high-level abstraction layer that leverages existing Linux distribution package managers (`apt`/`dnf`).
-It abstracts away the differences between operating systems, chip architectures, and PG major versions, allowing you to install and manage PG kernels and 431+ extensions with just a few simple commands.
+It abstracts away the differences between operating systems, chip architectures, and PG major versions, allowing you to install and manage PG kernels and 444+ extensions with just a few simple commands.
 
 Note: For extension installation, **pig is not a mandatory component** — you can still use apt/dnf package managers to directly access the [**Pigsty PGSQL**](/docs/repo/pgsql/) repository.
 
