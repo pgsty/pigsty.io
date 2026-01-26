@@ -1,11 +1,10 @@
 ---
-title: "CMD: pig sty"
-linkTitle: "CMD: pig sty"
+title: "pig sty"
 description: "Manage Pigsty installation with pig sty subcommand"
-weight: 5290
+weight: 150
 icon: fas fa-server
 module: [PIG]
-categories: [Admin]
+categories: [Reference]
 ---
 
 The **pig** can also be used as a CLI tool for Pigsty — the battery-included free PostgreSQL RDS.
@@ -90,10 +89,14 @@ pig sty conf --ip 10.10.10.10    # Specify IP address
 Run Pigsty deployment playbook.
 
 ```bash
-pig sty deploy                   # Run full deployment
+pig sty deploy                   # Run deploy.yml (or install.yml if not found)
+pig sty install                  # Same as deploy (backward compatibility)
+pig sty d                        # Short alias
+pig sty de                       # Short alias
+pig sty ins                      # Short alias
 ```
 
-This command runs the `deploy.yml` playbook from your Pigsty installation.
+This command runs the `deploy.yml` playbook from your Pigsty installation. For backward compatibility, if `deploy.yml` doesn't exist but `install.yml` does, `install.yml` will be used instead.
 
 **Warning**: This operation makes changes to your system. Use with caution!
 

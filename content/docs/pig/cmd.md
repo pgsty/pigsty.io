@@ -1,10 +1,10 @@
 ---
-title: "CMD: pig"
+title: "pig"
 description: "pig CLI command reference overview"
-weight: 5260
+weight: 100
 icon: fas fa-terminal
 module: [PIG]
-categories: [Admin]
+categories: [Reference]
 ---
 
 The `pig` CLI provides comprehensive tools for managing PostgreSQL installations, extensions, repositories, and building extensions from source. Check command documentation with `pig help <command>`.
@@ -13,6 +13,9 @@ The `pig` CLI provides comprehensive tools for managing PostgreSQL installations
 - [**pig ext**](/docs/pig/ext/): Manage PostgreSQL extensions
 - [**pig build**](/docs/pig/build/): Build extensions from source
 - [**pig sty**](/docs/pig/sty/): Manage Pigsty installation
+- [**pig pg**](/docs/pig/pg/): Manage local PostgreSQL server
+- [**pig pt**](/docs/pig/pt/): Manage Patroni HA cluster
+- [**pig pb**](/docs/pig/pb/): Manage pgBackRest backup & recovery
 
 
 ## Overview
@@ -127,3 +130,46 @@ pig sty conf                     # Generate configuration
 pig sty deploy                   # Run deployment playbook
 ```
 
+
+## pig pg
+
+Manage local PostgreSQL server. See [`pig pg`](/docs/pig/pg/) for details.
+
+```bash
+pig pg init                      # Initialize data directory
+pig pg start                     # Start PostgreSQL
+pig pg stop                      # Stop PostgreSQL
+pig pg status                    # Check status
+pig pg psql mydb                 # Connect to database
+pig pg ps                        # Show current connections
+pig pg vacuum mydb               # Vacuum database
+pig pg log tail                  # Real-time log viewing
+```
+
+
+## pig pt
+
+Manage Patroni HA cluster. See [`pig pt`](/docs/pig/pt/) for details.
+
+```bash
+pig pt list                      # List cluster members
+pig pt config                    # Show cluster config
+pig pt config ttl=60             # Modify cluster config
+pig pt status                    # Check service status
+pig pt log -f                    # Real-time log viewing
+```
+
+
+## pig pb
+
+Manage pgBackRest backup & recovery. See [`pig pb`](/docs/pig/pb/) for details.
+
+```bash
+pig pb info                      # Show backup info
+pig pb ls                        # List all backups
+pig pb backup                    # Create backup
+pig pb backup full               # Full backup
+pig pb restore                   # Restore to latest
+pig pb restore -t "2025-01-01"   # Restore to specific time
+pig pb log tail                  # Real-time log viewing
+```

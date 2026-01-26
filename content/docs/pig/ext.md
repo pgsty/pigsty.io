@@ -1,11 +1,10 @@
 ---
-title: "CMD: pig ext"
-linkTitle: "CMD: pig ext"
+title: "pig ext"
 description: "Manage PostgreSQL extensions with pig ext subcommand"
-weight: 5270
+weight: 120
 icon: fas fa-puzzle-piece
 module: [PIG]
-categories: [Admin]
+categories: [Reference]
 ---
 
 The `pig ext` command is a comprehensive tool for managing PostgreSQL extensions.
@@ -47,13 +46,18 @@ List or search extensions.
 pig ext list                     # List all extensions
 pig ext list duck                # Search for "duck" extensions
 pig ext list vector ai           # Search multiple keywords
-pig ext list -c RAG              # Filter by category
 pig ext list -v 17               # Filter by PG version
+pig ext ls olap                  # List OLAP category extensions
+pig ext ls gis -v 16             # List GIS extensions for PG 16
+pig ext ls rag                   # List RAG category extensions
 ```
 
+Category filter is achieved by specifying the category name directly as query parameter. Supported categories: `time`, `gis`, `rag`, `fts`, `olap`, `feat`, `lang`, `type`, `func`, `util`, `admin`, `stat`, `sec`, `fdw`, `sim`, `etl`.
+
 **Options:**
-- `-c|--category`: Filter by category (TIME, GIS, RAG, FTS, OLAP, FEAT, LANG, TYPE, UTIL, FUNC, ADMIN, STAT, SEC, FDW, SIM, ETL)
+
 - `-v|--version`: Filter by PG version
+- `--pkg`: Show package names instead of extension names, list leading extensions only
 
 
 ## ext info

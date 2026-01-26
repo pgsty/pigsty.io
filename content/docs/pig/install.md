@@ -2,7 +2,7 @@
 title: "Installation"
 linkTitle: "Installation"
 description: "How to download and install the pig package manager"
-weight: 5230
+weight: 30
 icon: fas fa-download
 module: [PIG]
 categories: [Task]

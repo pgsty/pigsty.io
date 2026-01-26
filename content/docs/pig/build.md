@@ -1,11 +1,10 @@
 ---
-title: "CMD: pig build"
-linkTitle: "CMD: pig build"
+title: "pig build"
 description: "Build PostgreSQL extensions from source with pig build subcommand"
-weight: 5300
+weight: 130
 icon: fas fa-hammer
 module: [PIG]
-categories: [Admin]
+categories: [Reference]
 ---
 
 The `pig build` command is a powerful tool that simplifies the entire workflow of building PostgreSQL extensions from source. It provides a complete build infrastructure setup, dependency management, and compilation environment for both standard and custom PostgreSQL extensions across different operating systems.

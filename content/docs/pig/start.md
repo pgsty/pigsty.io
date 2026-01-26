@@ -2,7 +2,7 @@
 title: "Getting Started"
 linkTitle: "Getting Started"
 description: "Quick start with pig, the PostgreSQL package manager"
-weight: 5210
+weight: 10
 icon: fas fa-rocket
 module: [PIG]
 categories: [Tutorial]

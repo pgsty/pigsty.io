@@ -2,7 +2,7 @@
 title: "Introduction"
 linkTitle: "Introduction"
 description: "Why do we need yet another package manager? Especially for Postgres extensions?"
-weight: 5220
+weight: 20
 icon: fas fa-lightbulb
 module: [PIG]
 categories: [Concept]

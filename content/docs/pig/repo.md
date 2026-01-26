@@ -1,11 +1,10 @@
 ---
-title: "CMD: pig repo"
-linkTitle: "CMD: pig repo"
+title: "pig repo"
 description: "Manage software repositories with pig repo subcommand"
-weight: 5280
+weight: 110
 icon: fas fa-warehouse
 module: [PIG]
-categories: [Admin]
+categories: [Reference]
 ---
 
 The `pig repo` command is a comprehensive tool for managing package repositories on Linux systems. It provides functionality to add, remove, create, and manage software repositories for both RPM-based (RHEL/CentOS/Rocky/Alma) and Debian-based (Debian/Ubuntu) distributions.
@@ -22,6 +21,7 @@ The `pig repo` command is a comprehensive tool for managing package repositories
 | `repo create` | Create local YUM/APT repository | Requires sudo or root |
 | `repo cache` | Create offline package from local repo | Requires sudo or root |
 | `repo boot` | Bootstrap repo from offline package | Requires sudo or root |
+| `repo reload` | Refresh repo catalog | |
 
 
 ## Quick Start
@@ -144,6 +144,17 @@ pig repo boot                    # Default: /tmp/pkg.tgz to /www
 pig repo boot -p /mnt/pkg.tgz   # Custom package path
 pig repo boot -d /srv           # Custom target directory
 ```
+
+
+## repo reload
+
+Refresh repo metadata from GitHub to latest version.
+
+```bash
+pig repo reload                  # Refresh repo catalog
+```
+
+The updated file is placed in `~/.pig/repo.yml`.
 
 
 --------

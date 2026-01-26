@@ -54,6 +54,8 @@ After installation, access the sandbox homepage via IP: `http://<ip>`. Assuming 
 | Claude Monitor | [`http://10.10.10.10/ui/d/claude-code`](http://10.10.10.10/d/claude-code)    |
 {.full-width}
 
+> Tip: If deploying on a public cloud server, check [**Security Best Practices**](/docs/setup/security), change passwords (`configure -g`), and [**enable firewall**](/docs/node/param#node_firewall_mode).
+
 --------
 
 ## Vibe Coding
@@ -92,10 +94,20 @@ Then re-run `./vibe.yml`.
 ![](/img/pigsty/claude-monitor-2.webp)
 
 
---------
+## Claude Code Observability
 
-## Start Vibe
+To integrate Claude Code from other environments into the monitoring system, configure environment variables to send OTEL events to VictoriaMetrics / VictoriaLogs OTEL endpoints.
+Claude Code can self-vibe to handle this configuration.
 
-Now you can start Vibe Coding by prompting, `/fs/CLAUDE.md` already contains info about available resources in the environment.
-
-Video tutorials coming soon.
+```bash
+# Claude Code OTEL Configuration
+export CLAUDE_CODE_ENABLE_TELEMETRY=1             # Enable monitoring
+export OTEL_METRICS_EXPORTER=otlp
+export OTEL_LOGS_EXPORTER=otlp
+export OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
+export OTEL_LOG_USER_PROMPTS=1                    # Set to 0 to hide prompts
+export OTEL_RESOURCE_ATTRIBUTES="job=claude"      # Add your own labels
+export OTEL_EXPORTER_OTLP_METRICS_ENDPOINT=http://10.10.10.10:8428/opentelemetry/v1/metrics     # Metrics endpoint, VictoriaMetrics
+export OTEL_EXPORTER_OTLP_LOGS_ENDPOINT=http://10.10.10.10:9428/insert/opentelemetry/v1/logs    # Logs endpoint, VictoriaLogs
+export OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE=cumulative
+```
