@@ -7,7 +7,7 @@ module: [VIBE]
 categories: [Param]
 ---
 
-VIBE module has **13** config parameters, grouped into: common params, Code-Server params, JupyterLab params, and Claude Code params.
+VIBE module has **15** config parameters, grouped into: common params, Code-Server params, JupyterLab params, Claude Code params, and Node.js params.
 
 
 --------
@@ -29,6 +29,8 @@ VIBE module has **13** config parameters, grouped into: common params, Code-Serv
 | [`jupyter_venv`](#jupyter_venv) | path | H/I | `/data/venv` | Python venv path |
 | [`claude_enabled`](#claude_enabled) | bool | H/I | `true` | Enable Claude Code |
 | [`claude_env`](#claude_env) | dict | H/I | `{}` | Claude Code extra env vars |
+| [`nodejs_enabled`](#nodejs_enabled) | bool | H/I | `true` | Enable Node.js |
+| [`nodejs_registry`](#nodejs_registry) | url | H/I | `''` | npm registry URL, auto for china |
 {.full-width}
 
 
@@ -293,6 +295,44 @@ claude_env:
 
 --------
 
+## Node.js Parameters
+
+### `nodejs_enabled`
+
+Whether to enable Node.js runtime on this node.
+
+- **Type**: `bool`
+- **Level**: H/I
+- **Default**: `true`
+
+```yaml
+nodejs_enabled: true   # Enabled (default)
+nodejs_enabled: false  # Disabled
+```
+
+### `nodejs_registry`
+
+npm package registry URL.
+
+- **Type**: `url`
+- **Level**: H/I
+- **Default**: `''` (empty string)
+
+When empty:
+- If `region=china`, auto-uses China npm mirror `https://registry.npmmirror.com`
+- Otherwise uses npm official registry
+
+When explicitly set, uses the specified registry (useful for internal networks).
+
+```yaml
+nodejs_registry: ''                                # Auto-detect (default)
+nodejs_registry: 'https://registry.npmmirror.com'  # Manually specify China mirror
+nodejs_registry: 'http://npm.internal.example.com' # Internal mirror
+```
+
+
+--------
+
 ## Parameter Level Reference
 
 | Level | Description                        |
@@ -344,6 +384,10 @@ jupyter_venv: /data/venv
 # Claude Code params
 claude_enabled: true
 claude_env: {}
+
+# Node.js params
+nodejs_enabled: true
+nodejs_registry: ''
 ```
 
 

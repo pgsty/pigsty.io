@@ -7,7 +7,7 @@ module: [VIBE]
 categories: [Playbook]
 ---
 
-VIBE module provides one main playbook `vibe.yml` for deploying and managing Code-Server, JupyterLab and Claude Code.
+VIBE module provides one main playbook `vibe.yml` for deploying and managing Code-Server, JupyterLab, Claude Code and Node.js.
 
 
 --------
@@ -53,10 +53,14 @@ VIBE module provides one main playbook `vibe.yml` for deploying and managing Cod
 # Deploy Claude Code only
 ./vibe.yml -l <host> -t claude
 
+# Deploy Node.js only
+./vibe.yml -l <host> -t nodejs
+
 # Disable specific component
 ./vibe.yml -l <host> -e code_enabled=false
 ./vibe.yml -l <host> -e jupyter_enabled=false
 ./vibe.yml -l <host> -e claude_enabled=false
+./vibe.yml -l <host> -e nodejs_enabled=false
 
 # Configure Claude API Key
 ./vibe.yml -l <host> -e claude_env.ANTHROPIC_API_KEY=sk-ant-xxx
@@ -80,11 +84,14 @@ vibe
 │   ├── code_dir          # Create data directory
 │   ├── code_config       # Render config and systemd unit
 │   └── code_launch       # Start code-server service
-└── jupyter           # Deploy JupyterLab
-    ├── jupyter_install   # Install JupyterLab to venv
-    ├── jupyter_dir       # Create data directory
-    ├── jupyter_config    # Render config and systemd unit
-    └── jupyter_launch    # Start JupyterLab service
+├── jupyter           # Deploy JupyterLab
+│   ├── jupyter_install   # Install JupyterLab to venv
+│   ├── jupyter_dir       # Create data directory
+│   ├── jupyter_config    # Render config and systemd unit
+│   └── jupyter_launch    # Start JupyterLab service
+└── nodejs            # Install Node.js runtime
+    ├── nodejs_install    # Install nodejs package
+    └── nodejs_config     # Configure npm registry
 ```
 
 
@@ -171,6 +178,25 @@ Generated files:
 - `/etc/default/jupyter`
 - `{{ jupyter_data }}/jupyter_config.py`
 
+### `nodejs`
+
+Install Node.js runtime.
+
+```bash
+./vibe.yml -l <host> -t nodejs
+```
+
+Sub-tasks:
+
+| Tag              | Description                              |
+|:-----------------|:-----------------------------------------|
+| `nodejs_install` | Install nodejs package                   |
+| `nodejs_config`  | Configure npm registry (auto china mirror) |
+{.full-width}
+
+Generated files:
+- `/usr/local/node/etc/npmrc` (only when registry configured)
+
 
 --------
 
@@ -200,6 +226,9 @@ Generated files:
 
 # Deploy Claude Code only
 ./vibe.yml -l <host> -t claude
+
+# Deploy Node.js only
+./vibe.yml -l <host> -t nodejs
 ```
 
 ### Config Update
@@ -236,6 +265,10 @@ Generated files:
 ./vibe.yml -l <host> -e code_enabled=false
 ./vibe.yml -l <host> -e jupyter_enabled=false
 ./vibe.yml -l <host> -e claude_enabled=false
+./vibe.yml -l <host> -e nodejs_enabled=false
+
+# Configure npm registry
+./vibe.yml -l <host> -e nodejs_registry='https://registry.npmmirror.com'
 
 # Configure Claude API Key
 ./vibe.yml -l <host> -e "claude_env={ANTHROPIC_API_KEY: 'sk-ant-xxx'}"
