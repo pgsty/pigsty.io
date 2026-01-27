@@ -9,22 +9,22 @@ categories: [Tutorial]
 ---
 
 
-Pigsty is designed to run on native Linux, but can also run in Linux containers with systemd.
-If you don't have a native Linux env (e.g., **macOS** or **Windows** users), use Docker to quickly spin up a local single-node Pigsty for testing.
+Pigsty is designed for native Linux, but can also run in Linux containers with systemd.
+If you don't have native Linux (e.g., **macOS** or **Windows**), use Docker to spin up a local single-node Pigsty for testing.
 
 
 ----------------
 
-## Summary
+## Quick Start
 
-Enter the [**`docker/`**](https://github.com/pgsty/pigsty/tree/main/docker) directory in the Pigsty source and launch with one command:
+Enter the [**`docker/`**](https://github.com/pgsty/pigsty/tree/main/docker) dir in Pigsty source and launch with one command:
 
 ```bash
 cd ~/pigsty/docker
 make launch          # Start container + generate config + deploy
 ```
 
-After deployment, access services as follows:
+After deployment, access services:
 
 | Service    | URL / Command                                                    | Credentials        |
 |:-----------|:-----------------------------------------------------------------|:-------------------|
@@ -32,9 +32,8 @@ After deployment, access services as follows:
 | Web Portal | http://localhost:8080                                            | -                  |
 | Grafana    | http://localhost:8080/ui                                         | `admin` / `pigsty` |
 | PostgreSQL | `psql postgres://dbuser_dba:DBUser.DBA@localhost:5432/postgres`  | `DBUser.DBA`       |
-{.full-width}
 
-{{% alert title="Web Portal & PostgreSQL Service" color="info" %}}
+{{% alert title="Web Portal & PostgreSQL" color="info" %}}
 Web Portal and PostgreSQL are only available after **Deployment** (`./deploy.yml`) completes.
 {{% /alert %}}
 
@@ -45,12 +44,12 @@ Web Portal and PostgreSQL are only available after **Deployment** (`./deploy.yml
 
 Docker deployment requires:
 
-|    Item    | Requirement                         |   Item   | Requirement          |
-|:----------:|:------------------------------------|:--------:|:---------------------|
-| **Docker** | Docker 20.10+ (Desktop or CE)       | **CPU**  | At least 1 core      |
-| **RAM**    | At least 2GB                        | **Disk** | At least 20GB free   |
-{.full-width}
+|    Item    | Requirement                   |   Item   | Requirement        |
+|:----------:|:------------------------------|:--------:|:-------------------|
+| **Docker** | Docker 20.10+ (Desktop or CE) | **CPU**  | At least 1 core    |
+| **RAM**    | At least 2GB                  | **Disk** | At least 20GB free |
 
+Ensure default host ports (2222/8080/8443/5432) are available, or edit [**`.env`**](#config) first.
 
 {{% alert title="Good Use Cases" color="success" %}}
 - Quick Pigsty experience on macOS/Windows without native Linux
@@ -59,10 +58,27 @@ Docker deployment requires:
 {{% /alert %}}
 
 {{% alert title="Not Recommended For" color="warning" %}}
-- **Production**: Container perf and stability are inferior to native Linux
+- **Production**: Container perf and stability inferior to native Linux
 - **HA Clusters**: Docker single-node mode can't achieve multi-node HA
-- **Large Scale**: Use native Linux VMs or physical machines instead
+- **Large Scale**: Use native Linux VMs or physical machines
 {{% /alert %}}
+
+
+----------------
+
+## Image
+
+Pigsty provides an out-of-the-box Docker image on [**Docker Hub**](https://hub.docker.com/r/pgsty/pigsty).
+
+| Image          | Pull   | Size  | Contents                            |
+|:---------------|:-------|:------|:------------------------------------|
+| `pgsty/pigsty` | ~500MB | 1.3GB | Debian 13 + systemd + SSH + pig + Ansible |
+
+- Supports both **amd64** (x86_64) and **arm64** (Apple Silicon, AWS Graviton)
+- Tags match Pigsty versions: `v4.0.0`, `latest`, etc.
+- Pre-configured with docker template, ready to run `./deploy.yml`
+
+Built on **Debian 13 (Trixie)**, pre-installed with [**`pig`**](/docs/pig/) CLI and Ansible, Pigsty source already initialized.
 
 
 ----------------
@@ -71,28 +87,28 @@ Docker deployment requires:
 
 Pigsty provides out-of-the-box Docker support in the [**`docker/`**](https://github.com/pgsty/pigsty/tree/main/docker) source directory.
 
-The simplest way is `make launch`, which auto-completes: start container, generate config, and deploy:
+Simplest way is `make launch`, which auto-completes: start container, generate config, and deploy:
 
 ```bash
 cd ~/pigsty/docker
 make launch          # One-liner: up + config + deploy
 ```
 
-Or step by step, allowing inspection and adjustment at each stage:
+Or step by step for inspection at each stage:
 
 ```bash
 cd ~/pigsty/docker
 make up              # Start container
 make exec            # Enter container
-./configure -c docker -g --ip 127.0.0.1  # Generate config
+./configure -c docker -g --ip 127.0.0.1  # Generate config (optional, pre-configured)
 ./deploy.yml         # Execute deployment
 ```
 
-To use locally built images instead of pulling from Docker Hub:
+To build locally instead of pulling from Docker Hub:
 
 ```bash
 cd ~/pigsty/docker
-make build           # Build images locally
+make build           # Build image locally
 make launch          # Start container + generate config + deploy
 ```
 
@@ -101,14 +117,10 @@ make launch          # Start container + generate config + deploy
 
 ## Config
 
-Customize image version and port mappings by editing [**`.env`**](https://github.com/pgsty/pigsty/blob/main/docker/.env):
+Customize image version and port mappings via [**`.env`**](https://github.com/pgsty/pigsty/blob/main/docker/.env):
 
 ```bash
-# Image config
-PIGSTY_IMAGE=pgsty/pigsty     # Image name: pgsty/linux, pgsty/admin, pgsty/infra, pgsty/pgsql, pgsty/pigsty
 PIGSTY_VERSION=v4.0.0         # Image tag, matches Pigsty version
-
-# Port mappings (host ports)
 PIGSTY_SSH_PORT=2222          # SSH port
 PIGSTY_HTTP_PORT=8080         # Nginx HTTP port
 PIGSTY_HTTPS_PORT=8443        # Nginx HTTPS port
@@ -117,15 +129,15 @@ PIGSTY_PG_PORT=5432           # PostgreSQL port
 
 **Port Mapping:**
 
-| Env Var               | Default | Container | Description        |
-|:----------------------|:--------|:----------|:-------------------|
-| `PIGSTY_SSH_PORT`     | `2222`  | 22        | SSH access port    |
-| `PIGSTY_HTTP_PORT`    | `8080`  | 80        | Nginx HTTP port    |
-| `PIGSTY_HTTPS_PORT`   | `8443`  | 443       | Nginx HTTPS port   |
-| `PIGSTY_PG_PORT`      | `5432`  | 5432      | PostgreSQL port    |
-{.full-width}
+| Env Var             | Default  | Container | Description       |
+|:--------------------|:---------|:----------|:------------------|
+| `PIGSTY_VERSION`    | `v4.0.0` | -         | Image version tag |
+| `PIGSTY_SSH_PORT`   | `2222`   | 22        | SSH access port   |
+| `PIGSTY_HTTP_PORT`  | `8080`   | 80        | Nginx HTTP port   |
+| `PIGSTY_HTTPS_PORT` | `8443`   | 443       | Nginx HTTPS port  |
+| `PIGSTY_PG_PORT`    | `5432`   | 5432      | PostgreSQL port   |
 
-Override ports via env vars if defaults are occupied:
+Override via env vars if defaults are occupied:
 
 ```bash
 PIGSTY_HTTP_PORT=8888 docker compose up -d
@@ -134,45 +146,13 @@ PIGSTY_HTTP_PORT=8888 docker compose up -d
 
 ----------------
 
-## Images
-
-Pigsty provides 5 layered Docker images, each building on the previous. Choose based on your needs:
-
-| Image          | Pull   | Size  | Contents                        | Use Case         |
-|:---------------|:-------|:------|:--------------------------------|:-----------------|
-| `pgsty/linux`  | ~150MB | 400MB | Debian 13 + systemd + SSH       | Base container   |
-| `pgsty/admin`  | ~500MB | 1.3GB | + pig + Ansible + node packages | **Admin node**   |
-| `pgsty/infra`  | ~1.0GB | 2.7GB | + monitoring stack              | Infra node       |
-| `pgsty/pgsql`  | ~1.2GB | 3.1GB | + PostgreSQL 18 core            | PGSQL node       |
-| `pgsty/pigsty` | ~1.6GB | 4.3GB | + all 340+ extensions           | **Full Deploy**  |
-{.full-width}
-
-- **Pull**: Compressed transfer size when pulling from Docker Hub
-- **Size**: Uncompressed disk size after pulling
-- All images support **amd64** (x86_64) and **arm64** (Apple Silicon, AWS Graviton)
-- Image tags match Pigsty versions: `v4.0.0`, `latest`, etc.
-
-**Image Hierarchy:**
-
-```
-debian:trixie
-    └── pgsty/linux   (base + systemd + ssh)
-        └── pgsty/admin   (+ pig + ansible + node packages)
-            └── pgsty/infra   (+ monitoring stack)
-                └── pgsty/pgsql   (+ postgresql core)
-                    └── pgsty/pigsty (+ all extensions)
-```
-
-
-----------------
-
 ## Commands
 
-Pigsty Docker provides rich Makefile commands for container and image management.
+Pigsty Docker provides Makefile commands for container and image management.
 
 ### Docker Compose
 
-Recommended way to run. Common commands:
+Recommended way to run:
 
 ```bash
 make up           # Start container
@@ -201,20 +181,9 @@ make pass         # View passwords in config
 ### Image Build
 
 ```bash
-make linux        # Build pgsty/linux base image
-make admin        # Build pgsty/admin admin node image
-make infra        # Build pgsty/infra infra image
-make pgsql        # Build pgsty/pgsql PostgreSQL image
-make pigsty       # Build pgsty/pigsty full image
-make build        # Build all 5 images (same as make images)
-make images       # Build all 5 images
-```
-
-### Image Push
-
-```bash
-make pigsty-push  # Push pgsty/pigsty image (multi-arch)
-make images-push  # Push all images
+make build        # Build image locally
+make buildnc      # Build without cache
+make push         # Build and push multi-arch image
 ```
 
 ### Image Management
@@ -223,14 +192,13 @@ make images-push  # Push all images
 make save         # Export image to pigsty-<version>-<arch>.tgz
 make load         # Import image from tgz file
 make rmi          # Remove current version's pigsty image
-make rmi-all      # Remove current version's all images
 ```
 
 ### Cleanup
 
 ```bash
 make clean        # Stop and remove container
-make purge        # Remove container and wipe data (prompts for confirmation)
+make purge        # Remove container and wipe data (prompts)
 ```
 
 
@@ -241,14 +209,14 @@ make purge        # Remove container and wipe data (prompts for confirmation)
 If you prefer `docker run` over Docker Compose:
 
 ```bash
-mkdir -p /data/pigsty    # Create data directory
+mkdir -p ./data
 docker run -d --privileged --name pigsty \
   -p 2222:22 -p 8080:80 -p 5432:5432 \
-  -v /data/pigsty:/data \
+  -v ./data:/data \
   pgsty/pigsty:v4.0.0
-docker exec -it pigsty /bin/bash
-./configure -c docker -g --ip 127.0.0.1
-./deploy.yml
+
+docker exec -it pigsty ./configure -c docker -g --ip 127.0.0.1
+docker exec -it pigsty ./deploy.yml
 ```
 
 Or use Makefile's `make run`:
@@ -265,21 +233,35 @@ make purge        # Remove container and wipe data
 
 ## How It Works
 
-Pigsty Docker images are based on **Debian 13 (Trixie)** with **systemd** as init system.
-This keeps service management inside the container consistent with native Linux, using `systemctl`.
+Pigsty Docker image is based on **Debian 13 (Trixie)** with **systemd** as init.
+Service management inside container stays consistent with native Linux via `systemctl`.
 
 Key features:
 
-- **systemd support**: Full systemd running inside container for proper service management
-- **SSH access**: Pre-configured SSH service, root password is `pigsty`
-- **Privileged mode**: Requires `--privileged` to support systemd
-- **Data persistence**: Data persisted via `/data` volume mount
-- **Pre-installed software**: Full image includes PostgreSQL 18 and 340+ extensions
+- **systemd support**: Full systemd for proper service management
+- **SSH access**: Pre-configured SSH, root password is `pigsty`
+- **Privileged mode**: Requires `--privileged` for systemd
+- **Data persistence**: Via `/data` volume mount
+- **Pre-installed**: pig CLI + Ansible, Pigsty source initialized
 
-When running `./configure` inside the container, `-c docker` applies the Docker-optimized [**config template**](/docs/concept/iac/template/):
+Image build executes these init steps:
 
-- Uses `127.0.0.1` as default IP address
-- Optimized for container environment
+```dockerfile
+# Install pig CLI
+RUN echo "deb [trusted=yes] https://repo.pigsty.io/apt/infra/ generic main" \
+    > /etc/apt/sources.list.d/pigsty.list \
+    && apt-get update && apt-get install -y pig
+
+# Initialize Pigsty source and install Ansible
+RUN pig sty init -v ${PIGSTY_VERSION} \
+    && pig sty boot \
+    && pig sty conf -c docker --ip 127.0.0.1
+```
+
+Running `./configure` with `-c docker` applies the Docker-optimized [**config template**](/docs/concept/iac/template/):
+
+- Uses `127.0.0.1` as default IP
+- Tuned for container environment
 
 
 ----------------
@@ -288,17 +270,17 @@ When running `./configure` inside the container, `-c docker` applies the Docker-
 
 ### Container won't start
 
-Ensure Docker is properly installed with sufficient resources allocated. On Docker Desktop, allocate at least 2GB RAM.
-Check for port conflicts, especially ports 22, 80, 443, 5432.
+Ensure Docker is properly installed with sufficient resources. On Docker Desktop, allocate at least 2GB RAM.
+Check for port conflicts on 2222, 8080, 8443, 5432.
 
 ### Can't access services
 
-Web Portal and PostgreSQL are only available after deployment completes. Ensure `./deploy.yml` finished successfully.
-Use `make status` to check service status inside container.
+Web Portal and PostgreSQL only available after deployment. Ensure `./deploy.yml` finished successfully.
+Use `make status` to check service status.
 
 ### Port conflicts
 
-If default ports are occupied, override via `.env` file or env vars:
+Override via `.env` or env vars:
 
 ```bash
 PIGSTY_HTTP_PORT=8888 PIGSTY_PG_PORT=5433 docker compose up -d
@@ -306,16 +288,16 @@ PIGSTY_HTTP_PORT=8888 PIGSTY_PG_PORT=5433 docker compose up -d
 
 ### Data persistence
 
-Container data is mounted to `./data` by default. To wipe and start fresh:
+Container data mounted to `./data`. To wipe and start fresh:
 
 ```bash
-make purge        # Remove container and wipe data (prompts for confirmation)
+make purge        # Remove container and wipe data (prompts)
 ```
 
 ### macOS performance
 
 On macOS with Docker Desktop, performance is worse than native Linux due to virtualization overhead.
-This is expected—Docker deployment is for dev/testing. For production, use [**native Linux installation**](/docs/setup/install/).
+Expected—Docker deployment is for dev/testing. For production, use [**native Linux installation**](/docs/setup/install/).
 
 
 ----------------
@@ -327,4 +309,3 @@ This is expected—Docker deployment is for dev/testing. For production, use [**
 - **Quick Start**: [**Native Linux Installation**](/docs/setup/install/)
 - **Offline Installation**: [**Offline**](/docs/setup/offline/)
 - **Production Deployment**: [**Deployment Guide**](/docs/deploy/)
-
