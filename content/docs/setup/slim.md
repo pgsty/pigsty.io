@@ -17,7 +17,7 @@ Slim installation has no [**`INFRA`**](/docs/infra/) module, no monitoring, no [
 - Only needing PostgreSQL database itself, no observability infra required.
 - Extremely resource-constrained envs unwilling to bear infra overhead (~0.2 vCPU / 500MB on single node).
 - Already having external monitoring system, wanting to use your own unified monitoring framework.
-- Not wanting to introduce the AGPLv3-licensed Grafana visualization dashboard component.
+- Not needing the Grafana visualization dashboard component.
   {{% /alert %}}
 
 {{% alert title="Limitations of slim installation:" color="warning" %}}

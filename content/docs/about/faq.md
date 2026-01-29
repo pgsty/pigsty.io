@@ -135,7 +135,7 @@ Pigsty focuses on integrating the PostgreSQL ecosystem and providing PostgreSQL 
 
 Pigsty is 100% open-source software + free software. Under the premise of complying with the open-source license, you can use it freely and for various commercial purposes.
 
-We value software freedom. For non-DBaaS / OEM use cases, we enforce a more relaxed equivalent Apache 2.0 license. Please see the license for more details.
+We value software freedom. Pigsty uses the Apache-2.0 license. Please see the [license](/docs/about/license) for details.
 
 ----------------
 
@@ -157,11 +157,8 @@ Commercial subscription provides domestic innovation solutions in cooperation wi
 
 ### Can Pigsty run as a multi-tenant DBaaS?
 
-If you use the Pigsty Infra module and distribute or operate it as part of a public cloud database service (DBaaS),
-you may use it for this purpose under the premise of complying with the AGPLv3 license — open-sourcing derivative works under the same license.
-
-We reserve the right to hold **public cloud/database vendors** accountable for violating the AGPLv3 license.
-If you do not wish to open-source derivative works, we recommend purchasing the Pigsty Enterprise Edition subscription plan, which provides clear authorization for this use case and exemption from Pigsty's AGPLv3 open-source obligations.
+Pigsty uses the Apache-2.0 license. You may use it for DBaaS purposes under the license terms.
+For explicit commercial authorization, consider the Pigsty Enterprise subscription.
 
 
 

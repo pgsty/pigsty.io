@@ -8,7 +8,7 @@ categories: [Reference]
 ---
 
 
-[MinIO](https://min.io/) is an S3-compatible multi-cloud object storage software, open-sourced under the AGPLv3 license.
+[MinIO](https://min.io/) is an S3-compatible multi-cloud object storage software.
 
 MinIO can be used to store documents, images, videos, and backups. Pigsty natively supports deploying various MinIO clusters with native multi-node multi-disk high availability support, easy to scale, secure, and ready to use out of the box.
 It has been used in production environments at 10PB+ scale.

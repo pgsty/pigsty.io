@@ -221,7 +221,7 @@ Pigsty provides a powerful runtime for your AI applications. Your agents can lev
 
 ## Open-Source Free Software
 
-**Pigsty is free software open-sourced under AGPLv3, watered by the passion of PostgreSQL-loving community members**
+**Pigsty is free software open-sourced under Apache-2.0, watered by the passion of PostgreSQL-loving community members**
 
 Pigsty is completely [**open-source and free**](/docs/about/license/) software, allowing you to run enterprise-grade PostgreSQL database services at nearly pure hardware cost without database experts.
 For comparison, database vendors' "enterprise database services" and public cloud vendors' RDS charge [**premiums**](/docs/about/compare/cost) several to over ten times the underlying hardware resources as "service fees."

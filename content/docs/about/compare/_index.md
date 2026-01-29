@@ -14,7 +14,7 @@ tags: [Cost]
 
 ## Comparison with RDS
 
-[Pigsty](https://pigsty.io) is a local-first RDS alternative released under AGPLv3, deployable on your own physical/virtual machines or cloud servers.
+[Pigsty](https://pigsty.io) is a local-first RDS alternative released under Apache-2.0, deployable on your own physical/virtual machines or cloud servers.
 
 We've chosen Amazon [AWS RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/) (the global market leader) and Alibaba Cloud [RDS for PostgreSQL](https://www.alibabacloud.com/product/apsaradb-for-rds-postgresql) (China's market leader) as benchmarks for comparison.
 

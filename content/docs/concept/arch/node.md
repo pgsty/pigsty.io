@@ -91,8 +91,7 @@ The **`infra`** group in the [**inventory**](/docs/concept/iac/inventory) define
 Nginx serves as the module's entry point, providing the web UI and local software repository.
 With multiple INFRA nodes, services on each are independent, but you can access all monitoring data sources from any INFRA node's Grafana.
 
-Note: The [**INFRA**](/docs/infra) module is licensed under [**AGPLv3**](/docs/about/license#pigsty-special-module) due to Grafana.
-As an exception, if you only use Nginx/Victoria components without Grafana, you're effectively under [**Apache-2.0**](/docs/about/license#pigsty-license).
+Pigsty is licensed under [**Apache-2.0**](/docs/about/license), though embedded Grafana component uses AGPLv3.
 
 
 ----------------

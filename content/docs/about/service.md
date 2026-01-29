@@ -26,7 +26,7 @@ We deeply understand the importance of professional commercial support for enter
 - Building an observability system, data dashboards, and visualization applications based on the Prometheus/Grafana technology stack.
 - Migrating off cloud and seeking open-source alternatives to RDS for PostgreSQL - cloud-neutral, vendor lock-in-free solutions.
 - Want professional support for Redis/ETCD/MinIO, as well as extensions like TimescaleDB/Citus.
-- Want to avoid AGPL v3 license restrictions that mandate derivative works to use the same open-source license, for secondary development and OEM branding.
+- Want to perform secondary development and OEM branding with explicit commercial authorization.
 - Want to sell Pigsty as SaaS/PaaS/DBaaS, or provide technical services/consulting/cloud services based on this distribution.
 
 
@@ -40,7 +40,7 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 
 {{< card header="**Pigsty Open Source Edition (OSS)**" title="Free and Open Source" subtitle="No scale limit, no warranty" footer="Self-sufficient open source veterans">}}
 
-<p><b>License: <a href="/docs/about/license">AGPLv3</a></b></p>
+<p><b>License: <a href="/docs/about/license">Apache-2.0</a></b></p>
 <p><b>PG Support: 18</b></p>
 <p><b>Architecture Support: x86_64</b></p>
 <p><b>OS Support: Latest minor versions of three families</b><p>
@@ -136,9 +136,7 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 
 ## Pigsty Open Source Edition (OSS)
 
-Pigsty Open Source Edition uses the [**AGPLv3**](/docs/about/license) license, provides complete core functionality, requires no fees, but does not guarantee any warranty service. If you find defects in Pigsty, we welcome you to submit an [Issue](https://github.com/pgsty/pigsty/issues/) on Github.
-
-If you are a regular end user (i.e., users other than public cloud providers and database vendors), we actually enforce the more permissive Apache 2.0 license - even if you perform secondary development on Pigsty, we will not pursue this.
+Pigsty Open Source Edition uses the [**Apache-2.0**](/docs/about/license) license, provides complete core functionality, requires no fees, but does not guarantee any warranty service. If you find defects in Pigsty, we welcome you to submit an [Issue](https://github.com/pgsty/pigsty/issues/) on Github.
 
 For the open source version, we provide pre-built standard offline software packages for PostgreSQL 18 on the latest minor versions of three specific operating system distributions: EL 9.4, Debian 12.7, Ubuntu 22.04.5 (as support for open source, we also provide Debian 12 Arm64 offline software packages).
 
@@ -170,7 +168,7 @@ Pigsty Professional Edition subscription allows you to use China mainland mirror
 
 Pigsty Professional Edition subscription provides standard expert consulting services, including complex issue analysis, DBA Q&A support, backup compliance advice, etc. We commit to responding to your issues within business hours (5x8), and provide **1** person-day support per year, with optional person-day add-on options.
 
-Pigsty Professional Edition uses a commercial license and provides written contractual exemption from AGPLv3 open source obligations. Even if you perform secondary development on Pigsty and violate the AGPLv3 license by not open-sourcing, we will not pursue this.
+Pigsty Professional Edition uses a commercial license, providing additional modules, technical support, and warranty services.
 
 Pigsty Professional Edition starting price is **¥150,000 / year**, equivalent to the annual fee for **9** vCPU AWS high-availability RDS PostgreSQL, or a junior operations engineer with a monthly salary of **10,000 yuan**.
 
