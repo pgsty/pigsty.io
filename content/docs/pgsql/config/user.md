@@ -1,6 +1,6 @@
 ---
 title: User/Role
-weight: 1204
+weight: 40
 description: How to define and customize PostgreSQL users and roles through configuration?
 icon: fa-solid fa-users
 module: [PGSQL]

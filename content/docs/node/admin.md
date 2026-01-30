@@ -142,3 +142,150 @@ If you want to add or reconfigure monitoring on existing nodes, use the followin
 ./node.yml -t node_crontab   # add/overwrite crontab entries
 ./node.yml -t node_vip       # setup optional L2 VIP for node cluster
 ```
+
+
+----------------
+
+## HAProxy Password
+
+[`haproxy_admin_password`](param/#haproxy_admin_password) (default `pigsty`) is used for HAProxy admin UI authentication, rendered to `/etc/haproxy/haproxy.cfg`.
+
+After changing the password, use the following to reload config (hot reload, no connection interruption):
+
+```bash
+./node.yml -l <target> -t haproxy_config,haproxy_reload
+```
+
+
+----------------
+
+## Firewall Management
+
+Pigsty uses [`node_firewall_mode`](param/#node_firewall_mode) to control firewall behavior.
+Uses **firewalld** on RHEL/Rocky and **ufw** on Debian/Ubuntu.
+
+By default, this is `none` - existing firewall config is untouched and left to the user.
+Set to `zone` to enable the system firewall.
+In zone mode, intranet traffic is unrestricted, but external access is limited to specific ports.
+This is especially important when deploying on cloud servers exposed to the internet.
+
+We recommend opening only necessary ports: 22 (SSH), 80/443 (HTTP/HTTPS) are essential. Be cautious about exposing port 5432 (PostgreSQL).
+
+
+### Enable Firewall
+
+Set `node_firewall_mode` to `zone` to enable firewall with trusted zone config:
+
+```yaml
+node_firewall_mode: zone              # enable firewall with zone rules
+node_firewall_intranet:               # trust these CIDRs (full access)
+  - 10.0.0.0/8
+  - 192.168.0.0/16
+  - 172.16.0.0/12
+node_firewall_public_port:            # open these ports to public
+  - 22                                # SSH
+  - 80                                # HTTP
+  - 443                               # HTTPS
+```
+
+Then execute: `./node.yml -l <target> -t node_firewall`
+
+
+### Open More Ports
+
+To open additional ports, add them to `node_firewall_public_port` and re-run:
+
+```yaml
+node_firewall_public_port: [22, 80, 443, 5432, 6379]  # add PostgreSQL and Redis ports
+```
+
+```bash
+./node.yml -l <target> -t node_firewall
+```
+
+
+### Configure Intranet CIDRs
+
+CIDRs in `node_firewall_intranet` are added to the **trusted zone** with full access:
+
+```yaml
+node_firewall_intranet:
+  - 10.0.0.0/8           # Class A private
+  - 192.168.0.0/16       # Class C private
+  - 172.16.0.0/12        # Class B private
+  - 100.64.0.0/10        # Carrier-grade NAT (if needed)
+```
+
+
+### Remove Rules (Manual)
+
+> **Important**: Pigsty's firewall management is **add-only**. Removing entries from config and re-running
+> **will NOT** delete existing rules. You must remove them manually.
+
+{{< tabpane text=true persist=header >}}
+{{% tab header="EL (firewalld)" %}}
+```bash
+# Remove port from public zone
+sudo firewall-cmd --zone=public --remove-port=5432/tcp
+sudo firewall-cmd --runtime-to-permanent
+
+# Remove CIDR from trusted zone
+sudo firewall-cmd --zone=trusted --remove-source=10.0.0.0/8
+sudo firewall-cmd --runtime-to-permanent
+
+# View current rules
+sudo firewall-cmd --zone=public --list-ports
+sudo firewall-cmd --zone=trusted --list-sources
+
+# Reset to initial state (remove all custom rules)
+sudo firewall-cmd --complete-reload
+```
+{{% /tab %}}
+{{% tab header="Debian (ufw)" %}}
+```bash
+# Delete port rule
+sudo ufw delete allow 5432/tcp
+
+# Delete CIDR rule
+sudo ufw delete allow from 10.0.0.0/8
+
+# View current rules (numbered)
+sudo ufw status numbered
+
+# Delete by rule number
+sudo ufw delete <rule_number>
+
+# Reset to initial state (remove all rules, keep ufw enabled)
+sudo ufw reset
+```
+{{% /tab %}}
+{{< /tabpane >}}
+
+
+### Disable Firewall
+
+To completely disable the firewall, set `node_firewall_mode` to `off`:
+
+```yaml
+node_firewall_mode: off    # completely disable firewall
+```
+
+```bash
+./node.yml -l <target> -t node_firewall
+```
+
+Or disable manually:
+
+{{< tabpane text=true persist=header >}}
+{{% tab header="EL (firewalld)" %}}
+```bash
+sudo systemctl disable --now firewalld
+```
+{{% /tab %}}
+{{% tab header="Debian (ufw)" %}}
+```bash
+sudo ufw disable
+```
+{{% /tab %}}
+{{< /tabpane >}}
+

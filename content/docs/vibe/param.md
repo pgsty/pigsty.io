@@ -7,7 +7,7 @@ module: [VIBE]
 categories: [Param]
 ---
 
-VIBE module has **15** config parameters, grouped into: common params, Code-Server params, JupyterLab params, Claude Code params, and Node.js params.
+VIBE module has **16** config parameters, grouped into: common params, Code-Server params, JupyterLab params, Claude Code params, and Node.js params.
 
 
 --------
@@ -31,6 +31,7 @@ VIBE module has **15** config parameters, grouped into: common params, Code-Serv
 | [`claude_env`](#claude_env) | dict | H/I | `{}` | Claude Code extra env vars |
 | [`nodejs_enabled`](#nodejs_enabled) | bool | H/I | `true` | Enable Node.js |
 | [`nodejs_registry`](#nodejs_registry) | url | H/I | `''` | npm registry URL, auto for china |
+| [`npm_packages`](#npm_packages) | string[] | H/I | `[]` | Global npm packages to install |
 {.full-width}
 
 
@@ -330,6 +331,24 @@ nodejs_registry: 'https://registry.npmmirror.com'  # Manually specify China mirr
 nodejs_registry: 'http://npm.internal.example.com' # Internal mirror
 ```
 
+### `npm_packages`
+
+List of npm packages to install globally via `npm install -g`.
+
+- **Type**: `string[]`
+- **Level**: H/I
+- **Default**: `[]` (empty list)
+
+Use this to install CLI tools like Claude Code, TypeScript, pnpm, etc.
+
+```yaml
+npm_packages: []                                   # No packages (default)
+npm_packages:
+  - '@anthropic-ai/claude-code'                    # Claude Code CLI
+  - typescript                                      # TypeScript compiler
+  - pnpm                                            # Fast package manager
+```
+
 
 --------
 
@@ -388,6 +407,7 @@ claude_env: {}
 # Node.js params
 nodejs_enabled: true
 nodejs_registry: ''
+npm_packages: []
 ```
 
 

@@ -1,6 +1,6 @@
 ---
 title: Database
-weight: 1205
+weight: 50
 description: How to define and customize PostgreSQL databases through configuration?
 icon: fa-solid fa-coins
 module: [PGSQL]

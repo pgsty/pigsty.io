@@ -1,6 +1,6 @@
 ---
 title: Package Alias
-weight: 1203
+weight: 30
 description: Pigsty provides a package alias translation mechanism that shields the
   differences in binary package details across operating systems, making installation
   easier.

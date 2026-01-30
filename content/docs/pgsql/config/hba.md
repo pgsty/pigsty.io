@@ -1,6 +1,6 @@
 ---
 title: HBA Rules
-weight: 1206
+weight: 60
 description: Detailed explanation of PostgreSQL and Pgbouncer Host-Based Authentication (HBA) rules configuration in Pigsty.
 icon: fa-solid fa-key
 module: [PGSQL]

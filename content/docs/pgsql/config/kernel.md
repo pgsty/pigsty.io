@@ -1,6 +1,6 @@
 ---
 title: Kernel Version
-weight: 1202
+weight: 20
 description: How to choose the appropriate PostgreSQL kernel and major version.
 icon: fa-solid fa-microchip
 module: [PGSQL]
@@ -23,12 +23,12 @@ Pigsty supports PostgreSQL from version 10 onwards. The current version packages
 ```yaml
 all:
   vars:
-    pg_version: 17
+    pg_version: 18
     pg_packages: [ pgsql-main pgsql-common ]
     pg_extensions: [ postgis, timescaledb, pgvector, pgml ]
 ```
 
-> Effect: Ansible will pull packages corresponding to `pg_version=17` during installation, pre-install extensions to the system, and database initialization scripts can then directly `CREATE EXTENSION`.
+> Effect: Ansible will pull packages corresponding to `pg_version=18` during installation, pre-install extensions to the system, and database initialization scripts can then directly `CREATE EXTENSION`.
 
 Extension support varies across versions in Pigsty's offline repository: 12/13 only provide core and tier-1 extensions, while 15/17/18 cover all extensions. If an extension is not pre-packaged, it can be added via `repo_packages_extra`.
 

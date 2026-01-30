@@ -228,7 +228,7 @@ Major extensions add PG 18 support: age, citus, documentdb, pg_search, timescale
 **Checksums**
 
 ```bash
-bca8a819ed83e5fc228af9e991de1f17  pigsty-v4.0.0.tgz
+bc48405075b3ec6a85fc2c99a1f77650  pigsty-v4.0.0.tgz
 db9797c3c8ae21320b76a442c1135c7b  pigsty-pkg-v4.0.0.d12.aarch64.tgz
 1eed26eee42066ca71b9aecbf2ca1237  pigsty-pkg-v4.0.0.d12.x86_64.tgz
 03540e41f575d6c3a7c63d1d30276d49  pigsty-pkg-v4.0.0.d13.aarch64.tgz

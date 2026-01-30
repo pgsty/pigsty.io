@@ -1,6 +1,6 @@
 ---
 title: Access Control
-weight: 1207
+weight: 70
 description: Default role system and privilege model provided by Pigsty
 icon: fa-solid fa-lock
 module: [PGSQL]

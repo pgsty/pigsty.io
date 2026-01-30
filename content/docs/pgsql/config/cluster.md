@@ -1,6 +1,6 @@
 ---
 title: Cluster / Instance
-weight: 1201
+weight: 10
 description: Choose the appropriate instance and cluster types based on your requirements
   to configure PostgreSQL database clusters that meet your needs.
 icon: fa-solid fa-code
