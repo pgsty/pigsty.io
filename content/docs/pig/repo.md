@@ -9,6 +9,37 @@ categories: [Reference]
 
 The `pig repo` command is a comprehensive tool for managing package repositories on Linux systems. It provides functionality to add, remove, create, and manage software repositories for both RPM-based (RHEL/CentOS/Rocky/Alma) and Debian-based (Debian/Ubuntu) distributions.
 
+```bash
+pig repo - Manage Linux software repo (apt/dnf)
+
+Usage: pig repo <command>
+
+Commands:
+  add       Add new repository
+  set       Wipe and overwrite and update repository
+  rm        Remove repository
+  list      Print available repo and module list
+  info      Get repo detailed information
+  status    Show current repo status
+  update    Update repo cache
+  create    Create local YUM/APT repository
+  cache     Create offline package from local repo
+  boot      Bootstrap repo from offline package
+  reload    Refresh repo catalog
+
+Flags:
+  -h, --help   help for repo
+
+Global Flags:
+      --debug              enable debug mode
+  -H, --home string        pigsty home path
+  -i, --inventory string   config inventory path
+      --log-level string   log level: debug, info, warn, error, fatal, panic (default "info")
+      --log-path string    log file path, terminal by default
+
+Use "pig repo [command] --help" for more information about a command.
+```
+
 | Command | Description | Notes |
 |:---|:---|:---|
 | `repo list` | Print available repo and module list | |
@@ -50,12 +81,23 @@ In pig, APT/YUM repositories are organized into **modules** — groups of reposi
 
 | Module | Description | Repository List |
 |:---:|:---|:---|
-| `all` | All core modules needed to install PG | `node` + `infra` + `pgsql` |
+| `all` | All core modules for PG install | `node` + `infra` + `pgsql` |
 | `pgsql` | PGDG + Pigsty PG extensions | `pigsty-pgsql` + `pgdg` |
 | `pigsty` | Pigsty Infra + PGSQL repos | pigsty-infra, pigsty-pgsql |
 | `pgdg` | PGDG official repository | pgdg-common, pgdg13-18 |
 | `node` | Linux system repositories | base, updates, extras, epel... |
-| `infra` | Infrastructure component repos | pigsty-infra, nginx, docker-ce |
+| `infra` | Infrastructure components | pigsty-infra, nginx, docker-ce |
+| `extra` | Extra infrastructure repos | docker-ce, nginx, haproxy... |
+| `beta` | Pigsty beta repo | pigsty-pgsql-beta |
+| `llvm` | LLVM for PGRX | LLVM 16/17/18/19 |
+| `kube` | Kubernetes repo | kubernetes |
+| `grafana` | Grafana repo | grafana |
+| `haproxy` | HAProxy repo | haproxy |
+| `redis` | Redis stack repo | redis |
+| `mongo` | MongoDB repo | mongodb |
+| `mysql` | MySQL repo | mysql |
+| `click` | ClickHouse repo | clickhouse |
+| `gitlab` | GitLab repo | gitlab-ce |
 
 
 ## repo add

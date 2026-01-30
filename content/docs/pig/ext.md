@@ -10,6 +10,42 @@ categories: [Reference]
 The `pig ext` command is a comprehensive tool for managing PostgreSQL extensions.
 It allows users to search, install, remove, update, and manage PostgreSQL extensions and even kernel packages.
 
+```bash
+pig ext - Manage PostgreSQL Extensions
+
+Usage: pig ext <command>
+
+Commands:
+  add       Install extension for PostgreSQL
+  avail     Show extension availability matrix
+  info      Get extension information
+  link      Link PostgreSQL version to PATH
+  list      List & Search PostgreSQL extensions
+  reload    Refresh extension catalog
+  rm        Remove extension from PostgreSQL
+  scan      Scan installed PostgreSQL extensions
+  status    Show installed PostgreSQL extensions
+  update    Update extension for PostgreSQL
+
+Aliases:
+  add, install, ins, get
+  rm, remove, del, uninstall
+
+Flags:
+  -h, --help               help for ext
+  -p, --pgconfig string    pg_config path
+  -v, --version int        pg major version
+
+Global Flags:
+      --debug              enable debug mode
+  -H, --home string        pigsty home path
+  -i, --inventory string   config inventory path
+      --log-level string   log level: debug, info, warn, error, fatal, panic (default "info")
+      --log-path string    log file path, terminal by default
+
+Use "pig ext [command] --help" for more information about a command.
+```
+
 | Command | Description | Notes |
 |:---|:---|:---|
 | `ext list` | Search extensions | |

@@ -9,6 +9,38 @@ categories: [Reference]
 
 The `pig build` command is a powerful tool that simplifies the entire workflow of building PostgreSQL extensions from source. It provides a complete build infrastructure setup, dependency management, and compilation environment for both standard and custom PostgreSQL extensions across different operating systems.
 
+```bash
+pig build - Build Postgres Extension from source
+
+Usage: pig build <command>
+
+Commands:
+  dep       Install extension build dependencies
+  ext       Build extension package
+  get       Download source code tarball
+  pgrx      Install pgrx
+  pkg       Complete build pipeline: get, dep, ext
+  proxy     Init build proxy
+  repo      Init build repo
+  rust      Install rust
+  spec      Init building spec repo
+  tool      Init build tools
+
+Flags:
+  -h, --help            help for build
+  -v, --version int     pg major version
+  -y, --yes             auto confirm
+
+Global Flags:
+      --debug              enable debug mode
+  -H, --home string        pigsty home path
+  -i, --inventory string   config inventory path
+      --log-level string   log level: debug, info, warn, error, fatal, panic (default "info")
+      --log-path string    log file path, terminal by default
+
+Use "pig build [command] --help" for more information about a command.
+```
+
 
 ## Subcommands
 

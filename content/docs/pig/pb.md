@@ -9,6 +9,47 @@ categories: [Reference]
 
 The `pig pgbackrest` command (alias `pig pb`) manages pgBackRest backup and point-in-time recovery (PITR). It wraps common `pgbackrest` operations for simplified backup management. All commands execute as database superuser (default `postgres`).
 
+```bash
+pig pb - Manage pgBackRest backup & restore commands.
+
+Usage: pig pb <command>
+
+Info Commands:
+  pig pb info                      show backup info
+  pig pb ls                        list backups (alias for info)
+  pig pb ls repo                   list configured repos
+  pig pb ls stanza                 list all stanzas
+
+Backup Commands (Primary Only):
+  pig pb backup                    create backup (auto mode)
+  pig pb backup full               full backup
+  pig pb backup diff               differential backup
+  pig pb backup incr               incremental backup
+
+Restore Commands:
+  pig pb restore -d                restore to latest (default)
+  pig pb restore -I                restore to backup consistency point
+  pig pb restore -t <time>         restore to specific time
+  pig pb restore -n <name>         restore to named restore point
+  pig pb restore -b <set>          restore from specific backup set
+
+Stanza Management:
+  pig pb create                    create stanza (first-time setup)
+  pig pb upgrade                   upgrade stanza after PG major upgrade
+  pig pb delete --force            delete stanza (dangerous!)
+
+Control Commands:
+  pig pb check                     verify backup repository
+  pig pb start                     enable pgBackRest
+  pig pb stop                      disable pgBackRest
+  pig pb expire                    cleanup expired backups
+
+Log Commands:
+  pig pb log                       list log files
+  pig pb log tail                  tail -f latest log
+  pig pb log cat                   cat latest log
+```
+
 
 ## Command Overview
 

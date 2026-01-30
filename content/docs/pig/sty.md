@@ -10,12 +10,31 @@ categories: [Reference]
 The **pig** can also be used as a CLI tool for Pigsty — the battery-included free PostgreSQL RDS.
 Which brings HA, PITR, Monitoring, IaC, and all the extensions to your PostgreSQL cluster.
 
+```bash
+pig sty - Init (Download), Bootstrap, Configure, and Deploy Pigsty
+
+  pig sty init    [-pfvd]         # install pigsty (~/pigsty by default)
+  pig sty boot    [-rpk]          # install ansible and prepare offline pkg
+  pig sty conf    [-cvrsoxnpg]    # configure pigsty and generate config
+  pig sty deploy                  # use pigsty to deploy everything (CAUTION!)
+  pig sty get                     # download pigsty source tarball
+  pig sty list                    # list available pigsty versions
+
+Examples:
+  pig sty init                 # extract and init ~/pigsty
+  pig sty boot                 # install ansible & other deps
+  pig sty conf                 # generate pigsty.yml config file
+  pig sty deploy               # run the deploy.yml playbook
+```
+
 | Command | Description | Notes |
 |:---|:---|:---|
 | `sty init` | Install Pigsty | |
 | `sty boot` | Install Ansible prerequisites | Requires sudo or root |
 | `sty conf` | Generate configuration | |
 | `sty deploy` | Run deployment playbook | |
+| `sty list` | List available Pigsty versions | |
+| `sty get` | Download Pigsty source tarball | |
 
 
 ## Quick Start
@@ -146,4 +165,25 @@ pig sty conf -c rich -g -v 17 -r china
 ```
 
 This generates a configuration using the `rich` template with PostgreSQL 17, random passwords, and China region mirrors.
+
+
+--------
+
+## sty list
+
+List available Pigsty versions.
+
+```bash
+pig sty list                     # List available versions
+```
+
+
+## sty get
+
+Download Pigsty source tarball.
+
+```bash
+pig sty get                      # Download latest version
+pig sty get v3.4.0               # Download specific version
+```
 

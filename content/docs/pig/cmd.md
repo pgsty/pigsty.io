@@ -9,13 +9,19 @@ categories: [Reference]
 
 The `pig` CLI provides comprehensive tools for managing PostgreSQL installations, extensions, repositories, and building extensions from source. Check command documentation with `pig help <command>`.
 
+**Extension Management:**
+
 - [**pig repo**](/docs/pig/repo/): Manage software repositories
 - [**pig ext**](/docs/pig/ext/): Manage PostgreSQL extensions
 - [**pig build**](/docs/pig/build/): Build extensions from source
+
+**Pigsty Management:**
+
 - [**pig sty**](/docs/pig/sty/): Manage Pigsty installation
 - [**pig pg**](/docs/pig/pg/): Manage local PostgreSQL server
 - [**pig pt**](/docs/pig/pt/): Manage Patroni HA cluster
-- [**pig pb**](/docs/pig/pb/): Manage pgBackRest backup & recovery
+- [**pig pb**](/docs/pig/pb/): Manage pgBackRest backup & restore
+- [**pig pitr**](/docs/pig/pitr/): Orchestrated Point-In-Time Recovery
 
 
 ## Overview
@@ -43,6 +49,11 @@ PostgreSQL Extension Manager
 
 Pigsty Management Commands
   do          Run admin tasks
+  patroni     Manage Patroni cluster
+  pg_exporter Manage pg_exporter
+  pgbackrest  Manage pgBackRest backup
+  pitr        Perform PITR
+  postgres    Manage local PostgreSQL
   sty         Manage Pigsty installation
 
 Additional Commands:
@@ -172,4 +183,19 @@ pig pb backup full               # Full backup
 pig pb restore                   # Restore to latest
 pig pb restore -t "2025-01-01"   # Restore to specific time
 pig pb log tail                  # Real-time log viewing
+```
+
+
+## pig pitr
+
+Orchestrated Point-In-Time Recovery. See [`pig pitr`](/docs/pig/pitr/) for details.
+
+```bash
+pig pitr -d                      # Recover to latest (most common)
+pig pitr -t "2025-01-01 12:00"   # Recover to specific time
+pig pitr -I                      # Recover to backup consistency point
+pig pitr -d --dry-run            # Show execution plan without running
+pig pitr -d -y                   # Skip confirmation (for automation)
+pig pitr -d --skip-patroni       # Skip Patroni management
+pig pitr -d --no-restart         # Don't auto-start PostgreSQL after restore
 ```

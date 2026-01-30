@@ -50,10 +50,19 @@ $ pig install -y vector               # You can use extension name (vector) or p
 
 Run `pig help <command>` to get detailed help for subcommands.
 
+**Extension Management:**
+
 - [**pig repo**](/docs/pig/repo/): Manage software repositories
 - [**pig ext**](/docs/pig/ext/): Manage PG extensions
-- [**pig build**](/docs/pig/build/): Set up build environment
-- [**pig sty**](/docs/pig/sty/): Manage Pigsty
+- [**pig build**](/docs/pig/build/): Build extensions from source
+
+**Pigsty Management:**
+
+- [**pig sty**](/docs/pig/sty/): Manage Pigsty installation
+- [**pig postgres**](/docs/pig/pg/): Manage local PostgreSQL server
+- [**pig patroni**](/docs/pig/pt/): Manage Patroni HA cluster
+- [**pig pgbackrest**](/docs/pig/pb/): Manage pgBackRest backup & restore
+- [**pig pitr**](/docs/pig/pitr/): Orchestrated Point-In-Time Recovery
 
 
 ## About
