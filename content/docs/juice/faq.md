@@ -1,24 +1,17 @@
 ---
 title: FAQ
 weight: 4560
-description: Frequently asked questions about the JUICE module
+description: JUICE module frequently asked questions.
 icon: fa-solid fa-circle-question
 module: [JUICE]
 categories: [Reference]
 ---
 
-
 --------
 
-## Port conflict - what to do?
+## Port Conflicts?
 
-Multiple JuiceFS instances on the same node must configure different `port` values. If you encounter port conflict error:
-
-```
-juice_instances have port conflicts: [9567, 9567]
-```
-
-Assign unique ports to each instance in config:
+Multiple instances on the same node must use different `port` values. Example:
 
 ```yaml
 juice_instances:
@@ -29,116 +22,76 @@ juice_instances:
   fs2:
     path: /fs2
     meta: postgres://...
-    port: 9568    # Must be different
+    port: 9568
 ```
-
 
 --------
 
-## How to add new instance?
+## Why does changing `data` not take effect?
 
-1. Add new instance definition in config
-2. Execute playbook specifying new instance name
+`data` is only used by `juicefs format --no-update`. After filesystem creation it will not change.
+To switch backend, migrate data and reformat manually.
+
+--------
+
+## How to add a new instance?
+
+1. Add instance definition in config
+2. Run:
 
 ```bash
-./juice.yml -l 10.10.10.10 -e fsname=newfs
+./juice.yml -l <host> -e fsname=<name>
 ```
-
 
 --------
 
-## How to remove instance?
+## How to remove an instance?
 
-1. Set instance's `state` to `absent` in config
-2. Execute `juice_clean` task
+1. Set instance `state` to `absent`
+2. Run:
 
 ```bash
-./juice.yml -l 10.10.10.10 -e fsname=jfs -t juice_clean
+./juice.yml -l <host> -t juice_clean
 ```
 
+Removal does not delete PostgreSQL metadata or object storage data.
 
 --------
 
-## Where is filesystem data stored?
+## Where is file data stored?
 
-Depends on `data` parameter config:
+Depends on `data`:
 
-- **PostgreSQL Large Objects**: Data stored in PostgreSQL's `pg_largeobject` table
-- **MinIO/S3**: Data stored in specified bucket in object storage
+- `--storage postgres`: data in PostgreSQL `pg_largeobject`
+- `--storage minio/s3`: data in object storage bucket
 
-Metadata is always stored in the PostgreSQL database specified by `meta` parameter.
-
-
---------
-
-## What storage backends are supported?
-
-JuiceFS supports multiple storage backends. Common ones in Pigsty:
-
-- `postgres`: PostgreSQL large object storage
-- `minio`: MinIO object storage
-- `s3`: AWS S3 or S3-compatible storage
-
-See [JuiceFS official docs](https://juicefs.com/docs/community/how_to_setup_object_storage) for full list.
-
+Metadata is always stored in PostgreSQL defined by `meta`.
 
 --------
 
-## Can I mount same filesystem on multiple nodes?
+## Multi-node mount notes?
 
-Yes. Just configure the same `meta` URL on multiple nodes; JuiceFS handles concurrent access automatically.
-
-First-time formatting only needs to run on one node; other nodes automatically skip formatting.
-
-
---------
-
-## How to use PITR to recover filesystem?
-
-When using PostgreSQL for metadata and data storage:
-
-1. Stop all JuiceFS services
-2. Use pgBackRest to restore PostgreSQL to target point in time
-3. Restart PostgreSQL and JuiceFS services
-
-See [Administration: PITR Filesystem Recovery](admin#pitr-filesystem-recovery) for detailed steps.
-
+- Use the same `meta` and instance name on all nodes
+- Only one node needs to format; others will skip
+- Ensure `port` does not conflict on each node
 
 --------
 
-## Can cache directory be customized?
+## Monitoring target not generated?
 
-Yes, via [`juice_cache`](param#juice_cache) parameter:
+`juice_register` only writes `/infra/targets/juice/` when `infra` group exists.
+You can run manually:
 
-```yaml
-juice_cache: /data/juice    # Default
-# or
-juice_cache: /ssd/juice     # Use SSD for cache
+```bash
+./juice.yml -l <host> -t juice_register
 ```
 
-
 --------
 
-## How to configure mount options?
+## How to change mount options?
 
-Pass extra `juicefs mount` parameters via instance's `mount` field:
+Update `mount` in the instance and restart service:
 
-```yaml
-juice_instances:
-  jfs:
-    path  : /fs
-    meta  : postgres://...
-    mount : --cache-size 102400 --prefetch 3
+```bash
+./juice.yml -l <host> -t juice_config,juice_launch
 ```
-
-Common options:
-
-| Option              | Description            |
-|:----------------|:--------------|
-| `--cache-size`  | Local cache size (MB)    |
-| `--prefetch`    | Prefetch block count          |
-| `--buffer-size` | Read/write buffer size (MB)   |
-| `--max-uploads` | Max concurrent uploads       |
-| `--open-cache`  | Open file cache time (seconds)   |
-{.full-width}
-
