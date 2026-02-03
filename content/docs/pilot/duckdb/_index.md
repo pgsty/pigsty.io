@@ -7,34 +7,35 @@ module: [PILOT]
 categories: [Reference]
 ---
 
+[DuckDB](https://github.com/duckdb/duckdb/) is a high-performance embedded analytical database.
 
-> [DuckDB](https://duckdb.org/) is a fast in-process analytical database: [Installation](#installation) | [Resources](#resources)
-
---------
-
-## Overview
-
-DuckDB is an embedded database, so it does not require deployment or service management. You only need to install the DuckDB package on the node to use it.
+DuckDB is embedded, so it does not require deployment or service management. Install the DuckDB package on the node and use it directly.
 
 
 --------
 
 ## Installation
 
-Pigsty already provides DuckDB software package (RPM / DEB) in the Infra software repository, you can install it with the following command:
+[**Pigsty Infra repo**](/docs/repo/infra/list) provides latest DuckDB RPM/DEB packages, install directly:
 
 ```bash
 ./node.yml -t node_install  -e '{"node_repo_modules":"infra","node_packages":["duckdb"]}'
 ```
 
+Install with pig:
+
+```bash
+pig repo add infra -u      # add Infra repo
+pig install duckdb         # install DuckDB package
+```
 
 --------
 
 ## Resources
 
-There are some DuckDB-related extension plugins provided by Pigsty for PostgreSQL:
+Pigsty provides DuckDB-related PostgreSQL extensions:
 
-- [**`pg_analytics`**](/docs/pgsql/ext/): Add OLAP capabilities to PostgreSQL based on DuckDB
-- [**`pg_lakehouse`**](/docs/pgsql/ext/): Data lakehouse plugin by ParadeDB, wrapping DuckDB. (Currently planned to be renamed back to `pg_analytics`)
-- [**`duckdb_fdw`**](/docs/pgsql/ext/): Foreign data wrapper for DuckDB, read/write DuckDB data files from PG
-- [**`pg_duckdb`**](/docs/pgsql/ext/): WIP extension plugin by DuckDB official MotherDuck and Hydra (only available on EL systems as a pilot)
+- [**`pg_duckdb`**](https://pgext.cloud/e/pg_analytics), an extension by DuckDB official MotherDuck and Hydra
+- [**`pg_mooncake`**](https://pgext.cloud/e/pg_mooncake), builds on `pg_duckdb` with columnar engine and sync
+- [**`pg_analytics`**](https://pgext.cloud/e/pg_analytics), OLAP on DuckDB, archived
+- [**`duckdb_fdw`**](/docs/pgsql/ext/), DuckDB FDW to read/write DuckDB files from PG, not updated yet
