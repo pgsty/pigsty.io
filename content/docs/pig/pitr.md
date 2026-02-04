@@ -36,12 +36,12 @@ Examples:
   pig pitr -d                      # Recover to latest (most common)
   pig pitr -t "2025-01-01 12:00"   # Recover to specific time
   pig pitr -I                      # Recover to backup consistency point
-  pig pitr -d --dry-run            # Show execution plan without running
+  pig pitr -d --plan               # Show execution plan without running
+  pig pitr -d --dry-run            # alias for --plan
   pig pitr -d -y                   # Skip confirmation (for automation)
   pig pitr -d --skip-patroni       # Skip Patroni management
   pig pitr -d --no-restart         # Don't auto-start PostgreSQL after restore
 ```
-
 
 ## Overview
 
@@ -78,7 +78,8 @@ pig pitr -t "2025-01-01 12:00:00+08"
 pig pitr -I
 
 # View execution plan (dry-run)
-pig pitr -d --dry-run
+pig pitr -d --plan
+pig pitr -d --plan -o yaml         # structured execution plan (YAML)
 
 # Skip confirmation (for automation)
 pig pitr -d -y
@@ -121,9 +122,18 @@ pig pitr -d --no-restart
 |:------|:------|:------------|
 | `--skip-patroni` | `-S` | Skip Patroni stop operation |
 | `--no-restart` | `-N` | Don't auto-start PostgreSQL after recovery |
-| `--dry-run` | | Show execution plan only, don't execute |
+| `--plan` | | Show execution plan only, don't execute |
+| `--dry-run` | | Alias for `--plan` |
 | `--yes` | `-y` | Skip confirmation countdown |
 {.full-width}
+
+### Structured Execution Plan
+
+When using `--plan` / `--dry-run`, combine with `-o yaml|json` to output a structured plan for automation and review:
+
+```bash
+pig pitr -d --plan -o json
+```
 
 ### Recovery Options
 
@@ -176,10 +186,10 @@ If Patroni service is running and `--skip-patroni` not specified:
 
 Progressive strategy to ensure PostgreSQL is fully stopped:
 
-1. **Wait for auto-stop**: Wait 30 seconds after Patroni stops
-2. **Graceful stop**: Use `pg_ctl stop -m fast` (retry 3 times with exponential backoff)
-3. **Immediate stop**: Use `pg_ctl stop -m immediate`
-4. **Force kill**: Use `kill -9` (last resort)
+1. **Wait for auto-stop**: wait 30 seconds after Patroni stops
+2. **Graceful stop**: use `pg_ctl stop -m fast` (retry 3 times with exponential backoff)
+3. **Immediate stop**: use `pg_ctl stop -m immediate`
+4. **Force kill**: use `kill -9` (last resort)
 
 ### Phase 4: Execute Recovery
 
@@ -200,15 +210,15 @@ Display detailed follow-up instructions including:
 - How to verify recovered data
 - How to promote to primary
 - How to resume Patroni cluster management
-- How to recreate pgBackRest stanza
+- How to re-create pgBackRest stanza
 
 
-## Usage Examples
+## Examples
 
-### Scenario 1: Accidental Data Deletion Recovery
+### Scenario 1: Recover from accidental delete
 
 ```bash
-# 1. View available backups
+# 1. Check available backups
 pig pb info
 
 # 2. Recover to time before deletion
@@ -218,55 +228,55 @@ pig pitr -t "2025-01-15 09:30:00+08"
 pig pg psql
 SELECT * FROM important_table;
 
-# 4. Promote to primary if satisfied
+# 4. Promote after confirmation
 pig pg promote
 ```
 
-### Scenario 2: Recover to Latest State
+### Scenario 2: Recover to latest state
 
 ```bash
-# Recover to latest data after server failure
+# Restore to latest data after failure
 pig pitr -d
 ```
 
-### Scenario 3: Fast Recovery to Backup Point
+### Scenario 3: Quick restore to backup point
 
 ```bash
-# Recover to backup consistency point (no WAL replay needed)
+# Recover to backup consistency point (no WAL replay)
 pig pitr -I
 ```
 
-### Scenario 4: Automation Scripts
+### Scenario 4: Automation script
 
 ```bash
-# Skip all confirmations, suitable for automation
+# Skip all confirmations
 pig pitr -d -y
 ```
 
-### Scenario 5: Standalone PostgreSQL Instance
+### Scenario 5: Standalone PostgreSQL
 
 ```bash
-# Non-Patroni managed instance
+# Instance not managed by Patroni
 pig pitr -d --skip-patroni
 ```
 
-### Scenario 6: Recover Without Starting
+### Scenario 6: Restore without restart
 
 ```bash
-# Recover then manually inspect before deciding to start
+# Restore and inspect before start
 pig pitr -d --no-restart
 
-# Check recovered data directory
+# Check data directory
 ls -la /pg/data/
 
-# Manual start
+# Start manually
 pig pg start
 ```
 
 
 ## Execution Plan Example
 
-Running `pig pitr -d --dry-run` shows a plan like:
+Running `pig pitr -d --plan` (or `--dry-run`) shows an execution plan like:
 
 ```
 ══════════════════════════════════════════════════════════════════
@@ -295,9 +305,9 @@ Execution Steps:
 ```
 
 
-## Post-Recovery Operations
+## Post-Recovery Actions
 
-After successful recovery, detailed follow-up instructions are displayed:
+After a successful recovery, the command prints guidance like:
 
 ```
 ══════════════════════════════════════════════════════════════════
@@ -329,7 +339,7 @@ After successful recovery, detailed follow-up instructions are displayed:
 
 ### Confirmation Countdown
 
-Unless `--yes` is used, a 5-second countdown is displayed before execution:
+Unless `--yes` is specified, the command shows a 5-second countdown before execution:
 
 ```
 WARNING: This will overwrite the current database!
@@ -340,13 +350,13 @@ Starting PITR in 5 seconds...
 ### Progressive Stop Strategy
 
 To ensure data safety, PostgreSQL is stopped progressively:
-1. First try graceful stop (ensures data consistency)
-2. Then try immediate stop on failure
-3. Finally use kill -9 (only in extreme cases)
+1. Try graceful stop first (preserve consistency)
+2. If failed, try immediate stop
+3. Use kill -9 only as last resort
 
 ### Recovery Verification
 
-Automatically verify PostgreSQL started successfully after recovery, prompting to check logs on failure.
+After restore, the command verifies PostgreSQL startup and prompts to check logs if it fails.
 
 
 ## Design Notes
@@ -354,21 +364,21 @@ Automatically verify PostgreSQL started successfully after recovery, prompting t
 **Relationship with other commands:**
 
 - `pig pitr` internally calls `pig pt stop`, `pig pg stop`, `pig pg start`, and `pig pb restore`
-- Provides higher-level automated coordination than individual commands
-- Suitable for production environment complete PITR workflow
+- Provides higher-level automation than individual commands
+- Suitable for production PITR workflows
 
-**Error Handling:**
+**Error handling:**
 
-- Detailed error messages at each phase
-- Prompts relevant log locations on failure
+- Each phase has detailed error messages
+- On failure, suggests relevant log locations
 - Supports manual continuation after interruption
 
-**Permission Execution:**
+**Privilege execution:**
 
-- If current user is DBSU: execute commands directly
-- If current user is root: use `su - postgres -c "..."` to execute
-- Other users: use `sudo -inu postgres -- ...` to execute
+- If the current user is DBSU: execute directly
+- If current user is root: run `su - postgres -c "..."`
+- Other users: run `sudo -inu postgres -- ...`
 
-**Platform Support:**
+**Platform support:**
 
-This command is designed for Linux systems, depends on Pigsty's default directory structure.
+This command is designed for Linux systems and depends on Pigsty's default directory layout.
