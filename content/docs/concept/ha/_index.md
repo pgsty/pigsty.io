@@ -18,7 +18,7 @@ Pigsty's PostgreSQL clusters come with out-of-the-box high availability, powered
 
 When your PostgreSQL cluster has two or more instances, you automatically have self-healing database high availability without any additional configuration — as long as any instance in the cluster survives, the cluster can provide complete service. Clients only need to connect to any node in the cluster to get full service without worrying about primary-replica topology changes.
 
-With default configuration, the primary failure Recovery Time Objective (RTO) ≈ 45s, and Recovery Point Objective (RPO) < 1MB; for replica failures, RPO = 0 and RTO ≈ 0 (brief interruption). In consistency-first mode, failover can guarantee zero data loss: RPO = 0. All these metrics can be [**configured as needed**](#tradeoffs) based on your actual hardware conditions and reliability requirements.
+With default configuration, the primary failure Recovery Time Objective (RTO) ≈ 45s, and Recovery Point Objective (RPO) < 1MB; for replica failures, RPO = 0 and RTO ≈ 0 (brief interruption). In consistency-first mode, failover can guarantee zero data loss: RPO = 0. All these metrics can be [**configured as needed**](/docs/concept/ha/rto) based on your actual hardware conditions and reliability requirements.
 
 Pigsty includes built-in HAProxy load balancers for automatic traffic switching, providing DNS/VIP/LVS and other access methods for clients. Failover and switchover are almost transparent to the business side except for brief interruptions - applications don't need to modify connection strings or restart.
 The minimal maintenance window requirements bring great flexibility and convenience: you can perform rolling maintenance and upgrades on the entire cluster without application coordination. The feature that hardware failures can wait until the next day to handle lets developers, operations, and DBAs sleep well during incidents.
@@ -84,58 +84,3 @@ Failure detection is performed jointly by Patroni and Etcd. The cluster leader h
 
 Even without any failures, you can proactively change the cluster primary through [**Switchover**](/docs/pgsql/admin#switchover).
 In this case, write queries on the primary will experience a brief interruption and be immediately routed to the new primary. This operation is typically used for rolling maintenance/upgrades of database servers.
-
-
-
------------
-
-## Tradeoffs
-
-**Recovery Time Objective (RTO)** and **Recovery Point Objective (RPO)** are two parameters that require careful tradeoffs when designing high availability clusters.
-
-The default **RTO** and **RPO** values used by Pigsty meet reliability requirements for most scenarios. You can adjust them based on your hardware level, network quality, and business requirements.
-
-{{% alert title="RTO and RPO are NOT always better when smaller!" color="danger" %}}
-Too small an RTO increases false positive rates; too small an RPO reduces the probability of successful automatic failover.
-{{% /alert %}}
-
-The upper limit of unavailability during failover is controlled by the [**`pg_rto`**](/docs/pgsql/param#pg_rto) parameter. **RTO** defaults to `45s`. Increasing it will result in longer primary failure write unavailability, while decreasing it will increase the rate of false positive failovers (e.g., repeated switching due to brief network jitter).
-
-The upper limit of potential data loss is controlled by the [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) parameter, defaulting to `1MB`. Reducing this value can lower the data loss ceiling during failover but also increases the probability of refusing automatic failover when replicas are not healthy enough (lagging too far behind).
-
-
-Pigsty uses **availability-first** mode by default, meaning it will failover as quickly as possible when the primary fails, and data not yet replicated to replicas may be lost (under typical 10GbE networks, replication lag is usually a few KB to 100KB).
-
-If you need to ensure zero data loss during failover, you can use the [**`crit.yml`**](/docs/pgsql/param#pg_conf) template to ensure no data loss during failover, but this sacrifices some performance as a tradeoff.
-
-
------------
-
-## Related Parameters
-
-
-### [**`pg_rto`**](/docs/pgsql/param#pg_rto)
-
-Parameter name: `pg_rto`, Type: `int`, Level: `C`
-
-Recovery Time Objective (RTO) in seconds. This is used to calculate Patroni's TTL value, defaulting to `45` seconds.
-
-If the primary instance is missing for this long, a new leader election will be triggered. This value is not always better when lower; it involves tradeoffs:
-Reducing this value can decrease unavailability during cluster failover (inability to write), but makes the cluster more sensitive to short-term network jitter, increasing the probability of false positive failover triggers.
-You need to configure this value based on network conditions and business constraints, making a **tradeoff** between **failure probability** and **failure impact**.
-
-
-### [**`pg_rpo`**](/docs/pgsql/param#pg_rpo)
-
-Parameter name: `pg_rpo`, Type: `int`, Level: `C`
-
-Recovery Point Objective (RPO) in bytes, default: `1048576`.
-
-Defaults to 1MiB, meaning up to 1MiB of data loss can be tolerated during failover.
-
-When the primary goes down and all replicas are lagging, you must make a difficult choice:
-Either promote a replica to become the new primary immediately, accepting acceptable data loss (e.g., less than 1MB), and restore service as quickly as possible.
-Or wait for the primary to come back online (which may never happen) to avoid any data loss, or abandon automatic failover and wait for human intervention to make the final decision.
-You need to configure this value based on business preference, making a **tradeoff** between **availability** and **consistency**.
-
-Additionally, you can always ensure RPO = 0 by enabling synchronous commit (e.g., using the `crit.yml` template), sacrificing some cluster latency/throughput performance to guarantee data consistency.

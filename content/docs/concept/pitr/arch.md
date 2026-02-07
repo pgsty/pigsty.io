@@ -2,7 +2,8 @@
 title: PITR Architecture
 linkTitle: Architecture
 weight: 212
-description: Pigsty PITR architecture: pgBackRest, repositories, and execution flow
+description: >
+  Pigsty PITR architecture: pgBackRest, repositories, and execution flow
 icon: fa-solid fa-sitemap
 module: [PGSQL]
 categories: [Concept]

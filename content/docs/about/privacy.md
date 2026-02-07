@@ -39,7 +39,7 @@ This website uses Google Analytics, a web analytics service provided by Google, 
 > Google may also transfer this information to third parties if required by law or where such third parties process the information on Google's behalf. Google will not associate your IP address with any other data held by Google.
 > You may refuse the use of cookies by selecting the appropriate settings on your browser, however, please note that if you do this, you may not be able to use the full functionality of this website. By using this website, you consent to the processing of data about you by Google in the manner and for the purposes set out above.
 
-If you have any questions or comments about this policy, or request deletion of personal data, you can contact us by sending an email to rh@pigsty.io
+If you have any questions or comments about this policy, or request deletion of personal data, you can contact us by sending an email to rh@vonng.com
 
 
 <br>
@@ -47,4 +47,3 @@ If you have any questions or comments about this policy, or request deletion of 
 --------
 
 <br>
-

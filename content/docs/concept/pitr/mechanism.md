@@ -2,7 +2,8 @@
 title: How PITR Works
 linkTitle: Mechanism
 weight: 211
-description: PITR mechanism: base backup, WAL archive, recovery window, and transaction boundaries
+description: >
+  PITR mechanism: base backup, WAL archive, recovery window, and transaction boundaries
 icon: fa-solid fa-gears
 module: [PGSQL]
 categories: [Concept]

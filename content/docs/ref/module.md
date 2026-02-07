@@ -1,91 +1,67 @@
 ---
-title: Pigsty Modules
+title: Modules
 weight: 460
-description: This article lists all available modules in Pigsty and the module roadmap.
+description: This article lists available Pigsty modules and the current module planning.
 icon: fa-solid fa-boxes-stacked
 module: [PIGSTY]
 categories: [Reference]
-tags: []
 ---
 
+
+----------------
+
+## Official Modules
+
+| Module | Category | Status | Docs Path | Summary |
+|:-----------------------------:|:------:|:-----:|:---------------:|:----------------------------------------------------------|
+|  [**`PGSQL`**](/docs/pgsql)   | **Core** |  GA   |  `/docs/pgsql`  | High-availability PostgreSQL clusters with built-in backup, monitoring, SOP, and extension ecosystem. |
+|  [**`INFRA`**](/docs/infra)   | **Core** |  GA   |  `/docs/infra`  | Local software repository + VictoriaMetrics/Logs/Traces + Grafana infrastructure stack. |
+|   [**`NODE`**](/docs/node)    | **Core** |  GA   |  `/docs/node`   | Node initialization and convergence: system tuning, admin, HAProxy, Vector, Docker, etc. |
+|   [**`ETCD`**](/docs/etcd)    | **Core** |  GA   |  `/docs/etcd`   | DCS for PostgreSQL HA (service discovery, config, leader-election metadata). |
+|  [**`MINIO`**](/docs/minio)   | Extension |  GA   |  `/docs/minio`  | S3-compatible object storage, optionally used as PostgreSQL backup repository. |
+|  [**`REDIS`**](/docs/redis)   | Extension |  GA   |  `/docs/redis`  | Redis standalone/sentinel/cluster deployment and monitoring. |
+| [**`FERRET`**](/docs/ferret)  | Extension |  GA   | `/docs/ferret`  | FerretDB module (`MONGO` API compatibility) for MongoDB protocol access over PG. |
+| [**`DOCKER`**](/docs/docker)  | Extension |  GA   | `/docs/docker`  | Docker daemon and the runtime capability for containerized apps. |
+|  [**`JUICE`**](/docs/juice)   | Extension | BETA  |  `/docs/juice`  | JuiceFS distributed file system using PostgreSQL as metadata engine. |
+|   [**`VIBE`**](/docs/vibe)    | Extension | BETA  |  `/docs/vibe`   | Browser-based dev environment with Code-Server, JupyterLab, Node.js, and Claude Code. |
+{.stretch-last}
 
 
 ----------------
 
 ## Core Modules
 
-Pigsty provides four <span class="text-primary"><b>core</b></span> modules that are essential for delivering fully-featured, highly available PostgreSQL services:
+Pigsty provides four <span class="text-primary"><b>core</b></span> modules that are important for delivering complete highly available PostgreSQL services:
 
-- [**`PGSQL`**](/docs/pgsql): Self-healing PostgreSQL clusters with HA, PITR, IaC, SOP, monitoring, and [**440**](https://pgext.cloud/list) extensions out of the box.
-- [**`INFRA`**](/docs/infra): Local software repo, VictoriaMetrics, Grafana, VictoriaLogs, AlertManager, PushGateway, Blackbox Exporter...
-- [**`NODE`**](/docs/node): Tune nodes to desired state: hostname, timezone, NTP, ssh, sudo, haproxy, docker, vector, keepalived.
-- [**`ETCD`**](/docs/etcd): Distributed key-value store serving as DCS for HA PostgreSQL clusters: consensus, config management, service discovery.
+- [**`PGSQL`**](/docs/pgsql): Self-healing PostgreSQL clusters with HA, PITR, IaC, SOP, monitoring, and [**444**](https://pgext.cloud/list) extensions.
+- [**`INFRA`**](/docs/infra): Local software repository, Prometheus, Grafana, Loki, AlertManager, PushGateway, Blackbox Exporter...
+- [**`NODE`**](/docs/node): Node convergence for hostname, timezone, NTP, ssh, sudo, haproxy, docker, vector, keepalived.
+- [**`ETCD`**](/docs/etcd): Distributed key-value store used as DCS for HA PostgreSQL clusters: consensus leader election/config management/service discovery.
 
-----------------
-
-## Kernel Modules
-
-Pigsty provides four <span class="text-danger"><b>kernel</b></span> modules as optional in-place replacements for the vanilla PostgreSQL kernel, offering different database flavors:
-
-- [**`MSSQL`**](/docs/pgsql/kernel/babelfish): Microsoft SQL Server wire-protocol compatible PG kernel, powered by AWS, WiltonDB & Babelfish!
-- [**`IVORY`**](/docs/pgsql/kernel/ivorysql): Oracle-compatible PostgreSQL 16 kernel, from the IvorySQL open-source project by HighGo.
-- [**`POLAR`**](/docs/pgsql/kernel/polardb): "Cloud-native" PostgreSQL kernel open-sourced by Alibaba Cloud, an Aurora-style RAC PostgreSQL fork.
-- [**`CITUS`**](/docs/pgsql/kernel/citus): Distributed PostgreSQL cluster via extension (Azure Hyperscale), with native Patroni HA support!
-
-{{% alert title="Chinese Domestic Kernel Support!" color="success" %}}
-
-Pigsty [**Pro Edition**](/docs/about/service) provides Chinese domestic database kernel support: [**PolarDB-O v2**](/docs/pgsql/kernel/polardb-o) — an Oracle-compatible domestic database kernel based on PolarPG.
-
-{{% /alert %}}
+Although these four modules are usually installed together, separate use is still feasible. In practice, only the NODE module is usually mandatory.
 
 
 ----------------
 
 ## Extension Modules
 
-Pigsty provides four <span class="text-secondary"><b>extension</b></span> modules that are not essential for core functionality but can enhance PostgreSQL capabilities:
+Pigsty provides six <span class="text-secondary"><b>extension</b></span> modules. They are not mandatory for core functionality, but can enhance PostgreSQL capabilities:
 
-- [**`MINIO`**](/docs/minio): S3-compatible simple object storage server, serving as optional backup repository for PostgreSQL, with production deployment and monitoring support.
-- [**`REDIS`**](/docs/redis): Redis server, high-performance data structure server, supporting standalone, sentinel, and cluster deployment modes with comprehensive monitoring.
-- [**`MONGO`**](/docs/ferret): Native FerretDB deployment support — adding MongoDB wire-protocol level API compatibility to PostgreSQL!
-- [**`DOCKER`**](/docs/node): Docker daemon service, enabling one-click deployment of containerized stateless software templates to extend Pigsty's capabilities!
-
-
-----------------
-
-## Peripheral Modules
-
-Pigsty also supports <span class="text-success"><b>peripheral</b></span> modules that are closely related to the PostgreSQL kernel (extensions, forks, derivatives, wrappers):
-
-- [**`DUCKDB`**](/docs/pilot/duckdb): Powerful embedded OLAP database. Pigsty provides binaries, dynamic libraries, and related PG extensions: `pg_duckdb`, `pg_lakehouse`, and `duckdb_fdw`.
-- [**`SUPABASE`**](/docs/pgsql/kernel/supabase): Pigsty allows running the popular Firebase open-source alternative — Supabase — on existing HA PostgreSQL clusters!
-- [**`GREENPLUM`**](/docs/pgsql/kernel/greenplum): MPP data warehouse based on PostgreSQL 12 kernel, currently with monitoring and RPM installation support only. (**Beta**)
-- [**`CLOUDBERRY`**](/docs/pgsql/kernel/cloudberry): Open-source fork by original Greenplum developers after it went closed-source, based on PG 14 kernel, currently RPM installation support only. (**Beta**)
-- [**`NEON`**](/docs/pgsql/kernel/neon): Serverless PostgreSQL kernel with database branching capabilities. (**WIP**)
+- [**`MINIO`**](/docs/minio): S3-compatible object storage, optional PostgreSQL backup repository, with production deployment and monitoring support.
+- [**`REDIS`**](/docs/redis): Redis server with standalone/sentinel/cluster production deployment and full monitoring support.
+- [**`MONGO`**](/docs/ferret): Native FerretDB deployment support, adding MongoDB wire-protocol compatible APIs to PostgreSQL.
+- [**`DOCKER`**](/docs/docker): Docker daemon service for one-click deployment of stateless software templates on Pigsty.
+- [**`JUICE`**](/docs/juice): JuiceFS distributed filesystem module using PostgreSQL as metadata engine, providing shared POSIX storage.
+- [**`VIBE`**](/docs/vibe): Browser-based development environment with Code-Server, JupyterLab, Node.js, and Claude Code.
 
 
 ----------------
 
-## Pilot Modules
+## Ecosystem Modules
 
-Pigsty is adding support for some <span class="text-info"><b>pilot</b></span> modules related to the PostgreSQL ecosystem. These may become official Pigsty modules in the future:
+The modules below are closely related to the PostgreSQL ecosystem. They are optional ecosystem capabilities and are not counted in the 10 official modules above:
 
-- [**`KAFKA`**](/docs/pilot/kafka): Deploy KRaft-powered Kafka message queues with Pigsty, with out-of-the-box monitoring support. (**Beta**)
-- [**`MYSQL`**](/docs/pilot/mysql): Deploy highly available MySQL 8.0 clusters with Pigsty, with out-of-the-box monitoring support (for critique/migration evaluation). (**Beta**)
-- [**`KUBE`**](/docs/pilot/kube/): Production-grade Kubernetes deployment and monitoring using SealOS. (**Alpha**)
-- [**`VICTORIA`**](/docs/pilot/victoria): Alternative Infra implementation based on VictoriaMetrics and VictoriaLogs, offering better performance and resource utilization. (**Alpha**)
-- [**`JUPYTER`**](/docs/pilot/jupyter): Out-of-the-box Jupyter Notebook environment for data analysis and machine learning scenarios. (**Alpha**)
-
-
-----------------
-
-## Monitoring Other Databases
-
-Pigsty's [**`INFRA`**](/docs/infra/) module can be used standalone as an out-of-the-box monitoring infrastructure to monitor other nodes or existing PostgreSQL databases:
-
-- Existing PostgreSQL Services: Pigsty can monitor external PostgreSQL services not managed by Pigsty, still providing relatively complete monitoring support.
-- **`RDS PG`**: PostgreSQL RDS services provided by cloud vendors can be monitored as standard external Postgres instances.
-- **`PolarDB`**: Alibaba Cloud's cloud-native database can be monitored as external PostgreSQL 11 / 14 instances.
-- **`KingBase`**: A Chinese domestic database provided by KINGBASE, monitored as external PostgreSQL 12 instances.
-- **`Greenplum`** / **`YMatrixDB`** monitoring: Currently monitored as horizontally sharded PostgreSQL clusters.
-
+- [**`SUPABASE`**](/docs/pgsql/kernel/supabase), [**`DUCKDB`**](/docs/pilot/duckdb): peripheral ecosystem integration.
+- [**`MSSQL`**](/docs/pgsql/kernel/babelfish), [**`IVORY`**](/docs/pgsql/kernel/ivorysql), [**`POLAR`**](/docs/pgsql/kernel/polardb), [**`CITUS`**](/docs/pgsql/kernel/citus): kernel replacement/distributed forms.
+- [**`GREENPLUM`**](/docs/pgsql/kernel/greenplum), [**`CLOUDBERRY`**](/docs/pgsql/kernel/cloudberry), [**`NEON`**](/docs/pgsql/kernel/neon): historical docs retained, no longer default public capabilities.
+- [**`KAFKA`**](/docs/pilot/kafka), [**`MYSQL`**](/docs/pilot/mysql), [**`KUBE`**](/docs/pilot/kube/), [**`VICTORIA`**](/docs/pilot/victoria), [**`JUPYTER`**](/docs/pilot/jupyter): pilot modules, currently not open for public use.

@@ -1,7 +1,7 @@
 ---
 title: News & Events
 linkTitle: Events
-weight: 120
+weight: 30
 description: News and events related to Pigsty and PostgreSQL, including latest announcements!
 icon: fa-regular fa-newspaper
 module: [PIGSTY]
@@ -14,66 +14,78 @@ tags: []
 
 ## Recent News
 
+- **2026-02-04**: Extension for Everyone selected as a PGCon.Dev 2026 talk!
+  - [**The first Chinese vendor on the PGConf.Dev keynote stage**](https://mp.weixin.qq.com/s/rThnqXp2JXVV9UQncNV3kg)
+
+- **2026-02-03**: **Pigsty v4.0 Released!** Entering the Agent era!
+  - PostgreSQL official news: "[Pigsty v4.0 Released: Ready for the Agent Era](https://www.postgresql.org/about/news/pigsty-v40-released-ready-for-the-agent-era-3228/)"
+  - Victoria observability revolution, security hardening, new JUICE/VIBE modules, container support, license switched to Apache-2.0
+  - Release Notes: [v4.0.0](/docs/about/release#v400)
+  - Release Blog: [Pigsty v4.0: Entering the AI Era](https://vonng.com/pigsty/v4.0)
+
+- **2026-01-30**: **PIG v1.0 Released!** Launched together with the PGEXT.CLOUD extension catalog
+  - PostgreSQL official news: "[PIG v1.0 Released with PGEXT.CLOUD: 444 PG extensions on 14 Linux](https://www.postgresql.org/about/news/pig-v10-released-with-pgextcloud-444-pg-extensions-on-14-linux-3214/)"
+  - PostgreSQL extension package manager pig v1.0 is GA, with PGEXT.CLOUD open extension infrastructure and 444 extensions
+
+- **2025-12-02**: **Pigsty v3.7.0 Released!** PG18 becomes default, 437 extensions, EL10/Debian13 support
+  - Release Notes: [v3.7.0](/docs/about/release#v370)
+
 - **2025-11-29**: Pigsty won the **PostgreSQL Magneto Award**!
   - The 8th Conference of PostgreSQL Ecosystem (Hangzhou, China)
   - Topics: "A World-Grade Postgres Meta Distribution", AI database considerations, PostgreSQL delivery best practices
 
-- **Pigsty v3.4.1 Released!** OpenHalo & OrioleDB support, MySQL compatibility, pgAdmin improvements
-  - Release Notes: [v3.4.1](/docs/about/release#v341)
+- **2025-08-15**: **Pigsty v3.6.1 Released!** Routine PG minor update, PGDG China regional mirrors
+  - Release Notes: [v3.6.1](/docs/about/release#v361)
 
-- **Pigsty v3.4.0 Released!** Better backups, automatic Certbot certificates, Ivory cross-platform, AGE extension, APP improvements
-  - Release Notes: [v3.4.0](/docs/about/release#v340)
+- **2025-08-04**: **Pigsty v3.6.0 Released!** PostgreSQL meta-distribution
+  - PostgreSQL official news: "[Pigsty 3.6, the meta-distribution for PostgreSQL](https://www.postgresql.org/about/news/pigsty-36-the-meta-distribution-for-postgresql-3111/)"
+  - pgactive multi-primary replication, MinIO/ETCD improvements, simplified installation, configuration cleanup
+  - Release Notes: [v3.6.0](/docs/about/release#v360)
 
-- **Pigsty v3.3.0 Released!** 404 extensions, Odoo/Dify/Supabase app templates, DocumentDB support
+- **2025-06-16**: **Pigsty v3.5.0 Released!** PG18 beta support, 421 extensions, monitoring upgrade, code refactor
+  - Release Notes: [v3.5.0](/docs/about/release#v350)
+
+- **2025-04-21**: **Pigsty v3.4 Released!** MySQL compatibility
+  - PostgreSQL official news: "[Pigsty v3.4 Released, PG RDS with MySQL Compatibility](https://www.postgresql.org/about/news/pigsty-v34-released-pg-rds-with-mysql-compatibility-3052/)"
+  - OpenHalo/OrioleDB support, better backups, automatic Certbot certificates, AGE extension
+  - Release Notes: [v3.4.1](/docs/about/release#v341) / [v3.4.0](/docs/about/release#v340)
+
+- **2025-03-07**: **Pigsty v3.3.0 Released!** 404 extensions
+  - PostgreSQL official news: "[Pigsty v3.3 Release: with 404 PostgreSQL Extensions](https://www.postgresql.org/about/news/pigsty-v33-release-with-404-postgresql-extensions-3023/)"
+  - Odoo/Dify/Supabase app templates, DocumentDB support
   - Release Notes: [v3.3.0](/docs/about/release#v330)
 
-- Pigsty 3.2.2 Released!
-- Pigsty 3.2.1 Released!
-- Pigsty 3.2.0 Released!
+- **2025-01**: Pigsty v3.2.x release series (v3.2.0 ~ v3.2.2)
+  - 390 extensions, Omnigres, Mooncake, Citus13/PG17, extension management CLI, Grafana improvements, ARM64 extension coverage
+  - Release Notes: [v3.2.2](/docs/about/release#v322) / [v3.2.1](/docs/about/release#v321) / [v3.2.0](/docs/about/release#v320)
 
 - PostgreSQL Package Manager `pig` Released!
   - [ANNOUNCE pig: The Postgres Extension Wizard](https://www.postgresql.org/about/news/announce-pig-the-postgres-extension-wizard-2988/)
   - [PIG: A New Package Manager for PostgreSQL Extensions](https://postgresweekly.com/issues/583)
 
-- Pigsty 3.1.0 Released with complete PostgreSQL 17.2 extension support
+- **2024-11**: **Pigsty v3.1.0 Released!** PG17 default, self-hosted Supabase, ARM/Ubuntu24 support
+  - PostgreSQL official news: "[Pigsty v3.1 Release: PG17, Duck Extensions, Self-hosting Supabase, ARM & Ubuntu24](https://www.postgresql.org/about/news/pigsty-v31-release-pg17-duck-extensions-self-hosting-supabase-arm-ubuntu24-2967/)"
   - Blog Post: "[Pigsty v3.1: Self-hosted Supabase, PG17 Default, MinIO Improvements, ARM & Ubuntu24 Support](/blog/pigsty/v3.1)"
-  - PostgreSQL Official News: "[Pigsty v3.1 Release: PG17, Duck Extensions, Self-hosting Supabase, ARM & Ubuntu24](https://www.postgresql.org/about/news/pigsty-v31-release-pg17-duck-extensions-self-hosting-supabase-arm-ubuntu24-2967/)"
   - Release Notes: [v3.1.0](/docs/about/release#v310)
-  - Postgres Weekly Issue 579: https://postgresweekly.com/issues/579
 
-- Pigsty 3.0.4 Released! Extension catalog and repository, PG17 extension compilation, Supabase self-hosting optimization
-  - Release Notes: [v3.0.4](/docs/about/release#v304)
-
-- Pigsty 3.0.3 Released! Official PostgreSQL 17 support, Etcd operations and monitoring optimization
-  - Release Notes: [v3.0.3](/docs/about/release#v303)
-
-- Pigsty 3.0.2 Released! Slim installation mode, PolarDB 15 support, routine bug fixes (2024-09-07)
-  - Release Notes: [v3.0.2](/docs/about/release#v302)
-
-- Pigsty 3.0.1 Released! Oracle compatibility, Patroni 4 support, routine bug fixes (2024-08-31)
-  - Release Notes: [v3.0.1](/docs/about/release#v301)
-
-- Pigsty 3.0.0 Released! 333 extensions, replaceable kernels, complete RDS service!
-  - Release Notes: [v3.0.0](/docs/about/release#v300)
+- **2024-08 ~ 2024-10**: Pigsty v3.0.x release series (v3.0.0 ~ v3.0.4)
+  - PostgreSQL official news: "[Pigsty v3: 336 extensions and MSSQL/Oracle flavor PG kernels!](https://www.postgresql.org/about/news/pigsty-v3-336-extensions-and-mssqloracle-flavor-pg-kernels-2921/)"
+  - 333 extensions, replaceable kernels, MSSQL/Oracle/PolarDB compatibility, PG17 extensions
+  - Release Notes: [v3.0.0](/docs/about/release#v300) ~ [v3.0.4](/docs/about/release#v304)
   - Feature Introduction: [Pigsty v3.0.0](/blog/pigsty/v3.0)
 
-- News: Pigsty's supplementary Yum/APT repositories provide 254 additional ready-to-use binary RPM/DEB extensions!
-  - PostgreSQL Official: [Pigsty Supplementary APT/YUM Repository with 254 additional PostgreSQL Extensions!](https://www.postgresql.org/about/news/pigsty-supplementary-aptyum-repository-with-254-additional-postgresql-extensions-2913/)
+- **2024-08**: Pigsty supplementary repository provides 254 additional ready-to-use binary RPM/DEB extensions!
+  - PostgreSQL official news: "[Pigsty Supplementary APT/YUM Repository with 254 additional PostgreSQL Extensions!](https://www.postgresql.org/about/news/pigsty-supplementary-aptyum-repository-with-254-additional-postgresql-extensions-2913/)"
 
 - [PGCon.Dev 2024 Trip Report!](/blog/pg/pgcondev-2024)
 
-- Pigsty v2.7 Released!
-  - PostgreSQL Official: [Pigsty v2.7 Released, free RDS PG with 255 extensions available](https://www.postgresql.org/about/news/pigsty-v27-released-free-rds-pg-with-255-extensions-available-2863/)
-  - Postgres Weekly: [https://postgresweekly.com/issues/556)
+- **2024-05**: **Pigsty v2.7 Released!**
+  - PostgreSQL official news: "[Pigsty v2.7 Released, free RDS PG with 255 extensions available](https://www.postgresql.org/about/news/pigsty-v27-released-free-rds-pg-with-255-extensions-available-2863/)"
   - Pigsty Blog: [Pigsty v2.7: The Great Integration](/blog/pigsty/v2.7)
 
-- Pigsty v2.6 Released!
-  - PostgreSQL Official: [Pigsty, Battery-included PostgreSQL Distro & Free RDS Alternative, v2.6 released!](https://www.postgresql.org/about/news/pigsty-battery-included-postgresql-distro-free-rds-alternative-v26-released-2816/)
-  - Postgres Planet (X): [https://twitter.com/PostgreSQL/status/1765323952669290515](https://twitter.com/PostgreSQL/status/1765323952669290515)
-  - Postgres Weekly: [https://postgresweekly.com/issues/545](https://postgresweekly.com/issues/545)
+- **2024-02**: **Pigsty v2.6 Released!**
+  - PostgreSQL official news: "[Pigsty, Battery-included PostgreSQL Distro & Free RDS Alternative, v2.6 released!](https://www.postgresql.org/about/news/pigsty-battery-included-postgresql-distro-free-rds-alternative-v26-released-2816/)"
   - Pigsty Blog: [Pigsty v2.6: PG Challenges OLAP](/blog/pigsty/v2.6)
-
-> The name of this project always makes me grin: PIGSTY is actually an acronym, standing for Postgres In Great STYle! It's a Postgres distribution that includes lots of components and tools out of the box in areas like availability, deployment, and observability. The latest release pushes everything up to Postgres 16.2 standards and introduces new ParadeDB and DuckDB FDW extensions.
 
 ----------
 

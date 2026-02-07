@@ -2,7 +2,8 @@
 title: PITR Tradeoffs
 linkTitle: Tradeoffs
 weight: 213
-description: PITR strategy tradeoffs: repository choice, space planning, and recommendations
+description: >
+  PITR strategy tradeoffs: repository choice, space planning, and recommendations
 icon: fa-solid fa-scale-balanced
 module: [PGSQL]
 categories: [Concept]

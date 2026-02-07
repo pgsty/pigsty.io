@@ -6,17 +6,17 @@ description: Pigsty uses pgBackRest to implement PostgreSQL point-in-time recove
   allowing users to roll back to any point in time within the backup policy window.
 icon: fa-solid fa-clock-rotate-left
 module: [PGSQL]
-categories: [Task, Concept]
-tags: [PITR]
+categories: [Concept]
+tags: []
 ---
 
+> When you accidentally delete data, tables, or even the entire database, PITR lets you return to any point in time and avoid data loss from software defects and human error.
+>
+> — This "magic" once reserved for senior DBAs is now available out of the box to everyone.
 
-
-----------------
+------
 
 ## Overview
-
-> You can restore and roll back your cluster to any point in the past, avoiding data loss caused by software defects and human errors.
 
 Pigsty's PostgreSQL clusters come with auto-configured Point-in-Time Recovery (PITR) capability, powered by the backup component [**pgBackRest**](https://pgbackrest.org/) and optional object storage repository [**MinIO**](https://min.io/).
 
@@ -27,9 +27,9 @@ Pigsty provides default configurations for base backups and WAL archiving. You c
 When using local disks, the default capability to recover to any point within the past day is retained. When using MinIO or S3, the default capability to recover to any point within the past week is retained.
 As long as storage space permits, you can retain any arbitrarily long recoverable time window, as your budget allows.
 
---------------
+------
 
-**What problems does PITR solve?**
+### What Problems Does PITR Solve?
 
 * Enhanced disaster recovery: **RPO** drops from ∞ to tens of MB, **RTO** drops from ∞ to hours/minutes.
 * Ensures data security: **Data integrity** in C/I/A: avoids data consistency issues caused by accidental deletion.
@@ -42,20 +42,20 @@ As long as storage space permits, you can retain any arbitrarily long recoverabl
 | <i class="fa-solid fa-copy text-primary"></i> Base Backup + <i class="fa-solid fa-clock-rotate-left text-primary"></i> WAL Archive | Crash | <i class="fa-solid fa-triangle-exclamation text-primary"></i> Depends on backup size and bandwidth (hours) | <i class="fa-solid fa-triangle-exclamation text-primary"></i> Lose unarchived data (tens of MB) |
 
 
-**What are the costs of PITR?**
+### What Are the Costs of PITR?
 
 * Reduces C in data security: **Confidentiality**, creates additional leak points, requires additional backup protection.
 * Extra resource consumption: Local storage or network traffic/bandwidth overhead, usually not a concern.
 * Increased complexity: Users need to pay backup management costs.
 
-**Limitations of PITR**
+### Limitations of PITR
 
 If only PITR is used for failure recovery, RTO and RPO metrics are inferior compared to [**high availability solutions**](/docs/concept/ha/), and typically both should be used together.
 
 * **RTO**: With only standalone + PITR, recovery time depends on backup size and network/disk bandwidth, ranging from tens of minutes to hours or days.
 * **RPO**: With only standalone + PITR, some data may be lost during crashes - one or several WAL segment files may not yet be archived, losing 16 MB to tens of MB of data.
 
-Besides [**PITR**](/docs/pgsql/backup), you can also use [**delayed clusters**](/docs/pgsql/config#delayed-cluster) in Pigsty to address data deletion/modification caused by human errors or software defects.
+Besides [**PITR**](/docs/concept/pitr), you can also use [**delayed clusters**](/docs/pgsql/config#delayed-cluster) in Pigsty to address data deletion/modification caused by human errors or software defects.
 
 
 
@@ -67,9 +67,7 @@ Besides [**PITR**](/docs/pgsql/backup), you can also use [**delayed clusters**](
 Point-in-time recovery allows you to restore and roll back your cluster to "any point" in the past, avoiding data loss caused by software defects and human errors. To achieve this, two preparations are needed: [**Base Backup**](#base-backup) and [**WAL Archiving**](#wal-archiving).
 Having a **base backup** allows users to restore the database to its state at backup time, while having **WAL archives** starting from a base backup allows users to restore the database to any point after the base backup time.
 
-![fig-10-02.png](/img/blog/kernel/fig-10-02.png)
-
-For specific operations, refer to [**PGSQL Admin: Backup and Recovery**](/docs/pgsql/backup).
+For detailed mechanisms, see [**Base Backup and Point-in-Time Recovery**](/blog/pg/backup-overview/); for specific operations, refer to [**PGSQL Admin: Backup and Recovery**](/docs/pgsql/backup/).
 
 ### Base Backup
 
@@ -96,7 +94,7 @@ If you don't need PITR functionality, you can disable WAL archiving by [**config
 
 ## Implementation
 
-By default, Pigsty provides two preset [backup strategies](/docs/pgsql/backup#backup-strategy): The default uses local filesystem backup repository, performing one full backup daily to ensure users can roll back to any point within the past day. The alternative strategy uses dedicated MinIO clusters or S3 storage for backups, with weekly full backups, daily incremental backups, and two weeks of backup and WAL archive retention by default.
+By default, Pigsty provides two preset [backup strategies](/docs/pgsql/backup/policy): The default uses local filesystem backup repository, performing one full backup daily to ensure users can roll back to any point within the past day. The alternative strategy uses dedicated MinIO clusters or S3 storage for backups, with weekly full backups, daily incremental backups, and two weeks of backup and WAL archive retention by default.
 
 Pigsty uses pgBackRest to manage backups, receive WAL archives, and perform PITR. Backup repositories can be flexibly configured ([`pgbackrest_repo`](/docs/pgsql/param#pgbackrest_repo)): defaults to primary's local filesystem (`local`), but can also use other disk paths, or the included optional [MinIO](/docs/minio) service (`minio`) and cloud S3 services.
 
@@ -180,12 +178,3 @@ pg-pitr -x 1234567 -X -P                # pgbackrest --stanza=pg-meta --type=xid
 When performing PITR, you can use Pigsty's monitoring system to observe the cluster LSN position status and determine whether recovery to the specified point in time, transaction point, LSN position, or other point was successful.
 
 ![pitr](/img/docs/concept/pitr.png)
-
-
-
-<br>
-
------------
-
-<br>
-

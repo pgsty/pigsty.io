@@ -19,6 +19,7 @@ This page lists default ports used by Pigsty module components. Adjust as needed
 | [**`DOCKER`**](/docs/docker)   |           **`docker`**             | `9323`  | [**`docker_exporter_port`**](/docs/docker/param#docker_exporter_port)        | Optional |
 |  [**`INFRA`**](/docs/infra)    |           **`nginx`**              |  `80`   | [**`nginx_port`**](/docs/infra/param#nginx_port)                             | Enabled  |
 |  [**`INFRA`**](/docs/infra)    |           **`nginx`**              |  `443`  | [**`nginx_ssl_port`**](/docs/infra/param#nginx_ssl_port)                     | Enabled  |
+|  [**`INFRA`**](/docs/infra)    |      **`nginx_exporter`**          | `9113`  | [**`nginx_exporter_port`**](/docs/infra/param#nginx_exporter_port)           | Enabled  |
 |  [**`INFRA`**](/docs/infra)    |          **`grafana`**             | `3000`  | [**`grafana_port`**](/docs/infra/param#grafana_port)                         | Enabled  |
 |  [**`INFRA`**](/docs/infra)    |      **`victoriaMetrics`**         | `8428`  | [**`vmetrics_port`**](/docs/infra/param#vmetrics_port)                       | Enabled  |
 |  [**`INFRA`**](/docs/infra)    |        **`victoriaLogs`**          | `9428`  | [**`vlogs_port`**](/docs/infra/param#vlogs_port)                             | Enabled  |
@@ -34,7 +35,10 @@ This page lists default ports used by Pigsty module components. Adjust as needed
 |  [**`REDIS`**](/docs/redis)    |           **`redis`**              | `6379`  | [**`redis_port`**](/docs/redis/param#redis_port)                             | Optional |
 |  [**`REDIS`**](/docs/redis)    |       **`redis_exporter`**         | `9121`  | [**`redis_exporter_port`**](/docs/redis/param#redis_exporter_port)           | Optional |
 | [**`FERRET`**](/docs/ferret)   |          **`ferretdb`**            | `27017` | [**`mongo_port`**](/docs/ferret/param#mongo_port)                            | Optional |
+| [**`FERRET`**](/docs/ferret)   |       **`ferretdb (TLS)`**         | `27018` | [**`mongo_ssl_port`**](/docs/ferret/param#mongo_ssl_port)                    | Optional |
 | [**`FERRET`**](/docs/ferret)   |       **`mongo_exporter`**         | `9216`  | [**`mongo_exporter_port`**](/docs/ferret/param#mongo_exporter_port)          | Enabled  |
+|   [**`VIBE`**](/docs/vibe)     |         **`code-server`**          | `8443`  | [**`code_port`**](/docs/vibe/param#code_port)                                | Optional |
+|   [**`VIBE`**](/docs/vibe)     |          **`jupyterlab`**          | `8888`  | [**`jupyter_port`**](/docs/vibe/param#jupyter_port)                          | Optional |
 |  [**`PGSQL`**](/docs/pgsql)    |          **`postgres`**            | `5432`  | [**`pg_port`**](/docs/pgsql/param#pg_port)                                   | Enabled  |
 |  [**`PGSQL`**](/docs/pgsql)    |         **`pgbouncer`**            | `6432`  | [**`pgbouncer_port`**](/docs/pgsql/param#pgbouncer_port)                     | Enabled  |
 |  [**`PGSQL`**](/docs/pgsql)    |          **`patroni`**             | `8008`  | [**`patroni_port`**](/docs/pgsql/param#patroni_port)                         | Enabled  |
@@ -48,4 +52,18 @@ This page lists default ports used by Pigsty module components. Adjust as needed
 |  [**`PGSQL`**](/docs/pgsql)    | **`{{ pg_cluster }}-<service>`**   | `543x`  | [**`pg_services`**](/docs/pgsql/param#pg_services)                           | Optional |
 {.full-width}
 
+
+## Public Port Recommendations
+
+If you use firewall [**`zone`**](/docs/node/param#node_firewall_mode) mode, expose only minimum required ports via [**`node_firewall_public_port`**](/docs/node/param#node_firewall_public_port):
+
+- Minimal management surface: `22, 80, 443` (recommended)
+- If public direct DB access is required: additionally expose `5432`
+
+Avoid exposing internal component ports directly to the public internet: `etcd` (`2379/2380`), `patroni` (`8008`), exporters (`9xxx`), `minio` (`9000/9001`), `redis` (`6379`), `ferretdb` (`27017/27018`), etc.
+
+```yaml
+node_firewall_mode: zone
+node_firewall_public_port: [22, 80, 443, 5432]
+```
 

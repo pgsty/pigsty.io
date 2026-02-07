@@ -8,61 +8,147 @@ categories: [Reference]
 
 The current stable version is [**v4.0.0**](#v400), released 2025-12-25.
 
-|     Version     | Release Date | Summary                                                                     |                            Release Page                             |
-|:---------------:|:------------:|-----------------------------------------------------------------------------|:-------------------------------------------------------------------:|
-| [v4.0.0](#v400) |  2025-12-25  | Observability revolution, security hardening, JUICE/VIBE modules, Apache-2.0 | [v4.0.0](https://github.com/pgsty/pigsty/releases/tag/v4.0.0) |
-|    [v3.7.0](#v370)    |  2025-12-02  | PG18 default, 437 extensions, EL10 & Debian 13 support, PGEXT.CLOUD     |               [v3.7.0](https://github.com/pgsty/pigsty/releases/tag/v3.7.0)               |
-|    [v3.6.1](#v361)    |  2025-08-15  | Routine PG minor updates, PGDG China mirror, EL10/D13 stubs             |               [v3.6.1](https://github.com/pgsty/pigsty/releases/tag/v3.6.1)               |
-|    [v3.6.0](#v360)    |  2025-07-30  | pgactive, MinIO/ETCD improvements, simplified install, config cleanup   |               [v3.6.0](https://github.com/pgsty/pigsty/releases/tag/v3.6.0)               |
-|    [v3.5.0](#v350)    |  2025-06-16  | PG18 beta, 421 extensions, monitoring upgrade, code refactor            |               [v3.5.0](https://github.com/pgsty/pigsty/releases/tag/v3.5.0)               |
-|    [v3.4.1](#v341)    |  2025-04-05  | OpenHalo & OrioleDB, MySQL compatibility, pgAdmin improvements          |               [v3.4.1](https://github.com/pgsty/pigsty/releases/tag/v3.4.1)               |
-|    [v3.4.0](#v340)    |  2025-03-30  | Backup improvements, auto certs, AGE, IvorySQL all platforms            |               [v3.4.0](https://github.com/pgsty/pigsty/releases/tag/v3.4.0)               |
-|    [v3.3.0](#v330)    |  2025-02-24  | 404 extensions, extension directory, App playbook, Nginx customization  |               [v3.3.0](https://github.com/pgsty/pigsty/releases/tag/v3.3.0)               |
-|    [v3.2.2](#v322)    |  2025-01-23  | 390 extensions, Omnigres, Mooncake, Citus 13 & PG17 support             |               [v3.2.2](https://github.com/pgsty/pigsty/releases/tag/v3.2.2)               |
-|    [v3.2.1](#v321)    |  2025-01-12  | 350 extensions, Ivory4, Citus enhancements, Odoo template               |               [v3.2.1](https://github.com/pgsty/pigsty/releases/tag/v3.2.1)               |
-|    [v3.2.0](#v320)    |  2024-12-24  | Extension CLI, Grafana enhancements, ARM64 extension completion         |               [v3.2.0](https://github.com/pgsty/pigsty/releases/tag/v3.2.0)               |
-|    [v3.1.0](#v310)    |  2024-11-24  | PG17 default, config simplification, Ubuntu24 & ARM support             |               [v3.1.0](https://github.com/pgsty/pigsty/releases/tag/v3.1.0)               |
-|    [v3.0.4](#v304)    |  2024-10-30  | PG17 extensions, OLAP suite, pg_duckdb                                  |               [v3.0.4](https://github.com/pgsty/pigsty/releases/tag/v3.0.4)               |
-|    [v3.0.3](#v303)    |  2024-09-27  | PostgreSQL 17, Etcd improvements, IvorySQL 3.4, PostGIS 3.5             |               [v3.0.3](https://github.com/pgsty/pigsty/releases/tag/v3.0.3)               |
-|    [v3.0.2](#v302)    |  2024-09-07  | Mini install mode, PolarDB 15 support, monitoring view updates          |               [v3.0.2](https://github.com/pgsty/pigsty/releases/tag/v3.0.2)               |
-|    [v3.0.1](#v301)    |  2024-08-31  | Routine bug fixes, Patroni 4 support, Oracle compatibility improvements |               [v3.0.1](https://github.com/pgsty/pigsty/releases/tag/v3.0.1)               |
-|    [v3.0.0](#v300)    |  2024-08-25  | 333 extensions, pluggable kernels, MSSQL/Oracle/PolarDB compatibility   |               [v3.0.0](https://github.com/pgsty/pigsty/releases/tag/v3.0.0)               |
-|    [v2.7.0](#v270)    |  2024-05-20  | Extension explosion, 20+ new powerful extensions, Docker apps           |               [v2.7.0](https://github.com/pgsty/pigsty/releases/tag/v2.7.0)               |
-|    [v2.6.0](#v260)    |  2024-02-28  | PG16 as default, ParadeDB & DuckDB extensions introduced                |               [v2.6.0](https://github.com/pgsty/pigsty/releases/tag/v2.6.0)               |
-|    [v2.5.1](#v251)    |  2023-12-01  | Routine minor update, PG16 key extension support                        |               [v2.5.1](https://github.com/pgsty/pigsty/releases/tag/v2.5.1)               |
-|    [v2.5.0](#v250)    |  2023-09-24  | Ubuntu/Debian support: bullseye, bookworm, jammy, focal                 |               [v2.5.0](https://github.com/pgsty/pigsty/releases/tag/v2.5.0)               |
-|    [v2.4.1](#v241)    |  2023-09-24  | Supabase/PostgresML support with graphql, jwt, pg_net, vault            |               [v2.4.1](https://github.com/pgsty/pigsty/releases/tag/v2.4.1)               |
-|    [v2.4.0](#v240)    |  2023-09-14  | PG16, RDS monitoring, new extensions: FTS/graph/HTTP/embedding          |               [v2.4.0](https://github.com/pgsty/pigsty/releases/tag/v2.4.0)               |
-|    [v2.3.1](#v231)    |  2023-09-01  | PGVector with HNSW, PG16 RC1, doc refresh, Chinese docs, bug fixes      |               [v2.3.1](https://github.com/pgsty/pigsty/releases/tag/v2.3.1)               |
-|    [v2.3.0](#v230)    |  2023-08-20  | Node VIP, FerretDB, NocoDB, MySQL stub, CVE fixes                       |               [v2.3.0](https://github.com/pgsty/pigsty/releases/tag/v2.3.0)               |
-|    [v2.2.0](#v220)    |  2023-08-04  | Dashboard & provisioning overhaul, UOS compatibility                    |               [v2.2.0](https://github.com/pgsty/pigsty/releases/tag/v2.2.0)               |
-|    [v2.1.0](#v210)    |  2023-06-10  | PostgreSQL 12-16beta support                                            |               [v2.1.0](https://github.com/pgsty/pigsty/releases/tag/v2.1.0)               |
-|    [v2.0.2](#v202)    |  2023-03-31  | Added pgvector support, fixed MinIO CVE                                 |               [v2.0.2](https://github.com/pgsty/pigsty/releases/tag/v2.0.2)               |
-|    [v2.0.1](#v201)    |  2023-03-21  | v2 bug fixes, security enhancements, Grafana upgrade                    |               [v2.0.1](https://github.com/pgsty/pigsty/releases/tag/v2.0.1)               |
-|    [v2.0.0](#v200)    |  2023-02-28  | Major architecture upgrade, compatibility/security/maintainability      |               [v2.0.0](https://github.com/pgsty/pigsty/releases/tag/v2.0.0)               |
-|    [v1.5.1](#v151)    |  2022-06-18  | Grafana security hotfix                                                 |               [v1.5.1](https://github.com/pgsty/pigsty/releases/tag/v1.5.1)               |
-|    [v1.5.0](#v150)    |  2022-05-31  | Docker application support                                              |               [v1.5.0](https://github.com/pgsty/pigsty/releases/tag/v1.5.0)               |
-|    [v1.4.1](#v141)    |  2022-04-20  | Bug fixes & full English documentation translation                      |               [v1.4.1](https://github.com/pgsty/pigsty/releases/tag/v1.4.1)               |
-|    [v1.4.0](#v140)    |  2022-03-31  | MatrixDB support, separated INFRA/NODES/PGSQL/REDIS modules             |               [v1.4.0](https://github.com/pgsty/pigsty/releases/tag/v1.4.0)               |
-|    [v1.3.0](#v130)    |  2021-11-30  | PGCAT overhaul & PGSQL enhancement & Redis beta support                 |               [v1.3.0](https://github.com/pgsty/pigsty/releases/tag/v1.3.0)               |
-|    [v1.2.0](#v120)    |  2021-11-03  | Default PGSQL version upgraded to 14                                    |               [v1.2.0](https://github.com/pgsty/pigsty/releases/tag/v1.2.0)               |
-|    [v1.1.0](#v110)    |  2021-10-12  | Homepage, JupyterLab, PGWEB, Pev2 & pgbadger                            |               [v1.1.0](https://github.com/pgsty/pigsty/releases/tag/v1.1.0)               |
-|    [v1.0.0](#v100)    |  2021-07-26  | v1 GA, Monitoring System Overhaul                                       |               [v1.0.0](https://github.com/pgsty/pigsty/releases/tag/v1.0.0)               |
-|    [v0.9.0](#v090)    |  2021-04-04  | Pigsty GUI, CLI, Logging Integration                                    |               [v0.9.0](https://github.com/pgsty/pigsty/releases/tag/v0.9.0)               |
-|    [v0.8.0](#v080)    |  2021-03-28  | Service Provision                                                       |               [v0.8.0](https://github.com/pgsty/pigsty/releases/tag/v0.8.0)               |
-|    [v0.7.0](#v070)    |  2021-03-01  | Monitor only deployment                                                 |               [v0.7.0](https://github.com/pgsty/pigsty/releases/tag/v0.7.0)               |
-|    [v0.6.0](#v060)    |  2021-02-19  | Architecture Enhancement                                                |               [v0.6.0](https://github.com/pgsty/pigsty/releases/tag/v0.6.0)               |
-|    [v0.5.0](#v050)    |  2021-01-07  | Database Customize Template                                             |               [v0.5.0](https://github.com/pgsty/pigsty/releases/tag/v0.5.0)               |
-|    [v0.4.0](#v040)    |  2020-12-14  | PostgreSQL 13 Support, Official Documentation                           |               [v0.4.0](https://github.com/pgsty/pigsty/releases/tag/v0.4.0)               |
-|    [v0.3.0](#v030)    |  2020-10-22  | Provisioning Solution GA                                                |               [v0.3.0](https://github.com/pgsty/pigsty/releases/tag/v0.3.0)               |
-|        v0.2.0         |  2020-07-10  | PGSQL Monitoring v6 GA                                                  | [v0.2.0](https://github.com/pgsty/pigsty/commit/385e33a62a19817e8ba19997260e6b77d99fe2ba) |
-|        v0.1.0         |  2020-06-20  | Validation on Testing Environment                                       | [v0.1.0](https://github.com/pgsty/pigsty/commit/1cf2ea5ee91db071de00ec805032928ff582453b) |
-|        v0.0.5         |  2020-08-19  | Offline Installation Mode                                               | [v0.0.5](https://github.com/pgsty/pigsty/commit/0fe9e829b298fe5e56307de3f78c95071de28245) |
-|        v0.0.4         |  2020-07-27  | Refactor playbooks into Ansible roles                                   | [v0.0.4](https://github.com/pgsty/pigsty/commit/90b44259818d2c71e37df5250fe8ed1078a883d0) |
-|        v0.0.3         |  2020-06-22  | Interface enhancement                                                   | [v0.0.3](https://github.com/pgsty/pigsty/commit/4c5c68ccd57bc32a9e9c98aa3f264aa19f45c7ee) |
-|        v0.0.2         |  2020-04-30  | First Commit                                                            | [v0.0.2](https://github.com/pgsty/pigsty/commit/dd646775624ddb33aef7884f4f030682bdc371f8) |
-|        v0.0.1         |  2019-05-15  | POC                                                                     |   [v0.0.1](https://github.com/Vonng/pg/commit/fa2ade31f8e81093eeba9d966c20120054f0646b)   |
+|     Version     | Release Date | Summary                                                                      |                                       Release Page                                        |
+|:---------------:|:------------:|------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------:|
+| [v4.0.0](#v400) |  2025-01-28  | Observability revolution, security hardening, JUICE/VIBE modules, Apache-2.0 |               [v4.0.0](https://github.com/pgsty/pigsty/releases/tag/v4.0.0)               |
+| [v3.7.0](#v370) |  2025-12-02  | PG18 default, 437 extensions, EL10 & Debian 13 support, PGEXT.CLOUD          |               [v3.7.0](https://github.com/pgsty/pigsty/releases/tag/v3.7.0)               |
+| [v3.6.1](#v361) |  2025-08-15  | Routine PG minor updates, PGDG China mirror, EL10/D13 stubs                  |               [v3.6.1](https://github.com/pgsty/pigsty/releases/tag/v3.6.1)               |
+| [v3.6.0](#v360) |  2025-07-30  | pgactive, MinIO/ETCD improvements, simplified install, config cleanup        |               [v3.6.0](https://github.com/pgsty/pigsty/releases/tag/v3.6.0)               |
+| [v3.5.0](#v350) |  2025-06-16  | PG18 beta, 421 extensions, monitoring upgrade, code refactor                 |               [v3.5.0](https://github.com/pgsty/pigsty/releases/tag/v3.5.0)               |
+| [v3.4.1](#v341) |  2025-04-05  | OpenHalo & OrioleDB, MySQL compatibility, pgAdmin improvements               |               [v3.4.1](https://github.com/pgsty/pigsty/releases/tag/v3.4.1)               |
+| [v3.4.0](#v340) |  2025-03-30  | Backup improvements, auto certs, AGE, IvorySQL all platforms                 |               [v3.4.0](https://github.com/pgsty/pigsty/releases/tag/v3.4.0)               |
+| [v3.3.0](#v330) |  2025-02-24  | 404 extensions, extension directory, App playbook, Nginx customization       |               [v3.3.0](https://github.com/pgsty/pigsty/releases/tag/v3.3.0)               |
+| [v3.2.2](#v322) |  2025-01-23  | 390 extensions, Omnigres, Mooncake, Citus 13 & PG17 support                  |               [v3.2.2](https://github.com/pgsty/pigsty/releases/tag/v3.2.2)               |
+| [v3.2.1](#v321) |  2025-01-12  | 350 extensions, Ivory4, Citus enhancements, Odoo template                    |               [v3.2.1](https://github.com/pgsty/pigsty/releases/tag/v3.2.1)               |
+| [v3.2.0](#v320) |  2024-12-24  | Extension CLI, Grafana enhancements, ARM64 extension completion              |               [v3.2.0](https://github.com/pgsty/pigsty/releases/tag/v3.2.0)               |
+| [v3.1.0](#v310) |  2024-11-24  | PG17 default, config simplification, Ubuntu24 & ARM support                  |               [v3.1.0](https://github.com/pgsty/pigsty/releases/tag/v3.1.0)               |
+| [v3.0.4](#v304) |  2024-10-30  | PG17 extensions, OLAP suite, pg_duckdb                                       |               [v3.0.4](https://github.com/pgsty/pigsty/releases/tag/v3.0.4)               |
+| [v3.0.3](#v303) |  2024-09-27  | PostgreSQL 17, Etcd improvements, IvorySQL 3.4, PostGIS 3.5                  |               [v3.0.3](https://github.com/pgsty/pigsty/releases/tag/v3.0.3)               |
+| [v3.0.2](#v302) |  2024-09-07  | Mini install mode, PolarDB 15 support, monitoring view updates               |               [v3.0.2](https://github.com/pgsty/pigsty/releases/tag/v3.0.2)               |
+| [v3.0.1](#v301) |  2024-08-31  | Routine bug fixes, Patroni 4 support, Oracle compatibility improvements      |               [v3.0.1](https://github.com/pgsty/pigsty/releases/tag/v3.0.1)               |
+| [v3.0.0](#v300) |  2024-08-25  | 333 extensions, pluggable kernels, MSSQL/Oracle/PolarDB compatibility        |               [v3.0.0](https://github.com/pgsty/pigsty/releases/tag/v3.0.0)               |
+| [v2.7.0](#v270) |  2024-05-20  | Extension explosion, 20+ new powerful extensions, Docker apps                |               [v2.7.0](https://github.com/pgsty/pigsty/releases/tag/v2.7.0)               |
+| [v2.6.0](#v260) |  2024-02-28  | PG16 as default, ParadeDB & DuckDB extensions introduced                     |               [v2.6.0](https://github.com/pgsty/pigsty/releases/tag/v2.6.0)               |
+| [v2.5.1](#v251) |  2023-12-01  | Routine minor update, PG16 key extension support                             |               [v2.5.1](https://github.com/pgsty/pigsty/releases/tag/v2.5.1)               |
+| [v2.5.0](#v250) |  2023-09-24  | Ubuntu/Debian support: bullseye, bookworm, jammy, focal                      |               [v2.5.0](https://github.com/pgsty/pigsty/releases/tag/v2.5.0)               |
+| [v2.4.1](#v241) |  2023-09-24  | Supabase/PostgresML support with graphql, jwt, pg_net, vault                 |               [v2.4.1](https://github.com/pgsty/pigsty/releases/tag/v2.4.1)               |
+| [v2.4.0](#v240) |  2023-09-14  | PG16, RDS monitoring, new extensions: FTS/graph/HTTP/embedding               |               [v2.4.0](https://github.com/pgsty/pigsty/releases/tag/v2.4.0)               |
+| [v2.3.1](#v231) |  2023-09-01  | PGVector with HNSW, PG16 RC1, doc refresh, Chinese docs, bug fixes           |               [v2.3.1](https://github.com/pgsty/pigsty/releases/tag/v2.3.1)               |
+| [v2.3.0](#v230) |  2023-08-20  | Node VIP, FerretDB, NocoDB, MySQL stub, CVE fixes                            |               [v2.3.0](https://github.com/pgsty/pigsty/releases/tag/v2.3.0)               |
+| [v2.2.0](#v220) |  2023-08-04  | Dashboard & provisioning overhaul, UOS compatibility                         |               [v2.2.0](https://github.com/pgsty/pigsty/releases/tag/v2.2.0)               |
+| [v2.1.0](#v210) |  2023-06-10  | PostgreSQL 12-16beta support                                                 |               [v2.1.0](https://github.com/pgsty/pigsty/releases/tag/v2.1.0)               |
+| [v2.0.2](#v202) |  2023-03-31  | Added pgvector support, fixed MinIO CVE                                      |               [v2.0.2](https://github.com/pgsty/pigsty/releases/tag/v2.0.2)               |
+| [v2.0.1](#v201) |  2023-03-21  | v2 bug fixes, security enhancements, Grafana upgrade                         |               [v2.0.1](https://github.com/pgsty/pigsty/releases/tag/v2.0.1)               |
+| [v2.0.0](#v200) |  2023-02-28  | Major architecture upgrade, compatibility/security/maintainability           |               [v2.0.0](https://github.com/pgsty/pigsty/releases/tag/v2.0.0)               |
+| [v1.5.1](#v151) |  2022-06-18  | Grafana security hotfix                                                      |               [v1.5.1](https://github.com/pgsty/pigsty/releases/tag/v1.5.1)               |
+| [v1.5.0](#v150) |  2022-05-31  | Docker application support                                                   |               [v1.5.0](https://github.com/pgsty/pigsty/releases/tag/v1.5.0)               |
+| [v1.4.1](#v141) |  2022-04-20  | Bug fixes & full English documentation translation                           |               [v1.4.1](https://github.com/pgsty/pigsty/releases/tag/v1.4.1)               |
+| [v1.4.0](#v140) |  2022-03-31  | MatrixDB support, separated INFRA/NODES/PGSQL/REDIS modules                  |               [v1.4.0](https://github.com/pgsty/pigsty/releases/tag/v1.4.0)               |
+| [v1.3.0](#v130) |  2021-11-30  | PGCAT overhaul & PGSQL enhancement & Redis beta support                      |               [v1.3.0](https://github.com/pgsty/pigsty/releases/tag/v1.3.0)               |
+| [v1.2.0](#v120) |  2021-11-03  | Default PGSQL version upgraded to 14                                         |               [v1.2.0](https://github.com/pgsty/pigsty/releases/tag/v1.2.0)               |
+| [v1.1.0](#v110) |  2021-10-12  | Homepage, JupyterLab, PGWEB, Pev2 & pgbadger                                 |               [v1.1.0](https://github.com/pgsty/pigsty/releases/tag/v1.1.0)               |
+| [v1.0.0](#v100) |  2021-07-26  | v1 GA, Monitoring System Overhaul                                            |               [v1.0.0](https://github.com/pgsty/pigsty/releases/tag/v1.0.0)               |
+| [v0.9.0](#v090) |  2021-04-04  | Pigsty GUI, CLI, Logging Integration                                         |               [v0.9.0](https://github.com/pgsty/pigsty/releases/tag/v0.9.0)               |
+| [v0.8.0](#v080) |  2021-03-28  | Service Provision                                                            |               [v0.8.0](https://github.com/pgsty/pigsty/releases/tag/v0.8.0)               |
+| [v0.7.0](#v070) |  2021-03-01  | Monitor only deployment                                                      |               [v0.7.0](https://github.com/pgsty/pigsty/releases/tag/v0.7.0)               |
+| [v0.6.0](#v060) |  2021-02-19  | Architecture Enhancement                                                     |               [v0.6.0](https://github.com/pgsty/pigsty/releases/tag/v0.6.0)               |
+| [v0.5.0](#v050) |  2021-01-07  | Database Customize Template                                                  |               [v0.5.0](https://github.com/pgsty/pigsty/releases/tag/v0.5.0)               |
+| [v0.4.0](#v040) |  2020-12-14  | PostgreSQL 13 Support, Official Documentation                                |               [v0.4.0](https://github.com/pgsty/pigsty/releases/tag/v0.4.0)               |
+| [v0.3.0](#v030) |  2020-10-22  | Provisioning Solution GA                                                     |               [v0.3.0](https://github.com/pgsty/pigsty/releases/tag/v0.3.0)               |
+|     v0.2.0      |  2020-07-10  | PGSQL Monitoring v6 GA                                                       | [v0.2.0](https://github.com/pgsty/pigsty/commit/385e33a62a19817e8ba19997260e6b77d99fe2ba) |
+|     v0.1.0      |  2020-06-20  | Validation on Testing Environment                                            | [v0.1.0](https://github.com/pgsty/pigsty/commit/1cf2ea5ee91db071de00ec805032928ff582453b) |
+|     v0.0.5      |  2020-08-19  | Offline Installation Mode                                                    | [v0.0.5](https://github.com/pgsty/pigsty/commit/0fe9e829b298fe5e56307de3f78c95071de28245) |
+|     v0.0.4      |  2020-07-27  | Refactor playbooks into Ansible roles                                        | [v0.0.4](https://github.com/pgsty/pigsty/commit/90b44259818d2c71e37df5250fe8ed1078a883d0) |
+|     v0.0.3      |  2020-06-22  | Interface enhancement                                                        | [v0.0.3](https://github.com/pgsty/pigsty/commit/4c5c68ccd57bc32a9e9c98aa3f264aa19f45c7ee) |
+|     v0.0.2      |  2020-04-30  | First Commit                                                                 | [v0.0.2](https://github.com/pgsty/pigsty/commit/dd646775624ddb33aef7884f4f030682bdc371f8) |
+|     v0.0.1      |  2019-05-15  | POC                                                                          |   [v0.0.1](https://github.com/Vonng/pg/commit/fa2ade31f8e81093eeba9d966c20120054f0646b)   |
 
+
+------
+
+## v4.0.1 (beta)
+
+**Highlights**
+
+- EL default minor versions updated to EL 9.7 / EL 10.1.
+- Focused fixes for PGSQL / PGCAT Grafana dashboard usability: dynamic datasource `$dsn`, schema-level links, database age metrics, etc.
+- Added one-click Mattermost app template, with database, storage, portal, and optional PGFS/JuiceFS support.
+- Refactored infra-rm uninstall flow with segmented `deregister` cleanup for Victoria targets, Grafana datasources, and Vector log configs.
+- Tuned PostgreSQL default autovacuum thresholds to reduce frequent vacuum/analyze on small tables.
+- Fixed FD limit chain: added `fs.nr_open=8M` and unified service `LimitNOFILE=8M` to avoid startup failures caused by systemd/setrlimit.
+- Updated default Vibe experience: Jupyter disabled by default, Claude Code installed and managed via npm package.
+
+**Version Updates**
+
+- pig v1.1.0: Agentic CLI
+- timescaledb 2.25.0
+- pg_search 0.20.10
+- pgmq 1.1.0
+- pg_track_optimizaer 0.9.1
+- pljs 1.0.5
+- pg_textsearch 0.5.0
+
+**API Changes**
+
+- Corrected template guard for `io_method` / `io_workers` from `pg_version >= 17` to `pg_version >= 18`.
+- Raised `autovacuum_vacuum_threshold` from 50 to 500 in `oltp/crit/tiny`, and to 1000 in `olap`.
+- Raised `autovacuum_analyze_threshold` from 50 to 250 in `oltp/crit/tiny`, and to 500 in `olap`.
+- Added `fs.nr_open=8388608` in node tuned templates, and aligned `fs.file-max / fs.nr_open / LimitNOFILE` hierarchy.
+- Changed `LimitNOFILE` for postgres/patroni/minio from 16777216 to 8388608.
+- Added `bin/validate` checks for `pg_databases[*].parameters` and `pg_hba_rules[*].order`.
+- Added segmented tags in `infra-rm.yml`: `deregister`, `config`, `env`, etc.
+- Changed Vibe defaults: `jupyter_enabled=false`, and `npm_packages` now include `@anthropic-ai/claude-code` and `happy-coder`.
+- Added default Vibe environment variable: `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`.
+
+**Compatibility Fixes**
+
+- Fixed Redis `replicaof` empty-guard logic and systemd stop behavior.
+- Fixed schema/table/sequence qualification and identifier quoting in `pg_migration` scripts.
+- Fixed wrong restart target and variable usage in pgsql role handlers.
+- Fixed blackbox config filename cleanup item and pgAdmin pgpass file format.
+- Made `pg_exporter` startup non-blocking to avoid slowing the main flow on exporter failures.
+- Simplified VIP address parsing: when CIDR is omitted, default netmask is 24.
+- Increased MinIO health-check retries from 3 to 5.
+- Switched node hostname setup to Ansible hostname module instead of shell calls.
+- Fixed `.env` format for `app/electric` and `app/pg_exporter` to standard `KEY=VALUE`.
+- Fixed `pg_crontab` syntax error in `pigsty.yml`.
+- Updated ETCD docs to clarify default TLS vs optional mTLS semantics.
+
+**Commit List (v4.0.0..HEAD, 21 commits, 2026-02-02 ~ 2026-02-07)**
+
+```
+c402f0e6d fix: correct io_method/io_workers version guard from PG17 to PG18
+3bf676546 vibe: disable jupyter by default and install claude-code via npm_packages
+613c4efa9 fix: set fs.nr_open in tuned profiles and reduce LimitNOFILE to 8M
+07e499d4d new app conf template matter most
+4cc68ed61 Refine infra removal playbook
+7cfb98f69 fix: app docker .env file format
+9b36b1875 Fix config templates and validation
+318d85e6e Simplify VIP parsing and make pg_exporter non-blocking
+571cd9e70 Use hostname module for nodename
+de98f073c Fix blackbox config filename and pgpass format
+4bff01100 Fix redis replicaof guard and systemd stop
+38445b68d minio: increase health check retries
+c99854969 docs(etcd): clarify TLS vs mTLS
+41229124a fix pgsql roles typo
+e575d17c6 fix pg_migration scripts to use fully qualified identifiers
+ec4207202 fix pgsql-schema broken links
+a237e6c99 tune autovacuum threshold to reduce small table vacuum frequency
+e80754760 fix pgcat-database links to pgcat-table
+0060f5346 fix pgsql-database / pgsql-databases age metric
+43cdf72bc fix pigsty.yml typo
+0d9db7b08 fix: update datasource to $dsn
+```
+
+**Thanks**
+
+- Thanks to [@l2dy](https://github.com/l2dy) for many valuable suggestions and issues.
+
+**Checksums**
+
+```
+This section summarizes commits since v4.0.0 (HEAD: c402f0e6d). No new release archives/checksums are published yet.
+```
 
 ------
 

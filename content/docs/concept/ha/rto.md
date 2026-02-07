@@ -1,6 +1,6 @@
 ---
 title: RTO Trade-offs
-weight: 20
+weight: 210
 description: Trade-off analysis for RTO (Recovery Time Objective), finding the optimal balance between recovery speed and false failover risk.
 icon: fa-solid fa-stopwatch
 math: true
@@ -95,7 +95,7 @@ Pigsty provides four RTO modes to help users make trade-offs under different net
 
 ## RTO Timeline
 
-Patroni / PG HA has two critical failure paths. For detailed RTO timing analysis, see: [**Active Failure Detection**](/docs/concept/ha/failure/active) and [**Passive Lease Expiration**](/docs/concept/ha/failure/passive).
+Patroni / PG HA has two key failure paths: **active failure detection** (Patroni detects a PG crash and attempts restart) and **passive lease expiration** (node down waits for TTL expiration to trigger election).
 
 {{< echarts height="820px" >}}
 ```js
@@ -170,16 +170,6 @@ loop\_wait + 2 \times retry\_timeout \leq ttl
 
 ## Data Summary
 
-|  Mode     | Target RTO |       Passive RTO        |      Active RTO       | Scenario           |
-|:---------:|:-----:|:---------------------:|:-------------------:|:-------------|
-|  `fast`   | `30`  |  `16` / `23` / `29`   |  `1` / `24` / `29`  | Same switch, high-quality network   |
-|  `norm`   | `45`  |  `27` / `34` / `41`   |  `2` / `35` / `41`  | Default, same DC, standard network  |
-|  `safe`   | `90`  |  `53` / `66` / `78`   |  `3` / `61` / `73`  | Same-city active-active / cross-DC DR |
-|  `wide`   | `150` | `104` / `127` / `150` | `4` / `122` / `145` | Geo-DR / cross-country  |
-| `default` | `326` |  `22` / `34` / `46`   | `2` / `314` / `326` | Patroni default params |
-{.full-width}
-
-
 ------
 
 ## Recommendations
@@ -196,13 +186,13 @@ The longer tolerance window effectively prevents false failovers from network ji
 **wide mode** is suitable for cross-region or even cross-continent deployments with high network latency and possible public-network-level packet loss.
 In such scenarios, stability is more important than recovery speed, so an extremely wide tolerance window ensures very low false failover rate.
 
-| Scenario                            | Recommended Mode | Rationale                                                           |
-|:------------------------------------|:-----------------|:--------------------------------------------------------------------|
-| Dev/Test environment                | fast             | Quick feedback, low impact from false failover                      |
-| Same-datacenter production          | norm             | Default choice, well-balanced                                       |
-| Same-city active-active/cross-DC DR | safe             | Tolerates network jitter, reduces false failover                    |
-| Geo-DR/cross-country deployment     | wide             | Adapts to high-latency public network, very low false failover rate |
-| Uncertain network quality           | safe             | Conservative choice, avoids false failover                          |
+|  Mode     | Target RTO |       Passive RTO        |      Active RTO       | Scenario           |
+|:---------:|:-----:|:---------------------:|:-------------------:|:-------------|
+|  `fast`   | `30`  |  `16` / `23` / `29`   |  `1` / `24` / `29`  | Same switch, high-quality network   |
+|  `norm`   | `45`  |  `27` / `34` / `41`  |  `2` / `35` / `41`  | Default, same DC, standard network  |
+|  `safe`   | `90`  |  `53` / `66` / `78`   |  `3` / `61` / `73`  | Same-city active-active / cross-DC DR |
+|  `wide`   | `150` | `104` / `127` / `150` | `4` / `122` / `145` | Geo-DR / cross-country  |
+| `default` | `326` |  `22` / `34` / `46`   | `2` / `314` / `326` | Patroni default params |
 {.full-width}
 
 

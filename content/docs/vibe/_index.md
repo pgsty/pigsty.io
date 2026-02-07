@@ -1,7 +1,8 @@
 ---
 title: "Module: VIBE"
 weight: 4800
-description: Deploy an AI coding sandbox with Pigsty: Code-Server, JupyterLab, Node.js, and Claude Code.
+description: >
+  Deploy an AI coding sandbox with Pigsty: Code-Server, JupyterLab, Node.js, and Claude Code.
 icon: fas fa-laptop-code
 module: [VIBE]
 categories: [Reference]

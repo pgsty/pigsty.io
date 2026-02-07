@@ -1,6 +1,6 @@
 ---
 title: Parameters
-weight: 80
+weight: 70
 description: Configure PostgreSQL parameters at cluster, instance, database, and user levels
 icon: fa-solid fa-sliders
 module: [PGSQL]
@@ -428,4 +428,3 @@ pg_users:
 - `analyst` connecting to `analytics`: `work_mem = 512MB` (user takes precedence)
 - Other users connecting to `analytics`: `work_mem = 256MB` (database applies)
 - `analyst` connecting to other DBs: `work_mem = 512MB` (user applies)
-

@@ -1,6 +1,6 @@
 ---
 title: Features
-weight: 105
+weight: 10
 description: Pigsty's value propositions and highlight features.
 icon: fa-solid fa-wand-magic-sparkles
 module: [PIGSTY]
@@ -85,7 +85,7 @@ PostgreSQL's soul lies in its rich [**extension ecosystem**](/blog/pg/pg-eat-db-
 Extensions can create [**synergistic effects**](https://pigsty.io/blog/pg/pg-eat-db-world#the-magic-of-ultimate-extensibility), producing 1+1 far greater than 2 results.
 You can use [**PostGIS**](https://postgis.net/) for geospatial data, [**TimescaleDB**](https://www.timescale.com/) for time-series/event stream data analysis, and [**Citus**](https://www.citusdata.com/) to upgrade it in-place to a distributed geospatial-temporal database;
 You can use [**PGVector**](https://github.com/pgvector/pgvector) to store and search AI embeddings, [**ParadeDB**](https://www.paradedb.com/) for ElasticSearch-level full-text search, and simultaneously use precise SQL, full-text search, and fuzzy vector for hybrid search.
-You can also achieve dedicated OLAP database/data lakehouse analytical performance through [**Hydra**](https://www.hydra.so/), [**duckdb_fdw**](https://github.com/alitrack/duckdb_fdw), [**pg_analytics**](https://blog.paradedb.com/pages/introducing_analytics), [**pg_duckdb**](https://github.com/duckdb/pg_duckdb) and other analytical extensions.
+You can also achieve dedicated OLAP database/data lakehouse analytical performance through [**pg_duckdb**](https://github.com/duckdb/pg_duckdb), [**pg_mooncake**](https://github.com/duckdb/pg_mooncake) and other analytical extensions.
 
 Using PostgreSQL as a single component to replace MySQL, Kafka, ElasticSearch, MongoDB, and big data analytics stacks has become a best practice — a single database choice can significantly reduce system complexity, greatly improve development efficiency and agility, achieving remarkable software/hardware and development/operations cost reduction and efficiency improvement.
 
@@ -109,7 +109,7 @@ Additionally, Pigsty provides PG-compatible / derivative kernel support. You can
 [**`OpenHaloDB`**](/docs/pgsql/kernel/openhalo) for MySQL compatibility, and [**`OrioleDB`**](/docs/pgsql/kernel/orioledb) for ultimate OLTP performance.
 
 Furthermore, you can use [**`FerretDB`**](/docs/ferret/) for MongoDB compatibility, [**`Supabase`**](/docs/pgsql/kernel/supabase) for Firebase compatibility, and [**`PolarDB`**](/docs/pgsql/kernel/polardb) to meet domestic compliance requirements.
-More professional/pilot modules will be continuously introduced to Pigsty, such as [**`GPSQL`**](/docs/pgsql/kernel/greenplum), [KAFKA](/docs/pilot/kafka/), [DUCKDB](/docs/pilot/duckdb/), [VICTORIA](/docs/pilot/victoria/), [TIGERBEETLE](/docs/pilot/tigerbeetle/), [KUBERNETES](/docs/pilot/kube/), [CONSUL](/docs/pilot/consul/), [JUPYTER](/docs/pilot/jupyter/), [GREENPLUM](/docs/pgsql/kernel/greenplum/), [CLOUDBERRY](/docs/pgsql/kernel/cloudberry/), [MYSQL](/docs/pilot/mysql/), ...
+More professional/pilot modules will be continuously introduced to Pigsty, such as [**`GPSQL`**](/docs/pgsql/kernel/greenplum), [KAFKA](/docs/pilot/kafka/), [DUCKDB](/docs/pilot/duckdb/), [TIGERBEETLE](/docs/pilot/tigerbeetle/), [KUBERNETES](/docs/pilot/kube/), [CONSUL](/docs/pilot/consul/), [GREENPLUM](/docs/pgsql/kernel/greenplum/), [CLOUDBERRY](/docs/pgsql/kernel/cloudberry/), [MYSQL](/docs/pilot/mysql/), ...
 
 [![pigsty-sandbox.jpg](/img/pigsty/sandbox.jpg)](/docs/ref/module/)
 
@@ -191,7 +191,7 @@ You can audit database operations through the audit plugin, with all system and 
 Pigsty correctly configures SELinux and firewall settings, and follows the principle of least privilege in designing OS user groups and file permissions, ensuring system security baselines meet compliance requirements.
 Security is also uncompromised for auxiliary optional components like Etcd and MinIO — both use RBAC models and TLS encrypted communication, ensuring overall system security.
 
-A properly configured system easily passes Level 3 security certification. As long as you follow security best practices, deploy on internal networks with properly configured security groups and firewalls, database security will no longer be your pain point.
+A properly configured system can easily pass MLPS Level 3 / SOC 2. As long as you follow security best practices, deploy on internal networks with properly configured security groups and firewalls, database security will no longer be your pain point.
 
 [![pigsty-acl.jpg](/img/pigsty/acl.jpg)](/docs/setup/security)
 
@@ -205,10 +205,10 @@ A properly configured system easily passes Level 3 security certification. As lo
 
 In various data-intensive applications, the database is often the trickiest part. For example, the core difference between GitLab Enterprise and Community Edition is the underlying PostgreSQL database monitoring and high availability. If you already have a good enough local PG RDS, you can refuse to pay for software's homemade database components.
 
-Pigsty provides the Docker module and many out-of-the-box Compose templates. You can use Pigsty-managed high-availability PostgreSQL (as well as Redis and MinIO) as backend storage, spinning up these software in stateless mode with one click:
-GitLab, Gitea, Wiki.js, NocoDB, Odoo, Jira, Confluence, Harbor, Mastodon, Discourse, KeyCloak, etc. If your application needs a reliable PostgreSQL database, Pigsty is perhaps the simplest way to get one.
+Pigsty provides the [**Docker module**](/docs/docker) and many out-of-the-box [**Compose templates**](/docs/app). You can use Pigsty-managed high-availability PostgreSQL (as well as Redis and MinIO) as backend storage, spinning up these software in stateless mode with one click:
+GitLab, Gitea, Wiki.js, NocoDB, Odoo, Jira, Confluence, Harbor, Mastodon, Discourse, KeyCloak, Mattermost, etc. If your application needs a reliable PostgreSQL database, Pigsty is perhaps the simplest way to get one.
 
-Pigsty also provides application development toolsets closely related to PostgreSQL: PGAdmin4, PGWeb, ByteBase, PostgREST, Kong, as well as EdgeDB, FerretDB, Supabase — these "upper-layer databases" using PostgreSQL as storage.
+Pigsty also provides application development toolsets closely related to PostgreSQL: PGAdmin4, PGWeb, ByteBase, PostgREST, Kong, as well as EdgeDB, FerretDB, [**Supabase**](/docs/app/supabase) — these "upper-layer databases" using PostgreSQL as storage.
 More wonderfully, you can build interactive data applications quickly in a low-code manner based on the Grafana and Postgres built into Pigsty, and even use Pigsty's built-in ECharts panels to create more expressive interactive visualization works.
 
 Pigsty provides a powerful runtime for your AI applications. Your agents can leverage PostgreSQL and the powerful capabilities of the observability world in this environment to quickly build data-driven intelligent agents.
@@ -235,3 +235,40 @@ There will always be some rare, low-frequency edge cases requiring expert interv
 Subscription consulting fees of tens of thousands are less than one-thirtieth of a top DBA's annual salary, completely eliminating your concerns and putting costs where they really matter. For community users, we also [**contribute with love**](/docs/about/sponsor/), providing free support and daily Q&A.
 
 [![pigsty-price.jpg](/img/pigsty/price.jpg)](/docs/about/compare/cost)
+
+{{< echarts height="560px" >}}
+```js
+var fmtn = function(n) { return Number(n || 0).toLocaleString("en-US"); };
+var yfmt = function(v) { return fmtn(v); };
+var ttfmt = function(params) {
+  if (!params || !params.length) return '';
+  return ['<b>CPU: ' + params[0].axisValue + '</b>']
+    .concat(params.map(function(p) { return p.marker + ' ' + p.seriesName + ': ' + fmtn(p.value); }))
+    .join('<br/>');
+};
+```
+```yaml
+tooltip: { trigger: axis, formatter: $fn:ttfmt }
+legend: { top: 4, itemGap: 16, data: [Oracle, Open-Source PG, Cloud RDS, Pigsty over IaaS, Pigsty over IDC ] }
+grid: { left: 96, right: 36, bottom: 70, top: 50 }
+xAxis:
+  type: category
+  name: CPU Cores
+  nameLocation: middle
+  nameGap: 36
+  boundaryGap: false
+  data: [2, 4, 8, 12, 16, 24, 32, 52, 64, 104, 128, 196, 256, 384, 512]
+yAxis:
+  type: log
+  logBase: 10
+  min: 10
+  name: Monthly Cost (CNY)
+  axisLabel: { formatter: $fn:yfmt }
+  splitLine: { show: true, lineStyle: { type: dashed, opacity: 0.5 } }
+series:
+  - { name: Oracle, type: line, symbolSize: 7, lineStyle: { width: 3 }, itemStyle: { color: "#d62728" }, data: [45000, 65000, 105000, 145000, 185000, 265000, 345000, 545000, 665000, 1065000, 1305000, 1985000, 2585000, 3865000, 5145000] }
+  - { name: Cloud RDS, type: line, symbolSize: 6, lineStyle: { width: 2 }, itemStyle: { color: "#ff7f0e" }, data: [800, 1600, 3200, 4800, 6400, 9600, 12800, 20800, 25600, 41600, 51200, 78400, 102400, 153600, 204800] }
+  - { name: Pigsty over IaaS, type: line, symbolSize: 6, lineStyle: { width: 2 }, itemStyle: { color: "#2ca02c" }, data: [360, 720, 1440, 2160, 2880, 4320, 5760, 9360, 11520, 18720, 23040, 35280, 46080, 69120, 92160] }
+  - { name: Pigsty over IDC, type: line, symbolSize: 6, lineStyle: { width: 2 }, itemStyle: { color: "#9467bd" }, data: [38, 76, 152, 228, 304, 456, 608, 988, 1216, 1976, 2432, 3724, 4864, 7296, 9728] }
+```
+{{< /echarts >}}

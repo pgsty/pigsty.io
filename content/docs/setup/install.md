@@ -96,7 +96,7 @@ If you prefer not to run a remote script, you can manually [**download**](https:
 
 ```bash
 git clone https://github.com/pgsty/pigsty; cd pigsty;
-git checkout v4.0.0-c2;  # Always checkout a specific version when using git
+git checkout v4.0.0;  # Always checkout a specific version when using git
 ```
 
 For manual download/clone installations, run the [**`bootstrap`**](/docs/setup/offline#bootstrap) script to install Ansible and other dependencies. You can also [**install them yourself**](/docs/setup/playbook#install-ansible).
@@ -269,5 +269,4 @@ Most modules require the [**`NODE`**](/docs/node/) module installed first. See a
 
 [**`PGSQL`**](/docs/pgsql/), [**`INFRA`**](/docs/infra/), [**`NODE`**](/docs/node/), [**`ETCD`**](/docs/etcd/),
 [**`MINIO`**](/docs/minio/), [**`REDIS`**](/docs/redis/), [**`FERRET`**](/docs/ferret/), [**`DOCKER`**](/docs/docker/)……
-
 

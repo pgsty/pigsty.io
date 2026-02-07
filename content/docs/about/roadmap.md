@@ -1,6 +1,6 @@
 ---
 title: Roadmap
-weight: 110
+weight: 121
 description: Future feature planning, new feature release schedule, and todo list.
 icon: fas fa-map
 module: [PIGSTY]
@@ -32,17 +32,9 @@ Unless you know what you're doing, do not use GitHub's **main** branch. Always c
 
 ## Features Under Consideration
 
-- [x] A sufficiently good command-line management tool
-- [x] ARM architecture support for infrastructure components
-- [x] Add more extensions for PostgreSQL
-- [x] More preset scenario-based configuration templates
-- [x] Fully migrate software repository and installation download sources to Cloudflare
-- [x] Deploy and monitor highly available Kubernetes clusters using SealOS!
-- [x] Use VictoriaMetrics to replace Prometheus for time-series data storage
-- [ ] Monitor and deploy MySQL databases
-- [ ] Monitor databases in Kubernetes
-- [ ] Provide richer Docker application templates
-- [ ] [PGLite](https://github.com/electric-sql/pglite) browser-side support
+- [ ] Agent Native CLI - PIG
+- [ ] DBA Agent - basic integration
+- [ ] Grafana dashboard improvements
 
 Here are our [**Active Issues**](https://github.com/pgsty/pigsty/issues) and [**Roadmap**](https://github.com/users/Vonng/projects/2/views/3).
 
@@ -57,7 +49,8 @@ For the extension support roadmap, you can find it here: https://pgext.cloud/e/r
 
 ### Under Consideration
 
-- walminer
+- PDU: https://github.com/wublabdubdub/PDU-PostgreSQLDataUnloader
+- walminer https://gitee.com/movead/XLogMiner
 - is_jsonb_valid https://github.com/furstenheim/is_jsonb_valid
 - pg_kafka https://github.com/xstevens/pg_kafka
 - pg_jieba https://github.com/jaiminpan/pg_jieba
@@ -105,6 +98,4 @@ For the extension support roadmap, you can find it here: https://pgext.cloud/e/r
 - pg_backtrace https://github.com/postgrespro/pg_backtrace
 - connection_limits https://github.com/tvondra/connection_limits
 - fixeddecimal https://github.com/2ndQuadrant/fixeddecimal
-
-
 

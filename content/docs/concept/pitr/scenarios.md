@@ -2,7 +2,8 @@
 title: PITR Scenarios
 linkTitle: Scenarios
 weight: 214
-description: Typical PITR scenarios: data deletion, DDL drops, batch errors, branch restore, and site disasters
+description: >
+  Typical PITR scenarios: data deletion, DDL drops, batch errors, branch restore, and site disasters
 icon: fa-solid fa-life-ring
 module: [PGSQL]
 categories: [Concept]

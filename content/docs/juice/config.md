@@ -1,7 +1,7 @@
 ---
 title: Configuration
 weight: 4510
-description: JUICE module configuration: instance definition, storage backends, and mount options.
+description: JUICE module configuration, instance definition, storage backends, and mount options.
 icon: fa-solid fa-code
 module: [JUICE]
 categories: [Reference]

@@ -36,7 +36,7 @@ Apache-2.0 is a permissive open-source license. You may freely use, modify, and 
 
 Pigsty documentation sites ([**pigsty.cc**](https://pigsty.cc), [**pigsty.io**](https://pigsty.io), [**pgsty.com**](https://pgsty.com)) use **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
 
-**CC BY 4.0** permits free sharing and adaptation with [**appropriate credit**](https://creativecommons.org/licenses/by/4.0/deed.en#ref-appropriate-credit), a license link, and [indication of changes](https://creativecommons.org/licenses/by/4.0/deed.en#ref-indicate-changes).
+**CC BY 4.0** permits free sharing and adaptation with [**appropriate credit**](https://creativecommons.org/licenses/by/4.0/deed.en#ref-appropriate-credit), a license link, and [**indication of changes**](https://creativecommons.org/licenses/by/4.0/deed.en#ref-indicate-changes).
 
 |                  **What This License Grants**                   |                 **What This License Does NOT Grant**                 |                                **License Conditions**                                |
 |:---------------------------------------------------------------:|:--------------------------------------------------------------------:|:------------------------------------------------------------------------------------:|
@@ -294,4 +294,3 @@ For PostgreSQL extension plugin licenses, refer to [**PostgreSQL Extension Licen
    See the License for the specific language governing permissions and
    limitations under the License.
 ```
-
