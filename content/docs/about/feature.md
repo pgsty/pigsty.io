@@ -18,8 +18,8 @@ categories: [Reference]
 
 - [**Extensibility**](/img/pigsty/extension.png): Powerful [**extensions**](/docs/ref/extension) out-of-the-box: deep integration of **PostGIS**, **TimescaleDB**, **Citus**, **PGVector** and [**440+**](https://pgext.cloud/list) plugins with Oracle / SQL Server [**compatible kernels**](/docs/pgsql/kernel).
 - [**Reliability**](/img/pigsty/arch.png): Quickly create [**high-availability**](/docs/concept/ha/), self-healing [**PostgreSQL**](/docs/pgsql) clusters with auto-configured [**point-in-time recovery**](/docs/concept/pitr/), [**access control**](/docs/concept/sec/ac/), self-signed [**CA**](/docs/concept/sec/ca) and [**SSL**](/docs/setup/security/), ensuring rock-solid data.
-- [**Observability**](/img/pigsty/dashboard.jpg): Based on [**Prometheus**](/docs/infra#prometheus) & [**Grafana**](/docs/infra#grafana) modern observability stack, providing stunning monitoring best practices. Modular design, can be used independently: [**Gallery**](https://github.com/pgsty/pigsty/wiki/Gallery) & [**Demo**](https://demo.pigsty.io).
-- [**Availability**](/img/pigsty/ha.png): Deliver stable, reliable, auto-routed, transaction-pooled, read-write separated high-performance database [**services**](/docs/pgsql/service/#default-services), with flexible [**access**](/docs/pgsql/service/#access-services) modes via HAProxy, Pgbouncer, and VIP.
+- [**Observability**](/img/pigsty/dashboard.jpg): Based on [**Prometheus**](/docs/infra#victoria-observability-suite) & [**Grafana**](/docs/infra#grafana) modern observability stack, providing stunning monitoring best practices. Modular design, can be used independently: [**Gallery**](https://github.com/pgsty/pigsty/wiki/Gallery) & [**Demo**](https://demo.pigsty.io).
+- [**Availability**](/img/pigsty/ha.png): Deliver stable, reliable, auto-routed, transaction-pooled, read-write separated high-performance database [**services**](/docs/pgsql/service#default-service), with flexible [**access**](/docs/pgsql/service#access-service) modes via HAProxy, Pgbouncer, and VIP.
 - [**Maintainability**](/img/pigsty/iac.jpg): [**Easy to use**](/docs/setup/install), [**Infrastructure as Code**](/docs/pgsql/config), [**Management SOPs**](/docs/pgsql/admin/), auto-tuning, local software repository, [**Vagrant**](/docs/deploy/vagrant) [**sandbox**](/docs/deploy/sandbox) and [**Terraform**](/docs/deploy/terraform) templates, zero-downtime [**migration**](/docs/pgsql/migration) solutions.
 - [**Composability**](/img/pigsty/sandbox.png): [**Modular**](/docs/concept/arch#modules) architecture design, reusable [**Infra**](/docs/infra), various optional [**modules**](/docs/ref/module/): [**Redis**](/docs/redis), [**MinIO**](/docs/minio), [**ETCD**](/docs/etcd), [**FerretDB**](/docs/ferret), [**DuckDB**](https://github.com/pgsty/pigsty/tree/master/app/duckdb), [**Docker**](/docs/docker/), [**Supabase**](https://github.com/pgsty/pigsty/tree/master/app/supabase).
 
@@ -132,7 +132,7 @@ Whether for failure analysis or slow query optimization, capacity assessment or 
 [![pigsty-dashboard.jpg](/img/pigsty/dashboard.jpg)](https://github.com/pgsty/pigsty/wiki/Gallery)
 
 
-Additionally, Pigsty's monitoring system module can be [**used independently**](/docs/pgsql/monitor/#monitoring-rds) — to monitor existing host nodes and database instances, or cloud RDS services. With just one connection string and one command, you can get the ultimate PostgreSQL observability experience.
+Additionally, Pigsty's monitoring system module can be [**used independently**](/docs/pgsql/monitor#monitor-rds) — to monitor existing host nodes and database instances, or cloud RDS services. With just one connection string and one command, you can get the ultimate PostgreSQL observability experience.
 
 Visit the [**Screenshot Gallery**](https://github.com/pgsty/pigsty/wiki/Gallery) and [**Online Demo**](https://demo.pigsty.io) for more details.
 

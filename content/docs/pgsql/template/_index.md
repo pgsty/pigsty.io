@@ -12,13 +12,13 @@ Pigsty provides four preset Patroni/PostgreSQL config templates optimized for di
 
 | Template                 | CPU Cores | Use Case          | Characteristics           |
 |:-------------------------|:----------|:------------------|:--------------------------|
-| [**`oltp.yml`**](oltp)   | 4-128C    | OLTP transactions | High concurrency, low latency |
-| [**`olap.yml`**](olap)   | 4-128C    | OLAP analytics    | Large queries, high parallelism |
-| [**`crit.yml`**](crit)   | 4-128C    | Critical/Finance  | Data safety, audit, zero-loss |
-| [**`tiny.yml`**](tiny)   | 1-3C      | Tiny instances    | Resource-constrained envs |
+| [**`/docs/pgsql/template/oltp.yml`**](/docs/pgsql/template/oltp)   | 4-128C    | OLTP transactions | High concurrency, low latency |
+| [**`/docs/pgsql/template/olap.yml`**](/docs/pgsql/template/olap)   | 4-128C    | OLAP analytics    | Large queries, high parallelism |
+| [**`/docs/pgsql/template/crit.yml`**](/docs/pgsql/template/crit)   | 4-128C    | Critical/Finance  | Data safety, audit, zero-loss |
+| [**`/docs/pgsql/template/tiny.yml`**](/docs/pgsql/template/tiny)   | 1-3C      | Tiny instances    | Resource-constrained envs |
 {.full-width}
 
-Use [**`pg_conf`**](/docs/pgsql/param#pg_conf) to select a template; default is [**`oltp.yml`**](oltp).
+Use [**`pg_conf`**](/docs/pgsql/param#pg_conf) to select a template; default is [**`/docs/pgsql/template/oltp.yml`**](/docs/pgsql/template/oltp).
 
 > The database tuning template [**`pg_conf`**](/docs/pgsql/param#pg_conf) should be paired with the OS tuning template [**`node_tune`**](/docs/node/param#node_tune).
 
@@ -41,7 +41,7 @@ pg-test:
     node_tune: oltp      # OS tuning template (default)
 ```
 
-For critical financial workloads, use [**`crit.yml`**](crit):
+For critical financial workloads, use [**`/docs/pgsql/template/crit.yml`**](/docs/pgsql/template/crit):
 
 ```yaml
 pg-finance:
@@ -55,7 +55,7 @@ pg-finance:
     node_tune: crit      # OS critical tuning
 ```
 
-For low-spec VMs or dev environments, use [**`tiny.yml`**](tiny):
+For low-spec VMs or dev environments, use [**`/docs/pgsql/template/tiny.yml`**](/docs/pgsql/template/tiny):
 
 ```yaml
 pg-dev:
@@ -137,13 +137,13 @@ The four templates differ significantly in key parameters:
 
 ## Selection Guide
 
-- [**OLTP Template**](oltp): Default choice for most transaction processing. Ideal for e-commerce, social, gaming apps.
+- [**OLTP Template**](/docs/pgsql/template/oltp): Default choice for most transaction processing. Ideal for e-commerce, social, gaming apps.
 
-- [**OLAP Template**](olap): For data warehouses, BI reports, ETL. Allows large queries, high parallelism, relaxed timeouts.
+- [**OLAP Template**](/docs/pgsql/template/olap): For data warehouses, BI reports, ETL. Allows large queries, high parallelism, relaxed timeouts.
 
-- [**CRIT Template**](crit): For financial transactions, core accounting with strict consistency/security requirements. Forced sync replication, checksums, full audit.
+- [**CRIT Template**](/docs/pgsql/template/crit): For financial transactions, core accounting with strict consistency/security requirements. Forced sync replication, checksums, full audit.
 
-- [**TINY Template**](tiny): For dev/test environments, resource-constrained VMs, Raspberry Pi. Minimizes resource usage, disables parallel queries.
+- [**TINY Template**](/docs/pgsql/template/tiny): For dev/test environments, resource-constrained VMs, Raspberry Pi. Minimizes resource usage, disables parallel queries.
 
 
 ----------------
@@ -189,7 +189,7 @@ Templates use Jinja2 syntax; parameters are dynamically computed based on node r
 
 ## Tuning Strategy
 
-For technical details on template parameter optimization, see [**Tuning Strategy**](tune):
+For technical details on template parameter optimization, see [**Tuning Strategy**](/docs/pgsql/template/tune):
 
 - Memory tuning (shared buffers, work mem, max connections)
 - CPU tuning (parallel query worker config)
@@ -208,4 +208,3 @@ For technical details on template parameter optimization, see [**Tuning Strategy
 - [**`pg_max_conn`**](/docs/pgsql/param#pg_max_conn): Override template max connections
 - [**`pg_shared_buffer_ratio`**](/docs/pgsql/param#pg_shared_buffer_ratio): Shared buffer memory ratio
 - [**`pg_storage_type`**](/docs/pgsql/param#pg_storage_type): Storage type, affects IO params
-

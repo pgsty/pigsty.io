@@ -39,7 +39,7 @@ pg-test:
     pg_cluster: pg-test
 ```
 
-This configuration is concise and self-describing, consisting only of [**identity parameters**](/docs/pgsql/config#identity-parameters). Note that the Ansible Group name should match [`pg_cluster`](/docs/pgsql/param#pg_cluster).
+This configuration is concise and self-describing, consisting only of [**identity parameters**](/docs/concept/model/pgsql#identity-parameters). Note that the Ansible Group name should match [`pg_cluster`](/docs/pgsql/param#pg_cluster).
 
 Use the following command to create this cluster:
 
@@ -65,7 +65,7 @@ pg-test:
     pg_cluster: pg-test
 ```
 
-If the entire cluster doesn't exist, you can directly [create](/docs/pgsql/admin#create-cluster) the complete cluster. If the cluster primary has already been initialized, you can [add](/docs/pgsql/admin#add-instance) a replica to the existing cluster:
+If the entire cluster doesn't exist, you can directly [create](/docs/pgsql/admin/cluster#create-cluster) the complete cluster. If the cluster primary has already been initialized, you can [add](/docs/pgsql/admin/cluster#expand-cluster) a replica to the existing cluster:
 
 ```bash
 bin/pgsql-add pg-test               # initialize the entire cluster at once
@@ -122,7 +122,7 @@ pg-test:
     pg_conf: crit.yml   # <--- use crit template
 ```
 
-To enable sync standby on an existing cluster, [configure the cluster](/docs/pgsql/admin#configure-cluster) and enable `synchronous_mode`:
+To enable sync standby on an existing cluster, [configure the cluster](/docs/pgsql/admin/cluster#config-cluster) and enable `synchronous_mode`:
 
 ```bash
 $ pg edit-config pg-test    # run as admin user on admin node
@@ -145,7 +145,7 @@ One replica will be elected as the sync standby, and its `application_name` will
 
 Quorum Commit provides more powerful control than sync standby: especially when you have multiple replicas, you can set criteria for successful commits, achieving higher/lower consistency levels (and trade-offs with availability).
 
-If you want **at least two replicas** to confirm commits, you can adjust the [`synchronous_node_count`](https://patroni.readthedocs.io/en/latest/replication_modes.html#synchronous-replication-factor) parameter through Patroni [cluster configuration](/docs/pgsql/admin#configure-cluster) and apply it:
+If you want **at least two replicas** to confirm commits, you can adjust the [`synchronous_node_count`](https://patroni.readthedocs.io/en/latest/replication_modes.html#synchronous-replication-factor) parameter through Patroni [cluster configuration](/docs/pgsql/admin/cluster#config-cluster) and apply it:
 
 ```yaml
 synchronous_mode: true          # ensure synchronous commit is enabled
@@ -249,7 +249,7 @@ bin/pgsql-add pg-test2    # create standby cluster
 
 <details><summary>Example: Change replication upstream</summary>
 
-If necessary (e.g., upstream primary-standby switchover/failover), you can change the standby cluster's replication upstream through [cluster configuration](/docs/pgsql/admin#configure-cluster).
+If necessary (e.g., upstream primary-standby switchover/failover), you can change the standby cluster's replication upstream through [cluster configuration](/docs/pgsql/admin/cluster#config-cluster).
 
 To do this, simply change `standby_cluster.host` to the new upstream IP address and apply.
 
@@ -274,7 +274,7 @@ $ pg edit-config pg-test2
 
 You can promote the standby cluster to an independent cluster at any time, so the cluster can independently handle write requests and diverge from the original cluster.
 
-To do this, you must [configure](/docs/pgsql/admin#configure-cluster) the cluster and completely erase the `standby_cluster` section, then apply.
+To do this, you must [configure](/docs/pgsql/admin/cluster#config-cluster) the cluster and completely erase the `standby_cluster` section, then apply.
 
 ```bash
 $ pg edit-config pg-test2
@@ -338,7 +338,7 @@ pg-testdelay:
   vars: { pg_cluster: pg-testdelay }
 ```
 
-You can also [configure](/docs/pgsql/admin#configure-cluster) a "replication delay" on an existing [standby cluster](#standby-cluster).
+You can also [configure](/docs/pgsql/admin/cluster#config-cluster) a "replication delay" on an existing [standby cluster](#standby-cluster).
 
 ```bash
 $ pg edit-config pg-testdelay

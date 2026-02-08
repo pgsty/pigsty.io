@@ -18,7 +18,7 @@ Common operations:
 - [Troubleshooting](#troubleshooting)
 - [Performance Tuning](#performance-tuning)
 
-See [FAQ](faq) for more.
+See [FAQ](/docs/juice/faq/) for more.
 
 -------------
 

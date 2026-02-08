@@ -148,6 +148,6 @@ node_selinux_mode: enforcing
 
 ## Next
 
-- 🔑 [**Authentication**](../auth/): HBA and password policy
-- 🔒 [**Data Security**](../data/): backup and encryption
+- 🔑 [**Authentication**](/docs/concept/sec/auth): HBA and password policy
+- 🔒 [**Data Security**](/docs/concept/sec/data): backup and encryption
 - ♾️ [**High Availability**](/docs/concept/ha/): business continuity

@@ -72,5 +72,5 @@ pig extension create vector  # Create extension in database
 | Config | [`pg_libs`](/docs/pgsql/param#pg_libs) | Preload extensions to `shared_preload_libraries` |
 | Create | [`pg_databases.extensions`](/docs/pgsql/config/db) | Automatically execute `CREATE EXTENSION` in database |
 
-> For detailed instructions, please refer to each subsection: [Download](download), [Install](install), [Config](config), [Create](create)
+> For detailed instructions, please refer to each subsection: [Download](/docs/pgsql/ext/download/), [Install](/docs/pgsql/ext/install/), [Config](/docs/pgsql/ext/config/), [Create](/docs/pgsql/ext/create/)
 

@@ -74,7 +74,7 @@ pg-grafana:
 
 ### Create Cluster
 
-Use this command to create the `pg-grafana` cluster: [`pgsql.yml`](p-pgsql.yml).
+Use this command to create the `pg-grafana` cluster: [`pgsql.yml`](/docs/pgsql/playbook#pgsqlyml).
 
 ```bash
 ./pgsql.yml -l pg-grafana    # Initialize pg-grafana cluster
@@ -82,7 +82,7 @@ Use this command to create the `pg-grafana` cluster: [`pgsql.yml`](p-pgsql.yml).
 
 This command is the Ansible Playbook [`pgsql.yml`](/docs/pgsql/playbook#pgsqlyml) for creating database clusters.
 
-Users and databases defined in [`pg_users`](/docs/pgsql/config#pg_users) and [`pg_databases`](/docs/pgsql/config#pg_databases) are automatically created during cluster initialization. With this config, after cluster creation (without DNS), you can [access](/docs/concept/sec/ac) the database using these connection strings (any one works):
+Users and databases defined in [`pg_users`](/docs/pgsql/param#pg_users) and [`pg_databases`](/docs/pgsql/param#pg_databases) are automatically created during cluster initialization. With this config, after cluster creation (without DNS), you can [access](/docs/concept/sec/ac) the database using these connection strings (any one works):
 
 ```bash
 postgres://dbuser_grafana:DBUser.Grafana@10.10.10.11:5432/grafana # Direct primary connection
@@ -185,7 +185,7 @@ postgres://dbuser_grafana:DBUser.Grafana@meta:5436/grafana # Default service
 postgres://dbuser_grafana:DBUser.Grafana@meta:5433/grafana # Primary service
 ```
 
-Here, we'll use the [Default service](/docs/concept/ha/svc#default-service) that directly accesses the primary through load balancer.
+Here, we'll use the [Default service](/docs/pgsql/service#default-service) that directly accesses the primary through load balancer.
 
 First verify the connection string is reachable and has DDL execution permissions:
 

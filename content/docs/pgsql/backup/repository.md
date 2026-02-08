@@ -70,7 +70,7 @@ You can use a hybrid full + differential backup strategy to optimize space usage
 For local disk backup repositories, Pigsty recommends using a policy that keeps the latest **2** full backups,
 meaning the disk will retain the two most recent full backups (there may be a third copy while running a new backup).
 
-This guarantees at least a 24-hour recovery window. See [Backup Policy](policy) for details.
+This guarantees at least a 24-hour recovery window. See [Backup Policy](/docs/pgsql/backup/policy/) for details.
 
 
 --------

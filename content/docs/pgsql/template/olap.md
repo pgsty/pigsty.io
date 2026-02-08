@@ -50,7 +50,7 @@ pg-olap:
     node_tune: olap      # OS analytics tuning
 ```
 
-Use [**`olap.yml`**](olap) template for dedicated offline replicas:
+Use [**`olap.yml`**](/docs/pgsql/template/olap/) template for dedicated offline replicas:
 
 ```yaml
 pg-mixed:
@@ -202,7 +202,7 @@ Analytical queries may need to hold transactions for extended periods, so idle t
 
 ## Key Differences from OLTP
 
-| Parameter | [**OLAP**](olap) | [**OLTP**](oltp) | Reason |
+| Parameter | [**OLAP**](/docs/pgsql/template/olap/) | [**OLTP**](/docs/pgsql/template/oltp/) | Reason |
 |:----------|:-----------------|:-----------------|:-------|
 | max_connections | 500 | 500-1000 | Fewer analytical connections |
 | work_mem limit | 8GB | 1GB | Support larger in-memory sorts |
@@ -291,8 +291,8 @@ Focus on these metrics:
 
 - [**`pg_conf`**](/docs/pgsql/param#pg_conf): PostgreSQL config template selection
 - [**`node_tune`**](/docs/node/param#node_tune): OS tuning template, should match `pg_conf`
-- [**OLTP Template**](oltp): Transaction template comparison
-- [**CRIT Template**](crit): Critical business template comparison
-- [**TINY Template**](tiny): Micro instance template comparison
-- [Offline Replica](/docs/pgsql/config/cluster#offline-replica): Dedicated analytics instances
+- [**OLTP Template**](/docs/pgsql/template/oltp/): Transaction template comparison
+- [**CRIT Template**](/docs/pgsql/template/crit/): Critical business template comparison
+- [**TINY Template**](/docs/pgsql/template/tiny/): Micro instance template comparison
+- [Offline Replica](/docs/pgsql/config/cluster#offline): Dedicated analytics instances
 

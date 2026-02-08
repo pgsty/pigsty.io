@@ -14,8 +14,8 @@ Pigsty uses Patroni to manage PostgreSQL clusters. It handles config changes, st
 
 To use Patroni for management, you need one of the following identities:
 
-- From [**INFRA node**](/docs/concept/node#admin-node) as [**admin user**](/docs/deploy/admin), managing all clusters in the environment.
-- From [**PGSQL node**](/docs/concept/node#pgsql-node) as [**`pg_dbsu`**](/docs/pgsql/param#pg_dbsu) (default `postgres`), managing the current cluster only.
+- From [**INFRA node**](/docs/concept/arch/node#admin-node) as [**admin user**](/docs/deploy/admin), managing all clusters in the environment.
+- From [**PGSQL node**](/docs/concept/arch/node#pgsql-node) as [**`pg_dbsu`**](/docs/pgsql/param#pg_dbsu) (default `postgres`), managing the current cluster only.
 
 Patroni provides [**`patronictl`**](https://patroni.readthedocs.io/en/latest/patronictl.html) CLI for management. Pigsty provides a wrapper alias `pg` to simplify operations.
 

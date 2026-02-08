@@ -222,8 +222,8 @@ This path is a quick upgrade from default to compliance-ready.
 
 ## Next
 
-- 🔑 [**Authentication**](../auth/): HBA rules and password policy
-- 👤 [**Access Control**](../ac/): role and privilege model
-- 🔐 [**Encrypted Communication**](../ca/): TLS and certificate management
-- 🔒 [**Data Security**](../data/): backup and encryption
-- ✅ [**Compliance Checklist**](../compliance/): MLPS and SOC2 mapping
+- 🔑 [**Authentication**](/docs/concept/sec/auth): HBA rules and password policy
+- 👤 [**Access Control**](/docs/concept/sec/ac): role and privilege model
+- 🔐 [**Encrypted Communication**](/docs/concept/sec/ca): TLS and certificate management
+- 🔒 [**Data Security**](/docs/concept/sec/data): backup and encryption
+- ✅ [**Compliance Checklist**](/docs/concept/sec/compliance): MLPS and SOC2 mapping

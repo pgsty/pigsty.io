@@ -188,7 +188,7 @@ To use external etcd: define as usual. Skip `etcd.yml` execution since cluster e
 
 ## Add new member to existing etcd cluster?
 
-> For detailed process, refer to [Add member to etcd cluster](admin#add-member)
+> For detailed process, refer to [Add member to etcd cluster](/docs/etcd/admin#add-member)
 
 **Recommended: Utility script**
 
@@ -214,7 +214,7 @@ Recommend: add one new member at a time.
 
 ## Remove member from existing etcd cluster?
 
-> For detailed process, refer to [Remove member from etcd cluster](admin#remove-member)
+> For detailed process, refer to [Remove member from etcd cluster](/docs/etcd/admin#remove-member)
 
 **Recommended: Utility script**
 
@@ -237,7 +237,7 @@ etcdctl member remove <etcd_server_id>       # kick from cluster
 
 ## Configure etcd RBAC authentication?
 
-Pigsty v4.0 enables etcd RBAC auth by default. Root password set by [`etcd_root_password`](param#etcd_root_password), default: `Etcd.Root`.
+Pigsty v4.0 enables etcd RBAC auth by default. Root password set by [`etcd_root_password`](/docs/etcd/param#etcd_root_password), default: `Etcd.Root`.
 
 **Prod recommendation: change default password**
 
@@ -261,5 +261,5 @@ export ETCDCTL_CERT=/etc/etcd/server.crt
 export ETCDCTL_KEY=/etc/etcd/server.key
 ```
 
-More: [RBAC Authentication](admin#rbac-authentication).
+More: [RBAC Authentication](/docs/etcd/admin#rbac-authentication).
 

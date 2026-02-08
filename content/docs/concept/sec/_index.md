@@ -59,12 +59,12 @@ Pigsty provides the security hardening template `conf/ha/safe.yml`, which upgrad
 
 | Section | Description | Core Question |
 |:---|:---|:---|
-| [**Defense in Depth**](level/) | Seven-layer security model and baseline | How does the security system land end to end? |
-| [**Authentication**](auth/) | HBA rules, password policy, certificate auth | How do we verify identities? |
-| [**Access Control**](ac/) | Role system, permission model, database isolation | How do we control privileges? |
-| [**Encrypted Communication**](ca/) | TLS, local CA, certificate management | How do we protect transport and certs? |
-| [**Data Security**](data/) | Checksums, backup, encryption, recovery | How do we keep data intact and recoverable? |
-| [**Compliance Checklist**](compliance/) | MLPS Level 3 and SOC2 mapping | How do we meet compliance requirements? |
+| [**Defense in Depth**](/docs/concept/sec/level) | Seven-layer security model and baseline | How does the security system land end to end? |
+| [**Authentication**](/docs/concept/sec/auth) | HBA rules, password policy, certificate auth | How do we verify identities? |
+| [**Access Control**](/docs/concept/sec/ac) | Role system, permission model, database isolation | How do we control privileges? |
+| [**Encrypted Communication**](/docs/concept/sec/ca) | TLS, local CA, certificate management | How do we protect transport and certs? |
+| [**Data Security**](/docs/concept/sec/data) | Checksums, backup, encryption, recovery | How do we keep data intact and recoverable? |
+| [**Compliance Checklist**](/docs/concept/sec/compliance) | MLPS Level 3 and SOC2 mapping | How do we meet compliance requirements? |
 {.full-width}
 
 

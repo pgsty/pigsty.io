@@ -38,8 +38,8 @@ JUICE module has only two parameters:
 
 | Parameter | Type | Level | Description |
 |:-----|:----:|:----:|:-----|
-| [`juice_cache`](param#juice_cache) | `path` | `C` | JuiceFS shared cache directory |
-| [`juice_instances`](param#juice_instances) | `dict` | `I` | JuiceFS instance dict (required) |
+| [`juice_cache`](/docs/juice/param#juice_cache) | `path` | `C` | JuiceFS shared cache directory |
+| [`juice_instances`](/docs/juice/param#juice_instances) | `dict` | `I` | JuiceFS instance dict (required) |
 {.full-width}
 
 - `juice_cache`: shared local cache directory for all instances, default `/data/juice`

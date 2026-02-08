@@ -199,7 +199,7 @@ Pigsty uses self-signed certificates by default. Options include:
 - Trust self-signed CA certificate (download at `http://<ip>/ca.crt`)
 - Use real CA or get free public domain certs via Certbot
 
-See [CA and Certificates](./cert/) documentation for details.
+See [CA and Certificates](/docs/infra/admin/cert/) documentation for details.
 
 
 ----------------

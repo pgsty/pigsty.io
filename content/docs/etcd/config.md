@@ -35,7 +35,7 @@ etcd: { hosts: { 10.10.10.10: { etcd_seq: 1 } }, vars: { etcd_cluster: etcd } }
 
 All single-node config templates include this line. Placeholder IP `10.10.10.10` replaced with current admin node's IP.
 
-Only required params: [`etcd_seq`](param#etcd_seq) and [`etcd_cluster`](param#etcd_cluster)—uniquely identify each etcd instance.
+Only required params: [`etcd_seq`](/docs/etcd/param#etcd_seq) and [`etcd_cluster`](/docs/etcd/param#etcd_cluster)—uniquely identify each etcd instance.
 
 
 
@@ -93,7 +93,7 @@ Services using etcd in Pigsty:
 | **Patroni** | PG HA, stores cluster state and config | `/pg/bin/patroni.yml` |
 | **VIP-Manager** | Binds L2 VIP on PG clusters | `/etc/default/vip-manager` |
 
-When etcd cluster membership changes permanently, [reload related service configs](admin#reload-config) to ensure correct access.
+When etcd cluster membership changes permanently, [reload related service configs](/docs/etcd/admin#reload-config) to ensure correct access.
 
 **Update Patroni's etcd endpoint ref:**
 
@@ -119,7 +119,7 @@ v4.0 enables etcd RBAC auth by default. Related params:
 
 | Parameter | Description | Default |
 |:----|:----|:------|
-| [`etcd_root_password`](param#etcd_root_password) | etcd root password | `Etcd.Root` |
+| [`etcd_root_password`](/docs/etcd/param#etcd_root_password) | etcd root password | `Etcd.Root` |
 | [`pg_etcd_password`](/docs/pgsql/param#pg_etcd_password) | Patroni's password for etcd | Empty (uses cluster name) |
 
 **Prod recommendations:**

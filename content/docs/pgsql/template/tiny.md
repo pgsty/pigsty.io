@@ -174,7 +174,7 @@ pg_stat_statements.track_planning: off
 
 ## Key Differences from OLTP
 
-| Parameter | [**TINY**](tiny) | [**OLTP**](oltp) | Reason |
+| Parameter | [**TINY**](/docs/pgsql/template/tiny/) | [**OLTP**](/docs/pgsql/template/oltp/) | Reason |
 |:----------|:-----------------|:-----------------|:-------|
 | max_connections | **250** | 500-1000 | Reduce connection overhead |
 | work_mem limit | **256MB** | 1GB | Prevent memory exhaustion |
@@ -327,7 +327,7 @@ pg-docker:
 
 ## Upgrading to OLTP
 
-When your application grows and needs more resources, easily upgrade to [**OLTP template**](oltp):
+When your application grows and needs more resources, easily upgrade to [**OLTP template**](/docs/pgsql/template/oltp/):
 
 1. Upgrade VM specs (4 core 8GB+)
 2. Modify cluster config:
@@ -339,7 +339,7 @@ pg-growing:
     node_tune: oltp      # change from tiny to oltp
 ```
 
-3. [Reconfigure cluster](/docs/pgsql/admin#configure-cluster) or redeploy
+3. [Reconfigure cluster](/docs/pgsql/admin/cluster#config-cluster) or redeploy
 
 
 ----------------
@@ -348,8 +348,8 @@ pg-growing:
 
 - [**`pg_conf`**](/docs/pgsql/param#pg_conf): PostgreSQL config template selection
 - [**`node_tune`**](/docs/node/param#node_tune): OS tuning template, should match `pg_conf`
-- [**OLTP Template**](oltp): Transaction template, upgrade for 4C8G+
-- [**OLAP Template**](olap): Analytics template
-- [**CRIT Template**](crit): Critical business template
-- [Single-Node Install](/docs/setup/install#single-node-install): Pigsty single-node installation guide
+- [**OLTP Template**](/docs/pgsql/template/oltp/): Transaction template, upgrade for 4C8G+
+- [**OLAP Template**](/docs/pgsql/template/olap/): Analytics template
+- [**CRIT Template**](/docs/pgsql/template/crit/): Critical business template
+- [Single-Node Install](/docs/setup/install#deploy): Pigsty single-node installation guide
 

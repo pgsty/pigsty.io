@@ -13,13 +13,13 @@ categories: [Task]
 
 ## Create Cluster
 
-To create a cluster, define it in the config inventory and run the [`minio.yml`](playbook#minioyml) playbook.
+To create a cluster, define it in the config inventory and run the [`minio.yml`](/docs/minio/playbook#minioyml) playbook.
 
 ```yaml
 minio: { hosts: { 10.10.10.10: { minio_seq: 1 } }, vars: { minio_cluster: minio } }
 ```
 
-For example, the above configuration defines an SNSD [Single-Node Single-Disk](config#single-node-single-disk) MinIO cluster. Use the following command to create this MinIO cluster:
+For example, the above configuration defines an SNSD [Single-Node Single-Disk](/docs/minio/config#single-node-single-disk) MinIO cluster. Use the following command to create this MinIO cluster:
 
 ```bash
 ./minio.yml -l minio  # Install MinIO module on the minio group
@@ -30,7 +30,7 @@ For example, the above configuration defines an SNSD [Single-Node Single-Disk](c
 
 ## Remove Cluster
 
-To destroy a cluster, run the dedicated [`minio-rm.yml`](playbook#minio-rmyml) playbook:
+To destroy a cluster, run the dedicated [`minio-rm.yml`](/docs/minio/playbook#minio-rmyml) playbook:
 
 ```bash
 ./minio-rm.yml -l minio                   # Remove MinIO cluster
@@ -59,7 +59,7 @@ The removal playbook automatically performs the following:
 
 MinIO cannot scale at the node/disk level, but can scale at the storage pool (multiple nodes) level.
 
-Assume you have a [four-node](config#multi-node-multi-disk) MinIO cluster and want to double the capacity by adding a new four-node storage pool.
+Assume you have a [four-node](/docs/minio/config#multi-node-multi-disk) MinIO cluster and want to double the capacity by adding a new four-node storage pool.
 
 ```yaml
 minio:
@@ -101,7 +101,7 @@ minio:
 ```
 
 First, modify the MinIO cluster definition to add four new nodes, assigning sequence numbers 5 to 8.
-The key step is to modify the [`minio_volumes`](param#minio_volumes) parameter to designate the new four nodes as a new **storage pool**.
+The key step is to modify the [`minio_volumes`](/docs/minio/param#minio_volumes) parameter to designate the new four nodes as a new **storage pool**.
 
 ```yaml
 minio:
@@ -129,13 +129,13 @@ Step 2: Add these nodes to Pigsty:
 ./node.yml -l 10.10.10.14,10.10.10.15,10.10.10.16,10.10.10.17
 ```
 
-Step 3: On the new nodes, use the Ansible [playbook](playbook) to install and prepare MinIO software:
+Step 3: On the new nodes, use the Ansible [playbook](/docs/minio/playbook/) to install and prepare MinIO software:
 
 ```bash
 ./minio.yml -l 10.10.10.14,10.10.10.15,10.10.10.16,10.10.10.17 -t minio_install
 ```
 
-Step 4: On the **entire cluster**, use the Ansible [playbook](playbook) to reconfigure the MinIO cluster:
+Step 4: On the **entire cluster**, use the Ansible [playbook](/docs/minio/playbook/) to reconfigure the MinIO cluster:
 
 ```bash
 ./minio.yml -l minio -t minio_config

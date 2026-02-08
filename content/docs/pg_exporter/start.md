@@ -253,7 +253,7 @@ If scrapes are timing out:
 
 ## Next Steps
 
-- [Installation Guide](install) - Detailed installation instructions for all platforms
-- [Configuration Reference](config) - Complete configuration documentation
-- [Deployment Guide](deploy) - Production deployment best practices
-- [API Reference](api) - Full API endpoint documentation
+- [Installation Guide](/docs/pg_exporter/install/) - Detailed installation instructions for all platforms
+- [Configuration Reference](/docs/pg_exporter/config/) - Complete configuration documentation
+- [Deployment Guide](/docs/pg_exporter/deploy/) - Production deployment best practices
+- [API Reference](/docs/pg_exporter/api/) - Full API endpoint documentation

@@ -15,8 +15,8 @@ Pigsty supports creating and managing local APT/YUM software repositories for of
 
 To add packages to the local repository:
 
-1. Add packages to [`repo_packages`](../param/#repo_packages) (default packages)
-2. Add packages to [`repo_extra_packages`](../param/#repo_extra_packages) (extra packages)
+1. Add packages to [`repo_packages`](/docs/infra/param#repo_packages) (default packages)
+2. Add packages to [`repo_extra_packages`](/docs/infra/param#repo_extra_packages) (extra packages)
 3. Run the build command:
 
 ```bash

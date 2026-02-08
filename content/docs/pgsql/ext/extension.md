@@ -101,9 +101,9 @@ all:
 
 For detailed extension usage, please refer to:
 
-- [Quick Start](start): Overview of the extension usage process
-- [Extension Introduction](intro): Core concepts of extensions
-- [Install Extensions](install): How to install extensions
-- [Configure Extensions](config): Preloading and parameter configuration
-- [Create Extensions](create): Creating extensions in databases
+- [Quick Start](/docs/pgsql/ext/start/): Overview of the extension usage process
+- [Extension Introduction](/docs/pgsql/ext/intro/): Core concepts of extensions
+- [Install Extensions](/docs/pgsql/ext/install/): How to install extensions
+- [Configure Extensions](/docs/pgsql/ext/config/): Preloading and parameter configuration
+- [Create Extensions](/docs/pgsql/ext/create/): Creating extensions in databases
 

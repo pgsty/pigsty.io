@@ -150,6 +150,6 @@ Default passwords must be changed in production.
 
 ## Next
 
-- 👤 [**Access Control**](../ac/): role and privilege model
-- 🔐 [**Encrypted Communication**](../ca/): TLS and certificate management
-- ✅ [**Compliance Checklist**](../compliance/): MLPS and SOC2 mapping
+- 👤 [**Access Control**](/docs/concept/sec/ac): role and privilege model
+- 🔐 [**Encrypted Communication**](/docs/concept/sec/ca): TLS and certificate management
+- ✅ [**Compliance Checklist**](/docs/concept/sec/compliance): MLPS and SOC2 mapping

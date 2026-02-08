@@ -48,11 +48,11 @@ MinIO supports three major deployment modes:
 
 | Mode | Description | Use Cases |
 |:-----|:------------|:----------|
-| [**Single-Node Single-Disk**](config#single-node-single-disk) (SNSD) | Single node, single data directory | Development, testing, demo |
-| [**Single-Node Multi-Disk**](config#single-node-multi-disk) (SNMD) | Single node, multiple disks | Resource-constrained small-scale deployments |
-| [**Multi-Node Multi-Disk**](config#multi-node-multi-disk) (MNMD) | Multiple nodes, multiple disks per node | **Recommended for production** |
+| [**Single-Node Single-Disk**](/docs/minio/config#single-node-single-disk) (SNSD) | Single node, single data directory | Development, testing, demo |
+| [**Single-Node Multi-Disk**](/docs/minio/config#single-node-multi-disk) (SNMD) | Single node, multiple disks | Resource-constrained small-scale deployments |
+| [**Multi-Node Multi-Disk**](/docs/minio/config#multi-node-multi-disk) (MNMD) | Multiple nodes, multiple disks per node | **Recommended for production** |
 
-Additionally, you can use [multi-pool deployment](config#multi-pool) to scale existing clusters, or deploy [multiple clusters](config#multiple-clusters).
+Additionally, you can use [multi-pool deployment](/docs/minio/config#multi-pool) to scale existing clusters, or deploy [multiple clusters](/docs/minio/config#multiple-clusters).
 
 
 --------

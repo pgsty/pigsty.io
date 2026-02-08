@@ -13,9 +13,9 @@ categories: [Reference]
 
 ## Concept
 
-The entity model of Redis is almost the same as that of [PostgreSQL](/docs/pgsql/config#er-diagram), which also includes the concepts of **Cluster** and **Instance**. Note that the Cluster here does not refer to the native Redis Cluster mode.
+The entity model of Redis is almost the same as that of [PostgreSQL](/docs/concept/model/pgsql#examples), which also includes the concepts of **Cluster** and **Instance**. Note that the Cluster here does not refer to the native Redis Cluster mode.
 
-The core difference between the REDIS module and the PGSQL module is that Redis uses a **single-node multi-instance** deployment rather than the 1:1 deployment: multiple Redis instances are typically deployed on a physical/virtual machine node to utilize multi-core CPUs fully. Therefore, the ways to [configure](#configuration) and [administer](#administration) Redis instances are slightly different from PGSQL.
+The core difference between the REDIS module and the PGSQL module is that Redis uses a **single-node multi-instance** deployment rather than the 1:1 deployment: multiple Redis instances are typically deployed on a physical/virtual machine node to utilize multi-core CPUs fully. Therefore, the ways to [configure](/docs/redis/config/) and [administer](/docs/redis/admin/) Redis instances are slightly different from PGSQL.
 
 In Redis managed by Pigsty, nodes are entirely subordinate to the cluster, which means that currently, it is not allowed to deploy Redis instances of two different clusters on one node. However, this does not affect deploying multiple independent Redis primary-replica instances on one node. Of course, there are some limitations; for example, in this case, you cannot specify different passwords for different instances on the same node.
 
@@ -24,24 +24,24 @@ In Redis managed by Pigsty, nodes are entirely subordinate to the cluster, which
 
 ## Identity Parameters
 
-Redis [**identity parameters**](param#redis_id) are required parameters when defining a Redis cluster.
+Redis [**identity parameters**](/docs/redis/config#identity-parameters) are required parameters when defining a Redis cluster.
 
 |                       Name                       |          Attribute          |     Description      |          Example          |
 |:------------------------------------------------:|:---------------------------:|:--------------------:|:-------------------------:|
-|   [`redis_cluster`](param#redis_cluster)   | **REQUIRED**, cluster level |     Cluster name     |       `redis-test`        |
-|      [`redis_node`](param#redis_node)      |  **REQUIRED**, node level   | Node sequence number |          `1`,`2`          |
-| [`redis_instances`](param#redis_instances) |  **REQUIRED**, node level   | Instance definition  | `{ 6001 : {} ,6002 : {}}` |
+|   [`redis_cluster`](/docs/redis/param#redis_cluster)   | **REQUIRED**, cluster level |     Cluster name     |       `redis-test`        |
+|      [`redis_node`](/docs/redis/param#redis_node)      |  **REQUIRED**, node level   | Node sequence number |          `1`,`2`          |
+| [`redis_instances`](/docs/redis/param#redis_instances) |  **REQUIRED**, node level   | Instance definition  | `{ 6001 : {} ,6002 : {}}` |
 
-- [`redis_cluster`](param#redis_cluster): Redis cluster name, serves as the top-level namespace for cluster resources.
-- [`redis_node`](param#redis_node): Redis node number, an integer unique within the cluster to distinguish different nodes.
-- [`redis_instances`](param#redis_instances): JSON object where keys are instance port numbers and values are JSON objects containing other instance configurations.
+- [`redis_cluster`](/docs/redis/param#redis_cluster): Redis cluster name, serves as the top-level namespace for cluster resources.
+- [`redis_node`](/docs/redis/param#redis_node): Redis node number, an integer unique within the cluster to distinguish different nodes.
+- [`redis_instances`](/docs/redis/param#redis_instances): JSON object where keys are instance port numbers and values are JSON objects containing other instance configurations.
 
 
 --------
 
 ## Redis Mode
 
-There are three different working modes for Redis, specified by the [`redis_mode`](param#redis_mode) parameter:
+There are three different working modes for Redis, specified by the [`redis_mode`](/docs/redis/param#redis_mode) parameter:
 
 * `standalone`: Default standalone master-slave mode
 * `cluster`: Redis native distributed cluster mode
@@ -84,7 +84,7 @@ redis-test: # redis native cluster: 3m x 3s
 * On each Redis node, you need to assign a unique port number to each Redis instance to avoid port conflicts.
 * Typically, the same Redis cluster will use the same password, but multiple Redis instances on a Redis node cannot have different passwords (because redis_exporter only allows one password).
 * Redis Cluster has built-in HA, while standalone master-slave HA requires additional manual configuration in Sentinel since we don't know if you have deployed Sentinel.
-* Fortunately, configuring HA for standalone Redis is straightforward through Sentinel. For details, see [Administration - Configure HA with Sentinel](admin#configure-ha-with-sentinel).
+* Fortunately, configuring HA for standalone Redis is straightforward through Sentinel. For details, see [Administration - Configure HA with Sentinel](/docs/redis/admin#configure-ha-with-sentinel).
 
 
 --------

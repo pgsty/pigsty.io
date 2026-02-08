@@ -16,7 +16,7 @@ Here are common administration operations for the NODE module:
 - [Add Node Monitoring](#add-node-monitoring)
 - [Other Tasks](#other-tasks)
 
-For more questions, see [FAQ: NODE](faq/)
+For more questions, see [FAQ: NODE](/docs/node/faq/)
 
 
 ----------------
@@ -72,7 +72,7 @@ node.yml -t node_admin -k -K -e ansible_user=<another admin>   # enter ssh/sudo 
 
 ## Bind VIP
 
-You can bind an optional L2 VIP on a node cluster using the [`vip_enabled`](param/#vip_enabled) parameter.
+You can bind an optional L2 VIP on a node cluster using the [`vip_enabled`](/docs/node/param#vip_enabled) parameter.
 
 ```yaml
 proxy:
@@ -148,7 +148,7 @@ If you want to add or reconfigure monitoring on existing nodes, use the followin
 
 ## HAProxy Password
 
-[`haproxy_admin_password`](param/#haproxy_admin_password) (default `pigsty`) is used for HAProxy admin UI authentication, rendered to `/etc/haproxy/haproxy.cfg`.
+[`haproxy_admin_password`](/docs/node/param#haproxy_admin_password) (default `pigsty`) is used for HAProxy admin UI authentication, rendered to `/etc/haproxy/haproxy.cfg`.
 
 After changing the password, use the following to reload config (hot reload, no connection interruption):
 
@@ -161,7 +161,7 @@ After changing the password, use the following to reload config (hot reload, no 
 
 ## Firewall Management
 
-Pigsty uses [`node_firewall_mode`](param/#node_firewall_mode) to control firewall behavior.
+Pigsty uses [`node_firewall_mode`](/docs/node/param#node_firewall_mode) to control firewall behavior.
 Uses **firewalld** on RHEL/Rocky and **ufw** on Debian/Ubuntu.
 
 By default, this is `none` - existing firewall config is untouched and left to the user.

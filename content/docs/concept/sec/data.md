@@ -90,6 +90,6 @@ Data security focuses on three things: **integrity, recoverability, confidential
 
 ## Next
 
-- 🔐 [**Encrypted Communication**](../ca/): certificate management and TLS
-- ✅ [**Compliance Checklist**](../compliance/): audit and compliance requirements
+- 🔐 [**Encrypted Communication**](/docs/concept/sec/ca): certificate management and TLS
+- ✅ [**Compliance Checklist**](/docs/concept/sec/compliance): audit and compliance requirements
 - ⏰ [**Backup & Recovery**](/docs/concept/pitr/): PITR mechanics and practice

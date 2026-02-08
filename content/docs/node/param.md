@@ -187,7 +187,7 @@ node_load1{cls="pg-test", ins="pg-test-2", ip="10.10.10.12", job="nodes"}
 node_load1{cls="pg-test", ins="pg-test-3", ip="10.10.10.13", job="nodes"}
 ```
 
-When executing the default PostgreSQL deployment, since Pigsty uses exclusive 1:1 deployment by default, you can borrow the database instance's identity parameters ([`pg_cluster`](#pg_cluster)) to the node's `ins` and `cls` labels through the [`node_id_from_pg`](#node_id_from_pg) parameter.
+When executing the default PostgreSQL deployment, since Pigsty uses exclusive 1:1 deployment by default, you can borrow the database instance's identity parameters ([`pg_cluster`](/docs/pgsql/param#pg_cluster)) to the node's `ins` and `cls` labels through the [`node_id_from_pg`](#node_id_from_pg) parameter.
 
 |             Name              |   Type   | Level | Required   | Description            |
 |:-----------------------------:|:--------:|:-----:|:-----------|:-----------------------|
@@ -253,7 +253,7 @@ name: `nodename_exchange`, type: `bool`, level: `C`
 
 Exchange nodename among play hosts? Default is `false`.
 
-When enabled, nodes executing the [`node.yml`](/docs/node#nodeyml) playbook in the same batch will exchange node names with each other, writing them to `/etc/hosts`.
+When enabled, nodes executing the [`node.yml`](/docs/node/playbook#nodeyml) playbook in the same batch will exchange node names with each other, writing them to `/etc/hosts`.
 
 
 
@@ -399,9 +399,9 @@ node_packages: [openssh-server]   # packages to be installed current nodes with 
 
 name: `node_repo_modules`, type: `string`, level: `C/A`
 
-List of software repository modules to be added on the node, same format as [`repo_modules`](#repo_modules). Default is `local`, using the local software repository specified in [`repo_upstream`](#repo_upstream).
+List of software repository modules to be added on the node, same format as [`repo_modules`](/docs/infra/param#repo_modules). Default is `local`, using the local software repository specified in [`repo_upstream`](/docs/infra/param#repo_upstream).
 
-When Pigsty manages nodes, it filters entries in [`repo_upstream`](#repo_upstream) based on this parameter value. Only entries whose `module` field matches this parameter value will be added to the node's software sources.
+When Pigsty manages nodes, it filters entries in [`repo_upstream`](/docs/infra/param#repo_upstream) based on this parameter value. Only entries whose `module` field matches this parameter value will be added to the node's software sources.
 
 
 
@@ -598,7 +598,7 @@ If both `node_hugepage_count` and `node_hugepage_ratio` are `0` (default), hugep
 
 If a non-zero value is set, it will be written to `/etc/sysctl.d/hugepage.conf` to take effect. Negative values won't work, and numbers higher than 90% of node memory will be capped at 90% of node memory.
 
-If not zero, it should be slightly larger than the corresponding [`pg_shared_buffer_ratio`](#pg_shared_buffer_ratio) value so PostgreSQL can use hugepages.
+If not zero, it should be slightly larger than the corresponding [`pg_shared_buffer_ratio`](/docs/pgsql/param#pg_shared_buffer_ratio) value so PostgreSQL can use hugepages.
 
 
 
@@ -614,7 +614,7 @@ This memory ratio will be allocated as hugepages and reserved for PostgreSQL. [`
 
 Default: `0`, which sets `vm.nr_hugepages=0` and completely disables hugepages.
 
-This parameter should equal or be slightly larger than [`pg_shared_buffer_ratio`](#pg_shared_buffer_ratio) if not zero.
+This parameter should equal or be slightly larger than [`pg_shared_buffer_ratio`](/docs/pgsql/param#pg_shared_buffer_ratio) if not zero.
 
 For example, if you allocate 25% of memory for Postgres shared buffers by default, you can set this value to 0.27 ~ 0.30, and use `/pg/bin/pg-tune-hugepage` after initialization to precisely reclaim wasted hugepages.
 

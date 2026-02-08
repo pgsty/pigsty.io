@@ -8,7 +8,7 @@ module: [MINIO]
 categories: [Reference]
 ---
 
-After you [configure](config) and deploy the MinIO cluster with the [playbook](playbook), you can start using and accessing the MinIO cluster by following the instructions here.
+After you [configure](/docs/minio/config/) and deploy the MinIO cluster with the [playbook](/docs/minio/playbook/), you can start using and accessing the MinIO cluster by following the instructions here.
 
 
 
@@ -16,21 +16,21 @@ After you [configure](config) and deploy the MinIO cluster with the [playbook](p
 
 ## Deploy Cluster
 
-Deploying an out-of-the-box single-node single-disk MinIO instance in Pigsty is straightforward. First, define a MinIO cluster in the [config inventory](/docs/setup/config#config-inventory):
+Deploying an out-of-the-box single-node single-disk MinIO instance in Pigsty is straightforward. First, define a MinIO cluster in the [config inventory](/docs/setup/config/):
 
 ```yaml
 minio: { hosts: { 10.10.10.10: { minio_seq: 1 } }, vars: { minio_cluster: minio } }
 ```
 
-Then, run the [`minio.yml`](playbook) playbook provided by Pigsty against the defined group (here `minio`):
+Then, run the [`minio.yml`](/docs/minio/playbook/) playbook provided by Pigsty against the defined group (here `minio`):
 
 ```bash
 ./minio.yml -l minio
 ```
 
-Note that in [`deploy.yml`](/docs/setup/playbook#installyml), pre-defined MinIO clusters will be automatically created, so you don't need to manually run the `minio.yml` playbook again.
+Note that in [`deploy.yml`](/docs/setup/playbook#deploy-playbook), pre-defined MinIO clusters will be automatically created, so you don't need to manually run the `minio.yml` playbook again.
 
-If you plan to deploy a production-grade large-scale multi-node MinIO cluster, we strongly recommend reading the Pigsty MinIO [configuration documentation](config) and the MinIO [official documentation](https://min.io/docs/minio/linux/operations/concepts.html) before proceeding.
+If you plan to deploy a production-grade large-scale multi-node MinIO cluster, we strongly recommend reading the Pigsty MinIO [configuration documentation](/docs/minio/config/) and the MinIO [official documentation](https://min.io/docs/minio/linux/operations/concepts.html) before proceeding.
 
 
 

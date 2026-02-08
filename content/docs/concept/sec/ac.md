@@ -157,6 +157,6 @@ REVOKE CREATE ON SCHEMA public FROM PUBLIC;
 
 ## Next
 
-- 🔑 [**Authentication**](../auth/): HBA rules and password policy
-- 🔐 [**Encrypted Communication**](../ca/): TLS and certificate management
-- ✅ [**Compliance Checklist**](../compliance/): MLPS and SOC2 mapping
+- 🔑 [**Authentication**](/docs/concept/sec/auth): HBA rules and password policy
+- 🔐 [**Encrypted Communication**](/docs/concept/sec/ca): TLS and certificate management
+- ✅ [**Compliance Checklist**](/docs/concept/sec/compliance): MLPS and SOC2 mapping

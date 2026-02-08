@@ -7,7 +7,7 @@ description: Advanced PostgreSQL & pgBouncer Metrics Exporter for Prometheus
 
 The ultimate monitoring experience for PostgreSQL with **600+ metrics**, **declarative configuration**, and **dynamic planning** capabilities.
 
-[**Get Started**](start) | [**GitHub**](https://github.com/pgsty/pg_exporter) | [**Live Demo**](https://g.pgsty.com)
+[**Get Started**](/docs/pg_exporter/start) | [**GitHub**](https://github.com/pgsty/pg_exporter) | [**Live Demo**](https://g.pgsty.com)
 
 
 --------
@@ -31,7 +31,7 @@ The ultimate monitoring experience for PostgreSQL with **600+ metrics**, **decla
 
 ## Installation
 
-PG Exporter provides multiple [install](install) methods to fit your infrastructure:
+PG Exporter provides multiple [installation](/docs/pg_exporter/install/) methods to fit your infrastructure:
 
 {{< tabpane persist="disabled" >}}
 {{% tab header="Installation" disabled=true /%}}
@@ -85,7 +85,7 @@ make build
 
 ## Quick Start
 
-Get PG Exporter up and running in minutes, [Getting Started](start) with:
+Get PG Exporter up and running in minutes, [Getting Started](/docs/pg_exporter/start) with:
 
 ```bash
 # Run with PostgreSQL URL
@@ -100,10 +100,10 @@ curl http://localhost:9630/metrics
 
 ## Documentation
 
-- [**Getting Started**](start) - Quick start guide and basic concepts
-- [**Installation**](install) - Installation instructions for all platforms
-- [**Configuration**](config) - Configuration reference and examples
-- [**Deployment**](deploy) - Production deployment best practices
+- [**Getting Started**](/docs/pg_exporter/start) - Quick start guide and basic concepts
+- [**Installation**](/docs/pg_exporter/install) - Installation instructions for all platforms
+- [**Configuration**](/docs/pg_exporter/config) - Configuration reference and examples
+- [**Deployment**](/docs/pg_exporter/deploy) - Production deployment best practices
 - [**Collectors**](https://github.com/pgsty/pg_exporter/tree/main/config) - Detailed documentation for all metric collectors
 
 

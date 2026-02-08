@@ -56,9 +56,9 @@ A dedicated playbook for removing etcd clusters or individual members. The follo
 
 The removal playbook uses the [`etcd_remove`](https://github.com/pgsty/pigsty/blob/main/roles/etcd_remove) role with the following configurable parameters:
 
-- [`etcd_safeguard`](param#etcd_safeguard): Prevents accidental removal when set to `true`
-- [`etcd_rm_data`](param#etcd_rm_data): Controls whether ETCD data is deleted (default: `true`)
-- [`etcd_rm_pkg`](param#etcd_rm_pkg): Controls whether ETCD packages are uninstalled (default: `false`)
+- [`etcd_safeguard`](/docs/etcd/param#etcd_safeguard): Prevents accidental removal when set to `true`
+- [`etcd_rm_data`](/docs/etcd/param#etcd_rm_data): Controls whether ETCD data is deleted (default: `true`)
+- [`etcd_rm_pkg`](/docs/etcd/param#etcd_rm_pkg): Controls whether ETCD packages are uninstalled (default: `false`)
 
 
 
@@ -108,7 +108,7 @@ bin/etcd-rm                                     # Remove entire etcd cluster
 
 ## Safeguard
 
-To prevent accidental deletion, Pigsty's ETCD module provides a safeguard mechanism controlled by the [`etcd_safeguard`](param#etcd_safeguard) parameter, which defaults to `false` (safeguard disabled).
+To prevent accidental deletion, Pigsty's ETCD module provides a safeguard mechanism controlled by the [`etcd_safeguard`](/docs/etcd/param#etcd_safeguard) parameter, which defaults to `false` (safeguard disabled).
 
 For production etcd clusters that have been initialized, it's recommended to enable the safeguard to prevent accidental deletion of existing etcd instances:
 

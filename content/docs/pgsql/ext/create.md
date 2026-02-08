@@ -92,7 +92,7 @@ pg-meta:
 
 If you try to create without preloading, you will receive an error message.
 
-Common extensions requiring preload: `timescaledb`, `citus`, `pg_cron`, `pg_net`, `pgaudit`, etc. See [Configure Extensions](config).
+Common extensions requiring preload: `timescaledb`, `citus`, `pg_cron`, `pg_net`, `pgaudit`, etc. See [Configure Extensions](/docs/pgsql/ext/config/).
 
 
 --------

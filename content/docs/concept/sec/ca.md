@@ -123,6 +123,6 @@ files/pki/misc/<cn>.crt
 
 ## Next
 
-- 🔑 [**Authentication**](../auth/): HBA and certificate auth
-- 👤 [**Access Control**](../ac/): role and privilege model
-- ✅ [**Compliance Checklist**](../compliance/): compliance evidence and mapping
+- 🔑 [**Authentication**](/docs/concept/sec/auth): HBA and certificate auth
+- 👤 [**Access Control**](/docs/concept/sec/ac): role and privilege model
+- ✅ [**Compliance Checklist**](/docs/concept/sec/compliance): compliance evidence and mapping

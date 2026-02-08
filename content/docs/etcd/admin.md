@@ -19,13 +19,13 @@ Common etcd admin SOPs:
 - [Remove Member](#remove-member): Remove member from etcd cluster
 - [Utility Scripts](#utility-scripts): Simplify ops with `bin/etcd-add` and `bin/etcd-rm`
 
-For more, refer to [FAQ: ETCD](faq).
+For more, refer to [FAQ: ETCD](/docs/etcd/faq/).
 
 ----
 
 ## Create Cluster
 
-Define `etcd` cluster in [**config inventory**](/docs/setup/config#config-inventory):
+Define `etcd` cluster in [**config inventory**](/docs/setup/config/):
 
 ```yaml
 etcd:
@@ -36,7 +36,7 @@ etcd:
   vars: { etcd_cluster: etcd }
 ```
 
-Run [`etcd.yml`](playbook#etcdyml) playbook:
+Run [`etcd.yml`](/docs/etcd/playbook#etcdyml) playbook:
 
 ```bash
 ./etcd.yml  # initialize etcd cluster
@@ -46,7 +46,7 @@ Run [`etcd.yml`](playbook#etcdyml) playbook:
 Since v3.6, `etcd.yml` focuses on cluster install and member addition—no longer includes removal. Use dedicated `etcd-rm.yml` for all removals.
 {{% /alert %}}
 
-For prod etcd clusters, enable safeguard [`etcd_safeguard`](param#etcd_safeguard) to prevent accidental deletion.
+For prod etcd clusters, enable safeguard [`etcd_safeguard`](/docs/etcd/param#etcd_safeguard) to prevent accidental deletion.
 
 
 
@@ -54,7 +54,7 @@ For prod etcd clusters, enable safeguard [`etcd_safeguard`](param#etcd_safeguard
 
 ## Destroy Cluster
 
-Use dedicated [`etcd-rm.yml`](playbook#etcd-rmyml) playbook to destroy etcd cluster. Use caution!
+Use dedicated [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook to destroy etcd cluster. Use caution!
 
 ```bash
 ./etcd-rm.yml                         # remove entire etcd cluster
@@ -67,7 +67,7 @@ Or use utility script:
 bin/etcd-rm                           # remove entire etcd cluster
 ```
 
-Removal playbook respects [`etcd_safeguard`](param#etcd_safeguard). If `true`, playbook aborts to prevent accidental deletion.
+Removal playbook respects [`etcd_safeguard`](/docs/etcd/param#etcd_safeguard). If `true`, playbook aborts to prevent accidental deletion.
 
 {{% alert title="Warning" color="warning" %}}
 Before removing etcd cluster, ensure no PG clusters use it as DCS. PG HA will break otherwise.
@@ -116,7 +116,7 @@ e endpoint status                # view endpoint status
 
 v4.0 enables etcd RBAC auth by default. During cluster init, `etcd_auth` task auto-creates root user and enables auth.
 
-**Root user password** set by [`etcd_root_password`](param#etcd_root_password), default: `Etcd.Root`. Stored in `/etc/etcd/etcd.pass` with `0640` perms (root-owned, etcd-group readable).
+**Root user password** set by [`etcd_root_password`](/docs/etcd/param#etcd_root_password), default: `Etcd.Root`. Stored in `/etc/etcd/etcd.pass` with `0640` perms (root-owned, etcd-group readable).
 
 **Strongly recommended to change default password in prod:**
 

@@ -139,12 +139,12 @@ minio:
     minio_node: '${minio_cluster}-${minio_seq}.pigsty' # minio node name pattern
 ```
 
-The [`minio_node`](param#minio_node) parameter specifies the MinIO node name pattern, used to generate a unique name for each node.
+The [`minio_node`](/docs/minio/param#minio_node) parameter specifies the MinIO node name pattern, used to generate a unique name for each node.
 By default, the node name is `${minio_cluster}-${minio_seq}.pigsty`, where `${minio_cluster}` is the cluster name and `${minio_seq}` is the node sequence number.
 The MinIO instance name is crucial and will be automatically written to `/etc/hosts` on MinIO nodes for static resolution. MinIO relies on these names to identify and access other nodes in the cluster.
 
 In this case, `MINIO_VOLUMES` will be set to `https://minio-{1...4}.pigsty/data{1...4}` to identify the four disks on four nodes.
-You can directly specify the [`minio_volumes`](param#minio_volumes) parameter in the MinIO cluster to override the automatically generated value.
+You can directly specify the [`minio_volumes`](/docs/minio/param#minio_volumes) parameter in the MinIO cluster to override the automatically generated value.
 However, this is usually not necessary as Pigsty will automatically generate it based on the config inventory.
 
 
@@ -155,11 +155,11 @@ However, this is usually not necessary as Pigsty will automatically generate it 
 
 ## Multi-Pool
 
-MinIO's architecture allows scaling by adding new storage pools. In Pigsty, you can achieve cluster scaling by explicitly specifying the [`minio_volumes`](param#minio_volumes) parameter to allocate nodes for each storage pool.
+MinIO's architecture allows scaling by adding new storage pools. In Pigsty, you can achieve cluster scaling by explicitly specifying the [`minio_volumes`](/docs/minio/param#minio_volumes) parameter to allocate nodes for each storage pool.
 
 For example, suppose you have already created the MinIO cluster defined in the [Multi-Node Multi-Disk](#multi-node-multi-disk) example, and now you want to add a new storage pool with four more nodes.
 
-You need to directly override the [`minio_volumes`](param#minio_volumes) parameter:
+You need to directly override the [`minio_volumes`](/docs/minio/param#minio_volumes) parameter:
 
 ```yaml
 minio:
@@ -180,7 +180,7 @@ minio:
     minio_volumes: 'https://minio-{1...4}.pigsty:9000/data{1...4} https://minio-{5...8}.pigsty:9000/data{1...4}'
 ```
 
-Here, the two space-separated parameters represent two storage pools, each with four nodes and four disks per node. For more information on storage pools, refer to [Administration: MinIO Cluster Expansion](admin)
+Here, the two space-separated parameters represent two storage pools, each with four nodes and four disks per node. For more information on storage pools, refer to [Administration: MinIO Cluster Expansion](/docs/minio/admin/)
 
 
 
@@ -274,7 +274,7 @@ minio:
 For example, the configuration above enables HAProxy on all nodes of the MinIO cluster, exposing MinIO services on port `9002`, and binds a Layer 2 VIP to the cluster.
 When in use, users should point the `sss.pigsty` domain name to the VIP address `10.10.10.9` and access MinIO services using port `9002`. This ensures high availability, as the VIP will automatically switch to another node if any node fails.
 
-In this scenario, you may also need to globally modify the domain name resolution destination and the [`minio_endpoint`](param#minio_endpoint) parameter to change the endpoint address for the MinIO alias on the admin node:
+In this scenario, you may also need to globally modify the domain name resolution destination and the [`minio_endpoint`](/docs/minio/param#minio_endpoint) parameter to change the endpoint address for the MinIO alias on the admin node:
 
 ```yaml
 minio_endpoint: https://sss.pigsty:9002   # Override the default: https://sss.pigsty:9000
@@ -311,7 +311,7 @@ proxy:
           - { name: minio-5 ,ip: 10.10.10.25 ,port: 9000 ,options: 'check-ssl ca-file /etc/pki/ca.crt check port 9000' }
 ```
 
-In this case, you typically need to globally modify the MinIO domain resolution to point `sss.pigsty` to the load balancer address, and modify the [`minio_endpoint`](param#minio_endpoint) parameter to change the endpoint address for the MinIO alias on the admin node:
+In this case, you typically need to globally modify the MinIO domain resolution to point `sss.pigsty` to the load balancer address, and modify the [`minio_endpoint`](/docs/minio/param#minio_endpoint) parameter to change the endpoint address for the MinIO alias on the admin node:
 
 ```yaml
 minio_endpoint: https://sss.pigsty:9002    # overwrite the defaults: https://sss.pigsty:9000
@@ -353,7 +353,7 @@ minio_ha:
 
 ## Expose Console
 
-MinIO provides a Web console interface on port `9001` by default (specified by the [`minio_admin_port`](param#minio_admin_port) parameter).
+MinIO provides a Web console interface on port `9001` by default (specified by the [`minio_admin_port`](/docs/minio/param#minio_admin_port) parameter).
 
 Exposing the admin interface to external networks may pose security risks. If you want to do this, add MinIO to [`infra_portal`](/docs/infra/param#infra_portal) and refresh the Nginx configuration.
 

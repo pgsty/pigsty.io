@@ -64,4 +64,4 @@ The modules below are closely related to the PostgreSQL ecosystem. They are opti
 - [**`SUPABASE`**](/docs/pgsql/kernel/supabase), [**`DUCKDB`**](/docs/pilot/duckdb): peripheral ecosystem integration.
 - [**`MSSQL`**](/docs/pgsql/kernel/babelfish), [**`IVORY`**](/docs/pgsql/kernel/ivorysql), [**`POLAR`**](/docs/pgsql/kernel/polardb), [**`CITUS`**](/docs/pgsql/kernel/citus): kernel replacement/distributed forms.
 - [**`GREENPLUM`**](/docs/pgsql/kernel/greenplum), [**`CLOUDBERRY`**](/docs/pgsql/kernel/cloudberry), [**`NEON`**](/docs/pgsql/kernel/neon): historical docs retained, no longer default public capabilities.
-- [**`KAFKA`**](/docs/pilot/kafka), [**`MYSQL`**](/docs/pilot/mysql), [**`KUBE`**](/docs/pilot/kube/), [**`VICTORIA`**](/docs/pilot/victoria), [**`JUPYTER`**](/docs/pilot/jupyter): pilot modules, currently not open for public use.
+- [**`KAFKA`**](/docs/pilot/kafka), [**`MYSQL`**](/docs/pilot/mysql), [**`KUBE`**](/docs/pilot/kube/), [**`VICTORIA`**](/blog/db/victoria-stack/), [**`JUPYTER`**](/docs/app/jupyter/): pilot modules, currently not open for public use.

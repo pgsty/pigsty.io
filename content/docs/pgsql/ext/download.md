@@ -85,5 +85,5 @@ Repository URLs:
 - Pigsty YUM: https://repo.pigsty.io/yum/
 - Pigsty APT: https://repo.pigsty.io/apt/
 
-For detailed repository configuration, see [Extension Repository](repo).
+For detailed repository configuration, see [Extension Repository](/docs/pgsql/ext/repo/).
 

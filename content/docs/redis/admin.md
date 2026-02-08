@@ -32,14 +32,14 @@ Here are some common Redis administration task SOPs (Standard Operating Procedur
 - [Common Issue Diagnosis](#common-issue-diagnosis)
 - [Performance Tuning](#performance-tuning)
 
-For more questions, please refer to [FAQ: REDIS](faq).
+For more questions, please refer to [FAQ: REDIS](/docs/redis/faq/).
 
 
 -------------
 
 ### Initialize Redis
 
-You can use the [`redis.yml`](playbook#redisyml) playbook to initialize Redis clusters, nodes, or instances:
+You can use the [`redis.yml`](/docs/redis/playbook#redisyml) playbook to initialize Redis clusters, nodes, or instances:
 
 ```bash
 # Initialize all Redis instances in the cluster
@@ -64,7 +64,7 @@ bin/redis-add 10.10.10.10 6379  # create redis instance '10.10.10.10:6379'
 
 ### Remove Redis
 
-You can use the [`redis-rm.yml`](playbook#redis-rmyml) playbook to remove Redis clusters, nodes, or instances:
+You can use the [`redis-rm.yml`](/docs/redis/playbook#redis-rmyml) playbook to remove Redis clusters, nodes, or instances:
 
 ```bash
 # Remove Redis cluster `redis-test`
@@ -92,7 +92,7 @@ bin/redis-rm 10.10.10.10 6379  # remove redis instance '10.10.10.10:6379'
 
 ### Reconfigure Redis
 
-You can partially run the [`redis.yml`](playbook#redisyml) playbook to reconfigure Redis clusters, nodes, or instances:
+You can partially run the [`redis.yml`](/docs/redis/playbook#redisyml) playbook to reconfigure Redis clusters, nodes, or instances:
 
 ```bash
 ./redis.yml -l <cluster> -t redis_config,redis_launch
@@ -145,7 +145,7 @@ https://redis.io/commands/replicaof/
 
 Redis standalone master-slave clusters can be configured for automatic high availability through Redis Sentinel. For detailed information, please refer to the [Sentinel official documentation](https://redis.io/docs/management/sentinel/).
 
-Using the four-node [sandbox environment](/docs/deploy/install#sandbox) as an example, a Redis Sentinel cluster `redis-meta` can be used to manage multiple standalone Redis master-slave clusters.
+Using the four-node [sandbox environment](/docs/deploy/sandbox/) as an example, a Redis Sentinel cluster `redis-meta` can be used to manage multiple standalone Redis master-slave clusters.
 
 Taking the one-master-one-slave Redis standalone cluster `redis-ms` as an example, you need to add the target on each Sentinel instance using `SENTINEL MONITOR` and provide the password using `SENTINEL SET`, and the high availability is configured.
 

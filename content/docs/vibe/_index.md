@@ -63,9 +63,9 @@ Default entry points (via `infra_portal.home`):
 
 ## Documentation
 
-- [**Configuration**](config): component config and workspace settings
-- [**Parameters**](param): VIBE parameter list and defaults
-- [**Playbook**](playbook): `vibe.yml` usage and tags
-- [**Administration**](admin): operations, passwords, and extensions
-- [**Monitoring**](monitor): Claude Code metrics and logs
-- [**FAQ**](faq): common questions
+- [**Configuration**](/docs/vibe/config): component config and workspace settings
+- [**Parameters**](/docs/vibe/param): VIBE parameter list and defaults
+- [**Playbook**](/docs/vibe/playbook): `vibe.yml` usage and tags
+- [**Administration**](/docs/vibe/admin): operations, passwords, and extensions
+- [**Monitoring**](/docs/vibe/monitor): Claude Code metrics and logs
+- [**FAQ**](/docs/vibe/faq): common questions

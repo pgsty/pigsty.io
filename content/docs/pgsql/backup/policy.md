@@ -23,7 +23,7 @@ Since you need to replay WAL logs from the last backup to the recovery target po
 ### Daily Full Backup
 
 For production databases, it's recommended to start with the simplest daily full backup strategy.
-This is also Pigsty's default backup strategy, implemented via [crontab](mechanism#scheduled-backups).
+This is also Pigsty's default backup strategy, implemented via [crontab](/docs/pgsql/backup/mechanism#scheduled-backups).
 
 ```yaml title="Full backup at 1 AM daily"
 node_crontab: [ '00 01 * * * postgres /pg/bin/pg-backup full' ]

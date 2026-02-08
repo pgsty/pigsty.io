@@ -36,7 +36,7 @@ Playbook [`minio.yml`](https://github.com/pgsty/pigsty/blob/main/minio.yml) inst
   - `minio_bucket`  : Create minio buckets
   - `minio_user`    : Create minio business users
 
-Before running the playbook, complete the MinIO cluster [configuration](config) in the [config inventory](/docs/setup/config).
+Before running the playbook, complete the MinIO cluster [configuration](/docs/minio/config/) in the [config inventory](/docs/setup/config).
 
 {{% alert title="Execution Condition" color="primary" %}}
 The playbook automatically skips hosts without [`minio_seq`](/docs/minio/param#minio_seq) defined. This means you can safely execute the playbook on mixed host groups - only actual MinIO nodes will be processed.

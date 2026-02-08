@@ -14,8 +14,8 @@ categories: [Task]
 | Action                                | Command                       | Description                         |
 |:--------------------------------------|:------------------------------|:------------------------------------|
 | [**Create Cluster**](#create-cluster) | `bin/pgsql-add <cls>`         | Create a new PostgreSQL cluster     |
-| [**Expand Cluster**](#scale-out)      | `bin/pgsql-add <cls> <ip...>` | Add replica to existing cluster     |
-| [**Shrink Cluster**](#scale-in)       | `bin/pgsql-rm <cls> <ip...>`  | Remove instance from cluster        |
+| [**Expand Cluster**](#expand-cluster)      | `bin/pgsql-add <cls> <ip...>` | Add replica to existing cluster     |
+| [**Shrink Cluster**](#shrink-cluster)       | `bin/pgsql-rm <cls> <ip...>`  | Remove instance from cluster        |
 | [**Remove Cluster**](#remove-cluster) | `bin/pgsql-rm <cls>`          | Destroy entire PostgreSQL cluster   |
 | [**Reload Service**](#reload-service) | `bin/pgsql-svc <cls> [ip...]` | Reload cluster load balancer config |
 | [**Reload HBA**](#reload-hba)         | `bin/pgsql-hba <cls> [ip...]` | Reload cluster HBA access rules     |
@@ -140,7 +140,7 @@ bin/pgsql-add pg-test 10.10.10.13   # Scale out pg-test with node 10.10.10.13
 {{% /tab %}}
 {{< /tabpane >}}
 
-After scaling, you should [**Reload Service**](/docs/pgsql/admin/service#reload-service) to add the new member to load balancer.
+After scaling, you should [**Reload Service**](/docs/pgsql/admin/cluster#reload-service) to add the new member to load balancer.
 
 **Example: Add replica `10.10.10.13` to 2-node cluster `pg-test`**
 
@@ -197,7 +197,7 @@ bin/node-rm 10.10.10.13   # Remove node 10.10.10.13 from Pigsty
 {{% /tab %}}
 {{< /tabpane >}}
 
-After scaling in, remove the instance from [**inventory**](/docs/concept/iac/inventory), then [**Reload Service**](/docs/pgsql/admin/service#reload-service) to remove it from load balancer.
+After scaling in, remove the instance from [**inventory**](/docs/concept/iac/inventory), then [**Reload Service**](/docs/pgsql/admin/cluster#reload-service) to remove it from load balancer.
 
 ```yaml
 pg-test:
@@ -300,7 +300,7 @@ By default, cluster backup repo is deleted with the cluster. To preserve backups
 ## Reload Service
 
 PostgreSQL clusters expose [**services**](/docs/pgsql/service/) via [**HAProxy**](/docs/concept/arch/pgsql#haproxy) on host nodes.
-When service definitions change, instance weights change, or cluster membership changes (e.g., [**scale out**](#scale-out)/[**scale in**](#scale-in), switchover/failover), reload services to update load balancer config.
+When service definitions change, instance weights change, or cluster membership changes (e.g., [**scale out**](#expand-cluster)/[**scale in**](#shrink-cluster), switchover/failover), reload services to update load balancer config.
 
 To reload service config on entire cluster or specific instances (Execute `pg_service` subtask of [**`pgsql.yml`**](/docs/pgsql/playbook#pgsqlyml) on **`<cls>`** or **`<ip>`**):
 
@@ -490,7 +490,7 @@ Apply these changes? [y/N]: y
 [**Point-in-Time Recovery**](/docs/pgsql/backup/restore) (PITR) allows recovery to any point within backup retention.
 Requires centralized [**backup repository**](/docs/pgsql/backup/repository) (MinIO/S3), but more powerful.
 
-To clone via PITR, add [**`pg_pitr`**](/docs/pgsql/param#pg_pitr) param specifying recovery target:
+To clone via PITR, add [**`pg_pitr`**](/docs/pgsql/backup/restore#pitr-parameter-definition) param specifying recovery target:
 
 ```yaml
 # Clone new cluster pg-meta2 from pg-meta backup

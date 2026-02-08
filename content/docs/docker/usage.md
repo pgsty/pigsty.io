@@ -28,7 +28,7 @@ repo_packages:
   - node-bootstrap, infra-package, infra-addons, node-package1, node-package2, pgsql-common, docker   # <--- Download Docker
 ```
 
-After Docker is downloaded, you need to set the [**`docker_enabled`**](param#docker_enabled): `true` flag on the nodes where you want to install Docker, and configure [**other parameters**](param) as needed.
+After Docker is downloaded, you need to set the [**`docker_enabled`**](/docs/docker/param#docker_enabled): `true` flag on the nodes where you want to install Docker, and configure [**other parameters**](/docs/docker/param/) as needed.
 
 ```yaml
 infra:
@@ -39,7 +39,7 @@ infra:
     docker_enabled: true  # Install Docker on this group!
 ```
 
-Finally, use the [`docker.yml`](playbook#dockeryml) playbook to install it on the nodes:
+Finally, use the [`docker.yml`](/docs/docker/playbook#dockeryml) playbook to install it on the nodes:
 
 ```bash
 ./docker.yml -l infra    # Install Docker on the infra group
@@ -85,7 +85,7 @@ This command will uninstall the `docker-ce` package using the OS package manager
 
 ## Download
 
-To download Docker during Pigsty installation, modify the [`repo_modules`](/docs/infra/param#repo_modules) parameter in the [**configuration inventory**](/docs/setup/config#configuration-inventory) to enable the Docker software repository,
+To download Docker during Pigsty installation, modify the [`repo_modules`](/docs/infra/param#repo_modules) parameter in the [**configuration inventory**](/docs/setup/config/) to enable the Docker software repository,
 then specify Docker packages to download in the [`repo_packages`](/docs/infra/param#repo_packages) or [`repo_extra_packages`](/docs/infra/param#repo_extra_packages) parameters.
 
 ```yaml
@@ -96,7 +96,7 @@ repo_extra_packages:
   - pgsql-main docker # <--- Can also be specified here
 ```
 
-The `docker` specified here (which actually corresponds to the `docker-ce` and `docker-compose-plugin` packages) will be automatically downloaded to the local repository during the default [`deploy.yml`](/docs/setup/playbook#installyml) process.
+The `docker` specified here (which actually corresponds to the `docker-ce` and `docker-compose-plugin` packages) will be automatically downloaded to the local repository during the default [`deploy.yml`](/docs/setup/playbook#deploy-playbook) process.
 After downloading, the Docker packages will be available to all nodes via the local repository.
 
 If you've already completed Pigsty installation and the local repository is initialized, you can run `./infra.yml -t repo_build` after modifying the configuration to re-download and rebuild the offline repository.
@@ -140,7 +140,7 @@ proxy_env:
   #all_proxy: 'http://username:password@proxy.address.com'
 ```
 
-When running [`configure`](/docs/setup/install#configuration) with the `-x` parameter, the proxy server configuration from your current environment will be automatically generated into Pigsty's configuration file under `proxy_env`.
+When running [`configure`](/docs/setup/install#configure) with the `-x` parameter, the proxy server configuration from your current environment will be automatically generated into Pigsty's configuration file under `proxy_env`.
 
 In addition to using a proxy server, you can also configure [**Docker Registry Mirrors**](#registry-mirrors) to bypass blocks.
 
@@ -152,7 +152,7 @@ In addition to using a proxy server, you can also configure [**Docker Registry M
 
 ## Registry Mirrors
 
-You can use the [`docker_registry_mirrors`](param#docker_registry_mirrors) parameter to specify Docker Registry Mirrors:
+You can use the [`docker_registry_mirrors`](/docs/docker/param#docker_registry_mirrors) parameter to specify Docker Registry Mirrors:
 
 For users outside the firewall, in addition to the official DockerHub site, you can also consider using the `quay.io` mirror site. If your internal network environment already has mature image infrastructure, you can use your internal Docker registry mirrors to avoid being affected by external mirror sites and improve download speeds.
 
@@ -178,7 +178,7 @@ You can also consider using free [Docker proxy mirrors](https://github.com/cmliu
 
 ## Pulling Images
 
-The [`docker_image`](param#docker_image) and [`docker_image_cache`](param#docker_image_cache) parameters can be used to directly specify a list of images to pull during Docker installation.
+The [`docker_image`](/docs/docker/param#docker_image) and [`docker_image_cache`](/docs/docker/param#docker_image_cache) parameters can be used to directly specify a list of images to pull during Docker installation.
 
 Using this feature, Docker will come with the specified images after installation (provided they can be successfully pulled; this task will be automatically ignored and skipped on failure).
 
@@ -195,9 +195,9 @@ infra:
 ```
 
 Another way to preload images is to use locally `save`d `tgz` archives: if you've previously exported Docker images using `docker save xxx | gzip -c > /tmp/docker/xxx.tgz`.
-These exported image files can be automatically loaded via the glob specified by the [`docker_image_cache`](param#docker_image_cache) parameter. The default location is: `/tmp/docker/*.tgz`.
+These exported image files can be automatically loaded via the glob specified by the [`docker_image_cache`](/docs/docker/param#docker_image_cache) parameter. The default location is: `/tmp/docker/*.tgz`.
 
-This means you can place images in the `/tmp/docker` directory beforehand, and after running [`docker.yml`](playbook#dockeryml) to install Docker, these image packages will be automatically loaded.
+This means you can place images in the `/tmp/docker` directory beforehand, and after running [`docker.yml`](/docs/docker/playbook#dockeryml) to install Docker, these image packages will be automatically loaded.
 
 For example, in the [self-hosted Supabase tutorial](/blog/db/supabase), this technique is used. Before spinning up Supabase and installing Docker, the `*.tgz` image archives from the local `/tmp/supabase` directory are copied to the target node's `/tmp/docker` directory.
 
