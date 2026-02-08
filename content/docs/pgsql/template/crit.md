@@ -93,8 +93,8 @@ Parallel cost estimates are also increased:
 ```yaml
 parallel_setup_cost: 2000
 parallel_tuple_cost: 0.2
-min_parallel_table_scan_size: 16MB
-min_parallel_index_scan_size: 1024
+min_parallel_table_scan_size: 32MB
+min_parallel_index_scan_size: 2MB
 ```
 
 **Reason**: Parallel queries may cause unstable latency. For latency-sensitive financial transactions, predictable stable performance is more important.
@@ -201,7 +201,7 @@ shared_preload_libraries: '$libdir/passwordcheck, pg_stat_statements, auto_expla
 
 ## Key Differences from OLTP
 
-| Parameter | [**CRIT**](crit) | [**OLTP**](oltp) | Reason |
+| Parameter | [**CRIT**](/docs/pgsql/template/crit/) | [**OLTP**](/docs/pgsql/template/oltp/) | Reason |
 |:----------|:-----------------|:-----------------|:-------|
 | synchronous_mode | **Forced true** | Depends on pg_rpo | Zero data loss |
 | data-checksums | **Forced on** | Optional | Data integrity |
@@ -340,9 +340,9 @@ For critical clusters, focus on:
 - [**`pg_conf`**](/docs/pgsql/param#pg_conf): PostgreSQL config template selection
 - [**`node_tune`**](/docs/node/param#node_tune): OS tuning template, should match `pg_conf`
 - [**`pg_rpo`**](/docs/pgsql/param#pg_rpo): Recovery point objective parameter
-- [**OLTP Template**](oltp): Transaction template comparison
-- [**OLAP Template**](olap): Analytics template comparison
-- [**TINY Template**](tiny): Micro instance template comparison
+- [**OLTP Template**](/docs/pgsql/template/oltp/): Transaction template comparison
+- [**OLAP Template**](/docs/pgsql/template/olap/): Analytics template comparison
+- [**TINY Template**](/docs/pgsql/template/tiny/): Micro instance template comparison
 - [Sync Standby](/docs/pgsql/config/cluster#sync-standby): Sync replication configuration
 - [Quorum Commit](/docs/pgsql/config/cluster#quorum-commit): Higher consistency level
 

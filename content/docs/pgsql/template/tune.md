@@ -97,8 +97,8 @@ Both OLTP and CRIT templates additionally set the following parameters, doubling
 ```yaml
 parallel_setup_cost: 2000           # double from 100 to increase parallel cost
 parallel_tuple_cost: 0.2            # double from 0.1 to increase parallel cost
-min_parallel_table_scan_size: 16MB  # double from 8MB to increase parallel cost
-min_parallel_index_scan_size: 1024  # double from 512 to increase parallel cost
+min_parallel_table_scan_size: 32MB  # 4x default 8MB, prefer non-parallel scan
+min_parallel_index_scan_size: 2MB   # 4x default 512kB, prefer non-parallel scan
 ```
 
 Note that adjustments to the `max_worker_processes` parameter only take effect after a restart. Additionally, when a replica's configuration value for this parameter is higher than the primary's, the replica will fail to start.

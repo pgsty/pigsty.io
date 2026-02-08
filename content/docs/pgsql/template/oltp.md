@@ -37,7 +37,7 @@ OLTP template is ideal for:
 
 ## Usage
 
-[**`oltp.yml`**](oltp) is the default template, no explicit specification needed:
+[**`oltp.yml`**](/docs/pgsql/template/oltp/) is the default template, no explicit specification needed:
 
 ```yaml
 pg-oltp:
@@ -109,8 +109,8 @@ Parallel cost estimates are increased to favor serial execution:
 ```yaml
 parallel_setup_cost: 2000      # 2x default (1000)
 parallel_tuple_cost: 0.2       # 2x default (0.1)
-min_parallel_table_scan_size: 16MB   # 2x default (8MB)
-min_parallel_index_scan_size: 1024   # 2x default (512)
+min_parallel_table_scan_size: 32MB   # 4x default (8MB), prefer non-parallel scan
+min_parallel_index_scan_size: 2MB    # 4x default (512kB), prefer non-parallel scan
 ```
 
 ### WAL Config
@@ -201,7 +201,7 @@ pg_stat_statements.track_planning: off
 
 ## Template Comparison
 
-| Feature | [**OLTP**](oltp) | [**OLAP**](olap) | [**CRIT**](crit) |
+| Feature | [**OLTP**](/docs/pgsql/template/oltp/) | [**OLAP**](/docs/pgsql/template/olap/) | [**CRIT**](/docs/pgsql/template/crit/) |
 |:--------|:-----------------|:-----------------|:-----------------|
 | max_connections | 500-1000 | 500 | 500-1000 |
 | work_mem | 64MB-1GB | 64MB-8GB | 64MB-1GB |
@@ -268,9 +268,9 @@ Focus on these metrics:
 
 - [**`pg_conf`**](/docs/pgsql/param#pg_conf): PostgreSQL config template selection
 - [**`node_tune`**](/docs/node/param#node_tune): OS tuning template, should match `pg_conf`
-- [**OLAP Template**](olap): Analytics template comparison
-- [**CRIT Template**](crit): Critical business template comparison
-- [**TINY Template**](tiny): Micro instance template comparison
+- [**OLAP Template**](/docs/pgsql/template/olap/): Analytics template comparison
+- [**CRIT Template**](/docs/pgsql/template/crit/): Critical business template comparison
+- [**TINY Template**](/docs/pgsql/template/tiny/): Micro instance template comparison
 - [Cluster Config](/docs/pgsql/config/cluster): PostgreSQL cluster type configuration
 - [High Availability](/docs/concept/ha): HA architecture design
 
