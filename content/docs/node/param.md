@@ -511,7 +511,8 @@ node_hugepage_count: 0            # number of 2MB hugepage, take precedence over
 node_hugepage_ratio: 0            # node mem hugepage ratio, 0 disable it by default
 node_overcommit_ratio: 0          # node mem overcommit ratio, 0 disable it by default
 node_tune: oltp                   # node tuned profile: none,oltp,olap,crit,tiny
-node_sysctl_params: { }           # sysctl parameters in k:v format in addition to tuned
+node_sysctl_params:               # sysctl parameters in k:v format in addition to tuned
+  fs.nr_open: 8388608
 ```
 
 
@@ -659,7 +660,16 @@ Typically, the database tuning template [`pg_conf`](/docs/pgsql/param#pg_conf) s
 
 name: `node_sysctl_params`, type: `dict`, level: `C`
 
-Sysctl kernel parameters in K:V format, added to the `tuned` profile. Default is `{}` (empty object).
+Sysctl kernel parameters in K:V format (written and applied immediately by Ansible `sysctl` module) as a supplement to the `tuned` profile.
+
+Default:
+
+```yaml
+node_sysctl_params:
+  fs.nr_open: 8388608
+```
+
+This default ensures the kernel per-process FD ceiling is not lower than `LimitNOFILE=8388608` used by several Pigsty systemd units, avoiding `setrlimit` failures on some distro/systemd combinations.
 
 This is a KV dictionary parameter where Key is the kernel `sysctl` parameter name and Value is the parameter value. You can also consider defining extra sysctl parameters directly in the tuned templates in `roles/node/templates`.
 
