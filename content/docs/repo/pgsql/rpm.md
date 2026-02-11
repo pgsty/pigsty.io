@@ -9,6 +9,37 @@ categories: [Reference]
 
 ------
 
+## 2026-02-10
+
+| Name             | Old Ver       | New Ver       | Note                                   |
+|:-----------------|:--------------|:--------------|:---------------------------------------|
+| timescaledb      | 2.24.0        | 2.25.0        |                                        |
+| pg_incremental   | 1.2.0         | 1.4.1         |                                        |
+| pg_bigm          | 1.2-20240606  | 1.2-20250903  |                                        |
+| pg_net           | 0.20.0        | 0.20.2        | el8/el9 libcurl version too old        |
+| pgmq             | 1.9.0         | 1.10.0        |                                        |
+| pg_textsearch    | 0.4.0         | 0.5.0         |                                        |
+| pljs             | 1.0.4         | 1.0.5         |                                        |
+| sslutils         | 1.4-1         | 1.4-2         | cannot compile on el8.pg18             |
+| table_version    | 1.11.0        | 1.11.1        |                                        |
+| supautils        | 3.0.2         | 3.1.0         |                                        |
+| pg_math          | 1.0           | 1.1.0         |                                        |
+| pgsentinel       | 1.3.1         | 1.4.0         |                                        |
+| pg_uri           | 1.20151224    | 1.20251029    |                                        |
+| pgcollection     | 1.1.0         | 1.1.1         | patch fixes parallel build issue       |
+| pg_uint128       | 1.1.1         | 1.2.0         |                                        |
+| pg_roaringbitmap | 0.5.5         | 1.1.0         | handed over to PGDG                    |
+| plprql           | 18.0.0        | 18.0.1        |                                        |
+| pglinter         | 1.0.1         | 1.1.0         |                                        |
+| pg_jsonschema    | 0.3.3         | 0.3.4         |                                        |
+| pg_anon          | 2.5.1         | 3.0.0         |                                        |
+| pg_search        | 0.21.4        | 0.21.6        | manually built for EL8                 |
+| pg_graphql       | 1.5.12-1      | 1.5.12-2      | switched to official release           |
+| nominatim_fdw    |               | 1.1.0         | new, synced with PGDG YUM              |
+| pg_utl_smtp      |               | 1.0.0         | new, synced with PGDG YUM              |
+
+------
+
 ## 2026-01-25
 
 | Name            | Old Ver        | New Ver        | Note                              |
