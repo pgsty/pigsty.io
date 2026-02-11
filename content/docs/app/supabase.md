@@ -140,7 +140,7 @@ For local development/testing, you can skip this and customize later.
 If configured correctly, after about ten minutes, you can access the Supabase Studio GUI at `http://<your_ip_address>:8000` on your local network.
 Default username and password are `supabase` and `pigsty`.
 
-![](/img/docs/supabase-home.png)
+![](/img/pigsty/supabase.webp)
 
 **Notes:**
 

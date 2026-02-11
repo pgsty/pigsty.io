@@ -51,7 +51,7 @@ After installation, access the sandbox homepage via IP: `http://<ip>`. Assuming 
 | VS Code Server | [`http://10.10.10.10/code`](http://10.10.10.10/code)                         |
 | Jupyter Lab   | [`http://10.10.10.10/jupyter`](http://10.10.10.10/jupyter)                    |
 | Grafana Dashboard | [`http://10.10.10.10/ui`](http://10.10.10.10/ui)                          |
-| Claude Monitor | [`http://10.10.10.10/ui/d/claude-code`](http://10.10.10.10/d/claude-code)    |
+| Claude Monitor | [`http://10.10.10.10/ui/d/claude-code`](http://10.10.10.10/ui/d/claude-code)    |
 {.full-width}
 
 > Tip: If deploying on a public cloud server, check [**Security Best Practices**](/docs/setup/security), change passwords (`configure -g`), and [**enable firewall**](/docs/node/param#node_firewall_mode).

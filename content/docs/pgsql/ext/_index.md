@@ -2,6 +2,8 @@
 title: Extensions
 weight: 2100
 description: Harness the synergistic power of PostgreSQL extensions
+aliases:
+  - /ext/
 icon: fas fa-puzzle-piece
 module: [PGSQL]
 categories: [Reference]
@@ -24,5 +26,4 @@ pg-meta:
     pg_extensions: [ postgis, timescaledb, pgvector ]  # Install: Install extension packages
 ```
 
-![](/img/pigsty/ecosystem.gif)
-
+![](/img/pigsty/ecosystem.png)

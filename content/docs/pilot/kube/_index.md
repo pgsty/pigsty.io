@@ -64,7 +64,13 @@ If you want to use Docker as the container runtime, you need to install Docker a
 
 ## Monitoring
 
-TBD
+Kubernetes cluster observability is typically handled by in-cluster stacks (such as kube-prometheus-stack).
+
+On the Pigsty side, focus on monitoring the foundational dependencies Kubernetes relies on:
+
+- [**ETCD Monitoring & Alerting**](/docs/etcd/monitor/): Control-plane metadata consistency and availability
+- [**NODE Monitoring & Alerting**](/docs/node/monitor/): Host-level CPU, memory, kernel, and network health
+- [**INFRA Monitoring & Alerting**](/docs/infra/monitor/): Monitoring backend, alert pipeline, and observability platform health
 
 -------
 

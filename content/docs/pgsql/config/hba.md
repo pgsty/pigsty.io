@@ -448,7 +448,7 @@ psql -h <host> -p 5432 -U <user> -d <db> -c "SELECT 1"
 
 ## Related Documentation
 
-- [**HBA Management**](/docs/pgsql/admin/hba/): Daily HBA rule management operations
+- [**HBA Management**](/docs/pgsql/misc/hba/): Daily HBA rule management operations
 - [**User Config**](/docs/pgsql/config/user/): User and role configuration
 - [**Access Control**](/docs/pgsql/config/acl/): Role system and permission model
 - [**Security & Compliance**](/docs/concept/sec/): PostgreSQL cluster security features
