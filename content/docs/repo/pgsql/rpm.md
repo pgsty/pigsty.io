@@ -9,15 +9,16 @@ categories: [Reference]
 
 ------
 
-## 2026-02-10
+## 2026-02-12
 
 | Name             | Old Ver       | New Ver       | Note                                   |
 |:-----------------|:--------------|:--------------|:---------------------------------------|
 | timescaledb      | 2.24.0        | 2.25.0        |                                        |
+| citus            | 14.0.0-2      | 14.0.0-3      | official formal tag release            |
 | pg_incremental   | 1.2.0         | 1.4.1         |                                        |
 | pg_bigm          | 1.2-20240606  | 1.2-20250903  |                                        |
 | pg_net           | 0.20.0        | 0.20.2        | el8/el9 libcurl version too old        |
-| pgmq             | 1.9.0         | 1.10.0        |                                        |
+| pgmq             | 1.9.0         | 1.10.0        | fix dependency relations               |
 | pg_textsearch    | 0.4.0         | 0.5.0         |                                        |
 | pljs             | 1.0.4         | 1.0.5         |                                        |
 | sslutils         | 1.4-1         | 1.4-2         | cannot compile on el8.pg18             |
@@ -32,11 +33,16 @@ categories: [Reference]
 | plprql           | 18.0.0        | 18.0.1        |                                        |
 | pglinter         | 1.0.1         | 1.1.0         |                                        |
 | pg_jsonschema    | 0.3.3         | 0.3.4         |                                        |
-| pg_anon          | 2.5.1         | 3.0.0         |                                        |
-| pg_search        | 0.21.4        | 0.21.6        | manually built for EL8                 |
+| pg_anon          | 2.5.1         | 3.0.1         |                                        |
+| vchord           | 1.0.0         | 1.1.0         | update to pgrx 0.17.0                  |
+| pg_search        | 0.21.4        | 0.21.7        | manually built for EL8                 |
 | pg_graphql       | 1.5.12-1      | 1.5.12-2      | switched to official release           |
 | nominatim_fdw    |               | 1.1.0         | new, synced with PGDG YUM              |
 | pg_utl_smtp      |               | 1.0.0         | new, synced with PGDG YUM              |
+| pg_strict        | -             | 1.0.2         | new Rust extension                     |
+| pg_track_optimizer | -           | 0.9.1         | new extension                          |
+| pgmb             | -             | 1.0.0         | new extension                          |
+{.stretch-last}
 
 ------
 
@@ -49,6 +55,7 @@ categories: [Reference]
 | pg_clickhouse   | 0.1.2          | 0.1.3          |                                   |
 | pgmq            | 1.8.1          | 1.9.0          |                                   |
 | pg_search       | 0.21.2         | 0.21.4         |                                   |
+{.stretch-last}
 
 ------
 
@@ -76,6 +83,7 @@ categories: [Reference]
 | documentdb_extended_rum |         | 0.109   | new                            |
 | mobilitydb_datagen      |         | 1.3.0   | new                            |
 | rum                     |         | 1.3.15  | +pg18, new                     |
+{.stretch-last}
 
 
 ------

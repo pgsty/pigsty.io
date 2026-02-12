@@ -38,7 +38,6 @@ Log Commands:
   pig pg log tail <logfile>        tail -f log file
   pig pg log cat  <logfile>        cat log file
   pig pg log less <logfile>        less log file
-  pig pg log grep <logfile> <pat>  grep log file
 
 Service Management (via systemctl):
   pig pg svc start                 start postgres service
@@ -92,8 +91,9 @@ Service Management (via systemctl):
 | `pg log tail` | `t, f` | Real-time log viewing | tail -f |
 | `pg log cat` | `c` | Output log content | |
 | `pg log less` | `vi, v` | View with less | |
-| `pg log grep` | `g, search` | Search logs | |
 {.full-width}
+
+> Known issue in `v1.0.0`: `pig pg log grep` has a parameter conflict and does not work. Use `pig pg log cat | grep PATTERN` as a workaround.
 
 **Service Subcommand** (`pg svc`):
 
@@ -131,8 +131,8 @@ pig pg repack mydb                # Online repack database
 
 # Log viewing
 pig pg log tail                   # Real-time view latest log
-pig pg log grep ERROR             # Search error logs
 pig pg log list --log-dir /var/log/pg  # Custom log directory
+pig pg log cat | grep ERROR       # Filter logs in shell
 ```
 
 
@@ -560,26 +560,6 @@ Open log file with less. Defaults to end of file (`+G`).
 pig pg log less                   # Open latest log with less
 pig pg log less postgresql.csv    # Open specific log file
 ```
-
-
-### pg log grep
-
-Search log files.
-
-```bash
-pig pg log grep ERROR             # Search for ERROR lines
-pig pg log grep -i error          # Case insensitive
-pig pg log grep -C 3 ERROR        # Show 3 lines context
-pig pg log grep ERROR pg.csv      # Search specific log file
-```
-
-**Options:**
-
-| Option | Short | Description |
-|:---|:---|:---|
-| `--ignore-case` | `-i` | Case insensitive |
-| `--context` | `-C` | Show N lines of context |
-{.full-width}
 
 
 ## pg svc Subcommand

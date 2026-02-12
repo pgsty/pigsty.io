@@ -23,16 +23,9 @@ Want to supercharge your Postgres and escape the hassle? Visit the [PIG official
 turning your local Postgres database into an all-capable multi-modal data platform with one click.
 If [Postgres's future is unmatched extensibility](https://medium.com/@fengruohang/postgres-is-eating-the-database-world-157c204dcfc4), then Pig is the magic lamp that helps you unlock it. After all, no one ever complains about "too many extensions".
 
-## Agentic Native CLI
+## Automation-Friendly
 
-PIG is designed for AI agents and automation. The global `-o|--output` switch enables structured output (`yaml` / `json` / `json-pretty`),
-and Pig also provides the **Capability Map** and **Command Schema** needed for capability discovery.
-
-```bash
-pig --help -o yaml        # capability map
-pig ext --help -o json    # command schema
-pig repo list -o yaml     # structured result: success / code / message / data
-```
+PIG's command system is automation-ready out of the box: consistent argument conventions, stable output behavior, and `--dry-run` or confirmation flows for high-risk operations to reduce mistakes.
 
 
 > [ANNOUNCE pig: The Postgres Extension Wizard](https://www.postgresql.org/about/news/announce-pig-the-postgres-extension-wizard-2988/)

@@ -114,18 +114,14 @@ Inferred Region   :  china
 Latest Pigsty Ver :  v4.0.0
 ```
 
-## Agentic / Automation Output
+## Automation Tips
 
-The global `-o|--output` enables structured output for scripts and AI agents:
+For production recovery tasks, it is recommended to run `--dry-run` first to preview the PITR execution plan before actually executing:
 
 ```bash
-pig --help -o yaml           # capability map
-pig ext --help -o json       # command schema
-pig repo list -o yaml        # structured result
-pig pitr -d --plan -o json   # structured execution plan
+pig pitr -d --dry-run         # preview recovery steps only, no execution
+pig pitr -d -y                # skip confirmation (automation scenarios)
 ```
-
-`-o json-pretty` outputs indented JSON; commands without structured output still return plain text.
 
 
 ## List Extensions
@@ -356,7 +352,7 @@ vector                        0.8.1    RAG   -ds--r  PostgreSQL  PGDG    postgre
 pg_duckdb                     1.1.0    OLAP  -dsl--  MIT         PIGSTY  postgresql-18-pg-duckdb               DuckDB Embedded in Postgres
 ```
 
-If PostgreSQL cannot be found in your current `PATH` (via `pg_config`), be sure to specify PG major with `-v|-p`.
+If PostgreSQL cannot be found in your current `PATH` (via `pg_config`), it is recommended to explicitly specify PG major with `-v|-p` to avoid version detection ambiguity.
 
 
 

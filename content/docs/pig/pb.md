@@ -27,7 +27,7 @@ Backup Commands (Primary Only):
   pig pb backup incr               incremental backup
 
 Restore Commands:
-  pig pb restore -d                restore to latest (default)
+  pig pb restore -d                restore to latest (end of WAL)
   pig pb restore -I                restore to backup consistency point
   pig pb restore -t <time>         restore to specific time
   pig pb restore -n <name>         restore to named restore point
@@ -97,7 +97,7 @@ Log Commands:
 ```bash
 # View backup info
 pig pb info                          # Show all backup info
-pig pb info -o json                  # JSON format output
+pig pb info --raw -o json            # Raw JSON output
 pig pb ls                            # List all backups
 pig pb ls repo                       # List configured repos
 pig pb ls stanza                     # List all stanzas
@@ -108,8 +108,8 @@ pig pb backup full                   # Full backup
 pig pb backup diff                   # Differential backup
 pig pb backup incr                   # Incremental backup
 
-# Restore (PITR)
-pig pb restore                       # Restore to latest (end of WAL)
+# Restore (PITR, at least one recovery target is required)
+pig pb restore -d                    # Restore to latest (end of WAL)
 pig pb restore -I                    # Restore to backup consistency point
 pig pb restore -t "2025-01-01 12:00:00+08"  # Restore to specific time
 pig pb restore -n savepoint          # Restore to named restore point
@@ -166,7 +166,7 @@ Show detailed backup repository info including all backup sets and WAL archive s
 
 ```bash
 pig pb info                          # Show all backup info
-pig pb info -o json                  # JSON format output
+pig pb info --raw -o json            # Raw JSON output
 pig pb info --set 20250101-120000F   # Show specific backup set details
 ```
 
@@ -174,7 +174,8 @@ pig pb info --set 20250101-120000F   # Show specific backup set details
 
 | Option | Short | Description |
 |:---|:---|:---|
-| `--output` | `-o` | Output format: text, json |
+| `--raw` | `-R` | Raw output mode (pass through pgBackRest output) |
+| `--output` | `-o` | Output format: text, json (only in `--raw` mode) |
 | `--set` | | Show specific backup set details |
 {.full-width}
 
@@ -272,10 +273,10 @@ repo1-retention-archive=2            # WAL archive retention policy
 ### pb restore
 
 Restore from backup with point-in-time recovery (PITR) support.
+At least one recovery target (`-d/-I/-t/-n/-l/-x`) must be specified. Without parameters, help is shown.
 
 ```bash
 # Recovery target (mutually exclusive)
-pig pb restore                       # Restore to latest (default)
 pig pb restore -d                    # Restore to latest (explicit)
 pig pb restore -I                    # Restore to backup consistency point
 pig pb restore -t "2025-01-01 12:00:00+08"  # Restore to specific time

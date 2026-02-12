@@ -61,25 +61,12 @@ Flags:
   -h, --help               help for pig
   -H, --home string        Pigsty home path
   -i, --inventory string   config inventory path
-  -o, --output string      output format: text, yaml, json, json-pretty
+  -t, --toggle             placeholder flag shown in help output
       --log-level string   log level: debug, info, warn, error, fatal, panic (default "info")
       --log-path string    log file path, terminal by default
 
 Use "pig [command] --help" for more information about a command.
 ```
-
-## Agentic Native CLI
-
-`pig` supports structured output and capability discovery for AI/automation:
-
-```bash
-pig --help -o yaml         # capability map
-pig ext --help -o json     # command schema (params/flags/metadata)
-pig ext list -o json       # structured result: success / code / message / data
-```
-
-Note: `-o json-pretty` outputs indented JSON. Structured output currently mainly covers `ext` / `repo` / `pitr` and `help`; other commands remain text output.
-
 
 ## pig repo
 
@@ -129,7 +116,7 @@ Build PostgreSQL extensions from source. See [`pig build`](/docs/pig/build/) for
 pig build spec                   # initialize build specs
 pig build repo                   # setup repositories
 pig build tool                   # install build tools
-pig build rust -y                # install Rust (for Rust extensions)
+pig build rust -y                # force reinstall Rust (default does not reinstall)
 pig build pgrx                   # install PGRX framework
 
 # build extensions
@@ -190,7 +177,7 @@ pig pb info                      # show backup info
 pig pb ls                        # list all backups
 pig pb backup                    # create backup
 pig pb backup full               # full backup
-pig pb restore                   # restore to latest
+pig pb restore -d                # restore to latest
 pig pb restore -t "2025-01-01"   # restore to specific time
 pig pb log tail                  # real-time log viewing
 ```
@@ -204,8 +191,7 @@ Orchestrated Point-In-Time Recovery. See [`pig pitr`](/docs/pig/pitr/) for detai
 pig pitr -d                      # recover to latest (most common)
 pig pitr -t "2025-01-01 12:00"   # recover to specific time
 pig pitr -I                      # recover to backup consistency point
-pig pitr -d --plan               # show execution plan
-pig pitr -d --dry-run            # alias for --plan
+pig pitr -d --dry-run            # show execution plan without running
 pig pitr -d -y                   # skip confirmation (for automation)
 pig pitr -d --skip-patroni       # skip Patroni management
 pig pitr -d --no-restart         # don't auto-start PostgreSQL after restore

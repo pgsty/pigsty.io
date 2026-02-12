@@ -8,7 +8,7 @@ categories: [Reference]
 
 ------
 
-## 2026-02-10
+## 2026-02-12
 
 | Name           | Old Ver      | New Ver      | Note                                        |
 |:---------------|:-------------|:-------------|:--------------------------------------------|
@@ -30,12 +30,16 @@ categories: [Reference]
 | plprql         | 18.0.0       | 18.0.1       |                                             |
 | pglinter       | 1.0.1        | 1.1.0        |                                             |
 | pg_jsonschema  | 0.3.3        | 0.3.4        |                                             |
-| pg_anon        | 2.5.1        | 3.0.0        |                                             |
+| pg_anon        | 2.5.1        | 3.0.1        |                                             |
 | pg_search      | 0.21.4       | 0.21.6       |                                             |
 | pg_graphql     | 1.5.12-1     | 1.5.12-2     | switched to official release                |
 | pg_summarize   | 0.0.1-2      | 0.0.1-3      | rebuilt to fix PG 18 issue                  |
 | nominatim_fdw  |              | 1.1.0        | new, synced with PGDG YUM                   |
 | pg_utl_smtp    |              | 1.0.0        | new, synced with PGDG YUM                   |
+| pg_strict      | -            | 1.0.2        | new Rust extension                          |
+| pg_track_optimizer | -        | 0.9.1        | new extension                               |
+| pgmb           | -            | 1.0.0        | new extension                               |
+{.stretch-last}
 
 ------
 
@@ -48,6 +52,7 @@ categories: [Reference]
 | pg_clickhouse | 0.1.2          | 0.1.3          |                                    |
 | pgmq          | 1.8.1          | 1.9.0          |                                    |
 | pg_search     | 0.21.2         | 0.21.4         |                                    |
+{.stretch-last}
 
 ------
 
@@ -74,6 +79,7 @@ categories: [Reference]
 | pgfincore               | -      | 1.3.1  | PGDG                          |
 | documentdb_extended_rum |        | 0.109  | new                           |
 | mobilitydb_datagen      |        | 1.3.0  | new                           |
+{.stretch-last}
 
 
 ------

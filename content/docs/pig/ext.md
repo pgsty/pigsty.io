@@ -81,7 +81,6 @@ List or search extensions.
 ```bash
 pig ext list                     # List all extensions
 pig ext list duck                # Search for "duck" extensions
-pig ext list vector ai           # Search multiple keywords
 pig ext list -v 17               # Filter by PG version
 pig ext ls olap                  # List OLAP category extensions
 pig ext ls gis -v 16             # List GIS extensions for PG 16
@@ -149,17 +148,15 @@ pig install pg_duckdb -v 17 -y
 **Options:**
 - `-v|--version`: Specify PG major version
 - `-y|--yes`: Auto-confirm installation
-- `-n|--no-translation`: Disable alias translation
 
 
 ## ext rm
 
-Remove extensions. Also available via alias `pig remove`.
+Remove extensions.
 
 ```bash
 pig ext rm pg_duckdb             # Remove pg_duckdb
 pig ext rm pg_duckdb -v 17       # Remove for PG 17
-pig remove pg_duckdb             # Using alias
 ```
 
 
@@ -223,7 +220,7 @@ To install PostgreSQL extensions, you'll have to add the [**repo**](/docs/pig/re
 
 ```bash
 pig repo add pgdg pigsty -u    # gentle way to add pgdg and pigsty repo
-pig repo set -u                # brute way to remove and add all required repos
+pig repo set                   # brute way to remove and add all required repos
 ```
 
 Then you can search and install PostgreSQL extensions:

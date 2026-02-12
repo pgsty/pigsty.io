@@ -47,7 +47,7 @@ curl -fsSL https://repo.pigsty.cc/pig | bash -s 1.0.0
 
 ## Download from Release Page
 
-You can also download `pig` installation packages (`RPM`/`DEB`/tarball) directly from the Pigsty repository: [GitHub Latest Release Page](https://github.com/pgsty/pig/releases/latest)
+You can also download `pig` installation packages (`RPM`/`DEB`/tarball) directly from the Pigsty repository: [GitHub v1.0.0 Stable Release Page](https://github.com/pgsty/pig/releases/tag/v1.0.0)
 
 ```
 latest
@@ -135,4 +135,3 @@ go get -u; go build
 ```
 
 All RPM/DEB packages are automatically built through GitHub CI/CD workflow using goreleaser.
-

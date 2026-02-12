@@ -69,7 +69,6 @@ Install Ansible and its dependencies.
 
 ```bash
 pig sty boot                     # Install Ansible
-pig sty boot -y                  # Auto-confirm
 pig sty boot -r china            # Use China region mirrors
 ```
 
@@ -186,4 +185,3 @@ Download Pigsty source tarball.
 pig sty get                      # Download latest version
 pig sty get v3.4.0               # Download specific version
 ```
-

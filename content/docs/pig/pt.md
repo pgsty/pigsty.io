@@ -155,7 +155,7 @@ pig pt restart --pending         # Restart pending members
 | Option | Short | Description |
 |:-------|:------|:------------|
 | `--force` | `-f` | Skip confirmation |
-| `--role` | | Filter by role (primary/replica) |
+| `--role` | | Filter by role (leader/replica/any) |
 | `--pending` | | Restart only pending members |
 {.full-width}
 

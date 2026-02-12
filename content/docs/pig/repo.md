@@ -172,7 +172,6 @@ Create compressed tarball of repository contents for offline distribution.
 
 ```bash
 pig repo cache                   # Default: /www to /tmp/pkg.tgz
-pig repo cache -f                # Force overwrite existing
 pig repo cache -d /srv           # Custom source directory
 ```
 
@@ -244,4 +243,3 @@ sudo pig repo add all --region=china -u
 # Check mirror URLs
 pig repo info pgdg
 ```
-

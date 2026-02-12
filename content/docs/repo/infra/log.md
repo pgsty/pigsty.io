@@ -6,6 +6,20 @@ icon: fa-solid fa-clipboard-list
 categories: [Reference]
 ---
 
+## 2026-02-12
+
+| Name                  | Old Ver | New Ver | Note |
+|:----------------------|:--------|:--------|:-----|
+| `alertmanager`        | 0.31.0  | 0.31.1  |      |
+| `tigerbeetle`         | 0.16.70 | 0.16.72 |      |
+| `grafana-infinity-ds` | 3.7.0   | 3.7.1   |      |
+| `nodejs`              | 24.13.0 | 24.13.1 |      |
+| `opencode`            | 1.1.53  | 1.1.59  |      |
+| `golang`              | 1.25.7  | 1.26.0  |      |
+{.stretch-last}
+
+-------
+
 ## 2026-02-08
 
 | Name                         | Old Ver        | New Ver        | Note |

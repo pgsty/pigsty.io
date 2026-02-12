@@ -3,10 +3,11 @@ title: Release Notes
 weight: 5660
 ---
 
-The latest stable version of `pg_exporter` is [v1.1.2](https://github.com/pgsty/pg_exporter/releases/tag/v1.1.2)
+The latest stable version of `pg_exporter` is [v1.2.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.0)
 
 |     Version     |    Date    | Summary                                                 |                               GitHub                               |
 |:---------------:|:----------:|---------------------------------------------------------|:------------------------------------------------------------------:|
+| [v1.2.0](#v120) | 2026-02-12 | various bug fix, PG9.x legacy support                   | [v1.2.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.0) |
 | [v1.1.2](#v112) | 2026-01-16 | fix pg_timeline conf issue, build with latest deps      | [v1.1.2](https://github.com/pgsty/pg_exporter/releases/tag/v1.1.2) |
 | [v1.1.1](#v111) | 2025-12-30 | New pg_timeline collector, pg_sub_16 branch, bug fixes  | [v1.1.1](https://github.com/pgsty/pg_exporter/releases/tag/v1.1.1) |
 | [v1.1.0](#v110) | 2025-12-15 | Update default metrics collectors, bump to go 1.25.5    | [v1.1.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.1.0) |
@@ -34,6 +35,47 @@ The latest stable version of `pg_exporter` is [v1.1.2](https://github.com/pgsty/
 | [v0.0.3](#v003) | 2019-12-14 | Production environment testing                          | [v0.0.3](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.3) |
 | [v0.0.2](#v002) | 2019-12-09 | Early testing release                                   | [v0.0.2](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.2) |
 | [v0.0.1](#v001) | 2019-12-06 | Initial release with PgBouncer mode                     | [v0.0.1](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.1) |
+
+
+## v1.2.0
+
+`v1.2.0` is a stability-and-compatibility focused minor release across startup flow, hot reload, health probing, config validation, and legacy support.
+
+**New Features:**
+
+- Add robust hot reload workflow: support platform-specific reload signals (`SIGHUP` / `SIGUSR1`) and strengthen `POST /reload` to refresh configs and query plans without process restart
+- Switch startup to non-blocking mode: HTTP endpoints come up first even when target precheck fails, making recovery and monitoring integration smoother
+- Add PostgreSQL 9.1-9.6 legacy config bundle: provide `legacy/` configs and a `make conf9` target for easier onboarding of EOL PostgreSQL versions
+- Rework health probing architecture: use cached health snapshots with periodic probes for more consistent role-based health endpoints and smoother reload behavior
+- Improve release engineering baseline: run `go test` and `go vet` in release workflows and bump build toolchain to Go 1.26.0
+
+**Bug Fixes:**
+
+- Fix multiple config parsing edge cases: reject malformed metrics entries, return explicit errors when config dirs fail to load valid YAML, and harden runtime fallbacks
+- Fix CLI bool flag parsing to correctly handle `--flag=false` style arguments
+- Fix `/explain` output/rendering behavior by adjusting content type handling and using safer template rendering
+- Fix predicate query and PG URL handling details: better BOOL/BOOLEAN predicate support, safer row lifecycle handling, and improved `dbname` query-parameter parsing/redaction
+- Fix resource cleanup when auto-discovered targets are removed by closing dropped server connections asynchronously
+- Fix metric/label validation details including const-label conflict checks, scaled default-value handling, and Prometheus naming/rule checks
+
+**Checksums**
+
+```bash
+26e7a052e730b412bbbe5f49846f951b89650f1f95c2466d5d486923f0825f64  pg-exporter_1.2.0-1_amd64.deb
+4ec219135c49708d010af7b8a7553b8008f630574e1d4cfc7642fbf951eefafe  pg-exporter_1.2.0-1_arm64.deb
+5b2cc00e2c3e2ffd9eb0ab1a4f5e937dd68f3a69a14423a74d4de3d7cf29283e  pg-exporter_1.2.0-1_ppc64le.deb
+d536d41a92e8aa85ae3935715d1bf0463208b1e614eae73543f1472ca8a7e0d4  pg_exporter-1.2.0-1.aarch64.rpm
+b7a1daa225f8ca4de6d227e6004330589295d924accd221892ebe14f191fe35c  pg_exporter-1.2.0-1.ppc64le.rpm
+28bf7d85862510675c64ff5181d216c6a068a23ffa56dc4bb9e6b82165ff99b5  pg_exporter-1.2.0-1.x86_64.rpm
+51c3b3d18089d888a54a6b3e7ecb0620dc0da04c81471a0b7aaa88c1677ddb8c  pg_exporter-1.2.0.darwin-amd64.tar.gz
+3ba1c7adea9c926afd3054ba18cc43e665e420a495bfcfd2248242c49a67b077  pg_exporter-1.2.0.darwin-arm64.tar.gz
+9e1ec6c15e6b2aaadbe27a27053ee1ec289bdd012c19ca6371de738fa5f8843e  pg_exporter-1.2.0.linux-amd64.tar.gz
+9e18849693ccda313979db0a230cb81acfe4199364feb6ce3e72d1a89fbfb809  pg_exporter-1.2.0.linux-arm64.tar.gz
+6e28489685d0bd1fdabcb71474f64f559ade199b871666954323bae9dc01465f  pg_exporter-1.2.0.linux-ppc64le.tar.gz
+9e9beac619fe2c614a77bc3334bc4b80df9db355bf95845eb4b11674ddad52d9  pg_exporter-1.2.0.windows-amd64.tar.gz
+```
+
+https://github.com/pgsty/pg_exporter/releases/tag/v1.2.0
 
 
 ## v1.1.2

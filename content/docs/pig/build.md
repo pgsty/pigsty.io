@@ -21,7 +21,7 @@ Commands:
   pgrx      Install pgrx
   pkg       Complete build pipeline: get, dep, ext
   proxy     Init build proxy
-  repo      Init build repo
+  repo      Init build repo (=repo set, with remove+update)
   rust      Install rust
   spec      Init building spec repo
   tool      Init build tools
@@ -68,7 +68,7 @@ pig build repo                   # Setup repositories
 pig build tool                   # Install build tools
 
 # Install Rust (for Rust extensions)
-pig build rust -y                # Install Rust
+pig build rust -y                # Force reinstall Rust (default does not reinstall)
 pig build pgrx                   # Install PGRX framework
 
 # Build extensions
@@ -91,7 +91,7 @@ pig build spec -f                # Force overwrite existing files
 Setup repositories required for building.
 
 ```bash
-pig build repo                   # Setup repositories
+pig build repo                   # Equivalent to: pig repo set (internally remove+update)
 ```
 
 
@@ -111,7 +111,7 @@ Install Rust toolchain (for building Rust extensions).
 
 ```bash
 pig build rust                   # Install Rust
-pig build rust -y                # Auto-confirm
+pig build rust -y                # Force reinstall Rust toolchain
 ```
 
 
@@ -234,7 +234,7 @@ sudo dpkg -i ~/pg_partman*.deb                         # Debian
 # 1. Setup Rust environment
 pig build spec
 pig build tool
-pig build rust -y
+pig build rust                   # add -y only if you need to force reinstall
 pig build pgrx
 
 # 2. Build Rust extension
@@ -306,4 +306,3 @@ cargo install cargo-pgrx --force
 # Reinitialize PGRX
 cargo pgrx init
 ```
-

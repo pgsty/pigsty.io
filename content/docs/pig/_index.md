@@ -12,12 +12,7 @@ PIG is a command-line tool specifically designed for installing, managing, and b
 PIG is not a reinvented wheel, but rather a **PiggyBack** - a high-level abstraction layer that leverages existing Linux distribution package managers (`apt`/`dnf`).
 It abstracts away the differences between operating systems, chip architectures, and PG major versions, allowing you to install and manage PG kernels and 444+ extensions with just a few simple commands.
 
-PIG is also an **Agentic Native CLI**: it supports global `-o|--output` structured output (`yaml` / `json` / `json-pretty`), and provides a **Capability Map** and **Command Schema** for AI/automation. For example:
-
-```bash
-pig --help -o yaml        # capability map
-pig ext --help -o json    # command schema (params/flags/risk/parallelism/confirmation levels)
-```
+PIG is also automation-friendly by design: consistent parameter styles, clear error messages, and safe guards like `--dry-run` for high-risk operations.
 
 Please note: for extension installation, **pig is not a mandatory component**. You can still use apt/dnf package managers to directly access the [**Pigsty PGSQL**](/docs/repo/pgsql/) repository.
 

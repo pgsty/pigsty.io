@@ -15,7 +15,7 @@ weight: 5441
 | [`grafana`](https://github.com/grafana/grafana/)                                         | `12.3.2` | [AGPLv3](https://github.com/grafana/grafana/blob/main/LICENSE)                         | Observability and visualization platform |
 | [`loki`](https://github.com/grafana/loki)                                                | `3.6.5`  | [AGPLv3](https://github.com/grafana/loki/blob/main/LICENSE)                            | Log aggregation system (deprecated)      |
 | [`promtail`](https://github.com/grafana/loki/releases/tag/v3.6.5)                        | `3.6.5`  | [AGPLv3](https://github.com/grafana/loki/blob/main/LICENSE)                            | Loki log collection agent (deprecated)   |
-| [`grafana-infinity-ds`](https://github.com/grafana/grafana-infinity-datasource/)         | `3.7.0`  | [Apache-2.0](https://github.com/grafana/grafana-infinity-datasource/blob/main/LICENSE) | JSON/CSV/XML datasource support          |
+| [`grafana-infinity-ds`](https://github.com/grafana/grafana-infinity-datasource/)         | `3.7.1`  | [Apache-2.0](https://github.com/grafana/grafana-infinity-datasource/blob/main/LICENSE) | JSON/CSV/XML datasource support          |
 | [`grafana-plugins`](https://github.com/pgsty/infra-pkg/tree/main/noarch/grafana-plugins) | `12.3.0` | [Apache-2.0](https://github.com/pgsty/infra-pkg/blob/main/LICENSE)                     | Extra panel plugins by Pigsty            |
 {.stretch-last}
 
@@ -57,7 +57,7 @@ allow_loading_unsigned_plugins = victoriametrics-logs-datasource,victoriametrics
 |------------------------------------------------------------------------|----------|-----------------------------------------------------------------------------------|-------------------------------------------|
 | [`prometheus`](https://github.com/prometheus/prometheus)               | `3.9.1`  | [Apache-2.0](https://github.com/prometheus/prometheus/blob/main/LICENSE)          | Cloud-native monitoring & TSDB            |
 | [`pushgateway`](https://github.com/prometheus/pushgateway)             | `1.11.2` | [Apache-2.0](https://github.com/prometheus/pushgateway/blob/master/LICENSE)       | Metrics push gateway for short-lived jobs |
-| [`alertmanager`](https://github.com/prometheus/alertmanager)           | `0.31.0` | [Apache-2.0](https://github.com/prometheus/alertmanager/blob/main/LICENSE)        | Alert management & notification dispatch  |
+| [`alertmanager`](https://github.com/prometheus/alertmanager)           | `0.31.1` | [Apache-2.0](https://github.com/prometheus/alertmanager/blob/main/LICENSE)        | Alert management & notification dispatch  |
 | [`blackbox_exporter`](https://github.com/prometheus/blackbox_exporter) | `0.27.0` | [Apache-2.0](https://github.com/prometheus/blackbox_exporter/blob/master/LICENSE) | Blackbox probing, endpoint availability   |
 {.stretch-last}
 
@@ -112,7 +112,7 @@ PostgreSQL related tools, DBMS, and other utilities
 | [`kafka`](https://github.com/apache/kafka)                  | `4.1.1`   | [Apache-2.0](https://github.com/apache/kafka/blob/trunk/LICENSE)                   | Message queue                           |
 | [`duckdb`](https://github.com/duckdb/duckdb)                | `1.4.4`   | [MIT](https://github.com/duckdb/duckdb/blob/main/LICENSE)                          | Embedded OLAP                           |
 | [`ferretdb`](https://github.com/FerretDB/FerretDB)          | `2.7.0`   | [Apache-2.0](https://github.com/FerretDB/FerretDB/blob/main/LICENSE)               | MongoDB over PG                         |
-| [`tigerbeetle`](https://github.com/tigerbeetle/tigerbeetle) | `0.16.70` | [Apache-2.0](https://github.com/tigerbeetle/tigerbeetle/blob/main/LICENSE)         | Financial OLTP                          |
+| [`tigerbeetle`](https://github.com/tigerbeetle/tigerbeetle) | `0.16.72` | [Apache-2.0](https://github.com/tigerbeetle/tigerbeetle/blob/main/LICENSE)         | Financial OLTP                          |
 | [`IvorySQL`](https://github.com/IvorySQL/IvorySQL)          | `5.1`     | [Apache-2.0](https://github.com/IvorySQL/IvorySQL/blob/IVORY_REL_5_STABLE/LICENSE) | Oracle compatible PG 18.1               |
 {.stretch-last}
 
@@ -155,10 +155,10 @@ AI agents, MCP toolboxes, coding IDEs, Python/Go/Node tools...
 | Name                                                           | Version   | License                                                                     | Comment                                |
 |----------------------------------------------------------------|-----------|-----------------------------------------------------------------------------|----------------------------------------|
 | [`claude`](https://github.com/anthropics/claude-code)          | `2.1.37`  | [Proprietary](https://www.anthropic.com/legal/terms)                        | Claude Code - Anthropic agentic coding |
-| [`opencode`](https://github.com/opencode-ai/opencode)          | `1.1.53`  | [MIT](https://github.com/opencode-ai/opencode/blob/main/LICENSE)            | Terminal AI coding assistant           |
+| [`opencode`](https://github.com/opencode-ai/opencode)          | `1.1.59`  | [MIT](https://github.com/opencode-ai/opencode/blob/main/LICENSE)            | Terminal AI coding assistant           |
 | [`code-server`](https://github.com/coder/code-server)          | `4.108.2` | [MIT](https://github.com/coder/code-server/blob/main/LICENSE)               | VS Code in the browser                 |
 | [`genai-toolbox`](https://github.com/googleapis/genai-toolbox) | `0.25.0`  | [Apache-2.0](https://github.com/googleapis/genai-toolbox/blob/main/LICENSE) | Google database MCP server             |
 | [`uv`](https://github.com/astral-sh/uv)                        | `0.10.0`  | [MIT](https://github.com/astral-sh/uv/blob/main/LICENSE-MIT)                | Next-gen Python package manager        |
-| [`golang`](https://golang.org/)                                | `1.25.7`  | [BSD-3](https://github.com/golang/go/blob/master/LICENSE)                   | Go compiler                            |
-| [`nodejs`](https://nodejs.org/)                                | `24.13.0` | [MIT/Mixed](https://github.com/nodejs/node/blob/main/LICENSE)               | Server-side JavaScript runtime         |
+| [`golang`](https://golang.org/)                                | `1.26.0`  | [BSD-3](https://github.com/golang/go/blob/master/LICENSE)                   | Go compiler                            |
+| [`nodejs`](https://nodejs.org/)                                | `24.13.1` | [MIT/Mixed](https://github.com/nodejs/node/blob/main/LICENSE)               | Server-side JavaScript runtime         |
 {.stretch-last}

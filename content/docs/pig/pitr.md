@@ -36,8 +36,7 @@ Examples:
   pig pitr -d                      # Recover to latest (most common)
   pig pitr -t "2025-01-01 12:00"   # Recover to specific time
   pig pitr -I                      # Recover to backup consistency point
-  pig pitr -d --plan               # Show execution plan without running
-  pig pitr -d --dry-run            # alias for --plan
+  pig pitr -d --dry-run            # Show execution plan without running
   pig pitr -d -y                   # Skip confirmation (for automation)
   pig pitr -d --skip-patroni       # Skip Patroni management
   pig pitr -d --no-restart         # Don't auto-start PostgreSQL after restore
@@ -78,8 +77,7 @@ pig pitr -t "2025-01-01 12:00:00+08"
 pig pitr -I
 
 # View execution plan (dry-run)
-pig pitr -d --plan
-pig pitr -d --plan -o yaml         # structured execution plan (YAML)
+pig pitr -d --dry-run
 
 # Skip confirmation (for automation)
 pig pitr -d -y
@@ -122,18 +120,9 @@ pig pitr -d --no-restart
 |:------|:------|:------------|
 | `--skip-patroni` | `-S` | Skip Patroni stop operation |
 | `--no-restart` | `-N` | Don't auto-start PostgreSQL after recovery |
-| `--plan` | | Show execution plan only, don't execute |
-| `--dry-run` | | Alias for `--plan` |
+| `--dry-run` | | Show execution plan only, don't execute |
 | `--yes` | `-y` | Skip confirmation countdown |
 {.full-width}
-
-### Structured Execution Plan
-
-When using `--plan` / `--dry-run`, combine with `-o yaml|json` to output a structured plan for automation and review:
-
-```bash
-pig pitr -d --plan -o json
-```
 
 ### Recovery Options
 
@@ -276,7 +265,7 @@ pig pg start
 
 ## Execution Plan Example
 
-Running `pig pitr -d --plan` (or `--dry-run`) shows an execution plan like:
+Running `pig pitr -d --dry-run` shows an execution plan like:
 
 ```
 ══════════════════════════════════════════════════════════════════
