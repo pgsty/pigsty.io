@@ -4,7 +4,7 @@
 # Desc      :   Pigsty Public Demo Configuration
 # Ctime     :   2020-05-22
 # Mtime     :   2025-12-12
-# Docs      :   https://doc.pgsty.com/config
+# Docs      :   https://pigsty.io/docs/conf/demo
 # License   :   Apache-2.0 @ https://pigsty.io/docs/about/license/
 # Copyright :   2018-2026  Ruohang Feng / Vonng (rh@vonng.com)
 #==============================================================#
@@ -92,7 +92,7 @@ all:
         mongo_cluster: pg-mongo
         mongo_pgurl: 'postgres://dbuser_meta:DBUser.Meta@10.10.10.10:5432/grafana'
 
-    # ./kafka.yml -l kf-main
+    # Kafka is a pilot module, see: https://pigsty.io/docs/pilot/kafka
     kf-main:
       hosts: { 10.10.10.10: { kafka_seq: 1, kafka_role: controller } }
       vars:
@@ -101,7 +101,7 @@ all:
 
 
   vars:                               # global variables
-    version: v4.0.0                   # pigsty version string
+    version: v4.1.0                   # pigsty version string
     admin_ip: 10.10.10.10             # admin node ip address
     region: china                     # upstream mirror region: default|china|europe
 
@@ -125,14 +125,16 @@ all:
     # scp -r ~/dev/pigsty.cc/public  pj:/www/pigsty.cc   # copy pigsty.cc website
 
 
-    node_etc_hosts: [ "${admin_ip} sss.pigsty" ]
+    node_etc_hosts: [ "${admin_ip} i.pigsty sss.pigsty" ]
     node_timezone: Asia/Hong_Kong
     node_ntp_servers:
       - pool cn.pool.ntp.org iburst
       - pool ${admin_ip} iburst       # assume non-admin nodes does not have internet access
     pgbackrest_enabled: false         # do not take backups since this is disposable demo env
-    #prometheus_options: '--storage.tsdb.retention.time=15d' # prometheus extra server options
-    prometheus_options: '--storage.tsdb.retention.size=3GB' # keep 3GB data at most on demo env
+    # keep 3GiB metrics data at most on demo env
+    vmetrics_options: >-
+      -retentionPeriod=15d
+      -retention.maxDiskSpaceUsageBytes=3GiB
 
     # install all postgresql18 extensions
     pg_version: 18                    # default postgres version
@@ -140,7 +142,7 @@ all:
     pg_extensions: [pg18-time ,pg18-gis ,pg18-rag ,pg18-fts ,pg18-feat ,pg18-lang ,pg18-type ,pg18-util ,pg18-func ,pg18-admin ,pg18-stat ,pg18-sec ,pg18-fdw ,pg18-sim ,pg18-etl ] #,pg18-olap]
 
     #----------------------------------------------#
-    # PASSWORD : https://doc.pgsty.com/config/security
+    # PASSWORD : https://pigsty.io/docs/setup/security/
     #----------------------------------------------#
     grafana_admin_password: pigsty
     grafana_view_password: DBUser.Viewer
