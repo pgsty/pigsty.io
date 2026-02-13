@@ -193,15 +193,20 @@ All other properties can be modified. Common examples:
 Dropping schemas or uninstalling extensions uses `CASCADE`, deleting all dependent objects. Understand impact before executing.
 {{% /alert %}}
 
-**Connection pool config**: By default all databases are added to Pgbouncer. Configure `pgbouncer`, `pool_mode`, `pool_size`, `pool_reserve`, `pool_connlimit`.
+**Connection pool config**: By default all databases are added to Pgbouncer. Configure `pgbouncer`, `pool_mode`, `pool_size`, `pool_reserve`, `pool_size_min`, `pool_connlimit`, and `pool_auth_user`.
 
 ```yaml
 - name: myapp
   pgbouncer: true              # Add to pool (default true)
   pool_mode: transaction       # Pool mode: transaction/session/statement
   pool_size: 64                # Default pool size
+  pool_reserve: 32             # Reserve pool size
+  pool_size_min: 0             # Minimum pool size
   pool_connlimit: 100          # Max database connections
+  pool_auth_user: dbuser_meta  # Auth query user (with pgbouncer_auth_query)
 ```
+
+> Since Pigsty `v4.1.0`, database pool fields are unified as `pool_reserve` and `pool_connlimit`; legacy aliases `pool_size_reserve` / `pool_max_db_conn` are converged.
 
 
 ----------------
@@ -338,6 +343,6 @@ CREATE DATABASE meta_dev TEMPLATE meta STRATEGY FILE_COPY;
 
 [**Connection pool params**](/docs/pgsql/config/db#connection-pool) in database definitions are applied to Pgbouncer when creating/modifying databases.
 
-By default all databases are added to Pgbouncer pool (`pgbouncer: true`). Databases are added to `/etc/pgbouncer/database.txt`. Database-level pool params (`pool_mode`, `pool_size`, etc.) are configured via this file.
+By default all databases are added to Pgbouncer pool (`pgbouncer: true`). Databases are added to `/etc/pgbouncer/database.txt`. Database-level pool params (`pool_auth_user`, `pool_mode`, `pool_size`, `pool_reserve`, `pool_size_min`, `pool_connlimit`) are configured via this file.
 
 Use `postgres` OS user with `pgb` alias to access Pgbouncer admin database. For more pool management, see [**Pgbouncer Management**](/docs/pgsql/admin/pgbouncer).

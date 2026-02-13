@@ -68,9 +68,9 @@ Each database definition is an object that may include the following fields, usi
   pool_auth_user: dbuser_meta     # optional, all connections to this pgbouncer database will be authenticated using this user (only useful when pgbouncer_auth_query is enabled)
   pool_mode: transaction          # optional, pgbouncer pool mode at database level, default transaction
   pool_size: 64                   # optional, pgbouncer pool size at database level, default 64
-  pool_size_reserve: 32           # optional, pgbouncer pool size reserve at database level, default 32, when default pool is insufficient, can request at most this many burst connections
+  pool_reserve: 32                # optional, pgbouncer pool size reserve at database level, default 32, when default pool is insufficient, can request at most this many burst connections
   pool_size_min: 0                # optional, pgbouncer pool size min at database level, default 0
-  pool_max_db_conn: 100           # optional, max database connections at database level, default 100
+  pool_connlimit: 100             # optional, max database connections at database level, default 100
 ```
 
 The only required field is `name`, which should be a valid and unique database name in the current PostgreSQL cluster, other parameters have reasonable defaults.
@@ -94,9 +94,9 @@ The only required field is `name`, which should be a valid and unique database n
 - `pool_auth_user`: When [`pgbouncer_auth_query`](/docs/pgsql/param#pgbouncer_auth_query) is enabled, all connections to this pgbouncer database will use the user specified here to execute authentication queries. You need to use a user with access to the `pg_shadow` table.
 - `pool_mode`: Database level pgbouncer pool mode, default is transaction, i.e., transaction pooling. If left empty, will use [`pgbouncer_poolmode`](/docs/pgsql/param#pgbouncer_poolmode) parameter as default value.
 - `pool_size`: Database level pgbouncer default pool size, default is 64
-- `pool_size_reserve`: Database level pgbouncer pool size reserve, default is 32, when default pool is insufficient, can request at most this many burst connections.
+- `pool_reserve`: Database level pgbouncer pool size reserve, default is 32, when default pool is insufficient, can request at most this many burst connections.
 - `pool_size_min`: Database level pgbouncer pool size min, default is 0
-- `pool_max_db_conn`: Database level pgbouncer connection pool max database connections, default is 100
+- `pool_connlimit`: Database level pgbouncer connection pool max database connections, default is 100
 
 Newly created databases are forked from the `template1` database by default. This template database will be customized during the [`PG_PROVISION`](/docs/pgsql/param#pg_provision) phase:
 configured with extensions, schemas, and default privileges, so newly created databases will also inherit these configurations unless you explicitly use another database as a template.

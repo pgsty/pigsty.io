@@ -306,7 +306,7 @@ bin/pgsql-user pg-meta dbuser_meta  # Create user dbuser_meta on cluster pg-meta
 The playbook will:
 1. Generate user creation SQL at `/pg/tmp/pg-user-{{ user.name }}.sql`
 2. Execute user creation/update SQL on the cluster primary
-3. Update `/etc/pgbouncer/userlist.txt` and `useropts.txt`
+3. If `pgbouncer_enabled: true`, update `/etc/pgbouncer/userlist.txt` and `useropts.txt`
 4. Reload pgbouncer to apply configuration
 
 **User Definition Example**
@@ -330,7 +330,7 @@ pg_users:
     roles: [dbrole_admin]           # Optional, roles to grant
     parameters: {}                  # Optional, role-level parameters
     pool_mode: transaction          # Optional, pgbouncer user-level pool mode
-    pool_connlimit: -1              # Optional, user-level max connections
+    pool_connlimit: -1              # Optional, user-level max connections (maps to max_user_connections)
 ```
 
 For details, see: [Admin SOP: Create User](/docs/pgsql/admin#create-user)
@@ -386,9 +386,12 @@ pg_databases:
     revokeconn: false               # Optional, revoke public connect privilege
     register_datasource: true       # Optional, register as Grafana datasource
     connlimit: -1                   # Optional, connection limit
+    pool_auth_user: dbuser_meta     # Optional, auth query user (with pgbouncer_auth_query)
     pool_mode: transaction          # Optional, pgbouncer pool mode
-    pool_size: 64                   # Optional, pgbouncer pool size
-    pool_size_reserve: 32           # Optional, pgbouncer reserve pool size
+    pool_size: 64                   # Optional, pgbouncer default pool size
+    pool_reserve: 32                # Optional, pgbouncer reserve pool size
+    pool_size_min: 0                # Optional, pgbouncer minimum pool size
+    pool_connlimit: 100             # Optional, pgbouncer max database connections
 ```
 
 For details, see: [Admin SOP: Create Database](/docs/pgsql/admin#create-database)

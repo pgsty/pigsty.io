@@ -71,6 +71,8 @@ Each user/role definition is a complex object. Only `name` is required:
   pool_connlimit: -1              # Optional, user-level max pool connections, default -1
 ```
 
+> User-level pool quota is consistently defined by `pool_connlimit` (mapped to Pgbouncer `max_user_connections`).
+
 
 ----------------
 

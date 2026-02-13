@@ -28,8 +28,12 @@ Pgbouncer users and databases are auto-managed by Pigsty, applying [**database c
 ```yaml
 pg_databases:
   - name: mydb                # Added to connection pool by default
+    pool_auth_user: dbuser_meta # Optional, auth query user (with pgbouncer_auth_query)
     pool_mode: transaction    # Database-level pool mode
     pool_size: 64             # Default pool size
+    pool_reserve: 32          # Reserve pool size
+    pool_size_min: 0          # Minimum pool size
+    pool_connlimit: 100       # Max database connections
   - name: internal
     pgbouncer: false          # Excluded from connection pool
 ```
@@ -42,7 +46,10 @@ pg_users:
     password: DBUser.App
     pgbouncer: true           # Add to connection pool user list
     pool_mode: transaction    # User-level pool mode
+    pool_connlimit: 50        # User-level max connections
 ```
+
+> Since Pigsty `v4.1.0`, database pool fields are unified as `pool_reserve` and `pool_connlimit`; legacy aliases `pool_size_reserve` / `pool_max_db_conn` are converged.
 
 
 ----------------

@@ -537,6 +537,8 @@ Each array element is a [user/role](/docs/pgsql/config/user) definition, for exa
   search_path: public             # optional, key-value config parameter per postgresql docs (e.g., use pigsty as default search_path)
 ```
 
+> User-level pool quota is consistently defined by `pool_connlimit` (mapped to Pgbouncer `max_user_connections`).
+
 
 
 
@@ -572,10 +574,12 @@ Each array element is a [business database](/docs/pgsql/config/db) definition, f
   pool_auth_user: dbuser_meta     # optional, all connections to this pgbouncer database will authenticate using this user (useful when pgbouncer_auth_query enabled)
   pool_mode: transaction          # optional, database-level pgbouncer pooling mode, default transaction
   pool_size: 64                   # optional, database-level pgbouncer default pool size, default 64
-  pool_size_reserve: 32           # optional, database-level pgbouncer pool reserve, default 32, max additional burst connections when default pool insufficient
+  pool_reserve: 32                # optional, database-level pgbouncer pool reserve, default 32, max additional burst connections when default pool insufficient
   pool_size_min: 0                # optional, database-level pgbouncer pool minimum size, default 0
-  pool_max_db_conn: 100           # optional, database-level max database connections, default 100
+  pool_connlimit: 100             # optional, database-level max database connections, default 100
 ```
+
+> Since Pigsty `v4.1.0`, database pool fields are unified as `pool_reserve` and `pool_connlimit`; legacy aliases `pool_size_reserve` / `pool_max_db_conn` are converged.
 
 In each database definition object, only `name` is a required field, all other fields are optional.
 

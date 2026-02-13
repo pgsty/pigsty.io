@@ -82,6 +82,8 @@ Each database definition is a complex object with fields below. Only `name` is r
   pool_connlimit: 100             # Optional, database-level max database connections
 ```
 
+> Since Pigsty `v4.1.0`, database pool fields are unified as `pool_reserve` and `pool_connlimit`; legacy aliases `pool_size_reserve` / `pool_max_db_conn` are converged.
+
 
 
 
