@@ -164,17 +164,17 @@ After changing the password, use the following to reload config (hot reload, no 
 Pigsty uses [`node_firewall_mode`](/docs/node/param#node_firewall_mode) to control firewall behavior.
 Uses **firewalld** on RHEL/Rocky and **ufw** on Debian/Ubuntu.
 
-By default, this is `none` - existing firewall config is untouched and left to the user.
-Set to `zone` to enable the system firewall.
+By default, this is `zone`: Pigsty enables the system firewall consistently across distros with an "intranet trusted, public minimized" policy.
 In zone mode, intranet traffic is unrestricted, but external access is limited to specific ports.
+Set `node_firewall_mode: none` only when you want to fully self-manage firewall state and rules.
 This is especially important when deploying on cloud servers exposed to the internet.
 
 We recommend opening only necessary ports: 22 (SSH), 80/443 (HTTP/HTTPS) are essential. Be cautious about exposing port 5432 (PostgreSQL).
 
 
-### Enable Firewall
+### Apply Firewall Rules
 
-Set `node_firewall_mode` to `zone` to enable firewall with trusted zone config:
+`zone` is already the default. If you previously set `none/off`, set it back to `zone` and apply:
 
 ```yaml
 node_firewall_mode: zone              # enable firewall with zone rules
@@ -288,4 +288,3 @@ sudo ufw disable
 ```
 {{% /tab %}}
 {{< /tabpane >}}
-

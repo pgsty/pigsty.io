@@ -80,9 +80,9 @@ The [NODE](/docs/node) module tunes target nodes into the desired state and inte
 | Parameter                                                       |    Type     |  Level  | Description                                          |
 |:----------------------------------------------------------------|:-----------:|:-------:|:-----------------------------------------------------|
 | [`node_selinux_mode`](#node_selinux_mode)                       |   `enum`    |   `C`   | SELinux mode: disabled, permissive, enforcing        |
-| [`node_firewall_mode`](#node_firewall_mode)                     |   `enum`    |   `C`   | firewall mode: none, off, zone                       |
+| [`node_firewall_mode`](#node_firewall_mode)                     |   `enum`    |   `C`   | firewall mode: zone (default), off, none (self-managed) |
 | [`node_firewall_intranet`](#node_firewall_intranet)             |  `cidr[]`   |   `C`   | intranet CIDR list for firewall rules                |
-| [`node_firewall_public_port`](#node_firewall_public_port)       |  `port[]`   |   `C`   | public exposed port list, default [22, 80, 443, 5432]|
+| [`node_firewall_public_port`](#node_firewall_public_port)       |  `port[]`   |   `C`   | public exposed port list, default [22, 80, 443]      |
 
 [`NODE_ADMIN`](#node_admin) section configures admin user, data directory, and shell aliases.
 
@@ -687,7 +687,7 @@ Node security related parameters, including SELinux and firewall configuration.
 
 ```yaml
 node_selinux_mode: permissive             # selinux mode: disabled, permissive, enforcing
-node_firewall_mode: none                  # firewall mode: none (skip), off (disable), zone (enable & config)
+node_firewall_mode: zone                  # firewall mode: zone (default), off (disable), none (skip & self-managed)
 node_firewall_intranet:           # which intranet cidr considered as internal network
   - 10.0.0.0/8
   - 192.168.0.0/16
@@ -696,7 +696,6 @@ node_firewall_public_port:        # expose these ports to public network in (zon
   - 22                            # enable ssh access
   - 80                            # enable http access
   - 443                           # enable https access
-  - 5432                          # enable postgresql access (think twice before exposing it!)
 ```
 
 
@@ -727,17 +726,17 @@ Also, SELinux mode changes may require a system reboot to fully take effect.
 
 name: `node_firewall_mode`, type: `enum`, level: `C`
 
-Firewall running mode. Default is `none`.
+Firewall running mode. Default is `zone`.
 
 Options:
 
-* `none`: Do nothing, maintain existing firewall rules unchanged (default)
+* `zone`: Enable firewall and configure rules: trust intranet, only open specified ports to public (default)
 * `off`: Turn off and disable firewall (equivalent to old version's `node_disable_firewall: true`)
-* `zone`: Enable firewall and configure rules: trust intranet, only open specified ports to public
+* `none`: Do not manage firewall state/rules; fully self-managed by user
 
-Uses `firewalld` service on EL systems, `ufw` service on Debian/Ubuntu systems.
+Uses `firewalld` service on EL systems, `ufw` service on Debian/Ubuntu systems. To align behavior across distros, Pigsty now defaults to `zone`: firewall enabled by default, intranet trusted, and public access limited to [`node_firewall_public_port`](#node_firewall_public_port).
 
-If you're deploying in a completely trusted intranet environment, or using cloud provider security groups for access control, you can use the default `none` mode to keep existing firewall configuration, or set to `off` to explicitly disable the firewall.
+If you need full manual firewall control (for example, relying only on cloud security groups or enterprise firewall policies), set `node_firewall_mode` to `none`. Use `off` only when you explicitly want to disable the system firewall.
 
 Production environments with public network exposure should use `zone` mode with [`node_firewall_intranet`](#node_firewall_intranet) and [`node_firewall_public_port`](#node_firewall_public_port) for fine-grained access control. The `zone` mode will enable the firewall if not already running.
 
@@ -769,26 +768,25 @@ Hosts within these CIDR ranges will be treated as trusted intranet hosts with mo
 
 name: `node_firewall_public_port`, type: `port[]`, level: `C`
 
-Public exposed port list. Default is `[22, 80, 443, 5432]`.
+Public exposed port list. Default is `[22, 80, 443]`.
 
 This parameter defines ports exposed to public network (non-intranet CIDR). Default exposed ports include:
 
 * `22`: SSH service port
 * `80`: HTTP service port
 * `443`: HTTPS service port
-* `5432`: PostgreSQL database port
 
-You can adjust this list according to actual needs. For example, if you don't need to expose the database port externally, remove `5432`:
+You can adjust this list according to actual needs. For example, if you need to expose PostgreSQL to public network, explicitly add `5432`:
 
 ```yaml
-node_firewall_public_port: [22, 80, 443]
+node_firewall_public_port: [22, 80, 443, 5432]
 ```
 
 PostgreSQL default security policy in Pigsty only allows administrators to access the database port from public networks.
 If you want other users to access the database from public networks, make sure to correctly configure corresponding access permissions in PG/PGB HBA rules.
 
-If you want to expose other service ports to public networks, you can also add them to this list.
-If you want to tighten firewall rules, you can remove the 5432 database port to ensure only truly needed service ports are exposed.
+If you want to expose other service ports to public networks, you can add them to this list.
+Always keep the minimum-exposure principle and open only ports you really need.
 
 Note that this parameter only takes effect when [`node_firewall_mode`](#node_firewall_mode) is set to `zone`.
 
