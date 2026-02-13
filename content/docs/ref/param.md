@@ -1,12 +1,12 @@
 ---
 title: Parameters
 weight: 475
-description: Pigsty v4.0 configuration overview and module parameter navigation
+description: Pigsty v4.x configuration overview and module parameter navigation
 icon: fa-solid fa-sliders
 categories: [Reference]
 ---
 
-This is the parameter navigation page for Pigsty v4.0, without repeating full explanations for each parameter.
+This is the parameter navigation page for Pigsty v4.x, without repeating full explanations for each parameter.
 For parameter details, please read each module's `param` page.
 
 According to current documentation scope, official modules contain about **360** parameters across **10** modules.

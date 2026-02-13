@@ -1,12 +1,12 @@
 ---
 title: Playbooks
 weight: 480
-description: Pigsty v4.0 preset Ansible playbook navigation and execution notes
+description: Pigsty v4.x preset Ansible playbook navigation and execution notes
 icon: fa-solid fa-scroll
 categories: [Reference]
 ---
 
-This page summarizes Pigsty v4.0 playbook entries and usage guidance by module. For detailed task tags, open each module's `playbook` page.
+This page summarizes Pigsty v4.x playbook entries and usage guidance by module. For detailed task tags, open each module's `playbook` page.
 
 ## Module Playbook Navigation
 
