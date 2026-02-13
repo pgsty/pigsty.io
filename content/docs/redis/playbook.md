@@ -84,7 +84,7 @@ Node-level operations are useful for:
 - Redeploying all instances on a specific node
 - Reinitializing after node failure recovery
 
-> **Note**: Node-level operations do not execute the `redis-ha` and `redis-join` stages. If you need to add a new node to a native cluster, you must manually run `redis-cli --cluster add-node`
+> **Note**: Node-level commands still enter `redis-ha` / `redis-join` mode checks: in `sentinel` mode they refresh Sentinel managed targets, and in `cluster` mode they may trigger `--cluster create` again (this step uses `ignore_errors: true`, but is not idempotent). For native cluster scale-out, you should still run `redis-cli --cluster add-node` and `reshard` manually.
 
 
 ### Instance-Level Operations
@@ -107,8 +107,9 @@ Instance-level operations are useful for:
 When `redis_port` is specified:
 - Only renders the config file for that port
 - Only starts/restarts the systemd service for that port
-- Only registers that instance to the monitoring system
-- **Does not** affect other instances on the same node
+- Rewrites the node's monitoring registration file (content comes from the full `redis_instances` definition)
+- **Does not** start/stop `redis_exporter` or reload Vector log config
+- **Does not** affect other Redis instance processes on the same node
 
 
 ### Common Tags
@@ -135,12 +136,11 @@ Use the `-t <tag>` parameter to selectively execute certain tasks:
 
 ### Idempotency
 
-`redis.yml` is **idempotent** and safe to run repeatedly:
+Most tasks in `redis.yml` can be run repeatedly, but `redis-join` is an exception:
 
-- Repeated execution **overwrites** existing config files
-- Repeated execution **restarts** Redis instances
-- Does not check if instances already exist; directly renders config and restarts
-- Suitable for batch updates after configuration changes
+- Re-running `redis_node` / `redis_exporter` / `redis_instance` / `redis_register` overwrites config and restarts instances
+- Re-running `redis-ha` reapplies `SENTINEL REMOVE/MONITOR` based on `redis_sentinel_monitor`
+- `redis-join` uses `redis-cli --cluster create`, which is not idempotent; reruns on an existing cluster usually fail (the playbook currently sets `ignore_errors: true`)
 
 > **Tip**: If you only want to update configs without restarting all instances, use `-t redis_config` to render configs only, then manually restart the instances you need.
 
@@ -301,7 +301,7 @@ Explicit override is required to execute:
 # Deploy entire cluster
 ./redis.yml -l <cluster>
 
-# Scale up: deploy new node
+# Scale up: deploy new node (then manually add-node in cluster mode)
 ./redis.yml -l <new-node-ip>
 
 # Scale up: add new instance to existing node (add definition to config first)
@@ -357,4 +357,3 @@ bin/redis-rm <ip> <port>          # remove instance
 Initialize Redis cluster with Redis playbook:
 
 [![asciicast](https://asciinema.org/a/568808.svg)](https://asciinema.org/a/568808)
-

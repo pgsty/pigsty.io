@@ -26,7 +26,7 @@ The [`REDIS`](#redis) parameter group is used for Redis cluster deployment and c
 | [`redis_exporter_options`](#redis_exporter_options) |  `string`  |  `C/I`  | Redis Exporter CLI arguments                            |
 | [`redis_mode`](#redis_mode)                         |   `enum`   |   `C`   | Redis mode: standalone, cluster, sentinel               |
 | [`redis_conf`](#redis_conf)                         |  `string`  |   `C`   | Redis config template, except sentinel                  |
-| [`redis_bind_address`](#redis_bind_address)         |    `ip`    |   `C`   | Redis bind address, empty uses host IP                  |
+| [`redis_bind_address`](#redis_bind_address)         |    `ip`    |   `C`   | Redis bind address, defaults to `0.0.0.0`; empty uses host IP |
 | [`redis_max_memory`](#redis_max_memory)             |   `size`   |  `C/I`  | Max memory for each Redis instance                      |
 | [`redis_mem_policy`](#redis_mem_policy)             |   `enum`   |   `C`   | Redis memory eviction policy                            |
 | [`redis_password`](#redis_password)                 | `password` |   `C`   | Redis password, empty disables password                 |
@@ -57,7 +57,7 @@ redis_exporter_port: 9121             # Redis Exporter listen port
 redis_exporter_options: ''            # Redis Exporter CLI arguments
 redis_mode: standalone                # Redis mode: standalone, cluster, sentinel
 redis_conf: redis.conf                # Redis config template, except sentinel
-redis_bind_address: '0.0.0.0'         # Redis bind address, empty uses host IP
+redis_bind_address: '0.0.0.0'         # Redis bind address, defaults to `0.0.0.0`; empty uses host IP
 redis_max_memory: 1GB                 # Max memory for each Redis instance
 redis_mem_policy: allkeys-lru         # Redis memory eviction policy
 redis_password: ''                    # Redis password, empty disables password
@@ -379,4 +379,3 @@ Parameter: `redis_rm_pkg`, Type: `bool`, Level: `G/C/A`
 Uninstall Redis and redis_exporter packages when removing Redis instances? Default is `false`.
 
 Typically not needed to uninstall packages; only enable when completely cleaning up a node.
-

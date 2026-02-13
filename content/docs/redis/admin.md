@@ -135,7 +135,7 @@ https://redis.io/commands/replicaof/
 "OK"
 
 # Make a Redis instance a replica of another instance
-> REPLICAOF 127.0.0.1 6799
+> REPLICAOF 127.0.0.1 6379
 "OK"
 ```
 
@@ -223,11 +223,14 @@ redis-cli --cluster reshard 10.10.10.12:6379
 
 #### Scale Up Sentinel Cluster
 
-To add new instances to a Sentinel cluster:
+After adding new instances to a Sentinel cluster, you should complete both instance deployment and target refresh:
 
 ```bash
-# Add new sentinel instances in the inventory, then execute:
+# 1. Add new Sentinel instances to inventory, then deploy instances
 ./redis.yml -l <sentinel-cluster> -t redis_instance
+
+# 2. Re-apply redis_sentinel_monitor to all sentinels
+./redis.yml -l <sentinel-cluster> -t redis-ha
 ```
 
 
