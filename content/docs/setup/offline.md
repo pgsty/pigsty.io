@@ -48,50 +48,52 @@ We typically release offline packages for the following [**Linux distros**](/doc
 
 | Linux Distribution      | System Code    | Minor Version | Package                                                                                                                                     |
 |:------------------------|:---------------|:--------------|:--------------------------------------------------------------------------------------------------------------------------------------------|
-| RockyLinux 8 x86_64     | `el8.x86_64`   | `8.10`        | [**`pigsty-pkg-v4.0.0.el8.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.0.0/pigsty-pkg-v4.0.0.el8.x86_64.tgz)         |
-| RockyLinux 8 aarch64    | `el8.aarch64`  | `8.10`        | [**`pigsty-pkg-v4.0.0.el8.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.0.0/pigsty-pkg-v4.0.0.el8.aarch64.tgz)       |
-| RockyLinux 9 x86_64     | `el9.x86_64`   | `9.6`         | [**`pigsty-pkg-v4.0.0.el9.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.0.0/pigsty-pkg-v4.0.0.el9.x86_64.tgz)         |
-| RockyLinux 9 aarch64    | `el9.aarch64`  | `9.6`         | [**`pigsty-pkg-v4.0.0.el9.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.0.0/pigsty-pkg-v4.0.0.el9.aarch64.tgz)       |
-| RockyLinux 10 x86_64    | `el10.x86_64`  | `10.0`        | [**`pigsty-pkg-v4.0.0.el10.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.0.0/pigsty-pkg-v4.0.0.el10.x86_64.tgz)       |
-| RockyLinux 10 aarch64   | `el10.aarch64` | `10.0`        | [**`pigsty-pkg-v4.0.0.el10.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.0.0/pigsty-pkg-v4.0.0.el10.aarch64.tgz)     |
-| Debian 12 x86_64        | `d12.x86_64`   | `12.11`       | [**`pigsty-pkg-v4.0.0.d12.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.0.0/pigsty-pkg-v4.0.0.d12.x86_64.tgz)         |
-| Debian 12 aarch64       | `d12.aarch64`  | `12.11`       | [**`pigsty-pkg-v4.0.0.d12.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.0.0/pigsty-pkg-v4.0.0.d12.aarch64.tgz)       |
-| Debian 13 x86_64        | `d13.x86_64`   | `13.2`        | [**`pigsty-pkg-v4.0.0.d13.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.0.0/pigsty-pkg-v4.0.0.d13.x86_64.tgz)         |
-| Debian 13 aarch64       | `d13.aarch64`  | `13.2`        | [**`pigsty-pkg-v4.0.0.d13.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.0.0/pigsty-pkg-v4.0.0.d13.aarch64.tgz)       |
-| Ubuntu 24.04 x86_64     | `u24.x86_64`   | `24.04.2`     | [**`pigsty-pkg-v4.0.0.u24.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.0.0/pigsty-pkg-v4.0.0.u24.x86_64.tgz)         |
-| Ubuntu 24.04 aarch64    | `u24.aarch64`  | `24.04.2`     | [**`pigsty-pkg-v4.0.0.u24.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.0.0/pigsty-pkg-v4.0.0.u24.aarch64.tgz)       |
-| Ubuntu 22.04 x86_64     | `u22.x86_64`   | `22.04.5`     | [**`pigsty-pkg-v4.0.0.u22.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.0.0/pigsty-pkg-v4.0.0.u22.x86_64.tgz)         |
-| Ubuntu 22.04 aarch64    | `u22.aarch64`  | `22.04.5`     | [**`pigsty-pkg-v4.0.0.u22.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.0.0/pigsty-pkg-v4.0.0.u22.aarch64.tgz)       |
+| RockyLinux 8 x86_64     | `el8.x86_64`   | `8.10`        | [**`pigsty-pkg-v4.1.0.el8.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.1.0/pigsty-pkg-v4.1.0.el8.x86_64.tgz)         |
+| RockyLinux 8 aarch64    | `el8.aarch64`  | `8.10`        | [**`pigsty-pkg-v4.1.0.el8.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.1.0/pigsty-pkg-v4.1.0.el8.aarch64.tgz)       |
+| RockyLinux 9 x86_64     | `el9.x86_64`   | `9.7`         | [**`pigsty-pkg-v4.1.0.el9.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.1.0/pigsty-pkg-v4.1.0.el9.x86_64.tgz)         |
+| RockyLinux 9 aarch64    | `el9.aarch64`  | `9.7`         | [**`pigsty-pkg-v4.1.0.el9.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.1.0/pigsty-pkg-v4.1.0.el9.aarch64.tgz)       |
+| RockyLinux 10 x86_64    | `el10.x86_64`  | `10.1`        | [**`pigsty-pkg-v4.1.0.el10.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.1.0/pigsty-pkg-v4.1.0.el10.x86_64.tgz)       |
+| RockyLinux 10 aarch64   | `el10.aarch64` | `10.1`        | [**`pigsty-pkg-v4.1.0.el10.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.1.0/pigsty-pkg-v4.1.0.el10.aarch64.tgz)     |
+| Debian 12 x86_64        | `d12.x86_64`   | `12.13`       | [**`pigsty-pkg-v4.1.0.d12.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.1.0/pigsty-pkg-v4.1.0.d12.x86_64.tgz)         |
+| Debian 12 aarch64       | `d12.aarch64`  | `12.13`       | [**`pigsty-pkg-v4.1.0.d12.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.1.0/pigsty-pkg-v4.1.0.d12.aarch64.tgz)       |
+| Debian 13 x86_64        | `d13.x86_64`   | `13.3`        | [**`pigsty-pkg-v4.1.0.d13.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.1.0/pigsty-pkg-v4.1.0.d13.x86_64.tgz)         |
+| Debian 13 aarch64       | `d13.aarch64`  | `13.3`        | [**`pigsty-pkg-v4.1.0.d13.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.1.0/pigsty-pkg-v4.1.0.d13.aarch64.tgz)       |
+| Ubuntu 24.04 x86_64     | `u24.x86_64`   | `24.04.2`     | [**`pigsty-pkg-v4.1.0.u24.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.1.0/pigsty-pkg-v4.1.0.u24.x86_64.tgz)         |
+| Ubuntu 24.04 aarch64    | `u24.aarch64`  | `24.04.2`     | [**`pigsty-pkg-v4.1.0.u24.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.1.0/pigsty-pkg-v4.1.0.u24.aarch64.tgz)       |
+| Ubuntu 22.04 x86_64     | `u22.x86_64`   | `22.04.5`     | [**`pigsty-pkg-v4.1.0.u22.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.1.0/pigsty-pkg-v4.1.0.u22.x86_64.tgz)         |
+| Ubuntu 22.04 aarch64    | `u22.aarch64`  | `22.04.5`     | [**`pigsty-pkg-v4.1.0.u22.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.1.0/pigsty-pkg-v4.1.0.u22.aarch64.tgz)       |
 
 If you use an OS from the list above (exact minor version match), we recommend using offline packages.
 Pigsty provides ready-to-use pre-made offline packages for these systems, freely downloadable from GitHub.
 
-You can find these packages on the [**GitHub release page**](https://github.com/pgsty/pigsty/releases/latest):
+You can find these packages on the [**GitHub release page**](https://github.com/pgsty/pigsty/releases/tag/v4.1.0):
 
 ```bash
-6a26fa44f90a16c7571d2aaf0e997d07  pigsty-v4.0.0.tgz
-537839201c536a1211f0b794482d733b  pigsty-pkg-v4.0.0.el9.x86_64.tgz
-85687cb56517acc2dce14245452fdc05  pigsty-pkg-v4.0.0.el9.aarch64.tgz
-a333e8eb34bf93f475c85a9652605139  pigsty-pkg-v4.0.0.el10.x86_64.tgz
-4b98b463e2ebc104c35ddc94097e5265  pigsty-pkg-v4.0.0.el10.aarch64.tgz
-4f62851c9d79a490d403f59deb4823f4  pigsty-pkg-v4.0.0.el8.x86_64.tgz
-66e283c9f6bfa80654f7ed3ffb9b53e5  pigsty-pkg-v4.0.0.el8.aarch64.tgz
-f7971d9d6aab1f8f307556c2f64b701c  pigsty-pkg-v4.0.0.d12.x86_64.tgz
-c4d870e5ef61ed05724c15fbccd1220b  pigsty-pkg-v4.0.0.d12.aarch64.tgz
-408991c5ff028b5c0a86fac804d64b93  pigsty-pkg-v4.0.0.d13.x86_64.tgz
-8d7c9404b97a11066c00eb7fc1330181  pigsty-pkg-v4.0.0.d13.aarch64.tgz
-2a25eff283332d9006854f36af6602b2  pigsty-pkg-v4.0.0.u24.x86_64.tgz
-a4fb30148a2d363bbfd3bec0daa14ab6  pigsty-pkg-v4.0.0.u24.aarch64.tgz
-87bb91ef703293b6ec5b77ae3bb33d54  pigsty-pkg-v4.0.0.u22.x86_64.tgz
-5c81bdaa560dad4751840dec736fe404  pigsty-pkg-v4.0.0.u22.aarch64.tgz
+# v4.1.0 checksums will be filled after package upload. Use filenames below for now:
+<md5sum>  pigsty-v4.1.0.tgz
+<md5sum>  pigsty-pkg-v4.1.0.el9.x86_64.tgz
+<md5sum>  pigsty-pkg-v4.1.0.el9.aarch64.tgz
+<md5sum>  pigsty-pkg-v4.1.0.el10.x86_64.tgz
+<md5sum>  pigsty-pkg-v4.1.0.el10.aarch64.tgz
+<md5sum>  pigsty-pkg-v4.1.0.el8.x86_64.tgz
+<md5sum>  pigsty-pkg-v4.1.0.el8.aarch64.tgz
+<md5sum>  pigsty-pkg-v4.1.0.d12.x86_64.tgz
+<md5sum>  pigsty-pkg-v4.1.0.d12.aarch64.tgz
+<md5sum>  pigsty-pkg-v4.1.0.d13.x86_64.tgz
+<md5sum>  pigsty-pkg-v4.1.0.d13.aarch64.tgz
+<md5sum>  pigsty-pkg-v4.1.0.u24.x86_64.tgz
+<md5sum>  pigsty-pkg-v4.1.0.u24.aarch64.tgz
+<md5sum>  pigsty-pkg-v4.1.0.u22.x86_64.tgz
+<md5sum>  pigsty-pkg-v4.1.0.u22.aarch64.tgz
 ```
 
 {{% alert title="Offline packages are made for specific Linux OS minor versions" color="warning" %}}
 
 When OS minor versions don't match, it may work or may fail—we don't recommend taking the risk.
 
-Please note that Pigsty's EL9/EL10 packages are built on 9.6/10.0 and currently cannot be used for 9.7/10.1 minor versions (due to OpenSSL version changes).
-You need to perform an online installation on a matching OS version and create your own offline package, or contact us for custom offline packages.
+Please note that Pigsty's EL9/EL10 packages are built on 9.7/10.1, and Debian packages are built on 12.13/13.3.
+Cross-minor installation may fail due to OpenSSL/system library differences.
+Use online installation on matching OS versions to build your own offline package, or contact us for custom packages.
 
 {{% /alert %}}
 

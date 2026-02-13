@@ -41,7 +41,7 @@ To avoid manually modifying passwords, Pigsty's **configuration wizard** provide
 
 ```bash
 $ ./configure -g
-configure pigsty v4.0.0 begin
+configure pigsty v4.1.0 begin
 [ OK ] region = china
 [WARN] kernel  = Darwin, can be used as admin node only
 [ OK ] machine = arm64

@@ -75,7 +75,7 @@ Pigsty provides an out-of-the-box Docker image on [**Docker Hub**](https://hub.d
 | `pgsty/pigsty` | ~500MB | 1.3GB | Debian 13 + systemd + SSH + pig + Ansible |
 
 - Supports both **amd64** (x86_64) and **arm64** (Apple Silicon, AWS Graviton)
-- Tags match Pigsty versions: `v4.0.0`, `latest`, etc.
+- Tags match Pigsty versions: `v4.1.0`, `latest`, etc.
 - Pre-configured with docker template, ready to run `./deploy.yml`
 
 Built on **Debian 13 (Trixie)**, pre-installed with [**`pig`**](/docs/pig/) CLI and Ansible, Pigsty source already initialized.
@@ -120,7 +120,7 @@ make launch          # Start container + generate config + deploy
 Customize image version and port mappings via [**`.env`**](https://github.com/pgsty/pigsty/blob/main/docker/.env):
 
 ```bash
-PIGSTY_VERSION=v4.0.0         # Image tag, matches Pigsty version
+PIGSTY_VERSION=v4.1.0         # Image tag, matches Pigsty version
 PIGSTY_SSH_PORT=2222          # SSH port
 PIGSTY_HTTP_PORT=8080         # Nginx HTTP port
 PIGSTY_HTTPS_PORT=8443        # Nginx HTTPS port
@@ -131,7 +131,7 @@ PIGSTY_PG_PORT=5432           # PostgreSQL port
 
 | Env Var             | Default  | Container | Description       |
 |:--------------------|:---------|:----------|:------------------|
-| `PIGSTY_VERSION`    | `v4.0.0` | -         | Image version tag |
+| `PIGSTY_VERSION`    | `v4.1.0` | -         | Image version tag |
 | `PIGSTY_SSH_PORT`   | `2222`   | 22        | SSH access port   |
 | `PIGSTY_HTTP_PORT`  | `8080`   | 80        | Nginx HTTP port   |
 | `PIGSTY_HTTPS_PORT` | `8443`   | 443       | Nginx HTTPS port  |
@@ -213,7 +213,7 @@ mkdir -p ./data
 docker run -d --privileged --name pigsty \
   -p 2222:22 -p 8080:80 -p 5432:5432 \
   -v ./data:/data \
-  pgsty/pigsty:v4.0.0
+  pgsty/pigsty:v4.1.0
 
 docker exec -it pigsty ./configure -c docker -g --ip 127.0.0.1
 docker exec -it pigsty ./deploy.yml

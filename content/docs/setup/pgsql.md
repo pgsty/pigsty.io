@@ -28,7 +28,7 @@ Then simply type `p` and press Enter to access the database cluster via the `psq
 
 ```bash
 vagrant@pg-meta-1:~$ p
-psql (18.1 (Ubuntu 18.1-1.pgdg24.04+2))
+psql (18.2 (Ubuntu 18.2-1.pgdg24.04+2))
 Type "help" for help.
 
 postgres=#
@@ -116,7 +116,7 @@ psql -h 10.10.10.10 -p 5432 -U dbuser_dba -d meta
 After successful connection, you'll see a prompt like this:
 
 ```bash
-psql (18.1)
+psql (18.2)
 Type "help" for help.
 
 meta=#

@@ -7,7 +7,7 @@ weight: 5400
 
 Pigsty has a repository that provides 340+ extra PostgreSQL extensions on mainstream [Linux Distros](/docs/ref/linux).
 It is designed to work together with the official PostgreSQL Global Development Group ([PGDG](https://www.postgresql.org/download/linux/)) repo.
-Together, they can provide up to [400+ PostgreSQL Extensions](https://ext.pigsty.io) out-of-the-box.
+Together, they can provide up to [450+ PostgreSQL Extensions](https://ext.pigsty.io) out-of-the-box.
 
 |   PGSQL Repo    |                   Description                    |             Link              |
 |:---------------:|:------------------------------------------------:|:-----------------------------:|
@@ -142,16 +142,16 @@ The [**PGSQL**](/docs/repo/pgsql/) repo contains packages that are ad hoc to spe
 |    `el7.x86_64`      | EL     |   7   |   7.9   | CentOS 7 x86      |    15 14 13                               |   EOL    |
 |    `el8.x86_64`      | EL     |   8   |  8.10   | RockyLinux 8 x86  | **18** **17** **16** **15** **14** **13** | Near EOL |
 |    `el8.aarch64`     | EL     |   8   |  8.10   | RockyLinux 8 ARM  | **18** **17** **16** **15** **14** **13** | Near EOL |
-|    `el9.x86_64`      | EL     |   9   |   9.6   | RockyLinux 9 x86  | **18** **17** **16** **15** **14** **13** |    OK    |
-|    `el9.aarch64`     | EL     |   9   |   9.6   | RockyLinux 9 ARM  | **18** **17** **16** **15** **14** **13** |    OK    |
-|    `el10.x86_64`     | EL     |  10   |  10.0   | RockyLinux 10 x86 | **18** **17** **16** **15** **14** **13** |    OK    |
-|    `el10.aarch64`    | EL     |  10   |  10.0   | RockyLinux 10 ARM | **18** **17** **16** **15** **14** **13** |    OK    |
+|    `el9.x86_64`      | EL     |   9   |   9.7   | RockyLinux 9 x86  | **18** **17** **16** **15** **14** **13** |    OK    |
+|    `el9.aarch64`     | EL     |   9   |   9.7   | RockyLinux 9 ARM  | **18** **17** **16** **15** **14** **13** |    OK    |
+|    `el10.x86_64`     | EL     |  10   |  10.1   | RockyLinux 10 x86 | **18** **17** **16** **15** **14** **13** |    OK    |
+|    `el10.aarch64`    | EL     |  10   |  10.1   | RockyLinux 10 ARM | **18** **17** **16** **15** **14** **13** |    OK    |
 |    `d11.x86_64`      | Debian |  11   |  11.11  | Debian 11 x86     |    17 16 15 14 13                         |   EOL    |
 |    `d11.aarch64`     | Debian |  11   |  11.11  | Debian 11 ARM     |    17 16 15 14 13                         |   EOL    |
-|    `d12.x86_64`      | Debian |  12   |  12.12  | Debian 12 x86     | **18** **17** **16** **15** **14** **13** |    OK    |
-|    `d12.aarch64`     | Debian |  12   |  12.12  | Debian 12 ARM     | **18** **17** **16** **15** **14** **13** |    OK    |
-|    `d13.x86_64`      | Debian |  13   |  13.1   | Debian 13 x86     | **18** **17** **16** **15** **14** **13** |    OK    |
-|    `d13.aarch64`     | Debian |  13   |  13.1   | Debian 13 ARM     | **18** **17** **16** **15** **14** **13** |    OK    |
+|    `d12.x86_64`      | Debian |  12   |  12.13  | Debian 12 x86     | **18** **17** **16** **15** **14** **13** |    OK    |
+|    `d12.aarch64`     | Debian |  12   |  12.13  | Debian 12 ARM     | **18** **17** **16** **15** **14** **13** |    OK    |
+|    `d13.x86_64`      | Debian |  13   |  13.3   | Debian 13 x86     | **18** **17** **16** **15** **14** **13** |    OK    |
+|    `d13.aarch64`     | Debian |  13   |  13.3   | Debian 13 ARM     | **18** **17** **16** **15** **14** **13** |    OK    |
 |    `u20.x86_64`      | Ubuntu |  20   | 20.04.6 | Ubuntu 20.04 x86  |    17 16 15 14 13                         |   EOL    |
 |    `u20.aarch64`     | Ubuntu |  20   | 20.04.6 | Ubuntu 20.04 ARM  |    17 16 15 14 13                         |   EOL    |
 |    `u22.x86_64`      | Ubuntu |  22   | 22.04.5 | Ubuntu 22.04 x86  | **18** **17** **16** **15** **14** **13** |    OK    |
