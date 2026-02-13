@@ -53,12 +53,12 @@ make deci       # 10 node environment
 You can use variant aliases to specify different operating system images:
 
 ```bash
-make meta9      # Create single node with RockyLinux 9
-make full12     # Create 4-node sandbox with Debian 12
+make meta9      # Create single node with RockyLinux 9.7
+make full12     # Create 4-node sandbox with Debian 12.13
 make simu24     # Create 20-node simubox with Ubuntu 24.04
 ```
 
-Available OS suffixes: `7` (EL7), `8` (EL8), `9` (EL9), `10` (EL10), `11` (Debian 11), `12` (Debian 12), `13` (Debian 13), `20` (Ubuntu 20.04), `22` (Ubuntu 22.04), `24` (Ubuntu 24.04)
+Available OS suffixes: `8` (EL8), `9` (EL9), `10` (EL10), `12` (Debian 12), `13` (Debian 13), `22` (Ubuntu 22.04), `24` (Ubuntu 24.04)
 
 ### Build Environment
 
@@ -67,8 +67,8 @@ You can also use the following aliases to create Pigsty build environments. Thes
 ```bash
 make oss        # 3 node OSS build environment
 make pro        # 5 node PRO build environment
-make rpm        # 3 node EL7/8/9 build environment
-make deb        # 5 node Debian11/12 Ubuntu20/22/24 build environment
+make rpm        # 3 node EL8/9/10 build environment
+make deb        # 4 node Debian12/13 Ubuntu22/24 build environment
 make all        # 7 node full build environment
 ```
 
@@ -91,7 +91,7 @@ Pigsty provides multiple predefined VM specs in the [`vagrant/spec/`](https://gi
 | [oss.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/oss.rb)   | 3 nodes|    1c2g x 3       | 3-node OSS build environment |         |
 | [pro.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/pro.rb)   | 5 nodes|    1c2g x 5       | 5-node PRO build environment |         |
 | [rpm.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/rpm.rb)   | 3 nodes|    1c2g x 3       | 3-node EL build environment  |         |
-| [deb.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/deb.rb)   | 5 nodes|    1c2g x 5       | 5-node Deb build environment |         |
+| [deb.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/deb.rb)   | 4 nodes|    1c2g x 4       | 4-node Deb build environment |         |
 | [all.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/all.rb)   | 7 nodes|    1c2g x 7       | 7-node full build environment|         |
 
 Each spec file contains a `Specs` variable describing the VM nodes. For example, `full.rb` contains the 4-node sandbox definition:
@@ -129,9 +129,9 @@ cd ~/pigsty
 vagrant/config [spec] [image] [scale] [provider]
 
 # Examples
-vagrant/config meta                # Use 1-node spec with default EL9 image
+vagrant/config meta                # Use 1-node spec with default RockyLinux 9.7 (EL9) image
 vagrant/config dual el9            # Use 2-node spec with EL9 image
-vagrant/config trio d12 2          # Use 3-node spec with Debian 12, double resources
+vagrant/config trio d12 2          # Use 3-node spec with Debian 12.13, double resources
 vagrant/config full u22 4          # Use 4-node spec with Ubuntu 22, 4x resources
 vagrant/config simu u24 1 libvirt  # Use 20-node spec with Ubuntu 24, libvirt provider
 ```
@@ -142,16 +142,13 @@ The config script supports various image aliases:
 
 | Distro | Alias | Vagrant Box |
 |--------|-------|-------------|
-| CentOS 7 | `el7`, `7`, `centos` | `generic/centos7` |
-| Rocky 8 | `el8`, `8`, `rocky8` | `bento/rockylinux-9` |
-| Rocky 9 | `el9`, `9`, `rocky9`, `el` | `bento/rockylinux-9` |
-| Rocky 10 | `el10`, `rocky10` | `rockylinux/10` |
-| Debian 11 | `d11`, `11`, `debian11` | `generic/debian11` |
-| Debian 12 | `d12`, `12`, `debian12` | `generic/debian12` |
-| Debian 13 | `d13`, `13`, `debian13` | `cloud-image/debian-13` |
-| Ubuntu 20.04 | `u20`, `20`, `ubuntu20` | `generic/ubuntu2004` |
-| Ubuntu 22.04 | `u22`, `22`, `ubuntu22`, `ubuntu` | `generic/ubuntu2204` |
-| Ubuntu 24.04 | `u24`, `24`, `ubuntu24` | `bento/ubuntu-24.04` |
+| AlmaLinux 8 | `el8`, `rocky8` | `cloud-image/almalinux-8` |
+| Rocky 9 | `el9`, `rocky9`, `el` | `bento/rockylinux-9` |
+| AlmaLinux 10 | `el10`, `rocky10` | `cloud-image/almalinux-10` |
+| Debian 12 | `d12`, `debian12` | `cloud-image/debian-12` |
+| Debian 13 | `d13`, `debian13` | `cloud-image/debian-13` |
+| Ubuntu 22.04 | `u22`, `ubuntu22`, `ubuntu` | `cloud-image/ubuntu-22.04` |
+| Ubuntu 24.04 | `u24`, `ubuntu24` | `bento/ubuntu-24.04` |
 
 ### Resource Scaling
 
@@ -218,28 +215,31 @@ Pigsty currently uses the following Vagrant Boxes for testing:
 
 ```bash
 # x86_64 / amd64
-el8 :  bento/rockylinux-8     (libvirt, 202502.21.0, (amd64))
-el9 :  bento/rockylinux-9     (libvirt, 202502.21.0, (amd64))
-el10:  rockylinux/10          (libvirt)
+el8 :  cloud-image/almalinux-8   (EL 8.10)
+el9 :  bento/rockylinux-9        (RockyLinux 9.7)
+el10:  cloud-image/almalinux-10  (RockyLinux 10.1)
 
-d11 :  generic/debian11       (libvirt, 4.3.12, (amd64))
-d12 :  generic/debian12       (libvirt, 4.3.12, (amd64))
-d13 :  cloud-image/debian-13  (libvirt)
+d12 :  cloud-image/debian-12     (Debian 12.13)
+d13 :  cloud-image/debian-13     (Debian 13.3)
 
-u20 :  generic/ubuntu2004     (libvirt, 4.3.12, (amd64))
-u22 :  generic/ubuntu2204     (libvirt, 4.3.12, (amd64))
-u24 :  bento/ubuntu-24.04     (libvirt, 20250316.0.0, (amd64))
+u22 :  cloud-image/ubuntu-22.04
+u24 :  bento/ubuntu-24.04
 ```
 
-For Apple Silicon (aarch64) architecture, fewer images are available:
+For Apple Silicon (aarch64) architecture:
 
 ```bash
 # aarch64 / arm64
-bento/rockylinux-9 (virtualbox, 202502.21.0, (arm64))
-bento/ubuntu-24.04 (virtualbox, 202502.21.0, (arm64))
+el8 :  cloud-image/almalinux-8
+el9 :  bento/rockylinux-9
+el10:  cloud-image/almalinux-10
+d12 :  cloud-image/debian-12
+d13 :  cloud-image/debian-13
+u22 :  cloud-image/ubuntu-22.04
+u24 :  bento/ubuntu-24.04
 ```
 
-You can find more available Box images on [**Vagrant Cloud**](https://app.vagrantup.com/bento/boxes).
+You can find available Box images by provider/architecture on [**Vagrant Cloud**](https://app.vagrantup.com/boxes/search).
 
 
 ----------------
@@ -276,4 +276,3 @@ The first time you use Vagrant to start a specific operating system, it will dow
 {{% alert title="libvirt Provider" color="info" %}}
 If you're using libvirt as the provider, you can use `make info` to view VMs, networks, and storage volume information, and `make nuke` to forcefully destroy all related resources.
 {{% /alert %}}
-
