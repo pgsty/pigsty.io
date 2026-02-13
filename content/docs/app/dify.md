@@ -19,7 +19,7 @@ Pigsty provides support for self-hosted Dify, allowing you to deploy Dify with a
 - [Domain and SSL](#domain-and-ssl)
 - [File Backup](#file-backup)
 
-> Current Pigsty v4.0 supported Dify version: v1.8.1
+> Current Pigsty v4.1 supported Dify version: v1.8.1
 
 ------
 

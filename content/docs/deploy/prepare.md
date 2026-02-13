@@ -138,7 +138,7 @@ For local-only access, add the following to `/etc/hosts` on machines accessing t
 
 Pigsty runs on **Linux**. It supports **14** mainstream distributions: [**Compatible OS List**](/docs/ref/linux/)
 
-We recommend **RockyLinux 10.0**, **Debian 13.2**, or **Ubuntu 24.04.2** as default options.
+We recommend **RockyLinux 10.1**, **Debian 13.3**, or **Ubuntu 24.04.3** as default options.
 
 On macOS and Windows, use VM software or Docker systemd images to run Pigsty.
 
@@ -194,8 +194,8 @@ curl -fsSL https://repo.pigsty.cc/get | bash;         # Backup Mirror
 To [**install**](/docs/deploy/install#install) a specific version, use the **`-s <version>`** parameter:
 
 ```bash
-curl -fsSL https://repo.pigsty.io/get | bash -s v4.0.0
-curl -fsSL https://repo.pigsty.cc/get | bash -s v4.0.0
+curl -fsSL https://repo.pigsty.io/get | bash -s v4.1.0
+curl -fsSL https://repo.pigsty.cc/get | bash -s v4.1.0
 ```
 
 To [**install**](/docs/deploy/install#install) the latest beta version:
@@ -209,14 +209,14 @@ For developers or the latest development version, clone the repository directly:
 
 ```bash
 git clone https://github.com/pgsty/pigsty.git;
-cd pigsty; git checkout v4.0.0
+cd pigsty; git checkout v4.1.0
 ```
 
 If your environment lacks Internet access, download the source tarball from [**GitHub Releases**](https://github.com/pgsty/pigsty/releases/) or the Pigsty repository:
 
 ```bash
-wget https://repo.pigsty.io/src/pigsty-v4.0.0.tgz
-wget https://repo.pigsty.cc/src/pigsty-v4.0.0.tgz
+wget https://repo.pigsty.io/src/pigsty-v4.1.0.tgz
+wget https://repo.pigsty.cc/src/pigsty-v4.1.0.tgz
 ```
 
 

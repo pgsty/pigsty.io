@@ -35,6 +35,7 @@ Unless you know what you're doing, do not use GitHub's **main** branch. Always c
 - [ ] Agent Native CLI - PIG
 - [ ] DBA Agent - basic integration
 - [ ] Grafana dashboard improvements
+- [ ] Boar management console
 
 Here are our [**Active Issues**](https://github.com/pgsty/pigsty/issues) and [**Roadmap**](https://github.com/users/Vonng/projects/2/views/3).
 
@@ -98,4 +99,3 @@ For the extension support roadmap, you can find it here: https://pgext.cloud/e/r
 - pg_backtrace https://github.com/postgrespro/pg_backtrace
 - connection_limits https://github.com/tvondra/connection_limits
 - fixeddecimal https://github.com/2ndQuadrant/fixeddecimal
-

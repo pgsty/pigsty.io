@@ -6,11 +6,12 @@ icon: fa-solid fa-scroll
 categories: [Reference]
 ---
 
-The current stable version is [**v4.0.0**](#v400), released 2025-12-25.
+The current stable version is [**v4.1.0**](#v410).
 
 |     Version     | Release Date | Summary                                                                      |                                       Release Page                                        |
 |:---------------:|:------------:|------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------:|
-| [v4.0.0](#v400) |  2025-01-28  | Observability revolution, security hardening, JUICE/VIBE modules, Apache-2.0 |               [v4.0.0](https://github.com/pgsty/pigsty/releases/tag/v4.0.0)               |
+| [v4.1.0](#v410) |  2026-02-12  | OS/DB minor version updates, Agent-Native CLI, batch bug fixes               |               [v4.1.0](https://github.com/pgsty/pigsty/releases/tag/v4.1.0)               |
+| [v4.0.0](#v400) |  2026-01-28  | Observability revolution, security hardening, JUICE/VIBE modules, Apache-2.0 |               [v4.0.0](https://github.com/pgsty/pigsty/releases/tag/v4.0.0)               |
 | [v3.7.0](#v370) |  2025-12-02  | PG18 default, 437 extensions, EL10 & Debian 13 support, PGEXT.CLOUD          |               [v3.7.0](https://github.com/pgsty/pigsty/releases/tag/v3.7.0)               |
 | [v3.6.1](#v361) |  2025-08-15  | Routine PG minor updates, PGDG China mirror, EL10/D13 stubs                  |               [v3.6.1](https://github.com/pgsty/pigsty/releases/tag/v3.6.1)               |
 | [v3.6.0](#v360) |  2025-07-30  | pgactive, MinIO/ETCD improvements, simplified install, config cleanup        |               [v3.6.0](https://github.com/pgsty/pigsty/releases/tag/v3.6.0)               |
@@ -66,57 +67,152 @@ The current stable version is [**v4.0.0**](#v400), released 2025-12-25.
 
 ------
 
-## v4.0.1 (beta)
+## v4.1.0
+
+```bash
+curl https://pigsty.io/get | bash -s v4.1.0
+```
+
+**70 commits**, 249 files changed, +5,684 / -4,953 lines (`v4.0.0..HEAD`, 2026-02-02 ~ 2026-02-13)
 
 **Highlights**
 
-- EL default minor versions updated to EL 9.7 / EL 10.1.
-- Focused fixes for PGSQL / PGCAT Grafana dashboard usability: dynamic datasource `$dsn`, schema-level links, database age metrics, etc.
-- Added one-click Mattermost app template, with database, storage, portal, and optional PGFS/JuiceFS support.
-- Refactored infra-rm uninstall flow with segmented `deregister` cleanup for Victoria targets, Grafana datasources, and Vector log configs.
-- Tuned PostgreSQL default autovacuum thresholds to reduce frequent vacuum/analyze on small tables.
-- Fixed FD limit chain: added `fs.nr_open=8M` and unified service `LimitNOFILE=8M` to avoid startup failures caused by systemd/setrlimit.
-- Updated default Vibe experience: Jupyter disabled by default, Claude Code installed and managed via npm package.
+- Added 7 new extensions, bringing total support to about 450 extensions.
+- `pig` CLI now provides an Agent-Native interface with explicit context and json/yaml output.
+- PostgreSQL minor update: 18.2, 17.8, 16.12, 15.16, 14.21.
+- Default EL minors updated to `9.7 / 10.1`, Debian minors updated to `12.13 / 13.3`.
+- Focused PGSQL/PGCAT Grafana usability fixes: dynamic datasource `$dsn`, schema-level drilldown, age metrics, link mapping consistency.
+- Added one-click Mattermost application template, including database/storage/portal and optional PGFS/JuiceFS options.
+- Refactored `infra-rm` uninstall flow with segmented `deregister` cleanup for Victoria targets, Grafana datasources, and Vector logs.
+- Fixed PG17/18 checkpoint metric pipeline: switched to `pg_checkpointer_*` with `pg_bgwriter_*` fallback to avoid cross-version dashboard distortion.
+- Optimized default PostgreSQL autovacuum thresholds to reduce excessive vacuum/analyze on small tables.
+- Fixed FD limit chain: added `fs.nr_open=8M` and unified `LimitNOFILE=8M` to avoid startup failures from systemd/setrlimit.
+- Updated VIBE defaults: Jupyter disabled by default; Claude Code managed via npm package.
 
 **Version Updates**
 
-- pig v1.1.0: Agentic CLI
-- timescaledb 2.25.0
-- pg_search 0.20.10
-- pgmq 1.1.0
-- pg_track_optimizaer 0.9.1
-- pljs 1.0.5
-- pg_textsearch 0.5.0
+- Pigsty version: `v4.0.0 -> v4.1.0`
+- Default EL minors: `9.6/10.0 -> 9.7/10.1`
+- Default Debian minors: `12.12/13.1 -> 12.13/13.3`
+
+**Extension Updates**
+
+- [RPM Changelog 2026-02-12](/docs/repo/pgsql/rpm/#2026-02-12)
+- [DEB Changelog 2026-02-12](/docs/repo/pgsql/deb/#2026-02-12)
+- timescaledb `2.24.0 -> 2.25.0`
+- pg_search `0.21.4 -> 0.21.7`
+- pgmq `1.9.0 -> 1.10.0`
+- pg_textsearch `0.4.0 -> 0.5.0`
+- pljs `1.0.4 -> 1.0.5`
+- pg_track_optimizer `0.9.1` (new)
+- nominatim_fdw `1.1.0` (new)
+- pg_utl_smtp `1.0.0` (new)
+- pg_strict `1.0.2` (new)
+- pgmb `1.0.0` (new)
+
+**INFRA Component Versions**
+
+[Infra Changelog 2026-02-12](/docs/repo/infra/log/#2026-02-12)
+
+| Package             | Version | Package         | Version   |
+|---------------------|---------|-----------------|-----------|
+| victoria-metrics    | 1.135.0 | victoria-logs   | 1.45.0    |
+| vector              | 0.53.0  | grafana         | 12.3.2    |
+| alertmanager        | 0.31.1  | etcd            | 3.6.7     |
+| duckdb              | 1.4.4   | pg_exporter     | 1.2.0     |
+| pig                 | 1.1.0   | claude          | 2.1.37    |
+| opencode            | 1.1.59  | uv              | 0.10.0    |
+| code-server         | 4.108.2 | caddy           | 2.10.2    |
+| hugo                | 0.155.2 | cloudflared     | 2026.2.0  |
+| headscale           | 0.28.0  |                 |           |
 
 **API Changes**
 
 - Corrected template guard for `io_method` / `io_workers` from `pg_version >= 17` to `pg_version >= 18`.
-- Raised `autovacuum_vacuum_threshold` from 50 to 500 in `oltp/crit/tiny`, and to 1000 in `olap`.
-- Raised `autovacuum_analyze_threshold` from 50 to 250 in `oltp/crit/tiny`, and to 500 in `olap`.
-- Added `fs.nr_open=8388608` in node tuned templates, and aligned `fs.file-max / fs.nr_open / LimitNOFILE` hierarchy.
-- Changed `LimitNOFILE` for postgres/patroni/minio from 16777216 to 8388608.
-- Added `bin/validate` checks for `pg_databases[*].parameters` and `pg_hba_rules[*].order`.
+- Fixed PG18 guards for `idle_replication_slot_timeout` / `initdb --no-data-checksums`.
+- Broadened `maintenance_io_concurrency` effective range to `PG13+`.
+- Raised `autovacuum_vacuum_threshold`: `oltp/crit/tiny` from 50 to 500, `olap` to 1000.
+- Raised `autovacuum_analyze_threshold`: `oltp/crit/tiny` from 50 to 250, `olap` to 500.
+- Increased default `checkpoint_completion_target` from `0.90` to `0.95`.
+- Added `fs.nr_open=8388608` in node tuned templates and aligned `fs.file-max / fs.nr_open / LimitNOFILE`.
+- Changed postgres/patroni/minio systemd `LimitNOFILE` from `16777216` to `8388608`.
+- Added `fs.nr_open: 8388608` into default `node_sysctl_params`.
+- Added `bin/validate` checks for `pg_databases[*].parameters` and `pg_hba_rules[*].order`; fixed HBA validation not returning failure properly.
 - Added segmented tags in `infra-rm.yml`: `deregister`, `config`, `env`, etc.
-- Changed Vibe defaults: `jupyter_enabled=false`, and `npm_packages` now include `@anthropic-ai/claude-code` and `happy-coder`.
-- Added default Vibe environment variable: `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`.
+- Updated VIBE defaults: `jupyter_enabled=false`, `npm_packages` include `@anthropic-ai/claude-code` and `happy-coder`, plus `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`.
+- PgBouncer alias cleanup: `pool_size_reserve -> pool_reserve`, `pool_max_db_conn -> pool_connlimit`.
 
 **Compatibility Fixes**
 
 - Fixed Redis `replicaof` empty-guard logic and systemd stop behavior.
-- Fixed schema/table/sequence qualification and identifier quoting in `pg_migration` scripts.
-- Fixed wrong restart target and variable usage in pgsql role handlers.
+- Fixed schema/table/sequence qualification, identifier quoting, and logging format safety in `pg_migration`.
+- Fixed restart targets and variable usage in pgsql role handlers.
 - Fixed blackbox config filename cleanup item and pgAdmin pgpass file format.
-- Made `pg_exporter` startup non-blocking to avoid slowing the main flow on exporter failures.
-- Simplified VIP address parsing: when CIDR is omitted, default netmask is 24.
-- Increased MinIO health-check retries from 3 to 5.
+- Made `pg_exporter` startup non-blocking to avoid slowing main flow when exporter fails.
+- Simplified VIP CIDR parsing: default mask `24` when omitted.
+- Increased MinIO health-check retries from `3` to `5`.
 - Switched node hostname setup to Ansible hostname module instead of shell calls.
 - Fixed `.env` format for `app/electric` and `app/pg_exporter` to standard `KEY=VALUE`.
 - Fixed `pg_crontab` syntax error in `pigsty.yml`.
 - Updated ETCD docs to clarify default TLS vs optional mTLS semantics.
+- Fixed `repo-add` argument passing, Debian CN mirror component compatibility, and `bin/psql.py` Python 3 compatibility.
+- Hardened redis-exporter credential file permissions.
+- `pgsql-user.yml` now masks credential logs (`no_log`) on sensitive steps.
+- Fixed gate conditions when `pg_monitor` registers Victoria targets.
+- Changed `pg_remove` backup cleanup to cluster-level directory to avoid deleting other cluster backups.
 
-**Commit List (v4.0.0..HEAD, 21 commits, 2026-02-02 ~ 2026-02-07)**
+**Commit List (`v4.0.0..HEAD`, 70 commits, 2026-02-02 ~ 2026-02-13)**
 
 ```
+bb8382c58 update default extension list to 451
+770d01959 hide user credential in pgsql-user playbook
+7219a896c pg_monitor: fix victoria registration gate conditions
+084c98432 remove one cluster in backup dir during pg_remove
+7005617f1 pgsql: drop legacy pgbouncer pool parameter aliases
+f8165a886 docs(roles): fix typos and align juice role documentation
+06a589218 chore(meta): normalize platform versions for current lint schema
+e0a208248 fix(roles): harden redis exporter file permissions
+fd0469881 terraform/vagrant: parameterize aliyun region/zone, fix vagrant scripts
+74c59aabe grafana: fix dashboard links, descriptions, and overrides
+443e58724 conf: clean legacy params and fix template references
+536c4b39d adjust grafana dashboard dead links
+f3b9866ce grafana(pgsql): fix panel typos and title consistency
+bcb69be11 grafana(pgsql): fix drilldown links and variable mappings
+1ce4374a1 grafana: fill pglog panel titles and normalize wording
+2d127f9f4 grafana: fix minio traffic metrics and pigsty dashboard links
+9d3ca0118 grafana: align victoria instance dashboards with query scope
+55bc61622 grafana: fix infra dashboard copy, links, and table semantics
+607b75535 grafana(node): fix panel drilldown links and clean dashboard metadata
+1321de532 grafana(redis): fix dashboard links and blocked-clients panel semantics
+91e0c8437 fix(grafana): correct Redis alert drill-down dashboard links
+0fde78c02 fix(tooling): improve Python3 compatibility and enforce vagrant scale lower bound
+fa3454a52 fix(bootstrap): use Debian-compatible components for CN apt mirror
+36c95c749 fix(cli): restore repo-add execution and HBA validation failure propagation
+797385929 add macbook local vagrant image override
+f9c928e32 fix(grafana): restore reverted dashboard bugfixes
+c11af8b6a Bump version to v4.1.0
+307a236ba update extension list
+f17024807 override el9/u24 vagrant box for convient testing
+c2ada1283 terraform: bump Aliyun Debian images to 12.13/13.3
+25bd8210f fix(node): add daemon_reload to systemd tasks for keepalived, chronyd, and cron
+6f2576fd0 fix(node): set default fs.nr_open via node_sysctl_params
+43a71245e add pg_bgwriter_buffers_backend for pg 17-
+da832a47b fix(monitor): keep checkpointer metrics for checkpoint stats
+90434ca8a fix(monitor): add pg_bgwriter fallback for checkpointer metrics
+e2d75e787 fix(monitor): use pg_checkpointer metrics for checkpoint stats
+a0b7474f8 fix grafana dashboard metrics and lengend
+27ddacbc6 vagrant: refresh box selector and OS shortcuts
+26e108788 fix(monitor): correct unit for time metrics scaled by pg_exporter
+ee90044b5 fix(pgsql): correct min_parallel scan size params in oltp/crit templates
+d439464b2 pgsql: fix pg_version guards for PG18-only settings
+26320f120 docs: recommend RockyLinux 10.1
+1e9b9f33a terraform: bump Aliyun Rocky images to 9.7/10.1
+d6e9c7122 monitor: optimize table/index bloat estimators
+42d45d32e fix(grafana): align panel semantics across node/infra/redis
+3972d2c45 fix(grafana/pgsql): align dashboard semantics for query monitoring
+cb52375ac bump checkpoint_completion_target from 0.90 to 0.95
+13115a95d fix legend in pgsql-persist checkpoint panel
+102cd2edb fix(pg_migration): make template logging format-safe
 c402f0e6d fix: correct io_method/io_workers version guard from PG17 to PG18
 3bf676546 vibe: disable jupyter by default and install claude-code via npm_packages
 613c4efa9 fix: set fs.nr_open in tuned profiles and reduce LimitNOFILE to 8M
@@ -134,10 +230,10 @@ c99854969 docs(etcd): clarify TLS vs mTLS
 e575d17c6 fix pg_migration scripts to use fully qualified identifiers
 ec4207202 fix pgsql-schema broken links
 a237e6c99 tune autovacuum threshold to reduce small table vacuum frequency
-e80754760 fix pgcat-database links to pgcat-table
-0060f5346 fix pgsql-database / pgsql-databases age metric
+e80754760 fix pgcat-database links to pgcat-table https://github.com/pgsty/pigsty/issues/690
+0060f5346 fix pgsql-database / pgsql-databases age metric fix https://github.com/pgsty/pigsty/issues/695
 43cdf72bc fix pigsty.yml typo
-0d9db7b08 fix: update datasource to $dsn
+0d9db7b08 fix: update datasource to $dsn - fix https://github.com/pgsty/pigsty/issues/692#issuecomment-3835461620
 ```
 
 **Thanks**
@@ -146,8 +242,8 @@ e80754760 fix pgcat-database links to pgcat-table
 
 **Checksums**
 
-```
-This section summarizes commits since v4.0.0 (HEAD: c402f0e6d). No new release archives/checksums are published yet.
+```bash
+# v4.1.0 package checksums will be updated after release assets are finalized
 ```
 
 ------
@@ -369,7 +465,7 @@ For detailed version changes, please refer to:
 
 **API Changes**
 
-- Implemented a refined optimization strategy for parallel execution parameters. See **[Tuning Guide](/docs/pgsql/admin/tune)**.
+- Implemented a refined optimization strategy for parallel execution parameters. See **[Tuning Guide](/docs/pgsql/template/tune)**.
 - The `citus` extension is no longer installed by default in `rich` and `full` templates (PG 18 support pending).
 - Added `duckdb` extension stubs to PostgreSQL parameter templates.
 - Capped `min_wal_size`, `max_wal_size`, and `max_slot_wal_keep_size` at 200 GB, 2000 GB, and 3000 GB, respectively.

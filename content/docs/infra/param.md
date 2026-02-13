@@ -9,7 +9,7 @@ categories: [Reference]
 
 The INFRA module is responsible for deploying Pigsty's infrastructure components: local software repository, Nginx, DNSMasq, VictoriaMetrics, VictoriaLogs, Grafana, Alertmanager, Blackbox Exporter, and other monitoring and alerting infrastructure.
 
-> Pigsty v4.0 uses VictoriaMetrics to replace Prometheus and VictoriaLogs to replace Loki, providing a superior observability solution.
+> Pigsty v4.x uses VictoriaMetrics to replace Prometheus and VictoriaLogs to replace Loki, providing a superior observability solution.
 
 
 | Section                           | Description                                          |
@@ -160,7 +160,7 @@ The INFRA module is responsible for deploying Pigsty's infrastructure components
 This section defines Pigsty deployment metadata: version string, admin node IP address, repository mirror [`region`](#region), default language, and HTTP(S) proxy for downloading packages.
 
 ```yaml
-version: v4.0.0                   # pigsty version string
+version: v4.1.0                   # pigsty version string
 admin_ip: 10.10.10.10             # admin node ip address
 region: default                   # upstream mirror region: default,china,europe
 language: en                      # default language: en or zh
@@ -178,11 +178,11 @@ proxy_env:                        # global proxy env when downloading packages
 
 name: `version`, type: `string`, level: `G`
 
-Pigsty version string, default value is the current version: `v4.0.0`.
+Pigsty version string, default value is the current version: `v4.1.0`.
 
 Pigsty uses this version string internally for feature control and content rendering. Do not modify this parameter arbitrarily.
 
-Pigsty uses semantic versioning, and the version string typically starts with the character `v`, e.g., `v4.0.0`.
+Pigsty uses semantic versioning, and the version string typically starts with the character `v`, e.g., `v4.1.0`.
 
 
 
@@ -297,7 +297,7 @@ Pigsty will use the existing CA key pair instead of creating a new one. If the C
 
 **Be sure to retain and backup the newly generated CA private key file during deployment, as it is crucial for issuing new certificates later.**
 
-> Note: Pigsty v3.x used the `ca_method` parameter (with values `create`/`recreate`/`copy`), v4.0 simplifies this to the boolean `ca_create`.
+> Note: Pigsty v3.x used the `ca_method` parameter (with values `create`/`recreate`/`copy`), v4.x simplifies this to the boolean `ca_create`.
 
 
 
@@ -379,7 +379,7 @@ infra:
 
 name: `infra_portal`, type: `dict`, level: `G`
 
-Infrastructure services exposed via Nginx portal. The v4.0 default value is very concise:
+Infrastructure services exposed via Nginx portal. The v4.x default value is very concise:
 
 ```yaml
 infra_portal:
@@ -688,7 +688,7 @@ String array type, where each line is a **space-separated** list of software pac
 
 This parameter has no default value, meaning its default state is undefined. If not explicitly specified by the user in the configuration file, Pigsty will load the default from the `infra_packages_default` variable defined in [`roles/node_id/vars`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/) based on the current node's OS family.
 
-v4.0 default value (EL operating systems):
+v4.x default value (EL operating systems):
 
 ```yaml
 infra_packages_default:
@@ -704,7 +704,7 @@ infra_packages_default:
   - node-exporter,blackbox-exporter,nginx-exporter,pg-exporter,pev2,nginx,dnsmasq,ansible,etcd,python3-requests,redis,mcli,restic,certbot,python3-certbot-nginx
 ```
 
-> Note: v4.0 uses the VictoriaMetrics suite to replace Prometheus and Loki, so the package list differs significantly from v3.x.
+> Note: v4.x uses the VictoriaMetrics suite to replace Prometheus and Loki, so the package list differs significantly from v3.x.
 
 
 
@@ -985,7 +985,7 @@ name: `dns_records`, type: `string[]`, level: `G`
 
 Dynamic DNS records resolved by dnsmasq, generally used to resolve auxiliary domain names to the admin node. These records are written to the `/etc/hosts.d/default` file on infrastructure nodes.
 
-v4.0 default value:
+v4.x default value:
 
 ```yaml
 dns_records:
@@ -1009,7 +1009,7 @@ Common domain name purposes:
 
 ## `VICTORIA`
 
-Pigsty v4.0 uses the VictoriaMetrics suite to replace Prometheus and Loki, providing a superior observability solution:
+Pigsty v4.x uses the VictoriaMetrics suite to replace Prometheus and Loki, providing a superior observability solution:
 
 - **VictoriaMetrics**: Replaces Prometheus as the time series database for storing monitoring metrics
 - **VictoriaLogs**: Replaces Loki as the log aggregation storage
@@ -1051,7 +1051,7 @@ name: `vmetrics_enabled`, type: `bool`, level: `G/I`
 
 Enable VictoriaMetrics on this Infra node? Default value is `true`.
 
-VictoriaMetrics is the core monitoring component in Pigsty v4.0, replacing Prometheus as the time series database, responsible for:
+VictoriaMetrics is the core monitoring component in Pigsty v4.x, replacing Prometheus as the time series database, responsible for:
 
 - Scraping monitoring metrics from various exporters
 - Storing time series data
@@ -1237,7 +1237,7 @@ VMAlert extra command line options, default value is an empty string.
 
 This section now primarily contains Blackbox Exporter and Alertmanager configuration.
 
-> Note: Pigsty v4.0 uses VictoriaMetrics to replace Prometheus. The original `prometheus_*` and `pushgateway_*` parameters have been moved to the [`VICTORIA`](#victoria) section.
+> Note: Pigsty v4.x uses VictoriaMetrics to replace Prometheus. The original `prometheus_*` and `pushgateway_*` parameters have been moved to the [`VICTORIA`](#victoria) section.
 
 ```yaml
 blackbox_enabled: true            # enable blackbox_exporter?
@@ -1418,5 +1418,4 @@ name: `grafana_view_password`, type: `password`, level: `G`
 Read-only user password used by Grafana metadb PG data source, default is `DBUser.Viewer`.
 
 This password is used for Grafana to connect to the PostgreSQL CMDB data source to query metadata in read-only mode.
-
 

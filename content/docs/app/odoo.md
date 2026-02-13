@@ -92,7 +92,7 @@ all:
     #minio: { hosts: { 10.10.10.10: { minio_seq: 1 } }, vars: { minio_cluster: minio } }
 
   vars:                               # Global variables
-    version: v4.0.0                   # Pigsty version string
+    version: v4.1.0                   # Pigsty version string
     admin_ip: 10.10.10.10             # Admin node IP address
     region: default                   # Upstream mirror region: default|china|europe
     node_tune: oltp                   # Node tuning specs: oltp,olap,tiny,crit
