@@ -14,9 +14,10 @@ tags: []
 
 ## Recent News
 
-- **2026-02-12**: **Pigsty v4.1 release event placeholder** (to be updated)
+- **2026-02-12**: **Pigsty v4.1 is officially released! First distribution batch with PostgreSQL 18.2 support**
+  - Release Blog: [Pigsty v4.1 Release Article](/blog/pigsty/v4.1)
   - Release Notes: [v4.1.0](/docs/about/release#v410)
-  - Event details and media recap: TBD
+  - Pigsty minor-release support is now available: 18.2...
 
 - **2026-02-04**: Extension for Everyone selected as a PGCon.Dev 2026 talk!
   - [**The first Chinese vendor on the PGConf.Dev keynote stage**](https://mp.weixin.qq.com/s/rThnqXp2JXVV9UQncNV3kg)
