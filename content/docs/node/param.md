@@ -80,7 +80,7 @@ The [NODE](/docs/node) module tunes target nodes into the desired state and inte
 | Parameter                                                       |    Type     |  Level  | Description                                          |
 |:----------------------------------------------------------------|:-----------:|:-------:|:-----------------------------------------------------|
 | [`node_selinux_mode`](#node_selinux_mode)                       |   `enum`    |   `C`   | SELinux mode: disabled, permissive, enforcing        |
-| [`node_firewall_mode`](#node_firewall_mode)                     |   `enum`    |   `C`   | firewall mode: zone (default), off, none (self-managed) |
+| [`node_firewall_mode`](#node_firewall_mode)                     |   `enum`    |   `C`   | firewall mode: zone (default, enabled), off (disable), none (self-managed) |
 | [`node_firewall_intranet`](#node_firewall_intranet)             |  `cidr[]`   |   `C`   | intranet CIDR list for firewall rules                |
 | [`node_firewall_public_port`](#node_firewall_public_port)       |  `port[]`   |   `C`   | public exposed port list, default [22, 80, 443]      |
 
@@ -687,12 +687,12 @@ Node security related parameters, including SELinux and firewall configuration.
 
 ```yaml
 node_selinux_mode: permissive             # selinux mode: disabled, permissive, enforcing
-node_firewall_mode: zone                  # firewall mode: zone (default), off (disable), none (skip & self-managed)
+node_firewall_mode: zone                  # firewall mode: zone (default, enabled), off (disable), none (skip & self-managed)
 node_firewall_intranet:           # which intranet cidr considered as internal network
   - 10.0.0.0/8
   - 192.168.0.0/16
   - 172.16.0.0/12
-node_firewall_public_port:        # expose these ports to public network in (zone, strict) mode
+node_firewall_public_port:        # expose these ports to public network in zone mode
   - 22                            # enable ssh access
   - 80                            # enable http access
   - 443                           # enable https access
@@ -726,7 +726,8 @@ Also, SELinux mode changes may require a system reboot to fully take effect.
 
 name: `node_firewall_mode`, type: `enum`, level: `C`
 
-Firewall running mode. Default is `zone`.
+Firewall running mode. Default is `zone` (firewall enabled and zone-managed).
+Since v4.1, the default changed from `none` to `zone`.
 
 Options:
 
@@ -759,6 +760,7 @@ node_firewall_intranet:
 This parameter defines IP address ranges considered as "internal network". Traffic from these networks will be allowed to access all service ports without separate open rules.
 
 Hosts within these CIDR ranges will be treated as trusted intranet hosts with more relaxed firewall rules. Also, in PG/PGB HBA rules, the intranet ranges defined here will be treated as "intranet".
+Because the default firewall mode is `zone`, this list is active by default.
 
 
 
@@ -788,7 +790,7 @@ If you want other users to access the database from public networks, make sure t
 If you want to expose other service ports to public networks, you can add them to this list.
 Always keep the minimum-exposure principle and open only ports you really need.
 
-Note that this parameter only takes effect when [`node_firewall_mode`](#node_firewall_mode) is set to `zone`.
+Note that this parameter only takes effect when [`node_firewall_mode`](#node_firewall_mode) is set to `zone`; it is not applied in `none` or `off` mode.
 
 
 

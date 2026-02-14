@@ -164,7 +164,7 @@ After changing the password, use the following to reload config (hot reload, no 
 Pigsty uses [`node_firewall_mode`](/docs/node/param#node_firewall_mode) to control firewall behavior.
 Uses **firewalld** on RHEL/Rocky and **ufw** on Debian/Ubuntu.
 
-By default, this is `zone`: Pigsty enables the system firewall consistently across distros with an "intranet trusted, public minimized" policy.
+Since v4.1, this defaults to `zone`: Pigsty enables the system firewall consistently across distros with an "intranet trusted, public minimized" policy.
 In zone mode, intranet traffic is unrestricted, but external access is limited to specific ports.
 Set `node_firewall_mode: none` only when you want to fully self-manage firewall state and rules.
 This is especially important when deploying on cloud servers exposed to the internet.
