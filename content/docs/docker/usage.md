@@ -16,16 +16,15 @@ Pigsty has built-in [**Docker**](https://www.docker.com/) support, which you can
 
 ## Getting Started
 
-Docker is an **optional module**, and in most of Pigsty's configuration templates, Docker is **not enabled by default**. Therefore, users need to explicitly **download** and **configure** it to use Docker in Pigsty.
+Docker is an **optional module**. In Pigsty, whether Docker is installed is controlled by [`docker_enabled`](/docs/docker/param#docker_enabled), which is disabled by default.
 
-For example, in the default [`meta`](/docs/conf/meta) template, Docker is not downloaded or installed by default. However, in the [`rich`](/docs/conf/rich) single-node template, Docker is downloaded and installed.
-
-The key difference between these two configurations lies in these two parameters: [`repo_modules`](/docs/infra/param#repo_modules) and [`repo_packages`](/docs/infra/param#repo_packages).
+In v4.1, the `docker-ce` upstream repository belongs to the `infra` module. If you need to explicitly include Docker packages in the offline repository, use `repo_extra_packages` with the `docker` package alias (mapped to `docker-ce` and `docker-compose-plugin`).
 
 ```yaml
-repo_modules: infra,node,pgsql,docker  # <--- Enable Docker repository
-repo_packages:
-  - node-bootstrap, infra-package, infra-addons, node-package1, node-package2, pgsql-common, docker   # <--- Download Docker
+repo_modules: infra,node,pgsql     # <--- Keep infra module (Docker upstream belongs to infra)
+repo_extra_packages:
+  - pgsql-main
+  - docker                         # <--- Download Docker (docker-ce + docker-compose-plugin)
 ```
 
 After Docker is downloaded, you need to set the [**`docker_enabled`**](/docs/docker/param#docker_enabled): `true` flag on the nodes where you want to install Docker, and configure [**other parameters**](/docs/docker/param/) as needed.
@@ -39,7 +38,7 @@ infra:
     docker_enabled: true  # Install Docker on this group!
 ```
 
-Finally, use the [`docker.yml`](/docs/docker/playbook#dockeryml) playbook to install it on the nodes:
+Finally, you can use the [`docker.yml`](/docs/docker/playbook#dockeryml) playbook to install it on the nodes:
 
 ```bash
 ./docker.yml -l infra    # Install Docker on the infra group
@@ -54,10 +53,10 @@ Finally, use the [`docker.yml`](/docs/docker/playbook#dockeryml) playbook to ins
 If you want to temporarily install Docker directly from the internet on certain nodes, you can use the following command:
 
 ```bash
-./node.yml -e '{"node_repo_modules":"node,docker","node_packages":["docker-ce,docker-compose-plugin"]}' -t node_repo,node_pkg -l <select_group_ip>
+./node.yml -e '{"node_repo_modules":"node,infra","node_packages":["docker-ce","docker-compose-plugin"]}' -t node_repo,node_pkg -l <select_group_ip>
 ```
 
-This command will first enable the upstream software sources for the `node,docker` modules on the target nodes, then install the `docker-ce` and `docker-compose-plugin` packages (same package names for EL/Debian).
+This command will first enable the upstream software sources for the `node,infra` modules on the target nodes, then install the `docker-ce` and `docker-compose-plugin` packages (same package names on EL/Debian).
 
 If you want Docker-related packages to be automatically downloaded during Pigsty initialization, refer to the instructions below.
 
@@ -71,10 +70,8 @@ If you want Docker-related packages to be automatically downloaded during Pigsty
 Because it's so simple, Pigsty doesn't provide an uninstall playbook for the Docker module. You can directly remove Docker using an Ansible command:
 
 ```bash
-ansible minio -m package -b -a 'name=docker-ce state=absent'  # Remove docker
+ansible <selector> -m package -b -a 'name=docker-ce,docker-compose-plugin state=absent'  # Remove docker
 ```
-
-This command will uninstall the `docker-ce` package using the OS package manager.
 
 
 
@@ -85,15 +82,16 @@ This command will uninstall the `docker-ce` package using the OS package manager
 
 ## Download
 
-To download Docker during Pigsty installation, modify the [`repo_modules`](/docs/infra/param#repo_modules) parameter in the [**configuration inventory**](/docs/setup/config/) to enable the Docker software repository,
-then specify Docker packages to download in the [`repo_packages`](/docs/infra/param#repo_packages) or [`repo_extra_packages`](/docs/infra/param#repo_extra_packages) parameters.
+To download Docker during Pigsty installation, confirm that [`repo_modules`](/docs/infra/param#repo_modules) includes `infra` (the module containing Docker upstream repositories),
+then specify Docker packages in [`repo_packages`](/docs/infra/param#repo_packages) or [`repo_extra_packages`](/docs/infra/param#repo_extra_packages).
 
 ```yaml
-repo_modules: infra,node,pgsql,docker  # <--- Enable Docker repository
+repo_modules: infra,node,pgsql         # <--- Docker upstream repo belongs to infra
 repo_packages:
-  - node-bootstrap, infra-package, infra-addons, node-package1, node-package2, pgsql-common, docker   # <--- Download Docker
+  - node-bootstrap, infra-package, infra-addons, node-package1, node-package2, pgsql-common, docker
 repo_extra_packages:
-  - pgsql-main docker # <--- Can also be specified here
+  - pgsql-main
+  - docker  # <--- Can also be specified here
 ```
 
 The `docker` specified here (which actually corresponds to the `docker-ce` and `docker-compose-plugin` packages) will be automatically downloaded to the local repository during the default [`deploy.yml`](/docs/setup/playbook#deploy-playbook) process.
@@ -101,7 +99,7 @@ After downloading, the Docker packages will be available to all nodes via the lo
 
 If you've already completed Pigsty installation and the local repository is initialized, you can run `./infra.yml -t repo_build` after modifying the configuration to re-download and rebuild the offline repository.
 
-Installing Docker requires the Docker YUM/APT [repository](#repository), which is included by default in Pigsty but not enabled. You need to add `docker` to [`repo_modules`](/docs/infra/param#repo_modules) to enable it before installation.
+Installing Docker requires the Docker YUM/APT [repository](#repository). In v4.1, this repository belongs to the default `infra` module in `repo_upstream`, and is usually available out of the box.
 
 
 
@@ -109,14 +107,14 @@ Installing Docker requires the Docker YUM/APT [repository](#repository), which i
 
 ## Repository
 
-Downloading Docker requires upstream internet software repositories, which are defined in the default `repo_upstream` with module name `docker`:
+Downloading Docker requires upstream internet software repositories, which are defined in the default `repo_upstream` with module name `infra`:
 
 ```yaml
-- { name: docker-ce ,description: 'Docker CE' ,module: docker  ,releases: [7,8,9] ,arch: [x86_64, aarch64] ,baseurl: { default: 'https://download.docker.com/linux/centos/$releasever/$basearch/stable'    ,china: 'https://mirrors.aliyun.com/docker-ce/linux/centos/$releasever/$basearch/stable'  ,europe: 'https://mirrors.xtom.de/docker-ce/linux/centos/$releasever/$basearch/stable' }}
-- { name: docker-ce ,description: 'Docker CE' ,module: docker  ,releases: [11,12,20,22,24] ,arch: [x86_64, aarch64] ,baseurl: { default: 'https://download.docker.com/linux/${distro_name} ${distro_codename} stable' ,china: 'https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux//${distro_name} ${distro_codename} stable' }}
+- { name: docker-ce ,description: 'Docker CE' ,module: infra  ,releases: [8,9,10] ,arch: [x86_64, aarch64] ,baseurl: { default: 'https://download.docker.com/linux/centos/$releasever/$basearch/stable'    ,china: 'https://mirrors.aliyun.com/docker-ce/linux/centos/$releasever/$basearch/stable'  ,europe: 'https://mirrors.xtom.de/docker-ce/linux/centos/$releasever/$basearch/stable' }}
+- { name: docker-ce ,description: 'Docker'    ,module: infra  ,releases: [11,12,13,20,22,24] ,arch: [x86_64, aarch64] ,baseurl: { default: 'https://download.docker.com/linux/${distro_name} ${distro_codename} stable' ,china: 'https://mirrors.aliyun.com/docker-ce/linux/${distro_name} ${distro_codename} stable' }}
 ```
 
-You can reference this repository using the `docker` module name in the [`repo_modules`](/docs/infra/param#repo_modules) and [`node_repo_modules`](/docs/node/param#node_repo_modules) parameters.
+You can reference this repository using the `infra` module name in [`repo_modules`](/docs/infra/param#repo_modules) and [`node_repo_modules`](/docs/node/param#node_repo_modules).
 
 > Note that Docker's official software repository is **blocked** by default in mainland China. You need to use mirror sites in China to complete the download.
 >

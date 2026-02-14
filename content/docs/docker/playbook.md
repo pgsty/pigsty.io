@@ -22,11 +22,10 @@ The following are the available task subsets in the `docker.yml` playbook:
 
 - `docker_install`   : Install Docker and Docker Compose packages on the node
 - `docker_admin`     : Add specified users to the Docker admin user group
-- `docker_alias`     : Generate Docker command completion and alias scripts
 - `docker_dir`       : Create Docker related directories
 - `docker_config`    : Generate Docker daemon service configuration file
 - `docker_launch`    : Start the Docker daemon service
-- `docker_register`  : Register Docker daemon as a Prometheus monitoring target
+- `docker_register`  : Register Docker daemon as a monitoring target (alias tags: `register` / `add_metrics`)
 - `docker_image`     : Attempt to load pre-cached image tarballs from `/tmp/docker/*.tgz` (if they exist)
 
 The Docker module does not provide a dedicated uninstall playbook. If you need to uninstall Docker, you can manually stop Docker and then remove it:
@@ -45,4 +44,3 @@ apt remove docker-ce docker-compose-plugin   # Uninstall Docker on Debian system
 --------
 
 <br>
-

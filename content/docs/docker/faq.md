@@ -3,7 +3,7 @@ title: FAQ
 weight: 4250
 description: Frequently asked questions about the Pigsty Docker module
 icon: fa-solid fa-circle-question
-module: [Docker]
+module: [DOCKER]
 categories: [Reference]
 ---
 
@@ -39,13 +39,17 @@ Tip: Running `configure` with the `-x` flag will write the proxy server configur
 
 ## Using Mirror Registries
 
-If you're in mainland China and affected by the Great Firewall, you can consider using Docker mirror sites available within China, such as quay.io:
+If DockerHub access is slow in mainland China network environments, you can prioritize:
+
+- Configure available mirrors with [`docker_registry_mirrors`](/docs/docker/param#docker_registry_mirrors)
+- Or configure [`proxy_env`](/docs/infra/param#proxy_env) to pull via proxy
+- Or directly use other public registries (such as `quay.io`)
+
+For example:
 
 ```bash
 docker login quay.io    # Enter username and password to log in
 ```
-
-Update (June 2024): All previously accessible Docker mirror sites in China have been blocked. Please use a proxy server to access and pull images.
 
 
 
@@ -53,10 +57,10 @@ Update (June 2024): All previously accessible Docker mirror sites in China have 
 
 ## Adding Docker to Monitoring
 
-During Docker module installation, you can register Docker as a monitoring target by running the `docker_register` or `register_prometheus` subtask for specific nodes:
+During Docker module installation, you can register Docker as a monitoring target by running the `docker_register` subtask (or alias tag `add_metrics`) for specific nodes:
 
 ```bash
-./docker.yml -l <your-node-selector> -t register_prometheus
+./docker.yml -l <your-node-selector> -t docker_register
 ```
 
 

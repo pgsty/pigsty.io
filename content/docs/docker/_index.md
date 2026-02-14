@@ -16,6 +16,5 @@ Pigsty offers a series of [Docker software/tool/application templates](/docs/app
 This allows users to quickly spin up various containerized stateless software templates, adding extra functionality.
 You can use external, Pigsty-managed highly available database clusters while placing stateless applications inside containers.
 
-Pigsty's Docker module automatically configures accessible registry mirrors for users in mainland China to improve image pulling speed (and availability).
+When running `configure`, Pigsty automatically selects suitable upstream repositories and mirror acceleration settings based on `region` (for example, mainland China network environments), to improve image pull speed and availability.
 You can easily configure Registry and Proxy settings to flexibly access different image sources.
-
