@@ -13,7 +13,7 @@ JUICE module provides `juice.yml` playbook to deploy and remove JuiceFS instance
 
 ## `juice.yml`
 
-Task structure in [`juice.yml`](https://github.com/pgsty/pigsty/blob/main/juice.yml):
+Task structure in [`juice.yml`](https://github.com/pgsty/pigsty/blob/v4.1.0/juice.yml):
 
 ```bash
 juice_id        : validate config, check port conflicts
@@ -73,10 +73,16 @@ Render config only (no restart):
 ./juice.yml -l <host> -t juice_config
 ```
 
-Update config and restart service:
+Update config and ensure service is online (without force restart):
 
 ```bash
 ./juice.yml -l <host> -t juice_config,juice_launch
+```
+
+If you need new mount options to take effect immediately, manually restart the instance service:
+
+```bash
+systemctl restart juicefs-<name>
 ```
 
 --------

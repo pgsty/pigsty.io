@@ -19,7 +19,7 @@ JUICE module has **2** parameters:
 | Parameter | Type | Level | Description |
 |:-----|:----:|:----:|:-----|
 | [`juice_cache`](#juice_cache) | `path` | `C` | JuiceFS shared cache directory |
-| [`juice_instances`](#juice_instances) | `dict` | `I` | JuiceFS instance definition dict (required) |
+| [`juice_instances`](#juice_instances) | `dict` | `I` | JuiceFS instance definition dict (can be empty) |
 {.full-width}
 
 > **Level**: `C` = cluster level, `I` = instance level.
@@ -28,7 +28,7 @@ JUICE module has **2** parameters:
 
 ## Default Parameters
 
-Defined in [`roles/juice/defaults/main.yml`](https://github.com/pgsty/pigsty/blob/main/roles/juice/defaults/main.yml):
+Defined in [`roles/juice/defaults/main.yml`](https://github.com/pgsty/pigsty/blob/v4.1.0/roles/juice/defaults/main.yml):
 
 ```yaml
 #-----------------------------------------------------------------
@@ -57,8 +57,8 @@ juice_cache: /data/juice
 
 Parameter: `juice_instances`, type: `dict`, level: `I`
 
-Instance definition dict, **must be defined at instance level**.
-Key is filesystem name, value is instance config object.
+Instance definition dict, usually defined at instance level.
+Default is an empty dict (meaning no instances are deployed). Key is filesystem name, value is instance config object.
 
 ```yaml
 juice_instances:
@@ -74,7 +74,7 @@ Instance fields:
 | Field | Required | Default | Description |
 |:-----|:---:|:------|:-----|
 | `path`  | Yes | - | Mount point path |
-| `meta`  | Yes | - | Metadata engine URL (PostgreSQL) |
+| `meta`  | Yes | - | Metadata engine URL (PostgreSQL recommended) |
 | `data`  | No | `''` | `juicefs format` options (only effective on first creation) |
 | `unit`  | No | `juicefs-<name>` | systemd service name |
 | `mount` | No | `''` | Extra `juicefs mount` options |

@@ -60,15 +60,15 @@ To register manually:
 | Metric | Type | Description |
 |:-----|:----:|:-----|
 | `juicefs_blockcache_hits` | counter | Cache hits |
-| `juicefs_blockcache_misses` | counter | Cache misses |
+| `juicefs_blockcache_miss` | counter | Cache misses |
 {.full-width}
 
-### Metadata
+### Metadata Transactions
 
 | Metric | Type | Description |
 |:-----|:----:|:-----|
-| `juicefs_meta_ops_durations_histogram_seconds` | histogram | Metadata operation latency |
-| `juicefs_transaction_restart` | counter | Transaction retry count |
+| `juicefs_transaction_durations_histogram_seconds` | histogram | Metadata transaction latency (histogram) |
+| `juicefs_transaction_durations_histogram_seconds_count` | counter | Metadata transaction request count |
 {.full-width}
 
 --------
@@ -79,7 +79,7 @@ Cache hit ratio:
 
 ```promql
 rate(juicefs_blockcache_hits[5m]) /
-(rate(juicefs_blockcache_hits[5m]) + rate(juicefs_blockcache_misses[5m]))
+(rate(juicefs_blockcache_hits[5m]) + rate(juicefs_blockcache_miss[5m]))
 ```
 
 Object storage P99 latency:

@@ -65,7 +65,7 @@ Depends on `data`:
 - `--storage postgres`: data in PostgreSQL `pg_largeobject`
 - `--storage minio/s3`: data in object storage bucket
 
-Metadata is always stored in PostgreSQL defined by `meta`.
+Metadata is stored in the metadata engine defined by `meta` (in Pigsty production scenarios, this is usually PostgreSQL).
 
 --------
 
@@ -90,8 +90,9 @@ You can run manually:
 
 ## How to change mount options?
 
-Update `mount` in the instance and restart service:
+After updating `mount` in the instance, refresh config first and then manually restart the service:
 
 ```bash
 ./juice.yml -l <host> -t juice_config,juice_launch
+systemctl restart juicefs-<name>
 ```

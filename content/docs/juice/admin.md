@@ -43,13 +43,13 @@ Initialization steps:
 
 ## Reconfigure
 
-After changing config, run:
+After changing config, it's recommended to run (update config and ensure service is online):
 
 ```bash
 ./juice.yml -l <host> -t juice_config,juice_launch
 ```
 
-Render config without restart:
+Render config without touching service state:
 
 ```bash
 ./juice.yml -l <host> -t juice_config
@@ -57,8 +57,9 @@ Render config without restart:
 
 Notes:
 
+- `juice_config,juice_launch` ensures service is `started`, but does not force-restart an already running instance
 - `data` only takes effect on the first `format`
-- Changing `mount` options requires service restart
+- After changing `mount` options, manually restart the instance service (`systemctl restart juicefs-<name>`)
 
 -------------
 
@@ -188,6 +189,6 @@ juice_instances:
 
 Key metrics to watch:
 
-- `juicefs_blockcache_hits/misses`: cache hit ratio
+- `juicefs_blockcache_hits/juicefs_blockcache_miss`: cache hit ratio
 - `juicefs_object_request_durations_histogram_seconds`: object storage latency
-- `juicefs_meta_ops_durations_histogram_seconds`: metadata op latency
+- `juicefs_transaction_durations_histogram_seconds`: metadata transaction latency
