@@ -26,10 +26,10 @@ Usage:
 ./configure -c pgsql [-i <primary_ip>]
 ```
 
-To specify a particular PostgreSQL version (e.g., 17):
+To specify a particular PostgreSQL version (e.g., 18):
 
 ```bash
-./configure -c pgsql -v 17
+./configure -c pgsql -v 18
 ```
 
 
@@ -61,4 +61,3 @@ The `pgsql` template is Pigsty's **standard kernel configuration**, using commun
 **Differences from meta**:
 - `pgsql` template explicitly declares using native PostgreSQL kernel
 - Suitable for scenarios needing clear distinction between different kernel types
-

@@ -63,7 +63,7 @@ The **`configure`** script performs the following adjustments based on environme
 ./configure -c app/supa           # Use Supabase self-hosted template
 
 # Specify PostgreSQL version
-./configure -v 17                 # Use PostgreSQL 17
+./configure -v 18                 # Use PostgreSQL 18
 ./configure -v 16                 # Use PostgreSQL 16
 ./configure -c rich -v 16         # rich template + PG 16
 

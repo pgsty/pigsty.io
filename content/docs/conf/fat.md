@@ -31,7 +31,7 @@ Usage:
 To specify a particular PostgreSQL version:
 
 ```bash
-./configure -c fat -v 17   # Use PostgreSQL 17
+./configure -c fat -v 18   # Use PostgreSQL 18
 ```
 
 
@@ -81,4 +81,3 @@ The `fat` template is Pigsty's **full-featured test configuration**, designed fo
 - Building local software repository requires longer time
 - Some extensions unavailable on ARM64 architecture
 - Default passwords are sample passwords, must be changed for production
-
