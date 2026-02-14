@@ -32,7 +32,7 @@ menu:
       url: /docs/
       pre: <i class='fa-solid fa-book'></i>
     - identifier: ext
-      name: Extensions
+      name: Exts
       weight: 20
       url: https://pgext.cloud
       pre: <i class='fa-solid fa-puzzle-piece'></i>
