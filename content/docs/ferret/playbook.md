@@ -7,7 +7,7 @@ icon: fa-solid fa-scroll
 categories: [Task]
 ---
 
-Pigsty provides a built-in playbook [`mongo.yml`](https://github.com/pgsty/pigsty/blob/main/mongo.yml) for installing FerretDB on nodes.
+Pigsty provides a built-in playbook [`mongo.yml`](https://github.com/pgsty/pigsty/blob/v4.1.0/mongo.yml) for installing FerretDB on nodes.
 
 **Important**: This playbook only executes on hosts where [`mongo_seq`](/docs/ferret/param#mongo_seq) is defined.
 Running the playbook against hosts without `mongo_seq` will skip all tasks safely, making it safe to run against mixed host groups.
@@ -17,7 +17,7 @@ Running the playbook against hosts without `mongo_seq` will skip all tasks safel
 
 ## `mongo.yml`
 
-Playbook location: [`mongo.yml`](https://github.com/pgsty/pigsty/blob/main/mongo.yml)
+Playbook location: [`mongo.yml`](https://github.com/pgsty/pigsty/blob/v4.1.0/mongo.yml)
 
 Function: Install MongoDB/FerretDB on target hosts where `mongo_seq` is defined.
 
@@ -127,4 +127,3 @@ Register FerretDB instance to Prometheus monitoring system:
 # Purge FerretDB cluster
 ./mongo.yml -l ferret -e mongo_purge=true -t mongo_purge
 ```
-

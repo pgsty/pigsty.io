@@ -55,12 +55,13 @@ mongosh 'mongodb://dbuser_meta:DBUser.Meta@10.10.10.10:27017'
 mongosh 'mongodb://test:test@10.10.10.11:27017/test'
 ```
 
-Pigsty-managed PostgreSQL clusters use `scram-sha-256` as the default authentication method, so you must use `PLAIN` authentication when connecting to FerretDB. See [FerretDB: Authentication](https://docs.ferretdb.io/security/authentication/) for details.
+Pigsty-managed PostgreSQL clusters use `scram-sha-256` by default. FerretDB 2.x uses `SCRAM-SHA-256` accordingly, and most clients negotiate this automatically. If negotiation fails, explicitly append `authMechanism=SCRAM-SHA-256` in the connection string. See [FerretDB: Authentication](https://docs.ferretdb.io/security/authentication/) for details.
 
 You can also use other PostgreSQL users to access FerretDB by specifying them in the connection string:
 
 ```bash
 mongosh 'mongodb://dbuser_dba:DBUser.DBA@10.10.10.10:27017'
+mongosh 'mongodb://dbuser_dba:DBUser.DBA@10.10.10.10:27017/?authMechanism=SCRAM-SHA-256'
 ```
 
 

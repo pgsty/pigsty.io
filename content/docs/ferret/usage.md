@@ -45,16 +45,18 @@ test>
 
 ### Using Connection Strings
 
-FerretDB authentication is entirely based on PostgreSQL. You can directly use PostgreSQL usernames and passwords.
+FerretDB authentication is entirely based on PostgreSQL. Pigsty uses `scram-sha-256` by default, which maps to `SCRAM-SHA-256` in FerretDB 2.x. Most clients negotiate automatically, and you can directly use PostgreSQL usernames and passwords.
 
 ```bash
 mongosh 'mongodb://postgres:DBUser.Postgres@10.10.10.10:27017'
+# If client auth negotiation fails, explicitly set:
+mongosh 'mongodb://postgres:DBUser.Postgres@10.10.10.10:27017/?authMechanism=SCRAM-SHA-256'
 ```
 
 Connection string format:
 
 ```bash
-mongodb://<username>:<password>@<host>:<port>/<database>
+mongodb://<username>:<password>@<host>:<port>/<database>[?authMechanism=SCRAM-SHA-256]
 ```
 
 ### Using Different Users

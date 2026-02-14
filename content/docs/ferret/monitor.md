@@ -51,7 +51,7 @@ For the complete list of metrics, see [Metrics](/docs/ferret/metric).
 
 ## Alerting Rules
 
-The FerretDB module currently uses basic instance liveness alerts:
+Pigsty v4.1 default rule sets (`files/victoria/rules/*.yml`) do not include dedicated FerretDB alerts out of the box. You can add custom alerts based on `ferretdb_up`, for example:
 
 ```yaml
 - alert: FerretDBDown
@@ -64,4 +64,4 @@ The FerretDB module currently uses basic instance liveness alerts:
     description: "FerretDB instance {{ $labels.ins }} on {{ $labels.ip }} has been down for more than 1 minute."
 ```
 
-Since FerretDB is a stateless proxy layer, the primary monitoring and alerting should focus on the underlying PostgreSQL cluster.
+Since FerretDB is a stateless proxy layer, primary monitoring and alerting should focus on the underlying PostgreSQL cluster.

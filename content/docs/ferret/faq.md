@@ -27,7 +27,7 @@ Pigsty has provided Docker-based FerretDB templates since 1.x and added native d
 As an optional component, it greatly enriches the PostgreSQL ecosystem. The Pigsty community has become a partner of the FerretDB community, and deeper collaboration and integration support will follow.
 
 **FERRET** is an **optional** module in Pigsty. Since v2.0, it requires the [`documentdb`](https://pgext.cloud/e/documentdb) extension to work.
-Pigsty has packaged this extension and provides a [`mongo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/mongo.yml) template to help you easily deploy FerretDB clusters.
+Pigsty has packaged this extension and provides a [`mongo.yml`](https://github.com/pgsty/pigsty/blob/v4.1.0/conf/mongo.yml) template to help you easily deploy FerretDB clusters.
 
 
 ----------------
@@ -64,13 +64,12 @@ yum install -y mongodb-mongosh
 
 ## Authentication Method
 
-FerretDB authentication is entirely based on the underlying PostgreSQL. Since Pigsty-managed PostgreSQL clusters use `scram-sha-256` authentication by default, you must specify the `PLAIN` authentication mechanism in the connection string:
+FerretDB authentication is entirely based on the underlying PostgreSQL. Pigsty-managed PostgreSQL clusters use `scram-sha-256` by default, and FerretDB 2.x uses `SCRAM-SHA-256`. Most clients negotiate automatically; if negotiation fails, explicitly set the mechanism:
 
 ```bash
 mongosh 'mongodb://user:password@host:27017'
+mongosh 'mongodb://user:password@host:27017/?authMechanism=SCRAM-SHA-256'
 ```
-
-If you forget to add the `authMechanism=PLAIN` parameter, the connection will fail with an authentication error.
 
 
 ----------------
