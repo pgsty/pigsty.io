@@ -32,6 +32,7 @@ Notes:
 
 - Code-Server listens on `127.0.0.1:8443`, exposed via Nginx
 - JupyterLab listens on `0.0.0.0:8888`, base path `/jupyter/`
+- Module default is `jupyter_enabled: false`, while `conf/vibe.yml` template explicitly enables Jupyter
 
 --------
 

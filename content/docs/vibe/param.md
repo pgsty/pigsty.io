@@ -21,22 +21,22 @@ VIBE module has **16** parameters, grouped as:
 
 | Parameter | Type | Level | Default | Description |
 |:-----|:----:|:----:|:------|:-----|
-| [`vibe_data`](#vibe_data) | `path` | `I` | `/fs` | Workspace dir |
-| [`code_enabled`](#code_enabled) | `bool` | `I` | `true` | Enable Code-Server |
-| [`code_port`](#code_port) | `port` | `I` | `8443` | Code-Server port |
-| [`code_data`](#code_data) | `path` | `I` | `/data/code` | Code-Server data dir |
-| [`code_password`](#code_password) | `string` | `I` | `Vibe.Coding` | Code-Server password |
-| [`code_gallery`](#code_gallery) | `enum` | `I` | `openvsx` | Extension marketplace |
-| [`jupyter_enabled`](#jupyter_enabled) | `bool` | `I` | `true` | Enable JupyterLab |
-| [`jupyter_port`](#jupyter_port) | `port` | `I` | `8888` | JupyterLab port |
-| [`jupyter_data`](#jupyter_data) | `path` | `I` | `/data/jupyter` | JupyterLab data dir |
-| [`jupyter_password`](#jupyter_password) | `string` | `I` | `Vibe.Coding` | JupyterLab token |
-| [`jupyter_venv`](#jupyter_venv) | `path` | `I` | `/data/venv` | Python venv path |
-| [`nodejs_enabled`](#nodejs_enabled) | `bool` | `I` | `true` | Enable Node.js |
-| [`nodejs_registry`](#nodejs_registry) | `url` | `I` | `''` | npm registry mirror |
-| [`npm_packages`](#npm_packages) | `string[]` | `I` | `[]` | Global npm packages |
-| [`claude_enabled`](#claude_enabled) | `bool` | `I` | `true` | Enable Claude config |
-| [`claude_env`](#claude_env) | `dict` | `I` | `{}` | Claude env vars |
+| [`vibe_data`](#vibe_data) | `path` | `C` | `/fs` | Workspace dir |
+| [`code_enabled`](#code_enabled) | `bool` | `C` | `true` | Enable Code-Server |
+| [`code_port`](#code_port) | `port` | `C` | `8443` | Code-Server port |
+| [`code_data`](#code_data) | `path` | `C` | `/data/code` | Code-Server data dir |
+| [`code_password`](#code_password) | `string` | `C` | `Vibe.Coding` | Code-Server password |
+| [`code_gallery`](#code_gallery) | `enum` | `C` | `openvsx` | Extension marketplace |
+| [`jupyter_enabled`](#jupyter_enabled) | `bool` | `C` | `false` | Enable JupyterLab |
+| [`jupyter_port`](#jupyter_port) | `port` | `C` | `8888` | JupyterLab port |
+| [`jupyter_data`](#jupyter_data) | `path` | `C` | `/data/jupyter` | JupyterLab data dir |
+| [`jupyter_password`](#jupyter_password) | `string` | `C` | `Vibe.Coding` | JupyterLab token |
+| [`jupyter_venv`](#jupyter_venv) | `path` | `C` | `/data/venv` | Python venv path |
+| [`nodejs_enabled`](#nodejs_enabled) | `bool` | `C` | `true` | Enable Node.js |
+| [`nodejs_registry`](#nodejs_registry) | `url` | `C` | `''` | npm registry mirror |
+| [`npm_packages`](#npm_packages) | `string[]` | `C` | `['@anthropic-ai/claude-code','happy-coder']` | Global npm packages |
+| [`claude_enabled`](#claude_enabled) | `bool` | `C` | `true` | Enable Claude config |
+| [`claude_env`](#claude_env) | `dict` | `C` | `{}` | Claude env vars |
 {.full-width}
 
 --------
@@ -54,7 +54,7 @@ code_data: /data/code
 code_password: Vibe.Coding
 code_gallery: 'openvsx'
 
-jupyter_enabled: true
+jupyter_enabled: false
 jupyter_port: 8888
 jupyter_data: /data/jupyter
 jupyter_password: Vibe.Coding
@@ -62,7 +62,7 @@ jupyter_venv: /data/venv
 
 nodejs_enabled: true
 nodejs_registry: ''
-npm_packages: []
+npm_packages: [ '@anthropic-ai/claude-code' , 'happy-coder' ]
 
 claude_enabled: true
 claude_env: {}
@@ -108,6 +108,7 @@ When `region=china` and `openvsx`, Tsinghua mirror is used.
 ### `jupyter_enabled`
 
 Enable JupyterLab.
+Module default is `false`; `conf/vibe.yml` explicitly sets it to `true` to enable a full sandbox.
 
 ### `jupyter_port`
 
@@ -140,6 +141,7 @@ npm registry mirror; when empty and `region=china`, defaults to `https://registr
 ### `npm_packages`
 
 Global npm packages, tagged `nodejs_pkg`.
+Defaults include `@anthropic-ai/claude-code` and `happy-coder`.
 
 --------
 
@@ -147,7 +149,8 @@ Global npm packages, tagged `nodejs_pkg`.
 
 ### `claude_enabled`
 
-Enable Claude Code config tasks (generate config only, no CLI install).
+Enable Claude Code config task (`claude_config`).
+Claude CLI is installed by `nodejs_pkg` based on `npm_packages` by default.
 
 ### `claude_env`
 
@@ -156,6 +159,7 @@ Extra env vars merged into default OpenTelemetry config.
 Default env vars include:
 
 - `CLAUDE_CODE_ENABLE_TELEMETRY=1`
+- `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`
 - `OTEL_METRICS_EXPORTER=otlp`
 - `OTEL_LOGS_EXPORTER=otlp`
 - `OTEL_EXPORTER_OTLP_METRICS_ENDPOINT=http://127.0.0.1:8428/opentelemetry/v1/metrics`

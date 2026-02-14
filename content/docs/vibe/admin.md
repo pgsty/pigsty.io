@@ -122,10 +122,12 @@ systemctl restart jupyter
 
 ## Claude Code
 
-VIBE only writes config, it does not install the CLI. Recommended:
+The `claude_config` subtask only writes config files.
+Claude CLI is installed globally by `nodejs_pkg` through `npm_packages` (which includes `@anthropic-ai/claude-code` by default).
 
 ```bash
-npm install -g @anthropic-ai/claude-code
+which claude
+claude --version
 ```
 
 Config files:
@@ -137,6 +139,14 @@ Update config:
 
 ```bash
 ./vibe.yml -l <host> -t claude_config
+```
+
+Reinstall/install Claude CLI:
+
+```bash
+./vibe.yml -l <host> -t nodejs_pkg
+# or install manually
+npm install -g @anthropic-ai/claude-code
 ```
 
 To configure for another user, run as that user or copy the files manually.

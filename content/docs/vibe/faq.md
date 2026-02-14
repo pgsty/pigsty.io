@@ -75,7 +75,15 @@ If using custom `infra_portal`, set `websocket: true`.
 
 ### CLI not found
 
-VIBE only writes config, it does not install CLI:
+First check whether `nodejs_pkg` completed (`@anthropic-ai/claude-code` is installed by default):
+
+```bash
+which claude
+npm list -g --depth=0 | grep '@anthropic-ai/claude-code'
+./vibe.yml -l <host> -t nodejs_pkg
+```
+
+If `nodejs_enabled` is disabled or `npm_packages` is overridden, install manually:
 
 ```bash
 npm install -g @anthropic-ai/claude-code

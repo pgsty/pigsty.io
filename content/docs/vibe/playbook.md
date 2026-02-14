@@ -56,7 +56,8 @@ vibe
 Notes:
 
 - `jupyter_install` uses `uv pip`, it does not create venv
-- `claude_config` only writes `~/.claude` config, no CLI install
+- `claude_config` only writes `~/.claude` config
+- Claude CLI is installed by `nodejs_pkg` via `npm_packages` (includes `@anthropic-ai/claude-code` by default)
 
 --------
 

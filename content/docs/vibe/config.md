@@ -16,12 +16,14 @@ VIBE supports enabling components on demand and exposes services via a unified w
 | Component | Enable Param | Default | Description |
 |:-----|:---------|:--------:|:-----|
 | Code-Server | `code_enabled` | Enabled | VS Code in browser |
-| JupyterLab | `jupyter_enabled` | Enabled | Notebook / terminal / editor |
+| JupyterLab | `jupyter_enabled` | Disabled | Notebook / terminal / editor |
 | Node.js | `nodejs_enabled` | Enabled | Node.js runtime and npm |
 | Claude Code | `claude_enabled` | Enabled | CLI config and observability |
 {.full-width}
 
-Config usually lives at instance level:
+Note: module default is `jupyter_enabled: false`, while `conf/vibe.yml` explicitly sets it to `true`.
+
+Config usually lives in cluster `vars`, and can be overridden at instance level:
 
 ```yaml
 all:
@@ -109,25 +111,29 @@ nodejs_enabled: true
 nodejs_registry: ''
 npm_packages:
   - '@anthropic-ai/claude-code'
-  - pnpm
+  - happy-coder
 ```
 
 Notes:
 
 - When `nodejs_registry` is empty and `region=china`, default registry is `https://registry.npmmirror.com`
 - `npm_packages` are installed via `npm install -g` and available globally
+- `@anthropic-ai/claude-code` is installed by default, so manual Claude CLI install is usually unnecessary
 
 --------
 
 ## Claude Code
 
-Claude Code **only writes config**, CLI should be installed via `npm_packages` or manually.
+`claude` task only writes configuration (`claude_config`).
+By default, Claude CLI is installed by the `nodejs` task through `npm_packages` (including `@anthropic-ai/claude-code`).
 
 ```yaml
 claude_enabled: true
 claude_env:
   ANTHROPIC_API_KEY: sk-ant-xxx
 ```
+
+If `nodejs_enabled` is disabled or `npm_packages` is emptied, install Claude CLI manually.
 
 Generated files:
 
