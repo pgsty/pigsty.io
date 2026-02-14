@@ -87,7 +87,7 @@ pig sty conf -c rich             # Use conf/rich.yml template (more extensions)
 pig sty conf -c slim             # Use conf/slim.yml template (minimal install)
 pig sty conf -c supabase         # Use conf/supabase.yml template (self-hosting)
 pig sty conf -g                  # Generate with random passwords (recommended!)
-pig sty conf -v 17               # Use PostgreSQL 17
+pig sty conf -v 18               # Use PostgreSQL 18
 pig sty conf -r china            # Use China region mirrors
 pig sty conf --ip 10.10.10.10    # Specify IP address
 ```
@@ -160,10 +160,10 @@ Available configuration templates (`-c` option):
 Example:
 
 ```bash
-pig sty conf -c rich -g -v 17 -r china
+pig sty conf -c rich -g -v 18 -r china
 ```
 
-This generates a configuration using the `rich` template with PostgreSQL 17, random passwords, and China region mirrors.
+This generates a configuration using the `rich` template with PostgreSQL 18, random passwords, and China region mirrors.
 
 
 --------

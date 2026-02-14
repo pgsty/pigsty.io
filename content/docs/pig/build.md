@@ -121,7 +121,7 @@ Install PGRX framework (for building PGRX extensions).
 
 ```bash
 pig build pgrx                   # Install PGRX
-pig build pgrx -v 17             # Install for PG 17
+pig build pgrx -v 18             # Install for PG 18
 ```
 
 
@@ -142,7 +142,7 @@ Complete build pipeline: download source, install dependencies, build extension.
 
 ```bash
 pig build pkg citus              # Build citus
-pig build pkg citus -v 17        # Build for PG 17
+pig build pkg citus -v 18        # Build for PG 18
 pig build pkg citus -y           # Auto-confirm
 ```
 
@@ -172,7 +172,7 @@ Build extension package from source.
 
 ```bash
 pig build ext citus              # Build citus
-pig build ext citus -v 17        # Build for PG 17
+pig build ext citus -v 18        # Build for PG 18
 ```
 
 
@@ -248,12 +248,12 @@ sudo pig ext add pgmq
 
 ```bash
 # Build extension for multiple PostgreSQL versions
-pig build pkg citus --pg 15,16,17
+pig build pkg citus --pg 16,17,18
 
 # Results in packages for each version:
-# citus_15-*.rpm
 # citus_16-*.rpm
 # citus_17-*.rpm
+# citus_18-*.rpm
 ```
 
 
@@ -288,10 +288,10 @@ sudo apt install <package>  # Debian
 
 ```bash
 # Install PostgreSQL development package
-sudo pig ext install pg17-devel
+sudo pig ext install pg18-devel
 
 # Or specify pg_config path
-export PG_CONFIG=/usr/pgsql-17/bin/pg_config
+export PG_CONFIG=/usr/pgsql-18/bin/pg_config
 ```
 
 ### Rust/PGRX Issues

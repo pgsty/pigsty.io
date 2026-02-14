@@ -69,7 +69,7 @@ pig ext list                     # List all extensions
 pig ext list duck                # Search for "duck" extensions
 pig ext info pg_duckdb           # Show pg_duckdb extension info
 pig install pg_duckdb            # Install pg_duckdb extension
-pig install pg_duckdb -v 17      # Install pg_duckdb for PG 17
+pig install pg_duckdb -v 18      # Install pg_duckdb for PG 18
 pig ext status                   # Show installed extensions
 ```
 
@@ -81,7 +81,7 @@ List or search extensions.
 ```bash
 pig ext list                     # List all extensions
 pig ext list duck                # Search for "duck" extensions
-pig ext list -v 17               # Filter by PG version
+pig ext list -v 18               # Filter by PG version
 pig ext ls olap                  # List OLAP category extensions
 pig ext ls gis -v 16             # List GIS extensions for PG 16
 pig ext ls rag                   # List RAG category extensions
@@ -126,7 +126,7 @@ Display the status of installed extensions for the active PostgreSQL instance.
 
 ```bash
 pig ext status                   # Show installed extensions
-pig ext status -v 17             # Show installed extensions for PG 17
+pig ext status -v 18             # Show installed extensions for PG 18
 ```
 
 
@@ -136,13 +136,13 @@ Install extensions. Also available via alias `pig install`.
 
 ```bash
 pig ext add pg_duckdb            # Install pg_duckdb
-pig ext add pg_duckdb -v 17      # Install for PG 17
+pig ext add pg_duckdb -v 18      # Install for PG 18
 pig ext add pg_duckdb -y         # Auto-confirm installation
 pig ext add vector postgis       # Install multiple extensions
 
 # Using alias
 pig install pg_duckdb
-pig install pg_duckdb -v 17 -y
+pig install pg_duckdb -v 18 -y
 ```
 
 **Options:**
@@ -156,7 +156,7 @@ Remove extensions.
 
 ```bash
 pig ext rm pg_duckdb             # Remove pg_duckdb
-pig ext rm pg_duckdb -v 17       # Remove for PG 17
+pig ext rm pg_duckdb -v 18       # Remove for PG 18
 ```
 
 
@@ -176,7 +176,7 @@ Scan installed PostgreSQL installations and their extensions.
 
 ```bash
 pig ext scan                     # Scan all installed PG versions
-pig ext scan -v 17               # Scan PG 17
+pig ext scan -v 18               # Scan PG 18
 ```
 
 
@@ -186,7 +186,7 @@ Download extension packages for offline use.
 
 ```bash
 pig ext import pg_duckdb         # Download pg_duckdb
-pig ext import pg_duckdb -v 17   # Download for PG 17
+pig ext import pg_duckdb -v 18   # Download for PG 18
 ```
 
 
@@ -195,7 +195,7 @@ pig ext import pg_duckdb -v 17   # Download for PG 17
 Link a specific PG version to the system PATH.
 
 ```bash
-pig ext link 17                  # Link PG 17 to PATH
+pig ext link 18                  # Link PG 18 to PATH
 ```
 
 This command creates a `/usr/pgsql` symlink and writes to `/etc/profile.d/pgsql.sh`.
@@ -252,6 +252,5 @@ Check [**extension list**](https://ext.pigsty.io/#/list) for available extension
 Pigsty assumes you already have installed the official PGDG kernel packages. If not, you can install them with:
 
 ```bash
-pig ext install pg17          # install PostgreSQL 17 kernels (all but devel)
+pig ext install pg18          # install PostgreSQL 18 kernels (all but devel)
 ```
-

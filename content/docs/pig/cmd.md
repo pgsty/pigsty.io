@@ -28,7 +28,7 @@ Usage:
 Examples:
 
   pig repo add -ru            # overwrite existing repo & update cache
-  pig install pg17            # install PostgreSQL 17 PGDG package
+  pig install pg18            # install PostgreSQL 18 PGDG package
   pig install pg_duckdb       # install a PostgreSQL extension
   pig install pgactive -v 18  # install extension for specific PG major
 
@@ -100,7 +100,7 @@ pig ext rm      old_extension    # remove extension
 pig ext update                   # update extensions
 pig ext scan                     # scan installed extensions
 pig ext import  pg_duckdb        # download for offline use
-pig ext link    17               # link PG version to PATH
+pig ext link    18               # link PG version to PATH
 pig ext reload                   # refresh extension catalog
 ```
 

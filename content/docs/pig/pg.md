@@ -163,8 +163,8 @@ Initialize PostgreSQL data directory. Wraps `initdb`.
 
 ```bash
 pig pg init                       # Initialize with defaults
-pig pg init -v 17                 # Specify PostgreSQL 17
-pig pg init -D /data/pg17         # Specify data directory
+pig pg init -v 18                 # Specify PostgreSQL 18
+pig pg init -D /data/pg18         # Specify data directory
 pig pg init -k                    # Enable data checksums
 pig pg init -f                    # Force init (remove existing data)
 pig pg init -- --waldir=/wal      # Pass extra args to initdb
@@ -189,7 +189,7 @@ Start PostgreSQL server.
 
 ```bash
 pig pg start                      # Start with defaults
-pig pg start -D /data/pg17        # Specify data directory
+pig pg start -D /data/pg18        # Specify data directory
 pig pg start -l /pg/log/pg.log    # Redirect output to log file
 pig pg start -o "-p 5433"         # Pass options to postgres
 pig pg start -y                   # Force start (skip running check)
@@ -258,7 +258,7 @@ Reload PostgreSQL configuration. Sends SIGHUP signal to server.
 
 ```bash
 pig pg reload                     # Reload configuration
-pig pg reload -D /data/pg17       # Specify data directory
+pig pg reload -D /data/pg18       # Specify data directory
 pig pg reload -S                  # Use systemctl reload
 ```
 
@@ -269,7 +269,7 @@ Show PostgreSQL server status. Displays not only `pg_ctl status` output, but als
 
 ```bash
 pig pg status                     # Check service status
-pig pg status -D /data/pg17       # Specify data directory
+pig pg status -D /data/pg18       # Specify data directory
 ```
 
 **Output includes:**
@@ -291,7 +291,7 @@ Promote replica to primary.
 
 ```bash
 pig pg promote                    # Promote replica
-pig pg promote -D /data/pg17      # Specify data directory
+pig pg promote -D /data/pg18      # Specify data directory
 ```
 
 **Options:**
@@ -310,7 +310,7 @@ Detect PostgreSQL instance role (primary or replica).
 ```bash
 pig pg role                       # Output: primary, replica, or unknown
 pig pg role -V                    # Verbose output, show detection process
-pig pg role -D /data/pg17         # Specify data directory
+pig pg role -D /data/pg18         # Specify data directory
 ```
 
 **Options:**

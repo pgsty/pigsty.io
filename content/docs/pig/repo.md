@@ -208,8 +208,8 @@ The updated file is placed in `~/.pig/repo.yml`.
 # Setup repositories
 sudo pig repo add -ru
 
-# Install PostgreSQL 17
-sudo pig ext install pg17
+# Install PostgreSQL 18
+sudo pig ext install pg18
 
 # Install popular extensions
 sudo pig ext add pg_duckdb postgis timescaledb
@@ -220,7 +220,7 @@ sudo pig ext add pg_duckdb postgis timescaledb
 ```bash
 # On internet-connected machine:
 sudo pig repo add -ru
-sudo pig ext install pg17
+sudo pig ext install pg18
 sudo pig ext add pg_duckdb postgis
 sudo pig repo create
 sudo pig repo cache
@@ -230,7 +230,7 @@ sudo pig repo cache
 # On air-gapped machine:
 sudo pig repo boot
 sudo pig repo add local
-sudo pig ext install pg17
+sudo pig ext install pg18
 sudo pig ext add pg_duckdb postgis
 ```
 
