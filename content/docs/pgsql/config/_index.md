@@ -62,14 +62,14 @@ all:
         pg_users:
           - { name: dbuser_bi, password: DBUser.BI, roles: [dbrole_admin], pgbouncer: true }
   vars:
-    pg_version: 17
+    pg_version: 18
     pg_packages: [ pgsql-main pgsql-common ]
     pg_hba_rules:
       - { user: dbuser_bi, db: bi, addr: intra, auth: ssl, title: 'BI only allows intranet SSL access' }
 ```
 
 - The `pg-analytics` cluster contains one primary and one offline replica.
-- Global settings specify `pg_version: 17` with a set of extension examples and load `olap.yml` tuning.
+- Global settings specify `pg_version: 18` with a set of extension examples and load `olap.yml` tuning.
 - Declare business objects in `pg_databases` and `pg_users`, automatically generating schema/extension and connection pool entries.
 - Additional `pg_hba_rules` restrict access sources and authentication methods.
 

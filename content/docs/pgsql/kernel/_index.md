@@ -15,7 +15,7 @@ Pigsty supports various PostgreSQL kernels and compatible forks, enabling you to
 
 | Kernel                                      | Key Feature                | Description                                    |
 |:--------------------------------------------|:---------------------------|:-----------------------------------------------|
-| [PostgreSQL](/docs/pgsql)                   | **Original Flavor**        | Vanilla PostgreSQL with 440 extensions         |
+| [PostgreSQL](/docs/pgsql)                   | **Original Flavor**        | Vanilla PostgreSQL with 451 extensions         |
 | [Citus](/docs/pgsql/kernel/citus)           | **Horizontal Scaling**     | Distributed PostgreSQL via native extension    |
 | [WiltonDB](/docs/pgsql/kernel/babelfish)    | **SQL Server Compatible**  | SQL Server wire-protocol compatibility         |
 | [IvorySQL](/docs/pgsql/kernel/ivorysql)     | **Oracle Compatible**      | Oracle syntax and PL/SQL compatibility         |
@@ -27,4 +27,3 @@ Pigsty supports various PostgreSQL kernels and compatible forks, enabling you to
 | [Supabase](/docs/pgsql/kernel/supabase)     | **Backend as a Service**   | BaaS based on PostgreSQL, Firebase alternative |
 | [Cloudberry](/docs/pgsql/kernel/cloudberry) | **MPP DW & Analytics**     | Massively parallel processing data warehouse   |
 {.full-width}
-

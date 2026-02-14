@@ -16,7 +16,7 @@ or even set up [standby clusters](/docs/pgsql/config#standby-cluster) and [delay
 
 You can define multiple PGSQL clusters and further organize them into a horizontal sharding cluster: Pigsty natively supports [Citus cluster groups](/docs/pgsql/config#citus-cluster), allowing you to upgrade your standard PGSQL cluster in-place to a distributed database cluster.
 
-> Pigsty v4.0 uses PostgreSQL 18 by default and introduces new parameters such as `pg_io_method` and `pgbackrest_exporter`.
+> Pigsty v4.1 uses PostgreSQL 18 by default and provides related parameters such as `pg_io_method`, `pgbackrest_exporter`, and `pgbouncer_exporter`.
 
 
 ------------------------------
@@ -161,7 +161,6 @@ You can define multiple PGSQL clusters and further organize them into a horizont
 | Parameter                                           |  Type  | Level | Description                                               |
 |:----------------------------------------------------|:------:|:-----:|:----------------------------------------------------------|
 | [`pgbackrest_enabled`](#pgbackrest_enabled)         | `bool` | `C`   | enable pgbackrest on pgsql host?                          |
-| [`pgbackrest_clean`](#pgbackrest_clean)             | `bool` | `C`   | remove previous pg backup data during init?               |
 | [`pgbackrest_log_dir`](#pgbackrest_log_dir)         | `path` | `C`   | pgbackrest log dir, `/pg/log/pgbackrest` by default       |
 | [`pgbackrest_method`](#pgbackrest_method)           | `enum` | `C`   | pgbackrest repo method: local,minio,etc...                |
 | [`pgbackrest_init_backup`](#pgbackrest_init_backup) | `bool` | `C`   | perform full backup after init? `true` by default         |
@@ -1025,7 +1024,7 @@ pg_files: []                      # extra files to be copied to postgres data di
 pg_conf: oltp.yml                 # config template: oltp,olap,crit,tiny. `oltp.yml` by default
 pg_max_conn: auto                 # postgres max connections, `auto` will use recommended value
 pg_shared_buffer_ratio: 0.25      # postgres shared buffers ratio, 0.25 by default, 0.1~0.4
-pg_io_method: worker              # io method for postgres, auto,fsync,worker,io_uring, worker by default
+pg_io_method: worker              # io method for postgres, auto,sync,worker,io_uring, worker by default
 pg_rto: 30                        # recovery time objective in seconds,  `30s` by default
 pg_rpo: 1048576                   # recovery point objective in bytes, `1MiB` at most by default
 pg_libs: 'pg_stat_statements, auto_explain'  # preloaded libraries, `pg_stat_statements,auto_explain` by default
@@ -1931,7 +1930,6 @@ Check [PGSQL Backup & PITR](/docs/pgsql/backup) for detailed information.
 
 ```yaml
 pgbackrest_enabled: true          # enable pgBackRest on pgsql host?
-pgbackrest_clean: true            # remove pg backup data during init?
 pgbackrest_log_dir: /pg/log/pgbackrest # pgbackrest log dir, default is `/pg/log/pgbackrest`
 pgbackrest_method: local          # pgbackrest repo method: local, minio, [user defined...]
 pgbackrest_init_backup: true      # perform a full backup immediately after pgbackrest init?
@@ -1971,15 +1969,6 @@ Enable pgBackRest on PGSQL nodes? Default value is: `true`
 
 When using local filesystem backup repository (`local`), only the cluster primary will actually enable `pgbackrest`. Other instances will only initialize an empty repository.
 
-
-
-
-
-### `pgbackrest_clean`
-
-Parameter Name: `pgbackrest_clean`, Type: `bool`, Level: `C`
-
-Remove PostgreSQL backup data during initialization? Default value is `true`.
 
 
 

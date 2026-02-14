@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL
 weight: 2101
-description: Vanilla PostgreSQL kernel with 440 extensions
+description: Vanilla PostgreSQL kernel with 451 extensions
 icon: fa-solid fa-database
 module: [PGSQL]
 categories: [Concept]
@@ -9,7 +9,7 @@ categories: [Concept]
 
 [PostgreSQL](https://www.postgresql.org/) is the world's most advanced and popular open-source database.
 
-Pigsty supports PostgreSQL 13 ~ 18 and provides 440 PG extensions.
+Pigsty supports PostgreSQL 13 ~ 18 and provides 451 PG extensions.
 
 
 ------
@@ -103,4 +103,3 @@ Pigsty provides a rich extension ecosystem for PostgreSQL, including:
 - **Data**: pglogical, wal2json, decoderbufs
 
 For details, please refer to [Extension Catalog](https://pgext.cloud/list).
-

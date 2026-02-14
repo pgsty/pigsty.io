@@ -49,7 +49,7 @@ In addition to `pg_safeguard`, [`pgsql-rm.yml`](#pgsql-rmyml) provides finer-gra
 | [`pg_safeguard`](/docs/pgsql/param#pg_safeguard) | `false` | Safeguard switch; when `true`, playbook aborts                        |
 | `pg_rm_data`                                     | `true`  | Whether to remove PostgreSQL data directory                           |
 | `pg_rm_backup`                                   | `true`  | Whether to remove pgBackRest backup data (only when removing primary) |
-| `pg_rm_pkg`                                      | `false` | Whether to uninstall PostgreSQL packages                              |
+| `pg_rm_pkg`                                      | `true` | Whether to uninstall PostgreSQL packages                              |
 
 These parameters allow precise control over removal behavior:
 
@@ -225,7 +225,7 @@ This playbook supports the following command line arguments:
     -e pg_safeguard=false          # Safeguard switch, disabled by default; override when enabled
     -e pg_rm_data=true             # Whether to remove PostgreSQL data directory, default: remove
     -e pg_rm_backup=true           # Whether to remove pgBackRest backup (primary only), default: remove
-    -e pg_rm_pkg=false             # Whether to uninstall PostgreSQL packages, default: keep
+    -e pg_rm_pkg=true              # Whether to uninstall PostgreSQL packages, default: uninstall
 ```
 
 **Wrapper Scripts**

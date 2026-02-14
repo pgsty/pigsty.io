@@ -9,7 +9,7 @@ categories: [Reference]
 
 > Choosing a "kernel" in Pigsty means determining the PostgreSQL major version, mode/distribution, packages to install, and tuning templates to load.
 
-Pigsty supports PostgreSQL from version 10 onwards. The current version packages core software for versions 13-18 by default and provides a complete extension set for 17/18. The following content shows how to make these choices through configuration files.
+Pigsty v4.1 currently supports PostgreSQL 13-18 and uses 18 by default. The following content shows how to make these choices through configuration files.
 
 
 ----------------
@@ -30,7 +30,7 @@ all:
 
 > Effect: Ansible will pull packages corresponding to `pg_version=18` during installation, pre-install extensions to the system, and database initialization scripts can then directly `CREATE EXTENSION`.
 
-Extension support varies across versions in Pigsty's offline repository: 12/13 only provide core and tier-1 extensions, while 15/17/18 cover all extensions. If an extension is not pre-packaged, it can be added via `repo_packages_extra`.
+Extension support varies across versions in Pigsty's offline repository: 13 has relatively fewer available extensions, while 17/18 have the broadest coverage. If an extension is not pre-packaged, it can be added via `repo_packages_extra`.
 
 
 ----------------

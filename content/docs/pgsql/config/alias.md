@@ -13,8 +13,8 @@ categories: [Reference]
 
 PostgreSQL package naming conventions vary significantly across different operating systems:
 
-- **EL systems** (RHEL/Rocky/Alma/...) use formats like `pgvector_17`, `postgis36_17*`
-- **Debian/Ubuntu systems** use formats like `postgresql-17-pgvector`, `postgresql-17-postgis-3`
+- **EL systems** (RHEL/Rocky/Alma/...) use formats like `pgvector_18`, `postgis36_18*`
+- **Debian/Ubuntu systems** use formats like `postgresql-18-pgvector`, `postgresql-18-postgis-3`
 
 This difference adds cognitive burden to users: you need to remember different package name rules for different systems, and handle the embedding of PostgreSQL version numbers.
 
@@ -27,11 +27,11 @@ Pigsty solves this problem through the **Package Alias** mechanism: you only nee
 # Using aliases - simple, unified, cross-platform
 pg_extensions: [ postgis, pgvector, timescaledb ]
 
-# Equivalent to actual package names on EL9 + PG17
-pg_extensions: [ postgis36_17*, pgvector_17*, timescaledb-tsl_17* ]
+# Equivalent to actual package names on EL9 + PG18
+pg_extensions: [ postgis36_18*, pgvector_18*, timescaledb-tsl_18* ]
 
-# Equivalent to actual package names on Ubuntu 24 + PG17
-pg_extensions: [ postgresql-17-postgis-3, postgresql-17-pgvector, postgresql-17-timescaledb-tsl ]
+# Equivalent to actual package names on Ubuntu 24 + PG18
+pg_extensions: [ postgresql-18-postgis-3, postgresql-18-pgvector, postgresql-18-timescaledb-tsl ]
 ```
 
 ## Alias Translation
@@ -104,8 +104,8 @@ You can find the alias mapping files for each operating system and architecture 
 ```bash
 User config alias --> Detect OS -->  Find alias mapping table ---> Replace $v placeholder ---> Install actual packages
      ↓                 ↓                   ↓                                   ↓
-  postgis          el9.x86_64         postgis36_$v*                   postgis36_17*
-  postgis          u24.x86_64         postgresql-$v-postgis-3         postgresql-17-postgis-3
+  postgis          el9.x86_64         postgis36_$v*                   postgis36_18*
+  postgis          u24.x86_64         postgresql-$v-postgis-3         postgresql-18-postgis-3
 ```
 
 
@@ -114,29 +114,27 @@ User config alias --> Detect OS -->  Find alias mapping table ---> Replace $v pl
 
 Pigsty's alias system uses `$v` as a placeholder for the PostgreSQL version number. When you specify a PostgreSQL version using [`pg_version`](/docs/pgsql/param#pg_version), all `$v` in aliases will be replaced with the actual version number.
 
-For example, when `pg_version: 17`:
+For example, when `pg_version: 18`:
 
 | Alias Definition (EL) | Expanded Result       |
 |-----------------------|-----------------------|
-| `postgresql$v*`       | `postgresql17*`       |
-| `pgvector_$v*`        | `pgvector_17*`        |
-| `timescaledb-tsl_$v*` | `timescaledb-tsl_17*` |
+| `postgresql$v*`       | `postgresql18*`       |
+| `pgvector_$v*`        | `pgvector_18*`        |
+| `timescaledb-tsl_$v*` | `timescaledb-tsl_18*` |
 
 | Alias Definition (Debian/Ubuntu)    | Expanded Result                 |
 |-------------------------------------|---------------------------------|
-| `postgresql-$v`                     | `postgresql-17`                 |
-| `postgresql-$v-pgvector`            | `postgresql-17-pgvector`        |
-| `postgresql-$v-timescaledb-tsl`     | `postgresql-17-timescaledb-tsl` |
+| `postgresql-$v`                     | `postgresql-18`                 |
+| `postgresql-$v-pgvector`            | `postgresql-18-pgvector`        |
+| `postgresql-$v-timescaledb-tsl`     | `postgresql-18-timescaledb-tsl` |
 
 
 ### Wildcard Matching
 
 On EL systems, many aliases use the `*` wildcard to match related subpackages. For example:
 
-- `postgis36_17*` will match `postgis36_17`, `postgis36_17-client`, `postgis36_17-utils`, etc.
-- `postgresql17*` will match `postgresql17`, `postgresql17-server`, `postgresql17-libs`, `postgresql17-contrib`, etc.
+- `postgis36_18*` will match `postgis36_18`, `postgis36_18-client`, `postgis36_18-utils`, etc.
+- `postgresql18*` will match `postgresql18`, `postgresql18-server`, `postgresql18-libs`, `postgresql18-contrib`, etc.
 
 This design ensures you don't need to list each subpackage individually - one alias can install the complete extension.
-
-
 

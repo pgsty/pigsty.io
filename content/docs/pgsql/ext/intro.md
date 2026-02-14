@@ -8,7 +8,7 @@ tags: [Extension]
 categories: [Reference]
 ---
 
-Extensions are the soul of PostgreSQL. Pigsty includes 440+ pre-compiled, out-of-the-box extension plugins, fully unleashing PostgreSQL's potential.
+Extensions are the soul of PostgreSQL. Pigsty includes 451 pre-compiled, out-of-the-box extension plugins, fully unleashing PostgreSQL's potential.
 
 
 --------
@@ -100,4 +100,3 @@ Simply use these names in `pg_extensions` to install the entire stack.
 - [**Extension Repository**](https://pgext.cloud/repo/): Pigsty extension software repository
 - [**pig Package Manager**](https://pgext.cloud/pig): Command-line extension management tool
 - [**GitHub Pigsty**](https://github.com/pgsty/pigsty): Pigsty source code repository
-

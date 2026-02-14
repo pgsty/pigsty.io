@@ -10,7 +10,7 @@ categories: [Reference]
 tags: [Extension]
 ---
 
-Pigsty provides [**440+** extensions](https://pgext.cloud/list), covering 16 major categories including time-series, geospatial, vector, full-text search, analytics, and feature enhancements, ready to use out-of-the-box.
+Pigsty provides [**451** extensions](https://pgext.cloud/list), covering 16 major categories including time-series, geospatial, vector, full-text search, analytics, and feature enhancements, ready to use out-of-the-box.
 
 Using extensions in Pigsty involves four core steps: [**Download**](/docs/pgsql/ext/download), [**Install**](/docs/pgsql/ext/install), [**Config/Load**](/docs/pgsql/ext/config), and [**Create**](/docs/pgsql/ext/create).
 
