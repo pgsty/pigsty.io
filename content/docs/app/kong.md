@@ -1,46 +1,53 @@
 ---
-title: 'Kong: the Nginx API Gateway'
+title: "Kong: API Gateway"
+weight: 610
 date: 2022-05-21
-weight: 620
-description: Learn how to deploy Kong, the API gateway, with Docker Compose and use
-  external PostgreSQL as the backend database
+description: Deploy Kong with Pigsty Compose templates and PostgreSQL backend storage.
 module: [SOFTWARE]
 categories: [Reference]
 ---
 
+[Kong](https://konghq.com/) is an open-source API gateway.
 
-![](/img/docs/app/kong.jpeg)
+Pigsty's `app/kong` template stores configuration in PostgreSQL and runs a one-time migration job (`kong-migration`) automatically.
 
-## TL;DR
-
-```bash
-cd app/kong ; docker-compose up -d
-```
+## Quick Start
 
 ```bash
-make up         # pull up kong with docker-compose
-make ui         # run swagger ui container
-make log        # tail -f kong logs
-make info       # introspect kong with jq
-make stop       # stop kong container
-make clean      # remove kong container
-make rmui       # remove swagger ui container
-make pull       # pull latest kong image
-make rmi        # remove kong image
-make save       # save kong image to /tmp/kong.tgz
-make load       # load kong image from /tmp
+cd ~/pigsty/app/kong
+vi .env         # check KONG_PG_* and port settings
+make
 ```
 
+Default ports:
 
-## Scripts
+- Proxy HTTP: `8000`
+- Proxy HTTPS: `8443`
+- Admin API: `8001`
 
-* Default Port: 8000
-* Default SSL Port: 8443
-* Default Admin Port: 8001
-* Default Postgres Database: `postgres://dbuser_kong:DBUser.Kong@10.10.10.10:5432/kong`
+## Database Preparation
 
-```yaml
-# postgres://dbuser_kong:DBUser.Kong@10.10.10.10:5432/kong
-- { name: kong, owner: dbuser_kong, revokeconn: true , comment: kong the api gateway database }
-- { name: dbuser_kong, password: DBUser.Kong , pgbouncer: true , roles: [ dbrole_admin ] }
+```bash
+bin/pgsql-user pg-meta dbuser_kong
+bin/pgsql-db   pg-meta kong
 ```
+
+Connection string example:
+
+```bash
+postgres://dbuser_kong:DBUser.Kong@10.10.10.10:5432/kong
+```
+
+## Common Commands
+
+```bash
+make log
+make stop
+make clean
+make pull
+```
+
+## References
+
+- Kong docs: https://docs.konghq.com/
+- Pigsty template: https://github.com/pgsty/pigsty/tree/main/app/kong

@@ -28,10 +28,10 @@ Usage: This is the default config template, so there's no need to specify `-c me
 ./configure [-i <primary_ip>]
 ```
 
-For example, if you want to install PostgreSQL 17 rather than the default 18, you can use the `-v` arg in `configure`:
+For example, if you want to install PostgreSQL 16 rather than the default 18, you can use the `-v` arg in `configure`:
 
 ```bash
-./configure -v 17   # or 16,15,14,13....
+./configure -v 16   # or 17,15,14,13....
 ```
 
 
@@ -67,4 +67,3 @@ The `meta` template is Pigsty's **default getting-started configuration**, desig
 - Default passwords are sample passwords; **must be changed** for production environments
 - Single-node etcd has no high availability guarantee, suitable for development and testing
 - If you need to build a local software repository, use the [`rich`](/docs/conf/rich/) template
-

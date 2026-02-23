@@ -128,7 +128,7 @@ You can also use [**pig**](/docs/pig) package manager CLI to install extensions 
 
 ```bash
 pig install postgis timescaledb       # Install multiple extensions
-pig install pgvector -v 17            # Install for specific PG major version
+pig install pgvector -v 18            # Install for specific PG major version
 
 ansible pg-test -b -a 'pig install pg_duckdb'   # Batch install on cluster with Ansible
 ```
@@ -137,10 +137,10 @@ You can also **use OS package manager directly** (`apt/dnf`), but you must know 
 
 ```bash
 # EL systems (RHEL, Rocky, Alma, Oracle Linux)
-sudo yum install -y pgvector_17*
+sudo yum install -y pgvector_18*
 
 # Debian / Ubuntu
-sudo apt install -y postgresql-17-pgvector
+sudo apt install -y postgresql-18-pgvector
 ```
 
 
@@ -342,12 +342,12 @@ pig remove pgvector                           # Uninstall with pig
 {{% /tab %}}
 {{% tab header="yum" %}}
 ```bash
-sudo yum remove pgvector_17*                  # EL systems
+sudo yum remove pgvector_18*                  # EL systems
 ```
 {{% /tab %}}
 {{% tab header="apt" %}}
 ```bash
-sudo apt remove postgresql-17-pgvector        # Debian/Ubuntu
+sudo apt remove postgresql-18-pgvector        # Debian/Ubuntu
 ```
 {{% /tab %}}
 {{< /tabpane >}}
@@ -460,7 +460,7 @@ sudo apt update
 |:---------------|:-----------------------------------|:-------------------------------------------|
 | Extension name | Name used with `CREATE EXTENSION`  | `vector`                                   |
 | Package alias  | Standardized name in Pigsty config | `pgvector`                                 |
-| Package name   | Actual OS package name             | `pgvector_17*` or `postgresql-17-pgvector` |
+| Package name   | Actual OS package name             | `pgvector_18*` or `postgresql-18-pgvector` |
 {.full-width}
 
 **Preloaded extension prevents startup**

@@ -1,34 +1,54 @@
 ---
-title: "Electric: PGLite Sync Engine"
-weight: 655
-description: Use Electric to solve PostgreSQL data synchronization challenges with partial replication and real-time data transfer.
+title: "Electric: PostgreSQL Sync Engine"
+weight: 645
+description: Self-host Electric on Pigsty v4.1 to sync PostgreSQL data to frontend apps with partial replication and real-time delivery.
 module: [SOFTWARE]
 categories: [Reference]
 ---
 
-[**Electric**](https://electric-sql.com/) is a PostgreSQL sync engine that solves complex data synchronization problems.
+[**Electric**](https://electric-sql.com/) is a PostgreSQL sync engine focused on efficiently delivering database changes to frontend and edge applications.
 
-Electric supports partial replication, fan-out delivery, and efficient data transfer, making it ideal for building real-time and offline-first applications.
+Pigsty v4.1 provides the `app/electric` template (`conf/app/electric.yml`) to bootstrap database, container, and ingress settings in one flow.
 
 ## Quick Start
 
 ```bash
-cd ~/pigsty/app/electric
-make up     # Start Electric service
+curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
+./bootstrap
+./configure -c app/electric
+vi pigsty.yml                 # update domain, passwords, secrets
+./deploy.yml
+./docker.yml
+./app.yml
 ```
 
-Access URL: http://electric.pigsty or http://10.10.10.10:3000
+Default endpoints:
 
-## Features
+- `http://<IP>:8002`
+- `http://elec.pigsty` (default domain in the template)
 
-- **Partial Replication**: Sync only the data you need
-- **Real-time Sync**: Millisecond-level data updates
-- **Offline-first**: Work offline with automatic sync
-- **Conflict Resolution**: Automatic handling of data conflicts
-- **Type Safety**: TypeScript support
+Metrics port defaults to `8003` (`ELECTRIC_PROMETHEUS_PORT`).
 
-## Related Links
+## Key Settings
 
-- Electric Website: https://electric-sql.com/
-- Documentation: https://electric-sql.com/docs
-- GitHub Repository: https://github.com/electric-sql/electric
+`conf/app/electric.yml` writes `apps.electric.conf` into `/opt/electric/.env`. Common parameters:
+
+- `DATABASE_URL`: PostgreSQL connection string used by Electric (replication privileges required)
+- `ELECTRIC_PORT`: Electric HTTP port (default `8002`)
+- `ELECTRIC_PROMETHEUS_PORT`: metrics port (default `8003`)
+- `ELECTRIC_INSECURE`: can be `true` in dev; disable in prod and use proper secrets
+
+## Operations
+
+```bash
+cd /opt/electric
+make up
+make logs
+make down
+```
+
+## References
+
+- Electric website: https://electric-sql.com/
+- Electric docs: https://electric-sql.com/docs
+- Pigsty template: https://github.com/pgsty/pigsty/blob/main/conf/app/electric.yml

@@ -311,7 +311,7 @@ pig ext link pg18             # create /usr/pgsql symlink and write /etc/profile
 If you want a specific package version, use `name=ver` syntax:
 
 ```bash
-pig ext add -v 17 pgvector=0.7.2 # install pgvector 0.7.2 for PG 17
+pig ext add -v 18 pgvector=0.7.2 # install pgvector 0.7.2 for PG 18
 pig ext add pg16=16.5            # install PostgreSQL 16 with a specific minor version
 ```
 
@@ -376,7 +376,7 @@ Extension Path  :  /usr/share/postgresql/18/extension
 
 Name                 Version  SharedLibs                                       Description                       Meta
 ----                 -------  ----------                                       ---------------------             ------
-timescaledb          2.24.0   Enables scalable inserts and complex queries...  module_pathname=$libdir/timescaledb-2.24.0 relocatable=false trusted=true lib=...
+timescaledb          2.25.1   Enables scalable inserts and complex queries...  module_pathname=$libdir/timescaledb-2.24.0 relocatable=false trusted=true lib=...
 timescaledb_toolkit  1.22.0   Library of analytical hyperfunctions...          relocatable=false superuser=false module_pathname=$libdir/timescaledb_toolkit lib=...
 periods              1.2      Provide Standard SQL functionality for PERIODs   module_pathname=$libdir/periods relocatable=false requires=btree_gist lib=periods.so
 pg_cron              1.6      Job scheduler for PostgreSQL                     relocatable=false schema=pg_catalog module_pathname=$libdir/pg_cron lib=pg_cron.so

@@ -230,7 +230,7 @@ bin/pgsql-db   pg-meta meta             # Ensure database meta exists in pg-meta
 
 ## Configure PG Version and Extensions
 
-You can install [**different major versions**](/docs/pgsql/config/kernel) of PostgreSQL, and up to [**440**](https://pgext.cloud/list) [**extensions**](/docs/pgsql/ext). Let's remove the current default PG 18 and install PG 17:
+You can install [**different major versions**](/docs/pgsql/config/kernel) of PostgreSQL, and up to [**444**](https://pgext.cloud/list) [**extensions**](/docs/pgsql/ext). Let's remove the current default PG 18 and install PG 16:
 
 ```bash
 ./pgsql-rm.yml -l pg-meta   # Remove old pg-meta cluster (it's PG 18)
@@ -251,7 +251,7 @@ all:
       hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary } }
       vars:
         pg_cluster: pg-meta
-        pg_version: 17   # Specify PG version as 17
+        pg_version: 16   # Specify PG version as 16
         pg_extensions: [ timescaledb, postgis, pgvector ]      # Install these extensions
         pg_libs: 'timescaledb,pg_stat_statements,auto_explain'  # Preload these extension libraries
         pg_databases: { { name: meta ,baseline: cmdb.sql ,comment: pigsty meta database ,schemas: [pigsty] ,extensions: [vector, postgis, timescaledb ] } }
@@ -266,7 +266,7 @@ all:
 
 
 ```bash
-./pgsql.yml -l pg-meta   # Install PG17 and extensions, recreate pg-meta cluster
+./pgsql.yml -l pg-meta   # Install PG16 and extensions, recreate pg-meta cluster
 ```
 
 

@@ -65,6 +65,7 @@ To use a different PostgreSQL major version, you can configure it using the `-v`
 
 ```bash
 ./configure -c pgsql            # Default is postgresql 18, no need to specify explicitly
+./configure -c pgsql -v 18      # Explicitly use postgresql 18
 ./configure -c pgsql -v 17      # Use postgresql 17
 ./configure -c pgsql -v 16      # Use postgresql 16
 ./configure -c pgsql -v 15      # Use postgresql 15

@@ -45,7 +45,7 @@ If you want to further harden system security, here are some recommendations:
 - [**`patroni_password`**](/docs/pgsql/param#patroni_password)               : `Patroni.API`
 - [**`haproxy_admin_password`**](/docs/node/param#haproxy_admin_password)    : `pigsty`
 - [**`minio_access_key`**](/docs/minio/param#minio_access_key)               : `minioadmin`
-- [**`minio_secret_key`**](/docs/minio/param#minio_secret_key)               : `minioadmin`
+- [**`minio_secret_key`**](/docs/minio/param#minio_secret_key)               : `S3User.MinIO`
 
 **If using MinIO, change the default MinIO user passwords and references in pgbackrest**
 - Modify MinIO regular user password: [**`minio_users`**`.`[pgbackrest]`.`secret_key`](/docs/minio/param#minio_users)
@@ -60,10 +60,10 @@ If you want to further harden system security, here are some recommendations:
 - This is the default behavior. Unless there's a special reason (supporting legacy old clients), don't change it back to `md5`
 
 **Use `passwordcheck` extension to enforce strong passwords**
-- Add `$lib/passwordcheck` to [**`pg_libs`**](/docs/pgsql/param#pg_libs) to enforce password policies.
+- Add `$libdir/passwordcheck` to [**`pg_libs`**](/docs/pgsql/param#pg_libs) to enforce password policies.
 
 **Encrypt remote backups with encryption algorithms**
-- Use `repo_cipher_type` in [**`pgbackrest_repo`**](/docs/pgsql/param#pgbackrest_repo) backup repository definitions to enable encryption
+- Use `cipher_type` in [**`pgbackrest_repo`**](/docs/pgsql/param#pgbackrest_repo) backup repository definitions to enable encryption
 
 **Configure automatic password expiration for business users**
 - You should set an automatic password expiration time for each [business user](/docs/pgsql/config/user#define-users) to meet compliance requirements.
@@ -102,7 +102,7 @@ If you want to further harden system security, here are some recommendations:
 - For convenience, Redis servers listen on all IP addresses by default. You can modify [**`redis_bind_address`**](/docs/redis/param#redis_bind_address) to listen only on internal IP addresses.
 
 **Use [HBA](/docs/pgsql/config/hba) to restrict postgres client access**
-- There's a security-enhanced configuration template: [`security.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/security.yml)
+- There's a security-enhanced configuration template: [`conf/ha/safe.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/safe.yml)
 
 **Restrict patroni management access: only infra/admin nodes can call control APIs**
 - By default, this is restricted via [`restapi.allowlist`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/oltp.yml#L109).
@@ -140,12 +140,13 @@ If you want to further harden system security, here are some recommendations:
 - [**`node_tune`**](/docs/node/param#node_tune) host tuning template using `crit` can reduce dirty page ratio and lower data consistency risks.
 
 **Enable data checksums to detect silent data corruption.**
-- [**`pg_checksum`**](/docs/pgsql/param#pg_checksum) defaults to `off`, but is recommended to enable.
+- [**`pg_checksum`**](/docs/pgsql/param#pg_checksum) defaults to `on`; keep it enabled.
 - When [**`pg_conf`**](/docs/pgsql/param#pg_conf) = `crit.yml` is enabled, checksums are mandatory.
 
 **Log connection establishment/termination**
-- This is disabled by default, but enabled by default in the `crit.yml` config template.
-- You can manually [configure the cluster](/docs/pgsql/admin#configure-cluster) to enable `log_connections` and `log_disconnections` parameters.
+- In PG 18+ `oltp.yml` / `olap.yml` templates, `log_connections` is enabled by default (`authorization`).
+- In `crit.yml`, both `log_connections` and `log_disconnections` are enabled by default for stricter auditing.
+- You can also manually [configure the cluster](/docs/pgsql/admin#configure-cluster) and tune these two parameters as needed.
 
 **Enable watchdog if you want to completely eliminate the possibility of split-brain during PG cluster failover**
 - If your traffic goes through the recommended default HAProxy distribution, you won't encounter split-brain even without watchdog.
@@ -176,4 +177,3 @@ If you want to further harden system security, here are some recommendations:
 
 **Use sufficient etcd server instances, and use an odd number of instances (1,3,5,7)**
 - See [ETCD Administration](/docs/etcd#administration) for details.
-

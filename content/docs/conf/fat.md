@@ -31,7 +31,7 @@ Usage:
 To specify a particular PostgreSQL version:
 
 ```bash
-./configure -c fat -v 18   # Use PostgreSQL 18
+./configure -c fat -v 16   # Use PostgreSQL 16
 ```
 
 

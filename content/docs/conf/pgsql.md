@@ -26,10 +26,10 @@ Usage:
 ./configure -c pgsql [-i <primary_ip>]
 ```
 
-To specify a particular PostgreSQL version (e.g., 18):
+To specify a non-default PostgreSQL version (e.g., 16):
 
 ```bash
-./configure -c pgsql -v 18
+./configure -c pgsql -v 16
 ```
 
 

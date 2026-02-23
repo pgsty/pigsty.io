@@ -20,7 +20,7 @@ The [`REDIS`](#redis) parameter group is used for Redis cluster deployment and c
 | [`redis_cluster`](#redis_cluster)                   |  `string`  |   `C`   | Redis cluster name, required identity parameter         |
 | [`redis_instances`](#redis_instances)               |   `dict`   |   `I`   | Redis instance definitions on this node                 |
 | [`redis_node`](#redis_node)                         |   `int`    |   `I`   | Redis node number, unique positive integer in cluster   |
-| [`redis_fs_main`](#redis_fs_main)                   |   `path`   |   `C`   | Redis main data directory, `/data` by default           |
+| [`redis_fs_main`](#redis_fs_main)                   |   `path`   |   `C`   | Redis main data directory, `/data/redis` by default     |
 | [`redis_exporter_enabled`](#redis_exporter_enabled) |   `bool`   |   `C`   | Enable Redis Exporter?                                  |
 | [`redis_exporter_port`](#redis_exporter_port)       |   `port`   |   `C`   | Redis Exporter listen port                              |
 | [`redis_exporter_options`](#redis_exporter_options) |  `string`  |  `C/I`  | Redis Exporter CLI arguments                            |
@@ -51,7 +51,7 @@ The [Redis](/docs/redis) module contains 18 deployment parameters and 3 removal 
 #redis_cluster:             <CLUSTER> # Redis cluster name, required identity parameter
 #redis_node: 1              <NODE>    # Redis node number, unique in cluster
 #redis_instances: {}        <NODE>    # Redis instance definitions on this node
-redis_fs_main: /data                  # Redis main data directory, `/data` by default
+redis_fs_main: /data/redis            # Redis main data directory, `/data/redis` by default
 redis_exporter_enabled: true          # Enable Redis Exporter?
 redis_exporter_port: 9121             # Redis Exporter listen port
 redis_exporter_options: ''            # Redis Exporter CLI arguments
@@ -133,9 +133,11 @@ redis_instances:
 
 Parameter: `redis_fs_main`, Type: `path`, Level: `C`
 
-Main data disk mount point for Redis, default is `/data`. Pigsty creates a `redis` directory under this path to store Redis data.
+Main data directory for Redis, default is `/data/redis`.
 
-The actual data storage directory is `/data/redis`, owned by the `redis` OS user. See [FHS: Redis](/docs/ref/fhs#redis-fhs) for internal structure details.
+Deployment does not allow the legacy value `/data` (`redis` role identity `assert` fails fast). For backward compatibility during removal, `redis-rm.yml` treats `redis_fs_main=/data` as `/data/redis`.
+
+The data directory is owned by the `redis` OS user. See [FHS: Redis](/docs/ref/fhs#redis-fhs) for internal structure details.
 
 
 
@@ -367,7 +369,7 @@ Parameter: `redis_rm_data`, Type: `bool`, Level: `G/C/A`
 
 Remove Redis data directory when removing Redis instances? Default is `true`.
 
-The data directory (`/data/redis/`) contains Redis RDB and AOF files. If not removed, newly deployed Redis instances will load data from these backup files.
+The data directory (default `/data/redis/`, i.e. `redis_fs_main`) contains Redis RDB and AOF files. If not removed, newly deployed Redis instances will load data from these backup files.
 
 Set to `false` to preserve data directories for later recovery.
 

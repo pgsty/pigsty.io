@@ -1,51 +1,65 @@
 ---
-title: "Registry: Container Image Mirror"
-weight: 625
-description: Deploy Docker Registry mirror service to accelerate Docker image pulls, especially useful for users in China.
+title: "Registry: Container Image Cache"
+weight: 615
+description: Deploy Docker Registry pull-through cache and optional web UI with Pigsty v4.1.
 module: [SOFTWARE]
 categories: [Reference]
 ---
 
-[**Docker Registry**](https://docs.docker.com/registry/) mirror service caches images from Docker Hub and other registries.
+Pigsty v4.1 provides the `app/registry` template (`conf/app/registry.yml`) for:
 
-Particularly useful for users in China or regions with slow Docker Hub access, significantly reducing image pull times.
+- Docker Registry cache service (default `5000`)
+- Optional management UI (default `5080`)
 
 ## Quick Start
 
 ```bash
-cd ~/pigsty/app/registry
-make up     # Start Registry mirror service
+curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
+./bootstrap
+./configure -c app/registry
+vi pigsty.yml                 # update domains, certs, and ports if needed
+./deploy.yml
+./docker.yml
+./app.yml
 ```
 
-Access URL: http://registry.pigsty or http://10.10.10.10:5000
+Default endpoints:
 
-## Features
+- Registry API: `http://<IP>:5000` or `http://d.pigsty`
+- Registry UI: `http://<IP>:5080` or `http://dui.pigsty`
 
-- **Image Caching**: Cache images from Docker Hub and other registries
-- **Web Interface**: Optional image management UI
-- **High Performance**: Local caching dramatically improves pull speed
-- **Storage Management**: Configurable cleanup and management policies
-- **Health Checks**: Built-in health check endpoints
+Image data is stored in `/data/registry` by default.
 
-## Configure Docker
+## Docker Client Configuration
 
-Configure Docker to use the local mirror:
+If you run HTTP without TLS, Docker must trust the registry explicitly:
+
+```json
+{
+  "registry-mirrors": ["http://d.pigsty"],
+  "insecure-registries": ["d.pigsty:5000"]
+}
+```
+
+After editing `/etc/docker/daemon.json`, restart Docker:
 
 ```bash
-# Edit /etc/docker/daemon.json
-{
-  "registry-mirrors": ["http://10.10.10.10:5000"]
-}
-
-# Restart Docker
 systemctl restart docker
 ```
 
-## Storage Management
+## Operations
 
-Image data is stored in the `/data/registry` directory. Reserve at least 100GB of space.
+`app/registry/Makefile` runs in `/opt/registry` by default:
 
-## Related Links
+```bash
+cd /opt/registry
+make up
+make status
+make health
+make log
+```
 
-- Docker Registry Documentation: https://docs.docker.com/registry/
-- GitHub Repository: https://github.com/distribution/distribution
+## References
+
+- Docker Registry docs: https://docs.docker.com/registry/
+- Pigsty template: https://github.com/pgsty/pigsty/blob/main/conf/app/registry.yml

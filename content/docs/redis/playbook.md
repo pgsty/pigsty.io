@@ -238,7 +238,7 @@ Behavioral differences when `redis_port` is specified:
 | Monitoring registration | Delete entire node's registration file | Only remove that instance from registration file |
 | redis_exporter | Stop and disable | **No operation** (other instances still need it) |
 | Redis instances | Stop all instances | Only stop the specified port's instance |
-| Data directory | Delete entire `/data/redis/` directory | Only delete `/data/redis/<cluster>-<node>-<port>/` |
+| Data directory | Delete entire `redis_fs_main` (default: `/data/redis/`) | Only delete `redis_fs_main/<cluster>-<node>-<port>/` (if `redis_fs_main=/data`, removal is compat-mapped to `/data/redis`) |
 | Vector config | Delete `/etc/vector/redis.yaml` | **No operation** (other instances still need it) |
 | Packages | Optionally uninstall | **No operation** |
 

@@ -1,47 +1,53 @@
 ---
-title: 'Gitea: Simple Self-Hosting Git Service'
+title: "Gitea: Self-Hosted Git Service"
+linkTitle: "Gitea: Git Hosting"
+weight: 585
 date: 2022-05-25
-weight: 595
-description: Launch the self-hosting Git service with Gitea and Pigsty managed PostgreSQL
+description: Deploy Gitea with Pigsty's Compose template and connect it to external PostgreSQL.
 module: [SOFTWARE]
 categories: [Reference]
 ---
 
-Public Demo: [http://git.pigsty.cc](http://git.pigsty.cc)
+[Gitea](https://gitea.io/) is a lightweight open-source Git hosting platform.
 
-![](/img/docs/app/gitea.jpeg)
+Pigsty's `app/gitea` template uses **external PostgreSQL mode** by default, configured via `GITEA_DB_*` values in `.env`.
 
-
-## TL;DR
-
-```bash
-cd ~/pigsty/app/gitea; make up
-```
-
-Pigsty use `8889` port for gitea by default
-
-[http://git.pigsty](http://git.pigsty) or http://10.10.10.10:8889
+## Quick Start
 
 ```bash
-make up      # pull up gitea with docker-compose in minimal mode
-make run     # launch gitea with docker , local data dir and external PostgreSQL
-make view    # print gitea access point
-make log     # tail -f gitea logs
-make info    # introspect gitea with jq
-make stop    # stop gitea container
-make clean   # remove gitea container
-make pull    # pull latest gitea image
-make rmi     # remove gitea image
-make save    # save gitea image to /tmp/gitea.tgz
-make load    # load gitea image from /tmp
+cd ~/pigsty/app/gitea
+vi .env         # check domain, ports, database settings
+make up
 ```
 
-## PostgreSQL Preparation
+Default endpoints:
 
-Gitea use built-in SQLite as default metadata storage, you can let Gitea use external PostgreSQL by setting connection string environment variable
+- Web: `http://git.pigsty` or `http://<IP>:8889`
+- SSH: `<IP>:2222`
 
-```yaml
-# postgres://dbuser_gitea:DBUser.gitea@10.10.10.10:5432/gitea
-db:   { name: gitea, owner: dbuser_gitea, comment: gitea primary database }
-user: { name: dbuser_gitea , password: DBUser.gitea, roles: [ dbrole_admin ] }
+## Database Preparation
+
+```bash
+bin/pgsql-user pg-meta dbuser_gitea
+bin/pgsql-db   pg-meta gitea
 ```
+
+Connection string example:
+
+```bash
+postgres://dbuser_gitea:DBUser.Gitea@10.10.10.10:5432/gitea
+```
+
+## Common Commands
+
+```bash
+make up
+make log
+make stop
+make clean
+```
+
+## References
+
+- Gitea docs: https://docs.gitea.com/
+- Pigsty template: https://github.com/pgsty/pigsty/tree/main/app/gitea

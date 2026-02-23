@@ -30,8 +30,15 @@ After deployment, access services:
 |:-----------|:-----------------------------------------------------------------|:-------------------|
 | SSH        | `ssh root@localhost -p 2222`                                     | Password: `pigsty` |
 | Web Portal | http://localhost:8080                                            | -                  |
-| Grafana    | http://localhost:8080/ui                                         | `admin` / `pigsty` |
-| PostgreSQL | `psql postgres://dbuser_dba:DBUser.DBA@localhost:5432/postgres`  | `DBUser.DBA`       |
+| Grafana    | http://localhost:8080/ui                                         | `admin` / `grafana_admin_password` |
+| PostgreSQL | `psql 'postgres://dbuser_dba:<pg_admin_password>@localhost:5432/postgres'` | `pg_admin_password` |
+
+`make launch` runs `./configure -g` internally to generate random passwords. You can check them with:
+
+```bash
+cd ~/pigsty/docker
+make pass | grep -E 'grafana_admin_password|pg_admin_password'
+```
 
 {{% alert title="Web Portal & PostgreSQL" color="info" %}}
 Web Portal and PostgreSQL are only available after **Deployment** (`./deploy.yml`) completes.

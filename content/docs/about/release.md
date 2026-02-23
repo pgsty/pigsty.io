@@ -65,6 +65,104 @@ The current stable version is [**v4.1.0**](#v410).
 |     v0.0.1      |  2019-05-15  | POC                                                                             |   [v0.0.1](https://github.com/Vonng/pg/commit/fa2ade31f8e81093eeba9d966c20120054f0646b)   |
 
 
+## v4.2.0 (Beta)
+
+> Planned for 2026-02-27 (aligned with PostgreSQL 18.3 out-of-band minor releases)
+>
+> As of 2026-02-23: `v4.1.0..HEAD` has **12 commits**, **98 files changed**, **+663 / -563** lines.
+
+**Release Positioning**
+
+- `4.2.0` is still WIP and positioned as a routine minor update focused on upstream minor catch-up, package rebuilds, and installer path fixes.
+- This iteration centers on `Babelfish` and `Cloudberry` integration: package alias fixes, install-path fixes, and template default adjustments are now part of the standard delivery path.
+- PostgreSQL has scheduled out-of-band fixes on 2026-02-26, so upgrade together with PG `18.3/17.9/16.13/15.17/14.22`.
+
+**Highlights**
+
+- `mssql` template now defaults to Babelfish PG17: `pg_version: 17`, `pg_packages: [babelfish, pgsql-common, sqlcmd]`, and no extra `mssql` repo dependency.
+- `pg_home_map` updated: `mssql` points to `/usr/babelfish-$v/`, `gpsql` points to `/usr/local/cloudberry`, unifying kernel path semantics.
+- `package_map` now includes dedicated `cloudberry` mapping and fixes `babelfish*` alias mapping to versioned package names (RPM/DEB).
+- Redis default main data directory changed from `/data` to `/data/redis`; deploy blocks the legacy value, and `redis_remove` adds backward-compatible cleanup for old paths.
+- `configure` now supports `-o` absolute output paths with auto-directory creation; region detection is now tri-state (inside-China / outside-China / offline fallback), and `behind_gfw()` hang is fixed.
+- Fixed Debian/Ubuntu default repo URLs (`updates/backports/security`) and China mirror component mapping to avoid package pull failures during node bootstrap.
+- Supabase app stack got a routine refresh (including PostgREST `14.5`, Vector `0.53.0`) and now includes missing S3 credential variables.
+- Rich/Sample templates now explicitly set `dbuser_meta` defaults; `node.sh` systemd auto-completion logic is simplified.
+
+**PG Extension Package Updates**
+
+> Compiled from [APT Changelog](/docs/repo/pgsql/deb/) and [DNF Changelog](/docs/repo/pgsql/rpm/).
+>
+> Note: version deltas below are WIP-phase snapshots; final release package indexes are authoritative.
+
+| Package             | Old Version      | New Version | Notes                                                |
+|:--------------------|:-----------------|:------------|:-----------------------------------------------------|
+| `timescaledb`       | 2.25.0           | 2.25.1      |                                                      |
+| `citus`             | 14.0.0-3         | 14.0.0-4    | Rebuilt from latest official release (DEB/RPM)       |
+| `age`               | 1.7.0            | 1.7.0       | Added PG 17 support for 1.7.0                        |
+| `pg_background`     | -                | 1.8         | DEB-only build; RPM is from PGDG                     |
+| `pgmq`              | 1.10.0           | 1.10.1      | Package currently unavailable                         |
+| `pg_search`         | 0.21.6 / 0.21.7  | 0.21.8      | Direct-download usage (older DEB/RPM versions differ) |
+| `oriolepg`          | 17.11            | 17.16       | OriolePG kernel update                               |
+| `orioledb`          | beta12           | beta14      | Matches OriolePG 17.16                               |
+| `cloudberry`        | -                | 2.0.0       | New package                                          |
+| `babelfishpg`       | -                | 5.5.0       | New BabelfishPG package group                        |
+| `babelfish`         | -                | 5.5.0       | New Babelfish compatibility package                  |
+| `antlr4-runtime413` | -                | 4.13        | New Babelfish runtime dependency                     |
+
+**Infrastructure Package Updates**
+
+> Compiled from [Infra Changelog 2026-02-18](/docs/repo/infra/log/#2026-02-18) and [Infra Changelog 2026-02-22](/docs/repo/infra/log/#2026-02-22).
+
+| Package                        | Old Version      | New Version      | Notes         |
+|:-------------------------------|:-----------------|:-----------------|:--------------|
+| `grafana`                      | 12.3.2           | 12.3.3           |               |
+| `grafana-victorialogs-ds`      | 0.24.1           | 0.25.0           |               |
+| `grafana-victoriametrics-ds`   | 0.21.0           | 0.22.0           |               |
+| `grafana-infinity-ds`          | 3.7.0            | 3.7.1            |               |
+| `victoria-metrics`             | 1.135.0          | 1.136.0          |               |
+| `victoria-metrics-cluster`     | 1.135.0          | 1.136.0          |               |
+| `vmutils`                      | 1.135.0          | 1.136.0          |               |
+| `loki`                         | 3.6.5            | 3.6.6            |               |
+| `promtail`                     | 3.6.5            | 3.6.6            |               |
+| `logcli`                       | 3.6.5            | 3.6.6            |               |
+| `redis_exporter`               | 1.80.2           | 1.81.0           |               |
+| `etcd`                         | 3.6.7            | 3.6.8            |               |
+| `dblab`                        | 0.34.2           | 0.34.3           |               |
+| `tigerbeetle`                  | 0.16.72          | 0.16.73          |               |
+| `seaweedfs`                    | 4.09             | 4.13             |               |
+| `rustfs`                       | 1.0.0-alpha.82   | 1.0.0-alpha.83   |               |
+| `uv`                           | 0.10.0           | 0.10.4           |               |
+| `kafka`                        | 4.1.1            | 4.2.0            |               |
+| `npgsqlrest`                   | 3.7.0            | 3.8.0            |               |
+| `postgrest`                    | 14.4             | 14.5             |               |
+| `opencode`                     | 1.1.59           | 1.2.10           | updated again on 2/22 |
+| `genai-toolbox`                | 0.25.0           | 0.27.0           |               |
+| `claude`                       | 2.1.37           | 2.1.45           |               |
+| `rclone`                       | 1.73.0           | 1.73.1           |               |
+| `code-server`                  | 4.108.2          | 4.109.2          |               |
+| `code`                         | 1.109.2          | 1.109.4          |               |
+| `pig`                          | 1.1.1            | 1.2.0            | updated again on 2/22 |
+| `stalwart`                     | -                | 0.15.5           | new           |
+| `maddy`                        | -                | 0.8.2            | new           |
+
+**Commit List (`v4.1.0..HEAD`, 12 total, 2026-02-15 ~ 2026-02-23)**
+
+```text
+6791d6a31 fix behind_gfw() hang due to --connect-timeout not covering transfer phase
+b8efed293 conf: make dbuser_meta defaults explicit in sample templates
+e13a56d98 conf: make dbuser_meta defaults explicit in rich template
+4218d8664 optimize systemd auto completion
+f5f25983c fix(redis): change redis_fs_main default from /data to /data/redis
+097a7d8d7 update babelfish and cloudberry packages
+b2f9d354d update the mssql config template
+9428dcfeb bump supabase to the latest version
+61fbe7b78 add cloudberry and fix babelfish alias
+af197e2d5 fix configure: handle -o absolute path and improve region detection
+603421956 fix the default debian/ubuntu node repo url issue
+f2111eddb chore: bump version to v4.2.0
+```
+
+
 ------
 
 ## v4.1.0

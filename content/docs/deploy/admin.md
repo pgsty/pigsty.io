@@ -53,7 +53,9 @@ If unsatisfied with that user, Pigsty's deployment playbook can [**create a new 
 Assuming you have root access or an existing admin user on the node, create an admin user with Pigsty itself:
 
 ```bash
-./node.yml -k -K -t node_admin -e ansible_user=[your_existing_admin]
+./node.yml -k -K -t node_admin \
+  -e ansible_user=[current_login_admin] \
+  -e node_admin_username=[new_admin_to_create]
 ```
 
 This leverages the existing admin to create a new one—a dedicated `dba` (uid=88) user described by these parameters, with sudo/ssh properly configured:
@@ -194,6 +196,5 @@ See [**used ports**](/docs/node/) for the complete port list.
 - `5434`: PG replica service
 - `5436`: PG default service
 - `5438`: PG offline service
-
 
 

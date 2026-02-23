@@ -84,7 +84,7 @@ For example, you can connect to the `meta` database in the `pg-meta` cluster usi
 ```bash
 postgres://dbuser_dba:DBUser.DBA@10.10.10.10:5432/meta
 postgres://dbuser_meta:DBUser.Meta@10.10.10.10:5432/meta
-postgres://dbuser_view:DBUser.View@10.10.10.10:5432/meta
+postgres://dbuser_view:DBUser.Viewer@10.10.10.10:5432/meta
 ```
 
 Note: These default passwords are automatically replaced with random strong passwords when using `configure -g`. Remember to replace the IP address and password with actual values.
@@ -208,12 +208,12 @@ We recommend starting with **PGSQL Overview**. Many elements in the dashboards a
 
 One of PostgreSQL's most powerful features is its [**extension ecosystem**](/docs/pgsql/ext). Extensions can add new data types, functions, index methods, and more to the database.
 
-Pigsty provides an unparalleled [**440+ extensions**](https://pgext.cloud/list) in the PG ecosystem, covering 16 major categories including time-series, geographic, vector, and full-text search—install with one click.
-Start with three powerful and commonly used extensions that are automatically installed in Pigsty's [**default template**](/docs/conf/meta). You can also [**install**](/docs/pgsql/ext/install) more extensions as needed.
+Pigsty provides an unparalleled [**451 extensions**](https://pgext.cloud/list) in the PG ecosystem, covering 16 major categories including time-series, geographic, vector, and full-text search—install with one click.
+Start with three powerful and commonly used extensions, then [**install**](/docs/pgsql/ext/install) more extensions such as `timescaledb` as needed.
 
-- [**`postgis`**](https://pgext.cloud/e/postgis): Geographic information system for processing maps and location data
-- [**`pgvector`**](https://pgext.cloud/e/vector): Vector database supporting AI embedding vector similarity search
-- [**`timescaledb`**](https://pgext.cloud/e/timescaledb): Time-series database for efficient storage and querying of time-series data
+- [**`postgis`**](https://pgext.cloud/e/postgis): Geographic information system for processing maps and location data (installed by default)
+- [**`pgvector`**](https://pgext.cloud/e/vector): Vector database supporting AI embedding vector similarity search (installed by default)
+- [**`timescaledb`**](https://pgext.cloud/e/timescaledb): Time-series database for efficient storage and querying of time-series data (optional install)
 
 ```sql
 \dx                            -- psql meta command, list installed extensions

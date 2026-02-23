@@ -50,8 +50,9 @@ sudo apt install -y ansible python3-jmespath
 {{% /tab %}}
 {{% tab header="EL" %}}
 ```bash
-sudo dnf install -y ansible python-jmespath         # EL 10
-sudo dnf install -y ansible python3.12-jmespath     # EL 9/8
+sudo dnf install -y ansible python3.12-jmespath python3-cryptography  # EL 8
+sudo dnf install -y ansible python3-jmespath                           # EL 9
+sudo dnf install -y ansible                                            # EL 10
 ```
 {{% /tab %}}
 {{% tab header="MacOS" %}}
@@ -249,5 +250,4 @@ Below are the [**built-in playbooks**](/docs/ref/playbook) in Pigsty. You can al
 | [**DOCKER**](/docs/docker/playbook/) | [**`app.yml`**](https://github.com/pgsty/pigsty/blob/main/app.yml)                         | Install applications using Docker Compose           |
 | [**FERRET**](/docs/ferret/playbook)  | [**`mongo.yml`**](https://github.com/pgsty/pigsty/blob/main/mongo.yml)                     | Install Mongo/FerretDB on nodes                     |
 {.full-width}
-
 

@@ -49,17 +49,23 @@ files/pki/
 
 ### CA Variables
 
-| Variable       | Default      | Description                              |
-|:----------------|--------------|----------------------------------------|
-| `ca_create`      | `true`       | Create CA if not exists, or abort        |
-| `ca_cn`          | `pigsty-ca`  | CA certificate common name               |
-| `cert_validity`   | `7300d`       | Default validity for issued certificates |
-| | Variable       | Default      | Description                              |
-|:----------------|--------------|----------------------------------------|
-| CA Certificate | 100 years | Hardcoded (36500 days)       |
-| Server/Client     | 20 years   | `cert_validity` (7300d)      |
-| Nginx HTTPS       | ~1 year    | `nginx_cert_validity` (397d) |
-| > **Note**: Browser vendors limit trust to 398-day certificates. Nginx uses shorter validity for browser compatibility. |
+| Variable | Default | Description |
+|:---------|:--------|:------------|
+| `ca_create` | `true` | Create CA if it does not exist, otherwise abort |
+| `ca_cn` | `pigsty-ca` | CA certificate common name |
+| `cert_validity` | `7300d` | Default validity for issued certificates |
+{.full-width}
+
+### Certificate Validity
+
+| Certificate Type | Validity | Control Parameter |
+|:-----------------|:---------|:------------------|
+| CA certificate | 100 years | Hardcoded (36500 days) |
+| Server/Client | 20 years | `cert_validity` (`7300d`) |
+| Nginx HTTPS | ~1 year | `nginx_cert_validity` (`397d`) |
+{.full-width}
+
+> **Note**: Browser vendors limit trust for certificates longer than 398 days. Nginx uses shorter validity for browser compatibility.
 
 
 

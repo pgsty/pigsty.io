@@ -1,51 +1,52 @@
 ---
-title: "Mattermost: Open-Source IM"
-weight: 605
-description: Build a private team collaboration platform with Mattermost, the open-source Slack alternative.
+title: "Mattermost: Open-Source Team Collaboration"
+weight: 595
+description: Deploy Mattermost on Pigsty v4.1 and store state in external PostgreSQL.
 module: [SOFTWARE]
 categories: [Reference]
 ---
 
-[**Mattermost**](https://mattermost.com/) is an open-source team collaboration and messaging platform.
+[**Mattermost**](https://mattermost.com/) is an open-source team collaboration platform and a private alternative to Slack.
 
-Mattermost provides instant messaging, file sharing, audio/video calls, and more. It's an open-source alternative to Slack and Microsoft Teams, particularly suitable for enterprises requiring self-hosted deployment.
-
+Pigsty v4.1 provides `app/mattermost` (`conf/app/mattermost.yml`), which stores app state in external PostgreSQL and persists file directories on host paths.
 
 ## Quick Start
 
 ```bash
-cd ~/pigsty/app/mattermost
-make up     # Start Mattermost with Docker Compose
+curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
+./bootstrap
+./configure -c app/mattermost
+vi pigsty.yml                 # update passwords and domain
+./deploy.yml
+./docker.yml
+./app.yml
 ```
 
-Access URL: http://mattermost.pigsty or http://10.10.10.10:8065
+Default endpoints:
 
-First-time access requires creating an administrator account.
+- `http://<IP>:8065`
+- `http://mm.pigsty`
 
+On first access, initialize the admin account in the web UI.
 
-## Features
+## Default Storage and Connections
 
-- **Instant Messaging**: Personal and group chat
-- **Channel Management**: Public and private channels
-- **File Sharing**: Secure file storage and sharing
-- **Audio/Video Calls**: Built-in calling functionality
-- **Integration Capabilities**: Webhooks, Bots, and plugins support
-- **Mobile Apps**: iOS and Android clients
-- **Enterprise-grade**: SSO, LDAP, compliance features
+Default template settings include:
 
+- PostgreSQL URL: `POSTGRES_URL=postgres://dbuser_mattermost:DBUser.Mattermost@<IP>:5432/mattermost?...`
+- Persistent directories: `/data/mattermost/{config,data,logs,plugins,client/plugins,bleve-indexes}`
 
-## Connect to PostgreSQL
-
-Mattermost uses PostgreSQL for data storage. Configure the connection information:
+## Operations
 
 ```bash
-MM_SQLSETTINGS_DRIVERNAME=postgres
-MM_SQLSETTINGS_DATASOURCE=postgres://dbuser_mm:DBUser.MM@10.10.10.10:5432/mattermost
+cd /opt/mattermost
+make up
+make restart
+make log
+make stop
 ```
 
+## References
 
-## Related Links
-
-- Mattermost Website: https://mattermost.com/
-- Documentation: https://docs.mattermost.com/
-- GitHub Repository: https://github.com/mattermost/mattermost
+- Mattermost docs: https://docs.mattermost.com/
+- Pigsty template: https://github.com/pgsty/pigsty/blob/main/conf/app/mattermost.yml

@@ -1,81 +1,57 @@
 ---
-title: 'ByteBase: PG Schema Migration'
+title: "ByteBase: Schema Migration"
+weight: 625
 date: 2022-05-20
-weight: 635
-description: Self-hosting bytebase with PostgreSQL managed by Pigsty
+description: Deploy Bytebase with Pigsty's Docker Compose template and connect it to external PostgreSQL.
 module: [SOFTWARE]
 categories: [Task]
 ---
 
+[Bytebase](https://bytebase.com/) is a database schema change and version management tool.
 
-## ByteBase
+Pigsty provides a ready-to-use Compose template in `app/bytebase`. It listens on `8887` by default and connects to external PostgreSQL via `BB_PGURL`.
 
-[ByteBase](https://bytebase.com/) is a database schema change management tool. The following command will start a ByteBase on the meta node `8887` port by default.
-
-```bash
-mkdir -p /data/bytebase/data;
-docker run --init --name bytebase --restart always --detach --publish 8887:8887 --volume /data/bytebase/data:/var/opt/bytebase \
-    bytebase/bytebase:1.0.4 --data /var/opt/bytebase --host http://ddl.pigsty --port 8887
-```
-
-Then visit http://10.10.10.10:8887/ or [http://ddl.pigsty](http://ddl.pigsty/) to access bytebase console. You have to "Create Project", "Env", "Instance", "Database" to perform schema migration.
-
-Public Demo: [http://ddl.pigsty.cc](http://ddl.pigsty.cc)
-
-Default username & password: `admin` / `pigsty`
-
-![](/img/docs/app/bytebase.jpeg)
-
-
-
---------
-
-## Bytebase Overview
-
-Schema Migrator for PostgreSQL
+## Quick Start
 
 ```bash
-cd app/bytebase; make up
+cd ~/pigsty/app/bytebase
+vi .env         # check BB_PORT / BB_DOMAIN / BB_PGURL
+make up
 ```
 
-Visit [http://ddl.pigsty](http://ddl.pigsty) or http://10.10.10.10:8887
+Access:
 
+- `http://ddl.pigsty`
+- `http://<IP>:8887`
+
+After first startup, initialize the admin account using the Bytebase setup wizard.
+
+## External PostgreSQL
+
+Default connection string example:
 
 ```bash
-make up         # pull up bytebase with docker-compose in minimal mode
-make run        # launch bytebase with docker , local data dir and external PostgreSQL
-make view       # print bytebase access point
-make log        # tail -f bytebase logs
-make info       # introspect bytebase with jq
-make stop       # stop bytebase container
-make clean      # remove bytebase container
-make pull       # pull latest bytebase image
-make rmi        # remove bytebase image
-make save       # save bytebase image to /tmp/bytebase.tgz
-make load       # load bytebase image from /tmp
+postgresql://dbuser_bytebase:DBUser.Bytebase@10.10.10.10:5432/bytebase?sslmode=prefer
 ```
 
-
-
-## PostgreSQL Preparation
-
-Bytebase use its internal PostgreSQL database by default, You can use external PostgreSQL for higher durability.
-
-```yaml
-# postgres://dbuser_bytebase:DBUser.Bytebase@10.10.10.10:5432/bytebase
-db:   { name: bytebase, owner: dbuser_bytebase, comment: bytebase primary database }
-user: { name: dbuser_bytebase , password: DBUser.Bytebase, roles: [ dbrole_admin ] }
-```
-
-if you wish to user an external PostgreSQL, drop monitor extensions and views & pg_repack
+You can create the database user and database in Pigsty first:
 
 ```bash
-DROP SCHEMA monitor CASCADE;
-DROP EXTENSION pg_repack;
+bin/pgsql-user pg-meta dbuser_bytebase
+bin/pgsql-db   pg-meta bytebase
 ```
 
-After bytebase initialized, you can create them back with `/pg/tmp/pg-init-template.sql`
+## Common Commands
 
 ```bash
-psql bytebase < /pg/tmp/pg-init-template.sql
+make up
+make log
+make info
+make stop
+make clean
 ```
+
+## References
+
+- Bytebase docs: https://www.bytebase.com/docs/
+- Pigsty template: https://github.com/pgsty/pigsty/tree/main/app/bytebase

@@ -32,7 +32,7 @@ Enter the Terraform directory, select a template, initialize provider plugins, a
 
 ```bash
 cd ~/pigsty/terraform
-cp spec/aliyun-meta.tf terraform.tf   # Select template
+cp spec/aliyun.tf terraform.tf         # Select template
 terraform init                         # Install cloud provider plugins (first use)
 terraform apply                        # Generate execution plan and create resources
 ```
@@ -88,13 +88,13 @@ Pigsty provides multiple predefined cloud resource templates in the [`terraform/
 
 | Template File | Cloud Provider | Description |
 |---------------|----------------|-------------|
-| [`aliyun-meta.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/aliyun-meta.tf) | Alibaba Cloud | Single-node meta template, supports all distros and AMD/ARM (default) |
-| [`aliyun-meta-s3.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/aliyun-meta-s3.tf) | Alibaba Cloud | Single-node template + OSS bucket for PITR backup |
+| [`aliyun.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/aliyun.tf) | Alibaba Cloud | Single-node meta template, supports all distros and AMD/ARM (default) |
+| [`aliyun-s3.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/aliyun-s3.tf) | Alibaba Cloud | Single-node template + OSS bucket for PITR backup |
 | [`aliyun-full.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/aliyun-full.tf) | Alibaba Cloud | 4-node sandbox template, supports all distros and AMD/ARM |
 | [`aliyun-oss.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/aliyun-oss.tf) | Alibaba Cloud | 5-node build template, supports all distros and AMD/ARM |
 | [`aliyun-pro.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/aliyun-pro.tf) | Alibaba Cloud | Multi-distro test template for cross-OS testing |
-| [`aws-cn.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/aws-cn.tf) | AWS | AWS China region 4-node environment |
-| [`tencentcloud.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/tencentcloud.tf) | Tencent Cloud | Tencent Cloud 4-node environment |
+| [`aws-cn.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/aws-cn.tf) | AWS | AWS China region single-node environment |
+| [`qcloud.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/qcloud.tf) | Tencent Cloud | Tencent Cloud single-node environment |
 
 When using a template, copy the template file to `terraform.tf`:
 
@@ -177,7 +177,7 @@ The following are commonly used [**ECS Public OS Image**](https://help.aliyun.co
 
 ### OSS Storage Configuration
 
-The `aliyun-meta-s3.tf` template additionally creates an OSS bucket and related permissions for PostgreSQL PITR backup:
+The `aliyun-s3.tf` template additionally creates an OSS bucket and related permissions for PostgreSQL PITR backup:
 
 - **OSS Bucket**: Creates a private bucket named `pigsty-oss`
 - **RAM User**: Creates a dedicated `pigsty-oss-user` user
@@ -279,6 +279,5 @@ After creation, SSH login to the admin node using:
 ssh root@<public_ip>
 ```
 
-You can also use `./ssh` or `make ssh` to write SSH aliases to the config file, then login using `ssh pg-meta`.
+You can also use `./ssh` or `make ssh` to write SSH aliases to the config file, then login using `ssh meta`.
 {{% /alert %}}
-

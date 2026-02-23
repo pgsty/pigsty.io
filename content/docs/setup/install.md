@@ -128,7 +128,7 @@ Many [**configuration templates**](/docs/concept/iac/template/) are available fo
 
 ```bash
 ./configure                  # Default template, install PG 18 with essential extensions
-./configure -v 17            # Use PG 17 instead of default PG 18
+./configure -v 16            # Use PG 16 instead of default PG 18
 ./configure -c rich          # Create local repo, download all extensions, install major ones
 ./configure -c slim          # Minimal install template, use with ./slim.yml playbook
 ./configure -c app/supa      # Use app/supa self-hosted Supabase template
@@ -269,4 +269,3 @@ Most modules require the [**`NODE`**](/docs/node/) module installed first. See a
 
 [**`PGSQL`**](/docs/pgsql/), [**`INFRA`**](/docs/infra/), [**`NODE`**](/docs/node/), [**`ETCD`**](/docs/etcd/),
 [**`MINIO`**](/docs/minio/), [**`REDIS`**](/docs/redis/), [**`FERRET`**](/docs/ferret/), [**`DOCKER`**](/docs/docker/)……
-

@@ -67,8 +67,8 @@ pig repo set                          # = pig repo add all --remove --update
 # Method 2: Gentle approach - only add required repos, keep existing config
 pig repo add pgsql                    # Add PGDG and Pigsty repos with cache update
 pig repo add pigsty --region=china    # Add Pigsty repo, specify China region
-pig repo add pgdg   --region=default  # Add PGDG, specify default region
-pig repo add infra  --region=europe   # Add INFRA repo, specify Europe region
+pig repo add pgdg   --region=europe   # Add PGDG repo, specify Europe region
+pig repo add infra  --region=default  # Add INFRA repo, specify default region
 
 # If no -u|--update option above, run this command additionally
 pig repo update                       # Update system package cache
@@ -81,23 +81,27 @@ In pig, APT/YUM repositories are organized into **modules** — groups of reposi
 
 | Module | Description | Repository List |
 |:---:|:---|:---|
-| `all` | All core modules for PG install | `node` + `infra` + `pgsql` |
+| `all` | All core modules required for PG install | `node` + `infra` + `pgsql` |
 | `pgsql` | PGDG + Pigsty PG extensions | `pigsty-pgsql` + `pgdg` |
 | `pigsty` | Pigsty Infra + PGSQL repos | pigsty-infra, pigsty-pgsql |
-| `pgdg` | PGDG official repository | pgdg-common, pgdg13-18 |
-| `node` | Linux system repositories | base, updates, extras, epel... |
-| `infra` | Infrastructure components | pigsty-infra, nginx, docker-ce |
-| `extra` | Extra infrastructure repos | docker-ce, nginx, haproxy... |
-| `beta` | Pigsty beta repo | pigsty-pgsql-beta |
-| `llvm` | LLVM for PGRX | LLVM 16/17/18/19 |
-| `kube` | Kubernetes repo | kubernetes |
-| `grafana` | Grafana repo | grafana |
-| `haproxy` | HAProxy repo | haproxy |
-| `redis` | Redis stack repo | redis |
-| `mongo` | MongoDB repo | mongodb |
-| `mysql` | MySQL repo | mysql |
-| `click` | ClickHouse repo | clickhouse |
-| `gitlab` | GitLab repo | gitlab-ce |
+| `pgdg` | PGDG official repositories | pgdg-common, pgdg13-18 |
+| `node` | Linux system repositories | base, updates, extras, epel, baseos, appstream... |
+| `infra` | Infrastructure component repositories | pigsty-infra, nginx, docker-ce |
+| `docker` | Docker repository | docker-ce |
+| `beta` | PostgreSQL 19 beta repositories | pgdg19-beta, pgdg-beta |
+| `extra` | PGDG non-free and third-party extensions | pgdg-extras, timescaledb, citus |
+| `groonga` | PGroonga repository | groonga |
+| `mssql` | WiltonDB repository | wiltondb |
+| `percona` | Percona PG + PG_TDE repository | percona |
+| `llvm` | LLVM toolchain repository | llvm |
+| `kube` | Kubernetes repository | kubernetes |
+| `grafana` | Grafana repository | grafana |
+| `haproxy` | HAProxy repository | haproxyd, haproxyu |
+| `redis` | Redis repository | redis |
+| `mongo` | MongoDB repository | mongo |
+| `mysql` | MySQL repository | mysql |
+| `click` | ClickHouse repository | clickhouse |
+| `gitlab` | GitLab repository | gitlab-ce, gitlab-ee |
 
 
 ## repo add

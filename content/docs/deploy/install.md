@@ -112,7 +112,7 @@ Many [**configuration templates**](/docs/concept/iac/template/) are available fo
 ```bash
 ./configure -c ha/full -g       # Use 4-node sandbox template
 ./configure -c ha/trio -g       # Use 3-node minimal HA template
-./configure -c ha/dual -g -v 17 # Use 2-node semi-HA template with PG 17
+./configure -c ha/dual -g -v 18 # Use 2-node semi-HA template with PG 18
 ./configure -c ha/simu -s       # Use 20-node production simulation, skip IP check, no random passwords
 ```
 
@@ -256,4 +256,3 @@ Most modules require the [**`NODE`**](/docs/node/) module first. See available [
 
 [**`PGSQL`**](/docs/pgsql/), [**`INFRA`**](/docs/infra/), [**`NODE`**](/docs/node/), [**`ETCD`**](/docs/etcd/),
 [**`MINIO`**](/docs/minio/), [**`REDIS`**](/docs/redis/), [**`FERRET`**](/docs/ferret/), [**`DOCKER`**](/docs/docker/)...
-

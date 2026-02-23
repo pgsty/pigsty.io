@@ -1,64 +1,60 @@
 ---
-title: 'PostgREST: Generate REST API from Schema'
+title: "PostgREST: Auto-Generated API"
+weight: 640
 date: 2022-05-21
-weight: 650
-description: Launch postgREST to generate REST API from PostgreSQL schema automatically
+description: Deploy PostgREST with Pigsty Compose templates and auto-generate REST APIs from PostgreSQL schema.
 module: [SOFTWARE]
 categories: [Reference]
 ---
 
+[PostgREST](https://postgrest.org/) exposes PostgreSQL schemas directly as REST APIs.
 
-[PostgREST](https://postgrest.org/en/stable/index.html) is a binary component that automatically generates a REST API
-based on the PostgreSQL database schema.
+Pigsty provides the `app/postgrest` template, with default port `8884`.
 
-For example, the following command will launch postgrest with docker (local port 8884, using default admin user, and
-expose Pigsty CMDB schema):
-
-```bash
-docker run --init --name postgrest --restart always --detach --publish 8884:8081 postgrest/postgrest
-```
-
-Visit [http://10.10.10.10:8884](http://10.10.10.10:8884/) will show all auto-generated API definitions and automatically
-expose API documentation using [Swagger Editor](http://home.pigsty.cc:8883).
-
-If you wish to perform CRUD operations and design more fine-grained permission control, please refer
-to [Tutorial 1 - The Golden Key](https://postgrest.org/en/stable/tutorials/tut1.html) to generate a signed JWT.
-
-![](/img/docs/app/postgrest.jpeg)
-
-This is an example of creating pigsty cmdb API with PostgREST
+## Quick Start
 
 ```bash
-cd ~/pigsty/app/postgrest ; docker-compose up -d
+cd ~/pigsty/app/postgrest
+vi .env         # check DB_URI / DB_SCHEMA / JWT
+make up
 ```
 
-http://10.10.10.10:8884 is the default endpoint for PostgREST
+Default endpoints:
 
-http://10.10.10.10:8883 is the default api docs for PostgREST
+- `http://<IP>:8884`
+- `http://api.pigsty` (if ingress domain is configured)
+
+## Key Settings
+
+Common `.env` parameters:
+
+- `POSTGREST_DB_URI`: database connection string
+- `POSTGREST_DB_SCHEMA`: exposed schema (default `pigsty`)
+- `POSTGREST_DB_ANON_ROLE`: anonymous role
+- `POSTGREST_JWT_SECRET`: JWT secret
+
+## Swagger UI (Optional)
+
+You can run Swagger UI separately to preview APIs:
 
 ```bash
-make up         # pull up postgrest with docker-compose
-make run        # launch postgrest with docker
-make ui         # run swagger ui container
-make view       # print postgrest access point
-make log        # tail -f postgrest logs
-make info       # introspect postgrest with jq
-make stop       # stop postgrest container
-make clean      # remove postgrest container
-make rmui       # remove swagger ui container
-make pull       # pull latest postgrest image
-make rmi        # remove postgrest image
-make save       # save postgrest image to /tmp/postgrest.tgz
-make load       # load postgrest image from /tmp
+docker run --rm --name swagger -p 8882:8080 \
+  -e API_URL=http://10.10.10.10:8884 \
+  swaggerapi/swagger-ui
 ```
 
-## Swagger UI
+Then open `http://<IP>:8882`.
 
-Launch a swagger OpenAPI UI and visualize PostgREST API on 8883 with:
+## Common Commands
 
 ```bash
-docker run --init --name postgrest --name swagger -p 8883:8080 -e API_URL=http://10.10.10.10:8884 swaggerapi/swagger-ui
-# docker run -d -e API_URL=http://10.10.10.10:8884 -p 8883:8080 swaggerapi/swagger-editor # swagger editor
+make up
+make log
+make stop
+make clean
 ```
 
-Check [http://10.10.10.10:8883/](http://10.10.10.10:8883/)
+## References
+
+- PostgREST docs: https://postgrest.org/en/stable/
+- Pigsty template: https://github.com/pgsty/pigsty/tree/main/app/postgrest
