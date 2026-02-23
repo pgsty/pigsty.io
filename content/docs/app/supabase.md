@@ -1,7 +1,7 @@
 ---
 title: "Enterprise Self-Hosted Supabase"
 weight: 555
-description: Self-host enterprise-grade Supabase with Pigsty, featuring monitoring, high availability, PITR, IaC, and 440+ PostgreSQL extensions.
+description: Self-host enterprise-grade Supabase with Pigsty, featuring monitoring, high availability, PITR, IaC, and 451 PostgreSQL extensions.
 module: [SOFTWARE]
 categories: [Reference]
 ---
@@ -88,7 +88,7 @@ And nowadays, reliable [local enterprise NVMe SSDs](https://vonng.com/cloud/bonu
 
 Another important reason is **functionality** — Supabase cloud features are limited. Many powerful PostgreSQL extensions aren't available in cloud services due to multi-tenant security challenges and licensing.
 Despite [extensions being PostgreSQL's core feature](https://vonng.com/pg/pg-eat-db-world), only **64** extensions are available on Supabase cloud.
-Self-hosted Supabase with Pigsty provides up to [**440**](https://pgext.cloud/list) ready-to-use PostgreSQL extensions.
+Self-hosted Supabase with Pigsty provides up to [**451**](https://pgext.cloud/list) ready-to-use PostgreSQL extensions.
 
 Additionally, self-control and vendor lock-in avoidance are important reasons for self-hosting. Although Supabase aims to provide a vendor-lock-free open-source Google Firebase alternative, self-hosting enterprise-grade Supabase is not trivial.
 Supabase includes a series of PostgreSQL extensions they develop and maintain, and plans to replace the native PostgreSQL kernel with [**OrioleDB**](/docs/pgsql/kernel/orioledb) (which they acquired). These kernels and extensions are not available in the official PGDG repository.

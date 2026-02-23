@@ -1,7 +1,8 @@
 ---
 title: Applications
 weight: 550
-description: Pigsty v4.1 application templates and data applets: run stateless apps with Docker Compose and host state in external PostgreSQL and MinIO.
+description: >
+  Pigsty v4.1 application templates and data applets: run stateless apps with Docker Compose and host state in external PostgreSQL and MinIO.
 icon: fa-solid fa-chart-line
 module: [APP]
 categories: [Reference]

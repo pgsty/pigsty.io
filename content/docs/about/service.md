@@ -232,7 +232,7 @@ Pigsty Professional/Enterprise Edition includes the following additional feature
     - [**IvorySQL**](/docs/pgsql/kernel/ivorysql): Based on PG, provides Oracle syntax/type/stored procedure compatibility
     - [**PolarDB PG**](/docs/pgsql/kernel/polardb): Provides support for open-source PolarDB for PostgreSQL kernel
     - [**PolarDB O**](/docs/pgsql/kernel/polardb-o): 信创 database, Oracle-compatible kernel that meets domestic compliance requirements (**Enterprise Edition subscription only**)
-- **Extension Support Capability**: Provides out-of-the-box installation for 440 available PG Extensions for PG 13-18 on mainstream operating systems.
+- **Extension Support Capability**: Provides out-of-the-box installation for 451 available PG Extensions for PG 13-18 on mainstream operating systems.
 - **Complete Functional Modules**: Provides all functional modules:
     - [**Supabase**](/docs/pgsql/kernel/supabase): Reliably self-host production-grade open-source Firebase
     - [**MinIO**](/docs/minio): Enterprise PB-level object storage planning and self-hosting
@@ -314,4 +314,3 @@ Get a quick diagnostic opinion and response to questions related to PostgreSQL /
 ## Contact Information
 
 Please send an email to [**rh@vonng.com**](mailto:rh@vonng.com). Users in mainland China are welcome to add WeChat ID `RuohangFeng`.
-

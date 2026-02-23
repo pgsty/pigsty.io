@@ -26,7 +26,7 @@ Pigsty provides:
 
 - **Out-of-the-Box PostgreSQL Distribution**
 
-  Pigsty deeply integrates [**440+ extensions**](https://pgext.cloud/list) from the PostgreSQL ecosystem, providing out-of-the-box distributed, time-series, geographic, spatial, graph, vector, search, and other multi-modal database capabilities. From kernel to RDS distribution, providing production-grade database services for versions 13-18 on EL/Debian/Ubuntu.
+  Pigsty deeply integrates [**451 extensions**](https://pgext.cloud/list) from the PostgreSQL ecosystem, providing out-of-the-box distributed, time-series, geographic, spatial, graph, vector, search, and other multi-modal database capabilities. From kernel to RDS distribution, providing production-grade database services for versions 13-18 on EL/Debian/Ubuntu.
 
 - **Self-Healing High Availability Architecture**
 
@@ -142,4 +142,3 @@ Now that you understand Pigsty's basic concepts, you can:
 - Research [**Service Access**](/docs/pgsql/misc/svc) to understand stable database service delivery
 - Experience [**Infrastructure as Code**](/docs/concept/iac) to feel the magic of declarative configuration
 - Or directly start [**Quick Start**](/docs/setup/install) to deploy your first Pigsty environment in minutes
-
