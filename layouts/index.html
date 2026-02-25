@@ -12,8 +12,8 @@
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   <link rel="apple-touch-icon" href="/img/logo/logo.png">
 
-  <!-- Safari/iOS theme color - matches hero background -->
-  <meta name="theme-color" content="#0f1419">
+  <!-- Safari/iOS theme color - default light theme -->
+  <meta name="theme-color" content="#edf3fb">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <!-- Open Graph -->
@@ -31,13 +31,15 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Landing Page CSS -->
   <link rel="stylesheet" href="/css/landing.css">
+  <link rel="stylesheet" href="/css/landing-v2.css">
+  <link rel="stylesheet" href="/css/footer-legacy.css">
 
   <!-- Analytics -->
   {{ with .Site.Config.Services.GoogleAnalytics.ID }}
@@ -50,7 +52,7 @@
   </script>
   {{ end }}
 </head>
-<body class="landing-page">
+<body class="landing-page landing-theme-light" data-theme="light">
 
   <!-- ============================================
        Navigation Header
@@ -67,7 +69,13 @@
           <a href="/docs/" class="nav-link">Docs</a>
           <a href="https://pgext.cloud" class="nav-link" target="_blank">Exts</a>
           <a href="/blog/" class="nav-link">Blog</a>
-          <a href="/price/" class="nav-link">Price</a>
+          <a href="/price/" class="nav-link">Pricing</a>
+          <button type="button" class="nav-theme-toggle nav-util-icon" data-theme-toggle title="Switch light or dark mode" aria-label="Switch light or dark mode">
+            <i class="fas fa-sun"></i>
+          </button>
+          <a href="https://pigsty.cc" class="nav-lang-switch nav-util-icon" title="Switch to Chinese" aria-label="Switch to Chinese">
+            <i class="fas fa-language"></i>
+          </a>
           <a href="https://github.com/pgsty/pigsty" class="nav-link nav-link--icon" target="_blank" title="GitHub">
             <i class="fab fa-github"></i>
           </a>
@@ -87,7 +95,11 @@
     <a href="/docs/" class="mobile-menu-link">Docs</a>
     <a href="https://pgext.cloud" class="mobile-menu-link" target="_blank">Extensions</a>
     <a href="/blog/" class="mobile-menu-link">Blog</a>
-    <a href="/price/" class="mobile-menu-link">Service</a>
+    <a href="/price/" class="mobile-menu-link">Pricing</a>
+    <a href="https://pigsty.cc" class="mobile-menu-link"><i class="fas fa-language"></i> 中文</a>
+    <button type="button" class="mobile-menu-link mobile-menu-link--btn nav-theme-toggle" data-theme-toggle title="Switch light or dark mode" aria-label="Switch light or dark mode">
+      <i class="fas fa-sun"></i> Light / Dark
+    </button>
     <a href="https://github.com/pgsty/pigsty" class="mobile-menu-link" target="_blank">
       <i class="fab fa-github"></i> GitHub
     </a>
@@ -98,111 +110,76 @@
        Section 1: Hero (Cinematic Layout)
        ============================================ -->
   <section class="hero" id="hero">
-    <div class="hero-container">
-      <!-- Left: Text Content -->
-      <div class="hero-left">
-        <h1 class="hero-title animate-fade-in-up">
-          <span class="hero-title-main">PostgreSQL in Great</span>
-          <span class="hero-title-accent">STYle</span>
-        </h1>
-
-        <p class="hero-subtitle animate-fade-in-up animate-delay-100">
-          The Batteries-Included PostgreSQL Distribution<br>
-          Self-hosted. Open Source. Production Ready.
-        </p>
-
-        <div class="command-box animate-fade-in-up animate-delay-200">
-          <span class="command-prompt">$</span>
-          <code class="command-text">curl -fsSL https://repo.pigsty.io/get | bash</code>
-          <button class="command-copy" title="Copy command">
-            <i class="fas fa-copy"></i>
-          </button>
+    <div class="hero-container hero-container--split">
+      <div class="hero-content">
+        <div class="hero-head">
+          <h1 class="hero-title animate-fade-in-up">
+            <span class="hero-title-line hero-title-line--top">
+              <span class="hero-initial hero-initial--p">P</span>ostgreSQL
+            </span>
+            <span class="hero-title-line hero-title-line--bottom">
+              <span class="hero-initial hero-initial--i">I</span>n
+              <span class="hero-initial hero-initial--g">G</span>reat
+              <span class="hero-initial hero-initial--s">S</span><span class="hero-initial hero-initial--t">T</span><span class="hero-initial hero-initial--y">Y</span>le
+            </span>
+          </h1>
         </div>
 
-        <div class="hero-buttons animate-fade-in-up animate-delay-300">
-          <a href="/docs/setup/install/" class="btn btn-primary">
-            <i class="fas fa-rocket"></i> Get Started
-          </a>
-          <a href="https://demo.pigsty.io" class="btn btn-secondary" target="_blank">
-            <i class="fas fa-play"></i> Live Demo
-          </a>
+        <div class="hero-body">
+          <p class="hero-description animate-fade-in-up animate-delay-200">
+            <span class="hero-description-line">Enterprise-Grade Open-Source PG Distribution</span>
+            <span class="hero-description-line">HA, PITR, IaC, Monitor, and 450+ PG extensions</span>
+          </p>
+
+          <div class="hero-buttons animate-fade-in-up animate-delay-300">
+            <a href="/docs/setup/install/" class="btn btn-primary">
+              <i class="fas fa-rocket"></i> Get Started
+            </a>
+            <a href="https://demo.pigsty.io" class="btn btn-secondary" target="_blank">
+              <i class="fas fa-play"></i> Live Demo
+            </a>
+          </div>
+
+          <div class="command-box animate-fade-in-up animate-delay-400">
+            <span class="command-prompt">$</span>
+            <code class="command-text">curl -fsSL https://repo.pigsty.io/get | bash</code>
+            <button class="command-copy" title="Copy command">
+              <i class="fas fa-copy"></i>
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- Right: Hero Image -->
-      <div class="hero-right animate-fade-in-up animate-delay-100">
-        <img src="/img/pigsty/motherboard.gif" alt="Pigsty Architecture" class="hero-image">
+      <div class="hero-media-wrap animate-fade-in-up animate-delay-500">
+        <div class="hero-media">
+          <img src="/img/pigsty/motherboard.gif" alt="Pigsty Architecture" class="hero-image">
+        </div>
       </div>
     </div>
   </section>
-
-
-  <!-- ============================================
-       Section 2: Pain Points
-       ============================================ -->
-  <section class="landing-section pain-points" id="problems">
-    <div class="landing-container">
-      <div class="section-header" data-reveal>
-        <h2 class="section-title">Still Wrestling with PostgreSQL …?</h2>
-      </div>
-
-      <div class="pain-grid">
-
-        <div class="pain-card" data-reveal>
-          <div class="pain-icon">😵</div>
-          <h3 class="pain-title">Self-hosting is a nightmare?</h3>
-          <p class="pain-desc">HA, PITR, Sec, Observability, how long to master them all?</p>
-          <p class="pain-detail">Without a senior DBA.</p>
-        </div>
-
-        <div class="pain-card" data-reveal>
-          <div class="pain-icon">🧩</div>
-          <h3 class="pain-title">Extensions you need but can't get?</h3>
-          <p class="pain-desc">Missing some extension on the cloud?</p>
-          <p class="pain-detail">Build from scratch or combine random images?</p>
-        </div>
-
-        <div class="pain-card" data-reveal>
-          <div class="pain-icon">💸</div>
-          <h3 class="pain-title">Cloud RDS bleeding you dry?</h3>
-          <p class="pain-desc">5-20x the cost of bare metal — for lame EBS?</p>
-          <p class="pain-detail">The bigger you scale, the deeper you're locked in.</p>
-        </div>
-
-      </div>
-
-      <p class="pain-solution" data-reveal>
-        <strong>Pigsty</strong> solves all of this—and it's <strong>free and open source</strong>.
-      </p>
-    </div>
-  </section>
-
 
   <!-- ============================================
        Section 3: Core Features (Zigzag)
        ============================================ -->
   <section class="landing-section features-zigzag" id="features">
     <div class="landing-container">
-      <div class="section-header" data-reveal>
-        <h2 class="section-title">One Stack. All Problems Solved.</h2>
-        <p class="section-subtitle">Four pillars that let you self-hosting PostgreSQL like a Pro</p>
+      <div class="section-header section-header--feature" data-reveal>
+        <h2 class="section-title">Self-host Postgres like a PRO</h2>
+        <p class="section-subtitle section-subtitle--single-line">Everything you need for enterprise-grade PostgreSQL. Open source and Free</p>
       </div>
 
       <!-- Feature 1: High Availability -->
       <div class="feature-row" data-reveal>
         <div class="feature-content">
-          <h4 class="feature-label"><span class="feature-emoji">🛡️</span> Battle-Tested High Availability</h4>
-          <h3 class="feature-title">Self-healing. Sleep well.</h3>
+          <h3 class="feature-title">Reliable Architecture</h3>
+          <p class="feature-subtitle"><span class="feature-sub-icon"><i class="fas fa-shield-halved"></i></span><span class="feature-subtitle-text">Self-healing. Sleep tight</span></p>
           <ul class="feature-list">
-            <li>Auto-failover with <strong>Patroni + Etcd</strong>, traffic balancing via HAProxy</li>
-            <li>Built-in <strong>pgBackRest PITR</strong> for Recovery — even from accidental drops</li>
-            <li><strong>SSL/TLS</strong> encryption, access control models, SELinux & firewall out of the box</li>
+            <li>Auto-failover with <strong>Patroni + etcd</strong>. Traffic routed via HAProxy + PgBouncer</li>
+            <li>Point-in-time recovery with <strong>pgBackRest</strong>. Undo any mistake in minutes</li>
+            <li>Secure by default: local CA, TLS, ACL, SELinux/Firewall — all auto-configured</li>
           </ul>
           <div class="feature-cta">
-            <span class="feature-value">No more 3 AM pages. Wake up rested, fix it over coffee.</span>
-            <a href="/docs/concept/ha/" class="feature-link">
-              Learn more <i class="fas fa-arrow-right"></i>
-            </a>
+            <span class="feature-value">No more 3 AM pages. Wake up rested, fix things over coffee</span>
           </div>
         </div>
         <div class="feature-visual">
@@ -213,18 +190,15 @@
       <!-- Feature 2: Infrastructure as Code -->
       <div class="feature-row feature-row--reverse" data-reveal>
         <div class="feature-content">
-          <h4 class="feature-label"><span class="feature-emoji">⚙️</span> Infrastructure as Code</h4>
-          <h3 class="feature-title">Declare. Deploy. Done.</h3>
+          <h3 class="feature-title">Infrastructure as Code</h3>
+          <p class="feature-subtitle"><span class="feature-sub-icon"><i class="fas fa-code-branch"></i></span><span class="feature-subtitle-text">Declare. Deploy. Done</span></p>
           <ul class="feature-list">
-            <li>Declare your desired state in config. Pigsty makes it real—no fuss.</li>
-            <li>Fully customizable. Prod/UAT/Test/Devbox, same arch, different configs.</li>
-            <li>Ansible idempotent playbooks. Linux-Native without K8s or Docker.</li>
+            <li>Define your desired state. Pigsty makes it real — no fuss.</li>
+            <li>Idempotent playbooks. Linux-native, no K8s or Docker required</li>
+            <li>One architecture fits all: Prod, UAT, Devbox — just swap the config</li>
           </ul>
           <div class="feature-cta">
-            <span class="feature-value">Clone your entire prod env in one pass. Run 100x clusters single-handedly.</span>
-            <a href="/docs/conf/" class="feature-link">
-              See examples <i class="fas fa-arrow-right"></i>
-            </a>
+            <span class="feature-value">Provision in one pass. Scale without sweat</span>
           </div>
         </div>
         <div class="feature-visual">
@@ -247,44 +221,38 @@
       <!-- Feature 3: Observability -->
       <div class="feature-row" data-reveal>
         <div class="feature-content">
-          <h4 class="feature-label"><span class="feature-emoji">📊</span> Full-Stack Observability</h4>
-          <h3 class="feature-title">Total visibility. Total control.</h3>
+          <h3 class="feature-title">Stunning Observability</h3>
+          <p class="feature-subtitle"><span class="feature-sub-icon"><i class="fas fa-chart-line"></i></span><span class="feature-subtitle-text">Full visibility. No blind spots</span></p>
           <ul class="feature-list">
-            <li>SOTA observability stack powered by <strong>Grafana + Victoria</strong></li>
-            <li><strong>3000+</strong> metrics, <strong>40+</strong> fine-tuned dashboards, ready out of the box</li>
-            <li>Deploy standalone to monitor existing RDS / PostgreSQL instances</li>
+            <li>Best-of-breed observability stack: Grafana + VictoriaMetrics</li>
+            <li><strong>3000+</strong> metrics, <strong>40+</strong> curated dashboards. Ready out of the box</li>
+            <li>Works standalone—monitor your existing RDS or Postgres as-is</li>
           </ul>
           <div class="feature-cta">
-            <span class="feature-value">Pinpoint issues fast. Make data-driven decisions. End the guesswork.</span>
-            <a href="https://demo.pigsty.io" class="feature-link" target="_blank">
-              Try live demo <i class="fas fa-arrow-right"></i>
-            </a>
+            <span class="feature-value">Instant diagnosis. No more guesswork</span>
           </div>
         </div>
         <div class="feature-visual">
-          <img src="/img/pigsty/dashboard.jpg" alt="Pigsty Monitoring Dashboard" class="feature-image">
+          <img src="/img/pigsty/dashboards.webp" alt="Pigsty Monitoring Dashboard" class="feature-image">
         </div>
       </div>
 
       <!-- Feature 4: Extensions -->
       <div class="feature-row feature-row--reverse" data-reveal>
         <div class="feature-content">
-          <h4 class="feature-label"><span class="feature-emoji">🧩</span> Extension Ecosystem</h4>
-          <h3 class="feature-title">Every extension. Ready to run.</h3>
+          <h3 class="feature-title">Batteries Included</h3>
+          <p class="feature-subtitle"><span class="feature-sub-icon"><i class="fas fa-cubes"></i></span><span class="feature-subtitle-text">Fully packed. Plug and play</span></p>
           <ul class="feature-list">
-            <li><strong>440+</strong> PostgreSQL extensions across <strong>14</strong> Linux distros, ready to install</li>
-            <li><strong>8 kernel forks</strong>: Oracle, MySQL, SQL Server, MongoDB compatible and more</li>
-            <li>Modules: MinIO, Redis, FerretDB, Docker, Supabase self-hosting support</li>
+            <li><strong>450+</strong> PG extensions across <strong>14</strong> Linux distros, ready to install</li>
+            <li><strong>12 PG kernel forks</strong>, one meta-distribution to rule them all</li>
+            <li>Modules: MinIO, Redis, Docker, JuiceFS, Supabase and more</li>
           </ul>
           <div class="feature-cta">
-            <span class="feature-value">Mix and compose freely. Install what you want. Full freedom, full control.</span>
-            <a href="https://pgext.cloud" class="feature-link">
-              Browse catalog <i class="fas fa-arrow-right"></i>
-            </a>
+            <span class="feature-value">Install what you want. Full freedom, full control.</span>
           </div>
         </div>
         <div class="feature-visual">
-          <img src="/img/pigsty/ecosystem.jpg" alt="PostgreSQL Extension Ecosystem" class="feature-image">
+          <img src="/img/pigsty/hero-ecosystem.webp" alt="PostgreSQL Extension Ecosystem" class="feature-image">
         </div>
       </div>
 
@@ -298,14 +266,72 @@
   <section class="landing-section ecosystem-section" id="ecosystem">
     <div class="landing-container">
       <div class="section-header" data-reveal>
-        <h2 class="section-title">440+ Extensions. 10 Kernel Forks.</h2>
-        <p class="section-subtitle">
-          Pigsty unlocks the full potential of PostgreSQL
-          <span class="section-links">
-            <a href="https://pgext.cloud" target="_blank">Extension Catalog <i class="fas fa-external-link-alt"></i></a>
-            <a href="/docs/pgsql/kernel/">Kernel Forks <i class="fas fa-arrow-right"></i></a>
-          </span>
-        </p>
+        <h2 class="section-title">Ultimate Extensibility</h2>
+        <p class="section-subtitle section-subtitle--single-line">Unlocks the full potential of PostgreSQL with 12+ <a href="/docs/pgsql/kernel/" class="section-subtitle-link">kernel</a> forks and 450+ <a href="https://pgext.cloud" target="_blank" rel="noopener" class="section-subtitle-link">extensions</a>!</p>
+      </div>
+
+      <!-- Kernels Grid -->
+      <div class="kernels-grid-new" data-reveal>
+        <a href="/docs/pgsql/kernel/supabase/" class="kernel-card-new">
+          <span class="kernel-icon-new"><img src="/img/icon/supabase.svg" alt="Supabase"></span>
+          <span class="kernel-name-new">Supabase</span>
+          <span class="kernel-desc-new">Backend as a Service</span>
+        </a>
+        <a href="/docs/pgsql/kernel/citus/" class="kernel-card-new">
+          <span class="kernel-icon-new"><img src="/img/icon/citus.svg" alt="Citus"></span>
+          <span class="kernel-name-new">Citus</span>
+          <span class="kernel-desc-new">Horizontally Distributed</span>
+        </a>
+        <a href="/docs/pgsql/kernel/babelfish/" class="kernel-card-new">
+          <span class="kernel-icon-new"><img src="/img/icon/babelfish.svg" alt="Babelfish"></span>
+          <span class="kernel-name-new">Babelfish</span>
+          <span class="kernel-desc-new">SQL Server Compatible</span>
+        </a>
+        <a href="/docs/pgsql/kernel/ivorysql/" class="kernel-card-new">
+          <span class="kernel-icon-new"><img src="/img/icon/ivorysql.svg" alt="IvorySQL"></span>
+          <span class="kernel-name-new">IvorySQL</span>
+          <span class="kernel-desc-new">Oracle Compatible</span>
+        </a>
+        <a href="/docs/pgsql/kernel/openhalo/" class="kernel-card-new">
+          <span class="kernel-icon-new"><img src="/img/icon/halo.png" alt="OpenHalo"></span>
+          <span class="kernel-name-new">OpenHalo</span>
+          <span class="kernel-desc-new">MySQL Compatible</span>
+        </a>
+        <a href="/docs/pgsql/kernel/percona/" class="kernel-card-new">
+          <span class="kernel-icon-new"><img src="/img/icon/percona.svg" alt="Percona"></span>
+          <span class="kernel-name-new">Percona</span>
+          <span class="kernel-desc-new">Transparent Data Encryption</span>
+        </a>
+        <a href="/docs/ferret/" class="kernel-card-new">
+          <span class="kernel-icon-new"><img src="/img/icon/ferretdb.svg" alt="FerretDB"></span>
+          <span class="kernel-name-new">FerretDB</span>
+          <span class="kernel-desc-new">MongoDB Compatible</span>
+        </a>
+        <a href="/docs/pgsql/kernel/orioledb/" class="kernel-card-new">
+          <span class="kernel-icon-new"><img src="/img/icon/oriole.png" alt="OrioleDB"></span>
+          <span class="kernel-name-new">OrioleDB</span>
+          <span class="kernel-desc-new">OLTP Optimized</span>
+        </a>
+        <a href="/docs/pgsql/kernel/polardb/" class="kernel-card-new">
+          <span class="kernel-icon-new"><img src="/img/icon/polardb.svg" alt="PolarDB"></span>
+          <span class="kernel-name-new">PolarDB PG</span>
+          <span class="kernel-desc-new">Cloud-Native RAC</span>
+        </a>
+        <a href="/docs/pgsql/kernel/cloudberry/" class="kernel-card-new">
+          <span class="kernel-icon-new"><img src="/img/icon/cloudberry.svg" alt="Cloudberry"></span>
+          <span class="kernel-name-new">Cloudberry</span>
+          <span class="kernel-desc-new">PG MPP Warehouse</span>
+        </a>
+        <a href="/docs/pgsql/kernel/" class="kernel-card-new">
+          <span class="kernel-icon-new"><img src="/img/icon/agensgraph.svg" alt="AgensGraph"></span>
+          <span class="kernel-name-new">AgensGraph</span>
+          <span class="kernel-desc-new">Multi-Model Graph</span>
+        </a>
+        <a href="/docs/pgsql/kernel/" class="kernel-card-new">
+          <span class="kernel-icon-new"><img src="/img/icon/pgedge.svg" alt="pgEdge"></span>
+          <span class="kernel-name-new">pgEdge</span>
+          <span class="kernel-desc-new">Distributed Edge Kernel</span>
+        </a>
       </div>
 
       <!-- Scrolling Extensions Marquee -->
@@ -477,60 +503,6 @@
         </div>
       </div>
 
-      <!-- Kernels Grid: 2 rows x 5 columns -->
-      <div class="kernels-grid-new" data-reveal>
-        <a href="/docs/pgsql/kernel/supabase/" class="kernel-card-new">
-          <span class="kernel-icon-new"><img src="/img/icon/supabase.svg" alt="Supabase"></span>
-          <span class="kernel-name-new">Supabase</span>
-          <span class="kernel-desc-new">Backend as a Service</span>
-        </a>
-        <a href="/docs/pgsql/kernel/citus/" class="kernel-card-new">
-          <span class="kernel-icon-new"><img src="/img/icon/citus.svg" alt="Citus"></span>
-          <span class="kernel-name-new">Citus</span>
-          <span class="kernel-desc-new">Horizontally Distributed</span>
-        </a>
-        <a href="/docs/pgsql/kernel/babelfish/" class="kernel-card-new">
-          <span class="kernel-icon-new"><img src="/img/icon/babelfish.svg" alt="Babelfish"></span>
-          <span class="kernel-name-new">Babelfish</span>
-          <span class="kernel-desc-new">SQL Server Compatible</span>
-        </a>
-        <a href="/docs/pgsql/kernel/ivorysql/" class="kernel-card-new">
-          <span class="kernel-icon-new"><img src="/img/icon/ivorysql.png" alt="IvorySQL"></span>
-          <span class="kernel-name-new">IvorySQL</span>
-          <span class="kernel-desc-new">Oracle Compatible</span>
-        </a>
-        <a href="/docs/pgsql/kernel/openhalo/" class="kernel-card-new">
-          <span class="kernel-icon-new"><img src="/img/icon/halo.png" alt="OpenHalo"></span>
-          <span class="kernel-name-new">OpenHalo</span>
-          <span class="kernel-desc-new">MySQL Compatible</span>
-        </a>
-        <a href="/docs/pgsql/kernel/percona/" class="kernel-card-new">
-          <span class="kernel-icon-new"><img src="/img/icon/pgsql.svg" alt="Percona"></span>
-          <span class="kernel-name-new">Percona</span>
-          <span class="kernel-desc-new">Transparent Data Encryption</span>
-        </a>
-        <a href="/docs/ferret/" class="kernel-card-new">
-          <span class="kernel-icon-new"><img src="/img/icon/ferretdb.svg" alt="FerretDB"></span>
-          <span class="kernel-name-new">FerretDB</span>
-          <span class="kernel-desc-new">MongoDB Compatible</span>
-        </a>
-        <a href="/docs/pgsql/kernel/orioledb/" class="kernel-card-new">
-          <span class="kernel-icon-new"><img src="/img/icon/oriole.png" alt="OrioleDB"></span>
-          <span class="kernel-name-new">OrioleDB</span>
-          <span class="kernel-desc-new">OLTP Optimized</span>
-        </a>
-        <a href="/docs/pgsql/kernel/polardb/" class="kernel-card-new">
-          <span class="kernel-icon-new"><img src="/img/icon/polardb.svg" alt="PolarDB"></span>
-          <span class="kernel-name-new">PolarDB PG</span>
-          <span class="kernel-desc-new">Cloud-Native RAC</span>
-        </a>
-        <a href="/docs/pgsql/kernel/polardb/" class="kernel-card-new">
-          <span class="kernel-icon-new"><img src="/img/icon/polardb.svg" alt="PolarDB-O"></span>
-          <span class="kernel-name-new">PolarDB-O</span>
-          <span class="kernel-desc-new">Oracle Compatible</span>
-        </a>
-      </div>
-
     </div>
   </section>
 
@@ -662,14 +634,14 @@
 
       <div class="testimonial" data-reveal>
         <blockquote class="testimonial-quote">
-          We run 100+ PostgreSQL clusters at 2.5M QPS with just 1.5 DBAs.<br>
+          <span class="testimonial-line-nowrap">We run 100+ PostgreSQL clusters at 2.5M QPS with just <span class="nowrap">1.5 DBAs</span>.</span><br>
           Our TCO is 5% of public cloud. — Tantan
         </blockquote>
       </div>
 
       <div class="stats-grid" data-reveal>
         <a href="https://github.com/pgsty/pigsty/stargazers" target="_blank" class="stat-item" style="text-decoration: none; color: inherit;">
-          <div class="stat-value" data-count="4477">4477</div>
+          <div class="stat-value" data-count="4759">4759</div>
           <div class="stat-label">GitHub Stars</div>
         </a>
         <div class="stat-item">
@@ -1171,6 +1143,20 @@
         <h2 class="section-title"><i class="fas fa-bolt"></i> Up and Running in Minutes</h2>
       </div>
 
+      <div class="quickstart-actions" id="cta" data-reveal>
+        <div class="final-cta-buttons">
+          <a href="/docs/setup/install/" class="btn btn-primary">
+            <i class="fas fa-rocket"></i> Get Started
+          </a>
+          <a href="https://demo.pigsty.io" class="btn btn-secondary" target="_blank">
+            <i class="fas fa-play"></i> Live Demo
+          </a>
+          <a href="/price/" class="btn btn-outline">
+            <i class="fas fa-headset"></i> Get Support
+          </a>
+        </div>
+      </div>
+
       <!-- Three Steps -->
       <div class="steps-grid-new" data-reveal>
         <!-- Step 1: Download -->
@@ -1254,45 +1240,6 @@
   <link rel="stylesheet" type="text/css" href="/css/asciinema-player.css" />
   <script src="/js/asciinema-player.min.js"></script>
 
-
-  <!-- ============================================
-       Section 8: Final CTA
-       ============================================ -->
-  <section class="final-cta" id="cta">
-    <div class="final-cta-content" data-reveal>
-      <h2 class="final-cta-title">Ready to Sora?</h2>
-
-      <div class="command-box">
-        <span class="command-prompt">$</span>
-        <code class="command-text">curl -fsSL https://repo.pigsty.io/get | bash</code>
-        <button class="command-copy" title="Copy command">
-          <i class="fas fa-copy"></i>
-        </button>
-      </div>
-
-      <div class="final-cta-buttons">
-        <a href="/docs/setup/install/" class="btn btn-primary">
-          <i class="fas fa-rocket"></i> Get Started
-        </a>
-        <a href="https://demo.pigsty.io" class="btn btn-secondary" target="_blank">
-          <i class="fas fa-play"></i> Live Demo
-        </a>
-        <a href="/price" class="btn btn-outline">
-          <i class="fas fa-headset"></i>Get Support
-        </a>
-      </div>
-
-      <div class="community-links">
-        Questions? Join our community!
-        <a href="https://github.com/pgsty/pigsty" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-        <a href="https://discord.gg/wDzt5VyWEz" target="_blank"><i class="fab fa-discord"></i> Discord</a>
-        <a href="https://t.me/joinchat/gV9zfZraNPM3YjFh" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
-        <a href="/img/pigsty/pigsty-cc.jpg" target="_blank"><i class="fab fa-weixin"></i> WeChat</a>
-      </div>
-    </div>
-  </section>
-
-
   <!-- ============================================
        Section 9: Footer
        ============================================ -->
@@ -1309,7 +1256,7 @@
             The Batteries-Included PostgreSQL Distribution as an FLOSS PG RDS
           </p>
           <p class="footer-slogan">
-            Just <span class="hl-good">Postgres</span>, Self-Host like a <span class="hl-use">Pro</span>.
+            Self-Host <span class="hl-good">Postgres</span> like a <span class="hl-use">Pro</span>.
           </p>
         </div>
 

@@ -12,6 +12,10 @@
   <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   <link rel="apple-touch-icon" href="/img/logo/logo.png">
 
+  <!-- Safari/iOS theme color - default light theme -->
+  <meta name="theme-color" content="#edf3fb">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
   <!-- Open Graph -->
   <meta property="og:title" content="{{ .Title }}">
   <meta property="og:description" content="{{ .Description | default .Site.Params.description }}">
@@ -27,13 +31,14 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Landing Page CSS -->
   <link rel="stylesheet" href="/css/landing.css">
+  <link rel="stylesheet" href="/css/landing-v2.css">
   <link rel="stylesheet" href="/css/price.css">
 
   <!-- Analytics -->
@@ -47,12 +52,12 @@
   </script>
   {{ end }}
 </head>
-<body class="landing-page price-page">
+<body class="landing-page price-page landing-theme-light" data-theme="light">
 
   <!-- ============================================
        Navigation Header
        ============================================ -->
-  <header class="landing-header scrolled">
+  <header class="landing-header">
     <div class="landing-container">
       <nav class="landing-nav">
         <a href="/" class="nav-brand">
@@ -65,6 +70,12 @@
           <a href="https://pgext.cloud" class="nav-link" target="_blank">Exts</a>
           <a href="/blog/" class="nav-link">Blog</a>
           <a href="/price/" class="nav-link nav-link--active">Pricing</a>
+          <button type="button" class="nav-theme-toggle nav-util-icon" data-theme-toggle title="Switch light or dark mode" aria-label="Switch light or dark mode">
+            <i class="fas fa-sun"></i>
+          </button>
+          <a href="https://pigsty.cc/price" class="nav-lang-switch nav-util-icon" title="Switch to Chinese" aria-label="Switch to Chinese">
+            <i class="fas fa-language"></i>
+          </a>
           <a href="https://github.com/pgsty/pigsty" class="nav-link nav-link--icon" target="_blank" title="GitHub">
             <i class="fab fa-github"></i>
           </a>
@@ -84,7 +95,11 @@
     <a href="/docs/" class="mobile-menu-link">Docs</a>
     <a href="https://pgext.cloud" class="mobile-menu-link" target="_blank">Extensions</a>
     <a href="/blog/" class="mobile-menu-link">Blog</a>
-    <a href="/price/" class="mobile-menu-link">Pricing</a>
+    <a href="/price/" class="mobile-menu-link mobile-menu-link--active">Pricing</a>
+    <a href="https://pigsty.cc/price" class="mobile-menu-link"><i class="fas fa-language"></i> 中文</a>
+    <button type="button" class="mobile-menu-link mobile-menu-link--btn nav-theme-toggle" data-theme-toggle title="Switch light or dark mode" aria-label="Switch light or dark mode">
+      <i class="fas fa-sun"></i> Light / Dark
+    </button>
     <a href="https://github.com/pgsty/pigsty" class="mobile-menu-link" target="_blank">
       <i class="fab fa-github"></i> GitHub
     </a>
@@ -101,8 +116,9 @@
     </div>
     <div class="landing-container">
       <div class="price-hero-content">
-        <h1 class="price-hero-title">Simple, Transparent Pricing</h1>
-        <p class="price-hero-subtitle">Pigsty offers multiple service tiers, from free open source to enterprise support</p>
+        <p class="price-hero-kicker animate-fade-in-up">Pigsty Pricing</p>
+        <h1 class="price-hero-title animate-fade-in-up animate-delay-100">Simple, Transparent Pricing</h1>
+        <p class="price-hero-subtitle animate-fade-in-up animate-delay-200">Pigsty offers multiple service tiers, from free open source to enterprise support</p>
       </div>
     </div>
   </section>
@@ -116,7 +132,7 @@
       <div class="pricing-grid">
 
         <!-- OSS Plan -->
-        <div class="pricing-card pricing-card--oss">
+        <div class="pricing-card pricing-card--oss" data-reveal>
           <div class="pricing-card-header">
             <div class="pricing-tier">Open Source</div>
             <div class="pricing-name">OSS</div>
@@ -140,7 +156,7 @@
         </div>
 
         <!-- Standard Plan -->
-        <div class="pricing-card pricing-card--standard">
+        <div class="pricing-card pricing-card--standard" data-reveal>
           <div class="pricing-card-header">
             <div class="pricing-tier">Standard</div>
             <div class="pricing-name">Standard</div>
@@ -165,7 +181,7 @@
         </div>
 
         <!-- Professional Plan -->
-        <div class="pricing-card pricing-card--pro pricing-card--featured">
+        <div class="pricing-card pricing-card--pro pricing-card--featured" data-reveal>
           <div class="pricing-badge">Recommended</div>
           <div class="pricing-card-header">
             <div class="pricing-tier">Professional</div>
@@ -192,7 +208,7 @@
         </div>
 
         <!-- Enterprise Plan -->
-        <div class="pricing-card pricing-card--enterprise">
+        <div class="pricing-card pricing-card--enterprise" data-reveal>
           <div class="pricing-card-header">
             <div class="pricing-tier">Enterprise</div>
             <div class="pricing-name">Enterprise</div>
@@ -227,12 +243,12 @@
        ============================================ -->
   <section class="comparison-section">
     <div class="landing-container">
-      <div class="section-header">
+      <div class="section-header" data-reveal>
         <h2 class="section-title">Feature Comparison</h2>
         <p class="section-subtitle">Detailed breakdown of plan differences</p>
       </div>
 
-      <div class="comparison-table-wrapper">
+      <div class="comparison-table-wrapper" data-reveal>
         <table class="comparison-table">
           <thead>
             <tr>
@@ -370,13 +386,13 @@
        ============================================ -->
   <section class="services-section">
     <div class="landing-container">
-      <div class="section-header">
+      <div class="section-header" data-reveal>
         <h2 class="section-title">Additional Services</h2>
         <p class="section-subtitle">Pay-as-you-go professional services</p>
       </div>
 
       <div class="services-grid">
-        <div class="service-card">
+        <div class="service-card" data-reveal>
           <div class="service-icon">
             <i class="fas fa-graduation-cap"></i>
           </div>
@@ -385,7 +401,7 @@
           <div class="service-price">$30 / issue</div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card" data-reveal>
           <div class="service-icon">
             <i class="fas fa-tools"></i>
           </div>
@@ -394,7 +410,7 @@
           <div class="service-price">$400 / session</div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card" data-reveal>
           <div class="service-icon">
             <i class="fas fa-ambulance"></i>
           </div>
@@ -403,7 +419,7 @@
           <div class="service-price">$4,000 / day</div>
         </div>
 
-        <div class="service-card">
+        <div class="service-card" data-reveal>
           <div class="service-icon">
             <i class="fas fa-code-branch"></i>
           </div>
@@ -421,37 +437,37 @@
        ============================================ -->
   <section class="faq-section">
     <div class="landing-container">
-      <div class="section-header">
+      <div class="section-header" data-reveal>
         <h2 class="section-title">Frequently Asked Questions</h2>
       </div>
 
       <div class="faq-grid">
-        <div class="faq-item">
+        <div class="faq-item" data-reveal>
           <h3 class="faq-question">What does the commercial version offer?</h3>
           <p class="faq-answer">Commercial versions include: commercial license (avoiding AGPLv3 compliance requirements for infra/minio modules), warranty and bug fix guarantee, custom offline packages, exclusive support from industry-leading experts for complex issues, technical support with response time SLA, and broader Linux/PostgreSQL version support.</p>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item" data-reveal>
           <h3 class="faq-question">How are nodes counted?</h3>
           <p class="faq-answer">Node count refers to the number of distinct IP addresses managed by Pigsty.</p>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item" data-reveal>
           <h3 class="faq-question">Can I try before I buy?</h3>
           <p class="faq-answer">Absolutely! The open-source version is fully functional and identical to commercial versions. Evaluate thoroughly before deciding. We also offer a 30-day enterprise trial.</p>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item" data-reveal>
           <h3 class="faq-question">How do I get invoices and contracts?</h3>
           <p class="faq-answer">We provide standard invoices and business contracts. Contact rh@vonng.com for commercial details.</p>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item" data-reveal>
           <h3 class="faq-question">What payment methods are supported?</h3>
           <p class="faq-answer">We accept wire transfer, PayPal, and major credit cards.</p>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item" data-reveal>
           <h3 class="faq-question">What if I need more nodes?</h3>
           <p class="faq-answer">Additional nodes beyond your plan can be purchased separately. Enterprise plans also support custom configurations based on your actual needs.</p>
         </div>
@@ -465,7 +481,7 @@
        ============================================ -->
   <section class="price-cta">
     <div class="landing-container">
-      <div class="price-cta-content">
+      <div class="price-cta-content" data-reveal>
         <h2 class="price-cta-title">Have Questions? Let's Talk</h2>
         <p class="price-cta-desc">Our expert team is ready to help you choose the best plan for your needs</p>
         <div class="price-cta-buttons">
@@ -555,13 +571,7 @@
     </div>
   </footer>
 
-<script>
-// Mobile menu toggle
-document.querySelector('.mobile-menu-toggle')?.addEventListener('click', function() {
-  this.classList.toggle('active');
-  document.querySelector('.mobile-menu')?.classList.toggle('active');
-});
-</script>
+<script src="/js/landing.js"></script>
 
 </body>
 </html>
