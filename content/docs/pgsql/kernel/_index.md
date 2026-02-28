@@ -11,37 +11,21 @@ In Pigsty, you can replace the native PostgreSQL kernel with different PostgreSQ
 
 Pigsty supports multiple PostgreSQL kernels and compatibility branches so you can emulate different database systems while keeping PostgreSQL ecosystem tooling and operations.
 
-| Kernel                                      | Key Feature                    | Description                                              |
-|:--------------------------------------------|:-------------------------------|:---------------------------------------------------------|
-| [**PostgreSQL**](/docs/pgsql)               | **Native kernel, full extension set** | Vanilla PostgreSQL with 451 extensions                  |
-| [**Citus**](/docs/pgsql/kernel/citus)       | **Horizontal scaling**         | Distributed PostgreSQL via native extension              |
-| [**Babelfish**](/docs/pgsql/kernel/babelfish) | **SQL Server compatible**    | SQL Server wire-protocol compatibility (PG17)            |
-| [**IvorySQL**](/docs/pgsql/kernel/ivorysql) | **Oracle compatible**          | Oracle syntax and PL/SQL compatibility                   |
-| [**OpenHalo**](/docs/pgsql/kernel/openhalo) | **MySQL compatible**           | MySQL wire-protocol compatibility                        |
-| [**Percona**](/docs/pgsql/kernel/percona)   | **Transparent data encryption** | Percona distribution with pg_tde                       |
-| [**FerretDB**](/docs/ferret)                | **MongoDB migration**          | MongoDB wire-protocol compatibility                      |
-| [**OrioleDB**](/docs/pgsql/kernel/orioledb) | **OLTP optimization**          | Zheap, no bloat, S3 storage                              |
-| [**PolarDB**](/docs/pgsql/kernel/polardb)   | **Aurora-style RAC**           | RAC, China-local compliance scenario                     |
-| [**Supabase**](/docs/pgsql/kernel/supabase) | **Backend as a Service**       | PostgreSQL-based BaaS, Firebase alternative              |
-| [**Cloudberry**](/docs/pgsql/kernel/cloudberry) | **MPP DW and analytics**   | Massively parallel data warehouse                        |
-| [**AgensGraph**](/docs/pgsql/kernel/agensgraph) | **Graph database kernel**  | PostgreSQL-based graph database branch                   |
-| [**pgEdge**](/docs/pgsql/kernel/pgedge)     | **Distributed edge kernel**    | Distributed PostgreSQL for edge scenarios                |
+| Kernel                                          | Key Feature                           | Description                                   |
+|:------------------------------------------------|:--------------------------------------|:----------------------------------------------|
+| [**PostgreSQL**](/docs/pgsql)                   | **Native kernel, full extension set** | Vanilla PostgreSQL with 451 extensions        |
+| [**Citus**](/docs/pgsql/kernel/citus)           | **Horizontal scaling**                | Distributed PostgreSQL via native extension   |
+| [**Babelfish**](/docs/pgsql/kernel/babelfish)   | **SQL Server compatible**             | SQL Server wire-protocol compatibility (PG17) |
+| [**IvorySQL**](/docs/pgsql/kernel/ivorysql)     | **Oracle compatible**                 | Oracle syntax and PL/SQL compatibility        |
+| [**OpenHalo**](/docs/pgsql/kernel/openhalo)     | **MySQL compatible**                  | MySQL wire-protocol compatibility             |
+| [**Percona**](/docs/pgsql/kernel/percona)       | **Transparent data encryption**       | Percona distribution with pg_tde              |
+| [**FerretDB**](/docs/ferret)                    | **MongoDB migration**                 | MongoDB wire-protocol compatibility           |
+| [**OrioleDB**](/docs/pgsql/kernel/orioledb)     | **OLTP optimization**                 | Zheap, no bloat, S3 storage                   |
+| [**PolarDB**](/docs/pgsql/kernel/polardb)       | **Aurora-style RAC**                  | RAC, China-local compliance scenario          |
+| [**Supabase**](/docs/pgsql/kernel/supabase)     | **Backend as a Service**              | PostgreSQL-based BaaS, Firebase alternative   |
+| [**Cloudberry**](/docs/pgsql/kernel/cloudberry) | **MPP DW and analytics**              | Massively parallel data warehouse             |
+| [**AgensGraph**](/docs/pgsql/kernel/agensgraph) | **Graph database kernel**             | PostgreSQL-based graph database branch        |
+| [**pgEdge**](/docs/pgsql/kernel/pgedge)         | **Distributed edge kernel**           | Distributed PostgreSQL for edge scenarios     |
 {.full-width}
 
-
-## Version Strings
-
-The table below lists representative version string outputs of major PG kernels (el9 sample baseline). For Citus, FerretDB, and Supabase, kernel versioning follows native PostgreSQL.
-
-| Kernel                                      | Example Version String |
-|:--------------------------------------------|:-----------------------|
-| [**PostgreSQL**](/docs/pgsql)               | `PostgreSQL 18.2 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-5), 64-bit` |
-| [**Babelfish**](/docs/pgsql/kernel/babelfish) | `Babelfish 17.7 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), 64-bit` |
-| [**IvorySQL**](/docs/pgsql/kernel/ivorysql) | `PostgreSQL 18.1 (IvorySQL 5.1) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 9.5.0, 64-bit` |
-| [**OpenHalo**](/docs/pgsql/kernel/openhalo) | `openHalo 1.0.14.18 (260226) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), 64-bit` |
-| [**Percona**](/docs/pgsql/kernel/percona)   | `PostgreSQL 18.1 - Percona Server for PostgreSQL 18.1.1 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11.0.1), 64-bit` |
-| [**OrioleDB**](/docs/pgsql/kernel/orioledb) | `PostgreSQL 17.6 (OrioleDB 1.6-beta14) on aarch64-unknown-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), 64-bit` |
-| [**PolarDB**](/docs/pgsql/kernel/polardb)   | `PostgreSQL 15.16 (PolarDB 15.16.5.0 build 710ce891) on x86_64-linux-gnu` |
-| [**AgensGraph**](/docs/pgsql/kernel/agensgraph) | `PostgreSQL 16.9 (AgensGraph 2.16) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), 64-bit` |
-| [**pgEdge**](/docs/pgsql/kernel/pgedge)     | `PostgreSQL 17.7 (pgEdge 5.0.5) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), 64-bit` |
-| [**Cloudberry**](/docs/pgsql/kernel/cloudberry) | `PostgreSQL 14.4 (Apache Cloudberry 2.0.0-incubating build 1) on aarch64-unknown-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), 64-bit` |
+![](/img/pigsty/pg-forks.webp)
