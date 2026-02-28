@@ -1,37 +1,38 @@
 ---
-title: OpenHalo
+title: openHalo
 weight: 2110
-description: MySQL compatible Postgres 14 fork
+description: MySQL-compatible Postgres 14 branch
 icon: fa-solid fa-sync
 module: [PGSQL]
 categories: [Concept]
 ---
 
-[OpenHalo](https://www.openhalo.org/) is an open-source PostgreSQL kernel that provides MySQL wire protocol compatibility.
+[OpenHalo](https://www.openhalo.org/) is an open-source PostgreSQL kernel that provides MySQL wire-protocol compatibility.
 
-OpenHalo is based on PostgreSQL 14.10 kernel version and provides wire protocol compatibility with MySQL 5.7.32-log / 8.0 versions.
+openHalo is based on PostgreSQL 14.18 and provides wire-level compatibility with MySQL 5.7.32-log / 8.0.
 
-Pigsty provides deployment support for OpenHalo on all supported Linux platforms.
+Pigsty supports OpenHalo deployment on all supported Linux platforms.
+
+- RPM build spec: [github.com/pgsty/rpm/rpmbuild/specs/openhalodb.spec](https://github.com/pgsty/rpm/blob/main/rpmbuild/SPECS/openhalodb.spec)
+- DEB build spec: [github.com/pgsty/deb/debbuild/openhalodb](https://github.com/pgsty/deb/tree/main/debbuild/openhalodb)
 
 
 ------
 
 ## Quick Start
 
-Use Pigsty's [**standard installation process**](/docs/setup/install) with the [`mysql`](https://github.com/pgsty/pigsty/blob/main/conf/mysql.yml) configuration template.
+Use Pigsty's [**standard installation flow**](/docs/setup/install) with the [`mysql`](/docs/conf/mysql) template.
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
-./configure -c mysql    # Use MySQL (openHalo) configuration template
-./deploy.yml            # Install, for production deployment please modify passwords in pigsty.yml first
+./configure -c mysql    # Use MySQL (openHalo) template
+./deploy.yml            # Install (change passwords in pigsty.yml before production use)
 ```
-
-For production deployment, ensure you modify the password parameters in the `pigsty.yml` configuration file before running the install playbook.
 
 
 ------
 
-## Configuration
+## Cluster Config
 
 ```yaml
 pg-meta:
@@ -43,53 +44,72 @@ pg-meta:
       - {name: dbuser_meta ,password: DBUser.Meta   ,pgbouncer: true ,roles: [dbrole_admin]    ,comment: pigsty admin user }
       - {name: dbuser_view ,password: DBUser.Viewer ,pgbouncer: true ,roles: [dbrole_readonly] ,comment: read-only viewer for meta database }
     pg_databases:
-      - {name: postgres, extensions: [aux_mysql]} # mysql compatible database
+      - {name: postgres, extensions: [ aux_mysql ]} # mysql-compatible database
       - {name: meta ,baseline: cmdb.sql ,comment: pigsty meta database ,schemas: [pigsty]}
     pg_hba_rules:
       - {user: dbuser_view , db: all ,addr: infra ,auth: pwd ,title: 'allow grafana dashboard access cmdb from infra nodes'}
-    node_crontab: [ '00 01 * * * postgres /pg/bin/pg-backup full' ] # Full backup at 1 AM daily
+    node_crontab: [ '00 01 * * * postgres /pg/bin/pg-backup full' ] # full backup at 1 AM daily
 
     # OpenHalo specific settings
-    pg_mode: mysql                    # HaloDB's MySQL compatibility mode
-    pg_version: 14                    # Current HaloDB compatible PG major version 14
-    pg_packages: [ openhalodb, pgsql-common ]  # Install openhalodb instead of postgresql kernel
+    pg_mode: mysql
+    pg_version: 14
+    pg_packages: [ openhalodb, pgsql-common ]
 ```
+
+OpenHalo provides a dedicated extension, `aux_mysql`, which includes functions and types needed for MySQL compatibility. Enable it in the `postgres` database to get full compatibility behavior.
+
+- aux_mysql 1.5: MySQL Supplementary Extension
+- `/usr/halo-14/share/postgresql/extension/aux_mysql.control`
+- `$libdir/mysm`, `mysm.so`
 
 
 ------
 
 ## Usage
 
-When accessing MySQL, the actual connection uses the `postgres` database. Please note that the concept of "database" in MySQL actually corresponds to "Schema" in PostgreSQL. Therefore, `use mysql` actually uses the `mysql` Schema within the `postgres` database.
+For MySQL access, connections still use the `postgres` database. The MySQL "database" concept maps to PostgreSQL "schema". So `use mysql` maps to the `mysql` schema in the `postgres` database.
 
-The username and password for MySQL are the same as in PostgreSQL. You can manage users and permissions using standard PostgreSQL methods.
+MySQL usernames/passwords are the same PostgreSQL credentials.
 
 ### Client Access
 
-OpenHalo provides MySQL wire protocol compatibility, listening on port 3306 by default, allowing MySQL clients and drivers to connect directly.
+OpenHalo listens on port `3306` for MySQL wire protocol clients.
 
-Pigsty's [`conf/mysql`](https://github.com/pgsty/pigsty/blob/main/conf/mysql.yml) configuration installs the `mysql` client tool by default.
-
-You can access MySQL using the following command:
+Pigsty's [`conf/mysql`](https://github.com/pgsty/pigsty/blob/main/conf/mysql.yml) installs a MySQL client by default.
 
 ```bash
 mysql -h 127.0.0.1 -u dbuser_dba
 ```
 
-Currently, OpenHalo officially ensures Navicat can properly access this MySQL port, but Intellij IDEA's DataGrip access will cause errors.
+At present, OpenHalo upstream reports Navicat works normally on this port, while IntelliJ DataGrip may fail.
+
+
+--------
+
+## Compatibility Parameters
+
+Pigsty defaults `database_compat_mode` to `mysql`. You can further tune compatibility behavior with settings like:
+
+```ini
+mysql.listener_on = true                        # enable MySQL listener; restart required
+mysql.port = 3306                               # second_port for MySQL mode; restart required
+mysql.halo_mysql_version = '5.7.32-log'         # restart required
+mysql.ci_collation = true                       # restart required
+mysql.explicit_defaults_for_timestamp = false   # restart required
+mysql.auto_rollback_tx_on_error = false         # restart required
+```
 
 
 ------
 
-## Modification Notes
+## Patch Notes
 
-The [OpenHalo](https://github.com/pgsty/openHalo) kernel installed by Pigsty is based on the [HaloTech-Co-Ltd/openHalo](https://github.com/HaloTech-Co-Ltd/openHalo) kernel with minor modifications:
+The [OpenHalo](https://github.com/pgsty/openHalo) kernel packaged by Pigsty is based on [HaloTech-Co-Ltd/openHalo](https://github.com/HaloTech-Co-Ltd/openHalo) with small adjustments:
 
-- Changed the default database name from `halo0root` back to `postgres`
-- Removed the `1.0.` prefix from the default version number, restoring it to `14.10`
-- Modified the default configuration file to enable MySQL compatibility and listen on port `3306` by default
+- Restore default database name from `halo0root` to `postgres`
+- Remove `1.0.` prefix in the default version string, keeping `14.18`
+- Adjust default config to enable MySQL compatibility and listen on `3306`
 
-Please note that Pigsty does not provide any warranty for using the OpenHalo kernel. Any issues or requirements encountered when using this kernel should be addressed with the original vendor.
+Pigsty does not provide warranty coverage for OpenHalo kernel behavior. Kernel-specific issues should be addressed with the upstream vendor.
 
-> **Warning**: Currently experimental - thoroughly evaluate before production use.
-
+> **Warning**: This kernel is currently in beta1 stage; evaluate risks carefully before production use.

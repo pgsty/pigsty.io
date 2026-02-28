@@ -18,10 +18,6 @@ Pigsty supports deploying Greenplum clusters and its derivative distribution YMa
 
 Greenplum / YMatrix cluster deployment capabilities are only available in the professional/enterprise editions and are not currently open source.
 
-
-
-
-
 --------
 
 ## Installation

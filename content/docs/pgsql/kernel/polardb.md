@@ -19,9 +19,7 @@ Pigsty allows you to create PostgreSQL clusters with "domestic innovation qualif
 
 PolarDB for PostgreSQL is essentially equivalent to PostgreSQL 15. Any client tool compatible with the PostgreSQL wire protocol can access PolarDB clusters.
 
-Pigsty's PGSQL repository provides PolarDB PG open-source installation packages for EL7 / EL8, but they are not downloaded to the local software repository during Pigsty installation.
-
-If you need offline installation support for PolarDB PG, please consider our [professional subscription service](/docs/about/service)
+Pigsty's PGSQL repository provides PolarDB PG open-source installation packages, but they are not downloaded to the local software repository during Pigsty installation.
 
 ![](/img/pigsty/polar.jpg)
 
@@ -30,13 +28,12 @@ If you need offline installation support for PolarDB PG, please consider our [pr
 
 ## Installation
 
-If your environment has internet access, you can add the Pigsty PGSQL and dependency repositories to the node using the following method:
+Use the built-in Pigsty template:
 
-```yaml
-node_repo_modules: local,node,pgsql
+```bash
+./configure -c polar
+./deploy.yml
 ```
-
-Then in `pg_packages`, replace the native `postgresql` package with `polardb`.
 
 
 

@@ -1,12 +1,12 @@
 ---
 title: "Registry: Container Image Cache"
 weight: 615
-description: Deploy Docker Registry pull-through cache and optional web UI with Pigsty v4.1.
+description: Deploy Docker Registry pull-through cache and optional web UI with Pigsty v4.2.
 module: [SOFTWARE]
 categories: [Reference]
 ---
 
-Pigsty v4.1 provides the `app/registry` template (`conf/app/registry.yml`) for:
+Pigsty v4.2 provides the `app/registry` template (`conf/app/registry.yml`) for:
 
 - Docker Registry cache service (default `5000`)
 - Optional management UI (default `5080`)

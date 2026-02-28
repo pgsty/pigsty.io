@@ -28,7 +28,7 @@ The [`FERRET`](#ferret) parameter group is used for FerretDB deployment and conf
 
 ## Defaults
 
-Default parameters are defined in [`roles/ferret/defaults/main.yml`](https://github.com/pgsty/pigsty/blob/v4.1.0/roles/ferret/defaults/main.yml):
+Default parameters are defined in [`roles/ferret/defaults/main.yml`](https://github.com/pgsty/pigsty/blob/main/roles/ferret/defaults/main.yml):
 
 ```yaml
 # mongo_cluster:        #CLUSTER  # mongo cluster name, required identity param

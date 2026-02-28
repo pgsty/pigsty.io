@@ -9,10 +9,10 @@ categories: [Concept]
 
 [OrioleDB](https://orioledb.com/) is a PostgreSQL storage engine extension that claims to provide 4x OLTP performance, no xid wraparound and table bloat issues, and "cloud-native" (data stored in S3) capabilities.
 
-OrioleDB's latest version is based on a [patched PostgreSQL 17.0](https://github.com/orioledb/postgres) and an additional [extension](https://github.com/orioledb/orioledb)
+OrioleDB's latest version is based on a [patched PostgreSQL 17.6](https://github.com/orioledb/postgres) and an additional [extension](https://github.com/orioledb/orioledb)
 
 You can run OrioleDB as an RDS using Pigsty. It's compatible with PG 17 and available on all supported Linux platforms.
-The latest version is beta12, based on PG 17_11 patch.
+The latest version is beta14, based on PG 17_16 patch.
 
 
 ------

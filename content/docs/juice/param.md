@@ -28,7 +28,7 @@ JUICE module has **2** parameters:
 
 ## Default Parameters
 
-Defined in [`roles/juice/defaults/main.yml`](https://github.com/pgsty/pigsty/blob/v4.1.0/roles/juice/defaults/main.yml):
+Defined in [`roles/juice/defaults/main.yml`](https://github.com/pgsty/pigsty/blob/main/roles/juice/defaults/main.yml):
 
 ```yaml
 #-----------------------------------------------------------------

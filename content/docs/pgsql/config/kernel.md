@@ -9,7 +9,7 @@ categories: [Reference]
 
 > Choosing a "kernel" in Pigsty means determining the PostgreSQL major version, mode/distribution, packages to install, and tuning templates to load.
 
-Pigsty v4.1 currently supports PostgreSQL 13-18 and uses 18 by default. The following content shows how to make these choices through configuration files.
+Pigsty v4.2 currently supports PostgreSQL 13-18 and uses 18 by default. The following content shows how to make these choices through configuration files.
 
 
 ----------------
@@ -43,8 +43,8 @@ Extension support varies across versions in Pigsty's offline repository: 13 has 
 |----------|--------------------------------------------------------------|
 | `pgsql`  | Standard PostgreSQL, HA + replication                        |
 | `citus`  | Citus distributed cluster, requires additional `pg_shard / pg_group` |
-| `gpsql`  | Greenplum / MatrixDB                                         |
-| `mssql`  | Babelfish for PostgreSQL                                     |
+| `gpsql`  | Cloudberry / Greenplum / MatrixDB       |
+| `mssql`  | Babelfish                               |
 | `mysql`  | OpenGauss/HaloDB compatible with MySQL protocol              |
 | `polar`  | Alibaba PolarDB (based on pg `polar` distribution)           |
 | `ivory`  | IvorySQL (Oracle-compatible syntax)                          |

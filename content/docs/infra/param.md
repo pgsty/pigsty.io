@@ -12,18 +12,18 @@ The INFRA module is responsible for deploying Pigsty's infrastructure components
 > Pigsty v4.x uses VictoriaMetrics to replace Prometheus and VictoriaLogs to replace Loki, providing a superior observability solution.
 
 
-| Section                           | Description                                          |
-|:----------------------------------|:-----------------------------------------------------|
+| Section                           | Description                                                 |
+|:----------------------------------|:------------------------------------------------------------|
 | [`META`](#meta)                   | Pigsty metadata: version, admin IP, region, language, proxy |
-| [`CA`](#ca)                       | Self-signed CA certificate management               |
-| [`INFRA_ID`](#infra_id)           | Infrastructure node identity and service portal     |
-| [`REPO`](#repo)                   | Local software repository configuration             |
-| [`INFRA_PACKAGE`](#infra_package) | Infrastructure node package installation            |
-| [`NGINX`](#nginx)                 | Nginx web server and reverse proxy configuration    |
-| [`DNS`](#dns)                     | DNSMasq DNS server configuration                    |
-| [`VICTORIA`](#victoria)           | VictoriaMetrics/Logs/Traces observability stack     |
-| [`PROMETHEUS`](#prometheus)       | Alertmanager and Blackbox Exporter                  |
-| [`GRAFANA`](#grafana)             | Grafana visualization platform configuration        |
+| [`CA`](#ca)                       | Self-signed CA certificate management                       |
+| [`INFRA_ID`](#infra_id)           | Infrastructure node identity and service portal             |
+| [`REPO`](#repo)                   | Local software repository configuration                     |
+| [`INFRA_PACKAGE`](#infra_package) | Infrastructure node package installation                    |
+| [`NGINX`](#nginx)                 | Nginx web server and reverse proxy configuration            |
+| [`DNS`](#dns)                     | DNSMasq DNS server configuration                            |
+| [`VICTORIA`](#victoria)           | VictoriaMetrics/Logs/Traces observability stack             |
+| [`PROMETHEUS`](#prometheus)       | Alertmanager and Blackbox Exporter                          |
+| [`GRAFANA`](#grafana)             | Grafana visualization platform configuration                |
 
 
 ----------------
@@ -32,125 +32,125 @@ The INFRA module is responsible for deploying Pigsty's infrastructure components
 
 [`META`](#meta) parameters define Pigsty metadata, including version string, admin node IP, repository mirror region, default language, and proxy settings.
 
-| Parameter                       | Type         | Level | Description                              |
-|:--------------------------------|:------------:|:-----:|:-----------------------------------------|
-| [`version`](#version)           | `string`     | `G`   | Pigsty version string                    |
-| [`admin_ip`](#admin_ip)         | `ip`         | `G`   | Admin node IP address                    |
-| [`region`](#region)             | `enum`       | `G`   | Upstream mirror region: default,china,europe |
-| [`language`](#language)         | `enum`       | `G`   | Default language: en or zh               |
-| [`proxy_env`](#proxy_env)       | `dict`       | `G`   | Global proxy environment variables       |
+| Parameter                 |   Type   | Level | Description                                  |
+|:--------------------------|:--------:|:-----:|:---------------------------------------------|
+| [`version`](#version)     | `string` |  `G`  | Pigsty version string                        |
+| [`admin_ip`](#admin_ip)   |   `ip`   |  `G`  | Admin node IP address                        |
+| [`region`](#region)       |  `enum`  |  `G`  | Upstream mirror region: default,china,europe |
+| [`language`](#language)   |  `enum`  |  `G`  | Default language: en or zh                   |
+| [`proxy_env`](#proxy_env) |  `dict`  |  `G`  | Global proxy environment variables           |
 
 [`CA`](#ca) parameters configure Pigsty's self-signed CA certificate management, including CA creation, CA name, and certificate validity.
 
-| Parameter                           | Type        | Level | Description                          |
-|:------------------------------------|:-----------:|:-----:|:-------------------------------------|
-| [`ca_create`](#ca_create)           | `bool`      | `G`   | Create CA if not exists? Default true |
-| [`ca_cn`](#ca_cn)                   | `string`    | `G`   | CA CN name, fixed as pigsty-ca       |
-| [`cert_validity`](#cert_validity)   | `interval`  | `G`   | Certificate validity, default 20 years |
+| Parameter                         |    Type    | Level | Description                            |
+|:----------------------------------|:----------:|:-----:|:---------------------------------------|
+| [`ca_create`](#ca_create)         |   `bool`   |  `G`  | Create CA if not exists? Default true  |
+| [`ca_cn`](#ca_cn)                 |  `string`  |  `G`  | CA CN name, fixed as pigsty-ca         |
+| [`cert_validity`](#cert_validity) | `interval` |  `G`  | Certificate validity, default 20 years |
 
 [`INFRA_ID`](#infra_id) parameters define infrastructure node identity, including node sequence number, service portal configuration, and data directory.
 
-| Parameter                         | Type     | Level | Description                              |
-|:----------------------------------|:--------:|:-----:|:-----------------------------------------|
-| [`infra_seq`](#infra_seq)         | `int`    | `I`   | Infrastructure node sequence, REQUIRED  |
-| [`infra_portal`](#infra_portal)   | `dict`   | `G`   | Infrastructure services exposed via Nginx portal |
-| [`infra_data`](#infra_data)       | `path`   | `G`   | Infrastructure data directory, default /data/infra |
+| Parameter                       |  Type  | Level | Description                                        |
+|:--------------------------------|:------:|:-----:|:---------------------------------------------------|
+| [`infra_seq`](#infra_seq)       | `int`  |  `I`  | Infrastructure node sequence, REQUIRED             |
+| [`infra_portal`](#infra_portal) | `dict` |  `G`  | Infrastructure services exposed via Nginx portal   |
+| [`infra_data`](#infra_data)     | `path` |  `G`  | Infrastructure data directory, default /data/infra |
 
 [`REPO`](#repo) parameters configure the local software repository, including repository enable switch, directory paths, upstream source definitions, and packages to download.
 
-| Parameter                                     | Type          | Level   | Description                            |
-|:----------------------------------------------|:-------------:|:-------:|:---------------------------------------|
-| [`repo_enabled`](#repo_enabled)               | `bool`        | `G/I`   | Create local repo on this infra node?  |
-| [`repo_home`](#repo_home)                     | `path`        | `G`     | Repo home directory, default `/www`    |
-| [`repo_name`](#repo_name)                     | `string`      | `G`     | Repo name, default `pigsty`            |
-| [`repo_endpoint`](#repo_endpoint)             | `url`         | `G`     | Repo access endpoint: domain or `ip:port` |
-| [`repo_remove`](#repo_remove)                 | `bool`        | `G/A`   | Remove existing upstream repo definitions? |
-| [`repo_modules`](#repo_modules)               | `string`      | `G/A`   | Enabled upstream repo modules, comma separated |
-| [`repo_upstream`](#repo_upstream)             | `upstream[]`  | `G`     | Upstream repo definitions              |
-| [`repo_packages`](#repo_packages)             | `string[]`    | `G`     | Packages to download from upstream     |
-| [`repo_extra_packages`](#repo_extra_packages) | `string[]`    | `G/C/I` | Extra packages to download             |
-| [`repo_url_packages`](#repo_url_packages)     | `string[]`    | `G`     | Extra packages downloaded via URL      |
+| Parameter                                     |     Type     |  Level  | Description                                    |
+|:----------------------------------------------|:------------:|:-------:|:-----------------------------------------------|
+| [`repo_enabled`](#repo_enabled)               |    `bool`    |  `G/I`  | Create local repo on this infra node?          |
+| [`repo_home`](#repo_home)                     |    `path`    |   `G`   | Repo home directory, default `/www`            |
+| [`repo_name`](#repo_name)                     |   `string`   |   `G`   | Repo name, default `pigsty`                    |
+| [`repo_endpoint`](#repo_endpoint)             |    `url`     |   `G`   | Repo access endpoint: domain or `ip:port`      |
+| [`repo_remove`](#repo_remove)                 |    `bool`    |  `G/A`  | Remove existing upstream repo definitions?     |
+| [`repo_modules`](#repo_modules)               |   `string`   |  `G/A`  | Enabled upstream repo modules, comma separated |
+| [`repo_upstream`](#repo_upstream)             | `upstream[]` |   `G`   | Upstream repo definitions                      |
+| [`repo_packages`](#repo_packages)             |  `string[]`  |   `G`   | Packages to download from upstream             |
+| [`repo_extra_packages`](#repo_extra_packages) |  `string[]`  | `G/C/I` | Extra packages to download                     |
+| [`repo_url_packages`](#repo_url_packages)     |  `string[]`  |   `G`   | Extra packages downloaded via URL              |
 
 [`INFRA_PACKAGE`](#infra_package) parameters define packages to install on infrastructure nodes, including RPM/DEB packages and PIP packages.
 
-| Parameter                                   | Type        | Level | Description                          |
-|:--------------------------------------------|:-----------:|:-----:|:-------------------------------------|
-| [`infra_packages`](#infra_packages)         | `string[]`  | `G`   | Packages to install on infra nodes   |
-| [`infra_packages_pip`](#infra_packages_pip) | `string`    | `G`   | Pip packages to install on infra nodes |
+| Parameter                                   |    Type    | Level | Description                            |
+|:--------------------------------------------|:----------:|:-----:|:---------------------------------------|
+| [`infra_packages`](#infra_packages)         | `string[]` |  `G`  | Packages to install on infra nodes     |
+| [`infra_packages_pip`](#infra_packages_pip) |  `string`  |  `G`  | Pip packages to install on infra nodes |
 
 [`NGINX`](#nginx) parameters configure Nginx web server and reverse proxy, including enable switch, ports, SSL mode, certificates, and basic authentication.
 
-| Parameter                                       | Type       | Level  | Description                              |
-|:------------------------------------------------|:----------:|:------:|:-----------------------------------------|
-| [`nginx_enabled`](#nginx_enabled)               | `bool`     | `G/I`  | Enable Nginx on this infra node?         |
-| [`nginx_clean`](#nginx_clean)                   | `bool`     | `G/A`  | Clean existing Nginx config during init? |
-| [`nginx_exporter_enabled`](#nginx_exporter_enabled) | `bool` | `G/I`  | Enable nginx_exporter on this infra node? |
-| [`nginx_exporter_port`](#nginx_exporter_port)   | `port`     | `G`    | nginx_exporter listen port, default 9113 |
-| [`nginx_sslmode`](#nginx_sslmode)               | `enum`     | `G`    | Nginx SSL mode: disable,enable,enforce   |
-| [`nginx_cert_validity`](#nginx_cert_validity)   | `duration` | `G`    | Nginx self-signed cert validity, default 397d |
-| [`nginx_home`](#nginx_home)                     | `path`     | `G`    | Nginx content dir, default `/www`, symlink to nginx_data |
-| [`nginx_data`](#nginx_data)                     | `path`     | `G`    | Nginx actual data dir, default /data/nginx |
-| [`nginx_users`](#nginx_users)                   | `dict`     | `G`    | Nginx basic auth users: username-password dict |
-| [`nginx_port`](#nginx_port)                     | `port`     | `G`    | Nginx listen port, default 80            |
-| [`nginx_ssl_port`](#nginx_ssl_port)             | `port`     | `G`    | Nginx SSL listen port, default 443       |
-| [`certbot_sign`](#certbot_sign)                 | `bool`     | `G/A`  | Sign cert with certbot?                  |
-| [`certbot_email`](#certbot_email)               | `string`   | `G/A`  | Certbot notification email address       |
-| [`certbot_options`](#certbot_options)           | `string`   | `G/A`  | Certbot extra command line options       |
+| Parameter                                           |    Type    | Level | Description                                              |
+|:----------------------------------------------------|:----------:|:-----:|:---------------------------------------------------------|
+| [`nginx_enabled`](#nginx_enabled)                   |   `bool`   | `G/I` | Enable Nginx on this infra node?                         |
+| [`nginx_clean`](#nginx_clean)                       |   `bool`   | `G/A` | Clean existing Nginx config during init?                 |
+| [`nginx_exporter_enabled`](#nginx_exporter_enabled) |   `bool`   | `G/I` | Enable nginx_exporter on this infra node?                |
+| [`nginx_exporter_port`](#nginx_exporter_port)       |   `port`   |  `G`  | nginx_exporter listen port, default 9113                 |
+| [`nginx_sslmode`](#nginx_sslmode)                   |   `enum`   |  `G`  | Nginx SSL mode: disable,enable,enforce                   |
+| [`nginx_cert_validity`](#nginx_cert_validity)       | `duration` |  `G`  | Nginx self-signed cert validity, default 397d            |
+| [`nginx_home`](#nginx_home)                         |   `path`   |  `G`  | Nginx content dir, default `/www`, symlink to nginx_data |
+| [`nginx_data`](#nginx_data)                         |   `path`   |  `G`  | Nginx actual data dir, default /data/nginx               |
+| [`nginx_users`](#nginx_users)                       |   `dict`   |  `G`  | Nginx basic auth users: username-password dict           |
+| [`nginx_port`](#nginx_port)                         |   `port`   |  `G`  | Nginx listen port, default 80                            |
+| [`nginx_ssl_port`](#nginx_ssl_port)                 |   `port`   |  `G`  | Nginx SSL listen port, default 443                       |
+| [`certbot_sign`](#certbot_sign)                     |   `bool`   | `G/A` | Sign cert with certbot?                                  |
+| [`certbot_email`](#certbot_email)                   |  `string`  | `G/A` | Certbot notification email address                       |
+| [`certbot_options`](#certbot_options)               |  `string`  | `G/A` | Certbot extra command line options                       |
 
 [`DNS`](#dns) parameters configure DNSMasq DNS server, including enable switch, listen port, and dynamic DNS records.
 
-| Parameter                     | Type        | Level  | Description                          |
-|:------------------------------|:-----------:|:------:|:-------------------------------------|
-| [`dns_enabled`](#dns_enabled) | `bool`      | `G/I`  | Setup dnsmasq on this infra node?    |
-| [`dns_port`](#dns_port)       | `port`      | `G`    | DNS server listen port, default 53   |
-| [`dns_records`](#dns_records) | `string[]`  | `G`    | Dynamic DNS records resolved by dnsmasq |
+| Parameter                     |    Type    | Level | Description                             |
+|:------------------------------|:----------:|:-----:|:----------------------------------------|
+| [`dns_enabled`](#dns_enabled) |   `bool`   | `G/I` | Setup dnsmasq on this infra node?       |
+| [`dns_port`](#dns_port)       |   `port`   |  `G`  | DNS server listen port, default 53      |
+| [`dns_records`](#dns_records) | `string[]` |  `G`  | Dynamic DNS records resolved by dnsmasq |
 
 [`VICTORIA`](#victoria) parameters configure the VictoriaMetrics/Logs/Traces observability stack, including enable switches, ports, and data retention policies.
 
-| Parameter                                                   | Type       | Level  | Description                              |
-|:------------------------------------------------------------|:----------:|:------:|:-----------------------------------------|
-| [`vmetrics_enabled`](#vmetrics_enabled)                     | `bool`     | `G/I`  | Enable VictoriaMetrics on this infra node? |
-| [`vmetrics_clean`](#vmetrics_clean)                         | `bool`     | `G/A`  | Clean VictoriaMetrics data during init?  |
-| [`vmetrics_port`](#vmetrics_port)                           | `port`     | `G`    | VictoriaMetrics listen port, default 8428 |
-| [`vmetrics_scrape_interval`](#vmetrics_scrape_interval)     | `interval` | `G`    | Global scrape interval, default 10s      |
-| [`vmetrics_scrape_timeout`](#vmetrics_scrape_timeout)       | `interval` | `G`    | Global scrape timeout, default 8s        |
-| [`vmetrics_options`](#vmetrics_options)                     | `arg`      | `G`    | VictoriaMetrics extra CLI options        |
-| [`vlogs_enabled`](#vlogs_enabled)                           | `bool`     | `G/I`  | Enable VictoriaLogs on this infra node?  |
-| [`vlogs_clean`](#vlogs_clean)                               | `bool`     | `G/A`  | Clean VictoriaLogs data during init?     |
-| [`vlogs_port`](#vlogs_port)                                 | `port`     | `G`    | VictoriaLogs listen port, default 9428   |
-| [`vlogs_options`](#vlogs_options)                           | `arg`      | `G`    | VictoriaLogs extra CLI options           |
-| [`vtraces_enabled`](#vtraces_enabled)                       | `bool`     | `G/I`  | Enable VictoriaTraces on this infra node? |
-| [`vtraces_clean`](#vtraces_clean)                           | `bool`     | `G/A`  | Clean VictoriaTraces data during init?   |
-| [`vtraces_port`](#vtraces_port)                             | `port`     | `G`    | VictoriaTraces listen port, default 10428 |
-| [`vtraces_options`](#vtraces_options)                       | `arg`      | `G`    | VictoriaTraces extra CLI options         |
-| [`vmalert_enabled`](#vmalert_enabled)                       | `bool`     | `G/I`  | Enable VMAlert on this infra node?       |
-| [`vmalert_port`](#vmalert_port)                             | `port`     | `G`    | VMAlert listen port, default 8880        |
-| [`vmalert_options`](#vmalert_options)                       | `arg`      | `G`    | VMAlert extra CLI options                |
+| Parameter                                               |    Type    | Level | Description                                |
+|:--------------------------------------------------------|:----------:|:-----:|:-------------------------------------------|
+| [`vmetrics_enabled`](#vmetrics_enabled)                 |   `bool`   | `G/I` | Enable VictoriaMetrics on this infra node? |
+| [`vmetrics_clean`](#vmetrics_clean)                     |   `bool`   | `G/A` | Clean VictoriaMetrics data during init?    |
+| [`vmetrics_port`](#vmetrics_port)                       |   `port`   |  `G`  | VictoriaMetrics listen port, default 8428  |
+| [`vmetrics_scrape_interval`](#vmetrics_scrape_interval) | `interval` |  `G`  | Global scrape interval, default 10s        |
+| [`vmetrics_scrape_timeout`](#vmetrics_scrape_timeout)   | `interval` |  `G`  | Global scrape timeout, default 8s          |
+| [`vmetrics_options`](#vmetrics_options)                 |   `arg`    |  `G`  | VictoriaMetrics extra CLI options          |
+| [`vlogs_enabled`](#vlogs_enabled)                       |   `bool`   | `G/I` | Enable VictoriaLogs on this infra node?    |
+| [`vlogs_clean`](#vlogs_clean)                           |   `bool`   | `G/A` | Clean VictoriaLogs data during init?       |
+| [`vlogs_port`](#vlogs_port)                             |   `port`   |  `G`  | VictoriaLogs listen port, default 9428     |
+| [`vlogs_options`](#vlogs_options)                       |   `arg`    |  `G`  | VictoriaLogs extra CLI options             |
+| [`vtraces_enabled`](#vtraces_enabled)                   |   `bool`   | `G/I` | Enable VictoriaTraces on this infra node?  |
+| [`vtraces_clean`](#vtraces_clean)                       |   `bool`   | `G/A` | Clean VictoriaTraces data during init?     |
+| [`vtraces_port`](#vtraces_port)                         |   `port`   |  `G`  | VictoriaTraces listen port, default 10428  |
+| [`vtraces_options`](#vtraces_options)                   |   `arg`    |  `G`  | VictoriaTraces extra CLI options           |
+| [`vmalert_enabled`](#vmalert_enabled)                   |   `bool`   | `G/I` | Enable VMAlert on this infra node?         |
+| [`vmalert_port`](#vmalert_port)                         |   `port`   |  `G`  | VMAlert listen port, default 8880          |
+| [`vmalert_options`](#vmalert_options)                   |   `arg`    |  `G`  | VMAlert extra CLI options                  |
 
 [`PROMETHEUS`](#prometheus) parameters configure Alertmanager and Blackbox Exporter, providing alert management and network probing capabilities.
 
-| Parameter                                       | Type     | Level  | Description                              |
-|:------------------------------------------------|:--------:|:------:|:-----------------------------------------|
-| [`blackbox_enabled`](#blackbox_enabled)         | `bool`   | `G/I`  | Setup blackbox_exporter on this infra node? |
-| [`blackbox_port`](#blackbox_port)               | `port`   | `G`    | blackbox_exporter listen port, default 9115 |
-| [`blackbox_options`](#blackbox_options)         | `arg`    | `G`    | blackbox_exporter extra CLI options      |
-| [`alertmanager_enabled`](#alertmanager_enabled) | `bool`   | `G/I`  | Setup alertmanager on this infra node?   |
-| [`alertmanager_port`](#alertmanager_port)       | `port`   | `G`    | AlertManager listen port, default 9059   |
-| [`alertmanager_options`](#alertmanager_options) | `arg`    | `G`    | alertmanager extra CLI options           |
-| [`exporter_metrics_path`](#exporter_metrics_path) | `path` | `G`    | Exporter metrics path, default /metrics  |
+| Parameter                                         |  Type  | Level | Description                                 |
+|:--------------------------------------------------|:------:|:-----:|:--------------------------------------------|
+| [`blackbox_enabled`](#blackbox_enabled)           | `bool` | `G/I` | Setup blackbox_exporter on this infra node? |
+| [`blackbox_port`](#blackbox_port)                 | `port` |  `G`  | blackbox_exporter listen port, default 9115 |
+| [`blackbox_options`](#blackbox_options)           | `arg`  |  `G`  | blackbox_exporter extra CLI options         |
+| [`alertmanager_enabled`](#alertmanager_enabled)   | `bool` | `G/I` | Setup alertmanager on this infra node?      |
+| [`alertmanager_port`](#alertmanager_port)         | `port` |  `G`  | AlertManager listen port, default 9059      |
+| [`alertmanager_options`](#alertmanager_options)   | `arg`  |  `G`  | alertmanager extra CLI options              |
+| [`exporter_metrics_path`](#exporter_metrics_path) | `path` |  `G`  | Exporter metrics path, default /metrics     |
 
 [`GRAFANA`](#grafana) parameters configure the Grafana visualization platform, including enable switch, port, admin credentials, and data source configuration.
 
-| Parameter                                           | Type       | Level  | Description                              |
-|:----------------------------------------------------|:----------:|:------:|:-----------------------------------------|
-| [`grafana_enabled`](#grafana_enabled)               | `bool`     | `G/I`  | Enable Grafana on this infra node?       |
-| [`grafana_port`](#grafana_port)                     | `port`     | `G`    | Grafana listen port, default 3000        |
-| [`grafana_clean`](#grafana_clean)                   | `bool`     | `G/A`  | Clean Grafana data during init?          |
-| [`grafana_admin_username`](#grafana_admin_username) | `username` | `G`    | Grafana admin username, default `admin`  |
-| [`grafana_admin_password`](#grafana_admin_password) | `password` | `G`    | Grafana admin password, default `pigsty` |
-| [`grafana_auth_proxy`](#grafana_auth_proxy)         | `bool`     | `G`    | Enable Grafana auth proxy?               |
-| [`grafana_pgurl`](#grafana_pgurl)                   | `url`      | `G`    | External PostgreSQL URL for Grafana persistence |
-| [`grafana_view_password`](#grafana_view_password)   | `password` | `G`    | Grafana metadb PG datasource password    |
+| Parameter                                           |    Type    | Level | Description                                     |
+|:----------------------------------------------------|:----------:|:-----:|:------------------------------------------------|
+| [`grafana_enabled`](#grafana_enabled)               |   `bool`   | `G/I` | Enable Grafana on this infra node?              |
+| [`grafana_port`](#grafana_port)                     |   `port`   |  `G`  | Grafana listen port, default 3000               |
+| [`grafana_clean`](#grafana_clean)                   |   `bool`   | `G/A` | Clean Grafana data during init?                 |
+| [`grafana_admin_username`](#grafana_admin_username) | `username` |  `G`  | Grafana admin username, default `admin`         |
+| [`grafana_admin_password`](#grafana_admin_password) | `password` |  `G`  | Grafana admin password, default `pigsty`        |
+| [`grafana_auth_proxy`](#grafana_auth_proxy)         |   `bool`   |  `G`  | Enable Grafana auth proxy?                      |
+| [`grafana_pgurl`](#grafana_pgurl)                   |   `url`    |  `G`  | External PostgreSQL URL for Grafana persistence |
+| [`grafana_view_password`](#grafana_view_password)   | `password` |  `G`  | Grafana metadb PG datasource password           |
 
 
 ------------------------------
@@ -160,7 +160,7 @@ The INFRA module is responsible for deploying Pigsty's infrastructure components
 This section defines Pigsty deployment metadata: version string, admin node IP address, repository mirror [`region`](#region), default language, and HTTP(S) proxy for downloading packages.
 
 ```yaml
-version: v4.1.0                   # pigsty version string
+version: v4.2.0                   # pigsty version string
 admin_ip: 10.10.10.10             # admin node ip address
 region: default                   # upstream mirror region: default,china,europe
 language: en                      # default language: en or zh
@@ -178,11 +178,11 @@ proxy_env:                        # global proxy env when downloading packages
 
 name: `version`, type: `string`, level: `G`
 
-Pigsty version string, default value is the current version: `v4.1.0`.
+Pigsty version string, default value is the current version: `v4.2.0`.
 
 Pigsty uses this version string internally for feature control and content rendering. Do not modify this parameter arbitrarily.
 
-Pigsty uses semantic versioning, and the version string typically starts with the character `v`, e.g., `v4.1.0`.
+Pigsty uses semantic versioning, and the version string typically starts with the character `v`, e.g., `v4.2.0`.
 
 
 

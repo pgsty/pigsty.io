@@ -13,7 +13,7 @@ JUICE module provides `juice.yml` playbook to deploy and remove JuiceFS instance
 
 ## `juice.yml`
 
-Task structure in [`juice.yml`](https://github.com/pgsty/pigsty/blob/v4.1.0/juice.yml):
+Task structure in [`juice.yml`](https://github.com/pgsty/pigsty/blob/main/juice.yml):
 
 ```bash
 juice_id        : validate config, check port conflicts

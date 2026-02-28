@@ -252,10 +252,10 @@ theme light
 
 **WAL catch-up time not counted in RTO**: During catch-up, primary can still handle read-only requests, service not completely interrupted.
 
-|    Type    |                    Scenario                     |     Primary State     | WAL Catch-up |   Data Loss   |      RTO       |
-|:----------:|:-----------------------------------------------:|:---------------------:|:------------:|:-------------:|:--------------:|
-| Switchover | Planned maintenance, rolling upgrade, migration |   Running normally    |     Wait     |     None      | ≈ Failover RTO |
-|  Failover  |        Primary failure, emergency switch        | Failed or unreachable |     Skip     | May have some |    1s ~ 11s    |
+|    Type    |                  Scenario                  |   Primary State   | WAL Catch-up |    Data Loss    |      RTO       |
+|:----------:|:------------------------------------------:|:-----------------:|:------------:|:---------------:|:--------------:|
+| Switchover | Planned maintenance, rolling upgrades, migration | Running normally |     Wait     |      None       | ≈ Failover RTO |
+|  Failover  |      Primary failure, emergency switch      | Failed or unreachable |    Skip    | Possible minor  |    1s ~ 11s    |
 {.full-width}
 
 **WAL catch-up time** depends on replica replication lag. In normal operation scenarios, replicas usually stay synchronized or near-sync, catch-up completes in milliseconds to seconds.
@@ -270,7 +270,7 @@ With synchronous replication, WAL catch-up time is 0, making Switchover and Fail
 2. **Health check is the main delay source**: 60%~75% of total RTO
 3. **Best choice in emergencies**: If admin can respond quickly, manual Failover is the fastest way to restore service
 
-|   Mode   | Manual Failover | Auto (Expire) | Auto (Crash) |  Speedup   |
+|   Mode   | Manual Failover | Auto (Expire) | Auto (Crash) |   Speedup   |
 |:--------:|:---------------:|:-------------:|:------------:|:----------:|
 | **fast** |       3s        |      23s      |     24s      |   **8x**   |
 | **norm** |       4s        |      34s      |     30s      |   **8x**   |

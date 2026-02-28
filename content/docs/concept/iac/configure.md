@@ -108,18 +108,18 @@ The **`configure`** script performs the following adjustments based on environme
 
 ### Argument Details
 
-| Argument                | Description                                                                                  |
-|:------------------------|:---------------------------------------------------------------------------------------------|
-| `-c, --conf`            | Generate config from `conf/<template>.yml`, supports subdirectories like `ha/full`          |
-| `-i, --ip`              | Replace placeholder `10.10.10.10` in config template with specified IP                      |
-| `-v, --version`         | Specify PostgreSQL major version (13-18), keeps template default if not specified           |
-| `-r, --region`          | Set software repo mirror region: `default`, `china` (Chinese mirrors), `europe` (European)  |
-| `-o, --output`          | Specify output file path, defaults to `pigsty.yml`                                          |
-| `-s, --skip`            | Skip IP address detection and replacement, keep `10.10.10.10` placeholder in template       |
+| Argument                | Description                                                                                                |
+|:------------------------|:-----------------------------------------------------------------------------------------------------------|
+| `-c, --conf`            | Generate config from `conf/<template>.yml`, supports subdirectories like `ha/full`                         |
+| `-i, --ip`              | Replace placeholder `10.10.10.10` in config template with specified IP                                     |
+| `-v, --version`         | Specify PostgreSQL major version (13-18), keeps template default if not specified                          |
+| `-r, --region`          | Set software repo mirror region: `default`, `china` (Chinese mirrors), `europe` (European)                 |
+| `-o, --output`          | Specify output file path, defaults to `pigsty.yml`                                                         |
+| `-s, --skip`            | Skip IP address detection and replacement, keep `10.10.10.10` placeholder in template                      |
 | `-x, --proxy`           | Write current environment proxy variables (`HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`, `NO_PROXY`) to config |
-| `-n, --non-interactive` | Non-interactive mode, don't ask any questions (requires `-i` to specify IP)                 |
-| `-p, --port`            | Specify SSH port (when using non-default port 22)                                           |
-| `-g, --generate`        | **Generate random values for passwords in config file, improving security (strongly recommended)** |
+| `-n, --non-interactive` | Non-interactive mode, don't ask any questions (requires `-i` to specify IP)                                |
+| `-p, --port`            | Specify SSH port (when using non-default port 22)                                                          |
+| `-g, --generate`        | **Generate random values for passwords in config file, improving security (strongly recommended)**         |
 
 
 
@@ -244,16 +244,16 @@ When region is set to `china`, the script automatically:
 
 When using the `-g` argument, the script generates 24-character random strings for the following passwords:
 
-| Password Parameter | Description |
-|:---:|:---|
-| `grafana_admin_password` | Grafana admin password |
-| `pg_admin_password` | PostgreSQL admin password |
-| `pg_monitor_password` | PostgreSQL monitor user password |
+|    Password Parameter     | Description                          |
+|:-------------------------:|:-------------------------------------|
+| `grafana_admin_password`  | Grafana admin password               |
+|    `pg_admin_password`    | PostgreSQL admin password            |
+|   `pg_monitor_password`   | PostgreSQL monitor user password     |
 | `pg_replication_password` | PostgreSQL replication user password |
-| `patroni_password` | Patroni API password |
-| `haproxy_admin_password` | HAProxy admin password |
-| `minio_secret_key` | MinIO Secret Key |
-| `etcd_root_password` | ETCD Root password |
+|    `patroni_password`     | Patroni API password                 |
+| `haproxy_admin_password`  | HAProxy admin password               |
+|    `minio_secret_key`     | MinIO Secret Key                     |
+|   `etcd_root_password`    | ETCD Root password                   |
 
 It also replaces the following placeholder passwords:
 
@@ -292,41 +292,41 @@ The script reads configuration templates from the `conf/` directory, supporting 
 
 ### HA Templates (`ha/`)
 
-| Template | Description |
-|:---:|:---|
-| `ha/dual` | 2-node HA cluster |
-| `ha/trio` | 3-node HA cluster |
-| `ha/full` | 4-node complete sandbox environment |
-| `ha/safe` | Security-hardened HA configuration |
+| Template  | Description                                |
+|:---------:|:-------------------------------------------|
+| `ha/dual` | 2-node HA cluster                          |
+| `ha/trio` | 3-node HA cluster                          |
+| `ha/full` | 4-node complete sandbox environment        |
+| `ha/safe` | Security-hardened HA configuration         |
 | `ha/simu` | 42-node large-scale simulation environment |
 
 ### Application Templates (`app/`)
 
-| Template | Description |
-|:---:|:---|
-| `supabase` | Supabase self-hosted configuration |
-| `app/dify` | Dify AI platform configuration |
-| `app/odoo` | Odoo ERP configuration |
-| `app/teable` | Teable table database configuration |
-| `app/registry` | Docker Registry configuration |
+|    Template    | Description                         |
+|:--------------:|:------------------------------------|
+|   `supabase`   | Supabase self-hosted configuration  |
+|   `app/dify`   | Dify AI platform configuration      |
+|   `app/odoo`   | Odoo ERP configuration              |
+|  `app/teable`  | Teable table database configuration |
+| `app/registry` | Docker Registry configuration       |
 
 ### Special Kernel Templates
 
-| Template | Description |
-|:---:|:---|
-| `ivory` | IvorySQL: Oracle-compatible PostgreSQL |
-| `mssql` | Babelfish: SQL Server-compatible PostgreSQL |
-| `polar` | PolarDB: Alibaba Cloud open-source distributed PostgreSQL |
-| `citus` | Citus: Distributed PostgreSQL |
-| `oriole` | OrioleDB: Next-generation storage engine |
+| Template | Description                                               |
+|:--------:|:----------------------------------------------------------|
+| `ivory`  | IvorySQL: Oracle-compatible PostgreSQL                    |
+| `mssql`  | Babelfish: SQL Server-compatible PostgreSQL               |
+| `polar`  | PolarDB: Alibaba Cloud open-source distributed PostgreSQL |
+| `citus`  | Citus: Distributed PostgreSQL                             |
+| `oriole` | OrioleDB: Next-generation storage engine                  |
 
 ### Demo Templates (`demo/`)
 
-| Template | Description |
-|:---:|:---|
-| `demo/demo` | Demo environment configuration |
-| `demo/redis` | Redis cluster demo |
-| `demo/minio` | MinIO cluster demo |
+|   Template   | Description                    |
+|:------------:|:-------------------------------|
+| `demo/demo`  | Demo environment configuration |
+| `demo/redis` | Redis cluster demo             |
+| `demo/minio` | MinIO cluster demo             |
 
 
 -----------------
@@ -335,7 +335,7 @@ The script reads configuration templates from the `conf/` directory, supporting 
 
 ```bash
 $ ./configure
-configure pigsty v4.0.0 begin
+configure pigsty v4.2.0 begin
 [ OK ] region = china
 [ OK ] kernel  = Linux
 [ OK ] machine = x86_64
@@ -364,14 +364,14 @@ proceed with ./deploy.yml
 
 The script supports the following environment variables:
 
-| Environment Variable | Description | Default |
-|:---:|:---|:---:|
-| `PIGSTY_HOME` | Pigsty installation directory | `~/pigsty` |
-| `METADB_URL` | Metabase connection URL | `service=meta` |
-| `HTTP_PROXY` | HTTP proxy | - |
-| `HTTPS_PROXY` | HTTPS proxy | - |
-| `ALL_PROXY` | Universal proxy | - |
-| `NO_PROXY` | Proxy whitelist | Built-in default |
+| Environment Variable | Description                   |     Default      |
+|:--------------------:|:------------------------------|:----------------:|
+|    `PIGSTY_HOME`     | Pigsty installation directory |    `~/pigsty`    |
+|     `METADB_URL`     | Metabase connection URL       |  `service=meta`  |
+|     `HTTP_PROXY`     | HTTP proxy                    |        -         |
+|    `HTTPS_PROXY`     | HTTPS proxy                   |        -         |
+|     `ALL_PROXY`      | Universal proxy               |        -         |
+|      `NO_PROXY`      | Proxy whitelist               | Built-in default |
 
 
 -----------------

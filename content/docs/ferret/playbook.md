@@ -7,7 +7,7 @@ icon: fa-solid fa-scroll
 categories: [Task]
 ---
 
-Pigsty provides a built-in playbook [`mongo.yml`](https://github.com/pgsty/pigsty/blob/v4.1.0/mongo.yml) for installing FerretDB on nodes.
+Pigsty provides a built-in playbook [`mongo.yml`](https://github.com/pgsty/pigsty/blob/main/mongo.yml) for installing FerretDB on nodes.
 
 **Important**: This playbook only executes on hosts where [`mongo_seq`](/docs/ferret/param#mongo_seq) is defined.
 Running the playbook against hosts without `mongo_seq` will skip all tasks safely, making it safe to run against mixed host groups.
@@ -17,22 +17,22 @@ Running the playbook against hosts without `mongo_seq` will skip all tasks safel
 
 ## `mongo.yml`
 
-Playbook location: [`mongo.yml`](https://github.com/pgsty/pigsty/blob/v4.1.0/mongo.yml)
+Playbook location: [`mongo.yml`](https://github.com/pgsty/pigsty/blob/main/mongo.yml)
 
 Function: Install MongoDB/FerretDB on target hosts where `mongo_seq` is defined.
 
 This playbook contains the following subtasks:
 
-| Subtask          | Description                           |
-|------------------|:--------------------------------------|
-| `mongo_check`    | Check mongo identity parameters       |
-| `mongo_dbsu`     | Create OS user mongod                 |
-| `mongo_install`  | Install ferretdb RPM/DEB packages     |
+| Subtask          | Description                              |
+|------------------|:-----------------------------------------|
+| `mongo_check`    | Check mongo identity parameters          |
+| `mongo_dbsu`     | Create OS user mongod                    |
+| `mongo_install`  | Install ferretdb RPM/DEB packages        |
 | `mongo_purge`    | Purge existing FerretDB (not by default) |
-| `mongo_config`   | Configure FerretDB service            |
-| `mongo_cert`     | Issue FerretDB SSL certificates       |
-| `mongo_launch`   | Launch FerretDB service               |
-| `mongo_register` | Register FerretDB to Prometheus       |
+| `mongo_config`   | Configure FerretDB service               |
+| `mongo_cert`     | Issue FerretDB SSL certificates          |
+| `mongo_launch`   | Launch FerretDB service                  |
+| `mongo_register` | Register FerretDB to Prometheus          |
 
 
 ----------------

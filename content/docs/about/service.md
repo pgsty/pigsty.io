@@ -45,8 +45,8 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 <p><b>Architecture Support: x86_64</b></p>
 <p><b>OS Support: Latest minor versions of three families</b><p>
 <ul>
-<li>EL 9.4</li>
-<li>Debian 12.7</li>
+<li>EL 9.7</li>
+<li>Debian 12.13</li>
 <li>Ubuntu 22.04.5</li>
 </ul>
 <p><b>Features: <a href="/docs/ref/module#core-modules">Core Modules</a></b></p>
@@ -75,7 +75,7 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 <li>Ubuntu 22 / 24</li>
 </ul>
 
-<p><b>Features: <a href="/docs/ref/module">All Modules</a></b> (except 信创)</p>
+<p><b>Features: <a href="/docs/ref/module">All Modules</a></b> (except domestic innovation kernels)</p>
 <p><b>SLA: Response within business hours</b></p>
 <p><b>Expert consulting services:</b></p>
 <ul>
@@ -124,7 +124,7 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 
 <p><b>Repository: China mainland mirror sites</b></p>
 <p><b>Delivery: Customized offline software package</b></p>
-<p><b>信创: <a href="/docs/pgsql/kernel/polardb-o">PolarDB-O</a> support</b></p>
+<p><b>Domestic Innovation: <a href="/docs/pgsql/kernel/polardb-o">PolarDB-O</a> support</b></p>
 
 {{< /card >}}
 {{< /cardpane >}}
@@ -138,14 +138,14 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 
 Pigsty Open Source Edition uses the [**Apache-2.0**](/docs/about/license) license, provides complete core functionality, requires no fees, but does not guarantee any warranty service. If you find defects in Pigsty, we welcome you to submit an [Issue](https://github.com/pgsty/pigsty/issues/) on Github.
 
-For the open source version, we provide pre-built standard offline software packages for PostgreSQL 18 on the latest minor versions of three specific operating system distributions: EL 9.4, Debian 12.7, Ubuntu 22.04.5 (as support for open source, we also provide Debian 12 Arm64 offline software packages).
+For the open source version, we provide pre-built standard offline software packages for PostgreSQL 18 on the latest minor versions of three specific operating system distributions: EL 9.7, Debian 12.13, Ubuntu 22.04.5 (as support for open source, we also provide Debian 12 Arm64 offline software packages).
 
 Using the Pigsty open source version allows junior development/operations engineers to have **70%+** of the capabilities of professional DBAs. Even without database experts, they can easily set up a highly available, high-performance, easy-to-maintain, secure and reliable PostgreSQL database cluster.
 
-|  Code   | OS Distribution Version          |   `x86_64`      |   `Arm64`   |                       PG17                       |                   PG16                    |                   PG15                    |                   PG14                    |                   PG13                    |
-|:-------:|-------------------------|:------------:|:------------:|:------------------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|
-| **EL9** | RHEL 9 / Rocky9 / Alma9 | `el9.x86_64` |  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
-| **U22** | Ubuntu 22.04 (`jammy`)  | `u22.x86_64` |  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
+|  Code   | OS Distribution Version |   `x86_64`   |    `Arm64`    |                       PG17                       |                   PG16                    |                   PG15                    |                   PG14                    |                   PG13                    |
+|:-------:|-------------------------|:------------:|:-------------:|:------------------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|
+| **EL9** | RHEL 9 / Rocky9 / Alma9 | `el9.x86_64` |               | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
+| **U22** | Ubuntu 22.04 (`jammy`)  | `u22.x86_64` |               | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **D12** | Debian 12 (`bookworm`)  | `d12.x86_64` | `d12.aarch64` | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 
 > <i class="fas fa-circle-check text-primary"></i> = Primary support, <i class="fas fa-check text-primary"></i> = Optional support
@@ -172,8 +172,8 @@ Pigsty Professional Edition uses a commercial license, providing additional modu
 
 Pigsty Professional Edition starting price is **¥150,000 / year**, equivalent to the annual fee for **9** vCPU AWS high-availability RDS PostgreSQL, or a junior operations engineer with a monthly salary of **10,000 yuan**.
 
-|  Code   | OS Distribution Version                    |   `x86_64`   |   `Arm64`   |                       PG17                       |                       PG16                       |                   PG15                    |                   PG14                    |                   PG13                    |
-|:-------:|-----------------------------------|:------------:|:------------:|:------------------------------------------------:|:------------------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|
+|  Code   | OS Distribution Version           |   `x86_64`   |    `Arm64`    |                       PG17                       |                       PG16                       |                   PG15                    |                   PG14                    |                   PG13                    |
+|:-------:|-----------------------------------|:------------:|:-------------:|:------------------------------------------------:|:------------------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|
 | **EL9** | RHEL 9 / Rocky9 / Alma9           | `el9.x86_64` | `el9.aarch64` | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **EL8** | RHEL 8 / Rocky8 / Alma8 / Anolis8 | `el8.x86_64` | `el8.aarch64` | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **U24** | Ubuntu 24.04 (`noble`)            | `u24.x86_64` | `u24.aarch64` | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
@@ -191,7 +191,7 @@ Pigsty Enterprise Edition subscription includes all service content provided by 
 
 Pigsty Enterprise Edition subscription provides the broadest range of database/operating system version support, including extended support for EOL operating systems (EL7, U20, D11), domestic operating systems, cloud vendor operating systems, and EOL database major versions (from PG 13 onwards), as well as full support for Arm64 architecture chips.
 
-Pigsty Enterprise Edition subscription provides 信创 (domestic innovation) and localization solutions, allowing you to use [PolarDB v2.0](http://www.itsec.gov.cn/aqkkcp/cpgg/202312/t20231226_162074.html) (this kernel license needs to be purchased separately) kernel to replace the native PostgreSQL kernel to meet domestic compliance requirements.
+Pigsty Enterprise Edition subscription provides domestic innovation and localization solutions, allowing you to use [PolarDB v2.0](http://www.itsec.gov.cn/aqkkcp/cpgg/202312/t20231226_162074.html) (this kernel license needs to be purchased separately) kernel to replace the native PostgreSQL kernel and meet local compliance requirements.
 
 Pigsty Enterprise Edition subscription provides higher-standard enterprise-level consulting services, committing to 7x24 with (< 1h) response time SLA, and can provide more types of consulting support: version upgrades, performance bottleneck identification, annual architecture review, extension plugin integration, etc.
 
@@ -201,7 +201,7 @@ Pigsty Enterprise Edition allows you to use Pigsty for DBaaS purposes, building 
 
 Pigsty Enterprise Edition starting price is **¥400,000 / year**, equivalent to the annual fee for **24** vCPU AWS high-availability RDS, or an operations expert with a monthly salary of **30,000 yuan**.
 
-|  Code   | OS Distribution Version                    |   `x86_64`   |                       PG17                       |                       PG16                       |                       PG15                       |                       PG14                       |                       PG13                       |                   PG12                    |   `Arm64`   |                                             PG17 |                       PG16                       |                       PG15                       |                       PG14                       |                       PG13                       |                   PG12                    |
+|  Code   | OS Distribution Version           |   `x86_64`   |                       PG17                       |                       PG16                       |                       PG15                       |                       PG14                       |                       PG13                       |                   PG12                    |   `Arm64`   |                                             PG17 |                       PG16                       |                       PG15                       |                       PG14                       |                       PG13                       |                   PG12                    |
 |:-------:|-----------------------------------|:------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:-----------------------------------------:|:-----------:|-------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:-----------------------------------------:|
 | **EL9** | RHEL 9 / Rocky9 / Alma9           | `el9.x86_64` | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | `el9.arm64` | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **EL8** | RHEL 8 / Rocky8 / Alma8 / Anolis8 | `el8.x86_64` | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | `el8.arm64` | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
@@ -231,15 +231,15 @@ Pigsty Professional/Enterprise Edition includes the following additional feature
     - [**Babelfish**](/docs/pgsql/kernel/babelfish): Provides Microsoft SQL Server wire protocol-level compatibility
     - [**IvorySQL**](/docs/pgsql/kernel/ivorysql): Based on PG, provides Oracle syntax/type/stored procedure compatibility
     - [**PolarDB PG**](/docs/pgsql/kernel/polardb): Provides support for open-source PolarDB for PostgreSQL kernel
-    - [**PolarDB O**](/docs/pgsql/kernel/polardb-o): 信创 database, Oracle-compatible kernel that meets domestic compliance requirements (**Enterprise Edition subscription only**)
-- **Extension Support Capability**: Provides out-of-the-box installation for 451 available PG Extensions for PG 13-18 on mainstream operating systems.
+    - [**PolarDB O**](/docs/pgsql/kernel/polardb-o): Domestic innovation database with Oracle-compatible kernel for local compliance requirements (**Enterprise Edition subscription only**)
+- **Extension Support Capability**: Provides out-of-the-box installation for 461 available PG Extensions for PG 13-18 on mainstream operating systems.
 - **Complete Functional Modules**: Provides all functional modules:
     - [**Supabase**](/docs/pgsql/kernel/supabase): Reliably self-host production-grade open-source Firebase
     - [**MinIO**](/docs/minio): Enterprise PB-level object storage planning and self-hosting
     - [**DuckDB**](/docs/pilot/duckdb): Provides comprehensive DuckDB support, and PostgreSQL + DuckDB OLAP extension plugin support
     - [**Kafka**](/docs/pilot/kafka): Provides high-availability Kafka cluster deployment and monitoring
     - Kubernetes, VictoriaMetrics & VictoriaLogs
-- **Domestic Operating System Support**: Provides domestic 信创 operating system support options (**Enterprise Edition subscription only**)
+- **Domestic Operating System Support**: Provides domestic innovation OS support options (**Enterprise Edition subscription only**)
 - **Domestic ARM Architecture Support**: Provides domestic ARM64 architecture support options (**Enterprise Edition subscription only**)
 - **China Mainland Mirror Repository**: Smooth installation without VPN, providing domestic YUM/APT repository mirrors and DockerHub access proxy.
 - **Chinese Interface Support**: Monitoring system Chinese interface support (Beta)

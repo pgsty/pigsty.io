@@ -8,77 +8,101 @@ categories: [Reference]
 
 ------
 
+## 2026-02-27
+
+| Name              | Old Ver  | New Ver  | Note                                 |
+|:------------------|:---------|:---------|:-------------------------------------|
+| timescaledb       | 2.25.0   | 2.25.1   |                                      |
+| citus             | 14.0.0-3 | 14.0.0-4 | rebuilt with latest official release |
+| age               | 1.7.0    | 1.7.0    | added PG 17 build for 1.7.0          |
+| pg_background     | -        | 1.8      | DEB only, no RPM package             |
+| pgmq              | 1.10.0   | 1.10.1   | package unavailable for now          |
+| pg_search         | 0.21.6   | 0.21.9   | direct download usage                |
+| oriolepg          | 17.11    | 17.16    | OriolePG kernel update               |
+| orioledb          | beta12   | beta14   | paired with OriolePG 17.16           |
+| openhalo          | 14.10    | 1.0      | updated and renamed, 14.18           |
+| pgedge            | -        | 17.9     | new multi-master edge kernel         |
+| spock             | -        | 5.0.5    | new, pgEdge core extension           |
+| lolor             | -        | 1.2.2    | new, pgEdge core extension           |
+| snowflake         | -        | 2.4      | new, pgEdge core extension           |
+| babelfishpg       | -        | 5.5.0    | new BabelfishPG package group        |
+| babelfish         | -        | 5.5.0    | new Babelfish compatibility package  |
+| antlr4-runtime413 | -        | 4.13     | new runtime dependency for Babelfish |
+{.stretch-last}
+
+------
+
 ## 2026-02-12
 
-| Name           | Old Ver      | New Ver      | Note                                        |
-|:---------------|:-------------|:-------------|:--------------------------------------------|
-| timescaledb    | 2.24.0       | 2.25.0       |                                             |
-| pg_incremental | 1.2.0        | 1.4.1        |                                             |
-| pg_bigm        | 1.2          | 1.2-20250903 |                                             |
-| pg_net         | 0.20.0       | 0.20.2       | ubuntu22 libcurl version too old            |
-| pgmq           | 1.9.0        | 1.10.0       |                                             |
-| pg_textsearch  | 0.4.0        | 0.5.0        |                                             |
-| pljs           | 1.0.4        | 1.0.5        |                                             |
-| sslutils       | 1.4-1        | 1.4-2        |                                             |
-| supautils      | 3.0.2        | 3.1.0        |                                             |
-| pg_math        | 1.0          | 1.1.0        |                                             |
-| pgsentinel     | 1.3.1        | 1.4.0        |                                             |
-| pg_uri         | 1.20151224   | 1.20251029   |                                             |
-| pgcollection   | 1.1.0        | 1.1.1        |                                             |
-| pg_readonly    | 1.0.3        | 1.0.4        |                                             |
-| timestamp9     | 1.4.0-1      | 1.4.0-2      | rebuilt to fix dependency issues            |
-| plprql         | 18.0.0       | 18.0.1       |                                             |
-| pglinter       | 1.0.1        | 1.1.0        |                                             |
-| pg_jsonschema  | 0.3.3        | 0.3.4        |                                             |
-| pg_anon        | 2.5.1        | 3.0.1        |                                             |
-| pg_search      | 0.21.4       | 0.21.6       |                                             |
-| pg_graphql     | 1.5.12-1     | 1.5.12-2     | switched to official release                |
-| pg_summarize   | 0.0.1-2      | 0.0.1-3      | rebuilt to fix PG 18 issue                  |
-| nominatim_fdw  |              | 1.1.0        | new, synced with PGDG YUM                   |
-| pg_utl_smtp    |              | 1.0.0        | new, synced with PGDG YUM                   |
-| pg_strict      | -            | 1.0.2        | new Rust extension                          |
-| pg_track_optimizer | -        | 0.9.1        | new extension                               |
-| pgmb           | -            | 1.0.0        | new extension                               |
+| Name               | Old Ver    | New Ver      | Note                             |
+|:-------------------|:-----------|:-------------|:---------------------------------|
+| timescaledb        | 2.24.0     | 2.25.0       |                                  |
+| pg_incremental     | 1.2.0      | 1.4.1        |                                  |
+| pg_bigm            | 1.2        | 1.2-20250903 |                                  |
+| pg_net             | 0.20.0     | 0.20.2       | ubuntu22 libcurl version too old |
+| pgmq               | 1.9.0      | 1.10.0       |                                  |
+| pg_textsearch      | 0.4.0      | 0.5.0        |                                  |
+| pljs               | 1.0.4      | 1.0.5        |                                  |
+| sslutils           | 1.4-1      | 1.4-2        |                                  |
+| supautils          | 3.0.2      | 3.1.0        |                                  |
+| pg_math            | 1.0        | 1.1.0        |                                  |
+| pgsentinel         | 1.3.1      | 1.4.0        |                                  |
+| pg_uri             | 1.20151224 | 1.20251029   |                                  |
+| pgcollection       | 1.1.0      | 1.1.1        |                                  |
+| pg_readonly        | 1.0.3      | 1.0.4        |                                  |
+| timestamp9         | 1.4.0-1    | 1.4.0-2      | rebuilt to fix dependency issues |
+| plprql             | 18.0.0     | 18.0.1       |                                  |
+| pglinter           | 1.0.1      | 1.1.0        |                                  |
+| pg_jsonschema      | 0.3.3      | 0.3.4        |                                  |
+| pg_anon            | 2.5.1      | 3.0.1        |                                  |
+| pg_search          | 0.21.4     | 0.21.6       |                                  |
+| pg_graphql         | 1.5.12-1   | 1.5.12-2     | switched to official release     |
+| pg_summarize       | 0.0.1-2    | 0.0.1-3      | rebuilt to fix PG 18 issue       |
+| nominatim_fdw      |            | 1.1.0        | new, synced with PGDG YUM        |
+| pg_utl_smtp        |            | 1.0.0        | new, synced with PGDG YUM        |
+| pg_strict          | -          | 1.0.2        | new Rust extension               |
+| pg_track_optimizer | -          | 0.9.1        | new extension                    |
+| pgmb               | -          | 1.0.0        | new extension                    |
 {.stretch-last}
 
 ------
 
 ## 2026-01-25
 
-| Name            | Old Ver            | New Ver            | Note                              |
-|:--------------|:---------------|:---------------|:-----------------------------------|
-| age           | 1.6.0          | 1.7.0          | PG 18 only                         |
-| citus         | 14.0.0-1PIGSTY | 14.0.0-2PIGSTY | official branch formally released  |
-| pg_clickhouse | 0.1.2          | 0.1.3          |                                    |
-| pgmq          | 1.8.1          | 1.9.0          |                                    |
-| pg_search     | 0.21.2         | 0.21.4         |                                    |
+| Name          | Old Ver        | New Ver        | Note                              |
+|:--------------|:---------------|:---------------|:----------------------------------|
+| age           | 1.6.0          | 1.7.0          | PG 18 only                        |
+| citus         | 14.0.0-1PIGSTY | 14.0.0-2PIGSTY | official branch formally released |
+| pg_clickhouse | 0.1.2          | 0.1.3          |                                   |
+| pgmq          | 1.8.1          | 1.9.0          |                                   |
+| pg_search     | 0.21.2         | 0.21.4         |                                   |
 {.stretch-last}
 
 ------
 
 ## 2026-01-16
 
-| Name                      | Old Ver    | New Ver    | Note                          |
-|-------------------------|--------|--------|-------------------------------|
-| etcd_fdw                |        | 0.0.0  | new                           |
-| pg_ttl_index            |        | 0.1.0  | new                           |
-| citus                   | 13.2.0 | 14.0.0 | +pg18, pre-release            |
-| pg_search               | 0.20.5 | 0.21.2 | +pg18                         |
-| pg_clickhouse           | 0.1.0  | 0.1.2  |                               |
-| pg_textsearch           | 0.1.0  | 0.4.0  |                               |
-| pg_convert              | 0.0.5  | 0.1.0  |                               |
-| pg_timeseries           | 0.1.8  | 0.2.0  |                               |
-| biscuit                 | 2.0.1  | 2.2.2  |                               |
-| pgmq                    | 1.8.0  | 1.8.1  |                               |
-| documentdb              | 0.107  | 0.109  | +pg18, using Microsoft version |
-| pg_bulkload             | 3.1.22 | 3.1.23 | +pg18                         |
-| age                     | -      | 1.6.0  | +pg18 PGDG                    |
-| pgsentinel              | 1.2.0  | 1.3.1  | PGDG                          |
-| pljs                    | -      | 1.0.4  | PGDG                          |
-| pg_partman              | 5.3.0  | 5.4.0  | PGDG                          |
-| pgfincore               | -      | 1.3.1  | PGDG                          |
-| documentdb_extended_rum |        | 0.109  | new                           |
-| mobilitydb_datagen      |        | 1.3.0  | new                           |
+| Name                    | Old Ver | New Ver | Note                           |
+|-------------------------|---------|---------|--------------------------------|
+| etcd_fdw                |         | 0.0.0   | new                            |
+| pg_ttl_index            |         | 0.1.0   | new                            |
+| citus                   | 13.2.0  | 14.0.0  | +pg18, pre-release             |
+| pg_search               | 0.20.5  | 0.21.2  | +pg18                          |
+| pg_clickhouse           | 0.1.0   | 0.1.2   |                                |
+| pg_textsearch           | 0.1.0   | 0.4.0   |                                |
+| pg_convert              | 0.0.5   | 0.1.0   |                                |
+| pg_timeseries           | 0.1.8   | 0.2.0   |                                |
+| biscuit                 | 2.0.1   | 2.2.2   |                                |
+| pgmq                    | 1.8.0   | 1.8.1   |                                |
+| documentdb              | 0.107   | 0.109   | +pg18, using Microsoft version |
+| pg_bulkload             | 3.1.22  | 3.1.23  | +pg18                          |
+| age                     | -       | 1.6.0   | +pg18 PGDG                     |
+| pgsentinel              | 1.2.0   | 1.3.1   | PGDG                           |
+| pljs                    | -       | 1.0.4   | PGDG                           |
+| pg_partman              | 5.3.0   | 5.4.0   | PGDG                           |
+| pgfincore               | -       | 1.3.1   | PGDG                           |
+| documentdb_extended_rum |         | 0.109   | new                            |
+| mobilitydb_datagen      |         | 1.3.0   | new                            |
 {.stretch-last}
 
 

@@ -18,7 +18,7 @@ PolarDB for Oracle is an Oracle-compatible version developed based on PolarDB fo
 
 We collaborate with the Alibaba Cloud kernel team to provide a complete database solution based on PolarDB v2.0 kernel and Pigsty. Please contact sales for inquiries, or purchase on Alibaba Cloud Marketplace.
 
-The PolarDB for Oracle kernel is currently only available on EL systems.
+The PolarDB for Oracle kernel is currently only available on EL7 (CentOS 7) systems.
 
 ![](/img/pigsty/polar.jpg)
 

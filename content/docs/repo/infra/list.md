@@ -12,11 +12,11 @@ weight: 5441
 
 | Name                                                                                     | Version  | License                                                                                | Comment                                  |
 |------------------------------------------------------------------------------------------|----------|----------------------------------------------------------------------------------------|------------------------------------------|
-| [`grafana`](https://github.com/grafana/grafana/)                                         | `12.3.3` | [AGPLv3](https://github.com/grafana/grafana/blob/main/LICENSE)                         | Observability and visualization platform |
-| [`loki`](https://github.com/grafana/loki)                                                | `3.6.6`  | [AGPLv3](https://github.com/grafana/loki/blob/main/LICENSE)                            | Log aggregation system (deprecated)      |
-| [`promtail`](https://github.com/grafana/loki/releases/tag/v3.6.6)                        | `3.6.6`  | [AGPLv3](https://github.com/grafana/loki/blob/main/LICENSE)                            | Loki log collection agent (deprecated)   |
-| [`logcli`](https://github.com/grafana/loki/releases/tag/v3.6.6)                          | `3.6.6`  | [AGPLv3](https://github.com/grafana/loki/blob/main/LICENSE)                            | Loki query CLI (deprecated)              |
-| [`grafana-infinity-ds`](https://github.com/grafana/grafana-infinity-datasource/)         | `3.7.1`  | [Apache-2.0](https://github.com/grafana/grafana-infinity-datasource/blob/main/LICENSE) | JSON/CSV/XML datasource support          |
+| [`grafana`](https://github.com/grafana/grafana/)                                         | `12.4.0` | [AGPLv3](https://github.com/grafana/grafana/blob/main/LICENSE)                         | Observability and visualization platform |
+| [`loki`](https://github.com/grafana/loki)                                                | `3.6.7`  | [AGPLv3](https://github.com/grafana/loki/blob/main/LICENSE)                            | Log aggregation system (deprecated)      |
+| [`promtail`](https://github.com/grafana/loki/releases/tag/v3.6.7)                        | `3.6.7`  | [AGPLv3](https://github.com/grafana/loki/blob/main/LICENSE)                            | Loki log collection agent (deprecated)   |
+| [`logcli`](https://github.com/grafana/loki/releases/tag/v3.6.7)                          | `3.6.7`  | [AGPLv3](https://github.com/grafana/loki/blob/main/LICENSE)                            | Loki query CLI (deprecated)              |
+| [`grafana-infinity-ds`](https://github.com/grafana/grafana-infinity-datasource/)         | `3.7.2`  | [Apache-2.0](https://github.com/grafana/grafana-infinity-datasource/blob/main/LICENSE) | JSON/CSV/XML datasource support          |
 | [`grafana-plugins`](https://github.com/pgsty/infra-pkg/tree/main/noarch/grafana-plugins) | `12.3.0` | [Apache-2.0](https://github.com/pgsty/infra-pkg/blob/main/LICENSE)                     | Extra panel plugins by Pigsty            |
 {.stretch-last}
 
@@ -28,14 +28,14 @@ weight: 5441
 | Name                                                                                                    | Version   | License                                                                                       | Comment                                       |
 |---------------------------------------------------------------------------------------------------------|-----------|-----------------------------------------------------------------------------------------------|-----------------------------------------------|
 | [`victoria-metrics`](https://github.com/VictoriaMetrics/VictoriaMetrics)                                | `1.136.0` | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | High-performance TSDB, Prometheus alternative |
-| [`victoria-logs`](https://github.com/VictoriaMetrics/VictoriaMetrics)                                   | `1.45.0`  | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | High-performance log storage and query engine |
+| [`victoria-logs`](https://github.com/VictoriaMetrics/VictoriaMetrics)                                   | `1.47.0`  | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | High-performance log storage and query engine |
 | [`victoria-traces`](https://github.com/VictoriaMetrics/VictoriaMetrics)                                 | `0.7.1`   | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | Distributed tracing backend                   |
 | [`victoria-metrics-cluster`](https://github.com/VictoriaMetrics/VictoriaMetrics)                        | `1.136.0` | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | VictoriaMetrics distributed cluster           |
 | [`vmutils`](https://github.com/VictoriaMetrics/VictoriaMetrics)                                         | `1.136.0` | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | VictoriaMetrics CLI utilities                 |
-| [`vlogscli`](https://github.com/VictoriaMetrics/VictoriaMetrics)                                        | `1.45.0`  | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | VictoriaLogs interactive query client         |
-| [`vlagent`](https://github.com/VictoriaMetrics/VictoriaMetrics)                                         | `1.45.0`  | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | VictoriaLogs log collection agent             |
-| [`grafana-victorialogs-ds`](https://github.com/VictoriaMetrics/victorialogs-datasource/releases/)       | `0.25.0`  | [Apache-2.0](https://github.com/VictoriaMetrics/victorialogs-datasource/blob/main/LICENSE)    | VictoriaLogs Grafana datasource               |
-| [`grafana-victoriametrics-ds`](https://github.com/VictoriaMetrics/victoriametrics-datasource/releases/) | `0.22.0`  | [Apache-2.0](https://github.com/VictoriaMetrics/victoriametrics-datasource/blob/main/LICENSE) | VictoriaMetrics Grafana datasource            |
+| [`vlogscli`](https://github.com/VictoriaMetrics/VictoriaMetrics)                                        | `1.47.0`  | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | VictoriaLogs interactive query client         |
+| [`vlagent`](https://github.com/VictoriaMetrics/VictoriaMetrics)                                         | `1.47.0`  | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | VictoriaLogs log collection agent             |
+| [`grafana-victorialogs-ds`](https://github.com/VictoriaMetrics/victorialogs-datasource/releases/)       | `0.26.2`  | [Apache-2.0](https://github.com/VictoriaMetrics/victorialogs-datasource/blob/main/LICENSE)    | VictoriaLogs Grafana datasource               |
+| [`grafana-victoriametrics-ds`](https://github.com/VictoriaMetrics/victoriametrics-datasource/releases/) | `0.23.1`  | [Apache-2.0](https://github.com/VictoriaMetrics/victoriametrics-datasource/blob/main/LICENSE) | VictoriaMetrics Grafana datasource            |
 {.stretch-last}
 
 {{% alert title="Note on Victoria Grafana Datasource Plugins" color="info" %}}
@@ -56,7 +56,7 @@ allow_loading_unsigned_plugins = victoriametrics-logs-datasource,victoriametrics
 
 | Name                                                                   | Version  | License                                                                           | Comment                                   |
 |------------------------------------------------------------------------|----------|-----------------------------------------------------------------------------------|-------------------------------------------|
-| [`prometheus`](https://github.com/prometheus/prometheus)               | `3.9.1`  | [Apache-2.0](https://github.com/prometheus/prometheus/blob/main/LICENSE)          | Cloud-native monitoring & TSDB            |
+| [`prometheus`](https://github.com/prometheus/prometheus)               | `3.10.0`  | [Apache-2.0](https://github.com/prometheus/prometheus/blob/main/LICENSE)          | Cloud-native monitoring & TSDB            |
 | [`pushgateway`](https://github.com/prometheus/pushgateway)             | `1.11.2` | [Apache-2.0](https://github.com/prometheus/pushgateway/blob/master/LICENSE)       | Metrics push gateway for short-lived jobs |
 | [`alertmanager`](https://github.com/prometheus/alertmanager)           | `0.31.1` | [Apache-2.0](https://github.com/prometheus/alertmanager/blob/main/LICENSE)        | Alert management & notification dispatch  |
 | [`blackbox_exporter`](https://github.com/prometheus/blackbox_exporter) | `0.27.0` | [Apache-2.0](https://github.com/prometheus/blackbox_exporter/blob/master/LICENSE) | Blackbox probing, endpoint availability   |
@@ -78,7 +78,7 @@ allow_loading_unsigned_plugins = victoriametrics-logs-datasource,victoriametrics
 | [`mysqld_exporter`](https://github.com/prometheus/mysqld_exporter)        | `0.18.0` | [Apache-2.0](https://github.com/prometheus/mysqld_exporter/blob/main/LICENSE)         | Expose mysql metrics               |
 | [`redis_exporter`](https://github.com/oliver006/redis_exporter)           | `1.81.0` | [MIT](https://github.com/oliver006/redis_exporter/blob/master/LICENSE)                | Expose redis metrics               |
 | [`kafka_exporter`](https://github.com/danielqsj/kafka_exporter)           | `1.9.0`  | [Apache-2.0](https://github.com/danielqsj/kafka_exporter/blob/master/LICENSE)         | Expose kafka metrics               |
-| [`mongodb_exporter`](https://github.com/percona/mongodb_exporter)         | `0.47.2` | [Apache-2.0](https://github.com/percona/mongodb_exporter/blob/main/LICENSE)           | Expose mongodb metrics             |
+| [`mongodb_exporter`](https://github.com/percona/mongodb_exporter)         | `0.49.0` | [Apache-2.0](https://github.com/percona/mongodb_exporter/blob/main/LICENSE)           | Expose mongodb metrics             |
 | [`mtail`](https://github.com/google/mtail)                                | `3.0.8`  | [Apache-2.0](https://github.com/google/mtail/blob/main/LICENSE)                       | Parse logs and generate metrics    |
 | [`vector`](https://github.com/vectordotdev/vector/releases)               | `0.53.0` | [MPL-2.0](https://github.com/vectordotdev/vector/blob/master/LICENSE)                 | Versatile log collector            |
 {.stretch-last}
@@ -119,7 +119,7 @@ PostgreSQL related tools, DBMS, and other utilities
 | [`kafka`](https://github.com/apache/kafka)                  | `4.2.0`   | [Apache-2.0](https://github.com/apache/kafka/blob/trunk/LICENSE)                   | Message queue                           |
 | [`duckdb`](https://github.com/duckdb/duckdb)                | `1.4.4`   | [MIT](https://github.com/duckdb/duckdb/blob/main/LICENSE)                          | Embedded OLAP                           |
 | [`ferretdb`](https://github.com/FerretDB/FerretDB)          | `2.7.0`   | [Apache-2.0](https://github.com/FerretDB/FerretDB/blob/main/LICENSE)               | MongoDB over PG                         |
-| [`tigerbeetle`](https://github.com/tigerbeetle/tigerbeetle) | `0.16.73` | [Apache-2.0](https://github.com/tigerbeetle/tigerbeetle/blob/main/LICENSE)         | Financial OLTP                          |
+| [`tigerbeetle`](https://github.com/tigerbeetle/tigerbeetle) | `0.16.74` | [Apache-2.0](https://github.com/tigerbeetle/tigerbeetle/blob/main/LICENSE)         | Financial OLTP                          |
 | [`IvorySQL`](https://github.com/IvorySQL/IvorySQL)          | `5.1`     | [Apache-2.0](https://github.com/IvorySQL/IvorySQL/blob/IVORY_REL_5_STABLE/LICENSE) | Oracle compatible PG 18.1               |
 {.stretch-last}
 
@@ -132,7 +132,7 @@ Pig package manager, PostgreSQL tools, and other database related utilities
 
 | Name                                                                                    | Version    | License                                                                                 | Comment                                       |
 |-----------------------------------------------------------------------------------------|------------|-----------------------------------------------------------------------------------------|-----------------------------------------------|
-| [`pig`](https://github.com/pgsty/pig)                                                   | `1.2.0`    | [Apache-2.0](https://github.com/pgsty/pig/blob/main/LICENSE)                            | PG package manager                            |
+| [`pig`](https://github.com/pgsty/pig)                                                   | `1.3.0`    | [Apache-2.0](https://github.com/pgsty/pig/blob/main/LICENSE)                            | PG package manager                            |
 | [`vip-manager`](https://github.com/cybertec-postgresql/vip-manager)                     | `4.0.0`    | [BSD-2](https://github.com/cybertec-postgresql/vip-manager/blob/master/LICENSE)         | Bind L2 VIP to PG primary                     |
 | [`pgflo`](https://github.com/pgflo/pg_flo)                                              | `0.0.15`   | [Apache-2.0](https://github.com/pgflo/pg_flo/blob/main/LICENSE)                         | Stream, transform, route PG data in real-time |
 | [`pgschema`](https://github.com/schemagood/pgschema)                                    | `1.4.2`    | [Apache-2.0](https://github.com/schemagood/pgschema/blob/main/LICENSE)                  | Perform PG schema migration                   |
@@ -141,12 +141,12 @@ Pig package manager, PostgreSQL tools, and other database related utilities
 | [`timescaledb-event-streamer`](https://github.com/noctarius/timescaledb-event-streamer) | `0.20.0`   | [Apache-2.0](https://github.com/noctarius/timescaledb-event-streamer/blob/main/LICENSE) | CDC on timescaledb hypertable                 |
 | [`dblab`](https://github.com/danvergara/dblab)                                          | `0.34.3`   | [MIT](https://github.com/danvergara/dblab/blob/main/LICENSE)                            | Multi-database CLI tool                       |
 | [`sqlcmd`](https://github.com/microsoft/go-sqlcmd)                                      | `1.9.0`    | [MIT](https://github.com/microsoft/go-sqlcmd/blob/main/LICENSE)                         | MS SQL Server CLI client                      |
-| [`pev2`](https://github.com/dalibo/pev2)                                                | `1.20.1`   | [PostgreSQL](https://github.com/dalibo/pev2/blob/master/LICENSE.md)                     | PostgreSQL explain visualizer 2               |
+| [`pev2`](https://github.com/dalibo/pev2)                                                | `1.20.2`   | [PostgreSQL](https://github.com/dalibo/pev2/blob/master/LICENSE.md)                     | PostgreSQL explain visualizer 2               |
 | [`sealos`](https://github.com/labring/sealos)                                           | `5.0.1`    | [Apache-2.0](https://github.com/labring/sealos/blob/main/LICENSE)                       | Battery-included Kubernetes distribution      |
 | [`vray`](https://github.com/v2fly/v2ray-core)                                           | `5.44.1`   | [MIT](https://github.com/v2fly/v2ray-core/blob/master/LICENSE)                          | Build proxies to bypass network restrictions  |
 | [`postgrest`](https://github.com/PostgREST/postgrest)                                   | `14.5`     | [MIT](https://github.com/PostgREST/postgrest/blob/main/LICENSE)                         | PostgreSQL RESTful API server                 |
-| [`npgsqlrest`](https://github.com/vb-consulting/NpgsqlRest)                             | `3.8.0`    | [MIT](https://github.com/vb-consulting/NpgsqlRest/blob/master/LICENSE.md)               | .NET PostgreSQL REST API generator            |
-| [`caddy`](https://github.com/caddyserver/caddy)                                         | `2.10.2`   | [Apache-2.0](https://github.com/caddyserver/caddy/blob/master/LICENSE)                  | Web server with automatic HTTPS               |
+| [`npgsqlrest`](https://github.com/vb-consulting/NpgsqlRest)                             | `3.10.0`    | [MIT](https://github.com/vb-consulting/NpgsqlRest/blob/master/LICENSE.md)               | .NET PostgreSQL REST API generator            |
+| [`caddy`](https://github.com/caddyserver/caddy)                                         | `2.11.1`   | [Apache-2.0](https://github.com/caddyserver/caddy/blob/master/LICENSE)                  | Web server with automatic HTTPS               |
 | [`hugo`](https://github.com/gohugoio/hugo)                                              | `0.155.2`  | [Apache-2.0](https://github.com/gohugoio/hugo/blob/master/LICENSE)                      | Fast static site generator                    |
 | [`cloudflared`](https://github.com/cloudflare/cloudflared)                              | `2026.2.0` | [Apache-2.0](https://github.com/cloudflare/cloudflared/blob/master/LICENSE)             | Cloudflare tunnel client                      |
 | [`headscale`](https://github.com/juanfont/headscale)                                    | `0.28.0`   | [BSD-3](https://github.com/juanfont/headscale/blob/main/LICENSE)                        | Self-hosted Tailscale control server          |
@@ -163,12 +163,13 @@ AI agents, MCP toolboxes, coding IDEs, Python/Go/Node tools...
 
 | Name                                                           | Version   | License                                                                     | Comment                                |
 |----------------------------------------------------------------|-----------|-----------------------------------------------------------------------------|----------------------------------------|
-| [`claude`](https://github.com/anthropics/claude-code)          | `2.1.45`  | [Proprietary](https://www.anthropic.com/legal/terms)                        | Claude Code - Anthropic agentic coding |
-| [`opencode`](https://github.com/opencode-ai/opencode)          | `1.2.10`  | [MIT](https://github.com/opencode-ai/opencode/blob/main/LICENSE)            | Terminal AI coding assistant           |
+| [`claude`](https://github.com/anthropics/claude-code)          | `2.1.59`  | [Proprietary](https://www.anthropic.com/legal/terms)                        | Claude Code - Anthropic agentic coding |
+| [`opencode`](https://github.com/opencode-ai/opencode)          | `1.2.15`  | [MIT](https://github.com/opencode-ai/opencode/blob/main/LICENSE)            | Terminal AI coding assistant           |
+| [`codex`](https://github.com/openai/codex)                     | `0.105.0` | [Apache-2.0](https://github.com/openai/codex/blob/main/LICENSE)             | OpenAI coding agent CLI               |
 | [`code`](https://code.visualstudio.com/)                       | `1.109.4` | [MIT](https://github.com/microsoft/vscode/blob/main/LICENSE.txt)            | Visual Studio Code editor              |
 | [`code-server`](https://github.com/coder/code-server)          | `4.109.2` | [MIT](https://github.com/coder/code-server/blob/main/LICENSE)               | VS Code in the browser                 |
 | [`genai-toolbox`](https://github.com/googleapis/genai-toolbox) | `0.27.0`  | [Apache-2.0](https://github.com/googleapis/genai-toolbox/blob/main/LICENSE) | Google database MCP server             |
 | [`uv`](https://github.com/astral-sh/uv)                        | `0.10.4`  | [MIT](https://github.com/astral-sh/uv/blob/main/LICENSE-MIT)                | Next-gen Python package manager        |
 | [`golang`](https://golang.org/)                                | `1.26.0`  | [BSD-3](https://github.com/golang/go/blob/master/LICENSE)                   | Go compiler                            |
-| [`nodejs`](https://nodejs.org/)                                | `24.13.1` | [MIT/Mixed](https://github.com/nodejs/node/blob/main/LICENSE)               | Server-side JavaScript runtime         |
+| [`nodejs`](https://nodejs.org/)                                | `24.14.0` | [MIT/Mixed](https://github.com/nodejs/node/blob/main/LICENSE)               | Server-side JavaScript runtime         |
 {.stretch-last}

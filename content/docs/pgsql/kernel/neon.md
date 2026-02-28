@@ -14,4 +14,4 @@ categories: [Concept]
 
 Neon official website: https://neon.tech/
 
-The compiled binaries of Neon are excessively large and are currently not available to open-source users. It is currently in the pilot stage. If you have requirements, please contact Pigsty sales.
+Neon binaries are currently too large to include in the open-source package set. This support path remains in pilot stage; contact Pigsty sales if you need it.

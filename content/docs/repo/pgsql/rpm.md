@@ -9,6 +9,30 @@ categories: [Reference]
 
 ------
 
+## 2026-02-27
+
+| Name              | Old Ver  | New Ver  | Note                                 |
+|:------------------|:---------|:---------|:-------------------------------------|
+| timescaledb       | 2.25.0   | 2.25.1   |                                      |
+| citus             | 14.0.0-3 | 14.0.0-4 | rebuilt with latest official release |
+| age               | 1.7.0    | 1.7.0    | added PG 17 build for 1.7.0          |
+| pgmq              | 1.10.0   | 1.10.1   | package unavailable for now          |
+| pg_search         | 0.21.7   | 0.21.9   | direct download usage                |
+| oriolepg          | 17.11    | 17.16    | OriolePG kernel update               |
+| orioledb          | beta12   | beta14   | paired with OriolePG 17.16           |
+| openhalo          | 14.10    | 1.0      | updated and renamed, 14.18           |
+| pgedge            | -        | 17.9     | new multi-master edge kernel         |
+| spock             | -        | 5.0.5    | new, pgEdge core extension           |
+| lolor             | -        | 1.2.2    | new, pgEdge core extension           |
+| snowflake         | -        | 2.4      | new, pgEdge core extension           |
+| cloudberry        | -        | 2.0.0    | new package                          |
+| babelfishpg       | -        | 5.5.0    | new BabelfishPG package group        |
+| babelfish         | -        | 5.5.0    | new Babelfish compatibility package  |
+| antlr4-runtime413 | -        | 4.13     | new runtime dependency for Babelfish |
+{.stretch-last}
+
+------
+
 ## 2026-02-12
 
 | Name               | Old Ver      | New Ver      | Note                             |

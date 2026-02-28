@@ -1,5 +1,5 @@
 ---
-title: Pigsty Docs v4.1
+title: Pigsty Docs v4.2
 linkTitle: Docs
 weight: 10
 categories: [Reference]
@@ -11,7 +11,7 @@ categories: [Reference]
 
 > [GitHub](https://github.com/pgsty/pigsty) | [Demo](https://demo.pigsty.io) | [Blog](/blog) | [Discuss](https://github.com/pgsty/pigsty/discussions) | [Discord](https://discord.gg/j5pG8qfKxU) | [DeepWiki](https://deepwiki.com/pgsty/pigsty) | [Roadmap](https://github.com/users/Vonng/projects/2/views/3) | [Chinese Docs](https://pigsty.cc/docs/)
 >
-> [Get Started](/docs/setup/install) with the latest release: `curl -fsSL https://repo.pigsty.io/get | bash -s v4.1.0`
+> [Get Started](/docs/setup/install) with the latest release: `curl -fsSL https://repo.pigsty.io/get | bash -s v4.2.0`
 
 -----------------
 

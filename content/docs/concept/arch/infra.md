@@ -17,21 +17,21 @@ Pigsty provides the [**INFRA module**](/docs/infra) to address this—it's an **
 The diagram below shows the architecture of a [**single-node deployment**](/docs/setup/install). The right half represents the components included in the [**INFRA module**](/docs/infra):
 
 
-| Component                                   | Type           | Description                                                                          |
-|:--------------------------------------------|----------------|:-------------------------------------------------------------------------------------|
-| [**Nginx**](#nginx)                         | Web Server     | Unified entry for [**WebUI**](/docs/setup/webui), [**local repo**](#repo), reverse proxy for internal services |
-| [**Repo**](#repo)                           | Software Repo  | APT/DNF repository with all RPM/DEB packages needed for deployment                   |
-| [**Grafana**](#grafana)                     | Visualization  | Displays metrics, logs, and traces; hosts dashboards, reports, and custom data apps |
-| [**VictoriaMetrics**](#victoriametrics)     | Time Series DB | Scrapes all metrics, Prometheus API compatible, provides VMUI query interface        |
-| [**VictoriaLogs**](#victorialogs)           | Log Platform   | Centralized log storage; all nodes run Vector by default, pushing logs here          |
-| [**VictoriaTraces**](#victoriatraces)       | Tracing        | Collects slow SQL, service traces, and other tracing data                             |
-| [**VMAlert**](#vmalert)                     | Alert Engine   | Evaluates alerting rules, pushes events to Alertmanager                               |
-| [**AlertManager**](#alertmanager)           | Alert Manager  | Aggregates alerts, dispatches notifications via email, Webhook, etc.                  |
-| [**BlackboxExporter**](#blackboxexporter)   | Blackbox Probe | Probes reachability of IPs/VIPs/URLs                                                  |
-| [**DNSMASQ**](#dnsmasq)                     | DNS Service    | Provides DNS resolution for domains used within Pigsty [Optional]                     |
-| [**Chronyd**](#chronyd)                     | Time Sync      | Provides NTP time synchronization to ensure consistent time across nodes [Optional]   |
-| [**CA**](/docs/concept/sec/ca)              | Certificate    | Issues encryption certificates within the environment                                 |
-| [**Ansible**](/docs/setup/playbook)         | Orchestration  | Batch, declarative, agentless tool for managing large numbers of servers              |
+| Component                                 | Type            | Description                                                                                                    |
+|:------------------------------------------|-----------------|:---------------------------------------------------------------------------------------------------------------|
+| [**Nginx**](#nginx)                       | Web Server      | Unified entry for [**WebUI**](/docs/setup/webui), [**local repo**](#repo), reverse proxy for internal services |
+| [**Repo**](#repo)                         | Software Repo   | APT/DNF repository with all RPM/DEB packages needed for deployment                                             |
+| [**Grafana**](#grafana)                   | Visualization   | Displays metrics, logs, and traces; hosts dashboards, reports, and custom data apps                            |
+| [**VictoriaMetrics**](#victoriametrics)   | Time Series DB  | Scrapes all metrics, Prometheus API compatible, provides VMUI query interface                                  |
+| [**VictoriaLogs**](#victorialogs)         | Log Platform    | Centralized log storage; all nodes run Vector by default, pushing logs here                                    |
+| [**VictoriaTraces**](#victoriatraces)     | Tracing         | Collects slow SQL, service traces, and other tracing data                                                      |
+| [**VMAlert**](#vmalert)                   | Eval Rule/Alert | Evaluates alerting rules, pushes events to Alertmanager                                                        |
+| [**AlertManager**](#alertmanager)         | Alert Manager   | Aggregates alerts, dispatches notifications via email, Webhook, etc.                                           |
+| [**BlackboxExporter**](#blackboxexporter) | Blackbox Probe  | Probes reachability of IPs/VIPs/URLs                                                                           |
+| [**DNSMASQ**](#dnsmasq)                   | DNS Service     | Provides DNS resolution for domains used within Pigsty [Optional]                                              |
+| [**Chronyd**](#chronyd)                   | Time Sync       | Provides NTP time synchronization to ensure consistent time across nodes [Optional]                            |
+| [**CA**](/docs/concept/sec/ca)            | Certificate     | Issues encryption certificates within the environment                                                          |
+| [**Ansible**](/docs/setup/playbook)       | Orchestration   | Batch, declarative, agentless tool for managing large numbers of servers                                       |
 
 [![pigsty-arch](/img/pigsty/arch.png)](/docs/infra/)
 
@@ -42,8 +42,8 @@ The diagram below shows the architecture of a [**single-node deployment**](/docs
 **Nginx** is the access entry point for all WebUI services in Pigsty, using ports [**`80`**](/docs/infra/param#nginx_port) / [**`443`**](/docs/infra/param#nginx_ssl_port) for HTTP/HTTPS by default. [**Live Demo**](https://demo.pigsty.io/)
 
 
-|           IP Access (replace)           |     Domain (HTTP)      | Domain (HTTPS)| Public Demo |
-|:---------------------------------------:|:----------------------:|:-------------:|:-----------:|
+|              IP Access (replace)               |              Domain (HTTP)               |               Domain (HTTPS)               |                      Public Demo                       |
+|:----------------------------------------------:|:----------------------------------------:|:------------------------------------------:|:------------------------------------------------------:|
 | [**`http://10.10.10.10`**](http://10.10.10.10) | [**`http://i.pigsty`**](http://i.pigsty) | [**`https://i.pigsty`**](https://i.pigsty) | [**`https://demo.pigsty.io`**](https://demo.pigsty.io) |
 {.full-width}
 
@@ -60,16 +60,16 @@ infra_portal:
 
 By default, it exposes Pigsty's admin homepage: `i.pigsty`. Different endpoints on this page proxy different components:
 
-| Endpoint     | Component                                  | Native Port  | Notes                        | Public Demo                                                     |
-|:-------------|:-------------------------------------------|:-------------|:-----------------------------|----------------------------------------------------------------|
-| `/`          | [**Nginx**](/docs/infra/)                  | `80/443`     | Homepage, local repo, file server | [`demo.pigsty.io`](https://demo.pigsty.io)                     |
-| `/ui/`       | [**Grafana**](#grafana)                    | `3000`       | Grafana dashboard entry      | [`demo.pigsty.io/ui/`](https://demo.pigsty.io/ui/)             |
-| `/vmetrics/` | [**VictoriaMetrics**](/docs/infra/)        | `8428`       | Time series DB Web UI        | [`demo.pigsty.io/vmetrics/`](https://demo.pigsty.io/vmetrics/) |
-| `/vlogs/`    | [**VictoriaLogs**](/docs/infra/)           | `9428`       | Log DB Web UI                | [`demo.pigsty.io/vlogs/`](https://demo.pigsty.io/vlogs/)       |
-| `/vtraces/`  | [**VictoriaTraces**](/docs/infra/)         | `10428`      | Tracing Web UI               | [`demo.pigsty.io/vtraces/`](https://demo.pigsty.io/vtraces/)   |
-| `/vmalert/`  | [**VMAlert**](/docs/infra/)                | `8880`       | Alert rule management        | [`demo.pigsty.io/vmalert/`](https://demo.pigsty.io/vmalert/)   |
-| `/alertmgr/` | [**AlertManager**](/docs/infra/)           | `9059`       | Alert management Web UI      | [`demo.pigsty.io/alertmgr/`](https://demo.pigsty.io/alertmgr/) |
-| `/blackbox/` | [**Blackbox**](/docs/infra/)               | `9115`       | Blackbox probe               |                                                                |
+| Endpoint     | Component                           | Native Port | Notes                             | Public Demo                                                    |
+|:-------------|:------------------------------------|:------------|:----------------------------------|----------------------------------------------------------------|
+| `/`          | [**Nginx**](/docs/infra/)           | `80/443`    | Homepage, local repo, file server | [`demo.pigsty.io`](https://demo.pigsty.io)                     |
+| `/ui/`       | [**Grafana**](#grafana)             | `3000`      | Grafana dashboard entry           | [`demo.pigsty.io/ui/`](https://demo.pigsty.io/ui/)             |
+| `/vmetrics/` | [**VictoriaMetrics**](/docs/infra/) | `8428`      | Time series DB Web UI             | [`demo.pigsty.io/vmetrics/`](https://demo.pigsty.io/vmetrics/) |
+| `/vlogs/`    | [**VictoriaLogs**](/docs/infra/)    | `9428`      | Log DB Web UI                     | [`demo.pigsty.io/vlogs/`](https://demo.pigsty.io/vlogs/)       |
+| `/vtraces/`  | [**VictoriaTraces**](/docs/infra/)  | `10428`     | Tracing Web UI                    | [`demo.pigsty.io/vtraces/`](https://demo.pigsty.io/vtraces/)   |
+| `/vmalert/`  | [**VMAlert**](/docs/infra/)         | `8880`      | Alert rule management             | [`demo.pigsty.io/vmalert/`](https://demo.pigsty.io/vmalert/)   |
+| `/alertmgr/` | [**AlertManager**](/docs/infra/)    | `9059`      | Alert management Web UI           | [`demo.pigsty.io/alertmgr/`](https://demo.pigsty.io/alertmgr/) |
+| `/blackbox/` | [**Blackbox**](/docs/infra/)        | `9115`      | Blackbox probe                    |                                                                |
 {.full-width}
 
 [![](/img/pigsty/home.png)](https://demo.pigsty.io)
@@ -90,8 +90,8 @@ Pigsty creates a **local software repository** on the Infra node during installa
 This repository defaults to the [**`/www/pigsty`**](/docs/infra/param#repo_home) directory,
 served by **Nginx** and mounted at the `/pigsty` path:
 
-|           IP Access (replace)           |     Domain (HTTP)      | Domain (HTTPS)| Public Demo |
-|:---------------------------------------:|:----------------------:|:-------------:|:-----------:|
+|                     IP Access (replace)                      |                     Domain (HTTP)                      |                      Domain (HTTPS)                      |                             Public Demo                              |
+|:------------------------------------------------------------:|:------------------------------------------------------:|:--------------------------------------------------------:|:--------------------------------------------------------------------:|
 | [**`http://10.10.10.10/pigsty`**](http://10.10.10.10/pigsty) | [**`http://i.pigsty/pigsty`**](http://i.pigsty/pigsty) | [**`https://i.pigsty/pigsty`**](https://i.pigsty/pigsty) | [**`https://demo.pigsty.io/pigsty`**](https://demo.pigsty.io/pigsty) |
 {.full-width}
 
@@ -112,9 +112,9 @@ For more information, see: [**Config: INFRA - REPO**](/docs/infra/param/#repo)
 
 **Grafana** listens on port `3000` by default and is proxied via **Nginx** at the `/ui` path:
 
-|          IP Access (replace)           |     Domain (HTTP)      | Domain (HTTPS)| Public Demo |
-|:--------------------------------------:|:----------------------:|:-------------:|:-----------:|
-| [**`http://10.10.10.10/ui`**](http://10.10.10.10/ui) | [**`http://i.pigsty/ui`**](http://i.pigsty/ui) | [**`https://i.pigsty/ui`**](https://i.pigsty/ui) | [**`https://demo.pigsty.io/ui`**](https://demo.pigsty.io/ui)  |
+|                 IP Access (replace)                  |                 Domain (HTTP)                  |                  Domain (HTTPS)                  |                         Public Demo                          |
+|:----------------------------------------------------:|:----------------------------------------------:|:------------------------------------------------:|:------------------------------------------------------------:|
+| [**`http://10.10.10.10/ui`**](http://10.10.10.10/ui) | [**`http://i.pigsty/ui`**](http://i.pigsty/ui) | [**`https://i.pigsty/ui`**](https://i.pigsty/ui) | [**`https://demo.pigsty.io/ui`**](https://demo.pigsty.io/ui) |
 {.full-width}
 
 Pigsty provides pre-built dashboards based on **VictoriaMetrics** / **Logs** / **Traces**, with one-click drill-down and roll-up via URL jumps for rapid troubleshooting.
@@ -136,9 +136,9 @@ For more information, see: [**Config: INFRA - GRAFANA**](/docs/infra/param/#graf
 
 It listens on port `8428` by default, mounted at **Nginx** `/vmetrics` path, and also accessible via the `p.pigsty` domain:
 
-|          IP Access (replace)           |     Domain (HTTP)      | Domain (HTTPS)| Public Demo |
-|:--------------------------------------:|:----------------------:|:-------------:|:-----------:|
-| [**`http://10.10.10.10/vmetrics`**](http://10.10.10.10/vmetrics) | [**`http://p.pigsty`**](http://p.pigsty) | [**`https://i.pigsty/vmetrics`**](https://i.pigsty/vmetrics) | [**`https://demo.pigsty.io/vmetrics`**](https://demo.pigsty.io/vmetrics)  |
+|                       IP Access (replace)                        |              Domain (HTTP)               |                        Domain (HTTPS)                        |                               Public Demo                                |
+|:----------------------------------------------------------------:|:----------------------------------------:|:------------------------------------------------------------:|:------------------------------------------------------------------------:|
+| [**`http://10.10.10.10/vmetrics`**](http://10.10.10.10/vmetrics) | [**`http://p.pigsty`**](http://p.pigsty) | [**`https://i.pigsty/vmetrics`**](https://i.pigsty/vmetrics) | [**`https://demo.pigsty.io/vmetrics`**](https://demo.pigsty.io/vmetrics) |
 {.full-width}
 
 **VictoriaMetrics** is fully compatible with the **Prometheus** API, supporting PromQL queries, remote read/write protocols, and the Alertmanager API.
@@ -157,9 +157,9 @@ For more information, see: [**Config: INFRA - VMETRICS**](/docs/infra/param/#vme
 
 It listens on port `9428` by default, mounted at **Nginx** `/vlogs` path:
 
-|          IP Access (replace)           |     Domain (HTTP)      | Domain (HTTPS)| Public Demo |
-|:--------------------------------------:|:----------------------:|:-------------:|:-----------:|
-| [**`http://10.10.10.10/vlogs`**](http://10.10.10.10/vlogs) | [**`http://i.pigsty/vlogs`**](http://i.pigsty/vlogs) | [**`https://i.pigsty/vlogs`**](https://i.pigsty/vlogs) | [**`https://demo.pigsty.io/vlogs`**](https://demo.pigsty.io/vlogs)  |
+|                    IP Access (replace)                     |                    Domain (HTTP)                     |                     Domain (HTTPS)                     |                            Public Demo                             |
+|:----------------------------------------------------------:|:----------------------------------------------------:|:------------------------------------------------------:|:------------------------------------------------------------------:|
+| [**`http://10.10.10.10/vlogs`**](http://10.10.10.10/vlogs) | [**`http://i.pigsty/vlogs`**](http://i.pigsty/vlogs) | [**`https://i.pigsty/vlogs`**](https://i.pigsty/vlogs) | [**`https://demo.pigsty.io/vlogs`**](https://demo.pigsty.io/vlogs) |
 {.full-width}
 
 All managed nodes run **Vector** Agent by default, collecting system logs, PostgreSQL logs, Patroni logs, Pgbouncer logs, etc., processing them into structured format and pushing to **VictoriaLogs**.
@@ -178,9 +178,9 @@ For more information, see: [**Config: INFRA - VLOGS**](/docs/infra/param/#vlogs_
 
 It listens on port `10428` by default, mounted at **Nginx** `/vtraces` path:
 
-|          IP Access (replace)           |     Domain (HTTP)      | Domain (HTTPS)| Public Demo |
-|:--------------------------------------:|:----------------------:|:-------------:|:-----------:|
-| [**`http://10.10.10.10/vtraces`**](http://10.10.10.10/vtraces) | [**`http://i.pigsty/vtraces`**](http://i.pigsty/vtraces) | [**`https://i.pigsty/vtraces`**](https://i.pigsty/vtraces) | [**`https://demo.pigsty.io/vtraces`**](https://demo.pigsty.io/vtraces)  |
+|                      IP Access (replace)                       |                      Domain (HTTP)                       |                       Domain (HTTPS)                       |                              Public Demo                               |
+|:--------------------------------------------------------------:|:--------------------------------------------------------:|:----------------------------------------------------------:|:----------------------------------------------------------------------:|
+| [**`http://10.10.10.10/vtraces`**](http://10.10.10.10/vtraces) | [**`http://i.pigsty/vtraces`**](http://i.pigsty/vtraces) | [**`https://i.pigsty/vtraces`**](https://i.pigsty/vtraces) | [**`https://demo.pigsty.io/vtraces`**](https://demo.pigsty.io/vtraces) |
 {.full-width}
 
 **VictoriaTraces** provides a **Jaeger**-compatible interface for analyzing service call chains and database slow queries.
@@ -197,9 +197,9 @@ For more information, see: [**Config: INFRA - VTRACES**](/docs/infra/param/#vtra
 
 It listens on port `8880` by default, mounted at **Nginx** `/vmalert` path:
 
-|          IP Access (replace)           |     Domain (HTTP)      | Domain (HTTPS)| Public Demo |
-|:--------------------------------------:|:----------------------:|:-------------:|:-----------:|
-| [**`http://10.10.10.10/vmalert`**](http://10.10.10.10/vmalert) | [**`http://i.pigsty/vmalert`**](http://i.pigsty/vmalert) | [**`https://i.pigsty/vmalert`**](https://i.pigsty/vmalert) | [**`https://demo.pigsty.io/vmalert`**](https://demo.pigsty.io/vmalert)  |
+|                      IP Access (replace)                       |                      Domain (HTTP)                       |                       Domain (HTTPS)                       |                              Public Demo                               |
+|:--------------------------------------------------------------:|:--------------------------------------------------------:|:----------------------------------------------------------:|:----------------------------------------------------------------------:|
+| [**`http://10.10.10.10/vmalert`**](http://10.10.10.10/vmalert) | [**`http://i.pigsty/vmalert`**](http://i.pigsty/vmalert) | [**`https://i.pigsty/vmalert`**](https://i.pigsty/vmalert) | [**`https://demo.pigsty.io/vmalert`**](https://demo.pigsty.io/vmalert) |
 {.full-width}
 
 **VMAlert** reads metrics data from **VictoriaMetrics** and periodically evaluates alerting rules.
@@ -218,9 +218,9 @@ For more information, see: [**Config: INFRA - VMALERT**](/docs/infra/param/#vmal
 
 It listens on port `9059` by default, mounted at **Nginx** `/alertmgr` path, and also accessible via the `a.pigsty` domain:
 
-|          IP Access (replace)           |     Domain (HTTP)      | Domain (HTTPS)| Public Demo |
-|:--------------------------------------:|:----------------------:|:-------------:|:-----------:|
-| [**`http://10.10.10.10/alertmgr`**](http://10.10.10.10/alertmgr) | [**`http://a.pigsty`**](http://a.pigsty) | [**`https://i.pigsty/alertmgr`**](https://i.pigsty/alertmgr) | [**`https://demo.pigsty.io/alertmgr`**](https://demo.pigsty.io/alertmgr)  |
+|                       IP Access (replace)                        |              Domain (HTTP)               |                        Domain (HTTPS)                        |                               Public Demo                                |
+|:----------------------------------------------------------------:|:----------------------------------------:|:------------------------------------------------------------:|:------------------------------------------------------------------------:|
+| [**`http://10.10.10.10/alertmgr`**](http://10.10.10.10/alertmgr) | [**`http://a.pigsty`**](http://a.pigsty) | [**`https://i.pigsty/alertmgr`**](https://i.pigsty/alertmgr) | [**`https://demo.pigsty.io/alertmgr`**](https://demo.pigsty.io/alertmgr) |
 {.full-width}
 
 **AlertManager** supports multiple notification channels: email, Webhook, Slack, PagerDuty, WeChat Work, etc.
@@ -239,8 +239,8 @@ For more information, see: [**Config: INFRA - AlertManager**](/docs/infra/param/
 
 It listens on port `9115` by default, mounted at **Nginx** `/blackbox` path:
 
-|          IP Access (replace)           |     Domain (HTTP)      | Domain (HTTPS)| Public Demo |
-|:--------------------------------------:|:----------------------:|:-------------:|:-----------:|
+|                       IP Access (replace)                        |                       Domain (HTTP)                        |                        Domain (HTTPS)                        |                               Public Demo                                |
+|:----------------------------------------------------------------:|:----------------------------------------------------------:|:------------------------------------------------------------:|:------------------------------------------------------------------------:|
 | [**`http://10.10.10.10/blackbox`**](http://10.10.10.10/blackbox) | [**`http://i.pigsty/blackbox`**](http://i.pigsty/blackbox) | [**`https://i.pigsty/blackbox`**](https://i.pigsty/blackbox) | [**`https://demo.pigsty.io/blackbox`**](https://demo.pigsty.io/blackbox) |
 {.full-width}
 
@@ -327,16 +327,16 @@ For example, when you configure global `admin_ip = 10.10.10.10`, all nodes will 
 
 This design allows quick, batch switching of infrastructure providers. Parameters that **may** reference `${admin_ip}`:
 
-| Parameter                                                                |            Module            | Default Value                       | Description              |
-|:-------------------------------------------------------------------------|:----------------------------:|------------------------------------|--------------------------|
-| [**`repo_endpoint`**](/docs/infra/param/#repo_endpoint)                  | [**`INFRA`**](/docs/infra)   | `http://${admin_ip}:80`            | Software repo URL        |
-| [**`repo_upstream`**](/docs/infra/param/#repo_upstream)`.baseurl`        | [**`INFRA`**](/docs/infra)   | `http://${admin_ip}/pigsty`        | Local repo baseurl       |
-| [**`infra_portal`**](/docs/infra/param/#infra_portal)`.endpoint`         | [**`INFRA`**](/docs/infra)   | `${admin_ip}:<port>`               | Nginx proxy backend      |
-| [**`dns_records`**](/docs/infra/param/#dns_records)                      | [**`INFRA`**](/docs/infra)   | `["${admin_ip} i.pigsty", ...]`    | DNS records              |
-| [**`node_default_etc_hosts`**](/docs/node/param/#node_default_etc_hosts) |  [**`NODE`**](/docs/node)    | `["${admin_ip} i.pigsty"]`         | Default static DNS       |
-| [**`node_etc_hosts`**](/docs/node/param/#node_etc_hosts)                 |  [**`NODE`**](/docs/node)    | `[]`                               | Custom static DNS        |
-| [**`node_dns_servers`**](/docs/node/param/#node_dns_servers)             |  [**`NODE`**](/docs/node)    | `["${admin_ip}"]`                  | Dynamic DNS servers      |
-| [**`node_ntp_servers`**](/docs/node/param/#node_ntp_servers)             |  [**`NODE`**](/docs/node)    | `["pool pool.ntp.org iburst"]`     | NTP servers (optional)   |
+| Parameter                                                                |           Module           | Default Value                   | Description            |
+|:-------------------------------------------------------------------------|:--------------------------:|---------------------------------|------------------------|
+| [**`repo_endpoint`**](/docs/infra/param/#repo_endpoint)                  | [**`INFRA`**](/docs/infra) | `http://${admin_ip}:80`         | Software repo URL      |
+| [**`repo_upstream`**](/docs/infra/param/#repo_upstream)`.baseurl`        | [**`INFRA`**](/docs/infra) | `http://${admin_ip}/pigsty`     | Local repo baseurl     |
+| [**`infra_portal`**](/docs/infra/param/#infra_portal)`.endpoint`         | [**`INFRA`**](/docs/infra) | `${admin_ip}:<port>`            | Nginx proxy backend    |
+| [**`dns_records`**](/docs/infra/param/#dns_records)                      | [**`INFRA`**](/docs/infra) | `["${admin_ip} i.pigsty", ...]` | DNS records            |
+| [**`node_default_etc_hosts`**](/docs/node/param/#node_default_etc_hosts) |  [**`NODE`**](/docs/node)  | `["${admin_ip} i.pigsty"]`      | Default static DNS     |
+| [**`node_etc_hosts`**](/docs/node/param/#node_etc_hosts)                 |  [**`NODE`**](/docs/node)  | `[]`                            | Custom static DNS      |
+| [**`node_dns_servers`**](/docs/node/param/#node_dns_servers)             |  [**`NODE`**](/docs/node)  | `["${admin_ip}"]`               | Dynamic DNS servers    |
+| [**`node_ntp_servers`**](/docs/node/param/#node_ntp_servers)             |  [**`NODE`**](/docs/node)  | `["pool pool.ntp.org iburst"]`  | NTP servers (optional) |
 {.full-width}
 
 For example, when a node installs software, the `local` repo points to the Nginx local software repository at `admin_ip:80/pigsty`. The DNS server also points to [**DNSMASQ**](#dnsmasq) at `admin_ip:53`.
@@ -366,7 +366,7 @@ all:
     etcd:    { hosts: { 10.10.10.10: { etcd_seq: 1 } }, vars: { etcd_cluster: etcd } }    # SSH connection will use: ssh your_ssh_alias
     pg-meta: { hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary } }, vars: { pg_cluster: pg-meta } }
   vars:
-    version: v4.1.0
+    version: v4.2.0
     admin_ip: 10.10.10.10
     region: default
 ```

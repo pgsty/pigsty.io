@@ -91,7 +91,7 @@ In pig, APT/YUM repositories are organized into **modules** — groups of reposi
 | `beta` | PostgreSQL 19 beta repositories | pgdg19-beta, pgdg-beta |
 | `extra` | PGDG non-free and third-party extensions | pgdg-extras, timescaledb, citus |
 | `groonga` | PGroonga repository | groonga |
-| `mssql` | WiltonDB repository | wiltondb |
+| `mssql` | WiltonDB repository (deprecated) | babelfish |
 | `percona` | Percona PG + PG_TDE repository | percona |
 | `llvm` | LLVM toolchain repository | llvm |
 | `kube` | Kubernetes repository | kubernetes |

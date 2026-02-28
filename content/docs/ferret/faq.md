@@ -27,7 +27,7 @@ Pigsty has provided Docker-based FerretDB templates since 1.x and added native d
 As an optional component, it greatly enriches the PostgreSQL ecosystem. The Pigsty community has become a partner of the FerretDB community, and deeper collaboration and integration support will follow.
 
 **FERRET** is an **optional** module in Pigsty. Since v2.0, it requires the [`documentdb`](https://pgext.cloud/e/documentdb) extension to work.
-Pigsty has packaged this extension and provides a [`mongo.yml`](https://github.com/pgsty/pigsty/blob/v4.1.0/conf/mongo.yml) template to help you easily deploy FerretDB clusters.
+Pigsty has packaged this extension and provides a [`mongo.yml`](/docs/conf/mongo) template to help you easily deploy FerretDB clusters.
 
 
 ----------------

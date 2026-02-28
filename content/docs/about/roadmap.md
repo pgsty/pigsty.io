@@ -32,7 +32,7 @@ Unless you know what you're doing, do not use GitHub's **main** branch. Always c
 
 ## Features Under Consideration
 
-- [ ] Agent Native CLI - PIG
+- [x] Agent Native CLI - PIG
 - [ ] DBA Agent - basic integration
 - [ ] Grafana dashboard improvements
 - [ ] Boar management console

@@ -194,8 +194,8 @@ curl -fsSL https://repo.pigsty.cc/get | bash;         # Backup Mirror
 To [**install**](/docs/deploy/install#install) a specific version, use the **`-s <version>`** parameter:
 
 ```bash
-curl -fsSL https://repo.pigsty.io/get | bash -s v4.1.0
-curl -fsSL https://repo.pigsty.cc/get | bash -s v4.1.0
+curl -fsSL https://repo.pigsty.io/get | bash -s v4.2.0  # Install specific version (example: v4.2.0)
+curl -fsSL https://repo.pigsty.cc/get | bash -s v4.2.0  # Install specific version (example: v4.2.0)
 ```
 
 To [**install**](/docs/deploy/install#install) the latest beta version:
@@ -209,14 +209,13 @@ For developers or the latest development version, clone the repository directly:
 
 ```bash
 git clone https://github.com/pgsty/pigsty.git;
-cd pigsty; git checkout v4.1.0
+cd pigsty; git checkout v4.2.0
 ```
 
 If your environment lacks Internet access, download the source tarball from [**GitHub Releases**](https://github.com/pgsty/pigsty/releases/) or the Pigsty repository:
 
 ```bash
-wget https://repo.pigsty.io/src/pigsty-v4.1.0.tgz
-wget https://repo.pigsty.cc/src/pigsty-v4.1.0.tgz
+wget https://repo.pigsty.io/src/pigsty-v4.2.0.tgz
+wget https://repo.pigsty.cc/src/pigsty-v4.2.0.tgz
 ```
-
 

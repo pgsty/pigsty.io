@@ -14,6 +14,10 @@ tags: []
 
 ## Recent News
 
+- **2026-02-28**: **Pigsty v4.2 is officially released! Seven kernel updates shipped together**
+  - Release Blog: [Pigsty v4.2 Release Article](/blog/pigsty/v4.2)
+  - Release Notes: [v4.2.0](/docs/about/release#v420)
+
 - **2026-02-12**: **Pigsty v4.1 is officially released! First distribution batch with PostgreSQL 18.2 support**
   - Release Blog: [Pigsty v4.1 Release Article](/blog/pigsty/v4.1)
   - Release Notes: [v4.1.0](/docs/about/release#v410)

@@ -1,14 +1,14 @@
 ---
 title: "Maybe: Personal Finance"
 weight: 600
-description: Self-host Maybe on Pigsty v4.1 with external PostgreSQL storage.
+description: Self-host Maybe on Pigsty v4.2 with external PostgreSQL storage.
 module: [SOFTWARE]
 categories: [Reference]
 ---
 
 [**Maybe**](https://github.com/maybe-finance/maybe) is an open-source personal finance manager.
 
-Pigsty v4.1 provides the `app/maybe` template (`conf/app/maybe.yml`) to run Maybe as stateless containers while storing business data in external PostgreSQL.
+Pigsty v4.2 provides the `app/maybe` template (`conf/app/maybe.yml`) to run Maybe as stateless containers while storing business data in external PostgreSQL.
 
 ## Quick Start
 

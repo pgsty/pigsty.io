@@ -15,7 +15,7 @@ Pigsty runs bare-metal without containers. Supports latest 2 major releases for 
 
 **Recommended OS versions:** RockyLinux 10.1, Ubuntu 24.04.3, Debian 13.3.
 
-| Distro                    |                 Arch                 |                                              OS Code                                               |                       PG18                       |                       PG17                       |                       PG16                       |                       PG15                       |                       PG14                       |                       PG13                       |
+| Distro                 |                Arch                |                                             OS Code                                             |                       PG18                       |                       PG17                       |                       PG16                       |                       PG15                       |                       PG14                       |                       PG13                       |
 |:-----------------------|:----------------------------------:|:-----------------------------------------------------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|
 | RHEL / Rocky / Alma 10 | <b class="text-sky-600">x86_64</b> |  [`el10.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/el10.x86_64.yml)  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |
 | RHEL / Rocky / Alma 10 | <b class="text-danger">aarch64</b> | [`el10.aarch64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/el10.aarch64.yml) | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |
@@ -31,7 +31,7 @@ Pigsty runs bare-metal without containers. Supports latest 2 major releases for 
 
 Pigsty supports RHEL / Rocky / Alma / Anolis / CentOS 8, 9, 10.
 
-| EL Distro                    |                 Arch                 |                                              OS Code                                               |                        PG18                        |                        PG17                        |                        PG16                        |                          PG15                           |                          PG14                           |                          PG13                           |
+| EL Distro                 |                Arch                |                                             OS Code                                             |                        PG18                        |                        PG17                        |                        PG16                        |                          PG15                           |                          PG14                           |                          PG13                           |
 |:--------------------------|:----------------------------------:|:-----------------------------------------------------------------------------------------------:|:--------------------------------------------------:|:--------------------------------------------------:|:--------------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------:|
 | RHEL10 / Rocky10 / Alma10 | <b class="text-sky-600">x86_64</b> |  [`el10.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/el10.x86_64.yml)  |  <i class="fas fa-circle-check text-primary"></i>  |  <i class="fas fa-circle-check text-primary"></i>  |  <i class="fas fa-circle-check text-primary"></i>  |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |
 | RHEL10 / Rocky10 / Alma10 | <b class="text-danger">aarch64</b> | [`el10.aarch64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/el10.aarch64.yml) |  <i class="fas fa-circle-check text-primary"></i>  |  <i class="fas fa-circle-check text-primary"></i>  |  <i class="fas fa-circle-check text-primary"></i>  |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |
@@ -71,7 +71,7 @@ Pigsty supports Ubuntu 24.04 / 22.04:
 | Ubuntu 20.04 (`focal`) | <b class="text-sky-600">x86_64</b> |  [`u20.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u20.x86_64.yml)  |                                                  |                                                  | <i class="fas fa-triangle-exclamation text-danger"></i> | <i class="fas fa-triangle-exclamation text-danger"></i> | <i class="fas fa-triangle-exclamation text-danger"></i> | <i class="fas fa-triangle-exclamation text-danger"></i> |
 | Ubuntu 20.04 (`focal`) | <b class="text-danger">aarch64</b> |                                               -                                               |                                                  |                                                  |                                                         |                                                         |                                                         |                                                         |
 
-{{% alert title="Ubuntu 22.04 / 24.04 LTS Recommended" color="success" %}}
+{{% alert title="Ubuntu 22.04.5 / 24.04.3 LTS Recommended" color="success" %}}
 Ubuntu 24.04 balances stability and fresh software. Recommended for Ubuntu users.
 {{% /alert %}}
 
@@ -87,7 +87,7 @@ For extended support on legacy OS, consider [Enterprise Subscription](/docs/abou
 
 Pigsty supports Debian 12 / 13, latest Debian 13.3 recommended:
 
-| Debian Distro             |                 Arch                 |                                             OS Code                                              |                       PG18                       |                       PG17                       |                          PG16                           |                          PG15                           |                          PG14                           |                          PG13                           |
+| Debian Distro          |                Arch                |                                            OS Code                                            |                       PG18                       |                       PG17                       |                          PG16                           |                          PG15                           |                          PG14                           |                          PG13                           |
 |:-----------------------|:----------------------------------:|:---------------------------------------------------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------:|
 | Debian 13 (`trixie`)   | <b class="text-sky-600">x86_64</b> |  [`d13.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/d13.x86_64.yml)  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |
 | Debian 13 (`trixie`)   | <b class="text-danger">aarch64</b> | [`d13.aarch64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/d13.aarch64.yml) | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |
@@ -115,8 +115,8 @@ For local VM deployment, use these Vagrant base images (same as used in Pigsty d
 - [`cloud-image/almalinux-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-10): AlmaLinux 10.1
 - [`cloud-image/debian-12`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-12): Debian 12.13
 - [`cloud-image/debian-13`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-13): Debian 13.3
-- [`cloud-image/ubuntu-22.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-22.04): Ubuntu 22.04
-- [`bento/ubuntu-24.04`](https://portal.cloud.hashicorp.com/vagrant/discover/bento/ubuntu-24.04): Ubuntu 24.04
+- [`cloud-image/ubuntu-22.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-22.04): Ubuntu 22.04.5
+- [`bento/ubuntu-24.04`](https://portal.cloud.hashicorp.com/vagrant/discover/bento/ubuntu-24.04): Ubuntu 24.04.3
 
 
 ----------------
@@ -126,10 +126,18 @@ For local VM deployment, use these Vagrant base images (same as used in Pigsty d
 For cloud deployment, use these Terraform base images (Aliyun example):
 
 - Rocky 8.10     :  `rockylinux_8_10_x64_20G_alibase_20240923.vhd`
-- Rocky 9.7      :  `rockylinux_9_7_x64_20G_alibase_20250101.vhd`
-- Ubuntu 22.04   :  `ubuntu_22_04_x64_20G_alibase_20240926.vhd`
-- Ubuntu 24.04   :  `ubuntu_24_04_x64_20G_alibase_20240923.vhd`
+- Rocky 9.7      :  `rockylinux_9_7_x64_20G_alibase_20260119.vhd`
+- Rocky 10.1     :  `rockylinux_10_1_x64_20G_alibase_20260119.vhd`
+- Ubuntu 22.04.5 :  `ubuntu_22_04_x64_20G_alibase_20240926.vhd`
+- Ubuntu 24.04.4 :  `ubuntu_24_04_x64_20G_alibase_20240923.vhd`
 - Debian 12.13   :  `debian_12_13_x64_20G_alibase_20241201.vhd`
 - Debian 13.3    :  `debian_13_3_x64_20G_alibase_20250101.vhd`
 
-----------------
+- Rocky 8.10 (aarch64)     :  `rockylinux_8_10_arm64_20G_alibase_20251120.vhd`
+- Rocky 9.7 (aarch64)      :  `rockylinux_9_7_arm64_20G_alibase_20260119.vhd`
+- Rocky 10.1 (aarch64)     :  `rockylinux_10_1_arm64_20G_alibase_20260119.vhd`
+- Ubuntu 22.04.5 (aarch64) :  `ubuntu_22_04_arm64_20G_alibase_20251126.vhd`
+- Ubuntu 24.04.3 (aarch64) :  `ubuntu_24_04_arm64_20G_alibase_20251126.vhd`
+- Debian 12.13 (aarch64)   :  `debian_12_13_arm64_20G_alibase_20250825.vhd`
+- Debian 13.3 (aarch64)    :  `debian_13_3_arm64_20G_alibase_20251121.vhd`
+

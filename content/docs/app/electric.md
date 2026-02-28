@@ -1,14 +1,14 @@
 ---
 title: "Electric: PostgreSQL Sync Engine"
 weight: 645
-description: Self-host Electric on Pigsty v4.1 to sync PostgreSQL data to frontend apps with partial replication and real-time delivery.
+description: Self-host Electric on Pigsty v4.2 to sync PostgreSQL data to frontend apps with partial replication and real-time delivery.
 module: [SOFTWARE]
 categories: [Reference]
 ---
 
 [**Electric**](https://electric-sql.com/) is a PostgreSQL sync engine focused on efficiently delivering database changes to frontend and edge applications.
 
-Pigsty v4.1 provides the `app/electric` template (`conf/app/electric.yml`) to bootstrap database, container, and ingress settings in one flow.
+Pigsty v4.2 provides the `app/electric` template (`conf/app/electric.yml`) to bootstrap database, container, and ingress settings in one flow.
 
 ## Quick Start
 

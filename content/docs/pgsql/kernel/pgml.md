@@ -5,8 +5,7 @@ weight: 2309
 description: >
   How to deploy PostgresML with Pigsty: ML, training, inference, Embedding, RAG inside DB.
 icon: fas fa-bolt
-module: [SOFTWARE]
-categories: [Concept]
+toc_hide: true
 tags: [PostgresML, AI, ML]
 ---
 
