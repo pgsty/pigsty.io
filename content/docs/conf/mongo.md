@@ -8,7 +8,7 @@ categories: [Reference]
 
 The `mongo` configuration template deploys a FerretDB + DocumentDB compatibility stack, providing Mongo wire protocol access on top of PostgreSQL.
 
-For module-level details, see **[FERRET Module](/docs/ferret/)**.
+For a full walkthrough, see: **[FerretDB / Mongo compatibility guide](/docs/ferret/)**.
 
 
 --------
@@ -52,8 +52,8 @@ The `mongo` template includes two core groups:
 **Key Features**:
 - Uses PostgreSQL 18 by default (can switch to 16/17/18)
 - Enables DocumentDB capabilities in the `postgres` database for quick validation
+- Preloads `pg_documentdb`, `pg_documentdb_core`, `pg_documentdb_extended_rum`, and `pg_cron`
 - Includes permissive HBA defaults (local trust + intranet password auth) for development and testing
-- Tracks upstream config version alignment (currently `v4.1.0`)
 
 **Notes**:
 - The template includes relaxed access examples (such as `world` access); tighten security for production

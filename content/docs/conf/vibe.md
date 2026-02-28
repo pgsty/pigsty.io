@@ -6,7 +6,7 @@ icon: fa-solid fa-laptop-code
 categories: [Reference]
 ---
 
-The `vibe` config template provides a ready-to-use **AI coding sandbox**, integrating Code-Server (Web VS Code), JupyterLab, Claude Code CLI, JuiceFS distributed filesystem, and feature-rich PostgreSQL database.
+The `vibe` config template provides a ready-to-use **AI coding sandbox**, integrating Code-Server (Web VS Code), JupyterLab, Claude Code observability, JuiceFS distributed filesystem, and a feature-rich PostgreSQL database.
 
 
 --------
@@ -48,65 +48,56 @@ The `vibe` template is an **AI-era Web coding sandbox**, enabling development, d
 |-----------------|----------------------------------------|---------------------------|
 | **Code-Server** | Web version of VS Code, full-featured code editor | `http://<ip>/code`    |
 | **JupyterLab**  | Interactive data science notebook, Python/SQL | `http://<ip>/jupyter` |
-| **Claude Code** | AI coding assistant CLI with OpenTelemetry observability | Terminal `claude` command |
+| **Claude Code** | AI coding runtime and observability entrypoint (`claude_env` customizable) | Terminal / Dashboard |
 | **JuiceFS**     | PostgreSQL-based distributed filesystem | Mount point `/fs`        |
-| **PostgreSQL 18** | Feature-rich database with vector/timeseries/fulltext extensions | Port `5432` |
+| **PostgreSQL 18** | Feature-rich database with `pg18-main` + categorized extension package groups | Port `5432` |
 
-**Pre-installed Dev Tools**:
+**Node tools explicitly installed by this template** (`node_packages`):
 
-- **AI Assistants**: `claude` (Claude Code CLI), `opencode` (CLI AI coding tool)
-- **Language Runtimes**: `golang`, `nodejs`, `uv` (Python package manager)
-- **Data Tools**: `postgrest` (auto REST API), `genai-toolbox`
-- **Utilities**: `restic`, `rclone` (backup sync), `asciinema` (terminal recording)
+- `openssh-server`, `juicefs`, `restic`, `rclone`
+- `uv`, `opencode`, `golang`
+- `asciinema`, `tmux`
 
 **PostgreSQL Extensions**:
 
-This template pre-installs rich PostgreSQL extensions covering AI/vector, timeseries, fulltext search, analytics:
+This template installs PostgreSQL 18 extension groups by category:
 
 ```
-# Vector & AI
-pgvector, vchord, pgvectorscale, pg_search, pg_textsearch, vchord_bm25
-
-# Timeseries & Geo
-timescaledb, postgis, pg_cron
-
-# Analytics & Lakehouse
-pg_duckdb, pg_mooncake, pg_clickhouse, pg_parquet
-
-# Security & Audit
-pg_anon, pgsmcrypto, credcheck, pg_vault, pgsodium, pg_session_jwt
-
-# Development
-pg_tle, pljs, plprql, documentdb, pglinter
+pg18-main, pg18-time, pg18-gis, pg18-rag, pg18-fts, pg18-olap,
+pg18-feat, pg18-lang, pg18-type, pg18-util, pg18-func, pg18-admin,
+pg18-stat, pg18-sec, pg18-fdw, pg18-sim, pg18-etl
 ```
+
+By default, the `meta` database enables `postgis`, `timescaledb`, and `vector`; other extensions can be enabled as needed.
 
 
 --------
 
 ## VIBE Module Components
 
-VIBE module is new in v4.0.0, an AI coding sandbox module with three core components:
+In v4.2, the VIBE module provides AI coding sandbox capability; `vibe.yml` explicitly enables Code-Server and Jupyter, and reserves Claude customization via `claude_env`.
 
 **Code-Server**: VS Code in browser
 
 - Full VS Code functionality, extension support
 - HTTPS access via Nginx reverse proxy
 - Supports Open VSX and Microsoft extension marketplaces
-- Related params: `code_enabled`, `code_port`, `code_data`, `code_password`, `code_gallery`
+- Explicit template params: `code_enabled`, `code_password`
+- Optional params: `code_port`, `code_data`, `code_gallery`
 
 **JupyterLab**: Interactive computing environment
 
 - Python/SQL/Markdown notebook support
 - Pre-configured Python venv with data science libraries
 - HTTPS access via Nginx reverse proxy
-- Related params: `jupyter_enabled`, `jupyter_port`, `jupyter_data`, `jupyter_password`, `jupyter_venv`
+- Explicit template params: `jupyter_enabled`, `jupyter_password`
+- Optional params: `jupyter_port`, `jupyter_data`, `jupyter_venv`
 
-**Claude Code**: AI coding assistant
+**Claude Code**: AI coding assistant runtime
 
-- Configure Claude Code CLI, skip initial onboarding
-- Built-in OpenTelemetry config, sends metrics/logs to Victoria stack
+- Uses module default behavior to bootstrap Claude runtime
+- Supports endpoint/API key overrides through `claude_env`
 - Provides `claude-code` dashboard for usage monitoring
-- Related params: `claude_enabled`, `claude_env`
 
 
 --------
@@ -119,7 +110,7 @@ This template uses **JuiceFS** for distributed filesystem capability, with a spe
 
 - **Metadata Engine**: Uses PostgreSQL for filesystem metadata storage
 - **Data Storage**: Uses PostgreSQL Large Object for file data storage
-- **Mount Point**: Default mount at `/fs` (controlled by `vibe_data` param)
+- **Mount Point**: Default mount at `/fs` (controlled by `juice_instances.jfs.path`)
 - **Monitoring Port**: `9567` provides Prometheus metrics
 
 **Use Cases**:
@@ -176,14 +167,14 @@ After deployment, access via browser:
 ```bash
 # Code-Server (VS Code Web)
 http://<ip>/code
-# Password: Code.Server (please change)
+# Password: DBUser.Meta (please change)
 
 # JupyterLab
 http://<ip>/jupyter
-# Password: Jupyter.Lab (please change)
+# Password: DBUser.Meta (please change)
 
 # Claude Code Dashboard
-http://<ip>:3000/d/claude-code
+http://<ip>/ui/d/claude-code
 # Grafana default: admin / pigsty
 
 # PostgreSQL
@@ -208,9 +199,8 @@ psql postgres://dbuser_meta:DBUser.Meta@<ip>:5432/meta
 ## Notes
 
 - **Must change passwords**: `code_password` and `jupyter_password` defaults are for testing only
-- **Network security**: This template opens world access (`addr: world`), production should configure firewall or VPN
+- **Network security**: This template exposes `5432` (`node_firewall_public_port`) and includes `addr: world` HBA by default; tighten for production
 - **Resource requirements**: Recommend at least 2 cores 4GB memory, SSD disk
 - **Simplified architecture**: This template disables Patroni, PgBouncer etc HA components, suitable for single-node dev env
 - **Claude API**: Using Claude Code requires configuring API key in `claude_env`
-
 
