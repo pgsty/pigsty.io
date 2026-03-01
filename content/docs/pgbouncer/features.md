@@ -3,6 +3,7 @@ title: "Features"
 weight: 10
 tags: [PGBOUNCER]
 description: "PgBouncer features — pooling modes and SQL compatibility"
+icon: fa-solid fa-wand-magic-sparkles
 ---
 
 > Source: <https://www.pgbouncer.org/features.html>

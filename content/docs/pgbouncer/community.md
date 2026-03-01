@@ -3,6 +3,7 @@ title: "Community"
 weight: 80
 tags: [PGBOUNCER]
 description: "PgBouncer community resources, tutorials, and support"
+icon: fas fa-user-group
 ---
 
 > Source: <https://www.pgbouncer.org/community.html>

@@ -1,9 +1,10 @@
 ---
-title: "PgBouncer"
+title: "pgBouncer 1.25 Documentation"
+linkTitle: pgbouncer
 weight: 8100
 tags: [PGBOUNCER]
 description: >
-  PgBouncer - Lightweight connection pooler for PostgreSQL
+  PgBouncer - Lightweight connection pooler for PostgreSQL 
 icon: fas fa-baseball fa-bounce
 sidebar_root_for: self
 ---

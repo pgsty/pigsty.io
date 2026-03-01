@@ -4,6 +4,7 @@ linkTitle: "Install"
 weight: 40
 tags: [PGBOUNCER]
 description: "PgBouncer compilation and installation instructions"
+icon: fa-solid fa-cloud-arrow-down
 ---
 
 > Source: <https://www.pgbouncer.org/install.html>

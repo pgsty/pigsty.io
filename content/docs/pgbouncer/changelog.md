@@ -3,6 +3,7 @@ title: "Changelog"
 weight: 70
 tags: [PGBOUNCER]
 description: "PgBouncer version history and release notes"
+icon: fa-solid fa-scroll
 ---
 
 > Source: <https://www.pgbouncer.org/changelog.html>

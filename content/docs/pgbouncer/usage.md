@@ -1,8 +1,10 @@
 ---
-title: "Usage"
+title: "Usage: pgbouncer command"
+linkTitle: "Usage"
 weight: 30
 tags: [PGBOUNCER]
 description: "PgBouncer command-line usage and administration console"
+icon: fa-solid fa-bell-concierge
 ---
 
 > Source: <https://www.pgbouncer.org/usage.html>

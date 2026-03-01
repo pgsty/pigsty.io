@@ -4,6 +4,7 @@ linkTitle: "Download"
 weight: 50
 tags: [PGBOUNCER]
 description: "PgBouncer source releases and binary packages"
+icon: fas fa-download
 ---
 
 > Source: <https://www.pgbouncer.org/downloads/>

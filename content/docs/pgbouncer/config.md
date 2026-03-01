@@ -4,6 +4,7 @@ linkTitle: "Config"
 tags: [PGBOUNCER]
 weight: 20
 description: "PgBouncer configuration file (pgbouncer.ini) reference"
+icon: fa-solid fa-code
 ---
 
 > Source: <https://www.pgbouncer.org/config.html>

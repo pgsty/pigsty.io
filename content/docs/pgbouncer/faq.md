@@ -4,6 +4,7 @@ linkTitle: "FAQ"
 weight: 90
 tags: [PGBOUNCER]
 description: "PgBouncer frequently asked questions"
+icon: fa-solid fa-circle-question
 ---
 
 > Source: <https://www.pgbouncer.org/faq.html>
