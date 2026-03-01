@@ -1,6 +1,6 @@
 ---
 title: ha/safe
-weight: 850
+weight: 630
 description: Security-hardened HA configuration template with high-standard security best practices
 icon: fa-solid fa-shield-halved
 categories: [Reference]

@@ -1,6 +1,6 @@
 ---
 title: fat
-weight: 775
+weight: 240
 description: Feature-All-Test template, single-node installation of all extensions, builds local repo with PG 13-18 all versions
 icon: fa-solid fa-database
 categories: [Reference]

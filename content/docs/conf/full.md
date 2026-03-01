@@ -1,6 +1,6 @@
 ---
 title: ha/full
-weight: 845
+weight: 620
 description: Four-node complete feature demonstration environment with two PostgreSQL clusters, MinIO, Redis, etc.
 icon: fa-solid fa-dice-four
 categories: [Reference]

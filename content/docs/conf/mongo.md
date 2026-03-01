@@ -1,6 +1,6 @@
 ---
 title: mongo
-weight: 940
+weight: 500
 description: DocumentDB + FerretDB template providing Mongo wire compatibility on PostgreSQL.
 icon: fa-solid fa-database
 categories: [Reference]

@@ -1,6 +1,6 @@
 ---
 title: docker
-weight: 935
+weight: 270
 description: Pigsty Docker single-node template for quickly bootstrapping Pigsty in containers.
 icon: fa-brands fa-docker
 categories: [Reference]

@@ -1,6 +1,6 @@
 ---
 title: rich
-weight: 765
+weight: 220
 description: Feature-rich single-node configuration with local software repository, all extensions, MinIO backup, and complete examples
 icon: fa-solid fa-gem
 categories: [Reference]

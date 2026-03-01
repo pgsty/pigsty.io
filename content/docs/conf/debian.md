@@ -1,6 +1,6 @@
 ---
 title: demo/debian
-weight: 910
+weight: 1020
 description: Configuration template optimized for Debian/Ubuntu
 icon: fa-brands fa-debian
 categories: [Reference]

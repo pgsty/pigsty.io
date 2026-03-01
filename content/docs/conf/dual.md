@@ -1,6 +1,6 @@
 ---
 title: ha/dual
-weight: 860
+weight: 650
 description: Two-node configuration, limited HA deployment tolerating specific server failure
 icon: fa-solid fa-dice-two
 categories: [Reference]

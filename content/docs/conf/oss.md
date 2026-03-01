@@ -1,6 +1,6 @@
 ---
 title: build/oss
-weight: 925
+weight: 1050
 description: Pigsty open-source edition offline package build environment configuration
 icon: fa-solid fa-hammer
 categories: [Reference]

@@ -1,6 +1,6 @@
 ---
 title: demo/demo
-weight: 915
+weight: 1030
 description: Pigsty public demo site configuration, showcasing SSL certificates, domain exposure, and full extension installation
 icon: fa-solid fa-globe
 categories: [Reference]

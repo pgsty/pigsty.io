@@ -1,6 +1,6 @@
 ---
 title: app/teable
-weight: 890
+weight: 850
 description: Deploy Teable open-source Airtable alternative using Pigsty-managed PostgreSQL
 icon: fa-solid fa-table-cells
 categories: [Reference]

@@ -1,6 +1,6 @@
 ---
 title: app/maybe
-weight: 885
+weight: 840
 description: Deploy Maybe personal finance management system using Pigsty-managed PostgreSQL
 icon: fa-solid fa-wallet
 categories: [Reference]

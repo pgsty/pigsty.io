@@ -1,6 +1,6 @@
 ---
 title: ivory
-weight: 810
+weight: 440
 description: IvorySQL kernel, provides Oracle syntax and PL/SQL compatibility
 icon: fa-solid fa-gem
 categories: [Reference]

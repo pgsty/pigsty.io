@@ -1,6 +1,6 @@
 ---
 title: mssql
-weight: 800
+weight: 420
 description: Babelfish (PG17) kernel template, providing Microsoft SQL Server protocol and T-SQL compatibility
 icon: fa-brands fa-windows
 categories: [Reference]

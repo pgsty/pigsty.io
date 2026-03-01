@@ -1,6 +1,6 @@
 ---
 title: oriole
-weight: 825
+weight: 490
 description: OrioleDB kernel, provides bloat-free OLTP enhanced storage engine
 icon: fa-solid fa-feather
 categories: [Reference]

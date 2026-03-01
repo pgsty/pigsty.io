@@ -1,6 +1,6 @@
 ---
 title: pgtde
-weight: 820
+weight: 480
 description: Percona PostgreSQL kernel, provides Transparent Data Encryption (pg_tde) capability
 icon: fa-solid fa-lock
 categories: [Reference]

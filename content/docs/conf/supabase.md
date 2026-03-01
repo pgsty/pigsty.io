@@ -1,6 +1,6 @@
 ---
 title: supabase
-weight: 830
+weight: 510
 description: Self-host Supabase using Pigsty-managed PostgreSQL, an open-source Firebase alternative
 icon: fa-solid fa-bolt
 categories: [Reference]

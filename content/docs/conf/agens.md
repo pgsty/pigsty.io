@@ -1,6 +1,6 @@
 ---
 title: agens
-weight: 811
+weight: 450
 description: AgensGraph kernel template with property graph model and Cypher query support
 icon: fa-solid fa-project-diagram
 categories: [Reference]

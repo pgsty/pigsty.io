@@ -1,6 +1,6 @@
 ---
 title: mysql
-weight: 815
+weight: 470
 description: OpenHalo kernel, provides MySQL protocol and syntax compatibility
 icon: fa-solid fa-database
 categories: [Reference]

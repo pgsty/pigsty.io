@@ -1,6 +1,6 @@
 ---
 title: ha/simu
-weight: 840
+weight: 610
 description: 20-node production environment simulation for large-scale deployment testing
 icon: fa-solid fa-server
 categories: [Reference]

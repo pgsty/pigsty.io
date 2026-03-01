@@ -1,6 +1,6 @@
 ---
 title: app/dify
-weight: 875
+weight: 820
 description: Deploy Dify AI application development platform using Pigsty-managed PostgreSQL
 icon: fa-solid fa-brain
 categories: [Reference]

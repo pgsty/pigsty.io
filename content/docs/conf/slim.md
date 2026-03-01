@@ -1,6 +1,6 @@
 ---
 title: slim
-weight: 770
+weight: 230
 description: Minimal installation template without monitoring infrastructure, installs PostgreSQL directly from internet
 icon: fa-solid fa-feather
 categories: [Reference]

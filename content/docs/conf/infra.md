@@ -1,6 +1,6 @@
 ---
 title: infra
-weight: 780
+weight: 250
 description: Only installs observability infrastructure, dedicated template without PostgreSQL and etcd
 icon: fa-solid fa-tower-observation
 categories: [Reference]

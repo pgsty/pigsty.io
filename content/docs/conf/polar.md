@@ -1,6 +1,6 @@
 ---
 title: polar
-weight: 805
+weight: 430
 description: PolarDB for PostgreSQL kernel, provides Aurora-style storage-compute separation capability
 icon: fa-solid fa-snowflake
 categories: [Reference]

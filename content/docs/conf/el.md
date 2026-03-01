@@ -1,6 +1,6 @@
 ---
 title: demo/el
-weight: 905
+weight: 1010
 description: Configuration template optimized for Enterprise Linux (RHEL/Rocky/Alma)
 icon: fa-brands fa-redhat
 categories: [Reference]

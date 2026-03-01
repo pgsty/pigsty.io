@@ -1,6 +1,6 @@
 ---
 title: app/mattermost
-weight: 892
+weight: 860
 description: Mattermost template for one-click team collaboration deployment with Pigsty PostgreSQL and Docker.
 icon: fa-solid fa-comments
 categories: [Reference]

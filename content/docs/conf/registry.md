@@ -1,6 +1,6 @@
 ---
 title: app/registry
-weight: 895
+weight: 870
 description: Deploy Docker Registry image proxy and private registry using Pigsty
 icon: fa-brands fa-docker
 categories: [Reference]

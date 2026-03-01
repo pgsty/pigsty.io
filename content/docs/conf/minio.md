@@ -1,6 +1,6 @@
 ---
 title: demo/minio
-weight: 920
+weight: 1040
 description: Four-node x four-drive high-availability multi-node multi-disk MinIO cluster demo
 icon: fa-solid fa-box-archive
 categories: [Reference]

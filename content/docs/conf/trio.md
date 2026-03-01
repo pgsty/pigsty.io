@@ -1,6 +1,6 @@
 ---
 title: ha/trio
-weight: 855
+weight: 640
 description: Three-node standard HA configuration, tolerates any single server failure
 icon: fa-solid fa-dice-three
 categories: [Reference]

@@ -1,6 +1,6 @@
 ---
 title: pgsql
-weight: 790
+weight: 410
 description: Native PostgreSQL kernel, supports deployment of PostgreSQL versions 13 to 18
 icon: fa-brands fa-linux
 categories: [Reference]

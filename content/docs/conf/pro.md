@@ -1,6 +1,6 @@
 ---
 title: build/pro
-weight: 930
+weight: 1060
 description: Pigsty professional edition offline package build environment configuration (multi-version)
 icon: fa-solid fa-crown
 categories: [Reference]

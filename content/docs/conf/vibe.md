@@ -1,6 +1,6 @@
 ---
 title: vibe
-weight: 795
+weight: 260
 description: VIBE AI coding sandbox config template, integrating Code-Server, JupyterLab, Claude Code and JuiceFS web development environment
 icon: fa-solid fa-laptop-code
 categories: [Reference]

@@ -1,6 +1,6 @@
 ---
 title: app/electric
-weight: 880
+weight: 830
 description: Deploy Electric real-time sync service using Pigsty-managed PostgreSQL
 icon: fa-solid fa-bolt-lightning
 categories: [Reference]

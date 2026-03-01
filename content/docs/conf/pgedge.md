@@ -1,6 +1,6 @@
 ---
 title: pgedge
-weight: 814
+weight: 460
 description: pgEdge kernel template for distributed multi-master PostgreSQL in edge scenarios
 icon: fa-solid fa-network-wired
 categories: [Reference]

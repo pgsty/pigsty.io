@@ -1,6 +1,6 @@
 ---
 title: app/odoo
-weight: 870
+weight: 810
 description: Deploy Odoo open-source ERP system using Pigsty-managed PostgreSQL
 icon: fa-solid fa-building
 categories: [Reference]

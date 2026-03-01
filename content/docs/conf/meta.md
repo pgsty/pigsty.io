@@ -1,6 +1,6 @@
 ---
 title: meta
-weight: 760
+weight: 210
 description: Default single-node installation template with extensive configuration parameter descriptions
 icon: fa-solid fa-cube
 categories: [Reference]

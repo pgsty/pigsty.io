@@ -1,6 +1,6 @@
 ---
 title: "Kernel Templates"
-weight: 785
+weight: 400
 sidebar_divider: true
 toc_hide: false
 ---
