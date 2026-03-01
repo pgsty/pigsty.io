@@ -2,6 +2,7 @@
 title: Installation
 description: How to download and install the pg_exporter
 weight: 5620
+icon: fa-solid fa-cloud-arrow-down
 ---
 
 PG Exporter provides multiple installation methods to suit different deployment scenarios. 

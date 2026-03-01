@@ -1,6 +1,7 @@
 ---
-title: PG Exporter
-weight: 5600
+title: "PG Exporter 1.2 Documentation"
+linkTitle: pg_exporter 
+weight: 8400
 icon: fas fa-magnifying-glass
 description: Advanced PostgreSQL & pgBouncer Metrics Exporter for Prometheus
 ---
@@ -14,17 +15,17 @@ The ultimate monitoring experience for PostgreSQL with **600+ metrics**, **decla
 
 ## Features
 
-| Feature                       | Description                                                                                                     |
-|-------------------------------|-----------------------------------------------------------------------------------------------------------------|
-| **Comprehensive Metrics**     | Monitor PostgreSQL (10-18+) and pgBouncer (1.8-1.24+) with 600+ metrics and ~3K time series per instance        |
-| **Declarative Configuration** | Define custom metrics through YAML configs with fine-grained control over timeout, caching, and skip conditions |
-| **Custom Collectors**         | Define your own metrics with declarative YAML configuration and dynamic query planning                          |
-| **Auto-Discovery**            | Automatically discover and monitor multiple databases within a PostgreSQL instance                              |
-| **Dynamic Planning**          | Automatically adapt metric collection based on PostgreSQL version, extensions, and server characteristics       |
-| **Production Ready**          | Battle-tested in real-world environments across 12K+ cores for 6+ years with enterprise reliability             |
-| **Health Check APIs**         | Comprehensive HTTP endpoints for service health and traffic routing with primary/replica detection              |
-| **Smart Caching**             | Built-in caching mechanism with configurable TTL to reduce database load and improve performance                |
-| **Extension Aware**           | Native support for TimescaleDB, Citus, pg_stat_statements, pg_wait_sampling and automatic detection             |
+| Feature                   | Description                                                                                                     |
+|---------------------------|-----------------------------------------------------------------------------------------------------------------|
+| **Comprehensive Metrics** | Monitor PostgreSQL (10-18+) and pgBouncer (1.8-1.24+) with 600+ metrics and ~3K time series per instance        |
+| **Declarative Config**    | Define custom metrics through YAML configs with fine-grained control over timeout, caching, and skip conditions |
+| **Custom Collectors**     | Define your own metrics with declarative YAML configuration and dynamic query planning                          |
+| **Auto-Discovery**        | Automatically discover and monitor multiple databases within a PostgreSQL instance                              |
+| **Dynamic Planning**      | Automatically adapt metric collection based on PostgreSQL version, extensions, and server characteristics       |
+| **Production Ready**      | Battle-tested in real-world environments across 12K+ cores for 6+ years with enterprise reliability             |
+| **Health Check APIs**     | Comprehensive HTTP endpoints for service health and traffic routing with primary/replica detection              |
+| **Smart Caching**         | Built-in caching mechanism with configurable TTL to reduce database load and improve performance                |
+| **Extension Aware**       | Native support for TimescaleDB, Citus, pg_stat_statements, pg_wait_sampling and automatic detection             |
 
 
 --------

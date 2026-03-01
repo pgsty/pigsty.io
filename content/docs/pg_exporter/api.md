@@ -1,6 +1,7 @@
 ---
 title: API Reference
 weight: 5640
+icon: fa-solid fa-book
 ---
 
 

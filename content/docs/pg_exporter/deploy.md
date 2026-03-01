@@ -1,6 +1,7 @@
 ---
 title: Deployment
 weight: 5650
+icon: fas fa-boxes-packing
 ---
 
 

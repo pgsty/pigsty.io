@@ -1,6 +1,7 @@
 ---
 title: Release Notes
 weight: 5660
+icon: fa-solid fa-scroll
 ---
 
 The latest stable version of `pg_exporter` is [v1.2.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.0)

@@ -1,6 +1,7 @@
 ---
 title: Getting Started
 weight: 5610
+icon: fas fa-rocket
 ---
 
 PG Exporter is an advanced PostgreSQL and pgBouncer metrics exporter for Prometheus. This guide will help you get up and running quickly.
@@ -50,12 +51,12 @@ Examples:
 
 PG Exporter provides 4 core built-in metrics out of the box:
 
-| Metric | Type | Description |
-|--------|------|-------------|
-| `pg_up` | Gauge | 1 if exporter can connect to PostgreSQL, 0 otherwise |
-| `pg_version` | Gauge | PostgreSQL server version number |
-| `pg_in_recovery` | Gauge | 1 if server is in recovery mode (replica), 0 if primary |
-| `pg_exporter_build_info` | Gauge | Exporter version and build information |
+| Metric                   | Type  | Description                                             |
+|--------------------------|-------|---------------------------------------------------------|
+| `pg_up`                  | Gauge | 1 if exporter can connect to PostgreSQL, 0 otherwise    |
+| `pg_version`             | Gauge | PostgreSQL server version number                        |
+| `pg_in_recovery`         | Gauge | 1 if server is in recovery mode (replica), 0 if primary |
+| `pg_exporter_build_info` | Gauge | Exporter version and build information                  |
 
 ### Configuration File
 

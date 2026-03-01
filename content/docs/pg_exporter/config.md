@@ -1,6 +1,7 @@
 ---
 title: Configuration
 weight: 5630
+icon: fa-solid fa-code
 ---
 
 
