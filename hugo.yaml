@@ -15,7 +15,7 @@ module:
   proxy: direct
   hugoVersion:
     extended: true
-    min: "0.146.0"
+    min: "0.155.0"
   imports:
     - path: github.com/google/docsy
       disable: false
@@ -152,6 +152,7 @@ params:
     breadcrumb_disable: false
     navbar_logo: true
     navbar_translucent_over_cover_disable: false
+    navbar_theme: "dark"
     sidebar_menu_compact: true
     sidebar_search_disable: false
     sidebar_menu_foldable: true

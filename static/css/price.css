@@ -333,7 +333,6 @@ body.landing-page.landing-theme-light.price-page {
 
 .pricing-card-header {
   margin-bottom: 20px;
-  padding-right: 76px;
 }
 
 .pricing-tier {
@@ -360,6 +359,7 @@ body.landing-page.landing-theme-light.price-page {
   color: var(--price-body-soft);
   font-size: 0.92rem;
   line-height: 1.6;
+  white-space: nowrap;
 }
 
 .pricing-price {
