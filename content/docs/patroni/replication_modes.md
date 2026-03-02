@@ -1,11 +1,13 @@
 ---
 title: "Replication modes"
 weight: 70
+icon: fa-solid fa-share-nodes
 description: "Asynchronous and synchronous replication modes managed by Patroni."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Concept]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/replication_modes.html
 
 <a id="replication_modes"></a>
 Patroni uses PostgreSQL streaming replication. For more information about streaming replication, see the [Postgres documentation](http://www.postgresql.org/docs/current/static/warm-standby.html#STREAMING-REPLICATION). By default Patroni configures PostgreSQL for asynchronous replication. Choosing your replication schema is dependent on your business considerations. Investigate both async and sync replication, as well as other HA solutions, to determine which solution is best for you.

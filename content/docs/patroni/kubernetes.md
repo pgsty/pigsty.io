@@ -2,11 +2,13 @@
 title: "Using Patroni with Kubernetes"
 linkTitle: "Use with Kubernetes"
 weight: 120
+icon: fas fa-dharmachakra
 description: "Using Patroni with Kubernetes objects, labels, and service discovery."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Task]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/kubernetes.html
 
 <a id="kubernetes"></a>
 Patroni can use Kubernetes objects in order to store the state of the cluster and manage the leader key. That makes it capable of operating Postgres in Kubernetes environment without any consistency store, namely, one doesn't need to run an extra Etcd deployment. There are two different type of Kubernetes objects Patroni can use to store the leader and the configuration keys, they are configured with the `kubernetes.use_endpoints` or `PATRONI_KUBERNETES_USE_ENDPOINTS` environment variable.

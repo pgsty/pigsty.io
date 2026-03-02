@@ -1,11 +1,13 @@
 ---
 title: "FAQ"
 weight: 180
+icon: fa-solid fa-circle-question
 description: "Frequently asked questions about Patroni operation and troubleshooting."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Reference]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/faq.html
 
 <a id="faq"></a>
 In this section you will find answers for the most frequently asked questions about Patroni. Each sub-section attempts to focus on different kinds of questions.

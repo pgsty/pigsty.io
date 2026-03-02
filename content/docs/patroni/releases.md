@@ -1,11 +1,13 @@
 ---
 title: "Release notes"
 weight: 190
+icon: fa-solid fa-scroll
 description: "Chronological Patroni release notes and change history."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Reference]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/releases.html
 
 <a id="releases"></a>
 

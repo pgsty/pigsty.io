@@ -2,11 +2,13 @@
 title: "Integration with other tools"
 linkTitle: "Tools Integration"
 weight: 150
+icon: fas fa-puzzle-piece
 description: "Integrating Patroni with external backup and orchestration tools."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Concept]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/tools_integration.html
 
 <a id="tools_integration"></a>
 Patroni is able to integrate with other tools in your stack. In this section you will find a list of examples, which although not an exhaustive list, might provide you with ideas on how Patroni can integrate with other tools.

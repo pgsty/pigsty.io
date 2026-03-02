@@ -1,18 +1,15 @@
 ---
-title: "Patroni Documentation"
+title: "Patroni 4.1 Documentation"
 linkTitle: patroni
 weight: 8050
 icon: fas fa-yin-yang
 description: "Overview of Patroni high-availability documentation for PostgreSQL."
 sidebar_root_for: self
-tags: [PATRONI]
+module: [PATRONI]
+category: [Concept]
 ---
 
-> Source: [patroni.readthedocs.io](https://patroni.readthedocs.io/en/latest/index.html)
-
-<img src="/img/docs/patroni/patroni-logo.png" width="128" height="128" alt="image" />
-
-# Introduction
+> Source: https://patroni.readthedocs.io/en/latest/index.html
 
 Patroni is a template for high availability (HA) PostgreSQL solutions using Python. For maximum accessibility, Patroni supports a variety of distributed configuration stores like [ZooKeeper](https://zookeeper.apache.org/), [etcd](https://github.com/coreos/etcd), [Consul](https://github.com/hashicorp/consul) or [Kubernetes](https://kubernetes.io). Database engineers, DBAs, DevOps engineers, and SREs who are looking to quickly deploy HA PostgreSQL in datacenters — or anywhere else — will hopefully find it useful.
 
@@ -24,4 +21,4 @@ Currently supported PostgreSQL versions: 9.3 to 18.
 
 **Note to Kubernetes users**: Patroni can run natively on top of Kubernetes. Take a look at the [Kubernetes](/docs/patroni/kubernetes#kubernetes) chapter of the Patroni documentation.
 
-# Indices and tables
+<img src="/img/docs/patroni/patroni-logo.png" width="128" height="128" alt="image" />

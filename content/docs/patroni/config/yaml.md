@@ -2,11 +2,13 @@
 title: "YAML Configuration Settings"
 linkTitle: "YAML Config"
 weight: 10
+icon: fa-solid fa-code
 description: "Complete reference for Patroni YAML configuration options and sections."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Reference]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/yaml_configuration.html
 
 <a id="yaml"></a>
 

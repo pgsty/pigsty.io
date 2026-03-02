@@ -1,11 +1,13 @@
 ---
 title: "HA multi datacenter"
 weight: 170
+icon: fa-solid fa-globe
 description: "Multi-datacenter high-availability patterns with Patroni replication."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Concept]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/ha_multi_dc.html
 
 <a id="ha_multi_dc"></a>
 The high availability of a PostgreSQL cluster deployed in multiple data centers is based on replication, which can be synchronous or asynchronous (see [replication modes](/docs/patroni/replication_modes#replication_modes)).

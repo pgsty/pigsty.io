@@ -1,13 +1,16 @@
 ---
 title: "Watchdog support"
 weight: 90
+icon: fa-solid fa-dog
 description: "Watchdog integration and fencing considerations for Patroni clusters."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Concept]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/watchdog.html
 
 <a id="watchdog"></a>
+
 Having multiple PostgreSQL servers running as primary can result in transactions lost due to diverging timelines. This situation is also called a split-brain problem. To avoid split-brain Patroni needs to ensure PostgreSQL will not accept any transaction commits after leader key expires in the DCS. Under normal circumstances Patroni will try to achieve this by stopping PostgreSQL when leader lock update fails for any reason. However, this may fail to happen due to various reasons:
 
 - Patroni has crashed due to a bug, out-of-memory condition or by being accidentally killed by a system administrator.

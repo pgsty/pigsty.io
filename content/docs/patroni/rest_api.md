@@ -1,11 +1,13 @@
 ---
 title: "Patroni REST API"
 weight: 40
+icon: fa-solid fa-book
 description: "Reference for Patroni REST API endpoints and operational behaviors."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Reference]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/rest_api.html
 
 <a id="rest_api"></a>
 Patroni has a rich REST API, which is used by Patroni itself during the leader race, by the [patronictl](/docs/patroni/patronictl#patronictl) tool in order to perform failovers/switchovers/reinitialize/restarts/reloads, by HAProxy or any other kind of load balancer to perform HTTP health checks, and of course could also be used for monitoring. Below you will find the list of Patroni REST API endpoints.

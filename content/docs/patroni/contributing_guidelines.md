@@ -2,11 +2,13 @@
 title: "Contributing guidelines"
 linkTitle: "Contributing"
 weight: 200
+icon: fa-solid fa-users
 description: "Contribution workflow, support channels, and development guidelines."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Task]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/contributing_guidelines.html
 
 <a id="contributing_guidelines"></a>
 <a id="chatting"></a>

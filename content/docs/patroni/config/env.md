@@ -2,11 +2,13 @@
 title: "Environment Configuration Settings"
 linkTitle: "Environment Config"
 weight: 30
+icon: fa-solid fa-sliders
 description: "Environment variables for overriding Patroni configuration parameters."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Reference]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/ENVIRONMENT.html
 
 <a id="env"></a>
 It is possible to override some of the configuration parameters defined in the Patroni configuration file using the system environment variables. This document lists all environment variables handled by Patroni. The values set via those variables always take precedence over the ones set in the Patroni configuration file.

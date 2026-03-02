@@ -1,11 +1,13 @@
 ---
 title: "Standby cluster"
 weight: 80
+icon: fa-solid fa-clone
 description: "Standby cluster setup, behavior, and replication from remote primary."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Task]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/standby_cluster.html
 
 <a id="standby_cluster"></a>
 Patroni also support running cascading replication to a remote datacenter (region) using a feature that is called "standby cluster". This type of clusters has:

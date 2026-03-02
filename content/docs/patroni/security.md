@@ -1,11 +1,13 @@
 ---
 title: "Security Considerations"
 weight: 160
+icon: fa-solid fa-lock
 description: "Security considerations for DCS, REST API, and credential handling."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Concept]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/security.html
 
 <a id="security"></a>
 A Patroni cluster has two interfaces to be protected from unauthorized access: the distributed configuration storage (DCS) and the Patroni REST API.

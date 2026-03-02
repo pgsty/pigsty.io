@@ -1,11 +1,13 @@
 ---
 title: "Introduction"
 weight: 10
+icon: fa-solid fa-circle-info
 description: "Patroni introduction, quick start, and core high-availability concepts."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Concept]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/README.html
 
 <a id="readme"></a>
 Patroni is a template for high availability (HA) PostgreSQL solutions using Python. Patroni originated as a fork of [Governor](https://github.com/compose/governor), the project from Compose. It includes plenty of new features.

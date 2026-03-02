@@ -1,11 +1,13 @@
 ---
 title: "patronictl"
 weight: 50
+icon: fa-solid fa-terminal
 description: "Command reference for patronictl configuration, syntax, and subcommands."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Reference]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/patronictl.html
 
 <a id="patronictl_version_description"></a>
 <a id="patronictl_version_parameters"></a>

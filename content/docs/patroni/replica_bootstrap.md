@@ -2,11 +2,13 @@
 title: "Replica imaging and bootstrap"
 linkTitle: "Replica Bootstrap"
 weight: 60
+icon: fa-solid fa-boxes-stacked
 description: "Replica imaging, bootstrap, and custom replica creation workflows."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Task]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/replica_bootstrap.html
 
 <a id="replica_imaging_and_bootstrap"></a>
 Patroni allows customizing creation of a new replica. It also supports defining what happens when the new empty cluster is being bootstrapped. The distinction between two is well defined: Patroni creates replicas only if the `initialize` key is present in DCS for the cluster. If there is no `initialize` key - Patroni calls bootstrap exclusively on the first node that takes the initialize key lock.

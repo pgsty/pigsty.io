@@ -1,11 +1,13 @@
 ---
 title: "Citus support"
 weight: 130
+icon: fas fa-lemon
 description: "Patroni integration details for Citus coordinator and worker groups."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Concept]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/citus.html
 
 <a id="citus"></a>
 Patroni makes it extremely simple to deploy [Multi-Node Citus](https://docs.citusdata.com/en/stable/installation/multi_node.html) clusters.

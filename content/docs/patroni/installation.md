@@ -1,11 +1,13 @@
 ---
 title: "Installation"
 weight: 20
+icon: fa-solid fa-cloud-arrow-down
 description: "Installation and upgrade instructions for Patroni across supported platforms."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Tutorial]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/installation.html
 
 <a id="installation"></a>
 

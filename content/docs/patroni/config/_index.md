@@ -1,12 +1,14 @@
 ---
 title: "Patroni configuration"
 weight: 30
+icon: fa-solid fa-code
 description: "Patroni configuration model, precedence rules, and validation tooling."
-tags: [PATRONI]
 sidebar_expanded: true
+module: [PATRONI]
+category: [Reference]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/patroni_configuration.html
 
 <a id="config"></a>
 There are 3 types of Patroni configuration:

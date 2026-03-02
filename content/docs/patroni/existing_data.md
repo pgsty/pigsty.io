@@ -2,11 +2,13 @@
 title: "Convert a Standalone to a Patroni Cluster"
 linkTitle: "Convert Existing Cluster"
 weight: 140
+icon: fa-solid fa-truck-moving
 description: "Procedure to convert existing PostgreSQL data into a Patroni cluster."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Task]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/existing_data.html
 
 <a id="existing_data"></a>
 This section describes the process for converting a standalone PostgreSQL instance into a Patroni cluster.

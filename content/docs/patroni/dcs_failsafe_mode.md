@@ -1,11 +1,13 @@
 ---
 title: "DCS Failsafe Mode"
 weight: 110
+icon: fa-solid fa-shield-halved
 description: "DCS failsafe mode behavior, requirements, and operational caveats."
-tags: [PATRONI]
+module: [PATRONI]
+category: [Concept]
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/index.html
+> Source: https://patroni.readthedocs.io/en/latest/dcs_failsafe_mode.html
 
 <a id="dcs_failsafe_mode"></a>
 
