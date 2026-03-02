@@ -1,5 +1,6 @@
 ---
-title: "PIG Package Manager"
+title: "PIG - PG CLI and Extension Package Manager"
+linkTitle: "pig"
 weight: 5200
 description: "PostgreSQL Extension Ecosystem Package Manager"
 icon: fas fa-piggy-bank

@@ -1,5 +1,6 @@
 ---
 title: "Linux Repository"
+linkTitle: "repo"
 icon: fas fa-warehouse
 description: The infrastructure to deliver PostgreSQL Extensions
 weight: 5400
@@ -9,27 +10,27 @@ Pigsty has a repository that provides 340+ extra PostgreSQL extensions on mainst
 It is designed to work together with the official PostgreSQL Global Development Group ([PGDG](https://www.postgresql.org/download/linux/)) repo.
 Together, they can provide up to [450+ PostgreSQL Extensions](https://ext.pigsty.io) out-of-the-box.
 
-|   PGSQL Repo    |                   Description                    |             Link              |
-|:---------------:|:------------------------------------------------:|:-----------------------------:|
-| **PGSQL** Repo  | [Pigsty Extension Repo](/docs/repo/pgsql/), 340+ extra extensions | [pgsql.md](/docs/repo/pgsql/) |
-| **INFRA** Repo  | [Pigsty Infrastructure Repo](/docs/repo/infra/), monitoring/tools | [infra.md](/docs/repo/infra/) |
-|  **PGDG** Repo  |     [PGDG Official Repo Mirror](/docs/repo/pgdg/), PG Kernel      |  [pgdg.md](/docs/repo/pgdg/)  |
-|  **GPG** Key    |        [GPG Public Key](/docs/repo/gpg/), signature verification  |   [gpg.md](/docs/repo/gpg/)   |
+|   PGSQL Repo   |                            Description                            |             Link              |
+|:--------------:|:-----------------------------------------------------------------:|:-----------------------------:|
+| **PGSQL** Repo | [Pigsty Extension Repo](/docs/repo/pgsql/), 340+ extra extensions | [pgsql.md](/docs/repo/pgsql/) |
+| **INFRA** Repo | [Pigsty Infrastructure Repo](/docs/repo/infra/), monitoring/tools | [infra.md](/docs/repo/infra/) |
+| **PGDG** Repo  |     [PGDG Official Repo Mirror](/docs/repo/pgdg/), PG Kernel      |  [pgdg.md](/docs/repo/pgdg/)  |
+|  **GPG** Key   |     [GPG Public Key](/docs/repo/gpg/), signature verification     |   [gpg.md](/docs/repo/gpg/)   |
 
 
 ---------
 
 ## Compatibility Overview
 
-|  OS / Arch   |  OS  |                  x86_64                   |                  aarch64                  |
-|:------------:|:----:|:-----------------------------------------:|:-----------------------------------------:|
-|     EL8      | el8  | **18** **17** **16** **15** **14** **13** | **18** **17** **16** **15** **14** **13** |
-|     EL9      | el9  | **18** **17** **16** **15** **14** **13** | **18** **17** **16** **15** **14** **13** |
-|     EL10     | el10 | **18** **17** **16** **15** **14** **13** | **18** **17** **16** **15** **14** **13** |
-|  Debian 12   | d12  | **18** **17** **16** **15** **14** **13** | **18** **17** **16** **15** **14** **13** |
-|  Debian 13   | d13  | **18** **17** **16** **15** **14** **13** | **18** **17** **16** **15** **14** **13** |
-| Ubuntu 22.04 | u22  | **18** **17** **16** **15** **14** **13** | **18** **17** **16** **15** **14** **13** |
-| Ubuntu 24.04 | u24  | **18** **17** **16** **15** **14** **13** | **18** **17** **16** **15** **14** **13** |
+|  OS / Arch   |  OS  |                     x86_64                     |                    aarch64                     |
+|:------------:|:----:|:----------------------------------------------:|:----------------------------------------------:|
+|     EL8      | el8  | **18**, **17**, **16**, **15**, **14**, **13** | **18**, **17**, **16**, **15**, **14**, **13** |
+|     EL9      | el9  | **18**, **17**, **16**, **15**, **14**, **13** | **18**, **17**, **16**, **15**, **14**, **13** |
+|     EL10     | el10 | **18**, **17**, **16**, **15**, **14**, **13** | **18**, **17**, **16**, **15**, **14**, **13** |
+|  Debian 12   | d12  | **18**, **17**, **16**, **15**, **14**, **13** | **18**, **17**, **16**, **15**, **14**, **13** |
+|  Debian 13   | d13  | **18**, **17**, **16**, **15**, **14**, **13** | **18**, **17**, **16**, **15**, **14**, **13** |
+| Ubuntu 22.04 | u22  | **18**, **17**, **16**, **15**, **14**, **13** | **18**, **17**, **16**, **15**, **14**, **13** |
+| Ubuntu 24.04 | u24  | **18**, **17**, **16**, **15**, **14**, **13** | **18**, **17**, **16**, **15**, **14**, **13** |
 
 
 ---------
