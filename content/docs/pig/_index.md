@@ -5,6 +5,7 @@ weight: 5200
 description: "PostgreSQL Extension Ecosystem Package Manager"
 icon: fas fa-piggy-bank
 module: [PIG]
+sidebar_root_for: self
 ---
 
 — **Postgres Install Genius, the missing extension package manager for the PostgreSQL ecosystem**

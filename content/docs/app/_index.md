@@ -2,20 +2,21 @@
 title: Applications
 weight: 550
 description: >
-  Pigsty v4.2 application templates and data applets: run stateless apps with Docker Compose and host state in external PostgreSQL and MinIO.
+  Application templates and data applets: run stateless apps with Docker Compose and host state in external PostgreSQL and MinIO.
 icon: fa-solid fa-chart-line
 module: [APP]
 categories: [Reference]
 ---
 
-In Pigsty v4.2, "applications" fall into two categories:
+In Pigsty , "applications" fall into two categories:
 
 - **Software Templates**: Docker Compose templates under `~/pigsty/app/<name>` for stateless business components.
 - **Data Applets**: PostgreSQL + Grafana analytics demos, mainly for learning and showcase use.
 
-## v4.2 Application Model
 
-In v4.2, the recommended workflow is:
+## Model
+
+The recommended app install workflow is:
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty

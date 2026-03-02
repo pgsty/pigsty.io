@@ -2,7 +2,7 @@
 title: "Linux Repository"
 linkTitle: "repo"
 icon: fas fa-warehouse
-description: The infrastructure to deliver PostgreSQL Extensions
+description: The APT / DNF repository to deliver PostgreSQL Kernel, Extensions and Infra packages. 
 weight: 5400
 ---
 

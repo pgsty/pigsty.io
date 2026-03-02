@@ -5,7 +5,7 @@ weight: 80
 description: Configure crontab to schedule PostgreSQL backups, vacuum freeze, and bloat maintenance tasks
 icon: fa-solid fa-clock-rotate-left
 module: [PGSQL]
-categories: [Admin]
+categories: [Task]
 ---
 
 Pigsty uses crontab to manage scheduled tasks for routine backups, freezing aging transactions, and reorganizing bloated tables and indexes.

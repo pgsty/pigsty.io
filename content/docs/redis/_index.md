@@ -1,7 +1,7 @@
 ---
 title: "Module: REDIS"
 weight: 3800
-description: Pigsty has built-in Redis support, a high-performance in-memory data structure server. Deploy Redis in standalone, cluster, or sentinel mode as a companion to PostgreSQL.
+description: Built-in Redis support in standalone, cluster, or sentinel mode as a companion to PostgreSQL.
 icon: fas fa-layer-group
 module: [REDIS]
 categories: [Reference]

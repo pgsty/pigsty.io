@@ -23,4 +23,4 @@ categories: [Reference]
 
 [**Reference**](/docs/ref/): [Supported Linux](/docs/ref/linux) | [Fire Hierarchy](/docs/ref/fhs) | [Parameters](/docs/ref/param) | [Playbooks](/docs/ref/playbook) | [Ports](/docs/ref/port)  | [Comparison](/docs/about/compare) | [Cost](/docs/about/compare/cost) 
 
-[**Modules**](/docs/ref/module): [**`PGSQL`**](/docs/pgsql) | [**`INFRA`**](/docs/infra) | [**`NODE`**](/docs/node) | [**`ETCD`**](/docs/etcd) | [**`MINIO`**](/docs/minio) | [**`REDIS`**](/docs/redis) | [**`FERRET`**](/docs/ferret) | [**`DOCKER`**](/docs/docker) | [**`APP`**](/docs/app/)
+[**Modules**](/docs/ref/module): [**`PGSQL`**](/docs/pgsql) | [**`INFRA`**](/docs/infra) | [**`NODE`**](/docs/node) | [**`ETCD`**](/docs/etcd) | [**`MINIO`**](/docs/minio) | [**`REDIS`**](/docs/redis) | [**`FERRET`**](/docs/ferret) | [**`DOCKER`**](/docs/docker) | [**`APP`**](/docs/app/) | [**`JUICE`**](/docs/juice) | [**`VIBE`**](/docs/vibe/)
