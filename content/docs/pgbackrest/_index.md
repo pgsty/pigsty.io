@@ -3,14 +3,16 @@ title: "pgBackRest 2.58 Documentation"
 linkTitle: "pgbackrest"
 weight: 8200
 icon: fas fa-couch
-#sidebar_root_for: self
+sidebar_root_for: self
 description: "Reliable PostgreSQL Backup & Restore — pgBackRest documentation and reference."
+module: [PGBACKREST]
+category: [Concept]
 ---
 
 > snapshot of pgBackrest 2.58 documentation: <https://pgbackrest.org/>
 
 
----
+--------
 
 ## Introduction
 
@@ -22,7 +24,7 @@ Please give us a star on [GitHub](https://github.com/pgbackrest/pgbackrest) if y
 
 
 
----
+--------
 
 ## Features
 
@@ -120,12 +122,14 @@ pgBackRest can encrypt the repository to secure backups wherever they are stored
 pgBackRest includes support for ten versions of PostgreSQL, the five supported versions and the last five EOL versions. This allows ample time to upgrade to a supported version.
 
 
+--------
+
 ## Getting Started
 
 pgBackRest strives to be easy to configure and operate:
 
 - [User guides](/docs/pgbackrest/user-guide/) for various operating systems and PostgreSQL versions.
-- [Command reference](/docs/pgbackrest/command/) for command-line operations.
+- Command pages for command-line operations: [backup](/docs/pgbackrest/command/backup/), [restore](/docs/pgbackrest/command/restore/), [check](/docs/pgbackrest/command/check/), and [info](/docs/pgbackrest/command/info/).
 - [Configuration reference](/docs/pgbackrest/configuration/) for creating pgBackRest configurations.
 
 Documentation for v1 can be found [here](http://www.pgbackrest.org/1). No further releases are planned for v1 because v2 is backward-compatible with v1 options and repositories.
@@ -133,12 +137,14 @@ Documentation for v1 can be found [here](http://www.pgbackrest.org/1). No furthe
 
 
 
----
+--------
 
 ## Contributions
 
 Contributions to pgBackRest are always welcome! Please see our [Contributing Guidelines](https://github.com/pgbackrest/pgbackrest/blob/main/CONTRIBUTING.md) for details on how to contribute features, improvements or issues.
 
+
+--------
 
 ## Support
 
@@ -147,7 +153,7 @@ pgBackRest is completely free and open source under the [MIT](https://github.com
 Creating a robust disaster recovery policy with proper replication and backup strategies can be a very complex and daunting task. You may find that you need help during the architecture phase and ongoing support to ensure that your enterprise continues running smoothly. There are a variety of PostgreSQL support companies that can provide this service.
 
 
----
+--------
 
 ## Recognition
 

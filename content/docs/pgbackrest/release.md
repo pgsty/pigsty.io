@@ -4,13 +4,19 @@ linkTitle: "Releases"
 weight: 60
 description: "pgBackRest release history with detailed changelog for every version."
 icon: fa-solid fa-scroll
+module: [PGBACKREST]
+category: [Reference]
 ---
 
+
+--------
 
 ## Introduction
 
 pgBackRest release numbers consist of two parts, major and minor. A major release *may* break compatibility with the prior major release, but v2 releases are fully compatible with v1 repositories and will accept all v1 options. Minor releases can include bug fixes and features but do not change the repository format and strive to avoid changing options and naming. Documentation for the v1 release can be found [here](http://www.pgbackrest.org/1). The notes for a release may also contain "Additional Notes" but changes in this section are only to documentation or the test suite and have no direct impact on the pgBackRest codebase.
 
+
+--------
 
 ## Current Stable Release
 
@@ -50,6 +56,8 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 - Remove explicit `max_wal_senders`/`wal_level` configuration from user guide. (*Suggested by Jamie Nguyen.*)
 - Clarify that bundling is useful for filesystems with large block sizes. (*Suggested by Ron Johnson.*)
 
+
+--------
 
 ## Stable Releases
 
@@ -2410,6 +2418,8 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 - Removed `--tablespace` option and replaced with `--tablespace-map-all` option which should more clearly indicate its function.
 - Added `detail` log level which will output more information than `info` without being as verbose as `debug`.
 
+
+--------
 
 ## Pre-Stable Releases
 

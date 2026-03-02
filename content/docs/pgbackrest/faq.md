@@ -4,13 +4,19 @@ linkTitle: "FAQ"
 weight: 70
 description: "Frequently asked questions about pgBackRest backup, restore, configuration, and troubleshooting."
 icon: fa-solid fa-circle-question
+module: [PGBACKREST]
+category: [Reference]
 ---
 
+
+--------
 
 ## Introduction
 
 Frequently Asked Questions are intended to provide details for specific questions that may or may not be covered in the User Guide, Configuration, or Command reference. If you are unable to find details for your specific issue here, remember that the pgBackRest [Issues List in GitHub](https://github.com/pgbackrest/pgbackrest/issues) is also a valuable resource.
 
+
+--------
 
 ## What if I get the "could not find WAL segment" error?
 
@@ -29,10 +35,14 @@ It is advisable to:
 - run the `check` command with `--archive-timeout` set to a higher value than in the pgBackRest configuration file (or default) to see if the WAL queue needs more time to clear. If the system is generating a lot of WAL, then consider configuring [asynchronous archiving](/docs/pgbackrest/user-guide/#asynchronous-archiving)
 
 
+--------
+
 ## How do I manually purge a backup set?
 
-A full backup set can be expired using the `--set` option as explained in [Command Reference: Expire](/docs/pgbackrest/command/#expire-command-expire).
+A full backup set can be expired using the `--set` option as explained in [Command Reference: Expire](/docs/pgbackrest/command/expire/).
 
+
+--------
 
 ## How can I configure options independently for each command?
 
@@ -63,15 +73,21 @@ process-max=1
 ```
 
 
+--------
+
 ## Can I use dots (periods) in my S3 bucket name?
 
 RFC-2818 does not allow wildcards to match on a dot (.) so s3 bucket names must not contain dots. If there are dots in the S3 bucket name then an error such as "unable to find hostname 'my.backup.bucket.s3.amazonaws.com' in certificate common name or subject alternative names" will occur.
 
 
+--------
+
 ## Where can I find packages for older versions of pgBackRest?
 
 The [apt.postgresql.org](https://apt.postgresql.org) repository maintains an [archive of older versions](https://apt-archive.postgresql.org). Debian also maintains [snapshots](https://snapshot.debian.org/binary/pgbackrest/) of all test builds.
 
+
+--------
 
 ## Why does a backup attempt fail when `backup-standby=y` and the standby database is down?
 
@@ -80,12 +96,16 @@ Configuring backup from standby is generally intended to reduce load on the prim
 If you really need a backup, the solution is to have more standbys or remove `backup-standby`. This can be overridden on the command line with `--no-backup-standby`, so there is no need to reconfigure for a one-off backup.
 
 
+--------
+
 ## Should I setup my repository on a standby host?
 
 No. When primary and standby databases are configured, the pgBackRest configuration files should be symmetric in order to seamlessly handle failovers. If they are not, the configurations will need to be changed on failover or further problems may result.
 
 See the [Dedicated Repository Host](/docs/pgbackrest/user-guide/#dedicated-repository-host) section of the User Guide for more information.
 
+
+--------
 
 ## Time-based Point-in-Time Recovery does not appear to work, why?
 
@@ -96,21 +116,27 @@ To use the `--set` option, choose a backup set by running the `info` command and
 See the [Point-in-Time Recovery](/docs/pgbackrest/user-guide/#point-in-time-recovery) section of the User Guide for more information.
 
 
+--------
+
 ## What does the WAL archive suffix mean?
 
 The suffix is the SHA1 checksum used to verify file integrity. There is no way to omit it.
 
+
+--------
 
 ## Does it take longer to restore specific backup types (full, differential, incremental)?
 
 The various backup types require the same amount of time to restore. Restore retrieves files based on the backup manifest, which may reference files from a previous backup in the case of incremental or differential backups. While there could be differences in time spent *making* a given backup (depending on backup type), database size determines restore time (disk I/O, network I/O, etc. being equal).
 
 
+--------
+
 ## How can I export a backup for use in a network-isolated environment?
 
 pgBackRest uses the repository not only to store backups and WAL archives but also to maintain essential metadata required for features such as compression, encryption, and file bundling. Because of this, simply copying a backup along with a subset of WAL files usually will not work unless very specific and restrictive conditions are met.
 
-However, there is a workaround if your goal is to create a self-contained export of a database that you can transfer (e.g., via USB). You can make a backup with the [`--archive-copy`](/docs/pgbackrest/command/#copy-archive-option---archive-copy) option enabled to ensure that the necessary WAL segments are stored along with the backup. Then, restore it using [`--type=none`](/docs/pgbackrest/command/#type-option---type-2) `--pg1-path=/your/target/path`. This produces a restored PostgreSQL data directory with all required WAL files already placed in `pg_wal`, similar to what `pg_basebackup` would create.
+However, there is a workaround if your goal is to create a self-contained export of a database that you can transfer (e.g., via USB). You can make a backup with the [`--archive-copy`](/docs/pgbackrest/command/backup/#copy-archive-option---archive-copy) option enabled to ensure that the necessary WAL segments are stored along with the backup. Then, restore it using [`--type=none`](/docs/pgbackrest/command/restore/#type-option---type) `--pg1-path=/your/target/path`. This produces a restored PostgreSQL data directory with all required WAL files already placed in `pg_wal`, similar to what `pg_basebackup` would create.
 
 You can then copy this directory to another system, and PostgreSQL should be able to recover from it without needing access to the pgBackRest repository.
 

@@ -4,8 +4,12 @@ linkTitle: "User Guide (Deb)"
 weight: 20
 description: "Step-by-step pgBackRest setup and usage guide for Debian and Ubuntu systems."
 icon: fa-brands fa-ubuntu
+module: [PGBACKREST]
+category: [Tutorial]
 ---
 
+
+--------
 
 ## Introduction
 
@@ -19,6 +23,8 @@ A somewhat novel approach is taken to documentation in this user guide. Each com
 
 All commands are intended to be run as an unprivileged user that has sudo privileges for both the `root` and `postgres` users. It's also possible to run the commands directly as their respective users without modification and in that case the `sudo` commands can be stripped off.
 
+
+--------
 
 ## Concepts
 
@@ -55,6 +61,8 @@ Encryption is the process of converting data into a format that is unrecognizabl
 pgBackRest will encrypt the repository based on a user-provided password, thereby preventing unauthorized access to data stored within the repository.
 
 
+--------
+
 ## Upgrading pgBackRest
 
 
@@ -82,6 +90,8 @@ IMPORTANT:
 
 The local and remote pgBackRest versions must match exactly so they should be upgraded together. If there is a mismatch, WAL archiving and backups will not function until the versions match. In such a case, the following error will be reported: `[ProtocolError] expected value '2.x' for greeting key 'version' but got '2.y'`.
 
+
+--------
 
 ## Build
 
@@ -112,6 +122,8 @@ meson setup /build/pgbackrest /build/pgbackrest-release-2.58.0
 ninja -C /build/pgbackrest
 ```
 
+
+--------
 
 ## Installation
 
@@ -188,6 +200,8 @@ Use 'pgbackrest help [command]' for more information.
 ```
 
 
+--------
+
 ## Quick Start
 
 The Quick Start section will cover basic configuration of pgBackRest and PostgreSQL and introduce the `backup`, `restore`, and `info` commands.
@@ -255,7 +269,7 @@ NOTE:
 
 `--config`, `--config-include-path` and `--config-path` are command-line only options.
 
-pgBackRest can also be configured using environment variables as described in the [command reference](/docs/pgbackrest/command/).
+pgBackRest can also be configured using environment variables (example below); these variables apply to commands such as [backup](/docs/pgbackrest/command/backup/), [restore](/docs/pgbackrest/command/restore/), and [archive-push](/docs/pgbackrest/command/archive-push/).
 
 pg-primary **⇒** Configure `log-path` using the environment
 
@@ -638,6 +652,8 @@ This time the cluster started successfully since the restore replaced the missin
 More information about the `restore` command can be found in the [Restore](#restore-1) section.
 
 
+--------
+
 ## Monitoring
 
 Monitoring is an important part of any production system. There are many tools available and pgBackRest can be monitored on any of them with a little work.
@@ -780,6 +796,8 @@ NOTE:
 
 jq may round large numbers such as system identifiers. Test your queries carefully.
 
+
+--------
 
 ## Backup
 
@@ -933,6 +951,8 @@ stanza: demo
                 source: demo backup
 ```
 
+
+--------
 
 ## Retention
 
@@ -1129,6 +1149,8 @@ The `20260119-092833F_20260119-092837D` differential backup has archived WAL seg
 
 Since full backups are considered differential backups for the purpose of differential archive retention, if a full backup is now performed with the same settings, only the archive for that full backup is retained for PITR.
 
+
+--------
 
 ## Restore
 
@@ -1359,6 +1381,8 @@ sudo -u postgres psql -c "select oid, datname from pg_database order by oid;"
 ```
 
 
+--------
+
 ## Point-in-Time Recovery
 
 [Restore a Backup](#restore-a-backup) in [Quick Start](#quick-start) performed default recovery, which is to play all the way to the end of the WAL stream. In the case of a hardware failure this is usually the best choice but for data corruption scenarios (whether machine or human in origin) Point-in-Time Recovery (PITR) is often more appropriate.
@@ -1543,6 +1567,8 @@ LOG:  selected new timeline ID: 5
 ```
 
 
+--------
+
 ## Delete a Stanza
 
 The `stanza-delete` command removes data in the repository associated with a stanza.
@@ -1593,11 +1619,13 @@ P00   INFO: stanza-delete command end: completed successfully
 ```
 
 
+--------
+
 ## Multiple Repositories
 
 Multiple repositories may be configured as demonstrated in [S3 Support](#s3-compatible-object-store-support). A potential benefit is the ability to have a local repository for fast restores and a remote repository for redundancy.
 
-Some commands, e.g. `stanza-create`/`stanza-upgrade`, will automatically work with all configured repositories while others, e.g. [stanza-delete](#delete-a-stanza), will require a repository to be specified using the `repo` option. See the [command reference](/docs/pgbackrest/command/) for details on which commands require the repository to be specified.
+Some commands, e.g. [`stanza-create`](/docs/pgbackrest/command/stanza-create/)/[`stanza-upgrade`](/docs/pgbackrest/command/stanza-upgrade/), will automatically work with all configured repositories while others, e.g. [`stanza-delete`](/docs/pgbackrest/command/stanza-delete/), will require a repository to be specified using the `repo` option.
 
 Note that the `repo` option is not required when only `repo1` is configured in order to maintain backward compatibility. However, the `repo` option *is* required when a single repo is configured as, e.g. `repo2`. This is to prevent command breakage if a new repository is added later.
 
@@ -1605,6 +1633,8 @@ The `archive-push` command will always push WAL to the archive in all configured
 
 Backups need to be scheduled individually for each repository. In many cases this is desirable since backup types and retention will vary by repository. Likewise, restores must specify a repository. It is generally better to specify a repository for restores that has low latency/cost even if that means more recovery time. Only restore testing can determine which repository will be most efficient.
 
+
+--------
 
 ## Azure-Compatible Object Store Support
 
@@ -1682,6 +1712,8 @@ P00   INFO: backup command end: completed successfully
 P00   INFO: expire command begin 2.58.0: --exec-id=2317-4e42a3a2 --log-level-console=info --no-log-timestamp --repo=2 --repo2-azure-account= --repo2-azure-container=demo-container --repo2-azure-key= --repo1-cipher-pass= --repo1-cipher-type=aes-256-cbc --repo1-path=/var/lib/pgbackrest --repo2-path=/demo-repo --repo1-retention-diff=2 --repo1-retention-full=2 --repo2-retention-full=4 --repo2-type=azure --stanza=demo
 ```
 
+
+--------
 
 ## S3-Compatible Object Store Support
 
@@ -1827,6 +1859,8 @@ P00   INFO: expire command begin 2.58.0: --exec-id=2369-53f55626 --log-level-con
 ```
 
 
+--------
+
 ## SFTP Support
 
 pgBackRest supports locating repositories on SFTP hosts. SFTP file transfer is relatively slow so commands benefit by increasing `process-max` to parallelize file transfer.
@@ -1941,6 +1975,8 @@ P00   INFO: expire command end: completed successfully
 ```
 
 
+--------
+
 ## GCS-Compatible Object Store Support
 
 pgBackRest supports locating repositories in GCS-compatible object stores. The bucket used to store the repository must be created in advance — pgBackRest will not do it automatically. The repository can be located in the bucket root (`/`) but it's usually best to place it in a subpath so object store logs or other data can also be stored in the bucket without conflicts.
@@ -1996,6 +2032,8 @@ Commands are run exactly as if the repository were stored on a local disk.
 
 File creation time in GCS is relatively slow so `backup`/`restore` performance is improved by enabling [file bundling](#file-bundling).
 
+
+--------
 
 ## Target Time for Repository
 
@@ -2093,6 +2131,8 @@ P00   INFO: write updated /var/lib/postgresql/16/demo/postgresql.auto.conf
 sudo pg_ctlcluster 16 demo start
 ```
 
+
+--------
 
 ## Dedicated Repository Host
 
@@ -2306,6 +2346,8 @@ sudo pg_ctlcluster 16 demo start
 ```
 
 
+--------
+
 ## Parallel Backup / Restore
 
 pgBackRest offers parallel processing to improve performance of compression and transfer. The number of processes to be used for this feature is set using the `--process-max` option.
@@ -2372,6 +2414,8 @@ stanza: demo
 
 The performance of the last backup should be improved by using multiple processes. For very small backups the difference may not be very apparent, but as the size of the database increases so will time savings.
 
+
+--------
 
 ## Starting and Stopping
 
@@ -2451,6 +2495,8 @@ pg-primary **⇒** Start pgBackRest write commands for the `demo` stanza
 sudo -u postgres pgbackrest --stanza=demo start
 ```
 
+
+--------
 
 ## Replication
 
@@ -2883,6 +2929,8 @@ sudo -u postgres psql -c " \
 ```
 
 
+--------
+
 ## Multiple Stanzas
 
 pgBackRest supports multiple stanzas. The most common usage is sharing a repository host among multiple stanzas.
@@ -3097,6 +3145,8 @@ P00   INFO: check command end: completed successfully
 ```
 
 
+--------
+
 ## Asynchronous Archiving
 
 Asynchronous archiving is enabled with the `archive-async` option. This option enables asynchronous operation for both the `archive-push` and `archive-get` commands.
@@ -3294,6 +3344,8 @@ ALTER ROLE
 ```
 
 
+--------
+
 ## Backup from a Standby
 
 pgBackRest can perform backups on a standby instead of the primary. Standby backups require the pg-standby host to be configured and the `backup-standby` option enabled. If more than one standby is configured then the first running standby found will be used for the backup.
@@ -3346,6 +3398,8 @@ This incremental backup shows that most of the files are copied from the pg-stan
 
 pgBackRest creates a standby backup that is identical to a backup performed on the primary. It does this by starting/stopping the backup on the pg-primary host, copying only files that are replicated from the pg-standby host, then copying the remaining few files from the pg-primary host. This means that logs and statistics from the primary database will be included in the backup.
 
+
+--------
 
 ## Upgrading PostgreSQL
 
@@ -3577,6 +3631,5 @@ repo1-path=/var/lib/pgbackrest
 repo1-retention-full=2
 start-fast=y
 ```
-
 
 
