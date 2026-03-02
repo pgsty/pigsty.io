@@ -2,6 +2,8 @@
 title: Getting Started
 weight: 5610
 icon: fas fa-rocket
+module: [PG_EXPORTER]
+category: [Tutorial]
 ---
 
 PG Exporter is an advanced PostgreSQL and pgBouncer metrics exporter for Prometheus. This guide will help you get up and running quickly.

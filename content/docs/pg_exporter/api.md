@@ -2,6 +2,8 @@
 title: API Reference
 weight: 5640
 icon: fa-solid fa-book
+module: [PG_EXPORTER]
+category: [Reference]
 ---
 
 

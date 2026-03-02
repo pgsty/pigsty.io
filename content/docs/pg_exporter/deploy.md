@@ -2,6 +2,8 @@
 title: Deployment
 weight: 5650
 icon: fas fa-boxes-packing
+module: [PG_EXPORTER]
+category: [Task]
 ---
 
 

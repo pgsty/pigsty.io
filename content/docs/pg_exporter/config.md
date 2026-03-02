@@ -2,6 +2,8 @@
 title: Configuration
 weight: 5630
 icon: fa-solid fa-code
+module: [PG_EXPORTER]
+category: [Reference]
 ---
 
 

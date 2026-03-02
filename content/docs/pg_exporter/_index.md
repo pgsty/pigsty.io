@@ -4,6 +4,8 @@ linkTitle: pg_exporter
 weight: 8400
 icon: fas fa-magnifying-glass
 description: Advanced PostgreSQL & pgBouncer Metrics Exporter for Prometheus
+module: [PG_EXPORTER]
+category: [Concept]
 ---
 
 The ultimate monitoring experience for PostgreSQL with **600+ metrics**, **declarative configuration**, and **dynamic planning** capabilities.
