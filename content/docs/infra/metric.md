@@ -5,7 +5,6 @@ description: Complete list of monitoring metrics provided by the Pigsty INFRA mo
 icon: fa-solid fa-list-check
 module: [INFRA]
 categories: [Reference]
-tags: []
 ---
 
 

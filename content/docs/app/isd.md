@@ -7,7 +7,6 @@ description: Demonstrate how to import data into a database using the ISD datase
   as an example
 module: [APP]
 categories: [Reference]
-tags: [Visualization]
 ---
 
 If you have a database and don't know what to do with it, why not try this open-source project: [Vonng/isd](https://github.com/Vonng/isd)

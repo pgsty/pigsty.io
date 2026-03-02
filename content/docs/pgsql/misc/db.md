@@ -6,7 +6,6 @@ description: Database refers to the logical object created using the SQL command
 icon: fa-solid fa-coins
 module: [PGSQL]
 categories: [Reference]
-tags: [Database]
 ---
 
 

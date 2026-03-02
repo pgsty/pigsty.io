@@ -6,7 +6,6 @@ description: Pigsty uses Infrastructure as Code (IaC) philosophy to manage all c
 icon: fa-solid fa-file-code
 module: [PIGSTY]
 categories: [Concept]
-tags: []
 ---
 
 

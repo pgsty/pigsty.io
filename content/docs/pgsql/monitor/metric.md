@@ -6,7 +6,6 @@ description: Complete list and explanation of monitoring metrics provided by the
 icon: fa-solid fa-list-check
 module: [PGSQL]
 categories: [Reference]
-tags: []
 ---
 
 The [**`PGSQL`**](/docs/pgsql) module contains 638 types of available monitoring metrics.

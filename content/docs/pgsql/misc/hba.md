@@ -5,7 +5,6 @@ description: Detailed explanation of Host-Based Authentication (HBA) in Pigsty.
 icon: fa-solid fa-key
 module: [PGSQL]
 categories: [Reference]
-tags: [HBA, Auth]
 ---
 
 > Detailed explanation of Host-Based Authentication (HBA) in Pigsty.

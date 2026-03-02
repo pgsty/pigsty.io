@@ -5,7 +5,6 @@ description: Extension package aliases and category naming conventions
 icon: fa-solid fa-box
 module: [PGSQL]
 categories: [Reference]
-tags: [Extension]
 ---
 
 Pigsty uses a **package alias** mechanism to simplify extension installation and management.

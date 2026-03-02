@@ -7,7 +7,6 @@ description: Pigsty uses Patroni to implement PostgreSQL high availability, ensu
 icon: fa-solid fa-infinity
 module: [PIGSTY, PGSQL]
 categories: [Concept]
-tags: []
 ---
 
 -----------

@@ -6,7 +6,6 @@ description: Pigsty customer and application cases across various domains and in
 icon: fa-solid fa-certificate
 module: [PIGSTY]
 categories: [Reference]
-tags: []
 ---
 
 According to Google Analytics PV and download statistics, Pigsty currently has approximately **100,000 users**, with half from mainland China and half from other regions globally.

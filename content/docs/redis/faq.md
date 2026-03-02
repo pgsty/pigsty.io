@@ -5,7 +5,6 @@ description: Frequently asked questions about the Pigsty REDIS module
 icon: fa-solid fa-circle-question
 module: [REDIS]
 categories: [Reference]
-tags: []
 ---
 
 

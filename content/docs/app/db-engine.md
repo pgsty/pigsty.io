@@ -6,7 +6,6 @@ description: Analyze database management systems on DB-Engines and browse their 
   evolution
 module: [APP]
 categories: [Reference]
-tags: [Visualization]
 ---
 
 

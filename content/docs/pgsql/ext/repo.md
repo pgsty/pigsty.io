@@ -4,7 +4,6 @@ weight: 2211
 description: Pigsty extension software repository configuration
 icon: fas fa-warehouse
 module: [PGSQL]
-tags: [Extension]
 categories: [Reference]
 ---
 

@@ -7,7 +7,6 @@ description: Pigsty uses pgBackRest to implement PostgreSQL point-in-time recove
 icon: fa-solid fa-clock-rotate-left
 module: [PGSQL]
 categories: [Concept]
-tags: []
 ---
 
 > When you accidentally delete data, tables, or even the entire database, PITR lets you return to any point in time and avoid data loss from software defects and human error.

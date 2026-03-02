@@ -6,7 +6,6 @@ description: Choose the appropriate instance and cluster types based on your req
 icon: fa-solid fa-code
 module: [PGSQL]
 categories: [Reference]
-tags: []
 ---
 
 

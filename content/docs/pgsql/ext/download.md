@@ -4,7 +4,6 @@ weight: 2204
 description: Download extension packages from software repositories to local
 icon: fas fa-download
 module: [PGSQL]
-tags: [Extension]
 categories: [Reference]
 ---
 

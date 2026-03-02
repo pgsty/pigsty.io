@@ -6,7 +6,6 @@ description: Overview of Pigsty's monitoring system architecture and how to moni
 icon: fa-solid fa-binoculars
 module: [PGSQL]
 categories: [Reference]
-tags: []
 ---
 
 

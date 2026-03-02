@@ -6,7 +6,6 @@ description: A sample Applet included with Pigsty for visualizing World Health O
   official pandemic data
 module: [APP]
 categories: [Reference]
-tags: [Visualization]
 ---
 
 

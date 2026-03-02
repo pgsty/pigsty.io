@@ -6,7 +6,6 @@ description: Pigsty uses HAProxy to provide service access, with optional pgBoun
 icon: fa-solid fa-arrow-down-up-across-line
 module: [PGSQL]
 categories: [Concept]
-tags: [Service]
 ---
 
 

@@ -5,7 +5,6 @@ description: PostgreSQL extensions installed by default in Pigsty
 icon: fa-brands fa-usb
 module: [PGSQL]
 categories: [Reference]
-tags: [Extension]
 ---
 
 Pigsty installs and enables some core extensions by default when initializing PostgreSQL clusters.

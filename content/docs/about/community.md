@@ -7,7 +7,6 @@ description: Pigsty is a Build in Public project. We are very active on GitHub, 
 icon: fas fa-user-group
 module: [PIGSTY]
 categories: [Reference]
-tags: []
 ---
 
 

@@ -5,7 +5,6 @@ description: Default role system and privilege model provided by Pigsty
 icon: fa-solid fa-lock
 module: [PGSQL]
 categories: [Reference]
-tags: [Security]
 ---
 
 > Access control is determined by the combination of "role system + privilege templates + HBA". This section focuses on how to declare roles and object privileges through configuration parameters.

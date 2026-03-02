@@ -6,7 +6,6 @@ description: Complete list of monitoring metrics provided by the Pigsty REDIS mo
 icon: fa-solid fa-list-check
 module: [REDIS]
 categories: [Reference]
-tags: []
 ---
 
 The [**`REDIS`**](/docs/redis) module contains 275 available monitoring metrics.

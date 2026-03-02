@@ -5,7 +5,6 @@ description: Handling accidental data deletion, table deletion, and database del
 icon: fa-solid fa-trash
 module: [PGSQL]
 categories: [Task]
-tags: [SOP, Recovery]
 ---
 
 

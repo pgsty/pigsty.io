@@ -5,7 +5,6 @@ description: Default role system and privilege model provided by Pigsty
 icon: fa-solid fa-lock
 module: [PGSQL]
 categories: [Reference]
-tags: [Security]
 ---
 
 > Pigsty provides a battery-included access control model based on [role system](#role-system) and [privilege system](#privilege-system).

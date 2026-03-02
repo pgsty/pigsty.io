@@ -6,7 +6,6 @@ description: The origin and motivation of the Pigsty project, its development hi
 icon: fa-solid fa-clock-rotate-left
 module: [PIGSTY]
 categories: [Reference]
-tags: []
 ---
 
 

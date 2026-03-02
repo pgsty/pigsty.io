@@ -5,7 +5,6 @@ description: Four-step process overview for using extensions
 icon: fa-solid fa-rocket
 module: [PGSQL]
 categories: [Tutorial]
-tags: [Extension]
 ---
 
 Using extensions in Pigsty requires four steps: **Download**, **Install**, **Config**, and **Create**.

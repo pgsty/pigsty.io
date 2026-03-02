@@ -4,7 +4,6 @@ weight: 2208
 description: Upgrade PostgreSQL extension versions
 icon: fas fa-arrow-up
 module: [PGSQL]
-tags: [Extension]
 categories: [Reference]
 ---
 

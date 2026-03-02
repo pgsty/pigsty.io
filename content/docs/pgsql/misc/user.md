@@ -6,7 +6,6 @@ description: Users/roles refer to logical objects within a database cluster crea
 icon: fa-solid fa-users
 module: [PGSQL]
 categories: [Reference]
-tags: [User]
 ---
 
 > In this context, users refer to logical objects within a database cluster created using the SQL commands `CREATE USER/ROLE`.

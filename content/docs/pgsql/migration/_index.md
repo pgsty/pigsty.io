@@ -6,7 +6,6 @@ description: How to migrate an existing PostgreSQL cluster to a new Pigsty-manag
 icon: fa-solid fa-truck-moving
 module: [PGSQL]
 categories: [Task, Reference]
-tags: [Migration]
 ---
 
 

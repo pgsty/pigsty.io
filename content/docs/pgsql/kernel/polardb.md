@@ -5,7 +5,6 @@ description: Using Alibaba Cloud's open-source PolarDB for PostgreSQL kernel to 
   domestic innovation qualification support, with Oracle RAC-like user experience.
 icon: fas fa-paw
 module: [PGSQL]
-tags: [PolarDB]
 categories: [Concept]
 ---
 

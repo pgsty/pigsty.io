@@ -5,7 +5,6 @@ description: Frequently asked questions about the Pigsty INFRA infrastructure mo
 icon: fa-solid fa-circle-question
 module: [PIGSTY]
 categories: [Reference]
-tags: []
 ---
 
 

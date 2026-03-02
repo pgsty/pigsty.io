@@ -6,7 +6,6 @@ description: Choose the appropriate instance and cluster types based on your req
 icon: fa-solid fa-code
 module: [PGSQL]
 categories: [Reference]
-tags: []
 ---
 
 Pigsty is a "configuration-driven" PostgreSQL platform: all behaviors come from the combination of inventory files in `~/pigsty/conf/*.yml` and [`PGSQL` parameters](/docs/pgsql/param).

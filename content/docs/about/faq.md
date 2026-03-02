@@ -5,7 +5,6 @@ description: Answers to frequently asked questions about the Pigsty project itse
 icon: fa-solid fa-circle-question
 module: [PIGSTY]
 categories: [Reference]
-tags: [FAQ, Introduction, Positioning, Business]
 ---
 
 

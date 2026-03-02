@@ -8,7 +8,6 @@ hide_summary: true
 icon: fa-solid fa-binoculars
 module: [INFRA]
 categories: [Concept]
-tags: []
 ---
 
 Pigsty's monitoring system has three pillars: metrics, logs, and alerting, and is available out-of-the-box.

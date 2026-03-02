@@ -4,7 +4,6 @@ weight: 2207
 description: Create and enable extensions in databases
 icon: fas fa-plus-circle
 module: [PGSQL]
-tags: [Extension]
 categories: [Reference]
 ---
 

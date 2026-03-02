@@ -7,7 +7,6 @@ description: A sample Applet included with Pigsty for analyzing PostgreSQL CSV l
   samples
 module: [APP]
 categories: [Reference]
-tags: [Visualization]
 ---
 
 

@@ -6,7 +6,6 @@ description: This article compares Pigsty with similar products and projects, hi
 icon: fa-solid fa-circle-half-stroke
 module: [INFRA]
 categories: [Reference]
-tags: [Cost]
 ---
 
 

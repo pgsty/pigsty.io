@@ -5,7 +5,6 @@ description: Using Alibaba Cloud's commercial PolarDB for Oracle kernel (closed 
   PG14, only available in special enterprise edition customization)
 icon: fas fa-paw
 module: [PGSQL]
-tags: [PolarDB]
 categories: [Concept]
 ---
 

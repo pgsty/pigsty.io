@@ -5,7 +5,6 @@ description: Use the configure script to automatically generate recommended conf
 icon: fa-solid fa-wand-magic-sparkles
 module: [PIGSTY]
 categories: [Concept]
-tags: [Configuration, Wizard, Installation]
 ---
 
 

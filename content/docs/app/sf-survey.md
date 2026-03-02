@@ -6,7 +6,6 @@ description: Analyze database-related data from StackOverflow's global developer
   over the past seven years
 module: [APP]
 categories: [Reference]
-tags: [Visualization]
 ---
 
 

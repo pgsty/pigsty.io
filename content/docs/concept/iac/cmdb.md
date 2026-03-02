@@ -6,7 +6,6 @@ description: Use PostgreSQL as a CMDB metabase to store Ansible inventory.
 icon: fa-solid fa-database
 module: [PIGSTY]
 categories: [Concept]
-tags: [CMDB, Configuration Management, IaC]
 ---
 
 

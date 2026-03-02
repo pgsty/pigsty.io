@@ -6,7 +6,6 @@ description: This article provides cost data to help you evaluate self-hosted Pi
 icon: fa-solid fa-sack-dollar
 module: [PIGSTY]
 categories: [Reference]
-tags: [Cost]
 ---
 
 

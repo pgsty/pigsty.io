@@ -6,7 +6,6 @@ description: Deploy/Monitor Greenplum clusters with Pigsty, build Massively Para
 icon: fas fa-leaf
 toc_hide: true
 module: [PGSQL]
-tags: [Greenplum]
 categories: [Concept]
 ---
 

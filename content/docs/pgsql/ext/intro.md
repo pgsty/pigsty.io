@@ -4,7 +4,6 @@ weight: 2202
 description: Core concepts of PostgreSQL extensions and the Pigsty extension ecosystem
 icon: fas fa-info-circle
 module: [PGSQL]
-tags: [Extension]
 categories: [Reference]
 ---
 

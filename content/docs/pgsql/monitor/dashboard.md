@@ -6,7 +6,6 @@ description: Pigsty provides many out-of-the-box Grafana monitoring dashboards f
 icon: fa-solid fa-gauge-simple-high
 module: [PGSQL]
 categories: [Reference]
-tags: []
 ---
 
 > Pigsty provides many out-of-the-box Grafana monitoring dashboards for PostgreSQL: [Demo](https://demo.pigsty.io/d/pgsql-overview) & [Gallery](https://github.com/pgsty/pigsty/wiki/Gallery).

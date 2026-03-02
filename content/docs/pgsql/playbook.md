@@ -5,7 +5,6 @@ description: How to manage PostgreSQL clusters with Ansible playbooks
 icon: fa-solid fa-scroll
 module: [PGSQL]
 categories: [Task]
-tags: []
 ---
 
 

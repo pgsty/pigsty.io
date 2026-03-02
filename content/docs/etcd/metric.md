@@ -5,7 +5,6 @@ description: Complete monitoring metrics list provided by Pigsty ETCD module
 icon: fa-solid fa-list-check
 module: [ETCD]
 categories: [Reference]
-tags: []
 ---
 
 

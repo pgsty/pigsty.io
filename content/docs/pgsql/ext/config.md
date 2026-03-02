@@ -5,7 +5,6 @@ description: Preload extension libraries and configure extension parameters
 icon: fa-solid fa-gears
 module: [PGSQL]
 categories: [Reference]
-tags: [Extension]
 ---
 
 Some extensions require preloading dynamic libraries or configuring parameters before use. This section describes how to configure extensions.

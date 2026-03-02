@@ -4,7 +4,6 @@ weight: 2209
 description: Uninstall PostgreSQL extensions
 icon: fas fa-trash
 module: [PGSQL]
-tags: [Extension]
 categories: [Reference]
 ---
 

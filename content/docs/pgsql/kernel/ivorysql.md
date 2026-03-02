@@ -5,7 +5,6 @@ description: Use HighGo's open-source IvorySQL kernel to achieve Oracle syntax/P
   compatibility based on PostgreSQL clusters.
 icon: fas fa-server
 module: [PGSQL]
-tags: [Oracle]
 categories: [Concept]
 ---
 

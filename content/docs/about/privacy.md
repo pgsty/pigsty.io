@@ -6,7 +6,6 @@ description: What user data does Pigsty software and website collect, and how wi
 icon: fas fa-fingerprint
 module: [PIGSTY]
 categories: [Reference]
-tags: []
 ---
 
 

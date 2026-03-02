@@ -6,7 +6,6 @@ description: Use Neon's open-source Serverless PostgreSQL kernel to build flexib
 icon: fab fa-neos
 toc_hide: true
 module: [PGSQL]
-tags: [Neon]
 categories: [Concept]
 ---
 

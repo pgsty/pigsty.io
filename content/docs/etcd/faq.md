@@ -5,7 +5,6 @@ description: Frequently asked questions about Pigsty etcd module
 icon: fa-solid fa-circle-question
 module: [PIGSTY]
 categories: [Reference]
-tags: []
 ---
 
 

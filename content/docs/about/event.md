@@ -6,7 +6,6 @@ description: News and events related to Pigsty and PostgreSQL, including latest 
 icon: fa-regular fa-newspaper
 module: [PIGSTY]
 categories: [Reference]
-tags: []
 ---
 
 

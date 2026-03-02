@@ -6,7 +6,6 @@ description: Deploy native high-availability Citus horizontally sharded clusters
   queries.
 icon: fas fa-lemon
 module: [PGSQL]
-tags: [Citus]
 categories: [Concept]
 ---
 

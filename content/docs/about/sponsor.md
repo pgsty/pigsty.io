@@ -6,7 +6,6 @@ description: Pigsty sponsors and investors list - thank you for your support of 
 icon: fas fa-heart
 module: [PIGSTY]
 categories: [Reference]
-tags: [Sponsor]
 ---
 
 

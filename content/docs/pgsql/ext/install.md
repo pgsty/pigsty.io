@@ -4,7 +4,6 @@ weight: 2205
 description: Install extension packages on cluster nodes
 icon: fas fa-box-open
 module: [PGSQL]
-tags: [Extension]
 categories: [Tutorial]
 ---
 
