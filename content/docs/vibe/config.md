@@ -4,7 +4,7 @@ weight: 4810
 description: VIBE module configuration for Code-Server, JupyterLab, Node.js, and Claude Code.
 icon: fas fa-sliders
 module: [VIBE]
-categories: [Config]
+categories: [Reference]
 ---
 
 VIBE supports enabling components on demand and exposes services via a unified workspace and Nginx portal.

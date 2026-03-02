@@ -4,7 +4,7 @@ weight: 4820
 description: VIBE module parameters (16 total).
 icon: fas fa-cog
 module: [VIBE]
-categories: [Param]
+categories: [Reference]
 ---
 
 VIBE module has **16** parameters, grouped as:

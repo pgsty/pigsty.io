@@ -4,7 +4,7 @@ weight: 4850
 description: VIBE monitoring, focusing on Claude Code observability.
 icon: fas fa-chart-line
 module: [VIBE]
-categories: [Monitor]
+categories: [Reference]
 ---
 
 VIBE monitoring mainly focuses on Claude Code OpenTelemetry data.

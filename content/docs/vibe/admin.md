@@ -4,7 +4,7 @@ weight: 4840
 description: VIBE module operations and common admin tasks.
 icon: fas fa-wrench
 module: [VIBE]
-categories: [Admin]
+categories: [Task]
 ---
 
 --------

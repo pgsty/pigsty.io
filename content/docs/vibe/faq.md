@@ -4,7 +4,7 @@ weight: 4860
 description: VIBE module frequently asked questions.
 icon: fas fa-question-circle
 module: [VIBE]
-categories: [FAQ]
+categories: [Reference]
 ---
 
 --------
