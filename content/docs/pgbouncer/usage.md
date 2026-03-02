@@ -2,13 +2,15 @@
 title: "Usage: pgbouncer command"
 linkTitle: "Usage"
 weight: 30
-tags: [PGBOUNCER]
 description: "PgBouncer command-line usage and administration console"
 icon: fa-solid fa-bell-concierge
+module: [PGBOUNCER]
+category: [Task]
 ---
 
 > Source: <https://www.pgbouncer.org/usage.html>
 
+--------
 
 ## Synopsis
 
@@ -24,6 +26,8 @@ Additional options for setting up a Windows service:
 
     pgbouncer.exe --regservice   <pgbouncer.ini>
     pgbouncer.exe --unregservice <pgbouncer.ini>
+
+--------
 
 ## Description
 
@@ -61,6 +65,8 @@ Statement pooling
 The administration interface of **pgbouncer** consists of some new
 `SHOW` commands available when connected to a special "virtual"
 database **pgbouncer**.
+
+--------
 
 ## Quick-start
 
@@ -113,6 +119,8 @@ Basic setup and usage is as follows.
 
         pgbouncer=# RELOAD;
 
+--------
+
 ## Command line switches
 
 `-d`, `--daemon`
@@ -157,6 +165,8 @@ Basic setup and usage is as follows.
 
 `--unregservice`
 :   Win32: Unregister Windows service.
+
+--------
 
 ## Admin console
 
@@ -946,6 +956,8 @@ From the Libevent documentation:
 >
 > By setting the environment variable EVENT_SHOW_METHOD, libevent
 > displays the kernel notification method that it uses.
+
+--------
 
 ## See also
 

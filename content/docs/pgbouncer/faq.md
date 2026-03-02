@@ -2,17 +2,22 @@
 title: "Frequently Asked Questions"
 linkTitle: "FAQ"
 weight: 90
-tags: [PGBOUNCER]
 description: "PgBouncer frequently asked questions"
 icon: fa-solid fa-circle-question
+module: [PGBOUNCER]
+category: [Reference]
 ---
 
 > Source: <https://www.pgbouncer.org/faq.html>
+
+--------
 
 ## How to connect to PgBouncer?
 
 PgBouncer acts as a Postgres server, so simply point your client to the
 PgBouncer port.
+
+--------
 
 ## How to load-balance queries between several servers?
 
@@ -32,6 +37,8 @@ It is possible via external tools:
     and also turn `server_round_robin` on: by default, idle connections
     are reused by a LIFO algorithm, which may work not so well when
     load-balancing is needed.
+
+--------
 
 ## How to failover
 
@@ -58,11 +65,15 @@ It is possible with external tools:
    to be reopened.  So run that after that other component has changed
    its connection routing information.
 
+--------
+
 ## How to use prepared statements with session pooling?
 
 In session pooling mode, the reset query must clean old prepared
 statements.  This can be achieved by `server_reset_query = DISCARD ALL;`
 or at least to `DEALLOCATE ALL;`
+
+--------
 
 ## How to use prepared statements with transaction pooling?
 
@@ -100,10 +111,14 @@ or later:
 
     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
 
+--------
+
 ## How to upgrade PgBouncer without dropping connections?
 
 You can use a rolling restart by following the procedure described in the
 [section of the docs for `SHUTDOWN WAIT_FOR_CLIENTS`](/docs/pgbouncer/usage/#shutdown-wait_for_clients)
+
+--------
 
 ## How to know which client is on which server connection?
 
@@ -117,6 +132,8 @@ Use the `SHOW CLIENTS` and `SHOW SERVERS` commands on the console.
 
 3.  Use `local_addr` and `local_port` to identify TCP connection to
     server.
+
+--------
 
 ## Should PgBouncer be installed on the web server or database server?
 

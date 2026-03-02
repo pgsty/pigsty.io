@@ -1,12 +1,15 @@
 ---
 title: "Changelog"
 weight: 70
-tags: [PGBOUNCER]
 description: "PgBouncer version history and release notes"
 icon: fa-solid fa-scroll
+module: [PGBOUNCER]
+category: [Reference]
 ---
 
 > Source: <https://www.pgbouncer.org/changelog.html>
+
+--------
 
 ## PgBouncer 1.25.x
 
@@ -82,6 +85,8 @@ icon: fa-solid fa-scroll
 [#1384]: https://github.com/pgbouncer/pgbouncer/pull/1384
 [#1403]: https://github.com/pgbouncer/pgbouncer/pull/1403
 [#1407]: https://github.com/pgbouncer/pgbouncer/pull/1407
+
+--------
 
 ## PgBouncer 1.24.x
 
@@ -191,6 +196,7 @@ icon: fa-solid fa-scroll
 [#1166]: https://github.com/pgbouncer/pgbouncer/pull/1166
 [#298]: https://github.com/pgbouncer/pgbouncer/pull/298
 
+--------
 
 ## PgBouncer 1.23.x
 
@@ -259,6 +265,7 @@ icon: fa-solid fa-scroll
 [#1076]: https://github.com/pgbouncer/pgbouncer/pull/1076
 [#1034]: https://github.com/pgbouncer/pgbouncer/pull/1034
 
+--------
 
 ## PgBouncer 1.22.x
 
@@ -303,6 +310,7 @@ icon: fa-solid fa-scroll
 [#999]: https://github.com/pgbouncer/pgbouncer/pull/999
 [#1009]: https://github.com/pgbouncer/pgbouncer/pull/1009
 
+--------
 
 ## PgBouncer 1.21.x
 
@@ -372,6 +380,7 @@ icon: fa-solid fa-scroll
 [#938]: https://github.com/pgbouncer/pgbouncer/pull/938
 [libusual/#41]: https://github.com/libusual/libusual/pull/41
 
+--------
 
 ## PgBouncer 1.20.x
 
@@ -442,6 +451,8 @@ icon: fa-solid fa-scroll
 [#883]: https://github.com/pgbouncer/pgbouncer/pull/883
 [#894]: https://github.com/pgbouncer/pgbouncer/pull/894
 
+--------
+
 ## PgBouncer 1.19.x
 
 **2023-05-31  -  PgBouncer 1.19.1  -  "Sunny Spring"**
@@ -509,6 +520,8 @@ This is a minor release that fixes a few recently introduced bugs:
 [#837]: https://github.com/pgbouncer/pgbouncer/pull/837
 [#838]: https://github.com/pgbouncer/pgbouncer/pull/838
 
+--------
+
 ## PgBouncer 1.18.x
 
 **2022-12-12  -  PgBouncer 1.18.0  -  "No real mystery"**
@@ -542,6 +555,8 @@ This is a minor release that fixes a few recently introduced bugs:
 
 - Cleanups
   * Various CI updates
+
+--------
 
 ## PgBouncer 1.17.x
 
@@ -609,6 +624,8 @@ This is a minor release that fixes a few recently introduced bugs:
     yet).
   * Document that the admin console only supports the simple query
     protocol, and give better error messages about this.
+
+--------
 
 ## PgBouncer 1.16.x
 
@@ -687,6 +704,8 @@ This is a minor release with a security fix.
   * Fix compiler warnings with GCC 11.
     ([#623](https://github.com/pgbouncer/pgbouncer/issues/623))
 
+--------
+
 ## PgBouncer 1.15.x
 
 **2020-11-19  -  PgBouncer 1.15.0  -  "Ich hab noch einen Koffer in Berlin"**
@@ -735,6 +754,8 @@ This is a minor release with a security fix.
   * Modernize Autoconf-related code.
   * Disable deprecation compiler warnings from OpenSSL 3.0.0.
 
+--------
+
 ## PgBouncer 1.14.x
 
 **2020-06-11  -  PgBouncer 1.14.0  -  "La ritrovata magia"**
@@ -752,6 +773,8 @@ This is a minor release with a security fix.
 - Cleanups
   * Add an alternative smaller sample configuration file
     `pgbouncer-minimal.ini` for testing or deployment.
+
+--------
 
 ## PgBouncer 1.13.x
 
@@ -783,6 +806,8 @@ This is a minor release with a security fix.
     `USE_SUDO`.
   * The libevent API use was updated to use version 2 style interfaces
     and to no longer use deprecated interfaces from version 1.
+
+--------
 
 ## PgBouncer 1.12.x
 
@@ -829,6 +854,8 @@ This release contains a variety of minor enhancements and fixes.
     platforms should now be free of warnings.
   * Fix some warnings from LLVM scan-build.
 
+--------
+
 ## PgBouncer 1.11.x
 
 **2019-08-27  -  PgBouncer 1.11.0  -  "Instinct for Greatness"**
@@ -858,6 +885,8 @@ This release contains a variety of minor enhancements and fixes.
   * Expand documentation of the `[users]` section and add to example
     config
     file. ([#330](https://github.com/pgbouncer/pgbouncer/pull/330))
+
+--------
 
 ## PgBouncer 1.10.x
 
@@ -892,6 +921,8 @@ This release contains a variety of minor enhancements and fixes.
   * Python scripts in the source tree are all compatible with Python 3
     now.
 
+--------
+
 ## PgBouncer 1.9.x
 
 **2018-08-13  -  PgBouncer 1.9.0  -  "Chaos Survival"**
@@ -919,6 +950,8 @@ This release contains a variety of minor enhancements and fixes.
   * Typos and capitalization fixes in messages and docs
   * Fix psql invocation in tests
   * Various other test setup improvements
+
+--------
 
 ## PgBouncer 1.8.x
 
@@ -952,6 +985,8 @@ This release contains a variety of minor enhancements and fixes.
   * `auth_user` setting is now also allowed globally, not only per database.
     ([#142](https://github.com/pgbouncer/pgbouncer/issues/142))
   * Set console client and server encoding to `UTF8`.
+
+--------
 
 ## PgBouncer 1.7.x
 
@@ -1046,6 +1081,8 @@ instead expected 20-30k.  Something to keep an eye on when using TLS.
     by PostgreSQL since 8.4.
   * Fix plain "--with-cares" configure option - without argument
     it was broken.
+
+--------
 
 ## PgBouncer 1.6.x
 
@@ -1168,6 +1205,8 @@ instead expected 20-30k.  Something to keep an eye on when using TLS.
     (Euler Taveira)
   * Disable server_idle_timeout when server count gets below min_pool (#60)
     (Marko Kreen)
+
+--------
 
 ## PgBouncer 1.5.x
 
@@ -1306,6 +1345,8 @@ GNU Make 3.81+ is required for building.
   * Fix run-as-service crash on win32 due to bad basename() from
     mingw/msvc runtime.  Now compat basename() is always used.
 
+--------
+
 ## PgBouncer 1.4.x
 
 **2011-06-16  -  PgBouncer 1.4.2  -  "Strike-First Algorithm"**
@@ -1432,6 +1473,8 @@ Affected OS-es: \*BSD, Solaris, Win32.
 
   * Use libusual library for low-level utility functions.
   * Remove fixed-length limit from server params.
+
+--------
 
 ## PgBouncer 1.3.x
 
@@ -1615,6 +1658,8 @@ Affected OS-es: \*BSD, Solaris, Win32.
 
   * Include COPYRIGHT file in .tgz...
 
+--------
+
 ## PgBouncer 1.2.x
 
 **2008-08-08  -  PgBouncer 1.2.3  -  "Carefully Selected Bytes"**
@@ -1738,6 +1783,8 @@ Older libevent versions crash with new restart code.
   * Make configure.ac compatible with autoconf 2.59.
   * Solaris compatibility fixes (Magne Maehre)
 
+--------
+
 ## PgBouncer 1.1.x
 
 **2007-12-10  -  PgBouncer 1.1.2  -  "The Hammer"**
@@ -1803,6 +1850,8 @@ Older libevent versions crash with new restart code.
   * Detect invalid pkt headers better.
   * auth_file modification check was broken, which made pgbouncer
     reload it too often.
+
+--------
 
 ## PgBouncer 1.0.x
 

@@ -1,18 +1,22 @@
 ---
 title: "Configuration: pgbouncer.ini"
 linkTitle: "Config"
-tags: [PGBOUNCER]
 weight: 20
 description: "PgBouncer configuration file (pgbouncer.ini) reference"
 icon: fa-solid fa-code
+module: [PGBOUNCER]
+category: [Reference]
 ---
 
 > Source: <https://www.pgbouncer.org/config.html>
+
+--------
 
 ## Description
 
 The configuration file is in "ini" format. Section names are between `[` and `]`. Lines starting with `;` or `#` are taken as comments and ignored. The characters `;` and `#` are not recognized as special when they appear later in the line.
 
+--------
 
 ## Generic settings
 
@@ -285,6 +289,8 @@ The number of computational iterations to be performed when encrypting a passwor
 
 Default: 4096
 
+--------
+
 ## Authentication settings
 
 PgBouncer handles its own client authentication and has its own database of users. These settings control this.
@@ -353,6 +359,8 @@ LDAP connection options to use if `auth_type` is `ldap`. (Not used if authentica
 auth_ldap_options = ldapurl="ldap://127.0.0.1:12345/dc=example,dc=net?uid?sub"
 ```
 
+--------
+
 ## Log settings
 
 ### syslog
@@ -403,6 +411,8 @@ Increase verbosity. Mirrors the `-v` switch on the command line. For example, us
 
 Default: 0
 
+--------
+
 ## Console access control
 
 ### admin_users
@@ -417,6 +427,7 @@ Comma-separated list of database users that are allowed to connect and run read-
 
 Default: empty
 
+--------
 
 ## Connection sanity checks, timeouts
 
@@ -543,6 +554,8 @@ Time that a client will be queued for before PgBouncer sends a notification mess
 A value of 0 disables this notification message.
 
 Default: 5
+
+--------
 
 ## TLS settings
 
@@ -686,6 +699,7 @@ Only connections using TLS version 1.3 and higher are affected. For version 1.2 
 
 Default: `<empty>`
 
+--------
 
 ## Dangerous timeouts
 
@@ -737,6 +751,7 @@ How long to wait for buffer flush during `SUSPEND` or reboot (`-R`). A connectio
 
 Default: 10
 
+--------
 
 ## Low-level network settings
 
@@ -818,6 +833,7 @@ This is currently only supported on Linux.
 
 Default: 0
 
+--------
 
 ## Section [databases]
 
@@ -968,6 +984,7 @@ Ask specific `datestyle` from server.
 
 Ask specific `timezone` from server.
 
+--------
 
 ## Section [users]
 
@@ -1025,6 +1042,7 @@ Please note that this is a potentially dangerous timeout.
 
 Configure a maximum for the user of client connections. This is the user equivalent of the `max_client_conn` setting.
 
+--------
 
 ## Section [peers]
 
@@ -1076,6 +1094,7 @@ Set the maximum number of cancel requests that can be in flight to the peer at t
 
 If not set, the `default_pool_size` is used.
 
+--------
 
 ## Include directive
 
@@ -1087,6 +1106,7 @@ The PgBouncer configuration file can contain include directives, which specify a
 
 If the file name is not an absolute path, it is taken as relative to the current working directory.
 
+--------
 
 ## Authentication file format
 
@@ -1152,6 +1172,8 @@ Note down the SCRAM secret from the QUERY and set it in PgBouncer's `userlist.tx
 
 If you used a tool other than `psql --echo-hidden` then you need to set the SCRAM secret also in the server (you can use `ALTER ROLE <role_name> PASSWORD '<scram_secret>'` for that).
 
+--------
+
 ## HBA file format
 
 The location of the HBA file is specified by the setting `auth_hba_file`. It is only used if `auth_type` is set to `hba`.
@@ -1165,6 +1187,8 @@ The file follows the format of the PostgreSQL `pg_hba.conf` file (see <https://w
 * Auth-method field: Only methods supported by PgBouncer's `auth_type` are supported, plus `peer` and `reject`, but except `any` and `pam`, which only work globally.
 * User name map (`map=`) parameter is supported when `auth_type` is `cert` or `peer`.
 
+--------
+
 ## Ident map file format
 
 The location of the ident map file is specified by the setting `auth_ident_file`. It is only loaded if `auth_type` is set to `hba`.
@@ -1175,6 +1199,8 @@ The file format is a simplified variation of the PostgreSQL ident map file (see 
 * There is no support for including file/directory.
 * System-username field: Not supported: regular expressions.
 * Database-username field: Supports `all` or a single Postgres user name. Not supported: `+groupname`, regular expressions.
+
+--------
 
 ## Examples
 
@@ -1267,6 +1293,8 @@ so_reuseport=1
 unix_socket_dir=/tmp/pgbouncer2
 peer_id=2
 ```
+
+--------
 
 ## See also
 

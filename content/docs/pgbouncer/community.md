@@ -1,12 +1,15 @@
 ---
 title: "Community"
 weight: 80
-tags: [PGBOUNCER]
 description: "PgBouncer community resources, tutorials, and support"
 icon: fas fa-user-group
+module: [PGBOUNCER]
+category: [Concept]
 ---
 
 > Source: <https://www.pgbouncer.org/community.html>
+
+--------
 
 ## Tutorials
 
@@ -21,6 +24,8 @@ icon: fas fa-user-group
 - [What is the point of bouncing?](http://www.depesz.com/2012/12/02/what-is-the-point-of-bouncing/)
 
   Discusses diffenrences between pooling modes.
+
+--------
 
 ## Support
 
