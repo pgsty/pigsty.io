@@ -13,7 +13,7 @@ Pigsty supports multiple PostgreSQL kernels and compatibility branches so you ca
 
 | Kernel                                          | Key Feature                           | Description                                   |
 |:------------------------------------------------|:--------------------------------------|:----------------------------------------------|
-| [**PostgreSQL**](/docs/pgsql)                   | **Native kernel, full extension set** | Vanilla PostgreSQL with 451 extensions        |
+| [**PostgreSQL**](/docs/pgsql)                   | **Native kernel, full extension set** | Vanilla PostgreSQL with 464 extensions        |
 | [**Citus**](/docs/pgsql/kernel/citus)           | **Horizontal scaling**                | Distributed PostgreSQL via native extension   |
 | [**Babelfish**](/docs/pgsql/kernel/babelfish)   | **SQL Server compatible**             | SQL Server wire-protocol compatibility (PG17) |
 | [**IvorySQL**](/docs/pgsql/kernel/ivorysql)     | **Oracle compatible**                 | Oracle syntax and PL/SQL compatibility        |

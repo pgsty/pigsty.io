@@ -10,13 +10,13 @@ hide: True
 
 Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` and `~/pgsty/pgext/db/extension.csv`. For full details, see [**PGEXT.CLOUD**](https://pgext.cloud/list/).
 
-There are currently **451** available PostgreSQL extensions.
+There are currently **464** available PostgreSQL extensions.
 
 ### TIME
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
-| [timescaledb](https://pgext.cloud/e/timescaledb/) | `2.25.0` | `TIME` | Enables scalable inserts and complex queries for time-series data |
+| [timescaledb](https://pgext.cloud/e/timescaledb/) | `2.25.2` | `TIME` | Enables scalable inserts and complex queries for time-series data |
 | [timescaledb_toolkit](https://pgext.cloud/e/timescaledb_toolkit/) | `1.22.0` | `TIME` | Library of analytical hyperfunctions, time-series pipelining, and other SQL utilities |
 | [timeseries](https://pgext.cloud/e/timeseries/) | `0.2.0` | `TIME` | Convenience API for time series stack |
 | [periods](https://pgext.cloud/e/periods/) | `1.2.3` | `TIME` | Provide Standard SQL functionality for PERIODs and SYSTEM VERSIONING |
@@ -26,7 +26,7 @@ There are currently **451** available PostgreSQL extensions.
 | [pg_cron](https://pgext.cloud/e/pg_cron/) | `1.6.7` | `TIME` | Job scheduler for PostgreSQL |
 | [pg_task](https://pgext.cloud/e/pg_task/) | `1.0.0` | `TIME` | execute any sql command at any specific time at background |
 | [pg_later](https://pgext.cloud/e/pg_later/) | `0.4.0` | `TIME` | Run queries now and get results later |
-| [pg_background](https://pgext.cloud/e/pg_background/) | `1.6` | `TIME` | Run SQL queries in the background |
+| [pg_background](https://pgext.cloud/e/pg_background/) | `1.8` | `TIME` | Run SQL queries in the background |
 
 ### GIS
 
@@ -44,10 +44,11 @@ There are currently **451** available PostgreSQL extensions.
 | [pointcloud_postgis](https://pgext.cloud/e/pointcloud_postgis/) | `1.2.5` | `GIS` | integration for pointcloud LIDAR data and PostGIS geometry data |
 | [h3](https://pgext.cloud/e/h3/) | `4.2.3` | `GIS` | H3 bindings for PostgreSQL |
 | [h3_postgis](https://pgext.cloud/e/h3_postgis/) | `4.2.3` | `GIS` | H3 PostGIS integration |
-| [q3c](https://pgext.cloud/e/q3c/) | `2.0.1` | `GIS` | q3c sky indexing plugin |
+| [q3c](https://pgext.cloud/e/q3c/) | `2.0.2` | `GIS` | q3c sky indexing plugin |
 | [ogr_fdw](https://pgext.cloud/e/ogr_fdw/) | `1.1.7` | `GIS` | foreign-data wrapper for GIS data access |
 | [geoip](https://pgext.cloud/e/geoip/) | `0.3.0` | `GIS` | IP-based geolocation query |
 | [pg_polyline](https://pgext.cloud/e/pg_polyline/) | `0.0.1` | `GIS` | Fast Google Encoded Polyline encoding & decoding for postgres |
+| [pg_eviltransform](https://pgext.cloud/e/pg_eviltransform/) | `0.0.2` | `GIS` | BD09/GCJ02 coordinate transformation based on PostGIS ST_Transform |
 | [pg_geohash](https://pgext.cloud/e/pg_geohash/) | `1.0` | `GIS` | Handle geohash based functionality for spatial coordinates |
 | [mobilitydb](https://pgext.cloud/e/mobilitydb/) | `1.3.0` | `GIS` | MobilityDB geospatial trajectory data management & analysis platform |
 | [mobilitydb_datagen](https://pgext.cloud/e/mobilitydb_datagen/) | `1.3.0` | `GIS` | MobilityDB random data generator functions |
@@ -58,8 +59,8 @@ There are currently **451** available PostgreSQL extensions.
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
-| [vector](https://pgext.cloud/e/vector/) | `0.8.1` | `RAG` | vector data type and ivfflat and hnsw access methods |
-| [vchord](https://pgext.cloud/e/vchord/) | `1.1.0` | `RAG` | Vector database plugin for Postgres, written in Rust |
+| [vector](https://pgext.cloud/e/vector/) | `0.8.2` | `RAG` | vector data type and ivfflat and hnsw access methods |
+| [vchord](https://pgext.cloud/e/vchord/) | `1.1.1` | `RAG` | Vector database plugin for Postgres, written in Rust |
 | [vectorscale](https://pgext.cloud/e/vectorscale/) | `0.9.0` | `RAG` | Advanced indexing for vector data with DiskANN |
 | [vectorize](https://pgext.cloud/e/vectorize/) | `0.26.0` | `RAG` | The simplest way to do vector search on Postgres |
 | [pg_similarity](https://pgext.cloud/e/pg_similarity/) | `1.0` | `RAG` | support similarity queries |
@@ -73,7 +74,7 @@ There are currently **451** available PostgreSQL extensions.
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
-| [pg_search](https://pgext.cloud/e/pg_search/) | `0.21.7` | `FTS` | Full text search for PostgreSQL using BM25 |
+| [pg_search](https://pgext.cloud/e/pg_search/) | `0.21.12` | `FTS` | Full text search for PostgreSQL using BM25 |
 | [pgroonga](https://pgext.cloud/e/pgroonga/) | `4.0.4` | `FTS` | Use Groonga as index, fast full text search platform for all languages! |
 | [pgroonga_database](https://pgext.cloud/e/pgroonga_database/) | `4.0.4` | `FTS` | PGroonga database management module |
 | [pg_bigm](https://pgext.cloud/e/pg_bigm/) | `1.2` | `FTS` | create 2-gram (bigram) index for faster full text search. |
@@ -83,6 +84,7 @@ There are currently **451** available PostgreSQL extensions.
 | [pg_tokenizer](https://pgext.cloud/e/pg_tokenizer/) | `0.1.1` | `FTS` | Tokenizers for full-text search |
 | [biscuit](https://pgext.cloud/e/biscuit/) | `2.2.2` | `FTS` | IAM-LIKE pattern matching with bitmap indexing |
 | [pg_textsearch](https://pgext.cloud/e/pg_textsearch/) | `0.5.0` | `FTS` | Full-text search with BM25 ranking |
+| [pg_pinyin](https://pgext.cloud/e/pg_pinyin/) | `0.0.2` | `FTS` | PostgreSQL Pinyin transliteration and search extension |
 | [hunspell_cs_cz](https://pgext.cloud/e/hunspell_cs_cz/) | `1.0` | `FTS` | Czech Hunspell Dictionary |
 | [hunspell_de_de](https://pgext.cloud/e/hunspell_de_de/) | `1.0` | `FTS` | German Hunspell Dictionary |
 | [hunspell_en_us](https://pgext.cloud/e/hunspell_en_us/) | `1.0` | `FTS` | en_US Hunspell Dictionary |
@@ -106,11 +108,11 @@ There are currently **451** available PostgreSQL extensions.
 | [pg_analytics](https://pgext.cloud/e/pg_analytics/) | `0.3.7` | `OLAP` | Postgres for analytics, powered by DuckDB |
 | [pg_duckdb](https://pgext.cloud/e/pg_duckdb/) | `1.1.1` | `OLAP` | DuckDB Embedded in Postgres |
 | [pg_mooncake](https://pgext.cloud/e/pg_mooncake/) | `0.2.0` | `OLAP` | Columnstore Table in Postgres |
-| [pg_clickhouse](https://pgext.cloud/e/pg_clickhouse/) | `0.1.3` | `OLAP` | Interfaces to query ClickHouse databases from PostgreSQL |
+| [pg_clickhouse](https://pgext.cloud/e/pg_clickhouse/) | `0.1.4` | `OLAP` | Interfaces to query ClickHouse databases from PostgreSQL |
 | [duckdb_fdw](https://pgext.cloud/e/duckdb_fdw/) | `1.1.2` | `OLAP` | DuckDB Foreign Data Wrapper |
 | [pg_parquet](https://pgext.cloud/e/pg_parquet/) | `0.5.1` | `OLAP` | copy data between Postgres and Parquet |
 | [pg_fkpart](https://pgext.cloud/e/pg_fkpart/) | `1.7.0` | `OLAP` | Table partitioning by foreign key utility |
-| [pg_partman](https://pgext.cloud/e/pg_partman/) | `5.4.1` | `OLAP` | Extension to manage partitioned tables by time or ID |
+| [pg_partman](https://pgext.cloud/e/pg_partman/) | `5.4.2` | `OLAP` | Extension to manage partitioned tables by time or ID |
 | [plproxy](https://pgext.cloud/e/plproxy/) | `2.11.0` | `OLAP` | Database partitioning implemented as procedural language |
 | [pg_strom](https://pgext.cloud/e/pg_strom/) | `6.1` | `OLAP` | PG-Strom - big-data processing acceleration using GPU and NVME |
 | [tablefunc](https://pgext.cloud/e/tablefunc/) | `1.0` | `OLAP` | functions that manipulate whole tables, including crosstab |
@@ -135,9 +137,9 @@ There are currently **451** available PostgreSQL extensions.
 | [pg_ivm](https://pgext.cloud/e/pg_ivm/) | `1.13` | `FEAT` | incremental view maintenance on PostgreSQL |
 | [pg_incremental](https://pgext.cloud/e/pg_incremental/) | `1.4.1` | `FEAT` | Incremental Processing by Crunchy Data |
 | [pgmb](https://pgext.cloud/e/pgmb/) | `1.0.0` | `FEAT` | A simple PostgreSQL Message Broker system |
-| [pgmq](https://pgext.cloud/e/pgmq/) | `1.10.0` | `FEAT` | A lightweight message queue. Like AWS SQS and RSMQ but on Postgres. |
+| [pgmq](https://pgext.cloud/e/pgmq/) | `1.11.0` | `FEAT` | A lightweight message queue. Like AWS SQS and RSMQ but on Postgres. |
 | [pgq](https://pgext.cloud/e/pgq/) | `3.5.1` | `FEAT` | Generic queue for PostgreSQL |
-| [orioledb](https://pgext.cloud/e/orioledb/) | `1.5` | `FEAT` | OrioleDB, the next generation transactional engine |
+| [orioledb](https://pgext.cloud/e/orioledb/) | `1.6` | `FEAT` | OrioleDB, the next generation transactional engine |
 | [pg_cardano](https://pgext.cloud/e/pg_cardano/) | `1.1.1` | `FEAT` | A suite of Cardano-related tools |
 | [rdkit](https://pgext.cloud/e/rdkit/) | `202503.1` | `FEAT` | Cheminformatics functionality for PostgreSQL. |
 | [omni](https://pgext.cloud/e/omni/) | `0.2.14` | `FEAT` | Advanced adapter for Postgres extensions |
@@ -195,7 +197,7 @@ There are currently **451** available PostgreSQL extensions.
 | [hstore_plluau](https://pgext.cloud/e/hstore_plluau/) | `2.0.12` | `LANG` | Hstore transform for untrusted Lua |
 | [plprql](https://pgext.cloud/e/plprql/) | `18.0.1` | `LANG` | Use PRQL in PostgreSQL - Pipelined Relational Query Language |
 | [pldbgapi](https://pgext.cloud/e/pldbgapi/) | `1.9` | `LANG` | server-side support for debugging PL/pgSQL functions |
-| [plpgsql_check](https://pgext.cloud/e/plpgsql_check/) | `2.8.8` | `LANG` | extended check for plpgsql functions |
+| [plpgsql_check](https://pgext.cloud/e/plpgsql_check/) | `2.8.11` | `LANG` | extended check for plpgsql functions |
 | [plprofiler](https://pgext.cloud/e/plprofiler/) | `4.2.5` | `LANG` | server-side support for profiling PL/pgSQL functions |
 | [plsh](https://pgext.cloud/e/plsh/) | `1.20220917` | `LANG` | PL/sh procedural language |
 | [pljava](https://pgext.cloud/e/pljava/) | `1.6.10` | `LANG` | PL/Java procedural language |
@@ -310,6 +312,7 @@ There are currently **451** available PostgreSQL extensions.
 | [pg_hashids](https://pgext.cloud/e/pg_hashids/) | `1.3` | `FUNC` | Short unique id generator for PostgreSQL, using hashids |
 | [sequential_uuids](https://pgext.cloud/e/sequential_uuids/) | `1.0.3` | `FUNC` | generator of sequential UUIDs |
 | [typeid](https://pgext.cloud/e/typeid/) | `0.3.0` | `FUNC` | Allows to use TypeIDs in Postgres natively |
+| [snowflake](https://pgext.cloud/e/snowflake/) | `2.4` | `FUNC` | Snowflake-style 64-bit ID generation and sequence utilities |
 | [topn](https://pgext.cloud/e/topn/) | `2.7.0` | `FUNC` | type for top-n JSONB |
 | [quantile](https://pgext.cloud/e/quantile/) | `1.1.8` | `FUNC` | Quantile aggregation function |
 | [lower_quantile](https://pgext.cloud/e/lower_quantile/) | `1.0.3` | `FUNC` | Lower quantile aggregate function |
@@ -323,7 +326,7 @@ There are currently **451** available PostgreSQL extensions.
 | [first_last_agg](https://pgext.cloud/e/first_last_agg/) | `0.1.4` | `FUNC` | first() and last() aggregate functions |
 | [extra_window_functions](https://pgext.cloud/e/extra_window_functions/) | `1.0` | `FUNC` | Extra Window Functions for PostgreSQL |
 | [floatvec](https://pgext.cloud/e/floatvec/) | `1.1.1` | `FUNC` | Math for vectors (arrays) of numbers |
-| [aggs_for_vecs](https://pgext.cloud/e/aggs_for_vecs/) | `1.4.0` | `FUNC` | Aggregate functions for array inputs |
+| [aggs_for_vecs](https://pgext.cloud/e/aggs_for_vecs/) | `1.4.1` | `FUNC` | Aggregate functions for array inputs |
 | [aggs_for_arrays](https://pgext.cloud/e/aggs_for_arrays/) | `1.3.3` | `FUNC` | Various functions for computing statistics on arrays of numbers |
 | [pg_csv](https://pgext.cloud/e/pg_csv/) | `1.0.1` | `FUNC` | Flexible CSV processing for Postgres |
 | [arraymath](https://pgext.cloud/e/arraymath/) | `1.1` | `FUNC` | Array math and operators that work element by element on the contents of arrays |
@@ -355,13 +358,13 @@ There are currently **451** available PostgreSQL extensions.
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
 | [pg_repack](https://pgext.cloud/e/pg_repack/) | `1.5.3` | `ADMIN` | Reorganize tables in PostgreSQL databases with minimal locks |
-| [pg_rewrite](https://pgext.cloud/e/pg_rewrite/) | `2.0.0` | `ADMIN` | Tool allows read write to the table during the rewriting |
+| [pg_rewrite](https://pgext.cloud/e/pg_rewrite/) | `2.1.0` | `ADMIN` | Tool allows read write to the table during the rewriting |
 | [pg_squeeze](https://pgext.cloud/e/pg_squeeze/) | `1.9.1` | `ADMIN` | A tool to remove unused space from a relation. |
 | [pg_dirtyread](https://pgext.cloud/e/pg_dirtyread/) | `2.7` | `ADMIN` | Read dead but unvacuumed rows from table |
 | [pgfincore](https://pgext.cloud/e/pgfincore/) | `1.3.1` | `ADMIN` | examine and manage the os buffer cache |
 | [pg_cooldown](https://pgext.cloud/e/pg_cooldown/) | `0.1` | `ADMIN` | remove buffered pages for specific relations |
 | [ddlx](https://pgext.cloud/e/ddlx/) | `0.30` | `ADMIN` | DDL eXtractor functions |
-| [pglinter](https://pgext.cloud/e/pglinter/) | `1.1.0` | `ADMIN` | PostgreSQL Linting and Analysis Extension |
+| [pglinter](https://pgext.cloud/e/pglinter/) | `1.1.1` | `ADMIN` | PostgreSQL Linting and Analysis Extension |
 | [prioritize](https://pgext.cloud/e/prioritize/) | `1.0.4` | `ADMIN` | get and set the priority of PostgreSQL backends |
 | [pg_checksums](https://pgext.cloud/e/pg_checksums/) | `1.3` | `ADMIN` | Activate/deactivate/verify checksums in offline Postgres clusters |
 | [pg_readonly](https://pgext.cloud/e/pg_readonly/) | `1.0.4` | `ADMIN` | cluster database read only |
@@ -376,6 +379,7 @@ There are currently **451** available PostgreSQL extensions.
 | [pg_crash](https://pgext.cloud/e/pg_crash/) | `1.0` | `ADMIN` | Send random signals to random processes |
 | [pg_cheat_funcs](https://pgext.cloud/e/pg_cheat_funcs/) | `1.0` | `ADMIN` | Provides cheat (but useful) functions |
 | [fio](https://pgext.cloud/e/fio/) | `1.0` | `ADMIN` | PostgreSQL File I/O Functions |
+| [qos](https://pgext.cloud/e/qos/) | `1.0` | `ADMIN` | PostgreSQL QoS resource governance extension (session & query throttling/isolation) |
 | [pg_savior](https://pgext.cloud/e/pg_savior/) | `0.0.1` | `ADMIN` | Postgres extension to save OOPS mistakes |
 | [safeupdate](https://pgext.cloud/e/safeupdate/) | `1.5` | `ADMIN` | Require criteria for UPDATE and DELETE |
 | [pg_strict](https://pgext.cloud/e/pg_strict/) | `1.0.2` | `ADMIN` | Prevent dangerous UPDATE and DELETE without WHERE clause |
@@ -383,9 +387,9 @@ There are currently **451** available PostgreSQL extensions.
 | [table_log](https://pgext.cloud/e/table_log/) | `0.6.4` | `ADMIN` | record table modification logs and PITR for table/row |
 | [pgagent](https://pgext.cloud/e/pgagent/) | `4.2.3` | `ADMIN` | A PostgreSQL job scheduler |
 | [pg_prewarm](https://pgext.cloud/e/pg_prewarm/) | `1.2` | `ADMIN` | prewarm relation data |
-| [pgpool_adm](https://pgext.cloud/e/pgpool_adm/) | `4.7.0` | `ADMIN` | Administrative functions for pgPool |
-| [pgpool_recovery](https://pgext.cloud/e/pgpool_recovery/) | `4.7.0` | `ADMIN` | recovery functions for pgpool-II for V4.3 |
-| [pgpool_regclass](https://pgext.cloud/e/pgpool_regclass/) | `4.7.0` | `ADMIN` | replacement for regclass |
+| [pgpool_adm](https://pgext.cloud/e/pgpool_adm/) | `4.7.1` | `ADMIN` | Administrative functions for pgPool |
+| [pgpool_recovery](https://pgext.cloud/e/pgpool_recovery/) | `4.7.1` | `ADMIN` | recovery functions for pgpool-II for V4.3 |
+| [pgpool_regclass](https://pgext.cloud/e/pgpool_regclass/) | `4.7.1` | `ADMIN` | replacement for regclass |
 | [lo](https://pgext.cloud/e/lo/) | `1.1` | `ADMIN` | Large Object maintenance |
 | [basic_archive](https://pgext.cloud/e/basic_archive/) | `-` | `ADMIN` | an example of an archive module |
 | [basebackup_to_shell](https://pgext.cloud/e/basebackup_to_shell/) | `-` | `ADMIN` | adds a custom basebackup target called shell |
@@ -402,7 +406,7 @@ There are currently **451** available PostgreSQL extensions.
 | [pg_tracing](https://pgext.cloud/e/pg_tracing/) | `0.1.3` | `STAT` | Distributed Tracing for PostgreSQL |
 | [pg_show_plans](https://pgext.cloud/e/pg_show_plans/) | `2.1.7` | `STAT` | show query plans of all currently running SQL statements |
 | [pg_stat_kcache](https://pgext.cloud/e/pg_stat_kcache/) | `2.3.1` | `STAT` | Kernel statistics gathering |
-| [pg_stat_monitor](https://pgext.cloud/e/pg_stat_monitor/) | `2.3.1` | `STAT` | The pg_stat_monitor is a PostgreSQL Query Performance Monitoring tool, based on PostgreSQL contrib module pg_stat_statements. pg_stat_monitor provides aggregated statistics, client information, plan details including plan, and histogram information. |
+| [pg_stat_monitor](https://pgext.cloud/e/pg_stat_monitor/) | `2.3.2` | `STAT` | The pg_stat_monitor is a PostgreSQL Query Performance Monitoring tool, based on PostgreSQL contrib module pg_stat_statements. pg_stat_monitor provides aggregated statistics, client information, plan details including plan, and histogram information. |
 | [pg_qualstats](https://pgext.cloud/e/pg_qualstats/) | `2.1.3` | `STAT` | An extension collecting statistics about quals |
 | [pg_store_plans](https://pgext.cloud/e/pg_store_plans/) | `1.9` | `STAT` | track plan statistics of all SQL statements executed |
 | [pg_track_settings](https://pgext.cloud/e/pg_track_settings/) | `2.1.2` | `STAT` | Track settings changes |
@@ -447,12 +451,12 @@ There are currently **451** available PostgreSQL extensions.
 | [pgsmcrypto](https://pgext.cloud/e/pgsmcrypto/) | `0.1.1` | `SEC` | PostgreSQL SM Algorithm Extension |
 | [pg_enigma](https://pgext.cloud/e/pg_enigma/) | `0.5.0` | `SEC` | Encrypted postgres data type |
 | [pgaudit](https://pgext.cloud/e/pgaudit/) | `18.0` | `SEC` | provides auditing functionality |
-| [pgauditlogtofile](https://pgext.cloud/e/pgauditlogtofile/) | `1.7.6` | `SEC` | pgAudit addon to redirect audit log to an independent file |
+| [pgauditlogtofile](https://pgext.cloud/e/pgauditlogtofile/) | `1.8.0` | `SEC` | pgAudit addon to redirect audit log to an independent file |
 | [pg_auditor](https://pgext.cloud/e/pg_auditor/) | `0.2` | `SEC` | Audit data changes and provide flashback ability |
 | [logerrors](https://pgext.cloud/e/logerrors/) | `2.1.5` | `SEC` | Function for collecting statistics about messages in logfile |
 | [pg_auth_mon](https://pgext.cloud/e/pg_auth_mon/) | `3.0` | `SEC` | monitor connection attempts per user |
 | [pg_jobmon](https://pgext.cloud/e/pg_jobmon/) | `1.4.1` | `SEC` | Extension for logging and monitoring functions in PostgreSQL |
-| [credcheck](https://pgext.cloud/e/credcheck/) | `4.5` | `SEC` | credcheck - postgresql plain text credential checker |
+| [credcheck](https://pgext.cloud/e/credcheck/) | `4.6` | `SEC` | credcheck - postgresql plain text credential checker |
 | [pgcryptokey](https://pgext.cloud/e/pgcryptokey/) | `0.85` | `SEC` | cryptographic key management |
 | [pg_pwhash](https://pgext.cloud/e/pg_pwhash/) | `1.0` | `SEC` | Advanced password hashing methods for PostgreSQL |
 | [login_hook](https://pgext.cloud/e/login_hook/) | `1.7` | `SEC` | login_hook - hook to execute login_hook.login() at login time |
@@ -461,7 +465,7 @@ There are currently **451** available PostgreSQL extensions.
 | [pgextwlist](https://pgext.cloud/e/pgextwlist/) | `1.19` | `SEC` | PostgreSQL Extension Whitelisting |
 | [sslutils](https://pgext.cloud/e/sslutils/) | `1.4` | `SEC` | A Postgres extension for managing SSL certificates through SQL |
 | [noset](https://pgext.cloud/e/noset/) | `0.3.0` | `SEC` | Module for blocking SET variables for non-super users. |
-| [pg_tde](https://pgext.cloud/e/pg_tde/) | `1.0` | `SEC` | Percona pg_tde access method |
+| [pg_tde](https://pgext.cloud/e/pg_tde/) | `2.1` | `SEC` | Percona pg_tde access method |
 | [sepgsql](https://pgext.cloud/e/sepgsql/) | `-` | `SEC` | label-based mandatory access control (MAC) based on SELinux security policy. |
 | [auth_delay](https://pgext.cloud/e/auth_delay/) | `-` | `SEC` | pause briefly before reporting authentication failure |
 | [pgcrypto](https://pgext.cloud/e/pgcrypto/) | `1.3` | `SEC` | cryptographic functions |
@@ -505,21 +509,28 @@ There are currently **451** available PostgreSQL extensions.
 | [documentdb_core](https://pgext.cloud/e/documentdb_core/) | `0.109` | `SIM` | Core API surface for DocumentDB for PostgreSQL |
 | [documentdb_distributed](https://pgext.cloud/e/documentdb_distributed/) | `0.109` | `SIM` | Multi-Node API surface for DocumentDB |
 | [documentdb_extended_rum](https://pgext.cloud/e/documentdb_extended_rum/) | `0.109` | `SIM` | DocumentDB Extended RUM index access method |
-| [orafce](https://pgext.cloud/e/orafce/) | `4.16.3` | `SIM` | Functions and operators that emulate a subset of functions and packages from the Oracle RDBMS |
+| [orafce](https://pgext.cloud/e/orafce/) | `4.16.4` | `SIM` | Functions and operators that emulate a subset of functions and packages from the Oracle RDBMS |
 | [pgtt](https://pgext.cloud/e/pgtt/) | `4.4` | `SIM` | Extension to add Global Temporary Tables feature to PostgreSQL |
 | [session_variable](https://pgext.cloud/e/session_variable/) | `3.4` | `SIM` | Registration and manipulation of session variables and constants |
 | [pg_statement_rollback](https://pgext.cloud/e/pg_statement_rollback/) | `1.5` | `SIM` | Server side rollback at statement level for PostgreSQL like Oracle or DB2 |
+| [ivorysql_ora](https://pgext.cloud/e/ivorysql_ora/) | `1.0` | `SIM` | Oracle compatibility extension |
+| [ora_btree_gin](https://pgext.cloud/e/ora_btree_gin/) | `1.0` | `SIM` | GIN index support for Oracle data types |
+| [ora_btree_gist](https://pgext.cloud/e/ora_btree_gist/) | `1.0` | `SIM` | GiST index support for Oracle data types |
+| [pg_get_functiondef](https://pgext.cloud/e/pg_get_functiondef/) | `1.0` | `SIM` | Get function definition |
+| [plisql](https://pgext.cloud/e/plisql/) | `1.0` | `SIM` | PL/iSQL procedural language |
+| [gb18030_2022](https://pgext.cloud/e/gb18030_2022/) | `1.0` | `SIM` | Support GB18030-2022 to UTF-8 encoding conversion |
 | [pg_dbms_metadata](https://pgext.cloud/e/pg_dbms_metadata/) | `1.0.0` | `SIM` | Extension to add Oracle DBMS_METADATA compatibility to PostgreSQL |
 | [pg_dbms_lock](https://pgext.cloud/e/pg_dbms_lock/) | `1.0` | `SIM` | Extension to add Oracle DBMS_LOCK full compatibility to PostgreSQL |
 | [pg_dbms_job](https://pgext.cloud/e/pg_dbms_job/) | `1.5` | `SIM` | Extension to add Oracle DBMS_JOB full compatibility to PostgreSQL |
 | [pg_dbms_errlog](https://pgext.cloud/e/pg_dbms_errlog/) | `2.2` | `SIM` | Emulate DBMS_ERRLOG Oracle module to log DML errors in a dedicated table. |
 | [pg_utl_smtp](https://pgext.cloud/e/pg_utl_smtp/) | `1.0.0` | `SIM` | Oracle UTL_SMTP compatibility extension for PostgreSQL |
-| [babelfishpg_common](https://pgext.cloud/e/babelfishpg_common/) | `3.3.3` | `SIM` | SQL Server Transact SQL Datatype Support |
-| [babelfishpg_tsql](https://pgext.cloud/e/babelfishpg_tsql/) | `3.3.1` | `SIM` | SQL Server Transact SQL compatibility |
+| [babelfishpg_common](https://pgext.cloud/e/babelfishpg_common/) | `5.5.0` | `SIM` | SQL Server Transact SQL Datatype Support |
+| [babelfishpg_tsql](https://pgext.cloud/e/babelfishpg_tsql/) | `5.5.0` | `SIM` | SQL Server Transact SQL compatibility |
 | [babelfishpg_tds](https://pgext.cloud/e/babelfishpg_tds/) | `1.0.0` | `SIM` | SQL Server TDS protocol extension |
 | [babelfishpg_money](https://pgext.cloud/e/babelfishpg_money/) | `1.1.0` | `SIM` | SQL Server Money Data Type |
 | [spat](https://pgext.cloud/e/spat/) | `0.1.0a4` | `SIM` | Redis-like In-Memory DB Embedded in Postgres |
 | [pgmemcache](https://pgext.cloud/e/pgmemcache/) | `2.3.0` | `SIM` | memcached interface |
+| [aux_mysql](https://pgext.cloud/e/aux_mysql/) | `1.5` | `SIM` | MySQL compatibility auxiliary extension module |
 
 ### ETL
 
@@ -532,9 +543,11 @@ There are currently **451** available PostgreSQL extensions.
 | [pg_failover_slots](https://pgext.cloud/e/pg_failover_slots/) | `1.2.0` | `ETL` | PG Failover Slots extension |
 | [db_migrator](https://pgext.cloud/e/db_migrator/) | `1.0.0` | `ETL` | Tools to migrate other databases to PostgreSQL |
 | [pgactive](https://pgext.cloud/e/pgactive/) | `2.1.7` | `ETL` | Active-Active Replication Extension for PostgreSQL |
+| [spock](https://pgext.cloud/e/spock/) | `5.0.5` | `ETL` | Multi-master logical replication extension for PostgreSQL |
+| [lolor](https://pgext.cloud/e/lolor/) | `1.2.2` | `ETL` | Extension to make PostgreSQL large objects compatible with logical replication |
 | [wal2json](https://pgext.cloud/e/wal2json/) | `2.6` | `ETL` | Changing data capture in JSON format |
 | [wal2mongo](https://pgext.cloud/e/wal2mongo/) | `1.0.7` | `ETL` | PostgreSQL logical decoding output plugin for MongoDB |
-| [decoderbufs](https://pgext.cloud/e/decoderbufs/) | `3.4.0` | `ETL` | Logical decoding plugin that delivers WAL stream changes using a Protocol Buffer format |
+| [decoderbufs](https://pgext.cloud/e/decoderbufs/) | `3.4.1` | `ETL` | Logical decoding plugin that delivers WAL stream changes using a Protocol Buffer format |
 | [decoder_raw](https://pgext.cloud/e/decoder_raw/) | `1.0` | `ETL` | Output plugin for logical replication in Raw SQL format |
 | [mimeo](https://pgext.cloud/e/mimeo/) | `1.5.1` | `ETL` | Extension for specialized, per-table replication between PostgreSQL instances |
 | [repmgr](https://pgext.cloud/e/repmgr/) | `5.5.0` | `ETL` | Replication manager for PostgreSQL |

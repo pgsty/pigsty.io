@@ -77,6 +77,7 @@ Percona provides 80 available extensions, including `pg_tde`, `pgvector`, `postg
 | hstore          | 1.8     | Data type for storing sets of (key, value) pairs                  |
 | ltree           | 1.3     | Data type for hierarchical tree-like structures                   |
 | pg_trgm         | 1.6     | Text similarity measurement and index searching based on trigrams |
+{.full-width}
 
 For the complete list of 80 extensions, please refer to the [Percona Postgres official documentation](https://docs.percona.com/postgresql/18/extensions.html).
 

@@ -32,7 +32,7 @@ This page lists default ports used by Pigsty module components. Adjust as needed
 |   [**`ETCD`**](/docs/etcd)     |            **`etcd`**              | `2380`  | [**`etcd_peer_port`**](/docs/etcd/param#etcd_peer_port)                      | Enabled  |
 |  [**`MINIO`**](/docs/minio)    |           **`minio`**              | `9000`  | [**`minio_port`**](/docs/minio/param#minio_port)                             | Enabled  |
 |  [**`MINIO`**](/docs/minio)    |           **`minio`**              | `9001`  | [**`minio_admin_port`**](/docs/minio/param#minio_admin_port)                 | Enabled  |
-|  [**`REDIS`**](/docs/redis)    |           **`redis`**              | `6379`  | [**`redis_port`**](/docs/redis/param#redis_port)                             | Optional |
+|  [**`REDIS`**](/docs/redis)    |           **`redis`**              | `6379`  | [**`redis_instances`**](/docs/redis/param#redis_instances)                   | Optional |
 |  [**`REDIS`**](/docs/redis)    |       **`redis_exporter`**         | `9121`  | [**`redis_exporter_port`**](/docs/redis/param#redis_exporter_port)           | Optional |
 | [**`FERRET`**](/docs/ferret)   |          **`ferretdb`**            | `27017` | [**`mongo_port`**](/docs/ferret/param#mongo_port)                            | Optional |
 | [**`FERRET`**](/docs/ferret)   |       **`ferretdb (TLS)`**         | `27018` | [**`mongo_ssl_port`**](/docs/ferret/param#mongo_ssl_port)                    | Optional |

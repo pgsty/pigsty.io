@@ -56,8 +56,8 @@ PIG and the Pigsty extension repository support the following Linux distribution
 | `u20.aarch64` | Ubuntu | 20 | 20.04.6 | Ubuntu 20.04 ARM | 13-18 | EOL |
 | `u22.x86_64` | Ubuntu | 22 | 22.04.5 | Ubuntu 22.04 x86 | 13-18 | ✅ |
 | `u22.aarch64` | Ubuntu | 22 | 22.04.5 | Ubuntu 22.04 ARM | 13-18 | ✅ |
-| `u24.x86_64` | Ubuntu | 24 | 24.04.3 | Ubuntu 24.04 x86 | 13-18 | ✅ |
-| `u24.aarch64` | Ubuntu | 24 | 24.04.3 | Ubuntu 24.04 ARM | 13-18 | ✅ |
+| `u24.x86_64` | Ubuntu | 24 | 24.04.4 | Ubuntu 24.04 x86 | 13-18 | ✅ |
+| `u24.aarch64` | Ubuntu | 24 | 24.04.4 | Ubuntu 24.04 ARM | 13-18 | ✅ |
 {.full-width}
 
 **Notes:**

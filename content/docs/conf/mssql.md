@@ -8,7 +8,7 @@ categories: [Reference]
 
 The `mssql` configuration template uses the **Babelfish (PG17)** kernel instead of native PostgreSQL, providing Microsoft SQL Server wire protocol (TDS) and T-SQL syntax compatibility.
 
-In Pigsty v4.2.0, the Babelfish package set is available across all supported platforms (`x86_64` / `aarch64` on mainstream distros).
+Since Pigsty v4.2, Babelfish is built directly by Pigsty, no longer using the WiltonDB repository, and is available on all [supported Linux platforms](/docs/ref/linux).
 
 For the complete tutorial, see: **[Babelfish (MSSQL) Kernel Guide](/docs/pgsql/kernel/babelfish/)**
 

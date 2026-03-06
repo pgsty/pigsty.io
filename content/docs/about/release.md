@@ -98,15 +98,16 @@ No other breaking API or configuration changes in this release.
 
 **PostgreSQL Package Updates**
 
-| Package          | Old Version | New Version | Notes                                     |
-|:-----------------|:------------|:------------|:------------------------------------------|
-| timescaledb      | 2.25.1      | 2.25.2      |                                           |
-| vchord           | 1.1.0       | 1.1.1       | Added clang build dependency, bug fixes   |
-| aggs_for_vecs    | 1.4.0       | 1.4.1       |                                           |
-| pg_search        | 0.21.9      | 0.21.12     |                                           |
-| pg_pinyin        | -           | 0.0.2       | New extension                             |
-| pg_eviltransform | -           | 0.0.2       | New extension                             |
-| pg_qos           | -           | 1.0.0       | New extension, QoS resource governance    |
+| Package          | Old Version | New Version | Notes                                   |
+|:-----------------|:------------|:------------|:----------------------------------------|
+| timescaledb      | 2.25.1      | 2.25.2      |                                         |
+| vchord           | 1.1.0       | 1.1.1       | Added clang build dependency, bug fixes |
+| vchord_bm25      | 0.3.0-1     | 0.3.0-2     | Fix the CI version injection issue      |
+| aggs_for_vecs    | 1.4.0       | 1.4.1       |                                         |
+| pg_search        | 0.21.9      | 0.21.12     |                                         |
+| pg_pinyin        | -           | 0.0.2       | New extension                           |
+| pg_eviltransform | -           | 0.0.2       | New extension                           |
+| pg_qos           | -           | 1.0.0       | New extension, QoS resource governance  |
 
 **Infrastructure Package Updates**
 
