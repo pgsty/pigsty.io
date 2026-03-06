@@ -74,14 +74,14 @@ Use the following to automatically install the [**Pigsty source package**](/docs
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash            # Install latest stable version
 curl -fsSL https://repo.pigsty.cc/get | bash            # Backup mirror
-curl -fsSL https://repo.pigsty.io/get | bash -s v4.2.0  # Install specific version
+curl -fsSL https://repo.pigsty.io/get | bash -s v4.2.1  # Install specific version
 ```
 
 If you prefer not to run remote scripts, manually [**download**](https://github.com/pgsty/pigsty/releases) or clone the source. When using `git`, always checkout a specific version before use:
 
 ```bash
 git clone https://github.com/pgsty/pigsty; cd pigsty;
-git checkout v4.2.0;  # Always checkout a specific version when using git
+git checkout v4.2.1;  # Always checkout a specific version when using git
 ```
 
 For manual download/clone, additionally run [**`bootstrap`**](/docs/setup/offline#bootstrap) to manually install Ansible and other dependencies, or [**install them yourself**](/docs/setup/playbook#install-ansible):
@@ -121,7 +121,7 @@ Many [**configuration templates**](/docs/concept/iac/template/) are available fo
 
 ```bash
 vagrant@meta:~/pigsty$ ./configure
-configure pigsty v4.2.0 begin
+configure pigsty v4.2.1 begin
 [ OK ] region = china
 [ OK ] kernel  = Linux
 [ OK ] machine = x86_64

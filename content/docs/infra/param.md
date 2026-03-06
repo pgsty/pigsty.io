@@ -160,7 +160,7 @@ The INFRA module is responsible for deploying Pigsty's infrastructure components
 This section defines Pigsty deployment metadata: version string, admin node IP address, repository mirror [`region`](#region), default language, and HTTP(S) proxy for downloading packages.
 
 ```yaml
-version: v4.2.0                   # pigsty version string
+version: v4.2.1                   # pigsty version string
 admin_ip: 10.10.10.10             # admin node ip address
 region: default                   # upstream mirror region: default,china,europe
 language: en                      # default language: en or zh
@@ -178,11 +178,11 @@ proxy_env:                        # global proxy env when downloading packages
 
 name: `version`, type: `string`, level: `G`
 
-Pigsty version string, default value is the current version: `v4.2.0`.
+Pigsty version string, default value is the current version: `v4.2.1`.
 
 Pigsty uses this version string internally for feature control and content rendering. Do not modify this parameter arbitrarily.
 
-Pigsty uses semantic versioning, and the version string typically starts with the character `v`, e.g., `v4.2.0`.
+Pigsty uses semantic versioning, and the version string typically starts with the character `v`, e.g., `v4.2.1`.
 
 
 

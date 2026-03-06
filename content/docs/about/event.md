@@ -13,6 +13,8 @@ categories: [Reference]
 
 ## Recent News
 
+- **2026-03-06**: **Pigsty v4.2.1 released! Drop PG13, 464 extensions**
+  - Release Notes: [v4.2.1](/docs/about/release#v421)
 - **2026-02-28**: **Pigsty v4.2 is officially released! Seven kernel updates shipped together**
   - Release Blog: [Pigsty v4.2 Release Article](/blog/pigsty/v4.2)
   - Release Notes: [v4.2.0](/docs/about/release#v420)
