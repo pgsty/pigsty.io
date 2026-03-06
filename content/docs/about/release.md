@@ -6,10 +6,11 @@ icon: fa-solid fa-scroll
 categories: [Reference]
 ---
 
-The current stable version is [**v4.2.0**](#v420).
+The current stable version is [**v4.2.1**](#v421).
 
 |     Version     | Release Date | Summary                                                                         |                                       Release Page                                        |
 |:---------------:|:------------:|---------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------:|
+| [v4.2.1](#v421) |  2026-03-06  | Maintenance release: 3 new extensions, drop PG13, bug fixes                     |               [v4.2.1](https://github.com/pgsty/pigsty/releases/tag/v4.2.1)               |
 | [v4.2.0](#v420) |  2026-02-28  | Routine minor release with six PG kernel updates                                |               [v4.2.0](https://github.com/pgsty/pigsty/releases/tag/v4.2.0)               |
 | [v4.1.0](#v410) |  2026-02-12  | Major/minor upgrade support, Agent-Native CLI, stricter default firewall policy |               [v4.1.0](https://github.com/pgsty/pigsty/releases/tag/v4.1.0)               |
 | [v4.0.0](#v400) |  2026-01-28  | Observability revolution, security hardening, JUICE/VIBE modules, Apache-2.0    |               [v4.0.0](https://github.com/pgsty/pigsty/releases/tag/v4.0.0)               |
@@ -64,6 +65,88 @@ The current stable version is [**v4.2.0**](#v420).
 |     v0.0.3      |  2020-06-22  | Interface enhancement                                                           | [v0.0.3](https://github.com/pgsty/pigsty/commit/4c5c68ccd57bc32a9e9c98aa3f264aa19f45c7ee) |
 |     v0.0.2      |  2020-04-30  | First Commit                                                                    | [v0.0.2](https://github.com/pgsty/pigsty/commit/dd646775624ddb33aef7884f4f030682bdc371f8) |
 |     v0.0.1      |  2019-05-15  | POC                                                                             |   [v0.0.1](https://github.com/Vonng/pg/commit/fa2ade31f8e81093eeba9d966c20120054f0646b)   |
+
+
+## v4.2.1
+
+A maintenance release that adds 3 new extensions.
+
+**Major Changes**
+
+- **New Extensions**: `pg_eviltransform` is added to the GIS package group, `pg_pinyin` to the FTS group, and `pg_qos` to the admin group — all for PG 14–18.
+- **PG13 Removed**: All `pgdg13`, `pgdg13-nonfree` repo entries and PG13 package aliases (`pg13-*`) are removed from every platform variant (EL7/8/9/10, Debian 12/13, Ubuntu 22/24, both x86_64 and aarch64).
+- Config templates (`fat.yml`, `pro.yml`, `dev.yml`, `el.yml`, `debian.yml`) no longer reference PG13 packages or repos. Extension version comments are updated to reflect PG 14–18 coverage only.
+- **Percona Repo**: Origin URL updated from `ppg-18.1` to `ppg-18.3` to track the latest Percona PostgreSQL distribution.
+- **Nginx Repo**: Module tag for the Nginx upstream APT repo corrected from `infra` to `nginx` on Debian/Ubuntu platforms.
+- **UV Venv Fix**: `roles/node/tasks/pkg.yml` now checks for an existing virtualenv before running `uv venv`, preventing redundant re-creation and potential errors on re-provisioning.
+- **Docker Image**: `less` is added to the Pigsty Docker image base packages.
+- **Demo Config**: Default firewall rules in `el.yml` and `debian.yml` demo configs now include port `5432` for direct PostgreSQL access.
+
+**Compatibility Notes**
+
+PostgreSQL 13 reached its [end of life](https://www.postgresql.org/support/versioning/) on 2025-11-13.
+The PGDG YUM repository has archived and removed the [pg13](https://yum.postgresql.org/news/pg13-end-of-life/) / [pg12](https://yum.postgresql.org/news/pg12-end-of-life/) directories.
+If you install Pigsty on EL systems (even without using PG 13), repo access failures may cause installation or update errors.
+
+You can either upgrade directly to Pigsty v4.2.1, or manually edit the `repo_upstream_default` variable in your corresponding OS file under `roles/node_id/vars/` and remove the pg13 repo line.
+
+Additionally, EL8 remains in the Pigsty compatible OS list, but starting from this release, offline packages for EL8 will no longer be published.
+
+No other breaking API or configuration changes in this release.
+
+**7 commits**, 84 files changed, +4,925 / -5,351 lines (`v4.2.0..v4.2.1`, 2026-03-04 ~ 2026-03-06)
+
+**PostgreSQL Package Updates**
+
+| Package          | Old Version | New Version | Notes                                     |
+|:-----------------|:------------|:------------|:------------------------------------------|
+| timescaledb      | 2.25.1      | 2.25.2      |                                           |
+| vchord           | 1.1.0       | 1.1.1       | Added clang build dependency, bug fixes   |
+| aggs_for_vecs    | 1.4.0       | 1.4.1       |                                           |
+| pg_search        | 0.21.9      | 0.21.12     |                                           |
+| pg_pinyin        | -           | 0.0.2       | New extension                             |
+| pg_eviltransform | -           | 0.0.2       | New extension                             |
+| pg_qos           | -           | 1.0.0       | New extension, QoS resource governance    |
+
+**Infrastructure Package Updates**
+
+| Name                         | Old Version    | New Version    | Notes |
+|:-----------------------------|:---------------|:---------------|:------|
+| `asciinema`                  | 3.1.0          | 3.2.0          |       |
+| `grafana-infinity-ds`        | 3.7.2          | 3.7.3          |       |
+| `victoria-metrics`           | 1.136.0        | 1.137.0        |       |
+| `victoria-metrics-cluster`   | 1.136.0        | 1.137.0        |       |
+| `vmutils`                    | 1.136.0        | 1.137.0        |       |
+| `hugo`                       | 0.155.3        | 0.157.0        |       |
+| `opencode`                   | 1.2.15         | 1.2.17         |       |
+| `rustfs`                     | 1.0.0-alpha.83 | 1.0.0-alpha.85 |       |
+| `seaweedfs`                  | 4.13           | 4.15           |       |
+| `tigerbeetle`                | 0.16.74        | 0.16.75        |       |
+| `uv`                         | 0.10.4         | 0.10.8         |       |
+| `codex`                      | 0.105.0        | 0.110.0        |       |
+| `claude`                     | 2.1.59         | 2.1.68         |       |
+| `xray`                       | -              | 26.2.6         | New   |
+| `gost`                       | -              | 2.12.0         | New   |
+| `sabiql`                     | -              | 1.6.2          | New   |
+| `agentsview`                 | -              | 0.10.0         | New   |
+
+**Checksums**
+
+```bash
+262b7671424a38b208872582fe835ef8  pigsty-v4.2.1.tgz
+62edcca1d1e572a247be018e1c26eda8  pigsty-pkg-v4.2.1.d12.aarch64.tgz
+1d55367e2fd9106e6f18b7ee112be736  pigsty-pkg-v4.2.1.d12.x86_64.tgz
+f122b1e5ba8a7ae8e3dc6e6dd53eba65  pigsty-pkg-v4.2.1.d13.aarch64.tgz
+617a76bfc8df8766e78abf24339152eb  pigsty-pkg-v4.2.1.d13.x86_64.tgz
+908509b350403ad1a4a27a88795fee06  pigsty-pkg-v4.2.1.el10.aarch64.tgz
+70cb4afd90ed7aea6ab43a264f8eb4a8  pigsty-pkg-v4.2.1.el10.x86_64.tgz
+98fbd67334f5c674b12e6af81ef76923  pigsty-pkg-v4.2.1.el9.aarch64.tgz
+687fa741ccd9dcf611a2aa964bcf1de8  pigsty-pkg-v4.2.1.el9.x86_64.tgz
+a2a30f4b1146b3e79be91d5be57615b6  pigsty-pkg-v4.2.1.u22.aarch64.tgz
+7a1f571bd8526106775c175ba728eee1  pigsty-pkg-v4.2.1.u22.x86_64.tgz
+a5574071bac1955798265f71ad73c3d4  pigsty-pkg-v4.2.1.u24.aarch64.tgz
+59a7632c650a3c034f1fe6cd589d7ab5  pigsty-pkg-v4.2.1.u24.x86_64.tgz
+```
 
 
 ## v4.2.0
