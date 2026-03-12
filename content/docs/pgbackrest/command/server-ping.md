@@ -5,7 +5,7 @@ weight: 130
 description: "Reference for pgBackRest `server-ping` command options and behavior."
 icon: fa-solid fa-heart-pulse
 module: [PGBACKREST]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: [pgBackRest Command Docs: server-ping](https://pgbackrest.org/command.html#command-server-ping)

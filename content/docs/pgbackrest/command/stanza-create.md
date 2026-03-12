@@ -5,7 +5,7 @@ weight: 140
 description: "Reference for pgBackRest `stanza-create` command options and behavior."
 icon: fa-solid fa-square-plus
 module: [PGBACKREST]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: [pgBackRest Command Docs: stanza-create](https://pgbackrest.org/command.html#command-stanza-create)

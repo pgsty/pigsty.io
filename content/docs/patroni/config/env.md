@@ -5,7 +5,7 @@ weight: 30
 icon: fa-solid fa-sliders
 description: "Environment variables for overriding Patroni configuration parameters."
 module: [PATRONI]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/ENVIRONMENT.html

@@ -5,7 +5,7 @@ weight: 120
 description: "Reference for pgBackRest `server` command options and behavior."
 icon: fa-solid fa-server
 module: [PGBACKREST]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: [pgBackRest Command Docs: server](https://pgbackrest.org/command.html#command-server)

@@ -4,7 +4,7 @@ weight: 10
 icon: fa-solid fa-circle-info
 description: "Patroni introduction, quick start, and core high-availability concepts."
 module: [PATRONI]
-category: [Concept]
+categories: [Concept]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/README.html
@@ -21,7 +21,7 @@ For additional background info, see:
 
 ## Development Status
 
-Patroni is in active development and accepts contributions. See our [Contributing](/docs/patroni/contributing#contributing) section below for more details.
+Patroni is in active development and accepts contributions. See our [Contributing](/docs/patroni/contributing_guidelines#contributing_guidelines) section below for more details.
 
 We report new releases information [here](/docs/patroni/releases#releases).
 

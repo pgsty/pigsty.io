@@ -5,7 +5,7 @@ weight: 170
 description: "Reference for pgBackRest `start` command options and behavior."
 icon: fa-solid fa-play
 module: [PGBACKREST]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: [pgBackRest Command Docs: start](https://pgbackrest.org/command.html#command-start)

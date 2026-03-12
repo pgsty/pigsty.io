@@ -5,7 +5,7 @@ weight: 10
 icon: fa-solid fa-sliders
 description: "Dynamic configuration settings stored in DCS and applied cluster-wide."
 module: [PATRONI]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/dynamic_configuration.html

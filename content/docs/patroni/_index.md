@@ -6,7 +6,7 @@ icon: fas fa-yin-yang
 description: "Overview of Patroni high-availability documentation for PostgreSQL."
 sidebar_root_for: self
 module: [PATRONI]
-category: [Concept]
+categories: [Concept]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/index.html

@@ -4,7 +4,7 @@ weight: 80
 description: "PgBouncer community resources, tutorials, and support"
 icon: fas fa-user-group
 module: [PGBOUNCER]
-category: [Concept]
+categories: [Concept]
 ---
 
 > Source: <https://www.pgbouncer.org/community.html>

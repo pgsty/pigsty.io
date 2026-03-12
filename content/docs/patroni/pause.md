@@ -5,7 +5,7 @@ weight: 100
 icon: fa-solid fa-stopwatch
 description: "Pause and resume mode behavior for Patroni cluster management."
 module: [PATRONI]
-category: [Task]
+categories: [Task]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/pause.html

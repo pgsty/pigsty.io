@@ -4,7 +4,7 @@ weight: 110
 icon: fa-solid fa-shield-halved
 description: "DCS failsafe mode behavior, requirements, and operational caveats."
 module: [PATRONI]
-category: [Concept]
+categories: [Concept]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/dcs_failsafe_mode.html

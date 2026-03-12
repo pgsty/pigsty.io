@@ -5,7 +5,7 @@ weight: 200
 icon: fa-solid fa-users
 description: "Contribution workflow, support channels, and development guidelines."
 module: [PATRONI]
-category: [Task]
+categories: [Task]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/contributing_guidelines.html

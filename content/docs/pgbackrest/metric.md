@@ -5,7 +5,7 @@ weight: 80
 description: "pgBackRest project code coverage metrics and quality statistics."
 icon: fa-solid fa-list-check
 module: [PGBACKREST]
-category: [Concept]
+categories: [Concept]
 ---
 
 

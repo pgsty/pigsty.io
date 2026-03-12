@@ -4,7 +4,7 @@ weight: 180
 icon: fa-solid fa-circle-question
 description: "Frequently asked questions about Patroni operation and troubleshooting."
 module: [PATRONI]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/faq.html
@@ -12,7 +12,7 @@ category: [Reference]
 <a id="faq"></a>
 In this section you will find answers for the most frequently asked questions about Patroni. Each sub-section attempts to focus on different kinds of questions.
 
-We hope that this helps you to clarify most of your questions. If you still have further concerns or find yourself facing an unexpected issue, please refer to [chatting](/docs/patroni/contributing/contributing_guidelines#chatting) and [reporting_bugs](/docs/patroni/contributing/contributing_guidelines#reporting_bugs) for instructions on how to get help or report issues.
+We hope that this helps you to clarify most of your questions. If you still have further concerns or find yourself facing an unexpected issue, please refer to [chatting](/docs/patroni/contributing_guidelines#chatting) and [reporting_bugs](/docs/patroni/contributing_guidelines#reporting_bugs) for instructions on how to get help or report issues.
 
 --------
 

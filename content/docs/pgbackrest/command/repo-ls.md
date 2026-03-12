@@ -5,7 +5,7 @@ weight: 100
 description: "Reference for pgBackRest `repo-ls` command options and behavior."
 icon: fa-solid fa-list
 module: [PGBACKREST]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: [pgBackRest Command Docs: repo-ls](https://pgbackrest.org/command.html#command-repo-ls)

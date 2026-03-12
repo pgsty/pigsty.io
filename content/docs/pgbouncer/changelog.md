@@ -4,7 +4,7 @@ weight: 70
 description: "PgBouncer version history and release notes"
 icon: fa-solid fa-scroll
 module: [PGBOUNCER]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: <https://www.pgbouncer.org/changelog.html>

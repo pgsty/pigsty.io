@@ -5,7 +5,7 @@ weight: 120
 icon: fas fa-dharmachakra
 description: "Using Patroni with Kubernetes objects, labels, and service discovery."
 module: [PATRONI]
-category: [Task]
+categories: [Task]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/kubernetes.html

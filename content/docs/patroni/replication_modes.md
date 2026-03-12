@@ -4,7 +4,7 @@ weight: 70
 icon: fa-solid fa-share-nodes
 description: "Asynchronous and synchronous replication modes managed by Patroni."
 module: [PATRONI]
-category: [Concept]
+categories: [Concept]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/replication_modes.html

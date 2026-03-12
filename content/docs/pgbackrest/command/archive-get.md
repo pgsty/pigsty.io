@@ -5,7 +5,7 @@ weight: 20
 description: "Reference for pgBackRest `archive-get` command options and behavior."
 icon: fa-solid fa-cloud-arrow-down
 module: [PGBACKREST]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: [pgBackRest Command Docs: archive-get](https://pgbackrest.org/command.html#command-archive-get)

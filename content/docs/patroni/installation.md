@@ -4,7 +4,7 @@ weight: 20
 icon: fa-solid fa-cloud-arrow-down
 description: "Installation and upgrade instructions for Patroni across supported platforms."
 module: [PATRONI]
-category: [Tutorial]
+categories: [Tutorial]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/installation.html

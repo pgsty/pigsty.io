@@ -5,7 +5,7 @@ weight: 150
 icon: fas fa-puzzle-piece
 description: "Integrating Patroni with external backup and orchestration tools."
 module: [PATRONI]
-category: [Concept]
+categories: [Concept]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/tools_integration.html

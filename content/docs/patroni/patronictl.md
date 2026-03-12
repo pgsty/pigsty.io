@@ -4,7 +4,7 @@ weight: 50
 icon: fa-solid fa-terminal
 description: "Command reference for patronictl configuration, syntax, and subcommands."
 module: [PATRONI]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/patronictl.html

@@ -5,7 +5,7 @@ weight: 30
 description: "Reference for pgBackRest `archive-push` command options and behavior."
 icon: fa-solid fa-cloud-arrow-up
 module: [PGBACKREST]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: [pgBackRest Command Docs: archive-push](https://pgbackrest.org/command.html#command-archive-push)

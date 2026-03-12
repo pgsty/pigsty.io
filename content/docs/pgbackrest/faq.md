@@ -5,7 +5,7 @@ weight: 70
 description: "Frequently asked questions about pgBackRest backup, restore, configuration, and troubleshooting."
 icon: fa-solid fa-circle-question
 module: [PGBACKREST]
-category: [Reference]
+categories: [Reference]
 ---
 
 

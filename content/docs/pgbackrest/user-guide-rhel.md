@@ -5,7 +5,7 @@ weight: 30
 description: "Step-by-step pgBackRest setup and usage guide for RHEL, Rocky, and AlmaLinux systems."
 icon: fa-brands fa-redhat
 module: [PGBACKREST]
-category: [Tutorial]
+categories: [Tutorial]
 ---
 
 --------

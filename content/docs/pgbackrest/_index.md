@@ -6,7 +6,7 @@ icon: fas fa-couch
 sidebar_root_for: self
 description: "Reliable PostgreSQL Backup & Restore — pgBackRest documentation and reference."
 module: [PGBACKREST]
-category: [Concept]
+categories: [Concept]
 ---
 
 > snapshot of pgBackrest 2.58 documentation: <https://pgbackrest.org/>

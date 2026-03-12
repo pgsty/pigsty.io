@@ -4,7 +4,7 @@ weight: 90
 icon: fa-solid fa-dog
 description: "Watchdog integration and fencing considerations for Patroni clusters."
 module: [PATRONI]
-category: [Concept]
+categories: [Concept]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/watchdog.html

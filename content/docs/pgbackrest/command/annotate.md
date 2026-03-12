@@ -5,7 +5,7 @@ weight: 10
 description: "Reference for pgBackRest `annotate` command options and behavior."
 icon: fa-solid fa-pen-to-square
 module: [PGBACKREST]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: [pgBackRest Command Docs: annotate](https://pgbackrest.org/command.html#command-annotate)

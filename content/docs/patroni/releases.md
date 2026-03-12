@@ -4,7 +4,7 @@ weight: 190
 icon: fa-solid fa-scroll
 description: "Chronological Patroni release notes and change history."
 module: [PATRONI]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/releases.html

@@ -5,7 +5,7 @@ weight: 30
 description: "PgBouncer command-line usage and administration console"
 icon: fa-solid fa-bell-concierge
 module: [PGBOUNCER]
-category: [Task]
+categories: [Task]
 ---
 
 > Source: <https://www.pgbouncer.org/usage.html>

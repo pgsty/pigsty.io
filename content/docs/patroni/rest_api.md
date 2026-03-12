@@ -4,7 +4,7 @@ weight: 40
 icon: fa-solid fa-book
 description: "Reference for Patroni REST API endpoints and operational behaviors."
 module: [PATRONI]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/rest_api.html

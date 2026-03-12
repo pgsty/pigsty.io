@@ -5,7 +5,7 @@ weight: 140
 icon: fa-solid fa-truck-moving
 description: "Procedure to convert existing PostgreSQL data into a Patroni cluster."
 module: [PATRONI]
-category: [Task]
+categories: [Task]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/existing_data.html

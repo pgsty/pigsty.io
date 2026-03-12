@@ -5,7 +5,7 @@ weight: 200
 description: "Reference for pgBackRest `version` command options and behavior."
 icon: fa-solid fa-tag
 module: [PGBACKREST]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: [pgBackRest Command Docs: version](https://pgbackrest.org/command.html#command-version)

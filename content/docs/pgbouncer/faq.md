@@ -5,7 +5,7 @@ weight: 90
 description: "PgBouncer frequently asked questions"
 icon: fa-solid fa-circle-question
 module: [PGBOUNCER]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: <https://www.pgbouncer.org/faq.html>

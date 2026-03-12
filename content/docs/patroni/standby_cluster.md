@@ -4,7 +4,7 @@ weight: 80
 icon: fa-solid fa-clone
 description: "Standby cluster setup, behavior, and replication from remote primary."
 module: [PATRONI]
-category: [Task]
+categories: [Task]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/standby_cluster.html

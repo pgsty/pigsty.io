@@ -5,7 +5,7 @@ weight: 70
 description: "Reference for pgBackRest `help` command options and behavior."
 icon: fa-solid fa-circle-question
 module: [PGBACKREST]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: [pgBackRest Command Docs: help](https://pgbackrest.org/command.html#command-help)

@@ -5,7 +5,7 @@ weight: 10
 icon: fa-solid fa-code
 description: "Complete reference for Patroni YAML configuration options and sections."
 module: [PATRONI]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/yaml_configuration.html

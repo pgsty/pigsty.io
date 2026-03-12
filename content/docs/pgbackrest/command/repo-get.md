@@ -5,7 +5,7 @@ weight: 90
 description: "Reference for pgBackRest `repo-get` command options and behavior."
 icon: fa-solid fa-file-arrow-down
 module: [PGBACKREST]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: [pgBackRest Command Docs: repo-get](https://pgbackrest.org/command.html#command-repo-get)

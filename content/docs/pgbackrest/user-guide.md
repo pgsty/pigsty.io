@@ -5,7 +5,7 @@ weight: 20
 description: "Step-by-step pgBackRest setup and usage guide for Debian and Ubuntu systems."
 icon: fa-brands fa-ubuntu
 module: [PGBACKREST]
-category: [Tutorial]
+categories: [Tutorial]
 ---
 
 

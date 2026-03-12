@@ -6,7 +6,7 @@ description: "pgBackRest command reference with all options for backup, restore,
 icon: fa-solid fa-terminal
 sidebar_expanded: true
 module: [PGBACKREST]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: <https://pgbackrest.org/command.html>

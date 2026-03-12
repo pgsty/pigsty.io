@@ -5,7 +5,7 @@ weight: 60
 description: "Reference for pgBackRest `expire` command options and behavior."
 icon: fa-solid fa-hourglass-end
 module: [PGBACKREST]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: [pgBackRest Command Docs: expire](https://pgbackrest.org/command.html#command-expire)

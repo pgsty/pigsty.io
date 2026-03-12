@@ -5,7 +5,7 @@ weight: 20
 description: "PgBouncer configuration file (pgbouncer.ini) reference"
 icon: fa-solid fa-code
 module: [PGBOUNCER]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: <https://www.pgbouncer.org/config.html>

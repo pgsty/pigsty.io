@@ -5,7 +5,7 @@ weight: 60
 icon: fa-solid fa-boxes-stacked
 description: "Replica imaging, bootstrap, and custom replica creation workflows."
 module: [PATRONI]
-category: [Task]
+categories: [Task]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/replica_bootstrap.html

@@ -5,7 +5,7 @@ weight: 110
 description: "Reference for pgBackRest `restore` command options and behavior."
 icon: fa-solid fa-clock-rotate-left
 module: [PGBACKREST]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: [pgBackRest Command Docs: restore](https://pgbackrest.org/command.html#command-restore)

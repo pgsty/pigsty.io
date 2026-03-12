@@ -5,7 +5,7 @@ weight: 50
 description: "Complete pgBackRest configuration reference for all settings including archive, backup, repository, and cloud storage options."
 icon: fa-solid fa-code
 module: [PGBACKREST]
-category: [Reference]
+categories: [Reference]
 ---
 
 --------

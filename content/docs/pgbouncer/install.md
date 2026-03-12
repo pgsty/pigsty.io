@@ -5,7 +5,7 @@ weight: 40
 description: "PgBouncer compilation and installation instructions"
 icon: fa-solid fa-cloud-arrow-down
 module: [PGBOUNCER]
-category: [Tutorial]
+categories: [Tutorial]
 ---
 
 > Source: <https://www.pgbouncer.org/install.html>

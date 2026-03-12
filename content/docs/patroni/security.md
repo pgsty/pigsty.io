@@ -4,7 +4,7 @@ weight: 160
 icon: fa-solid fa-lock
 description: "Security considerations for DCS, REST API, and credential handling."
 module: [PATRONI]
-category: [Concept]
+categories: [Concept]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/security.html

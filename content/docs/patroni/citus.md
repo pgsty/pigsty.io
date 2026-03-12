@@ -4,7 +4,7 @@ weight: 130
 icon: fas fa-lemon
 description: "Patroni integration details for Citus coordinator and worker groups."
 module: [PATRONI]
-category: [Concept]
+categories: [Concept]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/citus.html

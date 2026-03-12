@@ -5,7 +5,7 @@ weight: 60
 description: "pgBackRest release history with detailed changelog for every version."
 icon: fa-solid fa-scroll
 module: [PGBACKREST]
-category: [Reference]
+categories: [Reference]
 ---
 
 

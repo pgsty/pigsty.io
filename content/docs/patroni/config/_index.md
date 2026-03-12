@@ -5,7 +5,7 @@ icon: fa-solid fa-code
 description: "Patroni configuration model, precedence rules, and validation tooling."
 sidebar_expanded: true
 module: [PATRONI]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/patroni_configuration.html

@@ -4,7 +4,7 @@ weight: 170
 icon: fa-solid fa-globe
 description: "Multi-datacenter high-availability patterns with Patroni replication."
 module: [PATRONI]
-category: [Concept]
+categories: [Concept]
 ---
 
 > Source: https://patroni.readthedocs.io/en/latest/ha_multi_dc.html

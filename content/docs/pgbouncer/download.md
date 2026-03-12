@@ -5,7 +5,7 @@ weight: 50
 description: "PgBouncer source releases and binary packages"
 icon: fas fa-download
 module: [PGBOUNCER]
-category: [Reference]
+categories: [Reference]
 ---
 
 > Source: <https://www.pgbouncer.org/downloads/>

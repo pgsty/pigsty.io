@@ -4,7 +4,7 @@ weight: 10
 description: "PgBouncer features — pooling modes and SQL compatibility"
 icon: fa-solid fa-wand-magic-sparkles
 module: [PGBOUNCER]
-category: [Concept]
+categories: [Concept]
 ---
 
 > Source: <https://www.pgbouncer.org/features.html>
