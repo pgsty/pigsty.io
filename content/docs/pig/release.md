@@ -529,7 +529,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.7.2
 
 ## v0.7.1
 
-- The brand-new website: https://pgext.cloud
+- The brand-new website: /ext/
 - Remove unnecessary sudo usage, now can be used inside docker
 - Allow using `pg18`, `pg17` arg format in pig ext link command
 - Add environment var `PIG_NO_SUDO` to force not using sudo
@@ -615,7 +615,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.6.2
 ## v0.6.1
 
 - Add el10 and debian 13 trixie support stub
-- Dedicated website: https://pgext.cloud/pig
+- Dedicated website: /docs/pig/
 - Rebuild with go 1.25 and CI/CD pipeline
 - Use PIGSTY PGDG mirror in mainland China
 - Remove unused `pgdg-el10fix` repo
@@ -796,7 +796,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.3.1
 
 ## v0.3.0
 
-The [`pig`](/docs/pig/) project now has a new [homepage](https://pgext.cloud/pig), along with the PostgreSQL Extension [Catalog](https://pgext.cloud/list).
+The [`pig`](/docs/pig/) project now has a new [homepage](/docs/pig/), along with the PostgreSQL Extension [Catalog](/ext/list).
 
 Release: https://github.com/pgsty/pig/releases/tag/v0.3.0
 
@@ -832,7 +832,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.1.3
 
 ## v0.1.2
 
-[**351**](https://pgext.cloud/list) PostgreSQL Extensions, including the powerful [postgresql-anonymizer 2.0](https://postgresql-anonymizer.readthedocs.io/en/stable/)
+[**351**](/ext/list) PostgreSQL Extensions, including the powerful [postgresql-anonymizer 2.0](https://postgresql-anonymizer.readthedocs.io/en/stable/)
 
 Release: https://github.com/pgsty/pig/releases/tag/v0.1.2
 

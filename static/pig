@@ -187,7 +187,7 @@ main() {
     install_package
 
     log_info "pig v${VERSION} installed successfully"
-    log_hint "check https://pgext.cloud for details"
+    log_hint "check /ext/ for details"
     echo ""
 }
 

@@ -142,8 +142,6 @@ body.landing-page.landing-theme-light.price-page {
 
 .price-page .nav-link--active {
   color: var(--price-nav-active-color);
-  background: var(--price-nav-active-bg);
-  box-shadow: inset 0 0 0 1px var(--price-nav-active-ring);
 }
 
 .price-page .mobile-menu-link--active {

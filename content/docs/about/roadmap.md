@@ -44,7 +44,7 @@ Here are our [**Active Issues**](https://github.com/pgsty/pigsty/issues) and [**
 
 ## Extensions and Packages
 
-For the extension support roadmap, you can find it here: https://pgext.cloud/e/roadmap
+For the extension support roadmap, you can find it here: /ext/e/roadmap
 
 
 ### Under Consideration

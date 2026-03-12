@@ -95,7 +95,7 @@ Simply use these names in `pg_extensions` to install the entire stack.
 
 ## Extension Resources
 
-- [**Extension Catalog**](https://pgext.cloud/list): Browse detailed information about all available extensions
-- [**Extension Repository**](https://pgext.cloud/repo/): Pigsty extension software repository
-- [**pig Package Manager**](https://pgext.cloud/pig): Command-line extension management tool
+- [**Extension Catalog**](/ext/list): Browse detailed information about all available extensions
+- [**Extension Repository**](/ext/repo/): Pigsty extension software repository
+- [**pig Package Manager**](/docs/pig/): Command-line extension management tool
 - [**GitHub Pigsty**](https://github.com/pgsty/pigsty): Pigsty source code repository

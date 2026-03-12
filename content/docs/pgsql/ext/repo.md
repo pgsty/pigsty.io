@@ -109,7 +109,7 @@ The Pigsty repository follows these principles:
 
 ## Related Resources
 
-- [Pigsty Extension Catalog](https://pgext.cloud/list): Browse all available extensions
+- [Pigsty Extension Catalog](/ext/list): Browse all available extensions
 - [PGDG YUM Repository](https://download.postgresql.org/pub/repos/yum/)
 - [PGDG APT Repository](https://apt.postgresql.org/pub/repos/apt/)
 

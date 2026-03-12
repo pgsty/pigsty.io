@@ -88,7 +88,7 @@ And nowadays, reliable [local enterprise NVMe SSDs](https://vonng.com/cloud/bonu
 
 Another important reason is **functionality** — Supabase cloud features are limited. Many powerful PostgreSQL extensions aren't available in cloud services due to multi-tenant security challenges and licensing.
 Despite [extensions being PostgreSQL's core feature](https://vonng.com/pg/pg-eat-db-world), only **64** extensions are available on Supabase cloud.
-Self-hosted Supabase with Pigsty provides up to [**451**](https://pgext.cloud/list) ready-to-use PostgreSQL extensions.
+Self-hosted Supabase with Pigsty provides up to [**451**](/ext/list) ready-to-use PostgreSQL extensions.
 
 Additionally, self-control and vendor lock-in avoidance are important reasons for self-hosting. Although Supabase aims to provide a vendor-lock-free open-source Google Firebase alternative, self-hosting enterprise-grade Supabase is not trivial.
 Supabase includes a series of PostgreSQL extensions they develop and maintain, and plans to replace the native PostgreSQL kernel with [**OrioleDB**](/docs/pgsql/kernel/orioledb) (which they acquired). These kernels and extensions are not available in the official PGDG repository.
@@ -98,22 +98,22 @@ We package all 10 missing Supabase extensions into ready-to-use RPM/DEB packages
 
 | Extension | Description |
 |---|---|
-| [`pg_graphql`](https://pgext.cloud/e/pg_graphql/) | GraphQL support in PostgreSQL (Rust), provided by PIGSTY |
-| [`pg_jsonschema`](https://pgext.cloud/e/pg_jsonschema/) | JSON Schema validation (Rust), provided by PIGSTY |
-| [`wrappers`](https://pgext.cloud/e/wrappers/) | Supabase foreign data wrapper bundle (Rust), provided by PIGSTY |
-| [`index_advisor`](https://pgext.cloud/e/index_advisor/) | Query index advisor (SQL), provided by PIGSTY |
-| [`pg_net`](https://pgext.cloud/e/pg_net/) | Async non-blocking HTTP/HTTPS requests (C), provided by PIGSTY |
-| [`vault`](https://pgext.cloud/e/supabase_vault/) | Store encrypted credentials in Vault (C), provided by PIGSTY |
-| [`pgjwt`](https://pgext.cloud/e/pgjwt/) | JSON Web Token API implementation (SQL), provided by PIGSTY |
-| [`pgsodium`](https://pgext.cloud/e/pgsodium/) | Table data encryption TDE, provided by PIGSTY |
-| [`supautils`](https://pgext.cloud/e/supautils/) | Security utilities for cloud environments (C), provided by PIGSTY |
-| [`pg_plan_filter`](https://pgext.cloud/e/plan_filter/) | Filter queries by execution plan cost (C), provided by PIGSTY |
+| [`pg_graphql`](/ext/e/pg_graphql/) | GraphQL support in PostgreSQL (Rust), provided by PIGSTY |
+| [`pg_jsonschema`](/ext/e/pg_jsonschema/) | JSON Schema validation (Rust), provided by PIGSTY |
+| [`wrappers`](/ext/e/wrappers/) | Supabase foreign data wrapper bundle (Rust), provided by PIGSTY |
+| [`index_advisor`](/ext/e/index_advisor/) | Query index advisor (SQL), provided by PIGSTY |
+| [`pg_net`](/ext/e/pg_net/) | Async non-blocking HTTP/HTTPS requests (C), provided by PIGSTY |
+| [`vault`](/ext/e/supabase_vault/) | Store encrypted credentials in Vault (C), provided by PIGSTY |
+| [`pgjwt`](/ext/e/pgjwt/) | JSON Web Token API implementation (SQL), provided by PIGSTY |
+| [`pgsodium`](/ext/e/pgsodium/) | Table data encryption TDE, provided by PIGSTY |
+| [`supautils`](/ext/e/supautils/) | Security utilities for cloud environments (C), provided by PIGSTY |
+| [`pg_plan_filter`](/ext/e/plan_filter/) | Filter queries by execution plan cost (C), provided by PIGSTY |
 
 We also [install](/docs/pgsql/ext/install) most extensions by default in Supabase deployments. You can [enable](/docs/pgsql/ext/create) them as needed.
 
 Pigsty also handles the underlying [highly available](/docs/concept/ha/) [PostgreSQL](/docs/pgsql/) cluster, highly available [MinIO](/docs/minio/) object storage cluster, and even [Docker](/docs/docker/) deployment, [Nginx](/docs/infra/admin/portal) reverse proxy, [domain configuration](/docs/infra/admin/domain), and [HTTPS certificate issuance](/docs/infra/admin/cert). You can spin up any number of stateless Supabase container clusters using Docker Compose and store state in external Pigsty-managed database services.
 
-With this self-hosted architecture, you gain the freedom to use different kernels (PG 15-18, OrioleDB), install [**437**](https://pgext.cloud/list/) extensions, scale Supabase/Postgres/MinIO, freedom from database operations, and freedom from vendor lock-in — running locally forever. Compared to cloud service costs, you only need to prepare servers and run a few commands.
+With this self-hosted architecture, you gain the freedom to use different kernels (PG 15-18, OrioleDB), install [**437**](/ext/list/) extensions, scale Supabase/Postgres/MinIO, freedom from database operations, and freedom from vendor lock-in — running locally forever. Compared to cloud service costs, you only need to prepare servers and run a few commands.
 
 
 ------

@@ -683,7 +683,7 @@ f2791c96db4cc17a8a4008fc8d9ad310  pigsty-pkg-v4.0.0.u22.aarch64.tgz
 - **Ansible 2.19 Compatibility:** Full support for Ansible 2.19 following its breaking changes.
 - **Kernel Updates:** Latest versions for Supabase, PolarDB, IvorySQL, and Percona kernels.
 - **Optimized Tuning:** Refined logic for default PG parameters to maximize resource utilization.
-- [**PGEXT.CLOUD**](https://pgext.cloud): Dedicated extension website open-sourced under Apache-2.0 license
+- [**PGEXT.CLOUD**](/ext/): Dedicated extension website open-sourced under Apache-2.0 license
 
 **Version Updates**
 
@@ -1305,7 +1305,7 @@ c927238f0343cde82a4a9ab230ecd2ac  pigsty-pkg-v3.4.0.u24.aarch64.tgz
 
 **New Extensions**
 
-**12** new PostgreSQL extensions added, bringing the total to [404](https://pgext.cloud/list) available extensions.
+**12** new PostgreSQL extensions added, bringing the total to [404](/ext/list) available extensions.
 
 - [documentdb](https://github.com/microsoft/documentdb/) 0.101-0
 - [VectorChord-bm25](https://github.com/tensorchord/VectorChord-bm25) (vchord_bm25) 0.1.0
@@ -1374,17 +1374,17 @@ c927238f0343cde82a4a9ab230ecd2ac  pigsty-pkg-v3.4.0.u24.aarch64.tgz
 
 ## v3.2.2
 
-- New Extension(s): [`Omnigres`](https://pgext.cloud/e/omni) 33 extensions, postgres as platform
-- New Extension: [`pg_mooncake`](https://pgext.cloud/e/pg_mooncake): duckdb in postgres
-- New Extensions: [`pg_xxhash`](https://pgext.cloud/e/xxhash)
-- New Extension: [`timescaledb_toolkit`](https://pgext.cloud/e/timescaledb_toolkit)
-- New Extension: [`pg_xenophile`](https://pgext.cloud/e/pg_xenophile)
-- New Extension: [`pg_drop_events`](https://pgext.cloud/e/pg_drop_events)
-- New Extension: [`pg_incremental`](https://pgext.cloud/e/pg_incremental)
+- New Extension(s): [`Omnigres`](/ext/e/omni) 33 extensions, postgres as platform
+- New Extension: [`pg_mooncake`](/ext/e/pg_mooncake): duckdb in postgres
+- New Extensions: [`pg_xxhash`](/ext/e/xxhash)
+- New Extension: [`timescaledb_toolkit`](/ext/e/timescaledb_toolkit)
+- New Extension: [`pg_xenophile`](/ext/e/pg_xenophile)
+- New Extension: [`pg_drop_events`](/ext/e/pg_drop_events)
+- New Extension: [`pg_incremental`](/ext/e/pg_incremental)
 - Bump [`citus`](https://github.com/citusdata/citus/tree/v13.0.0) to 13.0.0 with PostgreSQL 17 support.
 - Bump [`pgml`](https://github.com/postgresml/postgresml/releases/tag/v2.10.0) to 2.10.0
-- Bump [`pg_extra_time`](https://pgext.cloud/e/pg_extra_time) to 2.0.0
-- Bump [`pg_vectorize`](https://pgext.cloud/e/pg_vectorize) to 0.20.0
+- Bump [`pg_extra_time`](/ext/e/pg_extra_time) to 2.0.0
+- Bump [`pg_vectorize`](/ext/e/vectorize) to 0.20.0
 
 **What's Changed**
 
@@ -1401,7 +1401,7 @@ c927238f0343cde82a4a9ab230ecd2ac  pigsty-pkg-v3.4.0.u24.aarch64.tgz
 
 **Highlights**
 
-- [**351**](https://pgext.cloud/) PostgreSQL Extensions, including the powerful [postgresql-anonymizer 2.0](https://postgresql-anonymizer.readthedocs.io/en/stable/)
+- [**351**](/ext/) PostgreSQL Extensions, including the powerful [postgresql-anonymizer 2.0](https://postgresql-anonymizer.readthedocs.io/en/stable/)
 - IvorySQL 4.0 support for EL 8/9
 - Now use the Pigsty compiled Citus, TimescaleDB and pgroonga on all distros
 - Add self-hosting Odoo template and support
@@ -1471,7 +1471,7 @@ c927238f0343cde82a4a9ab230ecd2ac  pigsty-pkg-v3.4.0.u24.aarch64.tgz
 - New Extensions
 - Added `timescaledb`, `timescaledb-loader`, `timescaledb-toolkit`, and `timescaledb-tool` to the PIGSTY repository.
 - Added a custom-compiled [pg_timescaledb](https://github.com/timescale/timescaledb) for EL.
-- Added [pgroonga](https://pgext.cloud/e/pgroonga), custom-compiled for all EL variants.
+- Added [pgroonga](/ext/e/pgroonga), custom-compiled for all EL variants.
 - Added [vchord](https://github.com/tensorchord/VectorChord) 0.1.0.
 - Added [pg_bestmatch.rs](https://github.com/tensorchord/pg_bestmatch.rs) 0.0.1.
 - Added [pglite_fusion](https://github.com/frectonz/pglite-fusion) 0.0.3.

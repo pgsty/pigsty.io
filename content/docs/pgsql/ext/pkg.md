@@ -79,7 +79,7 @@ Except for the `olap` category, all category extensions can be installed simulta
 
 ## Browse Extension Catalog
 
-You can browse detailed information about all available extensions on the [Pigsty Extension Catalog](https://pgext.cloud/list) website, including:
+You can browse detailed information about all available extensions on the [Pigsty Extension Catalog](/ext/list) website, including:
 
 - Extension name, description, version
 - Supported PostgreSQL versions

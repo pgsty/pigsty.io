@@ -1,6 +1,6 @@
 ---
 title: Conf Templates
-weight: 750
+weight: 600
 description: Batteries-included configuration templates for specific scenarios, with detailed explanations.
 icon: fa-solid fa-sliders
 module: [PIGSTY]

@@ -194,7 +194,7 @@ UPDATE pg_index SET indisvalid = false WHERE indexrelid = 'pgbench_accounts_pkey
 
 ### On Observability
 
-Actually, [**`pg_stat_statements`**](https://pigsty.io/ext/stat/pg_stat_statements/) provides the `mean` and `stddev` metrics, which you can use with properties of the normal distribution to estimate percentile metrics. But this is only a rough estimate, and you need to reset the counters periodically, otherwise the effectiveness of the full historical statistics will degrade over time.
+Actually, [**`pg_stat_statements`**](/ext/e/pg_stat_statements) provides the `mean` and `stddev` metrics, which you can use with properties of the normal distribution to estimate percentile metrics. But this is only a rough estimate, and you need to reset the counters periodically, otherwise the effectiveness of the full historical statistics will degrade over time.
 
 [![pgss.jpg](pgss.jpg)](https://vonng.com/en/pg/pgss/)
 
@@ -202,7 +202,7 @@ Actually, [**`pg_stat_statements`**](https://pigsty.io/ext/stat/pg_stat_statemen
 
 PGSS is unlikely to provide P95, P99 RT percentile metrics anytime soon, because it would increase the extension’s memory footprint by several dozen times. While that’s not a big deal for modern servers, it could be an issue in extremely conservative environments. I asked the maintainer of PGSS about this at the [Unconference](https://wiki.postgresql.org/wiki/PGConf.dev_2025_Developer_Unconference#The_Future_of_pg_stat_statements), and it’s unlikely to happen in the short term. I also asked Jelte, the maintainer of Pgbouncer, if this could be solved at the connection pool level, and a feature like that is not coming soon either.
 
-However, there are other solutions to this problem. First, the [**`pg_stat_monitor`**](https://pgext.cloud/e/pg_stat_monitor/) extension explicitly provides detailed percentile RT metrics, but you have to consider the performance impact of collecting these metrics on the cluster. A universal, non-intrusive method with no database performance overhead is to add query RT monitoring directly at the application’s Data Access Layer (DAL), but this requires cooperation and effort from the application side.
+However, there are other solutions to this problem. First, the [**`pg_stat_monitor`**](/ext/e/pg_stat_monitor/) extension explicitly provides detailed percentile RT metrics, but you have to consider the performance impact of collecting these metrics on the cluster. A universal, non-intrusive method with no database performance overhead is to add query RT monitoring directly at the application’s Data Access Layer (DAL), but this requires cooperation and effort from the application side.
 
 Also, using eBPF for side-channel collection of RT metrics is a great idea, but considering they’re using managed PostgreSQL on Azure, they won’t have server access, so that path is likely blocked.
 
@@ -210,9 +210,9 @@ Also, using eBPF for side-channel collection of RT metrics is a great idea, but 
 
 ### On Schema Change History
 
-Actually, PostgreSQL’s logging already provides this option. You just need to set [**`log_statement`**](https://www.postgresql.org/docs/current/runtime-config-logging.html%23GUC-LOG-STATEMENT) to `ddl` (or the more advanced `mod` or `all`), and all DDL logs will be preserved. The [**`pgaudit`**](https://pgext.cloud/e/pgaudit/) extension also provides similar functionality.
+Actually, PostgreSQL’s logging already provides this option. You just need to set [**`log_statement`**](https://www.postgresql.org/docs/current/runtime-config-logging.html%23GUC-LOG-STATEMENT) to `ddl` (or the more advanced `mod` or `all`), and all DDL logs will be preserved. The [**`pgaudit`**](/ext/e/pgaudit/) extension also provides similar functionality.
 
-But I suspect what they really want isn’t DDL logs, but something like a system view that can be queried via SQL. In that case, another option is [`CREATE EVENT TRIGGER`](https://www.postgresql.org/docs/current/sql-createeventtrigger.html). You can use an event trigger to log DDL events directly into a data table. The [**`pg_ddl_historization`**](https://pigsty.io/ext/util/ddl_historization/) extension provides a more convenient way to do this, and I’ve compiled and packaged this extension as well.
+But I suspect what they really want isn’t DDL logs, but something like a system view that can be queried via SQL. In that case, another option is [`CREATE EVENT TRIGGER`](https://www.postgresql.org/docs/current/sql-createeventtrigger.html). You can use an event trigger to log DDL events directly into a data table. The [**`pg_ddl_historization`**](/ext/e/ddl_historization) extension provides a more convenient way to do this, and I’ve compiled and packaged this extension as well.
 
 Creating an event trigger also requires superuser privileges. AWS RDS has some special handling to allow this, but it seems that PostgreSQL on Azure does not support it.
 

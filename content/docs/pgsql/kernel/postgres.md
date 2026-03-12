@@ -103,4 +103,4 @@ Pigsty provides a rich extension ecosystem for PostgreSQL, including:
 - **Compatibility**: orafce, babelfishpg_tds
 - **Data**: pglogical, wal2json, decoderbufs
 
-For details, please refer to [Extension Catalog](https://pgext.cloud/list).
+For details, please refer to [Extension Catalog](/ext/list).

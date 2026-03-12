@@ -35,7 +35,7 @@ pig install duckdb         # install DuckDB package
 
 Pigsty provides DuckDB-related PostgreSQL extensions:
 
-- [**`pg_duckdb`**](https://pgext.cloud/e/pg_analytics), an extension by DuckDB official MotherDuck and Hydra
-- [**`pg_mooncake`**](https://pgext.cloud/e/pg_mooncake), builds on `pg_duckdb` with columnar engine and sync
-- [**`pg_analytics`**](https://pgext.cloud/e/pg_analytics), OLAP on DuckDB, archived
+- [**`pg_duckdb`**](/ext/e/pg_analytics), an extension by DuckDB official MotherDuck and Hydra
+- [**`pg_mooncake`**](/ext/e/pg_mooncake), builds on `pg_duckdb` with columnar engine and sync
+- [**`pg_analytics`**](/ext/e/pg_analytics), OLAP on DuckDB, archived
 - [**`duckdb_fdw`**](/docs/pgsql/ext/), DuckDB FDW to read/write DuckDB files from PG, not updated yet

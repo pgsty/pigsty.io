@@ -93,7 +93,7 @@ He is also a tech KOL, the founder of the top WeChat database personal account "
 Pigsty is the most influential Chinese open-source project in the global PostgreSQL ecosystem, with about 100,000 users, half from overseas.
 Pigsty is also one of the most active open-source projects in the PostgreSQL ecosystem, currently dominating in extension distribution and monitoring systems.
 
-[**PGEXT.Cloud**](https://pgext.cloud) is a PostgreSQL extension repository maintained by Pigsty, with the world's largest PostgreSQL extension distribution volume.
+[**PGEXT.Cloud**](/ext/) is a PostgreSQL extension repository maintained by Pigsty, with the world's largest PostgreSQL extension distribution volume.
 It has become an upstream software supply chain for multiple international PostgreSQL vendors.
 
 Pigsty is currently one of the major distributions in the PostgreSQL ecosystem and a challenger to cloud vendor RDS, now widely used in defense, government, healthcare, internet, finance, manufacturing, and other industries.

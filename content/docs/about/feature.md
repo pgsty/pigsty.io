@@ -16,7 +16,7 @@ categories: [Reference]
 
 ## Value Propositions
 
-- [**Extensibility**](/img/pigsty/extension.png): Powerful [**extensions**](/docs/ref/extension) out-of-the-box: deep integration of **PostGIS**, **TimescaleDB**, **Citus**, **PGVector** and [**451**](https://pgext.cloud/list) plugins with Oracle / SQL Server [**compatible kernels**](/docs/pgsql/kernel).
+- [**Extensibility**](/img/pigsty/extension.png): Powerful [**extensions**](/docs/ref/extension) out-of-the-box: deep integration of **PostGIS**, **TimescaleDB**, **Citus**, **PGVector** and [**451**](/ext/list) plugins with Oracle / SQL Server [**compatible kernels**](/docs/pgsql/kernel).
 - [**Reliability**](/img/pigsty/arch.png): Quickly create [**high-availability**](/docs/concept/ha/), self-healing [**PostgreSQL**](/docs/pgsql) clusters with auto-configured [**point-in-time recovery**](/docs/concept/pitr/), [**access control**](/docs/concept/sec/ac/), self-signed [**CA**](/docs/concept/sec/ca) and [**SSL**](/docs/setup/security/), ensuring rock-solid data.
 - [**Observability**](/img/pigsty/dashboard.jpg): Based on [**Prometheus**](/docs/infra#victoria-observability-suite) & [**Grafana**](/docs/infra#grafana) modern observability stack, providing stunning monitoring best practices. Modular design, can be used independently: [**Gallery**](https://github.com/pgsty/pigsty/wiki/Gallery) & [**Demo**](https://demo.pigsty.io).
 - [**Availability**](/img/pigsty/ha.png): Deliver stable, reliable, auto-routed, transaction-pooled, read-write separated high-performance database [**services**](/docs/pgsql/service#default-service), with flexible [**access**](/docs/pgsql/service#access-service) modes via HAProxy, Pgbouncer, and VIP.
@@ -80,7 +80,7 @@ Pigsty can bootstrap an entire environment from bare metal with one click, reach
 
 **Hyper-converged multi-modal, use PostgreSQL for everything, one PG to replace all databases!**
 
-PostgreSQL's soul lies in its rich [**extension ecosystem**](/blog/pg/pg-eat-db-world), and Pigsty uniquely deeply integrates [**451 extensions**](https://pgext.cloud/list) from the PostgreSQL ecosystem, providing you with an out-of-the-box hyper-converged multi-modal database!
+PostgreSQL's soul lies in its rich [**extension ecosystem**](/blog/pg/pg-eat-db-world), and Pigsty uniquely deeply integrates [**451 extensions**](/ext/list) from the PostgreSQL ecosystem, providing you with an out-of-the-box hyper-converged multi-modal database!
 
 Extensions can create [**synergistic effects**](https://pigsty.io/blog/pg/pg-eat-db-world#the-magic-of-ultimate-extensibility), producing 1+1 far greater than 2 results.
 You can use [**PostGIS**](https://postgis.net/) for geospatial data, [**TimescaleDB**](https://www.timescale.com/) for time-series/event stream data analysis, and [**Citus**](https://www.citusdata.com/) to upgrade it in-place to a distributed geospatial-temporal database;

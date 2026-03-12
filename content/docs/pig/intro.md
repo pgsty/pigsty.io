@@ -11,7 +11,7 @@ categories: [Concept]
 Have you ever struggled with installing or upgrading PostgreSQL extensions? Digging through outdated documentation, cryptic configuration scripts, or searching GitHub for forks and patches?
 Postgres's rich extension ecosystem also means complex deployment processes, especially across multiple distributions and architectures. PIG can solve these headaches for you.
 
-This is exactly why **Pig** was created. Developed in Go, Pig is dedicated to one-stop management of Postgres and its [450+](https://pgext.cloud/list) extensions.
+This is exactly why **Pig** was created. Developed in Go, Pig is dedicated to one-stop management of Postgres and its [450+](/ext/list) extensions.
 Whether it's TimescaleDB, Citus, PGVector, 30+ Rust extensions, or all the components needed to self-host Supabase, Pig's unified CLI makes everything accessible.
 It completely eliminates source compilation and messy repositories, directly providing version-aligned RPM/DEB packages that perfectly support Debian, Ubuntu, RedHat, and other mainstream distributions on both x86 and Arm architectures, no guessing, no hassle.
 
@@ -19,7 +19,7 @@ Pig isn't reinventing the wheel; it fully leverages native system package manage
 You do not need to choose between "the standard way" and "shortcuts". Pig respects existing repositories, follows OS best practices, and coexists harmoniously with existing repositories and packages.
 If your Linux system and PostgreSQL major version are not in the [supported list](#linux-compatibility), you can use [`pig build`](/docs/pig/build/) to compile extensions for your specific combination.
 
-Want to supercharge your Postgres and escape the hassle? Visit the [PIG official documentation](https://pig.pgsty.com) for guides, and check out the extensive [extension list](https://pgext.cloud/list),
+Want to supercharge your Postgres and escape the hassle? Visit the [PIG official documentation](https://pig.pgsty.com) for guides, and check out the extensive [extension list](/ext/list),
 turning your local Postgres database into an all-capable multi-modal data platform with one click.
 If [Postgres's future is unmatched extensibility](https://medium.com/@fengruohang/postgres-is-eating-the-database-world-157c204dcfc4), then Pig is the magic lamp that helps you unlock it. After all, no one ever complains about "too many extensions".
 

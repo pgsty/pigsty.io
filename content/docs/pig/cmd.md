@@ -32,7 +32,7 @@ Examples:
   pig install pg_duckdb       # install a PostgreSQL extension
   pig install pgactive -v 18  # install extension for specific PG major
 
-  visit https://pgext.cloud for details
+  visit /ext/ for details
 
 PostgreSQL Extension Manager
   build       Build Postgres extensions

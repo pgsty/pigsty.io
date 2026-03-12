@@ -10,7 +10,7 @@ categories: [Task]
 
 ## Accidental Data Deletion
 
-If it's a small-scale `DELETE` misoperation, you can consider using the [`pg_surgery`](https://pgext.cloud/e/pg_surgery) or [`pg_dirtyread`](https://pgext.cloud/e/pg_dirtyread) extension for in-place surgical recovery.
+If it's a small-scale `DELETE` misoperation, you can consider using the [`pg_surgery`](/ext/e/pg_surgery) or [`pg_dirtyread`](/ext/e/pg_dirtyread) extension for in-place surgical recovery.
 
 ```sql
 -- Immediately disable Auto Vacuum on this table and abort Auto Vacuum worker processes for this table

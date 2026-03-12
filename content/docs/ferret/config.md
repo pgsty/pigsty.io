@@ -43,7 +43,7 @@ Note that FerretDB's [authentication](https://docs.ferretdb.io/security/authenti
 
 ## PostgreSQL Cluster
 
-FerretDB 2.0+ requires an extension: [DocumentDB](https://pgext.cloud/e/documentdb), which depends on several other extensions. Here's a template for creating a PostgreSQL cluster for FerretDB:
+FerretDB 2.0+ requires an extension: [DocumentDB](/ext/e/documentdb), which depends on several other extensions. Here's a template for creating a PostgreSQL cluster for FerretDB:
 
 ```yaml
 all:

@@ -23,7 +23,7 @@ sidebar_root_for: self
 
 - [Architecture](/docs/pgsql/config)
 - [Cluster Config](/docs/pgsql/config)
-- [Extensions](/docs/ref/extension)
+- [Extensions](/ext/list)
 - [Users/Roles](/docs/pgsql/config/user)
 - [Databases](/docs/pgsql/config/db)
 - [Services/Access](/docs/pgsql/service/)

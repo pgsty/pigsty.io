@@ -2,7 +2,7 @@
 title: Deployment
 weight: 350
 description: Multi-node, high-availability Pigsty deployment for serious production environments.
-icon: fas fa-boxes-packing
+icon: fas fa-download
 module: [PIGSTY]
 categories: [Tutorial]
 ---

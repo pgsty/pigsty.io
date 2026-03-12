@@ -73,7 +73,7 @@ A case in point is the PostGIS extension, which sets the de facto standard in ge
 
 This isn’t the first time; we’re witnessing it again in the oldest and largest subdomain: OLAP analytics. But PostgreSQL’s ambition doesn’t stop at OLAP; it’s eyeing the entire database world!
 
-[![ecosystem.jpg](/img/pigsty/ecosystem.jpg)](https://pgext.cloud/list)
+[![ecosystem.jpg](/img/pigsty/ecosystem.jpg)](/ext/list)
 
 What makes PostgreSQL so capable? Sure, it's advanced, but so is Oracle; it's open-source, as is MySQL. PostgreSQL's edge comes from being **both advanced and open-source**, allowing it to compete with Oracle/MySQL. But its true uniqueness lies in its **extreme extensibility and thriving extension ecosystem**.
 

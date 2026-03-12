@@ -234,7 +234,7 @@ pig ext install pg_stat_statements
 pig ext install pg_stat_kcache
 ```
 
-Check [**extension list**](https://ext.pigsty.io/#/list) for available extensions and their names.
+Check [**extension list**](/ext/list/) for available extensions and their names.
 
 **Notes:**
 

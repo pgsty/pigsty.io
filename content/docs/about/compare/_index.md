@@ -48,7 +48,7 @@ Both Aliyun RDS and AWS RDS are closed-source cloud database services, available
 
 Here are some important extensions compared based on PostgreSQL 16, as of 2024-02-28
 
-- [**Pigsty Extension List**](https://pgext.cloud/list/)
+- [**Pigsty Extension List**](/ext/list/)
 - [**AWS RDS Extension List**](https://docs.aws.amazon.com/AmazonRDS/latest/PostgreSQLReleaseNotes/postgresql-extensions.html):
 - [**Aliyun RDS Extension List**](https://help.aliyun.com/zh/rds/apsaradb-rds-for-postgresql/extensions-supported-by-apsaradb-rds-for-postgresql)
 

@@ -8,8 +8,8 @@ categories: [Reference]
 ---
 
 **FERRET** is an **optional** module in Pigsty for deploying [**FerretDB**](https://github.com/FerretDB/FerretDB) —
-a protocol translation middleware built on the PostgreSQL kernel and the [**DocumentDB**](https://pgext.cloud/e/documentdb) extension.
+a protocol translation middleware built on the PostgreSQL kernel and the [**DocumentDB**](/ext/e/documentdb) extension.
 It enables applications using MongoDB drivers to connect and translates those requests into PostgreSQL operations.
 
-Pigsty is a community partner of FerretDB. We provide binary packages for [**FerretDB**](https://github.com/FerretDB/FerretDB) and [**DocumentDB**](https://pgext.cloud/e/documentdb) (Microsoft-maintained version),
+Pigsty is a community partner of FerretDB. We provide binary packages for [**FerretDB**](https://github.com/FerretDB/FerretDB) and [**DocumentDB**](/ext/e/documentdb) (Microsoft-maintained version),
 and provide a ready-to-use configuration template [`mongo.yml`](/docs/conf/mongo/) to help you easily deploy enterprise-grade FerretDB clusters.

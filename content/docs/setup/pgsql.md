@@ -208,12 +208,12 @@ We recommend starting with **PGSQL Overview**. Many elements in the dashboards a
 
 One of PostgreSQL's most powerful features is its [**extension ecosystem**](/docs/pgsql/ext). Extensions can add new data types, functions, index methods, and more to the database.
 
-Pigsty provides an unparalleled [**451 extensions**](https://pgext.cloud/list) in the PG ecosystem, covering 16 major categories including time-series, geographic, vector, and full-text search—install with one click.
+Pigsty provides an unparalleled [**451 extensions**](/ext/list) in the PG ecosystem, covering 16 major categories including time-series, geographic, vector, and full-text search—install with one click.
 Start with three powerful and commonly used extensions, then [**install**](/docs/pgsql/ext/install) more extensions such as `timescaledb` as needed.
 
-- [**`postgis`**](https://pgext.cloud/e/postgis): Geographic information system for processing maps and location data (installed by default)
-- [**`pgvector`**](https://pgext.cloud/e/vector): Vector database supporting AI embedding vector similarity search (installed by default)
-- [**`timescaledb`**](https://pgext.cloud/e/timescaledb): Time-series database for efficient storage and querying of time-series data (optional install)
+- [**`postgis`**](/ext/e/postgis): Geographic information system for processing maps and location data (installed by default)
+- [**`pgvector`**](/ext/e/vector): Vector database supporting AI embedding vector similarity search (installed by default)
+- [**`timescaledb`**](/ext/e/timescaledb): Time-series database for efficient storage and querying of time-series data (optional install)
 
 ```sql
 \dx                            -- psql meta command, list installed extensions

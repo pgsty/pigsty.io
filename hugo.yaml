@@ -34,7 +34,7 @@ menu:
     - identifier: ext
       name: Exts
       weight: 20
-      url: https://pgext.cloud
+      url: /ext/
       pre: <i class='fa-solid fa-puzzle-piece'></i>
 
 #=======================================#

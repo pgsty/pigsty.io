@@ -36,7 +36,7 @@ Common extensions that require preloading:
 | `pg_squeeze` | Online table space reclamation |
 | `pgml` | PostgresML machine learning |
 
-For the complete list, see the [Extension Catalog](https://pgext.cloud/list) (marked with `LOAD`).
+For the complete list, see the [Extension Catalog](/ext/list) (marked with `LOAD`).
 
 ### Preload Order
 

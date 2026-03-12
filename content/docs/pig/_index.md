@@ -39,7 +39,7 @@ curl -fsSL https://repo.pigsty.io/pig | bash
 curl -fsSL https://repo.pigsty.cc/pig | bash
 ```
 
-After installation, you can [**get started**](/docs/pig/start/) with just a few commands. For example, to install PG 18 and the [**`pg_duckdb`**](https://pgext.cloud/e/pg_duckdb) extension:
+After installation, you can [**get started**](/docs/pig/start/) with just a few commands. For example, to install PG 18 and the [**`pg_duckdb`**](/ext/e/pg_duckdb) extension:
 
 ```bash
 $ pig repo set                        # One-time setup for Linux, Pigsty + PGDG repos (overwrites!)
