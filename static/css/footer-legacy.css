@@ -171,36 +171,48 @@
   }
 }
 
-/* Keep footer unchanged even when landing-theme-light is enabled */
+/* Light mode footer - adapt to light background from landing-v2.css */
 body.landing-page.landing-theme-light .landing-footer {
-  background: var(--pigsty-darker);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(18, 43, 75, 0.1);
 }
 
-body.landing-page.landing-theme-light .footer-logo,
-body.landing-page.landing-theme-light .footer-column-title {
-  color: var(--pigsty-white);
+body.landing-page.landing-theme-light .footer-logo {
+  color: #122b4b;
 }
 
 body.landing-page.landing-theme-light .footer-tagline,
-body.landing-page.landing-theme-light .footer-slogan,
+body.landing-page.landing-theme-light .footer-slogan {
+  color: #3a5479;
+}
+
+/* PIGSTY letter colors - darker for light bg */
+body.landing-page.landing-theme-light .footer-tagline .hl-p { color: #3a6d99; }
+body.landing-page.landing-theme-light .footer-tagline .hl-i { color: #4f82ab; }
+body.landing-page.landing-theme-light .footer-tagline .hl-g { color: #b87430; }
+body.landing-page.landing-theme-light .footer-tagline .hl-s { color: #5a6a7a; }
+body.landing-page.landing-theme-light .footer-tagline .hl-t { color: #a04040; }
+body.landing-page.landing-theme-light .footer-tagline .hl-y { color: #3a7a4a; }
+
+body.landing-page.landing-theme-light .footer-slogan .hl-good { color: #3a6d99; }
+body.landing-page.landing-theme-light .footer-slogan .hl-use { color: #b87430; }
+
 body.landing-page.landing-theme-light .footer-links a,
-body.landing-page.landing-theme-light .footer-bottom,
 body.landing-page.landing-theme-light .footer-icp a,
 body.landing-page.landing-theme-light .footer-copyright a,
 body.landing-page.landing-theme-light .footer-lang-switch a {
-  color: var(--pigsty-gray-400);
+  color: #4a6a8f;
 }
 
 body.landing-page.landing-theme-light .footer-links a:hover,
 body.landing-page.landing-theme-light .footer-icp a:hover,
 body.landing-page.landing-theme-light .footer-copyright a:hover,
 body.landing-page.landing-theme-light .footer-lang-switch a:hover {
-  color: var(--pigsty-white);
+  color: #122b4b;
 }
 
 body.landing-page.landing-theme-light .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(18, 43, 75, 0.1);
+  color: #4a6a8f;
 }
 
 /* ============================================

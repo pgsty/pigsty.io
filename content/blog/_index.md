@@ -2,7 +2,7 @@
 title: Pigsty Blog Articles
 linkTitle: Blog
 description: Articles about Pigsty, cloud computing, database industry, and notes on PostgreSQL development, administration, and internals
-weight: 20
+weight: 30
 menu:
   main:
     weight: 20

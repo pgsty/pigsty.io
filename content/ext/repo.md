@@ -1,6 +1,6 @@
 ---
 title: "Repo Provider"
-linkTitle: "Repo Provider"
+linkTitle: "Repository"
 description: "Extensions by repository"
 weight: 210
 icon: fas fa-warehouse
