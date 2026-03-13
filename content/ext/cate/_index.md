@@ -4,6 +4,8 @@ linkTitle: "Categories"
 description: "PostgreSQL extensions organized into 16 functional categories for easy browsing."
 weight: 500
 icon: fa-solid fa-cubes
+outputs:
+  - HTML
 sidebar_expanded: true
 ---
 
