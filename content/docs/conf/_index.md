@@ -1,5 +1,6 @@
 ---
-title: Conf Templates
+title: Configuration Templates
+linkTitle: "Conf Sample"
 weight: 600
 description: Batteries-included configuration templates for specific scenarios, with detailed explanations.
 icon: fa-solid fa-sliders

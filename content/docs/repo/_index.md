@@ -1,9 +1,9 @@
 ---
 title: "Linux Repository"
-linkTitle: "repo"
+linkTitle: "Repository"
 icon: fas fa-warehouse
-description: The APT / DNF repository to deliver PostgreSQL Kernel, Extensions and Infra packages. 
-weight: 5400
+description: The APT / DNF repository to deliver PostgreSQL Kernel, Extensions and Infra packages.
+weight: 610
 ---
 
 Pigsty has a repository that provides 340+ extra PostgreSQL extensions on mainstream [Linux Distros](/docs/ref/linux).

@@ -33,7 +33,7 @@ menu:
       pre: <i class='fa-solid fa-book'></i>
     - identifier: ext
       name: Exts
-      weight: 20
+      weight: 15
       url: /ext/
       pre: <i class='fa-solid fa-puzzle-piece'></i>
 
@@ -106,7 +106,7 @@ outputs:
 params:
   # metadata
   description: 'Pigsty is a free and open-source PostgreSQL distribution, a local-first RDS with battery-included monitoring, HA, PITR, IaC, and 440+ PG extensions and 9 kernels'
-  version: 4.0.0
+  version: 4.2.1
   copyright:
     authors: Ruohang Feng
     from_year: 2018
@@ -156,6 +156,7 @@ params:
     sidebar_menu_compact: true
     sidebar_search_disable: false
     sidebar_menu_foldable: true
+    sidebar_menu_truncate: 0
     sidebar_cache_limit: 1000
     sidebar_root_enabled: true
     ul_show: 3
