@@ -11,7 +11,7 @@ weight: 7420
     <div class="ext-card__title">https://gitlab.com/ongresinc/extensions/noset</div>
     <div class="ext-card__desc">https://gitlab.com/ongresinc/extensions/noset</div>
   </a>
-  <a class="ext-card ext-card--source" href="noset-v0.3.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/noset-v0.3.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">noset-v0.3.0.tar.gz</div>
     <div class="ext-card__desc">noset-v0.3.0.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 5120
     <div class="ext-card__title">pierreforstmann/pg_readonly</div>
     <div class="ext-card__desc">https://github.com/pierreforstmann/pg_readonly</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_readonly-1.0.4.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_readonly-1.0.4.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_readonly-1.0.4.tar.gz</div>
     <div class="ext-card__desc">pg_readonly-1.0.4.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 5120
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 5120  | [**`pg_readonly`**](/ext/e/pg_readonly) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 5120  | [**`pg_readonly`**](/ext/e/pg_readonly) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
 | **Related** | [`pg_permissions`](/ext/e/pg_permissions) [`pg_upless`](/ext/e/pg_upless) [`safeupdate`](/ext/e/safeupdate) [`set_user`](/ext/e/set_user) [`pgaudit`](/ext/e/pgaudit) [`noset`](/ext/e/noset) [`sepgsql`](/ext/e/sepgsql) [`login_hook`](/ext/e/login_hook) |
@@ -223,6 +223,13 @@ apt install -y postgresql-14-pg-readonly   # PG 14
 ```
 {{% /tab %}}
 {{< /tabpane >}}
+
+
+**Preload**:
+
+```bash
+shared_preload_libraries = 'pg_readonly';
+```
 
 
 **Create Extension**:

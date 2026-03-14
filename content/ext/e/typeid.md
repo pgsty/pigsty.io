@@ -11,7 +11,7 @@ weight: 4580
     <div class="ext-card__title">blitss/typeid-postgres</div>
     <div class="ext-card__desc">https://github.com/blitss/typeid-postgres</div>
   </a>
-  <a class="ext-card ext-card--source" href="typeid-postgres-0.3.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/typeid-postgres-0.3.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">typeid-postgres-0.3.0.tar.gz</div>
     <div class="ext-card__desc">typeid-postgres-0.3.0.tar.gz</div>

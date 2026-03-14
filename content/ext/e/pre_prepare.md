@@ -11,7 +11,7 @@ weight: 5170
     <div class="ext-card__title">dimitri/preprepare</div>
     <div class="ext-card__desc">https://github.com/dimitri/preprepare</div>
   </a>
-  <a class="ext-card ext-card--source" href="preprepare-0.9.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/preprepare-0.9.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">preprepare-0.9.tar.gz</div>
     <div class="ext-card__desc">preprepare-0.9.tar.gz</div>

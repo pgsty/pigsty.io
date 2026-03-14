@@ -11,7 +11,7 @@ weight: 4750
     <div class="ext-card__title">pjungwir/aggs_for_arrays</div>
     <div class="ext-card__desc">https://github.com/pjungwir/aggs_for_arrays</div>
   </a>
-  <a class="ext-card ext-card--source" href="aggs_for_arrays-1.3.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/aggs_for_arrays-1.3.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">aggs_for_arrays-1.3.3.tar.gz</div>
     <div class="ext-card__desc">aggs_for_arrays-1.3.3.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 1580
     <div class="ext-card__title">aiyou178/pg_eviltransform</div>
     <div class="ext-card__desc">https://github.com/aiyou178/pg_eviltransform</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_eviltransform-0.0.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_eviltransform-0.0.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_eviltransform-0.0.2.tar.gz</div>
     <div class="ext-card__desc">pg_eviltransform-0.0.2.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 1580
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 1580  | [**`pg_eviltransform`**](/ext/e/pg_eviltransform) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | `eviltransform_internal` |
+| 1580  | [**`pg_eviltransform`**](/ext/e/pg_eviltransform) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | `eviltransform_internal` |
 {.ext-table}
 
 | **Related** | [`postgis`](/ext/e/postgis) [`postgis`](/ext/e/postgis) [`pgrouting`](/ext/e/pgrouting) [`pg_geohash`](/ext/e/pg_geohash) [`h3`](/ext/e/h3) [`q3c`](/ext/e/q3c) [`earthdistance`](/ext/e/earthdistance) [`tzf`](/ext/e/tzf) [`geoip`](/ext/e/geoip) |

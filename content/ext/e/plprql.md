@@ -11,7 +11,7 @@ weight: 3040
     <div class="ext-card__title">kaspermarstal/plprql</div>
     <div class="ext-card__desc">https://github.com/kaspermarstal/plprql</div>
   </a>
-  <a class="ext-card ext-card--source" href="plprql-18.0.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/plprql-18.0.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">plprql-18.0.1.tar.gz</div>
     <div class="ext-card__desc">plprql-18.0.1.tar.gz</div>

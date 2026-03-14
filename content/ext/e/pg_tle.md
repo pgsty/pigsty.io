@@ -11,7 +11,7 @@ weight: 3000
     <div class="ext-card__title">aws/pg_tle</div>
     <div class="ext-card__desc">https://github.com/aws/pg_tle</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_tle-1.5.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_tle-1.5.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_tle-1.5.2.tar.gz</div>
     <div class="ext-card__desc">pg_tle-1.5.2.tar.gz</div>

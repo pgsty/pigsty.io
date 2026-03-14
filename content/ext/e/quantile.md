@@ -11,7 +11,7 @@ weight: 4610
     <div class="ext-card__title">tvondra/quantile</div>
     <div class="ext-card__desc">https://github.com/tvondra/quantile</div>
   </a>
-  <a class="ext-card ext-card--source" href="quantile-1.1.8.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/quantile-1.1.8.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">quantile-1.1.8.tar.gz</div>
     <div class="ext-card__desc">quantile-1.1.8.tar.gz</div>

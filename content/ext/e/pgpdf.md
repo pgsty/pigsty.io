@@ -11,7 +11,7 @@ weight: 3530
     <div class="ext-card__title">Florents-Tselai/pgpdf</div>
     <div class="ext-card__desc">https://github.com/Florents-Tselai/pgpdf</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgpdf-0.1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgpdf-0.1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgpdf-0.1.0.tar.gz</div>
     <div class="ext-card__desc">pgpdf-0.1.0.tar.gz</div>

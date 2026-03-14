@@ -11,7 +11,7 @@ weight: 6000
     <div class="ext-card__title">zubkov-andrei/pg_profile</div>
     <div class="ext-card__desc">https://github.com/zubkov-andrei/pg_profile</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_profile-4.11.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_profile-4.11.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_profile-4.11.tar.gz</div>
     <div class="ext-card__desc">pg_profile-4.11.tar.gz</div>

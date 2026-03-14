@@ -11,7 +11,7 @@ weight: 4620
     <div class="ext-card__title">tvondra/lower_quantile</div>
     <div class="ext-card__desc">https://github.com/tvondra/lower_quantile</div>
   </a>
-  <a class="ext-card ext-card--source" href="lower_quantile-1.0.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/lower_quantile-1.0.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">lower_quantile-1.0.3.tar.gz</div>
     <div class="ext-card__desc">lower_quantile-1.0.3.tar.gz</div>

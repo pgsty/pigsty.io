@@ -11,7 +11,7 @@ weight: 4290
     <div class="ext-card__title">mkaski/pg_render</div>
     <div class="ext-card__desc">https://github.com/mkaski/pg_render</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_render-0.1.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_render-0.1.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_render-0.1.3.tar.gz</div>
     <div class="ext-card__desc">pg_render-0.1.3.tar.gz</div>

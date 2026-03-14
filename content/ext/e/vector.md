@@ -11,7 +11,7 @@ weight: 1800
     <div class="ext-card__title">pgvector/pgvector</div>
     <div class="ext-card__desc">https://github.com/pgvector/pgvector</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgvector-0.8.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgvector-0.8.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgvector-0.8.2.tar.gz</div>
     <div class="ext-card__desc">pgvector-0.8.2.tar.gz</div>

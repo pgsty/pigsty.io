@@ -11,7 +11,7 @@ weight: 9660
     <div class="ext-card__title">main/decoder_raw</div>
     <div class="ext-card__desc">https://github.com/michaelpq/pg_plugins/blob/main/decoder_raw/</div>
   </a>
-  <a class="ext-card ext-card--source" href="decoder_raw-1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/decoder_raw-1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">decoder_raw-1.0.tar.gz</div>
     <div class="ext-card__desc">decoder_raw-1.0.tar.gz</div>

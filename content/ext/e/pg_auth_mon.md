@@ -11,7 +11,7 @@ weight: 7150
     <div class="ext-card__title">RafiaSabih/pg_auth_mon</div>
     <div class="ext-card__desc">https://github.com/RafiaSabih/pg_auth_mon</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_auth_mon-3.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_auth_mon-3.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_auth_mon-3.0.tar.gz</div>
     <div class="ext-card__desc">pg_auth_mon-3.0.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 7150
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 7150  | [**`pg_auth_mon`**](/ext/e/pg_auth_mon) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 7150  | [**`pg_auth_mon`**](/ext/e/pg_auth_mon) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`passwordcheck_cracklib`](/ext/e/passwordcheck_cracklib) [`pgaudit`](/ext/e/pgaudit) [`pgauditlogtofile`](/ext/e/pgauditlogtofile) [`login_hook`](/ext/e/login_hook) [`auth_delay`](/ext/e/auth_delay) [`credcheck`](/ext/e/credcheck) [`logerrors`](/ext/e/logerrors) [`set_user`](/ext/e/set_user) |
@@ -196,6 +196,13 @@ apt install -y postgresql-14-pg-auth-mon   # PG 14
 ```
 {{% /tab %}}
 {{< /tabpane >}}
+
+
+**Preload**:
+
+```bash
+shared_preload_libraries = 'pg_auth_mon';
+```
 
 
 **Create Extension**:

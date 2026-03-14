@@ -11,7 +11,7 @@ weight: 2120
     <div class="ext-card__title">pgbigm/pg_bigm</div>
     <div class="ext-card__desc">https://github.com/pgbigm/pg_bigm</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_bigm-1.2-20250903.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_bigm-1.2-20250903.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_bigm-1.2-20250903.tar.gz</div>
     <div class="ext-card__desc">pg_bigm-1.2-20250903.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 2120
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 2120  | [**`pg_bigm`**](/ext/e/pg_bigm) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 2120  | [**`pg_bigm`**](/ext/e/pg_bigm) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`pg_search`](/ext/e/pg_search) [`pgroonga`](/ext/e/pgroonga) [`zhparser`](/ext/e/zhparser) [`pg_trgm`](/ext/e/pg_trgm) [`pgroonga_database`](/ext/e/pgroonga_database) [`pg_tokenizer`](/ext/e/pg_tokenizer) [`fuzzystrmatch`](/ext/e/fuzzystrmatch) [`rum`](/ext/e/rum) |
@@ -263,6 +263,13 @@ apt install -y postgresql-14-pg-bigm   # PG 14
 ```
 {{% /tab %}}
 {{< /tabpane >}}
+
+
+**Preload**:
+
+```bash
+shared_preload_libraries = 'pg_bigm';
+```
 
 
 **Create Extension**:

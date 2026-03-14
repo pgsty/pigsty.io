@@ -11,7 +11,7 @@ weight: 9510
     <div class="ext-card__title">enova/pglogical_ticker</div>
     <div class="ext-card__desc">https://github.com/enova/pglogical_ticker</div>
   </a>
-  <a class="ext-card ext-card--source" href="pglogical_ticker-1.4.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pglogical_ticker-1.4.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pglogical_ticker-1.4.1.tar.gz</div>
     <div class="ext-card__desc">pglogical_ticker-1.4.1.tar.gz</div>

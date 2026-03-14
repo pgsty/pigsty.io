@@ -11,7 +11,7 @@ weight: 8500
     <div class="ext-card__title">supabase/wrappers</div>
     <div class="ext-card__desc">https://github.com/supabase/wrappers</div>
   </a>
-  <a class="ext-card ext-card--source" href="wrappers-0.5.7.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/wrappers-0.5.7.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">wrappers-0.5.7.tar.gz</div>
     <div class="ext-card__desc">wrappers-0.5.7.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 8500
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 8500  | [**`wrappers`**](/ext/e/wrappers) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 8500  | [**`wrappers`**](/ext/e/wrappers) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`multicorn`](/ext/e/multicorn) [`odbc_fdw`](/ext/e/odbc_fdw) [`jdbc_fdw`](/ext/e/jdbc_fdw) [`pgspider_ext`](/ext/e/pgspider_ext) |

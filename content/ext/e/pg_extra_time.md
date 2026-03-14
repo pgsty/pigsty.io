@@ -11,7 +11,7 @@ weight: 4220
     <div class="ext-card__title">bigsmoke/pg_extra_time</div>
     <div class="ext-card__desc">https://github.com/bigsmoke/pg_extra_time</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_extra_time-2.0.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_extra_time-2.0.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_extra_time-2.0.0.tar.gz</div>
     <div class="ext-card__desc">pg_extra_time-2.0.0.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 4220
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 4220  | [**`pg_extra_time`**](/ext/e/pg_extra_time) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 4220  | [**`pg_extra_time`**](/ext/e/pg_extra_time) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`pgsql_tweaks`](/ext/e/pgsql_tweaks) [`periods`](/ext/e/periods) [`temporal_tables`](/ext/e/temporal_tables) [`pg_cron`](/ext/e/pg_cron) [`gzip`](/ext/e/gzip) [`bzip`](/ext/e/bzip) [`zstd`](/ext/e/zstd) [`http`](/ext/e/http) |

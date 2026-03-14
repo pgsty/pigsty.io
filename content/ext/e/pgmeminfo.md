@@ -11,7 +11,7 @@ weight: 6520
     <div class="ext-card__title">okbob/pgmeminfo</div>
     <div class="ext-card__desc">https://github.com/okbob/pgmeminfo</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgmeminfo-VERSION_1_0_0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgmeminfo-VERSION_1_0_0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgmeminfo-VERSION_1_0_0.tar.gz</div>
     <div class="ext-card__desc">pgmeminfo-VERSION_1_0_0.tar.gz</div>

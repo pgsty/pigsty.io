@@ -11,7 +11,7 @@ weight: 3600
     <div class="ext-card__title">adjust/pg-country</div>
     <div class="ext-card__desc">https://github.com/adjust/pg-country</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg-country-0.0.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg-country-0.0.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg-country-0.0.3.tar.gz</div>
     <div class="ext-card__desc">pg-country-0.0.3.tar.gz</div>

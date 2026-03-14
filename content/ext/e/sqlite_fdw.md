@@ -11,7 +11,7 @@ weight: 8640
     <div class="ext-card__title">pgspider/sqlite_fdw</div>
     <div class="ext-card__desc">https://github.com/pgspider/sqlite_fdw</div>
   </a>
-  <a class="ext-card ext-card--source" href="sqlite_fdw-2.5.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/sqlite_fdw-2.5.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">sqlite_fdw-2.5.0.tar.gz</div>
     <div class="ext-card__desc">sqlite_fdw-2.5.0.tar.gz</div>

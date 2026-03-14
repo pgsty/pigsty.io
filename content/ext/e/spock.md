@@ -11,7 +11,7 @@ weight: 9560
     <div class="ext-card__title">pgEdge/spock</div>
     <div class="ext-card__desc">https://github.com/pgEdge/spock</div>
   </a>
-  <a class="ext-card ext-card--source" href="spock-5.0.5.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/spock-5.0.5.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">spock-5.0.5.tar.gz</div>
     <div class="ext-card__desc">spock-5.0.5.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 3580
     <div class="ext-card__title">cybertec-postgresql/pgfaceting</div>
     <div class="ext-card__desc">https://github.com/cybertec-postgresql/pgfaceting</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgfaceting-0.2.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgfaceting-0.2.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgfaceting-0.2.0.tar.gz</div>
     <div class="ext-card__desc">pgfaceting-0.2.0.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 3580
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 3580  | [**`pgfaceting`**](/ext/e/pgfaceting) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | `faceting` |
+| 3580  | [**`pgfaceting`**](/ext/e/pgfaceting) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `faceting` |
 {.ext-table}
 
 | **Related** | [`roaringbitmap`](/ext/e/roaringbitmap) [`pg_trgm`](/ext/e/pg_trgm) [`rum`](/ext/e/rum) [`prefix`](/ext/e/prefix) [`semver`](/ext/e/semver) [`unit`](/ext/e/unit) [`pgpdf`](/ext/e/pgpdf) [`pglite_fusion`](/ext/e/pglite_fusion) [`md5hash`](/ext/e/md5hash) |

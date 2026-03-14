@@ -11,7 +11,7 @@ weight: 9830
     <div class="ext-card__title">ossc-db/pg_bulkload</div>
     <div class="ext-card__desc">https://github.com/ossc-db/pg_bulkload</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_bulkload-VERSION3_1_23.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_bulkload-VERSION3_1_23.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_bulkload-VERSION3_1_23.tar.gz</div>
     <div class="ext-card__desc">pg_bulkload-VERSION3_1_23.tar.gz</div>

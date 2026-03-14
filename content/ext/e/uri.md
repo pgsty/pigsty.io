@@ -11,7 +11,7 @@ weight: 3840
     <div class="ext-card__title">petere/pguri</div>
     <div class="ext-card__desc">https://github.com/petere/pguri</div>
   </a>
-  <a class="ext-card ext-card--source" href="pguri-1.20251029.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pguri-1.20251029.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pguri-1.20251029.tar.gz</div>
     <div class="ext-card__desc">pguri-1.20251029.tar.gz</div>

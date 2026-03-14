@@ -11,7 +11,7 @@ weight: 9110
     <div class="ext-card__title">darold/pgtt</div>
     <div class="ext-card__desc">https://github.com/darold/pgtt</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgtt-4.4.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgtt-4.4.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgtt-4.4.tar.gz</div>
     <div class="ext-card__desc">pgtt-4.4.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 9110
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 9110  | [**`pgtt`**](/ext/e/pgtt) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 9110  | [**`pgtt`**](/ext/e/pgtt) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `pgtt_schema` |
 {.ext-table}
 
 | **Related** | [`oracle_fdw`](/ext/e/oracle_fdw) [`orafce`](/ext/e/orafce) [`session_variable`](/ext/e/session_variable) [`pg_statement_rollback`](/ext/e/pg_statement_rollback) [`pg_dbms_metadata`](/ext/e/pg_dbms_metadata) [`pg_dbms_lock`](/ext/e/pg_dbms_lock) [`pg_dbms_job`](/ext/e/pg_dbms_job) [`periods`](/ext/e/periods) |
@@ -320,6 +320,13 @@ apt install -y postgresql-14-pgtt   # PG 14
 ```
 {{% /tab %}}
 {{< /tabpane >}}
+
+
+**Preload**:
+
+```bash
+shared_preload_libraries = 'pgtt';
+```
 
 
 **Create Extension**:

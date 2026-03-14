@@ -11,7 +11,7 @@ weight: 3850
     <div class="ext-card__title">petere/pgemailaddr</div>
     <div class="ext-card__desc">https://github.com/petere/pgemailaddr</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgemailaddr-0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgemailaddr-0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgemailaddr-0.tar.gz</div>
     <div class="ext-card__desc">pgemailaddr-0.tar.gz</div>

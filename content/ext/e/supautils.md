@@ -11,7 +11,7 @@ weight: 7010
     <div class="ext-card__title">supabase/supautils</div>
     <div class="ext-card__desc">https://github.com/supabase/supautils</div>
   </a>
-  <a class="ext-card ext-card--source" href="supautils-3.1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/supautils-3.1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">supautils-3.1.0.tar.gz</div>
     <div class="ext-card__desc">supautils-3.1.0.tar.gz</div>

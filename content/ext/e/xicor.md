@@ -11,7 +11,7 @@ weight: 4670
     <div class="ext-card__title">Florents-Tselai/pgxicor</div>
     <div class="ext-card__desc">https://github.com/Florents-Tselai/pgxicor</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgxicor-0.1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgxicor-0.1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgxicor-0.1.0.tar.gz</div>
     <div class="ext-card__desc">pgxicor-0.1.0.tar.gz</div>

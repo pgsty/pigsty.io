@@ -5,11 +5,11 @@ description: "PostgreSQL extensions with dependency relationships"
 weight: 30
 ---
 
-**85** extensions depend on other extensions, **57** extensions are depended upon by others.
+**93** extensions depend on other extensions, **58** extensions are depended upon by others.
 
 ## Upstream Dependencies
 
-The following **85** extensions require other extensions to be installed first:
+The following **93** extensions require other extensions to be installed first:
 
 | **Extension** | **Requires** | **Description** |
 |:-----------|:-------------|:---------|
@@ -22,7 +22,7 @@ The following **85** extensions require other extensions to be installed first:
 | [`postgis_raster`](/ext/e/postgis_raster) | [`postgis`](/ext/e/postgis) | PostGIS raster types and functions |
 | [`postgis_sfcgal`](/ext/e/postgis_sfcgal) | [`postgis`](/ext/e/postgis) | PostGIS SFCGAL functions |
 | [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) | [`postgis`](/ext/e/postgis) [`fuzzystrmatch`](/ext/e/fuzzystrmatch) | PostGIS tiger geocoder and reverse geocoder |
-| [`pgrouting`](/ext/e/pgrouting) | [`postgis`](/ext/e/postgis) | pgRouting Extension |
+| [`pgrouting`](/ext/e/pgrouting) | [`plpgsql`](/ext/e/plpgsql) [`postgis`](/ext/e/postgis) | pgRouting Extension |
 | [`pointcloud_postgis`](/ext/e/pointcloud_postgis) | [`postgis`](/ext/e/postgis) [`pointcloud`](/ext/e/pointcloud) | integration for pointcloud LIDAR data and PostGIS geometry data |
 | [`h3_postgis`](/ext/e/h3_postgis) | [`h3`](/ext/e/h3) [`postgis`](/ext/e/postgis) [`postgis_raster`](/ext/e/postgis_raster) | H3 PostGIS integration |
 | [`geoip`](/ext/e/geoip) | [`ip4r`](/ext/e/ip4r) | IP-based geolocation query |
@@ -36,6 +36,8 @@ The following **85** extensions require other extensions to be installed first:
 | [`pg4ml`](/ext/e/pg4ml) | [`plpgsql`](/ext/e/plpgsql) [`tablefunc`](/ext/e/tablefunc) [`cube`](/ext/e/cube) [`plpython3u`](/ext/e/plpython3u) | Machine learning framework for PostgreSQL |
 | [`biscuit`](/ext/e/biscuit) | [`plpgsql`](/ext/e/plpgsql) | IAM-LIKE pattern matching with bitmap indexing |
 | [`pg_mooncake`](/ext/e/pg_mooncake) | [`pg_duckdb`](/ext/e/pg_duckdb) | Columnstore Table in Postgres |
+| [`pg_partman`](/ext/e/pg_partman) | [`plpgsql`](/ext/e/plpgsql) | Extension to manage partitioned tables by time or ID |
+| [`index_advisor`](/ext/e/index_advisor) | [`hypopg`](/ext/e/hypopg) | Query index advisor |
 | [`pg_incremental`](/ext/e/pg_incremental) | [`pg_cron`](/ext/e/pg_cron) | Incremental Processing by Crunchy Data |
 | [`pgmb`](/ext/e/pgmb) | [`pg_cron`](/ext/e/pg_cron) [`http`](/ext/e/http) | A simple PostgreSQL Message Broker system |
 | [`omni_auth`](/ext/e/omni_auth) | [`omni_types`](/ext/e/omni_types) [`omni_id`](/ext/e/omni_id) [`pgcrypto`](/ext/e/pgcrypto) [`btree_gist`](/ext/e/btree_gist) [`omni_polyfill`](/ext/e/omni_polyfill) | Basic session management |
@@ -57,20 +59,23 @@ The following **85** extensions require other extensions to be installed first:
 | [`hstore_pllua`](/ext/e/hstore_pllua) | [`hstore`](/ext/e/hstore) [`pllua`](/ext/e/pllua) | Hstore transform for Lua |
 | [`hstore_plluau`](/ext/e/hstore_plluau) | [`hstore`](/ext/e/hstore) [`plluau`](/ext/e/plluau) | Hstore transform for untrusted Lua |
 | [`plpgsql_check`](/ext/e/plpgsql_check) | [`plpgsql`](/ext/e/plpgsql) | extended check for plpgsql functions |
+| [`pgtap`](/ext/e/pgtap) | [`plpgsql`](/ext/e/plpgsql) | Unit testing for PostgreSQL |
 | [`plperl`](/ext/e/plperl) | [`plperl`](/ext/e/plperl) | PL/Perl procedural language |
 | [`bool_plperl`](/ext/e/bool_plperl) | [`plperl`](/ext/e/plperl) | transform between bool and plperl |
-| [`hstore_plperl`](/ext/e/hstore_plperl) | [`plperl`](/ext/e/plperl) | transform between hstore and plperl |
+| [`hstore_plperl`](/ext/e/hstore_plperl) | [`hstore`](/ext/e/hstore) [`plperl`](/ext/e/plperl) | transform between hstore and plperl |
 | [`jsonb_plperl`](/ext/e/jsonb_plperl) | [`plperl`](/ext/e/plperl) | transform between jsonb and plperl |
 | [`plperlu`](/ext/e/plperlu) | [`plperlu`](/ext/e/plperlu) | PL/PerlU untrusted procedural language |
 | [`bool_plperlu`](/ext/e/bool_plperlu) | [`plperlu`](/ext/e/plperlu) | transform between bool and plperlu |
 | [`jsonb_plperlu`](/ext/e/jsonb_plperlu) | [`plperlu`](/ext/e/plperlu) | transform between jsonb and plperlu |
-| [`hstore_plperlu`](/ext/e/hstore_plperlu) | [`plperlu`](/ext/e/plperlu) | transform between hstore and plperlu |
+| [`hstore_plperlu`](/ext/e/hstore_plperlu) | [`hstore`](/ext/e/hstore) [`plperlu`](/ext/e/plperlu) | transform between hstore and plperlu |
 | [`jsonb_plpython3u`](/ext/e/jsonb_plpython3u) | [`plpython3u`](/ext/e/plpython3u) | transform between jsonb and plpython3u |
 | [`ltree_plpython3u`](/ext/e/ltree_plpython3u) | [`ltree`](/ext/e/ltree) [`plpython3u`](/ext/e/plpython3u) | transform between ltree and plpython3u |
 | [`hstore_plpython3u`](/ext/e/hstore_plpython3u) | [`hstore`](/ext/e/hstore) [`plpython3u`](/ext/e/plpython3u) | transform between hstore and plpython3u |
 | [`unit`](/ext/e/unit) | [`plpgsql`](/ext/e/plpgsql) | SI units extension |
 | [`pgfaceting`](/ext/e/pgfaceting) | [`roaringbitmap`](/ext/e/roaringbitmap) | fast faceting queries using an inverted index |
+| [`pg_xenophile`](/ext/e/pg_xenophile) | [`hstore`](/ext/e/hstore) | More than the bare necessities for PostgreSQL i18n and l10n. |
 | [`l10n_table_dependent_extension`](/ext/e/l10n_table_dependent_extension) | [`pg_xenophile`](/ext/e/pg_xenophile) | PostgreSQL l10n toolbox |
+| [`currency`](/ext/e/currency) | [`plpgsql`](/ext/e/plpgsql) | Custom PostgreSQL currency type in 1Byte |
 | [`pgjwt`](/ext/e/pgjwt) | [`pgcrypto`](/ext/e/pgcrypto) | JSON Web Token API for Postgresql |
 | [`pg_readme`](/ext/e/pg_readme) | [`hstore`](/ext/e/hstore) | Generate a README.md document for a database extension or schema |
 | [`pg_readme_test_extension`](/ext/e/pg_readme_test_extension) | [`hstore`](/ext/e/hstore) | Test generating a README.md document for extension or schema |
@@ -80,15 +85,18 @@ The following **85** extensions require other extensions to be installed first:
 | [`sparql`](/ext/e/sparql) | [`plperl`](/ext/e/plperl) [`plperlu`](/ext/e/plperlu) | Query SPARQL datasource with SQL |
 | [`pgautofailover`](/ext/e/pgautofailover) | [`btree_gist`](/ext/e/btree_gist) | pg_auto_failover |
 | [`pg_upless`](/ext/e/pg_upless) | [`plpgsql`](/ext/e/plpgsql) | Detect Useless UPDATE |
+| [`pgcozy`](/ext/e/pgcozy) | [`pg_buffercache`](/ext/e/pg_buffercache) [`pg_prewarm`](/ext/e/pg_prewarm) | Pre-warming shared buffers according to previous pg_buffercache snapshots for PostgreSQL. |
 | [`pg_drop_events`](/ext/e/pg_drop_events) | [`plpgsql`](/ext/e/plpgsql) | logs transaction ids of drop table, drop column, drop materialized view statements |
 | [`pg_profile`](/ext/e/pg_profile) | [`dblink`](/ext/e/dblink) [`plpgsql`](/ext/e/plpgsql) | PostgreSQL load profile repository and report builder |
 | [`pg_stat_kcache`](/ext/e/pg_stat_kcache) | [`pg_stat_statements`](/ext/e/pg_stat_statements) | Kernel statistics gathering |
 | [`pg_sqlog`](/ext/e/pg_sqlog) | [`file_fdw`](/ext/e/file_fdw) | Provide SQL interface to logs |
 | [`powa`](/ext/e/powa) | [`plpgsql`](/ext/e/plpgsql) [`pg_stat_statements`](/ext/e/pg_stat_statements) [`btree_gist`](/ext/e/btree_gist) | PostgreSQL Workload Analyser-core |
 | [`supabase_vault`](/ext/e/supabase_vault) | [`pgsodium`](/ext/e/pgsodium) | Supabase Vault Extension |
+| [`pg_auditor`](/ext/e/pg_auditor) | [`hstore`](/ext/e/hstore) | Audit data changes and provide flashback ability |
 | [`pg_jobmon`](/ext/e/pg_jobmon) | [`dblink`](/ext/e/dblink) | Extension for logging and monitoring functions in PostgreSQL |
 | [`pgcryptokey`](/ext/e/pgcryptokey) | [`pgcrypto`](/ext/e/pgcrypto) | cryptographic key management |
-| [`documentdb`](/ext/e/documentdb) | [`documentdb_core`](/ext/e/documentdb_core) [`pg_cron`](/ext/e/pg_cron) [`tsm_system_rows`](/ext/e/tsm_system_rows) [`vector`](/ext/e/vector) [`postgis`](/ext/e/postgis) [`rum`](/ext/e/rum) | API surface for DocumentDB for PostgreSQL |
+| [`pgbouncer_fdw`](/ext/e/pgbouncer_fdw) | [`dblink`](/ext/e/dblink) | Extension for querying PgBouncer stats from normal SQL views & running pgbouncer commands from normal SQL functions |
+| [`documentdb`](/ext/e/documentdb) | [`documentdb_core`](/ext/e/documentdb_core) [`pg_cron`](/ext/e/pg_cron) [`postgis`](/ext/e/postgis) [`tsm_system_rows`](/ext/e/tsm_system_rows) [`vector`](/ext/e/vector) | API surface for DocumentDB for PostgreSQL |
 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | [`citus`](/ext/e/citus) [`documentdb_core`](/ext/e/documentdb_core) [`documentdb`](/ext/e/documentdb) | Multi-Node API surface for DocumentDB |
 | [`ora_btree_gin`](/ext/e/ora_btree_gin) | [`ivorysql_ora`](/ext/e/ivorysql_ora) | Support for indexing oracle datatypes in GIN |
 | [`ora_btree_gist`](/ext/e/ora_btree_gist) | [`ivorysql_ora`](/ext/e/ivorysql_ora) | Support for oracle indexing common datatypes in GiST |
@@ -102,12 +110,12 @@ The following **85** extensions require other extensions to be installed first:
 
 ## Downstream Dependencies
 
-The following **57** extensions are depended upon by other extensions:
+The following **58** extensions are depended upon by other extensions:
 
 | **Extension** | **Required By** | **Description** |
 |:-----------|:-------------|:---------|
 | [`pg_cron`](/ext/e/pg_cron) | [`documentdb`](/ext/e/documentdb) [`pg_incremental`](/ext/e/pg_incremental) [`timeseries`](/ext/e/timeseries) [`vectorize`](/ext/e/vectorize) [`pgmb`](/ext/e/pgmb) | Job scheduler for PostgreSQL |
-| [`postgis`](/ext/e/postgis) | [`documentdb`](/ext/e/documentdb) [`h3_postgis`](/ext/e/h3_postgis) [`mobilitydb`](/ext/e/mobilitydb) [`pgrouting`](/ext/e/pgrouting) [`pointcloud_postgis`](/ext/e/pointcloud_postgis) [`postgis_raster`](/ext/e/postgis_raster) [`postgis_sfcgal`](/ext/e/postgis_sfcgal) [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) [`postgis_topology`](/ext/e/postgis_topology) | PostGIS geometry and geography spatial types and functions |
+| [`postgis`](/ext/e/postgis) | [`documentdb`](/ext/e/documentdb) [`h3_postgis`](/ext/e/h3_postgis) [`mobilitydb`](/ext/e/mobilitydb) [`pgrouting`](/ext/e/pgrouting) [`pointcloud_postgis`](/ext/e/pointcloud_postgis) [`postgis_raster`](/ext/e/postgis_raster) [`postgis_sfcgal`](/ext/e/postgis_sfcgal) [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) [`postgis_topology`](/ext/e/postgis_topology) [`pg_eviltransform`](/ext/e/pg_eviltransform) | PostGIS geometry and geography spatial types and functions |
 | [`postgis_raster`](/ext/e/postgis_raster) | [`h3_postgis`](/ext/e/h3_postgis) | PostGIS raster types and functions |
 | [`pointcloud`](/ext/e/pointcloud) | [`pointcloud_postgis`](/ext/e/pointcloud_postgis) | data type for lidar point clouds |
 | [`h3`](/ext/e/h3) | [`h3_postgis`](/ext/e/h3_postgis) | H3 bindings for PostgreSQL |
@@ -147,6 +155,7 @@ The following **57** extensions are depended upon by other extensions:
 | [`cube`](/ext/e/cube) | [`earthdistance`](/ext/e/earthdistance) [`pg4ml`](/ext/e/pg4ml) | data type for multidimensional cubes |
 | [`ltree`](/ext/e/ltree) | [`ltree_plpython3u`](/ext/e/ltree_plpython3u) | data type for hierarchical tree-like structures |
 | [`hstore`](/ext/e/hstore) | [`hstore_pllua`](/ext/e/hstore_pllua) [`hstore_plluau`](/ext/e/hstore_plluau) [`hstore_plpython3u`](/ext/e/hstore_plpython3u) [`pg_readme`](/ext/e/pg_readme) [`pg_readme_test_extension`](/ext/e/pg_readme_test_extension) | data type for storing sets of (key, value) pairs |
+| [`pg_net`](/ext/e/pg_net) | [`pgmb`](/ext/e/pgmb) | Async HTTP Requests |
 | [`ddl_historization`](/ext/e/ddl_historization) | [`schedoc`](/ext/e/schedoc) | Historize the ddl changes inside PostgreSQL database |
 | [`tsm_system_rows`](/ext/e/tsm_system_rows) | [`documentdb`](/ext/e/documentdb) | TABLESAMPLE method which accepts number of rows as a limit |
 | [`uuid-ossp`](/ext/e/uuid-ossp) | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | generate universally unique identifiers (UUIDs) |

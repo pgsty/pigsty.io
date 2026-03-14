@@ -11,7 +11,7 @@ weight: 8730
     <div class="ext-card__title">adjust/kafka_fdw</div>
     <div class="ext-card__desc">https://github.com/adjust/kafka_fdw</div>
   </a>
-  <a class="ext-card ext-card--source" href="kafka_fdw-0.0.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/kafka_fdw-0.0.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">kafka_fdw-0.0.3.tar.gz</div>
     <div class="ext-card__desc">kafka_fdw-0.0.3.tar.gz</div>

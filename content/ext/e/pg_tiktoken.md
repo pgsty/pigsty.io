@@ -11,7 +11,7 @@ weight: 1870
     <div class="ext-card__title">kelvich/pg_tiktoken</div>
     <div class="ext-card__desc">https://github.com/kelvich/pg_tiktoken</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_tiktoken-0.0.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_tiktoken-0.0.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_tiktoken-0.0.1.tar.gz</div>
     <div class="ext-card__desc">pg_tiktoken-0.0.1.tar.gz</div>

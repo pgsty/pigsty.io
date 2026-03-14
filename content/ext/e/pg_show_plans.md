@@ -11,7 +11,7 @@ weight: 6210
     <div class="ext-card__title">cybertec-postgresql/pg_show_plans</div>
     <div class="ext-card__desc">https://github.com/cybertec-postgresql/pg_show_plans</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_show_plans-2.1.7.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_show_plans-2.1.7.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_show_plans-2.1.7.tar.gz</div>
     <div class="ext-card__desc">pg_show_plans-2.1.7.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 6210
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 6210  | [**`pg_show_plans`**](/ext/e/pg_show_plans) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 6210  | [**`pg_show_plans`**](/ext/e/pg_show_plans) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`pg_store_plans`](/ext/e/pg_store_plans) [`explain_ui`](/ext/e/explain_ui) [`auto_explain`](/ext/e/auto_explain) [`pg_stat_statements`](/ext/e/pg_stat_statements) [`pg_hint_plan`](/ext/e/pg_hint_plan) [`pg_stat_monitor`](/ext/e/pg_stat_monitor) [`pg_qualstats`](/ext/e/pg_qualstats) [`pre_prepare`](/ext/e/pre_prepare) |
@@ -233,6 +233,13 @@ apt install -y postgresql-14-show-plans   # PG 14
 ```
 {{% /tab %}}
 {{< /tabpane >}}
+
+
+**Preload**:
+
+```bash
+shared_preload_libraries = 'pg_show_plans';
+```
 
 
 **Create Extension**:

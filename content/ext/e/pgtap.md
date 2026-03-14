@@ -28,7 +28,7 @@ weight: 3200
 | 3200  | [**`pgtap`**](/ext/e/pgtap) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`plpgsql_check`](/ext/e/plpgsql_check) [`plpgsql`](/ext/e/plpgsql) [`pldbgapi`](/ext/e/pldbgapi) [`plprofiler`](/ext/e/plprofiler) [`faker`](/ext/e/faker) [`unit`](/ext/e/unit) [`dbt2`](/ext/e/dbt2) [`plperl`](/ext/e/plperl) |
+| **Related** | [`plpgsql`](/ext/e/plpgsql) [`plpgsql_check`](/ext/e/plpgsql_check) [`plpgsql`](/ext/e/plpgsql) [`pldbgapi`](/ext/e/pldbgapi) [`plprofiler`](/ext/e/plprofiler) [`faker`](/ext/e/faker) [`unit`](/ext/e/unit) [`dbt2`](/ext/e/dbt2) [`plperl`](/ext/e/plperl) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 
@@ -40,7 +40,7 @@ weight: 3200
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#lang) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.3.4` | {{< pgvers "18,17,16,15,14" >}} | `pgtap` | - |
+| [**EXT**](/ext/list#lang) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.3.4` | {{< pgvers "18,17,16,15,14" >}} | `pgtap` | `plpgsql` |
 | [**RPM**](/ext/rpm#lang) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.3.4` | {{< pgvers "18,17,16,15,14" >}} | `pgtap_$v` | - |
 | [**DEB**](/ext/deb#lang) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.3.4` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgtap` | - |
 {.ext-table}
@@ -216,7 +216,7 @@ apt install -y postgresql-14-pgtap   # PG 14
 **Create Extension**:
 
 ```sql
-CREATE EXTENSION pgtap;
+CREATE EXTENSION pgtap CASCADE;  -- requires: plpgsql
 ```
 
 

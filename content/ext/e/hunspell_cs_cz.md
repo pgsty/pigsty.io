@@ -11,7 +11,7 @@ weight: 2270
     <div class="ext-card__title">postgrespro/hunspell_dicts</div>
     <div class="ext-card__desc">https://github.com/postgrespro/hunspell_dicts</div>
   </a>
-  <a class="ext-card ext-card--source" href="hunspell-1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/hunspell-1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">hunspell-1.0.tar.gz</div>
     <div class="ext-card__desc">hunspell-1.0.tar.gz</div>

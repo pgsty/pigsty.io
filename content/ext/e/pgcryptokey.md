@@ -11,7 +11,7 @@ weight: 7320
     <div class="ext-card__title">https://momjian.us/download/pgcryptokey/</div>
     <div class="ext-card__desc">https://momjian.us/download/pgcryptokey/</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgcryptokey-0.85.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgcryptokey-0.85.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgcryptokey-0.85.tar.gz</div>
     <div class="ext-card__desc">pgcryptokey-0.85.tar.gz</div>

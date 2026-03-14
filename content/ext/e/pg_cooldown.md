@@ -11,7 +11,7 @@ weight: 5070
     <div class="ext-card__title">rbergm/pg_cooldown</div>
     <div class="ext-card__desc">https://github.com/rbergm/pg_cooldown</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_cooldown-0.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_cooldown-0.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_cooldown-0.1.tar.gz</div>
     <div class="ext-card__desc">pg_cooldown-0.1.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 5230
     <div class="ext-card__title">csimsek/pgsql-fio</div>
     <div class="ext-card__desc">https://github.com/csimsek/pgsql-fio</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_fio-1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_fio-1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_fio-1.0.tar.gz</div>
     <div class="ext-card__desc">pg_fio-1.0.tar.gz</div>

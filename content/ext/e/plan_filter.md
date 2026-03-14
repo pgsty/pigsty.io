@@ -11,7 +11,7 @@ weight: 2810
     <div class="ext-card__title">pgexperts/pg_plan_filter</div>
     <div class="ext-card__desc">https://github.com/pgexperts/pg_plan_filter</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_plan_filter.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_plan_filter.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_plan_filter.tar.gz</div>
     <div class="ext-card__desc">pg_plan_filter.tar.gz</div>

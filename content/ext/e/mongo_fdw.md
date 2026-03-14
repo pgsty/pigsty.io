@@ -11,7 +11,7 @@ weight: 8700
     <div class="ext-card__title">EnterpriseDB/mongo_fdw</div>
     <div class="ext-card__desc">https://github.com/EnterpriseDB/mongo_fdw</div>
   </a>
-  <a class="ext-card ext-card--source" href="mongo_fdw-REL-5_5_3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/mongo_fdw-REL-5_5_3.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">mongo_fdw-REL-5_5_3.tar.gz</div>
     <div class="ext-card__desc">mongo_fdw-REL-5_5_3.tar.gz</div>

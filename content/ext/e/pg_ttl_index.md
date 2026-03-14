@@ -11,7 +11,7 @@ weight: 2740
     <div class="ext-card__title">ibrahimkarimeddin/postgres-extensions-pg_ttl</div>
     <div class="ext-card__desc">https://github.com/ibrahimkarimeddin/postgres-extensions-pg_ttl</div>
   </a>
-  <a class="ext-card ext-card--source" href="postgres-extensions-pg_ttl-2.0.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/postgres-extensions-pg_ttl-2.0.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">postgres-extensions-pg_ttl-2.0.0.tar.gz</div>
     <div class="ext-card__desc">postgres-extensions-pg_ttl-2.0.0.tar.gz</div>

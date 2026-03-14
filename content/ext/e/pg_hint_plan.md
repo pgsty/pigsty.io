@@ -11,7 +11,7 @@ weight: 2780
     <div class="ext-card__title">ossc-db/pg_hint_plan</div>
     <div class="ext-card__desc">https://github.com/ossc-db/pg_hint_plan</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_hint_plan-REL18_1_8_0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_hint_plan-REL18_1_8_0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_hint_plan-REL18_1_8_0.tar.gz</div>
     <div class="ext-card__desc">pg_hint_plan-REL18_1_8_0.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 2780
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 2780  | [**`pg_hint_plan`**](/ext/e/pg_hint_plan) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `hint_plan` |
+| 2780  | [**`pg_hint_plan`**](/ext/e/pg_hint_plan) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `hint_plan` |
 {.ext-table}
 
 | **Related** | [`pg_show_plans`](/ext/e/pg_show_plans) [`pg_store_plans`](/ext/e/pg_store_plans) [`pg_stat_statements`](/ext/e/pg_stat_statements) [`hypopg`](/ext/e/hypopg) [`pg_qualstats`](/ext/e/pg_qualstats) [`auto_explain`](/ext/e/auto_explain) [`index_advisor`](/ext/e/index_advisor) [`pg_profile`](/ext/e/pg_profile) |
@@ -217,6 +217,13 @@ apt install -y postgresql-14-pg-hint-plan   # PG 14
 ```
 {{% /tab %}}
 {{< /tabpane >}}
+
+
+**Preload**:
+
+```bash
+shared_preload_libraries = 'pg_hint_plan';
+```
 
 
 **Create Extension**:

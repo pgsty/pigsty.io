@@ -11,7 +11,7 @@ weight: 1060
     <div class="ext-card__title">linz/postgresql-tableversion</div>
     <div class="ext-card__desc">https://github.com/linz/postgresql-tableversion</div>
   </a>
-  <a class="ext-card ext-card--source" href="postgresql-tableversion-1.11.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/postgresql-tableversion-1.11.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">postgresql-tableversion-1.11.1.tar.gz</div>
     <div class="ext-card__desc">postgresql-tableversion-1.11.1.tar.gz</div>

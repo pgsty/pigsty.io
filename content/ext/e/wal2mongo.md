@@ -11,7 +11,7 @@ weight: 9640
     <div class="ext-card__title">HighgoSoftware/wal2mongo</div>
     <div class="ext-card__desc">https://github.com/HighgoSoftware/wal2mongo</div>
   </a>
-  <a class="ext-card ext-card--source" href="wal2mongo-1.0.7.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/wal2mongo-1.0.7.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">wal2mongo-1.0.7.tar.gz</div>
     <div class="ext-card__desc">wal2mongo-1.0.7.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 3510
     <div class="ext-card__title">theory/pg-semver</div>
     <div class="ext-card__desc">https://github.com/theory/pg-semver</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg-semver-0.41.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg-semver-0.41.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg-semver-0.41.0.tar.gz</div>
     <div class="ext-card__desc">pg-semver-0.41.0.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 3610
     <div class="ext-card__title">bigsmoke/pg_xenophile</div>
     <div class="ext-card__desc">https://github.com/bigsmoke/pg_xenophile</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_xenophile-0.8.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_xenophile-0.8.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_xenophile-0.8.3.tar.gz</div>
     <div class="ext-card__desc">pg_xenophile-0.8.3.tar.gz</div>
@@ -31,10 +31,10 @@ weight: 3610
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
 | 3610  | [**`pg_xenophile`**](/ext/e/pg_xenophile) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `xeno` |
-| 3611  | [**`l10n_table_dependent_extension`**](/ext/e/l10n_table_dependent_extension) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 3611  | [**`l10n_table_dependent_extension`**](/ext/e/l10n_table_dependent_extension) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`country`](/ext/e/country) [`currency`](/ext/e/currency) [`icu_ext`](/ext/e/icu_ext) [`prefix`](/ext/e/prefix) [`semver`](/ext/e/semver) [`unit`](/ext/e/unit) [`pgpdf`](/ext/e/pgpdf) [`pglite_fusion`](/ext/e/pglite_fusion) |
+| **Related** | [`hstore`](/ext/e/hstore) [`country`](/ext/e/country) [`currency`](/ext/e/currency) [`icu_ext`](/ext/e/icu_ext) [`prefix`](/ext/e/prefix) [`semver`](/ext/e/semver) [`unit`](/ext/e/unit) [`pgpdf`](/ext/e/pgpdf) [`pglite_fusion`](/ext/e/pglite_fusion) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Depended By** | [`l10n_table_dependent_extension`](/ext/e/l10n_table_dependent_extension) |
 {.ext-table .ext-table--rel}
@@ -44,7 +44,7 @@ weight: 3610
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.8.3` | {{< pgvers "18,17,16,15,14" >}} | `pg_xenophile` | - |
+| [**EXT**](/ext/list#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.8.3` | {{< pgvers "18,17,16,15,14" >}} | `pg_xenophile` | `hstore` |
 | [**RPM**](/ext/rpm#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.8.3` | {{< pgvers "18,17,16,15,14" >}} | `pg_xenophile_$v` | - |
 | [**DEB**](/ext/deb#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.8.3` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-xenophile` | - |
 {.ext-table}
@@ -196,7 +196,7 @@ apt install -y postgresql-14-pg-xenophile   # PG 14
 **Create Extension**:
 
 ```sql
-CREATE EXTENSION pg_xenophile;
+CREATE EXTENSION pg_xenophile CASCADE;  -- requires: hstore
 ```
 
 

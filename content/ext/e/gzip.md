@@ -11,7 +11,7 @@ weight: 4010
     <div class="ext-card__title">pramsey/pgsql-gzip</div>
     <div class="ext-card__desc">https://github.com/pramsey/pgsql-gzip</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgsql-gzip-1.0.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgsql-gzip-1.0.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgsql-gzip-1.0.0.tar.gz</div>
     <div class="ext-card__desc">pgsql-gzip-1.0.0.tar.gz</div>

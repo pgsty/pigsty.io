@@ -11,7 +11,7 @@ weight: 2500
     <div class="ext-card__title">lemoineat/pg_fkpart</div>
     <div class="ext-card__desc">https://github.com/lemoineat/pg_fkpart</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_fkpart-1.7.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_fkpart-1.7.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_fkpart-1.7.0.tar.gz</div>
     <div class="ext-card__desc">pg_fkpart-1.7.0.tar.gz</div>

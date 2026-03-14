@@ -6,7 +6,7 @@ weight: 20
 slug: ddl
 ---
 
-The following **26** extensions can be used without running `CREATE EXTENSION`.
+The following **25** extensions can be used without running `CREATE EXTENSION`.
 
 These extensions typically exist as shared libraries (hooks) or standalone tools that take effect through configuration parameters.
 
@@ -25,7 +25,6 @@ These extensions typically exist as shared libraries (hooks) or standalone tools
 | [`auto_explain`](/ext/e/auto_explain) | [`auto_explain`](https://www.postgresql.org/docs/current/auto-explain.html) | `-` | `c-sL---` | Provides a means for logging execution plans of slow statements automatically |
 | [`passwordcheck_cracklib`](/ext/e/passwordcheck_cracklib) | [`passwordcheck_cracklib`](https://github.com/devrimgunduz/passwordcheck_cracklib) | `3.1.0` | `--sL---` | Strengthen PostgreSQL user password checks with cracklib |
 | [`supautils`](/ext/e/supautils) | [`supautils`](https://github.com/supabase/supautils) | `3.1.0` | `--sL---` | Extension that secures a cluster on a cloud environment |
-| [`pg_snakeoil`](/ext/e/pg_snakeoil) | [`pg_snakeoil`](https://github.com/credativ/pg_snakeoil) | `1.4` | `--sL--r` | The PostgreSQL Antivirus |
 | [`pgextwlist`](/ext/e/pgextwlist) | [`pgextwlist`](https://github.com/dimitri/pgextwlist) | `1.19` | `--sL---` | PostgreSQL Extension Whitelisting |
 | [`sepgsql`](/ext/e/sepgsql) | [`sepgsql`](https://www.postgresql.org/docs/current/sepgsql.html) | `-` | `c-sL---` | label-based mandatory access control (MAC) based on SELinux security policy. |
 | [`auth_delay`](/ext/e/auth_delay) | [`auth_delay`](https://www.postgresql.org/docs/current/auth-delay.html) | `-` | `c-sL---` | pause briefly before reporting authentication failure |
@@ -34,7 +33,7 @@ These extensions typically exist as shared libraries (hooks) or standalone tools
 | [`pg_failover_slots`](/ext/e/pg_failover_slots) | [`pg_failover_slots`](https://github.com/EnterpriseDB/pg_failover_slots) | `1.2.0` | `--sL--r` | PG Failover Slots extension |
 | [`wal2json`](/ext/e/wal2json) | [`wal2json`](https://github.com/eulerto/wal2json) | `2.6` | `--s----` | Changing data capture in JSON format |
 | [`wal2mongo`](/ext/e/wal2mongo) | [`wal2mongo`](https://github.com/HighgoSoftware/wal2mongo) | `1.0.7` | `--s----` | PostgreSQL logical decoding output plugin for MongoDB |
-| [`decoderbufs`](/ext/e/decoderbufs) | [`decoderbufs`](https://github.com/debezium/postgres-decoderbufs) | `3.4.1` | `--s----` | Logical decoding plugin that delivers WAL stream changes using a Protocol Buffer format |
+| [`decoderbufs`](/ext/e/decoderbufs) | [`decoderbufs`](https://github.com/debezium/postgres-decoderbufs) | `3.4.1` | `--sL---` | Logical decoding plugin that delivers WAL stream changes using a Protocol Buffer format |
 | [`decoder_raw`](/ext/e/decoder_raw) | [`decoder_raw`](https://github.com/michaelpq/pg_plugins/blob/main/decoder_raw/) | `1.0` | `--s----` | Output plugin for logical replication in Raw SQL format |
 | [`test_decoding`](/ext/e/test_decoding) | [`test_decoding`](https://www.postgresql.org/docs/current/test-decoding.html) | `-` | `c-s----` | SQL-based test/example module for WAL logical decoding |
 | [`pgoutput`](/ext/e/pgoutput) | [`pgoutput`](https://www.postgresql.org/docs/current/protocol-logical-replication.html) | `-` | `c-s----` | Logical Replication output plugin |

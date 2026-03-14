@@ -11,7 +11,7 @@ weight: 2520
     <div class="ext-card__title">plproxy/plproxy</div>
     <div class="ext-card__desc">https://github.com/plproxy/plproxy</div>
   </a>
-  <a class="ext-card ext-card--source" href="plproxy-2.11.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/plproxy-2.11.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">plproxy-2.11.0.tar.gz</div>
     <div class="ext-card__desc">plproxy-2.11.0.tar.gz</div>

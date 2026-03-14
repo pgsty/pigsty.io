@@ -11,7 +11,7 @@ weight: 3550
     <div class="ext-card__title">tvondra/md5hash</div>
     <div class="ext-card__desc">https://github.com/tvondra/md5hash</div>
   </a>
-  <a class="ext-card ext-card--source" href="md5hash-1.0.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/md5hash-1.0.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">md5hash-1.0.1.tar.gz</div>
     <div class="ext-card__desc">md5hash-1.0.1.tar.gz</div>

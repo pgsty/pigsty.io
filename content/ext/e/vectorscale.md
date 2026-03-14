@@ -11,7 +11,7 @@ weight: 1820
     <div class="ext-card__title">timescale/pgvectorscale</div>
     <div class="ext-card__desc">https://github.com/timescale/pgvectorscale</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgvectorscale-0.9.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgvectorscale-0.9.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgvectorscale-0.9.0.tar.gz</div>
     <div class="ext-card__desc">pgvectorscale-0.9.0.tar.gz</div>

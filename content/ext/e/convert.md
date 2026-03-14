@@ -11,7 +11,7 @@ weight: 4850
     <div class="ext-card__title">rustprooflabs/convert</div>
     <div class="ext-card__desc">https://github.com/rustprooflabs/convert</div>
   </a>
-  <a class="ext-card ext-card--source" href="convert-0.1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/convert-0.1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">convert-0.1.0.tar.gz</div>
     <div class="ext-card__desc">convert-0.1.0.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 4850
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 4850  | [**`convert`**](/ext/e/convert) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 4850  | [**`convert`**](/ext/e/convert) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `convert` |
 {.ext-table}
 
 | **Related** | [`unit`](/ext/e/unit) |

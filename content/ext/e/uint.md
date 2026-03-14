@@ -11,7 +11,7 @@ weight: 3730
     <div class="ext-card__title">petere/pguint</div>
     <div class="ext-card__desc">https://github.com/petere/pguint</div>
   </a>
-  <a class="ext-card ext-card--source" href="pguint-1.20250815.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pguint-1.20250815.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pguint-1.20250815.tar.gz</div>
     <div class="ext-card__desc">pguint-1.20250815.tar.gz</div>

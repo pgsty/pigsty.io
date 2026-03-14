@@ -11,7 +11,7 @@ weight: 8540
     <div class="ext-card__title">pgspider/pgspider_ext</div>
     <div class="ext-card__desc">https://github.com/pgspider/pgspider_ext</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgspider_ext-1.3.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgspider_ext-1.3.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgspider_ext-1.3.0.tar.gz</div>
     <div class="ext-card__desc">pgspider_ext-1.3.0.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 4800
     <div class="ext-card__title">adjust/pg-base36</div>
     <div class="ext-card__desc">https://github.com/adjust/pg-base36</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg-base36-1.0.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg-base36-1.0.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg-base36-1.0.0.tar.gz</div>
     <div class="ext-card__desc">pg-base36-1.0.0.tar.gz</div>

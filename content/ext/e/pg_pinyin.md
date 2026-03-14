@@ -11,7 +11,7 @@ weight: 2190
     <div class="ext-card__title">aiyou178/pg_pinyin</div>
     <div class="ext-card__desc">https://github.com/aiyou178/pg_pinyin</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_pinyin-0.0.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_pinyin-0.0.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_pinyin-0.0.2.tar.gz</div>
     <div class="ext-card__desc">pg_pinyin-0.0.2.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 2190
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 2190  | [**`pg_pinyin`**](/ext/e/pg_pinyin) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | `pinyin` |
+| 2190  | [**`pg_pinyin`**](/ext/e/pg_pinyin) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | `pinyin` |
 {.ext-table}
 
 | **Related** | [`zhparser`](/ext/e/zhparser) [`pg_search`](/ext/e/pg_search) [`pg_trgm`](/ext/e/pg_trgm) [`pg_bigm`](/ext/e/pg_bigm) [`pgroonga`](/ext/e/pgroonga) [`pgroonga_database`](/ext/e/pgroonga_database) [`pg_tokenizer`](/ext/e/pg_tokenizer) [`fuzzystrmatch`](/ext/e/fuzzystrmatch) |

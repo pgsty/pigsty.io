@@ -11,7 +11,7 @@ weight: 2830
     <div class="ext-card__title">postgrespro/imgsmlr</div>
     <div class="ext-card__desc">https://github.com/postgrespro/imgsmlr</div>
   </a>
-  <a class="ext-card ext-card--source" href="imgsmlr-1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/imgsmlr-1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">imgsmlr-1.0.tar.gz</div>
     <div class="ext-card__desc">imgsmlr-1.0.tar.gz</div>

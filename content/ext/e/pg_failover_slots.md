@@ -11,7 +11,7 @@ weight: 9530
     <div class="ext-card__title">EnterpriseDB/pg_failover_slots</div>
     <div class="ext-card__desc">https://github.com/EnterpriseDB/pg_failover_slots</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_failover_slots-1.2.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_failover_slots-1.2.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_failover_slots-1.2.0.tar.gz</div>
     <div class="ext-card__desc">pg_failover_slots-1.2.0.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 3830
     <div class="ext-card__title">jkosh44/pg_duration</div>
     <div class="ext-card__desc">https://github.com/jkosh44/pg_duration</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_duration-1.0.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_duration-1.0.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_duration-1.0.2.tar.gz</div>
     <div class="ext-card__desc">pg_duration-1.0.2.tar.gz</div>

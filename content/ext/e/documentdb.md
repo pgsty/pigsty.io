@@ -11,7 +11,7 @@ weight: 9000
     <div class="ext-card__title">documentdb/documentdb</div>
     <div class="ext-card__desc">https://github.com/documentdb/documentdb</div>
   </a>
-  <a class="ext-card ext-card--source" href="documentdb-0.109-0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/documentdb-0.109-0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">documentdb-0.109-0.tar.gz</div>
     <div class="ext-card__desc">documentdb-0.109-0.tar.gz</div>
@@ -36,7 +36,7 @@ weight: 9000
 | 9030  | [**`documentdb_extended_rum`**](/ext/e/documentdb_extended_rum) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`documentdb_core`](/ext/e/documentdb_core) [`pg_cron`](/ext/e/pg_cron) [`tsm_system_rows`](/ext/e/tsm_system_rows) [`vector`](/ext/e/vector) [`postgis`](/ext/e/postgis) [`rum`](/ext/e/rum) [`mongo_fdw`](/ext/e/mongo_fdw) [`wal2mongo`](/ext/e/wal2mongo) [`pg_jsonschema`](/ext/e/pg_jsonschema) [`jsquery`](/ext/e/jsquery) |
+| **Related** | [`documentdb_core`](/ext/e/documentdb_core) [`pg_cron`](/ext/e/pg_cron) [`postgis`](/ext/e/postgis) [`tsm_system_rows`](/ext/e/tsm_system_rows) [`vector`](/ext/e/vector) [`mongo_fdw`](/ext/e/mongo_fdw) [`wal2mongo`](/ext/e/wal2mongo) [`pg_jsonschema`](/ext/e/pg_jsonschema) [`jsquery`](/ext/e/jsquery) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Depended By** | [`documentdb_distributed`](/ext/e/documentdb_distributed) |
 {.ext-table .ext-table--rel}
@@ -46,7 +46,7 @@ weight: 9000
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.109` | {{< pgvers "18,17,16,15" >}} | `documentdb` | `documentdb_core`, `pg_cron`, `tsm_system_rows`, `vector`, `postgis`, `rum` |
+| [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.109` | {{< pgvers "18,17,16,15" >}} | `documentdb` | `documentdb_core`, `pg_cron`, `postgis`, `tsm_system_rows`, `vector` |
 | [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.109` | {{< pgvers "18,17,16,15" >}} | `documentdb_$v` | `postgresql$v-contrib`, `pg_cron_$v`, `pgvector_$v`, `rum_$v` |
 | [**DEB**](/ext/deb#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.109` | {{< pgvers "18,17,16,15" >}} | `postgresql-$v-documentdb` | `postgresql-$v-cron`, `postgresql-$v-pgvector`, `postgresql-$v-rum` |
 {.ext-table}
@@ -196,7 +196,7 @@ shared_preload_libraries = 'pg_documentdb, pg_documentdb_core, pg_cron';
 **Create Extension**:
 
 ```sql
-CREATE EXTENSION documentdb CASCADE;  -- requires: documentdb_core, pg_cron, tsm_system_rows, vector, postgis, rum
+CREATE EXTENSION documentdb CASCADE;  -- requires: documentdb_core, pg_cron, postgis, tsm_system_rows, vector
 ```
 
 

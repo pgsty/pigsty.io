@@ -11,7 +11,7 @@ weight: 3890
     <div class="ext-card__title">optiver/timestamp9</div>
     <div class="ext-card__desc">https://github.com/optiver/timestamp9</div>
   </a>
-  <a class="ext-card ext-card--source" href="timestamp9-timestamp9-1.4.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/timestamp9-timestamp9-1.4.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">timestamp9-timestamp9-1.4.0.tar.gz</div>
     <div class="ext-card__desc">timestamp9-timestamp9-1.4.0.tar.gz</div>

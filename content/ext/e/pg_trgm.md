@@ -25,7 +25,7 @@ weight: 2390
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 2390  | [**`pg_trgm`**](/ext/e/pg_trgm) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 2390  | [**`pg_trgm`**](/ext/e/pg_trgm) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
 | **Related** | [`pg_similarity`](/ext/e/pg_similarity) [`pg_bigm`](/ext/e/pg_bigm) [`fuzzystrmatch`](/ext/e/fuzzystrmatch) [`unaccent`](/ext/e/unaccent) [`smlar`](/ext/e/smlar) [`pgroonga_database`](/ext/e/pgroonga_database) [`rum`](/ext/e/rum) [`citext`](/ext/e/citext) |

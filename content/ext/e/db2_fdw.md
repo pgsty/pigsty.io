@@ -11,7 +11,7 @@ weight: 8630
     <div class="ext-card__title">wolfgangbrandl/db2_fdw</div>
     <div class="ext-card__desc">https://github.com/wolfgangbrandl/db2_fdw</div>
   </a>
-  <a class="ext-card ext-card--source" href="db2_fdw-18.1.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/db2_fdw-18.1.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">db2_fdw-18.1.1.tar.gz</div>
     <div class="ext-card__desc">db2_fdw-18.1.1.tar.gz</div>

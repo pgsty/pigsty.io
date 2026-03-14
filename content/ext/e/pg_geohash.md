@@ -11,7 +11,7 @@ weight: 1590
     <div class="ext-card__title">jistok/pg_geohash</div>
     <div class="ext-card__desc">https://github.com/jistok/pg_geohash</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_geohash-1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_geohash-1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_geohash-1.0.tar.gz</div>
     <div class="ext-card__desc">pg_geohash-1.0.tar.gz</div>

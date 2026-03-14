@@ -11,7 +11,7 @@ weight: 7140
     <div class="ext-card__title">munakoiso/logerrors</div>
     <div class="ext-card__desc">https://github.com/munakoiso/logerrors</div>
   </a>
-  <a class="ext-card ext-card--source" href="logerrors-2.1.5.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/logerrors-2.1.5.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">logerrors-2.1.5.tar.gz</div>
     <div class="ext-card__desc">logerrors-2.1.5.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 7140
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 7140  | [**`logerrors`**](/ext/e/logerrors) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 7140  | [**`logerrors`**](/ext/e/logerrors) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`pgauditlogtofile`](/ext/e/pgauditlogtofile) [`pg_auth_mon`](/ext/e/pg_auth_mon) [`pg_jobmon`](/ext/e/pg_jobmon) [`pg_stat_monitor`](/ext/e/pg_stat_monitor) [`auto_explain`](/ext/e/auto_explain) [`pg_track_settings`](/ext/e/pg_track_settings) [`pgaudit`](/ext/e/pgaudit) [`pgsentinel`](/ext/e/pgsentinel) |
@@ -256,6 +256,13 @@ apt install -y postgresql-14-logerrors   # PG 14
 ```
 {{% /tab %}}
 {{< /tabpane >}}
+
+
+**Preload**:
+
+```bash
+shared_preload_libraries = 'logerrors';
+```
 
 
 **Create Extension**:

@@ -11,7 +11,7 @@ weight: 1880
     <div class="ext-card__title">https://gitee.com/guotiecheng/plpgsql_pg4ml</div>
     <div class="ext-card__desc">https://gitee.com/guotiecheng/plpgsql_pg4ml</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg4ml-2.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg4ml-2.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg4ml-2.0.tar.gz</div>
     <div class="ext-card__desc">pg4ml-2.0.tar.gz</div>

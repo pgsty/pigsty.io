@@ -11,7 +11,7 @@ weight: 2160
     <div class="ext-card__title">tensorchord/pg_tokenizer.rs</div>
     <div class="ext-card__desc">https://github.com/tensorchord/pg_tokenizer.rs</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_tokenizer.rs-0.1.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_tokenizer.rs-0.1.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_tokenizer.rs-0.1.1.tar.gz</div>
     <div class="ext-card__desc">pg_tokenizer.rs-0.1.1.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 2160
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 2160  | [**`pg_tokenizer`**](/ext/e/pg_tokenizer) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | `tokenizer_catalog` |
+| 2160  | [**`pg_tokenizer`**](/ext/e/pg_tokenizer) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `tokenizer_catalog` |
 {.ext-table}
 
 | **Related** | [`pg_search`](/ext/e/pg_search) [`pgroonga`](/ext/e/pgroonga) [`pg_bigm`](/ext/e/pg_bigm) [`zhparser`](/ext/e/zhparser) [`pgroonga_database`](/ext/e/pgroonga_database) [`pg_bestmatch`](/ext/e/pg_bestmatch) [`vchord_bm25`](/ext/e/vchord_bm25) [`pg_trgm`](/ext/e/pg_trgm) |
@@ -192,6 +192,13 @@ apt install -y postgresql-14-pg-tokenizer   # PG 14
 ```
 {{% /tab %}}
 {{< /tabpane >}}
+
+
+**Preload**:
+
+```bash
+shared_preload_libraries = 'pg_tokenizer';
+```
 
 
 **Create Extension**:

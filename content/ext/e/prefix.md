@@ -11,7 +11,7 @@ weight: 3500
     <div class="ext-card__title">dimitri/prefix</div>
     <div class="ext-card__desc">https://github.com/dimitri/prefix</div>
   </a>
-  <a class="ext-card ext-card--source" href="prefix-1.2.10.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/prefix-1.2.10.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">prefix-1.2.10.tar.gz</div>
     <div class="ext-card__desc">prefix-1.2.10.tar.gz</div>

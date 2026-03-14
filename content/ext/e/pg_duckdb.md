@@ -11,7 +11,7 @@ weight: 2430
     <div class="ext-card__title">duckdb/pg_duckdb</div>
     <div class="ext-card__desc">https://github.com/duckdb/pg_duckdb</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_duckdb-1.1.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_duckdb-1.1.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_duckdb-1.1.1.tar.gz</div>
     <div class="ext-card__desc">pg_duckdb-1.1.1.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 2430
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 2430  | [**`pg_duckdb`**](/ext/e/pg_duckdb) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 2430  | [**`pg_duckdb`**](/ext/e/pg_duckdb) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `public` |
 {.ext-table}
 
 | **Related** | [`pg_mooncake`](/ext/e/pg_mooncake) [`duckdb_fdw`](/ext/e/duckdb_fdw) [`pg_analytics`](/ext/e/pg_analytics) [`pg_parquet`](/ext/e/pg_parquet) [`columnar`](/ext/e/columnar) [`citus`](/ext/e/citus) [`citus_columnar`](/ext/e/citus_columnar) [`orioledb`](/ext/e/orioledb) |

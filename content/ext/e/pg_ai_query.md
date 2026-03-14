@@ -11,7 +11,7 @@ weight: 2730
     <div class="ext-card__title">benodiwal/pg_ai_query</div>
     <div class="ext-card__desc">https://github.com/benodiwal/pg_ai_query</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_ai_query-0.1.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_ai_query-0.1.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_ai_query-0.1.1.tar.gz</div>
     <div class="ext-card__desc">pg_ai_query-0.1.1.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 2730
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 2730  | [**`pg_ai_query`**](/ext/e/pg_ai_query) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 2730  | [**`pg_ai_query`**](/ext/e/pg_ai_query) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`pgml`](/ext/e/pgml) [`pg4ml`](/ext/e/pg4ml) [`vectorize`](/ext/e/vectorize) [`pg_summarize`](/ext/e/pg_summarize) [`pg_tiktoken`](/ext/e/pg_tiktoken) |

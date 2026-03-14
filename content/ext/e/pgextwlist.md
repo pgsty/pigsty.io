@@ -11,7 +11,7 @@ weight: 7390
     <div class="ext-card__title">dimitri/pgextwlist</div>
     <div class="ext-card__desc">https://github.com/dimitri/pgextwlist</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgextwlist-1.19.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgextwlist-1.19.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgextwlist-1.19.tar.gz</div>
     <div class="ext-card__desc">pgextwlist-1.19.tar.gz</div>

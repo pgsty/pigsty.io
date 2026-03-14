@@ -11,7 +11,7 @@ weight: 3710
     <div class="ext-card__title">df7cb/postgresql-numeral</div>
     <div class="ext-card__desc">https://github.com/df7cb/postgresql-numeral</div>
   </a>
-  <a class="ext-card ext-card--source" href="postgresql-numeral-1.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/postgresql-numeral-1.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">postgresql-numeral-1.3.tar.gz</div>
     <div class="ext-card__desc">postgresql-numeral-1.3.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 3620
     <div class="ext-card__title">adjust/pg-currency</div>
     <div class="ext-card__desc">https://github.com/adjust/pg-currency</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg-currency-0.0.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg-currency-0.0.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg-currency-0.0.3.tar.gz</div>
     <div class="ext-card__desc">pg-currency-0.0.3.tar.gz</div>
@@ -33,7 +33,7 @@ weight: 3620
 | 3620  | [**`currency`**](/ext/e/currency) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`l10n_table_dependent_extension`](/ext/e/l10n_table_dependent_extension) [`country`](/ext/e/country) [`pg_xenophile`](/ext/e/pg_xenophile) [`numeral`](/ext/e/numeral) [`prefix`](/ext/e/prefix) [`semver`](/ext/e/semver) [`unit`](/ext/e/unit) [`pgpdf`](/ext/e/pgpdf) |
+| **Related** | [`plpgsql`](/ext/e/plpgsql) [`l10n_table_dependent_extension`](/ext/e/l10n_table_dependent_extension) [`country`](/ext/e/country) [`pg_xenophile`](/ext/e/pg_xenophile) [`numeral`](/ext/e/numeral) [`prefix`](/ext/e/prefix) [`semver`](/ext/e/semver) [`unit`](/ext/e/unit) [`pgpdf`](/ext/e/pgpdf) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 
@@ -42,7 +42,7 @@ weight: 3620
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.3` | {{< pgvers "18,17,16,15,14" >}} | `pg_currency` | - |
+| [**EXT**](/ext/list#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.3` | {{< pgvers "18,17,16,15,14" >}} | `pg_currency` | `plpgsql` |
 | [**RPM**](/ext/rpm#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.3` | {{< pgvers "18,17,16,15,14" >}} | `pg_currency_$v` | - |
 | [**DEB**](/ext/deb#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.3` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-currency` | - |
 {.ext-table}
@@ -194,7 +194,7 @@ apt install -y postgresql-14-pg-currency   # PG 14
 **Create Extension**:
 
 ```sql
-CREATE EXTENSION currency;
+CREATE EXTENSION currency CASCADE;  -- requires: plpgsql
 ```
 
 

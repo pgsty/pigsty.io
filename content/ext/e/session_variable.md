@@ -11,7 +11,7 @@ weight: 9120
     <div class="ext-card__title">splendiddata/session_variable</div>
     <div class="ext-card__desc">https://github.com/splendiddata/session_variable</div>
   </a>
-  <a class="ext-card ext-card--source" href="session_variable-3.4.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/session_variable-3.4.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">session_variable-3.4.tar.gz</div>
     <div class="ext-card__desc">session_variable-3.4.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 9120
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 9120  | [**`session_variable`**](/ext/e/session_variable) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 9120  | [**`session_variable`**](/ext/e/session_variable) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `session_variable` |
 {.ext-table}
 
 | **Related** | [`orafce`](/ext/e/orafce) [`pgtt`](/ext/e/pgtt) [`pg_statement_rollback`](/ext/e/pg_statement_rollback) [`plpgsql`](/ext/e/plpgsql) [`set_user`](/ext/e/set_user) [`oracle_fdw`](/ext/e/oracle_fdw) [`pg_dbms_lock`](/ext/e/pg_dbms_lock) [`babelfishpg_common`](/ext/e/babelfishpg_common) |

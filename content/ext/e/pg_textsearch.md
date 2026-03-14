@@ -11,7 +11,7 @@ weight: 2180
     <div class="ext-card__title">timescale/pg_textsearch</div>
     <div class="ext-card__desc">https://github.com/timescale/pg_textsearch</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_textsearch-0.5.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_textsearch-0.5.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_textsearch-0.5.0.tar.gz</div>
     <div class="ext-card__desc">pg_textsearch-0.5.0.tar.gz</div>

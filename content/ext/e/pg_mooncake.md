@@ -11,7 +11,7 @@ weight: 2440
     <div class="ext-card__title">Mooncake-Labs/pg_mooncake</div>
     <div class="ext-card__desc">https://github.com/Mooncake-Labs/pg_mooncake</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_mooncake-0.2.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_mooncake-0.2.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_mooncake-0.2.0.tar.gz</div>
     <div class="ext-card__desc">pg_mooncake-0.2.0.tar.gz</div>

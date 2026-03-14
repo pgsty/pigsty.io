@@ -11,7 +11,7 @@ weight: 3560
     <div class="ext-card__title">df7cb/pgsql-asn1oid</div>
     <div class="ext-card__desc">https://github.com/df7cb/pgsql-asn1oid</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgsql-asn1oid-1.6.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgsql-asn1oid-1.6.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgsql-asn1oid-1.6.tar.gz</div>
     <div class="ext-card__desc">pgsql-asn1oid-1.6.tar.gz</div>

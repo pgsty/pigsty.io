@@ -11,7 +11,7 @@ weight: 9420
     <div class="ext-card__title">HaloTech-Co-Ltd/openHalo</div>
     <div class="ext-card__desc">https://github.com/HaloTech-Co-Ltd/openHalo</div>
   </a>
-  <a class="ext-card ext-card--source" href="openhalodb-1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/openhalodb-1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">openhalodb-1.0.tar.gz</div>
     <div class="ext-card__desc">openhalodb-1.0.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 3590
     <div class="ext-card__title">postgrespro/pgsphere</div>
     <div class="ext-card__desc">https://github.com/postgrespro/pgsphere</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgsphere-1.5.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgsphere-1.5.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgsphere-1.5.2.tar.gz</div>
     <div class="ext-card__desc">pgsphere-1.5.2.tar.gz</div>

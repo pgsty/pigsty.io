@@ -11,7 +11,7 @@ weight: 1050
     <div class="ext-card__title">dalibo/emaj</div>
     <div class="ext-card__desc">https://github.com/dalibo/emaj</div>
   </a>
-  <a class="ext-card ext-card--source" href="emaj-4.7.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/emaj-4.7.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">emaj-4.7.1.tar.gz</div>
     <div class="ext-card__desc">emaj-4.7.1.tar.gz</div>

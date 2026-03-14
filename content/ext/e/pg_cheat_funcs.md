@@ -11,7 +11,7 @@ weight: 5220
     <div class="ext-card__title">MasaoFujii/pg_cheat_funcs</div>
     <div class="ext-card__desc">https://github.com/MasaoFujii/pg_cheat_funcs</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_cheat_funcs-1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_cheat_funcs-1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_cheat_funcs-1.0.tar.gz</div>
     <div class="ext-card__desc">pg_cheat_funcs-1.0.tar.gz</div>

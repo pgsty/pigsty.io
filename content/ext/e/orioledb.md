@@ -11,7 +11,7 @@ weight: 2910
     <div class="ext-card__title">orioledb/orioledb</div>
     <div class="ext-card__desc">https://github.com/orioledb/orioledb</div>
   </a>
-  <a class="ext-card ext-card--source" href="orioledb-beta14.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/orioledb-beta14.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">orioledb-beta14.tar.gz</div>
     <div class="ext-card__desc">orioledb-beta14.tar.gz</div>

@@ -25,7 +25,7 @@ weight: 2420
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 2420  | [**`pg_analytics`**](/ext/e/pg_analytics) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | `paradedb` |
+| 2420  | [**`pg_analytics`**](/ext/e/pg_analytics) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `paradedb` |
 {.ext-table}
 
 | **Related** | [`pg_duckdb`](/ext/e/pg_duckdb) [`pg_mooncake`](/ext/e/pg_mooncake) [`duckdb_fdw`](/ext/e/duckdb_fdw) [`pg_parquet`](/ext/e/pg_parquet) [`columnar`](/ext/e/columnar) [`citus_columnar`](/ext/e/citus_columnar) [`orioledb`](/ext/e/orioledb) [`citus`](/ext/e/citus) |
@@ -146,6 +146,13 @@ apt install -y postgresql-14-pg-analytics   # PG 14
 ```
 {{% /tab %}}
 {{< /tabpane >}}
+
+
+**Preload**:
+
+```bash
+shared_preload_libraries = 'pg_analytics';
+```
 
 
 **Create Extension**:

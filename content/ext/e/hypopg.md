@@ -11,7 +11,7 @@ weight: 2790
     <div class="ext-card__title">HypoPG/hypopg</div>
     <div class="ext-card__desc">https://github.com/HypoPG/hypopg</div>
   </a>
-  <a class="ext-card ext-card--source" href="hypopg-1.4.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/hypopg-1.4.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">hypopg-1.4.2.tar.gz</div>
     <div class="ext-card__desc">hypopg-1.4.2.tar.gz</div>

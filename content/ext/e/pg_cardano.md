@@ -11,7 +11,7 @@ weight: 2920
     <div class="ext-card__title">Fell-x27/pg_cardano</div>
     <div class="ext-card__desc">https://github.com/Fell-x27/pg_cardano</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_cardano-1.1.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_cardano-1.1.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_cardano-1.1.1.tar.gz</div>
     <div class="ext-card__desc">pg_cardano-1.1.1.tar.gz</div>

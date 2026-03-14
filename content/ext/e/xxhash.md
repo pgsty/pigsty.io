@@ -11,7 +11,7 @@ weight: 4430
     <div class="ext-card__title">hatarist/pg_xxhash</div>
     <div class="ext-card__desc">https://github.com/hatarist/pg_xxhash</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_xxhash-0.0.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_xxhash-0.0.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_xxhash-0.0.1.tar.gz</div>
     <div class="ext-card__desc">pg_xxhash-0.0.1.tar.gz</div>

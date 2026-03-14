@@ -11,7 +11,7 @@ weight: 4770
     <div class="ext-card__title">pramsey/pgsql-arraymath</div>
     <div class="ext-card__desc">https://github.com/pramsey/pgsql-arraymath</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgsql-arraymath-1.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgsql-arraymath-1.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgsql-arraymath-1.1.tar.gz</div>
     <div class="ext-card__desc">pgsql-arraymath-1.1.tar.gz</div>

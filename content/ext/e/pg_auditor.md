@@ -11,7 +11,7 @@ weight: 7130
     <div class="ext-card__title">kouber/pg_auditor</div>
     <div class="ext-card__desc">https://github.com/kouber/pg_auditor</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_auditor-0.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_auditor-0.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_auditor-0.2.tar.gz</div>
     <div class="ext-card__desc">pg_auditor-0.2.tar.gz</div>
@@ -30,10 +30,10 @@ weight: 7130
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 7130  | [**`pg_auditor`**](/ext/e/pg_auditor) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 7130  | [**`pg_auditor`**](/ext/e/pg_auditor) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `auditor` |
 {.ext-table}
 
-| **Related** | [`pg_drop_events`](/ext/e/pg_drop_events) [`table_log`](/ext/e/table_log) [`pgaudit`](/ext/e/pgaudit) [`temporal_tables`](/ext/e/temporal_tables) [`emaj`](/ext/e/emaj) [`pg_savior`](/ext/e/pg_savior) [`pg_upless`](/ext/e/pg_upless) [`pgauditlogtofile`](/ext/e/pgauditlogtofile) |
+| **Related** | [`hstore`](/ext/e/hstore) [`pg_drop_events`](/ext/e/pg_drop_events) [`table_log`](/ext/e/table_log) [`pgaudit`](/ext/e/pgaudit) [`temporal_tables`](/ext/e/temporal_tables) [`emaj`](/ext/e/emaj) [`pg_savior`](/ext/e/pg_savior) [`pg_upless`](/ext/e/pg_upless) [`pgauditlogtofile`](/ext/e/pgauditlogtofile) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 
@@ -45,7 +45,7 @@ weight: 7130
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2` | {{< pgvers "18,17,16,15,14" >}} | `pg_auditor` | - |
+| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2` | {{< pgvers "18,17,16,15,14" >}} | `pg_auditor` | `hstore` |
 | [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2` | {{< pgvers "18,17,16,15,14" >}} | `pg_auditor_$v` | - |
 | [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-auditor` | - |
 {.ext-table}
@@ -197,7 +197,7 @@ apt install -y postgresql-14-pg-auditor   # PG 14
 **Create Extension**:
 
 ```sql
-CREATE EXTENSION pg_auditor;
+CREATE EXTENSION pg_auditor CASCADE;  -- requires: hstore
 ```
 
 

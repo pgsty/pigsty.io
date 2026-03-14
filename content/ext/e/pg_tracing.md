@@ -11,7 +11,7 @@ weight: 6010
     <div class="ext-card__title">DataDog/pg_tracing</div>
     <div class="ext-card__desc">https://github.com/DataDog/pg_tracing</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_tracing-0.1.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_tracing-0.1.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_tracing-0.1.3.tar.gz</div>
     <div class="ext-card__desc">pg_tracing-0.1.3.tar.gz</div>

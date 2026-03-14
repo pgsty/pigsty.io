@@ -11,7 +11,7 @@ weight: 2410
     <div class="ext-card__title">hydradatabase/hydra</div>
     <div class="ext-card__desc">https://github.com/hydradatabase/hydra</div>
   </a>
-  <a class="ext-card ext-card--source" href="hydra-1.1.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/hydra-1.1.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">hydra-1.1.2.tar.gz</div>
     <div class="ext-card__desc">hydra-1.1.2.tar.gz</div>

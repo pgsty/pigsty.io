@@ -11,7 +11,7 @@ weight: 4080
     <div class="ext-card__title">supabase/pg_net</div>
     <div class="ext-card__desc">https://github.com/supabase/pg_net</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_net-0.20.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_net-0.20.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_net-0.20.2.tar.gz</div>
     <div class="ext-card__desc">pg_net-0.20.2.tar.gz</div>
@@ -35,6 +35,7 @@ weight: 4080
 
 | **Related** | [`http`](/ext/e/http) [`pg_curl`](/ext/e/pg_curl) [`pgjwt`](/ext/e/pgjwt) [`pg_smtp_client`](/ext/e/pg_smtp_client) [`gzip`](/ext/e/gzip) [`bzip`](/ext/e/bzip) [`zstd`](/ext/e/zstd) [`pgjq`](/ext/e/pgjq) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Depended By** | [`pgmb`](/ext/e/pgmb) |
 {.ext-table .ext-table--rel}
 
 

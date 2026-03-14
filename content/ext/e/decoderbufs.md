@@ -25,7 +25,7 @@ weight: 9650
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 9650  | [**`decoderbufs`**](/ext/e/decoderbufs) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 9650  | [**`decoderbufs`**](/ext/e/decoderbufs) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
 | **Related** | [`pglogical`](/ext/e/pglogical) [`wal2json`](/ext/e/wal2json) [`decoder_raw`](/ext/e/decoder_raw) [`test_decoding`](/ext/e/test_decoding) [`kafka_fdw`](/ext/e/kafka_fdw) [`pglogical_origin`](/ext/e/pglogical_origin) [`pglogical_ticker`](/ext/e/pglogical_ticker) [`pg_failover_slots`](/ext/e/pg_failover_slots) |
@@ -350,7 +350,13 @@ apt install -y postgresql-14-decoderbufs   # PG 14
 {{% /tab %}}
 {{< /tabpane >}}
 
-> This extension does not require `CREATE EXTENSION`
+
+**Preload**:
+
+```bash
+shared_preload_libraries = 'decoderbufs';
+```
+
 
 
 

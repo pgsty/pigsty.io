@@ -11,7 +11,7 @@ weight: 4540
     <div class="ext-card__title">fboulnois/pg_uuidv7</div>
     <div class="ext-card__desc">https://github.com/fboulnois/pg_uuidv7</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_uuidv7-1.7.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_uuidv7-1.7.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_uuidv7-1.7.0.tar.gz</div>
     <div class="ext-card__desc">pg_uuidv7-1.7.0.tar.gz</div>

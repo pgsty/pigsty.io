@@ -12,7 +12,7 @@ weight: 6270
     <div class="ext-card__title">danolivo/pg_track_optimizer</div>
     <div class="ext-card__desc">https://github.com/danolivo/pg_track_optimizer</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_track_optimizer-0.9.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_track_optimizer-0.9.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_track_optimizer-0.9.1.tar.gz</div>
     <div class="ext-card__desc">pg_track_optimizer-0.9.1.tar.gz</div>

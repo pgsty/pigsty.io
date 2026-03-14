@@ -11,7 +11,7 @@ weight: 1810
     <div class="ext-card__title">tensorchord/VectorChord</div>
     <div class="ext-card__desc">https://github.com/tensorchord/VectorChord</div>
   </a>
-  <a class="ext-card ext-card--source" href="VectorChord-1.1.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/VectorChord-1.1.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">VectorChord-1.1.1.tar.gz</div>
     <div class="ext-card__desc">VectorChord-1.1.1.tar.gz</div>

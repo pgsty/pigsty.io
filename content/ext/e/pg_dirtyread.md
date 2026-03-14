@@ -11,7 +11,7 @@ weight: 5050
     <div class="ext-card__title">df7cb/pg_dirtyread</div>
     <div class="ext-card__desc">https://github.com/df7cb/pg_dirtyread</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_dirtyread-2.7.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_dirtyread-2.7.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_dirtyread-2.7.tar.gz</div>
     <div class="ext-card__desc">pg_dirtyread-2.7.tar.gz</div>

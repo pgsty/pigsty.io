@@ -11,7 +11,7 @@ weight: 4200
     <div class="ext-card__title">https://codeberg.org/pgsql_tweaks/pgsql_tweaks</div>
     <div class="ext-card__desc">https://codeberg.org/pgsql_tweaks/pgsql_tweaks</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgsql_tweaks-v1.0.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgsql_tweaks-v1.0.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgsql_tweaks-v1.0.2.tar.gz</div>
     <div class="ext-card__desc">pgsql_tweaks-v1.0.2.tar.gz</div>

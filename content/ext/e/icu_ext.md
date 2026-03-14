@@ -11,7 +11,7 @@ weight: 4240
     <div class="ext-card__title">dverite/icu_ext</div>
     <div class="ext-card__desc">https://github.com/dverite/icu_ext</div>
   </a>
-  <a class="ext-card ext-card--source" href="icu_ext-1.10.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/icu_ext-1.10.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">icu_ext-1.10.0.tar.gz</div>
     <div class="ext-card__desc">icu_ext-1.10.0.tar.gz</div>

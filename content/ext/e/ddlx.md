@@ -11,7 +11,7 @@ weight: 5080
     <div class="ext-card__title">lacanoid/pgddl</div>
     <div class="ext-card__desc">https://github.com/lacanoid/pgddl</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgddl-0.30.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgddl-0.30.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgddl-0.30.tar.gz</div>
     <div class="ext-card__desc">pgddl-0.30.tar.gz</div>

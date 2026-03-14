@@ -11,7 +11,7 @@ weight: 4150
     <div class="ext-card__title">Florents-Tselai/pgJQ</div>
     <div class="ext-card__desc">https://github.com/Florents-Tselai/pgJQ</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgjq-0.1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgjq-0.1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgjq-0.1.0.tar.gz</div>
     <div class="ext-card__desc">pgjq-0.1.0.tar.gz</div>

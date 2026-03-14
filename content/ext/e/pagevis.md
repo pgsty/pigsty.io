@@ -11,7 +11,7 @@ weight: 6860
     <div class="ext-card__title">hollobon/pagevis</div>
     <div class="ext-card__desc">https://github.com/hollobon/pagevis</div>
   </a>
-  <a class="ext-card ext-card--source" href="pagevis-0.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pagevis-0.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pagevis-0.1.tar.gz</div>
     <div class="ext-card__desc">pagevis-0.1.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 5110
     <div class="ext-card__title">credativ/pg_checksums</div>
     <div class="ext-card__desc">https://github.com/credativ/pg_checksums</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_checksums-1.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_checksums-1.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_checksums-1.3.tar.gz</div>
     <div class="ext-card__desc">pg_checksums-1.3.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 4030
     <div class="ext-card__title">grahamedgecombe/pgzstd</div>
     <div class="ext-card__desc">https://github.com/grahamedgecombe/pgzstd</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgzstd-1.1.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgzstd-1.1.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgzstd-1.1.2.tar.gz</div>
     <div class="ext-card__desc">pgzstd-1.1.2.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 2700
     <div class="ext-card__title">apache/age</div>
     <div class="ext-card__desc">https://github.com/apache/age</div>
   </a>
-  <a class="ext-card ext-card--source" href="age-1.7.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/age-1.7.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">age-1.7.0.tar.gz</div>
     <div class="ext-card__desc">age-1.7.0.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 2700
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 2700  | [**`age`**](/ext/e/age) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `ag_catalog` |
+| 2700  | [**`age`**](/ext/e/age) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `ag_catalog` |
 {.ext-table}
 
 | **Related** | [`pg_graphql`](/ext/e/pg_graphql) [`rum`](/ext/e/rum) [`pg_jsonschema`](/ext/e/pg_jsonschema) [`jsquery`](/ext/e/jsquery) [`ltree`](/ext/e/ltree) [`http`](/ext/e/http) [`pg_net`](/ext/e/pg_net) [`citus`](/ext/e/citus) |
@@ -208,6 +208,13 @@ apt install -y postgresql-14-age   # PG 14
 ```
 {{% /tab %}}
 {{< /tabpane >}}
+
+
+**Preload**:
+
+```bash
+shared_preload_libraries = 'age';
+```
 
 
 **Create Extension**:

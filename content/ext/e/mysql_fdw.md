@@ -11,7 +11,7 @@ weight: 8600
     <div class="ext-card__title">EnterpriseDB/mysql_fdw</div>
     <div class="ext-card__desc">https://github.com/EnterpriseDB/mysql_fdw</div>
   </a>
-  <a class="ext-card ext-card--source" href="mysql_fdw-REL-2_9_3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/mysql_fdw-REL-2_9_3.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">mysql_fdw-REL-2_9_3.tar.gz</div>
     <div class="ext-card__desc">mysql_fdw-REL-2_9_3.tar.gz</div>

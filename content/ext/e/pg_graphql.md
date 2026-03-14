@@ -11,7 +11,7 @@ weight: 2750
     <div class="ext-card__title">supabase/pg_graphql</div>
     <div class="ext-card__desc">https://github.com/supabase/pg_graphql</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_graphql-1.5.12.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_graphql-1.5.12.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_graphql-1.5.12.tar.gz</div>
     <div class="ext-card__desc">pg_graphql-1.5.12.tar.gz</div>

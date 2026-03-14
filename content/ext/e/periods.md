@@ -11,7 +11,7 @@ weight: 1030
     <div class="ext-card__title">xocolatl/periods</div>
     <div class="ext-card__desc">https://github.com/xocolatl/periods</div>
   </a>
-  <a class="ext-card ext-card--source" href="periods-1.2.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/periods-1.2.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">periods-1.2.3.tar.gz</div>
     <div class="ext-card__desc">periods-1.2.3.tar.gz</div>

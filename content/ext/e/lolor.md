@@ -11,7 +11,7 @@ weight: 9570
     <div class="ext-card__title">pgEdge/lolor</div>
     <div class="ext-card__desc">https://github.com/pgEdge/lolor</div>
   </a>
-  <a class="ext-card ext-card--source" href="lolor-1.2.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/lolor-1.2.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">lolor-1.2.2.tar.gz</div>
     <div class="ext-card__desc">lolor-1.2.2.tar.gz</div>

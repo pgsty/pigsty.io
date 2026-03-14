@@ -11,7 +11,7 @@ weight: 3860
     <div class="ext-card__title">arkhipov/acl</div>
     <div class="ext-card__desc">https://github.com/arkhipov/acl</div>
   </a>
-  <a class="ext-card ext-card--source" href="acl-1.0.4.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/acl-1.0.4.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">acl-1.0.4.tar.gz</div>
     <div class="ext-card__desc">acl-1.0.4.tar.gz</div>

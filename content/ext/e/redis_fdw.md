@@ -11,7 +11,7 @@ weight: 8710
     <div class="ext-card__title">pg-redis-fdw/redis_fdw</div>
     <div class="ext-card__desc">https://github.com/pg-redis-fdw/redis_fdw</div>
   </a>
-  <a class="ext-card ext-card--source" href="redis_fdw-1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/redis_fdw-1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">redis_fdw-1.0.tar.gz</div>
     <div class="ext-card__desc">redis_fdw-1.0.tar.gz</div>

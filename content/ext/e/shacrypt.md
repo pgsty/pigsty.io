@@ -11,7 +11,7 @@ weight: 4440
     <div class="ext-card__title">dverite/postgres-shacrypt</div>
     <div class="ext-card__desc">https://github.com/dverite/postgres-shacrypt</div>
   </a>
-  <a class="ext-card ext-card--source" href="postgres_shacrypt-1.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/postgres_shacrypt-1.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">postgres_shacrypt-1.1.tar.gz</div>
     <div class="ext-card__desc">postgres_shacrypt-1.1.tar.gz</div>

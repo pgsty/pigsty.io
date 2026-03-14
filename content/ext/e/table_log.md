@@ -11,7 +11,7 @@ weight: 5860
     <div class="ext-card__title">df7cb/table_log</div>
     <div class="ext-card__desc">https://github.com/df7cb/table_log</div>
   </a>
-  <a class="ext-card ext-card--source" href="table_log-0.6.4.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/table_log-0.6.4.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">table_log-0.6.4.tar.gz</div>
     <div class="ext-card__desc">table_log-0.6.4.tar.gz</div>

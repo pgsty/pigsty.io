@@ -11,7 +11,7 @@ weight: 4170
     <div class="ext-card__title">brianpursley/pg_smtp_client</div>
     <div class="ext-card__desc">https://github.com/brianpursley/pg_smtp_client</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_smtp_client-0.2.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_smtp_client-0.2.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_smtp_client-0.2.1.tar.gz</div>
     <div class="ext-card__desc">pg_smtp_client-0.2.1.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 4170
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 4170  | [**`pg_smtp_client`**](/ext/e/pg_smtp_client) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | `smtp_client` |
+| 4170  | [**`pg_smtp_client`**](/ext/e/pg_smtp_client) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `smtp_client` |
 {.ext-table}
 
 | **Related** | [`http`](/ext/e/http) [`pg_net`](/ext/e/pg_net) [`pg_html5_email_address`](/ext/e/pg_html5_email_address) [`gzip`](/ext/e/gzip) [`bzip`](/ext/e/bzip) [`zstd`](/ext/e/zstd) [`pg_curl`](/ext/e/pg_curl) [`pgjq`](/ext/e/pgjq) |

@@ -11,7 +11,7 @@ weight: 6530
     <div class="ext-card__title">credativ/toastinfo</div>
     <div class="ext-card__desc">https://github.com/credativ/toastinfo</div>
   </a>
-  <a class="ext-card ext-card--source" href="toastinfo-1.5.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/toastinfo-1.5.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">toastinfo-1.5.tar.gz</div>
     <div class="ext-card__desc">toastinfo-1.5.tar.gz</div>

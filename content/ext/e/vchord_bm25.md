@@ -11,7 +11,7 @@ weight: 2150
     <div class="ext-card__title">tensorchord/VectorChord-bm25</div>
     <div class="ext-card__desc">https://github.com/tensorchord/VectorChord-bm25</div>
   </a>
-  <a class="ext-card ext-card--source" href="VectorChord-bm25-0.3.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/VectorChord-bm25-0.3.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">VectorChord-bm25-0.3.0.tar.gz</div>
     <div class="ext-card__desc">VectorChord-bm25-0.3.0.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 2480
     <div class="ext-card__title">CrunchyData/pg_parquet</div>
     <div class="ext-card__desc">https://github.com/CrunchyData/pg_parquet/</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_parquet-0.5.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_parquet-0.5.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_parquet-0.5.1.tar.gz</div>
     <div class="ext-card__desc">pg_parquet-0.5.1.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 2480
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 2480  | [**`pg_parquet`**](/ext/e/pg_parquet) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 2480  | [**`pg_parquet`**](/ext/e/pg_parquet) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
 | **Related** | [`pg_analytics`](/ext/e/pg_analytics) [`pg_duckdb`](/ext/e/pg_duckdb) [`duckdb_fdw`](/ext/e/duckdb_fdw) [`citus_columnar`](/ext/e/citus_columnar) [`columnar`](/ext/e/columnar) [`pg_mooncake`](/ext/e/pg_mooncake) [`aws_s3`](/ext/e/aws_s3) [`citus`](/ext/e/citus) |

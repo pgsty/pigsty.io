@@ -11,7 +11,7 @@ weight: 3520
     <div class="ext-card__title">df7cb/postgresql-unit</div>
     <div class="ext-card__desc">https://github.com/df7cb/postgresql-unit</div>
   </a>
-  <a class="ext-card ext-card--source" href="postgresql-unit-7.10.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/postgresql-unit-7.10.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">postgresql-unit-7.10.tar.gz</div>
     <div class="ext-card__desc">postgresql-unit-7.10.tar.gz</div>

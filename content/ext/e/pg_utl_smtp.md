@@ -11,7 +11,7 @@ weight: 9290
     <div class="ext-card__title">hexacluster/pg_utl_smtp</div>
     <div class="ext-card__desc">https://github.com/hexacluster/pg_utl_smtp</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_utl_smtp-1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_utl_smtp-1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_utl_smtp-1.0.tar.gz</div>
     <div class="ext-card__desc">pg_utl_smtp-1.0.tar.gz</div>

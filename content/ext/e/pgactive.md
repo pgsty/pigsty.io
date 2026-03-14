@@ -11,7 +11,7 @@ weight: 9550
     <div class="ext-card__title">aws/pgactive</div>
     <div class="ext-card__desc">https://github.com/aws/pgactive</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgactive-2.1.7.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgactive-2.1.7.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgactive-2.1.7.tar.gz</div>
     <div class="ext-card__desc">pgactive-2.1.7.tar.gz</div>

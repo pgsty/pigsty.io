@@ -11,7 +11,7 @@ weight: 3880
     <div class="ext-card__title">petropavel13/pg_rrule</div>
     <div class="ext-card__desc">https://github.com/petropavel13/pg_rrule</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_rrule-0.3.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_rrule-0.3.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_rrule-0.3.0.tar.gz</div>
     <div class="ext-card__desc">pg_rrule-0.3.0.tar.gz</div>

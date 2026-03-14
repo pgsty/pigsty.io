@@ -11,7 +11,7 @@ weight: 7360
     <div class="ext-card__title">splendiddata/login_hook</div>
     <div class="ext-card__desc">https://github.com/splendiddata/login_hook</div>
   </a>
-  <a class="ext-card ext-card--source" href="login_hook-1.7.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/login_hook-1.7.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">login_hook-1.7.tar.gz</div>
     <div class="ext-card__desc">login_hook-1.7.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 1540
     <div class="ext-card__title">segasai/q3c</div>
     <div class="ext-card__desc">https://github.com/segasai/q3c</div>
   </a>
-  <a class="ext-card ext-card--source" href="q3c-2.0.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/q3c-2.0.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">q3c-2.0.2.tar.gz</div>
     <div class="ext-card__desc">q3c-2.0.2.tar.gz</div>

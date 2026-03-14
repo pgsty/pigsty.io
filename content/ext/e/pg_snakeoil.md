@@ -11,7 +11,7 @@ weight: 7380
     <div class="ext-card__title">credativ/pg_snakeoil</div>
     <div class="ext-card__desc">https://github.com/credativ/pg_snakeoil</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_snakeoil-1.4.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_snakeoil-1.4.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_snakeoil-1.4.tar.gz</div>
     <div class="ext-card__desc">pg_snakeoil-1.4.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 7380
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 7380  | [**`pg_snakeoil`**](/ext/e/pg_snakeoil) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 7380  | [**`pg_snakeoil`**](/ext/e/pg_snakeoil) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`pg_crash`](/ext/e/pg_crash) [`pg_cheat_funcs`](/ext/e/pg_cheat_funcs) [`pg_dirtyread`](/ext/e/pg_dirtyread) [`pg_savior`](/ext/e/pg_savior) [`pg_surgery`](/ext/e/pg_surgery) [`pageinspect`](/ext/e/pageinspect) [`pg_catcheck`](/ext/e/pg_catcheck) [`amcheck`](/ext/e/amcheck) |
@@ -228,6 +228,12 @@ apt install -y postgresql-14-snakeoil   # PG 14
 shared_preload_libraries = 'pg_snakeoil';
 ```
 
+
+**Create Extension**:
+
+```sql
+CREATE EXTENSION pg_snakeoil;
+```
 
 
 

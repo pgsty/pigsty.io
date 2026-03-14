@@ -11,7 +11,7 @@ weight: 4330
     <div class="ext-card__title">ZeroGachis/pg_schedoc</div>
     <div class="ext-card__desc">https://github.com/ZeroGachis/pg_schedoc</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_schedoc-0.0.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_schedoc-0.0.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_schedoc-0.0.1.tar.gz</div>
     <div class="ext-card__desc">pg_schedoc-0.0.1.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 4710
     <div class="ext-card__title">wulczer/first_last_agg</div>
     <div class="ext-card__desc">https://github.com/wulczer/first_last_agg</div>
   </a>
-  <a class="ext-card ext-card--source" href="first_last_agg-0.1.4.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/first_last_agg-0.1.4.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">first_last_agg-0.1.4.tar.gz</div>
     <div class="ext-card__desc">first_last_agg-0.1.4.tar.gz</div>

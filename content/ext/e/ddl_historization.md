@@ -11,7 +11,7 @@ weight: 4310
     <div class="ext-card__title">rodo/pg_ddl_historization</div>
     <div class="ext-card__desc">https://github.com/rodo/pg_ddl_historization</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_ddl_historization-0.0.7.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_ddl_historization-0.0.7.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_ddl_historization-0.0.7.tar.gz</div>
     <div class="ext-card__desc">pg_ddl_historization-0.0.7.tar.gz</div>

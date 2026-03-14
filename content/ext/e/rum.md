@@ -11,7 +11,7 @@ weight: 2720
     <div class="ext-card__title">postgrespro/rum</div>
     <div class="ext-card__desc">https://github.com/postgrespro/rum</div>
   </a>
-  <a class="ext-card ext-card--source" href="rum-1.3.15.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/rum-1.3.15.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">rum-1.3.15.tar.gz</div>
     <div class="ext-card__desc">rum-1.3.15.tar.gz</div>

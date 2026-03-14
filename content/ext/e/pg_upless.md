@@ -11,7 +11,7 @@ weight: 5180
     <div class="ext-card__title">rodo/pg_upless</div>
     <div class="ext-card__desc">https://github.com/rodo/pg_upless</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_upless-0.0.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_upless-0.0.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_upless-0.0.3.tar.gz</div>
     <div class="ext-card__desc">pg_upless-0.0.3.tar.gz</div>

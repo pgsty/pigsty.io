@@ -11,7 +11,7 @@ weight: 4630
     <div class="ext-card__title">tvondra/count_distinct</div>
     <div class="ext-card__desc">https://github.com/tvondra/count_distinct</div>
   </a>
-  <a class="ext-card ext-card--source" href="count_distinct-3.0.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/count_distinct-3.0.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">count_distinct-3.0.2.tar.gz</div>
     <div class="ext-card__desc">count_distinct-3.0.2.tar.gz</div>

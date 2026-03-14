@@ -11,7 +11,7 @@ weight: 1090
     <div class="ext-card__title">ChuckHend/pg_later</div>
     <div class="ext-card__desc">https://github.com/ChuckHend/pg_later</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_later-0.4.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_later-0.4.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_later-0.4.0.tar.gz</div>
     <div class="ext-card__desc">pg_later-0.4.0.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 1090
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 1090  | [**`pg_later`**](/ext/e/pg_later) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `pglater` |
+| 1090  | [**`pg_later`**](/ext/e/pg_later) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `pglater` |
 {.ext-table}
 
 | **Related** | [`pgmq`](/ext/e/pgmq) [`pg_cron`](/ext/e/pg_cron) [`pg_task`](/ext/e/pg_task) [`pg_background`](/ext/e/pg_background) [`timescaledb`](/ext/e/timescaledb) [`timescaledb_toolkit`](/ext/e/timescaledb_toolkit) [`timeseries`](/ext/e/timeseries) [`periods`](/ext/e/periods) [`temporal_tables`](/ext/e/temporal_tables) |
@@ -189,6 +189,13 @@ apt install -y postgresql-14-pg-later   # PG 14
 ```
 {{% /tab %}}
 {{< /tabpane >}}
+
+
+**Preload**:
+
+```bash
+shared_preload_libraries = 'pg_later';
+```
 
 
 **Create Extension**:

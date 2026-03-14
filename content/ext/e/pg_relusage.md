@@ -11,7 +11,7 @@ weight: 6850
     <div class="ext-card__title">adept/pg_relusage</div>
     <div class="ext-card__desc">https://github.com/adept/pg_relusage</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_relusage-0.0.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_relusage-0.0.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_relusage-0.0.1.tar.gz</div>
     <div class="ext-card__desc">pg_relusage-0.0.1.tar.gz</div>

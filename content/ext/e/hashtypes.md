@@ -11,7 +11,7 @@ weight: 3750
     <div class="ext-card__title">adjust/hashtypes</div>
     <div class="ext-card__desc">https://github.com/adjust/hashtypes/</div>
   </a>
-  <a class="ext-card ext-card--source" href="hashtypes-0.1.5.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/hashtypes-0.1.5.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">hashtypes-0.1.5.tar.gz</div>
     <div class="ext-card__desc">hashtypes-0.1.5.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 4450
     <div class="ext-card__title">dverite/cryptint</div>
     <div class="ext-card__desc">https://github.com/dverite/cryptint</div>
   </a>
-  <a class="ext-card ext-card--source" href="cryptint-1.0.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/cryptint-1.0.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">cryptint-1.0.0.tar.gz</div>
     <div class="ext-card__desc">cryptint-1.0.0.tar.gz</div>

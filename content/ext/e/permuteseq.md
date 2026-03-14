@@ -11,7 +11,7 @@ weight: 4550
     <div class="ext-card__title">dverite/permuteseq</div>
     <div class="ext-card__desc">https://github.com/dverite/permuteseq</div>
   </a>
-  <a class="ext-card ext-card--source" href="permuteseq-1.2.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/permuteseq-1.2.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">permuteseq-1.2.2.tar.gz</div>
     <div class="ext-card__desc">permuteseq-1.2.2.tar.gz</div>

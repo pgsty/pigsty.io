@@ -11,7 +11,7 @@ weight: 5090
     <div class="ext-card__title">pmpetit/pglinter</div>
     <div class="ext-card__desc">https://github.com/pmpetit/pglinter</div>
   </a>
-  <a class="ext-card ext-card--source" href="pglinter-1.1.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pglinter-1.1.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pglinter-1.1.1.tar.gz</div>
     <div class="ext-card__desc">pglinter-1.1.1.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 5090
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 5090  | [**`pglinter`**](/ext/e/pglinter) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 5090  | [**`pglinter`**](/ext/e/pglinter) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
 | **Related** | [`amcheck`](/ext/e/amcheck) [`supautils`](/ext/e/supautils) |

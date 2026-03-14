@@ -11,7 +11,7 @@ weight: 4190
     <div class="ext-card__title">okbob/url_encode</div>
     <div class="ext-card__desc">https://github.com/okbob/url_encode</div>
   </a>
-  <a class="ext-card ext-card--source" href="url_encode-1.2.5.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/url_encode-1.2.5.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">url_encode-1.2.5.tar.gz</div>
     <div class="ext-card__desc">url_encode-1.2.5.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 4640
     <div class="ext-card__title">tvondra/omnisketch</div>
     <div class="ext-card__desc">https://github.com/tvondra/omnisketch</div>
   </a>
-  <a class="ext-card ext-card--source" href="omnisketch-1.0.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/omnisketch-1.0.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">omnisketch-1.0.2.tar.gz</div>
     <div class="ext-card__desc">omnisketch-1.0.2.tar.gz</div>

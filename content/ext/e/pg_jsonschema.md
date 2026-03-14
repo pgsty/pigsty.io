@@ -11,7 +11,7 @@ weight: 2760
     <div class="ext-card__title">supabase/pg_jsonschema</div>
     <div class="ext-card__desc">https://github.com/supabase/pg_jsonschema</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_jsonschema-0.3.4.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_jsonschema-0.3.4.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_jsonschema-0.3.4.tar.gz</div>
     <div class="ext-card__desc">pg_jsonschema-0.3.4.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 4600
     <div class="ext-card__title">citusdata/postgresql-topn</div>
     <div class="ext-card__desc">https://github.com/citusdata/postgresql-topn</div>
   </a>
-  <a class="ext-card ext-card--source" href="postgresql-topn-2.7.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/postgresql-topn-2.7.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">postgresql-topn-2.7.0.tar.gz</div>
     <div class="ext-card__desc">postgresql-topn-2.7.0.tar.gz</div>

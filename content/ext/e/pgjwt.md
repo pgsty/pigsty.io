@@ -11,7 +11,7 @@ weight: 4160
     <div class="ext-card__title">michelp/pgjwt</div>
     <div class="ext-card__desc">https://github.com/michelp/pgjwt</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgjwt-0.2.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgjwt-0.2.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgjwt-0.2.0.tar.gz</div>
     <div class="ext-card__desc">pgjwt-0.2.0.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 4160
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 4160  | [**`pgjwt`**](/ext/e/pgjwt) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 4160  | [**`pgjwt`**](/ext/e/pgjwt) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
 | **Related** | [`pgcrypto`](/ext/e/pgcrypto) [`http`](/ext/e/http) [`pg_net`](/ext/e/pg_net) [`pg_curl`](/ext/e/pg_curl) [`pgjq`](/ext/e/pgjq) [`sparql`](/ext/e/sparql) [`pgcrypto`](/ext/e/pgcrypto) [`gzip`](/ext/e/gzip) [`bzip`](/ext/e/bzip) |

@@ -11,7 +11,7 @@ weight: 9540
     <div class="ext-card__title">cybertec-postgresql/db_migrator</div>
     <div class="ext-card__desc">https://github.com/cybertec-postgresql/db_migrator</div>
   </a>
-  <a class="ext-card ext-card--source" href="db_migrator-RELEASE_1_0_0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/db_migrator-RELEASE_1_0_0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">db_migrator-RELEASE_1_0_0.tar.gz</div>
     <div class="ext-card__desc">db_migrator-RELEASE_1_0_0.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 9540
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 9540  | [**`db_migrator`**](/ext/e/db_migrator) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 9540  | [**`db_migrator`**](/ext/e/db_migrator) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`mysql_fdw`](/ext/e/mysql_fdw) [`oracle_fdw`](/ext/e/oracle_fdw) [`tds_fdw`](/ext/e/tds_fdw) [`orafce`](/ext/e/orafce) [`pg_bulkload`](/ext/e/pg_bulkload) [`jdbc_fdw`](/ext/e/jdbc_fdw) [`db2_fdw`](/ext/e/db2_fdw) [`pgtt`](/ext/e/pgtt) |

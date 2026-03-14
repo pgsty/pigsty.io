@@ -11,7 +11,7 @@ weight: 4230
     <div class="ext-card__title">petere/pgpcre</div>
     <div class="ext-card__desc">https://github.com/petere/pgpcre</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgpcre-0.20190509.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgpcre-0.20190509.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgpcre-0.20190509.tar.gz</div>
     <div class="ext-card__desc">pgpcre-0.20190509.tar.gz</div>

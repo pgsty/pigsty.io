@@ -11,7 +11,7 @@ weight: 5140
     <div class="ext-card__title">cybertec-postgresql/pg_permissions</div>
     <div class="ext-card__desc">https://github.com/cybertec-postgresql/pg_permissions</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_permissions-REL_1_3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_permissions-REL_1_3.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_permissions-REL_1_3.tar.gz</div>
     <div class="ext-card__desc">pg_permissions-REL_1_3.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 5140
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 5140  | [**`pg_permissions`**](/ext/e/pg_permissions) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 5140  | [**`pg_permissions`**](/ext/e/pg_permissions) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
 | **Related** | [`pg_readonly`](/ext/e/pg_readonly) [`pgaudit`](/ext/e/pgaudit) [`set_user`](/ext/e/set_user) [`pg_upless`](/ext/e/pg_upless) [`safeupdate`](/ext/e/safeupdate) [`pgauditlogtofile`](/ext/e/pgauditlogtofile) [`credcheck`](/ext/e/credcheck) [`login_hook`](/ext/e/login_hook) |

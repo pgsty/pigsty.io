@@ -11,7 +11,7 @@ weight: 8750
     <div class="ext-card__title">ibarwick/firebird_fdw</div>
     <div class="ext-card__desc">https://github.com/ibarwick/firebird_fdw</div>
   </a>
-  <a class="ext-card ext-card--source" href="firebird_fdw-1.4.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/firebird_fdw-1.4.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">firebird_fdw-1.4.1.tar.gz</div>
     <div class="ext-card__desc">firebird_fdw-1.4.1.tar.gz</div>

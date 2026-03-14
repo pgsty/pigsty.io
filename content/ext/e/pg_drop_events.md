@@ -11,7 +11,7 @@ weight: 5850
     <div class="ext-card__title">bolajiwahab/pg_drop_events</div>
     <div class="ext-card__desc">https://github.com/bolajiwahab/pg_drop_events</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_drop_events-0.1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_drop_events-0.1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_drop_events-0.1.0.tar.gz</div>
     <div class="ext-card__desc">pg_drop_events-0.1.0.tar.gz</div>

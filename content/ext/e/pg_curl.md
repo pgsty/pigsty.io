@@ -11,7 +11,7 @@ weight: 4090
     <div class="ext-card__title">RekGRpth/pg_curl</div>
     <div class="ext-card__desc">https://github.com/RekGRpth/pg_curl</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_curl-2.4.5.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_curl-2.4.5.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_curl-2.4.5.tar.gz</div>
     <div class="ext-card__desc">pg_curl-2.4.5.tar.gz</div>

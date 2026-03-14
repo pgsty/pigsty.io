@@ -137,8 +137,8 @@ Package [`pltcl`](/ext/e/pltcl) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 3240 | [**`pltcl`**](/ext/e/pltcl) | `1.0` | `c-s-d--` | - | PL/Tcl procedural language |
-| 3250 | [`pltclu`](/ext/e/pltclu) | `1.0` | `c---d--` | - | PL/TclU untrusted procedural language |
+| 3240 | [**`pltcl`**](/ext/e/pltcl) | `1.0` | `c-s-dt-` | `pg_catalog` | PL/Tcl procedural language |
+| 3250 | [`pltclu`](/ext/e/pltclu) | `1.0` | `c---d--` | `pg_catalog` | PL/TclU untrusted procedural language |
 {.ext-table}
 
 ### plperl
@@ -147,10 +147,10 @@ Package [`plperl`](/ext/e/plperl) contains **4** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 3260 | [**`plperl`**](/ext/e/plperl) | `1.0` | `c-s-d--` | - | PL/Perl procedural language |
-| 3261 | [`bool_plperl`](/ext/e/bool_plperl) | `1.0` | `c-s-d--` | - | transform between bool and plperl |
+| 3260 | [**`plperl`**](/ext/e/plperl) | `1.0` | `c-s-dt-` | `pg_catalog` | PL/Perl procedural language |
+| 3261 | [`bool_plperl`](/ext/e/bool_plperl) | `1.0` | `c-s-dt-` | - | transform between bool and plperl |
 | 3262 | [`hstore_plperl`](/ext/e/hstore_plperl) | `1.0` | `c-s-d--` | - | transform between hstore and plperl |
-| 3263 | [`jsonb_plperl`](/ext/e/jsonb_plperl) | `1.0` | `c---d--` | - | transform between jsonb and plperl |
+| 3263 | [`jsonb_plperl`](/ext/e/jsonb_plperl) | `1.0` | `c---dt-` | - | transform between jsonb and plperl |
 {.ext-table}
 
 ### plperlu
@@ -159,7 +159,7 @@ Package [`plperlu`](/ext/e/plperlu) contains **4** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 3270 | [**`plperlu`**](/ext/e/plperlu) | `1.0` | `c-s-d--` | - | PL/PerlU untrusted procedural language |
+| 3270 | [**`plperlu`**](/ext/e/plperlu) | `1.0` | `c-s-d--` | `pg_catalog` | PL/PerlU untrusted procedural language |
 | 3271 | [`bool_plperlu`](/ext/e/bool_plperlu) | `1.0` | `c---d--` | - | transform between bool and plperlu |
 | 3272 | [`jsonb_plperlu`](/ext/e/jsonb_plperlu) | `1.0` | `c---d--` | - | transform between jsonb and plperlu |
 | 3273 | [`hstore_plperlu`](/ext/e/hstore_plperlu) | `1.0` | `c---d--` | - | transform between hstore and plperlu |
@@ -184,7 +184,7 @@ Package [`pg_xenophile`](/ext/e/pg_xenophile) contains **2** extensions:
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
 | 3610 | [**`pg_xenophile`**](/ext/e/pg_xenophile) | `0.8.3` | `----d--` | `xeno` | More than the bare necessities for PostgreSQL i18n and l10n. |
-| 3611 | [`l10n_table_dependent_extension`](/ext/e/l10n_table_dependent_extension) | `0.8.3` | `----dtr` | - | PostgreSQL l10n toolbox |
+| 3611 | [`l10n_table_dependent_extension`](/ext/e/l10n_table_dependent_extension) | `0.8.3` | `----d-r` | - | PostgreSQL l10n toolbox |
 {.ext-table}
 
 ### pg_readme
@@ -193,8 +193,8 @@ Package [`pg_readme`](/ext/e/pg_readme) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 4300 | [**`pg_readme`**](/ext/e/pg_readme) | `0.7.0` | `----dtr` | - | Generate a README.md document for a database extension or schema |
-| 4301 | [`pg_readme_test_extension`](/ext/e/pg_readme_test_extension) | `0.7.0` | `----dtr` | - | Test generating a README.md document for extension or schema |
+| 4300 | [**`pg_readme`**](/ext/e/pg_readme) | `0.7.0` | `----d-r` | - | Generate a README.md document for a database extension or schema |
+| 4301 | [`pg_readme_test_extension`](/ext/e/pg_readme_test_extension) | `0.7.0` | `----d-r` | - | Test generating a README.md document for extension or schema |
 {.ext-table}
 
 ### pgpool
@@ -214,7 +214,7 @@ Package [`pgnodemx`](/ext/e/pgnodemx) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 6440 | [**`pgnodemx`**](/ext/e/pgnodemx) | `1.7` | `--s-d-r` | - | Capture node OS metrics via SQL queries |
+| 6440 | [**`pgnodemx`**](/ext/e/pgnodemx) | `1.7` | `--sLd-r` | - | Capture node OS metrics via SQL queries |
 | 6450 | [`pg_proctab`](/ext/e/pg_proctab) | `1.7` | `--s-d-r` | - | PostgreSQL extension to access the OS process table |
 {.ext-table}
 

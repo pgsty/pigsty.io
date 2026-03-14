@@ -11,7 +11,7 @@ weight: 1020
     <div class="ext-card__title">ChuckHend/pg_timeseries</div>
     <div class="ext-card__desc">https://github.com/ChuckHend/pg_timeseries</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_timeseries-0.2.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_timeseries-0.2.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_timeseries-0.2.0.tar.gz</div>
     <div class="ext-card__desc">pg_timeseries-0.2.0.tar.gz</div>

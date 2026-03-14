@@ -28,7 +28,7 @@ weight: 1510
 | 1510  | [**`pgrouting`**](/ext/e/pgrouting) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`postgis`](/ext/e/postgis) [`postgis_topology`](/ext/e/postgis_topology) [`mobilitydb`](/ext/e/mobilitydb) [`pg_polyline`](/ext/e/pg_polyline) [`postgis_raster`](/ext/e/postgis_raster) [`postgis_sfcgal`](/ext/e/postgis_sfcgal) [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) [`address_standardizer`](/ext/e/address_standardizer) [`address_standardizer_data_us`](/ext/e/address_standardizer_data_us) |
+| **Related** | [`plpgsql`](/ext/e/plpgsql) [`postgis`](/ext/e/postgis) [`postgis_topology`](/ext/e/postgis_topology) [`mobilitydb`](/ext/e/mobilitydb) [`pg_polyline`](/ext/e/pg_polyline) [`postgis_raster`](/ext/e/postgis_raster) [`postgis_sfcgal`](/ext/e/postgis_sfcgal) [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) [`address_standardizer`](/ext/e/address_standardizer) [`address_standardizer_data_us`](/ext/e/address_standardizer_data_us) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 
@@ -37,7 +37,7 @@ weight: 1510
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#gis) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.0.1` | {{< pgvers "18,17,16,15,14" >}} | `pgrouting` | `postgis` |
+| [**EXT**](/ext/list#gis) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.0.1` | {{< pgvers "18,17,16,15,14" >}} | `pgrouting` | `plpgsql`, `postgis` |
 | [**RPM**](/ext/rpm#gis) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.0.1` | {{< pgvers "18,17,16,15,14" >}} | `pgrouting_$v` | - |
 | [**DEB**](/ext/deb#gis) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.0.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgrouting` | - |
 {.ext-table}
@@ -359,7 +359,7 @@ apt install -y postgresql-14-pgrouting   # PG 14
 **Create Extension**:
 
 ```sql
-CREATE EXTENSION pgrouting CASCADE;  -- requires: postgis
+CREATE EXTENSION pgrouting CASCADE;  -- requires: plpgsql, postgis
 ```
 
 

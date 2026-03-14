@@ -11,7 +11,7 @@ weight: 6420
     <div class="ext-card__title">EnterpriseDB/system_stats</div>
     <div class="ext-card__desc">https://github.com/EnterpriseDB/system_stats</div>
   </a>
-  <a class="ext-card ext-card--source" href="system_stats-3.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/system_stats-3.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">system_stats-3.2.tar.gz</div>
     <div class="ext-card__desc">system_stats-3.2.tar.gz</div>

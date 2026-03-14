@@ -11,7 +11,7 @@ weight: 7070
     <div class="ext-card__title">SoftwareLibreMx/pg_enigma</div>
     <div class="ext-card__desc">https://github.com/SoftwareLibreMx/pg_enigma</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_enigma-0.5.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_enigma-0.5.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_enigma-0.5.0.tar.gz</div>
     <div class="ext-card__desc">pg_enigma-0.5.0.tar.gz</div>

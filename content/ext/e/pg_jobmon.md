@@ -11,7 +11,7 @@ weight: 7160
     <div class="ext-card__title">omniti-labs/pg_jobmon</div>
     <div class="ext-card__desc">https://github.com/omniti-labs/pg_jobmon</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_jobmon-1.4.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_jobmon-1.4.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_jobmon-1.4.1.tar.gz</div>
     <div class="ext-card__desc">pg_jobmon-1.4.1.tar.gz</div>

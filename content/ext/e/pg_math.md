@@ -11,7 +11,7 @@ weight: 4780
     <div class="ext-card__title">chanukyasds/pg_math</div>
     <div class="ext-card__desc">https://github.com/chanukyasds/pg_math</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_math-1.1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_math-1.1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_math-1.1.0.tar.gz</div>
     <div class="ext-card__desc">pg_math-1.1.0.tar.gz</div>

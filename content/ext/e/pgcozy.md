@@ -11,7 +11,7 @@ weight: 5190
     <div class="ext-card__title">vventirozos/pgcozy</div>
     <div class="ext-card__desc">https://github.com/vventirozos/pgcozy</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgcozy-1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgcozy-1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgcozy-1.0.tar.gz</div>
     <div class="ext-card__desc">pgcozy-1.0.tar.gz</div>
@@ -33,7 +33,7 @@ weight: 5190
 | 5190  | [**`pgcozy`**](/ext/e/pgcozy) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`pgfincore`](/ext/e/pgfincore) [`pg_cooldown`](/ext/e/pg_cooldown) [`pg_prewarm`](/ext/e/pg_prewarm) [`pg_buffercache`](/ext/e/pg_buffercache) [`pg_repack`](/ext/e/pg_repack) [`pg_squeeze`](/ext/e/pg_squeeze) [`pg_visibility`](/ext/e/pg_visibility) [`system_stats`](/ext/e/system_stats) |
+| **Related** | [`pg_buffercache`](/ext/e/pg_buffercache) [`pg_prewarm`](/ext/e/pg_prewarm) [`pgfincore`](/ext/e/pgfincore) [`pg_cooldown`](/ext/e/pg_cooldown) [`pg_prewarm`](/ext/e/pg_prewarm) [`pg_buffercache`](/ext/e/pg_buffercache) [`pg_repack`](/ext/e/pg_repack) [`pg_squeeze`](/ext/e/pg_squeeze) [`pg_visibility`](/ext/e/pg_visibility) [`system_stats`](/ext/e/system_stats) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 
@@ -42,7 +42,7 @@ weight: 5190
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18,17,16,15,14" >}} | `pgcozy` | - |
+| [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18,17,16,15,14" >}} | `pgcozy` | `pg_buffercache`, `pg_prewarm` |
 | [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18,17,16,15,14" >}} | `pgcozy_$v` | - |
 | [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgcozy` | - |
 {.ext-table}
@@ -194,7 +194,7 @@ apt install -y postgresql-14-pgcozy   # PG 14
 **Create Extension**:
 
 ```sql
-CREATE EXTENSION pgcozy;
+CREATE EXTENSION pgcozy CASCADE;  -- requires: pg_buffercache, pg_prewarm
 ```
 
 

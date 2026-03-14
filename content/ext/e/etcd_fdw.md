@@ -11,7 +11,7 @@ weight: 8660
     <div class="ext-card__title">cybertec-postgresql/etcd_fdw</div>
     <div class="ext-card__desc">https://github.com/cybertec-postgresql/etcd_fdw</div>
   </a>
-  <a class="ext-card ext-card--source" href="etcd_fdw-0.0.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/etcd_fdw-0.0.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">etcd_fdw-0.0.0.tar.gz</div>
     <div class="ext-card__desc">etcd_fdw-0.0.0.tar.gz</div>

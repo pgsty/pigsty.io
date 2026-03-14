@@ -11,7 +11,7 @@ weight: 3540
     <div class="ext-card__title">frectonz/pglite-fusion</div>
     <div class="ext-card__desc">https://github.com/frectonz/pglite-fusion</div>
   </a>
-  <a class="ext-card ext-card--source" href="pglite-fusion-0.0.6.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pglite-fusion-0.0.6.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pglite-fusion-0.0.6.tar.gz</div>
     <div class="ext-card__desc">pglite-fusion-0.0.6.tar.gz</div>

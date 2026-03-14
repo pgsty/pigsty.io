@@ -11,7 +11,7 @@ weight: 1890
     <div class="ext-card__title">postgresml/postgresml</div>
     <div class="ext-card__desc">https://github.com/postgresml/postgresml</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgml-2.10.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgml-2.10.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgml-2.10.0.tar.gz</div>
     <div class="ext-card__desc">pgml-2.10.0.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 1890
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 1890  | [**`pgml`**](/ext/e/pgml) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `pgml` |
+| 1890  | [**`pgml`**](/ext/e/pgml) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | `pgml` |
 {.ext-table}
 
 | **Related** | [`pg4ml`](/ext/e/pg4ml) [`vectorize`](/ext/e/vectorize) [`pg_summarize`](/ext/e/pg_summarize) [`pg_tiktoken`](/ext/e/pg_tiktoken) [`vector`](/ext/e/vector) [`vchord`](/ext/e/vchord) [`vectorscale`](/ext/e/vectorscale) [`pg_strom`](/ext/e/pg_strom) |

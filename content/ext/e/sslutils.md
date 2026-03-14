@@ -11,7 +11,7 @@ weight: 7410
     <div class="ext-card__title">EnterpriseDB/sslutils</div>
     <div class="ext-card__desc">https://github.com/EnterpriseDB/sslutils</div>
   </a>
-  <a class="ext-card ext-card--source" href="sslutils-1.4.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/sslutils-1.4.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">sslutils-1.4.tar.gz</div>
     <div class="ext-card__desc">sslutils-1.4.tar.gz</div>

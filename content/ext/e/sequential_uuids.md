@@ -11,7 +11,7 @@ weight: 4570
     <div class="ext-card__title">tvondra/sequential-uuids</div>
     <div class="ext-card__desc">https://github.com/tvondra/sequential-uuids</div>
   </a>
-  <a class="ext-card ext-card--source" href="sequential-uuids-1.0.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/sequential-uuids-1.0.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">sequential-uuids-1.0.3.tar.gz</div>
     <div class="ext-card__desc">sequential-uuids-1.0.3.tar.gz</div>

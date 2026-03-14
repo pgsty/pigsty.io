@@ -11,7 +11,7 @@ weight: 4070
     <div class="ext-card__title">pramsey/pgsql-http</div>
     <div class="ext-card__desc">https://github.com/pramsey/pgsql-http</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgsql-http-1.7.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgsql-http-1.7.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgsql-http-1.7.0.tar.gz</div>
     <div class="ext-card__desc">pgsql-http-1.7.0.tar.gz</div>

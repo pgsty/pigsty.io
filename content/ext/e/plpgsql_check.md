@@ -11,7 +11,7 @@ weight: 3060
     <div class="ext-card__title">okbob/plpgsql_check</div>
     <div class="ext-card__desc">https://github.com/okbob/plpgsql_check</div>
   </a>
-  <a class="ext-card ext-card--source" href="plpgsql_check-2.8.11.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/plpgsql_check-2.8.11.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">plpgsql_check-2.8.11.tar.gz</div>
     <div class="ext-card__desc">plpgsql_check-2.8.11.tar.gz</div>

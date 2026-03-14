@@ -11,7 +11,7 @@ weight: 4730
     <div class="ext-card__title">pjungwir/floatvec</div>
     <div class="ext-card__desc">https://github.com/pjungwir/floatvec</div>
   </a>
-  <a class="ext-card ext-card--source" href="floatvec-1.1.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/floatvec-1.1.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">floatvec-1.1.1.tar.gz</div>
     <div class="ext-card__desc">floatvec-1.1.1.tar.gz</div>

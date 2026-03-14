@@ -11,7 +11,7 @@ weight: 4790
     <div class="ext-card__title">tvondra/random</div>
     <div class="ext-card__desc">https://github.com/tvondra/random</div>
   </a>
-  <a class="ext-card ext-card--source" href="random-2.0.0-dev.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/random-2.0.0-dev.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">random-2.0.0-dev.tar.gz</div>
     <div class="ext-card__desc">random-2.0.0-dev.tar.gz</div>

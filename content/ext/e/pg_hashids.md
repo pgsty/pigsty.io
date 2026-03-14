@@ -11,7 +11,7 @@ weight: 4560
     <div class="ext-card__title">iCyberon/pg_hashids</div>
     <div class="ext-card__desc">https://github.com/iCyberon/pg_hashids</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_hashids-1.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_hashids-1.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_hashids-1.3.tar.gz</div>
     <div class="ext-card__desc">pg_hashids-1.3.tar.gz</div>

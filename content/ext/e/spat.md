@@ -11,7 +11,7 @@ weight: 9400
     <div class="ext-card__title">Florents-Tselai/spat</div>
     <div class="ext-card__desc">https://github.com/Florents-Tselai/spat</div>
   </a>
-  <a class="ext-card ext-card--source" href="spat-0.1.0a4.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/spat-0.1.0a4.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">spat-0.1.0a4.tar.gz</div>
     <div class="ext-card__desc">spat-0.1.0a4.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 4760
     <div class="ext-card__title">PostgREST/pg_csv</div>
     <div class="ext-card__desc">https://github.com/PostgREST/pg_csv</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_csv-1.0.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_csv-1.0.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_csv-1.0.1.tar.gz</div>
     <div class="ext-card__desc">pg_csv-1.0.1.tar.gz</div>

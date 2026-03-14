@@ -11,7 +11,7 @@ weight: 4510
     <div class="ext-card__title">pksunkara/pgx_ulid</div>
     <div class="ext-card__desc">https://github.com/pksunkara/pgx_ulid</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgx_ulid-0.2.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgx_ulid-0.2.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgx_ulid-0.2.2.tar.gz</div>
     <div class="ext-card__desc">pgx_ulid-0.2.2.tar.gz</div>

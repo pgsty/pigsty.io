@@ -11,7 +11,7 @@ weight: 5130
     <div class="ext-card__title">rustprooflabs/pgdd</div>
     <div class="ext-card__desc">https://github.com/rustprooflabs/pgdd</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgdd-0.6.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgdd-0.6.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgdd-0.6.1.tar.gz</div>
     <div class="ext-card__desc">pgdd-0.6.1.tar.gz</div>
@@ -30,7 +30,7 @@ weight: 5130
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 5130  | [**`pgdd`**](/ext/e/pgdd) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | `dd` |
+| 5130  | [**`pgdd`**](/ext/e/pgdd) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `dd` |
 {.ext-table}
 
 | **Related** | [`pg_catcheck`](/ext/e/pg_catcheck) [`pg_orphaned`](/ext/e/pg_orphaned) [`pg_checksums`](/ext/e/pg_checksums) |

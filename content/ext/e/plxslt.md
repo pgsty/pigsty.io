@@ -11,7 +11,7 @@ weight: 3110
     <div class="ext-card__title">petere/plxslt</div>
     <div class="ext-card__desc">https://github.com/petere/plxslt</div>
   </a>
-  <a class="ext-card ext-card--source" href="plxslt-0.20140221.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/plxslt-0.20140221.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">plxslt-0.20140221.tar.gz</div>
     <div class="ext-card__desc">plxslt-0.20140221.tar.gz</div>

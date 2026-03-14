@@ -1,5 +1,5 @@
 ---
-title: "Repo Provider"
+title: "Repository"
 linkTitle: "Repository"
 description: "Extensions by repository"
 weight: 210

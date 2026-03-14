@@ -11,7 +11,7 @@ weight: 8800
     <div class="ext-card__title">chimpler/postgres-aws-s3</div>
     <div class="ext-card__desc">https://github.com/chimpler/postgres-aws-s3</div>
   </a>
-  <a class="ext-card ext-card--source" href="aws_s3-0.0.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/aws_s3-0.0.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">aws_s3-0.0.1.tar.gz</div>
     <div class="ext-card__desc">aws_s3-0.0.1.tar.gz</div>

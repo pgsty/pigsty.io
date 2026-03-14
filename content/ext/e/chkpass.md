@@ -11,7 +11,7 @@ weight: 3920
     <div class="ext-card__title">lacanoid/chkpass</div>
     <div class="ext-card__desc">https://github.com/lacanoid/chkpass</div>
   </a>
-  <a class="ext-card ext-card--source" href="chkpass-1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/chkpass-1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">chkpass-1.0.tar.gz</div>
     <div class="ext-card__desc">chkpass-1.0.tar.gz</div>

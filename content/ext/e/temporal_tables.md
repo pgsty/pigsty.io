@@ -11,7 +11,7 @@ weight: 1040
     <div class="ext-card__title">https://pgxn.org/dist/temporal_tables/</div>
     <div class="ext-card__desc">https://pgxn.org/dist/temporal_tables/</div>
   </a>
-  <a class="ext-card ext-card--source" href="temporal_tables-1.2.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/temporal_tables-1.2.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">temporal_tables-1.2.2.tar.gz</div>
     <div class="ext-card__desc">temporal_tables-1.2.2.tar.gz</div>

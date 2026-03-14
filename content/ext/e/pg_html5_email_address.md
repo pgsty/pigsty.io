@@ -11,7 +11,7 @@ weight: 4180
     <div class="ext-card__title">bigsmoke/pg_html5_email_address</div>
     <div class="ext-card__desc">https://github.com/bigsmoke/pg_html5_email_address</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_html5_email_address-1.2.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_html5_email_address-1.2.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_html5_email_address-1.2.3.tar.gz</div>
     <div class="ext-card__desc">pg_html5_email_address-1.2.3.tar.gz</div>

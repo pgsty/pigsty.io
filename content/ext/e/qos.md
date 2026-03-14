@@ -11,7 +11,7 @@ weight: 5240
     <div class="ext-card__title">appstonia/pg_qos</div>
     <div class="ext-card__desc">https://github.com/appstonia/pg_qos</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_qos-1.0.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_qos-1.0.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_qos-1.0.0.tar.gz</div>
     <div class="ext-card__desc">pg_qos-1.0.0.tar.gz</div>

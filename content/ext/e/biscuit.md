@@ -11,7 +11,7 @@ weight: 2170
     <div class="ext-card__title">CrystallineCore/pg_biscuit</div>
     <div class="ext-card__desc">https://github.com/CrystallineCore/pg_biscuit</div>
   </a>
-  <a class="ext-card ext-card--source" href="Biscuit-2.2.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/Biscuit-2.2.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">Biscuit-2.2.2.tar.gz</div>
     <div class="ext-card__desc">Biscuit-2.2.2.tar.gz</div>
@@ -25,7 +25,7 @@ weight: 2170
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_biscuit`**](/ext/e/pg_biscuit) | `2.2.2` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_biscuit`**](/ext/e/biscuit) | `2.2.2` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |

@@ -11,7 +11,7 @@ weight: 1000
     <div class="ext-card__title">timescale/timescaledb</div>
     <div class="ext-card__desc">https://github.com/timescale/timescaledb</div>
   </a>
-  <a class="ext-card ext-card--source" href="timescaledb-2.25.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/timescaledb-2.25.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">timescaledb-2.25.2.tar.gz</div>
     <div class="ext-card__desc">timescaledb-2.25.2.tar.gz</div>

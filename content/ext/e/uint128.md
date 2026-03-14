@@ -11,7 +11,7 @@ weight: 3740
     <div class="ext-card__title">pg-uint/pg-uint128</div>
     <div class="ext-card__desc">https://github.com/pg-uint/pg-uint128</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg-uint128-1.2.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg-uint128-1.2.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg-uint128-1.2.0.tar.gz</div>
     <div class="ext-card__desc">pg-uint128-1.2.0.tar.gz</div>

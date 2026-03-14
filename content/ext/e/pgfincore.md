@@ -11,7 +11,7 @@ weight: 5060
     <div class="ext-card__title">klando/pgfincore</div>
     <div class="ext-card__desc">https://github.com/klando/pgfincore</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgfincore-1.3.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgfincore-1.3.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgfincore-1.3.1.tar.gz</div>
     <div class="ext-card__desc">pgfincore-1.3.1.tar.gz</div>

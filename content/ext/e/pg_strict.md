@@ -11,7 +11,7 @@ weight: 5830
     <div class="ext-card__title">spa5k/pg_strict</div>
     <div class="ext-card__desc">https://github.com/spa5k/pg_strict</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_strict-1.0.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_strict-1.0.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_strict-1.0.2.tar.gz</div>
     <div class="ext-card__desc">pg_strict-1.0.2.tar.gz</div>

@@ -11,7 +11,7 @@ weight: 2510
     <div class="ext-card__title">pgpartman/pg_partman</div>
     <div class="ext-card__desc">https://github.com/pgpartman/pg_partman</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_partman-5.4.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_partman-5.4.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_partman-5.4.2.tar.gz</div>
     <div class="ext-card__desc">pg_partman-5.4.2.tar.gz</div>
@@ -33,7 +33,7 @@ weight: 2510
 | 2510  | [**`pg_partman`**](/ext/e/pg_partman) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`citus`](/ext/e/citus) [`pg_fkpart`](/ext/e/pg_fkpart) [`timescaledb`](/ext/e/timescaledb) [`periods`](/ext/e/periods) [`emaj`](/ext/e/emaj) [`pg_cron`](/ext/e/pg_cron) [`plproxy`](/ext/e/plproxy) [`temporal_tables`](/ext/e/temporal_tables) |
+| **Related** | [`plpgsql`](/ext/e/plpgsql) [`citus`](/ext/e/citus) [`pg_fkpart`](/ext/e/pg_fkpart) [`timescaledb`](/ext/e/timescaledb) [`periods`](/ext/e/periods) [`emaj`](/ext/e/emaj) [`pg_cron`](/ext/e/pg_cron) [`plproxy`](/ext/e/plproxy) [`temporal_tables`](/ext/e/temporal_tables) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Depended By** | [`timeseries`](/ext/e/timeseries) |
 {.ext-table .ext-table--rel}
@@ -43,7 +43,7 @@ weight: 2510
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `5.4.3` | {{< pgvers "18,17,16,15,14" >}} | `pg_partman` | - |
+| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `5.4.3` | {{< pgvers "18,17,16,15,14" >}} | `pg_partman` | `plpgsql` |
 | [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `5.4.3` | {{< pgvers "18,17,16,15,14" >}} | `pg_partman_$v` | - |
 | [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `5.4.3` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-partman` | - |
 {.ext-table}
@@ -577,7 +577,7 @@ apt install -y postgresql-14-partman   # PG 14
 **Create Extension**:
 
 ```sql
-CREATE EXTENSION pg_partman;
+CREATE EXTENSION pg_partman CASCADE;  -- requires: plpgsql
 ```
 
 

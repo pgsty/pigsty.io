@@ -11,7 +11,7 @@ weight: 7060
     <div class="ext-card__title">zhuobie/pgsmcrypto</div>
     <div class="ext-card__desc">https://github.com/zhuobie/pgsmcrypto</div>
   </a>
-  <a class="ext-card ext-card--source" href="pgsmcrypto-0.1.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgsmcrypto-0.1.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pgsmcrypto-0.1.1.tar.gz</div>
     <div class="ext-card__desc">pgsmcrypto-0.1.1.tar.gz</div>

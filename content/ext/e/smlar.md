@@ -11,7 +11,7 @@ weight: 1850
     <div class="ext-card__title">jirutka/smlar</div>
     <div class="ext-card__desc">https://github.com/jirutka/smlar</div>
   </a>
-  <a class="ext-card ext-card--source" href="smlar-1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/smlar-1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">smlar-1.0.tar.gz</div>
     <div class="ext-card__desc">smlar-1.0.tar.gz</div>

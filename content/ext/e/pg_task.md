@@ -11,7 +11,7 @@ weight: 1080
     <div class="ext-card__title">RekGRpth/pg_task</div>
     <div class="ext-card__desc">https://github.com/RekGRpth/pg_task</div>
   </a>
-  <a class="ext-card ext-card--source" href="pg_task-1.0.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_task-1.0.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
     <div class="ext-card__title">pg_task-1.0.0.tar.gz</div>
     <div class="ext-card__desc">pg_task-1.0.0.tar.gz</div>
