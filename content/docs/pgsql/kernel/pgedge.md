@@ -1,27 +1,31 @@
 ---
 title: pgEdge
 weight: 2116
-description: Use the pgEdge (PG17) kernel in Pigsty for distributed, multi-master PostgreSQL at the edge.
+description: Use the pgEdge (PG17) kernel in Pigsty to build distributed PostgreSQL for edge scenarios on top of Spock multi-master logical replication.
 icon: fa-solid fa-network-wired
 module: [PGSQL]
 categories: [Concept]
 ---
 
-> [**pgEdge**](https://www.pgedge.com/) is a distributed PostgreSQL distribution for edge scenarios, built on [**Spock**](https://docs.pgedge.com/spock-v5) multi-master logical replication.
+[**pgEdge**](https://www.pgedge.com/) is a distributed PostgreSQL distribution for edge scenarios, built on [**Spock**](https://docs.pgedge.com/spock-v5) multi-master logical replication.
 
 
 --------
 
 ## Overview
 
-In Pigsty, pgEdge is activated via `pg_mode: pgedge`. The default delivery includes these core components:
+Pigsty integrates pgEdge through `pg_mode: pgedge` and delivers it through the standard PostgreSQL cluster workflow:
 
-- `pgedge`: PG17-compatible kernel (a patched PostgreSQL 17.9)
+- `pgedge`: a PG17-compatible kernel
 - `spock`: Active-active multi-master logical replication
 - `snowflake`: Distributed unique sequences
 - `lolor`: Large object logical replication compatibility layer
 
-pgEdge clusters retain all standard Pigsty capabilities: HA, backup & restore, monitoring & alerting, access control, and IaC configuration management.
+In the current Pigsty repository, pgEdge is shipped as `17.9`, together with `spock 5.0.5`, `snowflake 2.4`, and `lolor 1.2.2`.
+From the client side, pgEdge is still PostgreSQL wire compatible, so `psql`, JDBC/ODBC, DBeaver, and similar tools work as usual.
+
+The delivery model in Pigsty is: validate the kernel on a single node first, then expand to a multi-node replication topology.
+The template handles the kernel, extensions, monitoring, backup, and access control out of the box, but the actual multi-master topology still needs to be designed around your workload consistency and conflict strategy.
 
 
 --------
@@ -35,7 +39,7 @@ Use the built-in Pigsty template:
 ./deploy.yml
 ```
 
-After deployment, verify the kernel and extensions:
+The template pre-installs `spock`, `snowflake`, and `lolor` in the `meta` database. After deployment, verify the kernel and extensions:
 
 ```bash
 psql -d meta -c "SELECT version();"
@@ -49,7 +53,7 @@ psql -d meta -c "SELECT extname, extversion FROM pg_extension WHERE extname IN (
 
 ## Configuration
 
-Key parameters for `pgedge` mode (matching `conf/pgedge.yml`):
+Key parameters in the `pgedge` template (matching `conf/pgedge.yml`):
 
 ```yaml
 pg_mode: pgedge
@@ -57,25 +61,30 @@ pg_version: 17
 pg_packages: [ pgedge, pgsql-common ]
 pg_extensions: [ spock, snowflake, lolor ]
 pg_libs: 'spock, lolor, pg_stat_statements, auto_explain'
+pg_databases:
+  - { name: meta ,baseline: cmdb.sql ,comment: pigsty meta database ,schemas: [pigsty] ,extensions: [spock, snowflake, lolor] }
 ```
 
-For multi-node multi-master setups, explicitly configure `snowflake.node` (unique per node):
+If you plan to grow into a multi-node multi-master topology, it is better to configure logical replication capacity and `snowflake.node` explicitly:
 
 ```yaml
 pg_parameters:
+  wal_level: logical
+  max_replication_slots: 16
+  max_wal_senders: 16
   'snowflake.node': 1
 ```
 
-The pgEdge docs recommend Spock-specific logical replication parameters (`wal_level=logical`, sufficient `max_wal_senders`/`max_replication_slots`). Pigsty's `oltp/olap/tiny/crit` tuning templates already cover these baseline parameters.
+`snowflake.node` must be unique on every writable node, otherwise distributed IDs will collide.
 
 
 --------
 
 ## Usage
 
-The typical workflow in Pigsty is: validate the kernel on a single node first, then expand into a multi-node Spock replication topology.
+The common workflow in Pigsty is still: validate the kernel on a single node first, then expand into a multi-node Spock replication topology.
 
-### 1. Enable Extensions
+If you need these capabilities in a business database as well, create the extensions first:
 
 ```sql
 CREATE EXTENSION IF NOT EXISTS spock;
@@ -83,37 +92,20 @@ CREATE EXTENSION IF NOT EXISTS snowflake;
 CREATE EXTENSION IF NOT EXISTS lolor;
 ```
 
-### 2. Configure Spock Multi-Master Replication
-
-Use the Spock SQL API (`node_create`, `sub_create`, etc.) or the pgEdge CLI for node and subscription management. Official entry points:
-
-- [Installing and Configuring Spock](https://docs.pgedge.com/platform/spock_ext/install_spock)
-- [Replication Set Management](https://docs.pgedge.com/spock-v5/development/managing/repsets)
-- [Node Management](https://docs.pgedge.com/spock-v5/development/managing/nodes)
-
-### 3. Use Snowflake Sequences (Recommended)
-
-pgEdge strongly recommends Snowflake sequences over traditional sequences for distributed multi-master scenarios. Existing sequences can be converted to Snowflake sequences using Spock/Snowflake tooling.
-
-- [Snowflake Sequences](https://docs.pgedge.com/platform/snowflake)
-- [Using Spock with Snowflake Sequences](https://docs.pgedge.com/spock-v5/development/managing/snowflake)
-- [LOLOR (Large Objects)](https://docs.pgedge.com/platform/lolor)
+Then use the Spock SQL API or the pgEdge CLI to create nodes, replication sets, and subscriptions.
+If your schema already uses `serial` or `identity`, plan the `snowflake` sequence migration before enabling multi-master writes, otherwise cross-node primary key collisions are likely.
 
 
 --------
 
 ## Notes
 
-Per the pgEdge official limitations, evaluate the following before production use:
-
-- Spock configuration and management typically requires superuser privileges.
-- `UNLOGGED` and `TEMPORARY` tables are not replicated.
-- Replication is configured per-database, not instance-wide.
-- Replicated tables should have a `PRIMARY KEY` or a valid `REPLICA IDENTITY`.
-- For cross-region multi-master setups, use `snowflake` for sequence management.
-- If your workload depends on large object replication, use `lolor`; native large object logical replication has known limitations.
-
-See the official limitations doc: [Spock Limitations](https://docs.pgedge.com/spock-v5/development/limitations/).
+- Replication in pgEdge is organized per database, not as an instance-wide "turn everything into multi-master" switch.
+- Replicated tables should have a `PRIMARY KEY` or an appropriate `REPLICA IDENTITY`.
+- `UNLOGGED` and `TEMPORARY` tables do not participate in Spock logical replication.
+- Spock configuration and operations typically require superuser privileges, so production deployments should define privilege boundaries clearly.
+- If your workload depends on large object replication, use `lolor` explicitly rather than assuming native large objects will replicate correctly.
+- Cross-region multi-master is not a checkbox feature. Network latency, conflict handling, and the write model all need to be evaluated first.
 
 
 --------
@@ -124,4 +116,5 @@ See the official limitations doc: [Spock Limitations](https://docs.pgedge.com/sp
 - [`pgedge` config template](/docs/conf/pgedge/)
 - [PGSQL kernel mode config](/docs/pgsql/config/kernel/)
 - [pgEdge official docs](https://docs.pgedge.com/)
-- [pgEdge Platform Release Notes](https://docs.pgedge.com/platform/pgedge_rel_notes)
+- [Spock Limitations](https://docs.pgedge.com/spock-v5/development/limitations/)
+- [Snowflake Sequences](https://docs.pgedge.com/platform/snowflake)

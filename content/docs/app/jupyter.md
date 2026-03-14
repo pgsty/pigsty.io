@@ -9,7 +9,7 @@ categories: [Reference]
 
 Run jupyter notebook with docker, you have to:
 
-- 1. change the default password in [`.env`](.env): `JUPYTER_TOKEN`
+- 1. change the default password in `.env`: `JUPYTER_TOKEN`
 - 2. create data dir with proper permission: `make dir`, owned by `1000:100`
 - 3. `make up` to pull up jupyter with docker compose
 

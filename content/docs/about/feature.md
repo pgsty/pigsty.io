@@ -69,7 +69,7 @@ Besides database kernels and many out-of-the-box extension plugins, Pigsty also 
 
 Pigsty can bootstrap an entire environment from bare metal with one click, reaching the last mile of software delivery. Ordinary developers and operations engineers can quickly get started and manage databases part-time, building enterprise-grade RDS services without database experts!
 
-[![pigsty-arch.jpg](/img/pigsty/arch.jpg)](/docs/concept/arch#singleton-installation)
+[![pigsty-arch.jpg](/img/pigsty/arch.png)](/docs/concept/arch#singleton-installation)
 
 
 
@@ -111,7 +111,7 @@ Additionally, Pigsty provides PG-compatible / derivative kernel support. You can
 Furthermore, you can use [**`FerretDB`**](/docs/ferret/) for MongoDB compatibility, [**`Supabase`**](/docs/pgsql/kernel/supabase) for Firebase compatibility, and [**`PolarDB`**](/docs/pgsql/kernel/polardb) to meet domestic compliance requirements.
 More professional/pilot modules will be continuously introduced to Pigsty, such as [**`GPSQL`**](/docs/pgsql/kernel/greenplum), [KAFKA](/docs/pilot/kafka/), [DUCKDB](/docs/pilot/duckdb/), [TIGERBEETLE](/docs/pilot/tigerbeetle/), [KUBERNETES](/docs/pilot/kube/), [CONSUL](/docs/pilot/consul/), [GREENPLUM](/docs/pgsql/kernel/greenplum/), [CLOUDBERRY](/docs/pgsql/kernel/cloudberry/), [MYSQL](/docs/pilot/mysql/), ...
 
-[![pigsty-sandbox.jpg](/img/pigsty/sandbox.jpg)](/docs/ref/module/)
+[![pigsty-sandbox.jpg](/img/pigsty/sandbox.png)](/docs/ref/module/)
 
 
 

@@ -6,7 +6,7 @@ icon: fa-solid fa-scroll
 categories: [Task]
 ---
 
-Pigsty uses **idempotent** Ansible playbooks for management and control. Running playbooks requires `ansible-playbook` to be in the system PATH; users must first [install Ansible](./ansible/#installation) before executing playbooks.
+Pigsty uses **idempotent** Ansible playbooks for management and control. Running playbooks requires `ansible-playbook` to be in the system PATH; users must first [install Ansible](../ansible/#installation) before executing playbooks.
 
 
 ## Available Playbooks

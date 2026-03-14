@@ -1,56 +1,48 @@
 ---
 title: AgensGraph
 weight: 2115
-description: Use the AgensGraph (PG16) graph database kernel in Pigsty with property graph modeling and Cypher/SQL hybrid queries.
+description: Use the AgensGraph (PG16) graph database kernel in Pigsty to get property graph and Cypher/SQL hybrid query capabilities within the PostgreSQL ecosystem.
 icon: fa-solid fa-project-diagram
 module: [PGSQL]
 categories: [Concept]
 ---
 
-> [AgensGraph](https://github.com/skaiworldwide-oss/agensgraph) is a multi-model graph database kernel based on PostgreSQL, supporting property graph models and openCypher queries.
+[AgensGraph](https://github.com/skaiworldwide-oss/agensgraph) is a property graph database kernel built on PostgreSQL, supporting openCypher queries and mixed Cypher/SQL workflows.
 
 
 --------
 
 ## Overview
 
-In Pigsty, AgensGraph is activated via `pg_mode: agens`. Key characteristics:
+Pigsty integrates AgensGraph through `pg_mode: agens` while preserving most of the standard PostgreSQL operational model.
 
 - Kernel package: `agensgraph`
 - Mode identifier: `pg_mode: agens`
-- Current template version: `AgensGraph 2.16.0` (based on `PostgreSQL 16`)
-- Supported OS: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
-- Supported arch: `x86_64`, `aarch64`
+- Current template version: `AgensGraph 2.16`
+- Current version string: `PostgreSQL 16.9 (AgensGraph 2.16)`
+- Built-in template: `agens`
+- Typical use cases: graph relationship analysis, path queries, knowledge graphs, and risk/association analysis layered onto relational data
 
-Pigsty `v4.2.0` (released `2026-02-27`) includes `agensgraph` in the standard package mapping and template delivery pipeline.
+From the client side, AgensGraph still speaks the PostgreSQL wire protocol, so normal PostgreSQL clients, drivers, and connection pools can connect directly.
+The real difference from vanilla PostgreSQL is not how you connect, but that the database now contains graph objects, Cypher syntax, and the `agtype` data type.
 
 
 --------
 
 ## Installation
 
-### Install with Pigsty Template (Recommended)
+Use the built-in Pigsty template:
 
 ```bash
 ./configure -c agens
 ./deploy.yml
 ```
 
-The `agens` template automatically enables `pg_mode: agens` and installs the `agensgraph` kernel package.
-
-
-### Official Installation (Source Compilation)
-
-If you want to evaluate AgensGraph independently from Pigsty, refer to the official build process:
+The `agens` template automatically enables `pg_mode: agens` and installs the `agensgraph` kernel package. After deployment, verify the kernel version:
 
 ```bash
-git clone https://github.com/skaiworldwide-oss/agensgraph.git
-cd agensgraph
-./configure
-make install-world
+psql -d meta -c "SELECT version();"
 ```
-
-Official installation docs: <https://tech.skaiworldwide.com/docs/en/agensgraph/16/quick_guide/installation.html>
 
 
 --------
@@ -72,20 +64,15 @@ all:
         pg_packages: [ agensgraph, pgsql-common ]
 ```
 
-For graph query performance tuning, pay attention to the following parameters in `postgresql.conf`:
-
-- `shared_buffers`
-- `work_mem`
-- `random_page_cost` (consider lowering for graph query workloads)
-
-For more parameter details, see the official docs: <https://tech.skaiworldwide.com/docs/en/agensgraph/latest/operation_manual/configuration.html>
+AgensGraph does not require a special preload stack like pgEdge or Babelfish, so most standard Pigsty patterns for HA, backup, monitoring, access control, and IaC remain unchanged.
+If your workload is dominated by graph traversal and complex path queries, focus on `work_mem`, `shared_buffers`, and planner cost settings instead of assuming default OLTP habits will fit.
 
 
 --------
 
 ## Usage
 
-After connecting to the database, create a graph and set the graph path:
+After connecting to the database, the usual first step is to create a graph and set `graph_path`:
 
 ```sql
 CREATE GRAPH g;
@@ -119,15 +106,18 @@ SELECT *
 FROM cypher('g', $$ MATCH (v:person) RETURN v.name $$) AS (name agtype);
 ```
 
-Syntax and examples above are from the official Cypher manual: <https://tech.skaiworldwide.com/docs/en/agensgraph/16/cypher_manual/cypher_manual.html>
+In real projects, the more common pattern is to mix "relational tables + graph labels + Cypher queries":
+transactions, privileges, and backup workflows still follow PostgreSQL, while graph analysis logic lives in AgensGraph graph objects and the `cypher()` interface.
 
 
 --------
 
 ## Notes
 
+- AgensGraph is currently fixed to the PG16-compatible line, so do not assume PG17 / PG18 extension availability will carry over.
 - The default `agens` template is single-node for quick validation; production deployments should extend to an HA topology.
 - Not all third-party PostgreSQL extensions are guaranteed to work on the AgensGraph kernel; verify compatibility first.
+- Graph objects and relational objects can coexist in the same database, but in production it is usually better to define clear database or naming conventions so they do not become tangled together.
 - Tune memory and cost parameters based on your graph model scale; do not blindly use defaults.
 - For compatibility or semantic issues with the AgensGraph kernel, consult the official manual and upstream issues first.
 
@@ -137,7 +127,7 @@ Syntax and examples above are from the official Cypher manual: <https://tech.ska
 ## Related Docs
 
 - Pigsty config template: [`conf/agens`](/docs/conf/agens/)
-- Pigsty kernel mode config: [/docs/pgsql/config/kernel/](/docs/pgsql/config/kernel/)
+- [PGSQL kernel mode config](/docs/pgsql/config/kernel/)
 - AgensGraph repository: <https://github.com/skaiworldwide-oss/agensgraph>
 - AgensGraph official docs: <https://tech.skaiworldwide.com/docs/en/agensgraph/latest/>
 - AgensGraph Quick Guide: <https://tech.skaiworldwide.com/docs/en/agensgraph/16/quick_guide/index.html>

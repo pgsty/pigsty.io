@@ -51,7 +51,7 @@ Like many "specialized databases," the strength of dedicated OLAP systems often 
 
 However, as the saying goes, "What goes around comes around". With [hardware improving over thirty years following Moore's Law](/blog/cloud/bonus), performance has increased exponentially while costs have plummeted. In 2024, a single x86 machine can have hundreds of cores (512 vCPU [EPYC 9754](https://www.amd.com/zh-hans/products/cpu/amd-epyc-9754)x2), several TBs of RAM, a single NVMe SSD can hold up to 64TB, and a single all-flash rack can reach 2PB; object storage like S3 offers virtually unlimited storage.
 
-[![io-bandwidth.png](/img/hero/eater/io-bandwidth.png)](/blog/cloud/bonus)
+[![io-bandwidth.png](io-bandwidth.png)](/blog/cloud/bonus)
 
 Hardware advancements have solved the data volume and performance issue, while database software developments (PostgreSQL, ParadeDB, DuckDB) have addressed access method challenges. This puts the fundamental assumptions of the analytics sector — the so-called “big data” industry — under scrutiny.
 
@@ -77,7 +77,7 @@ This isn’t the first time; we’re witnessing it again in the oldest and large
 
 What makes PostgreSQL so capable? Sure, it's advanced, but so is Oracle; it's open-source, as is MySQL. PostgreSQL's edge comes from being **both advanced and open-source**, allowing it to compete with Oracle/MySQL. But its true uniqueness lies in its **extreme extensibility and thriving extension ecosystem**.
 
-[![survey.png](/img/hero/eater/survey.png)](https://www.timescale.com/state-of-postgres/2022/)
+[![survey.png](survey.png)](https://www.timescale.com/state-of-postgres/2022/)
 
 > TimescaleDB survey: [what is the main reason you choose to use PostgreSQL](https://www.timescale.com/state-of-postgres/2022/)
 
@@ -124,7 +124,7 @@ A niche database product might carve out a space for itself if it can outperform
 
 Following this logic, the PostgreSQL ecosystem is poised to snowball, accruing advantages and inevitably moving towards a monopoly, mirroring the Linux kernel’s status in server OS within a few years. Developer surveys and database trend reports confirm this trajectory.
 
-[![sf-survey.png](/img/hero/eater/sf-survey.png)](https://survey.stackoverflow.co/2023/#section-most-popular-technologies-databases)
+[![sf-survey.png](sf-survey.png)](https://survey.stackoverflow.co/2023/#section-most-popular-technologies-databases)
 
 > [**StackOverflow 2023 Survey: PostgreSQL, the Decathlete**](https://survey.stackoverflow.co/2023/#section-most-popular-technologies-databases)
 
