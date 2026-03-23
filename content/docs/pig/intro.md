@@ -11,7 +11,7 @@ categories: [Concept]
 Have you ever struggled with installing or upgrading PostgreSQL extensions? Digging through outdated documentation, cryptic configuration scripts, or searching GitHub for forks and patches?
 Postgres's rich extension ecosystem also means complex deployment processes, especially across multiple distributions and architectures. PIG can solve these headaches for you.
 
-This is exactly why **Pig** was created. Developed in Go, Pig is dedicated to one-stop management of Postgres and its [450+](/ext/list) extensions.
+This is exactly why **Pig** was created. Developed in Go, Pig is dedicated to one-stop management of Postgres and its [464](/ext/list) extensions.
 Whether it's TimescaleDB, Citus, PGVector, 30+ Rust extensions, or all the components needed to self-host Supabase, Pig's unified CLI makes everything accessible.
 It completely eliminates source compilation and messy repositories, directly providing version-aligned RPM/DEB packages that perfectly support Debian, Ubuntu, RedHat, and other mainstream distributions on both x86 and Arm architectures, no guessing, no hassle.
 
@@ -40,24 +40,24 @@ PIG and the Pigsty extension repository support the following Linux distribution
 | OS Code | Vendor | Major | Minor | Full Name | PG Versions | Notes |
 |:---|:---|:---:|:---:|:---|:---|:---:|
 | `el7.x86_64` | EL | 7 | 7.9 | CentOS 7 x86 | 13-15 | EOL |
-| `el8.x86_64` | EL | 8 | 8.10 | RockyLinux 8 x86 | 13-18 | Near EOL |
-| `el8.aarch64` | EL | 8 | 8.10 | RockyLinux 8 ARM | 13-18 | Near EOL |
-| `el9.x86_64` | EL | 9 | 9.7 | RockyLinux 9 x86 | 13-18 | ✅ |
-| `el9.aarch64` | EL | 9 | 9.7 | RockyLinux 9 ARM | 13-18 | ✅ |
-| `el10.x86_64` | EL | 10 | 10.1 | RockyLinux 10 x86 | 13-18 | ✅ |
-| `el10.aarch64` | EL | 10 | 10.1 | RockyLinux 10 ARM | 13-18 | ✅ |
-| `d11.x86_64` | Debian | 11 | 11.11 | Debian 11 x86 | 13-18 | EOL |
-| `d11.aarch64` | Debian | 11 | 11.11 | Debian 11 ARM | 13-18 | EOL |
-| `d12.x86_64` | Debian | 12 | 12.13 | Debian 12 x86 | 13-18 | ✅ |
-| `d12.aarch64` | Debian | 12 | 12.13 | Debian 12 ARM | 13-18 | ✅ |
-| `d13.x86_64` | Debian | 13 | 13.3 | Debian 13 x86 | 13-18 | ✅ |
-| `d13.aarch64` | Debian | 13 | 13.3 | Debian 13 ARM | 13-18 | ✅ |
-| `u20.x86_64` | Ubuntu | 20 | 20.04.6 | Ubuntu 20.04 x86 | 13-18 | EOL |
-| `u20.aarch64` | Ubuntu | 20 | 20.04.6 | Ubuntu 20.04 ARM | 13-18 | EOL |
-| `u22.x86_64` | Ubuntu | 22 | 22.04.5 | Ubuntu 22.04 x86 | 13-18 | ✅ |
-| `u22.aarch64` | Ubuntu | 22 | 22.04.5 | Ubuntu 22.04 ARM | 13-18 | ✅ |
-| `u24.x86_64` | Ubuntu | 24 | 24.04.4 | Ubuntu 24.04 x86 | 13-18 | ✅ |
-| `u24.aarch64` | Ubuntu | 24 | 24.04.4 | Ubuntu 24.04 ARM | 13-18 | ✅ |
+| `el8.x86_64` | EL | 8 | 8.10 | RockyLinux 8 x86 | 14-18 | Near EOL |
+| `el8.aarch64` | EL | 8 | 8.10 | RockyLinux 8 ARM | 14-18 | Near EOL |
+| `el9.x86_64` | EL | 9 | 9.7 | RockyLinux 9 x86 | 14-18 | ✅ |
+| `el9.aarch64` | EL | 9 | 9.7 | RockyLinux 9 ARM | 14-18 | ✅ |
+| `el10.x86_64` | EL | 10 | 10.1 | RockyLinux 10 x86 | 14-18 | ✅ |
+| `el10.aarch64` | EL | 10 | 10.1 | RockyLinux 10 ARM | 14-18 | ✅ |
+| `d11.x86_64` | Debian | 11 | 11.11 | Debian 11 x86 | 14-18 | EOL |
+| `d11.aarch64` | Debian | 11 | 11.11 | Debian 11 ARM | 14-18 | EOL |
+| `d12.x86_64` | Debian | 12 | 12.13 | Debian 12 x86 | 14-18 | ✅ |
+| `d12.aarch64` | Debian | 12 | 12.13 | Debian 12 ARM | 14-18 | ✅ |
+| `d13.x86_64` | Debian | 13 | 13.3 | Debian 13 x86 | 14-18 | ✅ |
+| `d13.aarch64` | Debian | 13 | 13.3 | Debian 13 ARM | 14-18 | ✅ |
+| `u20.x86_64` | Ubuntu | 20 | 20.04.6 | Ubuntu 20.04 x86 | 14-18 | EOL |
+| `u20.aarch64` | Ubuntu | 20 | 20.04.6 | Ubuntu 20.04 ARM | 14-18 | EOL |
+| `u22.x86_64` | Ubuntu | 22 | 22.04.5 | Ubuntu 22.04 x86 | 14-18 | ✅ |
+| `u22.aarch64` | Ubuntu | 22 | 22.04.5 | Ubuntu 22.04 ARM | 14-18 | ✅ |
+| `u24.x86_64` | Ubuntu | 24 | 24.04.4 | Ubuntu 24.04 x86 | 14-18 | ✅ |
+| `u24.aarch64` | Ubuntu | 24 | 24.04.4 | Ubuntu 24.04 ARM | 14-18 | ✅ |
 {.full-width}
 
 **Notes:**
@@ -65,4 +65,4 @@ PIG and the Pigsty extension repository support the following Linux distribution
 - **EL** refers to RHEL-compatible distributions, including RHEL, CentOS, RockyLinux, AlmaLinux, OracleLinux, etc.
 - **EOL** indicates the operating system has reached or is about to reach end of support; upgrading to a newer version is recommended
 - **✅** indicates full support; recommended for use
-- PG versions 13-18 means support for PostgreSQL 13, 14, 15, 16, 17, and 18 major versions
+- PG versions 14-18 means support for PostgreSQL 14, 15, 16, 17, and 18 major versions

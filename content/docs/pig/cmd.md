@@ -32,7 +32,7 @@ Examples:
   pig install pg_duckdb       # install a PostgreSQL extension
   pig install pgactive -v 18  # install extension for specific PG major
 
-  visit /ext/ for details
+  visit https://pigsty.io/ext/ for details
 
 PostgreSQL Extension Manager
   build       Build Postgres extensions
@@ -151,6 +151,7 @@ pig pg status                    # check status
 pig pg psql mydb                 # connect to database
 pig pg ps                        # show current connections
 pig pg vacuum mydb               # vacuum database
+pig pg tune -p olap              # generate tuned parameters
 pig pg log tail                  # real-time log viewing
 ```
 

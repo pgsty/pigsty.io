@@ -153,7 +153,18 @@ Download extension source code.
 
 ```bash
 pig build get citus              # Download citus source
+pig build get pdu pgdog          # Use built-in source aliases
 ```
+
+Some source packages do not map directly to extension names. `pig build get` includes a small set of built-in special aliases to download these source tarballs directly. `v1.3.2` adds two more aliases: `pdu` and `pgdog`.
+
+```bash
+pig build get pdu                # Download pdu-3.0.25.12.tar.gz
+pig build get pgdog              # Download pgdog-0.1.32.tar.gz
+pig build get pgedge             # Download both PostgreSQL and spock sources
+```
+
+Common special source aliases now include: `babelfishpg` / `babelfish`, `agensgraph` / `agens`, `pgedge`, `pdu`, and `pgdog`.
 
 
 ## build dep

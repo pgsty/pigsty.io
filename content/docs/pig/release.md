@@ -7,42 +7,70 @@ module: [PIG]
 categories: [Reference]
 ---
 
-The latest stable version is [v1.3.1](https://github.com/pgsty/pig/releases/tag/v1.3.1).
+The latest stable version is [v1.3.2](https://github.com/pgsty/pig/releases/tag/v1.3.2).
 
-|     Version     |    Date    | Summary                                                 |                           GitHub                           |
-|:---------------:|:----------:|---------------------------------------------------------|:----------------------------------------------------------:|
+|     Version     |    Date    | Summary                                                            |                           GitHub                           |
+|:---------------:|:----------:|--------------------------------------------------------------------|:----------------------------------------------------------:|
+| [v1.3.2](#v132) | 2026-03-23 | Routine metadata refresh, new `pg tune`, new build aliases         | [v1.3.2](https://github.com/pgsty/pig/releases/tag/v1.3.2) |
 | [v1.3.1](#v131) | 2026-03-05 | Retire PG13 defaults, unify PG14-18 support window, 464 extensions | [v1.3.1](https://github.com/pgsty/pig/releases/tag/v1.3.1) |
 | [v1.3.0](#v130) | 2026-02-27 | Build pipeline hardening, 461 extensions, new pgedge/ivory support | [v1.3.0](https://github.com/pgsty/pig/releases/tag/v1.3.0) |
-| [v1.2.0](#v120) | 2026-02-23 | Unified aliases, routine updates, plan mode, repo fixes | [v1.2.0](https://github.com/pgsty/pig/releases/tag/v1.2.0) |
-| [v1.1.0](#v110) | 2026-02-12 | 451 extensions, Agent-Native CLI framework              | [v1.1.0](https://github.com/pgsty/pig/releases/tag/v1.1.0) |
-| [v1.0.0](#v100) | 2026-01-26 | New pg/pt/pb/pitr commands, availability matrix         | [v1.0.0](https://github.com/pgsty/pig/releases/tag/v1.0.0) |
-| [v0.8.0](#v080) | 2025-12-26 | 440 extensions, remove sysupdate repo                   | [v0.8.0](https://github.com/pgsty/pig/releases/tag/v0.8.0) |
-| [v0.7.5](#v075) | 2025-12-12 | Routine extension update, fixed aliyun mirror           | [v0.7.5](https://github.com/pgsty/pig/releases/tag/v0.7.5) |
-| [v0.7.4](#v074) | 2025-12-01 | Update ivory/pgtde kernel and pgdg extras               | [v0.7.4](https://github.com/pgsty/pig/releases/tag/v0.7.4) |
-| [v0.7.3](#v073) | 2025-11-24 | Fix repo for el10 & debian13                            | [v0.7.3](https://github.com/pgsty/pig/releases/tag/v0.7.3) |
-| [v0.7.2](#v072) | 2025-11-20 | 437 extensions, fix pig build issue                     | [v0.7.2](https://github.com/pgsty/pig/releases/tag/v0.7.2) |
-| [v0.7.1](#v071) | 2025-11-10 | New Website, improve in-docker experience               | [v0.7.1](https://github.com/pgsty/pig/releases/tag/v0.7.1) |
-| [v0.7.0](#v070) | 2025-11-05 | Build Enhancement and massive upgrade                   | [v0.7.0](https://github.com/pgsty/pig/releases/tag/v0.7.0) |
-| [v0.6.2](#v062) | 2025-10-03 | PG 18 official Repo                                     | [v0.6.2](https://github.com/pgsty/pig/releases/tag/v0.6.2) |
-| [v0.6.1](#v061) | 2025-08-14 | CI/CD, el10 stub, PGDG CN Mirror                        | [v0.6.1](https://github.com/pgsty/pig/releases/tag/v0.6.1) |
-| [v0.6.0](#v060) | 2025-07-17 | 423 extension, percona pg_tde, mcp toolbox              | [v0.6.0](https://github.com/pgsty/pig/releases/tag/v0.6.0) |
-| [v0.5.0](#v050) | 2025-06-30 | 422 extension, new extension catalog                    | [v0.5.0](https://github.com/pgsty/pig/releases/tag/v0.5.0) |
-| [v0.4.2](#v042) | 2025-05-27 | 421 extension, halo & oriole deb                        | [v0.4.2](https://github.com/pgsty/pig/releases/tag/v0.4.2) |
-| [v0.4.1](#v041) | 2025-05-07 | 414 extension, pg18 alias support                       | [v0.4.1](https://github.com/pgsty/pig/releases/tag/v0.4.1) |
-| [v0.4.0](#v040) | 2025-05-01 | do & pt sub-cmd, halo & orioledb                        | [v0.4.0](https://github.com/pgsty/pig/releases/tag/v0.4.0) |
-| [v0.3.4](#v034) | 2025-04-05 | routine update                                          | [v0.3.4](https://github.com/pgsty/pig/releases/tag/v0.3.4) |
-| [v0.3.3](#v033) | 2025-03-25 | alias, repo, deps                                       | [v0.3.3](https://github.com/pgsty/pig/releases/tag/v0.3.3) |
-| [v0.3.2](#v032) | 2025-03-21 | new extensions                                          | [v0.3.2](https://github.com/pgsty/pig/releases/tag/v0.3.2) |
-| [v0.3.1](#v031) | 2025-03-19 | minor bug fix                                           | [v0.3.1](https://github.com/pgsty/pig/releases/tag/v0.3.1) |
-| [v0.3.0](#v030) | 2025-02-24 | new home page and extension catalog                     | [v0.3.0](https://github.com/pgsty/pig/releases/tag/v0.3.0) |
-| [v0.2.2](#v022) | 2025-02-22 | 404 extensions                                          | [v0.2.2](https://github.com/pgsty/pig/releases/tag/v0.2.2) |
-| [v0.2.0](#v020) | 2025-02-14 | 400 extensions                                          | [v0.2.0](https://github.com/pgsty/pig/releases/tag/v0.2.0) |
-| [v0.1.4](#v014) | 2025-02-12 | routine bugfix                                          | [v0.1.4](https://github.com/pgsty/pig/releases/tag/v0.1.4) |
-| [v0.1.3](#v013) | 2025-01-23 | 390 extensions                                          | [v0.1.3](https://github.com/pgsty/pig/releases/tag/v0.1.3) |
-| [v0.1.2](#v012) | 2025-01-12 | the anon extension and 350 other ext                    | [v0.1.2](https://github.com/pgsty/pig/releases/tag/v0.1.2) |
-| [v0.1.1](#v011) | 2025-01-09 | Update Extension List                                   | [v0.1.1](https://github.com/pgsty/pig/releases/tag/v0.1.1) |
-| [v0.1.0](#v010) | 2024-12-29 | repo, ext, sty, and self-update                         | [v0.1.0](https://github.com/pgsty/pig/releases/tag/v0.1.0) |
-| [v0.0.1](#v001) | 2024-12-23 | Genesis Release                                         | [v0.0.1](https://github.com/pgsty/pig/releases/tag/v0.0.1) |
+| [v1.2.0](#v120) | 2026-02-23 | Unified aliases, routine updates, plan mode, repo fixes            | [v1.2.0](https://github.com/pgsty/pig/releases/tag/v1.2.0) |
+| [v1.1.0](#v110) | 2026-02-12 | 451 extensions, Agent-Native CLI framework                         | [v1.1.0](https://github.com/pgsty/pig/releases/tag/v1.1.0) |
+| [v1.0.0](#v100) | 2026-01-26 | New pg/pt/pb/pitr commands, availability matrix                    | [v1.0.0](https://github.com/pgsty/pig/releases/tag/v1.0.0) |
+| [v0.8.0](#v080) | 2025-12-26 | 440 extensions, remove sysupdate repo                              | [v0.8.0](https://github.com/pgsty/pig/releases/tag/v0.8.0) |
+| [v0.7.5](#v075) | 2025-12-12 | Routine extension update, fixed aliyun mirror                      | [v0.7.5](https://github.com/pgsty/pig/releases/tag/v0.7.5) |
+| [v0.7.4](#v074) | 2025-12-01 | Update ivory/pgtde kernel and pgdg extras                          | [v0.7.4](https://github.com/pgsty/pig/releases/tag/v0.7.4) |
+| [v0.7.3](#v073) | 2025-11-24 | Fix repo for el10 & debian13                                       | [v0.7.3](https://github.com/pgsty/pig/releases/tag/v0.7.3) |
+| [v0.7.2](#v072) | 2025-11-20 | 437 extensions, fix pig build issue                                | [v0.7.2](https://github.com/pgsty/pig/releases/tag/v0.7.2) |
+| [v0.7.1](#v071) | 2025-11-10 | New Website, improve in-docker experience                          | [v0.7.1](https://github.com/pgsty/pig/releases/tag/v0.7.1) |
+| [v0.7.0](#v070) | 2025-11-05 | Build Enhancement and massive upgrade                              | [v0.7.0](https://github.com/pgsty/pig/releases/tag/v0.7.0) |
+| [v0.6.2](#v062) | 2025-10-03 | PG 18 official Repo                                                | [v0.6.2](https://github.com/pgsty/pig/releases/tag/v0.6.2) |
+| [v0.6.1](#v061) | 2025-08-14 | CI/CD, el10 stub, PGDG CN Mirror                                   | [v0.6.1](https://github.com/pgsty/pig/releases/tag/v0.6.1) |
+| [v0.6.0](#v060) | 2025-07-17 | 423 extension, percona pg_tde, mcp toolbox                         | [v0.6.0](https://github.com/pgsty/pig/releases/tag/v0.6.0) |
+| [v0.5.0](#v050) | 2025-06-30 | 422 extension, new extension catalog                               | [v0.5.0](https://github.com/pgsty/pig/releases/tag/v0.5.0) |
+| [v0.4.2](#v042) | 2025-05-27 | 421 extension, halo & oriole deb                                   | [v0.4.2](https://github.com/pgsty/pig/releases/tag/v0.4.2) |
+| [v0.4.1](#v041) | 2025-05-07 | 414 extension, pg18 alias support                                  | [v0.4.1](https://github.com/pgsty/pig/releases/tag/v0.4.1) |
+| [v0.4.0](#v040) | 2025-05-01 | do & pt sub-cmd, halo & orioledb                                   | [v0.4.0](https://github.com/pgsty/pig/releases/tag/v0.4.0) |
+| [v0.3.4](#v034) | 2025-04-05 | routine update                                                     | [v0.3.4](https://github.com/pgsty/pig/releases/tag/v0.3.4) |
+| [v0.3.3](#v033) | 2025-03-25 | alias, repo, deps                                                  | [v0.3.3](https://github.com/pgsty/pig/releases/tag/v0.3.3) |
+| [v0.3.2](#v032) | 2025-03-21 | new extensions                                                     | [v0.3.2](https://github.com/pgsty/pig/releases/tag/v0.3.2) |
+| [v0.3.1](#v031) | 2025-03-19 | minor bug fix                                                      | [v0.3.1](https://github.com/pgsty/pig/releases/tag/v0.3.1) |
+| [v0.3.0](#v030) | 2025-02-24 | new home page and extension catalog                                | [v0.3.0](https://github.com/pgsty/pig/releases/tag/v0.3.0) |
+| [v0.2.2](#v022) | 2025-02-22 | 404 extensions                                                     | [v0.2.2](https://github.com/pgsty/pig/releases/tag/v0.2.2) |
+| [v0.2.0](#v020) | 2025-02-14 | 400 extensions                                                     | [v0.2.0](https://github.com/pgsty/pig/releases/tag/v0.2.0) |
+| [v0.1.4](#v014) | 2025-02-12 | routine bugfix                                                     | [v0.1.4](https://github.com/pgsty/pig/releases/tag/v0.1.4) |
+| [v0.1.3](#v013) | 2025-01-23 | 390 extensions                                                     | [v0.1.3](https://github.com/pgsty/pig/releases/tag/v0.1.3) |
+| [v0.1.2](#v012) | 2025-01-12 | the anon extension and 350 other ext                               | [v0.1.2](https://github.com/pgsty/pig/releases/tag/v0.1.2) |
+| [v0.1.1](#v011) | 2025-01-09 | Update Extension List                                              | [v0.1.1](https://github.com/pgsty/pig/releases/tag/v0.1.1) |
+| [v0.1.0](#v010) | 2024-12-29 | repo, ext, sty, and self-update                                    | [v0.1.0](https://github.com/pgsty/pig/releases/tag/v0.1.0) |
+| [v0.0.1](#v001) | 2024-12-23 | Genesis Release                                                    | [v0.0.1](https://github.com/pgsty/pig/releases/tag/v0.0.1) |
+
+
+--------
+
+## v1.3.2
+
+Routine maintenance release.
+
+- Refresh a batch of extension version metadata and catalog entries.
+- Add the `pig pg tune` subcommand to generate PostgreSQL tuning parameters from hardware resources and workload profiles.
+- Add `pdu` and `pgdog` source package aliases for `pig build get`.
+- Migrate extension catalog URLs from `pgext.cloud` to `pigsty.io/ext`.
+
+**Checksums**
+
+```bash
+d760f47652ff3e2e4a61eb7b9a68ca68665b2b36c187c52f5eaf50d2f007d8f3  pig-1.3.2-1.aarch64.rpm
+c2e02e62497f4c2055a9b448ddb3a24c618fcd488580c28b2b9a0e7cedacef55  pig-1.3.2-1.x86_64.rpm
+b8d066ddefa4530946c74c30e7e4acdab6abf8da70a47dcfe2a77719b79e397f  pig-v1.3.2.darwin-amd64.tar.gz
+a90e78d879fd720fd2865870c696aed7952558d5ae75591deced3121f2aab1f9  pig-v1.3.2.darwin-arm64.tar.gz
+2fe3a9ffbb6383154dfd25ed79420b210828eabf6a96a8af6e8feb9d744b9559  pig-v1.3.2.linux-amd64.tar.gz
+522290aaf14f98f0bae83ce75cc76749f2a4e72742eb5c3cba36a1d2fa4d12c2  pig-v1.3.2.linux-arm64.tar.gz
+d6c1cf2c52962045f6bbfb2a669058e7f903088526591d6c939e7723f3928d30  pig_1.3.2-1_amd64.deb
+4352385c629b26a1837054445a546da89591499848b557699c2fb70fde9377aa  pig_1.3.2-1_arm64.deb
+```
+
+Release: https://github.com/pgsty/pig/releases/tag/v1.3.2
 
 
 --------

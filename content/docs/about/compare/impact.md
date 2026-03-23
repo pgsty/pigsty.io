@@ -35,7 +35,7 @@ Sorted by GitHub stars in descending order. Last updated: 2026-03-21
 | [EDB Postgres Advanced Server (EPAS)](https://www.enterprisedb.com/products/edb-postgres-advanced-server) |                                      -                                       | EDB           | Linux Native | Commercial  | EDB flagship distribution with Oracle-compatibility features           |
 {.full-width}
 
-[![Star History Chart](/img/pigsty/star-history-2026227.webp)](https://www.star-history.com/#pgsty/pigsty&vitabaks/autobase&cloudnative-pg/cloudnative-pg&zalando/postgres-operator&sorintlab/stolon&CrunchyData/postgres-operator&apecloud/kubeblocks&ongres/stackgres&type=date&legend=top-left)
+[![Star History Chart](/img/pigsty/star-history.webp)](https://www.star-history.com/#pgsty/pigsty&vitabaks/autobase&cloudnative-pg/cloudnative-pg&zalando/postgres-operator&sorintlab/stolon&CrunchyData/postgres-operator&apecloud/kubeblocks&ongres/stackgres&type=date&legend=top-left)
 
 
 

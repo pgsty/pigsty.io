@@ -55,7 +55,7 @@ Preparing to unpack /tmp/pig_1.0.0-1_amd64.deb ...
 Unpacking pig (1.0.0-1) ...
 Setting up pig (1.0.0-1) ...
 [INFO] pig v1.0.0 installed successfully
-check /ext/ for details
+check https://pigsty.io/ext/ for details
 ```
 
 
@@ -135,22 +135,22 @@ Name                            Status              Version     Cate   Flags   L
 ----                            ------              -------     ----   ------  -------       ------   -----  ------------                          ---------------------
 timescaledb                     installed  2.24.0      TIME   -dsl--  Timescale     PIGSTY   15-18  postgresql-18-timescaledb-tsl         Enables scalable inserts and complex queries for time-series dat
 timescaledb_toolkit             installed  1.22.0      TIME   -ds-t-  Timescale     PIGSTY   15-18  postgresql-18-timescaledb-toolkit     Library of analytical hyperfunctions, time-series pipelining, an
-timeseries                      installed  0.2.0       TIME   -d----  PostgreSQL    PIGSTY   13-18  postgresql-18-pg-timeseries           Convenience API for time series stack
-periods                         installed  1.2.3       TIME   -ds---  PostgreSQL    PGDG     13-18  postgresql-18-periods                 Provide Standard SQL functionality for PERIODs and SYSTEM VERSIO
-temporal_tables                 installed  1.2.2       TIME   -ds--r  BSD 2-Clause  PIGSTY   13-18  postgresql-18-temporal-tables         temporal tables
+timeseries                      installed  0.2.0       TIME   -d----  PostgreSQL    PIGSTY   14-18  postgresql-18-pg-timeseries           Convenience API for time series stack
+periods                         installed  1.2.3       TIME   -ds---  PostgreSQL    PGDG     14-18  postgresql-18-periods                 Provide Standard SQL functionality for PERIODs and SYSTEM VERSIO
+temporal_tables                 installed  1.2.2       TIME   -ds--r  BSD 2-Clause  PIGSTY   14-18  postgresql-18-temporal-tables         temporal tables
 .........
 pg_fact_loader                  not avail  2.0.1       ETL    -ds--x  MIT           PGDG     13-17  postgresql-18-pg-fact-loader          build fact tables with Postgres
-pg_bulkload                     installed  3.1.23      ETL    bds---  BSD 3-Clause  PIGSTY   13-18  postgresql-18-pg-bulkload             pg_bulkload is a high speed data loading utility for PostgreSQL
-test_decoding                   available  -           ETL    --s--x  PostgreSQL    CONTRIB  13-18  postgresql-18                         SQL-based test/example module for WAL logical decoding
-pgoutput                        available  -           ETL    --s---  PostgreSQL    CONTRIB  13-18  postgresql-18                         Logical Replication output plugin
+pg_bulkload                     installed  3.1.23      ETL    bds---  BSD 3-Clause  PIGSTY   14-18  postgresql-18-pg-bulkload             pg_bulkload is a high speed data loading utility for PostgreSQL
+test_decoding                   available  -           ETL    --s--x  PostgreSQL    CONTRIB  14-18  postgresql-18                         SQL-based test/example module for WAL logical decoding
+pgoutput                        available  -           ETL    --s---  PostgreSQL    CONTRIB  14-18  postgresql-18                         Logical Replication output plugin
 
 
-(450 Rows) (Status: installed, available, not avail | Flags: b = HasBin, d = HasDDL, s = HasLib, l = NeedLoad, t = Trusted, r = Relocatable, x = Unknown)
+(464 Rows) (Status: installed, available, not avail | Flags: b = HasBin, d = HasDDL, s = HasLib, l = NeedLoad, t = Trusted, r = Relocatable, x = Unknown)
 ```
 
 All extension metadata is defined in a data file named [`extension.csv`](https://github.com/pgsty/pig/blob/main/cli/ext/assets/extension.csv).
 This file is updated with each pig release. You can update it directly using the [`pig ext reload`](/docs/pig/ext/#ext-reload) command.
-The updated file is placed in `~/.pig/extension.csv` by default. You can view and modify it, and you can also find the [**authoritative version**](https://github.com/pgsty/pgext/blob/main/db/extension.csv) in the project.
+The updated file is placed in `~/.pig/extension.csv` by default. You can view and modify it, and the latest online catalog is available at [**pigsty.io/ext/data/extension.csv**](https://pigsty.io/ext/data/extension.csv).
 
 
 
@@ -269,20 +269,20 @@ So when you install the `pg18-server` alias, EL actually installs `postgresql18-
 "pgsql-basic":  "postgresql-$v-repack postgresql-$v-wal2json postgresql-$v-pgvector",
 ```
 
-These aliases can be instantiated with major versions, or you can use versioned aliases like `pg18`, `pg17`, etc.
-For example, for PostgreSQL 18 you can use:
+These aliases can be instantiated with major versions, or you can use versioned aliases like `pg18`, `pg17`, and so on.
+The actively supported PostgreSQL major versions are now **14-18**. For example, for PostgreSQL 18 you can use:
 
-| `pgsql`        | `pg18`        | `pg17`        | `pg16`        | `pg15`        | `pg14`        | `pg13`        |
-|:---------------|:--------------|:--------------|:--------------|:--------------|:--------------|:--------------|
-| `pgsql`        | **`pg18`**    | `pg17`        | `pg16`        | `pg15`        | `pg14`        | `pg13`        |
-| `pgsql-mini`   | `pg18-mini`   | `pg17-mini`   | `pg16-mini`   | `pg15-mini`   | `pg14-mini`   | `pg13-mini`   |
-| `pgsql-core`   | `pg18-core`   | `pg17-core`   | `pg16-core`   | `pg15-core`   | `pg14-core`   | `pg13-core`   |
-| `pgsql-full`   | `pg18-full`   | `pg17-full`   | `pg16-full`   | `pg15-full`   | `pg14-full`   | `pg13-full`   |
-| `pgsql-main`   | `pg18-main`   | `pg17-main`   | `pg16-main`   | `pg15-main`   | `pg14-main`   | `pg13-main`   |
-| `pgsql-client` | `pg18-client` | `pg17-client` | `pg16-client` | `pg15-client` | `pg14-client` | `pg13-client` |
-| `pgsql-server` | `pg18-server` | `pg17-server` | `pg16-server` | `pg15-server` | `pg14-server` | `pg13-server` |
-| `pgsql-devel`  | `pg18-devel`  | `pg17-devel`  | `pg16-devel`  | `pg15-devel`  | `pg14-devel`  | `pg13-devel`  |
-| `pgsql-basic`  | `pg18-basic`  | `pg17-basic`  | `pg16-basic`  | `pg15-basic`  | `pg14-basic`  | `pg13-basic`  |
+| `pgsql`        | `pg18`        | `pg17`        | `pg16`        | `pg15`        | `pg14`        |
+|:---------------|:--------------|:--------------|:--------------|:--------------|:--------------|
+| `pgsql`        | **`pg18`**    | `pg17`        | `pg16`        | `pg15`        | `pg14`        |
+| `pgsql-mini`   | `pg18-mini`   | `pg17-mini`   | `pg16-mini`   | `pg15-mini`   | `pg14-mini`   |
+| `pgsql-core`   | `pg18-core`   | `pg17-core`   | `pg16-core`   | `pg15-core`   | `pg14-core`   |
+| `pgsql-full`   | `pg18-full`   | `pg17-full`   | `pg16-full`   | `pg15-full`   | `pg14-full`   |
+| `pgsql-main`   | `pg18-main`   | `pg17-main`   | `pg16-main`   | `pg15-main`   | `pg14-main`   |
+| `pgsql-client` | `pg18-client` | `pg17-client` | `pg16-client` | `pg15-client` | `pg14-client` |
+| `pgsql-server` | `pg18-server` | `pg17-server` | `pg16-server` | `pg15-server` | `pg14-server` |
+| `pgsql-devel`  | `pg18-devel`  | `pg17-devel`  | `pg16-devel`  | `pg15-devel`  | `pg14-devel`  |
+| `pgsql-basic`  | `pg18-basic`  | `pg17-basic`  | `pg16-basic`  | `pg15-basic`  | `pg14-basic`  |
 {.full-width}
 
 </details>

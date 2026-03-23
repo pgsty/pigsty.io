@@ -33,6 +33,9 @@ Maintenance (via vacuumdb & pg_repack):
   pig pg freeze  [db] [-a]         vacuum freeze tables
   pig pg repack  [db] [-a]         online repack database
 
+Tuning:
+  pig pg tune     [-p profile]     generate optimized parameters
+
 Log Commands:
   pig pg log list                  list log files
   pig pg log tail <logfile>        tail -f log file
@@ -82,6 +85,13 @@ Service Management (via systemctl):
 | `pg repack` | `rp` | Online table repacking | Requires pg_repack extension |
 {.full-width}
 
+**Parameter Tuning**:
+
+| Command | Alias | Description | Notes |
+|:--------|:------|:------------|:------|
+| `pg tune` | `tuning` | Generate PostgreSQL tuning parameters | Auto-detects hardware and supports structured output |
+{.full-width}
+
 **Log Tools**:
 
 | Command | Alias | Description | Notes |
@@ -128,6 +138,11 @@ pig pg kill -x                    # Terminate connections (requires -x to execut
 pig pg vacuum mydb                # Vacuum specific database
 pig pg analyze mydb               # Analyze specific database
 pig pg repack mydb                # Online repack database
+
+# Parameter tuning
+pig pg tune                       # Auto-detect hardware and generate tuned parameters
+pig pg tune -p olap               # Use the OLAP workload profile
+pig pg tune -c 8 -m 32768 -d 500  # Override CPU / memory / disk detection
 
 # Log viewing
 pig pg log tail                   # Real-time view latest log
@@ -489,6 +504,53 @@ pig pg repack mydb --dry-run      # Show tables to be repacked
 | `--jobs` | `-j` | Number of parallel jobs (default 1) |
 | `--dry-run` | `-N` | Show tables to be repacked |
 {.full-width}
+
+
+## Parameter Tuning Commands
+
+### pg tune
+
+Generate a recommended set of PostgreSQL parameters based on the current PostgreSQL major version, host hardware, and workload profile. By default, it auto-detects CPU, memory, and data disk size, then prints the result as text output.
+
+```bash
+pig pg tune                       # auto-detect hardware, use oltp profile
+pig pg tuning                     # alias
+pig pg tune -p olap               # use OLAP profile
+pig pg tune -p tiny               # for small instances
+pig pg tune -c 8 -m 32768 -d 500  # override hardware detection
+pig pg tune -C 500                # override max_connections
+pig pg tune -R 0.30               # adjust shared_buffers ratio
+pig pg tune -o json               # structured JSON output
+pig pg tune -o yaml               # structured YAML output
+```
+
+**Options:**
+
+| Option | Short | Default | Description |
+|:---|:---|:---|:---|
+| `--profile` | `-p` | oltp | Tuning profile: `oltp` / `olap` / `tiny` / `crit` |
+| `--cpu` | `-c` | 0 | CPU cores, `0` means auto-detect |
+| `--mem` | `-m` | 0 | Total memory in MB, `0` means auto-detect |
+| `--disk` | `-d` | 0 | Data disk size in GB, `0` means auto-detect |
+| `--max-conn` | `-C` | 0 | Override `max_connections`, `0` uses profile default |
+| `--shmem-ratio` | `-R` | 0.25 | Fraction of memory used for `shared_buffers`, range `0.1 ~ 0.4` |
+{.full-width}
+
+**Profiles:**
+
+| Profile | Best for | Characteristics |
+|:---|:---|:---|
+| `oltp` | General transactional workloads | Balanced connection count, cache, and parallelism |
+| `olap` | Analytical workloads | More aggressive parallelism and work memory |
+| `tiny` | Small instances | Constrained memory footprint and parallelism |
+| `crit` | Latency-sensitive workloads | Restricts parallel gather and favors stable response time |
+{.full-width}
+
+**Notes:**
+
+- Generated parameters are automatically gated by PostgreSQL major version. For example, `io_workers` is only emitted for PG 18+.
+- Text output can be redirected into a config snippet, while structured output is better suited for automation.
+- The command currently generates recommendations only; it does not modify PostgreSQL configuration files directly.
 
 
 ## Log Commands
