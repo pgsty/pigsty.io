@@ -11,15 +11,16 @@ categories: [Reference]
 
 ## 2026-03-21
 
-| Name               | Old Ver | New Ver    | Note     |
-|:-------------------|:--------|:-----------|:---------|
-| pgsentinel         | 1.4.0   | 1.4.1      | rpm only |
-| pg_track_optimizer | 0.9.1   | 0.9.2      |          |
-| pgcollection       | 1.0.0   | 2.0.0      |          |
-| pg_ttl_index       | 2.0.0   | 3.0.0      |          |
-| pg_clickhouse      | 0.1.4   | 0.1.5      |          |
-| pdu                |         | 3.0.25.12  | new      |
-| pgdog              |         | 0.1.32     | new      |
+| Name               | Old Ver | New Ver   | Note     |
+|:-------------------|:--------|:----------|:---------|
+| pg_search          | 0.21.12 | 0.22.2    |          |
+| pgsentinel         | 1.4.0   | 1.4.1     | rpm only |
+| pg_track_optimizer | 0.9.1   | 0.9.2     |          |
+| pgcollection       | 1.0.0   | 2.0.0     |          |
+| pg_ttl_index       | 2.0.0   | 3.0.0     |          |
+| pg_clickhouse      | 0.1.4   | 0.1.5     |          |
+| pdu                |         | 3.0.25.12 | new      |
+| pgdog              |         | 0.1.32    | new      |
 {.stretch-last}
 
 ------

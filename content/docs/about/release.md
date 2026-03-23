@@ -6,10 +6,11 @@ icon: fa-solid fa-scroll
 categories: [Reference]
 ---
 
-The current stable version is [**v4.2.1**](#v421).
+The current stable version is [**v4.2.2**](#v422).
 
 |     Version     | Release Date | Summary                                                                         |                                       Release Page                                        |
 |:---------------:|:------------:|---------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------:|
+| [v4.2.2](#v422) |  2026-03-23  | Insforge template, pdu, pgdog, tigerfs, ivorysql 5.3                            |               [v4.2.2](https://github.com/pgsty/pigsty/releases/tag/v4.2.2)               |
 | [v4.2.1](#v421) |  2026-03-06  | Maintenance release: 3 new extensions, drop PG13, bug fixes                     |               [v4.2.1](https://github.com/pgsty/pigsty/releases/tag/v4.2.1)               |
 | [v4.2.0](#v420) |  2026-02-28  | Routine minor release with six PG kernel updates                                |               [v4.2.0](https://github.com/pgsty/pigsty/releases/tag/v4.2.0)               |
 | [v4.1.0](#v410) |  2026-02-12  | Major/minor upgrade support, Agent-Native CLI, stricter default firewall policy |               [v4.1.0](https://github.com/pgsty/pigsty/releases/tag/v4.1.0)               |
@@ -66,6 +67,106 @@ The current stable version is [**v4.2.1**](#v421).
 |     v0.0.2      |  2020-04-30  | First Commit                                                                    | [v0.0.2](https://github.com/pgsty/pigsty/commit/dd646775624ddb33aef7884f4f030682bdc371f8) |
 |     v0.0.1      |  2019-05-15  | POC                                                                             |   [v0.0.1](https://github.com/Vonng/pg/commit/fa2ade31f8e81093eeba9d966c20120054f0646b)   |
 
+
+
+------
+
+## v4.2.2
+
+**Highlights**
+
+- Insforge 2.0.1 self-hosted template
+- Batch infra package updates, MinIO/MCLI updated to 20260321
+- New infra packages: tigerfs, pgstream, sql-studio, rainfog, crush
+- New PG tools: data recovery pdu, connection pooler pgdog
+- Update PG extensions: pg_search, pgsentinel, pg_track_optimizer, pgcollection, pg_ttl_index, pg_clickhouse
+- Update PG Kernel: ivorysql 5.1 -> 5.3
+
+**PostgreSQL Package Updates**
+
+| Name               | Old Ver | New Ver   | Note     |
+|:-------------------|:--------|:----------|:---------|
+| pg_search          | 0.21.12 | 0.22.2    |          |
+| pgsentinel         | 1.4.0   | 1.4.1     | rpm only |
+| pg_track_optimizer | 0.9.1   | 0.9.2     |          |
+| pgcollection       | 1.0.0   | 2.0.0     |          |
+| pg_ttl_index       | 2.0.0   | 3.0.0     |          |
+| pg_clickhouse      | 0.1.4   | 0.1.5     |          |
+| pdu                |         | 3.0.25.12 | new      |
+| pgdog              |         | 0.1.32    | new      |
+
+**Infrastructure Package Updates**
+
+| Name                       | Old Ver        | New Ver        | Note |
+|:---------------------------|:---------------|:---------------|:-----|
+| `grafana`                  | 12.4.0         | 12.4.1         |      |
+| `pgbackrest_exporter`      | 0.22.0         | 0.23.0         |      |
+| `redis_exporter`           | 1.81.0         | 1.82.0         |      |
+| `victoria-logs`            | 1.47.0         | 1.48.0         |      |
+| `vlagent`                  | 1.47.0         | 1.48.0         |      |
+| `vlogscli`                 | 1.47.0         | 1.48.0         |      |
+| `victoria-traces`          | 0.7.1          | 0.8.0          |      |
+| `duckdb`                   | 1.4.4          | 1.5.0          |      |
+| `pg_timetable`             | 6.2.0          | 6.3.0          |      |
+| `pgschema`                 | 1.4.2          | 1.7.4          |      |
+| `pgstream`                 | -              | 1.0.1          | new  |
+| `tigerbeetle`              | 0.16.75        | 0.16.77        |      |
+| `grafana-victorialogs-ds`  | 0.26.2         | 0.26.3         |      |
+| `grafana-infinity-ds`      | 3.7.3          | 3.7.4          |      |
+| `caddy`                    | 2.11.1         | 2.11.2         |      |
+| `npgsqlrest`               | 3.10.0         | 3.11.1         |      |
+| `postgrest`                | 14.5           | 14.7           |      |
+| `opencode`                 | 1.2.17         | 1.2.27         |      |
+| `pev2`                     | 1.20.2         | 1.21.0         |      |
+| `golang`                   | 1.26.0         | 1.26.1         |      |
+| `vector`                   | 0.53.0         | 0.54.0         |      |
+| `rclone`                   | 1.73.1         | 1.73.2         |      |
+| `code-server`              | 4.109.5        | 4.112.0        |      |
+| `code`                     | 1.109.4        | 1.112.0        |      |
+| `seaweedfs`                | 4.15           | 4.17           |      |
+| `uv`                       | 0.10.8         | 0.10.12        |      |
+| `codex`                    | 0.110.0        | 0.116.0        |      |
+| `v2ray`                    | 5.44.1         | 5.47.0         |      |
+| `sabiql`                   | 1.6.2          | 1.8.2          |      |
+| `sql-studio`               | -              | 0.1.51         | new  |
+| `rainfrog`                 | -              | 0.3.17         | new  |
+| `agentsview`               | 0.10.0         | 0.15.0         |      |
+| `crush`                    | -              | 0.51.2         | new  |
+| `tigerfs`                  | -              | 0.5.0          | new  |
+| `victoria-metrics`         | 1.137.0        | 1.138.0        |      |
+| `victoria-metrics-cluster` | 1.137.0        | 1.138.0        |      |
+| `vmutils`                  | 1.137.0        | 1.138.0        |      |
+| `hugo`                     | 0.157.0        | 0.158.0        |      |
+| `rustfs`                   | 1.0.0-alpha.85 | 1.0.0-alpha.89 |      |
+| `mysqld_exporter`          | 0.18.0         | 0.19.0         |      |
+| `pg_exporter`              | 1.2.0          | 1.2.1          |      |
+| `pig`                      | 1.3.1          | 1.3.2          |      |
+| `minio`                    | 20260214       | 20260321       |      |
+| `mcli`                     | 20260213       | 20260321       |      |
+| `claude`                   | 2.1.68         | 2.1.81         |      |
+| `ivroysql`                 | 5.1            | 5.3            |    |
+
+**Checksums**
+
+```bash
+0d9f907ff626203578c687d1418b38ba  pigsty-pkg-v4.2.2.d12.aarch64.tgz
+4129baf773c3005f4d697cf452f927a0  pigsty-pkg-v4.2.2.d12.x86_64.tgz
+40d5a0d9c2a97615bf0421bae42458ae  pigsty-pkg-v4.2.2.d13.aarch64.tgz
+cf91113a2296ad11fff79802ac9b1483  pigsty-pkg-v4.2.2.d13.x86_64.tgz
+dbccfeb3978ffb928bd0b501c3c0d42d  pigsty-pkg-v4.2.2.el10.aarch64.tgz
+8c848a4e3fa93c2455285fbcad5ddd78  pigsty-pkg-v4.2.2.el10.x86_64.tgz
+7c15c9a36f7d2dd740019c20e8c75a4b  pigsty-pkg-v4.2.2.el9.aarch64.tgz
+7d6e9e529236a0db2382f42660790ed9  pigsty-pkg-v4.2.2.el9.x86_64.tgz
+8f64bb14885ce330603172b186062671  pigsty-pkg-v4.2.2.u22.aarch64.tgz
+16d4c36c9e1ff848848c34a257b1025c  pigsty-pkg-v4.2.2.u22.x86_64.tgz
+401230741af5b04f163ffc8e688315ab  pigsty-pkg-v4.2.2.u24.aarch64.tgz
+5312aa0841694fc560778b9377a32c89  pigsty-pkg-v4.2.2.u24.x86_64.tgz
+cabeeb898b56b26c0855f33d5e60411a  pigsty-v4.2.2.tgz
+```
+
+
+
+------
 
 ## v4.2.1
 
@@ -149,6 +250,8 @@ a5574071bac1955798265f71ad73c3d4  pigsty-pkg-v4.2.1.u24.aarch64.tgz
 59a7632c650a3c034f1fe6cd589d7ab5  pigsty-pkg-v4.2.1.u24.x86_64.tgz
 ```
 
+
+------
 
 ## v4.2.0
 
