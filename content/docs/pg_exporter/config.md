@@ -34,6 +34,12 @@ PG Exporter searches for configuration in the following order:
 4. System config file: `/etc/pg_exporter.yml`
 5. System config directory: `/etc/pg_exporter/`
 
+Directory mode details:
+
+- Only `.yml` / `.yaml` files in that directory are loaded, non-recursively
+- Files are merged in lexicographic order; later files override earlier collector definitions with the same top-level name
+- If a config directory contains YAML files but every one of them fails to parse, the exporter returns an error instead of silently ignoring the directory
+
 ## Collector Structure
 
 Each collector is a top-level object in the YAML configuration with a unique name and various properties:
@@ -74,6 +80,15 @@ collector_branch_name:           # Unique identifier for this collector
         default: 0               # Default value if NULL
         scale: 1000              # Scale factor for the value
 ```
+
+Validation rules as of `v1.2.1`:
+
+- Each entry in `metrics` must define exactly one column mapping
+- Each collector must expose at least one `GAUGE` or `COUNTER` column
+- `usage` only accepts `GAUGE`, `COUNTER`, `LABEL`, or `DISCARD`
+- Metric names and label names are validated against Prometheus naming rules during load; invalid configs fail fast
+- Constant labels are checked for conflicts during load; they cannot overlap with query labels or built-in dynamic labels such as `datname` and `query`
+- If you use one-line inline `metrics` definitions, keep `description` values double-quoted to avoid YAML ambiguity
 
 ## Core Configuration Elements
 
@@ -152,10 +167,12 @@ min_version: 100000  # PostgreSQL 10.0+
 max_version: 140000  # Below PostgreSQL 14.0
 ```
 
-Version format: `MMMMMMPP00` where:
-- `MMMMMM` = Major version (6 digits)
-- `PP` = Minor version (2 digits)
-- Examples: `100000` = 10.0, `130200` = 13.2, `160100` = 16.1
+Version numbers follow PostgreSQL `server_version_num` rules:
+
+- `100000` = 10.0
+- `130200` = 13.2
+- `160100` = 16.1
+- `90600` = 9.6, relevant when using the legacy config bundle
 
 ## Tag System
 

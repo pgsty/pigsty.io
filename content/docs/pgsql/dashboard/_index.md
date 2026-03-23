@@ -7,7 +7,7 @@ module: [PGSQL]
 categories: [Reference]
 ---
 
-> Pigsty provides numerous out-of-the-box Grafana monitoring dashboards for PostgreSQL: [Demo](https://demo.pigsty.io/d/pgsql-overview) & [Gallery](https://github.com/Vonng/pigsty/wiki/Gallery).
+> Pigsty provides numerous out-of-the-box Grafana monitoring dashboards for PostgreSQL: [Demo](https://demo.pigsty.io/d/pgsql-overview) & [Gallery](https://github.com/pgsty/pigsty/wiki/Gallery).
 
 Pigsty has 26 PostgreSQL-related monitoring dashboards, organized by hierarchy into Overview, Cluster, Instance, and Database categories, and by data source into [PGSQL](#overview), [PGCAT](#pgcat), and [PGLOG](#pglog) categories.
 
@@ -397,7 +397,7 @@ Pigsty has 26 PostgreSQL-related monitoring dashboards, organized by hierarchy i
 
 ## Gallery
 
-See [pigsty/wiki/gallery](https://github.com/Vonng/pigsty/wiki/Gallery) for details.
+See [pigsty/wiki/gallery](https://github.com/pgsty/pigsty/wiki/Gallery) for details.
 
 <details><summary>PGSQL Overview</summary>
 

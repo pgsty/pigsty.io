@@ -20,9 +20,9 @@ There are **35** extensions in **34** packages.
 | [`pg_qualstats`](/ext/e/pg_qualstats) | [`pg_qualstats`](https://github.com/powa-team/pg_qualstats) | `2.1.3` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | An extension collecting statistics about quals |
 | [`pg_store_plans`](/ext/e/pg_store_plans) | [`pg_store_plans`](https://github.com/ossc-db/pg_store_plans) | `1.9` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | track plan statistics of all SQL statements executed |
 | [`pg_track_settings`](/ext/e/pg_track_settings) | [`pg_track_settings`](https://github.com/rjuju/pg_track_settings) | `2.1.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Track settings changes |
-| [`pg_track_optimizer`](/ext/e/pg_track_optimizer) | [`pg_track_optimizer`](https://github.com/danolivo/pg_track_optimizer) | `0.9.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Track planning decisions in comparison with execution reality |
+| [`pg_track_optimizer`](/ext/e/pg_track_optimizer) | [`pg_track_optimizer`](https://github.com/danolivo/pg_track_optimizer) | `0.9.2` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Track planning decisions in comparison with execution reality |
 | [`pg_wait_sampling`](/ext/e/pg_wait_sampling) | [`pg_wait_sampling`](https://github.com/postgrespro/pg_wait_sampling) | `1.1.9` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | sampling based statistics of wait events |
-| [`pgsentinel`](/ext/e/pgsentinel) | [`pgsentinel`](https://github.com/pgsentinel/pgsentinel) | `1.4.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | active session history |
+| [`pgsentinel`](/ext/e/pgsentinel) | [`pgsentinel`](https://github.com/pgsentinel/pgsentinel) | `1.4.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | active session history |
 | [`system_stats`](/ext/e/system_stats) | [`system_stats`](https://github.com/EnterpriseDB/system_stats) | `3.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | EnterpriseDB system statistics for PostgreSQL |
 | [`meta`](/ext/e/meta) | [`pg_meta`](https://github.com/aquameta/meta) | `0.4.0` | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Normalized, friendlier system catalog for PostgreSQL |
 | [`pgnodemx`](/ext/e/pgnodemx) | [`pgnodemx`](https://github.com/CrunchyData/pgnodemx) | `1.7` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Capture node OS metrics via SQL queries |
@@ -198,7 +198,7 @@ There are **35** extensions in **34** packages.
 
 ## pg_track_optimizer {#pg_track_optimizer}
 
-[**`pg_track_optimizer`**](/ext/e/pg_track_optimizer) - `0.9.1` : Track planning decisions in comparison with
+[**`pg_track_optimizer`**](/ext/e/pg_track_optimizer) - `0.9.2` : Track planning decisions in comparison with
   execution reality
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
@@ -235,7 +235,7 @@ There are **35** extensions in **34** packages.
 
 ## pgsentinel {#pgsentinel}
 
-[**`pgsentinel`**](/ext/e/pgsentinel) - `1.4.0` : active session history
+[**`pgsentinel`**](/ext/e/pgsentinel) - `1.4.1` : active session history
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

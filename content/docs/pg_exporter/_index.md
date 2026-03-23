@@ -19,7 +19,7 @@ The ultimate monitoring experience for PostgreSQL with **600+ metrics**, **decla
 
 | Feature                   | Description                                                                                                     |
 |---------------------------|-----------------------------------------------------------------------------------------------------------------|
-| **Comprehensive Metrics** | Monitor PostgreSQL (10-18+) and pgBouncer (1.8-1.24+) with 600+ metrics and ~3K time series per instance        |
+| **Comprehensive Metrics** | Monitor PostgreSQL (10-18+) and pgBouncer (1.8-1.25+) with 600+ metrics and ~3K time series per instance        |
 | **Declarative Config**    | Define custom metrics through YAML configs with fine-grained control over timeout, caching, and skip conditions |
 | **Custom Collectors**     | Define your own metrics with declarative YAML configuration and dynamic query planning                          |
 | **Auto-Discovery**        | Automatically discover and monitor multiple databases within a PostgreSQL instance                              |
@@ -28,6 +28,33 @@ The ultimate monitoring experience for PostgreSQL with **600+ metrics**, **decla
 | **Health Check APIs**     | Comprehensive HTTP endpoints for service health and traffic routing with primary/replica detection              |
 | **Smart Caching**         | Built-in caching mechanism with configurable TTL to reduce database load and improve performance                |
 | **Extension Aware**       | Native support for TimescaleDB, Citus, pg_stat_statements, pg_wait_sampling and automatic detection             |
+
+
+--------
+
+## Version Info
+
+- Current stable release: [`v1.2.1`](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.1)
+- Default config support: PostgreSQL **10-18+**
+- Legacy config support: PostgreSQL **9.1-9.6** via the `legacy/` config bundle
+- pgBouncer support: **1.8-1.25+**
+
+See [Release Notes](/docs/pg_exporter/release) for the full history.
+
+
+--------
+
+## Design Rationale
+
+`pg_exporter` is built around a few simple production-oriented principles:
+
+- Local-first connectivity: fall back to `postgresql:///?sslmode=disable` when no explicit URL is provided, which fits same-host deployments
+- Declarative collection: metric behavior is driven by YAML collector definitions with precise control over `ttl`, `timeout`, `tags`, and `fatal`
+- Dynamic planning: choose collector branches at runtime based on server version, role, extensions, and tags
+- Keep serving under failure: use non-blocking startup by default so HTTP endpoints still come up while the database is temporarily unavailable
+- Hot reload: support `POST` / `GET /reload` and `SIGHUP` reloads, with extra `SIGUSR1` support on non-Windows platforms
+- Split probes from traffic: health endpoints use cached background probes instead of blocking the database on every request
+- Tighten the management surface: `/reload`, `/explain`, and `/stat` expose runtime and config details, so production deployments should protect them with `--web.config.file` or keep them internal
 
 
 --------
@@ -68,10 +95,10 @@ sudo apt install -y pg-exporter
 {{< /tab >}}
 
 {{< tab header="Binary" lang="bash" >}}
-wget https://github.com/pgsty/pg_exporter/releases/download/v1.1.2/pg_exporter-1.1.2.linux-amd64.tar.gz
-tar -xf pg_exporter-1.1.2.linux-amd64.tar.gz
-sudo install pg_exporter-1.1.2.linux-amd64/pg_exporter /usr/bin/
-sudo install pg_exporter-1.1.2.linux-amd64/pg_exporter.yml /etc/pg_exporter.yml
+wget https://github.com/pgsty/pg_exporter/releases/download/v1.2.1/pg_exporter-1.2.1.linux-amd64.tar.gz
+tar -xf pg_exporter-1.2.1.linux-amd64.tar.gz
+sudo install pg_exporter-1.2.1.linux-amd64/pg_exporter /usr/bin/
+sudo install pg_exporter-1.2.1.linux-amd64/pg_exporter.yml /etc/pg_exporter.yml
 {{< /tab >}}
 
 {{< tab header="Source" lang="bash" >}}
@@ -88,14 +115,20 @@ make build
 
 ## Quick Start
 
-Get PG Exporter up and running in minutes, [Getting Started](/docs/pg_exporter/start) with:
+Get PG Exporter up and running in minutes with [Getting Started](/docs/pg_exporter/start):
 
 ```bash
-# Run with PostgreSQL URL
+# Minimal startup with the local-first default URL
+pg_exporter
+
+# Or point to a specific target
 PG_EXPORTER_URL='postgres://user:pass@localhost:5432/postgres' pg_exporter
 
 # Access metrics
 curl http://localhost:9630/metrics
+
+# Reload configuration online (POST recommended)
+curl -X POST http://localhost:9630/reload
 ```
 
 
@@ -139,4 +172,4 @@ The demo showcases real PostgreSQL clusters monitored by PG Exporter, featuring:
 
 PG Exporter is open-source software licensed under the [Apache License 2.0](https://github.com/pgsty/pg_exporter/blob/main/LICENSE).
 
-Copyright 2018-2025 © [Ruohang Feng](https://vonng.com/en) / [rh@vonng.com](mailto:rh@vonng.com)
+Copyright 2018-2026 © [Ruohang Feng](https://vonng.com/en) / [rh@vonng.com](mailto:rh@vonng.com)

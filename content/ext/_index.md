@@ -6,12 +6,10 @@ description: >
 weight: 20
 outputs:
   - HTML
-  - print
 cascade:
   type: docs
   outputs:
     - HTML
-    - print
 ---
 
 Pigsty provides the following three pieces of infrastructure to help users harness the collaborative superpowers of the PostgreSQL extension ecosystem:

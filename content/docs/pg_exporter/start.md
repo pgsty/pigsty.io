@@ -8,6 +8,20 @@ category: [Tutorial]
 
 PG Exporter is an advanced PostgreSQL and pgBouncer metrics exporter for Prometheus. This guide will help you get up and running quickly.
 
+## Version Info
+
+- Current stable release: [`v1.2.1`](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.1)
+- The default config supports PostgreSQL 10-18+; PostgreSQL 9.1-9.6 requires the `legacy/` config bundle
+- pgBouncer 1.8-1.25+ is supported
+
+## Design Rationale
+
+`pg_exporter` follows three core runtime principles:
+
+- Local-first connectivity: if you do not pass `--url` or `PG_EXPORTER_URL`, it falls back to `postgresql:///?sslmode=disable`
+- Declarative collection: all business metrics come from YAML collectors, and runtime planning picks branches by version, role, extension, and tags
+- Keep serving under failure: non-blocking startup is the default, so HTTP endpoints still come up while the target database is temporarily unavailable
+
 ## Prerequisites
 
 Before you begin, ensure you have:
@@ -22,11 +36,16 @@ Before you begin, ensure you have:
 The fastest way to get started with PG Exporter:
 
 ```bash
-# Download and install the latest release
-curl -L https://github.com/pgsty/pg_exporter/releases/latest/download/pg_exporter-$(uname -s)-$(uname -m).tar.gz | tar xz
-sudo install pg_exporter /usr/bin/
+# Example: install the Linux amd64 release tarball
+wget https://github.com/pgsty/pg_exporter/releases/download/v1.2.1/pg_exporter-1.2.1.linux-amd64.tar.gz
+tar -xf pg_exporter-1.2.1.linux-amd64.tar.gz
+sudo install pg_exporter-1.2.1.linux-amd64/pg_exporter /usr/bin/
+sudo install pg_exporter-1.2.1.linux-amd64/pg_exporter.yml /etc/pg_exporter.yml
 
-# Run with PostgreSQL connection URL
+# Run with the local-first default URL
+pg_exporter
+
+# Or point to a PostgreSQL / pgBouncer target explicitly
 PG_EXPORTER_URL='postgres://user:pass@localhost:5432/postgres' pg_exporter
 
 # Verify metrics are available
@@ -44,10 +63,18 @@ postgres://[user][:password]@[host][:port]/[database][?param=value]
 ```
 
 Examples:
+- Default fallback URL when nothing is specified: `postgresql:///?sslmode=disable`
 - Local PostgreSQL: `postgres:///postgres`
 - Remote with auth: `postgres://monitor:password@db.example.com:5432/postgres`
 - With SSL: `postgres://user:pass@host/db?sslmode=require`
 - pgBouncer: `postgres://pgbouncer:password@localhost:6432/pgbouncer`
+
+URL source priority from high to low:
+1. `--url`
+2. `PG_EXPORTER_URL`
+3. `PGURL`
+4. `PG_EXPORTER_URL_FILE`
+5. Default `postgresql:///?sslmode=disable`
 
 ### Built-in Metrics
 
@@ -59,6 +86,8 @@ PG Exporter provides 4 core built-in metrics out of the box:
 | `pg_version`             | Gauge | PostgreSQL server version number                        |
 | `pg_in_recovery`         | Gauge | 1 if server is in recovery mode (replica), 0 if primary |
 | `pg_exporter_build_info` | Gauge | Exporter version and build information                  |
+
+The exporter also exposes `pg_exporter_*` self-monitoring metrics by default. You can disable them with `--disable-intro`.
 
 ### Configuration File
 
@@ -138,9 +167,13 @@ curl http://localhost:9630/metrics | grep pg_
 # Check exporter statistics
 curl http://localhost:9630/stat
 
-# Verify server detection
+# Review current query planning
 curl http://localhost:9630/explain
 ```
+
+{{% alert title="Note" color="info" %}}
+`/reload`, `/stat`, and `/explain` are management endpoints. In production, protect them with `--web.config.file` or expose them only on trusted internal networks.
+{{% /alert %}}
 
 ## Auto-Discovery Mode
 
