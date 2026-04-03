@@ -6,10 +6,10 @@ weight: 2170
 ---
 
 <div class="ext-cards">
-  <a class="ext-card ext-card--repo" href="https://github.com/CrystallineCore/pg_biscuit">
+  <a class="ext-card ext-card--repo" href="https://github.com/CrystallineCore/Biscuit">
     <div class="ext-card__kicker">Repository</div>
     <div class="ext-card__title">CrystallineCore/pg_biscuit</div>
-    <div class="ext-card__desc">https://github.com/CrystallineCore/pg_biscuit</div>
+    <div class="ext-card__desc">https://github.com/CrystallineCore/Biscuit</div>
   </a>
   <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/Biscuit-2.2.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
@@ -167,7 +167,7 @@ CREATE EXTENSION biscuit CASCADE;  -- requires: plpgsql
 
 ## Usage
 
-> [GitHub: CrystallineCore/pg_biscuit](https://github.com/CrystallineCore/pg_biscuit)
+> [GitHub: CrystallineCore/Biscuit](https://github.com/CrystallineCore/Biscuit)
 
 `biscuit` (pg_biscuit) is a PostgreSQL extension that provides IAM-like pattern matching with bitmap indexing. It enables efficient matching of permission-style patterns against text values using a specialized bitmap index.
 
