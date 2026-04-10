@@ -2,7 +2,7 @@
 title: "permuteseq"
 linkTitle: "permuteseq"
 description: "Pseudo-randomly permute sequences with a format-preserving encryption on elements"
-weight: 4550
+weight: 4530
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 4550
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 4550  | [**`permuteseq`**](/ext/e/permuteseq) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 4530  | [**`permuteseq`**](/ext/e/permuteseq) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`pg_idkit`](/ext/e/pg_idkit) [`random`](/ext/e/random) [`sequential_uuids`](/ext/e/sequential_uuids) [`pg_hashids`](/ext/e/pg_hashids) [`pgx_ulid`](/ext/e/pgx_ulid) [`pg_uuidv7`](/ext/e/pg_uuidv7) [`uuid-ossp`](/ext/e/uuid-ossp) |

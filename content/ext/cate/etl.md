@@ -8,7 +8,7 @@ icon: fas fa-truck
 
 ## Extension List
 
-There are **19** extensions in **18** packages.
+There are **20** extensions in **19** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
@@ -21,6 +21,7 @@ There are **19** extensions in **18** packages.
 | [`pgactive`](/ext/e/pgactive) | [`pgactive`](https://github.com/aws/pgactive) | `2.1.7` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Active-Active Replication Extension for PostgreSQL |
 | [`spock`](/ext/e/spock) | [`spock`](https://github.com/pgEdge/spock) | `5.0.5` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Multi-master logical replication extension for PostgreSQL |
 | [`lolor`](/ext/e/lolor) | [`lolor`](https://github.com/pgEdge/lolor) | `1.2.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Logical-replication-friendly replacement for PostgreSQL large objects |
+| [`pgclone`](/ext/e/pgclone) | [`pgclone`](https://github.com/valehdba/pgclone) | `2.2.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Clone PostgreSQL databases, schemas, tables, and functions across environments |
 | [`wal2json`](/ext/e/wal2json) | [`wal2json`](https://github.com/eulerto/wal2json) | `2.6` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Changing data capture in JSON format |
 | [`wal2mongo`](/ext/e/wal2mongo) | [`wal2mongo`](https://github.com/HighgoSoftware/wal2mongo) | `1.0.7` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostgreSQL logical decoding output plugin for MongoDB |
 | [`decoderbufs`](/ext/e/decoderbufs) | [`decoderbufs`](https://github.com/debezium/postgres-decoderbufs) | `3.4.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Logical decoding plugin that delivers WAL stream changes using a Protocol Buffer format |
@@ -193,6 +194,24 @@ There are **19** extensions in **18** packages.
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
 | **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
+## pgclone {#pgclone}
+
+[**`pgclone`**](/ext/e/pgclone) - `2.2.0` : Clone PostgreSQL databases, schemas, tables, and functions across environments
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`pgclone`](/ext/e/pgclone) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`pgclone`](https://github.com/valehdba/pgclone) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `pgclone_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-pgclone` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
 

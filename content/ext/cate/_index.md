@@ -9,21 +9,21 @@ sidebar_expanded: true
 
 | **Category** | **Extensions** | **Packages** | **Description** |
 |:--------:|:-------:|:------:|:-------|
-| <a class="ext-badge ext-badge--cate time" href="/ext/cate/time">TIME</a> | 11 | 11 | TimescaleDB, Versioning & Temporal Table, Crontab, Async & Background Job Scheduler, ... |
+| <a class="ext-badge ext-badge--cate time" href="/ext/cate/time">TIME</a> | 12 | 12 | TimescaleDB, Versioning & Temporal Table, Crontab, Async & Background Job Scheduler, ... |
 | <a class="ext-badge ext-badge--cate gis" href="/ext/cate/gis">GIS</a> | 22 | 13 | GeoSpatial Data Types, Operators, and Indexes, Hexagonal Indexing, OGR Data FDW, GeoIP & MobilityDB, etc... |
 | <a class="ext-badge ext-badge--cate rag" href="/ext/cate/rag">RAG</a> | 10 | 10 | Vector Database with Ivfflat, HNSW, DiskANN Indexes, AI & ML in SQL interface, Similarity Funcs, etc...  |
 | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | 23 | 22 | ElasticSearch Alternative with BM25, 2-gram/3-gram Fuzzy Search, Zhparser & Hunspell Segregation Dicts, etc... |
 | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | 14 | 13 | DuckDB Integration with FDW & PG Lakehouse, Access Parquet from File/S3, Sharding with Citus/Partman/PlProxy, ... |
-| <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | 62 | 23 | OpenCypher with AGE, GraphQL, JsonSchema, Hints & Hypo Index, HLL, Rum, IVM, ChemRDKit, and Message Queues,... |
-| <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | 33 | 20 | Develop, Test, Package, and Deliver Stored Procedures written in various PL/Languages: Java, Js, Lua, R, Sh, PRQL, ... |
-| <a class="ext-badge ext-badge--cate type" href="/ext/cate/type">TYPE</a> | 37 | 36 | Dedicate New Data Types Like: prefix, semver, uint, SIUnit, RoaringBitmap, Rational, Sphere, Hash, RRule, and more... |
-| <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | 32 | 31 | Utilities such as send http request, perform gzip/zstd compress, send mails, Regex, ICU, encoding, docs, Encryption,... |
-| <a class="ext-badge ext-badge--cate func" href="/ext/cate/func">FUNC</a> | 47 | 47 | Function such as id generator, aggregations, sketches, vector functions, mathematical functions and digest functions... |
-| <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | 40 | 38 | Utilities for Bloat Control, DirtyRead, BufferInspect, DDL Generate, ChecksumVerify, Permission, Priority, Catalog,... |
-| <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | 35 | 34 | Observability Catalogs, Monitoring Metrics & Views, Statistics, Query Plans, WaitSampling, SlowLogs, and etc... |
-| <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | 28 | 28 | Auditing Logs, Enforce Passwords, Keep Secrets, TDE, SM Algorithm, Login Hooks, Log Errors, Extension White List, ... |
-| <a class="ext-badge ext-badge--cate fdw" href="/ext/cate/fdw">FDW</a> | 25 | 25 | Wrappers & Multicorn for FDW Development, Access other DBMS: MySQL, Mongo, SQLite, MSSQL, Oracle, HDFS, DB2,... |
+| <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | 65 | 26 | OpenCypher with AGE, GraphQL, JsonSchema, Hints & Hypo Index, HLL, Rum, IVM, ChemRDKit, and Message Queues,... |
+| <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | 34 | 21 | Develop, Test, Package, and Deliver Stored Procedures written in various PL/Languages: Java, Js, Lua, R, Sh, PRQL, ... |
+| <a class="ext-badge ext-badge--cate type" href="/ext/cate/type">TYPE</a> | 39 | 38 | Dedicate New Data Types Like: prefix, semver, uint, SIUnit, RoaringBitmap, Rational, Sphere, Hash, RRule, and more... |
+| <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | 35 | 34 | Utilities such as send http request, perform gzip/zstd compress, send mails, Regex, ICU, encoding, docs, Encryption,... |
+| <a class="ext-badge ext-badge--cate func" href="/ext/cate/func">FUNC</a> | 49 | 49 | Function such as id generator, aggregations, sketches, vector functions, mathematical functions and digest functions... |
+| <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | 41 | 39 | Utilities for Bloat Control, DirtyRead, BufferInspect, DDL Generate, ChecksumVerify, Permission, Priority, Catalog,... |
+| <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | 36 | 35 | Observability Catalogs, Monitoring Metrics & Views, Statistics, Query Plans, WaitSampling, SlowLogs, and etc... |
+| <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | 29 | 29 | Auditing Logs, Enforce Passwords, Keep Secrets, TDE, SM Algorithm, Login Hooks, Log Errors, Extension White List, ... |
+| <a class="ext-badge ext-badge--cate fdw" href="/ext/cate/fdw">FDW</a> | 26 | 26 | Wrappers & Multicorn for FDW Development, Access other DBMS: MySQL, Mongo, SQLite, MSSQL, Oracle, HDFS, DB2,... |
 | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | 26 | 15 | Protocol Simulation & heterogeneous DBMS Compatibility: Oracle, MSSQL, DB2, MySQL, Memcached, and Babelfish! |
-| <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | 19 | 18 | Logical Replication, Decoding, CDC in protobuf/JSON/Mongo format, Copy & Load & Compare Postgres Databases,... |
+| <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | 20 | 19 | Logical Replication, Decoding, CDC in protobuf/JSON/Mongo format, Copy & Load & Compare Postgres Databases,... |
 {.ext-table}
 

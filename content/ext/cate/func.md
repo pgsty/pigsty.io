@@ -8,7 +8,7 @@ icon: fas fa-square-root-variable
 
 ## Extension List
 
-There are **47** extensions in **47** packages.
+There are **49** extensions in **49** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
@@ -17,6 +17,7 @@ There are **47** extensions in **47** packages.
 | [`pg_uuidv7`](/ext/e/pg_uuidv7) | [`pg_uuidv7`](https://github.com/fboulnois/pg_uuidv7) | `1.7.0` | <a class="ext-badge ext-badge--license mpl20" href="/ext/license#mpl20">MPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Create UUIDv7 values in postgres |
 | [`permuteseq`](/ext/e/permuteseq) | [`permuteseq`](https://github.com/dverite/permuteseq) | `1.2.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Pseudo-randomly permute sequences with a format-preserving encryption on elements |
 | [`pg_hashids`](/ext/e/pg_hashids) | [`pg_hashids`](https://github.com/iCyberon/pg_hashids) | `1.3` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Short unique id generator for PostgreSQL, using hashids |
+| [`pg_slug_gen`](/ext/e/pg_slug_gen) | [`pg_slug_gen`](https://github.com/fernandoolle/pg_slug_gen) | `1.0.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Generate cryptographically secure timestamp-based slugs |
 | [`sequential_uuids`](/ext/e/sequential_uuids) | [`sequential_uuids`](https://github.com/tvondra/sequential-uuids) | `1.0.3` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | generator of sequential UUIDs |
 | [`typeid`](/ext/e/typeid) | [`pg_typeid`](https://github.com/blitss/typeid-postgres) | `0.3.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Allows to use TypeIDs in Postgres natively |
 | [`snowflake`](/ext/e/snowflake) | [`snowflake`](https://github.com/pgEdge/snowflake) | `2.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Snowflake-style 64-bit ID generator and sequence utilities for PostgreSQL |
@@ -44,6 +45,7 @@ There are **47** extensions in **47** packages.
 | [`pg_base58`](/ext/e/pg_base58) | [`pg_base58`](https://github.com/Fell-x27/pg_base58) | `0.0.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Base58 Encoder/Decoder Extension for PostgreSQL |
 | [`financial`](/ext/e/financial) | [`pg_financial`](https://github.com/intgr/pg_financial) | `1.0.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Financial aggregate functions |
 | [`convert`](/ext/e/convert) | [`pg_convert`](https://github.com/rustprooflabs/convert) | `0.1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | conversion functions for spatial, routing and other specialized uses |
+| [`parray_gin`](/ext/e/parray_gin) | [`parray_gin`](https://github.com/theirix/parray_gin) | `1.4.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | GIN index operator class and partial-match operators for text arrays |
 | [`refint`](/ext/e/refint) | [`refint`](https://www.postgresql.org/docs/current/contrib-spi.html#CONTRIB-SPI-REFINT) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | functions for implementing referential integrity (obsolete) |
 | [`autoinc`](/ext/e/autoinc) | [`autoinc`](https://www.postgresql.org/docs/current/contrib-spi.html#CONTRIB-SPI-AUTOINC) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | functions for autoincrementing fields |
 | [`insert_username`](/ext/e/insert_username) | [`insert_username`](https://www.postgresql.org/docs/current/contrib-spi.html#CONTRIB-SPI-INSERT-USERNAME) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | functions for tracking who changed a table |
@@ -149,6 +151,24 @@ There are **47** extensions in **47** packages.
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
+## pg_slug_gen {#pg_slug_gen}
+
+[**`pg_slug_gen`**](/ext/e/pg_slug_gen) - `1.0.0` : Generate cryptographically secure timestamp-based slugs
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`pg_slug_gen`](/ext/e/pg_slug_gen) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pg_slug_gen`](https://github.com/fernandoolle/pg_slug_gen) | **el9** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **RPM** | `pg_slug_gen_$v` | **el10** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pg-slug-gen` | **d12** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
 {.ext-table .ext-table--cate}
 
 
@@ -635,6 +655,24 @@ There are **47** extensions in **47** packages.
 | **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
+## parray_gin {#parray_gin}
+
+[**`parray_gin`**](/ext/e/parray_gin) - `1.4.0` : GIN index operator class and partial-match operators for text arrays
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`parray_gin`](/ext/e/parray_gin) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`parray_gin`](https://github.com/theirix/parray_gin) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `parray_gin_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-parray-gin` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
 

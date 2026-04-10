@@ -8,22 +8,23 @@ icon: fas fa-file-waveform
 
 ## Extension List
 
-There are **35** extensions in **34** packages.
+There are **36** extensions in **35** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
 | [`pg_profile`](/ext/e/pg_profile) | [`pg_profile`](https://github.com/zubkov-andrei/pg_profile) | `4.11` | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostgreSQL load profile repository and report builder |
 | [`pg_tracing`](/ext/e/pg_tracing) | [`pg_tracing`](https://github.com/DataDog/pg_tracing) | `0.1.3` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Distributed Tracing for PostgreSQL |
+| [`pg_stat_ch`](/ext/e/pg_stat_ch) | [`pg_stat_ch`](https://github.com/ClickHouse/pg_stat_ch) | `0.3.3` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | Export PostgreSQL query telemetry to ClickHouse |
 | [`pg_show_plans`](/ext/e/pg_show_plans) | [`pg_show_plans`](https://github.com/cybertec-postgresql/pg_show_plans) | `2.1.7` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | show query plans of all currently running SQL statements |
 | [`pg_stat_kcache`](/ext/e/pg_stat_kcache) | [`pg_stat_kcache`](https://github.com/powa-team/pg_stat_kcache) | `2.3.1` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Kernel statistics gathering |
 | [`pg_stat_monitor`](/ext/e/pg_stat_monitor) | [`pg_stat_monitor`](https://github.com/percona/pg_stat_monitor) | `2.3.2` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | The pg_stat_monitor is a PostgreSQL Query Performance Monitoring tool, based on PostgreSQL contrib module pg_stat_statements. pg_stat_monitor provides aggregated statistics, client information, plan details including plan, and histogram information. |
 | [`pg_qualstats`](/ext/e/pg_qualstats) | [`pg_qualstats`](https://github.com/powa-team/pg_qualstats) | `2.1.3` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | An extension collecting statistics about quals |
-| [`pg_store_plans`](/ext/e/pg_store_plans) | [`pg_store_plans`](https://github.com/ossc-db/pg_store_plans) | `1.9` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | track plan statistics of all SQL statements executed |
+| [`pg_store_plans`](/ext/e/pg_store_plans) | [`pg_store_plans`](https://github.com/ossc-db/pg_store_plans) | `1.10` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | track plan statistics of all SQL statements executed |
 | [`pg_track_settings`](/ext/e/pg_track_settings) | [`pg_track_settings`](https://github.com/rjuju/pg_track_settings) | `2.1.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Track settings changes |
 | [`pg_track_optimizer`](/ext/e/pg_track_optimizer) | [`pg_track_optimizer`](https://github.com/danolivo/pg_track_optimizer) | `0.9.2` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Track planning decisions in comparison with execution reality |
 | [`pg_wait_sampling`](/ext/e/pg_wait_sampling) | [`pg_wait_sampling`](https://github.com/postgrespro/pg_wait_sampling) | `1.1.9` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | sampling based statistics of wait events |
 | [`pgsentinel`](/ext/e/pgsentinel) | [`pgsentinel`](https://github.com/pgsentinel/pgsentinel) | `1.4.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | active session history |
-| [`system_stats`](/ext/e/system_stats) | [`system_stats`](https://github.com/EnterpriseDB/system_stats) | `3.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | EnterpriseDB system statistics for PostgreSQL |
+| [`system_stats`](/ext/e/system_stats) | [`system_stats`](https://github.com/EnterpriseDB/system_stats) | `4.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | EnterpriseDB system statistics for PostgreSQL |
 | [`meta`](/ext/e/meta) | [`pg_meta`](https://github.com/aquameta/meta) | `0.4.0` | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Normalized, friendlier system catalog for PostgreSQL |
 | [`pgnodemx`](/ext/e/pgnodemx) | [`pgnodemx`](https://github.com/CrunchyData/pgnodemx) | `1.7` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Capture node OS metrics via SQL queries |
 | [`pg_proctab`](/ext/e/pg_proctab) | [`pgnodemx`](https://github.com/markwkm/pg_proctab) | `1.7` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostgreSQL extension to access the OS process table |
@@ -83,6 +84,24 @@ There are **35** extensions in **34** packages.
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
+## pg_stat_ch {#pg_stat_ch}
+
+[**`pg_stat_ch`**](/ext/e/pg_stat_ch) - `0.3.3` : Export PostgreSQL query telemetry to ClickHouse
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`pg_stat_ch`](/ext/e/pg_stat_ch) | **el8** | - | - |
+| **Package** | [`pg_stat_ch`](https://github.com/ClickHouse/pg_stat_ch) | **el9** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| **RPM** | `pg_stat_ch_$v` | **el10** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| **DEB** | `postgresql-$v-pg-stat-ch` | **d12** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | **d13** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
 {.ext-table .ext-table--cate}
 
 
@@ -162,13 +181,13 @@ There are **35** extensions in **34** packages.
 
 ## pg_store_plans {#pg_store_plans}
 
-[**`pg_store_plans`**](/ext/e/pg_store_plans) - `1.9` : track plan statistics of all SQL statements executed
+[**`pg_store_plans`**](/ext/e/pg_store_plans) - `1.10` : track plan statistics of all SQL statements executed
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
 | **Extension** | [`pg_store_plans`](/ext/e/pg_store_plans) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Package** | [`pg_store_plans`](https://github.com/ossc-db/pg_store_plans) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pg_store_plans_$v` | **el10** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **RPM** | `pg_store_plans_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **DEB** | `postgresql-$v-pg-store-plan` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
@@ -253,7 +272,7 @@ There are **35** extensions in **34** packages.
 
 ## system_stats {#system_stats}
 
-[**`system_stats`**](/ext/e/system_stats) - `3.2` : EnterpriseDB system statistics for PostgreSQL
+[**`system_stats`**](/ext/e/system_stats) - `4.0` : EnterpriseDB system statistics for PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

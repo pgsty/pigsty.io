@@ -8,11 +8,12 @@ icon: fas fa-icons
 
 ## Extension List
 
-There are **62** extensions in **23** packages.
+There are **65** extensions in **26** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
 | [`age`](/ext/e/age) | [`age`](https://github.com/apache/age) | `1.7.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | AGE graph database extension |
+| [`pg_liquid`](/ext/e/pg_liquid) | [`pg_liquid`](https://github.com/michael-golfi/pg_liquid) | `0.1.7` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Liquid-inspired Datalog graph query extension for PostgreSQL |
 | [`hll`](/ext/e/hll) | [`hll`](https://github.com/citusdata/postgresql-hll) | `2.19` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | type for storing hyperloglog data |
 | [`rum`](/ext/e/rum) | [`rum`](https://github.com/postgrespro/rum) | `1.3.15` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | RUM index access method |
 | [`pg_ai_query`](/ext/e/pg_ai_query) | [`pg_ai_query`](https://github.com/benodiwal/pg_ai_query) | `0.1.1` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | AI-powered SQL query generation for PostgreSQL |
@@ -24,9 +25,11 @@ There are **62** extensions in **23** packages.
 | [`hypopg`](/ext/e/hypopg) | [`hypopg`](https://github.com/HypoPG/hypopg) | `1.4.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Hypothetical indexes for PostgreSQL |
 | [`index_advisor`](/ext/e/index_advisor) | [`index_advisor`](https://github.com/supabase/index_advisor) | `0.2.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Query index advisor |
 | [`plan_filter`](/ext/e/plan_filter) | [`pg_plan_filter`](https://github.com/pgexperts/pg_plan_filter) | `0.0.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | filter statements by their execution plans. |
+| [`pg_variables`](/ext/e/pg_variables) | [`pg_variables`](https://github.com/postgrespro/pg_variables) | `1.2.5` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Session-scoped variables with scalar, array, and record types |
 | [`imgsmlr`](/ext/e/imgsmlr) | [`imgsmlr`](https://github.com/postgrespro/imgsmlr) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Image similarity with haar |
 | [`pg_ivm`](/ext/e/pg_ivm) | [`pg_ivm`](https://github.com/sraoss/pg_ivm) | `1.13` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | incremental view maintenance on PostgreSQL |
 | [`pg_incremental`](/ext/e/pg_incremental) | [`pg_incremental`](https://github.com/CrunchyData/pg_incremental) | `1.4.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Incremental Processing by Crunchy Data |
+| [`pg_trickle`](/ext/e/pg_trickle) | [`pg_trickle`](https://github.com/grove/pg-trickle) | `0.16.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Streaming tables and differential view maintenance for PostgreSQL 18 |
 | [`pgmb`](/ext/e/pgmb) | [`pgmb`](https://github.com/fraruiz/pgmb) | `1.0.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | A simple PostgreSQL Message Broker system |
 | [`pgmq`](/ext/e/pgmq) | [`pgmq`](https://github.com/pgmq/pgmq) | `1.11.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | A lightweight message queue. Like AWS SQS and RSMQ but on Postgres. |
 | [`pgq`](/ext/e/pgq) | [`pgq`](https://github.com/pgq/pgq) | `3.5.1` | <a class="ext-badge ext-badge--license isc" href="/ext/license#isc">ISC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Generic queue for PostgreSQL |
@@ -92,6 +95,24 @@ There are **62** extensions in **23** packages.
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
+## pg_liquid {#pg_liquid}
+
+[**`pg_liquid`**](/ext/e/pg_liquid) - `0.1.7` : Liquid-inspired Datalog graph query extension for PostgreSQL
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`pg_liquid`](/ext/e/pg_liquid) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`pg_liquid`](https://github.com/michael-golfi/pg_liquid) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `pg_liquid_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-pg-liquid` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
 
@@ -295,6 +316,24 @@ There are **62** extensions in **23** packages.
 
 ---------
 
+## pg_variables {#pg_variables}
+
+[**`pg_variables`**](/ext/e/pg_variables) - `1.2.5` : Session-scoped variables with scalar, array, and record types
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`pg_variables`](/ext/e/pg_variables) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`pg_variables`](https://github.com/postgrespro/pg_variables) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `pg_variables_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-pg-variables` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
 ## imgsmlr {#imgsmlr}
 
 [**`imgsmlr`**](/ext/e/imgsmlr) - `1.0` : Image similarity with haar
@@ -344,6 +383,24 @@ There are **62** extensions in **23** packages.
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
 | **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
+## pg_trickle {#pg_trickle}
+
+[**`pg_trickle`**](/ext/e/pg_trickle) - `0.16.0` : Streaming tables and differential view maintenance for PostgreSQL 18
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`pg_trickle`](/ext/e/pg_trickle) | **el8** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| **Package** | [`pg_trickle`](https://github.com/grove/pg-trickle) | **el9** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| **RPM** | `pg_trickle_$v` | **el10** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| **DEB** | `postgresql-$v-pg-trickle` | **d12** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
 {.ext-table .ext-table--cate}
 
 

@@ -8,7 +8,7 @@ icon: fas fa-bank
 
 ## Extension List
 
-There are **40** extensions in **38** packages.
+There are **41** extensions in **39** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
@@ -40,6 +40,7 @@ There are **40** extensions in **38** packages.
 | [`pg_strict`](/ext/e/pg_strict) | [`pg_strict`](https://github.com/spa5k/pg_strict) | `1.0.2` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Prevent dangerous UPDATE and DELETE without WHERE clause |
 | [`pg_drop_events`](/ext/e/pg_drop_events) | [`pg_drop_events`](https://github.com/bolajiwahab/pg_drop_events) | `0.1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | logs transaction ids of drop table, drop column, drop materialized view statements |
 | [`table_log`](/ext/e/table_log) | [`table_log`](https://github.com/df7cb/table_log) | `0.6.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | record table modification logs and PITR for table/row |
+| [`pgelog`](/ext/e/pgelog) | [`pgelog`](https://github.com/anfiau/pgelog) | `1.0.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Extended logging via pseudo-autonomous transactions |
 | [`pgagent`](/ext/e/pgagent) | [`pgagent`](https://www.pgadmin.org/docs/pgadmin4/development/pgagent.html) | `4.2.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | A PostgreSQL job scheduler |
 | [`pg_prewarm`](/ext/e/pg_prewarm) | [`pg_prewarm`](https://www.postgresql.org/docs/current/pgprewarm.html) | `1.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | prewarm relation data |
 | [`pgpool_adm`](/ext/e/pgpool_adm) | [`pgpool`](https://pgpool.net/) | `4.7.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Administrative functions for pgPool |
@@ -555,6 +556,24 @@ There are **40** extensions in **38** packages.
 | **DEB** | `postgresql-$v-tablelog` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
+## pgelog {#pgelog}
+
+[**`pgelog`**](/ext/e/pgelog) - `1.0.2` : Extended logging via pseudo-autonomous transactions
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`pgelog`](/ext/e/pgelog) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`pgelog`](https://github.com/anfiau/pgelog) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `pgelog_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-pgelog` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 

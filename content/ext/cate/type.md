@@ -8,7 +8,7 @@ icon: fas fa-cubes
 
 ## Extension List
 
-There are **37** extensions in **36** packages.
+There are **39** extensions in **38** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
@@ -40,7 +40,9 @@ There are **37** extensions in **36** packages.
 | [`acl`](/ext/e/acl) | [`pg_acl`](https://github.com/arkhipov/acl) | `1.0.4` | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | ACL Data type |
 | [`debversion`](/ext/e/debversion) | [`debversion`](https://github.com/ATIX-AG/postgresql-debversion-evr) | `1.2.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Debian version number data type |
 | [`pg_rrule`](/ext/e/pg_rrule) | [`pg_rrule`](https://github.com/petropavel13/pg_rrule) | `0.3.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | RRULE field type for PostgreSQL |
+| [`pgcalendar`](/ext/e/pgcalendar) | [`pgcalendar`](https://github.com/h4kbas/pgcalendar) | `1.1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Recurring calendar, schedule, and exception management for PostgreSQL |
 | [`timestamp9`](/ext/e/timestamp9) | [`timestamp9`](https://github.com/optiver/timestamp9) | `1.4.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | timestamp nanosecond resolution |
+| [`pgbson`](/ext/e/pgbson) | [`pgbson`](https://github.com/buzzm/postgresbson) | `2.0.2` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | BSON data type and accessor functions for PostgreSQL |
 | [`chkpass`](/ext/e/chkpass) | [`chkpass`](https://github.com/lacanoid/chkpass) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | data type for auto-encrypted passwords |
 | [`isn`](/ext/e/isn) | [`isn`](https://www.postgresql.org/docs/current/isn.html) | `1.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | data types for international product numbering standards |
 | [`seg`](/ext/e/seg) | [`seg`](https://www.postgresql.org/docs/current/seg.html) | `1.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | data type for representing line segments or floating-point intervals |
@@ -558,6 +560,24 @@ There are **37** extensions in **36** packages.
 
 ---------
 
+## pgcalendar {#pgcalendar}
+
+[**`pgcalendar`**](/ext/e/pgcalendar) - `1.1.0` : Recurring calendar, schedule, and exception management for PostgreSQL
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`pgcalendar`](/ext/e/pgcalendar) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`pgcalendar`](https://github.com/h4kbas/pgcalendar) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `pgcalendar_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-pgcalendar` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
 ## timestamp9 {#timestamp9}
 
 [**`timestamp9`**](/ext/e/timestamp9) - `1.4.0` : timestamp nanosecond resolution
@@ -570,6 +590,24 @@ There are **37** extensions in **36** packages.
 | **DEB** | `postgresql-$v-timestamp9` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
+## pgbson {#pgbson}
+
+[**`pgbson`**](/ext/e/pgbson) - `2.0.2` : BSON data type and accessor functions for PostgreSQL
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`pgbson`](/ext/e/pgbson) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`pgbson`](https://github.com/buzzm/postgresbson) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `postgresbson_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-pgbson` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 

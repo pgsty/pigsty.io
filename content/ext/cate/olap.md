@@ -18,7 +18,7 @@ There are **14** extensions in **13** packages.
 | [`pg_analytics`](/ext/e/pg_analytics) | [`pg_analytics`](https://github.com/paradedb/pg_analytics) | `0.3.7` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Postgres for analytics, powered by DuckDB |
 | [`pg_duckdb`](/ext/e/pg_duckdb) | [`pg_duckdb`](https://github.com/duckdb/pg_duckdb) | `1.1.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | DuckDB Embedded in Postgres |
 | [`pg_mooncake`](/ext/e/pg_mooncake) | [`pg_mooncake`](https://github.com/Mooncake-Labs/pg_mooncake) | `0.2.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Columnstore Table in Postgres |
-| [`pg_clickhouse`](/ext/e/pg_clickhouse) | [`pg_clickhouse`](https://github.com/ClickHouse/pg_clickhouse) | `0.1.5` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | Interfaces to query ClickHouse databases from PostgreSQL |
+| [`pg_clickhouse`](/ext/e/pg_clickhouse) | [`pg_clickhouse`](https://github.com/ClickHouse/pg_clickhouse) | `0.1.10` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | Interfaces to query ClickHouse databases from PostgreSQL |
 | [`duckdb_fdw`](/ext/e/duckdb_fdw) | [`duckdb_fdw`](https://github.com/alitrack/duckdb_fdw) | `1.1.2` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | DuckDB Foreign Data Wrapper |
 | [`pg_parquet`](/ext/e/pg_parquet) | [`pg_parquet`](https://github.com/CrunchyData/pg_parquet/) | `0.5.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | copy data between Postgres and Parquet |
 | [`pg_fkpart`](/ext/e/pg_fkpart) | [`pg_fkpart`](https://github.com/lemoineat/pg_fkpart) | `1.7.0` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Table partitioning by foreign key utility |
@@ -141,7 +141,7 @@ There are **14** extensions in **13** packages.
 
 ## pg_clickhouse {#pg_clickhouse}
 
-[**`pg_clickhouse`**](/ext/e/pg_clickhouse) - `0.1.5` : Interfaces to query ClickHouse databases from PostgreSQL
+[**`pg_clickhouse`**](/ext/e/pg_clickhouse) - `0.1.10` : Interfaces to query ClickHouse databases from PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

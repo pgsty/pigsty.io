@@ -2,7 +2,7 @@
 title: "pg_hashids"
 linkTitle: "pg_hashids"
 description: "Short unique id generator for PostgreSQL, using hashids"
-weight: 4560
+weight: 4540
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 4560
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 4560  | [**`pg_hashids`**](/ext/e/pg_hashids) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 4540  | [**`pg_hashids`**](/ext/e/pg_hashids) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`pg_idkit`](/ext/e/pg_idkit) [`pg_base58`](/ext/e/pg_base58) [`pgx_ulid`](/ext/e/pgx_ulid) [`pg_uuidv7`](/ext/e/pg_uuidv7) [`sequential_uuids`](/ext/e/sequential_uuids) [`permuteseq`](/ext/e/permuteseq) |

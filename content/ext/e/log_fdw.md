@@ -53,11 +53,11 @@ weight: 8810
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 2 | AVAIL PIGSTY 1.4 2 | AVAIL PIGSTY 1.4 2 | AVAIL PIGSTY 1.4 2 |
-| el8.aarch64 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 2 | AVAIL PIGSTY 1.4 2 | AVAIL PIGSTY 1.4 2 | AVAIL PIGSTY 1.4 2 |
-| el9.x86_64 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 2 | AVAIL PIGSTY 1.4 2 | AVAIL PIGSTY 1.4 2 | AVAIL PIGSTY 1.4 2 |
-| el9.aarch64 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 2 | AVAIL PIGSTY 1.4 2 | AVAIL PIGSTY 1.4 2 | AVAIL PIGSTY 1.4 2 |
-| el10.x86_64 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 2 | AVAIL PIGSTY 1.4 2 | AVAIL PIGSTY 1.4 2 | AVAIL PIGSTY 1.4 2 |
+| el8.x86_64 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 |
+| el8.aarch64 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 |
+| el9.x86_64 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 |
+| el9.aarch64 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 |
+| el10.x86_64 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 |
 | el10.aarch64 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 |
 | d12.x86_64 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 |
 | d12.aarch64 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 | AVAIL PIGSTY 1.4 1 |
@@ -82,15 +82,10 @@ weight: 8810
 @ u24.x86_64 18 postgresql-18-log-fdw postgresql-18-log-fdw_1.4-1PIGSTY~noble_amd64.deb pigsty 1.4 28.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/l/log-fdw/postgresql-18-log-fdw_1.4-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 18 postgresql-18-log-fdw postgresql-18-log-fdw_1.4-1PIGSTY~noble_arm64.deb pigsty 1.4 28.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/l/log-fdw/postgresql-18-log-fdw_1.4-1PIGSTY~noble_arm64.deb
 @ el8.x86_64 17 log_fdw_17 log_fdw_17-1.4-2PIGSTY.el8.x86_64.rpm pigsty 1.4 20.0KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/log_fdw_17-1.4-2PIGSTY.el8.x86_64.rpm
-@ el8.x86_64 17 log_fdw_17 log_fdw_17-1.4-1PIGSTY.el8.x86_64.rpm pigsty 1.4 19.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/log_fdw_17-1.4-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 17 log_fdw_17 log_fdw_17-1.4-2PIGSTY.el8.aarch64.rpm pigsty 1.4 20.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/log_fdw_17-1.4-2PIGSTY.el8.aarch64.rpm
-@ el8.aarch64 17 log_fdw_17 log_fdw_17-1.4-1PIGSTY.el8.aarch64.rpm pigsty 1.4 19.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/log_fdw_17-1.4-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 17 log_fdw_17 log_fdw_17-1.4-2PIGSTY.el9.x86_64.rpm pigsty 1.4 20.2KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/log_fdw_17-1.4-2PIGSTY.el9.x86_64.rpm
-@ el9.x86_64 17 log_fdw_17 log_fdw_17-1.4-1PIGSTY.el9.x86_64.rpm pigsty 1.4 19.8KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/log_fdw_17-1.4-1PIGSTY.el9.x86_64.rpm
 @ el9.aarch64 17 log_fdw_17 log_fdw_17-1.4-2PIGSTY.el9.aarch64.rpm pigsty 1.4 20.1KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/log_fdw_17-1.4-2PIGSTY.el9.aarch64.rpm
-@ el9.aarch64 17 log_fdw_17 log_fdw_17-1.4-1PIGSTY.el9.aarch64.rpm pigsty 1.4 19.4KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/log_fdw_17-1.4-1PIGSTY.el9.aarch64.rpm
 @ el10.x86_64 17 log_fdw_17 log_fdw_17-1.4-2PIGSTY.el10.x86_64.rpm pigsty 1.4 20.3KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/log_fdw_17-1.4-2PIGSTY.el10.x86_64.rpm
-@ el10.x86_64 17 log_fdw_17 log_fdw_17-1.4-1PIGSTY.el10.x86_64.rpm pigsty 1.4 19.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/log_fdw_17-1.4-1PIGSTY.el10.x86_64.rpm
 @ el10.aarch64 17 log_fdw_17 log_fdw_17-1.4-2PIGSTY.el10.aarch64.rpm pigsty 1.4 20.3KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/log_fdw_17-1.4-2PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 17 postgresql-17-log-fdw postgresql-17-log-fdw_1.4-1PIGSTY~bookworm_amd64.deb pigsty 1.4 27.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/l/log-fdw/postgresql-17-log-fdw_1.4-1PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 17 postgresql-17-log-fdw postgresql-17-log-fdw_1.4-1PIGSTY~bookworm_arm64.deb pigsty 1.4 27.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/l/log-fdw/postgresql-17-log-fdw_1.4-1PIGSTY~bookworm_arm64.deb
@@ -101,15 +96,10 @@ weight: 8810
 @ u24.x86_64 17 postgresql-17-log-fdw postgresql-17-log-fdw_1.4-1PIGSTY~noble_amd64.deb pigsty 1.4 28.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/l/log-fdw/postgresql-17-log-fdw_1.4-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 17 postgresql-17-log-fdw postgresql-17-log-fdw_1.4-1PIGSTY~noble_arm64.deb pigsty 1.4 28.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/l/log-fdw/postgresql-17-log-fdw_1.4-1PIGSTY~noble_arm64.deb
 @ el8.x86_64 16 log_fdw_16 log_fdw_16-1.4-2PIGSTY.el8.x86_64.rpm pigsty 1.4 20.0KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/log_fdw_16-1.4-2PIGSTY.el8.x86_64.rpm
-@ el8.x86_64 16 log_fdw_16 log_fdw_16-1.4-1PIGSTY.el8.x86_64.rpm pigsty 1.4 19.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/log_fdw_16-1.4-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 16 log_fdw_16 log_fdw_16-1.4-2PIGSTY.el8.aarch64.rpm pigsty 1.4 20.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/log_fdw_16-1.4-2PIGSTY.el8.aarch64.rpm
-@ el8.aarch64 16 log_fdw_16 log_fdw_16-1.4-1PIGSTY.el8.aarch64.rpm pigsty 1.4 19.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/log_fdw_16-1.4-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 16 log_fdw_16 log_fdw_16-1.4-2PIGSTY.el9.x86_64.rpm pigsty 1.4 20.2KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/log_fdw_16-1.4-2PIGSTY.el9.x86_64.rpm
-@ el9.x86_64 16 log_fdw_16 log_fdw_16-1.4-1PIGSTY.el9.x86_64.rpm pigsty 1.4 19.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/log_fdw_16-1.4-1PIGSTY.el9.x86_64.rpm
 @ el9.aarch64 16 log_fdw_16 log_fdw_16-1.4-2PIGSTY.el9.aarch64.rpm pigsty 1.4 20.2KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/log_fdw_16-1.4-2PIGSTY.el9.aarch64.rpm
-@ el9.aarch64 16 log_fdw_16 log_fdw_16-1.4-1PIGSTY.el9.aarch64.rpm pigsty 1.4 19.4KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/log_fdw_16-1.4-1PIGSTY.el9.aarch64.rpm
 @ el10.x86_64 16 log_fdw_16 log_fdw_16-1.4-2PIGSTY.el10.x86_64.rpm pigsty 1.4 20.3KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/log_fdw_16-1.4-2PIGSTY.el10.x86_64.rpm
-@ el10.x86_64 16 log_fdw_16 log_fdw_16-1.4-1PIGSTY.el10.x86_64.rpm pigsty 1.4 19.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/log_fdw_16-1.4-1PIGSTY.el10.x86_64.rpm
 @ el10.aarch64 16 log_fdw_16 log_fdw_16-1.4-2PIGSTY.el10.aarch64.rpm pigsty 1.4 20.3KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/log_fdw_16-1.4-2PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 16 postgresql-16-log-fdw postgresql-16-log-fdw_1.4-1PIGSTY~bookworm_amd64.deb pigsty 1.4 27.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/l/log-fdw/postgresql-16-log-fdw_1.4-1PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 16 postgresql-16-log-fdw postgresql-16-log-fdw_1.4-1PIGSTY~bookworm_arm64.deb pigsty 1.4 27.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/l/log-fdw/postgresql-16-log-fdw_1.4-1PIGSTY~bookworm_arm64.deb
@@ -120,15 +110,10 @@ weight: 8810
 @ u24.x86_64 16 postgresql-16-log-fdw postgresql-16-log-fdw_1.4-1PIGSTY~noble_amd64.deb pigsty 1.4 28.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/l/log-fdw/postgresql-16-log-fdw_1.4-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 16 postgresql-16-log-fdw postgresql-16-log-fdw_1.4-1PIGSTY~noble_arm64.deb pigsty 1.4 28.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/l/log-fdw/postgresql-16-log-fdw_1.4-1PIGSTY~noble_arm64.deb
 @ el8.x86_64 15 log_fdw_15 log_fdw_15-1.4-2PIGSTY.el8.x86_64.rpm pigsty 1.4 20.1KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/log_fdw_15-1.4-2PIGSTY.el8.x86_64.rpm
-@ el8.x86_64 15 log_fdw_15 log_fdw_15-1.4-1PIGSTY.el8.x86_64.rpm pigsty 1.4 19.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/log_fdw_15-1.4-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 15 log_fdw_15 log_fdw_15-1.4-2PIGSTY.el8.aarch64.rpm pigsty 1.4 20.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/log_fdw_15-1.4-2PIGSTY.el8.aarch64.rpm
-@ el8.aarch64 15 log_fdw_15 log_fdw_15-1.4-1PIGSTY.el8.aarch64.rpm pigsty 1.4 19.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/log_fdw_15-1.4-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 15 log_fdw_15 log_fdw_15-1.4-2PIGSTY.el9.x86_64.rpm pigsty 1.4 20.2KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/log_fdw_15-1.4-2PIGSTY.el9.x86_64.rpm
-@ el9.x86_64 15 log_fdw_15 log_fdw_15-1.4-1PIGSTY.el9.x86_64.rpm pigsty 1.4 19.9KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/log_fdw_15-1.4-1PIGSTY.el9.x86_64.rpm
 @ el9.aarch64 15 log_fdw_15 log_fdw_15-1.4-2PIGSTY.el9.aarch64.rpm pigsty 1.4 20.1KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/log_fdw_15-1.4-2PIGSTY.el9.aarch64.rpm
-@ el9.aarch64 15 log_fdw_15 log_fdw_15-1.4-1PIGSTY.el9.aarch64.rpm pigsty 1.4 19.4KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/log_fdw_15-1.4-1PIGSTY.el9.aarch64.rpm
 @ el10.x86_64 15 log_fdw_15 log_fdw_15-1.4-2PIGSTY.el10.x86_64.rpm pigsty 1.4 20.3KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/log_fdw_15-1.4-2PIGSTY.el10.x86_64.rpm
-@ el10.x86_64 15 log_fdw_15 log_fdw_15-1.4-1PIGSTY.el10.x86_64.rpm pigsty 1.4 19.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/log_fdw_15-1.4-1PIGSTY.el10.x86_64.rpm
 @ el10.aarch64 15 log_fdw_15 log_fdw_15-1.4-2PIGSTY.el10.aarch64.rpm pigsty 1.4 20.3KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/log_fdw_15-1.4-2PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 15 postgresql-15-log-fdw postgresql-15-log-fdw_1.4-1PIGSTY~bookworm_amd64.deb pigsty 1.4 27.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/l/log-fdw/postgresql-15-log-fdw_1.4-1PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 15 postgresql-15-log-fdw postgresql-15-log-fdw_1.4-1PIGSTY~bookworm_arm64.deb pigsty 1.4 27.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/l/log-fdw/postgresql-15-log-fdw_1.4-1PIGSTY~bookworm_arm64.deb
@@ -139,15 +124,10 @@ weight: 8810
 @ u24.x86_64 15 postgresql-15-log-fdw postgresql-15-log-fdw_1.4-1PIGSTY~noble_amd64.deb pigsty 1.4 28.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/l/log-fdw/postgresql-15-log-fdw_1.4-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 15 postgresql-15-log-fdw postgresql-15-log-fdw_1.4-1PIGSTY~noble_arm64.deb pigsty 1.4 28.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/l/log-fdw/postgresql-15-log-fdw_1.4-1PIGSTY~noble_arm64.deb
 @ el8.x86_64 14 log_fdw_14 log_fdw_14-1.4-2PIGSTY.el8.x86_64.rpm pigsty 1.4 20.1KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/log_fdw_14-1.4-2PIGSTY.el8.x86_64.rpm
-@ el8.x86_64 14 log_fdw_14 log_fdw_14-1.4-1PIGSTY.el8.x86_64.rpm pigsty 1.4 19.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/log_fdw_14-1.4-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 14 log_fdw_14 log_fdw_14-1.4-2PIGSTY.el8.aarch64.rpm pigsty 1.4 20.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/log_fdw_14-1.4-2PIGSTY.el8.aarch64.rpm
-@ el8.aarch64 14 log_fdw_14 log_fdw_14-1.4-1PIGSTY.el8.aarch64.rpm pigsty 1.4 19.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/log_fdw_14-1.4-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 14 log_fdw_14 log_fdw_14-1.4-2PIGSTY.el9.x86_64.rpm pigsty 1.4 20.2KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/log_fdw_14-1.4-2PIGSTY.el9.x86_64.rpm
-@ el9.x86_64 14 log_fdw_14 log_fdw_14-1.4-1PIGSTY.el9.x86_64.rpm pigsty 1.4 19.7KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/log_fdw_14-1.4-1PIGSTY.el9.x86_64.rpm
 @ el9.aarch64 14 log_fdw_14 log_fdw_14-1.4-2PIGSTY.el9.aarch64.rpm pigsty 1.4 20.1KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/log_fdw_14-1.4-2PIGSTY.el9.aarch64.rpm
-@ el9.aarch64 14 log_fdw_14 log_fdw_14-1.4-1PIGSTY.el9.aarch64.rpm pigsty 1.4 19.4KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/log_fdw_14-1.4-1PIGSTY.el9.aarch64.rpm
 @ el10.x86_64 14 log_fdw_14 log_fdw_14-1.4-2PIGSTY.el10.x86_64.rpm pigsty 1.4 20.3KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/log_fdw_14-1.4-2PIGSTY.el10.x86_64.rpm
-@ el10.x86_64 14 log_fdw_14 log_fdw_14-1.4-1PIGSTY.el10.x86_64.rpm pigsty 1.4 19.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/log_fdw_14-1.4-1PIGSTY.el10.x86_64.rpm
 @ el10.aarch64 14 log_fdw_14 log_fdw_14-1.4-2PIGSTY.el10.aarch64.rpm pigsty 1.4 20.3KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/log_fdw_14-1.4-2PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 14 postgresql-14-log-fdw postgresql-14-log-fdw_1.4-1PIGSTY~bookworm_amd64.deb pigsty 1.4 27.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/l/log-fdw/postgresql-14-log-fdw_1.4-1PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 14 postgresql-14-log-fdw postgresql-14-log-fdw_1.4-1PIGSTY~bookworm_arm64.deb pigsty 1.4 27.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/l/log-fdw/postgresql-14-log-fdw_1.4-1PIGSTY~bookworm_arm64.deb
@@ -221,75 +201,99 @@ CREATE EXTENSION log_fdw;
 ```
 
 
-
-
 ## Usage
 
-> [log_fdw: Foreign data wrapper for Postgres log file access](https://github.com/aws/postgresql-logfdw)
+> Syntax:
+>
+> ```sql
+> CREATE EXTENSION log_fdw;
+> CREATE SERVER log_fdw_server FOREIGN DATA WRAPPER log_fdw;
+> SELECT * FROM list_postgres_log_files();
+> ```
+>
+> Source: [README](https://github.com/aws/postgresql-logfdw)
 
-### Create Server
+`log_fdw` is a PostgreSQL foreign data wrapper for reading PostgreSQL log files through SQL. It provides helper functions to list files in the server log directory and to create foreign tables for individual log files.
+
+### Core Functions
+
+The upstream README documents two SQL entry points:
+
+```sql
+create_foreign_table_for_log_file(table_name text, server_name text, log_file_name text)
+list_postgres_log_files()
+```
+
+`list_postgres_log_files()` is a compatibility wrapper around PostgreSQL core's `pg_ls_logdir()`.
+
+## Basic Workflow
+
+Create the extension and a foreign server:
 
 ```sql
 CREATE EXTENSION log_fdw;
-
 CREATE SERVER log_fdw_server FOREIGN DATA WRAPPER log_fdw;
 ```
 
-### List Available Log Files
+List files available in the PostgreSQL log directory:
 
 ```sql
-SELECT * FROM list_postgres_log_files();
+SELECT * FROM list_postgres_log_files() ORDER BY 1 DESC LIMIT 10;
 ```
 
-Returns the file name and size of each log file in the PostgreSQL log directory.
-
-### Create Foreign Table for CSV Logs
+Create foreign tables for CSV logs or plain `.log` files:
 
 ```sql
 SELECT * FROM create_foreign_table_for_log_file(
-  'postgresql_2024_01_15_csv',   -- foreign table name
-  'log_fdw_server',               -- server name
-  'postgresql-2024-01-15.csv'     -- log file name
-);
-```
-
-### Create Foreign Table for Plain Text Logs
-
-```sql
-SELECT * FROM create_foreign_table_for_log_file(
-  'postgresql_2024_01_15_log',
+  'postgresql_2022_11_28_csv',
   'log_fdw_server',
-  'postgresql-2024-01-15.log'
+  'postgresql-2022-11-28.csv'
+);
+
+SELECT * FROM create_foreign_table_for_log_file(
+  'postgresql_2022_11_28_log',
+  'log_fdw_server',
+  'postgresql-2022-11-28.log'
 );
 ```
 
-### Query Log Data
+## Querying
+
+Foreign tables created from plain log files expose a single log-entry style column, while CSV log files expose structured columns such as `log_time`, `error_severity`, `message`, and session metadata.
+
+Typical usage is straightforward:
 
 ```sql
--- Query CSV-format logs (structured columns)
+SELECT * FROM postgresql_2022_11_28_log LIMIT 2;
+
 SELECT log_time, error_severity, message
-FROM postgresql_2024_01_15_csv
+FROM postgresql_2022_11_28_csv
 WHERE error_severity = 'ERROR'
 ORDER BY log_time DESC
 LIMIT 20;
-
--- Query plain text logs
-SELECT * FROM postgresql_2024_01_15_log LIMIT 10;
 ```
 
-### Granting Access to Non-Superusers
+## Privileges
 
-Only superusers can create the extension, but access can be granted:
+Only superusers can create the extension. The README also notes that superusers can delegate access to non-superusers with the minimum required grants, for example:
 
 ```sql
-GRANT pg_monitor TO monitoring_user;
-GRANT CREATE ON SCHEMA public TO monitoring_user;
-GRANT USAGE ON FOREIGN SERVER log_fdw_server TO monitoring_user;
+CREATE ROLE foo;
+GRANT pg_monitor TO foo;
+GRANT CREATE ON SCHEMA bar TO foo;
+GRANT USAGE ON FOREIGN SERVER log_fdw_server TO foo;
 ```
 
-### Functions Reference
+`pg_monitor` is specifically needed when `list_postgres_log_files()` is used, because the underlying `pg_ls_logdir()` function requires it.
 
-| Function | Description |
-|----------|-------------|
-| `list_postgres_log_files()` | List available log files and their sizes |
-| `create_foreign_table_for_log_file(table_name, server_name, file_name)` | Create a foreign table from a log file |
+## Build Notes
+
+The project can be built standalone with PGXS:
+
+```bash
+export USE_PGXS=1
+make
+make install
+```
+
+The source can also be copied into PostgreSQL's `contrib` tree and built there as part of a larger distribution.

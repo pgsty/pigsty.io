@@ -5,11 +5,11 @@ description: "PostgreSQL extensions with dependency relationships"
 weight: 30
 ---
 
-**93** extensions depend on other extensions, **58** extensions are depended upon by others.
+**97** extensions depend on other extensions, **58** extensions are depended upon by others.
 
 ## Upstream Dependencies
 
-The following **93** extensions require other extensions to be installed first:
+The following **97** extensions require other extensions to be installed first:
 
 | **Extension** | **Requires** | **Description** |
 |:-----------|:-------------|:---------|
@@ -18,6 +18,7 @@ The following **93** extensions require other extensions to be installed first:
 | [`emaj`](/ext/e/emaj) | [`dblink`](/ext/e/dblink) [`btree_gist`](/ext/e/btree_gist) | Enables fine-grained write logging and time travel on subsets of the database. |
 | [`table_version`](/ext/e/table_version) | [`plpgsql`](/ext/e/plpgsql) | PostgreSQL table versioning extension |
 | [`pg_later`](/ext/e/pg_later) | [`pgmq`](/ext/e/pgmq) | Run queries now and get results later |
+| [`pg_dispatch`](/ext/e/pg_dispatch) | [`pgcrypto`](/ext/e/pgcrypto) [`pg_cron`](/ext/e/pg_cron) | Asynchronous SQL dispatcher built on pg_cron |
 | [`postgis_topology`](/ext/e/postgis_topology) | [`postgis`](/ext/e/postgis) | PostGIS topology spatial types and functions |
 | [`postgis_raster`](/ext/e/postgis_raster) | [`postgis`](/ext/e/postgis) | PostGIS raster types and functions |
 | [`postgis_sfcgal`](/ext/e/postgis_sfcgal) | [`postgis`](/ext/e/postgis) | PostGIS SFCGAL functions |
@@ -76,6 +77,8 @@ The following **93** extensions require other extensions to be installed first:
 | [`pg_xenophile`](/ext/e/pg_xenophile) | [`hstore`](/ext/e/hstore) | More than the bare necessities for PostgreSQL i18n and l10n. |
 | [`l10n_table_dependent_extension`](/ext/e/l10n_table_dependent_extension) | [`pg_xenophile`](/ext/e/pg_xenophile) | PostgreSQL l10n toolbox |
 | [`currency`](/ext/e/currency) | [`plpgsql`](/ext/e/plpgsql) | Custom PostgreSQL currency type in 1Byte |
+| [`pg_fsql`](/ext/e/pg_fsql) | [`plpgsql`](/ext/e/plpgsql) | Recursive SQL template engine with JSONB-driven execution |
+| [`pglock`](/ext/e/pglock) | [`pg_cron`](/ext/e/pg_cron) | Lightweight distributed lock service inside PostgreSQL |
 | [`pgjwt`](/ext/e/pgjwt) | [`pgcrypto`](/ext/e/pgcrypto) | JSON Web Token API for Postgresql |
 | [`pg_readme`](/ext/e/pg_readme) | [`hstore`](/ext/e/hstore) | Generate a README.md document for a database extension or schema |
 | [`pg_readme_test_extension`](/ext/e/pg_readme_test_extension) | [`hstore`](/ext/e/hstore) | Test generating a README.md document for extension or schema |
@@ -87,6 +90,7 @@ The following **93** extensions require other extensions to be installed first:
 | [`pg_upless`](/ext/e/pg_upless) | [`plpgsql`](/ext/e/plpgsql) | Detect Useless UPDATE |
 | [`pgcozy`](/ext/e/pgcozy) | [`pg_buffercache`](/ext/e/pg_buffercache) [`pg_prewarm`](/ext/e/pg_prewarm) | Pre-warming shared buffers according to previous pg_buffercache snapshots for PostgreSQL. |
 | [`pg_drop_events`](/ext/e/pg_drop_events) | [`plpgsql`](/ext/e/plpgsql) | logs transaction ids of drop table, drop column, drop materialized view statements |
+| [`pgelog`](/ext/e/pgelog) | [`dblink`](/ext/e/dblink) [`pg_variables`](/ext/e/pg_variables) | Extended logging via pseudo-autonomous transactions |
 | [`pg_profile`](/ext/e/pg_profile) | [`dblink`](/ext/e/dblink) [`plpgsql`](/ext/e/plpgsql) | PostgreSQL load profile repository and report builder |
 | [`pg_stat_kcache`](/ext/e/pg_stat_kcache) | [`pg_stat_statements`](/ext/e/pg_stat_statements) | Kernel statistics gathering |
 | [`pg_sqlog`](/ext/e/pg_sqlog) | [`file_fdw`](/ext/e/file_fdw) | Provide SQL interface to logs |

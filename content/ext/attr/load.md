@@ -5,7 +5,7 @@ description: "PostgreSQL extensions that require dynamic loading"
 weight: 10
 ---
 
-The following **87** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
+The following **92** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
 
 You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) parameter in `postgresql.conf`, add the extension library, and restart the database.
 
@@ -32,12 +32,14 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pg_hint_plan`](/ext/e/pg_hint_plan) | `pg_hint_plan` | Give PostgreSQL ability to manually force some decisions in execution plans. |
 | [`plan_filter`](/ext/e/plan_filter) | `plan_filter` | filter statements by their execution plans. |
 | [`pg_ivm`](/ext/e/pg_ivm) | `pg_ivm` | incremental view maintenance on PostgreSQL |
+| [`pg_trickle`](/ext/e/pg_trickle) | `pg_trickle` | Streaming tables and differential view maintenance for PostgreSQL 18 |
 | [`orioledb`](/ext/e/orioledb) | `orioledb` | OrioleDB, the next generation transactional engine |
 | [`omni`](/ext/e/omni) | `omni--0.2.14.so` | Advanced adapter for Postgres extensions |
 | [`pg_tle`](/ext/e/pg_tle) | `pg_tle` | Trusted Language Extensions for PostgreSQL |
 | [`pldbgapi`](/ext/e/pldbgapi) | `pldbgapi` | server-side support for debugging PL/pgSQL functions |
 | [`plpgsql_check`](/ext/e/plpgsql_check) | `plpgsql_check` | extended check for plpgsql functions |
 | [`plprofiler`](/ext/e/plprofiler) | `plprofiler` | server-side support for profiling PL/pgSQL functions |
+| [`pg_regresql`](/ext/e/pg_regresql) | `pg_regresql` | Trust pg_class statistics for planning instead of physical relation size |
 | [`pgpdf`](/ext/e/pgpdf) | `pgpdf` | PDF type with meta admin & Full-Text Search |
 | [`pglite_fusion`](/ext/e/pglite_fusion) | `pglite_fusion` | Embed an SQLite database in your PostgreSQL table |
 | [`pg_net`](/ext/e/pg_net) | `pg_net` | Async HTTP Requests |
@@ -52,6 +54,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pg_strict`](/ext/e/pg_strict) | `pg_strict` | Prevent dangerous UPDATE and DELETE without WHERE clause |
 | [`pg_prewarm`](/ext/e/pg_prewarm) | `pg_prewarm` | prewarm relation data |
 | [`pg_tracing`](/ext/e/pg_tracing) | `pg_tracing` | Distributed Tracing for PostgreSQL |
+| [`pg_stat_ch`](/ext/e/pg_stat_ch) | `pg_stat_ch` | Export PostgreSQL query telemetry to ClickHouse |
 | [`pg_show_plans`](/ext/e/pg_show_plans) | `pg_show_plans` | show query plans of all currently running SQL statements |
 | [`pg_stat_kcache`](/ext/e/pg_stat_kcache) | `pg_stat_kcache` | Kernel statistics gathering |
 | [`pg_stat_monitor`](/ext/e/pg_stat_monitor) | `pg_stat_monitor` | The pg_stat_monitor is a PostgreSQL Query Performance Monitoring tool, based on PostgreSQL contrib module pg_stat_statements. pg_stat_monitor provides aggregated statistics, client information, plan details including plan, and histogram information. |
@@ -78,6 +81,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`set_user`](/ext/e/set_user) | `set_user` | similar to SET ROLE but with added logging |
 | [`pg_snakeoil`](/ext/e/pg_snakeoil) | `pg_snakeoil` | The PostgreSQL Antivirus |
 | [`pgextwlist`](/ext/e/pgextwlist) | `pgextwlist` | PostgreSQL Extension Whitelisting |
+| [`pg_command_fw`](/ext/e/pg_command_fw) | `pg_command_fw` | DDL and utility command firewall for PostgreSQL |
 | [`noset`](/ext/e/noset) | `noset` | Module for blocking SET variables for non-super users. |
 | [`pg_tde`](/ext/e/pg_tde) | `pg_tde` | Percona pg_tde access method |
 | [`sepgsql`](/ext/e/sepgsql) | `sepgsql` | label-based mandatory access control (MAC) based on SELinux security policy. |
@@ -96,6 +100,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pg_failover_slots`](/ext/e/pg_failover_slots) | `pg_failover_slots` | PG Failover Slots extension |
 | [`pgactive`](/ext/e/pgactive) | `pgactive` | Active-Active Replication Extension for PostgreSQL |
 | [`spock`](/ext/e/spock) | `spock` | Multi-master logical replication extension for PostgreSQL |
+| [`pgclone`](/ext/e/pgclone) | `pgclone` | Clone PostgreSQL databases, schemas, tables, and functions across environments |
 | [`decoderbufs`](/ext/e/decoderbufs) | `decoderbufs` | Logical decoding plugin that delivers WAL stream changes using a Protocol Buffer format |
 | [`repmgr`](/ext/e/repmgr) | `repmgr` | Replication manager for PostgreSQL |
 {.ext-table}

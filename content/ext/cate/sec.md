@@ -8,7 +8,7 @@ icon: fas fa-shield-halved
 
 ## Extension List
 
-There are **28** extensions in **28** packages.
+There are **29** extensions in **29** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
@@ -21,7 +21,7 @@ There are **28** extensions in **28** packages.
 | [`pgsmcrypto`](/ext/e/pgsmcrypto) | [`pgsmcrypto`](https://github.com/zhuobie/pgsmcrypto) | `0.1.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | PostgreSQL SM Algorithm Extension |
 | [`pg_enigma`](/ext/e/pg_enigma) | [`pg_enigma`](https://github.com/SoftwareLibreMx/pg_enigma) | `0.5.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Encrypted postgres data type |
 | [`pgaudit`](/ext/e/pgaudit) | [`pgaudit`](https://github.com/pgaudit/pgaudit) | `18.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | provides auditing functionality |
-| [`pgauditlogtofile`](/ext/e/pgauditlogtofile) | [`pgauditlogtofile`](https://github.com/fmbiete/pgauditlogtofile) | `1.8.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | pgAudit addon to redirect audit log to an independent file |
+| [`pgauditlogtofile`](/ext/e/pgauditlogtofile) | [`pgauditlogtofile`](https://github.com/fmbiete/pgauditlogtofile) | `1.8.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | pgAudit addon to redirect audit log to an independent file |
 | [`pg_auditor`](/ext/e/pg_auditor) | [`pg_auditor`](https://github.com/kouber/pg_auditor) | `0.2` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Audit data changes and provide flashback ability |
 | [`logerrors`](/ext/e/logerrors) | [`logerrors`](https://github.com/munakoiso/logerrors) | `2.1.5` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Function for collecting statistics about messages in logfile |
 | [`pg_auth_mon`](/ext/e/pg_auth_mon) | [`pg_auth_mon`](https://github.com/RafiaSabih/pg_auth_mon) | `3.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | monitor connection attempts per user |
@@ -33,6 +33,7 @@ There are **28** extensions in **28** packages.
 | [`set_user`](/ext/e/set_user) | [`set_user`](https://github.com/pgaudit/set_user) | `4.2.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | similar to SET ROLE but with added logging |
 | [`pg_snakeoil`](/ext/e/pg_snakeoil) | [`pg_snakeoil`](https://github.com/credativ/pg_snakeoil) | `1.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | The PostgreSQL Antivirus |
 | [`pgextwlist`](/ext/e/pgextwlist) | [`pgextwlist`](https://github.com/dimitri/pgextwlist) | `1.19` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostgreSQL Extension Whitelisting |
+| [`pg_command_fw`](/ext/e/pg_command_fw) | [`pg_command_fw`](https://github.com/rustwizard/pg_command_fw) | `0.1.0` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | DDL and utility command firewall for PostgreSQL |
 | [`sslutils`](/ext/e/sslutils) | [`sslutils`](https://github.com/EnterpriseDB/sslutils) | `1.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | A Postgres extension for managing SSL certificates through SQL |
 | [`noset`](/ext/e/noset) | [`pg_noset`](https://gitlab.com/ongresinc/extensions/noset) | `0.3.0` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Module for blocking SET variables for non-super users. |
 | [`pg_tde`](/ext/e/pg_tde) | [`pg_tde`](https://github.com/percona/pg_tde) | `2.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Percona pg_tde access method |
@@ -209,7 +210,7 @@ There are **28** extensions in **28** packages.
 
 ## pgauditlogtofile {#pgauditlogtofile}
 
-[**`pgauditlogtofile`**](/ext/e/pgauditlogtofile) - `1.8.0` : pgAudit addon to redirect audit log to an independent file
+[**`pgauditlogtofile`**](/ext/e/pgauditlogtofile) - `1.8.3` : pgAudit addon to redirect audit log to an independent file
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -418,6 +419,24 @@ There are **28** extensions in **28** packages.
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
+## pg_command_fw {#pg_command_fw}
+
+[**`pg_command_fw`**](/ext/e/pg_command_fw) - `0.1.0` : DDL and utility command firewall for PostgreSQL
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`pg_command_fw`](/ext/e/pg_command_fw) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pg_command_fw`](https://github.com/rustwizard/pg_command_fw) | **el9** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **RPM** | `pg_command_fw_$v` | **el10** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pg-command-fw` | **d12** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | **u24** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
 {.ext-table .ext-table--cate}
 
 

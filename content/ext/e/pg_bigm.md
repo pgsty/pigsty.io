@@ -54,8 +54,8 @@ weight: 2120
 | el8.aarch64 | AVAIL PGDG 1.2 2 | AVAIL PGDG 1.2 3 | AVAIL PGDG 1.2 4 | AVAIL PGDG 1.2 4 | AVAIL PGDG 1.2 4 |
 | el9.x86_64 | AVAIL PGDG 1.2 2 | AVAIL PGDG 1.2 3 | AVAIL PGDG 1.2 4 | AVAIL PGDG 1.2 4 | AVAIL PGDG 1.2 4 |
 | el9.aarch64 | AVAIL PGDG 1.2 2 | AVAIL PGDG 1.2 3 | AVAIL PGDG 1.2 4 | AVAIL PGDG 1.2 4 | AVAIL PGDG 1.2 4 |
-| el10.x86_64 | AVAIL PGDG 1.2 2 | AVAIL PGDG 1.2 4 | AVAIL PGDG 1.2 4 | AVAIL PGDG 1.2 4 | AVAIL PGDG 1.2 4 |
-| el10.aarch64 | AVAIL PGDG 1.2 2 | AVAIL PGDG 1.2 4 | AVAIL PGDG 1.2 4 | AVAIL PGDG 1.2 4 | AVAIL PGDG 1.2 4 |
+| el10.x86_64 | AVAIL PGDG 1.2 2 | AVAIL PGDG 1.2 3 | AVAIL PGDG 1.2 3 | AVAIL PGDG 1.2 3 | AVAIL PGDG 1.2 3 |
+| el10.aarch64 | AVAIL PGDG 1.2 2 | AVAIL PGDG 1.2 3 | AVAIL PGDG 1.2 3 | AVAIL PGDG 1.2 3 | AVAIL PGDG 1.2 3 |
 | d12.x86_64 | AVAIL PIGSTY 1.2 1 | AVAIL PIGSTY 1.2 1 | AVAIL PIGSTY 1.2 1 | AVAIL PIGSTY 1.2 1 | AVAIL PIGSTY 1.2 1 |
 | d12.aarch64 | AVAIL PIGSTY 1.2 1 | AVAIL PIGSTY 1.2 1 | AVAIL PIGSTY 1.2 1 | AVAIL PIGSTY 1.2 1 | AVAIL PIGSTY 1.2 1 |
 | d13.x86_64 | AVAIL PIGSTY 1.2 1 | AVAIL PIGSTY 1.2 1 | AVAIL PIGSTY 1.2 1 | AVAIL PIGSTY 1.2 1 | AVAIL PIGSTY 1.2 1 |
@@ -99,11 +99,9 @@ weight: 2120
 @ el10.x86_64 17 pg_bigm_17 pg_bigm_17-1.2_20250903-1PGDG.rhel10.x86_64.rpm pgdg 1.2 21.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_bigm_17-1.2_20250903-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 17 pg_bigm_17 pg_bigm_17-1.2_20240606-3PGDG.rhel10.x86_64.rpm pgdg 1.2 21.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_bigm_17-1.2_20240606-3PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 17 pg_bigm_17 pg_bigm_17-1.2-2PIGSTY.el10.x86_64.rpm pigsty 1.2 19.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_bigm_17-1.2-2PIGSTY.el10.x86_64.rpm
-@ el10.x86_64 17 pg_bigm_17 pg_bigm_17-1.2-1PIGSTY.el10.x86_64.rpm pigsty 1.2 19.5KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_bigm_17-1.2-1PIGSTY.el10.x86_64.rpm
 @ el10.aarch64 17 pg_bigm_17 pg_bigm_17-1.2_20250903-1PGDG.rhel10.aarch64.rpm pgdg 1.2 21.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_bigm_17-1.2_20250903-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 17 pg_bigm_17 pg_bigm_17-1.2_20240606-3PGDG.rhel10.aarch64.rpm pgdg 1.2 20.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_bigm_17-1.2_20240606-3PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 17 pg_bigm_17 pg_bigm_17-1.2-2PIGSTY.el10.aarch64.rpm pigsty 1.2 19.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_bigm_17-1.2-2PIGSTY.el10.aarch64.rpm
-@ el10.aarch64 17 pg_bigm_17 pg_bigm_17-1.2-1PIGSTY.el10.aarch64.rpm pigsty 1.2 19.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_bigm_17-1.2-1PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 17 postgresql-17-pg-bigm postgresql-17-pg-bigm_1.2-20250903PIGSTY~bookworm_amd64.deb pigsty 1.2 27.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-bigm/postgresql-17-pg-bigm_1.2-20250903PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 17 postgresql-17-pg-bigm postgresql-17-pg-bigm_1.2-20250903PIGSTY~bookworm_arm64.deb pigsty 1.2 26.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-bigm/postgresql-17-pg-bigm_1.2-20250903PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 17 postgresql-17-pg-bigm postgresql-17-pg-bigm_1.2-20250903PIGSTY~trixie_amd64.deb pigsty 1.2 27.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-bigm/postgresql-17-pg-bigm_1.2-20250903PIGSTY~trixie_amd64.deb
@@ -131,11 +129,9 @@ weight: 2120
 @ el10.x86_64 16 pg_bigm_16 pg_bigm_16-1.2_20250903-1PGDG.rhel10.x86_64.rpm pgdg 1.2 21.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_bigm_16-1.2_20250903-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 16 pg_bigm_16 pg_bigm_16-1.2_20240606-3PGDG.rhel10.x86_64.rpm pgdg 1.2 21.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_bigm_16-1.2_20240606-3PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 16 pg_bigm_16 pg_bigm_16-1.2-2PIGSTY.el10.x86_64.rpm pigsty 1.2 19.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_bigm_16-1.2-2PIGSTY.el10.x86_64.rpm
-@ el10.x86_64 16 pg_bigm_16 pg_bigm_16-1.2-1PIGSTY.el10.x86_64.rpm pigsty 1.2 19.5KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_bigm_16-1.2-1PIGSTY.el10.x86_64.rpm
 @ el10.aarch64 16 pg_bigm_16 pg_bigm_16-1.2_20250903-1PGDG.rhel10.aarch64.rpm pgdg 1.2 21.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_bigm_16-1.2_20250903-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 16 pg_bigm_16 pg_bigm_16-1.2_20240606-3PGDG.rhel10.aarch64.rpm pgdg 1.2 21.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_bigm_16-1.2_20240606-3PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 16 pg_bigm_16 pg_bigm_16-1.2-2PIGSTY.el10.aarch64.rpm pigsty 1.2 19.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_bigm_16-1.2-2PIGSTY.el10.aarch64.rpm
-@ el10.aarch64 16 pg_bigm_16 pg_bigm_16-1.2-1PIGSTY.el10.aarch64.rpm pigsty 1.2 19.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_bigm_16-1.2-1PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 16 postgresql-16-pg-bigm postgresql-16-pg-bigm_1.2-20250903PIGSTY~bookworm_amd64.deb pigsty 1.2 27.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-bigm/postgresql-16-pg-bigm_1.2-20250903PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 16 postgresql-16-pg-bigm postgresql-16-pg-bigm_1.2-20250903PIGSTY~bookworm_arm64.deb pigsty 1.2 26.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-bigm/postgresql-16-pg-bigm_1.2-20250903PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 16 postgresql-16-pg-bigm postgresql-16-pg-bigm_1.2-20250903PIGSTY~trixie_amd64.deb pigsty 1.2 27.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-bigm/postgresql-16-pg-bigm_1.2-20250903PIGSTY~trixie_amd64.deb
@@ -163,11 +159,9 @@ weight: 2120
 @ el10.x86_64 15 pg_bigm_15 pg_bigm_15-1.2_20250903-1PGDG.rhel10.x86_64.rpm pgdg 1.2 21.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_bigm_15-1.2_20250903-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 15 pg_bigm_15 pg_bigm_15-1.2_20240606-3PGDG.rhel10.x86_64.rpm pgdg 1.2 21.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_bigm_15-1.2_20240606-3PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 15 pg_bigm_15 pg_bigm_15-1.2-2PIGSTY.el10.x86_64.rpm pigsty 1.2 20.0KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_bigm_15-1.2-2PIGSTY.el10.x86_64.rpm
-@ el10.x86_64 15 pg_bigm_15 pg_bigm_15-1.2-1PIGSTY.el10.x86_64.rpm pigsty 1.2 19.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_bigm_15-1.2-1PIGSTY.el10.x86_64.rpm
 @ el10.aarch64 15 pg_bigm_15 pg_bigm_15-1.2_20250903-1PGDG.rhel10.aarch64.rpm pgdg 1.2 21.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_bigm_15-1.2_20250903-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 15 pg_bigm_15 pg_bigm_15-1.2_20240606-3PGDG.rhel10.aarch64.rpm pgdg 1.2 21.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_bigm_15-1.2_20240606-3PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 15 pg_bigm_15 pg_bigm_15-1.2-2PIGSTY.el10.aarch64.rpm pigsty 1.2 20.1KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_bigm_15-1.2-2PIGSTY.el10.aarch64.rpm
-@ el10.aarch64 15 pg_bigm_15 pg_bigm_15-1.2-1PIGSTY.el10.aarch64.rpm pigsty 1.2 19.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_bigm_15-1.2-1PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 15 postgresql-15-pg-bigm postgresql-15-pg-bigm_1.2-20250903PIGSTY~bookworm_amd64.deb pigsty 1.2 27.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-bigm/postgresql-15-pg-bigm_1.2-20250903PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 15 postgresql-15-pg-bigm postgresql-15-pg-bigm_1.2-20250903PIGSTY~bookworm_arm64.deb pigsty 1.2 26.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-bigm/postgresql-15-pg-bigm_1.2-20250903PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 15 postgresql-15-pg-bigm postgresql-15-pg-bigm_1.2-20250903PIGSTY~trixie_amd64.deb pigsty 1.2 27.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-bigm/postgresql-15-pg-bigm_1.2-20250903PIGSTY~trixie_amd64.deb
@@ -195,11 +189,9 @@ weight: 2120
 @ el10.x86_64 14 pg_bigm_14 pg_bigm_14-1.2_20250903-1PGDG.rhel10.x86_64.rpm pgdg 1.2 21.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_bigm_14-1.2_20250903-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 14 pg_bigm_14 pg_bigm_14-1.2_20240606-3PGDG.rhel10.x86_64.rpm pgdg 1.2 21.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_bigm_14-1.2_20240606-3PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 14 pg_bigm_14 pg_bigm_14-1.2-2PIGSTY.el10.x86_64.rpm pigsty 1.2 20.0KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_bigm_14-1.2-2PIGSTY.el10.x86_64.rpm
-@ el10.x86_64 14 pg_bigm_14 pg_bigm_14-1.2-1PIGSTY.el10.x86_64.rpm pigsty 1.2 19.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_bigm_14-1.2-1PIGSTY.el10.x86_64.rpm
 @ el10.aarch64 14 pg_bigm_14 pg_bigm_14-1.2_20250903-1PGDG.rhel10.aarch64.rpm pgdg 1.2 21.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_bigm_14-1.2_20250903-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 14 pg_bigm_14 pg_bigm_14-1.2_20240606-3PGDG.rhel10.aarch64.rpm pgdg 1.2 21.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_bigm_14-1.2_20240606-3PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 14 pg_bigm_14 pg_bigm_14-1.2-2PIGSTY.el10.aarch64.rpm pigsty 1.2 20.1KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_bigm_14-1.2-2PIGSTY.el10.aarch64.rpm
-@ el10.aarch64 14 pg_bigm_14 pg_bigm_14-1.2-1PIGSTY.el10.aarch64.rpm pigsty 1.2 19.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_bigm_14-1.2-1PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 14 postgresql-14-pg-bigm postgresql-14-pg-bigm_1.2-20250903PIGSTY~bookworm_amd64.deb pigsty 1.2 27.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-bigm/postgresql-14-pg-bigm_1.2-20250903PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 14 postgresql-14-pg-bigm postgresql-14-pg-bigm_1.2-20250903PIGSTY~bookworm_arm64.deb pigsty 1.2 26.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-bigm/postgresql-14-pg-bigm_1.2-20250903PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 14 postgresql-14-pg-bigm postgresql-14-pg-bigm_1.2-20250903PIGSTY~trixie_amd64.deb pigsty 1.2 27.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-bigm/postgresql-14-pg-bigm_1.2-20250903PIGSTY~trixie_amd64.deb

@@ -8,11 +8,11 @@ icon: fas fa-clock
 
 ## Extension List
 
-There are **11** extensions in **11** packages.
+There are **12** extensions in **12** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
-| [`timescaledb`](/ext/e/timescaledb) | [`timescaledb`](https://github.com/timescale/timescaledb) | `2.25.2` | <a class="ext-badge ext-badge--license timescale" href="/ext/license#timescale">Timescale</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Enables scalable inserts and complex queries for time-series data |
+| [`timescaledb`](/ext/e/timescaledb) | [`timescaledb`](https://github.com/timescale/timescaledb) | `2.26.2` | <a class="ext-badge ext-badge--license timescale" href="/ext/license#timescale">Timescale</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Enables scalable inserts and complex queries for time-series data |
 | [`timescaledb_toolkit`](/ext/e/timescaledb_toolkit) | [`timescaledb_toolkit`](https://github.com/timescale/timescaledb-toolkit) | `1.22.0` | <a class="ext-badge ext-badge--license timescale" href="/ext/license#timescale">Timescale</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Library of analytical hyperfunctions, time-series pipelining, and other SQL utilities |
 | [`timeseries`](/ext/e/timeseries) | [`pg_timeseries`](https://github.com/ChuckHend/pg_timeseries) | `0.2.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Convenience API for time series stack |
 | [`periods`](/ext/e/periods) | [`periods`](https://github.com/xocolatl/periods) | `1.2.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Provide Standard SQL functionality for PERIODs and SYSTEM VERSIONING |
@@ -22,7 +22,8 @@ There are **11** extensions in **11** packages.
 | [`pg_cron`](/ext/e/pg_cron) | [`pg_cron`](https://github.com/citusdata/pg_cron) | `1.6.7` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Job scheduler for PostgreSQL |
 | [`pg_task`](/ext/e/pg_task) | [`pg_task`](https://github.com/RekGRpth/pg_task) | `1.0.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | execute any sql command at any specific time at background |
 | [`pg_later`](/ext/e/pg_later) | [`pg_later`](https://github.com/ChuckHend/pg_later) | `0.4.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Run queries now and get results later |
-| [`pg_background`](/ext/e/pg_background) | [`pg_background`](https://github.com/vibhorkum/pg_background) | `1.8` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Run SQL queries in the background |
+| [`pg_dispatch`](/ext/e/pg_dispatch) | [`pg_dispatch`](https://github.com/Snehil-Shah/pg_dispatch) | `0.1.5` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Asynchronous SQL dispatcher built on pg_cron |
+| [`pg_background`](/ext/e/pg_background) | [`pg_background`](https://github.com/vibhorkum/pg_background) | `1.9.2` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Run SQL queries in the background |
 {.ext-table}
 
 
@@ -30,7 +31,7 @@ There are **11** extensions in **11** packages.
 
 ## timescaledb {#timescaledb}
 
-[**`timescaledb`**](/ext/e/timescaledb) - `2.25.2` : Enables scalable inserts and complex queries for time-series data
+[**`timescaledb`**](/ext/e/timescaledb) - `2.26.2` : Enables scalable inserts and complex queries for time-series data
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -208,9 +209,27 @@ There are **11** extensions in **11** packages.
 
 ---------
 
+## pg_dispatch {#pg_dispatch}
+
+[**`pg_dispatch`**](/ext/e/pg_dispatch) - `0.1.5` : Asynchronous SQL dispatcher built on pg_cron
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`pg_dispatch`](/ext/e/pg_dispatch) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`pg_dispatch`](https://github.com/Snehil-Shah/pg_dispatch) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `pg_dispatch_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-pg-dispatch` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
 ## pg_background {#pg_background}
 
-[**`pg_background`**](/ext/e/pg_background) - `1.8` : Run SQL queries in the background
+[**`pg_background`**](/ext/e/pg_background) - `1.9.2` : Run SQL queries in the background
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

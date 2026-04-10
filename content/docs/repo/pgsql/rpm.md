@@ -9,6 +9,37 @@ categories: [Reference]
 
 ------
 
+## 2026-04-10
+
+| Name            | Old Ver | New Ver | Note                     |
+|:----------------|:--------|:--------|:-------------------------|
+| timescaledb     | 2.25.2  | 2.26.2  | available, PG15-18       |
+| pg_ivm          | 1.13    | 1.14    | upgraded, PG14-18        |
+| system_stats    | 3.2     | 4.0     | upgraded, PG14-18        |
+| nominatim_fdw   | 1.1.0   | 1.2     | upgraded, PG14-18        |
+| pg_textsearch   | 0.5.0   | 1.0.0   | PG17-18                  |
+| pg_clickhouse   | 0.1.5   | 0.1.10  | available, PG14-18       |
+| pg_dispatch     | -       | 0.1.5   | new, PG14-18             |
+| pg_search       | 0.22.2  | 0.22.6  | manual download, PG15-18 |
+| pg_fsql         | -       | 1.1.0   | new, PG14-18             |
+| pg_liquid       | -       | 0.1.7   | new, PG14-18             |
+| pg_regresql     | -       | 2.0.0   | new, PG14-18             |
+| pg_slug_gen     | -       | 1.0.0   | new, PG15-18             |
+| pg_stat_ch      | -       | 0.3.3   | new, PG16-18             |
+| pg_variables    | -       | 1.2.5   | new, PG14-18             |
+| pgcalendar      | -       | 1.1.0   | new, PG14-18             |
+| pgclone         | -       | 2.2.0   | new, PG14-18             |
+| pgelog          | -       | 1.0.2   | new, PG14-18             |
+| pglock          | -       | 1.0.0   | new, PG14-18             |
+| pgproto         | -       | 0.2.1   | new, PG14-18             |
+| postgresbson    | -       | 2.0.2   | new, PG14-18             |
+| rdf_fdw         | -       | 2.4.0   | new, PG14-18             |
+| parray_gin      | -       | 1.4.0   | new, PG14-18             |
+| pg_store_plans  | 1.9     | 1.10    | upgraded, PG14-18        |
+{.stretch-last}
+
+------
+
 ## 2026-03-21
 
 | Name               | Old Ver | New Ver   | Note     |
