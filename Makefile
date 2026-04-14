@@ -6,7 +6,7 @@ dev:
 
 b:build
 build:
-	hugo build --minify
+	hugo build --minify --cleanDestinationDir
 
 s: sync
 sync:

@@ -3,6 +3,14 @@ title: Pigsty Docs v4.2
 linkTitle: Docs
 weight: 10
 categories: [Reference]
+outputs:
+  - HTML
+  - RSS
+  - print
+cascade:
+  outputs:
+    - HTML
+    - print
 ---
 
 "**P**ostgreSQL **I**n **G**reat **STY**le": **P**ostgres, **I**nfras, **G**raphics, **S**ervice, **T**oolbox, it's all **Y**ours.

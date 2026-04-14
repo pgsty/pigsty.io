@@ -69,7 +69,7 @@ allow_loading_unsigned_plugins = victoriametrics-logs-datasource,victoriametrics
 
 | Name                                                                      | Version  | License                                                                               | Comment                            |
 |---------------------------------------------------------------------------|----------|---------------------------------------------------------------------------------------|------------------------------------|
-| [`pg_exporter`](https://github.com/pgsty/pg_exporter)                     | `1.2.1`  | [Apache-2.0](https://github.com/pgsty/pg_exporter/blob/master/LICENSE)                | Advanced Postgres metrics exporter |
+| [`pg_exporter`](https://github.com/pgsty/pg_exporter)                     | `1.2.2`  | [Apache-2.0](https://github.com/pgsty/pg_exporter/blob/master/LICENSE)                | Advanced Postgres metrics exporter |
 | [`pgbackrest_exporter`](https://github.com/woblerr/pgbackrest_exporter)   | `0.23.0` | [MIT](https://github.com/woblerr/pgbackrest_exporter/blob/master/LICENSE)             | Expose pgbackrest metrics          |
 | [`node_exporter`](https://github.com/prometheus/node_exporter)            | `1.11.1` | [Apache-2.0](https://github.com/prometheus/node_exporter/blob/master/LICENSE)         | Expose Linux node metrics          |
 | [`keepalived_exporter`](https://github.com/mehdy/keepalived-exporter)     | `1.7.0`  | [GPL-3.0](https://github.com/mehdy/keepalived-exporter/blob/master/LICENSE)           | Expose keepalived/VIP metrics      |
@@ -132,7 +132,7 @@ Pig package manager, PostgreSQL tools, and other database related utilities
 
 | Name                                                                                    | Version    | License                                                                                 | Comment                                                         |
 |-----------------------------------------------------------------------------------------|------------|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| [`pig`](https://github.com/pgsty/pig)                                                   | `1.3.2`    | [Apache-2.0](https://github.com/pgsty/pig/blob/main/LICENSE)                            | PG package manager                                              |
+| [`pig`](https://github.com/pgsty/pig)                                                   | `1.3.4`    | [Apache-2.0](https://github.com/pgsty/pig/blob/main/LICENSE)                            | PG package manager                                              |
 | [`vip-manager`](https://github.com/cybertec-postgresql/vip-manager)                     | `4.0.0`    | [BSD-2](https://github.com/cybertec-postgresql/vip-manager/blob/master/LICENSE)         | Bind L2 VIP to PG primary                                       |
 | [`pgschema`](https://github.com/pgplex/pgschema)                                        | `1.9.0`    | [Apache-2.0](https://github.com/pgplex/pgschema/blob/main/LICENSE)                      | Terraform-style declarative Postgres schema migration CLI       |
 | [`pgstream`](https://github.com/xataio/pgstream)                                        | `1.0.1`    | [Apache-2.0](https://github.com/xataio/pgstream/blob/main/LICENSE)                      | PostgreSQL replication with DDL changes                         |

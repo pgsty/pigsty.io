@@ -23,6 +23,8 @@ categories: [Reference]
 | `maddy`                    | 0.9.2            | 0.9.3             | upstream bump                            |
 | `grafana`                  | 12.4.2           | 13.0.0            | direct-download metadata; major release  |
 | `crush`                    | 0.56.0           | 0.57.0            | direct-download metadata                 |
+| `pg_exporter`              | 1.2.1           | 1.2.2             | direct-download metadata                 |
+| `pig`                      | 1.3.2           | 1.3.4             | direct-download metadata                 |
 {.stretch-last}
 
 -------

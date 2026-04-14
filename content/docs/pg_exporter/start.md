@@ -10,7 +10,7 @@ PG Exporter is an advanced PostgreSQL and pgBouncer metrics exporter for Prometh
 
 ## Version Info
 
-- Current stable release: [`v1.2.1`](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.1)
+- Current stable release: [`v1.2.2`](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.2)
 - The default config supports PostgreSQL 10-18+; PostgreSQL 9.1-9.6 requires the `legacy/` config bundle
 - pgBouncer 1.8-1.25+ is supported
 
@@ -37,10 +37,10 @@ The fastest way to get started with PG Exporter:
 
 ```bash
 # Example: install the Linux amd64 release tarball
-wget https://github.com/pgsty/pg_exporter/releases/download/v1.2.1/pg_exporter-1.2.1.linux-amd64.tar.gz
-tar -xf pg_exporter-1.2.1.linux-amd64.tar.gz
-sudo install pg_exporter-1.2.1.linux-amd64/pg_exporter /usr/bin/
-sudo install pg_exporter-1.2.1.linux-amd64/pg_exporter.yml /etc/pg_exporter.yml
+wget https://github.com/pgsty/pg_exporter/releases/download/v1.2.2/pg_exporter-1.2.2.linux-amd64.tar.gz
+tar -xf pg_exporter-1.2.2.linux-amd64.tar.gz
+sudo install pg_exporter-1.2.2.linux-amd64/pg_exporter /usr/bin/
+sudo install pg_exporter-1.2.2.linux-amd64/pg_exporter.yml /etc/pg_exporter.yml
 
 # Run with the local-first default URL
 pg_exporter

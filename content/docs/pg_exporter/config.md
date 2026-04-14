@@ -81,7 +81,7 @@ collector_branch_name:           # Unique identifier for this collector
         scale: 1000              # Scale factor for the value
 ```
 
-Validation rules as of `v1.2.1`:
+Validation rules as of `v1.2.2`:
 
 - Each entry in `metrics` must define exactly one column mapping
 - Each collector must expose at least one `GAUGE` or `COUNTER` column

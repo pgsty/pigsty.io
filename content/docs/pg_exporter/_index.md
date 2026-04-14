@@ -34,7 +34,7 @@ The ultimate monitoring experience for PostgreSQL with **600+ metrics**, **decla
 
 ## Version Info
 
-- Current stable release: [`v1.2.1`](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.1)
+- Current stable release: [`v1.2.2`](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.2)
 - Default config support: PostgreSQL **10-18+**
 - Legacy config support: PostgreSQL **9.1-9.6** via the `legacy/` config bundle
 - pgBouncer support: **1.8-1.25+**
@@ -95,10 +95,10 @@ sudo apt install -y pg-exporter
 {{< /tab >}}
 
 {{< tab header="Binary" lang="bash" >}}
-wget https://github.com/pgsty/pg_exporter/releases/download/v1.2.1/pg_exporter-1.2.1.linux-amd64.tar.gz
-tar -xf pg_exporter-1.2.1.linux-amd64.tar.gz
-sudo install pg_exporter-1.2.1.linux-amd64/pg_exporter /usr/bin/
-sudo install pg_exporter-1.2.1.linux-amd64/pg_exporter.yml /etc/pg_exporter.yml
+wget https://github.com/pgsty/pg_exporter/releases/download/v1.2.2/pg_exporter-1.2.2.linux-amd64.tar.gz
+tar -xf pg_exporter-1.2.2.linux-amd64.tar.gz
+sudo install pg_exporter-1.2.2.linux-amd64/pg_exporter /usr/bin/
+sudo install pg_exporter-1.2.2.linux-amd64/pg_exporter.yml /etc/pg_exporter.yml
 {{< /tab >}}
 
 {{< tab header="Source" lang="bash" >}}

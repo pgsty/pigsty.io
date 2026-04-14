@@ -43,18 +43,18 @@ $ curl -fsSL https://repo.pigsty.cc/pig | bash
 [INFO] kernel = Linux
 [INFO] machine = x86_64
 [INFO] package = deb
-[INFO] pkg_url = https://repo.pigsty.cc/pkg/pig/v1.0.0/pig_1.0.0-1_amd64.deb
-[INFO] download = /tmp/pig_1.0.0-1_amd64.deb
-[INFO] downloading pig v1.0.0
-curl -fSL https://repo.pigsty.cc/pkg/pig/v1.0.0/pig_1.0.0-1_amd64.deb -o /tmp/pig_1.0.0-1_amd64.deb
+[INFO] pkg_url = https://repo.pigsty.cc/pkg/pig/v1.3.4/pig_1.3.4-1_amd64.deb
+[INFO] download = /tmp/pig_1.3.4-1_amd64.deb
+[INFO] downloading pig v1.3.4
+curl -fSL https://repo.pigsty.cc/pkg/pig/v1.3.4/pig_1.3.4-1_amd64.deb -o /tmp/pig_1.3.4-1_amd64.deb
 ######################################################################## 100.0%
-[INFO] md5sum = a543882aa905713a0c50088d4e848951b6957a37a1594d7e9f3fe46453d5ce66
-[INFO] installing: dpkg -i /tmp/pig_1.0.0-1_amd64.deb
+[INFO] md5sum = 563516047e37b25da01da9e25bcbada2c55642d1636b1bdab7d62488f9dcdfbb
+[INFO] installing: dpkg -i /tmp/pig_1.3.4-1_amd64.deb
 (Reading database ... 166001 files and directories currently installed.)
-Preparing to unpack /tmp/pig_1.0.0-1_amd64.deb ...
-Unpacking pig (1.0.0-1) ...
-Setting up pig (1.0.0-1) ...
-[INFO] pig v1.0.0 installed successfully
+Preparing to unpack /tmp/pig_1.3.4-1_amd64.deb ...
+Unpacking pig (1.3.4-1) ...
+Setting up pig (1.3.4-1) ...
+[INFO] pig v1.3.4 installed successfully
 check https://pigsty.io/ext/ for details
 ```
 
@@ -66,8 +66,7 @@ PIG is a Go-written binary program, installed by default at `/usr/bin/pig`. `pig
 
 ```bash
 $ pig version
-pig version 1.0.0 linux/amd64
-build: HEAD dc8f343 2026-01-26T15:52:04Z
+pig version 1.3.4 linux/amd64
 ```
 
 Use `pig status` to print the current environment status, OS code, PG installation status, repository accessibility and latency.
@@ -76,7 +75,7 @@ Use `pig status` to print the current environment status, OS code, PG installati
 $ pig status
 
 # [Configuration] ================================
-Pig Version      : 1.0.0
+Pig Version      : 1.3.4
 Pig Config       : /home/vagrant/.pig/config.yml
 Log Level        : info
 Log Path         : stderr

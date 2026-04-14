@@ -84,7 +84,7 @@ In pig, APT/YUM repositories are organized into **modules** — groups of reposi
 | `all` | All core modules required for PG install | `node` + `infra` + `pgsql` |
 | `pgsql` | PGDG + Pigsty PG extensions | `pigsty-pgsql` + `pgdg` |
 | `pigsty` | Pigsty Infra + PGSQL repos | pigsty-infra, pigsty-pgsql |
-| `pgdg` | PGDG official repositories | pgdg-common, pgdg13-18 |
+| `pgdg` | PGDG official repositories | pgdg-common, pgdg14-18 |
 | `node` | Linux system repositories | base, updates, extras, epel, baseos, appstream... |
 | `infra` | Infrastructure component repositories | pigsty-infra, nginx, docker-ce |
 | `docker` | Docker repository | docker-ce |
