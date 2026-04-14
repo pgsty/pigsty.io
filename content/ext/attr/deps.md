@@ -5,11 +5,11 @@ description: "PostgreSQL extensions with dependency relationships"
 weight: 30
 ---
 
-**97** extensions depend on other extensions, **58** extensions are depended upon by others.
+**105** extensions depend on other extensions, **58** extensions are depended upon by others.
 
 ## Upstream Dependencies
 
-The following **97** extensions require other extensions to be installed first:
+The following **105** extensions require other extensions to be installed first:
 
 | **Extension** | **Requires** | **Description** |
 |:-----------|:-------------|:---------|
@@ -28,6 +28,13 @@ The following **97** extensions require other extensions to be installed first:
 | [`h3_postgis`](/ext/e/h3_postgis) | [`h3`](/ext/e/h3) [`postgis`](/ext/e/postgis) [`postgis_raster`](/ext/e/postgis_raster) | H3 PostGIS integration |
 | [`geoip`](/ext/e/geoip) | [`ip4r`](/ext/e/ip4r) | IP-based geolocation query |
 | [`pg_eviltransform`](/ext/e/pg_eviltransform) | [`postgis`](/ext/e/postgis) | Coordinate transforms for BD09/GCJ02 via PostGIS ST_Transform |
+| [`pghydro`](/ext/e/pghydro) | [`plpgsql`](/ext/e/plpgsql) [`postgis`](/ext/e/postgis) | Drainage network analysis core for PostgreSQL and PostGIS |
+| [`pgh_raster`](/ext/e/pgh_raster) | [`plpgsql`](/ext/e/plpgsql) [`postgis`](/ext/e/postgis) [`postgis_raster`](/ext/e/postgis_raster) [`pghydro`](/ext/e/pghydro) | Raster hydrology extension for PgHydro |
+| [`pgh_hgm`](/ext/e/pgh_hgm) | [`plpgsql`](/ext/e/plpgsql) [`postgis`](/ext/e/postgis) [`postgis_raster`](/ext/e/postgis_raster) [`pghydro`](/ext/e/pghydro) [`pgh_raster`](/ext/e/pgh_raster) | Hydrogeomorphological analysis extension for PgHydro |
+| [`pgh_output`](/ext/e/pgh_output) | [`plpgsql`](/ext/e/plpgsql) [`postgis`](/ext/e/postgis) [`pghydro`](/ext/e/pghydro) | Output and reporting objects for PgHydro |
+| [`pgh_output_en_au`](/ext/e/pgh_output_en_au) | [`plpgsql`](/ext/e/plpgsql) [`postgis`](/ext/e/postgis) [`pghydro`](/ext/e/pghydro) | Australian English output pack for PgHydro |
+| [`pgh_output_pt_br`](/ext/e/pgh_output_pt_br) | [`plpgsql`](/ext/e/plpgsql) [`postgis`](/ext/e/postgis) [`pghydro`](/ext/e/pghydro) | Brazilian Portuguese output pack for PgHydro |
+| [`pgh_consistency`](/ext/e/pgh_consistency) | [`plpgsql`](/ext/e/plpgsql) [`postgis`](/ext/e/postgis) [`pghydro`](/ext/e/pghydro) | Pfafstetter consistency checks for PgHydro |
 | [`mobilitydb`](/ext/e/mobilitydb) | [`postgis`](/ext/e/postgis) | MobilityDB geospatial trajectory data management & analysis platform |
 | [`mobilitydb_datagen`](/ext/e/mobilitydb_datagen) | [`mobilitydb`](/ext/e/mobilitydb) | MobilityDB random data generator functions |
 | [`earthdistance`](/ext/e/earthdistance) | [`cube`](/ext/e/cube) | calculate great-circle distances on the surface of the Earth |
@@ -39,8 +46,8 @@ The following **97** extensions require other extensions to be installed first:
 | [`pg_mooncake`](/ext/e/pg_mooncake) | [`pg_duckdb`](/ext/e/pg_duckdb) | Columnstore Table in Postgres |
 | [`pg_partman`](/ext/e/pg_partman) | [`plpgsql`](/ext/e/plpgsql) | Extension to manage partitioned tables by time or ID |
 | [`index_advisor`](/ext/e/index_advisor) | [`hypopg`](/ext/e/hypopg) | Query index advisor |
-| [`pg_incremental`](/ext/e/pg_incremental) | [`pg_cron`](/ext/e/pg_cron) | Incremental Processing by Crunchy Data |
 | [`pgmb`](/ext/e/pgmb) | [`pg_cron`](/ext/e/pg_cron) [`http`](/ext/e/http) | A simple PostgreSQL Message Broker system |
+| [`provsql`](/ext/e/provsql) | [`uuid-ossp`](/ext/e/uuid-ossp) | Semiring provenance and uncertainty management for PostgreSQL |
 | [`omni_auth`](/ext/e/omni_auth) | [`omni_types`](/ext/e/omni_types) [`omni_id`](/ext/e/omni_id) [`pgcrypto`](/ext/e/pgcrypto) [`btree_gist`](/ext/e/btree_gist) [`omni_polyfill`](/ext/e/omni_polyfill) | Basic session management |
 | [`omni_aws`](/ext/e/omni_aws) | [`omni_httpc`](/ext/e/omni_httpc) [`pgcrypto`](/ext/e/pgcrypto) [`omni_xml`](/ext/e/omni_xml) [`omni_web`](/ext/e/omni_web) | Amazon Web Services APIs (S3) |
 | [`omni_cloudevents`](/ext/e/omni_cloudevents) | [`omni_web`](/ext/e/omni_web) | CloudEvents support |
@@ -95,6 +102,7 @@ The following **97** extensions require other extensions to be installed first:
 | [`pg_stat_kcache`](/ext/e/pg_stat_kcache) | [`pg_stat_statements`](/ext/e/pg_stat_statements) | Kernel statistics gathering |
 | [`pg_sqlog`](/ext/e/pg_sqlog) | [`file_fdw`](/ext/e/file_fdw) | Provide SQL interface to logs |
 | [`powa`](/ext/e/powa) | [`plpgsql`](/ext/e/plpgsql) [`pg_stat_statements`](/ext/e/pg_stat_statements) [`btree_gist`](/ext/e/btree_gist) | PostgreSQL Workload Analyser-core |
+| [`column_encrypt`](/ext/e/column_encrypt) | [`pgcrypto`](/ext/e/pgcrypto) | Transparent column-level encryption with encrypted_text and encrypted_bytea types |
 | [`supabase_vault`](/ext/e/supabase_vault) | [`pgsodium`](/ext/e/pgsodium) | Supabase Vault Extension |
 | [`pg_auditor`](/ext/e/pg_auditor) | [`hstore`](/ext/e/hstore) | Audit data changes and provide flashback ability |
 | [`pg_jobmon`](/ext/e/pg_jobmon) | [`dblink`](/ext/e/dblink) | Extension for logging and monitoring functions in PostgreSQL |

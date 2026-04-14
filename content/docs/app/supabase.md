@@ -1,7 +1,7 @@
 ---
 title: "Enterprise Self-Hosted Supabase"
 weight: 555
-description: Self-host enterprise-grade Supabase with Pigsty, featuring monitoring, high availability, PITR, IaC, and 451 PostgreSQL extensions.
+description: Self-host enterprise-grade Supabase with Pigsty, featuring monitoring, high availability, PITR, IaC, and 504 PostgreSQL extensions.
 module: [SOFTWARE]
 categories: [Reference]
 ---
@@ -88,7 +88,7 @@ And nowadays, reliable [local enterprise NVMe SSDs](https://vonng.com/cloud/bonu
 
 Another important reason is **functionality** — Supabase cloud features are limited. Many powerful PostgreSQL extensions aren't available in cloud services due to multi-tenant security challenges and licensing.
 Despite [extensions being PostgreSQL's core feature](https://vonng.com/pg/pg-eat-db-world), only **64** extensions are available on Supabase cloud.
-Self-hosted Supabase with Pigsty provides up to [**451**](/ext/list) ready-to-use PostgreSQL extensions.
+Self-hosted Supabase with Pigsty provides up to [**504**](/ext/list) ready-to-use PostgreSQL extensions.
 
 Additionally, self-control and vendor lock-in avoidance are important reasons for self-hosting. Although Supabase aims to provide a vendor-lock-free open-source Google Firebase alternative, self-hosting enterprise-grade Supabase is not trivial.
 Supabase includes a series of PostgreSQL extensions they develop and maintain, and plans to replace the native PostgreSQL kernel with [**OrioleDB**](/docs/pgsql/kernel/orioledb) (which they acquired). These kernels and extensions are not available in the official PGDG repository.
@@ -113,7 +113,7 @@ We also [install](/docs/pgsql/ext/install) most extensions by default in Supabas
 
 Pigsty also handles the underlying [highly available](/docs/concept/ha/) [PostgreSQL](/docs/pgsql/) cluster, highly available [MinIO](/docs/minio/) object storage cluster, and even [Docker](/docs/docker/) deployment, [Nginx](/docs/infra/admin/portal) reverse proxy, [domain configuration](/docs/infra/admin/domain), and [HTTPS certificate issuance](/docs/infra/admin/cert). You can spin up any number of stateless Supabase container clusters using Docker Compose and store state in external Pigsty-managed database services.
 
-With this self-hosted architecture, you gain the freedom to use different kernels (PG 15-18, OrioleDB), install [**437**](/ext/list/) extensions, scale Supabase/Postgres/MinIO, freedom from database operations, and freedom from vendor lock-in — running locally forever. Compared to cloud service costs, you only need to prepare servers and run a few commands.
+With this self-hosted architecture, you gain the freedom to use different kernels (PG 15-18, OrioleDB), install [**504**](/ext/list/) extensions, scale Supabase/Postgres/MinIO, freedom from database operations, and freedom from vendor lock-in — running locally forever. Compared to cloud service costs, you only need to prepare servers and run a few commands.
 
 
 ------
@@ -368,7 +368,7 @@ Don't forget to reload configuration with `app.yml`.
 
 ## Advanced: True High Availability
 
-After these configurations, you have enterprise-grade Supabase with public domain, HTTPS certificate, SMTP, PITR backup, monitoring, IaC, and 400+ extensions (basic single-node version).
+After these configurations, you have enterprise-grade Supabase with public domain, HTTPS certificate, SMTP, PITR backup, monitoring, IaC, and access to 504 PostgreSQL extensions (basic single-node version).
 For high availability configuration, see other Pigsty documentation. We offer expert consulting services for hands-on Supabase self-hosting — $400 USD to save you the hassle.
 
 Single-node RTO/RPO relies on external object storage as a safety net. If your node fails, backups in external S3 storage let you redeploy Supabase on a new node and restore from backup.

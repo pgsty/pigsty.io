@@ -5,7 +5,7 @@ description: "PostgreSQL packages containing multiple extensions"
 weight: 40
 ---
 
-The following **20** packages contain multiple extensions, totaling **97** extensions.
+The following **21** packages contain multiple extensions, totaling **104** extensions.
 
 When installing these packages, you will get all extensions in the package. The lead extension is shown in bold.
 
@@ -42,6 +42,21 @@ Package [`pg_h3`](/ext/e/h3) contains **2** extensions:
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
 | 1530 | [**`h3`**](/ext/e/h3) | `4.2.3` | `--s-d-r` | - | H3 bindings for PostgreSQL |
 | 1531 | [`h3_postgis`](/ext/e/h3_postgis) | `4.2.3` | `--s-d-r` | - | H3 PostGIS integration |
+{.ext-table}
+
+### pghydro
+
+Package [`pghydro`](/ext/e/pghydro) contains **7** extensions:
+
+| **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
+|:------:|:-----------|:--------:|:--------:|:---------|:---------|
+| 1600 | [**`pghydro`**](/ext/e/pghydro) | `6.6` | `----d--` | `pghydro` | Drainage network analysis core for PostgreSQL and PostGIS |
+| 1601 | [`pgh_raster`](/ext/e/pgh_raster) | `6.6` | `----d--` | `pgh_raster` | Raster hydrology extension for PgHydro |
+| 1602 | [`pgh_hgm`](/ext/e/pgh_hgm) | `2.2.6` | `----d--` | `pgh_hgm` | Hydrogeomorphological analysis extension for PgHydro |
+| 1603 | [`pgh_output`](/ext/e/pgh_output) | `6.6` | `----d--` | `pgh_output` | Output and reporting objects for PgHydro |
+| 1604 | [`pgh_output_en_au`](/ext/e/pgh_output_en_au) | `6.6` | `----d--` | `pgh_output_en_au` | Australian English output pack for PgHydro |
+| 1605 | [`pgh_output_pt_br`](/ext/e/pgh_output_pt_br) | `6.6` | `----d--` | `pgh_output_pt_br` | Brazilian Portuguese output pack for PgHydro |
+| 1606 | [`pgh_consistency`](/ext/e/pgh_consistency) | `6.6` | `----d--` | `pgh_consistency` | Pfafstetter consistency checks for PgHydro |
 {.ext-table}
 
 ### mobilitydb
@@ -183,8 +198,8 @@ Package [`pg_xenophile`](/ext/e/pg_xenophile) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 3610 | [**`pg_xenophile`**](/ext/e/pg_xenophile) | `0.8.3` | `----d--` | `xeno` | More than the bare necessities for PostgreSQL i18n and l10n. |
-| 3611 | [`l10n_table_dependent_extension`](/ext/e/l10n_table_dependent_extension) | `0.8.3` | `----d-r` | - | PostgreSQL l10n toolbox |
+| 3670 | [**`pg_xenophile`**](/ext/e/pg_xenophile) | `0.8.3` | `----d--` | `xeno` | More than the bare necessities for PostgreSQL i18n and l10n. |
+| 3671 | [`l10n_table_dependent_extension`](/ext/e/l10n_table_dependent_extension) | `0.8.3` | `----d-r` | - | PostgreSQL l10n toolbox |
 {.ext-table}
 
 ### pg_readme

@@ -38,6 +38,9 @@ weight: 2820
 {.ext-table .ext-table--rel}
 
 
+> Release tag 1.2.5 still ships extension SQL version 1.2.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |

@@ -2,7 +2,7 @@
 title: "spock"
 linkTitle: "spock"
 description: "Multi-master logical replication extension for PostgreSQL"
-weight: 9560
+weight: 9570
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 9560
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 9560  | [**`spock`**](/ext/e/spock) | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `spock` |
+| 9570  | [**`spock`**](/ext/e/spock) | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `spock` |
 {.ext-table}
 
 | **Related** | [`lolor`](/ext/e/lolor) [`snowflake`](/ext/e/snowflake) |

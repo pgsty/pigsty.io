@@ -11,6 +11,11 @@ weight: 2930
     <div class="ext-card__title">rdkit/rdkit</div>
     <div class="ext-card__desc">https://github.com/rdkit/rdkit</div>
   </a>
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/rdkit_202503.6.orig.tar.xz">
+    <div class="ext-card__kicker">Source</div>
+    <div class="ext-card__title">rdkit_202503.6.orig.tar.xz</div>
+    <div class="ext-card__desc">rdkit_202503.6.orig.tar.xz</div>
+  </a>
 </div>
 
 
@@ -20,7 +25,7 @@ weight: 2930
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`rdkit`**](/ext/e/rdkit) | `202503.1` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> |
+| [**`rdkit`**](/ext/e/rdkit) | `202503.6` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -33,75 +38,114 @@ weight: 2930
 {.ext-table .ext-table--rel}
 
 
-> u24 has rdkit for pg17
+> d13/u24/el10 rdkit build by pigsty, u24/el10 deps on inchi 
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `202503.1` | {{< pgvers "18,17,16,15,14" >}} | `rdkit` | - |
-| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `202503.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-rdkit` | - |
+| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `202503.6` | {{< pgvers "18,17,16,15,14" >}} | `rdkit` | - |
+| [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `202503.6` | {{< pgvers "18,17,16,15,14" >}} | `rdkit_$v` | - |
+| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `202503.6` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-rdkit` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
-| el8.aarch64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
-| el9.x86_64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
-| el9.aarch64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
-| el10.x86_64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
-| el10.aarch64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
+| el8.x86_64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| el8.aarch64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| el9.x86_64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| el9.aarch64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| el10.x86_64 | AVAIL PIGSTY 202503.6 1 | AVAIL PIGSTY 202503.6 1 | AVAIL PIGSTY 202503.6 1 | AVAIL PIGSTY 202503.6 1 | AVAIL PIGSTY 202503.6 1 |
+| el10.aarch64 | AVAIL PIGSTY 202503.6 1 | AVAIL PIGSTY 202503.6 1 | AVAIL PIGSTY 202503.6 1 | AVAIL PIGSTY 202503.6 1 | AVAIL PIGSTY 202503.6 1 |
 | d12.x86_64 | MISS PGDG - 0 | MISS PGDG - 0 | AVAIL PGDG 202303.3 1 | AVAIL PGDG 202303.3 1 | AVAIL PGDG 202303.3 1 |
 | d12.aarch64 | MISS PGDG - 0 | MISS PGDG - 0 | AVAIL PGDG 202303.3 1 | AVAIL PGDG 202303.3 1 | AVAIL PGDG 202303.3 1 |
-| d13.x86_64 | AVAIL PGDG 202503.1 1 | AVAIL PGDG 202503.1 1 | AVAIL PGDG 202503.1 1 | AVAIL PGDG 202503.1 1 | AVAIL PGDG 202503.1 1 |
-| d13.aarch64 | AVAIL PGDG 202503.1 1 | AVAIL PGDG 202503.1 1 | AVAIL PGDG 202503.1 1 | AVAIL PGDG 202503.1 1 | AVAIL PGDG 202503.1 1 |
+| d13.x86_64 | AVAIL PIGSTY 202503.6 2 | AVAIL PIGSTY 202503.6 2 | AVAIL PIGSTY 202503.6 2 | AVAIL PIGSTY 202503.6 2 | AVAIL PIGSTY 202503.6 2 |
+| d13.aarch64 | AVAIL PIGSTY 202503.6 2 | AVAIL PIGSTY 202503.6 2 | AVAIL PIGSTY 202503.6 2 | AVAIL PIGSTY 202503.6 2 | AVAIL PIGSTY 202503.6 2 |
 | u22.x86_64 | MISS PGDG - 0 | MISS PGDG - 0 | AVAIL PGDG 202303.3 1 | AVAIL PGDG 202303.3 1 | AVAIL PGDG 202303.3 1 |
 | u22.aarch64 | MISS PGDG - 0 | MISS PGDG - 0 | AVAIL PGDG 202303.3 1 | AVAIL PGDG 202303.3 1 | AVAIL PGDG 202303.3 1 |
-| u24.x86_64 | AVAIL PGDG 202503.1 1 | AVAIL PGDG 202503.1 1 | AVAIL PGDG 202503.1 1 | AVAIL PGDG 202503.1 1 | AVAIL PGDG 202503.1 1 |
-| u24.aarch64 | AVAIL PGDG 202503.1 1 | AVAIL PGDG 202503.1 1 | AVAIL PGDG 202503.1 1 | AVAIL PGDG 202503.1 1 | AVAIL PGDG 202503.1 1 |
+| u24.x86_64 | AVAIL PIGSTY 202503.6 2 | AVAIL PIGSTY 202503.6 2 | AVAIL PIGSTY 202503.6 2 | AVAIL PIGSTY 202503.6 2 | AVAIL PIGSTY 202503.6 2 |
+| u24.aarch64 | AVAIL PIGSTY 202503.6 2 | AVAIL PIGSTY 202503.6 2 | AVAIL PIGSTY 202503.6 2 | AVAIL PIGSTY 202503.6 2 | AVAIL PIGSTY 202503.6 2 |
+@ el10.x86_64 18 rdkit_18 rdkit_18-202503.6-1PIGSTY.el10.x86_64.rpm pigsty 202503.6 143.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/rdkit_18-202503.6-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 18 rdkit_18 rdkit_18-202503.6-1PIGSTY.el10.aarch64.rpm pigsty 202503.6 135.2KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/rdkit_18-202503.6-1PIGSTY.el10.aarch64.rpm
+@ d13.x86_64 18 postgresql-18-rdkit postgresql-18-rdkit_202503.6-4PIGSTY~trixie_amd64.deb pigsty 202503.6 102.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/r/rdkit/postgresql-18-rdkit_202503.6-4PIGSTY~trixie_amd64.deb
 @ d13.x86_64 18 postgresql-18-rdkit postgresql-18-rdkit_202503.1-5.pgdg13+1_amd64.deb pgdg 202503.1 245.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-18-rdkit_202503.1-5.pgdg13+1_amd64.deb
+@ d13.aarch64 18 postgresql-18-rdkit postgresql-18-rdkit_202503.6-4PIGSTY~trixie_arm64.deb pigsty 202503.6 94.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/r/rdkit/postgresql-18-rdkit_202503.6-4PIGSTY~trixie_arm64.deb
 @ d13.aarch64 18 postgresql-18-rdkit postgresql-18-rdkit_202503.1-5.pgdg13+1_arm64.deb pgdg 202503.1 237.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-18-rdkit_202503.1-5.pgdg13+1_arm64.deb
+@ u24.x86_64 18 postgresql-18-rdkit postgresql-18-rdkit_202503.6-4PIGSTY~noble_amd64.deb pigsty 202503.6 108.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/r/rdkit/postgresql-18-rdkit_202503.6-4PIGSTY~noble_amd64.deb
 @ u24.x86_64 18 postgresql-18-rdkit postgresql-18-rdkit_202503.1-5.pgdg24.04+1_amd64.deb pgdg 202503.1 243.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-18-rdkit_202503.1-5.pgdg24.04+1_amd64.deb
+@ u24.aarch64 18 postgresql-18-rdkit postgresql-18-rdkit_202503.6-4PIGSTY~noble_arm64.deb pigsty 202503.6 105.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/r/rdkit/postgresql-18-rdkit_202503.6-4PIGSTY~noble_arm64.deb
 @ u24.aarch64 18 postgresql-18-rdkit postgresql-18-rdkit_202503.1-5.pgdg24.04+1_arm64.deb pgdg 202503.1 237.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-18-rdkit_202503.1-5.pgdg24.04+1_arm64.deb
+@ el10.x86_64 17 rdkit_17 rdkit_17-202503.6-1PIGSTY.el10.x86_64.rpm pigsty 202503.6 143.2KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/rdkit_17-202503.6-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 17 rdkit_17 rdkit_17-202503.6-1PIGSTY.el10.aarch64.rpm pigsty 202503.6 135.2KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/rdkit_17-202503.6-1PIGSTY.el10.aarch64.rpm
+@ d13.x86_64 17 postgresql-17-rdkit postgresql-17-rdkit_202503.6-4PIGSTY~trixie_amd64.deb pigsty 202503.6 103.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/r/rdkit/postgresql-17-rdkit_202503.6-4PIGSTY~trixie_amd64.deb
 @ d13.x86_64 17 postgresql-17-rdkit postgresql-17-rdkit_202503.1-5.pgdg13+1_amd64.deb pgdg 202503.1 245.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-17-rdkit_202503.1-5.pgdg13+1_amd64.deb
+@ d13.aarch64 17 postgresql-17-rdkit postgresql-17-rdkit_202503.6-4PIGSTY~trixie_arm64.deb pigsty 202503.6 94.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/r/rdkit/postgresql-17-rdkit_202503.6-4PIGSTY~trixie_arm64.deb
 @ d13.aarch64 17 postgresql-17-rdkit postgresql-17-rdkit_202503.1-5.pgdg13+1_arm64.deb pgdg 202503.1 237.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-17-rdkit_202503.1-5.pgdg13+1_arm64.deb
+@ u24.x86_64 17 postgresql-17-rdkit postgresql-17-rdkit_202503.6-4PIGSTY~noble_amd64.deb pigsty 202503.6 108.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/r/rdkit/postgresql-17-rdkit_202503.6-4PIGSTY~noble_amd64.deb
 @ u24.x86_64 17 postgresql-17-rdkit postgresql-17-rdkit_202503.1-5.pgdg24.04+1_amd64.deb pgdg 202503.1 243.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-17-rdkit_202503.1-5.pgdg24.04+1_amd64.deb
+@ u24.aarch64 17 postgresql-17-rdkit postgresql-17-rdkit_202503.6-4PIGSTY~noble_arm64.deb pigsty 202503.6 105.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/r/rdkit/postgresql-17-rdkit_202503.6-4PIGSTY~noble_arm64.deb
 @ u24.aarch64 17 postgresql-17-rdkit postgresql-17-rdkit_202503.1-5.pgdg24.04+1_arm64.deb pgdg 202503.1 237.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-17-rdkit_202503.1-5.pgdg24.04+1_arm64.deb
+@ el10.x86_64 16 rdkit_16 rdkit_16-202503.6-1PIGSTY.el10.x86_64.rpm pigsty 202503.6 143.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/rdkit_16-202503.6-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 16 rdkit_16 rdkit_16-202503.6-1PIGSTY.el10.aarch64.rpm pigsty 202503.6 135.2KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/rdkit_16-202503.6-1PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 16 postgresql-16-rdkit postgresql-16-rdkit_202303.3-3.pgdg120+1_amd64.deb pgdg 202303.3 393.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-16-rdkit_202303.3-3.pgdg120+1_amd64.deb
 @ d12.aarch64 16 postgresql-16-rdkit postgresql-16-rdkit_202303.3-3.pgdg120+1_arm64.deb pgdg 202303.3 384.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-16-rdkit_202303.3-3.pgdg120+1_arm64.deb
+@ d13.x86_64 16 postgresql-16-rdkit postgresql-16-rdkit_202503.6-4PIGSTY~trixie_amd64.deb pigsty 202503.6 102.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/r/rdkit/postgresql-16-rdkit_202503.6-4PIGSTY~trixie_amd64.deb
 @ d13.x86_64 16 postgresql-16-rdkit postgresql-16-rdkit_202503.1-5.pgdg13+1_amd64.deb pgdg 202503.1 245.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-16-rdkit_202503.1-5.pgdg13+1_amd64.deb
+@ d13.aarch64 16 postgresql-16-rdkit postgresql-16-rdkit_202503.6-4PIGSTY~trixie_arm64.deb pigsty 202503.6 94.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/r/rdkit/postgresql-16-rdkit_202503.6-4PIGSTY~trixie_arm64.deb
 @ d13.aarch64 16 postgresql-16-rdkit postgresql-16-rdkit_202503.1-5.pgdg13+1_arm64.deb pgdg 202503.1 237.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-16-rdkit_202503.1-5.pgdg13+1_arm64.deb
 @ u22.x86_64 16 postgresql-16-rdkit postgresql-16-rdkit_202303.3-3.pgdg22.04+1_amd64.deb pgdg 202303.3 395.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-16-rdkit_202303.3-3.pgdg22.04+1_amd64.deb
 @ u22.aarch64 16 postgresql-16-rdkit postgresql-16-rdkit_202303.3-3.pgdg22.04+1_arm64.deb pgdg 202303.3 387.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-16-rdkit_202303.3-3.pgdg22.04+1_arm64.deb
+@ u24.x86_64 16 postgresql-16-rdkit postgresql-16-rdkit_202503.6-4PIGSTY~noble_amd64.deb pigsty 202503.6 108.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/r/rdkit/postgresql-16-rdkit_202503.6-4PIGSTY~noble_amd64.deb
 @ u24.x86_64 16 postgresql-16-rdkit postgresql-16-rdkit_202503.1-5.pgdg24.04+1_amd64.deb pgdg 202503.1 243.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-16-rdkit_202503.1-5.pgdg24.04+1_amd64.deb
+@ u24.aarch64 16 postgresql-16-rdkit postgresql-16-rdkit_202503.6-4PIGSTY~noble_arm64.deb pigsty 202503.6 105.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/r/rdkit/postgresql-16-rdkit_202503.6-4PIGSTY~noble_arm64.deb
 @ u24.aarch64 16 postgresql-16-rdkit postgresql-16-rdkit_202503.1-5.pgdg24.04+1_arm64.deb pgdg 202503.1 237.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-16-rdkit_202503.1-5.pgdg24.04+1_arm64.deb
+@ el10.x86_64 15 rdkit_15 rdkit_15-202503.6-1PIGSTY.el10.x86_64.rpm pigsty 202503.6 143.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/rdkit_15-202503.6-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 15 rdkit_15 rdkit_15-202503.6-1PIGSTY.el10.aarch64.rpm pigsty 202503.6 135.2KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/rdkit_15-202503.6-1PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 15 postgresql-15-rdkit postgresql-15-rdkit_202303.3-3.pgdg120+1_amd64.deb pgdg 202303.3 394.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-15-rdkit_202303.3-3.pgdg120+1_amd64.deb
 @ d12.aarch64 15 postgresql-15-rdkit postgresql-15-rdkit_202303.3-3.pgdg120+1_arm64.deb pgdg 202303.3 385.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-15-rdkit_202303.3-3.pgdg120+1_arm64.deb
+@ d13.x86_64 15 postgresql-15-rdkit postgresql-15-rdkit_202503.6-4PIGSTY~trixie_amd64.deb pigsty 202503.6 103.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/r/rdkit/postgresql-15-rdkit_202503.6-4PIGSTY~trixie_amd64.deb
 @ d13.x86_64 15 postgresql-15-rdkit postgresql-15-rdkit_202503.1-5.pgdg13+1_amd64.deb pgdg 202503.1 245.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-15-rdkit_202503.1-5.pgdg13+1_amd64.deb
+@ d13.aarch64 15 postgresql-15-rdkit postgresql-15-rdkit_202503.6-4PIGSTY~trixie_arm64.deb pigsty 202503.6 94.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/r/rdkit/postgresql-15-rdkit_202503.6-4PIGSTY~trixie_arm64.deb
 @ d13.aarch64 15 postgresql-15-rdkit postgresql-15-rdkit_202503.1-5.pgdg13+1_arm64.deb pgdg 202503.1 237.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-15-rdkit_202503.1-5.pgdg13+1_arm64.deb
 @ u22.x86_64 15 postgresql-15-rdkit postgresql-15-rdkit_202303.3-3.pgdg22.04+1_amd64.deb pgdg 202303.3 395.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-15-rdkit_202303.3-3.pgdg22.04+1_amd64.deb
 @ u22.aarch64 15 postgresql-15-rdkit postgresql-15-rdkit_202303.3-3.pgdg22.04+1_arm64.deb pgdg 202303.3 387.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-15-rdkit_202303.3-3.pgdg22.04+1_arm64.deb
+@ u24.x86_64 15 postgresql-15-rdkit postgresql-15-rdkit_202503.6-4PIGSTY~noble_amd64.deb pigsty 202503.6 108.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/r/rdkit/postgresql-15-rdkit_202503.6-4PIGSTY~noble_amd64.deb
 @ u24.x86_64 15 postgresql-15-rdkit postgresql-15-rdkit_202503.1-5.pgdg24.04+1_amd64.deb pgdg 202503.1 243.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-15-rdkit_202503.1-5.pgdg24.04+1_amd64.deb
+@ u24.aarch64 15 postgresql-15-rdkit postgresql-15-rdkit_202503.6-4PIGSTY~noble_arm64.deb pigsty 202503.6 105.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/r/rdkit/postgresql-15-rdkit_202503.6-4PIGSTY~noble_arm64.deb
 @ u24.aarch64 15 postgresql-15-rdkit postgresql-15-rdkit_202503.1-5.pgdg24.04+1_arm64.deb pgdg 202503.1 237.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-15-rdkit_202503.1-5.pgdg24.04+1_arm64.deb
+@ el10.x86_64 14 rdkit_14 rdkit_14-202503.6-1PIGSTY.el10.x86_64.rpm pigsty 202503.6 143.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/rdkit_14-202503.6-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 14 rdkit_14 rdkit_14-202503.6-1PIGSTY.el10.aarch64.rpm pigsty 202503.6 135.1KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/rdkit_14-202503.6-1PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 14 postgresql-14-rdkit postgresql-14-rdkit_202303.3-3.pgdg120+1_amd64.deb pgdg 202303.3 394.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-14-rdkit_202303.3-3.pgdg120+1_amd64.deb
 @ d12.aarch64 14 postgresql-14-rdkit postgresql-14-rdkit_202303.3-3.pgdg120+1_arm64.deb pgdg 202303.3 385.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-14-rdkit_202303.3-3.pgdg120+1_arm64.deb
+@ d13.x86_64 14 postgresql-14-rdkit postgresql-14-rdkit_202503.6-4PIGSTY~trixie_amd64.deb pigsty 202503.6 102.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/r/rdkit/postgresql-14-rdkit_202503.6-4PIGSTY~trixie_amd64.deb
 @ d13.x86_64 14 postgresql-14-rdkit postgresql-14-rdkit_202503.1-5.pgdg13+1_amd64.deb pgdg 202503.1 245.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-14-rdkit_202503.1-5.pgdg13+1_amd64.deb
+@ d13.aarch64 14 postgresql-14-rdkit postgresql-14-rdkit_202503.6-4PIGSTY~trixie_arm64.deb pigsty 202503.6 94.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/r/rdkit/postgresql-14-rdkit_202503.6-4PIGSTY~trixie_arm64.deb
 @ d13.aarch64 14 postgresql-14-rdkit postgresql-14-rdkit_202503.1-5.pgdg13+1_arm64.deb pgdg 202503.1 237.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-14-rdkit_202503.1-5.pgdg13+1_arm64.deb
 @ u22.x86_64 14 postgresql-14-rdkit postgresql-14-rdkit_202303.3-3.pgdg22.04+1_amd64.deb pgdg 202303.3 395.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-14-rdkit_202303.3-3.pgdg22.04+1_amd64.deb
 @ u22.aarch64 14 postgresql-14-rdkit postgresql-14-rdkit_202303.3-3.pgdg22.04+1_arm64.deb pgdg 202303.3 387.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-14-rdkit_202303.3-3.pgdg22.04+1_arm64.deb
+@ u24.x86_64 14 postgresql-14-rdkit postgresql-14-rdkit_202503.6-4PIGSTY~noble_amd64.deb pigsty 202503.6 108.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/r/rdkit/postgresql-14-rdkit_202503.6-4PIGSTY~noble_amd64.deb
 @ u24.x86_64 14 postgresql-14-rdkit postgresql-14-rdkit_202503.1-5.pgdg24.04+1_amd64.deb pgdg 202503.1 242.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-14-rdkit_202503.1-5.pgdg24.04+1_amd64.deb
+@ u24.aarch64 14 postgresql-14-rdkit postgresql-14-rdkit_202503.6-4PIGSTY~noble_arm64.deb pigsty 202503.6 105.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/r/rdkit/postgresql-14-rdkit_202503.6-4PIGSTY~noble_arm64.deb
 @ u24.aarch64 14 postgresql-14-rdkit postgresql-14-rdkit_202503.1-5.pgdg24.04+1_arm64.deb pgdg 202503.1 237.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/rdkit/postgresql-14-rdkit_202503.1-5.pgdg24.04+1_arm64.deb
 {{< /pgext_matrix >}}
+
+## Build
+
+You can build the RPM / DEB packages for `rdkit` using `pig build`:
+
+```bash
+pig build pkg rdkit         # build RPM / DEB packages
+```
 
 
 ## Install
 
-You can install `rdkit` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) repository is added and enabled:
+You can install `rdkit` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) and [**PIGSTY**](/docs/repo/pgsql) repositories are added and enabled:
 
 ```bash
-pig repo add pgdg -u          # Add PGDG repo and update cache
+pig repo add pgsql -u          # Add repo and update cache
 ```
 
 Install the extension using [**pig**](/docs/pig) or `apt/yum/dnf`:
@@ -119,6 +163,15 @@ pig ext install -y rdkit -v 17  # PG 17
 pig ext install -y rdkit -v 16  # PG 16
 pig ext install -y rdkit -v 15  # PG 15
 pig ext install -y rdkit -v 14  # PG 14
+```
+{{% /tab %}}
+{{% tab header="dnf" %}}
+```bash
+dnf install -y rdkit_18       # PG 18
+dnf install -y rdkit_17       # PG 17
+dnf install -y rdkit_16       # PG 16
+dnf install -y rdkit_15       # PG 15
+dnf install -y rdkit_14       # PG 14
 ```
 {{% /tab %}}
 {{% tab header="apt" %}}
@@ -139,117 +192,51 @@ apt install -y postgresql-14-rdkit   # PG 14
 CREATE EXTENSION rdkit;
 ```
 
-
-
-
 ## Usage
 
-> [rdkit: Cheminformatics and molecule toolkit PostgreSQL cartridge](https://github.com/rdkit/rdkit)
-
-The RDKit PostgreSQL cartridge provides the `mol` datatype for molecules, `fp` datatype for fingerprints, substructure and similarity search operations, and GiST index support.
+> Sources: [GitHub README](https://raw.githubusercontent.com/rdkit/rdkit/master/README.md), [Cartridge docs](https://www.rdkit.org/docs/Cartridge.html), [project site](https://www.rdkit.org)
+> RDKit provides a PostgreSQL cartridge for cheminformatics storage, search, fingerprints, and descriptors.
 
 ```sql
 CREATE EXTENSION rdkit;
 ```
 
-### Data Types
+The cartridge adds molecular types and operators for substructure search, exact match, similarity search, fingerprint generation, and many descriptor functions.
 
-| Type | Description |
-|------|-------------|
-| `mol` | Molecular structure (from SMILES, SMARTS, etc.) |
-| `bfp` | Bit vector fingerprint |
-| `sfp` | Sparse (count) fingerprint |
+### Core Types
 
-### Molecule Input/Output
+- `mol` for molecule and query molecule values.
+- `bfp` for bit-vector fingerprints.
+- `sfp` for sparse count fingerprints.
+
+### Search Operators
+
+- `@>` checks whether the right-hand molecule is a substructure of the left-hand molecule.
+- `<@` performs the reverse substructure check.
+- `@=` checks exact molecular equality.
+- `#` is the Dice similarity threshold operator.
+- `<%>` supports Tanimoto KNN searches.
+- `<#>` supports Dice KNN searches.
+
+### Fingerprints
+
+- `morgan_fp` and `morganbv_fp` for Morgan fingerprints.
+- `featmorgan_fp` and `featmorganbv_fp` for feature-based Morgan fingerprints.
+- `rdkit_fp` for hashed RDKit fingerprints.
+- `atompair_fp`, `atompairbv_fp`, `torsion_fp`, and `torsionbv_fp`.
+- `layered_fp` and `maccs_fp`.
+
+### Descriptor Examples
 
 ```sql
--- Create molecule from SMILES
-SELECT 'c1ccccc1'::mol;
-
--- Check if SMILES is valid
 SELECT is_valid_smiles('c1ccccc1');
-
--- Convert molecule to SMILES
-SELECT mol_to_smiles('c1ccccc1'::mol);
-```
-
-### Substructure Search
-
-```sql
--- Substructure match operator
-SELECT 'c1ccccc1O'::mol @> 'c1ccccc1'::mol;   -- true (phenol contains benzene)
-SELECT 'c1ccccc1'::mol <@ 'c1ccccc1O'::mol;    -- true
-
--- Using SMARTS patterns
-SELECT 'c1ccccc1O'::mol @> 'c1ccc(O)cc1'::mol;
-```
-
-### Similarity Search
-
-```sql
--- Tanimoto similarity (returns value between 0 and 1)
 SELECT tanimoto_sml(morganbv_fp('c1ccccc1'::mol), morganbv_fp('c1ccccc1O'::mol));
-
--- Dice similarity
-SELECT dice_sml(morganbv_fp('c1ccccc1'::mol), morganbv_fp('c1ccccc1O'::mol));
+SELECT mol_amw('c1ccccc1'::mol);
+SELECT mol_hba('c1ccccc1O'::mol);
+SELECT mol_numrings('c1ccccc1'::mol);
 ```
 
-### Fingerprint Functions
+### Notes
 
-```sql
--- Morgan fingerprint (bit vector)
-SELECT morganbv_fp('c1ccccc1'::mol);
-SELECT morganbv_fp('c1ccccc1'::mol, 2);  -- radius=2
-
--- RDKit fingerprint
-SELECT rdkit_fp('c1ccccc1'::mol);
-
--- Topological torsion fingerprint
-SELECT torsionbv_fp('c1ccccc1'::mol);
-
--- Atom pair fingerprint
-SELECT atompairbv_fp('c1ccccc1'::mol);
-```
-
-### Descriptor Calculations
-
-```sql
-SELECT mol_amw('c1ccccc1'::mol);          -- average molecular weight
-SELECT mol_logp('c1ccccc1'::mol);         -- LogP
-SELECT mol_hba('c1ccccc1O'::mol);         -- H-bond acceptors
-SELECT mol_hbd('c1ccccc1O'::mol);         -- H-bond donors
-SELECT mol_numrotatablebonds('c1ccccc1'::mol); -- rotatable bonds
-SELECT mol_numatoms('c1ccccc1'::mol);     -- number of atoms
-SELECT mol_numheavyatoms('c1ccccc1'::mol);    -- heavy atoms
-SELECT mol_numrings('c1ccccc1'::mol);     -- number of rings
-```
-
-### GiST Index Support
-
-Create indexes for fast substructure and similarity searches:
-
-```sql
--- Substructure search index
-CREATE INDEX idx_mol ON molecules USING gist(molecule);
-
--- Fingerprint similarity index
-CREATE INDEX idx_fp ON molecules USING gist(morganbv_fp(molecule));
-```
-
-Query with index support:
-
-```sql
--- Substructure search
-SELECT * FROM molecules WHERE molecule @> 'c1ccccc1'::mol;
-
--- Similarity search (with threshold)
-SET rdkit.dice_threshold = 0.5;
-SELECT * FROM molecules WHERE morganbv_fp(molecule) % morganbv_fp('c1ccccc1O'::mol);
-```
-
-### GUC Parameters
-
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `rdkit.tanimoto_threshold` | 0.5 | Threshold for Tanimoto similarity operator `<%>` |
-| `rdkit.dice_threshold` | 0.5 | Threshold for Dice similarity operator `%` |
+- The docs describe additional molecule-validation helpers such as `is_valid_smiles`, `is_valid_ctab`, and `is_valid_smarts`.
+- The cartridge also exposes many additional descriptor and fingerprint size GUCs, but the stub keeps only the core user-facing entry points.

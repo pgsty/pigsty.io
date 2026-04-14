@@ -5,7 +5,7 @@ description: "PostgreSQL extensions that require dynamic loading"
 weight: 10
 ---
 
-The following **92** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
+The following **100** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
 
 You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) parameter in `postgresql.conf`, add the extension library, and restart the database.
 
@@ -16,11 +16,14 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pg_task`](/ext/e/pg_task) | `pg_task` | execute any sql command at any specific time at background |
 | [`pg_later`](/ext/e/pg_later) | `pg_later` | Run queries now and get results later |
 | [`vchord`](/ext/e/vchord) | `vchord` | Vector database plugin for Postgres, written in Rust |
+| [`vectorize`](/ext/e/vectorize) | `vectorize` | The simplest way to do vector search on Postgres |
 | [`pgml`](/ext/e/pgml) | `pgml` | Run AL/ML workloads with SQL interface |
+| [`pg_search`](/ext/e/pg_search) | `pg_search` | Full text search for PostgreSQL using BM25 |
 | [`pg_bigm`](/ext/e/pg_bigm) | `pg_bigm` | create 2-gram (bigram) index for faster full text search. |
 | [`pg_bestmatch`](/ext/e/pg_bestmatch) | `pg_bestmatch` | Generate BM25 sparse vector inside PostgreSQL |
 | [`vchord_bm25`](/ext/e/vchord_bm25) | `vchord_bm25` | A postgresql extension for bm25 ranking algorithm |
 | [`pg_tokenizer`](/ext/e/pg_tokenizer) | `pg_tokenizer` | Tokenizers for full-text search |
+| [`pg_textsearch`](/ext/e/pg_textsearch) | `pg_textsearch` | Full-text search with BM25 ranking |
 | [`citus`](/ext/e/citus) | `citus` | Distributed PostgreSQL as an extension |
 | [`pg_analytics`](/ext/e/pg_analytics) | `pg_analytics` | Postgres for analytics, powered by DuckDB |
 | [`pg_duckdb`](/ext/e/pg_duckdb) | `pg_duckdb` | DuckDB Embedded in Postgres |
@@ -33,6 +36,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`plan_filter`](/ext/e/plan_filter) | `plan_filter` | filter statements by their execution plans. |
 | [`pg_ivm`](/ext/e/pg_ivm) | `pg_ivm` | incremental view maintenance on PostgreSQL |
 | [`pg_trickle`](/ext/e/pg_trickle) | `pg_trickle` | Streaming tables and differential view maintenance for PostgreSQL 18 |
+| [`provsql`](/ext/e/provsql) | `provsql` | Semiring provenance and uncertainty management for PostgreSQL |
 | [`orioledb`](/ext/e/orioledb) | `orioledb` | OrioleDB, the next generation transactional engine |
 | [`omni`](/ext/e/omni) | `omni--0.2.14.so` | Advanced adapter for Postgres extensions |
 | [`pg_tle`](/ext/e/pg_tle) | `pg_tle` | Trusted Language Extensions for PostgreSQL |
@@ -45,6 +49,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pg_net`](/ext/e/pg_net) | `pg_net` | Async HTTP Requests |
 | [`pgx_ulid`](/ext/e/pgx_ulid) | `pgx_ulid` | ulid type and methods |
 | [`pg_rewrite`](/ext/e/pg_rewrite) | `pg_rewrite` | Tool allows read write to the table during the rewriting |
+| [`pg_query_rewrite`](/ext/e/pg_query_rewrite) | `pg_query_rewrite` | Rewrite SQL statements with a PostgreSQL ProcessUtility hook |
 | [`pg_squeeze`](/ext/e/pg_squeeze) | `pg_squeeze` | A tool to remove unused space from a relation. |
 | [`pg_readonly`](/ext/e/pg_readonly) | `pg_readonly` | cluster database read only |
 | [`pgautofailover`](/ext/e/pgautofailover) | `pgautofailover` | pg_auto_failover |
@@ -62,6 +67,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pg_store_plans`](/ext/e/pg_store_plans) | `pg_store_plans` | track plan statistics of all SQL statements executed |
 | [`pg_track_optimizer`](/ext/e/pg_track_optimizer) | `pg_track_optimizer` | Track planning decisions in comparison with execution reality |
 | [`pg_wait_sampling`](/ext/e/pg_wait_sampling) | `pg_wait_sampling` | sampling based statistics of wait events |
+| [`pg_datasentinel`](/ext/e/pg_datasentinel) | `pg_datasentinel` | Observability and activity monitoring extension for PostgreSQL |
 | [`pgsentinel`](/ext/e/pgsentinel) | `pgsentinel` | active session history |
 | [`pgnodemx`](/ext/e/pgnodemx) | `pgnodemx` | Capture node OS metrics via SQL queries |
 | [`bgw_replstatus`](/ext/e/bgw_replstatus) | `bgw_replstatus` | Small PostgreSQL background worker to report whether a node is a replication master or standby |
@@ -72,6 +78,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`passwordcheck_cracklib`](/ext/e/passwordcheck_cracklib) | `$libdir/passwordcheck_cracklib` | Strengthen PostgreSQL user password checks with cracklib |
 | [`supautils`](/ext/e/supautils) | `supautils` | Extension that secures a cluster on a cloud environment |
 | [`pgsodium`](/ext/e/pgsodium) | `pgsodium` | Postgres extension for libsodium functions |
+| [`column_encrypt`](/ext/e/column_encrypt) | `column_encrypt` | Transparent column-level encryption with encrypted_text and encrypted_bytea types |
 | [`anon`](/ext/e/anon) | `anon` | PostgreSQL Anonymizer (anon) extension |
 | [`pgaudit`](/ext/e/pgaudit) | `pgaudit` | provides auditing functionality |
 | [`pgauditlogtofile`](/ext/e/pgauditlogtofile) | `pgauditlogtofile` | pgAudit addon to redirect audit log to an independent file |
@@ -82,6 +89,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pg_snakeoil`](/ext/e/pg_snakeoil) | `pg_snakeoil` | The PostgreSQL Antivirus |
 | [`pgextwlist`](/ext/e/pgextwlist) | `pgextwlist` | PostgreSQL Extension Whitelisting |
 | [`pg_command_fw`](/ext/e/pg_command_fw) | `pg_command_fw` | DDL and utility command firewall for PostgreSQL |
+| [`block_copy_command`](/ext/e/block_copy_command) | `block_copy_command` | Block COPY commands via a configurable ProcessUtility hook |
 | [`noset`](/ext/e/noset) | `noset` | Module for blocking SET variables for non-super users. |
 | [`pg_tde`](/ext/e/pg_tde) | `pg_tde` | Percona pg_tde access method |
 | [`sepgsql`](/ext/e/sepgsql) | `sepgsql` | label-based mandatory access control (MAC) based on SELinux security policy. |

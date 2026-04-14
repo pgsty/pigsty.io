@@ -6,7 +6,7 @@ weight: 5410
 ---
 
 The Pigsty PGSQL Repo is designed to work together with the official PostgreSQL Global Development Group ([PGDG](https://www.postgresql.org/download/linux/)) repo.
-Together, they can provide up to [400+ PostgreSQL Extensions](/ext/) out-of-the-box.
+Together, they can provide [504 PostgreSQL Extensions](/ext/) out-of-the-box.
 
 > Mirror synced at 2025-12-29 12:00:00
 
@@ -133,4 +133,3 @@ sudo sh -c "echo 'deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresq
 ## YUM GPG Key
 
 PGDG YUM repo is signed with a series of keys from `https://ftp.postgresql.org/pub/repos/yum/keys/`. Please choose and use as needed.
-

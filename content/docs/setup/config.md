@@ -230,7 +230,7 @@ bin/pgsql-db   pg-meta meta             # Ensure database meta exists in pg-meta
 
 ## Configure PG Version and Extensions
 
-You can install [**different major versions**](/docs/pgsql/config/kernel) of PostgreSQL, and up to [**444**](/ext/list) [**extensions**](/docs/pgsql/ext). Let's remove the current default PG 18 and install PG 16:
+You can install [**different major versions**](/docs/pgsql/config/kernel) of PostgreSQL, and up to [**504**](/ext/list) [**extensions**](/docs/pgsql/ext). Let's remove the current default PG 18 and install PG 16:
 
 ```bash
 ./pgsql-rm.yml -l pg-meta   # Remove old pg-meta cluster (it's PG 18)

@@ -8,7 +8,7 @@ icon: fa-solid fa-book-open
 
 Pigsty provides three pieces of infrastructure to help users harness the collaborative superpowers of the PostgreSQL extension ecosystem:
 
-- [**Extension Catalog**](/ext/list): Browse detailed information, usage, metadata, download links and docs for [**464**](/ext/list) extensions
+- [**Extension Catalog**](/ext/list): Browse detailed information, usage, metadata, download links and docs for [**504**](/ext/list) extensions
 - [**Extension Repository**](/docs/repo/pgsql): Get pre-built RPM/DEB binary packages, available on [**14 Linux systems**](/ext/os)
 - [**Package Manager**](/docs/pig): Use the [`pig`](/docs/pig) CLI tool to abstract away OS and architecture differences for one-click extension installation
 

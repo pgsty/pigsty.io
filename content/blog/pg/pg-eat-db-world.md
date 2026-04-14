@@ -95,7 +95,7 @@ For example, ElasticSearch was developed on the Lucene search library, while the
 
 [![img](/img/pigsty/ecosystem.jpg)](/docs/pgsql/ext)
 
-> Pigsty has 440 [**extensions**](/docs/ref/extension) available. And there are [**1000+**](https://gist.github.com/joelonsql/e5aa27f8cc9bd22b8999b7de8aee9d47) more in the ecosystem
+> Pigsty has 504 [**extensions**](/docs/ref/extension) available. And there are [**1000+**](https://gist.github.com/joelonsql/e5aa27f8cc9bd22b8999b7de8aee9d47) more in the ecosystem
 
 ------
 

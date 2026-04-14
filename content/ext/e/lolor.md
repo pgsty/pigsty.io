@@ -2,7 +2,7 @@
 title: "lolor"
 linkTitle: "lolor"
 description: "Logical-replication-friendly replacement for PostgreSQL large objects"
-weight: 9570
+weight: 9580
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 9570
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 9570  | [**`lolor`**](/ext/e/lolor) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | `lolor` |
+| 9580  | [**`lolor`**](/ext/e/lolor) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | `lolor` |
 {.ext-table}
 
 | **Related** | [`spock`](/ext/e/spock) [`snowflake`](/ext/e/snowflake) |

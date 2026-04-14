@@ -6,13 +6,13 @@ description: The APT / DNF repository to deliver PostgreSQL Kernel, Extensions a
 weight: 610
 ---
 
-Pigsty has a repository that provides 340+ extra PostgreSQL extensions on mainstream [Linux Distros](/docs/ref/linux).
+Pigsty has a repository that provides additional PostgreSQL extension packages on mainstream [Linux Distros](/docs/ref/linux).
 It is designed to work together with the official PostgreSQL Global Development Group ([PGDG](https://www.postgresql.org/download/linux/)) repo.
-Together, they can provide up to [450+ PostgreSQL Extensions](/ext/) out-of-the-box.
+Together, they can provide [504 PostgreSQL Extensions](/ext/) out-of-the-box.
 
 |   PGSQL Repo   |                            Description                            |             Link              |
 |:--------------:|:-----------------------------------------------------------------:|:-----------------------------:|
-| **PGSQL** Repo | [Pigsty Extension Repo](/docs/repo/pgsql/), 340+ extra extensions | [pgsql.md](/docs/repo/pgsql/) |
+| **PGSQL** Repo | [Pigsty Extension Repo](/docs/repo/pgsql/), supplementary extension packages | [pgsql.md](/docs/repo/pgsql/) |
 | **INFRA** Repo | [Pigsty Infrastructure Repo](/docs/repo/infra/), monitoring/tools | [infra.md](/docs/repo/infra/) |
 | **PGDG** Repo  |     [PGDG Official Repo Mirror](/docs/repo/pgdg/), PG Kernel      |  [pgdg.md](/docs/repo/pgdg/)  |
 |  **GPG** Key   |     [GPG Public Key](/docs/repo/gpg/), signature verification     |   [gpg.md](/docs/repo/gpg/)   |
@@ -170,4 +170,3 @@ Building specs of these repos and packages are open-sourced on GitHub:
 - https://github.com/pgsty/rpm
 - https://github.com/pgsty/deb
 - https://github.com/pgsty/infra-pkg
-

@@ -2,7 +2,7 @@
 title: "currency"
 linkTitle: "currency"
 description: "Custom PostgreSQL currency type in 1Byte"
-weight: 3620
+weight: 3680
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 3620
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 3620  | [**`currency`**](/ext/e/currency) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 3680  | [**`currency`**](/ext/e/currency) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`plpgsql`](/ext/e/plpgsql) [`l10n_table_dependent_extension`](/ext/e/l10n_table_dependent_extension) [`country`](/ext/e/country) [`pg_xenophile`](/ext/e/pg_xenophile) [`numeral`](/ext/e/numeral) [`prefix`](/ext/e/prefix) [`semver`](/ext/e/semver) [`unit`](/ext/e/unit) [`pgpdf`](/ext/e/pgpdf) |

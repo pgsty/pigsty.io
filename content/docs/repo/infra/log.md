@@ -6,6 +6,40 @@ icon: fa-solid fa-clipboard-list
 categories: [Reference]
 ---
 
+## 2026-04-14
+
+| Name                       | Old Ver          | New Ver           | Note                                     |
+|:---------------------------|:-----------------|:------------------|:-----------------------------------------|
+| `claude`                   | 2.1.101          | 2.1.107           | rebuilt on 2026-04-14                    |
+| `codex`                    | 0.121.0-alpha.2  | 0.121.0-alpha.7   | prerelease chain, rebuilt on 2026-04-14  |
+| `agentsview`               | 0.19.0           | 0.22.2            | upstream bump                            |
+| `prometheus`               | 3.11.1           | 3.11.2            | upstream bump                            |
+| `victoria-metrics`         | 1.139.0          | 1.140.0           | base package                             |
+| `victoria-metrics-cluster` | 1.139.0          | 1.140.0           | bundled with VictoriaMetrics             |
+| `vmutils`                  | 1.139.0          | 1.140.0           | bundled with VictoriaMetrics             |
+| `duckdb`                   | 1.5.1            | 1.5.2             | upstream bugfix release                  |
+| `seaweedfs`                | 4.19             | 4.20              | upstream bump                            |
+| `tigerbeetle`              | 0.16.78          | 0.17.0            | upstream bump                            |
+| `maddy`                    | 0.9.2            | 0.9.3             | upstream bump                            |
+| `grafana`                  | 12.4.2           | 13.0.0            | direct-download metadata; major release  |
+| `crush`                    | 0.56.0           | 0.57.0            | direct-download metadata                 |
+{.stretch-last}
+
+-------
+
+## 2026-04-12
+
+| Name        | Old Ver          | New Ver           | Note                                                            |
+|:------------|:-----------------|:------------------|:----------------------------------------------------------------|
+| `claude`    | 2.1.98           | 2.1.101           | rebuilt on 2026-04-12; Makefile now pulls from versioned bucket |
+| `codex`     | 0.119.0-alpha.29 | 0.121.0-alpha.2   | prerelease chain, rebuilt on 2026-04-12                         |
+| `postgrest` | 14.8             | 14.9              | upstream bump                                                   |
+| `rainfrog`  | 0.3.17           | 0.3.18            | upstream bump                                                   |
+| `rustfs`    | 1.0.0-alpha.91   | 1.0.0-alpha.93    | upstream bump; switched to versioned release assets             |
+{.stretch-last}
+
+-------
+
 ## 2026-04-10
 
 | Name                         | Old Ver         | New Ver           | Note                                     |

@@ -10,7 +10,7 @@ hide: True
 
 Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` and `~/pgsty/pgext/db/extension.csv`. For full details, see [**PGEXT.CLOUD**](/ext/list/).
 
-There are currently **464** available PostgreSQL extensions.
+There are currently **504** available PostgreSQL extensions.
 
 ### TIME
 
@@ -555,4 +555,3 @@ There are currently **464** available PostgreSQL extensions.
 | [pg_bulkload](/ext/e/pg_bulkload/) | `3.1.23` | `ETL` | pg_bulkload is a high speed data loading utility for PostgreSQL |
 | [test_decoding](/ext/e/test_decoding/) | `-` | `ETL` | SQL-based test/example module for WAL logical decoding |
 | [pgoutput](/ext/e/pgoutput/) | `-` | `ETL` | Logical Replication output plugin |
-

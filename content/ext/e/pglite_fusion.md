@@ -2,7 +2,7 @@
 title: "pglite_fusion"
 linkTitle: "pglite_fusion"
 description: "Embed an SQLite database in your PostgreSQL table"
-weight: 3540
+weight: 3590
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 3540
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 3540  | [**`pglite_fusion`**](/ext/e/pglite_fusion) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 3590  | [**`pglite_fusion`**](/ext/e/pglite_fusion) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
 | **Related** | [`duckdb_fdw`](/ext/e/duckdb_fdw) [`sqlite_fdw`](/ext/e/sqlite_fdw) [`prefix`](/ext/e/prefix) [`semver`](/ext/e/semver) [`unit`](/ext/e/unit) [`pgpdf`](/ext/e/pgpdf) [`md5hash`](/ext/e/md5hash) [`asn1oid`](/ext/e/asn1oid) |

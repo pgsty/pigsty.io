@@ -64,7 +64,7 @@ As an open-source project, Pigsty has developed quite well. In these years of fu
 In November 2025, Pigsty won the **Magneto Award** at the PostgreSQL Ecosystem Conference. In 2026, Pigsty's subproject PGEXT.CLOUD was selected for a PGCon.Dev 2026 talk.
 Pigsty became the first Chinese open-source project to appear on the stage of this core PostgreSQL ecosystem conference.
 
-Previously, Pigsty could only run on CentOS 7, but now it covers all mainstream Linux distributions (EL, Debian, Ubuntu) across 14 operating system platforms. Supported PG major versions cover 13-18, and we maintain and integrate 444 extension plugins in the PG ecosystem.
+Previously, Pigsty could only run on CentOS 7, but now it covers all mainstream Linux distributions (EL, Debian, Ubuntu) across 14 operating system platforms. Supported PG major versions cover 13-18, and we maintain and integrate 504 extension plugins in the PG ecosystem.
 Among these, I personally maintain over half (270+) of the extension plugins, providing out-of-the-box RPM/DEB packages. Including Pigsty itself, "based on open source, giving back to open source," this is our way of contributing to the PG ecosystem.
 
 Pigsty's positioning has also continuously evolved from a PostgreSQL database distribution to an **open-source cloud database**. It truly benchmarks against cloud vendors' entire cloud database brands.
