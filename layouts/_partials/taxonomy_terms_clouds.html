@@ -1,7 +1,9 @@
 {{ $context := . -}}
 {{ $isDocsPage := or (eq .Section "docs") (and .FirstSection (eq .FirstSection.Section "docs")) -}}
 {{ $isBlogPage := or (eq .Section "blog") (and .FirstSection (eq .FirstSection.Section "blog")) -}}
+{{ $isExtPage := or (eq .Section "ext") (and .FirstSection (eq .FirstSection.Section "ext")) -}}
 
+{{ if not $isExtPage -}}
 {{ if .Site.Params.taxonomy -}}
 	{{ if .Site.Params.Taxonomy.taxonomyCloud -}}
 		{{ range $index, $taxo := .Site.Params.Taxonomy.taxonomyCloud -}}
@@ -51,4 +53,5 @@
 			{{ partial "taxonomy_terms_cloud.html" (dict "context" $context "taxo" $taxo "title" (humanize $taxo)) -}}
 		{{ end -}}
 	{{ end }}
+{{ end -}}
 {{ end -}}

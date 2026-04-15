@@ -19,7 +19,7 @@ For the complete tutorial, see: **[PolarDB for PostgreSQL (POLAR) Kernel Guide](
 - Node Count: Single node
 - Description: Uses PolarDB for PostgreSQL kernel
 - OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
-- OS Arch: `x86_64`
+- OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/)
 
 Usage:
@@ -49,6 +49,7 @@ The `polar` template uses Alibaba Cloud's open-source PolarDB for PostgreSQL ker
 - Supports one-write-multiple-read, read replicas scale in seconds
 - Compatible with PostgreSQL ecosystem, maintains SQL compatibility
 - Supports shared storage scenarios, suitable for cloud environment deployment
+- Default PolarDB kernel path is `/u01/polardb_pg_17`
 
 **Use Cases**:
 - Cloud-native scenarios requiring storage-compute separation architecture
@@ -57,8 +58,7 @@ The `polar` template uses Alibaba Cloud's open-source PolarDB for PostgreSQL ker
 - Test environments for evaluating PolarDB features
 
 **Notes**:
-- PolarDB is based on PostgreSQL 15, does not support higher version features
+- PolarDB is now based on PostgreSQL 17
 - Replication user requires superuser privileges (different from native PostgreSQL)
 - Some PostgreSQL extensions may have compatibility issues
-- ARM64 architecture not supported
-
+- The current template provides packages for both `x86_64` and `aarch64`
