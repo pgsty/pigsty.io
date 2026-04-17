@@ -7,7 +7,7 @@ module: [PG_EXPORTER]
 category: [Tutorial]
 ---
 
-PG Exporter provides multiple installation methods to suit different deployment scenarios. 
+PG Exporter provides multiple installation methods to suit different deployment scenarios.
 This guide covers all available installation options with detailed instructions for each platform.
 
 
@@ -15,9 +15,9 @@ This guide covers all available installation options with detailed instructions 
 
 ## Pigsty
 
-The easiest way to get started with `pg_exporter` is to use [Pigsty](https://pigsty.io), 
+The easiest way to get started with `pg_exporter` is to use [Pigsty](https://pigsty.io),
 which is a complete PostgreSQL distribution with built-in Observability best practices based on `pg_exporter`, Prometheus, and Grafana.
-You don't even need to know any details about `pg_exporter`, it just gives you all the metrics and dashboard panels
+You don't even need to know any details about `pg_exporter`; it just gives you all the metrics and dashboard panels.
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
@@ -50,12 +50,12 @@ You can install it directly with your OS package manager (`rpm`/`dpkg`), or just
 
 ## Repository
 
-The pig package is also available in the [`pigsty-infra`](https://ext.pgsty.com/repo/infra) repo,
-You can add the repo to your system, and install it with OS package manager:
+The `pig` package is also available in the [`pigsty-infra`](https://ext.pgsty.com/repo/infra) repo.
+You can add the repo to your system and install it with your OS package manager:
 
 ### YUM
 
-For EL distribution such as  RHEL，RockyLinux，CentOS，Alma Linux，OracleLinux,...:
+For EL distributions such as RHEL, Rocky Linux, CentOS, AlmaLinux, and Oracle Linux:
 
 ```bash
 sudo tee /etc/yum.repos.d/pigsty-infra.repo > /dev/null <<-'EOF'

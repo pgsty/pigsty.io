@@ -125,7 +125,7 @@ If it only contains `local`, then it becomes the sole repo for all nodes. If you
 
 **Hybrid Installation Mode**
 
-If your env has Internet access, there's a hybrid approach combining advantages of offline and online installation.
+If your environment has Internet access, there's a hybrid approach that combines the advantages of offline and online installation.
 You can use the offline package as a base, and supplement missing packages online.
 
 For example, if you're using RockyLinux 9.6 but the official offline package is for RockyLinux 9.7.

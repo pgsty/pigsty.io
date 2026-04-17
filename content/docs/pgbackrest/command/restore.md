@@ -96,7 +96,7 @@ Allows the destination file or path of a symlink to be changed on restore. This 
 example: --link-map=pg_xlog=/data/xlog
 ```
 
-### Recovery Option Option (`--recovery-option`)
+### Recovery Option (`--recovery-option`)
 
 Set an option in `postgresql.auto.conf` or `recovery.conf`.
 

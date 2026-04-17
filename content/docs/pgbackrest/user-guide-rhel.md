@@ -240,7 +240,7 @@ There are multiple ways the pgBackRest configuration files can be loaded:
 
 - `config` and `config-include-path` are default: the default config file will be loaded, if it exists, and `*.conf` files in the default config include path will be appended, if they exist.
 - `config` option is specified: only the specified config file will be loaded and is expected to exist.
-- `config-include-path` is specified: `*.conf` files in the config include path will be loaded and the path is required to exist. The default config file will be be loaded if it exists. If it is desirable to load only the files in the specified config include path, then the `--no-config` option can also be passed.
+- `config-include-path` is specified: `*.conf` files in the config include path will be loaded and the path is required to exist. The default config file will be loaded if it exists. If it is desirable to load only the files in the specified config include path, then the `--no-config` option can also be passed.
 - `config` and `config-include-path` are specified: using the user-specified values, the config file will be loaded and `*.conf` files in the config include path will be appended. The files are expected to exist.
 - `config-path` is specified: this setting will override the base path for the default location of the config file and/or the base path of the default config-include-path setting unless the config and/or config-include-path option is explicitly set.
 
@@ -3611,7 +3611,7 @@ sudo -u postgres pgbackrest --stanza=demo check
 
 Backup from standby can be enabled now that the standby is restored.
 
-repository:`/etc/pgbackrest/pgbackrest.conf` **⇒** Reenable backup from standby
+repository:`/etc/pgbackrest/pgbackrest.conf` **⇒** Re-enable backup from standby
 
 ```ini
 [demo]

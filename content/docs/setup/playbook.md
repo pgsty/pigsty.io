@@ -38,7 +38,7 @@ This is the simplest deployment method. You can also follow instructions in [**C
 
 ## Install Ansible
 
-When using the [**Pigsty installation script**](/docs/setup/install#install), or the [**`bootstrap`**](/docs/setup/offline#bootstrap) phase of offline installation, Pigsty will automatically install `ansible` and its dependencies for you.
+When using the [**Pigsty installation script**](/docs/setup/install#install) or the [**`bootstrap`**](/docs/setup/offline#bootstrap) phase of offline installation, Pigsty will automatically install `ansible` and its dependencies for you.
 
 If you want to manually install Ansible, refer to the following instructions. The minimum supported Ansible version is 2.9.
 
@@ -250,4 +250,3 @@ Below are the [**built-in playbooks**](/docs/ref/playbook) in Pigsty. You can al
 | [**DOCKER**](/docs/docker/playbook/) | [**`app.yml`**](https://github.com/pgsty/pigsty/blob/main/app.yml)                         | Install applications using Docker Compose           |
 | [**FERRET**](/docs/ferret/playbook)  | [**`mongo.yml`**](https://github.com/pgsty/pigsty/blob/main/mongo.yml)                     | Install Mongo/FerretDB on nodes                     |
 {.full-width}
-

@@ -648,13 +648,13 @@ Current Postgres timeline in the Patroni member.
 The last write-ahead log location received and synced to disk by streaming replication of the member (`pg_catalog.pg_last_(xlog|wal)_receive_(location|lsn)()`).
 
 `Receive Lag`  
-Replication lag between the `Receive LSN` position of the member and its upstream in in MB.
+Replication lag between the `Receive LSN` position of the member and its upstream in MB.
 
 `Replay LSN`  
 The last write-ahead log location replayed during recovery of the member (`pg_catalog.pg_last_(xlog|wal)_replay_(location|lsn)()`).
 
 `Replay Lag`  
-Replication lag between the `Replay LSN` position of the member and its upstream in in MB.
+Replication lag between the `Replay LSN` position of the member and its upstream in MB.
 
 Besides that, the following information may be included in the output:
 
@@ -1683,13 +1683,13 @@ Current Postgres timeline in the Patroni member.
 The last write-ahead log location received and synced to disk by streaming replication of the member (`pg_catalog.pg_last_(xlog|wal)_receive_(location|lsn)()`).
 
 `Receive Lag`  
-Replication lag between the `Receive LSN` position of the member and its upstream in in MB.
+Replication lag between the `Receive LSN` position of the member and its upstream in MB.
 
 `Replay LSN`  
 The last write-ahead log location replayed during recovery of the member (`pg_catalog.pg_last_(xlog|wal)_replay_(location|lsn)()`).
 
 `Replay Lag`  
-Replication lag between the `Replay LSN` position of the member and its upstream in in MB.
+Replication lag between the `Replay LSN` position of the member and its upstream in MB.
 
 Besides that, the following information may be included in the output:
 

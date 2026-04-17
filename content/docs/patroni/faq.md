@@ -96,7 +96,7 @@ Information shown by [patronictl_list](/docs/patroni/patronictl#patronictl_list)
 
 By default, that information is updated by Patroni roughly every `loop_wait` seconds. In other words, even if everything is normally functional you may still see a "delay" of up to `loop_wait` seconds in the information stored in the DCS.
 
-Be aware that that is not a rule, though. Some operations performed by Patroni cause it to immediately update the DCS information.
+Be aware that this is not a rule, though. Some operations performed by Patroni cause it to immediately update the DCS information.
 
 --------
 

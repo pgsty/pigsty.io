@@ -115,9 +115,9 @@ Released 2025-09-22
 
   Permanent physical replication slots created outside of Patroni scope without reserving WALs were causing a `replication slot cannot be advanced` error. To avoid this, Patroni now recreates such slots.
 
-- Handle watch cancelation messages in `etcd3` properly (Alexander Kukushkin)
+- Handle watch cancellation messages in `etcd3` properly (Alexander Kukushkin)
 
-  When `etcd3` sends a cancelation message to the watch channel, it doesn't close the connection. This results in Patroni using stale data. Patroni now solves it by breaking a loop of reading chunked response and closing the connection on the Patroni side.
+  When `etcd3` sends a cancellation message to the watch channel, it doesn't close the connection. This results in Patroni using stale data. Patroni now solves it by breaking a loop of reading chunked response and closing the connection on the Patroni side.
 
 - Handle case when `HTTPConnection` socket is wrapped with `pyopenssl` (Alexander Kukushkin)
 
@@ -343,7 +343,7 @@ Released 2024-09-17
 
   Make sure all GUCs that are passed to postmaster as command line parameters are restored when Patroni is joining a running standby. This is a follow-up for the bug fixed in Patroni 3.2.2.
 
-- Fix bug in `synchronous_standby_names` quotting logic (Alexander Kukushkin)
+- Fix bug in `synchronous_standby_names` quoting logic (Alexander Kukushkin)
 
   According to PostgreSQL documentation, `ANY` and `FIRST` keywords are supposed to be double-quoted, which Patroni did not do before.
 
@@ -2074,7 +2074,7 @@ $ patronictl list
 
 - Clean up tablespaces on reinitialize (Krishna Sarabu)
 
-  During reinit, Patroni was removing only `PGDATA` and leaving user-defined tablespace directories. This is causing Patroni to loop in reinit. The previous workarond for the problem was implementing the [custom bootstrap](/docs/patroni/replica_bootstrap#custom_bootstrap) script.
+  During reinit, Patroni was removing only `PGDATA` and leaving user-defined tablespace directories. This is causing Patroni to loop in reinit. The previous workaround for the problem was implementing the [custom bootstrap](/docs/patroni/replica_bootstrap#custom_bootstrap) script.
 
 - Explicitly execute `CHECKPOINT` after promote happened (Alexander Kukushkin)
 
@@ -2850,7 +2850,7 @@ Released 2018-05-22
 
 - Fix behavior of patronictl scaffold (Alexander Kukushkin)
 
-  Pass dict object to touch_member instead of json encoded string, DCS implementation will take care of encoding it.
+  Pass a dict object to `touch_member` instead of a JSON-encoded string; the DCS implementation will take care of encoding it.
 
 - Don't demote master if failed to update leader key in pause (Alexander Kukushkin)
 
@@ -3024,7 +3024,7 @@ Implement Kubernetes-based DCS. The endpoints meta-data is used in order to stor
 
 - Improve `patronictl reinit` (Alexander Kukushkin)
 
-  Sometimes `patronictl reinit` refused to proceed when Patroni was busy with other actions, namely trying to start postgres. [patronictl](/docs/patroni/patronictl#patronictl) didn't provide any commands to cancel such long running actions and the only (dangerous) workarond was removing a data directory manually. The new implementation of `reinit` forcefully cancels other long-running actions before proceeding with reinit.
+  Sometimes `patronictl reinit` refused to proceed when Patroni was busy with other actions, namely trying to start postgres. [patronictl](/docs/patroni/patronictl#patronictl) didn't provide any commands to cancel such long-running actions, and the only (dangerous) workaround was removing a data directory manually. The new implementation of `reinit` forcefully cancels other long-running actions before proceeding with reinit.
 
 - Implement `--wait` flag in `patronictl pause` and `patronictl resume` (Alexander Kukushkin)
 
@@ -3122,7 +3122,7 @@ Released 2017-10-12
 
 - Make it possible to specify health checks when creating session (Alexander Kukushkin)
 
-  If not specified, Consul will use "serfHealth". From one side it allows fast detection of isolated master, but from another side it makes it impossible for Patroni to tolerate short network lags.
+  If not specified, Consul will use "serfHealth". On the one hand, this allows fast detection of an isolated master; on the other hand, it makes it impossible for Patroni to tolerate short network lags.
 
 **Bugfix**
 

@@ -51,26 +51,26 @@ collector_branch_name:           # Unique identifier for this collector
   query: |                       # SQL query to execute
     SELECT column1, column2
     FROM table
-  
+
   # Execution Control
   ttl: 10                        # Cache time-to-live in seconds
   timeout: 0.1                   # Query timeout in seconds
   fatal: false                   # If true, failure fails entire scrape
   skip: false                    # If true, collector is disabled
-  
+
   # Version Compatibility
   min_version: 100000            # Minimum PostgreSQL version (inclusive)
   max_version: 999999            # Maximum PostgreSQL version (exclusive)
-  
+
   # Execution Tags
   tags: [cluster, primary]       # Conditions for execution
-  
+
   # Predicate Queries (optional)
   predicate_queries:
     - name: "check_function"
       predicate_query: |
         SELECT EXISTS (...)
-  
+
   # Metric Definitions
   metrics:
     - column_name:

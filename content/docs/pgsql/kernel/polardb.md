@@ -112,7 +112,7 @@ The latest full PolarDB PG 17 extension list is shown below, ordered by the `pg_
 | `fuzzystrmatch` | `1.2` | determine similarities and distance between strings |
 | `pltcl` | `1.0` | PL/Tcl procedural language |
 | `jsonb_plpython3u` | `1.0` | transform between jsonb and plpython3u |
-| `polar_parameter_manager` | `1.2` | Extension to select parameters for manger. |
+| `polar_parameter_manager` | `1.2` | Extension to select parameters for manager. |
 | `sequential_uuids` | `1.0.3` | generator of sequential UUIDs |
 | `unaccent` | `1.1` | text search dictionary that removes accents |
 | `autoinc` | `1.0` | functions for autoincrementing fields |

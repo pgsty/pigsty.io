@@ -12,7 +12,7 @@ categories: [Concept]
 ```
 infographic list-row-simple-horizontal-arrow
 data
-  
+
   desc Lease Expiration Stages
   items
     - label Lease Expiration

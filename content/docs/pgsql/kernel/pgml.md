@@ -118,7 +118,7 @@ python3    -m venv /data/pgml           # create virtual environment directory (
 source /data/pgml/bin/activate          # activate virtual environment
 
 # write Python dependencies and install with pip
-cat > /data/pgml/requirments.txt <<EOF
+cat > /data/pgml/requirements.txt <<EOF
 accelerate==0.22.0
 auto-gptq==0.4.2
 bitsandbytes==0.41.1
@@ -151,7 +151,7 @@ pynvml==11.5.0
 EOF
 
 # install dependencies using pip in the virtual environment
-python3 -m pip install -r /data/pgml/requirments.txt
+python3 -m pip install -r /data/pgml/requirements.txt
 python3 -m pip install xformers==0.0.21 --no-dependencies
 
 # additionally, 3 Python packages need to be installed globally using sudo!
@@ -198,4 +198,3 @@ CREATE EXTENSION
 ```
 
 Done! For more details, please refer to the official PostgresML documentation: https://postgresml.org/docs/guides/use-cases/
-

@@ -146,7 +146,7 @@ Currently, the PolarDB 2.0 (Oracle compatible) kernel comes with the following *
 | polar_dbms_utility             | 1.3             | implement polar_dbms_utility - provides various utility subprograms.                                                       |
 | polar_parameter_check          | 1.0             | kernel extension for parameter validation                                                                                  |
 | polar_dbms_xmldom              | 1.0             | implement dbms_xmldom and dbms_xmlparser - support standard DOM interface and xml parser object                            |
-| polar_parameter_manager        | 1.1             | Extension to select parameters for manger.                                                                                 |
+| polar_parameter_manager        | 1.1             | Extension to select parameters for manager.                                                                                |
 | polar_faults                   | 1.0.0           | simulate some database faults for end user or testing system.                                                              |
 | polar_monitor_preload          | 1.1             | examine the polardb information                                                                                            |
 | polar_proxy_utils              | 1.0             | Extension to provide operations about proxy.                                                                               |
@@ -187,7 +187,7 @@ Currently, the PolarDB 2.0 (Oracle compatible) kernel comes with the following *
 | seg                            | 1.4             | data type for representing line segments or floating-point intervals                                                       |
 | sequential_uuids               | 1.0.2           | generator of sequential UUIDs                                                                                              |
 | uuid-ossp                      | 1.1             | generate universally unique identifiers (UUIDs)                                                                            |
-| smlar                          | 1.0             | compute similary of any one-dimensional arrays                                                                             |
+| smlar                          | 1.0             | compute similarity of any one-dimensional arrays                                                                           |
 | varbitx                        | 1.1             | varbit functions pack                                                                                                      |
 | sslinfo                        | 1.2             | information about SSL certificates                                                                                         |
 | tablefunc                      | 1.0             | functions that manipulate whole tables, including crosstab                                                                 |
@@ -209,6 +209,6 @@ Currently, the PolarDB 2.0 (Oracle compatible) kernel comes with the following *
 | ganos_sfmesh                   | 6.0             | Ganos surface mesh extension for POLARDB                                                                                   |
 | ganos_spatialref               | 6.0             | Ganos spatial reference extension for POLARDB                                                                              |
 | ganos_trajectory               | 6.0             | Ganos trajectory extension for POLARDB                                                                                     |
-| ganos_vomesh                   | 6.0             | Ganos volumn mesh extension for POLARDB                                                                                    |
+| ganos_vomesh                   | 6.0             | Ganos volume mesh extension for POLARDB                                                                                    |
 | postgis_tiger_geocoder         | 3.3.2           | Ganos PostGIS tiger geocoder                                                                                               |
 | postgis_topology               | 3.3.2           | Ganos PostGIS topology                                                                                                     |

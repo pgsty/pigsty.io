@@ -251,7 +251,7 @@ Both parsers take annual data compressed packages as input, produce CSV results 
 
 ```bash
 NAME
-        isd -- Intergrated Surface Dataset Parser
+        isd -- Integrated Surface Dataset Parser
 
 SYNOPSIS
         isd daily   [-i <input|stdin>] [-o <output|stout>] [-v]

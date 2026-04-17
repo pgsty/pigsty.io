@@ -1599,7 +1599,7 @@ Deprecated Names: repo-azure-verify-tls, repo-s3-verify-ssl, repo-s3-verify-tls
 
 Create symlinks within the repository.
 
-Enable creation of the `lastest` and tablespace symlinks. These symlinks are most useful when using snapshots to do in-place recovery in the repository, which is an uncommon use case.
+Enable creation of the `latest` and tablespace symlinks. These symlinks are most useful when using snapshots to do in-place recovery in the repository, which is an uncommon use case.
 
 While this feature is likely not useful for the vast majority of users it remains on by default for legacy purposes. However, it may be useful to disable symlinks for Posix-like storage that does not support them.
 
@@ -1719,7 +1719,7 @@ Allows the destination file or path of a symlink to be changed on restore. This 
 example: link-map=pg_xlog=/data/xlog
 ```
 
-### Recovery Option Option (`--recovery-option`)
+### Recovery Option (`--recovery-option`)
 
 Set an option in `postgresql.auto.conf` or `recovery.conf`.
 

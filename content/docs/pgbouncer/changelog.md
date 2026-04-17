@@ -1191,7 +1191,7 @@ instead expected 20-30k.  Something to keep an eye on when using TLS.
   * ipv6: Set IPV6_V6ONLY on listen socket.
   * win32: Don't set SO_REUSEADDR on listen socket.
   * Fix IPv6 address memcpy
-  * Fix cancellation of of waiting clients.
+  * Fix cancellation of waiting clients.
     (Mathieu Fenniak)
   * Small bug fix, must check calloc result
     (Heikki Linnakangas)
@@ -1843,7 +1843,7 @@ Older libevent versions crash with new restart code.
 
   * More debug log messages include socket info.
   * Magic number removal and error message cleanup. (David Fetter)
-  * Wrapper struct for current pkt info.  Removes lot of compexity.
+  * Wrapper struct for current pkt info. Removes a lot of complexity.
 
 - Fixes
 
@@ -1933,7 +1933,7 @@ Older libevent versions crash with new restart code.
   * Delay server release until everything is guaranteed to be sent.
 
 - Features
-  * SHOW SOCKETS command to have detailed info about state state.
+  * SHOW SOCKETS command to have detailed info about state.
   * Put PgSocket ptr to log, to help tracking one connection.
   * In console, allow SELECT in place of SHOW.
   * Various code cleanups.

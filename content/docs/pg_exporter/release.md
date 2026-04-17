@@ -259,7 +259,7 @@ https://github.com/pgsty/pg_exporter/releases/tag/v1.1.0
 
 - Build with Go 1.25.4 and latest dependencies
 - Fix [#80](https://github.com/pgsty/pg_exporter/issues/80) Conflict with libpq env variables
-- Chanage default value of `auto-discovery` to `true` by [@kadaffy](https://github.com/kadaffy)
+- Change default value of `auto-discovery` to `true` by [@kadaffy](https://github.com/kadaffy)
 
 **Checksums**
 

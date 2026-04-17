@@ -292,7 +292,7 @@ There are currently **504** available PostgreSQL extensions.
 | [pg_readme](/ext/e/pg_readme/) | `0.7.0` | `UTIL` | Generate a README.md document for a database extension or schema |
 | [pg_readme_test_extension](/ext/e/pg_readme_test_extension/) | `0.7.0` | `UTIL` | Test generating a README.md document for extension or schema |
 | [ddl_historization](/ext/e/ddl_historization/) | `0.0.7` | `UTIL` | Historize the ddl changes inside PostgreSQL database |
-| [data_historization](/ext/e/data_historization/) | `1.1.0` | `UTIL` | PLPGSQL Script to historize data in partitionned table |
+| [data_historization](/ext/e/data_historization/) | `1.1.0` | `UTIL` | PLPGSQL Script to historize data in partitioned table |
 | [schedoc](/ext/e/schedoc/) | `0.0.1` | `UTIL` | Cross documentation between Django and DBT projects |
 | [hashlib](/ext/e/hashlib/) | `1.1` | `UTIL` | Stable hash functions for Postgres |
 | [xxhash](/ext/e/xxhash/) | `0.0.1` | `UTIL` | xxhash functions for PostgreSQL |

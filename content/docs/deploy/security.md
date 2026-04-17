@@ -159,7 +159,7 @@ If you want to further harden system security, here are some recommendations:
 ## Availability
 
 **Use sufficient nodes/instances for critical PostgreSQL database clusters**
-- You need at least three nodes (able to tolerate one node failure) for production-grade high availability.
+- You need at least three nodes, enough to tolerate one node failure, for production-grade high availability.
 - If you only have two nodes, you can tolerate specific standby node failures.
 - If you only have one node, use external S3/MinIO for cold backup and WAL archive storage.
 

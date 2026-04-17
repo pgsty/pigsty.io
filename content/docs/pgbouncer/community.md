@@ -23,7 +23,7 @@ categories: [Concept]
 
 - [What is the point of bouncing?](http://www.depesz.com/2012/12/02/what-is-the-point-of-bouncing/)
 
-  Discusses diffenrences between pooling modes.
+  Discusses differences between pooling modes.
 
 --------
 
