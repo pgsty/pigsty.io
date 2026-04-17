@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/db/google-mcp/"
 author: vonng
 description: |
   Google recently launched a database MCP toolbox, perhaps the first production-ready solution.
-  
+
 images: [/img/hero/db/google-mcp.jpg]
 tags: [MCP, Database, PostgreSQL]
 ---

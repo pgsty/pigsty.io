@@ -6,7 +6,7 @@ manualLink: "https://vonng.com/en/db/db-year-review-2025/"
 author: vonng
 description: |
   A conversation between Mike Stonebraker (Turing Award Winner, Creator of PostgreSQL), Andy Pavlo (Carnegie Mellon), and the DBOS team.
-  
+
 images: [/img/hero/db/db-year-review-2025.jpg]
 tags: ['Database', 'DBOS', 'PostgreSQL']
 ---

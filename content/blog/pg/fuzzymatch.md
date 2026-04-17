@@ -4,10 +4,10 @@ date: 2021-03-05
 manualLink: "https://vonng.com/en/pg/fuzzymatch/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/))
-  
+
 description: |
   How to implement relatively complex fuzzy search logic in PostgreSQL?
-  
+
 images: [/img/hero/pg/fuzzymatch.jpg]
 tags: [PostgreSQL, PG-Development, Full-Text-Search]
 ---

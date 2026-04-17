@@ -6,7 +6,7 @@ manualLink: "https://vonng.com/en/cloud/rednote-cloud-exit/"
 author: vonng
 description: |
   When a company that was "born on the cloud" goes "self-host first," does that count as cloud exit? A repost of a deleted piece on the infrastructure coming-of-age for Chinas internet giants.
-  
+
 images: [/img/hero/cloud/rednote-cloud-exit.jpg]
 tags: ['Cloud-Exit', 'Aliyun', 'RedNote']
 ---

@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/xid-wrap-around/"
 author: vonng
 description: |
   XID WrapAround is perhaps a unique type of failure specific to PostgreSQL
-  
+
 images: [/img/hero/pg/xid-wrap-around.jpg]
 tags: [PostgreSQL, PG-Admin, Incident-Report]
 ---

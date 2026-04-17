@@ -5,7 +5,7 @@ date: 2023-05-07
 manualLink: "https://vonng.com/cn/db/microservice-bad-idea/"
 author: DHH
 description: |
-  Even Amazons SOA paradigm team admits microservices and Serverless have problems. Prime Video team switched to monolith, saving 90% operational costs.
+  Even Amazon's SOA team admits that microservices and serverless have problems. The Prime Video team switched to a monolith, saving 90% in operational costs.
 
 images: [/img/hero/db/microservice-bad-idea.jpg]
 tags: ['Architecture', 'Microservices', 'Serverless']

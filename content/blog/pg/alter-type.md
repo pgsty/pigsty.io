@@ -6,7 +6,7 @@ manualLink: "https://vonng.com/en/pg/alter-type/"
 author: vonng
 description: |
   How to change column types online, such as upgrading from INT to BIGINT?
-  
+
 images: [/img/hero/pg/alter-type.jpg]
 tags: [PostgreSQL, PG-Admin]
 ---

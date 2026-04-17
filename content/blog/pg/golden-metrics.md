@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/golden-metrics/"
 author: vonng
 description: |
   Understanding the golden monitoring metrics in PostgreSQL
-  
+
 images: [/img/hero/pg/golden-metrics.jpg]
 tags: [PostgreSQL, PG-Admin, Monitoring, Metrics]
 ---

@@ -4,23 +4,23 @@ linkTitle: "Self-Hosting Supabase"
 date: 2024-11-25
 author: |
   [Ruohang Feng](https://vonng.com) ([@Vonng](https://vonng.com/en/))
-summary: Supabase is great, own your own Supabase is even better. A tutorial for self-hosting production-grade supabase on local/cloud VM/BMs.
+summary: Supabase is great, but owning your own Supabase is even better. A tutorial for self-hosting production-grade Supabase on local or cloud VMs/BMs.
 tags: [Database,Supabase]
 ---
 
-Supabase is great, own your own Supabase is even better. 
-Here's a comprehensive tutorial for self-hosting production-grade supabase on local/cloud VM/BMs.
+Supabase is great, but owning your own Supabase is even better.
+Here's a comprehensive tutorial for self-hosting production-grade Supabase on local or cloud VMs/BMs.
 
 
 ## What is Supabase?
 
-[Supabase](https://supabase.com/) is an open-source Firebase alternative, a Backend as a Service (BaaS).
+[Supabase](https://supabase.com/) is an open-source Firebase alternative and a backend as a service (BaaS).
 
-Supabase wraps PostgreSQL kernel and vector extensions, alone with authentication, realtime subscriptions, edge functions, object storage, and instant REST and GraphQL APIs from your postgres schema.
-It let you skip most backend work, requiring only database design and frontend skills to ship quickly.
+Supabase wraps the PostgreSQL kernel and vector extensions, along with authentication, realtime subscriptions, edge functions, object storage, and instant REST and GraphQL APIs for your Postgres schema.
+It lets you skip most backend work, requiring only database design and frontend skills to ship quickly.
 
 Currently, Supabase may be the [most popular](https://ossrank.com/cat/368-postgresql-extension-ecosystem) open-source project in the PostgreSQL ecosystem, boasting over 74,000 stars on GitHub.
-And become quite popular among developers, and startups, since they have a [generous free plan](https://supabase.com/pricing), just like cloudflare & neon.
+It has also become quite popular among developers and startups thanks to its [generous free plan](https://supabase.com/pricing), much like Cloudflare and Neon.
 
 
 
@@ -34,8 +34,8 @@ But there is no doubt that when you really grow to millions of users, some may c
 That's where Pigsty comes in. Pigsty provides a complete one-click self-hosting solution for Supabase.
 Self-hosted Supabase can enjoy full PostgreSQL monitoring, IaC, PITR, and high availability capability,
 
-You can run the latest PostgreSQL 17(,16,15,14) kernels, (supabase is using the 15 currently), alone with [390](/ext/list/) PostgreSQL extensions out-of-the-box.
-Run on [mainstream](/docs/ref/linux) Linus OS distros with production grade [HA](/docs/concept/ha) [PostgreSQL](/docs/pgsql), [MinIO](/docs/minio), Prometheus & Grafana Stack for observability, and Nginx for reverse proxy.
+You can run the latest PostgreSQL 17/16/15/14 kernels (Supabase currently uses 15), along with [390](/ext/list/) PostgreSQL extensions out of the box.
+It runs on [mainstream](/docs/ref/linux) Linux distributions with production-grade [HA](/docs/concept/ha) [PostgreSQL](/docs/pgsql), [MinIO](/docs/minio), the Prometheus and Grafana stack for observability, and Nginx for reverse proxying.
 
 [**TIME**](/ext/cate/time): [`timescaledb`](/ext/e/timescaledb) [`timescaledb_toolkit`](/ext/e/timescaledb_toolkit) [`timeseries`](/ext/e/timeseries) [`periods`](/ext/e/periods) [`temporal_tables`](/ext/e/temporal_tables) [`emaj`](/ext/e/emaj) [`table_version`](/ext/e/table_version) [`pg_cron`](/ext/e/pg_cron) [`pg_later`](/ext/e/pg_later) [`pg_background`](/ext/e/pg_background)
 [**GIS**](/ext/cate/gis): [`postgis`](/ext/e/postgis) [`postgis_topology`](/ext/e/postgis_topology) [`postgis_raster`](/ext/e/postgis_raster) [`postgis_sfcgal`](/ext/e/postgis_sfcgal) [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) [`address_standardizer`](/ext/e/address_standardizer) [`address_standardizer_data_us`](/ext/e/address_standardizer_data_us) [`pgrouting`](/ext/e/pgrouting) [`pointcloud`](/ext/e/pointcloud) [`pointcloud_postgis`](/ext/e/pointcloud_postgis) [`h3`](/ext/e/h3) [`h3_postgis`](/ext/e/h3_postgis) [`q3c`](/ext/e/q3c) [`ogr_fdw`](/ext/e/ogr_fdw) [`geoip`](/ext/e/geoip) [`pg_polyline`](/ext/e/pg_polyline) [`pg_geohash`](/ext/e/pg_geohash) [`mobilitydb`](/ext/e/mobilitydb) [`earthdistance`](/ext/e/earthdistance)
@@ -381,7 +381,7 @@ PLEASE check the [Supabase Self-Hosting: Generate API Keys](https://supabase.com
 - [`dashboard_username`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml#L117): supabase studio web portal username, `supabase` by default
 - [`dashboard_password`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml#L128): supabase studio web portal password, `pigsty` by default
 
-If you have chanaged the default password for PostgreSQL and MinIO, you have to update the following parameters as well:
+If you have changed the default password for PostgreSQL and MinIO, you also need to update the following parameters:
 
 - [`postgres_password`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml#L126), according to [`pg_users`](/docs/pgsql/admin/user)
 - [`s3_access_key`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml#136) and [`s3_secret_key`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml#137), according to [`minio_users`](/docs/minio/param#minio_users)
@@ -438,7 +438,7 @@ all:
     supabase:         # supabase group
       vars:           # supabase param
         supa_config:  # supabase config
-          
+
           # update supabase domain names here
           site_url: http://supa.pigsty.cc
           api_external_url: http://supa.pigsty.cc
@@ -497,7 +497,7 @@ We recommend using an external S3 when:
 - you just have one single server available, then external s3 gives you a minimal disaster recovery guarantee, with RTO in hours and RPO in MBs.
 - you are operating in the cloud, then using S3 directly is recommended rather than wrap expensively EBS with MinIO 
 
-> The [`terraform/spec/aliyun-meta-s3.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/spec/aliyun-meta-s3.tf) provides an example of how to provision a single node alone with an S3 bucket.
+> The [`terraform/spec/aliyun-meta-s3.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/spec/aliyun-meta-s3.tf) provides an example of how to provision a single node along with an S3 bucket.
 
 To use an external S3 compatible service, you'll have to update two related references in the `pigsty.yml` config.
 
@@ -534,7 +534,7 @@ all:
         retention_full: 2             # keep 2, at most 3 full backup when using local fs repo
       minio:                          # optional minio repo for pgbackrest
         type: s3                      # minio is s3-compatible, so s3 is used
-        
+
         # update your credentials here
         s3_endpoint: oss-cn-beijing-internal.aliyuncs.com
         s3_region: oss-cn-beijing

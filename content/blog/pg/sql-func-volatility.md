@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/sql-func-volatility/"
 author: vonng
 description: |
   PostgreSQL functions have three volatility levels by default. Proper use can significantly improve performance.
-  
+
 images: [/img/hero/pg/sql-func-volatility.jpg]
 tags: [PostgreSQL, PG-Development, Functions]
 ---

@@ -6,7 +6,7 @@ manualLink: "https://vonng.com/en/db/guru/"
 author: vonng
 description: |
   The database world is full of hype and marketing fog. This column cuts through it with blunt commentary on industry trends and product reality.
-  
+
 images: [/img/hero/db/guru.jpg]
 tags: ['Database']
 ---

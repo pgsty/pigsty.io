@@ -6,7 +6,7 @@ manualLink: "https://vonng.com/en/pg/file_fdw/"
 author: vonng
 description: |
   With `file_fdw`, you can easily view operating system information, fetch network data, and feed various data sources into your database for unified viewing and management.
-  
+
 images: [/img/hero/pg/file_fdw.jpg]
 tags: [PostgreSQL, PG-Admin, Extension]
 ---

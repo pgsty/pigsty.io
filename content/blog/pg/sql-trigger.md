@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/sql-trigger/"
 author: vonng
 description: |
   Detailed understanding of trigger management and usage in PostgreSQL
-  
+
 images: [/img/hero/pg/sql-trigger.jpg]
 tags: [PostgreSQL, PG-Development, Triggers]
 ---

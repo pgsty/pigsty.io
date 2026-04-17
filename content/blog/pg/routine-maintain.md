@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/routine-maintain/"
 author: vonng
 description: |
   Cars need oil changes, databases need maintenance. For PG, three important maintenance tasks: backup, repack, vacuum
-  
+
 images: [/img/hero/pg/routine-maintain.jpg]
 tags: [PostgreSQL, PG-Admin]
 ---

@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/proprity-pg/"
 author: vonng
 description: |
   The same forces that once led MongoDB and MySQL toward closure are now at work in the PostgreSQL ecosystem. The PG world needs a distribution that represents "software freedom" values.
-  
+
 images: [/img/hero/pg/proprity-pg.jpg]
 tags: [PostgreSQL, PG-Ecosystem]
 ---

@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/audit-change/"
 author: vonng
 description: |
   Sometimes we want to record important metadata changes for audit purposes. PostgreSQL triggers can conveniently solve this need automatically.
-  
+
 images: [/img/hero/pg/audit-change.jpg]
 tags: [PostgreSQL, PG-Development, Triggers]
 ---

@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/db/cheap-polar/"
 author: vonng
 description: |
   Today we discuss the fair pricing of commercial databases, open-source databases, cloud databases, and domestic Chinese databases.
-  
+
 images: [/img/hero/db/cheap-polar.jpg]
 tags: [Database, Domestic-Database]
 ---

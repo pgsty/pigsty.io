@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/unix-tool/"
 author: vonng
 description: |
   top, free, vmstat, iostat: Quick reference for four commonly used CLI tools
-  
+
 images: [/img/hero/pg/unix-tool.jpg]
 tags: [PostgreSQL, PG-Admin, Tools]
 ---

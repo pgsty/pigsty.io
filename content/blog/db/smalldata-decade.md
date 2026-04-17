@@ -5,7 +5,7 @@ date: 2025-05-23
 manualLink: "https://vonng.com/cn/db/smalldata-decade/"
 author: Hannes Mühleisen
 description: |
-  If DuckDB had launched in 2012, the great migration to distributed analytics might never have happened. Data isnt that big after all.
+  If DuckDB had launched in 2012, the great migration to distributed analytics might never have happened. Data isn't that big after all.
 
 images: [/img/hero/db/smalldata-decade.jpg]
 tags: ['Database', 'DuckDB', 'OLAP']

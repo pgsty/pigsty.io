@@ -6,7 +6,7 @@ manualLink: "https://vonng.com/en/pg/adcode-geodecode/"
 author: vonng
 description: |
   How to efficiently solve the typical reverse geocoding problem: determining administrative regions based on user coordinates.
-  
+
 images: [/img/hero/pg/adcode-geodecode.jpg]
 tags: [PostgreSQL, PG-Development, GIS]
 ---

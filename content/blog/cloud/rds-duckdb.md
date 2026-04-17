@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/cloud/rds-duckdb/"
 author: Ruohang Feng
 description: |
   Does bolting DuckDB onto RDS suddenly make open-source Postgres ‘trash’? Business and open source should be symbiotic. If a vendor only extracts without giving back, the community will spit it out."
-  
+
 images: [/img/hero/cloud/rds-duckdb.jpg]
 tags: [PostgreSQL, PG-Ecosystem]
 ---

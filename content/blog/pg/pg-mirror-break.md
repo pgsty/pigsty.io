@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/pg-mirror-break/"
 author: vonng
 description: |
   PGDG cuts off FTP rsync sync channels, global mirror sites universally disconnected - this time they really strangled global users' supply chain.
-  
+
 images: [/img/hero/pg/pg-mirror-break.jpg]
 tags: [PostgreSQL, PG-Admin]
 ---

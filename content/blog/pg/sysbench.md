@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/sysbench/"
 author: vonng
 description: |
   Although PostgreSQL provides pgbench, sometimes you need sysbench to outperform MySQL.
-  
+
 images: [/img/hero/pg/sysbench.jpg]
 tags: [PostgreSQL, PG-Admin, Performance]
 ---

@@ -3,11 +3,11 @@ title: PGCon.Dev 2024, The conf that shutdown PG for a week
 date: 2024-06-17
 manualLink: "https://vonng.com/en/pg/pgcondev-2024/"
 author: |
-  [Ruohang Feng](https://vonng.com)([@Vonng](https://vonng.com/en/)) | [Wechat Column](https://mp.weixin.qq.com/s/dW3byoQkEIR0_EzWxobrWg)
-  
+  [Ruohang Feng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat Column](https://mp.weixin.qq.com/s/dW3byoQkEIR0_EzWxobrWg)
+
 description: |
   Experience & Feeling on the PGCon.Dev 2024   
-  
+
 images: [/img/hero/pg/pgcondev-2024.jpg]
 tags: [PostgreSQL, PG-Ecosystem]
 ---

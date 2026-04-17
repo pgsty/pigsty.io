@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/backup-plan/"
 author: vonng
 description: |
   There are various backup strategies. Physical backups can usually be divided into four types.
-  
+
 images: [/img/hero/pg/backup-plan.jpg]
 tags: [PostgreSQL, PG-Admin, Backup]
 ---

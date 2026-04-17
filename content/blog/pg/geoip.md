@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/geoip/"
 author: vonng
 description: |
   A common requirement in application development is GeoIP conversion - converting source IP addresses to geographic coordinates or administrative divisions (country-state-city-county-town-village)
-  
+
 images: [/img/hero/pg/geoip.jpg]
 tags: [PostgreSQL, PG-Development, Extension, GIS]
 ---

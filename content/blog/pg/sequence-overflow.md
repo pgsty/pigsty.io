@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/sequence-overflow/"
 author: vonng
 description: |
   If you use Integer sequences on tables, you should consider potential overflow scenarios.
-  
+
 images: [/img/hero/pg/sequence-overflow.jpg]
 tags: [PostgreSQL, PG-Admin, Incident-Report]
 ---

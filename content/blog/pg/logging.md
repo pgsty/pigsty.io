@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/logging/"
 author: vonng
 description: |
   It's recommended to configure PostgreSQL's log format as CSV for easy analysis, and it can be directly imported into PostgreSQL data tables.
-  
+
 images: [/img/hero/pg/logging.jpg]
 tags: [PostgreSQL, PG-Admin, Logging]
 ---

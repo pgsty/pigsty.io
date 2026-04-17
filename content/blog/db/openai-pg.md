@@ -270,6 +270,6 @@ If OpenAI is interested, I’d certainly be happy to provide some help. But I th
 
 [10] Instagram’s Sharding IDs: https://instagram-engineering.com/sharding-ids-at-instagram-1cf5a71e5a5c
 
-[11] Reclaim hardware bouns: https://pigsty.io/blog/cloud/bonus/
+[11] Reclaim hardware bonus: https://pigsty.io/blog/cloud/bonus/
 
 [12] Distributed Databases Are a False Need: https://pigsty.io/blog/db/distributive-bullshit/

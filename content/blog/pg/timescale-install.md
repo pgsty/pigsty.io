@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/timescale-install/"
 author: vonng
 description: |
   TimescaleDB is a PostgreSQL extension plugin that provides time-series database functionality.
-  
+
 images: [/img/hero/pg/timescale-install.jpg]
 tags: [PostgreSQL, PG-Admin, Extension]
 ---

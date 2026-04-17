@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/uuid/"
 author: vonng
 description: |
   UUID properties, principles and applications, and how to manipulate UUIDs using PostgreSQL stored procedures.
-  
+
 images: [/img/hero/pg/uuid.jpg]
 tags: [PostgreSQL, PG-Development, Architecture]
 ---

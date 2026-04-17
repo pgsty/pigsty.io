@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/db/ai-question/"
 author: vonng
 description: |
   Your ability to ask questions—and your taste in what to ask—determines your position in the AI era. When answers become commodities, good questions become the new wealth. We are living in the moment this prophecy comes true.
-  
+
 images: [/img/hero/db/ai-question.jpg]
 tags: [AI]
 ---

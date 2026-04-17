@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/backup-overview/"
 author: vonng
 description: |
   Backup is the foundation of a DBA's livelihood. With backups, there's no need to panic.
-  
+
 images: [/img/hero/pg/backup-overview.jpg]
 tags: [PostgreSQL, PG-Admin, Backup]
 ---

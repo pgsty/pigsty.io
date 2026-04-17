@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/logical-decoding/"
 author: vonng
 description: |
   Change Data Capture is an interesting ETL alternative solution.
-  
+
 images: [/img/hero/pg/logical-decoding.jpg]
 tags: [PostgreSQL, PG-Development, CDC]
 ---

@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/wire-protocol/"
 author: vonng
 description: |
   Understanding the TCP protocol used for communication between PostgreSQL server and client, and printing messages using Go
-  
+
 images: [/img/hero/pg/wire-protocol.jpg]
 tags: [PostgreSQL, PG-Development, PG-Kernel]
 ---

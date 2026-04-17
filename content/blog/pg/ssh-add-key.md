@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/ssh-add-key/"
 author: vonng
 description: |
   Quick configuration for passwordless login to all machines
-  
+
 images: [/img/hero/pg/ssh-add-key.jpg]
 tags: [PostgreSQL, PG-Admin]
 ---

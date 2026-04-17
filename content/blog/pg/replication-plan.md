@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/pg/replication-plan/"
 author: vonng
 description: |
   Replication is one of the core issues in system architecture.
-  
+
 images: [/img/hero/pg/replication-plan.jpg]
 tags: [PostgreSQL, PG-Admin, Architecture]
 ---

@@ -5,7 +5,7 @@ manualLink: "https://vonng.com/en/db/7-week-7-db/"
 author: Matt Blewitt
 description: |
   Is PostgreSQL the king of boring databases? Here are seven databases worth studying in 2025: PostgreSQL, SQLite, DuckDB, ClickHouse, FoundationDB, TigerBeetle, and CockroachDB—each deserving a week of deep exploration.
-  
+
 images: [/img/hero/db/7-week-7-db.jpg]
 tags: [Database, PostgreSQL, SQLite, DuckDB, ClickHouse]
 ---
