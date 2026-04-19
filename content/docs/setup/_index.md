@@ -18,7 +18,7 @@ Pigsty provides out-of-the-box [**Vagrant**](/docs/deploy/vagrant/) templates an
 
 [![pigsty-arch](/img/pigsty/arch.png)](/docs/concept/arch)
 
-The single-node version of Pigsty includes all core features: **504** [**PG extensions**](/docs/pgsql/ext), self-contained Grafana/Victoria monitoring, [**IaC**](/docs/concept/iac) provisioning capabilities,
+The single-node version of Pigsty includes all core features: **507** [**PG extensions**](/docs/pgsql/ext), self-contained Grafana/Victoria monitoring, [**IaC**](/docs/concept/iac) provisioning capabilities,
 and local [**PITR**](/docs/concept/pitr) point-in-time recovery. If you have external object storage (for PostgreSQL PITR backup), then for scenarios like demos, personal websites, and small services,
 even a single-node environment can provide a certain degree of [**data persistence**](/docs/concept/pitr) guarantee.
 However, single-node cannot achieve [**High Availability**](/docs/concept/ha)—automatic failover requires at least 3 nodes.

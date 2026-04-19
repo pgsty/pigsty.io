@@ -10,7 +10,7 @@ categories: [Task]
 
 ## Quick Start
 
-Pigsty provides [**504 extensions**](/ext/list). Using extensions involves four steps: **Download**, **Install**, **Configure**, **Enable**.
+Pigsty provides [**507 extensions**](/ext/list). Using extensions involves four steps: **Download**, **Install**, **Configure**, **Enable**.
 
 ```yaml
 pg-meta:
@@ -495,6 +495,6 @@ SELECT * FROM pg_available_extension_versions WHERE name = 'vector';
 ## Related Resources
 
 - [**Extensions**](/docs/pgsql/ext/): Detailed extension management documentation
-- [**Extension Catalog**](/ext/list): Browse 504 available extensions
+- [**Extension Catalog**](/ext/list): Browse 507 available extensions
 - [**pig Package Manager**](/docs/pig/): Extension installation CLI tool
 - [**Database Management**](/docs/pgsql/admin/db/): Enable extensions in databases

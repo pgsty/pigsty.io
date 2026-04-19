@@ -8,7 +8,7 @@ weight: 610
 
 Pigsty has a repository that provides additional PostgreSQL extension packages on mainstream [Linux Distros](/docs/ref/linux).
 It is designed to work together with the official PostgreSQL Global Development Group ([PGDG](https://www.postgresql.org/download/linux/)) repo.
-Together, they can provide [504 PostgreSQL Extensions](/ext/) out-of-the-box.
+Together, they can provide [507 PostgreSQL Extensions](/ext/) out-of-the-box.
 
 |   PGSQL Repo   |                            Description                            |             Link              |
 |:--------------:|:-----------------------------------------------------------------:|:-----------------------------:|
