@@ -6,90 +6,85 @@ icon: fa-solid fa-clipboard-list
 categories: [Reference]
 ---
 
+## 2026-04-19
+
+| Name                         | Old Ver          | New Ver           | Note                                                         |
+|:-----------------------------|:-----------------|:------------------|:-------------------------------------------------------------|
+| `victoria-logs`              | 1.49.0           | 1.50.0            | base package                                                 |
+| `vlagent`                    | 1.49.0           | 1.50.0            | VictoriaLogs companion package                               |
+| `vlogscli`                   | 1.49.0           | 1.50.0            | VictoriaLogs companion package                               |
+| `victoria-traces`            | 0.8.0            | 0.8.1             |                                                              |
+| `dblab`                      | 0.37.1           | 0.38.0            |                                                              |
+| `grafana-victoriametrics-ds` | 0.23.4           | 0.24.0            |                                                              |
+| `grafana-plugins`            | 12.3.0           | 13.0.0            | Noarch plugin bundle, manually curated                       |
+| `garage`                     | 2.2.0            | 2.3.0             |                                                              |
+| `rustfs`                     | 1.0.0-alpha.93   | 1.0.0-alpha.94    |                                                              |
+| `claude`                     | 2.1.107          | 2.1.114           | Refactored to versioned templates and converged on latest stable |
+| `codex`                      | 0.121.0-alpha.7  | 0.121.0           | Switched to the stable release and rebuilt                   |
+| `genai-toolbox`              | 1.0.0            | 1.1.0             | Synced build artifacts from the genai-toolbox project        |
+| `postgrest`                  | 14.9             | 14.10             |                                                              |
+| `opencode`                   | 1.4.3            | 1.4.11            | Switched to versioned cache and rebuilt                      |
+| `uv`                         | 0.11.6           | 0.11.7            |                                                              |
+| `nodejs`                     | 24.14.1          | 24.15.0           | Stayed on the 24.x policy line                               |
+| `minio`                      | 20260325000000   | 20260417000000    | Direct-link metadata refresh; rebuilt from the pgsty fork    |
+| `mcli`                       | 20260321000000   | 20260417000000    | Direct-link metadata refresh; rebuilt from the pgsty fork    |
+| `sabiql`                     | 1.10.0           | 1.11.0            |                                                              |
+| `etcd`                       | 3.6.8            | 3.6.10            | EL only bumped to 3.6.10; APT deferred pending patroni 4.1.1 |
+| `pig`                        | 1.3.4            | 1.4.0             |                                                              |
+{.stretch-last}
+
+-------
+
 ## 2026-04-14
 
-| Name                       | Old Ver          | New Ver           | Note                                     |
-|:---------------------------|:-----------------|:------------------|:-----------------------------------------|
-| `claude`                   | 2.1.101          | 2.1.107           | rebuilt on 2026-04-14                    |
-| `codex`                    | 0.121.0-alpha.2  | 0.121.0-alpha.7   | prerelease chain, rebuilt on 2026-04-14  |
-| `agentsview`               | 0.19.0           | 0.22.2            | upstream bump                            |
-| `prometheus`               | 3.11.1           | 3.11.2            | upstream bump                            |
-| `victoria-metrics`         | 1.139.0          | 1.140.0           | base package                             |
-| `victoria-metrics-cluster` | 1.139.0          | 1.140.0           | bundled with VictoriaMetrics             |
-| `vmutils`                  | 1.139.0          | 1.140.0           | bundled with VictoriaMetrics             |
-| `duckdb`                   | 1.5.1            | 1.5.2             | upstream bugfix release                  |
-| `seaweedfs`                | 4.19             | 4.20              | upstream bump                            |
-| `tigerbeetle`              | 0.16.78          | 0.17.0            | upstream bump                            |
-| `maddy`                    | 0.9.2            | 0.9.3             | upstream bump                            |
-| `grafana`                  | 12.4.2           | 13.0.0            | direct-download metadata; major release  |
-| `crush`                    | 0.56.0           | 0.57.0            | direct-download metadata                 |
-| `pg_exporter`              | 1.2.1           | 1.2.2             | direct-download metadata                 |
-| `pig`                      | 1.3.2           | 1.3.4             | direct-download metadata                 |
-{.stretch-last}
-
--------
-
-## 2026-04-12
-
-| Name        | Old Ver          | New Ver           | Note                                                            |
-|:------------|:-----------------|:------------------|:----------------------------------------------------------------|
-| `claude`    | 2.1.98           | 2.1.101           | rebuilt on 2026-04-12; Makefile now pulls from versioned bucket |
-| `codex`     | 0.119.0-alpha.29 | 0.121.0-alpha.2   | prerelease chain, rebuilt on 2026-04-12                         |
-| `postgrest` | 14.8             | 14.9              | upstream bump                                                   |
-| `rainfrog`  | 0.3.17           | 0.3.18            | upstream bump                                                   |
-| `rustfs`    | 1.0.0-alpha.91   | 1.0.0-alpha.93    | upstream bump; switched to versioned release assets             |
-{.stretch-last}
-
--------
-
-## 2026-04-10
-
-| Name                         | Old Ver         | New Ver           | Note                                     |
-|:-----------------------------|:----------------|:------------------|:-----------------------------------------|
-| `prometheus`                 | 3.10.0          | 3.11.1            | upstream bump                            |
-| `alertmanager`               | 0.31.1          | 0.32.0            | upstream bump                            |
-| `node_exporter`              | 1.10.2          | 1.11.1            | upstream bump                            |
-| `mongodb_exporter`           | 0.49.0          | 0.50.0            | upstream bump                            |
-| `victoria-metrics`           | 1.138.0         | 1.139.0           | base package                             |
-| `victoria-metrics-cluster`   | 1.138.0         | 1.139.0           | bundled with VictoriaMetrics             |
-| `vmutils`                    | 1.138.0         | 1.139.0           | bundled with VictoriaMetrics             |
-| `victoria-logs`              | 1.48.0          | 1.49.0            | base package                             |
-| `vlagent`                    | 1.48.0          | 1.49.0            | bundled with VictoriaLogs                |
-| `vlogscli`                   | 1.48.0          | 1.49.0            | bundled with VictoriaLogs                |
-| `grafana`                    | 12.4.1          | 12.4.2            | direct-download metadata                 |
-| `duckdb`                     | 1.5.0           | 1.5.1             | upstream bump                            |
-| `dblab`                      | 0.34.3          | 0.37.1            | upstream bump                            |
-| `grafana-victoriametrics-ds` | 0.23.1          | 0.23.4            | upstream bump                            |
-| `grafana-infinity-ds`        | 3.7.4           | 3.8.0             | upstream bump                            |
-| `seaweedfs`                  | 4.17            | 4.19              | upstream bump                            |
-| `rustfs`                     | 1.0.0-alpha.89  | 1.0.0-alpha.91    | upstream bump                            |
-| `v2ray`                      | 5.47.0          | 5.48.0            | v2ray-core package                       |
-| `xray`                       | 26.2.6          | 26.3.27           | upstream bump                            |
-| `agentsview`                 | 0.15.0          | 0.19.0            | upstream bump                            |
-| `claude`                     | 2.1.81          | 2.1.98            | rebuilt on 2026-04-10                    |
-| `codex`                      | 0.116.0         | 0.119.0-alpha.29  | prerelease chain, rebuilt on 2026-04-10  |
-| `maddy`                      | 0.8.2           | 0.9.2             | upstream bump                            |
-| `genai-toolbox`              | 0.27.0          | 1.0.0             | metadata only, renamed to mcp-toolbox    |
-| `npgsqlrest`                 | 3.11.1          | 3.12.0            | upstream bump                            |
-| `postgrest`                  | 14.7            | 14.8              | upstream bump                            |
-| `sqlcmd`                     | 1.9.0           | 1.10.0            | upstream bump                            |
-| `opencode`                   | 1.2.27          | 1.4.3             | rebuilt on 2026-04-10                    |
-| `uv`                         | 0.10.12         | 0.11.6            | upstream bump                            |
-| `golang`                     | 1.26.1          | 1.26.2            | official Go stable                       |
-| `nodejs`                     | 24.14.0         | 24.14.1           | kept on 24.x policy line                 |
-| `pgschema`                   | 1.7.4           | 1.9.0             | direct-download metadata                 |
-| `crush`                      | 0.51.2          | 0.56.0            | direct-download metadata                 |
-| `rclone`                     | 1.73.2          | 1.73.4            | direct-download metadata                 |
-| `code`                       | 1.112.0         | 1.115.0           | VS Code stable metadata                  |
-| `code-server`                | 4.112.0         | 4.115.0           | direct-download metadata                 |
-| `tigerbeetle`                | 0.16.77         | 0.16.78           | upstream bump                            |
-| `tigerfs`                    | 0.5.0           | 0.6.0             | upstream bump                            |
-| `sabiql`                     | 1.8.2           | 1.10.0            | upstream bump                            |
-| `hugo`                       | 0.158.0         | 0.160.1           | upstream bump                            |
-| `etcd`                       | 3.6.9           | 3.6.8             | frozen at 3.6.8; README corrected        |
-| `loki`                       | 3.6.7           | 3.6.7             | deprecated, kept frozen                  |
-| `promtail`                   | 3.6.7           | 3.6.7             | deprecated, kept frozen                  |
-| `pgflo`                      | 0.0.15          | -                 | removed                                  |
+| Name                         | Old Ver          | New Ver           | Note                                                  |
+|:-----------------------------|:-----------------|:------------------|:------------------------------------------------------|
+| `prometheus`                 | 3.10.0           | 3.11.2            |                                                       |
+| `alertmanager`               | 0.31.1           | 0.32.0            |                                                       |
+| `node_exporter`              | 1.10.2           | 1.11.1            |                                                       |
+| `mongodb_exporter`           | 0.49.0           | 0.50.0            |                                                       |
+| `victoria-metrics`           | 1.138.0          | 1.140.0           |                                                       |
+| `victoria-metrics-cluster`   | 1.138.0          | 1.140.0           | VictoriaMetrics companion package                     |
+| `vmutils`                    | 1.138.0          | 1.140.0           | VictoriaMetrics companion package                     |
+| `victoria-logs`              | 1.48.0           | 1.49.0            |                                                       |
+| `vlagent`                    | 1.48.0           | 1.49.0            | VictoriaLogs companion package                        |
+| `vlogscli`                   | 1.48.0           | 1.49.0            | VictoriaLogs companion package                        |
+| `grafana`                    | 12.4.1           | 13.0.0            | Major release upgrade                                 |
+| `duckdb`                     | 1.5.0            | 1.5.2             |                                                       |
+| `dblab`                      | 0.34.3           | 0.37.1            |                                                       |
+| `grafana-victoriametrics-ds` | 0.23.1           | 0.23.4            |                                                       |
+| `grafana-infinity-ds`        | 3.7.4            | 3.8.0             |                                                       |
+| `seaweedfs`                  | 4.17             | 4.20              |                                                       |
+| `rustfs`                     | 1.0.0-alpha.89   | 1.0.0-alpha.93    | Switched to versioned release asset names             |
+| `v2ray`                      | 5.47.0           | 5.48.0            |                                                       |
+| `xray`                       | 26.2.6           | 26.3.27           |                                                       |
+| `agentsview`                 | 0.15.0           | 0.22.2            |                                                       |
+| `claude`                     | 2.1.81           | 2.1.107           | Rebuilt; Makefile now pulls from a versioned bucket   |
+| `codex`                      | 0.116.0          | 0.121.0-alpha.7   | Prerelease chain upgrade; rebuilt                     |
+| `maddy`                      | 0.8.2            | 0.9.3             |                                                       |
+| `genai-toolbox`              | 0.27.0           | 1.0.0             | Metadata-only refresh; upstream renamed to mcp-toolbox |
+| `npgsqlrest`                 | 3.11.1           | 3.12.0            |                                                       |
+| `postgrest`                  | 14.7             | 14.9              |                                                       |
+| `rainfrog`                   | 0.3.17           | 0.3.18            |                                                       |
+| `sqlcmd`                     | 1.9.0            | 1.10.0            |                                                       |
+| `opencode`                   | 1.2.27           | 1.4.3             | Rebuilt                                               |
+| `uv`                         | 0.10.12          | 0.11.6            |                                                       |
+| `golang`                     | 1.26.1           | 1.26.2            |                                                       |
+| `nodejs`                     | 24.14.0          | 24.14.1           | Stayed on the 24.x policy line                        |
+| `pgschema`                   | 1.7.4            | 1.9.0             |                                                       |
+| `crush`                      | 0.51.2           | 0.57.0            |                                                       |
+| `rclone`                     | 1.73.2           | 1.73.4            |                                                       |
+| `code`                       | 1.112.0          | 1.115.0           |                                                       |
+| `code-server`                | 4.112.0          | 4.115.0           |                                                       |
+| `tigerbeetle`                | 0.16.77          | 0.17.0            |                                                       |
+| `tigerfs`                    | 0.5.0            | 0.6.0             |                                                       |
+| `sabiql`                     | 1.8.2            | 1.10.0            |                                                       |
+| `hugo`                       | 0.158.0          | 0.160.1           |                                                       |
+| `etcd`                       | 3.6.9            | 3.6.8             | Frozen at 3.6.8 and README corrected                  |
+| `loki`                       | 3.6.7            | 3.6.7             | Deprecated and kept frozen                            |
+| `promtail`                   | 3.6.7            | 3.6.7             | Deprecated and kept frozen                            |
+| `pg_exporter`                | 1.2.1            | 1.2.2             | Direct-link metadata refresh                          |
+| `pig`                        | 1.3.2            | 1.3.4             | Direct-link metadata refresh                          |
 {.stretch-last}
 
 -------

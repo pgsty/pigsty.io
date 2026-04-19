@@ -36,6 +36,93 @@
   }
 }
 
+// Keep plain fenced blocks, highlighted Chroma blocks, and inline code on the
+// same visual system so dark-mode tweaks don't regress one while fixing another.
+.td-content {
+  --pigsty-code-bg: var(--td-pre-bg);
+  --pigsty-code-border: var(--bs-border-color);
+  --pigsty-code-fg: inherit;
+  --pigsty-code-inline-bg: var(--td-pre-bg);
+  --pigsty-code-inline-fg: inherit;
+  --pigsty-code-copy-fg: var(--bs-tertiary-color);
+  --pigsty-code-copy-bg: transparent;
+
+  .highlight {
+    background-color: var(--pigsty-code-bg);
+    border: 1px solid var(--pigsty-code-border);
+    border-radius: $border-radius;
+    overflow: hidden;
+  }
+
+  .highlight > pre {
+    border: 0;
+  }
+
+  pre,
+  .chroma {
+    background-color: var(--pigsty-code-bg);
+    color: var(--pigsty-code-fg);
+    border-color: var(--pigsty-code-border);
+    border-radius: $border-radius;
+  }
+
+  .chroma {
+    border-radius: inherit;
+  }
+
+  p code,
+  li > code,
+  table code {
+    background-color: var(--pigsty-code-inline-bg);
+    color: var(--pigsty-code-inline-fg);
+  }
+
+  .highlight pre button.td-click-to-copy {
+    --bs-btn-color: var(--pigsty-code-copy-fg);
+    --bs-btn-hover-color: var(--bs-body-color);
+    --bs-btn-active-color: var(--bs-body-color);
+    --bs-btn-bg: var(--pigsty-code-copy-bg);
+    --bs-btn-hover-bg: color-mix(in srgb, var(--pigsty-code-bg) 78%, var(--bs-body-color) 14%);
+    --bs-btn-active-bg: color-mix(in srgb, var(--pigsty-code-bg) 72%, var(--bs-body-color) 18%);
+    --bs-btn-border-color: color-mix(in srgb, var(--pigsty-code-border) 82%, transparent);
+    --bs-btn-hover-border-color: color-mix(in srgb, var(--pigsty-code-border) 92%, var(--bs-body-color) 12%);
+
+    color: var(--pigsty-code-copy-fg);
+    background-color: var(--pigsty-code-copy-bg);
+    border: 1px solid var(--bs-btn-border-color);
+    border-radius: 0.4rem;
+    opacity: 1;
+
+    &:hover,
+    &:active {
+      color: var(--bs-body-color);
+      background-color: color-mix(in srgb, var(--pigsty-code-bg) 78%, var(--bs-body-color) 14%);
+    }
+  }
+}
+
+[data-bs-theme='dark'] .td-content {
+  --pigsty-code-bg: #1b1f22;
+  --pigsty-code-border: #3a4148;
+  --pigsty-code-fg: #d0d7de;
+  --pigsty-code-inline-bg: #2a2f36;
+  --pigsty-code-inline-fg: #e6edf3;
+  --pigsty-code-copy-fg: #98a6b3;
+  --pigsty-code-copy-bg: rgba(255, 255, 255, 0.02);
+
+  .chroma {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+
+    .hl {
+      background-color: rgba(255, 255, 255, 0.06);
+    }
+
+    .err {
+      background-color: rgba(166, 23, 23, 0.18);
+    }
+  }
+}
+
 // 覆盖 Docsy 默认的内容最大宽度（从 80% 改为 90%）
 // 影响：段落、代码块、blockquote、表格、asciinema 播放器等
 .td-max-width-on-larger-screens {

@@ -10,6 +10,7 @@ The current stable version is [**v4.2.2**](#v422).
 
 |     Version     | Release Date | Summary                                                                         |                                       Release Page                                        |
 |:---------------:|:------------:|---------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------:|
+| [v4.3.0](#v430) |  2026-04-19  | Placeholder: April Infra / RPM inventory, Grafana 13, Cloudberry 2.1            |                                            TBD                                            |
 | [v4.2.2](#v422) |  2026-03-23  | Insforge template, pdu, pgdog, tigerfs, ivorysql 5.3                            |               [v4.2.2](https://github.com/pgsty/pigsty/releases/tag/v4.2.2)               |
 | [v4.2.1](#v421) |  2026-03-06  | Maintenance release: 3 new extensions, drop PG13, bug fixes                     |               [v4.2.1](https://github.com/pgsty/pigsty/releases/tag/v4.2.1)               |
 | [v4.2.0](#v420) |  2026-02-28  | Routine minor release with six PG kernel updates                                |               [v4.2.0](https://github.com/pgsty/pigsty/releases/tag/v4.2.0)               |
@@ -70,6 +71,155 @@ The current stable version is [**v4.2.2**](#v422).
 
 
 ------
+
+## v4.3.0 (WIP)
+
+**Placeholder Note**
+
+- This section is a `v4.3.0` placeholder release note. For now it only consolidates package version identifiers from the `2026-04-14` and `2026-04-19` repository updates.
+- Feature notes, API changes, compatibility notes, commit stats, and checksums will be filled in at the final release stage.
+
+**Highlights**
+
+- The infra stack is lifted to `Grafana 13.0.0`, `VictoriaMetrics 1.140.0`, and `VictoriaLogs 1.50.0`, plus additional April batches such as `victoria-traces 0.8.1`, `garage 2.3.0`, and `grafana-plugins 13.0.0`.
+- The PG/RPM side consolidates a large batch of new and upgraded packages, including `Cloudberry 2.1`, `OriolePG 17.18`, `OrioleDB 1.7 / beta15`, `TimescaleDB 2.26.3`, and `pg_search 0.23.0`.
+- The placeholder RPM table already merges shared updates, RPM-only items, and database kernel / companion changes into a single table so the full narrative can be completed later.
+
+**Infrastructure Package Updates**
+
+- [Infra Changelog 2026-04-14](/docs/repo/infra/log/#2026-04-14)
+- [Infra Changelog 2026-04-19](/docs/repo/infra/log/#2026-04-19)
+
+| Name                         | Old Version    | New Version    | Notes                                                 |
+|:-----------------------------|:---------------|:---------------|:------------------------------------------------------|
+| `alertmanager`               | 0.31.1         | 0.32.0         |                                                       |
+| `agentsview`                 | 0.15.0         | 0.22.2         |                                                       |
+| `claude`                     | 2.1.81         | 2.1.114        |                                                       |
+| `code`                       | 1.112.0        | 1.115.0        |                                                       |
+| `code-server`                | 4.112.0        | 4.115.0        |                                                       |
+| `codex`                      | 0.116.0        | 0.121.0        |                                                       |
+| `crush`                      | 0.51.2         | 0.57.0         |                                                       |
+| `dblab`                      | 0.34.3         | 0.38.0         |                                                       |
+| `duckdb`                     | 1.5.0          | 1.5.2          |                                                       |
+| `etcd`                       | 3.6.9          | 3.6.10         | APT frozen to 3.6.8 until PGDG patroni 4.1.1 released |
+| `garage`                     | 2.2.0          | 2.3.0          |                                                       |
+| `genai-toolbox`              | 0.27.0         | 1.1.0          |                                                       |
+| `golang`                     | 1.26.1         | 1.26.2         |                                                       |
+| `grafana`                    | 12.4.1         | 13.0.0         | Major upgrade                                         |
+| `grafana-infinity-ds`        | 3.7.4          | 3.8.0          |                                                       |
+| `grafana-plugins`            | 12.3.0         | 13.0.0         | Noarch plugin bundle,                                 |
+| `grafana-victoriametrics-ds` | 0.23.1         | 0.24.0         |                                                       |
+| `hugo`                       | 0.158.0        | 0.160.1        |                                                       |
+| `loki`                       | 3.6.7          | 3.6.7          | Deprecated and kept frozen                            |
+| `maddy`                      | 0.8.2          | 0.9.3          |                                                       |
+| `mcli`                       | 20260321000000 | 20260417000000 | rebuilt from pgsty fork                               |
+| `minio`                      | 20260325000000 | 20260417000000 | rebuilt from pgsty fork, cve fixed                    |
+| `mongodb_exporter`           | 0.49.0         | 0.50.0         |                                                       |
+| `node_exporter`              | 1.10.2         | 1.11.1         |                                                       |
+| `nodejs`                     | 24.14.0        | 24.15.0        | Stayed on the 24.x policy line                        |
+| `npgsqlrest`                 | 3.11.1         | 3.12.0         |                                                       |
+| `opencode`                   | 1.2.27         | 1.4.11         |                                                       |
+| `pg_exporter`                | 1.2.1          | 1.2.2          | Go 1.26.2                                             |
+| `pgschema`                   | 1.7.4          | 1.9.0          |                                                       |
+| `pig`                        | 1.3.2          | 1.4.0          |                                                       |
+| `postgrest`                  | 14.7           | 14.10          |                                                       |
+| `prometheus`                 | 3.10.0         | 3.11.2         |                                                       |
+| `promtail`                   | 3.6.7          | 3.6.7          |                                                       |
+| `rainfrog`                   | 0.3.17         | 0.3.18         |                                                       |
+| `rclone`                     | 1.73.2         | 1.73.4         |                                                       |
+| `rustfs`                     | 1.0.0-alpha.89 | 1.0.0-alpha.94 |                                                       |
+| `sabiql`                     | 1.8.2          | 1.11.0         |                                                       |
+| `seaweedfs`                  | 4.17           | 4.20           |                                                       |
+| `sqlcmd`                     | 1.9.0          | 1.10.0         |                                                       |
+| `tigerbeetle`                | 0.16.77        | 0.17.0         |                                                       |
+| `tigerfs`                    | 0.5.0          | 0.6.0          |                                                       |
+| `uv`                         | 0.10.12        | 0.11.7         |                                                       |
+| `victoria-logs`              | 1.48.0         | 1.50.0         |                                                       |
+| `victoria-metrics`           | 1.138.0        | 1.140.0        |                                                       |
+| `victoria-metrics-cluster`   | 1.138.0        | 1.140.0        |                                                       |
+| `victoria-traces`            | 0.8.0          | 0.8.1          |                                                       |
+| `vlagent`                    | 1.48.0         | 1.50.0         |                                                       |
+| `vlogscli`                   | 1.48.0         | 1.50.0         |                                                       |
+| `vmutils`                    | 1.138.0        | 1.140.0        |                                                       |
+| `v2ray`                      | 5.47.0         | 5.48.0         |                                                       |
+| `xray`                       | 26.2.6         | 26.3.27        |                                                       |
+
+**RPM/DEB Package Inventory**
+
+- [RPM Changelog 2026-04-14](/docs/repo/pgsql/rpm/#2026-04-14)
+- [RPM Changelog 2026-04-19](/docs/repo/pgsql/rpm/#2026-04-19)
+- [DEB Changelog 2026-04-14](/docs/repo/pgsql/deb/#2026-04-14)
+- [DEB Changelog 2026-04-19](/docs/repo/pgsql/deb/#2026-04-19)
+
+| Package              | Old Version | New Version | Notes                                             |
+|:---------------------|:------------|:------------|:--------------------------------------------------|
+| `cloudberry`         | 2.0.0       | 2.1.0       | Kernel bundle                                     |
+| `cloudberry-backup`  | -           | 2.1.0       | New kernel-bundle subpackage                      |
+| `cloudberry-pxf`     | -           | 2.1.0       | New kernel-bundle subpackage                      |
+| `oriolepg`           | 17.16       | 17.18       | Kernel bundle; shared upgrade                     |
+| `orioledb`           | 1.6 beta14  | 1.7 beta15  | Kernel bundle                                     |
+| `PolarDB`            | 15.15       | 17.9.1.0    | PG 15 -> 17                                       |
+| `storage_engine`     | -           | 1.0.7       | new package; PG 14-18                             |
+| `re2`                | -           | 0.1.1       | new package; PG 16-18                             |
+| `ulak`               | -           | 0.0.2       | new package; PG 14-18                             |
+| `block_copy_command` | -           | 0.1.5       | new package; PG 14-18, Rust/pgrx 0.17.0           |
+| `pg_kazsearch`       | -           | 2.0.0       | new package; PG 16-18, Rust/pgrx 0.17.0           |
+| `pg_rrf`             | -           | 0.0.3       | new package; PG 14-17, Rust/pgrx 0.16.1 -> 0.17.0 |
+| `pgmqtt`             | -           | 0.1.0       | new package; PG 14-18, Rust/pgrx 0.16.1 -> 0.17.0 |
+| `pg_when`            | -           | 0.1.9       | new package; PG 14-18, Rust/pgrx 0.17.0           |
+| `provsql`            | -           | 1.2.3       | new package; PG 14-18                             |
+| `pg_isok`            | -           | 1.4.1       | new package; PG 14-18                             |
+| `pg_byteamagic`      | -           | 0.2.4       | new package; PG 14-18                             |
+| `logical_ddl`        | -           | 0.1.0       | new package; PG 14-18                             |
+| `datasketches`       | -           | 1.7.0       | new package; PG 14-18                             |
+| `pg_text_semver`     | -           | 1.2.1       | new package; PG 14-18                             |
+| `external_file`      | -           | 1.2         | new package; PG 14-18                             |
+| `pg_query_rewrite`   | -           | 0.0.5       | new package; PG 14-18                             |
+| `pghydro`            | -           | 6.6         | new package; PG 14-18                             |
+| `pg_datasentinel`    | -           | 1.0         | new package; PG 15-18                             |
+| `onesparse`          | -           | 1.0.0       | new package; PG 18 only                           |
+| `rdkit`              | -           | 202503.6    | new package; PG 14-18                             |
+| `pg_dispatch`        | -           | 0.1.5       | new package; PG 14-18                             |
+| `pg_fsql`            | -           | 1.1.0       | new package; PG 14-18                             |
+| `pg_liquid`          | -           | 0.1.7       | new package; PG 14-18                             |
+| `pg_regresql`        | -           | 2.0.0       | new package; PG 14-18                             |
+| `pg_slug_gen`        | -           | 1.0.0       | new package; PG 15-18                             |
+| `pg_variables`       | -           | 1.2.5       | new package; PG 14-18                             |
+| `pgcalendar`         | -           | 1.1.0       | new package; PG 14-18                             |
+| `pgelog`             | -           | 1.0.2       | new package; PG 14-18                             |
+| `pglock`             | -           | 1.0.0       | new package; PG 14-18                             |
+| `postgresbson`       | -           | 2.0.2       | new package; PG 14-18                             |
+| `rdf_fdw`            | -           | 2.4.0       | new package; PG 14-18                             |
+| `parray_gin`         | -           | 1.4.0       | new package; PG 14-18                             |
+| `pg_stat_ch`         | -           | 0.3.6       | new package; PG 16-18, el8 break                  |
+| `pgclone`            | -           | 4.0.0       | new package                                       |
+| `pgproto`            | -           | 0.3.3       | new package                                       |
+| `timescaledb`        | 2.25.2      | 2.26.3      | upgrade; updated twice                            |
+| `postgis`            | 3.6.2       | 3.6.3       | DEB only                                          |
+| `pg_clickhouse`      | 0.1.5       | 0.2.0       | upgrade; updated twice                            |
+| `pg_search`          | 0.22.2      | 0.23.0      | upgrade; updated twice                            |
+| `pg_trickle`         | 0.16.0      | 0.20.0      | upgrade; updated twice, PG 18 only                |
+| `pgxicor`            | 0.1.0       | 0.1.1       | upgrade                                           |
+| `pg_ivm`             | 1.13        | 1.14        | upgrade                                           |
+| `system_stats`       | 3.2         | 4.0         | upgrade                                           |
+| `nominatim_fdw`      | 1.1.0       | 1.2         | upgrade                                           |
+| `pg_textsearch`      | 0.5.0       | 1.0.0       | upgrade                                           |
+| `pg_store_plans`     | 1.9         | 1.10        | upgrade                                           |
+| `pg_tzf`             | 0.2.3       | 0.2.4       | upgrade; Rust/pgrx 0.17.0                         |
+| `pg_anon`            | 3.0.1       | 3.0.13      | upgrade; Rust/pgrx 0.16.1 -> 0.17.0               |
+| `pg_cardano`         | 1.1.1       | 1.2.0       | upgrade; Rust/pgrx 0.17.0                         |
+| `pg_strict`          | 1.0.3       | 1.0.5       | upgrade; Rust/pgrx 0.16.1 -> 0.17.0               |
+| `pg_vectorize`       | 0.26.0      | 0.26.1      | upgrade; Rust/pgrx 0.16.1 -> 0.17.0               |
+| `pglinter`           | 1.1.1       | 1.1.2       | upgrade; Rust/pgrx 0.16.1 -> 0.17.0               |
+| `pgx_ulid`           | 0.2.2       | 0.2.3       | upgrade; Rust/pgrx 0.17.0                         |
+| `wrappers`           | 0.5.7       | 0.6.0       | upgrade; Rust/pgrx 0.16.1 -> 0.17.0               |
+| `supautils`          | 3.1.0       | 3.2.1       | upgrade                                           |
+| `ddl_historization`  | 0.0.7       | 0.2         | upgrade                                           |
+| `pg_incremental`     | 1.4.1       | 1.5.0       | upgrade                                           |
+| `pg_failover_slots`  | 1.2.0       | 1.2.1       | upgrade                                           |
+| `plv8`               | 3.2.4       | 3.2.4-2     | RPM only; EL10 build fix                          |
+| `pg_background`      | 1.8         | 1.9.2       | DEB only                                          |
+
 
 ## v4.2.2
 
