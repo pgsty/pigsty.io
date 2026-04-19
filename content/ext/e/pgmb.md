@@ -2,7 +2,7 @@
 title: "pgmb"
 linkTitle: "pgmb"
 description: "A simple PostgreSQL Message Broker system"
-weight: 2870
+weight: 2670
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 2870
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 2870  | [**`pgmb`**](/ext/e/pgmb) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `pgmb` |
+| 2670  | [**`pgmb`**](/ext/e/pgmb) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `pgmb` |
 {.ext-table}
 
 | **Related** | [`pg_cron`](/ext/e/pg_cron) [`http`](/ext/e/http) [`pgmq`](/ext/e/pgmq) [`pgq`](/ext/e/pgq) [`pg_task`](/ext/e/pg_task) [`pg_cron`](/ext/e/pg_cron) [`pg_background`](/ext/e/pg_background) [`pg_later`](/ext/e/pg_later) [`pg_net`](/ext/e/pg_net) [`kafka_fdw`](/ext/e/kafka_fdw) |

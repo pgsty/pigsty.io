@@ -5,7 +5,7 @@ description: "PostgreSQL extensions that require dynamic loading"
 weight: 10
 ---
 
-The following **100** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
+The following **102** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
 
 You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) parameter in `postgresql.conf`, add the extension library, and restart the database.
 
@@ -28,9 +28,11 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pg_analytics`](/ext/e/pg_analytics) | `pg_analytics` | Postgres for analytics, powered by DuckDB |
 | [`pg_duckdb`](/ext/e/pg_duckdb) | `pg_duckdb` | DuckDB Embedded in Postgres |
 | [`pg_mooncake`](/ext/e/pg_mooncake) | `pg_mooncake` | Columnstore Table in Postgres |
+| [`storage_engine`](/ext/e/storage_engine) | `storage_engine` | colcompress and rowcompress Table Access Methods with vectorized execution |
 | [`pg_clickhouse`](/ext/e/pg_clickhouse) | `pg_clickhouse` | Interfaces to query ClickHouse databases from PostgreSQL |
 | [`pg_parquet`](/ext/e/pg_parquet) | `pg_parquet` | copy data between Postgres and Parquet |
 | [`age`](/ext/e/age) | `age` | AGE graph database extension |
+| [`ulak`](/ext/e/ulak) | `ulak` | Transactional Outbox extension for PostgreSQL with reliable asynchronous delivery |
 | [`pg_ttl_index`](/ext/e/pg_ttl_index) | `pg_ttl_index` | Automatic data expiration with TTL indexes |
 | [`pg_hint_plan`](/ext/e/pg_hint_plan) | `pg_hint_plan` | Give PostgreSQL ability to manually force some decisions in execution plans. |
 | [`plan_filter`](/ext/e/plan_filter) | `plan_filter` | filter statements by their execution plans. |

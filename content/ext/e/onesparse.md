@@ -2,7 +2,7 @@
 title: "onesparse"
 linkTitle: "onesparse"
 description: "Sparse linear algebra and graph extension for PostgreSQL 18"
-weight: 2980
+weight: 2620
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 2980
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 2980  | [**`onesparse`**](/ext/e/onesparse) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `onesparse` |
+| 2620  | [**`onesparse`**](/ext/e/onesparse) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `onesparse` |
 {.ext-table}
 
 | **Related** | [`age`](/ext/e/age) [`pgrouting`](/ext/e/pgrouting) [`postgis`](/ext/e/postgis) |

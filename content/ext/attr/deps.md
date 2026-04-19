@@ -45,8 +45,8 @@ The following **105** extensions require other extensions to be installed first:
 | [`biscuit`](/ext/e/biscuit) | [`plpgsql`](/ext/e/plpgsql) | IAM-LIKE pattern matching with bitmap indexing |
 | [`pg_mooncake`](/ext/e/pg_mooncake) | [`pg_duckdb`](/ext/e/pg_duckdb) | Columnstore Table in Postgres |
 | [`pg_partman`](/ext/e/pg_partman) | [`plpgsql`](/ext/e/plpgsql) | Extension to manage partitioned tables by time or ID |
-| [`index_advisor`](/ext/e/index_advisor) | [`hypopg`](/ext/e/hypopg) | Query index advisor |
 | [`pgmb`](/ext/e/pgmb) | [`pg_cron`](/ext/e/pg_cron) [`http`](/ext/e/http) | A simple PostgreSQL Message Broker system |
+| [`index_advisor`](/ext/e/index_advisor) | [`hypopg`](/ext/e/hypopg) | Query index advisor |
 | [`provsql`](/ext/e/provsql) | [`uuid-ossp`](/ext/e/uuid-ossp) | Semiring provenance and uncertainty management for PostgreSQL |
 | [`omni_auth`](/ext/e/omni_auth) | [`omni_types`](/ext/e/omni_types) [`omni_id`](/ext/e/omni_id) [`pgcrypto`](/ext/e/pgcrypto) [`btree_gist`](/ext/e/btree_gist) [`omni_polyfill`](/ext/e/omni_polyfill) | Basic session management |
 | [`omni_aws`](/ext/e/omni_aws) | [`omni_httpc`](/ext/e/omni_httpc) [`pgcrypto`](/ext/e/pgcrypto) [`omni_xml`](/ext/e/omni_xml) [`omni_web`](/ext/e/omni_web) | Amazon Web Services APIs (S3) |
@@ -138,8 +138,8 @@ The following **58** extensions are depended upon by other extensions:
 | [`pg_duckdb`](/ext/e/pg_duckdb) | [`pg_mooncake`](/ext/e/pg_mooncake) | DuckDB Embedded in Postgres |
 | [`pg_partman`](/ext/e/pg_partman) | [`timeseries`](/ext/e/timeseries) | Extension to manage partitioned tables by time or ID |
 | [`tablefunc`](/ext/e/tablefunc) | [`pg4ml`](/ext/e/pg4ml) | functions that manipulate whole tables, including crosstab |
-| [`rum`](/ext/e/rum) | [`documentdb`](/ext/e/documentdb) | RUM index access method |
 | [`pgmq`](/ext/e/pgmq) | [`pg_later`](/ext/e/pg_later) [`vectorize`](/ext/e/vectorize) | A lightweight message queue. Like AWS SQS and RSMQ but on Postgres. |
+| [`rum`](/ext/e/rum) | [`documentdb`](/ext/e/documentdb) | RUM index access method |
 | [`omni_cloudevents`](/ext/e/omni_cloudevents) | [`omni_email`](/ext/e/omni_email) [`omni_schema`](/ext/e/omni_schema) [`omni_test`](/ext/e/omni_test) | CloudEvents support |
 | [`omni_http`](/ext/e/omni_http) | [`omni_httpc`](/ext/e/omni_httpc) [`omni_httpd`](/ext/e/omni_httpd) | Basic HTTP types |
 | [`omni_httpc`](/ext/e/omni_httpc) | [`omni_aws`](/ext/e/omni_aws) [`omni_containers`](/ext/e/omni_containers) [`omni_kube`](/ext/e/omni_kube) | HTTP client |
