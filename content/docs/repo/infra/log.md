@@ -6,6 +6,59 @@ icon: fa-solid fa-clipboard-list
 categories: [Reference]
 ---
 
+## 2026-04-30
+
+| Name                       | Old Ver        | New Ver      | Note                                           |
+|:---------------------------|:---------------|:-------------|:-----------------------------------------------|
+| `prometheus`               | 3.11.2         | 3.11.3       |                                                |
+| `alertmanager`             | 0.32.0         | 0.32.1       |                                                |
+| `victoria-metrics`         | 1.140.0        | 1.142.0      |                                                |
+| `victoria-metrics-cluster` | 1.140.0        | 1.142.0      | VictoriaMetrics companion package              |
+| `vmutils`                  | 1.140.0        | 1.142.0      | VictoriaMetrics companion package              |
+| `victoria-traces`          | 0.8.1          | 0.8.2        |                                                |
+| `tigerbeetle`              | 0.17.1         | 0.17.2       |                                                |
+| `loki`                     | 3.6.7          | 3.6.7        | Obsolete and kept frozen                       |
+| `promtail`                 | 3.6.7          | 3.6.7        | Obsolete and kept frozen                       |
+| `logcli`                   | 3.6.7          | 3.6.7        | Obsolete and kept frozen with Loki             |
+| `hugo`                     | 0.160.1        | 0.161.1      |                                                |
+| `seaweedfs`                | 4.21           | 4.22         |                                                |
+| `rustfs`                   | 1.0.0-alpha.94 | 1.0.0-beta.1 | Prerelease line                                |
+| `sabiql`                   | 1.11.0         | 1.11.1       |                                                |
+| `timescaledb-tools`        | 0.18.2         | 0.19.0       | Rebuilt timescaledb-tune Linux binaries        |
+| `agentsview`               | 0.25.0         | 0.26.0       |                                                |
+| `claude`                   | 2.1.119        | 2.1.123      | Downloaded through the 8118 proxy and verified |
+| `stalwart`                 | 0.16.0         | 0.16.2       |                                                |
+| `opencode`                 | 1.14.24        | 1.14.30      |                                                |
+| `uv`                       | 0.11.7         | 0.11.8       |                                                |
+| `vip-manager`              | 4.0.0          | 4.2.0        | Direct-download metadata refresh               |
+| `crush`                    | 0.62.1         | 0.64.0       | Direct-download metadata refresh               |
+| `code`                     | 1.115.0        | 1.118.1      | Direct-download metadata refresh               |
+{.stretch-last}
+
+-------
+
+## 2026-04-25
+
+| Name                   | Old Ver | New Ver | Note                                           |
+|:-----------------------|:--------|:--------|:-----------------------------------------------|
+| `grafana`              | 13.0.0  | 13.0.1  | Direct-download metadata refresh               |
+| `vector`               | 0.54.0  | 0.55.0  | Direct-download metadata refresh               |
+| `keepalived_exporter`  | 1.7.0   | 1.7.1   |                                                |
+| `seaweedfs`            | 4.20    | 4.21    |                                                |
+| `tigerbeetle`          | 0.17.0  | 0.17.1  |                                                |
+| `agentsview`           | 0.22.2  | 0.25.0  |                                                |
+| `claude`               | 2.1.114 | 2.1.119 | Downloaded through the 8118 proxy and verified |
+| `codex`                | 0.121.0 | 0.125.0 |                                                |
+| `stalwart`             | 0.15.5  | 0.16.0  |                                                |
+| `opencode`             | 1.4.11  | 1.14.24 |                                                |
+| `crush`                | 0.57.0  | 0.62.1  | Direct-download metadata refresh               |
+| `rclone`               | 1.73.4  | 1.73.5  | Direct-download metadata refresh               |
+| `code-server`          | 4.115.0 | 4.117.0 | Direct-download metadata refresh               |
+| `pig`                  | 1.4.0   | 1.4.1   | Metadata only; artifacts handled separately    |
+{.stretch-last}
+
+-------
+
 ## 2026-04-19
 
 | Name                         | Old Ver          | New Ver           | Note                                                         |
@@ -29,7 +82,7 @@ categories: [Reference]
 | `minio`                      | 20260325000000   | 20260417000000    | Direct-link metadata refresh; rebuilt from the pgsty fork    |
 | `mcli`                       | 20260321000000   | 20260417000000    | Direct-link metadata refresh; rebuilt from the pgsty fork    |
 | `sabiql`                     | 1.10.0           | 1.11.0            |                                                              |
-| `etcd`                       | 3.6.8            | 3.6.10            | EL only bumped to 3.6.10; APT deferred pending patroni 4.1.1 |
+| `etcd`                       | 3.6.8            | 3.6.10            | Unified package version                                      |
 | `pig`                        | 1.3.4            | 1.4.0             |                                                              |
 {.stretch-last}
 
