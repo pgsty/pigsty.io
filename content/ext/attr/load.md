@@ -98,7 +98,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`auth_delay`](/ext/e/auth_delay) | `auth_delay` | pause briefly before reporting authentication failure |
 | [`passwordcheck`](/ext/e/passwordcheck) | `$libdir/passwordcheck` | checks user passwords and reject weak password |
 | [`documentdb`](/ext/e/documentdb) | `pg_documentdb,pg_documentdb_core` | API surface for DocumentDB for PostgreSQL |
-| [`documentdb_core`](/ext/e/documentdb_core) | `pg_documentdb,pg_documentdb_core` | Core API surface for DocumentDB for PostgreSQL |
+| [`documentdb_core`](/ext/e/documentdb_core) | `pg_documentdb,pg_documentdb_core` | Core API surface for DocumentDB on PostgreSQL |
 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `pg_documentdb,pg_documentdb_core` | Multi-Node API surface for DocumentDB |
 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `pg_documentdb_extended_rum` | DocumentDB Extended RUM index access method |
 | [`pgtt`](/ext/e/pgtt) | `pgtt` | Extension to add Global Temporary Tables feature to PostgreSQL |

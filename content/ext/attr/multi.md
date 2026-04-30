@@ -239,10 +239,10 @@ Package [`documentdb`](/ext/e/documentdb) contains **4** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 9000 | [**`documentdb`**](/ext/e/documentdb) | `0.109` | `--sLd--` | - | API surface for DocumentDB for PostgreSQL |
-| 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `0.109` | `--sLd--` | - | Core API surface for DocumentDB for PostgreSQL |
-| 9020 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `0.109` | `--sLd--` | - | Multi-Node API surface for DocumentDB |
-| 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `0.109` | `--sLd-r` | - | DocumentDB Extended RUM index access method |
+| 9000 | [**`documentdb`**](/ext/e/documentdb) | `0.110` | `--sLd--` | - | API surface for DocumentDB for PostgreSQL |
+| 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `0.110` | `--sLd--` | - | Core API surface for DocumentDB on PostgreSQL |
+| 9020 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `0.110` | `--sLd--` | - | Multi-Node API surface for DocumentDB |
+| 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `0.110` | `--sLd-r` | - | DocumentDB Extended RUM index access method |
 {.ext-table}
 
 ### ivorysql

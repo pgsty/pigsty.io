@@ -5,11 +5,11 @@ description: "PostgreSQL extensions with dependency relationships"
 weight: 30
 ---
 
-**105** extensions depend on other extensions, **58** extensions are depended upon by others.
+**106** extensions depend on other extensions, **58** extensions are depended upon by others.
 
 ## Upstream Dependencies
 
-The following **105** extensions require other extensions to be installed first:
+The following **106** extensions require other extensions to be installed first:
 
 | **Extension** | **Requires** | **Description** |
 |:-----------|:-------------|:---------|
@@ -93,6 +93,7 @@ The following **105** extensions require other extensions to be installed first:
 | [`data_historization`](/ext/e/data_historization) | [`plpgsql`](/ext/e/plpgsql) | PLPGSQL Script to historize data in partitionned table |
 | [`schedoc`](/ext/e/schedoc) | [`ddl_historization`](/ext/e/ddl_historization) | Cross documentation between Django and DBT projects |
 | [`sparql`](/ext/e/sparql) | [`plperl`](/ext/e/plperl) [`plperlu`](/ext/e/plperlu) | Query SPARQL datasource with SQL |
+| [`pg_accumulator`](/ext/e/pg_accumulator) | [`plpgsql`](/ext/e/plpgsql) | Accumulation registers for balance and turnover tracking in PostgreSQL |
 | [`pgautofailover`](/ext/e/pgautofailover) | [`btree_gist`](/ext/e/btree_gist) | pg_auto_failover |
 | [`pg_upless`](/ext/e/pg_upless) | [`plpgsql`](/ext/e/plpgsql) | Detect Useless UPDATE |
 | [`pgcozy`](/ext/e/pgcozy) | [`pg_buffercache`](/ext/e/pg_buffercache) [`pg_prewarm`](/ext/e/pg_prewarm) | Pre-warming shared buffers according to previous pg_buffercache snapshots for PostgreSQL. |
@@ -179,7 +180,7 @@ The following **58** extensions are depended upon by other extensions:
 | [`file_fdw`](/ext/e/file_fdw) | [`pg_sqlog`](/ext/e/pg_sqlog) | foreign-data wrapper for flat file access |
 | [`postgres_fdw`](/ext/e/postgres_fdw) | [`omni_schema`](/ext/e/omni_schema) | foreign-data wrapper for remote PostgreSQL servers |
 | [`documentdb`](/ext/e/documentdb) | [`documentdb_distributed`](/ext/e/documentdb_distributed) | API surface for DocumentDB for PostgreSQL |
-| [`documentdb_core`](/ext/e/documentdb_core) | [`documentdb`](/ext/e/documentdb) [`documentdb_distributed`](/ext/e/documentdb_distributed) | Core API surface for DocumentDB for PostgreSQL |
+| [`documentdb_core`](/ext/e/documentdb_core) | [`documentdb`](/ext/e/documentdb) [`documentdb_distributed`](/ext/e/documentdb_distributed) | Core API surface for DocumentDB on PostgreSQL |
 | [`ivorysql_ora`](/ext/e/ivorysql_ora) | [`ora_btree_gin`](/ext/e/ora_btree_gin) [`ora_btree_gist`](/ext/e/ora_btree_gist) | Oracle Compatible extension on Postgres Database |
 | [`babelfishpg_common`](/ext/e/babelfishpg_common) | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | SQL Server Transact SQL Datatype Support |
 | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | [`babelfishpg_tds`](/ext/e/babelfishpg_tds) | SQL Server Transact SQL compatibility |

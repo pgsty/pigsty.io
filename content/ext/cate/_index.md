@@ -18,7 +18,7 @@ sidebar_expanded: true
 | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | 34 | 21 | Develop, Test, Package, and Deliver Stored Procedures written in various PL/Languages: Java, Js, Lua, R, Sh, PRQL, ... |
 | <a class="ext-badge ext-badge--cate type" href="/ext/cate/type">TYPE</a> | 40 | 39 | Dedicate New Data Types Like: prefix, semver, uint, SIUnit, RoaringBitmap, Rational, Sphere, Hash, RRule, and more... |
 | <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | 39 | 38 | Utilities such as send http request, perform gzip/zstd compress, send mails, Regex, ICU, encoding, docs, Encryption,... |
-| <a class="ext-badge ext-badge--cate func" href="/ext/cate/func">FUNC</a> | 50 | 50 | Function such as id generator, aggregations, sketches, vector functions, mathematical functions and digest functions... |
+| <a class="ext-badge ext-badge--cate func" href="/ext/cate/func">FUNC</a> | 51 | 51 | Function such as id generator, aggregations, sketches, vector functions, mathematical functions and digest functions... |
 | <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | 42 | 40 | Utilities for Bloat Control, DirtyRead, BufferInspect, DDL Generate, ChecksumVerify, Permission, Priority, Catalog,... |
 | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | 37 | 36 | Observability Catalogs, Monitoring Metrics & Views, Statistics, Query Plans, WaitSampling, SlowLogs, and etc... |
 | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | 31 | 31 | Auditing Logs, Enforce Passwords, Keep Secrets, TDE, SM Algorithm, Login Hooks, Log Errors, Extension White List, ... |
