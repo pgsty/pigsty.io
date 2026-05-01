@@ -6,7 +6,7 @@ weight: 20
 slug: ddl
 ---
 
-The following **25** extensions can be used without running `CREATE EXTENSION`.
+The following **26** extensions can be used without running `CREATE EXTENSION`.
 
 These extensions typically exist as shared libraries (hooks) or standalone tools that take effect through configuration parameters.
 
@@ -16,6 +16,7 @@ These extensions typically exist as shared libraries (hooks) or standalone tools
 | [`plan_filter`](/ext/e/plan_filter) | [`pg_plan_filter`](https://github.com/pgexperts/pg_plan_filter) | `0.0.1` | `--sL---` | filter statements by their execution plans. |
 | [`pg_checksums`](/ext/e/pg_checksums) | [`pg_checksums`](https://github.com/credativ/pg_checksums) | `1.3` | `--s---r` | Activate/deactivate/verify checksums in offline Postgres clusters |
 | [`pg_crash`](/ext/e/pg_crash) | [`pg_crash`](https://github.com/cybertec-postgresql/pg_crash) | `1.0` | `--sL---` | Send random signals to random processes |
+| [`pg_pathcheck`](/ext/e/pg_pathcheck) | [`pg_pathcheck`](https://github.com/danolivo/pg_pathcheck) | `0.9.1` | `--sL---` | Validate planner Path trees for freed or corrupt memory |
 | [`safeupdate`](/ext/e/safeupdate) | [`safeupdate`](https://github.com/eradman/pg-safeupdate) | `1.5` | `--sL---` | Require criteria for UPDATE and DELETE |
 | [`basic_archive`](/ext/e/basic_archive) | [`basic_archive`](https://www.postgresql.org/docs/current/basic-archive.html) | `-` | `c-s----` | an example of an archive module |
 | [`basebackup_to_shell`](/ext/e/basebackup_to_shell) | [`basebackup_to_shell`](https://www.postgresql.org/docs/current/basebackup-to-shell.html) | `-` | `c-s----` | adds a custom basebackup target called shell |

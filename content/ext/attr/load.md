@@ -5,7 +5,7 @@ description: "PostgreSQL extensions that require dynamic loading"
 weight: 10
 ---
 
-The following **102** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
+The following **103** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
 
 You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) parameter in `postgresql.conf`, add the extension library, and restart the database.
 
@@ -57,6 +57,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pgautofailover`](/ext/e/pgautofailover) | `pgautofailover` | pg_auto_failover |
 | [`pg_crash`](/ext/e/pg_crash) | `pg_crash` | Send random signals to random processes |
 | [`qos`](/ext/e/qos) | `qos` | QoS resource governor extension for PostgreSQL sessions and queries |
+| [`pg_pathcheck`](/ext/e/pg_pathcheck) | `pg_pathcheck` | Validate planner Path trees for freed or corrupt memory |
 | [`safeupdate`](/ext/e/safeupdate) | `safeupdate` | Require criteria for UPDATE and DELETE |
 | [`pg_strict`](/ext/e/pg_strict) | `pg_strict` | Prevent dangerous UPDATE and DELETE without WHERE clause |
 | [`pg_prewarm`](/ext/e/pg_prewarm) | `pg_prewarm` | prewarm relation data |

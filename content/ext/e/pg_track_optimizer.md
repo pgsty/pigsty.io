@@ -65,8 +65,8 @@ weight: 6270
 | u22.aarch64 | AVAIL PIGSTY 0.9.2 1 | AVAIL PIGSTY 0.9.2 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
 | u24.x86_64 | AVAIL PIGSTY 0.9.2 1 | AVAIL PIGSTY 0.9.2 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
 | u24.aarch64 | AVAIL PIGSTY 0.9.2 1 | AVAIL PIGSTY 0.9.2 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u26.x86_64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u26.aarch64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| u26.x86_64 | AVAIL PIGSTY 0.9.2 1 | AVAIL PIGSTY 0.9.2 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 0.9.2 1 | AVAIL PIGSTY 0.9.2 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
 @ el8.x86_64 18 pg_track_optimizer_18 pg_track_optimizer_18-0.9.2-1PIGSTY.el8.x86_64.rpm pigsty 0.9.2 35.6KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_track_optimizer_18-0.9.2-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 18 pg_track_optimizer_18 pg_track_optimizer_18-0.9.2-1PIGSTY.el8.aarch64.rpm pigsty 0.9.2 34.8KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_track_optimizer_18-0.9.2-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 18 pg_track_optimizer_18 pg_track_optimizer_18-0.9.2-1PIGSTY.el9.x86_64.rpm pigsty 0.9.2 35.3KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_track_optimizer_18-0.9.2-1PIGSTY.el9.x86_64.rpm
@@ -81,6 +81,8 @@ weight: 6270
 @ u22.aarch64 18 postgresql-18-pg-track-optimizer postgresql-18-pg-track-optimizer_0.9.2-1PIGSTY~jammy_arm64.deb pigsty 0.9.2 62.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-track-optimizer/postgresql-18-pg-track-optimizer_0.9.2-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 18 postgresql-18-pg-track-optimizer postgresql-18-pg-track-optimizer_0.9.2-1PIGSTY~noble_amd64.deb pigsty 0.9.2 60.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-track-optimizer/postgresql-18-pg-track-optimizer_0.9.2-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 18 postgresql-18-pg-track-optimizer postgresql-18-pg-track-optimizer_0.9.2-1PIGSTY~noble_arm64.deb pigsty 0.9.2 60.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-track-optimizer/postgresql-18-pg-track-optimizer_0.9.2-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-pg-track-optimizer postgresql-18-pg-track-optimizer_0.9.2-1PIGSTY~resolute_amd64.deb pigsty 0.9.2 60.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-track-optimizer/postgresql-18-pg-track-optimizer_0.9.2-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-pg-track-optimizer postgresql-18-pg-track-optimizer_0.9.2-1PIGSTY~resolute_arm64.deb pigsty 0.9.2 60.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-track-optimizer/postgresql-18-pg-track-optimizer_0.9.2-1PIGSTY~resolute_arm64.deb
 @ el8.x86_64 17 pg_track_optimizer_17 pg_track_optimizer_17-0.9.2-1PIGSTY.el8.x86_64.rpm pigsty 0.9.2 35.6KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_track_optimizer_17-0.9.2-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 17 pg_track_optimizer_17 pg_track_optimizer_17-0.9.2-1PIGSTY.el8.aarch64.rpm pigsty 0.9.2 34.8KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_track_optimizer_17-0.9.2-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 17 pg_track_optimizer_17 pg_track_optimizer_17-0.9.2-1PIGSTY.el9.x86_64.rpm pigsty 0.9.2 35.3KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_track_optimizer_17-0.9.2-1PIGSTY.el9.x86_64.rpm
@@ -95,6 +97,8 @@ weight: 6270
 @ u22.aarch64 17 postgresql-17-pg-track-optimizer postgresql-17-pg-track-optimizer_0.9.2-1PIGSTY~jammy_arm64.deb pigsty 0.9.2 69.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-track-optimizer/postgresql-17-pg-track-optimizer_0.9.2-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 17 postgresql-17-pg-track-optimizer postgresql-17-pg-track-optimizer_0.9.2-1PIGSTY~noble_amd64.deb pigsty 0.9.2 60.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-track-optimizer/postgresql-17-pg-track-optimizer_0.9.2-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 17 postgresql-17-pg-track-optimizer postgresql-17-pg-track-optimizer_0.9.2-1PIGSTY~noble_arm64.deb pigsty 0.9.2 60.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-track-optimizer/postgresql-17-pg-track-optimizer_0.9.2-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-pg-track-optimizer postgresql-17-pg-track-optimizer_0.9.2-1PIGSTY~resolute_amd64.deb pigsty 0.9.2 60.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-track-optimizer/postgresql-17-pg-track-optimizer_0.9.2-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-pg-track-optimizer postgresql-17-pg-track-optimizer_0.9.2-1PIGSTY~resolute_arm64.deb pigsty 0.9.2 60.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-track-optimizer/postgresql-17-pg-track-optimizer_0.9.2-1PIGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
