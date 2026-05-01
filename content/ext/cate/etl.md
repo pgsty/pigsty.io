@@ -20,7 +20,7 @@ There are **22** extensions in **21** packages.
 | [`pg_failover_slots`](/ext/e/pg_failover_slots) | [`pg_failover_slots`](https://github.com/EnterpriseDB/pg_failover_slots) | `1.2.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PG Failover Slots extension |
 | [`db_migrator`](/ext/e/db_migrator) | [`db_migrator`](https://github.com/cybertec-postgresql/db_migrator) | `1.0.0` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Tools to migrate other databases to PostgreSQL |
 | [`pgactive`](/ext/e/pgactive) | [`pgactive`](https://github.com/aws/pgactive) | `2.1.7` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Active-Active Replication Extension for PostgreSQL |
-| [`spock`](/ext/e/spock) | [`spock`](https://github.com/pgEdge/spock) | `5.0.5` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Multi-master logical replication extension for PostgreSQL |
+| [`spock`](/ext/e/spock) | [`spock`](https://github.com/pgEdge/spock) | `5.0.6` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Multi-master logical replication extension for PostgreSQL |
 | [`lolor`](/ext/e/lolor) | [`lolor`](https://github.com/pgEdge/lolor) | `1.2.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Logical-replication-friendly replacement for PostgreSQL large objects |
 | [`pgclone`](/ext/e/pgclone) | [`pgclone`](https://github.com/valehdba/pgclone) | `4.0.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Clone PostgreSQL databases, schemas, tables, and functions across environments |
 | [`pgmqtt`](/ext/e/pgmqtt) | [`pgmqtt`](https://github.com/RayElg/pgmqtt) | `0.1.0` | <a class="ext-badge ext-badge--license elastic license 20" href="/ext/license#elasticlicense20">Elastic License 2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | CDC-to-MQTT broker for PostgreSQL |
@@ -193,18 +193,18 @@ There are **22** extensions in **21** packages.
 
 ## spock {#spock}
 
-[**`spock`**](/ext/e/spock) - `5.0.5` : Multi-master logical replication extension for PostgreSQL
+[**`spock`**](/ext/e/spock) - `5.0.6` : Multi-master logical replication extension for PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`spock`](/ext/e/spock) | **el8** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Package** | [`spock`](https://github.com/pgEdge/spock) | **el9** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **RPM** | `spock_$v` | **el10** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **DEB** | `pgedge-$v-spock` | **d12** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| | | **u26** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
+| **Extension** | [`spock`](/ext/e/spock) | **el8** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| **Package** | [`spock`](https://github.com/pgEdge/spock) | **el9** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| **RPM** | `spock_$v` | **el10** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| **DEB** | `pgedge-$v-spock` | **d12** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| | | **u26** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
 {.ext-table .ext-table--cate}
 
 
@@ -216,14 +216,14 @@ There are **22** extensions in **21** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`lolor`](/ext/e/lolor) | **el8** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Package** | [`lolor`](https://github.com/pgEdge/lolor) | **el9** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **RPM** | `lolor_$v` | **el10** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **DEB** | `pgedge-$v-lolor` | **d12** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| | | **u26** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
+| **Extension** | [`lolor`](/ext/e/lolor) | **el8** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| **Package** | [`lolor`](https://github.com/pgEdge/lolor) | **el9** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| **RPM** | `lolor_$v` | **el10** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| **DEB** | `pgedge-$v-lolor` | **d12** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
+| | | **u26** | {{< pgvers "18" >}} | {{< pgvers "18" >}} |
 {.ext-table .ext-table--cate}
 
 
