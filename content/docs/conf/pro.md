@@ -6,7 +6,7 @@ icon: fa-solid fa-crown
 categories: [Reference]
 ---
 
-The `build/pro` configuration template is the build environment configuration for Pigsty professional edition offline packages, including PostgreSQL 13-18 all versions and additional commercial components.
+The `build/pro` configuration template is the build environment configuration for Pigsty professional edition offline packages, including PostgreSQL 14-18 all versions and additional commercial components.
 
 This configuration is intended for developers and contributors only.
 
@@ -46,13 +46,13 @@ Source: [`pigsty/conf/build/pro.yml`](https://github.com/pgsty/pigsty/blob/main/
 The `build/pro` template is the build configuration for Pigsty professional edition offline packages, containing more content than the open-source edition.
 
 **Differences from OSS Edition**:
-- Includes all six major PostgreSQL versions 13-18
+- Includes all five major PostgreSQL versions 14-18
 - Includes additional commercial/enterprise components: Kafka, PolarDB, IvorySQL, etc.
 - Includes Java runtime and Sealos tools
 - Output directory is `dist/${version}/pro/`
 
 **Build Contents**:
-- PostgreSQL 13, 14, 15, 16, 17, 18 all versions
+- PostgreSQL 14, 15, 16, 17, 18 all versions
 - All categorized extension packages for each version
 - Kafka message queue
 - PolarDB and IvorySQL kernels
@@ -77,4 +77,3 @@ cp conf/build/pro.yml pigsty.yml
 # 3. Package offline installation files
 make cache-pro
 ```
-

@@ -1,12 +1,12 @@
 ---
 title: fat
 weight: 240
-description: Feature-All-Test template, single-node installation of all extensions, builds local repo with PG 13-18 all versions
+description: Feature-All-Test template, single-node installation of all extensions, builds local repo with PG 14-18 all versions
 icon: fa-solid fa-database
 categories: [Reference]
 ---
 
-The `fat` configuration template is Pigsty's **Feature-All-Test** template, installing all extension plugins on a single node and building a local software repository containing all extensions for PostgreSQL 13-18 (six major versions).
+The `fat` configuration template is Pigsty's **Feature-All-Test** template, installing all extension plugins on a single node and building a local software repository containing all extensions for PostgreSQL 14-18 (five major versions).
 
 This is a full-featured configuration for testing and development, suitable for scenarios requiring complete software package cache or testing all extensions.
 
@@ -17,7 +17,7 @@ This is a full-featured configuration for testing and development, suitable for 
 
 - Config Name: `fat`
 - Node Count: Single node
-- Description: Feature-All-Test template, installs all extensions, builds local repo with PG 13-18 all versions
+- Description: Feature-All-Test template, installs all extensions, builds local repo with PG 14-18 all versions
 - OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/), [`slim`](/docs/conf/slim/), [`fat`](/docs/conf/fat/)
@@ -52,7 +52,7 @@ The `fat` template is Pigsty's **full-featured test configuration**, designed fo
 
 **Key Features**:
 - **All Extensions**: Installs all categorized extension packages for PostgreSQL 18
-- **Multi-version Repository**: Local repo contains all six major versions of PostgreSQL 13-18
+- **Multi-version Repository**: Local repo contains all five major versions of PostgreSQL 14-18
 - **Complete Component Stack**: Includes MinIO backup, Docker applications, VIP, etc.
 - **Enterprise Components**: Includes Kafka, PolarDB, IvorySQL, TigerBeetle, etc.
 
@@ -60,13 +60,13 @@ The `fat` template is Pigsty's **full-featured test configuration**, designed fo
 
 | Category | Description |
 |:--|:--|
-| PostgreSQL 13-18 | Six major versions' kernels and all extensions |
+| PostgreSQL 14-18 | Five major versions' kernels and all extensions |
 | Extension Categories | `time`, `gis`, `rag`, `fts`, `olap`, `feat`, `lang`, `type`, `util`, `func`, `admin`, `stat`, `sec`, `fdw`, `sim`, `etl` |
 | Enterprise Components | Kafka, Java Runtime, Sealos, TigerBeetle |
 | Database Kernels | PolarDB, IvorySQL |
 
 **Differences from rich**:
-- `fat` contains all six versions of PostgreSQL 13-18, `rich` only contains current default version
+- `fat` contains all five versions of PostgreSQL 14-18, `rich` only contains current default version
 - `fat` contains additional enterprise components (Kafka, PolarDB, IvorySQL, etc.)
 - `fat` requires larger disk space and longer build time
 

@@ -32,7 +32,7 @@ Use `./configure -c <conf>` to specify a configuration template, where `<conf>` 
 ./configure -c slim             # Use minimal single-node template
 
 # Use different database kernels
-./configure -c pgsql            # Native PostgreSQL kernel, basic features (13~18)
+./configure -c pgsql            # Native PostgreSQL kernel, basic features (14~18)
 ./configure -c citus            # Citus distributed HA PostgreSQL (14~17)
 ./configure -c mssql            # Babelfish kernel, SQL Server protocol compatible (17)
 ./configure -c polar            # PolarDB PG kernel, Aurora/RAC style (17)
@@ -71,7 +71,7 @@ Templates for various database management systems and kernels:
 
 | Template                                   | Description                                             |
 |--------------------------------------------|---------------------------------------------------------|
-| [**`pgsql.yml`**](/docs/conf/pgsql/)       | Native PostgreSQL kernel, basic features (13~18)        |
+| [**`pgsql.yml`**](/docs/conf/pgsql/)       | Native PostgreSQL kernel, basic features (14~18)        |
 | [**`citus.yml`**](/docs/conf/citus/)       | Citus distributed HA PostgreSQL (14~17)                 |
 | [**`mssql.yml`**](/docs/conf/mssql/)       | Babelfish kernel, SQL Server protocol compatible (17)   |
 | [**`polar.yml`**](/docs/conf/polar/)       | PolarDB PG kernel, Aurora/RAC style (17)                |

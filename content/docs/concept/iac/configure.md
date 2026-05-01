@@ -94,7 +94,7 @@ The **`configure`** script performs the following adjustments based on environme
 ./configure
     [-c|--conf <template>]      # Configuration template name (meta|rich|slim|ha/full|...)
     [-i|--ip <ipaddr>]          # Specify primary IP address
-    [-v|--version <pgver>]      # PostgreSQL major version (13|14|15|16|17|18)
+    [-v|--version <pgver>]      # PostgreSQL major version (14|15|16|17|18)
     [-r|--region <region>]      # Upstream software repo region (default|china|europe)
     [-o|--output <file>]        # Output configuration file path (default: pigsty.yml)
     [-s|--skip]                 # Skip IP address detection and replacement
@@ -111,7 +111,7 @@ The **`configure`** script performs the following adjustments based on environme
 |:------------------------|:-----------------------------------------------------------------------------------------------------------|
 | `-c, --conf`            | Generate config from `conf/<template>.yml`, supports subdirectories like `ha/full`                         |
 | `-i, --ip`              | Replace placeholder `10.10.10.10` in config template with specified IP                                     |
-| `-v, --version`         | Specify PostgreSQL major version (13-18), keeps template default if not specified                          |
+| `-v, --version`         | Specify PostgreSQL major version (14-18), keeps template default if not specified                          |
 | `-r, --region`          | Set software repo mirror region: `default`, `china` (Chinese mirrors), `europe` (European)                 |
 | `-o, --output`          | Specify output file path, defaults to `pigsty.yml`                                                         |
 | `-s, --skip`            | Skip IP address detection and replacement, keep `10.10.10.10` placeholder in template                      |

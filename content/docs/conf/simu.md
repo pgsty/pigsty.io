@@ -47,7 +47,7 @@ The `ha/simu` template is a **large-scale production environment simulation** fo
 - 2-node Proxy (HAProxy + Keepalived VIP)
 - Multiple PostgreSQL clusters:
   - pg-meta: 2-node HA
-  - pg-v12~v17: Single-node multi-version testing
+  - pg-v14~v18: Single-node multi-version testing
   - pg-pitr: Single-node PITR testing
   - pg-test: 4-node HA
   - pg-src/pg-dst: 3+2 node replication testing
@@ -63,4 +63,3 @@ The `ha/simu` template is a **large-scale production environment simulation** fo
 **Notes**:
 - Requires powerful host machine (64GB+ RAM recommended)
 - Uses Vagrant virtual machines for simulation
-

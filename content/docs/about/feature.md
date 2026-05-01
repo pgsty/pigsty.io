@@ -32,7 +32,7 @@ categories: [Reference]
 
 Pigsty is a better local open-source RDS for PostgreSQL alternative:
 
-- [Battery-Included RDS](#battery-included-rds): From kernel to RDS distribution, providing production-grade PG database services for versions 13-18 on EL/Debian/Ubuntu.
+- [Battery-Included RDS](#battery-included-rds): From kernel to RDS distribution, providing production-grade PG database services for versions 14-18 on EL/Debian/Ubuntu.
 - [Rich Extensions](#rich-extensions): Providing unparalleled 510 extensions with out-of-the-box distributed, time-series, geospatial, graph, vector, multi-modal database capabilities.
 - [Flexible Modular Architecture](#flexible-modular-architecture): Flexible composition, free extension: Redis/Etcd/MinIO/Mongo; can be used independently to monitor existing RDS/hosts/databases.
 - [Stunning Observability](#stunning-observability): Based on modern observability stack Prometheus/Grafana, providing stunning, unparalleled database observability capabilities.
@@ -64,7 +64,7 @@ PostgreSQL is a near-perfect database kernel, but it needs more tools and system
 Pigsty solves various challenges you'll encounter when using PostgreSQL: kernel extension installation, connection pooling, load balancing, service access, high availability / automatic failover, log collection, metrics monitoring, alerting, backup recovery, PITR, access control, parameter tuning, security encryption, certificate issuance, NTP, DNS, parameter tuning, configuration management, CMDB, management playbooks... You no longer need to worry about these details!
 
 
-Pigsty supports PostgreSQL 13 ~ 18 mainline kernels and other compatible forks, running on EL / Debian / Ubuntu and [compatible OS distributions](/docs/ref/linux), available on x86_64 and ARM64 chip architectures, without container support required.
+Pigsty supports PostgreSQL 14 ~ 18 mainline kernels and other compatible forks, running on EL / Debian / Ubuntu and [compatible OS distributions](/docs/ref/linux), available on x86_64 and ARM64 chip architectures, without container support required.
 Besides database kernels and many out-of-the-box extension plugins, Pigsty also provides complete infrastructure and runtime required for database services, as well as local sandbox / production environment / cloud IaaS auto-deployment solutions.
 
 Pigsty can bootstrap an entire environment from bare metal with one click, reaching the last mile of software delivery. Ordinary developers and operations engineers can quickly get started and manage databases part-time, building enterprise-grade RDS services without database experts!

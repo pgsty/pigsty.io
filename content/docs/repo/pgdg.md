@@ -35,7 +35,7 @@ Since 2025-05, PGDG has closed the rsync/ftp sync channel, which makes almost al
 
 Currently, Pigsty, Yandex, and Xtom are providing regular synced mirror service.
 
-The Pigsty PGDG mirror is a subset of the official PGDG repo, covering EL 7-10, Debian 11-13, Ubuntu 20.04 - 24.04, with x86_64 & arm64 and PG 14 - 19alpha.
+The Pigsty PGDG mirror is a subset of the official PGDG repo, covering EL 7-10, Debian 11-13, Ubuntu 22.04 - 26.04, with x86_64 & arm64 and PG 14 - 19alpha.
 
 {{% alert title="2025-11 Update Notice: Aliyun/Tsinghua TUNA Resumed" color="info" %}}
 Currently, the Aliyun/Tsinghua TUNA mirror sites have resumed PGDG repository synchronization.
@@ -61,12 +61,12 @@ Currently, the Aliyun/Tsinghua TUNA mirror sites have resumed PGDG repository sy
 | d12.aarch64    | Debian |  12   | **18**, **17**, **16**, **15**, **14** |    OK    |
 | d13.x86_64     | Debian |  13   | **18**, **17**, **16**, **15**, **14** |    OK    |
 | d13.aarch64    | Debian |  13   | **18**, **17**, **16**, **15**, **14** |    OK    |
-| u20.x86_64     | Ubuntu |  20   | **18**, **17**, **16**, **15**, **14** |   EOL    |
-| u20.aarch64    | Ubuntu |  20   | **18**, **17**, **16**, **15**, **14** |   EOL    |
 | u22.x86_64     | Ubuntu |  22   | **18**, **17**, **16**, **15**, **14** |    OK    |
 | u22.aarch64    | Ubuntu |  22   | **18**, **17**, **16**, **15**, **14** |    OK    |
 | u24.x86_64     | Ubuntu |  24   | **18**, **17**, **16**, **15**, **14** |    OK    |
 | u24.aarch64    | Ubuntu |  24   | **18**, **17**, **16**, **15**, **14** |    OK    |
+| u26.x86_64     | Ubuntu |  26   | **18**, **17**, **16**, **15**, **14** |    OK    |
+| u26.aarch64    | Ubuntu |  26   | **18**, **17**, **16**, **15**, **14** |    OK    |
 
 ---------
 
@@ -76,7 +76,6 @@ Currently, the Aliyun/Tsinghua TUNA mirror sites have resumed PGDG repository sy
 
 ```yaml
   - { name: pgdg-common    ,description: 'PostgreSQL Common'  ,module: pgsql   ,releases: [8,9,10] ,arch: [x86_64, aarch64] ,baseurl: { default: 'https://download.postgresql.org/pub/repos/yum/common/redhat/rhel-$releasever-$basearch'      ,china: 'https://mirrors.aliyun.com/postgresql/repos/yum/common/redhat/rhel-$releasever-$basearch'      ,europe: 'https://mirrors.xtom.de/postgresql/repos/yum/common/redhat/rhel-$releasever-$basearch' }}
-  - { name: pgdg13         ,description: 'PostgreSQL 13'      ,module: pgsql   ,releases: [8,9,10] ,arch: [x86_64, aarch64] ,baseurl: { default: 'https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-$releasever-$basearch'          ,china: 'https://mirrors.aliyun.com/postgresql/repos/yum/13/redhat/rhel-$releasever-$basearch'          ,europe: 'https://mirrors.xtom.de/postgresql/repos/yum/13/redhat/rhel-$releasever-$basearch' }}
   - { name: pgdg14         ,description: 'PostgreSQL 14'      ,module: pgsql   ,releases: [8,9,10] ,arch: [x86_64, aarch64] ,baseurl: { default: 'https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-$releasever-$basearch'          ,china: 'https://mirrors.aliyun.com/postgresql/repos/yum/14/redhat/rhel-$releasever-$basearch'          ,europe: 'https://mirrors.xtom.de/postgresql/repos/yum/14/redhat/rhel-$releasever-$basearch' }}
   - { name: pgdg15         ,description: 'PostgreSQL 15'      ,module: pgsql   ,releases: [8,9,10] ,arch: [x86_64, aarch64] ,baseurl: { default: 'https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-$releasever-$basearch'          ,china: 'https://mirrors.aliyun.com/postgresql/repos/yum/15/redhat/rhel-$releasever-$basearch'          ,europe: 'https://mirrors.xtom.de/postgresql/repos/yum/15/redhat/rhel-$releasever-$basearch' }}
   - { name: pgdg16         ,description: 'PostgreSQL 16'      ,module: pgsql   ,releases: [8,9,10] ,arch: [x86_64, aarch64] ,baseurl: { default: 'https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-$releasever-$basearch'          ,china: 'https://mirrors.aliyun.com/postgresql/repos/yum/16/redhat/rhel-$releasever-$basearch'          ,europe: 'https://mirrors.xtom.de/postgresql/repos/yum/16/redhat/rhel-$releasever-$basearch' }}
@@ -84,7 +83,6 @@ Currently, the Aliyun/Tsinghua TUNA mirror sites have resumed PGDG repository sy
   - { name: pgdg18         ,description: 'PostgreSQL 18'      ,module: pgsql   ,releases: [8,9,10] ,arch: [x86_64, aarch64] ,baseurl: { default: 'https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-$releasever-$basearch'          ,china: 'https://mirrors.aliyun.com/postgresql/repos/yum/18/redhat/rhel-$releasever-$basearch'          ,europe: 'https://mirrors.xtom.de/postgresql/repos/yum/18/redhat/rhel-$releasever-$basearch' }}
   - { name: pgdg-beta      ,description: 'PostgreSQL Testing' ,module: beta    ,releases: [8,9,10] ,arch: [x86_64, aarch64] ,baseurl: { default: 'https://download.postgresql.org/pub/repos/yum/testing/19/redhat/rhel-$releasever-$basearch'  ,china: 'https://mirrors.aliyun.com/postgresql/repos/yum/testing/19/redhat/rhel-$releasever-$basearch'  ,europe: 'https://mirrors.xtom.de/postgresql/repos/yum/testing/19/redhat/rhel-$releasever-$basearch'  }}
   - { name: pgdg-extras    ,description: 'PostgreSQL Extra'   ,module: extra   ,releases: [8,9,10] ,arch: [x86_64, aarch64] ,baseurl: { default: 'https://download.postgresql.org/pub/repos/yum/extras/redhat/rhel-$releasever-$basearch'      ,china: 'https://mirrors.aliyun.com/postgresql/repos/yum/extras/redhat/rhel-$releasever-$basearch'      ,europe: 'https://mirrors.xtom.de/postgresql/repos/yum/extras/redhat/rhel-$releasever-$basearch'      }}
-  - { name: pgdg13-nonfree ,description: 'PostgreSQL 13+'     ,module: extra   ,releases: [8,9,10] ,arch: [x86_64         ] ,baseurl: { default: 'https://download.postgresql.org/pub/repos/yum/non-free/13/redhat/rhel-$releasever-$basearch' ,china: 'https://mirrors.aliyun.com/postgresql/repos/yum/non-free/13/redhat/rhel-$releasever-$basearch' ,europe: 'https://mirrors.xtom.de/postgresql/repos/yum/non-free/13/redhat/rhel-$releasever-$basearch' } ,meta: { skip_if_unavailable: 1 }}
   - { name: pgdg14-nonfree ,description: 'PostgreSQL 14+'     ,module: extra   ,releases: [8,9,10] ,arch: [x86_64         ] ,baseurl: { default: 'https://download.postgresql.org/pub/repos/yum/non-free/14/redhat/rhel-$releasever-$basearch' ,china: 'https://mirrors.aliyun.com/postgresql/repos/yum/non-free/14/redhat/rhel-$releasever-$basearch' ,europe: 'https://mirrors.xtom.de/postgresql/repos/yum/non-free/14/redhat/rhel-$releasever-$basearch' } ,meta: { skip_if_unavailable: 1 }}
   - { name: pgdg15-nonfree ,description: 'PostgreSQL 15+'     ,module: extra   ,releases: [8,9,10] ,arch: [x86_64         ] ,baseurl: { default: 'https://download.postgresql.org/pub/repos/yum/non-free/15/redhat/rhel-$releasever-$basearch' ,china: 'https://mirrors.aliyun.com/postgresql/repos/yum/non-free/15/redhat/rhel-$releasever-$basearch' ,europe: 'https://mirrors.xtom.de/postgresql/repos/yum/non-free/15/redhat/rhel-$releasever-$basearch' } ,meta: { skip_if_unavailable: 1 }}
   - { name: pgdg16-nonfree ,description: 'PostgreSQL 16+'     ,module: extra   ,releases: [8,9,10] ,arch: [x86_64         ] ,baseurl: { default: 'https://download.postgresql.org/pub/repos/yum/non-free/16/redhat/rhel-$releasever-$basearch' ,china: 'https://mirrors.aliyun.com/postgresql/repos/yum/non-free/16/redhat/rhel-$releasever-$basearch' ,europe: 'https://mirrors.xtom.de/postgresql/repos/yum/non-free/16/redhat/rhel-$releasever-$basearch' } ,meta: { skip_if_unavailable: 1 }}
@@ -96,8 +94,8 @@ Currently, the Aliyun/Tsinghua TUNA mirror sites have resumed PGDG repository sy
 ### Debian / Ubuntu APT Repo
 
 ```yaml
-  - { name: pgdg           ,description: 'PGDG'               ,module: pgsql   ,releases: [11,12,13,   22,24] ,arch: [x86_64, aarch64] ,baseurl: { default: 'http://apt.postgresql.org/pub/repos/apt/ ${distro_codename}-pgdg main' ,china: 'https://mirrors.aliyun.com/postgresql/repos/apt/ ${distro_codename}-pgdg main' }}
-  - { name: pgdg-beta      ,description: 'PGDG Beta'          ,module: beta    ,releases: [11,12,13,   22,24] ,arch: [x86_64, aarch64] ,baseurl: { default: 'http://apt.postgresql.org/pub/repos/apt/ ${distro_codename}-pgdg-testing main 19' ,china: 'https://mirrors.aliyun.com/postgresql/repos/apt/ ${distro_codename}-pgdg-testing main 19' }}
+  - { name: pgdg           ,description: 'PGDG'               ,module: pgsql   ,releases: [11,12,13,22,24,26] ,arch: [x86_64, aarch64] ,baseurl: { default: 'http://apt.postgresql.org/pub/repos/apt/ ${distro_codename}-pgdg main' ,china: 'https://mirrors.aliyun.com/postgresql/repos/apt/ ${distro_codename}-pgdg main' }}
+  - { name: pgdg-beta      ,description: 'PGDG Beta'          ,module: beta    ,releases: [11,12,13,22,24,26] ,arch: [x86_64, aarch64] ,baseurl: { default: 'http://apt.postgresql.org/pub/repos/apt/ ${distro_codename}-pgdg-testing main 19' ,china: 'https://mirrors.aliyun.com/postgresql/repos/apt/ ${distro_codename}-pgdg-testing main 19' }}
 ```
 
 

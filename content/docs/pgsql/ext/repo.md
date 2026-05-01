@@ -101,7 +101,7 @@ The Pigsty repository follows these principles:
 
 1. **Supplementary**: Only includes extensions not present in the PGDG repository
 2. **Consistency**: Once an extension enters the PGDG repository, the Pigsty repository will remove it or keep it consistent
-3. **Compatibility**: Supports multiple major versions of PostgreSQL 13-18
+3. **Compatibility**: Supports multiple major versions of PostgreSQL 14-18
 4. **Multi-platform**: Supports x86_64 and aarch64 architectures
 
 
