@@ -8,7 +8,7 @@ categories: [Reference]
 
 The `pgedge` configuration template replaces native PostgreSQL with the pgEdge kernel and provides distributed, multi-master capabilities for edge deployments.
 
-For the full guide, see: **[pgEdge kernel guide](/docs/pgsql/kernel/pgedge/)**
+For the full guide, see: **[pgEdge kernel guide](/docs/pgsql/kernel/pgedge/)**. For kernel differences and version references, see the [PGSQL kernel overview](/docs/pgsql/kernel/).
 
 
 --------
@@ -17,8 +17,8 @@ For the full guide, see: **[pgEdge kernel guide](/docs/pgsql/kernel/pgedge/)**
 
 - Config name: `pgedge`
 - Node count: Single node
-- Description: pgEdge (PG17) distributed kernel template
-- Supported OS: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
+- Description: pgEdge (PG18) distributed kernel template
+- Supported OS: `d12`, `d13`, `u22`, `u24`, `u26` for PG18 packages. For EL/RPM platforms, check current PGSQL repository availability for `pgedge_18`.
 - Supported arch: `x86_64`, `aarch64`
 - Related templates: [`meta`](/docs/conf/meta/), [`pgsql`](/docs/conf/pgsql/)
 
@@ -46,9 +46,9 @@ The `pgedge` template enables `pg_mode: pgedge` in `pg-meta` and pre-installs pg
 
 **Key features**:
 
-- Uses `pgedge` kernel package (PG17-compatible)
-- Installs `spock`, `snowflake`, `lolor` extensions by default
-- Preloads `spock` and `lolor` for multi-master setup readiness
+- Uses `pgedge` kernel package (PG18-compatible)
+- Installs [`spock`](/ext/e/spock/), [`snowflake`](/ext/e/snowflake/), and [`lolor`](/ext/e/lolor/) extensions by default
+- Preloads [`spock`](/ext/e/spock/) and [`lolor`](/ext/e/lolor/) for multi-master setup readiness
 - Keeps Pigsty standard backup, monitoring, and operations workflow
 
 **Typical use cases**:
@@ -60,5 +60,5 @@ The `pgedge` template enables `pg_mode: pgedge` in `pg-meta` and pre-installs pg
 **Caveats**:
 
 - Current template is for single-node kernel validation; production multi-master needs explicit topology and replication strategy planning
-- Default is `pg_version: 17`; keep consistent with target cluster versions
+- Default is `pg_version: 18`; keep consistent with target cluster versions
 - Evaluate latency and conflict policy before cross-region replication

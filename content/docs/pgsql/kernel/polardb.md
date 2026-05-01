@@ -90,7 +90,7 @@ Compared with the old docs, the PolarDB PG 17 extension catalog has changed subs
 
 | Change Type | Count | Notes |
 |-------------|-------|-------|
-| Added | 33 | New additions include `pgaudit`, `pg_partman`, `pg_profile`, `pg_repack`, `pg_stat_kcache`, `pg_jieba`, `pg_cron`, `pg_hint_plan`, `pg_walinspect`, plus PolarDB and operations-focused extensions such as `polar_advisor`, `polar_feature_utils`, `polar_parameter_manager`, `polar_proxy_utils`, `polar_resource_manager`, and `polar_smgrperf`. |
+| Added | 33 | New additions include [`pgaudit`](/ext/e/pgaudit/), [`pg_partman`](/ext/e/pg_partman/), [`pg_profile`](/ext/e/pg_profile/), [`pg_repack`](/ext/e/pg_repack/), [`pg_stat_kcache`](/ext/e/pg_stat_kcache/), `pg_jieba`, [`pg_cron`](/ext/e/pg_cron/), [`pg_hint_plan`](/ext/e/pg_hint_plan/), [`pg_walinspect`](/ext/e/pg_walinspect/), plus PolarDB and operations-focused extensions such as `polar_advisor`, `polar_feature_utils`, `polar_parameter_manager`, `polar_proxy_utils`, `polar_resource_manager`, and `polar_smgrperf`. |
 | Removed | 14 | `polar_csn`, `polar_px`, `polar_stat_env`, `polar_stat_sql`, `timetravel`, and `smlar` no longer appear in the current PG17 catalog. Several `plpython2u` / `plpythonu` compatibility extensions were also removed. |
 {.full-width}
 

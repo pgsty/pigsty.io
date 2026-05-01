@@ -15,6 +15,8 @@ One thing to keep in mind is that not every kernel has the same delivery depth i
 PostgreSQL, Citus, Babelfish, IvorySQL, PolarDB, AgensGraph, and pgEdge already have relatively clear templates and configuration paths;
 Cloudberry and Greenplum, by contrast, are more often managed through `gpsql` mode, and their MPP initialization plus scale-out operations are still better handled with upstream tooling.
 
+Kernel configuration templates should link to this overview and to their dedicated kernel guide. When a kernel has dedicated extensions, prefer linking to the extension catalog, such as [`spock`](/ext/e/spock/), [`snowflake`](/ext/e/snowflake/), and [`lolor`](/ext/e/lolor/).
+
 | Kernel                                          | Key Feature                           | Description                                   |
 |:------------------------------------------------|:--------------------------------------|:----------------------------------------------|
 | [**PostgreSQL**](/docs/pgsql)                   | **Native kernel, full extension set** | Vanilla PostgreSQL with 510 extensions        |
@@ -36,9 +38,9 @@ Cloudberry and Greenplum, by contrast, are more often managed through `gpsql` mo
 
 ## Versions
 
-Below are the version strings for each PG kernel flavor (using el9 as the example). Citus, FerretDB, and Supabase use the same base PostgreSQL versioning pattern as vanilla PostgreSQL.
+Below are the version strings or current package references for each PG kernel flavor. Citus, FerretDB, and Supabase use the same base PostgreSQL versioning pattern as vanilla PostgreSQL.
 
-These version strings mostly come from the current Pigsty repository packages. One thing worth noting: Cloudberry `2.0.0` is currently RPM-only, pgEdge is currently delivered as a PG17-series kernel, and PolarDB is currently shown using the upstream stable branch `POLARDB_17_STABLE` and latest upstream release naming.
+These version strings mostly come from the current Pigsty repository packages. One thing worth noting: Cloudberry `2.0.0` is currently RPM-only, pgEdge is currently delivered as a PG18-series kernel, and PolarDB is currently shown using the upstream stable branch `POLARDB_17_STABLE` and latest upstream release naming.
 
 | Kernel                                          | Description                                                                                                                                                    |
 |:------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -50,5 +52,5 @@ These version strings mostly come from the current Pigsty repository packages. O
 | [**OrioleDB**](/docs/pgsql/kernel/orioledb)     | `PostgreSQL 17.6 (OrioleDB 1.6-beta14) on aarch64-unknown-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), 64-bit`                     |
 | [**PolarDB**](/docs/pgsql/kernel/polardb)       | `POLARDB_17_STABLE (based on PostgreSQL 17, latest upstream release v17.9.1.0)`                                                                               |
 | [**AgensGraph**](/docs/pgsql/kernel/agensgraph) | `PostgreSQL 16.9 (AgensGraph 2.16) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), 64-bit`                               |
-| [**pgEdge**](/docs/pgsql/kernel/pgedge)         | `PostgreSQL 17.9 (pgEdge 5.0.5) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), 64-bit`                                  |
+| [**pgEdge**](/docs/pgsql/kernel/pgedge)         | `PostgreSQL 18.3 (pgEdge; pgedge-18 package, Spock 5.0.6)`                                                                                                      |
 | [**Cloudberry**](/docs/pgsql/kernel/cloudberry) | `PostgreSQL 14.4 (Apache Cloudberry 2.0.0-incubating build 1) on aarch64-unknown-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), 64-bit` |

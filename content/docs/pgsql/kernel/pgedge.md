@@ -1,7 +1,7 @@
 ---
 title: pgEdge
 weight: 2116
-description: Use the pgEdge (PG17) kernel in Pigsty to build distributed PostgreSQL for edge scenarios on top of Spock multi-master logical replication.
+description: Use the pgEdge (PG18) kernel in Pigsty to build distributed PostgreSQL for edge scenarios on top of Spock multi-master logical replication.
 icon: fa-solid fa-network-wired
 module: [PGSQL]
 categories: [Concept]
@@ -16,12 +16,12 @@ categories: [Concept]
 
 Pigsty integrates pgEdge through `pg_mode: pgedge` and delivers it through the standard PostgreSQL cluster workflow:
 
-- `pgedge`: a PG17-compatible kernel
-- `spock`: Active-active multi-master logical replication
-- `snowflake`: Distributed unique sequences
-- `lolor`: Large object logical replication compatibility layer
+- `pgedge`: a PG18-compatible kernel
+- [`spock`](/ext/e/spock/): Active-active multi-master logical replication
+- [`snowflake`](/ext/e/snowflake/): Distributed unique sequences
+- [`lolor`](/ext/e/lolor/): Large object logical replication compatibility layer
 
-In the current Pigsty repository, pgEdge is shipped as `17.9`, together with `spock 5.0.5`, `snowflake 2.4`, and `lolor 1.2.2`.
+In the current Pigsty repository, pgEdge PG18 is shipped as the `pgedge-18 18.3` package, together with `spock 5.0.6`, `snowflake 2.4`, and `lolor 1.2.2`. PG17 packages are still kept as a transition option, but the `pgedge` configuration template now defaults to `pg_version: 18`.
 From the client side, pgEdge is still PostgreSQL wire compatible, so `psql`, JDBC/ODBC, DBeaver, and similar tools work as usual.
 
 The delivery model in Pigsty is: validate the kernel on a single node first, then expand to a multi-node replication topology.
@@ -57,7 +57,7 @@ Key parameters in the `pgedge` template (matching `conf/pgedge.yml`):
 
 ```yaml
 pg_mode: pgedge
-pg_version: 17
+pg_version: 18
 pg_packages: [ pgedge, pgsql-common ]
 pg_extensions: [ spock, snowflake, lolor ]
 pg_libs: 'spock, lolor, pg_stat_statements, auto_explain'
@@ -115,6 +115,9 @@ If your schema already uses `serial` or `identity`, plan the `snowflake` sequenc
 - [PGSQL Kernel Overview](/docs/pgsql/kernel/)
 - [`pgedge` config template](/docs/conf/pgedge/)
 - [PGSQL kernel mode config](/docs/pgsql/config/kernel/)
+- [`spock` extension](/ext/e/spock/)
+- [`snowflake` extension](/ext/e/snowflake/)
+- [`lolor` extension](/ext/e/lolor/)
 - [pgEdge official docs](https://docs.pgedge.com/)
 - [Spock Limitations](https://docs.pgedge.com/spock-v5/development/limitations/)
 - [Snowflake Sequences](https://docs.pgedge.com/platform/snowflake)
