@@ -3,7 +3,7 @@
 #=======================================#
 baseURL: https://pigsty.io/
 title: PIGSTY
-languageCode: en
+locale: en
 defaultContentLanguage: en
 enableRobotsTXT: true
 enableGitInfo: true
