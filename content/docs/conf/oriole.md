@@ -16,7 +16,7 @@ The `oriole` configuration template uses OrioleDB storage engine instead of Post
 - Config Name: `oriole`
 - Node Count: Single node
 - Description: OrioleDB bloat-free storage engine configuration
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`
 - Related: [`meta`](/docs/conf/meta/)
 

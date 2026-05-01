@@ -16,7 +16,7 @@ The `app/electric` configuration template provides a reference configuration for
 - Config Name: `app/electric`
 - Node Count: Single node
 - Description: Deploy Electric real-time sync using Pigsty-managed PostgreSQL
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/)
 

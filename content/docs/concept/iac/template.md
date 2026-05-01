@@ -137,4 +137,4 @@ The following configuration templates are for development and testing purposes:
 
 | Template        | Description                                                            |
 |-----------------|------------------------------------------------------------------------|
-| **`build.yml`** | Open source build config for EL 9/10, Debian 12/13, Ubuntu 22.04/24.04 |
+| **`build.yml`** | Open source build config for EL 9/10, Debian 12/13, Ubuntu 22.04/24.04/26.04 |

@@ -32,7 +32,7 @@ Compared with older `Babelfish/PG15` docs, current behavior is:
 - Default kernel upgraded to **PG17** (`pg_version: 17`)
 - Default package group: `babelfish + pgsql-common + sqlcmd`
 - Mainstream platform coverage:
-  - OS: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+  - OS: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
   - Arch: `x86_64`, `aarch64`
 - `mssql` template no longer requires an extra `mssql` repo module (defaults to `node,infra,pgsql`)
 

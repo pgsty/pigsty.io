@@ -46,7 +46,7 @@ curl -fsSL https://repo.pigsty.cc/yum/repo | sudo tee /etc/yum.repos.d/pigsty.re
 
 ## APT Repository
 
-Applicable to Debian 11/12/13 and Ubuntu 22.04/24.04 and compatible systems.
+Applicable to Debian 11/12/13 and Ubuntu 22.04/24.04/26.04 and compatible systems.
 
 ### Add Repository
 
@@ -112,4 +112,3 @@ The Pigsty repository follows these principles:
 - [Pigsty Extension Catalog](/ext/list): Browse all available extensions
 - [PGDG YUM Repository](https://download.postgresql.org/pub/repos/yum/)
 - [PGDG APT Repository](https://apt.postgresql.org/pub/repos/apt/)
-

@@ -75,7 +75,7 @@ On **Debian / Ubuntu** compatible Linux distros, you can add the [GPG Key](/docs
 # Add Pigsty's GPG public key to your system keychain to verify package signatures, or just trust
 curl -fsSL https://repo.pigsty.io/key | sudo gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg
 
-# Get Debian distribution codename (distro_codename=jammy, focal, bullseye, bookworm)
+# Get Debian / Ubuntu distribution codename (bookworm, trixie, jammy, noble, resolute)
 # and write the corresponding upstream repository address to the APT List file
 distro_codename=$(lsb_release -cs)
 sudo tee /etc/apt/sources.list.d/pigsty-infra.list > /dev/null <<EOF
@@ -92,7 +92,7 @@ sudo apt update
 # Add Pigsty's GPG public key to your system keychain to verify package signatures, or just trust
 curl -fsSL https://repo.pigsty.cc/key | sudo gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg
 
-# Get Debian distribution codename (distro_codename=jammy, focal, bullseye, bookworm)
+# Get Debian / Ubuntu distribution codename (bookworm, trixie, jammy, noble, resolute)
 # and write the corresponding upstream repository address to the APT List file
 distro_codename=$(lsb_release -cs)
 sudo tee /etc/apt/sources.list.d/pigsty-infra.list > /dev/null <<EOF
@@ -207,4 +207,3 @@ Building specs of this repo is open-sourced on GitHub:
 - https://github.com/pgsty/infra-pkg
 
 If the platform is not supported, you can also build the packages from source code by yourself.
-

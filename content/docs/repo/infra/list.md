@@ -92,7 +92,7 @@ allow_loading_unsigned_plugins = victoriametrics-logs-datasource,victoriametrics
 |---------------------------------------------------------|------------------|---------------------------------------------------------------------------------|------------------------------------|
 | [`minio`](https://github.com/pgsty/minio)               | `20260417000000` | [AGPLv3](https://github.com/minio/minio/blob/master/LICENSE)                    | FOSS S3 server, now built by pgsty |
 | [`mcli`](https://github.com/pgsty/mc)                   | `20260417000000` | [AGPLv3](https://github.com/pgsty/mc/blob/main/LICENSE)                         | FOSS S3 client, now built by pgsty |
-| [`rustfs`](https://github.com/rustfs/rustfs)            | `1.0.0-beta.1`       | [Apache-2.0](https://github.com/rustfs/rustfs/blob/main/LICENSE)                | FOSS MinIO, Beta                   |
+| [`rustfs`](https://github.com/rustfs/rustfs)            | `1.0.0-b1`       | [Apache-2.0](https://github.com/rustfs/rustfs/blob/main/LICENSE)                | FOSS MinIO, Beta                   |
 | [`garage`](https://git.deuxfleurs.fr/Deuxfleurs/garage) | `2.3.0`          | [AGPL-3.0](https://git.deuxfleurs.fr/Deuxfleurs/garage/src/branch/main/LICENSE) | Lightweight S3                     |
 | [`seaweedfs`](https://github.com/seaweedfs/seaweedfs)   | `4.22`           | [Apache-2.0](https://github.com/seaweedfs/seaweedfs/blob/master/LICENSE)        | S3 for small files                 |
 | [`rclone`](https://github.com/rclone/rclone/)           | `1.73.5`         | [MIT](https://github.com/rclone/rclone/blob/master/COPYING)                     | S3 command line tool               |

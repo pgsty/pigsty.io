@@ -16,7 +16,7 @@ The `vibe` config template provides a ready-to-use **AI coding sandbox**, integr
 - Config Name: `vibe`
 - Node Count: Single node
 - Description: VIBE AI coding sandbox with Code-Server + JupyterLab + Claude Code + JuiceFS + PostgreSQL
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/)
 

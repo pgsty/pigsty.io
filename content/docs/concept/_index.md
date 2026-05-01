@@ -26,7 +26,7 @@ Pigsty provides:
 
 - **Out-of-the-Box PostgreSQL Distribution**
 
-  Pigsty deeply integrates [**507 extensions**](/ext/list) from the PostgreSQL ecosystem, providing out-of-the-box distributed, time-series, geographic, spatial, graph, vector, search, and other multi-modal database capabilities. From kernel to RDS distribution, providing production-grade database services for versions 13-18 on EL/Debian/Ubuntu.
+  Pigsty deeply integrates [**510 extensions**](/ext/list) from the PostgreSQL ecosystem, providing out-of-the-box distributed, time-series, geographic, spatial, graph, vector, search, and other multi-modal database capabilities. From kernel to RDS distribution, providing production-grade database services for versions 13-18 on EL/Debian/Ubuntu.
 
 - **Self-Healing High Availability Architecture**
 

@@ -18,7 +18,7 @@ Suitable for scenarios requiring a standalone monitoring stack, such as monitori
 - Config Name: `infra`
 - Node Count: Single or multiple nodes
 - Description: Only installs observability infrastructure, without PostgreSQL and etcd
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/)
 

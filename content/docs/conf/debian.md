@@ -16,7 +16,7 @@ The `demo/debian` configuration template is optimized for Debian and Ubuntu dist
 - Config Name: `demo/debian`
 - Node Count: Single node
 - Description: Debian/Ubuntu optimized configuration template
-- OS Distro: `d12`, `d13`, `u22`, `u24`
+- OS Distro: `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/), [`demo/el`](/docs/conf/el/)
 

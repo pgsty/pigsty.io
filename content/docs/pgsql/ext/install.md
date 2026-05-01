@@ -115,6 +115,7 @@ For package alias definitions, see:
 - [D12 Extension List](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/d12.x86_64.yml)
 - [U22 Extension List](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u22.x86_64.yml)
 - [U24 Extension List](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u24.x86_64.yml)
+- [U26 Extension List](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u26.x86_64.yml)
 
 
 --------
@@ -130,4 +131,3 @@ SELECT * FROM pg_available_extensions WHERE name = 'vector';
 -- Check if extension files exist
 \dx
 ```
-

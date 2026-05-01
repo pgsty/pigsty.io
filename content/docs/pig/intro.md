@@ -11,7 +11,7 @@ categories: [Concept]
 Have you ever struggled with installing or upgrading PostgreSQL extensions? Digging through outdated documentation, cryptic configuration scripts, or searching GitHub for forks and patches?
 Postgres's rich extension ecosystem also means complex deployment processes, especially across multiple distributions and architectures. PIG can solve these headaches for you.
 
-This is exactly why **Pig** was created. Developed in Go, Pig is dedicated to one-stop management of Postgres and its [507](/ext/list) extensions.
+This is exactly why **Pig** was created. Developed in Go, Pig is dedicated to one-stop management of Postgres and its [510](/ext/list) extensions.
 Whether it's TimescaleDB, Citus, PGVector, 30+ Rust extensions, or all the components needed to self-host Supabase, Pig's unified CLI makes everything accessible.
 It completely eliminates source compilation and messy repositories, directly providing version-aligned RPM/DEB packages that perfectly support Debian, Ubuntu, RedHat, and other mainstream distributions on both x86 and Arm architectures, no guessing, no hassle.
 
@@ -58,6 +58,8 @@ PIG and the Pigsty extension repository support the following Linux distribution
 | `u22.aarch64` | Ubuntu | 22 | 22.04.5 | Ubuntu 22.04 ARM | 14-18 | ✅ |
 | `u24.x86_64` | Ubuntu | 24 | 24.04.4 | Ubuntu 24.04 x86 | 14-18 | ✅ |
 | `u24.aarch64` | Ubuntu | 24 | 24.04.4 | Ubuntu 24.04 ARM | 14-18 | ✅ |
+| `u26.x86_64` | Ubuntu | 26 | 26.04.0 | Ubuntu 26.04 x86 | 14-18 | ✅ |
+| `u26.aarch64` | Ubuntu | 26 | 26.04.0 | Ubuntu 26.04 ARM | 14-18 | ✅ |
 {.full-width}
 
 **Notes:**

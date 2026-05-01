@@ -16,7 +16,7 @@ Three nodes is the minimum scale for achieving true high availability. The `ha/t
 - Config Name: `ha/trio`
 - Node Count: Three nodes
 - Description: Three-node standard HA architecture, tolerates any single server failure
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`ha/dual`](/docs/conf/dual/), [`ha/full`](/docs/conf/full/), [`ha/safe`](/docs/conf/safe/)
 

@@ -8,7 +8,7 @@ weight: 610
 
 Pigsty has a repository that provides additional PostgreSQL extension packages on mainstream [Linux Distros](/docs/ref/linux).
 It is designed to work together with the official PostgreSQL Global Development Group ([PGDG](https://www.postgresql.org/download/linux/)) repo.
-Together, they can provide [507 PostgreSQL Extensions](/ext/) out-of-the-box.
+Together, they can provide [510 PostgreSQL Extensions](/ext/) out-of-the-box.
 
 |   PGSQL Repo   |                            Description                            |             Link              |
 |:--------------:|:-----------------------------------------------------------------:|:-----------------------------:|
@@ -24,13 +24,14 @@ Together, they can provide [507 PostgreSQL Extensions](/ext/) out-of-the-box.
 
 |  OS / Arch   |  OS  |                     x86_64                     |                    aarch64                     |
 |:------------:|:----:|:----------------------------------------------:|:----------------------------------------------:|
-|     EL8      | el8  | **18**, **17**, **16**, **15**, **14**, **13** | **18**, **17**, **16**, **15**, **14**, **13** |
-|     EL9      | el9  | **18**, **17**, **16**, **15**, **14**, **13** | **18**, **17**, **16**, **15**, **14**, **13** |
-|     EL10     | el10 | **18**, **17**, **16**, **15**, **14**, **13** | **18**, **17**, **16**, **15**, **14**, **13** |
-|  Debian 12   | d12  | **18**, **17**, **16**, **15**, **14**, **13** | **18**, **17**, **16**, **15**, **14**, **13** |
-|  Debian 13   | d13  | **18**, **17**, **16**, **15**, **14**, **13** | **18**, **17**, **16**, **15**, **14**, **13** |
-| Ubuntu 22.04 | u22  | **18**, **17**, **16**, **15**, **14**, **13** | **18**, **17**, **16**, **15**, **14**, **13** |
-| Ubuntu 24.04 | u24  | **18**, **17**, **16**, **15**, **14**, **13** | **18**, **17**, **16**, **15**, **14**, **13** |
+|     EL8      | el8  | **18**, **17**, **16**, **15**, **14** | **18**, **17**, **16**, **15**, **14** |
+|     EL9      | el9  | **18**, **17**, **16**, **15**, **14** | **18**, **17**, **16**, **15**, **14** |
+|     EL10     | el10 | **18**, **17**, **16**, **15**, **14** | **18**, **17**, **16**, **15**, **14** |
+|  Debian 12   | d12  | **18**, **17**, **16**, **15**, **14** | **18**, **17**, **16**, **15**, **14** |
+|  Debian 13   | d13  | **18**, **17**, **16**, **15**, **14** | **18**, **17**, **16**, **15**, **14** |
+| Ubuntu 22.04 | u22  | **18**, **17**, **16**, **15**, **14** | **18**, **17**, **16**, **15**, **14** |
+| Ubuntu 24.04 | u24  | **18**, **17**, **16**, **15**, **14** | **18**, **17**, **16**, **15**, **14** |
+| Ubuntu 26.04 | u26  | **18**, **17**, **16**, **15**, **14** | **18**, **17**, **16**, **15**, **14** |
 
 
 ---------
@@ -67,7 +68,7 @@ You can also add these repos to your system [manually](#manual-install) with the
 # Add Pigsty's GPG public key to your system keychain to verify package signatures
 curl -fsSL https://repo.pigsty.io/key | sudo gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg
 
-# Get Debian distribution codename (distro_codename=jammy, focal, bullseye, bookworm), and write the corresponding upstream repository address to the APT List file
+# Get Debian / Ubuntu distribution codename (bookworm, trixie, jammy, noble, resolute), and write the corresponding upstream repository address to the APT List file
 distro_codename=$(lsb_release -cs)
 sudo tee /etc/apt/sources.list.d/pigsty-io.list > /dev/null <<EOF
 deb [signed-by=/etc/apt/keyrings/pigsty.gpg] https://repo.pigsty.io/apt/infra generic main
@@ -141,24 +142,26 @@ The [**PGSQL**](/docs/repo/pgsql/) repo contains packages that are ad hoc to spe
 |       OS Code        | Vendor | Major |  Minor  | Fullname          |              PG Major Version             | Comment  |
 |:--------------------:|:-------|:-----:|:-------:|:------------------|:-----------------------------------------:|:--------:|
 |    `el7.x86_64`      | EL     |   7   |   7.9   | CentOS 7 x86      |    15 14 13                               |   EOL    |
-|    `el8.x86_64`      | EL     |   8   |  8.10   | RockyLinux 8 x86  | **18** **17** **16** **15** **14** **13** | Near EOL |
-|    `el8.aarch64`     | EL     |   8   |  8.10   | RockyLinux 8 ARM  | **18** **17** **16** **15** **14** **13** | Near EOL |
-|    `el9.x86_64`      | EL     |   9   |   9.7   | RockyLinux 9 x86  | **18** **17** **16** **15** **14** **13** |    OK    |
-|    `el9.aarch64`     | EL     |   9   |   9.7   | RockyLinux 9 ARM  | **18** **17** **16** **15** **14** **13** |    OK    |
-|    `el10.x86_64`     | EL     |  10   |  10.1   | RockyLinux 10 x86 | **18** **17** **16** **15** **14** **13** |    OK    |
-|    `el10.aarch64`    | EL     |  10   |  10.1   | RockyLinux 10 ARM | **18** **17** **16** **15** **14** **13** |    OK    |
+|    `el8.x86_64`      | EL     |   8   |  8.10   | RockyLinux 8 x86  | **18** **17** **16** **15** **14** | Near EOL |
+|    `el8.aarch64`     | EL     |   8   |  8.10   | RockyLinux 8 ARM  | **18** **17** **16** **15** **14** | Near EOL |
+|    `el9.x86_64`      | EL     |   9   |   9.7   | RockyLinux 9 x86  | **18** **17** **16** **15** **14** |    OK    |
+|    `el9.aarch64`     | EL     |   9   |   9.7   | RockyLinux 9 ARM  | **18** **17** **16** **15** **14** |    OK    |
+|    `el10.x86_64`     | EL     |  10   |  10.1   | RockyLinux 10 x86 | **18** **17** **16** **15** **14** |    OK    |
+|    `el10.aarch64`    | EL     |  10   |  10.1   | RockyLinux 10 ARM | **18** **17** **16** **15** **14** |    OK    |
 |    `d11.x86_64`      | Debian |  11   |  11.11  | Debian 11 x86     |    17 16 15 14 13                         |   EOL    |
 |    `d11.aarch64`     | Debian |  11   |  11.11  | Debian 11 ARM     |    17 16 15 14 13                         |   EOL    |
-|    `d12.x86_64`      | Debian |  12   |  12.13  | Debian 12 x86     | **18** **17** **16** **15** **14** **13** |    OK    |
-|    `d12.aarch64`     | Debian |  12   |  12.13  | Debian 12 ARM     | **18** **17** **16** **15** **14** **13** |    OK    |
-|    `d13.x86_64`      | Debian |  13   |  13.3   | Debian 13 x86     | **18** **17** **16** **15** **14** **13** |    OK    |
-|    `d13.aarch64`     | Debian |  13   |  13.3   | Debian 13 ARM     | **18** **17** **16** **15** **14** **13** |    OK    |
+|    `d12.x86_64`      | Debian |  12   |  12.13  | Debian 12 x86     | **18** **17** **16** **15** **14** |    OK    |
+|    `d12.aarch64`     | Debian |  12   |  12.13  | Debian 12 ARM     | **18** **17** **16** **15** **14** |    OK    |
+|    `d13.x86_64`      | Debian |  13   |  13.3   | Debian 13 x86     | **18** **17** **16** **15** **14** |    OK    |
+|    `d13.aarch64`     | Debian |  13   |  13.3   | Debian 13 ARM     | **18** **17** **16** **15** **14** |    OK    |
 |    `u20.x86_64`      | Ubuntu |  20   | 20.04.6 | Ubuntu 20.04 x86  |    17 16 15 14 13                         |   EOL    |
 |    `u20.aarch64`     | Ubuntu |  20   | 20.04.6 | Ubuntu 20.04 ARM  |    17 16 15 14 13                         |   EOL    |
-|    `u22.x86_64`      | Ubuntu |  22   | 22.04.5 | Ubuntu 22.04 x86  | **18** **17** **16** **15** **14** **13** |    OK    |
-|    `u22.aarch64`     | Ubuntu |  22   | 22.04.5 | Ubuntu 22.04 ARM  | **18** **17** **16** **15** **14** **13** |    OK    |
-|    `u24.x86_64`      | Ubuntu |  24   | 24.04.4 | Ubuntu 24.04 x86  | **18** **17** **16** **15** **14** **13** |    OK    |
-|    `u24.aarch64`     | Ubuntu |  24   | 24.04.4 | Ubuntu 24.04 ARM  | **18** **17** **16** **15** **14** **13** |    OK    |
+|    `u22.x86_64`      | Ubuntu |  22   | 22.04.5 | Ubuntu 22.04 x86  | **18** **17** **16** **15** **14** |    OK    |
+|    `u22.aarch64`     | Ubuntu |  22   | 22.04.5 | Ubuntu 22.04 ARM  | **18** **17** **16** **15** **14** |    OK    |
+|    `u24.x86_64`      | Ubuntu |  24   | 24.04.4 | Ubuntu 24.04 x86  | **18** **17** **16** **15** **14** |    OK    |
+|    `u24.aarch64`     | Ubuntu |  24   | 24.04.4 | Ubuntu 24.04 ARM  | **18** **17** **16** **15** **14** |    OK    |
+|    `u26.x86_64`      | Ubuntu |  26   | 26.04.0 | Ubuntu 26.04 x86  | **18** **17** **16** **15** **14** |    OK    |
+|    `u26.aarch64`     | Ubuntu |  26   | 26.04.0 | Ubuntu 26.04 ARM  | **18** **17** **16** **15** **14** |    OK    |
 
 
 ---------

@@ -16,7 +16,7 @@ The `ha/citus` template deploys a complete **Citus distributed PostgreSQL cluste
 - Config Name: `ha/citus`
 - Node Count: 13 nodes (1 infra + 1 coordinator×2 + 5 workers×2)
 - Description: Citus distributed PostgreSQL HA cluster
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`
 - Related: [`meta`](/docs/conf/meta/), [`ha/trio`](/docs/conf/trio/)
 

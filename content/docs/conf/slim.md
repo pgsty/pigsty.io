@@ -18,7 +18,7 @@ When you only need an available database instance without the monitoring system,
 - Config Name: `slim`
 - Node Count: Single node
 - Description: Minimal installation template without monitoring infrastructure, installs PostgreSQL directly
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/)
 

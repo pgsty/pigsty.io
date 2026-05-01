@@ -56,7 +56,7 @@ You can also enable this repo with `apt` directly on Debian / Ubuntu:
 # Add Pigsty's GPG public key to your system keychain to verify package signatures
 curl -fsSL https://repo.pigsty.io/key | sudo gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg
 
-# Get Debian distribution codename (distro_codename=jammy, focal, bullseye, bookworm), and write the corresponding upstream repository address to the APT List file
+# Get Debian / Ubuntu distribution codename (bookworm, trixie, jammy, noble, resolute), and write the corresponding upstream repository address to the APT List file
 distro_codename=$(lsb_release -cs)
 sudo tee /etc/apt/sources.list.d/pigsty-io.list > /dev/null <<EOF
 deb [signed-by=/etc/apt/keyrings/pigsty.gpg] https://repo.pigsty.io/apt/pgsql/${distro_codename} ${distro_codename} main

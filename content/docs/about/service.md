@@ -49,7 +49,7 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 <ul>
 <li>EL 9.7 / 10.1</li>
 <li>Debian 12.13 / 13.3</li>
-<li>Ubuntu 22.04.5 / 24.04.3</li>
+<li>Ubuntu 26.04.0 / 24.04.4 / 22.04.5</li>
 </ul>
 <p><b>Features: <a href="/docs/ref/module#core-modules">Core Modules</a></b></p>
 <p><b>SLA: No SLA commitment</b></p>
@@ -74,7 +74,7 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 <ul>
 <li>EL 8 / 9 / 10 compatible</li>
 <li>Debian 12 / 13</li>
-<li>Ubuntu 22 / 24</li>
+<li>Ubuntu 22 / 24 / 26</li>
 </ul>
 
 <p><b>Features: <a href="/docs/ref/module">All Modules</a></b> (except domestic innovation kernels)</p>
@@ -140,7 +140,7 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 
 Pigsty Open Source Edition uses the [**Apache-2.0**](/docs/about/license) license, provides complete core functionality, requires no fees, but does not guarantee any warranty service. If you find defects in Pigsty, we welcome you to submit an [Issue](https://github.com/pgsty/pigsty/issues/) on Github.
 
-For the open source edition, we provide pre-built standard offline software packages for PostgreSQL 18 on six mainstream distro releases with current minor baselines: EL 9.7 / 10.1, Debian 12.13 / 13.3, Ubuntu 22.04.5 / 24.04.3, with both `x86_64` and `aarch64` builds.
+For the open source edition, we provide pre-built standard offline software packages for PostgreSQL 18 on seven mainstream distro releases with current minor baselines: EL 9.7 / 10.1, Debian 12.13 / 13.4, Ubuntu 26.04.0 / 24.04.4 / 22.04.5, with both `x86_64` and `aarch64` builds.
 
 Using the Pigsty open source version allows junior development/operations engineers to have **70%+** of the capabilities of professional DBAs. Even without database experts, they can easily set up a highly available, high-performance, easy-to-maintain, secure and reliable PostgreSQL database cluster.
 
@@ -148,6 +148,7 @@ Using the Pigsty open source version allows junior development/operations engine
 |:-------:|-------------------------|:--------------:|:---------------:|:------------------------------------------------:|:------------------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|
 | **EL10** | RHEL 10 / Rocky10 / Alma10 | `el10.x86_64` | `el10.aarch64` | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i>        | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **EL9** | RHEL 9 / Rocky9 / Alma9 | `el9.x86_64`  | `el9.aarch64`   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i>        | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
+| **U26** | Ubuntu 26.04 (`resolute`) | `u26.x86_64`  | `u26.aarch64`   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i>        | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | |
 | **U24** | Ubuntu 24.04 (`noble`)  | `u24.x86_64`  | `u24.aarch64`   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i>        | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **U22** | Ubuntu 22.04 (`jammy`)  | `u22.x86_64`  | `u22.aarch64`   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i>        | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **D13** | Debian 13 (`trixie`)    | `d13.x86_64`  | `d13.aarch64`   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i>        | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
@@ -165,7 +166,7 @@ Using the Pigsty open source version allows junior development/operations engine
 
 Pigsty Professional Edition subscription provides complete functional modules and warranty for Pigsty itself. For defects in PostgreSQL itself and extension plugins, we will make our best efforts to provide feedback and fixes through the PostgreSQL global developer community.
 
-Pigsty Professional Edition is built on the open source version, fully compatible with all open source features, and provides additional modules plus broader database/OS compatibility options: we provide build options for **all minor versions** of six mainstream Linux releases (EL8/9/10, Debian 12/13, Ubuntu 22/24).
+Pigsty Professional Edition is built on the open source version, fully compatible with all open source features, and provides additional modules plus broader database/OS compatibility options: we provide build options for **all minor versions** of eight mainstream Linux releases (EL8/9/10, Debian 12/13, Ubuntu 22/24/26).
 
 Pigsty Professional Edition includes support for PostgreSQL **13 - 18**, and tracks upstream PostgreSQL minor updates continuously (for active majors, typically day-zero or near-day availability), ensuring smooth rolling upgrades to newer majors and minors.
 
@@ -182,6 +183,7 @@ Pigsty Professional Edition starting price is **¥150,000 / year**, equivalent t
 | **EL10** | RHEL 10 / Rocky10 / Alma10         | `el10.x86_64` | `el10.aarch64` | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **EL9** | RHEL 9 / Rocky9 / Alma9           | `el9.x86_64`  | `el9.aarch64`   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **EL8** | RHEL 8 / Rocky8 / Alma8 / Anolis8 | `el8.x86_64`  | `el8.aarch64`   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
+| **U26** | Ubuntu 26.04 (`resolute`)         | `u26.x86_64`  | `u26.aarch64`   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | |
 | **U24** | Ubuntu 24.04 (`noble`)            | `u24.x86_64`  | `u24.aarch64`   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **U22** | Ubuntu 22.04 (`jammy`)            | `u22.x86_64`  | `u22.aarch64`   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **D13** | Debian 13 (`trixie`)              | `d13.x86_64`  | `d13.aarch64`   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
@@ -213,6 +215,7 @@ Pigsty Enterprise Edition starting price is **¥400,000 / year**, equivalent to 
 | **EL10** | RHEL 10 / Rocky10 / Alma10         | `el10.x86_64` | `el10.aarch64` | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **EL9** | RHEL 9 / Rocky9 / Alma9           | `el9.x86_64`  | `el9.aarch64`   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **EL8** | RHEL 8 / Rocky8 / Alma8 / Anolis8 | `el8.x86_64`  | `el8.aarch64`   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
+| **U26** | Ubuntu 26.04 (`resolute`)         | `u26.x86_64`  | `u26.aarch64`   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | | |
 | **U24** | Ubuntu 24.04 (`noble`)            | `u24.x86_64`  | `u24.aarch64`   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **U22** | Ubuntu 22.04 (`jammy`)            | `u22.x86_64`  | `u22.aarch64`   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **D13** | Debian 13 (`trixie`)              | `d13.x86_64`  | `d13.aarch64`   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
@@ -241,7 +244,7 @@ Pigsty Professional/Enterprise Edition includes the following additional feature
     - [**IvorySQL**](/docs/pgsql/kernel/ivorysql): Based on PG, provides Oracle syntax/type/stored procedure compatibility
     - [**PolarDB PG**](/docs/pgsql/kernel/polardb): Provides support for open-source PolarDB for PostgreSQL kernel
     - [**PolarDB O**](/docs/pgsql/kernel/polardb-o): Domestic innovation database with Oracle-compatible kernel for local compliance requirements (**Enterprise Edition subscription only**)
-- **Extension Support Capability**: Provides out-of-the-box installation for 507 available PG extensions for PG 13-18 on mainstream operating systems.
+- **Extension Support Capability**: Provides out-of-the-box installation for 510 available PG extensions for PG 13-18 on mainstream operating systems.
 - **Complete Functional Modules**: Provides all functional modules:
     - [**Supabase**](/docs/pgsql/kernel/supabase): Reliably self-host production-grade open-source Firebase
     - [**MinIO**](/docs/minio): Enterprise PB-level object storage planning and self-hosting

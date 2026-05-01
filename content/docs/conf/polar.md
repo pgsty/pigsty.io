@@ -18,7 +18,7 @@ For the complete tutorial, see: **[PolarDB for PostgreSQL (POLAR) Kernel Guide](
 - Config Name: `polar`
 - Node Count: Single node
 - Description: Uses PolarDB for PostgreSQL kernel
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/)
 

@@ -117,7 +117,7 @@ pig ext av pgvector               # Show availability for pgvector
 pig ext matrix citus              # Alias for avail command
 ```
 
-The availability matrix shows extension availability across operating systems (EL8/9/10, Debian 12/13, Ubuntu 22/24), architectures (x86_64/aarch64), and PostgreSQL versions (14-18).
+The availability matrix shows extension availability across operating systems (EL8/9/10, Debian 12/13, Ubuntu 22/24/26), architectures (x86_64/aarch64), and PostgreSQL versions (14-18).
 
 
 ## ext status

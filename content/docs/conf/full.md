@@ -18,7 +18,7 @@ Most Pigsty tutorials and examples are based on this template's sandbox environm
 - Config Name: `ha/full`
 - Node Count: Four nodes
 - Description: Four-node complete feature demonstration environment with two PostgreSQL clusters, MinIO, Redis, etc.
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`ha/trio`](/docs/conf/trio/), [`ha/safe`](/docs/conf/safe/), [`demo/demo`](/docs/conf/demo/)
 

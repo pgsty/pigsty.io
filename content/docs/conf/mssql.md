@@ -20,7 +20,7 @@ For the complete tutorial, see: **[Babelfish (MSSQL) Kernel Guide](/docs/pgsql/k
 - Config Name: `mssql`
 - Node Count: Single node
 - Description: Babelfish (PG17) configuration template with SQL Server protocol compatibility
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/)
 

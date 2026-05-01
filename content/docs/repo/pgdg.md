@@ -6,7 +6,7 @@ weight: 5410
 ---
 
 The Pigsty PGSQL Repo is designed to work together with the official PostgreSQL Global Development Group ([PGDG](https://www.postgresql.org/download/linux/)) repo.
-Together, they can provide [507 PostgreSQL Extensions](/ext/) out-of-the-box.
+Together, they can provide [510 PostgreSQL Extensions](/ext/) out-of-the-box.
 
 > Mirror synced at 2025-12-29 12:00:00
 
@@ -35,7 +35,7 @@ Since 2025-05, PGDG has closed the rsync/ftp sync channel, which makes almost al
 
 Currently, Pigsty, Yandex, and Xtom are providing regular synced mirror service.
 
-The Pigsty PGDG mirror is a subset of the official PGDG repo, covering EL 7-10, Debian 11-13, Ubuntu 20.04 - 24.04, with x86_64 & arm64 and PG 13 - 19alpha.
+The Pigsty PGDG mirror is a subset of the official PGDG repo, covering EL 7-10, Debian 11-13, Ubuntu 20.04 - 24.04, with x86_64 & arm64 and PG 14 - 19alpha.
 
 {{% alert title="2025-11 Update Notice: Aliyun/Tsinghua TUNA Resumed" color="info" %}}
 Currently, the Aliyun/Tsinghua TUNA mirror sites have resumed PGDG repository synchronization.
@@ -48,26 +48,25 @@ Currently, the Aliyun/Tsinghua TUNA mirror sites have resumed PGDG repository sy
 
 |   OS Code      | Vendor | Major |                PG Major Version                | Comment  |
 |:--------------:|:-------|:-----:|:----------------------------------------------:|:--------:|
-| el7.x86_64     | EL     |   7   | **18**, **17**, **16**, **15**, **14**, **13** |   EOL    |
-| el8.x86_64     | EL     |   8   | **18**, **17**, **16**, **15**, **14**, **13** | Near EOL |
-| el8.aarch64    | EL     |   8   | **18**, **17**, **16**, **15**, **14**, **13** | Near EOL |
-| el9.x86_64     | EL     |   9   | **18**, **17**, **16**, **15**, **14**, **13** |    OK    |
-| el9.aarch64    | EL     |   9   | **18**, **17**, **16**, **15**, **14**, **13** |    OK    |
-| el10.x86_64    | EL     |  10   | **18**, **17**, **16**, **15**, **14**, **13** |    OK    |
-| el10.aarch64   | EL     |  10   | **18**, **17**, **16**, **15**, **14**, **13** |    OK    |
-| d11.x86_64     | Debian |  11   | **18**, **17**, **16**, **15**, **14**, **13** |   EOL    |
-| d11.aarch64    | Debian |  11   | **18**, **17**, **16**, **15**, **14**, **13** |   EOL    |
-| d12.x86_64     | Debian |  12   | **18**, **17**, **16**, **15**, **14**, **13** |    OK    |
-| d12.aarch64    | Debian |  12   | **18**, **17**, **16**, **15**, **14**, **13** |    OK    |
-| d13.x86_64     | Debian |  13   | **18**, **17**, **16**, **15**, **14**, **13** |    OK    |
-| d13.aarch64    | Debian |  13   | **18**, **17**, **16**, **15**, **14**, **13** |    OK    |
-| u20.x86_64     | Ubuntu |  20   | **18**, **17**, **16**, **15**, **14**, **13** |   EOL    |
-| u20.aarch64    | Ubuntu |  20   | **18**, **17**, **16**, **15**, **14**, **13** |   EOL    |
-| u22.x86_64     | Ubuntu |  22   | **18**, **17**, **16**, **15**, **14**, **13** |    OK    |
-| u22.aarch64    | Ubuntu |  22   | **18**, **17**, **16**, **15**, **14**, **13** |    OK    |
-| u24.x86_64     | Ubuntu |  24   | **18**, **17**, **16**, **15**, **14**, **13** |    OK    |
-| u24.aarch64    | Ubuntu |  24   | **18**, **17**, **16**, **15**, **14**, **13** |    OK    |
-
+| el7.x86_64     | EL     |   7   | **18**, **17**, **16**, **15**, **14** |   EOL    |
+| el8.x86_64     | EL     |   8   | **18**, **17**, **16**, **15**, **14** | Near EOL |
+| el8.aarch64    | EL     |   8   | **18**, **17**, **16**, **15**, **14** | Near EOL |
+| el9.x86_64     | EL     |   9   | **18**, **17**, **16**, **15**, **14** |    OK    |
+| el9.aarch64    | EL     |   9   | **18**, **17**, **16**, **15**, **14** |    OK    |
+| el10.x86_64    | EL     |  10   | **18**, **17**, **16**, **15**, **14** |    OK    |
+| el10.aarch64   | EL     |  10   | **18**, **17**, **16**, **15**, **14** |    OK    |
+| d11.x86_64     | Debian |  11   | **18**, **17**, **16**, **15**, **14** |   EOL    |
+| d11.aarch64    | Debian |  11   | **18**, **17**, **16**, **15**, **14** |   EOL    |
+| d12.x86_64     | Debian |  12   | **18**, **17**, **16**, **15**, **14** |    OK    |
+| d12.aarch64    | Debian |  12   | **18**, **17**, **16**, **15**, **14** |    OK    |
+| d13.x86_64     | Debian |  13   | **18**, **17**, **16**, **15**, **14** |    OK    |
+| d13.aarch64    | Debian |  13   | **18**, **17**, **16**, **15**, **14** |    OK    |
+| u20.x86_64     | Ubuntu |  20   | **18**, **17**, **16**, **15**, **14** |   EOL    |
+| u20.aarch64    | Ubuntu |  20   | **18**, **17**, **16**, **15**, **14** |   EOL    |
+| u22.x86_64     | Ubuntu |  22   | **18**, **17**, **16**, **15**, **14** |    OK    |
+| u22.aarch64    | Ubuntu |  22   | **18**, **17**, **16**, **15**, **14** |    OK    |
+| u24.x86_64     | Ubuntu |  24   | **18**, **17**, **16**, **15**, **14** |    OK    |
+| u24.aarch64    | Ubuntu |  24   | **18**, **17**, **16**, **15**, **14** |    OK    |
 
 ---------
 

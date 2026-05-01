@@ -83,6 +83,8 @@ You can find the alias mapping files for each operating system and architecture 
 - [`el9.aarch64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/el9.aarch64.yml#L85)
 - [`el8.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/el8.x86_64.yml#L85)
 - [`el8.aarch64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/el8.aarch64.yml#L85)
+- [`u26.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u26.x86_64.yml#L78)
+- [`u26.aarch64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u26.aarch64.yml#L78)
 - [`u24.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u24.x86_64.yml#L78)
 - [`u24.aarch64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u24.aarch64.yml#L78)
 - [`u22.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u22.x86_64.yml#L78)
@@ -137,4 +139,3 @@ On EL systems, many aliases use the `*` wildcard to match related subpackages. F
 - `postgresql18*` will match `postgresql18`, `postgresql18-server`, `postgresql18-libs`, `postgresql18-contrib`, etc.
 
 This design ensures you don't need to list each subpackage individually - one alias can install the complete extension.
-

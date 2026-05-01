@@ -16,9 +16,9 @@ This configuration is intended for developers and contributors only.
 ## Overview
 
 - Config Name: `build/oss`
-- Node Count: Six nodes (el9, el10, d12, d13, u22, u24)
+- Node Count: Seven nodes (el9, el10, d12, d13, u22, u24, u26)
 - Description: Pigsty open-source edition offline package build environment
-- OS Distro: `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`
 
 Usage:
@@ -76,4 +76,3 @@ make cache
 - Pigsty developers building new versions
 - Contributors testing new extensions
 - Enterprise users customizing offline packages
-

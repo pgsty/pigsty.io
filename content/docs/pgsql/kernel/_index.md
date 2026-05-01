@@ -17,7 +17,7 @@ Cloudberry and Greenplum, by contrast, are more often managed through `gpsql` mo
 
 | Kernel                                          | Key Feature                           | Description                                   |
 |:------------------------------------------------|:--------------------------------------|:----------------------------------------------|
-| [**PostgreSQL**](/docs/pgsql)                   | **Native kernel, full extension set** | Vanilla PostgreSQL with 507 extensions        |
+| [**PostgreSQL**](/docs/pgsql)                   | **Native kernel, full extension set** | Vanilla PostgreSQL with 510 extensions        |
 | [**Supabase**](/docs/pgsql/kernel/supabase)     | **Backend as a Service**              | PostgreSQL-based BaaS, Firebase alternative   |
 | [**Citus**](/docs/pgsql/kernel/citus)           | **Horizontal scaling**                | Distributed PostgreSQL via native extension   |
 | [**Babelfish**](/docs/pgsql/kernel/babelfish)   | **SQL Server compatible**             | SQL Server wire-protocol compatibility (PG17) |

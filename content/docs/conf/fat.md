@@ -18,7 +18,7 @@ This is a full-featured configuration for testing and development, suitable for 
 - Config Name: `fat`
 - Node Count: Single node
 - Description: Feature-All-Test template, installs all extensions, builds local repo with PG 13-18 all versions
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/), [`slim`](/docs/conf/slim/), [`fat`](/docs/conf/fat/)
 

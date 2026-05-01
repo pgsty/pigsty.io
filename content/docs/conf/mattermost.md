@@ -18,7 +18,7 @@ For application usage details, see **[Mattermost: Open-Source IM](/docs/app/matt
 - Config Name: `app/mattermost`
 - Node Count: Single node (default)
 - Description: Out-of-the-box Mattermost + PostgreSQL + Docker template
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`app/odoo`](/docs/conf/odoo/), [`app/registry`](/docs/conf/registry/), [`supabase`](/docs/conf/supabase/)
 

@@ -18,7 +18,7 @@ For more tutorials, see the **[MINIO](/docs/minio/)** module documentation.
 - Config Name: `demo/minio`
 - Node Count: Four nodes
 - Description: High-availability multi-node multi-disk MinIO cluster demo
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/)
 

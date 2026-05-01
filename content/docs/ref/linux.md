@@ -8,17 +8,19 @@ categories: [Reference]
 
 Pigsty runs on **Linux**, supporting **`amd64/x86_64`** and **`arm64/aarch64`** arch, plus 3 major distros: [**EL**](#el), [**Debian**](#debian), [**Ubuntu**](#ubuntu).
 
-Pigsty runs bare-metal without containers. Supports latest 2 major releases for each of the 3 major distros across both archs.
+Pigsty runs bare-metal without containers. Supports actively maintained mainstream releases across the 3 major distro families and both archs.
 
 
 ## Overview
 
-**Recommended OS versions:** RockyLinux 10.1, Ubuntu 24.04.4, Debian 13.3.
+**Recommended OS versions:** RockyLinux 10.1 / 9.7, Ubuntu 26.04.0 / 24.04.4 / 22.04.5, Debian 13.4 / 12.13.
 
 | Distro                 |                Arch                |                                             OS Code                                             |                       PG18                       |                       PG17                       |                       PG16                       |                       PG15                       |                       PG14                       |                       PG13                       |
 |:-----------------------|:----------------------------------:|:-----------------------------------------------------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|
 | RHEL / Rocky / Alma 10 | <b class="text-sky-600">x86_64</b> |  [`el10.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/el10.x86_64.yml)  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |
 | RHEL / Rocky / Alma 10 | <b class="text-danger">aarch64</b> | [`el10.aarch64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/el10.aarch64.yml) | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |
+| Ubuntu 26.04 (`resolute`) | <b class="text-sky-600">x86_64</b> |   [`u26.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u26.x86_64.yml)   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | |
+| Ubuntu 26.04 (`resolute`) | <b class="text-danger">aarch64</b> |  [`u26.aarch64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u26.aarch64.yml)  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | |
 | Ubuntu 24.04 (`noble`) | <b class="text-sky-600">x86_64</b> |   [`u24.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u24.x86_64.yml)   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |
 | Ubuntu 24.04 (`noble`) | <b class="text-danger">aarch64</b> |  [`u24.aarch64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u24.aarch64.yml)  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |
 | Debian 13 (`trixie`)   | <b class="text-sky-600">x86_64</b> |   [`d13.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/d13.x86_64.yml)   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |
@@ -60,10 +62,12 @@ For extended support on legacy OS, consider [Enterprise Subscription](/docs/abou
 
 ## Ubuntu
 
-Pigsty supports Ubuntu 24.04 / 22.04:
+Pigsty supports Ubuntu 26.04 / 24.04 / 22.04:
 
 | Ubuntu Distro             |                 Arch                 |                                             OS Code                                              |                       PG18                       |                       PG17                       |                          PG16                           |                          PG15                           |                          PG14                           |                          PG13                           |
-|:-----------------------|:----------------------------------:|:---------------------------------------------------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------:|
+|:--------------------------|:------------------------------------:|:------------------------------------------------------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------:|
+| Ubuntu 26.04 (`resolute`) | <b class="text-sky-600">x86_64</b>  |  [`u26.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u26.x86_64.yml)   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |                                                         |
+| Ubuntu 26.04 (`resolute`) | <b class="text-danger">aarch64</b>  | [`u26.aarch64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u26.aarch64.yml)  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |                                                         |
 | Ubuntu 24.04 (`noble`) | <b class="text-sky-600">x86_64</b> |  [`u24.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u24.x86_64.yml)  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |
 | Ubuntu 24.04 (`noble`) | <b class="text-danger">aarch64</b> | [`u24.aarch64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u24.aarch64.yml) | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |
 | Ubuntu 22.04 (`jammy`) | <b class="text-sky-600">x86_64</b> |  [`u22.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u22.x86_64.yml)  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |
@@ -71,8 +75,8 @@ Pigsty supports Ubuntu 24.04 / 22.04:
 | Ubuntu 20.04 (`focal`) | <b class="text-sky-600">x86_64</b> |  [`u20.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u20.x86_64.yml)  |                                                  |                                                  | <i class="fas fa-triangle-exclamation text-danger"></i> | <i class="fas fa-triangle-exclamation text-danger"></i> | <i class="fas fa-triangle-exclamation text-danger"></i> | <i class="fas fa-triangle-exclamation text-danger"></i> |
 | Ubuntu 20.04 (`focal`) | <b class="text-danger">aarch64</b> |                                               -                                               |                                                  |                                                  |                                                         |                                                         |                                                         |                                                         |
 
-{{% alert title="Ubuntu 22.04.5 / 24.04.4 LTS Recommended" color="success" %}}
-Ubuntu 24.04 balances stability and fresh software. Recommended for Ubuntu users.
+{{% alert title="Ubuntu 26.04.0 / 24.04.4 / 22.04.5 LTS Recommended" color="success" %}}
+Ubuntu 26.04 provides the newest LTS baseline, while Ubuntu 24.04 remains the conservative default for Ubuntu users.
 {{% /alert %}}
 
 {{% alert title="Ubuntu 20.04 EOL" color="danger" %}}
@@ -117,6 +121,7 @@ For local VM deployment, use these Vagrant base images (same as used in Pigsty d
 - [`cloud-image/debian-13`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-13): Debian 13.3
 - [`cloud-image/ubuntu-22.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-22.04): Ubuntu 22.04.5
 - [`bento/ubuntu-24.04`](https://portal.cloud.hashicorp.com/vagrant/discover/bento/ubuntu-24.04): Ubuntu 24.04.4
+- [`cloud-image/ubuntu-26.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-26.04): Ubuntu 26.04.0
 
 
 ----------------
@@ -140,4 +145,3 @@ For cloud deployment, use these Terraform base images (Aliyun example):
 - Ubuntu 24.04.4 (aarch64) :  `ubuntu_24_04_arm64_20G_alibase_20251126.vhd`
 - Debian 12.13 (aarch64)   :  `debian_12_13_arm64_20G_alibase_20250825.vhd`
 - Debian 13.3 (aarch64)    :  `debian_13_3_arm64_20G_alibase_20251121.vhd`
-

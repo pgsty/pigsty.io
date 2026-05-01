@@ -18,7 +18,7 @@ For the full guide, see: **[AgensGraph kernel guide](/docs/pgsql/kernel/agensgra
 - Config name: `agens`
 - Node count: Single node
 - Description: AgensGraph (PG16) graph database kernel template
-- Supported OS: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- Supported OS: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - Supported arch: `x86_64`, `aarch64`
 - Related templates: [`meta`](/docs/conf/meta/), [`pgsql`](/docs/conf/pgsql/)
 

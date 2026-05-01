@@ -8,6 +8,74 @@ categories: [Reference]
 
 ------
 
+## 2026-05-01
+
+| Name              | Old Ver | New Ver | Note                                                                           |
+|:------------------|:--------|:--------|:-------------------------------------------------------------------------------|
+| pg_pathcheck      | -       | 0.9.1   | new planner Path diagnostics module, PG 17-18, shared_preload_libraries required |
+| pg_bikram_sambat  | -       | 0.1.0   | new Bikram Sambat date type and AD/BS conversions                              |
+| timescaledb       | 2.26.3  | 2.26.4  | TSL minor update                                                               |
+| storage_engine    | 1.2.3   | 1.3.4   | PGXN update, columnar and row-compressed table access methods                  |
+| pgproto           | 0.3.3   | 0.5.0   | PGXN update, native Protobuf support, C/PGXS build                             |
+| pg_savior         | 0.0.1   | 0.1.0   | PGXN update, high-risk DDL/DML hook, preload or LOAD required                  |
+| pg_textsearch     | 1.0.0   | 1.1.0   | Timescale BM25 full-text search update, PG 17-18, shared_preload_libraries required |
+| pg_trickle        | 0.31.0  | 0.40.0  | Rust/pgrx update, PG 18 only                                                   |
+| pgedge            | 17.9    | 18.3    | rebuilt for PG 18                                                              |
+| spock             | 5.0.5   | 5.0.6   | rebuilt for PG 18                                                              |
+| lolor             | 1.2.2   | 1.2.2   | rebuilt for PG 18                                                              |
+| snowflake         | 2.4     | 2.4     | rebuilt for PG 18                                                              |
+{.stretch-last}
+
+Built for Debian 12/13 and Ubuntu 22.04/24.04/26.04 on amd64 and arm64.
+
+------
+
+## 2026-04-25
+
+| Name           | Old Ver | New Ver | Note                           |
+|:---------------|:--------|:--------|:-------------------------------|
+| documentdb     | 0.109   | 0.110   | bump to upstream, PG 15-18     |
+| pg_trickle     | 0.20.0  | 0.31.0  | bump, PG 18 only, pgrx 0.18.0  |
+| pg_search      | 0.23.0  | 0.23.1  | bump, PG 15-18, pgrx 0.18.0    |
+| pg_ivm         | 1.13    | 1.14    | bump, PG 14-18                 |
+| prefix         | 1.2.10  | 1.2.11  | bump, PG 14-18, PGDG           |
+| credcheck      | 4.6     | 4.7     | bump, PG 14-18, PGDG           |
+| pg_dbms_job    | 1.5     | 2.0     | bump, PG 14-18, PGDG           |
+| storage_engine | 1.0.7   | 1.2.3   | bump, PG 14-18                 |
+| pgmq           | 1.11.0  | 1.11.1  | bump, PG 14-18                 |
+| parray_gin     | 1.4.0   | 1.5.0   | bump, PG 14-18                 |
+| rdf_fdw        | 2.4.0   | 2.5.0   | bump, PG 14-18                 |
+| pg_accumulator | -       | 1.1.3   | new, PG 14-18                  |
+{.stretch-last}
+
+Added Ubuntu 26.04 support.
+
+------
+
+## 2026-04-19
+
+| Name              | Old Ver | New Ver | Note                                  |
+|:------------------|:--------|:--------|:--------------------------------------|
+| cloudberry        | 2.0.0   | 2.1.0   | bump, split backup and PXF subpackages |
+| cloudberry-backup | -       | 2.1.0   | new companion package                 |
+| cloudberry-pxf    | -       | 2.1.0   | new companion package                 |
+| oriolepg          | 17.16   | 17.18   | kernel update for orioledb beta15 / 1.7 |
+| orioledb          | 1.6     | 1.7     | bump, paired with oriolepg 17.18      |
+| timescaledb       | 2.26.2  | 2.26.3  | bump                                  |
+| pg_search         | 0.22.6  | 0.23.0  | bump                                  |
+| pg_trickle        | 0.17.0  | 0.20.0  | bump, PG 18 only                      |
+| pg_clickhouse     | 0.1.10  | 0.2.0   | bump                                  |
+| pg_stat_ch        | 0.3.4   | 0.3.6   | bump, PG 16-18                        |
+| pgclone           | 3.6.0   | 4.0.0   | bump                                  |
+| pgproto           | 0.2.4   | 0.3.3   | bump                                  |
+| pgxicor           | 0.1.0   | 0.1.1   | bump                                  |
+| storage_engine    | -       | 1.0.7   | new, PG 14-18                         |
+| re2               | -       | 0.1.1   | new, PG 16-18                         |
+| ulak              | -       | 0.0.2   | new, PG 14-18                         |
+{.stretch-last}
+
+------
+
 ## 2026-04-14
 
 | Name               | Old Ver | New Ver  | Note                                 |

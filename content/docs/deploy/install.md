@@ -57,7 +57,7 @@ Production Pigsty deployment involves [**preparation work**](/docs/deploy/prepar
 |    [**Disk**](/docs/deploy/prepare#disk)      | `/data` as default mount point               |    [**FS**](/docs/deploy/prepare#filesystem)     | `xfs` recommended; `ext4`/`zfs` as needed          |
 |    [**VIP**](/docs/deploy/prepare#vip)        | L2 VIP, optional (unavailable in cloud)      |    [**Network**](/docs/deploy/prepare#network)   | Static IPv4, single-node can use `127.0.0.1`       |
 |    [**CA**](/docs/deploy/prepare#ca)          | Self-signed CA or specify existing certs     |    [**Domain**](/docs/deploy/prepare#domain)     | Local/public domain, optional, default `h.pigsty`  |
-|    [**Kernel**](/docs/deploy/prepare#linux)   | `Linux` `x86_64` / `aarch64`                 |    [**Linux**](/docs/deploy/prepare#linux)       | `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`   |
+|    [**Kernel**](/docs/deploy/prepare#linux)   | `Linux` `x86_64` / `aarch64`                 |    [**Linux**](/docs/deploy/prepare#linux)       | `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`   |
 |    [**Locale**](/docs/deploy/prepare#locale)  | `C.UTF-8` or `C`                             |    [**Firewall**](/docs/deploy/admin#firewall)   | Ports: `80`/`443`/`22`/`5432` (optional)           |
 |    [**User**](/docs/deploy/admin#user)        | Avoid `root` and `postgres`                  |    [**Sudo**](/docs/deploy/admin#sudo)           | sudo privilege, preferably with `nopass`           |
 |    [**SSH**](/docs/deploy/admin#ssh)          | Passwordless SSH via public key              |    [**Accessible**](/docs/deploy/admin#check-accessibility) | `ssh <ip\|alias> sudo ls` no error       |

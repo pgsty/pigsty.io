@@ -16,7 +16,7 @@ The `ha/safe` configuration template is based on the `ha/trio` template, providi
 - Config Name: `ha/safe`
 - Node Count: Three nodes (optional delayed replica)
 - Description: Security-hardened HA configuration with high-standard security best practices
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64` (some security extensions unavailable on ARM64)
 - Related: [`ha/trio`](/docs/conf/trio/), [`ha/full`](/docs/conf/full/)
 

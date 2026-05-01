@@ -6,7 +6,7 @@ icon: fa-solid fa-clipboard-list
 categories: [Reference]
 ---
 
-## 2026-04-30
+## 2026-05-01
 
 | Name                       | Old Ver        | New Ver      | Note                                           |
 |:---------------------------|:---------------|:-------------|:-----------------------------------------------|
@@ -22,7 +22,7 @@ categories: [Reference]
 | `logcli`                   | 3.6.7          | 3.6.7        | Obsolete and kept frozen with Loki             |
 | `hugo`                     | 0.160.1        | 0.161.1      |                                                |
 | `seaweedfs`                | 4.21           | 4.22         |                                                |
-| `rustfs`                   | 1.0.0-alpha.94 | 1.0.0-beta.1 | Prerelease line                                |
+| `rustfs`                   | 1.0.0-alpha.94 | 1.0.0-b1     | Prerelease line                                |
 | `sabiql`                   | 1.11.0         | 1.11.1       |                                                |
 | `timescaledb-tools`        | 0.18.2         | 0.19.0       | Rebuilt timescaledb-tune Linux binaries        |
 | `agentsview`               | 0.25.0         | 0.26.0       |                                                |
@@ -33,6 +33,7 @@ categories: [Reference]
 | `vip-manager`              | 4.0.0          | 4.2.0        | Direct-download metadata refresh               |
 | `crush`                    | 0.62.1         | 0.64.0       | Direct-download metadata refresh               |
 | `code`                     | 1.115.0        | 1.118.1      | Direct-download metadata refresh               |
+| `pig`                      | 1.4.0          | 1.4.1        | Metadata only                                  |
 {.stretch-last}
 
 -------
@@ -54,7 +55,6 @@ categories: [Reference]
 | `crush`                | 0.57.0  | 0.62.1  | Direct-download metadata refresh               |
 | `rclone`               | 1.73.4  | 1.73.5  | Direct-download metadata refresh               |
 | `code-server`          | 4.115.0 | 4.117.0 | Direct-download metadata refresh               |
-| `pig`                  | 1.4.0   | 1.4.1   | Metadata only; artifacts handled separately    |
 {.stretch-last}
 
 -------

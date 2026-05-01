@@ -18,7 +18,7 @@ To maximize compatibility, `meta` installs only the **minimum required** softwar
 - Config Name: `meta`
 - Node Count: Single node
 - Description: Default single-node installation template with extensive configuration parameter descriptions and minimum required feature set.
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/), [`slim`](/docs/conf/slim/), [`fat`](/docs/conf/fat/)
 

@@ -18,7 +18,7 @@ For more details, see **[Dify Deployment Tutorial](/docs/app/dify)**
 - Config Name: `app/dify`
 - Node Count: Single node
 - Description: Deploy Dify using Pigsty-managed PostgreSQL
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/)
 

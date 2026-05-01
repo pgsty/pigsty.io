@@ -18,7 +18,7 @@ If you want to build a local software repository, use MinIO for backup storage, 
 - Config Name: `rich`
 - Node Count: Single node
 - Description: Feature-rich single-node configuration, adding local software repository, MinIO backup, complete extensions, Docker application examples on top of `meta`
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/), [`slim`](/docs/conf/slim/), [`fat`](/docs/conf/fat/)
 

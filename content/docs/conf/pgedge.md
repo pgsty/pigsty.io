@@ -18,7 +18,7 @@ For the full guide, see: **[pgEdge kernel guide](/docs/pgsql/kernel/pgedge/)**
 - Config name: `pgedge`
 - Node count: Single node
 - Description: pgEdge (PG17) distributed kernel template
-- Supported OS: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- Supported OS: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - Supported arch: `x86_64`, `aarch64`
 - Related templates: [`meta`](/docs/conf/meta/), [`pgsql`](/docs/conf/pgsql/)
 

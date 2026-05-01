@@ -18,7 +18,7 @@ For a full walkthrough, see: **[FerretDB / Mongo compatibility guide](/docs/ferr
 - Config Name: `mongo`
 - Node Count: Single node (default)
 - Description: Mongo-compatible template based on PostgreSQL 18 + FerretDB + DocumentDB
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/), [`pgsql`](/docs/conf/pgsql/)
 
