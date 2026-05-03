@@ -53,7 +53,7 @@ The `mssql` template allows you to use SQL Server Management Studio (SSMS) or ot
 - Supports `multi-db` and `single-db` migration modes
 - Default package set: `babelfish + pgsql-common + sqlcmd`
 - Default extension set includes `babelfishpg_common`, `babelfishpg_tsql`, `babelfishpg_tds`, `babelfishpg_money`, `tds_fdw`, etc.
-- v4.2.0 adds full mainstream platform coverage (EL 8/9/10, Debian 12/13, Ubuntu 22/24; `x86_64` / `aarch64`)
+- v4.2.0 adds full mainstream platform coverage (EL 8/9/10, Debian 12/13, Ubuntu 22/24/26; `x86_64` / `aarch64`)
 
 **Connection Methods**:
 

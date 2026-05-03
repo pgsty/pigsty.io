@@ -138,7 +138,7 @@ For local-only access, add the following to `/etc/hosts` on machines accessing t
 
 Pigsty runs on **Linux**. It supports **14** mainstream distributions: [**Compatible OS List**](/docs/ref/linux/)
 
-We recommend **RockyLinux 10.1**, **Debian 13.3**, or **Ubuntu 24.04.4** as default options.
+We recommend **RockyLinux 10.1**, **Debian 13.3**, or **Ubuntu 26.04.0 / 24.04.4** as default options.
 
 On macOS and Windows, use VM software or Docker systemd images to run Pigsty.
 
@@ -184,7 +184,7 @@ For [**single-node deployment**](/docs/setup/install), the installation node ser
 
 ## Pigsty
 
-You can [**install**](/docs/deploy/install#install) the latest stable Pigsty source with:
+You can [**install**](/docs/deploy/install#install) the current default Pigsty source with:
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash;         # International
@@ -194,8 +194,8 @@ curl -fsSL https://repo.pigsty.cc/get | bash;         # Backup Mirror
 To [**install**](/docs/deploy/install#install) a specific version, use the **`-s <version>`** parameter:
 
 ```bash
-curl -fsSL https://repo.pigsty.io/get | bash -s v4.2.2  # Install specific version (example: v4.2.2)
-curl -fsSL https://repo.pigsty.cc/get | bash -s v4.2.2  # Install specific version (example: v4.2.2)
+curl -fsSL https://repo.pigsty.io/get | bash -s v4.3.0  # Install specific version (example: v4.3.0)
+curl -fsSL https://repo.pigsty.cc/get | bash -s v4.3.0  # Install specific version (example: v4.3.0)
 ```
 
 To [**install**](/docs/deploy/install#install) the latest beta version:
@@ -209,13 +209,12 @@ For developers or the latest development version, clone the repository directly:
 
 ```bash
 git clone https://github.com/pgsty/pigsty.git;
-cd pigsty; git checkout v4.2.2
+cd pigsty; git checkout v4.3.0
 ```
 
 If your environment lacks Internet access, download the source tarball from [**GitHub Releases**](https://github.com/pgsty/pigsty/releases/) or the Pigsty repository:
 
 ```bash
-wget https://repo.pigsty.io/src/pigsty-v4.2.2.tgz
-wget https://repo.pigsty.cc/src/pigsty-v4.2.2.tgz
+wget https://repo.pigsty.io/src/pigsty-v4.3.0.tgz
+wget https://repo.pigsty.cc/src/pigsty-v4.3.0.tgz
 ```
-

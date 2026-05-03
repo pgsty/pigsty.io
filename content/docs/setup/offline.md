@@ -48,46 +48,46 @@ We typically release offline packages for the following [**Linux distros**](/doc
 
 | Linux Distribution      | System Code    | Minor Version | Package                                                                                                                                     |
 |:------------------------|:---------------|:--------------|:--------------------------------------------------------------------------------------------------------------------------------------------|
-| RockyLinux 9 x86_64     | `el9.x86_64`   | `9.7`         | [**`pigsty-pkg-v4.2.2.el9.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.2.2/pigsty-pkg-v4.2.2.el9.x86_64.tgz)         |
-| RockyLinux 9 aarch64    | `el9.aarch64`  | `9.7`         | [**`pigsty-pkg-v4.2.2.el9.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.2.2/pigsty-pkg-v4.2.2.el9.aarch64.tgz)       |
-| RockyLinux 10 x86_64    | `el10.x86_64`  | `10.1`        | [**`pigsty-pkg-v4.2.2.el10.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.2.2/pigsty-pkg-v4.2.2.el10.x86_64.tgz)       |
-| RockyLinux 10 aarch64   | `el10.aarch64` | `10.1`        | [**`pigsty-pkg-v4.2.2.el10.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.2.2/pigsty-pkg-v4.2.2.el10.aarch64.tgz)     |
-| Debian 12 x86_64        | `d12.x86_64`   | `12.13`       | [**`pigsty-pkg-v4.2.2.d12.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.2.2/pigsty-pkg-v4.2.2.d12.x86_64.tgz)         |
-| Debian 12 aarch64       | `d12.aarch64`  | `12.13`       | [**`pigsty-pkg-v4.2.2.d12.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.2.2/pigsty-pkg-v4.2.2.d12.aarch64.tgz)       |
-| Debian 13 x86_64        | `d13.x86_64`   | `13.3`        | [**`pigsty-pkg-v4.2.2.d13.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.2.2/pigsty-pkg-v4.2.2.d13.x86_64.tgz)         |
-| Debian 13 aarch64       | `d13.aarch64`  | `13.3`        | [**`pigsty-pkg-v4.2.2.d13.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.2.2/pigsty-pkg-v4.2.2.d13.aarch64.tgz)       |
-| Ubuntu 24.04 x86_64     | `u24.x86_64`   | `24.04.4`     | [**`pigsty-pkg-v4.2.2.u24.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.2.2/pigsty-pkg-v4.2.2.u24.x86_64.tgz)         |
-| Ubuntu 24.04 aarch64    | `u24.aarch64`  | `24.04.4`     | [**`pigsty-pkg-v4.2.2.u24.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.2.2/pigsty-pkg-v4.2.2.u24.aarch64.tgz)       |
-| Ubuntu 22.04 x86_64     | `u22.x86_64`   | `22.04.5`     | [**`pigsty-pkg-v4.2.2.u22.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.2.2/pigsty-pkg-v4.2.2.u22.x86_64.tgz)         |
-| Ubuntu 22.04 aarch64    | `u22.aarch64`  | `22.04.5`     | [**`pigsty-pkg-v4.2.2.u22.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.2.2/pigsty-pkg-v4.2.2.u22.aarch64.tgz)       |
+| RockyLinux 9 x86_64     | `el9.x86_64`   | `9.7`         | [**`pigsty-pkg-v4.3.0.el9.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.3.0/pigsty-pkg-v4.3.0.el9.x86_64.tgz)         |
+| RockyLinux 9 aarch64    | `el9.aarch64`  | `9.7`         | [**`pigsty-pkg-v4.3.0.el9.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.3.0/pigsty-pkg-v4.3.0.el9.aarch64.tgz)       |
+| RockyLinux 10 x86_64    | `el10.x86_64`  | `10.1`        | [**`pigsty-pkg-v4.3.0.el10.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.3.0/pigsty-pkg-v4.3.0.el10.x86_64.tgz)       |
+| RockyLinux 10 aarch64   | `el10.aarch64` | `10.1`        | [**`pigsty-pkg-v4.3.0.el10.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.3.0/pigsty-pkg-v4.3.0.el10.aarch64.tgz)     |
+| Debian 12 x86_64        | `d12.x86_64`   | `12.13`       | [**`pigsty-pkg-v4.3.0.d12.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.3.0/pigsty-pkg-v4.3.0.d12.x86_64.tgz)         |
+| Debian 12 aarch64       | `d12.aarch64`  | `12.13`       | [**`pigsty-pkg-v4.3.0.d12.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.3.0/pigsty-pkg-v4.3.0.d12.aarch64.tgz)       |
+| Debian 13 x86_64        | `d13.x86_64`   | `13.3`        | [**`pigsty-pkg-v4.3.0.d13.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.3.0/pigsty-pkg-v4.3.0.d13.x86_64.tgz)         |
+| Debian 13 aarch64       | `d13.aarch64`  | `13.3`        | [**`pigsty-pkg-v4.3.0.d13.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.3.0/pigsty-pkg-v4.3.0.d13.aarch64.tgz)       |
+| Ubuntu 24.04 x86_64     | `u24.x86_64`   | `24.04.4`     | [**`pigsty-pkg-v4.3.0.u24.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.3.0/pigsty-pkg-v4.3.0.u24.x86_64.tgz)         |
+| Ubuntu 24.04 aarch64    | `u24.aarch64`  | `24.04.4`     | [**`pigsty-pkg-v4.3.0.u24.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.3.0/pigsty-pkg-v4.3.0.u24.aarch64.tgz)       |
+| Ubuntu 22.04 x86_64     | `u22.x86_64`   | `22.04.5`     | [**`pigsty-pkg-v4.3.0.u22.x86_64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.3.0/pigsty-pkg-v4.3.0.u22.x86_64.tgz)         |
+| Ubuntu 22.04 aarch64    | `u22.aarch64`  | `22.04.5`     | [**`pigsty-pkg-v4.3.0.u22.aarch64.tgz`**](https://github.com/pgsty/pigsty/releases/download/v4.3.0/pigsty-pkg-v4.3.0.u22.aarch64.tgz)       |
 {.full-width}
 
 If you use an OS from the list above (exact minor version match), we recommend using offline packages.
 Pigsty provides ready-to-use pre-made offline packages for these systems, freely downloadable from GitHub.
 
-You can download matching assets from the [**GitHub release page**](https://github.com/pgsty/pigsty/releases/); URLs follow this pattern:
+You can download matching assets from the [**GitHub release page**](https://github.com/pgsty/pigsty/releases/); offline package filenames follow this pattern, and `v4.3.0` checksums will be completed after the final release:
 
 ```bash
-62edcca1d1e572a247be018e1c26eda8  pigsty-pkg-v4.2.2.d12.aarch64.tgz
-1d55367e2fd9106e6f18b7ee112be736  pigsty-pkg-v4.2.2.d12.x86_64.tgz
-f122b1e5ba8a7ae8e3dc6e6dd53eba65  pigsty-pkg-v4.2.2.d13.aarch64.tgz
-617a76bfc8df8766e78abf24339152eb  pigsty-pkg-v4.2.2.d13.x86_64.tgz
-908509b350403ad1a4a27a88795fee06  pigsty-pkg-v4.2.2.el10.aarch64.tgz
-70cb4afd90ed7aea6ab43a264f8eb4a8  pigsty-pkg-v4.2.2.el10.x86_64.tgz
-98fbd67334f5c674b12e6af81ef76923  pigsty-pkg-v4.2.2.el9.aarch64.tgz
-687fa741ccd9dcf611a2aa964bcf1de8  pigsty-pkg-v4.2.2.el9.x86_64.tgz
-a2a30f4b1146b3e79be91d5be57615b6  pigsty-pkg-v4.2.2.u22.aarch64.tgz
-7a1f571bd8526106775c175ba728eee1  pigsty-pkg-v4.2.2.u22.x86_64.tgz
-a5574071bac1955798265f71ad73c3d4  pigsty-pkg-v4.2.2.u24.aarch64.tgz
-59a7632c650a3c034f1fe6cd589d7ab5  pigsty-pkg-v4.2.2.u24.x86_64.tgz
-
+b1924a907f3db2411109745cc03f4316  pigsty-pkg-v4.3.0.d12.aarch64.tgz
+20b71530b96c8c611dcd6b0a052c67de  pigsty-pkg-v4.3.0.d12.x86_64.tgz
+e1d0ac623a608c749158803616aaeced  pigsty-pkg-v4.3.0.d13.aarch64.tgz
+27b6360815ff234db0376338d1ce944f  pigsty-pkg-v4.3.0.d13.x86_64.tgz
+08cde469c86017c14f808fd127e51a87  pigsty-pkg-v4.3.0.el10.aarch64.tgz
+371c1d5229b1584650bda42a570cdc47  pigsty-pkg-v4.3.0.el10.x86_64.tgz
+07472f5069f92c96d6b65147e0658c26  pigsty-pkg-v4.3.0.el9.aarch64.tgz
+153e2dc5904171975babd1d2dbcce480  pigsty-pkg-v4.3.0.el9.x86_64.tgz
+70a3a4faecfc4691ee9b528b8c35ee08  pigsty-pkg-v4.3.0.u22.aarch64.tgz
+6968bc55aedcff922cff59b5893f3e12  pigsty-pkg-v4.3.0.u22.x86_64.tgz
+59699d34aaaf178a12a044740f4cc56e  pigsty-pkg-v4.3.0.u24.aarch64.tgz
+935666f192390d52cbde0593e2e253dc  pigsty-pkg-v4.3.0.u24.x86_64.tgz
+84ef45377c5a6fac7f7285ebd7a71404  pigsty-pkg-v4.3.0.u26.x86_64.tgz
 ```
 
 {{% alert title="Offline packages are made for specific Linux OS minor versions" color="warning" %}}
 
 When OS minor versions don't match, it may work or may fail—we don't recommend taking the risk.
 
-Please note that Pigsty's EL9/EL10 packages are built on 9.7/10.1, Debian packages are built on 12.13/13.3, and Ubuntu packages are built on 22.04.5/24.04.4.
+Please note that Pigsty's EL9/EL10 packages are built on 9.7/10.1, Debian packages are built on 12.13/13.4, and Ubuntu packages are built on 22.04.5/24.04.4/26.04.0.
 Cross-minor installation may fail due to OpenSSL/system library differences.
 Use online installation on matching OS versions to build your own offline package, or contact us for custom packages.
 

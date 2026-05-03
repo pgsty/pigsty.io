@@ -160,7 +160,7 @@ The INFRA module is responsible for deploying Pigsty's infrastructure components
 This section defines Pigsty deployment metadata: version string, admin node IP address, repository mirror [`region`](#region), default language, and HTTP(S) proxy for downloading packages.
 
 ```yaml
-version: v4.2.2                   # pigsty version string
+version: v4.3.0                   # pigsty version string
 admin_ip: 10.10.10.10             # admin node ip address
 region: default                   # upstream mirror region: default,china,europe
 language: en                      # default language: en or zh
@@ -178,11 +178,11 @@ proxy_env:                        # global proxy env when downloading packages
 
 name: `version`, type: `string`, level: `G`
 
-Pigsty version string, default value is the current version: `v4.2.2`.
+Pigsty version string, default value is the current version: `v4.3.0`.
 
 Pigsty uses this version string internally for feature control and content rendering. Do not modify this parameter arbitrarily.
 
-Pigsty uses semantic versioning, and the version string typically starts with the character `v`, e.g., `v4.2.2`.
+Pigsty uses semantic versioning, and the version string typically starts with the character `v`, e.g., `v4.3.0`.
 
 
 
@@ -578,7 +578,7 @@ name: `repo_upstream`, type: `upstream[]`, level: `G`
 
 Where to download upstream packages when building the local repository? This parameter has no default value. If not explicitly specified by the user in the configuration file, it will be loaded from the `repo_upstream_default` variable defined in [`roles/node_id/vars`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/) based on the current node's OS family.
 
-Pigsty provides complete upstream repository definitions for different OS versions (EL8/9/10, Debian 11/12/13, Ubuntu 22/24), including:
+Pigsty provides complete upstream repository definitions for different OS versions (EL8/9/10, Debian 11/12/13, Ubuntu 22/24/26), including:
 
 - OS base repositories (BaseOS, AppStream, EPEL, etc.)
 - PostgreSQL official PGDG repository
@@ -1418,4 +1418,3 @@ name: `grafana_view_password`, type: `password`, level: `G`
 Read-only user password used by Grafana metadb PG data source, default is `DBUser.Viewer`.
 
 This password is used for Grafana to connect to the PostgreSQL CMDB data source to query metadata in read-only mode.
-

@@ -13,6 +13,9 @@ categories: [Reference]
 
 ## Recent News
 
+- **2026-04-19**: **Pigsty v4.3.0 release note placeholder drafted**: April Infra / RPM inventory, Grafana 13, Cloudberry 2.1
+  - Release Notes: [v4.3.0](/docs/about/release#v430)
+
 - **2026-03-06**: **Pigsty v4.2.1 released! Drop PG13, 464 extensions**
   - Release Notes: [v4.2.1](/docs/about/release#v421)
 - **2026-02-28**: **Pigsty v4.2 is officially released! Seven kernel updates shipped together**

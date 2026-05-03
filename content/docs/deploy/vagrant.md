@@ -56,9 +56,10 @@ You can use variant aliases to specify different operating system images:
 make meta9      # Create single node with RockyLinux 9.7
 make full12     # Create 4-node sandbox with Debian 12.13
 make simu24     # Create 20-node simubox with Ubuntu 24.04
+make full26     # Create 4-node sandbox with Ubuntu 26.04
 ```
 
-Available OS suffixes: `8` (EL8), `9` (EL9), `10` (EL10), `12` (Debian 12), `13` (Debian 13), `22` (Ubuntu 22.04), `24` (Ubuntu 24.04)
+Available OS suffixes: `8` (EL8), `9` (EL9), `10` (EL10), `12` (Debian 12), `13` (Debian 13), `22` (Ubuntu 22.04), `24` (Ubuntu 24.04), `26` (Ubuntu 26.04)
 
 ### Build Environment
 
@@ -100,10 +101,10 @@ Each spec file contains a `Specs` variable describing the VM nodes. For example,
 # full: pigsty full-featured 4-node sandbox for HA-testing & tutorial & practices
 
 Specs = [
-  { "name" => "meta"   , "ip" => "10.10.10.10" ,  "cpu" => "2" ,  "mem" => "4096" ,  "image" => "bento/rockylinux-9" },
-  { "name" => "node-1" , "ip" => "10.10.10.11" ,  "cpu" => "1" ,  "mem" => "2048" ,  "image" => "bento/rockylinux-9" },
-  { "name" => "node-2" , "ip" => "10.10.10.12" ,  "cpu" => "1" ,  "mem" => "2048" ,  "image" => "bento/rockylinux-9" },
-  { "name" => "node-3" , "ip" => "10.10.10.13" ,  "cpu" => "1" ,  "mem" => "2048" ,  "image" => "bento/rockylinux-9" },
+  { "name" => "meta"   , "ip" => "10.10.10.10" ,  "cpu" => "2" ,  "mem" => "4096" ,  "image" => "cloud-image/ubuntu-24.04" },
+  { "name" => "node-1" , "ip" => "10.10.10.11" ,  "cpu" => "1" ,  "mem" => "2048" ,  "image" => "cloud-image/ubuntu-24.04" },
+  { "name" => "node-2" , "ip" => "10.10.10.12" ,  "cpu" => "1" ,  "mem" => "2048" ,  "image" => "cloud-image/ubuntu-24.04" },
+  { "name" => "node-3" , "ip" => "10.10.10.13" ,  "cpu" => "1" ,  "mem" => "2048" ,  "image" => "cloud-image/ubuntu-24.04" },
 ]
 ```
 
@@ -129,11 +130,11 @@ cd ~/pigsty
 vagrant/config [spec] [image] [scale] [provider]
 
 # Examples
-vagrant/config meta                # Use 1-node spec with default RockyLinux 9.7 (EL9) image
-vagrant/config dual el9            # Use 2-node spec with EL9 image
+vagrant/config meta u24            # Use 1-node spec with Ubuntu 24.04 image
+vagrant/config dual el9            # Use 2-node spec with RockyLinux 9.7 image
 vagrant/config trio d12 2          # Use 3-node spec with Debian 12.13, double resources
-vagrant/config full u22 4          # Use 4-node spec with Ubuntu 22, 4x resources
-vagrant/config simu u24 1 libvirt  # Use 20-node spec with Ubuntu 24, libvirt provider
+vagrant/config full u22 4          # Use 4-node spec with Ubuntu 22.04, 4x resources
+vagrant/config simu u26 1 libvirt  # Use 20-node spec with Ubuntu 26.04, libvirt provider
 ```
 
 ### Image Aliases
@@ -142,13 +143,17 @@ The config script supports various image aliases:
 
 | Distro | Alias | Vagrant Box |
 |--------|-------|-------------|
-| AlmaLinux 8 | `el8`, `rocky8` | `cloud-image/almalinux-8` |
-| Rocky 9 | `el9`, `rocky9`, `el` | `bento/rockylinux-9` |
-| AlmaLinux 10 | `el10`, `rocky10` | `cloud-image/almalinux-10` |
-| Debian 12 | `d12`, `debian12` | `cloud-image/debian-12` |
-| Debian 13 | `d13`, `debian13` | `cloud-image/debian-13` |
-| Ubuntu 22.04 | `u22`, `ubuntu22`, `ubuntu` | `cloud-image/ubuntu-22.04` |
-| Ubuntu 24.04 | `u24`, `ubuntu24` | `bento/ubuntu-24.04` |
+| Rocky 8 | `el8`, `rocky8`, `r8` | `cloud-image/rocky-8` |
+| Rocky 9 | `el9`, `rocky9`, `el`, `r9` | `cloud-image/rocky-9` |
+| Rocky 10 | `el10`, `rocky10`, `r10` | `cloud-image/rocky-10` |
+| Debian 12 | `d12`, `debian12`, `deb12` | `cloud-image/debian-12` |
+| Debian 13 | `d13`, `debian13`, `deb13` | `cloud-image/debian-13` |
+| Ubuntu 22.04 | `u22`, `ubuntu22`, `ubuntu2204` | `cloud-image/ubuntu-22.04` |
+| Ubuntu 24.04 | `u24`, `ubuntu24`, `ubuntu2404`, `ubuntu` | `cloud-image/ubuntu-24.04` |
+| Ubuntu 26.04 | `u26`, `ubuntu26`, `ubuntu2604` | `cloud-image/ubuntu-26.04` |
+| AlmaLinux 8 | `alma8` | `cloud-image/almalinux-8` |
+| AlmaLinux 9 | `alma9` | `cloud-image/almalinux-9` |
+| AlmaLinux 10 | `alma10` | `cloud-image/almalinux-10` |
 
 ### Resource Scaling
 
@@ -162,7 +167,7 @@ For example, using `VM_SCALE=4` with the meta spec will adjust the default 2c4g 
 
 ```ruby
 Specs = [
-  { "name" => "meta" , "ip" => "10.10.10.10", "cpu" => "8" , "mem" => "16384" , "image" => "bento/rockylinux-9" },
+  { "name" => "meta" , "ip" => "10.10.10.10", "cpu" => "8" , "mem" => "16384" , "image" => "cloud-image/ubuntu-24.04" },
 ]
 ```
 
@@ -211,35 +216,43 @@ ssh-keygen -t rsa -b 2048 -N '' -f ~/.ssh/id_rsa -q
 
 ## Supported Images
 
-Pigsty currently uses the following Vagrant Boxes for testing:
+Pigsty v4.3 uses the `cloud-image/*` boxes from [**Vagrant Cloud**](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image). VirtualBox and libvirt both provide `amd64` / `arm64` architecture variants.
 
-```bash
-# x86_64 / amd64
-el8 :  cloud-image/almalinux-8   (EL 8.10)
-el9 :  bento/rockylinux-9        (RockyLinux 9.7)
-el10:  cloud-image/almalinux-10  (RockyLinux 10.1)
+### VirtualBox
 
-d12 :  cloud-image/debian-12     (Debian 12.13)
-d13 :  cloud-image/debian-13     (Debian 13.3)
+| OS | Vagrant Box | `amd64` Version | `arm64` Version |
+|----|-------------|:---------------:|:---------------:|
+| Rocky 8 | [`cloud-image/rocky-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-8) | `8.10.20240528.0` | `8.10.20240528.0` |
+| Rocky 9 | [`cloud-image/rocky-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-9) | `9.7.20251123.2` | `9.7.20251123.2` |
+| Rocky 10 | [`cloud-image/rocky-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-10) | `10.1.20251116.0` | `10.1.20251116.0` |
+| Debian 11 | [`cloud-image/debian-11`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-11) | `20260419.2453.0` | `20260419.2453.0` |
+| Debian 12 | [`cloud-image/debian-12`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-12) | `20260413.2447.0` | `20260413.2447.0` |
+| Debian 13 | [`cloud-image/debian-13`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-13) | `20260413.2447.0` | `20260413.2447.0` |
+| Ubuntu 22.04 | [`cloud-image/ubuntu-22.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-22.04) | `20260320.0.0` | `20260320.0.0` |
+| Ubuntu 24.04 | [`cloud-image/ubuntu-24.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-24.04) | `20260323.0.0` | `20260323.0.0` |
+| Ubuntu 26.04 | [`cloud-image/ubuntu-26.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-26.04) | `20260421.0.0` | `20260421.0.0` |
+| AlmaLinux 8 | [`cloud-image/almalinux-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-8) | `8.10.20260414` | `8.10.20260414` |
+| AlmaLinux 9 | [`cloud-image/almalinux-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-9) | `9.7.20260414` | `9.7.20260414` |
+| AlmaLinux 10 | [`cloud-image/almalinux-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-10) | `10.1.20260414.0` | `10.1.20260414.0` |
+{.full-width}
 
-u22 :  cloud-image/ubuntu-22.04
-u24 :  bento/ubuntu-24.04
-```
+### libvirt
 
-For Apple Silicon (aarch64) architecture:
-
-```bash
-# aarch64 / arm64
-el8 :  cloud-image/almalinux-8
-el9 :  bento/rockylinux-9
-el10:  cloud-image/almalinux-10
-d12 :  cloud-image/debian-12
-d13 :  cloud-image/debian-13
-u22 :  cloud-image/ubuntu-22.04
-u24 :  bento/ubuntu-24.04
-```
-
-You can find available Box images by provider/architecture on [**Vagrant Cloud**](https://app.vagrantup.com/boxes/search).
+| OS | Vagrant Box | `amd64` Version | `arm64` Version |
+|----|-------------|:---------------:|:---------------:|
+| Rocky 8 | [`cloud-image/rocky-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-8) | `8.10.20240528.0` | `8.10.20240528.0` |
+| Rocky 9 | [`cloud-image/rocky-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-9) | `9.7.20251123.2` | `9.7.20251123.2` |
+| Rocky 10 | [`cloud-image/rocky-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-10) | `10.1.20251116.0` | `10.1.20251116.0` |
+| Debian 11 | [`cloud-image/debian-11`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-11) | `20260419.2453.0` | `20260419.2453.0` |
+| Debian 12 | [`cloud-image/debian-12`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-12) | `20260413.2447.0` | `20260413.2447.0` |
+| Debian 13 | [`cloud-image/debian-13`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-13) | `20260413.2447.0` | `20260413.2447.0` |
+| Ubuntu 22.04 | [`cloud-image/ubuntu-22.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-22.04) | `20260320.0.0` | `20260320.0.0` |
+| Ubuntu 24.04 | [`cloud-image/ubuntu-24.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-24.04) | `20260323.0.0` | `20260323.0.0` |
+| Ubuntu 26.04 | [`cloud-image/ubuntu-26.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-26.04) | `20260421.0.0` | `20260421.0.0` |
+| AlmaLinux 8 | [`cloud-image/almalinux-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-8) | `8.10.20260414` | `8.10.20260414` |
+| AlmaLinux 9 | [`cloud-image/almalinux-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-9) | `9.7.20260414` | `9.7.20260414` |
+| AlmaLinux 10 | [`cloud-image/almalinux-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-10) | `10.1.20260414.0` | `10.1.20260414.0` |
+{.full-width}
 
 
 ----------------
@@ -250,7 +263,7 @@ You can use the following environment variables to control Vagrant behavior:
 
 ```bash
 export VM_SPEC='meta'              # Spec name
-export VM_IMAGE='bento/rockylinux-9'  # Image name
+export VM_IMAGE='cloud-image/rocky-9' # Image name
 export VM_SCALE='1'                # Resource scaling multiplier
 export VM_PROVIDER='virtualbox'    # Virtualization provider
 export VAGRANT_EXPERIMENTAL=disks  # Enable experimental disk features

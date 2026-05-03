@@ -111,7 +111,7 @@ Downloading Docker requires upstream internet software repositories, which are d
 
 ```yaml
 - { name: docker-ce ,description: 'Docker CE' ,module: infra  ,releases: [8,9,10] ,arch: [x86_64, aarch64] ,baseurl: { default: 'https://download.docker.com/linux/centos/$releasever/$basearch/stable'    ,china: 'https://mirrors.aliyun.com/docker-ce/linux/centos/$releasever/$basearch/stable'  ,europe: 'https://mirrors.xtom.de/docker-ce/linux/centos/$releasever/$basearch/stable' }}
-- { name: docker-ce ,description: 'Docker'    ,module: infra  ,releases: [11,12,13,20,22,24] ,arch: [x86_64, aarch64] ,baseurl: { default: 'https://download.docker.com/linux/${distro_name} ${distro_codename} stable' ,china: 'https://mirrors.aliyun.com/docker-ce/linux/${distro_name} ${distro_codename} stable' }}
+- { name: docker-ce ,description: 'Docker'    ,module: infra  ,releases: [11,12,13,22,24,26] ,arch: [x86_64, aarch64] ,baseurl: { default: 'https://download.docker.com/linux/${distro_name} ${distro_codename} stable' ,china: 'https://mirrors.aliyun.com/docker-ce/linux/${distro_name} ${distro_codename} stable' }}
 ```
 
 You can reference this repository using the `infra` module name in [`repo_modules`](/docs/infra/param#repo_modules) and [`node_repo_modules`](/docs/node/param#node_repo_modules).

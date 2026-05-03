@@ -219,7 +219,7 @@ GitHub Copilot currently doesn't support Code-Server. Consider other AI coding a
 
 ## Supported Platforms
 
-- **OS**: EL 8/9/10, Ubuntu 20/22/24, Debian 11/12/13
+- **OS**: EL 8/9/10, Ubuntu 22/24/26, Debian 12/13
 - **Arch**: x86_64, ARM64
 - **Ansible**: 2.9+
 

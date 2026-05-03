@@ -47,6 +47,7 @@ The `demo/debian` template is optimized for Debian and Ubuntu distributions.
 - Debian 13 (Trixie)
 - Ubuntu 22.04 LTS (Jammy)
 - Ubuntu 24.04 LTS (Noble)
+- Ubuntu 26.04 LTS (Resolute)
 
 **Key Features**:
 - Uses PGDG APT repositories
@@ -57,4 +58,3 @@ The `demo/debian` template is optimized for Debian and Ubuntu distributions.
 - Cloud servers (Ubuntu widely used)
 - Container environments (Debian commonly used as base image)
 - Development and testing environments
-

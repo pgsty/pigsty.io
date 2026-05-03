@@ -2,21 +2,21 @@
 title: Applications
 weight: 550
 description: >
-  Application templates and data applets: run stateless apps with Docker Compose and host state in external PostgreSQL and MinIO.
+  Application templates and data applets for Pigsty v4.3: run stateless apps with Docker Compose and host state in external PostgreSQL and MinIO.
 icon: fa-solid fa-chart-line
 module: [APP]
 categories: [Reference]
 ---
 
-In Pigsty , "applications" fall into two categories:
+In Pigsty v4.3, "applications" fall into two categories:
 
 - **Software Templates**: Docker Compose templates under `~/pigsty/app/<name>` for stateless business components.
 - **Data Applets**: PostgreSQL + Grafana analytics demos, mainly for learning and showcase use.
 
 
-## Model
+## v4.3 App Model
 
-The recommended app install workflow is:
+The recommended app install workflow in v4.3 is:
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
@@ -31,7 +31,7 @@ vi pigsty.yml                 # edit passwords, domains, IPs, and secrets
 
 ## Maintained Configuration Templates
 
-The following app templates are actively provided in v4.2 (`conf/app/*.yml` and `conf/supabase.yml`):
+The following app templates are actively provided in v4.3 (`conf/app/*.yml` and `conf/supabase.yml`):
 
 - `app/dify`
 - `app/odoo`
@@ -63,4 +63,4 @@ If you want to manage them uniformly via Pigsty IaC:
 
 Data applets like `pglog`, `covid`, `db-engine`, `sf-survey`, `cloud`, and `isd` are kept as reference examples for data modeling and visualization ideas.
 
-They are no longer the primary application delivery path in v4.2. Prefer the software template workflow above.
+They are no longer the primary application delivery path in v4.3. Prefer the software template workflow above.

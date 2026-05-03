@@ -58,6 +58,7 @@ The `build/oss` template is the build configuration for Pigsty open-source editi
 - Debian 13 (Trixie)
 - Ubuntu 22.04 (Jammy)
 - Ubuntu 24.04 (Noble)
+- Ubuntu 26.04 (Resolute)
 
 **Build Process**:
 

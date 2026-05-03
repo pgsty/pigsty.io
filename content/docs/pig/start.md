@@ -110,7 +110,7 @@ pigsty.io  ping ok: 1410 ms
 Internet Access   :  true
 Pigsty Repo       :  pigsty.io
 Inferred Region   :  china
-Latest Pigsty Ver :  v4.2.2
+Latest Pigsty Ver :  v4.3.0
 ```
 
 ## Automation Tips
