@@ -11,10 +11,10 @@ weight: 9590
     <div class="ext-card__title">valehdba/pgclone</div>
     <div class="ext-card__desc">https://github.com/valehdba/pgclone</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgclone-4.0.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgclone-4.3.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pgclone-4.0.0.tar.gz</div>
-    <div class="ext-card__desc">pgclone-4.0.0.tar.gz</div>
+    <div class="ext-card__title">pgclone-4.3.2.tar.gz</div>
+    <div class="ext-card__desc">pgclone-4.3.2.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 9590
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pgclone`**](/ext/e/pgclone) | `4.0.0` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pgclone`**](/ext/e/pgclone) | `4.3.2` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -45,110 +45,110 @@ weight: 9590
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `4.0.0` | {{< pgvers "18,17,16,15,14" >}} | `pgclone` | - |
-| [**RPM**](/ext/rpm#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `4.0.0` | {{< pgvers "18,17,16,15,14" >}} | `pgclone_$v` | - |
-| [**DEB**](/ext/deb#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `4.0.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgclone` | - |
+| [**EXT**](/ext/list#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `4.3.2` | {{< pgvers "18,17,16,15,14" >}} | `pgclone` | - |
+| [**RPM**](/ext/rpm#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `4.3.2` | {{< pgvers "18,17,16,15,14" >}} | `pgclone_$v` | - |
+| [**DEB**](/ext/deb#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `4.3.2` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgclone` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 |
-| el8.aarch64 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 |
-| el9.x86_64 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 |
-| el9.aarch64 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 |
-| el10.x86_64 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 |
-| el10.aarch64 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 |
-| d12.x86_64 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 |
-| d12.aarch64 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 |
-| d13.x86_64 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 |
-| d13.aarch64 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 |
-| u22.x86_64 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 |
-| u22.aarch64 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 |
-| u24.x86_64 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 |
-| u24.aarch64 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 |
-| u26.x86_64 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 |
-| u26.aarch64 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 | AVAIL PIGSTY 4.0.0 1 |
-@ el8.x86_64 18 pgclone_18 pgclone_18-4.0.0-1PIGSTY.el8.x86_64.rpm pigsty 4.0.0 60.6KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgclone_18-4.0.0-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 18 pgclone_18 pgclone_18-4.0.0-1PIGSTY.el8.aarch64.rpm pigsty 4.0.0 59.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgclone_18-4.0.0-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 18 pgclone_18 pgclone_18-4.0.0-1PIGSTY.el9.x86_64.rpm pigsty 4.0.0 60.4KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgclone_18-4.0.0-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 18 pgclone_18 pgclone_18-4.0.0-1PIGSTY.el9.aarch64.rpm pigsty 4.0.0 59.9KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgclone_18-4.0.0-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 18 pgclone_18 pgclone_18-4.0.0-1PIGSTY.el10.x86_64.rpm pigsty 4.0.0 61.2KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgclone_18-4.0.0-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 18 pgclone_18 pgclone_18-4.0.0-1PIGSTY.el10.aarch64.rpm pigsty 4.0.0 60.0KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgclone_18-4.0.0-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-pgclone postgresql-18-pgclone_4.0.0-1PIGSTY~bookworm_amd64.deb pigsty 4.0.0 131.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-18-pgclone_4.0.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-pgclone postgresql-18-pgclone_4.0.0-1PIGSTY~bookworm_arm64.deb pigsty 4.0.0 128.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-18-pgclone_4.0.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-pgclone postgresql-18-pgclone_4.0.0-1PIGSTY~trixie_amd64.deb pigsty 4.0.0 131.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-18-pgclone_4.0.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-pgclone postgresql-18-pgclone_4.0.0-1PIGSTY~trixie_arm64.deb pigsty 4.0.0 127.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-18-pgclone_4.0.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-pgclone postgresql-18-pgclone_4.0.0-1PIGSTY~jammy_amd64.deb pigsty 4.0.0 133.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-18-pgclone_4.0.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-pgclone postgresql-18-pgclone_4.0.0-1PIGSTY~jammy_arm64.deb pigsty 4.0.0 133.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-18-pgclone_4.0.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-pgclone postgresql-18-pgclone_4.0.0-1PIGSTY~noble_amd64.deb pigsty 4.0.0 130.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-18-pgclone_4.0.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-pgclone postgresql-18-pgclone_4.0.0-1PIGSTY~noble_arm64.deb pigsty 4.0.0 129.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-18-pgclone_4.0.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-pgclone postgresql-18-pgclone_4.0.0-1PIGSTY~resolute_amd64.deb pigsty 4.0.0 128.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-18-pgclone_4.0.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-pgclone postgresql-18-pgclone_4.0.0-1PIGSTY~resolute_arm64.deb pigsty 4.0.0 127.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-18-pgclone_4.0.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 17 pgclone_17 pgclone_17-4.0.0-1PIGSTY.el8.x86_64.rpm pigsty 4.0.0 60.6KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgclone_17-4.0.0-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 17 pgclone_17 pgclone_17-4.0.0-1PIGSTY.el8.aarch64.rpm pigsty 4.0.0 59.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgclone_17-4.0.0-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 17 pgclone_17 pgclone_17-4.0.0-1PIGSTY.el9.x86_64.rpm pigsty 4.0.0 60.3KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgclone_17-4.0.0-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 17 pgclone_17 pgclone_17-4.0.0-1PIGSTY.el9.aarch64.rpm pigsty 4.0.0 59.9KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgclone_17-4.0.0-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 17 pgclone_17 pgclone_17-4.0.0-1PIGSTY.el10.x86_64.rpm pigsty 4.0.0 61.2KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgclone_17-4.0.0-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 17 pgclone_17 pgclone_17-4.0.0-1PIGSTY.el10.aarch64.rpm pigsty 4.0.0 60.0KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgclone_17-4.0.0-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-pgclone postgresql-17-pgclone_4.0.0-1PIGSTY~bookworm_amd64.deb pigsty 4.0.0 131.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-17-pgclone_4.0.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-pgclone postgresql-17-pgclone_4.0.0-1PIGSTY~bookworm_arm64.deb pigsty 4.0.0 127.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-17-pgclone_4.0.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-pgclone postgresql-17-pgclone_4.0.0-1PIGSTY~trixie_amd64.deb pigsty 4.0.0 130.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-17-pgclone_4.0.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-pgclone postgresql-17-pgclone_4.0.0-1PIGSTY~trixie_arm64.deb pigsty 4.0.0 127.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-17-pgclone_4.0.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-pgclone postgresql-17-pgclone_4.0.0-1PIGSTY~jammy_amd64.deb pigsty 4.0.0 144.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-17-pgclone_4.0.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-pgclone postgresql-17-pgclone_4.0.0-1PIGSTY~jammy_arm64.deb pigsty 4.0.0 144.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-17-pgclone_4.0.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-pgclone postgresql-17-pgclone_4.0.0-1PIGSTY~noble_amd64.deb pigsty 4.0.0 130.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-17-pgclone_4.0.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-pgclone postgresql-17-pgclone_4.0.0-1PIGSTY~noble_arm64.deb pigsty 4.0.0 129.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-17-pgclone_4.0.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-pgclone postgresql-17-pgclone_4.0.0-1PIGSTY~resolute_amd64.deb pigsty 4.0.0 128.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-17-pgclone_4.0.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-pgclone postgresql-17-pgclone_4.0.0-1PIGSTY~resolute_arm64.deb pigsty 4.0.0 127.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-17-pgclone_4.0.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 16 pgclone_16 pgclone_16-4.0.0-1PIGSTY.el8.x86_64.rpm pigsty 4.0.0 60.6KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgclone_16-4.0.0-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 16 pgclone_16 pgclone_16-4.0.0-1PIGSTY.el8.aarch64.rpm pigsty 4.0.0 59.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgclone_16-4.0.0-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 16 pgclone_16 pgclone_16-4.0.0-1PIGSTY.el9.x86_64.rpm pigsty 4.0.0 60.5KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgclone_16-4.0.0-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 16 pgclone_16 pgclone_16-4.0.0-1PIGSTY.el9.aarch64.rpm pigsty 4.0.0 59.9KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgclone_16-4.0.0-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 16 pgclone_16 pgclone_16-4.0.0-1PIGSTY.el10.x86_64.rpm pigsty 4.0.0 61.2KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgclone_16-4.0.0-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 16 pgclone_16 pgclone_16-4.0.0-1PIGSTY.el10.aarch64.rpm pigsty 4.0.0 59.9KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgclone_16-4.0.0-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 16 postgresql-16-pgclone postgresql-16-pgclone_4.0.0-1PIGSTY~bookworm_amd64.deb pigsty 4.0.0 130.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-16-pgclone_4.0.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-pgclone postgresql-16-pgclone_4.0.0-1PIGSTY~bookworm_arm64.deb pigsty 4.0.0 128.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-16-pgclone_4.0.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-pgclone postgresql-16-pgclone_4.0.0-1PIGSTY~trixie_amd64.deb pigsty 4.0.0 130.6KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-16-pgclone_4.0.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-pgclone postgresql-16-pgclone_4.0.0-1PIGSTY~trixie_arm64.deb pigsty 4.0.0 127.6KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-16-pgclone_4.0.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-pgclone postgresql-16-pgclone_4.0.0-1PIGSTY~jammy_amd64.deb pigsty 4.0.0 144.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-16-pgclone_4.0.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-pgclone postgresql-16-pgclone_4.0.0-1PIGSTY~jammy_arm64.deb pigsty 4.0.0 143.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-16-pgclone_4.0.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-pgclone postgresql-16-pgclone_4.0.0-1PIGSTY~noble_amd64.deb pigsty 4.0.0 130.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-16-pgclone_4.0.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-pgclone postgresql-16-pgclone_4.0.0-1PIGSTY~noble_arm64.deb pigsty 4.0.0 129.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-16-pgclone_4.0.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-pgclone postgresql-16-pgclone_4.0.0-1PIGSTY~resolute_amd64.deb pigsty 4.0.0 128.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-16-pgclone_4.0.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-pgclone postgresql-16-pgclone_4.0.0-1PIGSTY~resolute_arm64.deb pigsty 4.0.0 127.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-16-pgclone_4.0.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 15 pgclone_15 pgclone_15-4.0.0-1PIGSTY.el8.x86_64.rpm pigsty 4.0.0 60.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgclone_15-4.0.0-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 15 pgclone_15 pgclone_15-4.0.0-1PIGSTY.el8.aarch64.rpm pigsty 4.0.0 59.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgclone_15-4.0.0-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 15 pgclone_15 pgclone_15-4.0.0-1PIGSTY.el9.x86_64.rpm pigsty 4.0.0 60.2KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgclone_15-4.0.0-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 15 pgclone_15 pgclone_15-4.0.0-1PIGSTY.el9.aarch64.rpm pigsty 4.0.0 60.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgclone_15-4.0.0-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 15 pgclone_15 pgclone_15-4.0.0-1PIGSTY.el10.x86_64.rpm pigsty 4.0.0 61.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgclone_15-4.0.0-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 15 pgclone_15 pgclone_15-4.0.0-1PIGSTY.el10.aarch64.rpm pigsty 4.0.0 60.0KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgclone_15-4.0.0-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 15 postgresql-15-pgclone postgresql-15-pgclone_4.0.0-1PIGSTY~bookworm_amd64.deb pigsty 4.0.0 130.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-15-pgclone_4.0.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 15 postgresql-15-pgclone postgresql-15-pgclone_4.0.0-1PIGSTY~bookworm_arm64.deb pigsty 4.0.0 127.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-15-pgclone_4.0.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 15 postgresql-15-pgclone postgresql-15-pgclone_4.0.0-1PIGSTY~trixie_amd64.deb pigsty 4.0.0 130.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-15-pgclone_4.0.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 15 postgresql-15-pgclone postgresql-15-pgclone_4.0.0-1PIGSTY~trixie_arm64.deb pigsty 4.0.0 127.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-15-pgclone_4.0.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 15 postgresql-15-pgclone postgresql-15-pgclone_4.0.0-1PIGSTY~jammy_amd64.deb pigsty 4.0.0 144.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-15-pgclone_4.0.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 15 postgresql-15-pgclone postgresql-15-pgclone_4.0.0-1PIGSTY~jammy_arm64.deb pigsty 4.0.0 144.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-15-pgclone_4.0.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 15 postgresql-15-pgclone postgresql-15-pgclone_4.0.0-1PIGSTY~noble_amd64.deb pigsty 4.0.0 130.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-15-pgclone_4.0.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 15 postgresql-15-pgclone postgresql-15-pgclone_4.0.0-1PIGSTY~noble_arm64.deb pigsty 4.0.0 129.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-15-pgclone_4.0.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 15 postgresql-15-pgclone postgresql-15-pgclone_4.0.0-1PIGSTY~resolute_amd64.deb pigsty 4.0.0 128.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-15-pgclone_4.0.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 15 postgresql-15-pgclone postgresql-15-pgclone_4.0.0-1PIGSTY~resolute_arm64.deb pigsty 4.0.0 127.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-15-pgclone_4.0.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 14 pgclone_14 pgclone_14-4.0.0-1PIGSTY.el8.x86_64.rpm pigsty 4.0.0 60.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgclone_14-4.0.0-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 14 pgclone_14 pgclone_14-4.0.0-1PIGSTY.el8.aarch64.rpm pigsty 4.0.0 59.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgclone_14-4.0.0-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 14 pgclone_14 pgclone_14-4.0.0-1PIGSTY.el9.x86_64.rpm pigsty 4.0.0 60.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgclone_14-4.0.0-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 14 pgclone_14 pgclone_14-4.0.0-1PIGSTY.el9.aarch64.rpm pigsty 4.0.0 59.9KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgclone_14-4.0.0-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 14 pgclone_14 pgclone_14-4.0.0-1PIGSTY.el10.x86_64.rpm pigsty 4.0.0 61.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgclone_14-4.0.0-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 14 pgclone_14 pgclone_14-4.0.0-1PIGSTY.el10.aarch64.rpm pigsty 4.0.0 59.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgclone_14-4.0.0-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 14 postgresql-14-pgclone postgresql-14-pgclone_4.0.0-1PIGSTY~bookworm_amd64.deb pigsty 4.0.0 130.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-14-pgclone_4.0.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 14 postgresql-14-pgclone postgresql-14-pgclone_4.0.0-1PIGSTY~bookworm_arm64.deb pigsty 4.0.0 127.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-14-pgclone_4.0.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 14 postgresql-14-pgclone postgresql-14-pgclone_4.0.0-1PIGSTY~trixie_amd64.deb pigsty 4.0.0 130.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-14-pgclone_4.0.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 14 postgresql-14-pgclone postgresql-14-pgclone_4.0.0-1PIGSTY~trixie_arm64.deb pigsty 4.0.0 127.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-14-pgclone_4.0.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 14 postgresql-14-pgclone postgresql-14-pgclone_4.0.0-1PIGSTY~jammy_amd64.deb pigsty 4.0.0 143.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-14-pgclone_4.0.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 14 postgresql-14-pgclone postgresql-14-pgclone_4.0.0-1PIGSTY~jammy_arm64.deb pigsty 4.0.0 142.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-14-pgclone_4.0.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 14 postgresql-14-pgclone postgresql-14-pgclone_4.0.0-1PIGSTY~noble_amd64.deb pigsty 4.0.0 129.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-14-pgclone_4.0.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 14 postgresql-14-pgclone postgresql-14-pgclone_4.0.0-1PIGSTY~noble_arm64.deb pigsty 4.0.0 128.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-14-pgclone_4.0.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 14 postgresql-14-pgclone postgresql-14-pgclone_4.0.0-1PIGSTY~resolute_amd64.deb pigsty 4.0.0 128.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-14-pgclone_4.0.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 14 postgresql-14-pgclone postgresql-14-pgclone_4.0.0-1PIGSTY~resolute_arm64.deb pigsty 4.0.0 127.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-14-pgclone_4.0.0-1PIGSTY~resolute_arm64.deb
+| el8.x86_64 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 |
+| el8.aarch64 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 |
+| el9.x86_64 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 |
+| el9.aarch64 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 |
+| el10.x86_64 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 |
+| el10.aarch64 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 |
+| d12.x86_64 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 |
+| d12.aarch64 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 |
+| d13.x86_64 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 |
+| d13.aarch64 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 |
+| u22.x86_64 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 |
+| u22.aarch64 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 |
+| u24.x86_64 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 |
+| u24.aarch64 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 |
+| u26.x86_64 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 |
+| u26.aarch64 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 | AVAIL PIGSTY 4.3.2 1 |
+@ el8.x86_64 18 pgclone_18 pgclone_18-4.3.2-1PIGSTY.el8.x86_64.rpm pigsty 4.3.2 86.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgclone_18-4.3.2-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 18 pgclone_18 pgclone_18-4.3.2-1PIGSTY.el8.aarch64.rpm pigsty 4.3.2 84.4KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgclone_18-4.3.2-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 18 pgclone_18 pgclone_18-4.3.2-1PIGSTY.el9.x86_64.rpm pigsty 4.3.2 85.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgclone_18-4.3.2-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 18 pgclone_18 pgclone_18-4.3.2-1PIGSTY.el9.aarch64.rpm pigsty 4.3.2 84.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgclone_18-4.3.2-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 18 pgclone_18 pgclone_18-4.3.2-1PIGSTY.el10.x86_64.rpm pigsty 4.3.2 86.2KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgclone_18-4.3.2-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 18 pgclone_18 pgclone_18-4.3.2-1PIGSTY.el10.aarch64.rpm pigsty 4.3.2 84.6KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgclone_18-4.3.2-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-pgclone postgresql-18-pgclone_4.3.2-1PIGSTY~bookworm_amd64.deb pigsty 4.3.2 198.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-18-pgclone_4.3.2-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-pgclone postgresql-18-pgclone_4.3.2-1PIGSTY~bookworm_arm64.deb pigsty 4.3.2 193.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-18-pgclone_4.3.2-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-pgclone postgresql-18-pgclone_4.3.2-1PIGSTY~trixie_amd64.deb pigsty 4.3.2 198.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-18-pgclone_4.3.2-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-pgclone postgresql-18-pgclone_4.3.2-1PIGSTY~trixie_arm64.deb pigsty 4.3.2 192.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-18-pgclone_4.3.2-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-pgclone postgresql-18-pgclone_4.3.2-1PIGSTY~jammy_amd64.deb pigsty 4.3.2 199.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-18-pgclone_4.3.2-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-pgclone postgresql-18-pgclone_4.3.2-1PIGSTY~jammy_arm64.deb pigsty 4.3.2 198.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-18-pgclone_4.3.2-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-pgclone postgresql-18-pgclone_4.3.2-1PIGSTY~noble_amd64.deb pigsty 4.3.2 194.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-18-pgclone_4.3.2-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-pgclone postgresql-18-pgclone_4.3.2-1PIGSTY~noble_arm64.deb pigsty 4.3.2 192.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-18-pgclone_4.3.2-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-pgclone postgresql-18-pgclone_4.3.2-1PIGSTY~resolute_amd64.deb pigsty 4.3.2 192.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-18-pgclone_4.3.2-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-pgclone postgresql-18-pgclone_4.3.2-1PIGSTY~resolute_arm64.deb pigsty 4.3.2 191.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-18-pgclone_4.3.2-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 17 pgclone_17 pgclone_17-4.3.2-1PIGSTY.el8.x86_64.rpm pigsty 4.3.2 86.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgclone_17-4.3.2-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 17 pgclone_17 pgclone_17-4.3.2-1PIGSTY.el8.aarch64.rpm pigsty 4.3.2 84.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgclone_17-4.3.2-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 17 pgclone_17 pgclone_17-4.3.2-1PIGSTY.el9.x86_64.rpm pigsty 4.3.2 85.2KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgclone_17-4.3.2-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 17 pgclone_17 pgclone_17-4.3.2-1PIGSTY.el9.aarch64.rpm pigsty 4.3.2 84.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgclone_17-4.3.2-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 17 pgclone_17 pgclone_17-4.3.2-1PIGSTY.el10.x86_64.rpm pigsty 4.3.2 86.3KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgclone_17-4.3.2-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 17 pgclone_17 pgclone_17-4.3.2-1PIGSTY.el10.aarch64.rpm pigsty 4.3.2 84.6KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgclone_17-4.3.2-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-pgclone postgresql-17-pgclone_4.3.2-1PIGSTY~bookworm_amd64.deb pigsty 4.3.2 198.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-17-pgclone_4.3.2-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-pgclone postgresql-17-pgclone_4.3.2-1PIGSTY~bookworm_arm64.deb pigsty 4.3.2 193.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-17-pgclone_4.3.2-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-pgclone postgresql-17-pgclone_4.3.2-1PIGSTY~trixie_amd64.deb pigsty 4.3.2 198.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-17-pgclone_4.3.2-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-pgclone postgresql-17-pgclone_4.3.2-1PIGSTY~trixie_arm64.deb pigsty 4.3.2 192.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-17-pgclone_4.3.2-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-pgclone postgresql-17-pgclone_4.3.2-1PIGSTY~jammy_amd64.deb pigsty 4.3.2 214.1KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-17-pgclone_4.3.2-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-pgclone postgresql-17-pgclone_4.3.2-1PIGSTY~jammy_arm64.deb pigsty 4.3.2 213.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-17-pgclone_4.3.2-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-pgclone postgresql-17-pgclone_4.3.2-1PIGSTY~noble_amd64.deb pigsty 4.3.2 194.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-17-pgclone_4.3.2-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-pgclone postgresql-17-pgclone_4.3.2-1PIGSTY~noble_arm64.deb pigsty 4.3.2 192.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-17-pgclone_4.3.2-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-pgclone postgresql-17-pgclone_4.3.2-1PIGSTY~resolute_amd64.deb pigsty 4.3.2 192.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-17-pgclone_4.3.2-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-pgclone postgresql-17-pgclone_4.3.2-1PIGSTY~resolute_arm64.deb pigsty 4.3.2 191.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-17-pgclone_4.3.2-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 16 pgclone_16 pgclone_16-4.3.2-1PIGSTY.el8.x86_64.rpm pigsty 4.3.2 86.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgclone_16-4.3.2-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 16 pgclone_16 pgclone_16-4.3.2-1PIGSTY.el8.aarch64.rpm pigsty 4.3.2 84.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgclone_16-4.3.2-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 16 pgclone_16 pgclone_16-4.3.2-1PIGSTY.el9.x86_64.rpm pigsty 4.3.2 85.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgclone_16-4.3.2-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 16 pgclone_16 pgclone_16-4.3.2-1PIGSTY.el9.aarch64.rpm pigsty 4.3.2 84.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgclone_16-4.3.2-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 16 pgclone_16 pgclone_16-4.3.2-1PIGSTY.el10.x86_64.rpm pigsty 4.3.2 86.3KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgclone_16-4.3.2-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 16 pgclone_16 pgclone_16-4.3.2-1PIGSTY.el10.aarch64.rpm pigsty 4.3.2 84.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgclone_16-4.3.2-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-pgclone postgresql-16-pgclone_4.3.2-1PIGSTY~bookworm_amd64.deb pigsty 4.3.2 198.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-16-pgclone_4.3.2-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 16 postgresql-16-pgclone postgresql-16-pgclone_4.3.2-1PIGSTY~bookworm_arm64.deb pigsty 4.3.2 193.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-16-pgclone_4.3.2-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 16 postgresql-16-pgclone postgresql-16-pgclone_4.3.2-1PIGSTY~trixie_amd64.deb pigsty 4.3.2 198.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-16-pgclone_4.3.2-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 16 postgresql-16-pgclone postgresql-16-pgclone_4.3.2-1PIGSTY~trixie_arm64.deb pigsty 4.3.2 192.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-16-pgclone_4.3.2-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 16 postgresql-16-pgclone postgresql-16-pgclone_4.3.2-1PIGSTY~jammy_amd64.deb pigsty 4.3.2 213.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-16-pgclone_4.3.2-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 16 postgresql-16-pgclone postgresql-16-pgclone_4.3.2-1PIGSTY~jammy_arm64.deb pigsty 4.3.2 213.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-16-pgclone_4.3.2-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 16 postgresql-16-pgclone postgresql-16-pgclone_4.3.2-1PIGSTY~noble_amd64.deb pigsty 4.3.2 194.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-16-pgclone_4.3.2-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 16 postgresql-16-pgclone postgresql-16-pgclone_4.3.2-1PIGSTY~noble_arm64.deb pigsty 4.3.2 192.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-16-pgclone_4.3.2-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 16 postgresql-16-pgclone postgresql-16-pgclone_4.3.2-1PIGSTY~resolute_amd64.deb pigsty 4.3.2 192.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-16-pgclone_4.3.2-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 16 postgresql-16-pgclone postgresql-16-pgclone_4.3.2-1PIGSTY~resolute_arm64.deb pigsty 4.3.2 191.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-16-pgclone_4.3.2-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 15 pgclone_15 pgclone_15-4.3.2-1PIGSTY.el8.x86_64.rpm pigsty 4.3.2 86.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgclone_15-4.3.2-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 15 pgclone_15 pgclone_15-4.3.2-1PIGSTY.el8.aarch64.rpm pigsty 4.3.2 84.4KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgclone_15-4.3.2-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 15 pgclone_15 pgclone_15-4.3.2-1PIGSTY.el9.x86_64.rpm pigsty 4.3.2 85.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgclone_15-4.3.2-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 15 pgclone_15 pgclone_15-4.3.2-1PIGSTY.el9.aarch64.rpm pigsty 4.3.2 84.9KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgclone_15-4.3.2-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 15 pgclone_15 pgclone_15-4.3.2-1PIGSTY.el10.x86_64.rpm pigsty 4.3.2 86.2KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgclone_15-4.3.2-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 15 pgclone_15 pgclone_15-4.3.2-1PIGSTY.el10.aarch64.rpm pigsty 4.3.2 84.6KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgclone_15-4.3.2-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-pgclone postgresql-15-pgclone_4.3.2-1PIGSTY~bookworm_amd64.deb pigsty 4.3.2 198.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-15-pgclone_4.3.2-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 15 postgresql-15-pgclone postgresql-15-pgclone_4.3.2-1PIGSTY~bookworm_arm64.deb pigsty 4.3.2 193.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-15-pgclone_4.3.2-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 15 postgresql-15-pgclone postgresql-15-pgclone_4.3.2-1PIGSTY~trixie_amd64.deb pigsty 4.3.2 198.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-15-pgclone_4.3.2-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 15 postgresql-15-pgclone postgresql-15-pgclone_4.3.2-1PIGSTY~trixie_arm64.deb pigsty 4.3.2 192.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-15-pgclone_4.3.2-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 15 postgresql-15-pgclone postgresql-15-pgclone_4.3.2-1PIGSTY~jammy_amd64.deb pigsty 4.3.2 213.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-15-pgclone_4.3.2-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 15 postgresql-15-pgclone postgresql-15-pgclone_4.3.2-1PIGSTY~jammy_arm64.deb pigsty 4.3.2 213.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-15-pgclone_4.3.2-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 15 postgresql-15-pgclone postgresql-15-pgclone_4.3.2-1PIGSTY~noble_amd64.deb pigsty 4.3.2 194.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-15-pgclone_4.3.2-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 15 postgresql-15-pgclone postgresql-15-pgclone_4.3.2-1PIGSTY~noble_arm64.deb pigsty 4.3.2 192.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-15-pgclone_4.3.2-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 15 postgresql-15-pgclone postgresql-15-pgclone_4.3.2-1PIGSTY~resolute_amd64.deb pigsty 4.3.2 192.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-15-pgclone_4.3.2-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 15 postgresql-15-pgclone postgresql-15-pgclone_4.3.2-1PIGSTY~resolute_arm64.deb pigsty 4.3.2 191.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-15-pgclone_4.3.2-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 14 pgclone_14 pgclone_14-4.3.2-1PIGSTY.el8.x86_64.rpm pigsty 4.3.2 86.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgclone_14-4.3.2-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 14 pgclone_14 pgclone_14-4.3.2-1PIGSTY.el8.aarch64.rpm pigsty 4.3.2 84.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgclone_14-4.3.2-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 14 pgclone_14 pgclone_14-4.3.2-1PIGSTY.el9.x86_64.rpm pigsty 4.3.2 85.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgclone_14-4.3.2-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 14 pgclone_14 pgclone_14-4.3.2-1PIGSTY.el9.aarch64.rpm pigsty 4.3.2 84.8KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgclone_14-4.3.2-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 14 pgclone_14 pgclone_14-4.3.2-1PIGSTY.el10.x86_64.rpm pigsty 4.3.2 86.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgclone_14-4.3.2-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 14 pgclone_14 pgclone_14-4.3.2-1PIGSTY.el10.aarch64.rpm pigsty 4.3.2 84.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgclone_14-4.3.2-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-pgclone postgresql-14-pgclone_4.3.2-1PIGSTY~bookworm_amd64.deb pigsty 4.3.2 197.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-14-pgclone_4.3.2-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 14 postgresql-14-pgclone postgresql-14-pgclone_4.3.2-1PIGSTY~bookworm_arm64.deb pigsty 4.3.2 192.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-14-pgclone_4.3.2-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 14 postgresql-14-pgclone postgresql-14-pgclone_4.3.2-1PIGSTY~trixie_amd64.deb pigsty 4.3.2 197.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-14-pgclone_4.3.2-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 14 postgresql-14-pgclone postgresql-14-pgclone_4.3.2-1PIGSTY~trixie_arm64.deb pigsty 4.3.2 192.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-14-pgclone_4.3.2-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 14 postgresql-14-pgclone postgresql-14-pgclone_4.3.2-1PIGSTY~jammy_amd64.deb pigsty 4.3.2 212.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-14-pgclone_4.3.2-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 14 postgresql-14-pgclone postgresql-14-pgclone_4.3.2-1PIGSTY~jammy_arm64.deb pigsty 4.3.2 211.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgclone/postgresql-14-pgclone_4.3.2-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 14 postgresql-14-pgclone postgresql-14-pgclone_4.3.2-1PIGSTY~noble_amd64.deb pigsty 4.3.2 193.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-14-pgclone_4.3.2-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 14 postgresql-14-pgclone postgresql-14-pgclone_4.3.2-1PIGSTY~noble_arm64.deb pigsty 4.3.2 192.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgclone/postgresql-14-pgclone_4.3.2-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 14 postgresql-14-pgclone postgresql-14-pgclone_4.3.2-1PIGSTY~resolute_amd64.deb pigsty 4.3.2 191.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-14-pgclone_4.3.2-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 14 postgresql-14-pgclone postgresql-14-pgclone_4.3.2-1PIGSTY~resolute_arm64.deb pigsty 4.3.2 190.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-14-pgclone_4.3.2-1PIGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -221,14 +221,15 @@ CREATE EXTENSION pgclone;
 
 ## Usage
 
-Source: [README](https://github.com/valehdba/pgclone/blob/main/README.md), [Usage guide](https://github.com/valehdba/pgclone/blob/main/docs/USAGE.md), [Async guide](https://github.com/valehdba/pgclone/blob/main/docs/ASYNC.md), [Release v4.0.0](https://github.com/valehdba/pgclone/releases/tag/v4.0.0), [SQL install script](https://github.com/valehdba/pgclone/blob/main/sql/pgclone--4.0.0.sql)
+Source: [README](https://github.com/valehdba/pgclone/blob/main/README.md), [Usage guide](https://github.com/valehdba/pgclone/blob/main/docs/USAGE.md), [Async guide](https://github.com/valehdba/pgclone/blob/main/docs/ASYNC.md), [Release v4.3.2](https://github.com/valehdba/pgclone/releases/tag/v4.3.2), [changelog](https://github.com/valehdba/pgclone/blob/main/CHANGELOG.md), [SQL install script](https://github.com/valehdba/pgclone/blob/main/sql/pgclone--4.3.2.sql)
 
-`pgclone` clones tables, schemas, functions, roles, and whole databases directly from SQL. In v4.0.0 the public API is namespaced under the `pgclone` schema.
+`pgclone` clones tables, schemas, functions, roles, and whole databases directly from SQL. In v4.x the public API is namespaced under the `pgclone` schema; upstream and Pigsty currently track PostgreSQL 14-18.
 
 ### Core clone functions
 
 ```sql
 CREATE EXTENSION pgclone;
+SELECT pgclone.version();
 
 SELECT pgclone.table(
   'host=source-server dbname=mydb user=postgres password=secret',
@@ -256,6 +257,7 @@ SELECT pgclone.database(
 ### Options and masking
 
 - JSON options support `columns`, `where`, `conflict`, and object toggles such as `indexes`, `constraints`, and `triggers`.
+- JSON options also include `consistent`; it defaults to cross-table consistent snapshots in v4.3.0+ and can be disabled per call with `{"consistent": false}`.
 - Upstream documents masking, auto-discovery of sensitive columns, static masking, dynamic masking, clone verification, and GDPR/compliance reporting in the usage guide.
 
 ```sql
@@ -265,6 +267,25 @@ SELECT pgclone.table(
   '{"columns":["id","name","email"],"where":"status = ''active''"}'
 );
 ```
+
+### Consistency, diff, and preflight
+
+```sql
+SELECT pgclone.diff(
+  'host=source-server dbname=prod user=postgres',
+  'app_schema'
+)::jsonb;
+
+SELECT pgclone.preflight(
+  'host=source-server dbname=prod user=postgres',
+  'app_schema'
+)::jsonb;
+```
+
+- `pgclone.diff(conninfo, schema)` reports read-only DDL drift for tables, columns, indexes, constraints, triggers, views, and sequences.
+- `pgclone.preflight(conninfo, schema)` checks source and target readiness before a clone, including connection, version, permission, capacity, naming-conflict, missing-role, missing-extension, and tablespace issues.
+- v4.3.0+ clones read the source under `REPEATABLE READ READ ONLY` by default. Multi-connection schema, database, and parallel-pool clones share one exported snapshot, preserving parent/child consistency while a live source is taking writes.
+- Long clones hold a source transaction open, which can delay vacuum cleanup and WAL recycling; use `{"consistent": false}` when that tradeoff matters more than cross-table consistency.
 
 ### Async and progress
 
@@ -284,9 +305,11 @@ SELECT pgclone.cancel(1);
 
 - `pgclone.table_async(...)` and `pgclone.schema_async(...)` run in background workers.
 - `pgclone.jobs_view`, `pgclone.progress_detail()`, `pgclone.resume()`, and `pgclone.clear_jobs()` provide job tracking and recovery.
+- v4.3.2 ports the snapshot-keeper resilience fixes to async/background-worker paths, including keepalive injection and timeout protection for networked source connections.
 
 ### Caveats
 
 - Upstream requires PostgreSQL 14+.
 - The usage guide states the extension requires superuser privileges to install and use.
 - Async features need `shared_preload_libraries = 'pgclone'`; worker-pool parallelism also depends on `max_worker_processes`.
+- Consistent async clones may still be opted out with `{"consistent": false}` if a source-side snapshot issue must be bypassed.

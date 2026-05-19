@@ -21,9 +21,9 @@ The following extensions are based on the [**Babelfish**](/docs/pgsql/kernel/bab
 | [`babelfishpg_money`](/ext/e/babelfishpg_money) | [`babelfish`](https://babelfishpg.org/) | `1.1.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | SQL Server Money Data Type |
 {.ext-table}
 
-## IvorySQL
+## ivorysql
 
-The following extensions are based on the [**IvorySQL**](/docs/pgsql/kernel/ivorysql) kernel fork:
+The following extensions are based on the **ivorysql** kernel fork:
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
@@ -44,18 +44,18 @@ The following extensions are based on the [**openHalo**](/docs/pgsql/kernel/open
 | [`aux_mysql`](/ext/e/aux_mysql) | [`openhalo`](https://github.com/HaloTech-Co-Ltd/openHalo) | `1.5` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | MySQL Supplementary Extension |
 {.ext-table}
 
-## OrioleDB
+## orioledb
 
-The following extensions are based on the [**OrioleDB**](/docs/pgsql/kernel/orioledb) kernel fork:
+The following extensions are based on the **orioledb** kernel fork:
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
 | [`orioledb`](/ext/e/orioledb) | [`orioledb`](https://github.com/orioledb/orioledb) | `1.7` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | OrioleDB, the next generation transactional engine |
 {.ext-table}
 
-## Percona
+## percona-pg
 
-The following extensions are based on the [**Percona**](/docs/pgsql/kernel/percona) kernel fork:
+The following extensions are based on the **percona-pg** kernel fork:
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|

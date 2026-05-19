@@ -34,7 +34,7 @@ There are **31** extensions in **31** packages.
 | [`set_user`](/ext/e/set_user) | [`set_user`](https://github.com/pgaudit/set_user) | `4.2.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | similar to SET ROLE but with added logging |
 | [`pg_snakeoil`](/ext/e/pg_snakeoil) | [`pg_snakeoil`](https://github.com/credativ/pg_snakeoil) | `1.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | The PostgreSQL Antivirus |
 | [`pgextwlist`](/ext/e/pgextwlist) | [`pgextwlist`](https://github.com/dimitri/pgextwlist) | `1.19` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostgreSQL Extension Whitelisting |
-| [`pg_command_fw`](/ext/e/pg_command_fw) | [`pg_command_fw`](https://github.com/rustwizard/pg_command_fw) | `0.1.0` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | DDL and utility command firewall for PostgreSQL |
+| [`pg_command_fw`](/ext/e/pg_command_fw) | [`pg_command_fw`](https://github.com/rustwizard/pg_command_fw) | `0.1.0` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | DDL and utility command firewall for PostgreSQL |
 | [`block_copy_command`](/ext/e/block_copy_command) | [`block_copy_command`](https://github.com/rustwizard/block_copy_command) | `0.1.5` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Block COPY commands via a configurable ProcessUtility hook |
 | [`sslutils`](/ext/e/sslutils) | [`sslutils`](https://github.com/EnterpriseDB/sslutils) | `1.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | A Postgres extension for managing SSL certificates through SQL |
 | [`noset`](/ext/e/noset) | [`pg_noset`](https://gitlab.com/ongresinc/extensions/noset) | `0.3.0` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Module for blocking SET variables for non-super users. |
@@ -175,7 +175,7 @@ There are **31** extensions in **31** packages.
 | **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | - | - |
+| | | **u26** | - | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
 
@@ -478,8 +478,8 @@ There are **31** extensions in **31** packages.
 | **DEB** | `postgresql-$v-pg-command-fw` | **d12** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
-| **License** | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | **u24** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
-| | | **u26** | - | - |
+| **License** | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | **u24** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| | | **u26** | - | {{< pgvers "18,17,16,15" >}} |
 {.ext-table .ext-table--cate}
 
 
@@ -498,7 +498,7 @@ There are **31** extensions in **31** packages.
 | **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | - | - |
+| | | **u26** | - | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
 

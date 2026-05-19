@@ -8,9 +8,9 @@ icon: fas fa-scale-balanced
 
 | **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--license isc" href="/ext/license#isc">ISC</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--license bsd 0clause" href="/ext/license#bsd0clause">BSD 0-Clause</a> | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--license artistic" href="/ext/license#artistic">Artistic</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--license mpl20" href="/ext/license#mpl20">MPL-2.0</a> |
 |:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
-| **Permissive** | 81 | 6 | 228 | 2 | 15 | 31 | 3 | 85 | 1 |
-| **License** | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--license lgpl21" href="/ext/license#lgpl21">LGPL-2.1</a> | <a class="ext-badge ext-badge--license lgpl30" href="/ext/license#lgpl30">LGPL-3.0</a> | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--license timescale" href="/ext/license#timescale">Timescale</a> | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--license elastic license 20" href="/ext/license#elasticlicense20">Elastic License 2.0</a> |
-| **Copyleft** | 21 | 15 | 1 | 3 | 12 | 2 | 1 | 2 | 1 |
+| **Permissive** | 81 | 6 | 228 | 2 | 16 | 33 | 3 | 86 | 1 |
+| **License** | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--license lgpl21" href="/ext/license#lgpl21">LGPL-2.1</a> | <a class="ext-badge ext-badge--license lgpl30" href="/ext/license#lgpl30">LGPL-3.0</a> | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--license timescale" href="/ext/license#timescale">Timescale</a> | <a class="ext-badge ext-badge--license elv2" href="/ext/license#elv2">ELv2</a> | | |
+| **Copyleft** | 21 | 15 | 1 | 3 | 12 | 2 | 1 | | |
 {.ext-table}
 
 
@@ -37,7 +37,7 @@ Extensions using MIT license (81)
 | [`pg_mooncake`](/ext/e/pg_mooncake) | [`pg_mooncake`](https://github.com/Mooncake-Labs/pg_mooncake) | `0.2.0` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Columnstore Table in Postgres |
 | [`duckdb_fdw`](/ext/e/duckdb_fdw) | [`duckdb_fdw`](https://github.com/alitrack/duckdb_fdw) | `1.4.3` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | DuckDB Foreign Data Wrapper |
 | [`pg_liquid`](/ext/e/pg_liquid) | [`pg_liquid`](https://github.com/michael-golfi/pg_liquid) | `0.1.7` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Liquid-inspired Datalog graph query extension for PostgreSQL |
-| [`provsql`](/ext/e/provsql) | [`provsql`](https://github.com/PierreSenellart/provsql) | `1.2.3` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | Semiring provenance and uncertainty management for PostgreSQL |
+| [`provsql`](/ext/e/provsql) | [`provsql`](https://github.com/PierreSenellart/provsql) | `1.4.0` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | Semiring provenance and uncertainty management for PostgreSQL |
 | [`pg_cardano`](/ext/e/pg_cardano) | [`pg_cardano`](https://github.com/Fell-x27/pg_cardano) | `1.2.0` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | A suite of Cardano-related tools |
 | [`pllua`](/ext/e/pllua) | [`pllua`](https://github.com/pllua/pllua) | `2.0.12` | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Lua as a procedural language |
 | [`hstore_pllua`](/ext/e/hstore_pllua) | [`pllua`](https://github.com/pllua/pllua) | `2.0.12` | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Hstore transform for Lua |
@@ -65,7 +65,7 @@ Extensions using MIT license (81)
 | [`pg_render`](/ext/e/pg_render) | [`pg_render`](https://github.com/mkaski/pg_render) | `0.1.3` | <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Render HTML in SQL |
 | [`pgx_ulid`](/ext/e/pgx_ulid) | [`pgx_ulid`](https://github.com/pksunkara/pgx_ulid) | `0.2.3` | <a class="ext-badge ext-badge--cate func" href="/ext/cate/func">FUNC</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | ulid type and methods |
 | [`pg_hashids`](/ext/e/pg_hashids) | [`pg_hashids`](https://github.com/iCyberon/pg_hashids) | `1.3` | <a class="ext-badge ext-badge--cate func" href="/ext/cate/func">FUNC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Short unique id generator for PostgreSQL, using hashids |
-| [`pg_slug_gen`](/ext/e/pg_slug_gen) | [`pg_slug_gen`](https://github.com/fernandoolle/pg_slug_gen) | `1.0.0` | <a class="ext-badge ext-badge--cate func" href="/ext/cate/func">FUNC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Generate cryptographically secure timestamp-based slugs |
+| [`pg_slug_gen`](/ext/e/pg_slug_gen) | [`pg_slug_gen`](https://github.com/nandoolle/pg_slug_gen) | `1.0.0` | <a class="ext-badge ext-badge--cate func" href="/ext/cate/func">FUNC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Generate cryptographically secure timestamp-based slugs |
 | [`sequential_uuids`](/ext/e/sequential_uuids) | [`sequential_uuids`](https://github.com/tvondra/sequential-uuids) | `1.0.3` | <a class="ext-badge ext-badge--cate func" href="/ext/cate/func">FUNC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | generator of sequential UUIDs |
 | [`typeid`](/ext/e/typeid) | [`pg_typeid`](https://github.com/blitss/typeid-postgres) | `0.3.0` | <a class="ext-badge ext-badge--cate func" href="/ext/cate/func">FUNC</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Allows to use TypeIDs in Postgres natively |
 | [`floatvec`](/ext/e/floatvec) | [`floatvec`](https://github.com/pjungwir/floatvec) | `1.1.1` | <a class="ext-badge ext-badge--cate func" href="/ext/cate/func">FUNC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Math for vectors (arrays) of numbers |
@@ -146,7 +146,7 @@ Extensions using PostgreSQL license (228)
 | [`pgroonga_database`](/ext/e/pgroonga_database) | [`pgroonga`](https://github.com/pgroonga/pgroonga) | `4.0.4` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PGroonga database management module |
 | [`pg_bigm`](/ext/e/pg_bigm) | [`pg_bigm`](https://github.com/pgbigm/pg_bigm) | `1.2` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | create 2-gram (bigram) index for faster full text search. |
 | [`zhparser`](/ext/e/zhparser) | [`zhparser`](https://github.com/amutu/zhparser) | `2.3` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | a parser for full-text search of Chinese |
-| [`pg_textsearch`](/ext/e/pg_textsearch) | [`pg_textsearch`](https://github.com/timescale/pg_textsearch) | `1.1.0` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Full-text search with BM25 ranking |
+| [`pg_textsearch`](/ext/e/pg_textsearch) | [`pg_textsearch`](https://github.com/timescale/pg_textsearch) | `1.2.0` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Full-text search with BM25 ranking |
 | [`hunspell_cs_cz`](/ext/e/hunspell_cs_cz) | [`hunspell_cs_cz`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | Czech Hunspell Dictionary |
 | [`hunspell_de_de`](/ext/e/hunspell_de_de) | [`hunspell_de_de`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | German Hunspell Dictionary |
 | [`hunspell_en_us`](/ext/e/hunspell_en_us) | [`hunspell_en_us`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | en_US Hunspell Dictionary |
@@ -354,7 +354,7 @@ Extensions using PostgreSQL license (228)
 | [`pg_failover_slots`](/ext/e/pg_failover_slots) | [`pg_failover_slots`](https://github.com/EnterpriseDB/pg_failover_slots) | `1.2.1` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PG Failover Slots extension |
 | [`spock`](/ext/e/spock) | [`spock`](https://github.com/pgEdge/spock) | `5.0.6` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Multi-master logical replication extension for PostgreSQL |
 | [`lolor`](/ext/e/lolor) | [`lolor`](https://github.com/pgEdge/lolor) | `1.2.2` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Logical-replication-friendly replacement for PostgreSQL large objects |
-| [`pgclone`](/ext/e/pgclone) | [`pgclone`](https://github.com/valehdba/pgclone) | `4.0.0` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Clone PostgreSQL databases, schemas, tables, and functions across environments |
+| [`pgclone`](/ext/e/pgclone) | [`pgclone`](https://github.com/valehdba/pgclone) | `4.3.2` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Clone PostgreSQL databases, schemas, tables, and functions across environments |
 | [`decoder_raw`](/ext/e/decoder_raw) | [`decoder_raw`](https://github.com/michaelpq/pg_plugins/blob/main/decoder_raw/) | `1.0` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Output plugin for logical replication in Raw SQL format |
 | [`mimeo`](/ext/e/mimeo) | [`mimeo`](https://github.com/omniti-labs/mimeo) | `1.5.1` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Extension for specialized, per-table replication between PostgreSQL instances |
 | [`test_decoding`](/ext/e/test_decoding) | [`test_decoding`](https://www.postgresql.org/docs/current/test-decoding.html) | `-` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | SQL-based test/example module for WAL logical decoding |
@@ -379,12 +379,13 @@ Extensions using BSD 0-Clause license (2)
 
 ## BSD 2-Clause {#bsd2clause}
 
-Extensions using BSD 2-Clause license (15)
+Extensions using BSD 2-Clause license (16)
 
 | **Extension** | **Package** | **Version** | **Type** | **Language** | **Description** |
 |:---------|:-------|:--------:|:--------:|:--------:|:---------|
 | [`temporal_tables`](/ext/e/temporal_tables) | [`temporal_tables`](https://pgxn.org/dist/temporal_tables/) | `1.2.2` | <a class="ext-badge ext-badge--cate time" href="/ext/cate/time">TIME</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | temporal tables |
 | [`geoip`](/ext/e/geoip) | [`geoip`](https://github.com/tvondra/geoip) | `0.3.0` | <a class="ext-badge ext-badge--cate gis" href="/ext/cate/gis">GIS</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | IP-based geolocation query |
+| [`pg_regresql`](/ext/e/pg_regresql) | [`pg_regresql`](https://github.com/boringsql/regresql) | `2.0.0` | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Trust pg_class statistics for planning instead of physical relation size |
 | [`md5hash`](/ext/e/md5hash) | [`md5hash`](https://github.com/tvondra/md5hash) | `1.0.1` | <a class="ext-badge ext-badge--cate type" href="/ext/cate/type">TYPE</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | type for storing 128-bit binary data inline |
 | [`acl`](/ext/e/acl) | [`pg_acl`](https://github.com/arkhipov/acl) | `1.0.4` | <a class="ext-badge ext-badge--cate type" href="/ext/cate/type">TYPE</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | ACL Data type |
 | [`byteamagic`](/ext/e/byteamagic) | [`pg_byteamagic`](https://github.com/nmandery/pg_byteamagic) | `0.2.4` | <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Detect MIME types and file formats from PostgreSQL bytea values |
@@ -405,7 +406,7 @@ Extensions using BSD 2-Clause license (15)
 
 ## BSD 3-Clause {#bsd3clause}
 
-Extensions using BSD 3-Clause license (31)
+Extensions using BSD 3-Clause license (33)
 
 | **Extension** | **Package** | **Version** | **Type** | **Language** | **Description** |
 |:---------|:-------|:--------:|:--------:|:--------:|:---------|
@@ -429,11 +430,13 @@ Extensions using BSD 3-Clause license (31)
 | [`pg_stat_monitor`](/ext/e/pg_stat_monitor) | [`pg_stat_monitor`](https://github.com/percona/pg_stat_monitor) | `2.3.2` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | The pg_stat_monitor is a PostgreSQL Query Performance Monitoring tool, based on PostgreSQL contrib module pg_stat_statements. pg_stat_monitor provides aggregated statistics, client information, plan details including plan, and histogram information. |
 | [`pg_qualstats`](/ext/e/pg_qualstats) | [`pg_qualstats`](https://github.com/powa-team/pg_qualstats) | `2.1.3` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | An extension collecting statistics about quals |
 | [`pg_store_plans`](/ext/e/pg_store_plans) | [`pg_store_plans`](https://github.com/ossc-db/pg_store_plans) | `1.10` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | track plan statistics of all SQL statements executed |
+| [`pg_datasentinel`](/ext/e/pg_datasentinel) | [`pg_datasentinel`](https://github.com/datasentinel/pg_datasentinel) | `1.0` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Observability and activity monitoring extension for PostgreSQL |
 | [`pg_proctab`](/ext/e/pg_proctab) | [`pgnodemx`](https://github.com/markwkm/pg_proctab) | `1.7` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostgreSQL extension to access the OS process table |
 | [`pg_sqlog`](/ext/e/pg_sqlog) | [`pg_sqlog`](https://github.com/kouber/pg_sqlog) | `1.6` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Provide SQL interface to logs |
 | [`pgsodium`](/ext/e/pgsodium) | [`pgsodium`](https://github.com/michelp/pgsodium) | `3.1.9` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Postgres extension for libsodium functions |
 | [`pg_auditor`](/ext/e/pg_auditor) | [`pg_auditor`](https://github.com/kouber/pg_auditor) | `0.2` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Audit data changes and provide flashback ability |
 | [`logerrors`](/ext/e/logerrors) | [`logerrors`](https://github.com/munakoiso/logerrors) | `2.1.5` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Function for collecting statistics about messages in logfile |
+| [`pg_command_fw`](/ext/e/pg_command_fw) | [`pg_command_fw`](https://github.com/rustwizard/pg_command_fw) | `0.1.0` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | DDL and utility command firewall for PostgreSQL |
 | [`block_copy_command`](/ext/e/block_copy_command) | [`block_copy_command`](https://github.com/rustwizard/block_copy_command) | `0.1.5` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Block COPY commands via a configurable ProcessUtility hook |
 | [`mysql_fdw`](/ext/e/mysql_fdw) | [`mysql_fdw`](https://github.com/EnterpriseDB/mysql_fdw) | `2.9.3` | <a class="ext-badge ext-badge--cate fdw" href="/ext/cate/fdw">FDW</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Foreign data wrapper for querying a MySQL server |
 | [`hdfs_fdw`](/ext/e/hdfs_fdw) | [`hdfs_fdw`](https://github.com/EnterpriseDB/hdfs_fdw) | `2.3.3` | <a class="ext-badge ext-badge--cate fdw" href="/ext/cate/fdw">FDW</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | foreign-data wrapper for remote hdfs servers |
@@ -451,7 +454,7 @@ Extensions using Artistic license (3)
 
 | **Extension** | **Package** | **Version** | **Type** | **Language** | **Description** |
 |:---------|:-------|:--------:|:--------:|:--------:|:---------|
-| [`pldbgapi`](/ext/e/pldbgapi) | [`pldebugger`](https://github.com/EnterpriseDB/pldebugger) | `1.9` | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | server-side support for debugging PL/pgSQL functions |
+| [`pldbgapi`](/ext/e/pldbgapi) | [`pldebugger`](https://github.com/EnterpriseDB/pldebugger) | `1.10` | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | server-side support for debugging PL/pgSQL functions |
 | [`plprofiler`](/ext/e/plprofiler) | [`plprofiler`](https://github.com/bigsql/plprofiler) | `4.2.5` | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | server-side support for profiling PL/pgSQL functions |
 | [`dbt2`](/ext/e/dbt2) | [`dbt2`](https://github.com/osdldbt/dbt2) | `0.61.7` | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | OSDL-DBT-2 test kit |
 {.ext-table}
@@ -461,7 +464,7 @@ Extensions using Artistic license (3)
 
 ## Apache-2.0 {#apache20}
 
-Extensions using Apache-2.0 license (85)
+Extensions using Apache-2.0 license (86)
 
 | **Extension** | **Package** | **Version** | **Type** | **Language** | **Description** |
 |:---------|:-------|:--------:|:--------:|:--------:|:---------|
@@ -470,7 +473,8 @@ Extensions using Apache-2.0 license (85)
 | [`pg_tiktoken`](/ext/e/pg_tiktoken) | [`pg_tiktoken`](https://github.com/kelvich/pg_tiktoken) | `0.0.1` | <a class="ext-badge ext-badge--cate rag" href="/ext/cate/rag">RAG</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | tiktoken tokenizer for use with OpenAI models in postgres |
 | [`pg_bestmatch`](/ext/e/pg_bestmatch) | [`pg_bestmatch`](https://github.com/tensorchord/pg_bestmatch.rs) | `0.0.2` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Generate BM25 sparse vector inside PostgreSQL |
 | [`pg_tokenizer`](/ext/e/pg_tokenizer) | [`pg_tokenizer`](https://github.com/tensorchord/pg_tokenizer.rs) | `0.1.1` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Tokenizers for full-text search |
-| [`pg_clickhouse`](/ext/e/pg_clickhouse) | [`pg_clickhouse`](https://github.com/ClickHouse/pg_clickhouse) | `0.2.0` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | Interfaces to query ClickHouse databases from PostgreSQL |
+| [`psql_bm25s`](/ext/e/psql_bm25s) | [`psql_bm25s`](https://github.com/Intelligent-Internet/psql_bm25s) | `0.4.13` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostgreSQL extension for BM25-family lexical retrieval |
+| [`pg_clickhouse`](/ext/e/pg_clickhouse) | [`pg_clickhouse`](https://github.com/ClickHouse/pg_clickhouse) | `0.3.0` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | Interfaces to query ClickHouse databases from PostgreSQL |
 | [`age`](/ext/e/age) | [`age`](https://github.com/apache/age) | `1.7.0` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | AGE graph database extension |
 | [`onesparse`](/ext/e/onesparse) | [`one_sparse`](https://github.com/OneSparse/OneSparse) | `1.0.0` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Sparse linear algebra and graph extension for PostgreSQL 18 |
 | [`ulak`](/ext/e/ulak) | [`ulak`](https://github.com/zeybek/ulak) | `0.0.2` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Transactional Outbox extension for PostgreSQL with reliable asynchronous delivery |
@@ -664,7 +668,7 @@ Extensions using AGPL-3.0 license (12)
 | [`citus`](/ext/e/citus) | [`citus`](https://github.com/citusdata/citus) | `14.0.0` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Distributed PostgreSQL as an extension |
 | [`citus_columnar`](/ext/e/citus_columnar) | [`citus`](https://github.com/citusdata/citus) | `14.0.0` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Citus columnar storage engine |
 | [`columnar`](/ext/e/columnar) | [`hydra`](https://github.com/hydradatabase/hydra) | `1.1.2` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Hydra Columnar extension |
-| [`storage_engine`](/ext/e/storage_engine) | [`storage_engine`](https://github.com/saulojb/storage_engine) | `1.3.4` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | colcompress and rowcompress Table Access Methods with vectorized execution |
+| [`storage_engine`](/ext/e/storage_engine) | [`storage_engine`](https://github.com/saulojb/storage_engine) | `2.3.0` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | colcompress and rowcompress Table Access Methods with vectorized execution |
 | [`pg_isok`](/ext/e/pg_isok) | [`pg_isok`](https://codeberg.org/kop/pg_isok) | `1.4.1` | <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Query-based data integrity management and soft alerting for PostgreSQL |
 | [`topn`](/ext/e/topn) | [`topn`](https://github.com/citusdata/postgresql-topn) | `2.7.0` | <a class="ext-badge ext-badge--cate func" href="/ext/cate/func">FUNC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | type for top-n JSONB |
 | [`noset`](/ext/e/noset) | [`pg_noset`](https://gitlab.com/ongresinc/extensions/noset) | `0.3.0` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Module for blocking SET variables for non-super users. |
@@ -680,41 +684,16 @@ Extensions using Timescale license (2)
 
 | **Extension** | **Package** | **Version** | **Type** | **Language** | **Description** |
 |:---------|:-------|:--------:|:--------:|:--------:|:---------|
-| [`timescaledb`](/ext/e/timescaledb) | [`timescaledb`](https://github.com/timescale/timescaledb) | `2.26.4` | <a class="ext-badge ext-badge--cate time" href="/ext/cate/time">TIME</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Enables scalable inserts and complex queries for time-series data |
+| [`timescaledb`](/ext/e/timescaledb) | [`timescaledb`](https://github.com/timescale/timescaledb) | `2.27.0` | <a class="ext-badge ext-badge--cate time" href="/ext/cate/time">TIME</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Enables scalable inserts and complex queries for time-series data |
 | [`timescaledb_toolkit`](/ext/e/timescaledb_toolkit) | [`timescaledb_toolkit`](https://github.com/timescale/timescaledb-toolkit) | `1.22.0` | <a class="ext-badge ext-badge--cate time" href="/ext/cate/time">TIME</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Library of analytical hyperfunctions, time-series pipelining, and other SQL utilities |
 {.ext-table}
 
 
 --------
 
-## BSD-2-Clause {#bsd2clause}
+## ELv2 {#elv2}
 
-Extensions using BSD-2-Clause license (1)
-
-| **Extension** | **Package** | **Version** | **Type** | **Language** | **Description** |
-|:---------|:-------|:--------:|:--------:|:--------:|:---------|
-| [`pg_regresql`](/ext/e/pg_regresql) | [`pg_regresql`](https://github.com/boringsql/regresql) | `2.0.0` | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Trust pg_class statistics for planning instead of physical relation size |
-{.ext-table}
-
-
---------
-
-## BSD-3-Clause {#bsd3clause}
-
-Extensions using BSD-3-Clause license (2)
-
-| **Extension** | **Package** | **Version** | **Type** | **Language** | **Description** |
-|:---------|:-------|:--------:|:--------:|:--------:|:---------|
-| [`pg_datasentinel`](/ext/e/pg_datasentinel) | [`pg_datasentinel`](https://github.com/datasentinel/pg_datasentinel) | `1.0` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Observability and activity monitoring extension for PostgreSQL |
-| [`pg_command_fw`](/ext/e/pg_command_fw) | [`pg_command_fw`](https://github.com/rustwizard/pg_command_fw) | `0.1.0` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | DDL and utility command firewall for PostgreSQL |
-{.ext-table}
-
-
---------
-
-## Elastic License 2.0 {#elasticlicense20}
-
-Extensions using Elastic License 2.0 license (1)
+Extensions using ELv2 license (1)
 
 | **Extension** | **Package** | **Version** | **Type** | **Language** | **Description** |
 |:---------|:-------|:--------:|:--------:|:--------:|:---------|

@@ -38,6 +38,9 @@ weight: 2150
 {.ext-table .ext-table--rel}
 
 
+> bm25 am conflicts with pg_textsearch and pg_search, build require clang upgrade
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |

@@ -41,9 +41,9 @@ weight: 7405
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.1.5` | {{< pgvers "18,17,16,15,14,13" >}} | `block_copy_command` | - |
-| [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.1.5` | {{< pgvers "18,17,16,15,14,13" >}} | `block_copy_command_$v` | - |
-| [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.1.5` | {{< pgvers "18,17,16,15,14,13" >}} | `postgresql-$v-block-copy-command` | - |
+| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.1.5` | {{< pgvers "18,17,16,15,14" >}} | `block_copy_command` | - |
+| [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.1.5` | {{< pgvers "18,17,16,15,14" >}} | `block_copy_command_$v` | - |
+| [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.1.5` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-block-copy-command` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -64,7 +64,7 @@ weight: 7405
 | u24.x86_64 | AVAIL PIGSTY 0.1.5 1 | AVAIL PIGSTY 0.1.5 1 | AVAIL PIGSTY 0.1.5 1 | AVAIL PIGSTY 0.1.5 1 | AVAIL PIGSTY 0.1.5 1 |
 | u24.aarch64 | AVAIL PIGSTY 0.1.5 1 | AVAIL PIGSTY 0.1.5 1 | AVAIL PIGSTY 0.1.5 1 | AVAIL PIGSTY 0.1.5 1 | AVAIL PIGSTY 0.1.5 1 |
 | u26.x86_64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u26.aarch64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 0.1.5 1 | AVAIL PIGSTY 0.1.5 1 | AVAIL PIGSTY 0.1.5 1 | AVAIL PIGSTY 0.1.5 1 | AVAIL PIGSTY 0.1.5 1 |
 @ el8.x86_64 18 block_copy_command_18 block_copy_command_18-0.1.5-1PIGSTY.el8.x86_64.rpm pigsty 0.1.5 306.1KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/block_copy_command_18-0.1.5-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 18 block_copy_command_18 block_copy_command_18-0.1.5-1PIGSTY.el8.aarch64.rpm pigsty 0.1.5 199.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/block_copy_command_18-0.1.5-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 18 block_copy_command_18 block_copy_command_18-0.1.5-1PIGSTY.el9.x86_64.rpm pigsty 0.1.5 321.7KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/block_copy_command_18-0.1.5-1PIGSTY.el9.x86_64.rpm
@@ -79,6 +79,7 @@ weight: 7405
 @ u22.aarch64 18 postgresql-18-block-copy-command postgresql-18-block-copy-command_0.1.5-1PIGSTY~jammy_arm64.deb pigsty 0.1.5 173.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/b/block-copy-command/postgresql-18-block-copy-command_0.1.5-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 18 postgresql-18-block-copy-command postgresql-18-block-copy-command_0.1.5-1PIGSTY~noble_amd64.deb pigsty 0.1.5 278.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/b/block-copy-command/postgresql-18-block-copy-command_0.1.5-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 18 postgresql-18-block-copy-command postgresql-18-block-copy-command_0.1.5-1PIGSTY~noble_arm64.deb pigsty 0.1.5 172.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/b/block-copy-command/postgresql-18-block-copy-command_0.1.5-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 18 postgresql-18-block-copy-command postgresql-18-block-copy-command_0.1.5-2PIGSTY~resolute_arm64.deb pigsty 0.1.5 178.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/b/block-copy-command/postgresql-18-block-copy-command_0.1.5-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 17 block_copy_command_17 block_copy_command_17-0.1.5-1PIGSTY.el8.x86_64.rpm pigsty 0.1.5 306.0KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/block_copy_command_17-0.1.5-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 17 block_copy_command_17 block_copy_command_17-0.1.5-1PIGSTY.el8.aarch64.rpm pigsty 0.1.5 199.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/block_copy_command_17-0.1.5-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 17 block_copy_command_17 block_copy_command_17-0.1.5-1PIGSTY.el9.x86_64.rpm pigsty 0.1.5 321.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/block_copy_command_17-0.1.5-1PIGSTY.el9.x86_64.rpm
@@ -93,6 +94,7 @@ weight: 7405
 @ u22.aarch64 17 postgresql-17-block-copy-command postgresql-17-block-copy-command_0.1.5-1PIGSTY~jammy_arm64.deb pigsty 0.1.5 173.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/b/block-copy-command/postgresql-17-block-copy-command_0.1.5-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 17 postgresql-17-block-copy-command postgresql-17-block-copy-command_0.1.5-1PIGSTY~noble_amd64.deb pigsty 0.1.5 278.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/b/block-copy-command/postgresql-17-block-copy-command_0.1.5-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 17 postgresql-17-block-copy-command postgresql-17-block-copy-command_0.1.5-1PIGSTY~noble_arm64.deb pigsty 0.1.5 172.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/b/block-copy-command/postgresql-17-block-copy-command_0.1.5-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 17 postgresql-17-block-copy-command postgresql-17-block-copy-command_0.1.5-2PIGSTY~resolute_arm64.deb pigsty 0.1.5 178.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/b/block-copy-command/postgresql-17-block-copy-command_0.1.5-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 16 block_copy_command_16 block_copy_command_16-0.1.5-1PIGSTY.el8.x86_64.rpm pigsty 0.1.5 305.9KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/block_copy_command_16-0.1.5-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 16 block_copy_command_16 block_copy_command_16-0.1.5-1PIGSTY.el8.aarch64.rpm pigsty 0.1.5 199.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/block_copy_command_16-0.1.5-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 16 block_copy_command_16 block_copy_command_16-0.1.5-1PIGSTY.el9.x86_64.rpm pigsty 0.1.5 321.3KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/block_copy_command_16-0.1.5-1PIGSTY.el9.x86_64.rpm
@@ -107,6 +109,7 @@ weight: 7405
 @ u22.aarch64 16 postgresql-16-block-copy-command postgresql-16-block-copy-command_0.1.5-1PIGSTY~jammy_arm64.deb pigsty 0.1.5 174.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/b/block-copy-command/postgresql-16-block-copy-command_0.1.5-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 16 postgresql-16-block-copy-command postgresql-16-block-copy-command_0.1.5-1PIGSTY~noble_amd64.deb pigsty 0.1.5 278.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/b/block-copy-command/postgresql-16-block-copy-command_0.1.5-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 16 postgresql-16-block-copy-command postgresql-16-block-copy-command_0.1.5-1PIGSTY~noble_arm64.deb pigsty 0.1.5 172.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/b/block-copy-command/postgresql-16-block-copy-command_0.1.5-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 16 postgresql-16-block-copy-command postgresql-16-block-copy-command_0.1.5-2PIGSTY~resolute_arm64.deb pigsty 0.1.5 178.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/b/block-copy-command/postgresql-16-block-copy-command_0.1.5-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 15 block_copy_command_15 block_copy_command_15-0.1.5-1PIGSTY.el8.x86_64.rpm pigsty 0.1.5 305.9KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/block_copy_command_15-0.1.5-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 15 block_copy_command_15 block_copy_command_15-0.1.5-1PIGSTY.el8.aarch64.rpm pigsty 0.1.5 199.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/block_copy_command_15-0.1.5-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 15 block_copy_command_15 block_copy_command_15-0.1.5-1PIGSTY.el9.x86_64.rpm pigsty 0.1.5 321.8KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/block_copy_command_15-0.1.5-1PIGSTY.el9.x86_64.rpm
@@ -121,6 +124,7 @@ weight: 7405
 @ u22.aarch64 15 postgresql-15-block-copy-command postgresql-15-block-copy-command_0.1.5-1PIGSTY~jammy_arm64.deb pigsty 0.1.5 173.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/b/block-copy-command/postgresql-15-block-copy-command_0.1.5-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 15 postgresql-15-block-copy-command postgresql-15-block-copy-command_0.1.5-1PIGSTY~noble_amd64.deb pigsty 0.1.5 278.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/b/block-copy-command/postgresql-15-block-copy-command_0.1.5-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 15 postgresql-15-block-copy-command postgresql-15-block-copy-command_0.1.5-1PIGSTY~noble_arm64.deb pigsty 0.1.5 173.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/b/block-copy-command/postgresql-15-block-copy-command_0.1.5-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 15 postgresql-15-block-copy-command postgresql-15-block-copy-command_0.1.5-2PIGSTY~resolute_arm64.deb pigsty 0.1.5 178.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/b/block-copy-command/postgresql-15-block-copy-command_0.1.5-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 14 block_copy_command_14 block_copy_command_14-0.1.5-1PIGSTY.el8.x86_64.rpm pigsty 0.1.5 305.6KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/block_copy_command_14-0.1.5-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 14 block_copy_command_14 block_copy_command_14-0.1.5-1PIGSTY.el8.aarch64.rpm pigsty 0.1.5 199.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/block_copy_command_14-0.1.5-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 14 block_copy_command_14 block_copy_command_14-0.1.5-1PIGSTY.el9.x86_64.rpm pigsty 0.1.5 321.9KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/block_copy_command_14-0.1.5-1PIGSTY.el9.x86_64.rpm
@@ -135,6 +139,7 @@ weight: 7405
 @ u22.aarch64 14 postgresql-14-block-copy-command postgresql-14-block-copy-command_0.1.5-1PIGSTY~jammy_arm64.deb pigsty 0.1.5 174.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/b/block-copy-command/postgresql-14-block-copy-command_0.1.5-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 14 postgresql-14-block-copy-command postgresql-14-block-copy-command_0.1.5-1PIGSTY~noble_amd64.deb pigsty 0.1.5 278.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/b/block-copy-command/postgresql-14-block-copy-command_0.1.5-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 14 postgresql-14-block-copy-command postgresql-14-block-copy-command_0.1.5-1PIGSTY~noble_arm64.deb pigsty 0.1.5 172.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/b/block-copy-command/postgresql-14-block-copy-command_0.1.5-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 14 postgresql-14-block-copy-command postgresql-14-block-copy-command_0.1.5-2PIGSTY~resolute_arm64.deb pigsty 0.1.5 178.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/b/block-copy-command/postgresql-14-block-copy-command_0.1.5-2PIGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -220,8 +225,6 @@ shared_preload_libraries = 'block_copy_command'
 ```sql
 CREATE EXTENSION block_copy_command;
 ```
-
-The upstream README lists PostgreSQL 13-18 support.
 
 ### Blocking Rules
 

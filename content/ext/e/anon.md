@@ -68,7 +68,7 @@ weight: 7070
 | u24.x86_64 | AVAIL PIGSTY 3.0.13 1 | AVAIL PIGSTY 3.0.13 1 | AVAIL PIGSTY 3.0.13 1 | AVAIL PIGSTY 3.0.13 1 | AVAIL PIGSTY 3.0.13 1 |
 | u24.aarch64 | AVAIL PIGSTY 3.0.13 1 | AVAIL PIGSTY 3.0.13 1 | AVAIL PIGSTY 3.0.13 1 | AVAIL PIGSTY 3.0.13 1 | AVAIL PIGSTY 3.0.13 1 |
 | u26.x86_64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u26.aarch64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 3.0.13 1 | AVAIL PIGSTY 3.0.13 1 | AVAIL PIGSTY 3.0.13 1 | AVAIL PIGSTY 3.0.13 1 | AVAIL PIGSTY 3.0.13 1 |
 @ el8.x86_64 18 pg_anon_18 pg_anon_18-3.0.13-1PIGSTY.el8.x86_64.rpm pigsty 3.0.13 3.5MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_anon_18-3.0.13-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 18 pg_anon_18 pg_anon_18-3.0.13-1PIGSTY.el8.aarch64.rpm pigsty 3.0.13 3.0MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_anon_18-3.0.13-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 18 pg_anon_18 pg_anon_18-3.0.13-1PIGSTY.el9.x86_64.rpm pigsty 3.0.13 3.3MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_anon_18-3.0.13-1PIGSTY.el9.x86_64.rpm
@@ -83,6 +83,7 @@ weight: 7070
 @ u22.aarch64 18 postgresql-18-pg-anon postgresql-18-pg-anon_3.0.13-1PIGSTY~jammy_arm64.deb pigsty 3.0.13 2.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-anon/postgresql-18-pg-anon_3.0.13-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 18 postgresql-18-pg-anon postgresql-18-pg-anon_3.0.13-1PIGSTY~noble_amd64.deb pigsty 3.0.13 3.1MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-anon/postgresql-18-pg-anon_3.0.13-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 18 postgresql-18-pg-anon postgresql-18-pg-anon_3.0.13-1PIGSTY~noble_arm64.deb pigsty 3.0.13 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-anon/postgresql-18-pg-anon_3.0.13-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 18 postgresql-18-pg-anon postgresql-18-pg-anon_3.0.13-2PIGSTY~resolute_arm64.deb pigsty 3.0.13 2.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-anon/postgresql-18-pg-anon_3.0.13-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 17 pg_anon_17 pg_anon_17-3.0.13-1PIGSTY.el8.x86_64.rpm pigsty 3.0.13 3.5MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_anon_17-3.0.13-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 17 pg_anon_17 pg_anon_17-3.0.13-1PIGSTY.el8.aarch64.rpm pigsty 3.0.13 3.0MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_anon_17-3.0.13-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 17 pg_anon_17 pg_anon_17-3.0.13-1PIGSTY.el9.x86_64.rpm pigsty 3.0.13 3.3MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_anon_17-3.0.13-1PIGSTY.el9.x86_64.rpm
@@ -97,6 +98,7 @@ weight: 7070
 @ u22.aarch64 17 postgresql-17-pg-anon postgresql-17-pg-anon_3.0.13-1PIGSTY~jammy_arm64.deb pigsty 3.0.13 2.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-anon/postgresql-17-pg-anon_3.0.13-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 17 postgresql-17-pg-anon postgresql-17-pg-anon_3.0.13-1PIGSTY~noble_amd64.deb pigsty 3.0.13 3.1MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-anon/postgresql-17-pg-anon_3.0.13-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 17 postgresql-17-pg-anon postgresql-17-pg-anon_3.0.13-1PIGSTY~noble_arm64.deb pigsty 3.0.13 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-anon/postgresql-17-pg-anon_3.0.13-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 17 postgresql-17-pg-anon postgresql-17-pg-anon_3.0.13-2PIGSTY~resolute_arm64.deb pigsty 3.0.13 2.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-anon/postgresql-17-pg-anon_3.0.13-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 16 pg_anon_16 pg_anon_16-3.0.13-1PIGSTY.el8.x86_64.rpm pigsty 3.0.13 3.5MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_anon_16-3.0.13-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 16 pg_anon_16 pg_anon_16-3.0.13-1PIGSTY.el8.aarch64.rpm pigsty 3.0.13 3.0MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_anon_16-3.0.13-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 16 pg_anon_16 pg_anon_16-3.0.13-1PIGSTY.el9.x86_64.rpm pigsty 3.0.13 3.3MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_anon_16-3.0.13-1PIGSTY.el9.x86_64.rpm
@@ -111,6 +113,7 @@ weight: 7070
 @ u22.aarch64 16 postgresql-16-pg-anon postgresql-16-pg-anon_3.0.13-1PIGSTY~jammy_arm64.deb pigsty 3.0.13 2.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-anon/postgresql-16-pg-anon_3.0.13-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 16 postgresql-16-pg-anon postgresql-16-pg-anon_3.0.13-1PIGSTY~noble_amd64.deb pigsty 3.0.13 3.1MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-anon/postgresql-16-pg-anon_3.0.13-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 16 postgresql-16-pg-anon postgresql-16-pg-anon_3.0.13-1PIGSTY~noble_arm64.deb pigsty 3.0.13 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-anon/postgresql-16-pg-anon_3.0.13-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 16 postgresql-16-pg-anon postgresql-16-pg-anon_3.0.13-2PIGSTY~resolute_arm64.deb pigsty 3.0.13 2.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-anon/postgresql-16-pg-anon_3.0.13-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 15 pg_anon_15 pg_anon_15-3.0.13-1PIGSTY.el8.x86_64.rpm pigsty 3.0.13 3.5MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_anon_15-3.0.13-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 15 pg_anon_15 pg_anon_15-3.0.13-1PIGSTY.el8.aarch64.rpm pigsty 3.0.13 3.0MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_anon_15-3.0.13-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 15 pg_anon_15 pg_anon_15-3.0.13-1PIGSTY.el9.x86_64.rpm pigsty 3.0.13 3.3MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_anon_15-3.0.13-1PIGSTY.el9.x86_64.rpm
@@ -125,6 +128,7 @@ weight: 7070
 @ u22.aarch64 15 postgresql-15-pg-anon postgresql-15-pg-anon_3.0.13-1PIGSTY~jammy_arm64.deb pigsty 3.0.13 2.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-anon/postgresql-15-pg-anon_3.0.13-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 15 postgresql-15-pg-anon postgresql-15-pg-anon_3.0.13-1PIGSTY~noble_amd64.deb pigsty 3.0.13 3.1MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-anon/postgresql-15-pg-anon_3.0.13-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 15 postgresql-15-pg-anon postgresql-15-pg-anon_3.0.13-1PIGSTY~noble_arm64.deb pigsty 3.0.13 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-anon/postgresql-15-pg-anon_3.0.13-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 15 postgresql-15-pg-anon postgresql-15-pg-anon_3.0.13-2PIGSTY~resolute_arm64.deb pigsty 3.0.13 2.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-anon/postgresql-15-pg-anon_3.0.13-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 14 pg_anon_14 pg_anon_14-3.0.13-1PIGSTY.el8.x86_64.rpm pigsty 3.0.13 3.5MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_anon_14-3.0.13-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 14 pg_anon_14 pg_anon_14-3.0.13-1PIGSTY.el8.aarch64.rpm pigsty 3.0.13 3.1MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_anon_14-3.0.13-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 14 pg_anon_14 pg_anon_14-3.0.13-1PIGSTY.el9.x86_64.rpm pigsty 3.0.13 3.3MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_anon_14-3.0.13-1PIGSTY.el9.x86_64.rpm
@@ -139,6 +143,7 @@ weight: 7070
 @ u22.aarch64 14 postgresql-14-pg-anon postgresql-14-pg-anon_3.0.13-1PIGSTY~jammy_arm64.deb pigsty 3.0.13 2.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-anon/postgresql-14-pg-anon_3.0.13-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 14 postgresql-14-pg-anon postgresql-14-pg-anon_3.0.13-1PIGSTY~noble_amd64.deb pigsty 3.0.13 3.1MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-anon/postgresql-14-pg-anon_3.0.13-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 14 postgresql-14-pg-anon postgresql-14-pg-anon_3.0.13-1PIGSTY~noble_arm64.deb pigsty 3.0.13 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-anon/postgresql-14-pg-anon_3.0.13-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 14 postgresql-14-pg-anon postgresql-14-pg-anon_3.0.13-2PIGSTY~resolute_arm64.deb pigsty 3.0.13 2.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-anon/postgresql-14-pg-anon_3.0.13-2PIGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -212,9 +217,9 @@ CREATE EXTENSION anon;
 
 ## Usage
 
-> Sources: [overview](https://postgresql-anonymizer.readthedocs.io/en/stable/), [static masking](https://postgresql-anonymizer.readthedocs.io/en/stable/static_masking/), [dynamic masking](https://postgresql-anonymizer.readthedocs.io/en/stable/dynamic_masking/), [anonymous dumps](https://postgresql-anonymizer.readthedocs.io/en/stable/anonymous_dumps/), [masking functions](https://postgresql-anonymizer.readthedocs.io/en/stable/masking_functions/)
+> Sources: [overview](https://postgresql-anonymizer.readthedocs.io/en/stable/), [static masking](https://postgresql-anonymizer.readthedocs.io/en/stable/static_masking/), [dynamic masking](https://postgresql-anonymizer.readthedocs.io/en/stable/dynamic_masking/), [anonymous dumps](https://postgresql-anonymizer.readthedocs.io/en/stable/anonymous_dumps/), [masking functions](https://postgresql-anonymizer.readthedocs.io/en/stable/masking_functions/), [release 3.0.13](https://gitlab.com/dalibo/postgresql_anonymizer/-/releases/3.0.13)
 
-`anon` applies declarative masking rules with `SECURITY LABEL FOR anon`. The official docs center on three user-facing flows: permanent masking, masked roles, and anonymized dumps.
+`anon` applies declarative masking rules with `SECURITY LABEL FOR anon`. The official docs describe six masking methods: anonymous dumps, static masking, dynamic masking, replica masking, masking views, and masking data wrappers.
 
 ### Initialize and Declare Rules
 
@@ -239,9 +244,10 @@ Static masking rewrites the stored data in place:
 ```sql
 SELECT anon.anonymize_database();
 -- See also: anon.anonymize_table(), anon.anonymize_column()
+-- For larger databases: anon.anonymize_database_parallel(worker_count)
 ```
 
-The static-masking docs also cover shuffling, noise injection, and parallel masking for larger datasets.
+The static-masking docs also cover shuffling, noise injection, and parallel masking for larger datasets. Parallel static masking is bounded by `anon.max_bg_workers` and the server's `max_worker_processes`.
 
 ### Dynamic Masking
 
@@ -264,6 +270,8 @@ When `skynet` queries the table, masked values are returned instead of the origi
 ### Anonymous Dumps and Pseudonymization
 
 The current docs recommend transparent anonymous dumps through a masked role and `pg_dump`. Older helpers `pg_dump_anon.sh` and `pg_dump_anon` are explicitly marked deprecated.
+
+For PostgreSQL 17 and later, the dump example uses `--exclude-extension="anon"` with `--no-security-labels`; older `pg_dump` versions need another extension-selection approach such as `--extension plpgsql`.
 
 For stable key remapping in dumps, the docs call out:
 

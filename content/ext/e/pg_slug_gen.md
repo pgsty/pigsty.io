@@ -6,10 +6,10 @@ weight: 4550
 ---
 
 <div class="ext-cards">
-  <a class="ext-card ext-card--repo" href="https://github.com/fernandoolle/pg_slug_gen">
+  <a class="ext-card ext-card--repo" href="https://github.com/nandoolle/pg_slug_gen">
     <div class="ext-card__kicker">Repository</div>
-    <div class="ext-card__title">fernandoolle/pg_slug_gen</div>
-    <div class="ext-card__desc">https://github.com/fernandoolle/pg_slug_gen</div>
+    <div class="ext-card__title">nandoolle/pg_slug_gen</div>
+    <div class="ext-card__desc">https://github.com/nandoolle/pg_slug_gen</div>
   </a>
   <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_slug_gen-1.0.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
@@ -192,7 +192,7 @@ CREATE EXTENSION pg_slug_gen;
 
 ## Usage
 
-Sources: [official PGXN release page](https://pgxn.org/dist/pg_slug_gen/), [official release README](https://api.pgxn.org/src/pg_slug_gen/pg_slug_gen-1.0.0/README.md), [official release SQL](https://api.pgxn.org/src/pg_slug_gen/pg_slug_gen-1.0.0/sql/pg_slug_gen--1.0.sql), [official release metadata](https://api.pgxn.org/src/pg_slug_gen/pg_slug_gen-1.0.0/META.json)
+Sources: [repo README](https://github.com/nandoolle/pg_slug_gen), [official PGXN release page](https://pgxn.org/dist/pg_slug_gen/), [official release README](https://api.pgxn.org/src/pg_slug_gen/pg_slug_gen-1.0.0/README.md), [official release SQL](https://api.pgxn.org/src/pg_slug_gen/pg_slug_gen-1.0.0/sql/pg_slug_gen--1.0.sql), [official release metadata](https://api.pgxn.org/src/pg_slug_gen/pg_slug_gen-1.0.0/META.json)
 
 `pg_slug_gen` generates timestamp-based slugs with cryptographic randomness. The official 1.0.0 release describes it as a secure, URL-friendly short ID generator where the requested length selects the timestamp precision.
 
@@ -252,4 +252,5 @@ The official README describes this algorithm:
 
 - This is a secure short-ID generator, not a text transliteration or title-to-URL slugifier.
 - Same-timestamp collisions are still possible; upstream only claims uniqueness when inserts do not exceed one per chosen time unit.
-- The official release metadata still points to `https://github.com/fernandoolle/pg_slug_gen`, but that repo URL currently returns 404.
+- The catalog URL is the current `https://github.com/nandoolle/pg_slug_gen` repository; the PGXN release metadata still points to the older `fernandoolle` GitHub URL.
+- The curated package matrix targets PostgreSQL 15 through 18, while PGXN metadata only declares a minimum PostgreSQL version. Use the catalog matrix for packaged availability.

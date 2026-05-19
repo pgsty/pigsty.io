@@ -25,7 +25,7 @@ weight: 9620
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pgmqtt`**](/ext/e/pgmqtt) | `0.1.0` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license elastic license 20" href="/ext/license#elasticlicense20">Elastic License 2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`pgmqtt`**](/ext/e/pgmqtt) | `0.1.0` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license elv2" href="/ext/license#elv2">ELv2</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -41,9 +41,9 @@ weight: 9620
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.1.0` | {{< pgvers "18,17,16,15,14,13" >}} | `pgmqtt` | - |
-| [**RPM**](/ext/rpm#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.1.0` | {{< pgvers "18,17,16,15,14,13" >}} | `pgmqtt_$v` | - |
-| [**DEB**](/ext/deb#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.1.0` | {{< pgvers "18,17,16,15,14,13" >}} | `postgresql-$v-pgmqtt` | - |
+| [**EXT**](/ext/list#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.1.0` | {{< pgvers "18,17,16,15,14" >}} | `pgmqtt` | - |
+| [**RPM**](/ext/rpm#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.1.0` | {{< pgvers "18,17,16,15,14" >}} | `pgmqtt_$v` | - |
+| [**DEB**](/ext/deb#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.1.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgmqtt` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -64,7 +64,7 @@ weight: 9620
 | u24.x86_64 | AVAIL PIGSTY 0.1.0 1 | AVAIL PIGSTY 0.1.0 1 | AVAIL PIGSTY 0.1.0 1 | AVAIL PIGSTY 0.1.0 1 | AVAIL PIGSTY 0.1.0 1 |
 | u24.aarch64 | AVAIL PIGSTY 0.1.0 1 | AVAIL PIGSTY 0.1.0 1 | AVAIL PIGSTY 0.1.0 1 | AVAIL PIGSTY 0.1.0 1 | AVAIL PIGSTY 0.1.0 1 |
 | u26.x86_64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u26.aarch64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 0.1.0 1 | AVAIL PIGSTY 0.1.0 1 | AVAIL PIGSTY 0.1.0 1 | AVAIL PIGSTY 0.1.0 1 | AVAIL PIGSTY 0.1.0 1 |
 @ el8.x86_64 18 pgmqtt_18 pgmqtt_18-0.1.0-1PIGSTY.el8.x86_64.rpm pigsty 0.1.0 1.7MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgmqtt_18-0.1.0-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 18 pgmqtt_18 pgmqtt_18-0.1.0-1PIGSTY.el8.aarch64.rpm pigsty 0.1.0 1.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgmqtt_18-0.1.0-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 18 pgmqtt_18 pgmqtt_18-0.1.0-1PIGSTY.el9.x86_64.rpm pigsty 0.1.0 1.7MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgmqtt_18-0.1.0-1PIGSTY.el9.x86_64.rpm
@@ -79,6 +79,7 @@ weight: 9620
 @ u22.aarch64 18 postgresql-18-pgmqtt postgresql-18-pgmqtt_0.1.0-1PIGSTY~jammy_arm64.deb pigsty 0.1.0 1.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgmqtt/postgresql-18-pgmqtt_0.1.0-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 18 postgresql-18-pgmqtt postgresql-18-pgmqtt_0.1.0-1PIGSTY~noble_amd64.deb pigsty 0.1.0 1.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgmqtt/postgresql-18-pgmqtt_0.1.0-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 18 postgresql-18-pgmqtt postgresql-18-pgmqtt_0.1.0-1PIGSTY~noble_arm64.deb pigsty 0.1.0 1.3MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgmqtt/postgresql-18-pgmqtt_0.1.0-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 18 postgresql-18-pgmqtt postgresql-18-pgmqtt_0.1.0-2PIGSTY~resolute_arm64.deb pigsty 0.1.0 1.4MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgmqtt/postgresql-18-pgmqtt_0.1.0-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 17 pgmqtt_17 pgmqtt_17-0.1.0-1PIGSTY.el8.x86_64.rpm pigsty 0.1.0 1.7MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgmqtt_17-0.1.0-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 17 pgmqtt_17 pgmqtt_17-0.1.0-1PIGSTY.el8.aarch64.rpm pigsty 0.1.0 1.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgmqtt_17-0.1.0-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 17 pgmqtt_17 pgmqtt_17-0.1.0-1PIGSTY.el9.x86_64.rpm pigsty 0.1.0 1.7MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgmqtt_17-0.1.0-1PIGSTY.el9.x86_64.rpm
@@ -93,6 +94,7 @@ weight: 9620
 @ u22.aarch64 17 postgresql-17-pgmqtt postgresql-17-pgmqtt_0.1.0-1PIGSTY~jammy_arm64.deb pigsty 0.1.0 1.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgmqtt/postgresql-17-pgmqtt_0.1.0-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 17 postgresql-17-pgmqtt postgresql-17-pgmqtt_0.1.0-1PIGSTY~noble_amd64.deb pigsty 0.1.0 1.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgmqtt/postgresql-17-pgmqtt_0.1.0-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 17 postgresql-17-pgmqtt postgresql-17-pgmqtt_0.1.0-1PIGSTY~noble_arm64.deb pigsty 0.1.0 1.3MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgmqtt/postgresql-17-pgmqtt_0.1.0-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 17 postgresql-17-pgmqtt postgresql-17-pgmqtt_0.1.0-2PIGSTY~resolute_arm64.deb pigsty 0.1.0 1.4MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgmqtt/postgresql-17-pgmqtt_0.1.0-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 16 pgmqtt_16 pgmqtt_16-0.1.0-1PIGSTY.el8.x86_64.rpm pigsty 0.1.0 1.7MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgmqtt_16-0.1.0-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 16 pgmqtt_16 pgmqtt_16-0.1.0-1PIGSTY.el8.aarch64.rpm pigsty 0.1.0 1.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgmqtt_16-0.1.0-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 16 pgmqtt_16 pgmqtt_16-0.1.0-1PIGSTY.el9.x86_64.rpm pigsty 0.1.0 1.7MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgmqtt_16-0.1.0-1PIGSTY.el9.x86_64.rpm
@@ -107,6 +109,7 @@ weight: 9620
 @ u22.aarch64 16 postgresql-16-pgmqtt postgresql-16-pgmqtt_0.1.0-1PIGSTY~jammy_arm64.deb pigsty 0.1.0 1.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgmqtt/postgresql-16-pgmqtt_0.1.0-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 16 postgresql-16-pgmqtt postgresql-16-pgmqtt_0.1.0-1PIGSTY~noble_amd64.deb pigsty 0.1.0 1.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgmqtt/postgresql-16-pgmqtt_0.1.0-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 16 postgresql-16-pgmqtt postgresql-16-pgmqtt_0.1.0-1PIGSTY~noble_arm64.deb pigsty 0.1.0 1.3MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgmqtt/postgresql-16-pgmqtt_0.1.0-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 16 postgresql-16-pgmqtt postgresql-16-pgmqtt_0.1.0-2PIGSTY~resolute_arm64.deb pigsty 0.1.0 1.4MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgmqtt/postgresql-16-pgmqtt_0.1.0-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 15 pgmqtt_15 pgmqtt_15-0.1.0-1PIGSTY.el8.x86_64.rpm pigsty 0.1.0 1.7MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgmqtt_15-0.1.0-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 15 pgmqtt_15 pgmqtt_15-0.1.0-1PIGSTY.el8.aarch64.rpm pigsty 0.1.0 1.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgmqtt_15-0.1.0-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 15 pgmqtt_15 pgmqtt_15-0.1.0-1PIGSTY.el9.x86_64.rpm pigsty 0.1.0 1.7MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgmqtt_15-0.1.0-1PIGSTY.el9.x86_64.rpm
@@ -121,6 +124,7 @@ weight: 9620
 @ u22.aarch64 15 postgresql-15-pgmqtt postgresql-15-pgmqtt_0.1.0-1PIGSTY~jammy_arm64.deb pigsty 0.1.0 1.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgmqtt/postgresql-15-pgmqtt_0.1.0-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 15 postgresql-15-pgmqtt postgresql-15-pgmqtt_0.1.0-1PIGSTY~noble_amd64.deb pigsty 0.1.0 1.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgmqtt/postgresql-15-pgmqtt_0.1.0-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 15 postgresql-15-pgmqtt postgresql-15-pgmqtt_0.1.0-1PIGSTY~noble_arm64.deb pigsty 0.1.0 1.3MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgmqtt/postgresql-15-pgmqtt_0.1.0-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 15 postgresql-15-pgmqtt postgresql-15-pgmqtt_0.1.0-2PIGSTY~resolute_arm64.deb pigsty 0.1.0 1.4MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgmqtt/postgresql-15-pgmqtt_0.1.0-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 14 pgmqtt_14 pgmqtt_14-0.1.0-1PIGSTY.el8.x86_64.rpm pigsty 0.1.0 1.7MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgmqtt_14-0.1.0-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 14 pgmqtt_14 pgmqtt_14-0.1.0-1PIGSTY.el8.aarch64.rpm pigsty 0.1.0 1.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgmqtt_14-0.1.0-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 14 pgmqtt_14 pgmqtt_14-0.1.0-1PIGSTY.el9.x86_64.rpm pigsty 0.1.0 1.7MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgmqtt_14-0.1.0-1PIGSTY.el9.x86_64.rpm
@@ -135,6 +139,7 @@ weight: 9620
 @ u22.aarch64 14 postgresql-14-pgmqtt postgresql-14-pgmqtt_0.1.0-1PIGSTY~jammy_arm64.deb pigsty 0.1.0 1.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgmqtt/postgresql-14-pgmqtt_0.1.0-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 14 postgresql-14-pgmqtt postgresql-14-pgmqtt_0.1.0-1PIGSTY~noble_amd64.deb pigsty 0.1.0 1.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgmqtt/postgresql-14-pgmqtt_0.1.0-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 14 postgresql-14-pgmqtt postgresql-14-pgmqtt_0.1.0-1PIGSTY~noble_arm64.deb pigsty 0.1.0 1.3MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgmqtt/postgresql-14-pgmqtt_0.1.0-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 14 postgresql-14-pgmqtt postgresql-14-pgmqtt_0.1.0-2PIGSTY~resolute_arm64.deb pigsty 0.1.0 1.4MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgmqtt/postgresql-14-pgmqtt_0.1.0-2PIGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -200,7 +205,7 @@ CREATE EXTENSION pgmqtt;
 
 ## Usage
 
-Sources: [official README](https://github.com/RayElg/pgmqtt/blob/main/README.md), [official repo](https://github.com/RayElg/pgmqtt)
+Sources: [README](https://github.com/RayElg/pgmqtt/blob/main/README.md), [interfaces](https://github.com/RayElg/pgmqtt/blob/main/docs/interfaces.md), [configuration](https://github.com/RayElg/pgmqtt/blob/main/docs/configuration.md), [limitations](https://github.com/RayElg/pgmqtt/blob/main/docs/limitations.md), [Cargo.toml](https://github.com/RayElg/pgmqtt/blob/main/extension/Cargo.toml)
 
 `pgmqtt` is a `pgrx` extension that embeds an MQTT broker into PostgreSQL and uses change data capture to turn table changes into MQTT messages. It also supports inbound topic mappings so MQTT publishes can insert rows into PostgreSQL tables.
 
@@ -217,11 +222,12 @@ SELECT pgmqtt_add_outbound_mapping(
   'public',
   'my_table',
   'topics/{{ op | lower }}',
-  '{{ columns | tojson }}'
+  '{{ columns | tojson }}',
+  1
 );
 ```
 
-With that mapping, `INSERT`, `UPDATE`, and `DELETE` publish JSON payloads to topics such as `topics/insert`.
+With that mapping, `INSERT`, `UPDATE`, and `DELETE` publish JSON payloads to topics such as `topics/insert`. The documented function signature also accepts optional `qos integer DEFAULT 0` and `template_type text DEFAULT 'jinja2'`.
 
 ### Inbound Mapping
 
@@ -237,6 +243,22 @@ SELECT pgmqtt_add_inbound_mapping(
 
 Publishing `{"temperature": 22.5}` to `sensor/site-1/temperature` inserts a row into `sensor_readings`.
 
+Inbound mappings can also perform `upsert` and `delete` operations by passing `op`, `conflict_columns`, `target_schema`, `mapping_name`, and `template_type`. Topic patterns use `{variable}` captures; JSON payload fields use expressions such as `$.temperature`, `$payload`, and `$topic`.
+
+### Inspect and Remove Mappings
+
+```sql
+SELECT * FROM pgmqtt_list_outbound_mappings();
+SELECT pgmqtt_remove_outbound_mapping('public', 'my_table');
+
+SELECT * FROM pgmqtt_list_inbound_mappings();
+SELECT pgmqtt_remove_inbound_mapping('temp_readings');
+
+SELECT * FROM pgmqtt_status();
+```
+
+`pgmqtt_status()` reports active connections, subscriptions, retained messages, pending session messages, CDC mappings, CDC slot state, inbound mappings, pending inbound writes, and dead letters.
+
 ### MQTT Client Examples
 
 ```bash
@@ -244,7 +266,22 @@ mosquitto_sub -h localhost -t 'topics/#'
 mosquitto_pub -h localhost -t 'sensor/site-1/temperature' -m '{"temperature": 22.5}'
 ```
 
+### Configuration
+
+The documented GUCs live under the `pgmqtt` namespace:
+
+```sql
+ALTER SYSTEM SET pgmqtt.cdc_every_n_ticks = 16;
+SELECT pg_reload_conf();
+```
+
+Listener GUCs include `pgmqtt.mqtt_enabled`, `pgmqtt.mqtt_port` (`1883`), `pgmqtt.ws_enabled`, `pgmqtt.ws_port` (`9001`), `pgmqtt.mqtts_enabled`, `pgmqtt.mqtts_port` (`8883`), `pgmqtt.wss_enabled`, and `pgmqtt.wss_port` (`9002`). TLS and authentication settings include `pgmqtt.tls_cert_file`, `pgmqtt.tls_key_file`, `pgmqtt.license_key`, `pgmqtt.jwt_public_key`, `pgmqtt.jwt_required`, and `pgmqtt.jwt_required_ws`.
+
+Performance and observability GUCs include `pgmqtt.tick_interval_ms`, `pgmqtt.max_client_buffer_bytes`, `pgmqtt.cdc_every_n_ticks`, `pgmqtt.debug_log`, `pgmqtt.metrics_snapshot_interval`, `pgmqtt.metrics_retention_days`, `pgmqtt.metrics_connections_cache_interval`, `pgmqtt.metrics_hook_function`, and `pgmqtt.metrics_notify_channel`. Listener and TLS settings are read when the MQTT background worker starts, so they require a worker restart rather than only `pg_reload_conf()`.
+
 ### Caveats
 
 - The README requires `wal_level = logical`; without logical decoding the CDC side will not work.
-- Upstream documentation is currently README-level only, so the documented SQL surface is limited to the inbound and outbound mapping workflow.
+- This project's CSV tracks version `0.1.0`, PostgreSQL versions 14-18, and a package-side `pgrx` `0.17.0` rebuild note. Upstream `Cargo.toml` still advertises older build defaults, so use the CSV as the package/platform authority here.
+- MQTT 5.0 and MQTT 3.1.1 clients are documented as supported. QoS 0 and QoS 1 are supported; QoS 2 is not implemented and subscriptions requesting QoS 2 are downgraded to QoS 1.
+- CDC captures `INSERT`, `UPDATE`, and `DELETE`; DDL changes and `TRUNCATE` are not captured. `DELETE` may require `REPLICA IDENTITY FULL`.

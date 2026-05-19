@@ -20,7 +20,7 @@ weight: 3050
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pldebugger`**](/ext/e/pldbgapi) | `1.9` | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | <a class="ext-badge ext-badge--license artistic" href="/ext/license#artistic">Artistic</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pldebugger`**](/ext/e/pldbgapi) | `1.10` | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | <a class="ext-badge ext-badge--license artistic" href="/ext/license#artistic">Artistic</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -37,9 +37,9 @@ weight: 3050
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#lang) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.9` | {{< pgvers "18,17,16,15,14" >}} | `pldebugger` | - |
+| [**EXT**](/ext/list#lang) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.10` | {{< pgvers "18,17,16,15,14" >}} | `pldebugger` | - |
 | [**RPM**](/ext/rpm#lang) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.9` | {{< pgvers "18,17,16,15,14" >}} | `pldebugger_$v` | - |
-| [**DEB**](/ext/deb#lang) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.9` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pldebugger` | - |
+| [**DEB**](/ext/deb#lang) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.10` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pldebugger` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -51,31 +51,41 @@ weight: 3050
 | el9.aarch64 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.8 1 | AVAIL PGDG 1.8 2 | AVAIL PGDG 1.8 2 | AVAIL PGDG 1.8 2 |
 | el10.x86_64 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.8 1 | AVAIL PGDG 1.8 1 | AVAIL PGDG 1.8 1 | AVAIL PGDG 1.8 1 |
 | el10.aarch64 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.8 1 | AVAIL PGDG 1.8 1 | AVAIL PGDG 1.8 1 | AVAIL PGDG 1.8 1 |
-| d12.x86_64 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 |
-| d12.aarch64 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 |
-| d13.x86_64 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 |
-| d13.aarch64 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 |
-| u22.x86_64 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 |
-| u22.aarch64 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 |
-| u24.x86_64 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 |
-| u24.aarch64 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 |
-| u26.x86_64 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 |
-| u26.aarch64 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 | AVAIL PGDG 1.9 1 |
+| d12.x86_64 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 |
+| d12.aarch64 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 |
+| d13.x86_64 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 |
+| d13.aarch64 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 |
+| u22.x86_64 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 |
+| u22.aarch64 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 |
+| u24.x86_64 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 |
+| u24.aarch64 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 |
+| u26.x86_64 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 |
+| u26.aarch64 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 | AVAIL PGDG 1.10 2 |
 @ el8.x86_64 18 pldebugger_18 pldebugger_18-1.9-1PGDG.rhel8.x86_64.rpm pgdg 1.9 38.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pldebugger_18-1.9-1PGDG.rhel8.x86_64.rpm
 @ el8.aarch64 18 pldebugger_18 pldebugger_18-1.9-1PGDG.rhel8.aarch64.rpm pgdg 1.9 37.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pldebugger_18-1.9-1PGDG.rhel8.aarch64.rpm
 @ el9.x86_64 18 pldebugger_18 pldebugger_18-1.9-1PGDG.rhel9.x86_64.rpm pgdg 1.9 36.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pldebugger_18-1.9-1PGDG.rhel9.x86_64.rpm
 @ el9.aarch64 18 pldebugger_18 pldebugger_18-1.9-1PGDG.rhel9.aarch64.rpm pgdg 1.9 36.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pldebugger_18-1.9-1PGDG.rhel9.aarch64.rpm
 @ el10.x86_64 18 pldebugger_18 pldebugger_18-1.9-1PGDG.rhel10.x86_64.rpm pgdg 1.9 37.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pldebugger_18-1.9-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 18 pldebugger_18 pldebugger_18-1.9-1PGDG.rhel10.aarch64.rpm pgdg 1.9 37.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pldebugger_18-1.9-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.10-1.pgdg12+1_amd64.deb pgdg 1.10 71.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.10-1.pgdg12+1_amd64.deb
 @ d12.x86_64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.9-1.pgdg12+1_amd64.deb pgdg 1.9 71.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.9-1.pgdg12+1_amd64.deb
+@ d12.aarch64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.10-1.pgdg12+1_arm64.deb pgdg 1.10 70.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.10-1.pgdg12+1_arm64.deb
 @ d12.aarch64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.9-1.pgdg12+1_arm64.deb pgdg 1.9 70.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.9-1.pgdg12+1_arm64.deb
+@ d13.x86_64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.10-1.pgdg13+1_amd64.deb pgdg 1.10 72.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.10-1.pgdg13+1_amd64.deb
 @ d13.x86_64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.9-1.pgdg13+1_amd64.deb pgdg 1.9 71.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.9-1.pgdg13+1_amd64.deb
+@ d13.aarch64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.10-1.pgdg13+1_arm64.deb pgdg 1.10 70.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.10-1.pgdg13+1_arm64.deb
 @ d13.aarch64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.9-1.pgdg13+1_arm64.deb pgdg 1.9 70.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.9-1.pgdg13+1_arm64.deb
+@ u22.x86_64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.10-1.pgdg22.04+1_amd64.deb pgdg 1.10 72.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.10-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.9-1.pgdg22.04+1_amd64.deb pgdg 1.9 72.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.9-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.10-1.pgdg22.04+1_arm64.deb pgdg 1.10 71.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.10-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.9-1.pgdg22.04+1_arm64.deb pgdg 1.9 71.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.9-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.10-1.pgdg24.04+1_amd64.deb pgdg 1.10 70.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.10-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.9-1.pgdg24.04+1_amd64.deb pgdg 1.9 70.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.9-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.10-1.pgdg24.04+1_arm64.deb pgdg 1.10 68.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.10-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.9-1.pgdg24.04+1_arm64.deb pgdg 1.9 68.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.9-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.10-1.pgdg26.04+1_amd64.deb pgdg 1.10 70.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.10-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.9-1.pgdg26.04+1_amd64.deb pgdg 1.9 70.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.9-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.10-1.pgdg26.04+1_arm64.deb pgdg 1.10 68.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.10-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 18 postgresql-18-pldebugger postgresql-18-pldebugger_1.9-1.pgdg26.04+1_arm64.deb pgdg 1.9 68.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-18-pldebugger_1.9-1.pgdg26.04+1_arm64.deb
 @ el8.x86_64 17 pldebugger_17 pldebugger_17-1.8-1PGDG.rhel8.x86_64.rpm pgdg 1.8 38.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pldebugger_17-1.8-1PGDG.rhel8.x86_64.rpm
 @ el8.aarch64 17 pldebugger_17 pldebugger_17-1.8-1PGDG.rhel8.aarch64.rpm pgdg 1.8 37.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/pldebugger_17-1.8-1PGDG.rhel8.aarch64.rpm
@@ -83,15 +93,25 @@ weight: 3050
 @ el9.aarch64 17 pldebugger_17 pldebugger_17-1.8-1PGDG.rhel9.aarch64.rpm pgdg 1.8 36.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pldebugger_17-1.8-1PGDG.rhel9.aarch64.rpm
 @ el10.x86_64 17 pldebugger_17 pldebugger_17-1.8-3PGDG.rhel10.x86_64.rpm pgdg 1.8 37.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pldebugger_17-1.8-3PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 17 pldebugger_17 pldebugger_17-1.8-3PGDG.rhel10.aarch64.rpm pgdg 1.8 36.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pldebugger_17-1.8-3PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.10-1.pgdg12+1_amd64.deb pgdg 1.10 71.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.10-1.pgdg12+1_amd64.deb
 @ d12.x86_64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.9-1.pgdg12+1_amd64.deb pgdg 1.9 71.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.9-1.pgdg12+1_amd64.deb
+@ d12.aarch64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.10-1.pgdg12+1_arm64.deb pgdg 1.10 70.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.10-1.pgdg12+1_arm64.deb
 @ d12.aarch64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.9-1.pgdg12+1_arm64.deb pgdg 1.9 70.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.9-1.pgdg12+1_arm64.deb
+@ d13.x86_64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.10-1.pgdg13+1_amd64.deb pgdg 1.10 71.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.10-1.pgdg13+1_amd64.deb
 @ d13.x86_64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.9-1.pgdg13+1_amd64.deb pgdg 1.9 71.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.9-1.pgdg13+1_amd64.deb
+@ d13.aarch64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.10-1.pgdg13+1_arm64.deb pgdg 1.10 70.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.10-1.pgdg13+1_arm64.deb
 @ d13.aarch64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.9-1.pgdg13+1_arm64.deb pgdg 1.9 70.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.9-1.pgdg13+1_arm64.deb
+@ u22.x86_64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.10-1.pgdg22.04+1_amd64.deb pgdg 1.10 83.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.10-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.9-1.pgdg22.04+1_amd64.deb pgdg 1.9 83.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.9-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.10-1.pgdg22.04+1_arm64.deb pgdg 1.10 81.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.10-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.9-1.pgdg22.04+1_arm64.deb pgdg 1.9 81.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.9-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.10-1.pgdg24.04+1_amd64.deb pgdg 1.10 70.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.10-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.9-1.pgdg24.04+1_amd64.deb pgdg 1.9 70.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.9-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.10-1.pgdg24.04+1_arm64.deb pgdg 1.10 68.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.10-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.9-1.pgdg24.04+1_arm64.deb pgdg 1.9 68.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.9-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.10-1.pgdg26.04+1_amd64.deb pgdg 1.10 70.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.10-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.9-1.pgdg26.04+1_amd64.deb pgdg 1.9 70.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.9-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.10-1.pgdg26.04+1_arm64.deb pgdg 1.10 68.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.10-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 17 postgresql-17-pldebugger postgresql-17-pldebugger_1.9-1.pgdg26.04+1_arm64.deb pgdg 1.9 68.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-17-pldebugger_1.9-1.pgdg26.04+1_arm64.deb
 @ el8.x86_64 16 pldebugger_16 pldebugger_16-1.8-1PGDG.rhel8.x86_64.rpm pgdg 1.8 38.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pldebugger_16-1.8-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 16 pldebugger_16 pldebugger_16-1.5-3PGDG.rhel8.x86_64.rpm pgdg 1.5 38.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pldebugger_16-1.5-3PGDG.rhel8.x86_64.rpm
@@ -103,15 +123,25 @@ weight: 3050
 @ el9.aarch64 16 pldebugger_16 pldebugger_16-1.5-3PGDG.rhel9.aarch64.rpm pgdg 1.5 35.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pldebugger_16-1.5-3PGDG.rhel9.aarch64.rpm
 @ el10.x86_64 16 pldebugger_16 pldebugger_16-1.8-3PGDG.rhel10.x86_64.rpm pgdg 1.8 37.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pldebugger_16-1.8-3PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 16 pldebugger_16 pldebugger_16-1.8-3PGDG.rhel10.aarch64.rpm pgdg 1.8 36.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pldebugger_16-1.8-3PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.10-1.pgdg12+1_amd64.deb pgdg 1.10 71.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.10-1.pgdg12+1_amd64.deb
 @ d12.x86_64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.9-1.pgdg12+1_amd64.deb pgdg 1.9 71.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.9-1.pgdg12+1_amd64.deb
+@ d12.aarch64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.10-1.pgdg12+1_arm64.deb pgdg 1.10 70.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.10-1.pgdg12+1_arm64.deb
 @ d12.aarch64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.9-1.pgdg12+1_arm64.deb pgdg 1.9 69.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.9-1.pgdg12+1_arm64.deb
+@ d13.x86_64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.10-1.pgdg13+1_amd64.deb pgdg 1.10 71.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.10-1.pgdg13+1_amd64.deb
 @ d13.x86_64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.9-1.pgdg13+1_amd64.deb pgdg 1.9 71.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.9-1.pgdg13+1_amd64.deb
+@ d13.aarch64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.10-1.pgdg13+1_arm64.deb pgdg 1.10 70.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.10-1.pgdg13+1_arm64.deb
 @ d13.aarch64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.9-1.pgdg13+1_arm64.deb pgdg 1.9 70.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.9-1.pgdg13+1_arm64.deb
+@ u22.x86_64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.10-1.pgdg22.04+1_amd64.deb pgdg 1.10 82.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.10-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.9-1.pgdg22.04+1_amd64.deb pgdg 1.9 82.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.9-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.10-1.pgdg22.04+1_arm64.deb pgdg 1.10 81.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.10-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.9-1.pgdg22.04+1_arm64.deb pgdg 1.9 81.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.9-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.10-1.pgdg24.04+1_amd64.deb pgdg 1.10 70.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.10-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.9-1.pgdg24.04+1_amd64.deb pgdg 1.9 70.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.9-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.10-1.pgdg24.04+1_arm64.deb pgdg 1.10 68.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.10-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.9-1.pgdg24.04+1_arm64.deb pgdg 1.9 68.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.9-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.10-1.pgdg26.04+1_amd64.deb pgdg 1.10 70.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.10-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.9-1.pgdg26.04+1_amd64.deb pgdg 1.9 70.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.9-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.10-1.pgdg26.04+1_arm64.deb pgdg 1.10 68.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.10-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 16 postgresql-16-pldebugger postgresql-16-pldebugger_1.9-1.pgdg26.04+1_arm64.deb pgdg 1.9 68.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-16-pldebugger_1.9-1.pgdg26.04+1_arm64.deb
 @ el8.x86_64 15 pldebugger_15 pldebugger_15-1.8-1PGDG.rhel8.x86_64.rpm pgdg 1.8 39.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pldebugger_15-1.8-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 15 pldebugger_15 pldebugger_15-1.5-1.rhel8.x86_64.rpm pgdg 1.5 96.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pldebugger_15-1.5-1.rhel8.x86_64.rpm
@@ -123,15 +153,25 @@ weight: 3050
 @ el9.aarch64 15 pldebugger_15 pldebugger_15-1.5-1.rhel9.aarch64.rpm pgdg 1.5 97.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pldebugger_15-1.5-1.rhel9.aarch64.rpm
 @ el10.x86_64 15 pldebugger_15 pldebugger_15-1.8-3PGDG.rhel10.x86_64.rpm pgdg 1.8 39.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pldebugger_15-1.8-3PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 15 pldebugger_15 pldebugger_15-1.8-3PGDG.rhel10.aarch64.rpm pgdg 1.8 39.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pldebugger_15-1.8-3PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.10-1.pgdg12+1_amd64.deb pgdg 1.10 71.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.10-1.pgdg12+1_amd64.deb
 @ d12.x86_64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.9-1.pgdg12+1_amd64.deb pgdg 1.9 71.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.9-1.pgdg12+1_amd64.deb
+@ d12.aarch64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.10-1.pgdg12+1_arm64.deb pgdg 1.10 70.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.10-1.pgdg12+1_arm64.deb
 @ d12.aarch64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.9-1.pgdg12+1_arm64.deb pgdg 1.9 70.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.9-1.pgdg12+1_arm64.deb
+@ d13.x86_64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.10-1.pgdg13+1_amd64.deb pgdg 1.10 72.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.10-1.pgdg13+1_amd64.deb
 @ d13.x86_64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.9-1.pgdg13+1_amd64.deb pgdg 1.9 72.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.9-1.pgdg13+1_amd64.deb
+@ d13.aarch64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.10-1.pgdg13+1_arm64.deb pgdg 1.10 71.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.10-1.pgdg13+1_arm64.deb
 @ d13.aarch64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.9-1.pgdg13+1_arm64.deb pgdg 1.9 71.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.9-1.pgdg13+1_arm64.deb
+@ u22.x86_64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.10-1.pgdg22.04+1_amd64.deb pgdg 1.10 84.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.10-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.9-1.pgdg22.04+1_amd64.deb pgdg 1.9 83.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.9-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.10-1.pgdg22.04+1_arm64.deb pgdg 1.10 82.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.10-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.9-1.pgdg22.04+1_arm64.deb pgdg 1.9 82.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.9-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.10-1.pgdg24.04+1_amd64.deb pgdg 1.10 72.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.10-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.9-1.pgdg24.04+1_amd64.deb pgdg 1.9 71.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.9-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.10-1.pgdg24.04+1_arm64.deb pgdg 1.10 70.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.10-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.9-1.pgdg24.04+1_arm64.deb pgdg 1.9 70.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.9-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.10-1.pgdg26.04+1_amd64.deb pgdg 1.10 71.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.10-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.9-1.pgdg26.04+1_amd64.deb pgdg 1.9 71.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.9-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.10-1.pgdg26.04+1_arm64.deb pgdg 1.10 70.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.10-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 15 postgresql-15-pldebugger postgresql-15-pldebugger_1.9-1.pgdg26.04+1_arm64.deb pgdg 1.9 70.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-15-pldebugger_1.9-1.pgdg26.04+1_arm64.deb
 @ el8.x86_64 14 pldebugger_14 pldebugger_14-1.8-1PGDG.rhel8.x86_64.rpm pgdg 1.8 39.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pldebugger_14-1.8-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 14 pldebugger_14 pldebugger_14-1.5-1.rhel8.x86_64.rpm pgdg 1.5 95.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pldebugger_14-1.5-1.rhel8.x86_64.rpm
@@ -144,15 +184,25 @@ weight: 3050
 @ el9.aarch64 14 pldebugger_14 pldebugger_14-1.5-1.rhel9.aarch64.rpm pgdg 1.5 95.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pldebugger_14-1.5-1.rhel9.aarch64.rpm
 @ el10.x86_64 14 pldebugger_14 pldebugger_14-1.8-3PGDG.rhel10.x86_64.rpm pgdg 1.8 39.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pldebugger_14-1.8-3PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 14 pldebugger_14 pldebugger_14-1.8-3PGDG.rhel10.aarch64.rpm pgdg 1.8 39.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pldebugger_14-1.8-3PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.10-1.pgdg12+1_amd64.deb pgdg 1.10 71.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.10-1.pgdg12+1_amd64.deb
 @ d12.x86_64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.9-1.pgdg12+1_amd64.deb pgdg 1.9 71.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.9-1.pgdg12+1_amd64.deb
+@ d12.aarch64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.10-1.pgdg12+1_arm64.deb pgdg 1.10 70.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.10-1.pgdg12+1_arm64.deb
 @ d12.aarch64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.9-1.pgdg12+1_arm64.deb pgdg 1.9 70.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.9-1.pgdg12+1_arm64.deb
+@ d13.x86_64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.10-1.pgdg13+1_amd64.deb pgdg 1.10 71.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.10-1.pgdg13+1_amd64.deb
 @ d13.x86_64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.9-1.pgdg13+1_amd64.deb pgdg 1.9 71.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.9-1.pgdg13+1_amd64.deb
+@ d13.aarch64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.10-1.pgdg13+1_arm64.deb pgdg 1.10 70.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.10-1.pgdg13+1_arm64.deb
 @ d13.aarch64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.9-1.pgdg13+1_arm64.deb pgdg 1.9 70.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.9-1.pgdg13+1_arm64.deb
+@ u22.x86_64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.10-1.pgdg22.04+1_amd64.deb pgdg 1.10 82.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.10-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.9-1.pgdg22.04+1_amd64.deb pgdg 1.9 82.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.9-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.10-1.pgdg22.04+1_arm64.deb pgdg 1.10 80.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.10-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.9-1.pgdg22.04+1_arm64.deb pgdg 1.9 81.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.9-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.10-1.pgdg24.04+1_amd64.deb pgdg 1.10 71.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.10-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.9-1.pgdg24.04+1_amd64.deb pgdg 1.9 71.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.9-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.10-1.pgdg24.04+1_arm64.deb pgdg 1.10 70.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.10-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.9-1.pgdg24.04+1_arm64.deb pgdg 1.9 70.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.9-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.10-1.pgdg26.04+1_amd64.deb pgdg 1.10 71.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.10-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.9-1.pgdg26.04+1_amd64.deb pgdg 1.9 71.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.9-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.10-1.pgdg26.04+1_arm64.deb pgdg 1.10 69.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.10-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 14 postgresql-14-pldebugger postgresql-14-pldebugger_1.9-1.pgdg26.04+1_arm64.deb pgdg 1.9 69.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pldebugger/postgresql-14-pldebugger_1.9-1.pgdg26.04+1_arm64.deb
 {{< /pgext_matrix >}}
 
@@ -217,11 +267,9 @@ CREATE EXTENSION pldbgapi;
 ```
 
 
-
-
 ## Usage
 
-> [pldbgapi: server-side support for debugging PL/pgSQL functions](https://github.com/EnterpriseDB/pldebugger)
+Sources: [repo README](https://github.com/EnterpriseDB/pldebugger), [v1.10 release](https://github.com/EnterpriseDB/pldebugger/releases/tag/v1.10), [extension control](https://github.com/EnterpriseDB/pldebugger/blob/master/pldbgapi.control)
 
 `pldbgapi` provides a server-side API for interactive debugging of PL/pgSQL functions. It is typically used through a GUI client such as **pgAdmin**.
 
@@ -257,3 +305,9 @@ The debugging system has three components:
 ### Supported Languages
 
 The debugger works with PL/pgSQL functions and procedures. It requires the `pldbgapi` extension to be created in each database where debugging is needed.
+
+### Caveats
+
+- The package name is `pldebugger`, while the extension created in SQL is `pldbgapi`; the catalog tracks package version `1.10` for PostgreSQL 14 through 18.
+- The v1.10 upstream release is a PostgreSQL compatibility update and does not document a new user-facing SQL API or debugging workflow.
+- Upstream troubleshooting says `shared_preload_libraries = '$libdir/plugin_debugger'` must be configured and PostgreSQL restarted. Missing or incorrect preload prevents global breakpoints and can also prevent `pldbgapi` SQL from loading on some platforms.

@@ -56,16 +56,16 @@ weight: 4240
 | el9.aarch64 | AVAIL PIGSTY 1.10.0 2 | AVAIL PIGSTY 1.10.0 2 | AVAIL PIGSTY 1.10.0 2 | AVAIL PIGSTY 1.10.0 2 | AVAIL PIGSTY 1.10.0 2 |
 | el10.x86_64 | AVAIL PIGSTY 1.10.0 2 | AVAIL PIGSTY 1.10.0 2 | AVAIL PIGSTY 1.10.0 2 | AVAIL PIGSTY 1.10.0 2 | AVAIL PIGSTY 1.10.0 2 |
 | el10.aarch64 | AVAIL PIGSTY 1.10.0 2 | AVAIL PIGSTY 1.10.0 2 | AVAIL PIGSTY 1.10.0 2 | AVAIL PIGSTY 1.10.0 2 | AVAIL PIGSTY 1.10.0 2 |
-| d12.x86_64 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 |
-| d12.aarch64 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 |
-| d13.x86_64 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 |
-| d13.aarch64 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 |
-| u22.x86_64 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 |
-| u22.aarch64 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 |
-| u24.x86_64 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 |
-| u24.aarch64 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 |
-| u26.x86_64 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 |
-| u26.aarch64 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 | AVAIL PGDG 1.10.0 1 |
+| d12.x86_64 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 |
+| d12.aarch64 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 |
+| d13.x86_64 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 |
+| d13.aarch64 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 |
+| u22.x86_64 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 |
+| u22.aarch64 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 |
+| u24.x86_64 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 |
+| u24.aarch64 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 |
+| u26.x86_64 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 |
+| u26.aarch64 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 | AVAIL PGDG 1.10.0 2 |
 @ el8.x86_64 18 icu_ext_18 icu_ext_18-1.10.0-1PIGSTY.el8.x86_64.rpm pigsty 1.10.0 51.0KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/icu_ext_18-1.10.0-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 18 icu_ext_18 icu_ext_18-1.10.0-1PGDG.rhel8.x86_64.rpm pgdg 1.10.0 47.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/icu_ext_18-1.10.0-1PGDG.rhel8.x86_64.rpm
 @ el8.aarch64 18 icu_ext_18 icu_ext_18-1.10.0-1PIGSTY.el8.aarch64.rpm pigsty 1.10.0 49.8KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/icu_ext_18-1.10.0-1PIGSTY.el8.aarch64.rpm
@@ -78,15 +78,25 @@ weight: 4240
 @ el10.x86_64 18 icu_ext_18 icu_ext_18-1.10.0-1PGDG.rhel10.x86_64.rpm pgdg 1.10.0 49.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/icu_ext_18-1.10.0-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 18 icu_ext_18 icu_ext_18-1.10.0-1PIGSTY.el10.aarch64.rpm pigsty 1.10.0 48.2KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/icu_ext_18-1.10.0-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 18 icu_ext_18 icu_ext_18-1.10.0-1PGDG.rhel10.aarch64.rpm pgdg 1.10.0 47.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/icu_ext_18-1.10.0-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-4.pgdg12+1_amd64.deb pgdg 1.10.0 94.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-4.pgdg12+1_amd64.deb
 @ d12.x86_64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-3.pgdg12+1_amd64.deb pgdg 1.10.0 94.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-3.pgdg12+1_amd64.deb
+@ d12.aarch64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-4.pgdg12+1_arm64.deb pgdg 1.10.0 92.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-4.pgdg12+1_arm64.deb
 @ d12.aarch64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-3.pgdg12+1_arm64.deb pgdg 1.10.0 92.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-3.pgdg12+1_arm64.deb
+@ d13.x86_64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-4.pgdg13+1_amd64.deb pgdg 1.10.0 94.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-4.pgdg13+1_amd64.deb
 @ d13.x86_64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-3.pgdg13+1_amd64.deb pgdg 1.10.0 94.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-3.pgdg13+1_amd64.deb
+@ d13.aarch64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-4.pgdg13+1_arm64.deb pgdg 1.10.0 92.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-4.pgdg13+1_arm64.deb
 @ d13.aarch64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-3.pgdg13+1_arm64.deb pgdg 1.10.0 92.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-3.pgdg13+1_arm64.deb
+@ u22.x86_64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-4.pgdg22.04+1_amd64.deb pgdg 1.10.0 95.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-4.pgdg22.04+1_amd64.deb
 @ u22.x86_64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-3.pgdg22.04+1_amd64.deb pgdg 1.10.0 95.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-3.pgdg22.04+1_amd64.deb
+@ u22.aarch64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-4.pgdg22.04+1_arm64.deb pgdg 1.10.0 92.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-4.pgdg22.04+1_arm64.deb
 @ u22.aarch64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-3.pgdg22.04+1_arm64.deb pgdg 1.10.0 92.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-3.pgdg22.04+1_arm64.deb
+@ u24.x86_64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-4.pgdg24.04+1_amd64.deb pgdg 1.10.0 94.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-4.pgdg24.04+1_amd64.deb
 @ u24.x86_64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-3.pgdg24.04+1_amd64.deb pgdg 1.10.0 94.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-3.pgdg24.04+1_amd64.deb
+@ u24.aarch64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-4.pgdg24.04+1_arm64.deb pgdg 1.10.0 92.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-4.pgdg24.04+1_arm64.deb
 @ u24.aarch64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-3.pgdg24.04+1_arm64.deb pgdg 1.10.0 92.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-3.pgdg24.04+1_arm64.deb
+@ u26.x86_64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-4.pgdg26.04+1_amd64.deb pgdg 1.10.0 93.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-4.pgdg26.04+1_amd64.deb
 @ u26.x86_64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-3.pgdg26.04+1_amd64.deb pgdg 1.10.0 94.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-3.pgdg26.04+1_amd64.deb
+@ u26.aarch64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-4.pgdg26.04+1_arm64.deb pgdg 1.10.0 91.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-4.pgdg26.04+1_arm64.deb
 @ u26.aarch64 18 postgresql-18-icu-ext postgresql-18-icu-ext_1.10.0-3.pgdg26.04+1_arm64.deb pgdg 1.10.0 91.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-18-icu-ext_1.10.0-3.pgdg26.04+1_arm64.deb
 @ el8.x86_64 17 icu_ext_17 icu_ext_17-1.10.0-1PIGSTY.el8.x86_64.rpm pigsty 1.10.0 51.0KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/icu_ext_17-1.10.0-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 17 icu_ext_17 icu_ext_17-1.9.0-1PGDG.rhel8.x86_64.rpm pgdg 1.9.0 46.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/icu_ext_17-1.9.0-1PGDG.rhel8.x86_64.rpm
@@ -100,15 +110,25 @@ weight: 4240
 @ el10.x86_64 17 icu_ext_17 icu_ext_17-1.9.0-1PGDG.rhel10.x86_64.rpm pgdg 1.9.0 48.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/icu_ext_17-1.9.0-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 17 icu_ext_17 icu_ext_17-1.10.0-1PIGSTY.el10.aarch64.rpm pigsty 1.10.0 48.2KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/icu_ext_17-1.10.0-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 17 icu_ext_17 icu_ext_17-1.9.0-1PGDG.rhel10.aarch64.rpm pgdg 1.9.0 46.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/icu_ext_17-1.9.0-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-4.pgdg12+1_amd64.deb pgdg 1.10.0 94.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-4.pgdg12+1_amd64.deb
 @ d12.x86_64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-3.pgdg12+1_amd64.deb pgdg 1.10.0 94.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-3.pgdg12+1_amd64.deb
+@ d12.aarch64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-4.pgdg12+1_arm64.deb pgdg 1.10.0 92.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-4.pgdg12+1_arm64.deb
 @ d12.aarch64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-3.pgdg12+1_arm64.deb pgdg 1.10.0 92.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-3.pgdg12+1_arm64.deb
+@ d13.x86_64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-4.pgdg13+1_amd64.deb pgdg 1.10.0 94.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-4.pgdg13+1_amd64.deb
 @ d13.x86_64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-3.pgdg13+1_amd64.deb pgdg 1.10.0 94.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-3.pgdg13+1_amd64.deb
+@ d13.aarch64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-4.pgdg13+1_arm64.deb pgdg 1.10.0 92.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-4.pgdg13+1_arm64.deb
 @ d13.aarch64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-3.pgdg13+1_arm64.deb pgdg 1.10.0 92.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-3.pgdg13+1_arm64.deb
+@ u22.x86_64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-4.pgdg22.04+1_amd64.deb pgdg 1.10.0 106.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-4.pgdg22.04+1_amd64.deb
 @ u22.x86_64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-3.pgdg22.04+1_amd64.deb pgdg 1.10.0 106.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-3.pgdg22.04+1_amd64.deb
+@ u22.aarch64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-4.pgdg22.04+1_arm64.deb pgdg 1.10.0 103.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-4.pgdg22.04+1_arm64.deb
 @ u22.aarch64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-3.pgdg22.04+1_arm64.deb pgdg 1.10.0 103.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-3.pgdg22.04+1_arm64.deb
+@ u24.x86_64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-4.pgdg24.04+1_amd64.deb pgdg 1.10.0 94.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-4.pgdg24.04+1_amd64.deb
 @ u24.x86_64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-3.pgdg24.04+1_amd64.deb pgdg 1.10.0 94.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-3.pgdg24.04+1_amd64.deb
+@ u24.aarch64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-4.pgdg24.04+1_arm64.deb pgdg 1.10.0 92.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-4.pgdg24.04+1_arm64.deb
 @ u24.aarch64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-3.pgdg24.04+1_arm64.deb pgdg 1.10.0 92.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-3.pgdg24.04+1_arm64.deb
+@ u26.x86_64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-4.pgdg26.04+1_amd64.deb pgdg 1.10.0 93.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-4.pgdg26.04+1_amd64.deb
 @ u26.x86_64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-3.pgdg26.04+1_amd64.deb pgdg 1.10.0 94.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-3.pgdg26.04+1_amd64.deb
+@ u26.aarch64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-4.pgdg26.04+1_arm64.deb pgdg 1.10.0 91.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-4.pgdg26.04+1_arm64.deb
 @ u26.aarch64 17 postgresql-17-icu-ext postgresql-17-icu-ext_1.10.0-3.pgdg26.04+1_arm64.deb pgdg 1.10.0 91.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-17-icu-ext_1.10.0-3.pgdg26.04+1_arm64.deb
 @ el8.x86_64 16 icu_ext_16 icu_ext_16-1.10.0-1PIGSTY.el8.x86_64.rpm pigsty 1.10.0 50.9KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/icu_ext_16-1.10.0-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 16 icu_ext_16 icu_ext_16-1.9.0-1PGDG.rhel8.x86_64.rpm pgdg 1.9.0 46.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/icu_ext_16-1.9.0-1PGDG.rhel8.x86_64.rpm
@@ -122,15 +142,25 @@ weight: 4240
 @ el10.x86_64 16 icu_ext_16 icu_ext_16-1.9.0-1PGDG.rhel10.x86_64.rpm pgdg 1.9.0 48.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/icu_ext_16-1.9.0-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 16 icu_ext_16 icu_ext_16-1.10.0-1PIGSTY.el10.aarch64.rpm pigsty 1.10.0 48.3KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/icu_ext_16-1.10.0-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 16 icu_ext_16 icu_ext_16-1.9.0-1PGDG.rhel10.aarch64.rpm pgdg 1.9.0 46.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/icu_ext_16-1.9.0-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-4.pgdg12+1_amd64.deb pgdg 1.10.0 94.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-4.pgdg12+1_amd64.deb
 @ d12.x86_64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-3.pgdg12+1_amd64.deb pgdg 1.10.0 94.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-3.pgdg12+1_amd64.deb
+@ d12.aarch64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-4.pgdg12+1_arm64.deb pgdg 1.10.0 92.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-4.pgdg12+1_arm64.deb
 @ d12.aarch64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-3.pgdg12+1_arm64.deb pgdg 1.10.0 92.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-3.pgdg12+1_arm64.deb
+@ d13.x86_64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-4.pgdg13+1_amd64.deb pgdg 1.10.0 94.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-4.pgdg13+1_amd64.deb
 @ d13.x86_64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-3.pgdg13+1_amd64.deb pgdg 1.10.0 94.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-3.pgdg13+1_amd64.deb
+@ d13.aarch64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-4.pgdg13+1_arm64.deb pgdg 1.10.0 92.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-4.pgdg13+1_arm64.deb
 @ d13.aarch64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-3.pgdg13+1_arm64.deb pgdg 1.10.0 92.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-3.pgdg13+1_arm64.deb
+@ u22.x86_64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-4.pgdg22.04+1_amd64.deb pgdg 1.10.0 106.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-4.pgdg22.04+1_amd64.deb
 @ u22.x86_64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-3.pgdg22.04+1_amd64.deb pgdg 1.10.0 106.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-3.pgdg22.04+1_amd64.deb
+@ u22.aarch64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-4.pgdg22.04+1_arm64.deb pgdg 1.10.0 103.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-4.pgdg22.04+1_arm64.deb
 @ u22.aarch64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-3.pgdg22.04+1_arm64.deb pgdg 1.10.0 103.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-3.pgdg22.04+1_arm64.deb
+@ u24.x86_64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-4.pgdg24.04+1_amd64.deb pgdg 1.10.0 94.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-4.pgdg24.04+1_amd64.deb
 @ u24.x86_64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-3.pgdg24.04+1_amd64.deb pgdg 1.10.0 94.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-3.pgdg24.04+1_amd64.deb
+@ u24.aarch64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-4.pgdg24.04+1_arm64.deb pgdg 1.10.0 92.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-4.pgdg24.04+1_arm64.deb
 @ u24.aarch64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-3.pgdg24.04+1_arm64.deb pgdg 1.10.0 92.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-3.pgdg24.04+1_arm64.deb
+@ u26.x86_64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-4.pgdg26.04+1_amd64.deb pgdg 1.10.0 93.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-4.pgdg26.04+1_amd64.deb
 @ u26.x86_64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-3.pgdg26.04+1_amd64.deb pgdg 1.10.0 94.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-3.pgdg26.04+1_amd64.deb
+@ u26.aarch64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-4.pgdg26.04+1_arm64.deb pgdg 1.10.0 91.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-4.pgdg26.04+1_arm64.deb
 @ u26.aarch64 16 postgresql-16-icu-ext postgresql-16-icu-ext_1.10.0-3.pgdg26.04+1_arm64.deb pgdg 1.10.0 91.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-16-icu-ext_1.10.0-3.pgdg26.04+1_arm64.deb
 @ el8.x86_64 15 icu_ext_15 icu_ext_15-1.10.0-1PIGSTY.el8.x86_64.rpm pigsty 1.10.0 51.0KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/icu_ext_15-1.10.0-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 15 icu_ext_15 icu_ext_15-1.9.0-1PGDG.rhel8.x86_64.rpm pgdg 1.9.0 46.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/icu_ext_15-1.9.0-1PGDG.rhel8.x86_64.rpm
@@ -144,15 +174,25 @@ weight: 4240
 @ el10.x86_64 15 icu_ext_15 icu_ext_15-1.9.0-1PGDG.rhel10.x86_64.rpm pgdg 1.9.0 48.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/icu_ext_15-1.9.0-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 15 icu_ext_15 icu_ext_15-1.10.0-1PIGSTY.el10.aarch64.rpm pigsty 1.10.0 48.3KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/icu_ext_15-1.10.0-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 15 icu_ext_15 icu_ext_15-1.9.0-1PGDG.rhel10.aarch64.rpm pgdg 1.9.0 46.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/icu_ext_15-1.9.0-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-4.pgdg12+1_amd64.deb pgdg 1.10.0 94.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-4.pgdg12+1_amd64.deb
 @ d12.x86_64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-3.pgdg12+1_amd64.deb pgdg 1.10.0 94.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-3.pgdg12+1_amd64.deb
+@ d12.aarch64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-4.pgdg12+1_arm64.deb pgdg 1.10.0 92.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-4.pgdg12+1_arm64.deb
 @ d12.aarch64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-3.pgdg12+1_arm64.deb pgdg 1.10.0 92.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-3.pgdg12+1_arm64.deb
+@ d13.x86_64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-4.pgdg13+1_amd64.deb pgdg 1.10.0 94.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-4.pgdg13+1_amd64.deb
 @ d13.x86_64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-3.pgdg13+1_amd64.deb pgdg 1.10.0 94.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-3.pgdg13+1_amd64.deb
+@ d13.aarch64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-4.pgdg13+1_arm64.deb pgdg 1.10.0 92.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-4.pgdg13+1_arm64.deb
 @ d13.aarch64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-3.pgdg13+1_arm64.deb pgdg 1.10.0 92.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-3.pgdg13+1_arm64.deb
+@ u22.x86_64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-4.pgdg22.04+1_amd64.deb pgdg 1.10.0 106.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-4.pgdg22.04+1_amd64.deb
 @ u22.x86_64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-3.pgdg22.04+1_amd64.deb pgdg 1.10.0 106.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-3.pgdg22.04+1_amd64.deb
+@ u22.aarch64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-4.pgdg22.04+1_arm64.deb pgdg 1.10.0 103.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-4.pgdg22.04+1_arm64.deb
 @ u22.aarch64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-3.pgdg22.04+1_arm64.deb pgdg 1.10.0 103.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-3.pgdg22.04+1_arm64.deb
+@ u24.x86_64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-4.pgdg24.04+1_amd64.deb pgdg 1.10.0 94.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-4.pgdg24.04+1_amd64.deb
 @ u24.x86_64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-3.pgdg24.04+1_amd64.deb pgdg 1.10.0 94.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-3.pgdg24.04+1_amd64.deb
+@ u24.aarch64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-4.pgdg24.04+1_arm64.deb pgdg 1.10.0 92.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-4.pgdg24.04+1_arm64.deb
 @ u24.aarch64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-3.pgdg24.04+1_arm64.deb pgdg 1.10.0 92.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-3.pgdg24.04+1_arm64.deb
+@ u26.x86_64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-4.pgdg26.04+1_amd64.deb pgdg 1.10.0 93.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-4.pgdg26.04+1_amd64.deb
 @ u26.x86_64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-3.pgdg26.04+1_amd64.deb pgdg 1.10.0 94.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-3.pgdg26.04+1_amd64.deb
+@ u26.aarch64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-4.pgdg26.04+1_arm64.deb pgdg 1.10.0 91.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-4.pgdg26.04+1_arm64.deb
 @ u26.aarch64 15 postgresql-15-icu-ext postgresql-15-icu-ext_1.10.0-3.pgdg26.04+1_arm64.deb pgdg 1.10.0 91.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-15-icu-ext_1.10.0-3.pgdg26.04+1_arm64.deb
 @ el8.x86_64 14 icu_ext_14 icu_ext_14-1.10.0-1PIGSTY.el8.x86_64.rpm pigsty 1.10.0 51.2KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/icu_ext_14-1.10.0-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 14 icu_ext_14 icu_ext_14-1.9.0-1PGDG.rhel8.x86_64.rpm pgdg 1.9.0 46.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/icu_ext_14-1.9.0-1PGDG.rhel8.x86_64.rpm
@@ -166,15 +206,25 @@ weight: 4240
 @ el10.x86_64 14 icu_ext_14 icu_ext_14-1.9.0-1PGDG.rhel10.x86_64.rpm pgdg 1.9.0 48.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/icu_ext_14-1.9.0-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 14 icu_ext_14 icu_ext_14-1.10.0-1PIGSTY.el10.aarch64.rpm pigsty 1.10.0 48.4KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/icu_ext_14-1.10.0-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 14 icu_ext_14 icu_ext_14-1.9.0-1PGDG.rhel10.aarch64.rpm pgdg 1.9.0 46.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/icu_ext_14-1.9.0-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-4.pgdg12+1_amd64.deb pgdg 1.10.0 95.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-4.pgdg12+1_amd64.deb
 @ d12.x86_64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-3.pgdg12+1_amd64.deb pgdg 1.10.0 94.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-3.pgdg12+1_amd64.deb
+@ d12.aarch64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-4.pgdg12+1_arm64.deb pgdg 1.10.0 92.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-4.pgdg12+1_arm64.deb
 @ d12.aarch64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-3.pgdg12+1_arm64.deb pgdg 1.10.0 92.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-3.pgdg12+1_arm64.deb
+@ d13.x86_64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-4.pgdg13+1_amd64.deb pgdg 1.10.0 94.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-4.pgdg13+1_amd64.deb
 @ d13.x86_64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-3.pgdg13+1_amd64.deb pgdg 1.10.0 94.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-3.pgdg13+1_amd64.deb
+@ d13.aarch64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-4.pgdg13+1_arm64.deb pgdg 1.10.0 92.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-4.pgdg13+1_arm64.deb
 @ d13.aarch64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-3.pgdg13+1_arm64.deb pgdg 1.10.0 92.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-3.pgdg13+1_arm64.deb
+@ u22.x86_64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-4.pgdg22.04+1_amd64.deb pgdg 1.10.0 107.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-4.pgdg22.04+1_amd64.deb
 @ u22.x86_64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-3.pgdg22.04+1_amd64.deb pgdg 1.10.0 107.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-3.pgdg22.04+1_amd64.deb
+@ u22.aarch64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-4.pgdg22.04+1_arm64.deb pgdg 1.10.0 104.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-4.pgdg22.04+1_arm64.deb
 @ u22.aarch64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-3.pgdg22.04+1_arm64.deb pgdg 1.10.0 104.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-3.pgdg22.04+1_arm64.deb
+@ u24.x86_64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-4.pgdg24.04+1_amd64.deb pgdg 1.10.0 95.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-4.pgdg24.04+1_amd64.deb
 @ u24.x86_64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-3.pgdg24.04+1_amd64.deb pgdg 1.10.0 95.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-3.pgdg24.04+1_amd64.deb
+@ u24.aarch64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-4.pgdg24.04+1_arm64.deb pgdg 1.10.0 92.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-4.pgdg24.04+1_arm64.deb
 @ u24.aarch64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-3.pgdg24.04+1_arm64.deb pgdg 1.10.0 92.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-3.pgdg24.04+1_arm64.deb
+@ u26.x86_64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-4.pgdg26.04+1_amd64.deb pgdg 1.10.0 94.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-4.pgdg26.04+1_amd64.deb
 @ u26.x86_64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-3.pgdg26.04+1_amd64.deb pgdg 1.10.0 94.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-3.pgdg26.04+1_amd64.deb
+@ u26.aarch64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-4.pgdg26.04+1_arm64.deb pgdg 1.10.0 91.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-4.pgdg26.04+1_arm64.deb
 @ u26.aarch64 14 postgresql-14-icu-ext postgresql-14-icu-ext_1.10.0-3.pgdg26.04+1_arm64.deb pgdg 1.10.0 92.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/i/icu-ext/postgresql-14-icu-ext_1.10.0-3.pgdg26.04+1_arm64.deb
 {{< /pgext_matrix >}}
 
@@ -240,13 +290,17 @@ CREATE EXTENSION icu_ext;
 ```
 
 
-
-
 ## Usage
 
-> [icu_ext: ICU extension functions for PostgreSQL](https://github.com/dverite/icu_ext)
+> Sources: [README](https://github.com/dverite/icu_ext/blob/master/README.md), [datetime docs](https://github.com/dverite/icu_ext/blob/master/README-datetime.md), [v1.10.0 release](https://github.com/dverite/icu_ext/releases/tag/v1.10.0)
 
-Exposes [ICU](https://icu.unicode.org/) functionality to PostgreSQL. Requires PostgreSQL 11+ configured with ICU (`--with-icu`).
+`icu_ext` exposes [ICU](https://icu.unicode.org/) functionality to PostgreSQL. Upstream requires PostgreSQL 11+ configured with ICU (`--with-icu`); the pgext catalog tracks version `1.10.0` for PostgreSQL 14-18, with the v1.10.0 release noting PostgreSQL 18 compatibility.
+
+### Enable the Extension
+
+```sql
+CREATE EXTENSION icu_ext;
+```
 
 ### Version Info
 
@@ -277,10 +331,13 @@ SELECT icu_compare('abce', 'abce', 'en-u-ks-level1-kc-true');  -- 0
 SELECT icu_compare('Abce', 'abce', 'en-u-ks-level1-kc-true');  -- 1
 ```
 
-### Sort Keys (for unique indexes)
+### Sort Keys and Linguistic Search
 
 ```sql
 CREATE UNIQUE INDEX idx ON my_table((icu_sort_key(name, 'fr-u-ks-level1')));
+
+SELECT icu_strpos('Jean-Rene Dupont', 'jeanrene', 'fr-u-ks-level1-ka-shifted');
+SELECT icu_replace('Jean-Rene Dupont', 'jeanrene', '{firstname}', 'fr-u-ks-level1-ka-shifted');
 ```
 
 ### Text Boundary Analysis
@@ -301,6 +358,18 @@ SELECT icu_transform('Hello', 'Latin-Cyrillic');
 SELECT * FROM icu_transforms_list();
 ```
 
+### Date and Time Localization
+
+```sql
+SET icu_ext.locale TO '@calendar=buddhist';
+
+SELECT icu_format_date('2020-12-31'::date, '{medium}', 'en@calendar=ethiopic');
+SELECT icu_parse_date('25/09/2566', 'dd/MM/yyyy');
+SELECT icu_format_datetime(now(), 'GGGG dd/MMMM/yyyy HH:mm:ss.SSS z', 'fr@calendar=buddhist');
+```
+
+The datetime docs also define `icu_date`, `icu_timestamptz`, and `icu_interval`, plus the `icu_ext.locale`, `icu_ext.date_format`, and `icu_ext.timestamptz_format` settings used for localized input/output and calendar-aware arithmetic.
+
 ### Number Spellout
 
 ```sql
@@ -313,6 +382,7 @@ SELECT icu_number_spellout(42, 'fr');   -- 'quarante-deux'
 ```sql
 SELECT icu_spoof_check('paypal');
 SELECT icu_confusable_strings_check('google', 'gооgle');
+SELECT icu_confusable_string_skeleton('phi1');
 ```
 
 ### Character Info
@@ -320,4 +390,11 @@ SELECT icu_confusable_strings_check('google', 'gооgle');
 ```sql
 SELECT icu_char_name('A');
 SELECT icu_char_type('A');
+SELECT icu_char_ublock_id('A');
+SELECT * FROM icu_unicode_blocks() WHERE block_name = 'Basic_Latin';
 ```
+
+### Caveats
+
+- Functions that depend on ICU collation or Unicode data can change behavior when the linked ICU library changes.
+- `icu_sort_key()` is index-friendly, but indexes built on sort keys should be reviewed after ICU upgrades.

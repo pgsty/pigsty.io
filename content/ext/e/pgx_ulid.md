@@ -68,7 +68,7 @@ weight: 4510
 | u24.x86_64 | AVAIL PIGSTY 0.2.3 1 | AVAIL PIGSTY 0.2.3 1 | AVAIL PIGSTY 0.2.3 1 | AVAIL PIGSTY 0.2.3 1 | AVAIL PIGSTY 0.2.3 1 |
 | u24.aarch64 | AVAIL PIGSTY 0.2.3 1 | AVAIL PIGSTY 0.2.3 1 | AVAIL PIGSTY 0.2.3 1 | AVAIL PIGSTY 0.2.3 1 | AVAIL PIGSTY 0.2.3 1 |
 | u26.x86_64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u26.aarch64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 0.2.3 1 | AVAIL PIGSTY 0.2.3 1 | AVAIL PIGSTY 0.2.3 1 | AVAIL PIGSTY 0.2.3 1 | AVAIL PIGSTY 0.2.3 1 |
 @ el8.x86_64 18 pgx_ulid_18 pgx_ulid_18-0.2.3-1PIGSTY.el8.x86_64.rpm pigsty 0.2.3 389.2KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgx_ulid_18-0.2.3-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 18 pgx_ulid_18 pgx_ulid_18-0.2.3-1PIGSTY.el8.aarch64.rpm pigsty 0.2.3 273.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgx_ulid_18-0.2.3-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 18 pgx_ulid_18 pgx_ulid_18-0.2.3-1PIGSTY.el9.x86_64.rpm pigsty 0.2.3 406.5KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgx_ulid_18-0.2.3-1PIGSTY.el9.x86_64.rpm
@@ -83,6 +83,7 @@ weight: 4510
 @ u22.aarch64 18 postgresql-18-pgx-ulid postgresql-18-pgx-ulid_0.2.3-1PIGSTY~jammy_arm64.deb pigsty 0.2.3 247.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgx-ulid/postgresql-18-pgx-ulid_0.2.3-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 18 postgresql-18-pgx-ulid postgresql-18-pgx-ulid_0.2.3-1PIGSTY~noble_amd64.deb pigsty 0.2.3 360.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgx-ulid/postgresql-18-pgx-ulid_0.2.3-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 18 postgresql-18-pgx-ulid postgresql-18-pgx-ulid_0.2.3-1PIGSTY~noble_arm64.deb pigsty 0.2.3 246.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgx-ulid/postgresql-18-pgx-ulid_0.2.3-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 18 postgresql-18-pgx-ulid postgresql-18-pgx-ulid_0.2.3-2PIGSTY~resolute_arm64.deb pigsty 0.2.3 222.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgx-ulid/postgresql-18-pgx-ulid_0.2.3-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 17 pgx_ulid_17 pgx_ulid_17-0.2.3-1PIGSTY.el8.x86_64.rpm pigsty 0.2.3 389.2KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgx_ulid_17-0.2.3-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 17 pgx_ulid_17 pgx_ulid_17-0.2.3-1PIGSTY.el8.aarch64.rpm pigsty 0.2.3 273.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgx_ulid_17-0.2.3-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 17 pgx_ulid_17 pgx_ulid_17-0.2.3-1PIGSTY.el9.x86_64.rpm pigsty 0.2.3 406.5KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgx_ulid_17-0.2.3-1PIGSTY.el9.x86_64.rpm
@@ -97,6 +98,7 @@ weight: 4510
 @ u22.aarch64 17 postgresql-17-pgx-ulid postgresql-17-pgx-ulid_0.2.3-1PIGSTY~jammy_arm64.deb pigsty 0.2.3 247.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgx-ulid/postgresql-17-pgx-ulid_0.2.3-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 17 postgresql-17-pgx-ulid postgresql-17-pgx-ulid_0.2.3-1PIGSTY~noble_amd64.deb pigsty 0.2.3 360.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgx-ulid/postgresql-17-pgx-ulid_0.2.3-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 17 postgresql-17-pgx-ulid postgresql-17-pgx-ulid_0.2.3-1PIGSTY~noble_arm64.deb pigsty 0.2.3 245.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgx-ulid/postgresql-17-pgx-ulid_0.2.3-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 17 postgresql-17-pgx-ulid postgresql-17-pgx-ulid_0.2.3-2PIGSTY~resolute_arm64.deb pigsty 0.2.3 222.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgx-ulid/postgresql-17-pgx-ulid_0.2.3-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 16 pgx_ulid_16 pgx_ulid_16-0.2.3-1PIGSTY.el8.x86_64.rpm pigsty 0.2.3 389.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgx_ulid_16-0.2.3-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 16 pgx_ulid_16 pgx_ulid_16-0.2.3-1PIGSTY.el8.aarch64.rpm pigsty 0.2.3 273.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgx_ulid_16-0.2.3-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 16 pgx_ulid_16 pgx_ulid_16-0.2.3-1PIGSTY.el9.x86_64.rpm pigsty 0.2.3 406.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgx_ulid_16-0.2.3-1PIGSTY.el9.x86_64.rpm
@@ -111,6 +113,7 @@ weight: 4510
 @ u22.aarch64 16 postgresql-16-pgx-ulid postgresql-16-pgx-ulid_0.2.3-1PIGSTY~jammy_arm64.deb pigsty 0.2.3 247.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgx-ulid/postgresql-16-pgx-ulid_0.2.3-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 16 postgresql-16-pgx-ulid postgresql-16-pgx-ulid_0.2.3-1PIGSTY~noble_amd64.deb pigsty 0.2.3 359.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgx-ulid/postgresql-16-pgx-ulid_0.2.3-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 16 postgresql-16-pgx-ulid postgresql-16-pgx-ulid_0.2.3-1PIGSTY~noble_arm64.deb pigsty 0.2.3 245.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgx-ulid/postgresql-16-pgx-ulid_0.2.3-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 16 postgresql-16-pgx-ulid postgresql-16-pgx-ulid_0.2.3-2PIGSTY~resolute_arm64.deb pigsty 0.2.3 222.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgx-ulid/postgresql-16-pgx-ulid_0.2.3-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 15 pgx_ulid_15 pgx_ulid_15-0.2.3-1PIGSTY.el8.x86_64.rpm pigsty 0.2.3 389.0KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgx_ulid_15-0.2.3-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 15 pgx_ulid_15 pgx_ulid_15-0.2.3-1PIGSTY.el8.aarch64.rpm pigsty 0.2.3 273.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgx_ulid_15-0.2.3-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 15 pgx_ulid_15 pgx_ulid_15-0.2.3-1PIGSTY.el9.x86_64.rpm pigsty 0.2.3 406.4KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgx_ulid_15-0.2.3-1PIGSTY.el9.x86_64.rpm
@@ -125,6 +128,7 @@ weight: 4510
 @ u22.aarch64 15 postgresql-15-pgx-ulid postgresql-15-pgx-ulid_0.2.3-1PIGSTY~jammy_arm64.deb pigsty 0.2.3 247.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgx-ulid/postgresql-15-pgx-ulid_0.2.3-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 15 postgresql-15-pgx-ulid postgresql-15-pgx-ulid_0.2.3-1PIGSTY~noble_amd64.deb pigsty 0.2.3 360.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgx-ulid/postgresql-15-pgx-ulid_0.2.3-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 15 postgresql-15-pgx-ulid postgresql-15-pgx-ulid_0.2.3-1PIGSTY~noble_arm64.deb pigsty 0.2.3 246.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgx-ulid/postgresql-15-pgx-ulid_0.2.3-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 15 postgresql-15-pgx-ulid postgresql-15-pgx-ulid_0.2.3-2PIGSTY~resolute_arm64.deb pigsty 0.2.3 222.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgx-ulid/postgresql-15-pgx-ulid_0.2.3-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 14 pgx_ulid_14 pgx_ulid_14-0.2.3-1PIGSTY.el8.x86_64.rpm pigsty 0.2.3 388.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgx_ulid_14-0.2.3-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 14 pgx_ulid_14 pgx_ulid_14-0.2.3-1PIGSTY.el8.aarch64.rpm pigsty 0.2.3 272.4KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgx_ulid_14-0.2.3-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 14 pgx_ulid_14 pgx_ulid_14-0.2.3-1PIGSTY.el9.x86_64.rpm pigsty 0.2.3 405.5KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgx_ulid_14-0.2.3-1PIGSTY.el9.x86_64.rpm
@@ -139,6 +143,7 @@ weight: 4510
 @ u22.aarch64 14 postgresql-14-pgx-ulid postgresql-14-pgx-ulid_0.2.3-1PIGSTY~jammy_arm64.deb pigsty 0.2.3 247.1KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgx-ulid/postgresql-14-pgx-ulid_0.2.3-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 14 postgresql-14-pgx-ulid postgresql-14-pgx-ulid_0.2.3-1PIGSTY~noble_amd64.deb pigsty 0.2.3 359.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgx-ulid/postgresql-14-pgx-ulid_0.2.3-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 14 postgresql-14-pgx-ulid postgresql-14-pgx-ulid_0.2.3-1PIGSTY~noble_arm64.deb pigsty 0.2.3 245.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgx-ulid/postgresql-14-pgx-ulid_0.2.3-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 14 postgresql-14-pgx-ulid postgresql-14-pgx-ulid_0.2.3-2PIGSTY~resolute_arm64.deb pigsty 0.2.3 222.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgx-ulid/postgresql-14-pgx-ulid_0.2.3-2PIGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -214,13 +219,12 @@ CREATE EXTENSION pgx_ulid;
 
 Sources: [README](https://github.com/pksunkara/pgx_ulid/blob/master/README.md), [releases](https://github.com/pksunkara/pgx_ulid/releases)
 
-`pgx_ulid` provides a native `ulid` type, generators, and casts to and from `timestamp` and `uuid`. The README documents binary storage and monotonic ULID support.
+`pgx_ulid` provides a native `ulid` type, generators, and casts to and from `timestamp` and `uuid`. The README documents binary storage and monotonic ULID support. The pgext catalog tracks package and extension name `pgx_ulid`, version `0.2.3`, for PostgreSQL 14-18.
 
 ### Enable the extension
 
 ```sql
-CREATE EXTENSION ulid;
--- or CREATE EXTENSION pgx_ulid; if installed manually under that name
+CREATE EXTENSION pgx_ulid;
 ```
 
 ### Generate ULIDs
@@ -267,4 +271,5 @@ The README also documents casts between `ulid` and `uuid`.
 
 - Monotonic ULIDs use shared memory plus an LWLock to keep the last generated value.
 - The README notes that monotonic generation can theoretically overflow and raise an error, although it treats this as negligible in practice.
-- Release `v0.2.3` is current upstream as of 2026-04-19, but upstream did not publish separate user-facing release notes for it.
+- The upstream README also shows `CREATE EXTENSION ulid`; this stub follows `db/extension.csv`, where the package and lead extension are both `pgx_ulid`.
+- The GitHub release page lists `v0.2.3` as latest and only labels it `Release 0.2.3`, with no separate user-facing release notes.

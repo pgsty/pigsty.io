@@ -12,7 +12,7 @@ There are **13** extensions in **13** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
-| [`timescaledb`](/ext/e/timescaledb) | [`timescaledb`](https://github.com/timescale/timescaledb) | `2.26.4` | <a class="ext-badge ext-badge--license timescale" href="/ext/license#timescale">Timescale</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Enables scalable inserts and complex queries for time-series data |
+| [`timescaledb`](/ext/e/timescaledb) | [`timescaledb`](https://github.com/timescale/timescaledb) | `2.27.0` | <a class="ext-badge ext-badge--license timescale" href="/ext/license#timescale">Timescale</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Enables scalable inserts and complex queries for time-series data |
 | [`timescaledb_toolkit`](/ext/e/timescaledb_toolkit) | [`timescaledb_toolkit`](https://github.com/timescale/timescaledb-toolkit) | `1.22.0` | <a class="ext-badge ext-badge--license timescale" href="/ext/license#timescale">Timescale</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Library of analytical hyperfunctions, time-series pipelining, and other SQL utilities |
 | [`timeseries`](/ext/e/timeseries) | [`pg_timeseries`](https://github.com/ChuckHend/pg_timeseries) | `0.2.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Convenience API for time series stack |
 | [`periods`](/ext/e/periods) | [`periods`](https://github.com/xocolatl/periods) | `1.2.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Provide Standard SQL functionality for PERIODs and SYSTEM VERSIONING |
@@ -32,7 +32,7 @@ There are **13** extensions in **13** packages.
 
 ## timescaledb {#timescaledb}
 
-[**`timescaledb`**](/ext/e/timescaledb) - `2.26.4` : Enables scalable inserts and complex queries for time-series data
+[**`timescaledb`**](/ext/e/timescaledb) - `2.27.0` : Enables scalable inserts and complex queries for time-series data
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -271,6 +271,6 @@ There are **13** extensions in **13** packages.
 | **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | - | - |
+| | | **u26** | - | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 

@@ -12,7 +12,7 @@ The latest stable version is [v1.4.1](https://github.com/pgsty/pig/releases/tag/
 |     Version     |    Date    | Summary                                                            |                           GitHub                           |
 |:---------------:|:----------:|--------------------------------------------------------------------|:----------------------------------------------------------:|
 | [v1.4.1](#v141) | 2026-05-01 | 510 extensions, Ubuntu 26.04 support, repo calibration             | [v1.4.1](https://github.com/pgsty/pig/releases/tag/v1.4.1) |
-| [v1.4.0](#v140) | 2026-04-19 | 507 extensions, pgrx 0.18.0, more building specs                   | [v1.4.0](https://github.com/pgsty/pig/releases/tag/v1.4.0) |
+| [v1.4.0](#v140) | 2026-04-19 | 510 extensions, pgrx 0.18.0, more building specs                   | [v1.4.0](https://github.com/pgsty/pig/releases/tag/v1.4.0) |
 | [v1.3.4](#v134) | 2026-04-14 | 504 extensions refreshed, release checksums updated             | [v1.3.4](https://github.com/pgsty/pig/releases/tag/v1.3.4) |
 | [v1.3.3](#v133) | 2026-04-10 | 481 extensions and Go 1.26.2 update                                | [v1.3.3](https://github.com/pgsty/pig/releases/tag/v1.3.3) |
 | [v1.3.2](#v132) | 2026-03-23 | Routine metadata refresh, new `pg tune`, new build aliases         | [v1.3.2](https://github.com/pgsty/pig/releases/tag/v1.3.2) |
@@ -80,7 +80,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.4.1
 
 ## v1.4.0
 
-- Refresh the extension catalog and increase the total available extensions to **507**, with version bumps such as `timescaledb 2.26.3`, `decoderbufs 3.5.0`, `pgclone 4.0.0`, and `nominatim_fdw 1.3`.
+- Refresh the extension catalog and increase the total available extensions to **510**, with version bumps such as `timescaledb 2.26.3`, `decoderbufs 3.5.0`, `pgclone 4.0.0`, and `nominatim_fdw 1.3`.
 - Bump the default `pgrx` version from `0.17.0` to `0.18.0` and align related Rust extension builds.
 - Refresh authoritative source bundles for `pig build get`, covering Cloudberry / OrioleDB build inputs and bundled artifacts for RDKit and OneSparse-related packages.
 - Fix `repo set` flag isolation and correct schema maintenance SQL.

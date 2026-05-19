@@ -68,7 +68,7 @@ weight: 2920
 | u24.x86_64 | AVAIL PIGSTY 1.2.0 1 | AVAIL PIGSTY 1.2.0 1 | AVAIL PIGSTY 1.2.0 1 | AVAIL PIGSTY 1.2.0 1 | AVAIL PIGSTY 1.1.1 1 |
 | u24.aarch64 | AVAIL PIGSTY 1.2.0 1 | AVAIL PIGSTY 1.2.0 1 | AVAIL PIGSTY 1.2.0 1 | AVAIL PIGSTY 1.2.0 1 | AVAIL PIGSTY 1.1.1 1 |
 | u26.x86_64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u26.aarch64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 1.2.0 1 | AVAIL PIGSTY 1.2.0 1 | AVAIL PIGSTY 1.2.0 1 | AVAIL PIGSTY 1.2.0 1 | MISS PIGSTY - 0 |
 @ el8.x86_64 18 pg_cardano_18 pg_cardano_18-1.2.0-1PIGSTY.el8.x86_64.rpm pigsty 1.2.0 518.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_cardano_18-1.2.0-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 18 pg_cardano_18 pg_cardano_18-1.2.0-1PIGSTY.el8.aarch64.rpm pigsty 1.2.0 379.9KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_cardano_18-1.2.0-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 18 pg_cardano_18 pg_cardano_18-1.2.0-1PIGSTY.el9.x86_64.rpm pigsty 1.2.0 536.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_cardano_18-1.2.0-1PIGSTY.el9.x86_64.rpm
@@ -83,6 +83,7 @@ weight: 2920
 @ u22.aarch64 18 postgresql-18-pg-cardano postgresql-18-pg-cardano_1.2.0-1PIGSTY~jammy_arm64.deb pigsty 1.2.0 351.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-cardano/postgresql-18-pg-cardano_1.2.0-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 18 postgresql-18-pg-cardano postgresql-18-pg-cardano_1.2.0-1PIGSTY~noble_amd64.deb pigsty 1.2.0 478.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-cardano/postgresql-18-pg-cardano_1.2.0-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 18 postgresql-18-pg-cardano postgresql-18-pg-cardano_1.2.0-1PIGSTY~noble_arm64.deb pigsty 1.2.0 346.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-cardano/postgresql-18-pg-cardano_1.2.0-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 18 postgresql-18-pg-cardano postgresql-18-pg-cardano_1.2.0-2PIGSTY~resolute_arm64.deb pigsty 1.2.0 333.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-cardano/postgresql-18-pg-cardano_1.2.0-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 17 pg_cardano_17 pg_cardano_17-1.2.0-1PIGSTY.el8.x86_64.rpm pigsty 1.2.0 518.0KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_cardano_17-1.2.0-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 17 pg_cardano_17 pg_cardano_17-1.2.0-1PIGSTY.el8.aarch64.rpm pigsty 1.2.0 379.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_cardano_17-1.2.0-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 17 pg_cardano_17 pg_cardano_17-1.2.0-1PIGSTY.el9.x86_64.rpm pigsty 1.2.0 535.9KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_cardano_17-1.2.0-1PIGSTY.el9.x86_64.rpm
@@ -97,6 +98,7 @@ weight: 2920
 @ u22.aarch64 17 postgresql-17-pg-cardano postgresql-17-pg-cardano_1.2.0-1PIGSTY~jammy_arm64.deb pigsty 1.2.0 351.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-cardano/postgresql-17-pg-cardano_1.2.0-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 17 postgresql-17-pg-cardano postgresql-17-pg-cardano_1.2.0-1PIGSTY~noble_amd64.deb pigsty 1.2.0 477.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-cardano/postgresql-17-pg-cardano_1.2.0-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 17 postgresql-17-pg-cardano postgresql-17-pg-cardano_1.2.0-1PIGSTY~noble_arm64.deb pigsty 1.2.0 345.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-cardano/postgresql-17-pg-cardano_1.2.0-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 17 postgresql-17-pg-cardano postgresql-17-pg-cardano_1.2.0-2PIGSTY~resolute_arm64.deb pigsty 1.2.0 334.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-cardano/postgresql-17-pg-cardano_1.2.0-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 16 pg_cardano_16 pg_cardano_16-1.2.0-1PIGSTY.el8.x86_64.rpm pigsty 1.2.0 518.9KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_cardano_16-1.2.0-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 16 pg_cardano_16 pg_cardano_16-1.2.0-1PIGSTY.el8.aarch64.rpm pigsty 1.2.0 379.8KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_cardano_16-1.2.0-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 16 pg_cardano_16 pg_cardano_16-1.2.0-1PIGSTY.el9.x86_64.rpm pigsty 1.2.0 536.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_cardano_16-1.2.0-1PIGSTY.el9.x86_64.rpm
@@ -111,6 +113,7 @@ weight: 2920
 @ u22.aarch64 16 postgresql-16-pg-cardano postgresql-16-pg-cardano_1.2.0-1PIGSTY~jammy_arm64.deb pigsty 1.2.0 351.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-cardano/postgresql-16-pg-cardano_1.2.0-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 16 postgresql-16-pg-cardano postgresql-16-pg-cardano_1.2.0-1PIGSTY~noble_amd64.deb pigsty 1.2.0 478.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-cardano/postgresql-16-pg-cardano_1.2.0-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 16 postgresql-16-pg-cardano postgresql-16-pg-cardano_1.2.0-1PIGSTY~noble_arm64.deb pigsty 1.2.0 346.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-cardano/postgresql-16-pg-cardano_1.2.0-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 16 postgresql-16-pg-cardano postgresql-16-pg-cardano_1.2.0-2PIGSTY~resolute_arm64.deb pigsty 1.2.0 334.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-cardano/postgresql-16-pg-cardano_1.2.0-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 15 pg_cardano_15 pg_cardano_15-1.2.0-1PIGSTY.el8.x86_64.rpm pigsty 1.2.0 518.0KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_cardano_15-1.2.0-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 15 pg_cardano_15 pg_cardano_15-1.2.0-1PIGSTY.el8.aarch64.rpm pigsty 1.2.0 379.4KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_cardano_15-1.2.0-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 15 pg_cardano_15 pg_cardano_15-1.2.0-1PIGSTY.el9.x86_64.rpm pigsty 1.2.0 536.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_cardano_15-1.2.0-1PIGSTY.el9.x86_64.rpm
@@ -125,6 +128,7 @@ weight: 2920
 @ u22.aarch64 15 postgresql-15-pg-cardano postgresql-15-pg-cardano_1.2.0-1PIGSTY~jammy_arm64.deb pigsty 1.2.0 351.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-cardano/postgresql-15-pg-cardano_1.2.0-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 15 postgresql-15-pg-cardano postgresql-15-pg-cardano_1.2.0-1PIGSTY~noble_amd64.deb pigsty 1.2.0 477.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-cardano/postgresql-15-pg-cardano_1.2.0-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 15 postgresql-15-pg-cardano postgresql-15-pg-cardano_1.2.0-1PIGSTY~noble_arm64.deb pigsty 1.2.0 345.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-cardano/postgresql-15-pg-cardano_1.2.0-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 15 postgresql-15-pg-cardano postgresql-15-pg-cardano_1.2.0-2PIGSTY~resolute_arm64.deb pigsty 1.2.0 334.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-cardano/postgresql-15-pg-cardano_1.2.0-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 14 pg_cardano_14 pg_cardano_14-1.1.1-1PIGSTY.el8.x86_64.rpm pigsty 1.1.1 522.9KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_cardano_14-1.1.1-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 14 pg_cardano_14 pg_cardano_14-1.1.1-1PIGSTY.el8.aarch64.rpm pigsty 1.1.1 379.5KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_cardano_14-1.1.1-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 14 pg_cardano_14 pg_cardano_14-1.1.1-1PIGSTY.el9.x86_64.rpm pigsty 1.1.1 539.5KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_cardano_14-1.1.1-1PIGSTY.el9.x86_64.rpm
@@ -201,7 +205,7 @@ CREATE EXTENSION pg_cardano;
 
 ## Usage
 
-Sources: [README](https://github.com/Fell-x27/pg_cardano/blob/master/README.md), [Cargo.toml version 1.2.0](https://github.com/Fell-x27/pg_cardano/blob/master/Cargo.toml)
+Sources: [README](https://github.com/Fell-x27/pg_cardano/blob/master/README.md), [Cargo.toml version 1.2.0](https://github.com/Fell-x27/pg_cardano/blob/master/Cargo.toml), [releases page](https://github.com/Fell-x27/pg_cardano/releases)
 
 `pg_cardano` is a Rust extension for Cardano-oriented binary and crypto utilities inside PostgreSQL. The upstream repo does not publish GitHub releases or tags, but the current crate version on the default branch is `1.2.0`.
 
@@ -267,5 +271,6 @@ SELECT cardano.tools_shelley_addr_get_type('addr_test1vp6p2fgl...');
 
 ### Caveats
 
-- Upstream documents PostgreSQL 12+ and Linux builds via `pgrx`; the crate features currently target PostgreSQL 15 through 18, with `pg18` as the default feature.
+- Upstream documents PostgreSQL 12+ and Linux builds via `pgrx`, but the current crate features and this repo's package matrix target PostgreSQL 15 through 18, with `pg18` as the default feature.
+- This repo packages `pg_cardano` 1.2.0 with `pgrx` 0.17.0 and the PG18 fix noted in `extension.csv`.
 - The simple CBOR helpers are intentionally lossy for some CBOR constructs; use the `*_ext` functions when exact structural round-tripping matters.

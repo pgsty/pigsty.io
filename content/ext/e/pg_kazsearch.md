@@ -64,7 +64,7 @@ weight: 2200
 | u24.x86_64 | AVAIL PIGSTY 2.0.0 1 | AVAIL PIGSTY 2.0.0 1 | AVAIL PIGSTY 2.0.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
 | u24.aarch64 | AVAIL PIGSTY 2.0.0 1 | AVAIL PIGSTY 2.0.0 1 | AVAIL PIGSTY 2.0.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
 | u26.x86_64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u26.aarch64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 2.0.0 1 | AVAIL PIGSTY 2.0.0 1 | AVAIL PIGSTY 2.0.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
 @ el8.x86_64 18 pg_kazsearch_18 pg_kazsearch_18-2.0.0-1PIGSTY.el8.x86_64.rpm pigsty 2.0.0 443.6KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_kazsearch_18-2.0.0-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 18 pg_kazsearch_18 pg_kazsearch_18-2.0.0-1PIGSTY.el8.aarch64.rpm pigsty 2.0.0 321.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_kazsearch_18-2.0.0-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 18 pg_kazsearch_18 pg_kazsearch_18-2.0.0-1PIGSTY.el9.x86_64.rpm pigsty 2.0.0 456.3KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_kazsearch_18-2.0.0-1PIGSTY.el9.x86_64.rpm
@@ -79,6 +79,7 @@ weight: 2200
 @ u22.aarch64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.0.0-1PIGSTY~jammy_arm64.deb pigsty 2.0.0 285.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.0.0-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.0.0-1PIGSTY~noble_amd64.deb pigsty 2.0.0 402.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.0.0-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.0.0-1PIGSTY~noble_arm64.deb pigsty 2.0.0 284.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.0.0-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.0.0-2PIGSTY~resolute_arm64.deb pigsty 2.0.0 284.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.0.0-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 17 pg_kazsearch_17 pg_kazsearch_17-2.0.0-1PIGSTY.el8.x86_64.rpm pigsty 2.0.0 443.2KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_kazsearch_17-2.0.0-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 17 pg_kazsearch_17 pg_kazsearch_17-2.0.0-1PIGSTY.el8.aarch64.rpm pigsty 2.0.0 321.4KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_kazsearch_17-2.0.0-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 17 pg_kazsearch_17 pg_kazsearch_17-2.0.0-1PIGSTY.el9.x86_64.rpm pigsty 2.0.0 456.4KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_kazsearch_17-2.0.0-1PIGSTY.el9.x86_64.rpm
@@ -93,6 +94,7 @@ weight: 2200
 @ u22.aarch64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.0.0-1PIGSTY~jammy_arm64.deb pigsty 2.0.0 286.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.0.0-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.0.0-1PIGSTY~noble_amd64.deb pigsty 2.0.0 401.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.0.0-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.0.0-1PIGSTY~noble_arm64.deb pigsty 2.0.0 283.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.0.0-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.0.0-2PIGSTY~resolute_arm64.deb pigsty 2.0.0 284.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.0.0-2PIGSTY~resolute_arm64.deb
 @ el8.x86_64 16 pg_kazsearch_16 pg_kazsearch_16-2.0.0-1PIGSTY.el8.x86_64.rpm pigsty 2.0.0 443.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_kazsearch_16-2.0.0-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 16 pg_kazsearch_16 pg_kazsearch_16-2.0.0-1PIGSTY.el8.aarch64.rpm pigsty 2.0.0 321.5KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_kazsearch_16-2.0.0-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 16 pg_kazsearch_16 pg_kazsearch_16-2.0.0-1PIGSTY.el9.x86_64.rpm pigsty 2.0.0 456.4KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_kazsearch_16-2.0.0-1PIGSTY.el9.x86_64.rpm
@@ -107,6 +109,7 @@ weight: 2200
 @ u22.aarch64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.0.0-1PIGSTY~jammy_arm64.deb pigsty 2.0.0 286.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.0.0-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.0.0-1PIGSTY~noble_amd64.deb pigsty 2.0.0 402.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.0.0-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.0.0-1PIGSTY~noble_arm64.deb pigsty 2.0.0 283.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.0.0-1PIGSTY~noble_arm64.deb
+@ u26.aarch64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.0.0-2PIGSTY~resolute_arm64.deb pigsty 2.0.0 284.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.0.0-2PIGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -166,9 +169,9 @@ CREATE EXTENSION pg_kazsearch;
 
 ## Usage
 
-Sources: [README](https://github.com/darkhanakh/pg-kazsearch/blob/main/README.md), [releases](https://github.com/darkhanakh/pg-kazsearch/releases)
+Sources: [README](https://github.com/darkhanakh/pg-kazsearch/blob/main/README.md), [v2.0.0 release](https://github.com/darkhanakh/pg-kazsearch/releases/tag/v2.0.0), [v2.1.0 release](https://github.com/darkhanakh/pg-kazsearch/releases/tag/v2.1.0)
 
-`pg_kazsearch` is a PostgreSQL full-text search extension for the Kazakh language. The README says it creates a ready-to-use text search configuration `kazakh_cfg` and dictionary `pg_kazsearch_dict`.
+`pg_kazsearch` is a PostgreSQL full-text search extension for the Kazakh language. The README says it supports PostgreSQL 16-18 and creates a ready-to-use text search configuration `kazakh_cfg` and dictionary `pg_kazsearch_dict`.
 
 ### Quick start
 
@@ -211,9 +214,9 @@ ALTER TEXT SEARCH DICTIONARY pg_kazsearch_dict
 
 ### Release and packaging notes
 
-- Upstream release `v2.0.0` introduced the current Rust / `pgrx` architecture.
+- This project's CSV tracks extension control version `0.1.0`, package/source version `2.0.0`, `pgrx` `0.17.0`, and PostgreSQL versions 16-18.
+- Upstream release `v2.0.0` introduced the current Rust / `pgrx` PostgreSQL extension packaging.
 - Upstream release `v2.1.0` adds an Elasticsearch plugin alongside the PostgreSQL extension; the PostgreSQL SQL usage in the README is unchanged.
-- The repository README publishes Debian packages as `2.x` releases, while this project's CSV note separately tracks the extension control version.
 
 ### Caveat
 

@@ -20,7 +20,7 @@ There are **34** extensions in **21** packages.
 | [`plluau`](/ext/e/plluau) | [`pllua`](https://github.com/pllua/pllua) | `2.0.12` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Lua as an untrusted procedural language |
 | [`hstore_plluau`](/ext/e/hstore_plluau) | [`pllua`](https://github.com/pllua/pllua) | `2.0.12` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Hstore transform for untrusted Lua |
 | [`plprql`](/ext/e/plprql) | [`plprql`](https://github.com/kaspermarstal/plprql) | `18.0.1` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Use PRQL in PostgreSQL - Pipelined Relational Query Language |
-| [`pldbgapi`](/ext/e/pldbgapi) | [`pldebugger`](https://github.com/EnterpriseDB/pldebugger) | `1.9` | <a class="ext-badge ext-badge--license artistic" href="/ext/license#artistic">Artistic</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | server-side support for debugging PL/pgSQL functions |
+| [`pldbgapi`](/ext/e/pldbgapi) | [`pldebugger`](https://github.com/EnterpriseDB/pldebugger) | `1.10` | <a class="ext-badge ext-badge--license artistic" href="/ext/license#artistic">Artistic</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | server-side support for debugging PL/pgSQL functions |
 | [`plpgsql_check`](/ext/e/plpgsql_check) | [`plpgsql_check`](https://github.com/okbob/plpgsql_check) | `2.8.11` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | extended check for plpgsql functions |
 | [`plprofiler`](/ext/e/plprofiler) | [`plprofiler`](https://github.com/bigsql/plprofiler) | `4.2.5` | <a class="ext-badge ext-badge--license artistic" href="/ext/license#artistic">Artistic</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | server-side support for profiling PL/pgSQL functions |
 | [`plsh`](/ext/e/plsh) | [`plsh`](https://github.com/petere/plsh) | `1.20220917` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PL/sh procedural language |
@@ -30,7 +30,7 @@ There are **34** extensions in **21** packages.
 | [`pgtap`](/ext/e/pgtap) | [`pgtap`](https://github.com/theory/pgtap) | `1.3.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Unit testing for PostgreSQL |
 | [`faker`](/ext/e/faker) | [`faker`](https://github.com/anpandu/postgresql_faker) | `0.5.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang python" href="/ext/language#python">Python</a> | Wrapper for the Faker Python library |
 | [`dbt2`](/ext/e/dbt2) | [`dbt2`](https://github.com/osdldbt/dbt2) | `0.61.7` | <a class="ext-badge ext-badge--license artistic" href="/ext/license#artistic">Artistic</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | OSDL-DBT-2 test kit |
-| [`pg_regresql`](/ext/e/pg_regresql) | [`pg_regresql`](https://github.com/boringsql/regresql) | `2.0.0` | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Trust pg_class statistics for planning instead of physical relation size |
+| [`pg_regresql`](/ext/e/pg_regresql) | [`pg_regresql`](https://github.com/boringsql/regresql) | `2.0.0` | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Trust pg_class statistics for planning instead of physical relation size |
 | [`pltcl`](/ext/e/pltcl) | [`pltcl`](https://www.postgresql.org/docs/current/pltcl.html) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PL/Tcl procedural language |
 | [`pltclu`](/ext/e/pltclu) | [`pltcl`](https://www.postgresql.org/docs/current/pltcl.html) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PL/TclU untrusted procedural language |
 | [`plperl`](/ext/e/plperl) | [`plperl`](https://www.postgresql.org/docs/current/plperl.html) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PL/Perl procedural language |
@@ -205,7 +205,7 @@ There are **34** extensions in **21** packages.
 
 ## pldbgapi {#pldbgapi}
 
-[**`pldebugger`**](/ext/e/pldbgapi) - `1.9` : server-side support for debugging PL/pgSQL functions
+[**`pldebugger`**](/ext/e/pldbgapi) - `1.10` : server-side support for debugging PL/pgSQL functions
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -405,7 +405,7 @@ There are **34** extensions in **21** packages.
 | **DEB** | `postgresql-$v-pg-regresql` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 

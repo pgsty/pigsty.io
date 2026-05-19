@@ -50,12 +50,12 @@ weight: 6420
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PGDG 4.0 3 | AVAIL PGDG 4.0 3 | AVAIL PGDG 4.0 4 | AVAIL PGDG 4.0 5 | AVAIL PGDG 4.0 5 |
-| el8.aarch64 | AVAIL PGDG 4.0 3 | AVAIL PGDG 4.0 3 | AVAIL PGDG 4.0 4 | AVAIL PGDG 4.0 5 | AVAIL PGDG 4.0 5 |
-| el9.x86_64 | AVAIL PGDG 4.0 3 | AVAIL PGDG 4.0 3 | AVAIL PGDG 4.0 4 | AVAIL PGDG 4.0 5 | AVAIL PGDG 4.0 4 |
-| el9.aarch64 | AVAIL PGDG 4.0 3 | AVAIL PGDG 4.0 3 | AVAIL PGDG 4.0 4 | AVAIL PGDG 4.0 5 | AVAIL PGDG 4.0 5 |
-| el10.x86_64 | AVAIL PGDG 4.0 3 | AVAIL PGDG 4.0 3 | AVAIL PGDG 4.0 3 | AVAIL PGDG 4.0 3 | AVAIL PGDG 4.0 3 |
-| el10.aarch64 | AVAIL PGDG 4.0 3 | AVAIL PGDG 4.0 3 | AVAIL PGDG 4.0 3 | AVAIL PGDG 4.0 3 | AVAIL PGDG 4.0 3 |
+| el8.x86_64 | AVAIL PGDG 4.1 4 | AVAIL PGDG 4.1 4 | AVAIL PGDG 4.1 5 | AVAIL PGDG 4.1 6 | AVAIL PGDG 4.1 6 |
+| el8.aarch64 | AVAIL PGDG 4.1 4 | AVAIL PGDG 4.1 4 | AVAIL PGDG 4.1 5 | AVAIL PGDG 4.1 6 | AVAIL PGDG 4.1 6 |
+| el9.x86_64 | AVAIL PGDG 4.1 4 | AVAIL PGDG 4.1 4 | AVAIL PGDG 4.1 5 | AVAIL PGDG 4.1 6 | AVAIL PGDG 4.1 5 |
+| el9.aarch64 | AVAIL PGDG 4.1 4 | AVAIL PGDG 4.1 4 | AVAIL PGDG 4.1 5 | AVAIL PGDG 4.1 6 | AVAIL PGDG 4.1 6 |
+| el10.x86_64 | AVAIL PGDG 4.1 4 | AVAIL PGDG 4.1 4 | AVAIL PGDG 4.1 4 | AVAIL PGDG 4.1 4 | AVAIL PGDG 4.1 4 |
+| el10.aarch64 | AVAIL PGDG 4.1 4 | AVAIL PGDG 4.1 4 | AVAIL PGDG 4.1 4 | AVAIL PGDG 4.1 4 | AVAIL PGDG 4.1 4 |
 | d12.x86_64 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 |
 | d12.aarch64 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 |
 | d13.x86_64 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 |
@@ -66,21 +66,27 @@ weight: 6420
 | u24.aarch64 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 |
 | u26.x86_64 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 |
 | u26.aarch64 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 |
+@ el8.x86_64 18 system_stats_18 system_stats_18-4.1-1PGDG.rhel8.10.x86_64.rpm pgdg 4.1 32.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/system_stats_18-4.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 system_stats_18 system_stats_18-4.0-1PGDG.rhel8.10.x86_64.rpm pgdg 4.0 32.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/system_stats_18-4.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 system_stats_18 system_stats_18-3.2-2PGDG.rhel8.x86_64.rpm pgdg 3.2 28.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/system_stats_18-3.2-2PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 18 system_stats_18 system_stats_18-3.2.1-1PGDG.rhel8.10.x86_64.rpm pgdg 3.2.1 30.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/system_stats_18-3.2.1-1PGDG.rhel8.10.x86_64.rpm
+@ el8.aarch64 18 system_stats_18 system_stats_18-4.1-1PGDG.rhel8.10.aarch64.rpm pgdg 4.1 32.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/system_stats_18-4.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 system_stats_18 system_stats_18-4.0-1PGDG.rhel8.10.aarch64.rpm pgdg 4.0 32.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/system_stats_18-4.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 system_stats_18 system_stats_18-3.2-2PGDG.rhel8.aarch64.rpm pgdg 3.2 28.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/system_stats_18-3.2-2PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 18 system_stats_18 system_stats_18-3.2.1-1PGDG.rhel8.10.aarch64.rpm pgdg 3.2.1 30.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/system_stats_18-3.2.1-1PGDG.rhel8.10.aarch64.rpm
+@ el9.x86_64 18 system_stats_18 system_stats_18-4.1-1PGDG.rhel9.7.x86_64.rpm pgdg 4.1 31.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/system_stats_18-4.1-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 18 system_stats_18 system_stats_18-4.0-1PGDG.rhel9.7.x86_64.rpm pgdg 4.0 31.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/system_stats_18-4.0-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 18 system_stats_18 system_stats_18-3.2-2PGDG.rhel9.x86_64.rpm pgdg 3.2 28.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/system_stats_18-3.2-2PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 18 system_stats_18 system_stats_18-3.2.1-1PGDG.rhel9.7.x86_64.rpm pgdg 3.2.1 29.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/system_stats_18-3.2.1-1PGDG.rhel9.7.x86_64.rpm
+@ el9.aarch64 18 system_stats_18 system_stats_18-4.1-1PGDG.rhel9.7.aarch64.rpm pgdg 4.1 31.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/system_stats_18-4.1-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 18 system_stats_18 system_stats_18-4.0-1PGDG.rhel9.7.aarch64.rpm pgdg 4.0 31.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/system_stats_18-4.0-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 18 system_stats_18 system_stats_18-3.2-2PGDG.rhel9.aarch64.rpm pgdg 3.2 28.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/system_stats_18-3.2-2PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 18 system_stats_18 system_stats_18-3.2.1-1PGDG.rhel9.7.aarch64.rpm pgdg 3.2.1 29.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/system_stats_18-3.2.1-1PGDG.rhel9.7.aarch64.rpm
+@ el10.x86_64 18 system_stats_18 system_stats_18-4.1-1PGDG.rhel10.1.x86_64.rpm pgdg 4.1 32.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/system_stats_18-4.1-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 18 system_stats_18 system_stats_18-4.0-1PGDG.rhel10.1.x86_64.rpm pgdg 4.0 32.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/system_stats_18-4.0-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 18 system_stats_18 system_stats_18-3.2-2PGDG.rhel10.x86_64.rpm pgdg 3.2 29.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/system_stats_18-3.2-2PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 18 system_stats_18 system_stats_18-3.2.1-1PGDG.rhel10.1.x86_64.rpm pgdg 3.2.1 30.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/system_stats_18-3.2.1-1PGDG.rhel10.1.x86_64.rpm
+@ el10.aarch64 18 system_stats_18 system_stats_18-4.1-1PGDG.rhel10.1.aarch64.rpm pgdg 4.1 31.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/system_stats_18-4.1-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 18 system_stats_18 system_stats_18-4.0-1PGDG.rhel10.1.aarch64.rpm pgdg 4.0 31.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/system_stats_18-4.0-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 18 system_stats_18 system_stats_18-3.2-2PGDG.rhel10.aarch64.rpm pgdg 3.2 28.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/system_stats_18-3.2-2PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 18 system_stats_18 system_stats_18-3.2.1-1PGDG.rhel10.1.aarch64.rpm pgdg 3.2.1 29.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/system_stats_18-3.2.1-1PGDG.rhel10.1.aarch64.rpm
@@ -94,21 +100,27 @@ weight: 6420
 @ u24.aarch64 18 postgresql-18-system-stats postgresql-18-system-stats_4.0-1PIGSTY~noble_arm64.deb pigsty 4.0 69.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-18-system-stats_4.0-1PIGSTY~noble_arm64.deb
 @ u26.x86_64 18 postgresql-18-system-stats postgresql-18-system-stats_4.0-1PIGSTY~resolute_amd64.deb pigsty 4.0 69.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-18-system-stats_4.0-1PIGSTY~resolute_amd64.deb
 @ u26.aarch64 18 postgresql-18-system-stats postgresql-18-system-stats_4.0-1PIGSTY~resolute_arm64.deb pigsty 4.0 68.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-18-system-stats_4.0-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 17 system_stats_17 system_stats_17-4.1-1PGDG.rhel8.10.x86_64.rpm pgdg 4.1 32.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/system_stats_17-4.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 system_stats_17 system_stats_17-4.0-1PGDG.rhel8.10.x86_64.rpm pgdg 4.0 32.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/system_stats_17-4.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 system_stats_17 system_stats_17-3.2.1-1PGDG.rhel8.10.x86_64.rpm pgdg 3.2.1 30.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/system_stats_17-3.2.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 system_stats_17 system_stats_17-3.2-1PGDG.rhel8.x86_64.rpm pgdg 3.2 28.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/system_stats_17-3.2-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 17 system_stats_17 system_stats_17-4.1-1PGDG.rhel8.10.aarch64.rpm pgdg 4.1 32.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/system_stats_17-4.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 system_stats_17 system_stats_17-4.0-1PGDG.rhel8.10.aarch64.rpm pgdg 4.0 32.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/system_stats_17-4.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 system_stats_17 system_stats_17-3.2.1-1PGDG.rhel8.10.aarch64.rpm pgdg 3.2.1 30.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/system_stats_17-3.2.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 system_stats_17 system_stats_17-3.2-1PGDG.rhel8.aarch64.rpm pgdg 3.2 28.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/system_stats_17-3.2-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 17 system_stats_17 system_stats_17-4.1-1PGDG.rhel9.7.x86_64.rpm pgdg 4.1 31.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/system_stats_17-4.1-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 17 system_stats_17 system_stats_17-4.0-1PGDG.rhel9.7.x86_64.rpm pgdg 4.0 31.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/system_stats_17-4.0-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 17 system_stats_17 system_stats_17-3.2.1-1PGDG.rhel9.7.x86_64.rpm pgdg 3.2.1 29.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/system_stats_17-3.2.1-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 17 system_stats_17 system_stats_17-3.2-1PGDG.rhel9.x86_64.rpm pgdg 3.2 28.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/system_stats_17-3.2-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 17 system_stats_17 system_stats_17-4.1-1PGDG.rhel9.7.aarch64.rpm pgdg 4.1 31.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/system_stats_17-4.1-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 17 system_stats_17 system_stats_17-4.0-1PGDG.rhel9.7.aarch64.rpm pgdg 4.0 31.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/system_stats_17-4.0-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 17 system_stats_17 system_stats_17-3.2.1-1PGDG.rhel9.7.aarch64.rpm pgdg 3.2.1 29.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/system_stats_17-3.2.1-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 17 system_stats_17 system_stats_17-3.2-1PGDG.rhel9.aarch64.rpm pgdg 3.2 28.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/system_stats_17-3.2-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 17 system_stats_17 system_stats_17-4.1-1PGDG.rhel10.1.x86_64.rpm pgdg 4.1 32.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/system_stats_17-4.1-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 17 system_stats_17 system_stats_17-4.0-1PGDG.rhel10.1.x86_64.rpm pgdg 4.0 32.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/system_stats_17-4.0-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 17 system_stats_17 system_stats_17-3.2-2PGDG.rhel10.x86_64.rpm pgdg 3.2 29.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/system_stats_17-3.2-2PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 17 system_stats_17 system_stats_17-3.2.1-1PGDG.rhel10.1.x86_64.rpm pgdg 3.2.1 30.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/system_stats_17-3.2.1-1PGDG.rhel10.1.x86_64.rpm
+@ el10.aarch64 17 system_stats_17 system_stats_17-4.1-1PGDG.rhel10.1.aarch64.rpm pgdg 4.1 31.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/system_stats_17-4.1-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 17 system_stats_17 system_stats_17-4.0-1PGDG.rhel10.1.aarch64.rpm pgdg 4.0 31.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/system_stats_17-4.0-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 17 system_stats_17 system_stats_17-3.2-2PGDG.rhel10.aarch64.rpm pgdg 3.2 28.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/system_stats_17-3.2-2PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 17 system_stats_17 system_stats_17-3.2.1-1PGDG.rhel10.1.aarch64.rpm pgdg 3.2.1 29.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/system_stats_17-3.2.1-1PGDG.rhel10.1.aarch64.rpm
@@ -122,25 +134,31 @@ weight: 6420
 @ u24.aarch64 17 postgresql-17-system-stats postgresql-17-system-stats_4.0-1PIGSTY~noble_arm64.deb pigsty 4.0 69.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-17-system-stats_4.0-1PIGSTY~noble_arm64.deb
 @ u26.x86_64 17 postgresql-17-system-stats postgresql-17-system-stats_4.0-1PIGSTY~resolute_amd64.deb pigsty 4.0 69.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-17-system-stats_4.0-1PIGSTY~resolute_amd64.deb
 @ u26.aarch64 17 postgresql-17-system-stats postgresql-17-system-stats_4.0-1PIGSTY~resolute_arm64.deb pigsty 4.0 68.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-17-system-stats_4.0-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 16 system_stats_16 system_stats_16-4.1-1PGDG.rhel8.10.x86_64.rpm pgdg 4.1 32.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/system_stats_16-4.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 system_stats_16 system_stats_16-4.0-1PGDG.rhel8.10.x86_64.rpm pgdg 4.0 32.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/system_stats_16-4.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 system_stats_16 system_stats_16-3.2.1-1PGDG.rhel8.10.x86_64.rpm pgdg 3.2.1 30.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/system_stats_16-3.2.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 system_stats_16 system_stats_16-3.2-1PGDG.rhel8.x86_64.rpm pgdg 3.2 28.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/system_stats_16-3.2-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 16 system_stats_16 system_stats_16-2.1-1PGDG.rhel8.x86_64.rpm pgdg 2.1 28.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/system_stats_16-2.1-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 16 system_stats_16 system_stats_16-4.1-1PGDG.rhel8.10.aarch64.rpm pgdg 4.1 32.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/system_stats_16-4.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 system_stats_16 system_stats_16-4.0-1PGDG.rhel8.10.aarch64.rpm pgdg 4.0 32.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/system_stats_16-4.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 system_stats_16 system_stats_16-3.2.1-1PGDG.rhel8.10.aarch64.rpm pgdg 3.2.1 29.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/system_stats_16-3.2.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 system_stats_16 system_stats_16-3.2-1PGDG.rhel8.aarch64.rpm pgdg 3.2 28.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/system_stats_16-3.2-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 16 system_stats_16 system_stats_16-2.1-1PGDG.rhel8.aarch64.rpm pgdg 2.1 27.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/system_stats_16-2.1-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 16 system_stats_16 system_stats_16-4.1-1PGDG.rhel9.7.x86_64.rpm pgdg 4.1 31.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/system_stats_16-4.1-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 16 system_stats_16 system_stats_16-4.0-1PGDG.rhel9.7.x86_64.rpm pgdg 4.0 31.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/system_stats_16-4.0-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 16 system_stats_16 system_stats_16-3.2.1-1PGDG.rhel9.7.x86_64.rpm pgdg 3.2.1 29.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/system_stats_16-3.2.1-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 16 system_stats_16 system_stats_16-3.2-1PGDG.rhel9.x86_64.rpm pgdg 3.2 28.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/system_stats_16-3.2-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 16 system_stats_16 system_stats_16-2.1-1PGDG.rhel9.x86_64.rpm pgdg 2.1 27.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/system_stats_16-2.1-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 16 system_stats_16 system_stats_16-4.1-1PGDG.rhel9.7.aarch64.rpm pgdg 4.1 31.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/system_stats_16-4.1-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 16 system_stats_16 system_stats_16-4.0-1PGDG.rhel9.7.aarch64.rpm pgdg 4.0 31.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/system_stats_16-4.0-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 16 system_stats_16 system_stats_16-3.2.1-1PGDG.rhel9.7.aarch64.rpm pgdg 3.2.1 29.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/system_stats_16-3.2.1-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 16 system_stats_16 system_stats_16-3.2-1PGDG.rhel9.aarch64.rpm pgdg 3.2 28.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/system_stats_16-3.2-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 16 system_stats_16 system_stats_16-2.1-1PGDG.rhel9.aarch64.rpm pgdg 2.1 27.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/system_stats_16-2.1-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 16 system_stats_16 system_stats_16-4.1-1PGDG.rhel10.1.x86_64.rpm pgdg 4.1 32.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/system_stats_16-4.1-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 16 system_stats_16 system_stats_16-4.0-1PGDG.rhel10.1.x86_64.rpm pgdg 4.0 32.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/system_stats_16-4.0-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 16 system_stats_16 system_stats_16-3.2-2PGDG.rhel10.x86_64.rpm pgdg 3.2 29.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/system_stats_16-3.2-2PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 16 system_stats_16 system_stats_16-3.2.1-1PGDG.rhel10.1.x86_64.rpm pgdg 3.2.1 30.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/system_stats_16-3.2.1-1PGDG.rhel10.1.x86_64.rpm
+@ el10.aarch64 16 system_stats_16 system_stats_16-4.1-1PGDG.rhel10.1.aarch64.rpm pgdg 4.1 31.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/system_stats_16-4.1-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 16 system_stats_16 system_stats_16-4.0-1PGDG.rhel10.1.aarch64.rpm pgdg 4.0 31.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/system_stats_16-4.0-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 16 system_stats_16 system_stats_16-3.2-2PGDG.rhel10.aarch64.rpm pgdg 3.2 28.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/system_stats_16-3.2-2PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 16 system_stats_16 system_stats_16-3.2.1-1PGDG.rhel10.1.aarch64.rpm pgdg 3.2.1 29.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/system_stats_16-3.2.1-1PGDG.rhel10.1.aarch64.rpm
@@ -154,29 +172,35 @@ weight: 6420
 @ u24.aarch64 16 postgresql-16-system-stats postgresql-16-system-stats_4.0-1PIGSTY~noble_arm64.deb pigsty 4.0 69.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-16-system-stats_4.0-1PIGSTY~noble_arm64.deb
 @ u26.x86_64 16 postgresql-16-system-stats postgresql-16-system-stats_4.0-1PIGSTY~resolute_amd64.deb pigsty 4.0 69.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-16-system-stats_4.0-1PIGSTY~resolute_amd64.deb
 @ u26.aarch64 16 postgresql-16-system-stats postgresql-16-system-stats_4.0-1PIGSTY~resolute_arm64.deb pigsty 4.0 68.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-16-system-stats_4.0-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 15 system_stats_15 system_stats_15-4.1-1PGDG.rhel8.10.x86_64.rpm pgdg 4.1 33.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/system_stats_15-4.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 system_stats_15 system_stats_15-4.0-1PGDG.rhel8.10.x86_64.rpm pgdg 4.0 33.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/system_stats_15-4.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 system_stats_15 system_stats_15-3.2.1-1PGDG.rhel8.10.x86_64.rpm pgdg 3.2.1 31.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/system_stats_15-3.2.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 system_stats_15 system_stats_15-3.2-1PGDG.rhel8.x86_64.rpm pgdg 3.2 29.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/system_stats_15-3.2-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 15 system_stats_15 system_stats_15-2.1-1PGDG.rhel8.x86_64.rpm pgdg 2.1 28.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/system_stats_15-2.1-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 15 system_stats_15 system_stats_15-1.0-2.rhel8.x86_64.rpm pgdg 1.0 74.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/system_stats_15-1.0-2.rhel8.x86_64.rpm
+@ el8.aarch64 15 system_stats_15 system_stats_15-4.1-1PGDG.rhel8.10.aarch64.rpm pgdg 4.1 33.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/system_stats_15-4.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 15 system_stats_15 system_stats_15-4.0-1PGDG.rhel8.10.aarch64.rpm pgdg 4.0 32.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/system_stats_15-4.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 15 system_stats_15 system_stats_15-3.2.1-1PGDG.rhel8.10.aarch64.rpm pgdg 3.2.1 30.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/system_stats_15-3.2.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 15 system_stats_15 system_stats_15-3.2-1PGDG.rhel8.aarch64.rpm pgdg 3.2 29.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/system_stats_15-3.2-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 15 system_stats_15 system_stats_15-2.1-1PGDG.rhel8.aarch64.rpm pgdg 2.1 28.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/system_stats_15-2.1-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 15 system_stats_15 system_stats_15-1.0-2.rhel8.aarch64.rpm pgdg 1.0 74.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/system_stats_15-1.0-2.rhel8.aarch64.rpm
+@ el9.x86_64 15 system_stats_15 system_stats_15-4.1-1PGDG.rhel9.7.x86_64.rpm pgdg 4.1 33.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/system_stats_15-4.1-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 15 system_stats_15 system_stats_15-4.0-1PGDG.rhel9.7.x86_64.rpm pgdg 4.0 33.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/system_stats_15-4.0-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 15 system_stats_15 system_stats_15-3.2.1-1PGDG.rhel9.7.x86_64.rpm pgdg 3.2.1 31.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/system_stats_15-3.2.1-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 15 system_stats_15 system_stats_15-3.2-1PGDG.rhel9.x86_64.rpm pgdg 3.2 30.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/system_stats_15-3.2-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 15 system_stats_15 system_stats_15-2.1-1PGDG.rhel9.x86_64.rpm pgdg 2.1 29.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/system_stats_15-2.1-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 15 system_stats_15 system_stats_15-1.0-2.rhel9.x86_64.rpm pgdg 1.0 76.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/system_stats_15-1.0-2.rhel9.x86_64.rpm
+@ el9.aarch64 15 system_stats_15 system_stats_15-4.1-1PGDG.rhel9.7.aarch64.rpm pgdg 4.1 33.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/system_stats_15-4.1-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 15 system_stats_15 system_stats_15-4.0-1PGDG.rhel9.7.aarch64.rpm pgdg 4.0 33.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/system_stats_15-4.0-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 15 system_stats_15 system_stats_15-3.2.1-1PGDG.rhel9.7.aarch64.rpm pgdg 3.2.1 31.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/system_stats_15-3.2.1-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 15 system_stats_15 system_stats_15-3.2-1PGDG.rhel9.aarch64.rpm pgdg 3.2 30.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/system_stats_15-3.2-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 15 system_stats_15 system_stats_15-2.1-1PGDG.rhel9.aarch64.rpm pgdg 2.1 29.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/system_stats_15-2.1-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 15 system_stats_15 system_stats_15-1.0-2.rhel9.aarch64.rpm pgdg 1.0 75.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/system_stats_15-1.0-2.rhel9.aarch64.rpm
+@ el10.x86_64 15 system_stats_15 system_stats_15-4.1-1PGDG.rhel10.1.x86_64.rpm pgdg 4.1 34.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/system_stats_15-4.1-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 15 system_stats_15 system_stats_15-4.0-1PGDG.rhel10.1.x86_64.rpm pgdg 4.0 34.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/system_stats_15-4.0-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 15 system_stats_15 system_stats_15-3.2-2PGDG.rhel10.x86_64.rpm pgdg 3.2 31.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/system_stats_15-3.2-2PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 15 system_stats_15 system_stats_15-3.2.1-1PGDG.rhel10.1.x86_64.rpm pgdg 3.2.1 32.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/system_stats_15-3.2.1-1PGDG.rhel10.1.x86_64.rpm
+@ el10.aarch64 15 system_stats_15 system_stats_15-4.1-1PGDG.rhel10.1.aarch64.rpm pgdg 4.1 33.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/system_stats_15-4.1-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 15 system_stats_15 system_stats_15-4.0-1PGDG.rhel10.1.aarch64.rpm pgdg 4.0 33.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/system_stats_15-4.0-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 15 system_stats_15 system_stats_15-3.2-2PGDG.rhel10.aarch64.rpm pgdg 3.2 30.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/system_stats_15-3.2-2PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 15 system_stats_15 system_stats_15-3.2.1-1PGDG.rhel10.1.aarch64.rpm pgdg 3.2.1 31.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/system_stats_15-3.2.1-1PGDG.rhel10.1.aarch64.rpm
@@ -190,28 +214,34 @@ weight: 6420
 @ u24.aarch64 15 postgresql-15-system-stats postgresql-15-system-stats_4.0-1PIGSTY~noble_arm64.deb pigsty 4.0 70.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-15-system-stats_4.0-1PIGSTY~noble_arm64.deb
 @ u26.x86_64 15 postgresql-15-system-stats postgresql-15-system-stats_4.0-1PIGSTY~resolute_amd64.deb pigsty 4.0 70.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-15-system-stats_4.0-1PIGSTY~resolute_amd64.deb
 @ u26.aarch64 15 postgresql-15-system-stats postgresql-15-system-stats_4.0-1PIGSTY~resolute_arm64.deb pigsty 4.0 70.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-15-system-stats_4.0-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 14 system_stats_14 system_stats_14-4.1-1PGDG.rhel8.10.x86_64.rpm pgdg 4.1 33.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/system_stats_14-4.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 system_stats_14 system_stats_14-4.0-1PGDG.rhel8.10.x86_64.rpm pgdg 4.0 33.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/system_stats_14-4.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 system_stats_14 system_stats_14-3.2.1-1PGDG.rhel8.10.x86_64.rpm pgdg 3.2.1 31.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/system_stats_14-3.2.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 system_stats_14 system_stats_14-3.2-1PGDG.rhel8.x86_64.rpm pgdg 3.2 29.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/system_stats_14-3.2-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 14 system_stats_14 system_stats_14-2.1-1PGDG.rhel8.x86_64.rpm pgdg 2.1 28.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/system_stats_14-2.1-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 14 system_stats_14 system_stats_14-1.0-2.rhel8.x86_64.rpm pgdg 1.0 75.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/system_stats_14-1.0-2.rhel8.x86_64.rpm
+@ el8.aarch64 14 system_stats_14 system_stats_14-4.1-1PGDG.rhel8.10.aarch64.rpm pgdg 4.1 33.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/system_stats_14-4.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 14 system_stats_14 system_stats_14-4.0-1PGDG.rhel8.10.aarch64.rpm pgdg 4.0 32.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/system_stats_14-4.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 14 system_stats_14 system_stats_14-3.2.1-1PGDG.rhel8.10.aarch64.rpm pgdg 3.2.1 30.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/system_stats_14-3.2.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 14 system_stats_14 system_stats_14-3.2-1PGDG.rhel8.aarch64.rpm pgdg 3.2 29.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/system_stats_14-3.2-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 14 system_stats_14 system_stats_14-2.1-1PGDG.rhel8.aarch64.rpm pgdg 2.1 28.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/system_stats_14-2.1-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 14 system_stats_14 system_stats_14-1.0-2.rhel8.aarch64.rpm pgdg 1.0 74.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/system_stats_14-1.0-2.rhel8.aarch64.rpm
+@ el9.x86_64 14 system_stats_14 system_stats_14-4.1-1PGDG.rhel9.7.x86_64.rpm pgdg 4.1 33.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/system_stats_14-4.1-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 14 system_stats_14 system_stats_14-4.0-1PGDG.rhel9.7.x86_64.rpm pgdg 4.0 33.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/system_stats_14-4.0-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 14 system_stats_14 system_stats_14-3.2.1-1PGDG.rhel9.7.x86_64.rpm pgdg 3.2.1 31.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/system_stats_14-3.2.1-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 14 system_stats_14 system_stats_14-3.2-1PGDG.rhel9.x86_64.rpm pgdg 3.2 30.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/system_stats_14-3.2-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 14 system_stats_14 system_stats_14-2.1-1PGDG.rhel9.x86_64.rpm pgdg 2.1 29.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/system_stats_14-2.1-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 14 system_stats_14 system_stats_14-4.1-1PGDG.rhel9.7.aarch64.rpm pgdg 4.1 33.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/system_stats_14-4.1-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 14 system_stats_14 system_stats_14-4.0-1PGDG.rhel9.7.aarch64.rpm pgdg 4.0 33.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/system_stats_14-4.0-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 14 system_stats_14 system_stats_14-3.2.1-1PGDG.rhel9.7.aarch64.rpm pgdg 3.2.1 31.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/system_stats_14-3.2.1-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 14 system_stats_14 system_stats_14-3.2-1PGDG.rhel9.aarch64.rpm pgdg 3.2 30.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/system_stats_14-3.2-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 14 system_stats_14 system_stats_14-2.1-1PGDG.rhel9.aarch64.rpm pgdg 2.1 29.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/system_stats_14-2.1-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 14 system_stats_14 system_stats_14-1.0-2.rhel9.aarch64.rpm pgdg 1.0 75.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/system_stats_14-1.0-2.rhel9.aarch64.rpm
+@ el10.x86_64 14 system_stats_14 system_stats_14-4.1-1PGDG.rhel10.1.x86_64.rpm pgdg 4.1 34.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/system_stats_14-4.1-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 14 system_stats_14 system_stats_14-4.0-1PGDG.rhel10.1.x86_64.rpm pgdg 4.0 34.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/system_stats_14-4.0-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 14 system_stats_14 system_stats_14-3.2-2PGDG.rhel10.x86_64.rpm pgdg 3.2 31.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/system_stats_14-3.2-2PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 14 system_stats_14 system_stats_14-3.2.1-1PGDG.rhel10.1.x86_64.rpm pgdg 3.2.1 32.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/system_stats_14-3.2.1-1PGDG.rhel10.1.x86_64.rpm
+@ el10.aarch64 14 system_stats_14 system_stats_14-4.1-1PGDG.rhel10.1.aarch64.rpm pgdg 4.1 33.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/system_stats_14-4.1-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 14 system_stats_14 system_stats_14-4.0-1PGDG.rhel10.1.aarch64.rpm pgdg 4.0 33.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/system_stats_14-4.0-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 14 system_stats_14 system_stats_14-3.2-2PGDG.rhel10.aarch64.rpm pgdg 3.2 30.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/system_stats_14-3.2-2PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 14 system_stats_14 system_stats_14-3.2.1-1PGDG.rhel10.1.aarch64.rpm pgdg 3.2.1 31.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/system_stats_14-3.2.1-1PGDG.rhel10.1.aarch64.rpm
@@ -327,4 +357,5 @@ GRANT EXECUTE ON FUNCTION pg_sys_os_info() TO pg_monitor;
 
 - The `monitor_system_stats` role is not dropped automatically when the extension is removed.
 - macOS cannot expose full per-process details for processes owned by other users; those rows may contain only PID and process name.
+- Pigsty metadata tracks `system_stats` 4.0 for PostgreSQL 14-18; the RPM and DEB package names differ (`system_stats_$v` vs. `postgresql-$v-system-stats`).
 - Current v4.0 upstream docs keep the same user-facing function family and security model; the refresh here mainly aligns names, privileges, and platform notes with the current README and SQL script.
