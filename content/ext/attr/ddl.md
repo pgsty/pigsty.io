@@ -12,7 +12,7 @@ These extensions typically exist as shared libraries (hooks) or standalone tools
 
 | **Extension** | **Package** | **Version** | **Attr** | **Description** |
 |:-----------|:-------------|:--------:|:--------:|:---------|
-| [`pg_task`](/ext/e/pg_task) | [`pg_task`](https://github.com/RekGRpth/pg_task) | `1.0.0` | `--sL---` | execute any sql command at any specific time at background |
+| [`pg_task`](/ext/e/pg_task) | [`pg_task`](https://github.com/RekGRpth/pg_task) | `2.1.29` | `--sL---` | execute any sql command at any specific time at background |
 | [`plan_filter`](/ext/e/plan_filter) | [`pg_plan_filter`](https://github.com/pgexperts/pg_plan_filter) | `0.0.1` | `--sL---` | filter statements by their execution plans. |
 | [`pg_checksums`](/ext/e/pg_checksums) | [`pg_checksums`](https://github.com/credativ/pg_checksums) | `1.3` | `--s---r` | Activate/deactivate/verify checksums in offline Postgres clusters |
 | [`pg_crash`](/ext/e/pg_crash) | [`pg_crash`](https://github.com/cybertec-postgresql/pg_crash) | `1.0` | `--sL---` | Send random signals to random processes |

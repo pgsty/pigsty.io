@@ -30,7 +30,7 @@ weight: 3960
 
 | **Related** | [`prefix`](/ext/e/prefix) [`semver`](/ext/e/semver) [`citext`](/ext/e/citext) [`unit`](/ext/e/unit) [`pgpdf`](/ext/e/pgpdf) [`pglite_fusion`](/ext/e/pglite_fusion) [`md5hash`](/ext/e/md5hash) [`asn1oid`](/ext/e/asn1oid) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Depended By** | [`ltree_plpython3u`](/ext/e/ltree_plpython3u) |
+| **Depended By** | [`fsm_core`](/ext/e/fsm_core) [`ltree_plpython3u`](/ext/e/ltree_plpython3u) |
 {.ext-table .ext-table--rel}
 
 

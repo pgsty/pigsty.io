@@ -38,7 +38,7 @@ weight: 9590
 {.ext-table .ext-table--rel}
 
 
-> preload for async/progress
+> preload for async/progress; RPM LLVM_BINPATH build fix in 2026-06-06 batch
 
 
 ## Version
@@ -72,7 +72,7 @@ weight: 9590
 @ el8.x86_64 18 pgclone_18 pgclone_18-4.3.2-1PIGSTY.el8.x86_64.rpm pigsty 4.3.2 86.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgclone_18-4.3.2-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 18 pgclone_18 pgclone_18-4.3.2-1PIGSTY.el8.aarch64.rpm pigsty 4.3.2 84.4KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgclone_18-4.3.2-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 18 pgclone_18 pgclone_18-4.3.2-1PIGSTY.el9.x86_64.rpm pigsty 4.3.2 85.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgclone_18-4.3.2-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 18 pgclone_18 pgclone_18-4.3.2-1PIGSTY.el9.aarch64.rpm pigsty 4.3.2 84.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgclone_18-4.3.2-1PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 18 pgclone_18 pgclone_18-4.3.2-1PIGSTY.el9.aarch64.rpm pigsty 4.3.2 84.8KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgclone_18-4.3.2-1PIGSTY.el9.aarch64.rpm
 @ el10.x86_64 18 pgclone_18 pgclone_18-4.3.2-1PIGSTY.el10.x86_64.rpm pigsty 4.3.2 86.2KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgclone_18-4.3.2-1PIGSTY.el10.x86_64.rpm
 @ el10.aarch64 18 pgclone_18 pgclone_18-4.3.2-1PIGSTY.el10.aarch64.rpm pigsty 4.3.2 84.6KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgclone_18-4.3.2-1PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 18 postgresql-18-pgclone postgresql-18-pgclone_4.3.2-1PIGSTY~bookworm_amd64.deb pigsty 4.3.2 198.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-18-pgclone_4.3.2-1PIGSTY~bookworm_amd64.deb
@@ -90,7 +90,7 @@ weight: 9590
 @ el9.x86_64 17 pgclone_17 pgclone_17-4.3.2-1PIGSTY.el9.x86_64.rpm pigsty 4.3.2 85.2KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgclone_17-4.3.2-1PIGSTY.el9.x86_64.rpm
 @ el9.aarch64 17 pgclone_17 pgclone_17-4.3.2-1PIGSTY.el9.aarch64.rpm pigsty 4.3.2 84.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgclone_17-4.3.2-1PIGSTY.el9.aarch64.rpm
 @ el10.x86_64 17 pgclone_17 pgclone_17-4.3.2-1PIGSTY.el10.x86_64.rpm pigsty 4.3.2 86.3KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgclone_17-4.3.2-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 17 pgclone_17 pgclone_17-4.3.2-1PIGSTY.el10.aarch64.rpm pigsty 4.3.2 84.6KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgclone_17-4.3.2-1PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 17 pgclone_17 pgclone_17-4.3.2-1PIGSTY.el10.aarch64.rpm pigsty 4.3.2 84.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgclone_17-4.3.2-1PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 17 postgresql-17-pgclone postgresql-17-pgclone_4.3.2-1PIGSTY~bookworm_amd64.deb pigsty 4.3.2 198.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-17-pgclone_4.3.2-1PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 17 postgresql-17-pgclone postgresql-17-pgclone_4.3.2-1PIGSTY~bookworm_arm64.deb pigsty 4.3.2 193.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-17-pgclone_4.3.2-1PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 17 postgresql-17-pgclone postgresql-17-pgclone_4.3.2-1PIGSTY~trixie_amd64.deb pigsty 4.3.2 198.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-17-pgclone_4.3.2-1PIGSTY~trixie_amd64.deb
@@ -103,7 +103,7 @@ weight: 9590
 @ u26.aarch64 17 postgresql-17-pgclone postgresql-17-pgclone_4.3.2-1PIGSTY~resolute_arm64.deb pigsty 4.3.2 191.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgclone/postgresql-17-pgclone_4.3.2-1PIGSTY~resolute_arm64.deb
 @ el8.x86_64 16 pgclone_16 pgclone_16-4.3.2-1PIGSTY.el8.x86_64.rpm pigsty 4.3.2 86.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgclone_16-4.3.2-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 16 pgclone_16 pgclone_16-4.3.2-1PIGSTY.el8.aarch64.rpm pigsty 4.3.2 84.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgclone_16-4.3.2-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 16 pgclone_16 pgclone_16-4.3.2-1PIGSTY.el9.x86_64.rpm pigsty 4.3.2 85.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgclone_16-4.3.2-1PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 16 pgclone_16 pgclone_16-4.3.2-1PIGSTY.el9.x86_64.rpm pigsty 4.3.2 85.2KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgclone_16-4.3.2-1PIGSTY.el9.x86_64.rpm
 @ el9.aarch64 16 pgclone_16 pgclone_16-4.3.2-1PIGSTY.el9.aarch64.rpm pigsty 4.3.2 84.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgclone_16-4.3.2-1PIGSTY.el9.aarch64.rpm
 @ el10.x86_64 16 pgclone_16 pgclone_16-4.3.2-1PIGSTY.el10.x86_64.rpm pigsty 4.3.2 86.3KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgclone_16-4.3.2-1PIGSTY.el10.x86_64.rpm
 @ el10.aarch64 16 pgclone_16 pgclone_16-4.3.2-1PIGSTY.el10.aarch64.rpm pigsty 4.3.2 84.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgclone_16-4.3.2-1PIGSTY.el10.aarch64.rpm
@@ -121,7 +121,7 @@ weight: 9590
 @ el8.aarch64 15 pgclone_15 pgclone_15-4.3.2-1PIGSTY.el8.aarch64.rpm pigsty 4.3.2 84.4KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgclone_15-4.3.2-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 15 pgclone_15 pgclone_15-4.3.2-1PIGSTY.el9.x86_64.rpm pigsty 4.3.2 85.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgclone_15-4.3.2-1PIGSTY.el9.x86_64.rpm
 @ el9.aarch64 15 pgclone_15 pgclone_15-4.3.2-1PIGSTY.el9.aarch64.rpm pigsty 4.3.2 84.9KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgclone_15-4.3.2-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 15 pgclone_15 pgclone_15-4.3.2-1PIGSTY.el10.x86_64.rpm pigsty 4.3.2 86.2KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgclone_15-4.3.2-1PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 15 pgclone_15 pgclone_15-4.3.2-1PIGSTY.el10.x86_64.rpm pigsty 4.3.2 86.3KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgclone_15-4.3.2-1PIGSTY.el10.x86_64.rpm
 @ el10.aarch64 15 pgclone_15 pgclone_15-4.3.2-1PIGSTY.el10.aarch64.rpm pigsty 4.3.2 84.6KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgclone_15-4.3.2-1PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 15 postgresql-15-pgclone postgresql-15-pgclone_4.3.2-1PIGSTY~bookworm_amd64.deb pigsty 4.3.2 198.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-15-pgclone_4.3.2-1PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 15 postgresql-15-pgclone postgresql-15-pgclone_4.3.2-1PIGSTY~bookworm_arm64.deb pigsty 4.3.2 193.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-15-pgclone_4.3.2-1PIGSTY~bookworm_arm64.deb
@@ -138,7 +138,7 @@ weight: 9590
 @ el9.x86_64 14 pgclone_14 pgclone_14-4.3.2-1PIGSTY.el9.x86_64.rpm pigsty 4.3.2 85.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgclone_14-4.3.2-1PIGSTY.el9.x86_64.rpm
 @ el9.aarch64 14 pgclone_14 pgclone_14-4.3.2-1PIGSTY.el9.aarch64.rpm pigsty 4.3.2 84.8KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgclone_14-4.3.2-1PIGSTY.el9.aarch64.rpm
 @ el10.x86_64 14 pgclone_14 pgclone_14-4.3.2-1PIGSTY.el10.x86_64.rpm pigsty 4.3.2 86.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgclone_14-4.3.2-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 14 pgclone_14 pgclone_14-4.3.2-1PIGSTY.el10.aarch64.rpm pigsty 4.3.2 84.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgclone_14-4.3.2-1PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 14 pgclone_14 pgclone_14-4.3.2-1PIGSTY.el10.aarch64.rpm pigsty 4.3.2 84.6KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgclone_14-4.3.2-1PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 14 postgresql-14-pgclone postgresql-14-pgclone_4.3.2-1PIGSTY~bookworm_amd64.deb pigsty 4.3.2 197.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-14-pgclone_4.3.2-1PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 14 postgresql-14-pgclone postgresql-14-pgclone_4.3.2-1PIGSTY~bookworm_arm64.deb pigsty 4.3.2 192.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgclone/postgresql-14-pgclone_4.3.2-1PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 14 postgresql-14-pgclone postgresql-14-pgclone_4.3.2-1PIGSTY~trixie_amd64.deb pigsty 4.3.2 197.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgclone/postgresql-14-pgclone_4.3.2-1PIGSTY~trixie_amd64.deb
@@ -313,3 +313,4 @@ SELECT pgclone.cancel(1);
 - The usage guide states the extension requires superuser privileges to install and use.
 - Async features need `shared_preload_libraries = 'pgclone'`; worker-pool parallelism also depends on `max_worker_processes`.
 - Consistent async clones may still be opted out with `{"consistent": false}` if a source-side snapshot issue must be bypassed.
+- Pigsty packages `4.3.2` for PostgreSQL 14-18. The June 2026 RPM rebuild used an `LLVM_BINPATH` build fix; reviewed upstream, no material stub delta beyond the package caveat and existing v4.3.2 async-snapshot note.

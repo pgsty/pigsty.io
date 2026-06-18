@@ -11,10 +11,10 @@ weight: 8750
     <div class="ext-card__title">ibarwick/firebird_fdw</div>
     <div class="ext-card__desc">https://github.com/ibarwick/firebird_fdw</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/firebird_fdw-1.4.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/firebird_fdw-1.4.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">firebird_fdw-1.4.1.tar.gz</div>
-    <div class="ext-card__desc">firebird_fdw-1.4.1.tar.gz</div>
+    <div class="ext-card__title">firebird_fdw-1.4.2.tar.gz</div>
+    <div class="ext-card__desc">firebird_fdw-1.4.2.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 8750
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`firebird_fdw`**](/ext/e/firebird_fdw) | `1.4.1` | <a class="ext-badge ext-badge--cate fdw" href="/ext/cate/fdw">FDW</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`firebird_fdw`**](/ext/e/firebird_fdw) | `1.4.2` | <a class="ext-badge ext-badge--cate fdw" href="/ext/cate/fdw">FDW</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,138 +38,159 @@ weight: 8750
 {.ext-table .ext-table--rel}
 
 
-> pg18 breaks
-
-
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.1` | {{< pgvers "18,17,16,15,14" >}} | `firebird_fdw` | - |
-| [**RPM**](/ext/rpm#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.1` | {{< pgvers "18,17,16,15,14" >}} | `firebird_fdw_$v` | `libfq` |
-| [**DEB**](/ext/deb#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-firebird-fdw` | `libfq` |
+| [**EXT**](/ext/list#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.2` | {{< pgvers "18,17,16,15,14" >}} | `firebird_fdw` | - |
+| [**RPM**](/ext/rpm#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.2` | {{< pgvers "18,17,16,15,14" >}} | `firebird_fdw_$v` | `libfq` |
+| [**DEB**](/ext/deb#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.2` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-firebird-fdw` | `libfq` |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 4 |
-| el8.aarch64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 2 | AVAIL PIGSTY 1.4.1 2 |
-| el9.x86_64 | AVAIL PGDG 1.4.1 3 | AVAIL PGDG 1.4.1 3 | AVAIL PGDG 1.4.1 3 | AVAIL PGDG 1.4.1 3 | AVAIL PGDG 1.4.1 5 |
-| el9.aarch64 | AVAIL PGDG 1.4.1 3 | AVAIL PGDG 1.4.1 3 | AVAIL PGDG 1.4.1 4 | AVAIL PGDG 1.4.1 4 | AVAIL PGDG 1.4.1 5 |
-| el10.x86_64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| el10.aarch64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| d12.x86_64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| d12.aarch64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| d13.x86_64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| d13.aarch64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| u22.x86_64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| u22.aarch64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| u24.x86_64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| u24.aarch64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| u26.x86_64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| u26.aarch64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-@ el8.x86_64 18 firebird_fdw_18 firebird_fdw_18-1.4.1-1PIGSTY.el8.x86_64.rpm pigsty 1.4.1 53.9KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/firebird_fdw_18-1.4.1-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 18 firebird_fdw_18 firebird_fdw_18-1.4.1-1PIGSTY.el8.aarch64.rpm pigsty 1.4.1 52.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/firebird_fdw_18-1.4.1-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 18 firebird_fdw_18 firebird_fdw_18-1.4.1-3PGDG.rhel9.7.x86_64.rpm pgdg 1.4.1 52.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/firebird_fdw_18-1.4.1-3PGDG.rhel9.7.x86_64.rpm
-@ el9.x86_64 18 firebird_fdw_18 firebird_fdw_18-1.4.1-1PIGSTY.el9.x86_64.rpm pigsty 1.4.1 53.9KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/firebird_fdw_18-1.4.1-1PIGSTY.el9.x86_64.rpm
-@ el9.x86_64 18 firebird_fdw_18 firebird_fdw_18-1.4.1-1PGDG.rhel9.x86_64.rpm pgdg 1.4.1 52.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/firebird_fdw_18-1.4.1-1PGDG.rhel9.x86_64.rpm
-@ el9.aarch64 18 firebird_fdw_18 firebird_fdw_18-1.4.1-3PGDG.rhel9.7.aarch64.rpm pgdg 1.4.1 51.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/firebird_fdw_18-1.4.1-3PGDG.rhel9.7.aarch64.rpm
-@ el9.aarch64 18 firebird_fdw_18 firebird_fdw_18-1.4.1-1PIGSTY.el9.aarch64.rpm pigsty 1.4.1 52.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/firebird_fdw_18-1.4.1-1PIGSTY.el9.aarch64.rpm
-@ el9.aarch64 18 firebird_fdw_18 firebird_fdw_18-1.4.1-1PGDG.rhel9.aarch64.rpm pgdg 1.4.1 51.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/firebird_fdw_18-1.4.1-1PGDG.rhel9.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.1-1PIGSTY~bookworm_amd64.deb pigsty 1.4.1 140.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.1-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.1-1PIGSTY~bookworm_arm64.deb pigsty 1.4.1 137.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.1-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.1-1PIGSTY~trixie_amd64.deb pigsty 1.4.1 141.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.1-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.1-1PIGSTY~trixie_arm64.deb pigsty 1.4.1 137.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.1-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.1-1PIGSTY~jammy_amd64.deb pigsty 1.4.1 150.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.1-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.1-1PIGSTY~jammy_arm64.deb pigsty 1.4.1 148.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.1-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.1-1PIGSTY~noble_amd64.deb pigsty 1.4.1 143.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.1-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.1-1PIGSTY~noble_arm64.deb pigsty 1.4.1 143.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.1-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.1-1PIGSTY~resolute_amd64.deb pigsty 1.4.1 142.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.1-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.1-1PIGSTY~resolute_arm64.deb pigsty 1.4.1 141.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.1-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 17 firebird_fdw_17 firebird_fdw_17-1.4.1-1PIGSTY.el8.x86_64.rpm pigsty 1.4.1 53.9KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/firebird_fdw_17-1.4.1-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 17 firebird_fdw_17 firebird_fdw_17-1.4.1-1PIGSTY.el8.aarch64.rpm pigsty 1.4.1 52.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/firebird_fdw_17-1.4.1-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 17 firebird_fdw_17 firebird_fdw_17-1.4.1-3PGDG.rhel9.7.x86_64.rpm pgdg 1.4.1 52.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/firebird_fdw_17-1.4.1-3PGDG.rhel9.7.x86_64.rpm
-@ el9.x86_64 17 firebird_fdw_17 firebird_fdw_17-1.4.1-1PIGSTY.el9.x86_64.rpm pigsty 1.4.1 54.3KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/firebird_fdw_17-1.4.1-1PIGSTY.el9.x86_64.rpm
-@ el9.x86_64 17 firebird_fdw_17 firebird_fdw_17-1.4.0-3PGDG.rhel9.x86_64.rpm pgdg 1.4.0 52.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/firebird_fdw_17-1.4.0-3PGDG.rhel9.x86_64.rpm
-@ el9.aarch64 17 firebird_fdw_17 firebird_fdw_17-1.4.1-3PGDG.rhel9.7.aarch64.rpm pgdg 1.4.1 51.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/firebird_fdw_17-1.4.1-3PGDG.rhel9.7.aarch64.rpm
-@ el9.aarch64 17 firebird_fdw_17 firebird_fdw_17-1.4.1-1PIGSTY.el9.aarch64.rpm pigsty 1.4.1 52.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/firebird_fdw_17-1.4.1-1PIGSTY.el9.aarch64.rpm
-@ el9.aarch64 17 firebird_fdw_17 firebird_fdw_17-1.4.0-3PGDG.rhel9.aarch64.rpm pgdg 1.4.0 51.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/firebird_fdw_17-1.4.0-3PGDG.rhel9.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.1-1PIGSTY~bookworm_amd64.deb pigsty 1.4.1 140.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.1-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.1-1PIGSTY~bookworm_arm64.deb pigsty 1.4.1 137.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.1-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.1-1PIGSTY~trixie_amd64.deb pigsty 1.4.1 140.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.1-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.1-1PIGSTY~trixie_arm64.deb pigsty 1.4.1 137.6KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.1-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.1-1PIGSTY~jammy_amd64.deb pigsty 1.4.1 169.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.1-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.1-1PIGSTY~jammy_arm64.deb pigsty 1.4.1 167.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.1-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.1-1PIGSTY~noble_amd64.deb pigsty 1.4.1 143.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.1-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.1-1PIGSTY~noble_arm64.deb pigsty 1.4.1 142.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.1-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.1-1PIGSTY~resolute_amd64.deb pigsty 1.4.1 142.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.1-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.1-1PIGSTY~resolute_arm64.deb pigsty 1.4.1 140.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.1-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 16 firebird_fdw_16 firebird_fdw_16-1.4.1-1PIGSTY.el8.x86_64.rpm pigsty 1.4.1 53.9KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/firebird_fdw_16-1.4.1-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 16 firebird_fdw_16 firebird_fdw_16-1.4.1-1PIGSTY.el8.aarch64.rpm pigsty 1.4.1 52.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/firebird_fdw_16-1.4.1-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 16 firebird_fdw_16 firebird_fdw_16-1.4.1-3PGDG.rhel9.7.x86_64.rpm pgdg 1.4.1 52.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/firebird_fdw_16-1.4.1-3PGDG.rhel9.7.x86_64.rpm
-@ el9.x86_64 16 firebird_fdw_16 firebird_fdw_16-1.4.1-1PIGSTY.el9.x86_64.rpm pigsty 1.4.1 53.8KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/firebird_fdw_16-1.4.1-1PIGSTY.el9.x86_64.rpm
-@ el9.x86_64 16 firebird_fdw_16 firebird_fdw_16-1.3.1-1PGDG.rhel9.x86_64.rpm pgdg 1.3.1 51.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/firebird_fdw_16-1.3.1-1PGDG.rhel9.x86_64.rpm
-@ el9.aarch64 16 firebird_fdw_16 firebird_fdw_16-1.4.1-3PGDG.rhel9.7.aarch64.rpm pgdg 1.4.1 51.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/firebird_fdw_16-1.4.1-3PGDG.rhel9.7.aarch64.rpm
-@ el9.aarch64 16 firebird_fdw_16 firebird_fdw_16-1.4.1-1PIGSTY.el9.aarch64.rpm pigsty 1.4.1 52.6KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/firebird_fdw_16-1.4.1-1PIGSTY.el9.aarch64.rpm
-@ el9.aarch64 16 firebird_fdw_16 firebird_fdw_16-1.4.0-1PGDG.rhel9.aarch64.rpm pgdg 1.4.0 51.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/firebird_fdw_16-1.4.0-1PGDG.rhel9.aarch64.rpm
-@ el9.aarch64 16 firebird_fdw_16 firebird_fdw_16-1.3.1-1PGDG.rhel9.aarch64.rpm pgdg 1.3.1 49.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/firebird_fdw_16-1.3.1-1PGDG.rhel9.aarch64.rpm
-@ d12.x86_64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.1-1PIGSTY~bookworm_amd64.deb pigsty 1.4.1 140.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.1-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.1-1PIGSTY~bookworm_arm64.deb pigsty 1.4.1 137.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.1-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.1-1PIGSTY~trixie_amd64.deb pigsty 1.4.1 140.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.1-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.1-1PIGSTY~trixie_arm64.deb pigsty 1.4.1 137.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.1-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.1-1PIGSTY~jammy_amd64.deb pigsty 1.4.1 169.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.1-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.1-1PIGSTY~jammy_arm64.deb pigsty 1.4.1 167.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.1-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.1-1PIGSTY~noble_amd64.deb pigsty 1.4.1 143.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.1-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.1-1PIGSTY~noble_arm64.deb pigsty 1.4.1 142.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.1-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.1-1PIGSTY~resolute_amd64.deb pigsty 1.4.1 142.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.1-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.1-1PIGSTY~resolute_arm64.deb pigsty 1.4.1 140.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.1-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 15 firebird_fdw_15 firebird_fdw_15-1.4.1-1PIGSTY.el8.x86_64.rpm pigsty 1.4.1 54.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/firebird_fdw_15-1.4.1-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 15 firebird_fdw_15 firebird_fdw_15-1.4.1-1PIGSTY.el8.aarch64.rpm pigsty 1.4.1 52.5KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/firebird_fdw_15-1.4.1-1PIGSTY.el8.aarch64.rpm
+| el8.x86_64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 4 |
+| el8.aarch64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 2 | AVAIL PIGSTY 1.4.2 2 |
+| el9.x86_64 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 |
+| el9.aarch64 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 |
+| el10.x86_64 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 |
+| el10.aarch64 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 |
+| d12.x86_64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+| d12.aarch64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+| d13.x86_64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+| d13.aarch64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+| u22.x86_64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+| u22.aarch64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+| u24.x86_64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+| u24.aarch64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+| u26.x86_64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+| u26.aarch64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+@ el8.x86_64 18 firebird_fdw_18 firebird_fdw_18-1.4.2-1PIGSTY.el8.x86_64.rpm pigsty 1.4.2 53.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/firebird_fdw_18-1.4.2-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 18 firebird_fdw_18 firebird_fdw_18-1.4.2-1PIGSTY.el8.aarch64.rpm pigsty 1.4.2 51.8KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/firebird_fdw_18-1.4.2-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 18 firebird_fdw_18 firebird_fdw_18-1.4.2-1PIGSTY.el9.x86_64.rpm pigsty 1.4.2 53.4KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/firebird_fdw_18-1.4.2-1PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 18 firebird_fdw_18 firebird_fdw_18-1.4.2-1PGDG.rhel9.8.x86_64.rpm pgdg 1.4.2 52.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/firebird_fdw_18-1.4.2-1PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 18 firebird_fdw_18 firebird_fdw_18-1.4.1-3PGDG.rhel9.8.x86_64.rpm pgdg 1.4.1 52.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/firebird_fdw_18-1.4.1-3PGDG.rhel9.8.x86_64.rpm
+@ el9.aarch64 18 firebird_fdw_18 firebird_fdw_18-1.4.2-1PIGSTY.el9.aarch64.rpm pigsty 1.4.2 52.3KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/firebird_fdw_18-1.4.2-1PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 18 firebird_fdw_18 firebird_fdw_18-1.4.2-1PGDG.rhel9.8.aarch64.rpm pgdg 1.4.2 51.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/firebird_fdw_18-1.4.2-1PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 18 firebird_fdw_18 firebird_fdw_18-1.4.1-3PGDG.rhel9.8.aarch64.rpm pgdg 1.4.1 51.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/firebird_fdw_18-1.4.1-3PGDG.rhel9.8.aarch64.rpm
+@ el10.x86_64 18 firebird_fdw_18 firebird_fdw_18-1.4.2-1PIGSTY.el10.x86_64.rpm pigsty 1.4.2 54.2KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/firebird_fdw_18-1.4.2-1PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 18 firebird_fdw_18 firebird_fdw_18-1.4.2-1PGDG.rhel10.2.x86_64.rpm pgdg 1.4.2 53.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/firebird_fdw_18-1.4.2-1PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 18 firebird_fdw_18 firebird_fdw_18-1.4.1-3PGDG.rhel10.2.x86_64.rpm pgdg 1.4.1 53.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/firebird_fdw_18-1.4.1-3PGDG.rhel10.2.x86_64.rpm
+@ el10.aarch64 18 firebird_fdw_18 firebird_fdw_18-1.4.2-1PIGSTY.el10.aarch64.rpm pigsty 1.4.2 52.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/firebird_fdw_18-1.4.2-1PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 18 firebird_fdw_18 firebird_fdw_18-1.4.2-1PGDG.rhel10.2.aarch64.rpm pgdg 1.4.2 51.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/firebird_fdw_18-1.4.2-1PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 18 firebird_fdw_18 firebird_fdw_18-1.4.1-3PGDG.rhel10.2.aarch64.rpm pgdg 1.4.1 52.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/firebird_fdw_18-1.4.1-3PGDG.rhel10.2.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.2-1PIGSTY~bookworm_amd64.deb pigsty 1.4.2 139.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.2-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.2-1PIGSTY~bookworm_arm64.deb pigsty 1.4.2 136.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.2-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.2-1PIGSTY~trixie_amd64.deb pigsty 1.4.2 139.6KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.2-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.2-1PIGSTY~trixie_arm64.deb pigsty 1.4.2 136.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.2-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.2-1PIGSTY~jammy_amd64.deb pigsty 1.4.2 148.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.2-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.2-1PIGSTY~jammy_arm64.deb pigsty 1.4.2 146.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.2-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.2-1PIGSTY~noble_amd64.deb pigsty 1.4.2 142.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.2-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.2-1PIGSTY~noble_arm64.deb pigsty 1.4.2 141.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.2-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.2-1PIGSTY~resolute_amd64.deb pigsty 1.4.2 141.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.2-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-firebird-fdw postgresql-18-firebird-fdw_1.4.2-1PIGSTY~resolute_arm64.deb pigsty 1.4.2 139.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-18-firebird-fdw_1.4.2-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 17 firebird_fdw_17 firebird_fdw_17-1.4.2-1PIGSTY.el8.x86_64.rpm pigsty 1.4.2 53.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/firebird_fdw_17-1.4.2-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 17 firebird_fdw_17 firebird_fdw_17-1.4.2-1PIGSTY.el8.aarch64.rpm pigsty 1.4.2 51.6KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/firebird_fdw_17-1.4.2-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 17 firebird_fdw_17 firebird_fdw_17-1.4.2-1PIGSTY.el9.x86_64.rpm pigsty 1.4.2 53.5KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/firebird_fdw_17-1.4.2-1PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 17 firebird_fdw_17 firebird_fdw_17-1.4.2-1PGDG.rhel9.8.x86_64.rpm pgdg 1.4.2 52.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/firebird_fdw_17-1.4.2-1PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 17 firebird_fdw_17 firebird_fdw_17-1.4.1-3PGDG.rhel9.8.x86_64.rpm pgdg 1.4.1 52.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/firebird_fdw_17-1.4.1-3PGDG.rhel9.8.x86_64.rpm
+@ el9.aarch64 17 firebird_fdw_17 firebird_fdw_17-1.4.2-1PIGSTY.el9.aarch64.rpm pigsty 1.4.2 52.4KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/firebird_fdw_17-1.4.2-1PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 17 firebird_fdw_17 firebird_fdw_17-1.4.2-1PGDG.rhel9.8.aarch64.rpm pgdg 1.4.2 51.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/firebird_fdw_17-1.4.2-1PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 17 firebird_fdw_17 firebird_fdw_17-1.4.1-3PGDG.rhel9.8.aarch64.rpm pgdg 1.4.1 51.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/firebird_fdw_17-1.4.1-3PGDG.rhel9.8.aarch64.rpm
+@ el10.x86_64 17 firebird_fdw_17 firebird_fdw_17-1.4.2-1PIGSTY.el10.x86_64.rpm pigsty 1.4.2 54.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/firebird_fdw_17-1.4.2-1PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 17 firebird_fdw_17 firebird_fdw_17-1.4.2-1PGDG.rhel10.2.x86_64.rpm pgdg 1.4.2 53.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/firebird_fdw_17-1.4.2-1PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 17 firebird_fdw_17 firebird_fdw_17-1.4.1-3PGDG.rhel10.2.x86_64.rpm pgdg 1.4.1 53.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/firebird_fdw_17-1.4.1-3PGDG.rhel10.2.x86_64.rpm
+@ el10.aarch64 17 firebird_fdw_17 firebird_fdw_17-1.4.2-1PIGSTY.el10.aarch64.rpm pigsty 1.4.2 52.5KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/firebird_fdw_17-1.4.2-1PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 17 firebird_fdw_17 firebird_fdw_17-1.4.2-1PGDG.rhel10.2.aarch64.rpm pgdg 1.4.2 51.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/firebird_fdw_17-1.4.2-1PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 17 firebird_fdw_17 firebird_fdw_17-1.4.1-3PGDG.rhel10.2.aarch64.rpm pgdg 1.4.1 51.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/firebird_fdw_17-1.4.1-3PGDG.rhel10.2.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.2-1PIGSTY~bookworm_amd64.deb pigsty 1.4.2 139.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.2-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.2-1PIGSTY~bookworm_arm64.deb pigsty 1.4.2 136.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.2-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.2-1PIGSTY~trixie_amd64.deb pigsty 1.4.2 139.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.2-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.2-1PIGSTY~trixie_arm64.deb pigsty 1.4.2 136.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.2-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.2-1PIGSTY~jammy_amd64.deb pigsty 1.4.2 167.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.2-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.2-1PIGSTY~jammy_arm64.deb pigsty 1.4.2 166.1KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.2-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.2-1PIGSTY~noble_amd64.deb pigsty 1.4.2 142.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.2-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.2-1PIGSTY~noble_arm64.deb pigsty 1.4.2 141.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.2-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.2-1PIGSTY~resolute_amd64.deb pigsty 1.4.2 140.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.2-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-firebird-fdw postgresql-17-firebird-fdw_1.4.2-1PIGSTY~resolute_arm64.deb pigsty 1.4.2 139.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-17-firebird-fdw_1.4.2-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 16 firebird_fdw_16 firebird_fdw_16-1.4.2-1PIGSTY.el8.x86_64.rpm pigsty 1.4.2 53.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/firebird_fdw_16-1.4.2-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 16 firebird_fdw_16 firebird_fdw_16-1.4.2-1PIGSTY.el8.aarch64.rpm pigsty 1.4.2 51.6KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/firebird_fdw_16-1.4.2-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 16 firebird_fdw_16 firebird_fdw_16-1.4.2-1PIGSTY.el9.x86_64.rpm pigsty 1.4.2 53.5KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/firebird_fdw_16-1.4.2-1PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 16 firebird_fdw_16 firebird_fdw_16-1.4.2-1PGDG.rhel9.8.x86_64.rpm pgdg 1.4.2 52.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/firebird_fdw_16-1.4.2-1PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 16 firebird_fdw_16 firebird_fdw_16-1.4.1-3PGDG.rhel9.8.x86_64.rpm pgdg 1.4.1 52.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/firebird_fdw_16-1.4.1-3PGDG.rhel9.8.x86_64.rpm
+@ el9.aarch64 16 firebird_fdw_16 firebird_fdw_16-1.4.2-1PIGSTY.el9.aarch64.rpm pigsty 1.4.2 52.3KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/firebird_fdw_16-1.4.2-1PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 16 firebird_fdw_16 firebird_fdw_16-1.4.2-1PGDG.rhel9.8.aarch64.rpm pgdg 1.4.2 51.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/firebird_fdw_16-1.4.2-1PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 16 firebird_fdw_16 firebird_fdw_16-1.4.1-3PGDG.rhel9.8.aarch64.rpm pgdg 1.4.1 51.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/firebird_fdw_16-1.4.1-3PGDG.rhel9.8.aarch64.rpm
+@ el10.x86_64 16 firebird_fdw_16 firebird_fdw_16-1.4.2-1PIGSTY.el10.x86_64.rpm pigsty 1.4.2 54.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/firebird_fdw_16-1.4.2-1PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 16 firebird_fdw_16 firebird_fdw_16-1.4.2-1PGDG.rhel10.2.x86_64.rpm pgdg 1.4.2 53.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/firebird_fdw_16-1.4.2-1PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 16 firebird_fdw_16 firebird_fdw_16-1.4.1-3PGDG.rhel10.2.x86_64.rpm pgdg 1.4.1 53.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/firebird_fdw_16-1.4.1-3PGDG.rhel10.2.x86_64.rpm
+@ el10.aarch64 16 firebird_fdw_16 firebird_fdw_16-1.4.2-1PIGSTY.el10.aarch64.rpm pigsty 1.4.2 52.6KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/firebird_fdw_16-1.4.2-1PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 16 firebird_fdw_16 firebird_fdw_16-1.4.2-1PGDG.rhel10.2.aarch64.rpm pgdg 1.4.2 51.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/firebird_fdw_16-1.4.2-1PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 16 firebird_fdw_16 firebird_fdw_16-1.4.1-3PGDG.rhel10.2.aarch64.rpm pgdg 1.4.1 51.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/firebird_fdw_16-1.4.1-3PGDG.rhel10.2.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.2-1PIGSTY~bookworm_amd64.deb pigsty 1.4.2 139.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.2-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.2-1PIGSTY~bookworm_arm64.deb pigsty 1.4.2 136.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.2-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.2-1PIGSTY~trixie_amd64.deb pigsty 1.4.2 139.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.2-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.2-1PIGSTY~trixie_arm64.deb pigsty 1.4.2 136.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.2-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.2-1PIGSTY~jammy_amd64.deb pigsty 1.4.2 167.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.2-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.2-1PIGSTY~jammy_arm64.deb pigsty 1.4.2 165.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.2-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.2-1PIGSTY~noble_amd64.deb pigsty 1.4.2 142.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.2-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.2-1PIGSTY~noble_arm64.deb pigsty 1.4.2 141.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.2-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.2-1PIGSTY~resolute_amd64.deb pigsty 1.4.2 140.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.2-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 16 postgresql-16-firebird-fdw postgresql-16-firebird-fdw_1.4.2-1PIGSTY~resolute_arm64.deb pigsty 1.4.2 139.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-16-firebird-fdw_1.4.2-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 15 firebird_fdw_15 firebird_fdw_15-1.4.2-1PIGSTY.el8.x86_64.rpm pigsty 1.4.2 53.9KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/firebird_fdw_15-1.4.2-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 15 firebird_fdw_15 firebird_fdw_15-1.4.2-1PIGSTY.el8.aarch64.rpm pigsty 1.4.2 52.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/firebird_fdw_15-1.4.2-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 15 firebird_fdw_15 firebird_fdw_15-1.3.0-1.rhel8.aarch64.rpm pgdg 1.3.0 49.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/firebird_fdw_15-1.3.0-1.rhel8.aarch64.rpm
-@ el9.x86_64 15 firebird_fdw_15 firebird_fdw_15-1.4.1-3PGDG.rhel9.7.x86_64.rpm pgdg 1.4.1 53.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/firebird_fdw_15-1.4.1-3PGDG.rhel9.7.x86_64.rpm
-@ el9.x86_64 15 firebird_fdw_15 firebird_fdw_15-1.4.1-1PIGSTY.el9.x86_64.rpm pigsty 1.4.1 54.9KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/firebird_fdw_15-1.4.1-1PIGSTY.el9.x86_64.rpm
-@ el9.x86_64 15 firebird_fdw_15 firebird_fdw_15-1.3.0-1.rhel9.x86_64.rpm pgdg 1.3.0 52.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/firebird_fdw_15-1.3.0-1.rhel9.x86_64.rpm
-@ el9.aarch64 15 firebird_fdw_15 firebird_fdw_15-1.4.1-3PGDG.rhel9.7.aarch64.rpm pgdg 1.4.1 52.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/firebird_fdw_15-1.4.1-3PGDG.rhel9.7.aarch64.rpm
-@ el9.aarch64 15 firebird_fdw_15 firebird_fdw_15-1.4.1-1PIGSTY.el9.aarch64.rpm pigsty 1.4.1 53.9KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/firebird_fdw_15-1.4.1-1PIGSTY.el9.aarch64.rpm
-@ el9.aarch64 15 firebird_fdw_15 firebird_fdw_15-1.4.0-1PGDG.rhel9.aarch64.rpm pgdg 1.4.0 52.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/firebird_fdw_15-1.4.0-1PGDG.rhel9.aarch64.rpm
-@ el9.aarch64 15 firebird_fdw_15 firebird_fdw_15-1.3.0-1.rhel9.aarch64.rpm pgdg 1.3.0 51.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/firebird_fdw_15-1.3.0-1.rhel9.aarch64.rpm
-@ d12.x86_64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.1-1PIGSTY~bookworm_amd64.deb pigsty 1.4.1 141.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.1-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.1-1PIGSTY~bookworm_arm64.deb pigsty 1.4.1 138.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.1-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.1-1PIGSTY~trixie_amd64.deb pigsty 1.4.1 141.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.1-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.1-1PIGSTY~trixie_arm64.deb pigsty 1.4.1 138.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.1-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.1-1PIGSTY~jammy_amd64.deb pigsty 1.4.1 170.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.1-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.1-1PIGSTY~jammy_arm64.deb pigsty 1.4.1 168.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.1-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.1-1PIGSTY~noble_amd64.deb pigsty 1.4.1 144.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.1-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.1-1PIGSTY~noble_arm64.deb pigsty 1.4.1 143.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.1-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.1-1PIGSTY~resolute_amd64.deb pigsty 1.4.1 143.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.1-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.1-1PIGSTY~resolute_arm64.deb pigsty 1.4.1 141.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.1-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 14 firebird_fdw_14 firebird_fdw_14-1.4.1-1PIGSTY.el8.x86_64.rpm pigsty 1.4.1 54.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/firebird_fdw_14-1.4.1-1PIGSTY.el8.x86_64.rpm
+@ el9.x86_64 15 firebird_fdw_15 firebird_fdw_15-1.4.2-1PIGSTY.el9.x86_64.rpm pigsty 1.4.2 54.4KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/firebird_fdw_15-1.4.2-1PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 15 firebird_fdw_15 firebird_fdw_15-1.4.2-1PGDG.rhel9.8.x86_64.rpm pgdg 1.4.2 53.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/firebird_fdw_15-1.4.2-1PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 15 firebird_fdw_15 firebird_fdw_15-1.4.1-3PGDG.rhel9.8.x86_64.rpm pgdg 1.4.1 53.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/firebird_fdw_15-1.4.1-3PGDG.rhel9.8.x86_64.rpm
+@ el9.aarch64 15 firebird_fdw_15 firebird_fdw_15-1.4.2-1PIGSTY.el9.aarch64.rpm pigsty 1.4.2 53.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/firebird_fdw_15-1.4.2-1PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 15 firebird_fdw_15 firebird_fdw_15-1.4.2-1PGDG.rhel9.8.aarch64.rpm pgdg 1.4.2 52.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/firebird_fdw_15-1.4.2-1PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 15 firebird_fdw_15 firebird_fdw_15-1.4.1-3PGDG.rhel9.8.aarch64.rpm pgdg 1.4.1 52.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/firebird_fdw_15-1.4.1-3PGDG.rhel9.8.aarch64.rpm
+@ el10.x86_64 15 firebird_fdw_15 firebird_fdw_15-1.4.2-1PIGSTY.el10.x86_64.rpm pigsty 1.4.2 55.2KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/firebird_fdw_15-1.4.2-1PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 15 firebird_fdw_15 firebird_fdw_15-1.4.2-1PGDG.rhel10.2.x86_64.rpm pgdg 1.4.2 53.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/firebird_fdw_15-1.4.2-1PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 15 firebird_fdw_15 firebird_fdw_15-1.4.1-3PGDG.rhel10.2.x86_64.rpm pgdg 1.4.1 54.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/firebird_fdw_15-1.4.1-3PGDG.rhel10.2.x86_64.rpm
+@ el10.aarch64 15 firebird_fdw_15 firebird_fdw_15-1.4.2-1PIGSTY.el10.aarch64.rpm pigsty 1.4.2 53.9KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/firebird_fdw_15-1.4.2-1PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 15 firebird_fdw_15 firebird_fdw_15-1.4.2-1PGDG.rhel10.2.aarch64.rpm pgdg 1.4.2 52.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/firebird_fdw_15-1.4.2-1PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 15 firebird_fdw_15 firebird_fdw_15-1.4.1-3PGDG.rhel10.2.aarch64.rpm pgdg 1.4.1 53.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/firebird_fdw_15-1.4.1-3PGDG.rhel10.2.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.2-1PIGSTY~bookworm_amd64.deb pigsty 1.4.2 139.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.2-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.2-1PIGSTY~bookworm_arm64.deb pigsty 1.4.2 136.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.2-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.2-1PIGSTY~trixie_amd64.deb pigsty 1.4.2 139.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.2-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.2-1PIGSTY~trixie_arm64.deb pigsty 1.4.2 136.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.2-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.2-1PIGSTY~jammy_amd64.deb pigsty 1.4.2 168.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.2-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.2-1PIGSTY~jammy_arm64.deb pigsty 1.4.2 166.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.2-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.2-1PIGSTY~noble_amd64.deb pigsty 1.4.2 143.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.2-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.2-1PIGSTY~noble_arm64.deb pigsty 1.4.2 142.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.2-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.2-1PIGSTY~resolute_amd64.deb pigsty 1.4.2 141.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.2-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 15 postgresql-15-firebird-fdw postgresql-15-firebird-fdw_1.4.2-1PIGSTY~resolute_arm64.deb pigsty 1.4.2 140.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-15-firebird-fdw_1.4.2-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 14 firebird_fdw_14 firebird_fdw_14-1.4.2-1PIGSTY.el8.x86_64.rpm pigsty 1.4.2 54.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/firebird_fdw_14-1.4.2-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 14 firebird_fdw_14 firebird_fdw_14-1.2.3-2.rhel8.x86_64.rpm pgdg 1.2.3 151.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/firebird_fdw_14-1.2.3-2.rhel8.x86_64.rpm
 @ el8.x86_64 14 firebird_fdw_14 firebird_fdw_14-1.2.3-1.rhel8.x86_64.rpm pgdg 1.2.3 151.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/firebird_fdw_14-1.2.3-1.rhel8.x86_64.rpm
 @ el8.x86_64 14 firebird_fdw_14 firebird_fdw_14-1.2.2-1.rhel8.x86_64.rpm pgdg 1.2.2 151.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/firebird_fdw_14-1.2.2-1.rhel8.x86_64.rpm
-@ el8.aarch64 14 firebird_fdw_14 firebird_fdw_14-1.4.1-1PIGSTY.el8.aarch64.rpm pigsty 1.4.1 52.5KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/firebird_fdw_14-1.4.1-1PIGSTY.el8.aarch64.rpm
+@ el8.aarch64 14 firebird_fdw_14 firebird_fdw_14-1.4.2-1PIGSTY.el8.aarch64.rpm pigsty 1.4.2 52.6KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/firebird_fdw_14-1.4.2-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 14 firebird_fdw_14 firebird_fdw_14-1.3.0-1.rhel8.aarch64.rpm pgdg 1.3.0 49.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/firebird_fdw_14-1.3.0-1.rhel8.aarch64.rpm
-@ el9.x86_64 14 firebird_fdw_14 firebird_fdw_14-1.4.1-3PGDG.rhel9.7.x86_64.rpm pgdg 1.4.1 53.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/firebird_fdw_14-1.4.1-3PGDG.rhel9.7.x86_64.rpm
-@ el9.x86_64 14 firebird_fdw_14 firebird_fdw_14-1.4.1-1PIGSTY.el9.x86_64.rpm pigsty 1.4.1 55.3KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/firebird_fdw_14-1.4.1-1PIGSTY.el9.x86_64.rpm
-@ el9.x86_64 14 firebird_fdw_14 firebird_fdw_14-1.3.0-1.rhel9.x86_64.rpm pgdg 1.3.0 52.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/firebird_fdw_14-1.3.0-1.rhel9.x86_64.rpm
-@ el9.x86_64 14 firebird_fdw_14 firebird_fdw_14-1.2.3-2.rhel9.x86_64.rpm pgdg 1.2.3 153.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/firebird_fdw_14-1.2.3-2.rhel9.x86_64.rpm
-@ el9.x86_64 14 firebird_fdw_14 firebird_fdw_14-1.2.3-1.rhel9.x86_64.rpm pgdg 1.2.3 153.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/firebird_fdw_14-1.2.3-1.rhel9.x86_64.rpm
-@ el9.aarch64 14 firebird_fdw_14 firebird_fdw_14-1.4.1-3PGDG.rhel9.7.aarch64.rpm pgdg 1.4.1 52.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/firebird_fdw_14-1.4.1-3PGDG.rhel9.7.aarch64.rpm
-@ el9.aarch64 14 firebird_fdw_14 firebird_fdw_14-1.4.1-1PIGSTY.el9.aarch64.rpm pigsty 1.4.1 54.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/firebird_fdw_14-1.4.1-1PIGSTY.el9.aarch64.rpm
-@ el9.aarch64 14 firebird_fdw_14 firebird_fdw_14-1.4.0-1PGDG.rhel9.aarch64.rpm pgdg 1.4.0 52.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/firebird_fdw_14-1.4.0-1PGDG.rhel9.aarch64.rpm
-@ el9.aarch64 14 firebird_fdw_14 firebird_fdw_14-1.3.0-1.rhel9.aarch64.rpm pgdg 1.3.0 51.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/firebird_fdw_14-1.3.0-1.rhel9.aarch64.rpm
-@ el9.aarch64 14 firebird_fdw_14 firebird_fdw_14-1.2.3-3.rhel9.aarch64.rpm pgdg 1.2.3 152.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/firebird_fdw_14-1.2.3-3.rhel9.aarch64.rpm
-@ d12.x86_64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.1-1PIGSTY~bookworm_amd64.deb pigsty 1.4.1 141.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.1-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.1-1PIGSTY~bookworm_arm64.deb pigsty 1.4.1 138.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.1-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.1-1PIGSTY~trixie_amd64.deb pigsty 1.4.1 141.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.1-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.1-1PIGSTY~trixie_arm64.deb pigsty 1.4.1 138.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.1-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.1-1PIGSTY~jammy_amd64.deb pigsty 1.4.1 169.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.1-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.1-1PIGSTY~jammy_arm64.deb pigsty 1.4.1 167.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.1-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.1-1PIGSTY~noble_amd64.deb pigsty 1.4.1 144.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.1-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.1-1PIGSTY~noble_arm64.deb pigsty 1.4.1 143.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.1-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.1-1PIGSTY~resolute_amd64.deb pigsty 1.4.1 143.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.1-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.1-1PIGSTY~resolute_arm64.deb pigsty 1.4.1 141.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.1-1PIGSTY~resolute_arm64.deb
+@ el9.x86_64 14 firebird_fdw_14 firebird_fdw_14-1.4.2-1PIGSTY.el9.x86_64.rpm pigsty 1.4.2 55.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/firebird_fdw_14-1.4.2-1PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 14 firebird_fdw_14 firebird_fdw_14-1.4.2-1PGDG.rhel9.8.x86_64.rpm pgdg 1.4.2 53.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/firebird_fdw_14-1.4.2-1PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 14 firebird_fdw_14 firebird_fdw_14-1.4.1-3PGDG.rhel9.8.x86_64.rpm pgdg 1.4.1 53.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/firebird_fdw_14-1.4.1-3PGDG.rhel9.8.x86_64.rpm
+@ el9.aarch64 14 firebird_fdw_14 firebird_fdw_14-1.4.2-1PIGSTY.el9.aarch64.rpm pigsty 1.4.2 54.1KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/firebird_fdw_14-1.4.2-1PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 14 firebird_fdw_14 firebird_fdw_14-1.4.2-1PGDG.rhel9.8.aarch64.rpm pgdg 1.4.2 52.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/firebird_fdw_14-1.4.2-1PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 14 firebird_fdw_14 firebird_fdw_14-1.4.1-3PGDG.rhel9.8.aarch64.rpm pgdg 1.4.1 52.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/firebird_fdw_14-1.4.1-3PGDG.rhel9.8.aarch64.rpm
+@ el10.x86_64 14 firebird_fdw_14 firebird_fdw_14-1.4.2-1PIGSTY.el10.x86_64.rpm pigsty 1.4.2 55.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/firebird_fdw_14-1.4.2-1PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 14 firebird_fdw_14 firebird_fdw_14-1.4.2-1PGDG.rhel10.2.x86_64.rpm pgdg 1.4.2 54.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/firebird_fdw_14-1.4.2-1PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 14 firebird_fdw_14 firebird_fdw_14-1.4.1-3PGDG.rhel10.2.x86_64.rpm pgdg 1.4.1 54.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/firebird_fdw_14-1.4.1-3PGDG.rhel10.2.x86_64.rpm
+@ el10.aarch64 14 firebird_fdw_14 firebird_fdw_14-1.4.2-1PIGSTY.el10.aarch64.rpm pigsty 1.4.2 54.4KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/firebird_fdw_14-1.4.2-1PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 14 firebird_fdw_14 firebird_fdw_14-1.4.2-1PGDG.rhel10.2.aarch64.rpm pgdg 1.4.2 53.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/firebird_fdw_14-1.4.2-1PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 14 firebird_fdw_14 firebird_fdw_14-1.4.1-3PGDG.rhel10.2.aarch64.rpm pgdg 1.4.1 53.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/firebird_fdw_14-1.4.1-3PGDG.rhel10.2.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.2-1PIGSTY~bookworm_amd64.deb pigsty 1.4.2 141.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.2-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.2-1PIGSTY~bookworm_arm64.deb pigsty 1.4.2 138.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.2-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.2-1PIGSTY~trixie_amd64.deb pigsty 1.4.2 141.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.2-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.2-1PIGSTY~trixie_arm64.deb pigsty 1.4.2 138.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.2-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.2-1PIGSTY~jammy_amd64.deb pigsty 1.4.2 169.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.2-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.2-1PIGSTY~jammy_arm64.deb pigsty 1.4.2 167.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.2-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.2-1PIGSTY~noble_amd64.deb pigsty 1.4.2 144.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.2-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.2-1PIGSTY~noble_arm64.deb pigsty 1.4.2 143.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.2-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.2-1PIGSTY~resolute_amd64.deb pigsty 1.4.2 143.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.2-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 14 postgresql-14-firebird-fdw postgresql-14-firebird-fdw_1.4.2-1PIGSTY~resolute_arm64.deb pigsty 1.4.2 141.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/f/firebird-fdw/postgresql-14-firebird-fdw_1.4.2-1PIGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -233,12 +254,11 @@ apt install -y postgresql-14-firebird-fdw   # PG 14
 CREATE EXTENSION firebird_fdw;
 ```
 
-
-
-
 ## Usage
 
-> [firebird_fdw: Foreign data wrapper for Firebird](https://github.com/ibarwick/firebird_fdw)
+Sources: [upstream README](https://github.com/ibarwick/firebird_fdw), [1.4.2 README](https://github.com/ibarwick/firebird_fdw/blob/REL_1_4_STABLE/README.md), [1.4.2 tag](https://github.com/ibarwick/firebird_fdw/tree/1.4.2).
+
+`firebird_fdw` connects PostgreSQL to Firebird databases through the foreign data wrapper API. It supports reads, writes, `IMPORT FOREIGN SCHEMA`, predicate pushdown for supported expressions, connection caching, and foreign-table `TRUNCATE` on PostgreSQL 14+.
 
 ### Create Server
 
@@ -249,7 +269,16 @@ CREATE SERVER firebird_server FOREIGN DATA WRAPPER firebird_fdw
   OPTIONS (address 'localhost', database '/path/to/database.fdb');
 ```
 
-**Server Options:** `address` (default `localhost`), `port` (default `3050`), `database` (required, path to Firebird database file), `updatable` (default `true`), `disable_pushdowns` (disable WHERE clause pushdown), `quote_identifiers`, `implicit_bool_type` (enable integer-to-boolean conversion), `batch_size` (PostgreSQL 14+).
+Server options include:
+
+- `address`, default `localhost`.
+- `port`, default `3050`.
+- `database`, the Firebird database name or path.
+- `updatable`, default `true`; table-level settings can override it.
+- `disable_pushdowns`, useful for debugging or benchmarking.
+- `quote_identifiers`, to quote table and column identifiers by default.
+- `implicit_bool_type`, for integer-backed Firebird boolean columns.
+- `batch_size`, for multi-row inserts on PostgreSQL 14+.
 
 ### Create User Mapping
 
@@ -280,7 +309,7 @@ SERVER firebird_server
 OPTIONS (table_name 'fdw_test');
 ```
 
-With a custom query (read-only):
+With a custom query, the foreign table is read-only:
 
 ```sql
 CREATE FOREIGN TABLE fb_query (
@@ -291,9 +320,7 @@ SERVER firebird_server
 OPTIONS (query $$ SELECT id, val FROM fdw_test WHERE id > 10 $$);
 ```
 
-**Table Options:** `table_name`, `query` (mutually exclusive with `table_name`, read-only), `updatable`, `estimated_row_count`, `quote_identifier`, `batch_size`.
-
-**Column Options:** `column_name`, `quote_identifier`, `implicit_bool_type`.
+Table options include `table_name`, `query`, `updatable`, `estimated_row_count`, `quote_identifier`, and `batch_size`. Column options include `column_name`, `quote_identifier`, and `implicit_bool_type`.
 
 ### Import Foreign Schema
 
@@ -304,9 +331,7 @@ IMPORT FOREIGN SCHEMA someschema
   OPTIONS (import_views 'true', verbose 'true');
 ```
 
-**Import Options:** `import_not_null` (default `true`), `import_views` (default `true`), `updatable`, `verbose`.
-
-The schema parameter has no particular meaning in Firebird and can be set to any value.
+Import options include `import_not_null`, `import_views`, `updatable`, and `verbose`. The schema name has no special Firebird meaning and can be any value accepted by PostgreSQL's `IMPORT FOREIGN SCHEMA` syntax.
 
 ### CRUD Operations
 
@@ -315,4 +340,23 @@ SELECT * FROM fb_test WHERE id > 5;
 INSERT INTO fb_test VALUES (10, 'new record');
 UPDATE fb_test SET val = 'updated' WHERE id = 10;
 DELETE FROM fb_test WHERE id = 10;
+TRUNCATE fb_test;
 ```
+
+`UPDATE` and `DELETE` use Firebird's `RDB$DB_KEY`. `TRUNCATE` is implemented as an unqualified Firebird `DELETE` because Firebird has no native `TRUNCATE` statement.
+
+### Utility Functions
+
+- `firebird_fdw_version()` returns the FDW version as an integer.
+- `firebird_fdw_close_connections()` closes cached Firebird connections for the current PostgreSQL session.
+- `firebird_fdw_server_options(servername text)` shows effective server option values and whether each was explicitly provided.
+- `firebird_fdw_diag()` returns diagnostic key/value data, including FDW and `libfq` versions.
+- `firebird_version()` reports Firebird server versions for configured foreign servers and may open connections to do so.
+
+### Caveats
+
+- Pigsty packages `firebird_fdw` 1.4.2 for PostgreSQL 14-18. Upstream documents compatibility with PostgreSQL 10-19, with newer FDW API features available only on newer PostgreSQL releases.
+- Upstream supports Firebird 2.5 and later; older Firebird versions are not a tested target.
+- `firebird_fdw` and `libfq` are developed together, so package compatibility depends on matching those libraries.
+- Custom-query foreign tables cannot be updated.
+- The `implicit_bool_type` feature is experimental and is designed around integer columns representing boolean values.

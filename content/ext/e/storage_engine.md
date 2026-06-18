@@ -11,10 +11,10 @@ weight: 2450
     <div class="ext-card__title">saulojb/storage_engine</div>
     <div class="ext-card__desc">https://github.com/saulojb/storage_engine</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/storage_engine-2.3.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/storage_engine-2.4.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">storage_engine-2.3.0.tar.gz</div>
-    <div class="ext-card__desc">storage_engine-2.3.0.tar.gz</div>
+    <div class="ext-card__title">storage_engine-2.4.0.tar.gz</div>
+    <div class="ext-card__desc">storage_engine-2.4.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2450
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`storage_engine`**](/ext/e/storage_engine) | `2.3.0` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`storage_engine`**](/ext/e/storage_engine) | `2.4.0` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,100 +38,94 @@ weight: 2450
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.3.0` | {{< pgvers "18,17,16,15" >}} | `storage_engine` | - |
-| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.3.0` | {{< pgvers "18,17,16,15" >}} | `storage_engine_$v` | - |
-| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.3.0` | {{< pgvers "18,17,16,15" >}} | `postgresql-$v-storage-engine` | - |
+| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.4.0` | {{< pgvers "18,17,16,15" >}} | `storage_engine` | - |
+| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.4.0` | {{< pgvers "18,17,16,15" >}} | `storage_engine_$v` | - |
+| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.4.0` | {{< pgvers "18,17,16,15" >}} | `postgresql-$v-storage-engine` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 1.3.4 1 |
-| el8.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 1.3.4 1 |
-| el9.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 1.3.4 1 |
-| el9.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 1.3.4 1 |
-| el10.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 1.3.4 1 |
-| el10.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 1.3.4 1 |
-| d12.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 1.3.4 1 |
-| d12.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 1.3.4 1 |
-| d13.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 1.3.4 1 |
-| d13.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 1.3.4 1 |
-| u22.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 1.3.4 1 |
-| u22.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 1.3.4 1 |
-| u24.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 1.3.4 1 |
-| u24.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 1.3.4 1 |
-| u26.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 1.3.4 1 |
-| u26.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 1.3.4 1 |
-@ el8.x86_64 18 storage_engine_18 storage_engine_18-2.3.0-1PIGSTY.el8.x86_64.rpm pigsty 2.3.0 276.1KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/storage_engine_18-2.3.0-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 18 storage_engine_18 storage_engine_18-2.3.0-1PIGSTY.el8.aarch64.rpm pigsty 2.3.0 264.6KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/storage_engine_18-2.3.0-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 18 storage_engine_18 storage_engine_18-2.3.0-1PIGSTY.el9.x86_64.rpm pigsty 2.3.0 243.7KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/storage_engine_18-2.3.0-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 18 storage_engine_18 storage_engine_18-2.3.0-1PIGSTY.el9.aarch64.rpm pigsty 2.3.0 237.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/storage_engine_18-2.3.0-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 18 storage_engine_18 storage_engine_18-2.3.0-1PIGSTY.el10.x86_64.rpm pigsty 2.3.0 247.9KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/storage_engine_18-2.3.0-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 18 storage_engine_18 storage_engine_18-2.3.0-1PIGSTY.el10.aarch64.rpm pigsty 2.3.0 239.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/storage_engine_18-2.3.0-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.3.0-1PIGSTY~bookworm_amd64.deb pigsty 2.3.0 592.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/storage-engine/postgresql-18-storage-engine_2.3.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.3.0-1PIGSTY~bookworm_arm64.deb pigsty 2.3.0 574.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/storage-engine/postgresql-18-storage-engine_2.3.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.3.0-1PIGSTY~trixie_amd64.deb pigsty 2.3.0 592.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/storage-engine/postgresql-18-storage-engine_2.3.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.3.0-1PIGSTY~trixie_arm64.deb pigsty 2.3.0 576.6KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/storage-engine/postgresql-18-storage-engine_2.3.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.3.0-1PIGSTY~jammy_amd64.deb pigsty 2.3.0 630.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/storage-engine/postgresql-18-storage-engine_2.3.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.3.0-1PIGSTY~jammy_arm64.deb pigsty 2.3.0 621.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/storage-engine/postgresql-18-storage-engine_2.3.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.3.0-1PIGSTY~noble_amd64.deb pigsty 2.3.0 606.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/storage-engine/postgresql-18-storage-engine_2.3.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.3.0-1PIGSTY~noble_arm64.deb pigsty 2.3.0 600.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/storage-engine/postgresql-18-storage-engine_2.3.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.3.0-1PIGSTY~resolute_amd64.deb pigsty 2.3.0 603.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/storage-engine/postgresql-18-storage-engine_2.3.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.3.0-1PIGSTY~resolute_arm64.deb pigsty 2.3.0 596.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/storage-engine/postgresql-18-storage-engine_2.3.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 17 storage_engine_17 storage_engine_17-2.3.0-1PIGSTY.el8.x86_64.rpm pigsty 2.3.0 275.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/storage_engine_17-2.3.0-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 17 storage_engine_17 storage_engine_17-2.3.0-1PIGSTY.el8.aarch64.rpm pigsty 2.3.0 264.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/storage_engine_17-2.3.0-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 17 storage_engine_17 storage_engine_17-2.3.0-1PIGSTY.el9.x86_64.rpm pigsty 2.3.0 243.4KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/storage_engine_17-2.3.0-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 17 storage_engine_17 storage_engine_17-2.3.0-1PIGSTY.el9.aarch64.rpm pigsty 2.3.0 237.2KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/storage_engine_17-2.3.0-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 17 storage_engine_17 storage_engine_17-2.3.0-1PIGSTY.el10.x86_64.rpm pigsty 2.3.0 247.0KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/storage_engine_17-2.3.0-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 17 storage_engine_17 storage_engine_17-2.3.0-1PIGSTY.el10.aarch64.rpm pigsty 2.3.0 239.3KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/storage_engine_17-2.3.0-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.3.0-1PIGSTY~bookworm_amd64.deb pigsty 2.3.0 589.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/storage-engine/postgresql-17-storage-engine_2.3.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.3.0-1PIGSTY~bookworm_arm64.deb pigsty 2.3.0 574.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/storage-engine/postgresql-17-storage-engine_2.3.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.3.0-1PIGSTY~trixie_amd64.deb pigsty 2.3.0 591.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/storage-engine/postgresql-17-storage-engine_2.3.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.3.0-1PIGSTY~trixie_arm64.deb pigsty 2.3.0 575.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/storage-engine/postgresql-17-storage-engine_2.3.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.3.0-1PIGSTY~jammy_amd64.deb pigsty 2.3.0 704.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/storage-engine/postgresql-17-storage-engine_2.3.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.3.0-1PIGSTY~jammy_arm64.deb pigsty 2.3.0 695.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/storage-engine/postgresql-17-storage-engine_2.3.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.3.0-1PIGSTY~noble_amd64.deb pigsty 2.3.0 604.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/storage-engine/postgresql-17-storage-engine_2.3.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.3.0-1PIGSTY~noble_arm64.deb pigsty 2.3.0 599.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/storage-engine/postgresql-17-storage-engine_2.3.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.3.0-1PIGSTY~resolute_amd64.deb pigsty 2.3.0 601.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/storage-engine/postgresql-17-storage-engine_2.3.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.3.0-1PIGSTY~resolute_arm64.deb pigsty 2.3.0 595.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/storage-engine/postgresql-17-storage-engine_2.3.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 16 storage_engine_16 storage_engine_16-2.3.0-1PIGSTY.el8.x86_64.rpm pigsty 2.3.0 275.6KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/storage_engine_16-2.3.0-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 16 storage_engine_16 storage_engine_16-2.3.0-1PIGSTY.el8.aarch64.rpm pigsty 2.3.0 264.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/storage_engine_16-2.3.0-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 16 storage_engine_16 storage_engine_16-2.3.0-1PIGSTY.el9.x86_64.rpm pigsty 2.3.0 243.2KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/storage_engine_16-2.3.0-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 16 storage_engine_16 storage_engine_16-2.3.0-1PIGSTY.el9.aarch64.rpm pigsty 2.3.0 237.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/storage_engine_16-2.3.0-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 16 storage_engine_16 storage_engine_16-2.3.0-1PIGSTY.el10.x86_64.rpm pigsty 2.3.0 247.0KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/storage_engine_16-2.3.0-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 16 storage_engine_16 storage_engine_16-2.3.0-1PIGSTY.el10.aarch64.rpm pigsty 2.3.0 239.3KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/storage_engine_16-2.3.0-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.3.0-1PIGSTY~bookworm_amd64.deb pigsty 2.3.0 589.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/storage-engine/postgresql-16-storage-engine_2.3.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.3.0-1PIGSTY~bookworm_arm64.deb pigsty 2.3.0 573.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/storage-engine/postgresql-16-storage-engine_2.3.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.3.0-1PIGSTY~trixie_amd64.deb pigsty 2.3.0 590.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/storage-engine/postgresql-16-storage-engine_2.3.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.3.0-1PIGSTY~trixie_arm64.deb pigsty 2.3.0 575.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/storage-engine/postgresql-16-storage-engine_2.3.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.3.0-1PIGSTY~jammy_amd64.deb pigsty 2.3.0 701.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/storage-engine/postgresql-16-storage-engine_2.3.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.3.0-1PIGSTY~jammy_arm64.deb pigsty 2.3.0 692.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/storage-engine/postgresql-16-storage-engine_2.3.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.3.0-1PIGSTY~noble_amd64.deb pigsty 2.3.0 604.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/storage-engine/postgresql-16-storage-engine_2.3.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.3.0-1PIGSTY~noble_arm64.deb pigsty 2.3.0 599.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/storage-engine/postgresql-16-storage-engine_2.3.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.3.0-1PIGSTY~resolute_amd64.deb pigsty 2.3.0 601.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/storage-engine/postgresql-16-storage-engine_2.3.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.3.0-1PIGSTY~resolute_arm64.deb pigsty 2.3.0 595.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/storage-engine/postgresql-16-storage-engine_2.3.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 15 storage_engine_15 storage_engine_15-2.3.0-1PIGSTY.el8.x86_64.rpm pigsty 2.3.0 279.2KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/storage_engine_15-2.3.0-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 15 storage_engine_15 storage_engine_15-2.3.0-1PIGSTY.el8.aarch64.rpm pigsty 2.3.0 268.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/storage_engine_15-2.3.0-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 15 storage_engine_15 storage_engine_15-2.3.0-1PIGSTY.el9.x86_64.rpm pigsty 2.3.0 262.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/storage_engine_15-2.3.0-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 15 storage_engine_15 storage_engine_15-2.3.0-1PIGSTY.el9.aarch64.rpm pigsty 2.3.0 255.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/storage_engine_15-2.3.0-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 15 storage_engine_15 storage_engine_15-2.3.0-1PIGSTY.el10.x86_64.rpm pigsty 2.3.0 265.2KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/storage_engine_15-2.3.0-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 15 storage_engine_15 storage_engine_15-2.3.0-1PIGSTY.el10.aarch64.rpm pigsty 2.3.0 257.6KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/storage_engine_15-2.3.0-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.3.0-1PIGSTY~bookworm_amd64.deb pigsty 2.3.0 596.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/storage-engine/postgresql-15-storage-engine_2.3.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.3.0-1PIGSTY~bookworm_arm64.deb pigsty 2.3.0 578.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/storage-engine/postgresql-15-storage-engine_2.3.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.3.0-1PIGSTY~trixie_amd64.deb pigsty 2.3.0 598.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/storage-engine/postgresql-15-storage-engine_2.3.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.3.0-1PIGSTY~trixie_arm64.deb pigsty 2.3.0 581.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/storage-engine/postgresql-15-storage-engine_2.3.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.3.0-1PIGSTY~jammy_amd64.deb pigsty 2.3.0 724.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/storage-engine/postgresql-15-storage-engine_2.3.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.3.0-1PIGSTY~jammy_arm64.deb pigsty 2.3.0 713.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/storage-engine/postgresql-15-storage-engine_2.3.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.3.0-1PIGSTY~noble_amd64.deb pigsty 2.3.0 625.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/storage-engine/postgresql-15-storage-engine_2.3.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.3.0-1PIGSTY~noble_arm64.deb pigsty 2.3.0 617.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/storage-engine/postgresql-15-storage-engine_2.3.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.3.0-1PIGSTY~resolute_amd64.deb pigsty 2.3.0 622.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/storage-engine/postgresql-15-storage-engine_2.3.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.3.0-1PIGSTY~resolute_arm64.deb pigsty 2.3.0 614.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/storage-engine/postgresql-15-storage-engine_2.3.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 14 storage_engine_14 storage_engine_14-1.3.4-1PIGSTY.el8.x86_64.rpm pigsty 1.3.4 225.2KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/storage_engine_14-1.3.4-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 14 storage_engine_14 storage_engine_14-1.3.4-1PIGSTY.el8.aarch64.rpm pigsty 1.3.4 216.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/storage_engine_14-1.3.4-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 14 storage_engine_14 storage_engine_14-1.3.4-1PIGSTY.el9.x86_64.rpm pigsty 1.3.4 211.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/storage_engine_14-1.3.4-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 14 storage_engine_14 storage_engine_14-1.3.4-1PIGSTY.el9.aarch64.rpm pigsty 1.3.4 204.9KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/storage_engine_14-1.3.4-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 14 storage_engine_14 storage_engine_14-1.3.4-1PIGSTY.el10.x86_64.rpm pigsty 1.3.4 213.2KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/storage_engine_14-1.3.4-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 14 storage_engine_14 storage_engine_14-1.3.4-1PIGSTY.el10.aarch64.rpm pigsty 1.3.4 206.2KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/storage_engine_14-1.3.4-1PIGSTY.el10.aarch64.rpm
+| el8.x86_64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | MISS PIGSTY - 0 |
+| el8.aarch64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | MISS PIGSTY - 0 |
+| el9.x86_64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | MISS PIGSTY - 0 |
+| el9.aarch64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | MISS PIGSTY - 0 |
+| el10.x86_64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | MISS PIGSTY - 0 |
+| el10.aarch64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | MISS PIGSTY - 0 |
+| d12.x86_64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 1.3.4 1 |
+| d12.aarch64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 1.3.4 1 |
+| d13.x86_64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 1.3.4 1 |
+| d13.aarch64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 1.3.4 1 |
+| u22.x86_64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 1.3.4 1 |
+| u22.aarch64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 1.3.4 1 |
+| u24.x86_64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 1.3.4 1 |
+| u24.aarch64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 1.3.4 1 |
+| u26.x86_64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 1.3.4 1 |
+| u26.aarch64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 1.3.4 1 |
+@ el8.x86_64 18 storage_engine_18 storage_engine_18-2.4.0-1PIGSTY.el8.x86_64.rpm pigsty 2.4.0 302.7KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/storage_engine_18-2.4.0-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 18 storage_engine_18 storage_engine_18-2.4.0-1PIGSTY.el8.aarch64.rpm pigsty 2.4.0 289.8KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/storage_engine_18-2.4.0-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 18 storage_engine_18 storage_engine_18-2.4.0-1PIGSTY.el9.x86_64.rpm pigsty 2.4.0 269.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/storage_engine_18-2.4.0-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 18 storage_engine_18 storage_engine_18-2.4.0-1PIGSTY.el9.aarch64.rpm pigsty 2.4.0 262.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/storage_engine_18-2.4.0-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 18 storage_engine_18 storage_engine_18-2.4.0-1PIGSTY.el10.x86_64.rpm pigsty 2.4.0 273.2KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/storage_engine_18-2.4.0-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 18 storage_engine_18 storage_engine_18-2.4.0-1PIGSTY.el10.aarch64.rpm pigsty 2.4.0 264.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/storage_engine_18-2.4.0-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.4.0-1PIGSTY~bookworm_amd64.deb pigsty 2.4.0 242.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/storage-engine/postgresql-18-storage-engine_2.4.0-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.4.0-1PIGSTY~bookworm_arm64.deb pigsty 2.4.0 223.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/storage-engine/postgresql-18-storage-engine_2.4.0-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.4.0-1PIGSTY~trixie_amd64.deb pigsty 2.4.0 243.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/storage-engine/postgresql-18-storage-engine_2.4.0-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.4.0-1PIGSTY~trixie_arm64.deb pigsty 2.4.0 226.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/storage-engine/postgresql-18-storage-engine_2.4.0-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.4.0-1PIGSTY~jammy_amd64.deb pigsty 2.4.0 245.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/storage-engine/postgresql-18-storage-engine_2.4.0-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.4.0-1PIGSTY~jammy_arm64.deb pigsty 2.4.0 241.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/storage-engine/postgresql-18-storage-engine_2.4.0-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.4.0-1PIGSTY~noble_amd64.deb pigsty 2.4.0 242.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/storage-engine/postgresql-18-storage-engine_2.4.0-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.4.0-1PIGSTY~noble_arm64.deb pigsty 2.4.0 235.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/storage-engine/postgresql-18-storage-engine_2.4.0-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.4.0-1PIGSTY~resolute_amd64.deb pigsty 2.4.0 242.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/storage-engine/postgresql-18-storage-engine_2.4.0-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-storage-engine postgresql-18-storage-engine_2.4.0-1PIGSTY~resolute_arm64.deb pigsty 2.4.0 235.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/storage-engine/postgresql-18-storage-engine_2.4.0-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 17 storage_engine_17 storage_engine_17-2.4.0-1PIGSTY.el8.x86_64.rpm pigsty 2.4.0 302.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/storage_engine_17-2.4.0-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 17 storage_engine_17 storage_engine_17-2.4.0-1PIGSTY.el8.aarch64.rpm pigsty 2.4.0 289.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/storage_engine_17-2.4.0-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 17 storage_engine_17 storage_engine_17-2.4.0-1PIGSTY.el9.x86_64.rpm pigsty 2.4.0 268.8KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/storage_engine_17-2.4.0-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 17 storage_engine_17 storage_engine_17-2.4.0-1PIGSTY.el9.aarch64.rpm pigsty 2.4.0 261.8KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/storage_engine_17-2.4.0-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 17 storage_engine_17 storage_engine_17-2.4.0-1PIGSTY.el10.x86_64.rpm pigsty 2.4.0 272.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/storage_engine_17-2.4.0-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 17 storage_engine_17 storage_engine_17-2.4.0-1PIGSTY.el10.aarch64.rpm pigsty 2.4.0 264.6KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/storage_engine_17-2.4.0-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.4.0-1PIGSTY~bookworm_amd64.deb pigsty 2.4.0 241.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/storage-engine/postgresql-17-storage-engine_2.4.0-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.4.0-1PIGSTY~bookworm_arm64.deb pigsty 2.4.0 223.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/storage-engine/postgresql-17-storage-engine_2.4.0-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.4.0-1PIGSTY~trixie_amd64.deb pigsty 2.4.0 242.6KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/storage-engine/postgresql-17-storage-engine_2.4.0-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.4.0-1PIGSTY~trixie_arm64.deb pigsty 2.4.0 225.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/storage-engine/postgresql-17-storage-engine_2.4.0-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.4.0-1PIGSTY~jammy_amd64.deb pigsty 2.4.0 245.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/storage-engine/postgresql-17-storage-engine_2.4.0-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.4.0-1PIGSTY~jammy_arm64.deb pigsty 2.4.0 238.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/storage-engine/postgresql-17-storage-engine_2.4.0-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.4.0-1PIGSTY~noble_amd64.deb pigsty 2.4.0 241.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/storage-engine/postgresql-17-storage-engine_2.4.0-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.4.0-1PIGSTY~noble_arm64.deb pigsty 2.4.0 234.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/storage-engine/postgresql-17-storage-engine_2.4.0-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.4.0-1PIGSTY~resolute_amd64.deb pigsty 2.4.0 241.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/storage-engine/postgresql-17-storage-engine_2.4.0-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-storage-engine postgresql-17-storage-engine_2.4.0-1PIGSTY~resolute_arm64.deb pigsty 2.4.0 235.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/storage-engine/postgresql-17-storage-engine_2.4.0-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 16 storage_engine_16 storage_engine_16-2.4.0-1PIGSTY.el8.x86_64.rpm pigsty 2.4.0 302.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/storage_engine_16-2.4.0-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 16 storage_engine_16 storage_engine_16-2.4.0-1PIGSTY.el8.aarch64.rpm pigsty 2.4.0 289.5KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/storage_engine_16-2.4.0-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 16 storage_engine_16 storage_engine_16-2.4.0-1PIGSTY.el9.x86_64.rpm pigsty 2.4.0 269.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/storage_engine_16-2.4.0-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 16 storage_engine_16 storage_engine_16-2.4.0-1PIGSTY.el9.aarch64.rpm pigsty 2.4.0 262.3KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/storage_engine_16-2.4.0-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 16 storage_engine_16 storage_engine_16-2.4.0-1PIGSTY.el10.x86_64.rpm pigsty 2.4.0 272.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/storage_engine_16-2.4.0-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 16 storage_engine_16 storage_engine_16-2.4.0-1PIGSTY.el10.aarch64.rpm pigsty 2.4.0 264.4KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/storage_engine_16-2.4.0-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.4.0-1PIGSTY~bookworm_amd64.deb pigsty 2.4.0 241.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/storage-engine/postgresql-16-storage-engine_2.4.0-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.4.0-1PIGSTY~bookworm_arm64.deb pigsty 2.4.0 223.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/storage-engine/postgresql-16-storage-engine_2.4.0-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.4.0-1PIGSTY~trixie_amd64.deb pigsty 2.4.0 242.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/storage-engine/postgresql-16-storage-engine_2.4.0-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.4.0-1PIGSTY~trixie_arm64.deb pigsty 2.4.0 225.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/storage-engine/postgresql-16-storage-engine_2.4.0-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.4.0-1PIGSTY~jammy_amd64.deb pigsty 2.4.0 245.1KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/storage-engine/postgresql-16-storage-engine_2.4.0-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.4.0-1PIGSTY~jammy_arm64.deb pigsty 2.4.0 241.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/storage-engine/postgresql-16-storage-engine_2.4.0-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.4.0-1PIGSTY~noble_amd64.deb pigsty 2.4.0 241.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/storage-engine/postgresql-16-storage-engine_2.4.0-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.4.0-1PIGSTY~noble_arm64.deb pigsty 2.4.0 234.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/storage-engine/postgresql-16-storage-engine_2.4.0-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.4.0-1PIGSTY~resolute_amd64.deb pigsty 2.4.0 241.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/storage-engine/postgresql-16-storage-engine_2.4.0-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 16 postgresql-16-storage-engine postgresql-16-storage-engine_2.4.0-1PIGSTY~resolute_arm64.deb pigsty 2.4.0 236.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/storage-engine/postgresql-16-storage-engine_2.4.0-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 15 storage_engine_15 storage_engine_15-2.4.0-1PIGSTY.el8.x86_64.rpm pigsty 2.4.0 293.0KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/storage_engine_15-2.4.0-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 15 storage_engine_15 storage_engine_15-2.4.0-1PIGSTY.el8.aarch64.rpm pigsty 2.4.0 281.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/storage_engine_15-2.4.0-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 15 storage_engine_15 storage_engine_15-2.4.0-1PIGSTY.el9.x86_64.rpm pigsty 2.4.0 274.9KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/storage_engine_15-2.4.0-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 15 storage_engine_15 storage_engine_15-2.4.0-1PIGSTY.el9.aarch64.rpm pigsty 2.4.0 268.8KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/storage_engine_15-2.4.0-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 15 storage_engine_15 storage_engine_15-2.4.0-1PIGSTY.el10.x86_64.rpm pigsty 2.4.0 278.4KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/storage_engine_15-2.4.0-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 15 storage_engine_15 storage_engine_15-2.4.0-1PIGSTY.el10.aarch64.rpm pigsty 2.4.0 270.9KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/storage_engine_15-2.4.0-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.4.0-1PIGSTY~bookworm_amd64.deb pigsty 2.4.0 234.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/storage-engine/postgresql-15-storage-engine_2.4.0-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.4.0-1PIGSTY~bookworm_arm64.deb pigsty 2.4.0 217.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/storage-engine/postgresql-15-storage-engine_2.4.0-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.4.0-1PIGSTY~trixie_amd64.deb pigsty 2.4.0 235.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/storage-engine/postgresql-15-storage-engine_2.4.0-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.4.0-1PIGSTY~trixie_arm64.deb pigsty 2.4.0 219.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/storage-engine/postgresql-15-storage-engine_2.4.0-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.4.0-1PIGSTY~jammy_amd64.deb pigsty 2.4.0 249.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/storage-engine/postgresql-15-storage-engine_2.4.0-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.4.0-1PIGSTY~jammy_arm64.deb pigsty 2.4.0 246.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/storage-engine/postgresql-15-storage-engine_2.4.0-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.4.0-1PIGSTY~noble_amd64.deb pigsty 2.4.0 245.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/storage-engine/postgresql-15-storage-engine_2.4.0-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.4.0-1PIGSTY~noble_arm64.deb pigsty 2.4.0 240.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/storage-engine/postgresql-15-storage-engine_2.4.0-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.4.0-1PIGSTY~resolute_amd64.deb pigsty 2.4.0 246.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/storage-engine/postgresql-15-storage-engine_2.4.0-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 15 postgresql-15-storage-engine postgresql-15-storage-engine_2.4.0-1PIGSTY~resolute_arm64.deb pigsty 2.4.0 240.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/storage-engine/postgresql-15-storage-engine_2.4.0-1PIGSTY~resolute_arm64.deb
 @ d12.x86_64 14 postgresql-14-storage-engine postgresql-14-storage-engine_1.3.4-1PIGSTY~bookworm_amd64.deb pigsty 1.3.4 477.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/storage-engine/postgresql-14-storage-engine_1.3.4-1PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 14 postgresql-14-storage-engine postgresql-14-storage-engine_1.3.4-1PIGSTY~bookworm_arm64.deb pigsty 1.3.4 463.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/storage-engine/postgresql-14-storage-engine_1.3.4-1PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 14 postgresql-14-storage-engine postgresql-14-storage-engine_1.3.4-1PIGSTY~trixie_amd64.deb pigsty 1.3.4 479.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/storage-engine/postgresql-14-storage-engine_1.3.4-1PIGSTY~trixie_amd64.deb
@@ -211,9 +205,9 @@ CREATE EXTENSION storage_engine;
 
 ## Usage
 
-Sources: [README v2.3.0](https://github.com/saulojb/storage_engine/blob/v2.3.0/README.md), [release v2.3.0](https://github.com/saulojb/storage_engine/releases/tag/v2.3.0), [PGXN 2.3.0](https://pgxn.org/dist/storage_engine/2.3.0/), [current README](https://github.com/saulojb/storage_engine/blob/main/README.md)
+Sources: [README v2.4.0](https://github.com/saulojb/storage_engine/blob/v2.4.0/README.md), [release v2.4.0](https://github.com/saulojb/storage_engine/releases/tag/v2.4.0), [PGXN 2.4.0](https://pgxn.org/dist/storage_engine/2.4.0/), [current README](https://github.com/saulojb/storage_engine/blob/main/README.md)
 
-`storage_engine` 2.3.0 provides two PostgreSQL table access methods in the `engine` schema:
+`storage_engine` 2.4.0 provides two PostgreSQL table access methods in the `engine` schema:
 
 - `colcompress` for column-oriented compressed storage with vectorized filtering, vectorized aggregation, parallel scans, and stripe/chunk min/max pruning.
 - `rowcompress` for row-batch compression with parallel scans, index scans, and batch metadata.
@@ -248,7 +242,7 @@ WHERE ts > now() - interval '1 day'
 GROUP BY 1;
 ```
 
-Version 2.3 expands `colcompress` vectorized aggregation with simple `sum(expression)` shapes such as `sum(amount + price)`, post-aggregation arithmetic such as `sum(amount) + count(*)`, and corrected `avg(int8)` behavior in parallel plans.
+Version 2.4 keeps the 2.3 vectorized-aggregation work and adds planner-hook improvements for TPC-H Q7/Q18/Q20/Q21 plus Q9-style post-join aggregates. It also adds backend-local reread caches for repeated `rowcompress` index probes and repeated `colcompress` scans.
 
 ### Main Tuning Knobs
 
@@ -323,7 +317,7 @@ CALL engine.rowcompress_merge_incremental('logs', max_batches => 128);
 SELECT * FROM engine.rowcompress_scan_stats();
 ```
 
-Operational views include `engine.colcompress_options`, `engine.colcompress_stripes`, `engine.rowcompress_options`, `engine.rowcompress_batches`, and `engine.storage_health`. `engine.storage_maintenance_recommendation(table)` returns health metrics and a recommended action for one table, and `CALL engine.storage_maintenance_auto(...)` can dispatch maintenance manually or through the built-in background worker.
+Operational views include `engine.colcompress_options`, `engine.colcompress_stripes`, `engine.rowcompress_options`, `engine.rowcompress_batches`, and `engine.storage_health`. `engine.storage_maintenance_recommendation(table)` returns health metrics and a recommended action for one table, and `CALL engine.storage_maintenance_auto(...)` can dispatch maintenance manually or through the built-in background worker. In v2.4, repeated `rowcompress` probes can reuse backend-local metadata and decompressed batches, and `engine.rowcompress_scan_stats()` reports those cache effects more reliably.
 
 ### When to Use Which AM
 
@@ -333,9 +327,9 @@ Operational views include `engine.colcompress_options`, `engine.colcompress_stri
 
 ### Caveats
 
-- The packaged version in this repo is `2.3.0` for PostgreSQL 15 through 18. Upstream 2.x also tests PostgreSQL 19 devel, but PG19 is not in this repo's package matrix. PostgreSQL 12, 13, and 14 users should stay on upstream 1.3.4.
-- The upstream default branch README has moved past the packaged 2.3.0 release; this stub follows `extension.csv` and the v2.3.0 release/PGXN docs.
-- Upgrade existing installations with `ALTER EXTENSION storage_engine UPDATE TO '2.3.0';`.
+- The packaged version in this repo is `2.4.0` for PostgreSQL 15 through 18. Upstream v2.4 validation also covers PostgreSQL 19 devel, but PG19 is not in this repo's package matrix. PostgreSQL 12, 13, and 14 users should stay on upstream 1.3.4.
+- This stub follows `extension.csv` and the v2.4.0 release/PGXN docs.
+- Upgrade existing installations with `ALTER EXTENSION storage_engine UPDATE TO '2.4.0';`.
 - `colcompress` and `rowcompress` do not support foreign keys or `AFTER ROW` triggers.
 - `pg_repack` cannot be used on these table access methods. `engine.colcompress_repack()` acquires `AccessExclusiveLock`, so schedule it during maintenance windows for large tables; the incremental merge procedures are the lower-lock option for dirty stripes or batches.
 - `VACUUM FULL`, `CLUSTER`, and `CREATE UNLOGGED TABLE ... USING colcompress` are not supported; upstream recommends the extension's merge/repack functions instead.

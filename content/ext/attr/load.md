@@ -5,7 +5,7 @@ description: "PostgreSQL extensions that require dynamic loading"
 weight: 10
 ---
 
-The following **103** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
+The following **107** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
 
 You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) parameter in `postgresql.conf`, add the extension library, and restart the database.
 
@@ -31,13 +31,17 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`storage_engine`](/ext/e/storage_engine) | `storage_engine` | colcompress and rowcompress Table Access Methods with vectorized execution |
 | [`pg_clickhouse`](/ext/e/pg_clickhouse) | `pg_clickhouse` | Interfaces to query ClickHouse databases from PostgreSQL |
 | [`pg_parquet`](/ext/e/pg_parquet) | `pg_parquet` | copy data between Postgres and Parquet |
+| [`pg_orca`](/ext/e/pg_orca) | `pg_orca` | ORCA query optimizer as a PostgreSQL extension |
+| [`pg_sorted_heap`](/ext/e/pg_sorted_heap) | `pg_sorted_heap` | Sorted heap table AM with zone map scan pruning and built-in vector search |
 | [`age`](/ext/e/age) | `age` | AGE graph database extension |
+| [`pgrdf`](/ext/e/pgrdf) | `pgrdf` | RDF, SPARQL, SHACL, and OWL reasoning for PostgreSQL |
 | [`ulak`](/ext/e/ulak) | `ulak` | Transactional Outbox extension for PostgreSQL with reliable asynchronous delivery |
 | [`pg_ttl_index`](/ext/e/pg_ttl_index) | `pg_ttl_index` | Automatic data expiration with TTL indexes |
 | [`pg_hint_plan`](/ext/e/pg_hint_plan) | `pg_hint_plan` | Give PostgreSQL ability to manually force some decisions in execution plans. |
 | [`plan_filter`](/ext/e/plan_filter) | `plan_filter` | filter statements by their execution plans. |
 | [`pg_ivm`](/ext/e/pg_ivm) | `pg_ivm` | incremental view maintenance on PostgreSQL |
 | [`pg_trickle`](/ext/e/pg_trickle) | `pg_trickle` | Streaming tables and differential view maintenance for PostgreSQL 18 |
+| [`pg_durable`](/ext/e/pg_durable) | `pg_durable` | Durable SQL functions for PostgreSQL |
 | [`provsql`](/ext/e/provsql) | `provsql` | Semiring provenance and uncertainty management for PostgreSQL |
 | [`orioledb`](/ext/e/orioledb) | `orioledb` | OrioleDB, the next generation transactional engine |
 | [`omni`](/ext/e/omni) | `omni--0.2.14.so` | Advanced adapter for Postgres extensions |

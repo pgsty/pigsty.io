@@ -218,7 +218,7 @@ Package [`pgpool`](/ext/e/pgpool_adm) contains **3** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 5900 | [**`pgpool_adm`**](/ext/e/pgpool_adm) | `4.7.1` | `----d--` | - | Administrative functions for pgPool |
+| 5900 | [**`pgpool_adm`**](/ext/e/pgpool_adm) | `4.7.2` | `----d--` | - | Administrative functions for pgPool |
 | 5910 | [`pgpool_recovery`](/ext/e/pgpool_recovery) | `4.7.1` | `----d--` | - | recovery functions for pgpool-II for V4.3 |
 | 5920 | [`pgpool_regclass`](/ext/e/pgpool_regclass) | `4.7.1` | `----d--` | - | replacement for regclass |
 {.ext-table}
@@ -239,10 +239,10 @@ Package [`documentdb`](/ext/e/documentdb) contains **4** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 9000 | [**`documentdb`**](/ext/e/documentdb) | `0.110` | `--sLd--` | - | API surface for DocumentDB for PostgreSQL |
-| 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `0.110` | `--sLd--` | - | Core API surface for DocumentDB on PostgreSQL |
-| 9020 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `0.110` | `--sLd--` | - | Multi-Node API surface for DocumentDB |
-| 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `0.110` | `--sLd-r` | - | DocumentDB Extended RUM index access method |
+| 9000 | [**`documentdb`**](/ext/e/documentdb) | `0.112` | `--sLd--` | - | API surface for DocumentDB for PostgreSQL |
+| 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `0.112` | `--sLd--` | - | Core API surface for DocumentDB on PostgreSQL |
+| 9020 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `0.112` | `--sLd--` | - | Multi-Node API surface for DocumentDB |
+| 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `0.112` | `--sLd-r` | - | DocumentDB Extended RUM index access method |
 {.ext-table}
 
 ### ivorysql
