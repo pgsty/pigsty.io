@@ -43,18 +43,18 @@ $ curl -fsSL https://repo.pigsty.cc/pig | bash
 [INFO] kernel = Linux
 [INFO] machine = x86_64
 [INFO] package = deb
-[INFO] pkg_url = https://repo.pigsty.cc/pkg/pig/v1.4.1/pig_1.4.1-1_amd64.deb
-[INFO] download = /tmp/pig_1.4.1-1_amd64.deb
-[INFO] downloading pig v1.4.1
-curl -fSL https://repo.pigsty.cc/pkg/pig/v1.4.1/pig_1.4.1-1_amd64.deb -o /tmp/pig_1.4.1-1_amd64.deb
+[INFO] pkg_url = https://repo.pigsty.cc/pkg/pig/v1.4.2/pig_1.4.2-1_amd64.deb
+[INFO] download = /tmp/pig_1.4.2-1_amd64.deb
+[INFO] downloading pig v1.4.2
+curl -fSL https://repo.pigsty.cc/pkg/pig/v1.4.2/pig_1.4.2-1_amd64.deb -o /tmp/pig_1.4.2-1_amd64.deb
 ######################################################################## 100.0%
-[INFO] md5sum = bdcc318ed50bff505f193f3a265d8fd2c7b093a104d5e5728b8c070e3580827e
-[INFO] installing: dpkg -i /tmp/pig_1.4.1-1_amd64.deb
+[INFO] md5sum = 566e06f6da1fe9d635c41258d20cd9ff10de4e6e74b3b41ba2c6204ba22743c8
+[INFO] installing: dpkg -i /tmp/pig_1.4.2-1_amd64.deb
 (Reading database ... 166001 files and directories currently installed.)
-Preparing to unpack /tmp/pig_1.4.1-1_amd64.deb ...
-Unpacking pig (1.4.1-1) ...
-Setting up pig (1.4.1-1) ...
-[INFO] pig v1.4.1 installed successfully
+Preparing to unpack /tmp/pig_1.4.2-1_amd64.deb ...
+Unpacking pig (1.4.2-1) ...
+Setting up pig (1.4.2-1) ...
+[INFO] pig v1.4.2 installed successfully
 check https://pigsty.io/ext/ for details
 ```
 
@@ -66,7 +66,7 @@ PIG is a Go-written binary program, installed by default at `/usr/bin/pig`. `pig
 
 ```bash
 $ pig version
-pig version 1.4.1 linux/amd64
+pig version 1.4.2 linux/amd64
 ```
 
 Use `pig status` to print the current environment status, OS code, PG installation status, repository accessibility and latency.
@@ -75,7 +75,7 @@ Use `pig status` to print the current environment status, OS code, PG installati
 $ pig status
 
 # [Configuration] ================================
-Pig Version      : 1.4.1
+Pig Version      : 1.4.2
 Pig Config       : /home/vagrant/.pig/config.yml
 Log Level        : info
 Log Path         : stderr
@@ -144,7 +144,7 @@ test_decoding                   available  -           ETL    --s--x  PostgreSQL
 pgoutput                        available  -           ETL    --s---  PostgreSQL    CONTRIB  14-18  postgresql-18                         Logical Replication output plugin
 
 
-(510 Rows) (Status: installed, available, not avail | Flags: b = HasBin, d = HasDDL, s = HasLib, l = NeedLoad, t = Trusted, r = Relocatable, x = Unknown)
+(524 Rows) (Status: installed, available, not avail | Flags: b = HasBin, d = HasDDL, s = HasLib, l = NeedLoad, t = Trusted, r = Relocatable, x = Unknown)
 ```
 
 All extension metadata is defined in a data file named [`extension.csv`](https://github.com/pgsty/pig/blob/main/cli/ext/assets/extension.csv).

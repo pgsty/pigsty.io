@@ -6,6 +6,14 @@ icon: fa-solid fa-clipboard-list
 categories: [Reference]
 ---
 
+## 2026-06-15
+
+| Name  | Old Ver | New Ver | Note              |
+|:------|:--------|:--------|:------------------|
+| `pig` | 1.4.1   | 1.4.2   | Metadata refresh  |
+{.stretch-last}
+
+-------
 
 ## 2026-06-12
 

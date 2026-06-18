@@ -19,7 +19,7 @@ Kernel configuration templates should link to this overview and to their dedicat
 
 | Kernel                                          | Key Feature                           | Description                                   |
 |:------------------------------------------------|:--------------------------------------|:----------------------------------------------|
-| [**PostgreSQL**](/docs/pgsql)                   | **Native kernel, full extension set** | Vanilla PostgreSQL with 510 extensions        |
+| [**PostgreSQL**](/docs/pgsql)                   | **Native kernel, full extension set** | Vanilla PostgreSQL with 524 extensions        |
 | [**Supabase**](/docs/pgsql/kernel/supabase)     | **Backend as a Service**              | PostgreSQL-based BaaS, Firebase alternative   |
 | [**Citus**](/docs/pgsql/kernel/citus)           | **Horizontal scaling**                | Distributed PostgreSQL via native extension   |
 | [**Babelfish**](/docs/pgsql/kernel/babelfish)   | **SQL Server compatible**             | SQL Server wire-protocol compatibility (PG17) |

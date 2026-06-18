@@ -114,7 +114,7 @@ cascade:
 #=======================================#
 params:
   # metadata
-  description: 'Pigsty is a free and open-source PostgreSQL distribution, a local-first RDS with battery-included monitoring, HA, PITR, IaC, and 507 PG extensions and 12 kernels'
+  description: 'Pigsty is a free and open-source PostgreSQL distribution, a local-first RDS with battery-included monitoring, HA, PITR, IaC, and 524 PG extensions and 12 kernels'
   version: 4.2.1
   copyright:
     authors: Ruohang Feng

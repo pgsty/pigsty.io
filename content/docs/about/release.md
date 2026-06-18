@@ -10,7 +10,7 @@ These docs currently correspond to the upcoming [**v4.3.0**](#v430) release.
 
 |     Version     | Release Date | Summary                                                                         |                                       Release Page                                        |
 |:---------------:|:------------:|---------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------:|
-| [v4.3.0](#v430) |  2026-05-01  | 510 extensions, batch Infra / PGSQL / kernel package updates, Ubuntu 26 support |                                            TBD                                            |
+| [v4.3.0](#v430) |  2026-05-01  | 524 extensions, batch Infra / PGSQL / kernel package updates, Ubuntu 26 support |                                            TBD                                            |
 | [v4.2.2](#v422) |  2026-03-23  | Insforge template, pdu, pgdog, tigerfs, ivorysql 5.3                            |               [v4.2.2](https://github.com/pgsty/pigsty/releases/tag/v4.2.2)               |
 | [v4.2.1](#v421) |  2026-03-06  | Maintenance release: 3 new extensions, drop PG13, bug fixes                     |               [v4.2.1](https://github.com/pgsty/pigsty/releases/tag/v4.2.1)               |
 | [v4.2.0](#v420) |  2026-02-28  | Routine minor release with six PG kernel updates                                |               [v4.2.0](https://github.com/pgsty/pigsty/releases/tag/v4.2.0)               |
@@ -76,7 +76,7 @@ These docs currently correspond to the upcoming [**v4.3.0**](#v430) release.
 
 **Highlights**
 
-- Added about 50 PostgreSQL extensions, bringing the total available extension count to 510.
+- Added about 50 PostgreSQL extensions, bringing the total available extension count to 524.
 - Added Ubuntu 26.04 x86_64/arm64 support, deprecated Ubuntu 20.04 support, and refreshed minor OS variants to Debian 13.4 / Ubuntu 24.04.4.
 - Kernel updates: Supabase is updated to the latest version, pgEdge to PG 18, and PolarDB to PG 17.
 - Grafana is updated to 13.0.0, and MinIO now uses the pgsty branch with CVE fixes.
@@ -204,7 +204,7 @@ These docs currently correspond to the upcoming [**v4.3.0**](#v430) release.
 | `pg_exporter`                | 1.2.1          | 1.2.2          | Direct-link metadata update                                  |
 | `pgflo`                      | 0.0.15         | -              | Removed                                                      |
 | `pgschema`                   | 1.7.4          | 1.9.0          |                                                              |
-| `pig`                        | 1.3.2          | 1.4.1          | Metadata only                                                |
+| `pig`                        | 1.3.2          | 1.4.2          | Metadata only                                                |
 | `postgrest`                  | 14.7           | 14.10          |                                                              |
 | `prometheus`                 | 3.10.0         | 3.11.3         |                                                              |
 | `rainfrog`                   | 0.3.17         | 0.3.18         |                                                              |
@@ -1582,7 +1582,7 @@ c927238f0343cde82a4a9ab230ecd2ac  pigsty-pkg-v3.4.0.u24.aarch64.tgz
 - Improvement: pgBackRest backup support for IvorySQL kernel.
 - Improvement: ARM64 and Debian/Ubuntu support for PolarDB.
 - pg_exporter 0.8.0 now supports new metrics in pgbouncer 1.24.
-- New Feature: Auto-completion for common commands like `git`, `docker`, `systemctl` [#506](https://github.com/pgsty/pigsty/pull/506) [#507](https://github.com/pgsty/pigsty/pull/507) by [@waitingsong](https://github.com/waitingsong).
+- New Feature: Auto-completion for common commands like `git`, `docker`, `systemctl` [#506](https://github.com/pgsty/pigsty/pull/506) [#524](https://github.com/pgsty/pigsty/pull/524) by [@waitingsong](https://github.com/waitingsong).
 - Improvement: Refined `ignore_startup_parameters` in `pgbouncer` config template [#488](https://github.com/pgsty/pigsty/pull/488) by [@waitingsong](https://github.com/waitingsong).
 - New homepage design: Pigsty's website now features a fresh new look.
 - Extension Directory: Detailed information and download links for RPM/DEB binary packages.

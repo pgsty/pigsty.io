@@ -69,7 +69,7 @@ pig build tool                   # Install build tools
 
 # Install Rust (for Rust extensions)
 pig build rust -y                # Force reinstall Rust (default does not reinstall)
-pig build pgrx                   # Install PGRX framework (0.18.0)
+pig build pgrx                   # Install PGRX framework (0.18.1)
 
 # Build extensions
 pig build pkg citus              # Complete build pipeline
@@ -120,7 +120,7 @@ pig build rust -y                # Force reinstall Rust toolchain
 Install PGRX framework (for building PGRX extensions).
 
 ```bash
-pig build pgrx                   # Install latest stable PGRX (0.18.0)
+pig build pgrx                   # Install latest stable PGRX (0.18.1)
 pig build pgrx -v 18             # Install for PG 18
 ```
 
