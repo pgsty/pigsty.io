@@ -108,14 +108,15 @@ If the other two servers have temporary failures and can be repaired to continue
 After the ETCD cluster quorum is restored, it will resume work. Then start Patroni on the surviving server (current primary) to take over the existing PostgreSQL and regain cluster leadership. After Patroni starts, enter maintenance mode.
 
 ```bash
-systemctl restart patroni
+sudo systemctl restart patroni
 pg pause <pg_cluster>
 ```
 
 On the other two instances, create the `touch /pg/data/standby.signal` marker file as the `postgres` user to mark them as replicas, then start Patroni:
 
 ```bash
-systemctl restart patroni
+sudo -iu postgres touch /pg/data/standby.signal
+sudo systemctl restart patroni
 ```
 
 After confirming Patroni cluster identity/roles are correct, exit maintenance mode:

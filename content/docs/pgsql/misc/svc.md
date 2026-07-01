@@ -133,7 +133,7 @@ Pigsty allows you to define your own services:
 - [`haproxy_services`](/docs/node/param#haproxy_services): Directly customize HAProxy service content, can be used for accessing other components
 
 For PostgreSQL clusters, you typically only need to focus on the first two.
-Each service definition generates a new configuration file in the configuration directory of all related HAProxy instances: [`/etc/haproxy/<svcname>.cfg`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/service.j2)
+Each service definition generates a new configuration file in the configuration directory of all related HAProxy instances: [`/etc/haproxy/<pg_cluster>-<service>.cfg`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/service.cfg)
 Here's a custom service example `standby`: when you want to provide a read-only service without replication lag, you can add this record to [`pg_services`](/docs/pgsql/param#pg_services):
 
 ```yaml
@@ -142,7 +142,7 @@ Here's a custom service example `standby`: when you want to provide a read-only 
   ip: "*"                         # Optional, IP address the service binds to, all IP addresses by default
   selector: "[]"                  # Required, service member selector, uses JMESPath to filter configuration manifest
   backup: "[? pg_role == `primary`]"  # Optional, service member selector (backup), instances selected here only carry the service when all default selector instances are down
-  dest: default                   # Optional, target port, default|postgres|pgbouncer|<port_number>, defaults to 'default', Default means using pg_default_service_dest value to ultimately decide
+  dest: default                   # Optional, target port, default|postgres|pgbouncer|<port_number>, defaults to 'default', meaning pg_default_service_dest decides
   check: /sync                    # Optional, health check URL path, defaults to /, here uses Patroni API: /sync, only sync standby and primary return 200 healthy status code
   maxconn: 5000                   # Optional, maximum number of allowed frontend connections, defaults to 5000
   balance: roundrobin             # Optional, haproxy load balancing algorithm (defaults to roundrobin, other options: leastconn)
@@ -417,7 +417,7 @@ postgres://test@10.10.10.3:6432/test # L2 VIP -> Primary connection pool -> Prim
 postgres://test@10.10.10.3:5433/test # L2 VIP -> HAProxy -> Primary connection pool -> Primary
 postgres://test@10.10.10.3:5434/test # L2 VIP -> HAProxy -> Replica connection pool -> Replica
 postgres://dbuser_dba@10.10.10.3:5436/test # L2 VIP -> HAProxy -> Primary direct connection (for admin)
-postgres://dbuser_stats@10.10.10.3::5438/test # L2 VIP -> HAProxy -> Offline direct connection (for ETL/personal queries)
+postgres://dbuser_stats@10.10.10.3:5438/test # L2 VIP -> HAProxy -> Offline direct connection (for ETL/personal queries)
 
 # Specify any cluster instance name directly
 postgres://test@pg-test-1:5432/test # DNS -> Database instance direct connection (single instance access)
@@ -433,7 +433,7 @@ postgres://test@10.10.10.11:6432/test # Connection pool -> Database
 postgres://test@10.10.10.11:5433/test # HAProxy -> Connection pool -> Database read/write
 postgres://test@10.10.10.11:5434/test # HAProxy -> Connection pool -> Database read-only
 postgres://dbuser_dba@10.10.10.11:5436/test # HAProxy -> Database direct connection
-postgres://dbuser_stats@10.10.10.11:5438/test # HAProxy -> Database offline read-write
+postgres://dbuser_stats@10.10.10.11:5438/test # HAProxy -> Database offline read/write
 
 # Smart client: automatic read-write separation
 postgres://test@10.10.10.11:6432,10.10.10.12:6432,10.10.10.13:6432/test?target_session_attrs=primary
@@ -476,4 +476,4 @@ pg_default_services:  [{ name: primary ,port: 10013 ,dest: postgres  ,check: /pr
 
 Users need to ensure that the port for each delegated service is **unique** in the proxy cluster.
 
-An example of using a dedicated load balancer cluster is provided in the 43-node production environment simulation [**sandbox**](/docs/deploy/sandbox): [prod.yml](https://github.com/pgsty/pigsty/blob/main/conf/prod.yml#L111)
+An example of using a dedicated load balancer cluster is provided in the 20-node production environment simulation [**sandbox**](/docs/deploy/sandbox): [`conf/ha/simu.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/simu.yml)

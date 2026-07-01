@@ -58,7 +58,7 @@ PostgreSQL cyclically uses 32-bit transaction IDs (XIDs), and when exhausted, a 
 
 ### Symptoms
 
-The typical sign in the first phase is when the age saturation in the [PGSQL Persist - Age Usage](https://demo.pigsty.io/d/pgsql-persist) panel enters the warning zone.
+The typical sign in the first phase is when the age saturation in the [PGSQL Persist - Age Usage](https://demo.pigsty.io/ui/d/pgsql-persist) panel enters the warning zone.
 Database logs begin to show messages like: `WARNING: database "postgres" must be vacuumed within xxxxxxxx transactions`.
 
 If the problem continues to worsen, PostgreSQL enters protection mode: when remaining transaction IDs drop to about 1 million, the database switches to read-only mode; when reaching the limit of about 2.1 billion (2^31), it refuses any new transactions and forces the server to shut down to avoid data corruption.

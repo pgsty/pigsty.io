@@ -120,14 +120,14 @@ Pigsty sets the `clonefrom: true` tag in the patroni config of all instances, ma
 If an instance has corrupted data files causing errors when creating new replicas, you can set `clonefrom: false` to avoid pulling data from the corrupted instance. Here's how:
 
 ```bash
-$ vi /pg/bin/patroni.yml
+$ vi /etc/patroni/patroni.yml
 
 tags:
   nofailover: false
   clonefrom: true      # ----------> change to false
   noloadbalance: false
   nosync: false
-  version:  '15'
+  version:  '18'
   spec: '4C.8G.50G'
   conf: 'oltp.yml'
 
@@ -169,5 +169,4 @@ Detailed monitoring config instructions are provided in [PGSQL Monitor](/docs/pg
 ```bash
 bin/pgmon-rm <ins>     # Remove a single instance 'ins' monitoring object from Victoria, especially suitable for removing added external instances
 ```
-
 

@@ -48,7 +48,7 @@ In addition to `pg_safeguard`, [`pgsql-rm.yml`](#pgsql-rmyml) provides finer-gra
 | [`pg_safeguard`](/docs/pgsql/param#pg_safeguard) | `false` | Safeguard switch; when `true`, playbook aborts                        |
 | `pg_rm_data`                                     | `true`  | Whether to remove PostgreSQL data directory                           |
 | `pg_rm_backup`                                   | `true`  | Whether to remove pgBackRest backup data (only when removing primary) |
-| `pg_rm_pkg`                                      | `true` | Whether to uninstall PostgreSQL packages                              |
+| `pg_rm_pkg`                                      | `true`  | Whether to uninstall PostgreSQL packages                              |
 
 These parameters allow precise control over removal behavior:
 
@@ -567,12 +567,12 @@ pg_pitr:                           # Define PITR task
   timeline: latest                 # Target timeline, can be integer, default: latest
   exclusive: false                 # Exclude target point, default: false
   action: pause                    # Post-recovery action: pause, promote, shutdown
-  archive: false                   # Keep archive settings, default: false
+  archive: true                    # Keep archive settings, default: true
   backup: false                    # Backup existing data to /pg/data-backup before restore? default: false
   db_include: []                   # Include only these databases
   db_exclude: []                   # Exclude these databases
   link_map: {}                     # Tablespace link mapping
-  process: 4                       # Parallel recovery processes
+  process: 4                       # Parallel recovery processes, defaults to node_cpu
   repo: {}                         # Recovery source repo configuration
   data: /pg/data                   # Recovery data directory
   port: 5432                       # Recovery instance listen port

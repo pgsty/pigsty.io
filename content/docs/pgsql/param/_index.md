@@ -16,23 +16,20 @@ or even set up [standby clusters](/docs/pgsql/config#standby-cluster) and [delay
 
 You can define multiple PGSQL clusters and further organize them into a horizontal sharding cluster: Pigsty natively supports [Citus cluster groups](/docs/pgsql/config#citus-cluster), allowing you to upgrade your standard PGSQL cluster in-place to a distributed database cluster.
 
-> Pigsty v4.1 uses PostgreSQL 18 by default and provides related parameters such as `pg_io_method`, `pgbackrest_exporter`, and `pgbouncer_exporter`.
-
-
 ------------------------------
 
 
-| Section                         | Description                                                            |
-|:--------------------------------|:-----------------------------------------------------------------------|
-| [`PG_ID`](#pg_id)               | PostgreSQL cluster and instance identity parameters                    |
-| [`PG_BUSINESS`](#pg_business)   | Business users, databases, services and access control rule definition |
-| [`PG_INSTALL`](#pg_install)     | PostgreSQL installation: version, paths, packages                      |
-| [`PG_BOOTSTRAP`](#pg_bootstrap) | PostgreSQL cluster initialization: Patroni high availability           |
-| [`PG_PROVISION`](#pg_provision) | PostgreSQL cluster template provisioning: roles, privileges, extensions|
-| [`PG_BACKUP`](#pg_backup)       | pgBackRest backup and recovery configuration                           |
-| [`PG_ACCESS`](#pg_access)       | Service exposure, connection pooling, VIP, DNS client access config    |
-| [`PG_MONITOR`](#pg_monitor)     | PostgreSQL monitoring exporter configuration                           |
-| [`PG_REMOVE`](#pg_remove)       | PostgreSQL instance cleanup and uninstall configuration                |
+| Section                         | Description                                                             |
+|:--------------------------------|:------------------------------------------------------------------------|
+| [`PG_ID`](#pg_id)               | PostgreSQL cluster and instance identity parameters                     |
+| [`PG_BUSINESS`](#pg_business)   | Business users, databases, services and access control rule definition  |
+| [`PG_INSTALL`](#pg_install)     | PostgreSQL installation: version, paths, packages                       |
+| [`PG_BOOTSTRAP`](#pg_bootstrap) | PostgreSQL cluster initialization: Patroni high availability            |
+| [`PG_PROVISION`](#pg_provision) | PostgreSQL cluster template provisioning: roles, privileges, extensions |
+| [`PG_BACKUP`](#pg_backup)       | pgBackRest backup and recovery configuration                            |
+| [`PG_ACCESS`](#pg_access)       | Service exposure, connection pooling, VIP, DNS client access config     |
+| [`PG_MONITOR`](#pg_monitor)     | PostgreSQL monitoring exporter configuration                            |
+| [`PG_REMOVE`](#pg_remove)       | PostgreSQL instance cleanup and uninstall configuration                 |
 
 
 ----------------
@@ -43,19 +40,19 @@ You can define multiple PGSQL clusters and further organize them into a horizont
 
 [`PG_ID`](#pg_id) parameters are used to define PostgreSQL cluster and instance identity, including cluster name, instance sequence number, role, shard, and other core identity parameters.
 
-| Parameter                               |   Type   | Level | Description                                                          |
-|:----------------------------------------|:--------:|:-----:|:---------------------------------------------------------------------|
-| [`pg_mode`](#pg_mode)                   |  `enum`  | `C`   | pgsql cluster mode: pgsql,citus,mssql,mysql,polar,ivory,oracle,gpsql |
-| [`pg_cluster`](#pg_cluster)             | `string` | `C`   | pgsql cluster name, REQUIRED identity parameter                      |
-| [`pg_seq`](#pg_seq)                     |  `int`   | `I`   | pgsql instance seq number, REQUIRED identity parameter               |
-| [`pg_role`](#pg_role)                   |  `enum`  | `I`   | pgsql instance role, REQUIRED, could be primary, replica, offline    |
-| [`pg_instances`](#pg_instances)         |  `dict`  | `I`   | define multiple pg instances on node in `{port:ins_vars}` format     |
-| [`pg_upstream`](#pg_upstream)           |   `ip`   | `I`   | repl upstream ip addr for standby cluster or cascade replica         |
-| [`pg_shard`](#pg_shard)                 | `string` | `C`   | pgsql shard name, REQUIRED identity for sharding clusters like citus |
-| [`pg_group`](#pg_group)                 |  `int`   | `C`   | pgsql shard index, REQUIRED identity for sharding clusters like citus|
-| [`gp_role`](#gp_role)                   |  `enum`  | `C`   | greenplum role of this cluster, could be master or segment           |
-| [`pg_exporters`](#pg_exporters)         |  `dict`  | `C`   | additional pg_exporters to monitor remote postgres instances         |
-| [`pg_offline_query`](#pg_offline_query) |  `bool`  | `I`   | set to true to mark this replica as offline instance for offline queries |
+| Parameter                               |   Type   | Level | Description                                                              |
+|:----------------------------------------|:--------:|:-----:|:-------------------------------------------------------------------------|
+| [`pg_mode`](#pg_mode)                   |  `enum`  |  `C`  | pgsql cluster mode: pgsql,citus,mssql,mysql,polar,ivory,oracle,gpsql     |
+| [`pg_cluster`](#pg_cluster)             | `string` |  `C`  | pgsql cluster name, REQUIRED identity parameter                          |
+| [`pg_seq`](#pg_seq)                     |  `int`   |  `I`  | pgsql instance seq number, REQUIRED identity parameter                   |
+| [`pg_role`](#pg_role)                   |  `enum`  |  `I`  | pgsql instance role, REQUIRED, could be primary, replica, offline        |
+| [`pg_instances`](#pg_instances)         |  `dict`  |  `I`  | define multiple pg instances on node in `{port:ins_vars}` format         |
+| [`pg_upstream`](#pg_upstream)           |   `ip`   |  `I`  | repl upstream ip addr for standby cluster or cascade replica             |
+| [`pg_shard`](#pg_shard)                 | `string` |  `C`  | pgsql shard name, REQUIRED identity for sharding clusters like citus     |
+| [`pg_group`](#pg_group)                 |  `int`   |  `C`  | pgsql shard index, REQUIRED identity for sharding clusters like citus    |
+| [`gp_role`](#gp_role)                   |  `enum`  |  `C`  | greenplum role of this cluster, could be master or segment               |
+| [`pg_exporters`](#pg_exporters)         |  `dict`  |  `C`  | additional pg_exporters to monitor remote postgres instances             |
+| [`pg_offline_query`](#pg_offline_query) |  `bool`  |  `I`  | set to true to mark this replica as offline instance for offline queries |
 
 --------
 
@@ -96,11 +93,10 @@ You can define multiple PGSQL clusters and further organize them into a horizont
 
 --------
 
-[`PG_BOOTSTRAP`](#pg_bootstrap) parameters are used to configure PostgreSQL cluster initialization, including Patroni high availability, data directory, storage, networking, encoding, and other core settings.
+[`PG_BOOTSTRAP`](#pg_bootstrap) parameters are used to configure PostgreSQL cluster initialization, including Patroni high availability, storage paths, networking, encoding, and other core settings.
 
 | Parameter                                           |    Type    | Level | Description                                                          |
 |:----------------------------------------------------|:----------:|:-----:|:---------------------------------------------------------------------|
-| [`pg_data`](#pg_data)                               |   `path`   | `C`   | postgres data directory, `/pg/data` by default                       |
 | [`pg_fs_main`](#pg_fs_main)                         |   `path`   | `C`   | mountpoint/path for pg main data, `/data/postgres` by default        |
 | [`pg_fs_backup`](#pg_fs_backup)                     |   `path`   | `C`   | mountpoint/path for pg backup data, `/data/backups` by default       |
 | [`pg_storage_type`](#pg_storage_type)               |   `enum`   | `C`   | storage type for pg main data, SSD,HDD. SSD by default               |
@@ -170,24 +166,24 @@ You can define multiple PGSQL clusters and further organize them into a horizont
 
 [`PG_ACCESS`](#pg_access) parameters are used to configure service exposure, connection pooling, VIP, DNS, and other client access options.
 
-| Parameter                                             |    Type     | Level | Description                                                     |
-|:------------------------------------------------------|:-----------:|:-----:|:----------------------------------------------------------------|
-| [`pgbouncer_enabled`](#pgbouncer_enabled)             |   `bool`    | `C`   | if disabled, pgbouncer will not be configured                   |
-| [`pgbouncer_port`](#pgbouncer_port)                   |   `port`    | `C`   | pgbouncer listen port, 6432 by default                          |
-| [`pgbouncer_log_dir`](#pgbouncer_log_dir)             |   `path`    | `C`   | pgbouncer log dir, `/pg/log/pgbouncer` by default               |
-| [`pgbouncer_auth_query`](#pgbouncer_auth_query)       |   `bool`    | `C`   | use AuthQuery to get unlisted business users from postgres?     |
-| [`pgbouncer_poolmode`](#pgbouncer_poolmode)           |   `enum`    | `C`   | pool mode: transaction,session,statement. transaction by default|
-| [`pgbouncer_sslmode`](#pgbouncer_sslmode)             |   `enum`    | `C`   | pgbouncer client ssl mode, disabled by default                  |
-| [`pgbouncer_ignore_param`](#pgbouncer_ignore_param)   | `string[]`  | `C`   | pgbouncer ignore startup parameters list                        |
-| [`pg_weight`](#pg_weight)                             |    `int`    | `I`   | relative load balancing weight in service, 0-255, 100 by default|
-| [`pg_service_provider`](#pg_service_provider)         |  `string`   | `G/C` | dedicated haproxy node group name, or use local haproxy         |
-| [`pg_default_service_dest`](#pg_default_service_dest) |   `enum`    | `G/C` | default service dest if svc.dest='default': postgres or pgbouncer|
-| [`pg_default_services`](#pg_default_services)         | `service[]` | `G/C` | postgres default service definition list, shared globally       |
-| [`pg_vip_enabled`](#pg_vip_enabled)                   |   `bool`    | `C`   | enable L2 VIP for pgsql primary? disabled by default            |
-| [`pg_vip_address`](#pg_vip_address)                   |   `cidr4`   | `C`   | vip address in `<ipv4>/<mask>` format, required if vip enabled  |
-| [`pg_vip_interface`](#pg_vip_interface)               |  `string`   | `C/I` | vip network interface to bindg, eth0 by default                 |
-| [`pg_dns_suffix`](#pg_dns_suffix)                     |  `string`   | `C`   | pgsql dns suffix, empty by default                              |
-| [`pg_dns_target`](#pg_dns_target)                     |   `enum`    | `C`   | PG DNS resolves to: auto, primary, vip, none, or specific IP    |
+| Parameter                                             |    Type     | Level | Description                                                       |
+|:------------------------------------------------------|:-----------:|:-----:|:------------------------------------------------------------------|
+| [`pgbouncer_enabled`](#pgbouncer_enabled)             |   `bool`    |  `C`  | if disabled, pgbouncer will not be configured                     |
+| [`pgbouncer_port`](#pgbouncer_port)                   |   `port`    |  `C`  | pgbouncer listen port, 6432 by default                            |
+| [`pgbouncer_log_dir`](#pgbouncer_log_dir)             |   `path`    |  `C`  | pgbouncer log dir, `/pg/log/pgbouncer` by default                 |
+| [`pgbouncer_auth_query`](#pgbouncer_auth_query)       |   `bool`    |  `C`  | use AuthQuery to get unlisted business users from postgres?       |
+| [`pgbouncer_poolmode`](#pgbouncer_poolmode)           |   `enum`    |  `C`  | pool mode: transaction,session,statement. transaction by default  |
+| [`pgbouncer_sslmode`](#pgbouncer_sslmode)             |   `enum`    |  `C`  | pgbouncer client ssl mode, disabled by default                    |
+| [`pgbouncer_ignore_param`](#pgbouncer_ignore_param)   | `string[]`  |  `C`  | pgbouncer ignore startup parameters list                          |
+| [`pg_weight`](#pg_weight)                             |    `int`    |  `I`  | relative load balancing weight in service, 0-255, 100 by default  |
+| [`pg_service_provider`](#pg_service_provider)         |  `string`   | `G/C` | dedicated haproxy node group name, or use local haproxy           |
+| [`pg_default_service_dest`](#pg_default_service_dest) |   `enum`    | `G/C` | default service dest if svc.dest='default': postgres or pgbouncer |
+| [`pg_default_services`](#pg_default_services)         | `service[]` | `G/C` | postgres default service definition list, shared globally         |
+| [`pg_vip_enabled`](#pg_vip_enabled)                   |   `bool`    |  `C`  | enable L2 VIP for pgsql primary? disabled by default              |
+| [`pg_vip_address`](#pg_vip_address)                   |   `cidr4`   |  `C`  | vip address in `<ipv4>/<mask>` format, required if vip enabled    |
+| [`pg_vip_interface`](#pg_vip_interface)               |  `string`   | `C/I` | vip network interface to bindg, eth0 by default                   |
+| [`pg_dns_suffix`](#pg_dns_suffix)                     |  `string`   |  `C`  | pgsql dns suffix, empty by default                                |
+| [`pg_dns_target`](#pg_dns_target)                     |   `enum`    |  `C`  | PG DNS resolves to: auto, primary, vip, none, or specific IP      |
 
 --------
 
@@ -254,7 +250,7 @@ You must explicitly specify these **identity parameters**, they have no default 
 |     [`pg_seq`](#pg_seq)       | `number` | **I** | **PG instance ID**        |
 |    [`pg_role`](#pg_role)      |  `enum`  | **I** | **PG instance role**      |
 |   [`pg_shard`](#pg_shard)     | `string` | **C** | **Shard name**            |
-|   [`pg_group`](#pg_group)     | `number` | **C** | **Shard index**           |
+|    [`pg_group`](#pg_group)    | `number` | **C** | **Shard index**           |
 
 - [`pg_cluster`](#pg_cluster): Identifies the cluster name, configured at cluster level.
 - [`pg_role`](#pg_role): Configured at instance level, identifies the role of the instance. Only `primary` role is treated specially. If not specified, defaults to `replica` role, with special `delayed` and `offline` roles.
