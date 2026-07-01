@@ -37,5 +37,5 @@ Use `bin/redis-rm <ip> <port>` to remove a single Redis instance from the node.
 
 ## Are there plans to upgrade to Valkey or the latest version?
 
-Pigsty v4.1 still uses Redis 7.2 BSD branch as the default implementation, and has not switched to newer Redis license variants or Valkey as the default component.
+Pigsty v4.x still uses Redis 7.2 BSD branch as the default implementation, and has not switched to newer Redis license variants or Valkey as the default component.
 Redis patch versions may differ across OS channels (for example, APT can provide 7.2.7). Please use the package version in your actual repository as the source of truth.
