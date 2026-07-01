@@ -6,11 +6,12 @@ icon: fa-solid fa-scroll
 categories: [Reference]
 ---
 
-These docs currently correspond to the upcoming [**v4.3.0**](#v430) release.
+These docs currently correspond to [**v4.3.0**](#v430).
 
 |     Version     | Release Date | Summary                                                                         |                                       Release Page                                        |
 |:---------------:|:------------:|---------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------:|
-| [v4.3.0](#v430) |  2026-05-01  | 524 extensions, batch Infra / PGSQL / kernel package updates, Ubuntu 26 support |                                            TBD                                            |
+| [v4.4.0 WIP](#) |  2026-07-01  | PG 19 beta support, 531 extensions, compression updates, pig CLI improvements   |               [v4.4.0](https://github.com/pgsty/pigsty/releases/tag/v4.4.0)               |
+| [v4.3.0](#v430) |  2026-05-01  | 510 extensions, batch Infra / PGSQL / kernel package updates, Ubuntu 26 support |               [v4.3.0](https://github.com/pgsty/pigsty/releases/tag/v4.3.0)               |
 | [v4.2.2](#v422) |  2026-03-23  | Insforge template, pdu, pgdog, tigerfs, ivorysql 5.3                            |               [v4.2.2](https://github.com/pgsty/pigsty/releases/tag/v4.2.2)               |
 | [v4.2.1](#v421) |  2026-03-06  | Maintenance release: 3 new extensions, drop PG13, bug fixes                     |               [v4.2.1](https://github.com/pgsty/pigsty/releases/tag/v4.2.1)               |
 | [v4.2.0](#v420) |  2026-02-28  | Routine minor release with six PG kernel updates                                |               [v4.2.0](https://github.com/pgsty/pigsty/releases/tag/v4.2.0)               |
@@ -72,14 +73,50 @@ These docs currently correspond to the upcoming [**v4.3.0**](#v430) release.
 
 ------
 
+## v4.4.0 (WIP)
+
+Development version.
+
+**Highlights**
+
+- Added PostgreSQL 19 (beta1) support.
+- Added automatic VIP network interface detection.
+- Added about 21 PostgreSQL extensions, bringing the total available extension count to 531, with improved Ubuntu 26 extension coverage.
+- Enabled lz4 compression for PostgreSQL WAL by default, and changed pgBackRest's default compression from lz4 to zstd. [#744](https://github.com/pgsty/pigsty/issues/744)
+- Updated support for the latest EL minor releases: EL 9.8 / 10.2, with corresponding terraform/vagrant template updates.
+- Provide an Agent Runtime environment for Codex by default instead of Claude Code/OpenCode (`AGENTS.md`).
+
+**Bug Fixes**
+
+- Fixed the EPEL EL10 repository URL to use the major version as `releasever`. [#752](https://github.com/pgsty/pigsty/issues/752)
+- When `/www` already exists, bootstrap and repo tasks now use the existing directory directly instead of creating a symlink. [#753](https://github.com/pgsty/pigsty/issues/753)
+- Fixed Redis Sentinel password concatenation logic. [#748](https://github.com/pgsty/pigsty/issues/748)
+- Aligned the RPM package names for `pg_http`, `pg_gzip`, and `apache-age` with PGDG. [#750](https://github.com/pgsty/pigsty/issues/750)
+- Fixed Debian/Ubuntu behavior where the vector log collector was not correctly prevented from auto-starting.
+- Improved the special handling logic for the `el9.aarch64` PGDG Patroni package name, avoiding a hardcoded version.
+
+**PostgreSQL and Extension Package Changes**
+
+- PostgreSQL 19beta1
+- Patroni 4.1.3
+- pgBackRest 2.59 (TBD, support for PG19)
+- IvorySQL 5.4
+- OrioleDB 16/17/18 support
+- [PGSQL RPM changes](/docs/repo/pgsql/rpm)
+- [PGSQL DEB changes](/docs/repo/pgsql/deb)
+- [PGSQL INFRA changes](/docs/repo/infra/log)
+
+
+------
+
 ## v4.3.0
 
 **Highlights**
 
-- Added about 50 PostgreSQL extensions, bringing the total available extension count to 524.
+- Added about 50 PostgreSQL extensions, bringing the total available extension count to 510.
 - Added Ubuntu 26.04 x86_64/arm64 support, deprecated Ubuntu 20.04 support, and refreshed minor OS variants to Debian 13.4 / Ubuntu 24.04.4.
 - Kernel updates: Supabase is updated to the latest version, pgEdge to PG 18, and PolarDB to PG 17.
-- Grafana is updated to 13.0.0, and MinIO now uses the pgsty branch with CVE fixes.
+- Grafana is updated to 13.0.1, and MinIO now uses the pgsty branch with CVE fixes.
 - Vagrant templates now consistently use cloud-image series images.
 
 **Bug Fixes**

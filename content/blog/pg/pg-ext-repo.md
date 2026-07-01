@@ -6,7 +6,7 @@ author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 
 description: |
-  PostgreSQL Is Eating the Database World through the power of extensibility. With 390 extensions powering PG, we may not say it's invincible, but it’s definitely getting much closer.
+  PostgreSQL Is Eating the Database World through the power of extensibility. With 531 extensions powering PG, we may not say it's invincible, but it’s definitely getting much closer.
 
 images: [/img/hero/pg/pg-ext-repo.jpg]
 tags: [PostgreSQL, PG-Ecosystem, Extension]
@@ -14,4 +14,4 @@ tags: [PostgreSQL, PG-Ecosystem, Extension]
 
 [![featured](/img/hero/pg/pg-ext-repo.jpg)](https://vonng.com/en/pg/pg-ext-repo/)
 
-PostgreSQL Is Eating the Database World through the power of extensibility. With 390 extensions powering PG, we may not say it's invincible, but it’s definitely getting much closer. [**Read more**](https://vonng.com/en/pg/pg-ext-repo/)
+PostgreSQL Is Eating the Database World through the power of extensibility. With 531 extensions powering PG, we may not say it's invincible, but it’s definitely getting much closer. [**Read more**](https://vonng.com/en/pg/pg-ext-repo/)

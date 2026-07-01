@@ -144,7 +144,7 @@ test_decoding                   available  -           ETL    --s--x  PostgreSQL
 pgoutput                        available  -           ETL    --s---  PostgreSQL    CONTRIB  14-18  postgresql-18                         Logical Replication output plugin
 
 
-(524 Rows) (Status: installed, available, not avail | Flags: b = HasBin, d = HasDDL, s = HasLib, l = NeedLoad, t = Trusted, r = Relocatable, x = Unknown)
+(531 Rows) (Status: installed, available, not avail | Flags: b = HasBin, d = HasDDL, s = HasLib, l = NeedLoad, t = Trusted, r = Relocatable, x = Unknown)
 ```
 
 All extension metadata is defined in a data file named [`extension.csv`](https://github.com/pgsty/pig/blob/main/cli/ext/assets/extension.csv).

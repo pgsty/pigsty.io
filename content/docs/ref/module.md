@@ -33,7 +33,7 @@ categories: [Reference]
 
 Pigsty provides four <span class="text-primary"><b>core</b></span> modules that are important for delivering complete highly available PostgreSQL services:
 
-- [**`PGSQL`**](/docs/pgsql): Self-healing PostgreSQL clusters with HA, PITR, IaC, SOP, monitoring, and [**524**](/ext/list) extensions.
+- [**`PGSQL`**](/docs/pgsql): Self-healing PostgreSQL clusters with HA, PITR, IaC, SOP, monitoring, and [**531**](/ext/list) extensions.
 - [**`INFRA`**](/docs/infra): Local software repository, Prometheus, Grafana, Loki, AlertManager, PushGateway, Blackbox Exporter...
 - [**`NODE`**](/docs/node): Node convergence for hostname, timezone, NTP, ssh, sudo, haproxy, docker, vector, keepalived.
 - [**`ETCD`**](/docs/etcd): Distributed key-value store used as DCS for HA PostgreSQL clusters: consensus leader election/config management/service discovery.

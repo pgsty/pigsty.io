@@ -6,7 +6,7 @@ weight: 5410
 ---
 
 The Pigsty PGSQL Repo is designed to work together with the official PostgreSQL Global Development Group ([PGDG](https://www.postgresql.org/download/linux/)) repo.
-Together, they can provide [510 PostgreSQL Extensions](/ext/) out-of-the-box.
+Together, they can provide [531 PostgreSQL Extensions](/ext/) out-of-the-box.
 
 > Mirror synced at 2025-12-29 12:00:00
 

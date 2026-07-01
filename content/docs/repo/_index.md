@@ -8,22 +8,22 @@ weight: 610
 
 Pigsty has a repository that provides additional PostgreSQL extension packages on mainstream [Linux Distros](/docs/ref/linux).
 It is designed to work together with the official PostgreSQL Global Development Group ([PGDG](https://www.postgresql.org/download/linux/)) repo.
-Together, they can provide [510 PostgreSQL Extensions](/ext/) out-of-the-box.
+Together, they can provide [531 PostgreSQL Extensions](/ext/) out-of-the-box.
 
-|   PGSQL Repo   |                            Description                            |             Link              |
-|:--------------:|:-----------------------------------------------------------------:|:-----------------------------:|
+|   PGSQL Repo   |                                 Description                                  |             Link              |
+|:--------------:|:----------------------------------------------------------------------------:|:-----------------------------:|
 | **PGSQL** Repo | [Pigsty Extension Repo](/docs/repo/pgsql/), supplementary extension packages | [pgsql.md](/docs/repo/pgsql/) |
-| **INFRA** Repo | [Pigsty Infrastructure Repo](/docs/repo/infra/), monitoring/tools | [infra.md](/docs/repo/infra/) |
-| **PGDG** Repo  |     [PGDG Official Repo Mirror](/docs/repo/pgdg/), PG Kernel      |  [pgdg.md](/docs/repo/pgdg/)  |
-|  **GPG** Key   |     [GPG Public Key](/docs/repo/gpg/), signature verification     |   [gpg.md](/docs/repo/gpg/)   |
+| **INFRA** Repo |      [Pigsty Infrastructure Repo](/docs/repo/infra/), monitoring/tools       | [infra.md](/docs/repo/infra/) |
+| **PGDG** Repo  |           [PGDG Official Repo Mirror](/docs/repo/pgdg/), PG Kernel           |  [pgdg.md](/docs/repo/pgdg/)  |
+|  **GPG** Key   |          [GPG Public Key](/docs/repo/gpg/), signature verification           |   [gpg.md](/docs/repo/gpg/)   |
 
 
 ---------
 
 ## Compatibility Overview
 
-|  OS / Arch   |  OS  |                     x86_64                     |                    aarch64                     |
-|:------------:|:----:|:----------------------------------------------:|:----------------------------------------------:|
+|  OS / Arch   |  OS  |                 x86_64                 |                aarch64                 |
+|:------------:|:----:|:--------------------------------------:|:--------------------------------------:|
 |     EL8      | el8  | **18**, **17**, **16**, **15**, **14** | **18**, **17**, **16**, **15**, **14** |
 |     EL9      | el9  | **18**, **17**, **16**, **15**, **14** | **18**, **17**, **16**, **15**, **14** |
 |     EL10     | el10 | **18**, **17**, **16**, **15**, **14** | **18**, **17**, **16**, **15**, **14** |
@@ -139,27 +139,27 @@ The [**PGSQL**](/docs/repo/pgsql/) repo contains packages that are ad hoc to spe
 
 ## Compatibility Details
 
-|       OS Code        | Vendor | Major |  Minor  | Fullname          |              PG Major Version             | Comment  |
-|:--------------------:|:-------|:-----:|:-------:|:------------------|:-----------------------------------------:|:--------:|
-|    `el7.x86_64`      | EL     |   7   |   7.9   | CentOS 7 x86      |    15 14 13                               |   EOL    |
-|    `el8.x86_64`      | EL     |   8   |  8.10   | RockyLinux 8 x86  | **18** **17** **16** **15** **14** | Near EOL |
-|    `el8.aarch64`     | EL     |   8   |  8.10   | RockyLinux 8 ARM  | **18** **17** **16** **15** **14** | Near EOL |
-|    `el9.x86_64`      | EL     |   9   |   9.7   | RockyLinux 9 x86  | **18** **17** **16** **15** **14** |    OK    |
-|    `el9.aarch64`     | EL     |   9   |   9.7   | RockyLinux 9 ARM  | **18** **17** **16** **15** **14** |    OK    |
-|    `el10.x86_64`     | EL     |  10   |  10.1   | RockyLinux 10 x86 | **18** **17** **16** **15** **14** |    OK    |
-|    `el10.aarch64`    | EL     |  10   |  10.1   | RockyLinux 10 ARM | **18** **17** **16** **15** **14** |    OK    |
-|    `d11.x86_64`      | Debian |  11   |  11.11  | Debian 11 x86     |    17 16 15 14 13                         |   EOL    |
-|    `d11.aarch64`     | Debian |  11   |  11.11  | Debian 11 ARM     |    17 16 15 14 13                         |   EOL    |
-|    `d12.x86_64`      | Debian |  12   |  12.13  | Debian 12 x86     | **18** **17** **16** **15** **14** |    OK    |
-|    `d12.aarch64`     | Debian |  12   |  12.13  | Debian 12 ARM     | **18** **17** **16** **15** **14** |    OK    |
-|    `d13.x86_64`      | Debian |  13   |  13.3   | Debian 13 x86     | **18** **17** **16** **15** **14** |    OK    |
-|    `d13.aarch64`     | Debian |  13   |  13.3   | Debian 13 ARM     | **18** **17** **16** **15** **14** |    OK    |
-|    `u22.x86_64`      | Ubuntu |  22   | 22.04.5 | Ubuntu 22.04 x86  | **18** **17** **16** **15** **14** |    OK    |
-|    `u22.aarch64`     | Ubuntu |  22   | 22.04.5 | Ubuntu 22.04 ARM  | **18** **17** **16** **15** **14** |    OK    |
-|    `u24.x86_64`      | Ubuntu |  24   | 24.04.4 | Ubuntu 24.04 x86  | **18** **17** **16** **15** **14** |    OK    |
-|    `u24.aarch64`     | Ubuntu |  24   | 24.04.4 | Ubuntu 24.04 ARM  | **18** **17** **16** **15** **14** |    OK    |
-|    `u26.x86_64`      | Ubuntu |  26   | 26.04.0 | Ubuntu 26.04 x86  | **18** **17** **16** **15** **14** |    OK    |
-|    `u26.aarch64`     | Ubuntu |  26   | 26.04.0 | Ubuntu 26.04 ARM  | **18** **17** **16** **15** **14** |    OK    |
+|    OS Code     | Vendor | Major |  Minor  | Fullname          |          PG Major Version          | Comment  |
+|:--------------:|:-------|:-----:|:-------:|:------------------|:----------------------------------:|:--------:|
+|  `el7.x86_64`  | EL     |   7   |   7.9   | CentOS 7 x86      |              15 14 13              |   EOL    |
+|  `el8.x86_64`  | EL     |   8   |  8.10   | RockyLinux 8 x86  | **18** **17** **16** **15** **14** | Near EOL |
+| `el8.aarch64`  | EL     |   8   |  8.10   | RockyLinux 8 ARM  | **18** **17** **16** **15** **14** | Near EOL |
+|  `el9.x86_64`  | EL     |   9   |   9.7   | RockyLinux 9 x86  | **18** **17** **16** **15** **14** |    OK    |
+| `el9.aarch64`  | EL     |   9   |   9.7   | RockyLinux 9 ARM  | **18** **17** **16** **15** **14** |    OK    |
+| `el10.x86_64`  | EL     |  10   |  10.1   | RockyLinux 10 x86 | **18** **17** **16** **15** **14** |    OK    |
+| `el10.aarch64` | EL     |  10   |  10.1   | RockyLinux 10 ARM | **18** **17** **16** **15** **14** |    OK    |
+|  `d11.x86_64`  | Debian |  11   |  11.11  | Debian 11 x86     |           17 16 15 14 13           |   EOL    |
+| `d11.aarch64`  | Debian |  11   |  11.11  | Debian 11 ARM     |           17 16 15 14 13           |   EOL    |
+|  `d12.x86_64`  | Debian |  12   |  12.13  | Debian 12 x86     | **18** **17** **16** **15** **14** |    OK    |
+| `d12.aarch64`  | Debian |  12   |  12.13  | Debian 12 ARM     | **18** **17** **16** **15** **14** |    OK    |
+|  `d13.x86_64`  | Debian |  13   |  13.3   | Debian 13 x86     | **18** **17** **16** **15** **14** |    OK    |
+| `d13.aarch64`  | Debian |  13   |  13.3   | Debian 13 ARM     | **18** **17** **16** **15** **14** |    OK    |
+|  `u22.x86_64`  | Ubuntu |  22   | 22.04.5 | Ubuntu 22.04 x86  | **18** **17** **16** **15** **14** |    OK    |
+| `u22.aarch64`  | Ubuntu |  22   | 22.04.5 | Ubuntu 22.04 ARM  | **18** **17** **16** **15** **14** |    OK    |
+|  `u24.x86_64`  | Ubuntu |  24   | 24.04.4 | Ubuntu 24.04 x86  | **18** **17** **16** **15** **14** |    OK    |
+| `u24.aarch64`  | Ubuntu |  24   | 24.04.4 | Ubuntu 24.04 ARM  | **18** **17** **16** **15** **14** |    OK    |
+|  `u26.x86_64`  | Ubuntu |  26   | 26.04.0 | Ubuntu 26.04 x86  | **18** **17** **16** **15** **14** |    OK    |
+| `u26.aarch64`  | Ubuntu |  26   | 26.04.0 | Ubuntu 26.04 ARM  | **18** **17** **16** **15** **14** |    OK    |
 
 
 ---------

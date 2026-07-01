@@ -6,11 +6,48 @@ icon: fa-solid fa-clipboard-list
 categories: [Reference]
 ---
 
-## 2026-06-15
+## 2026-07-01
 
-| Name  | Old Ver | New Ver | Note              |
-|:------|:--------|:--------|:------------------|
-| `pig` | 1.4.1   | 1.4.2   | Metadata refresh  |
+| Name                         | Old Ver        | New Ver        | Note |
+|:-----------------------------|:---------------|:---------------|:-----|
+| `agentsview`                 | 0.32.1         | 0.34.5         |      |
+| `alertmanager`               | 0.32.2         | 0.33.0         |      |
+| `asciinema`                  | 3.2.0          | 3.2.1          |      |
+| `claude`                     | 2.1.172        | 2.1.187        |      |
+| `codex`                      | 0.139.0        | 0.142.0        |      |
+| `dblab`                      | 0.40.1         | 0.42.0         |      |
+| `duckdb`                     | 1.5.3          | 1.5.4          |      |
+| `grafana-victorialogs-ds`    | 0.28.0         | 0.29.0         |      |
+| `headscale`                  | 0.28.0         | 0.29.1         |      |
+| `hugo`                       | 0.163.0        | 0.163.3        |      |
+| `kafka`                      | 4.3.0          | 4.3.1          |      |
+| `minio`                      | 20260417000000 | 20260618000000 |      |
+| `nodejs`                     | 24.16.0        | 24.18.0        |      |
+| `npgsqlrest`                 | 3.16.3         | 3.18.1         |      |
+| `opencode`                   | 1.17.3         | 1.17.9         |      |
+| `pev2`                       | 1.21.0         | 1.22.0         |      |
+| `pg_exporter`                | 1.2.2          | 1.3.0          |      |
+| `pgschema`                   | 1.11.0         | 1.11.1         |      |
+| `pgstream`                   | 1.0.3          | 1.1.0          |      |
+| `pig`                        | 1.4.1          | 1.5.0          |      |
+| `rainfrog`                   | 0.3.18         | 0.3.19         |      |
+| `sabiql`                     | 1.12.3         | 1.13.0         |      |
+| `seaweedfs`                  | 4.32           | 4.35           |      |
+| `stalwart`                   | 0.16.8         | 0.16.10        |      |
+| `tigerbeetle`                | 0.17.6         | 0.17.8         |      |
+| `uv`                         | 0.11.20        | 0.11.24        |      |
+| `victoria-logs`              | 1.50.0         | 1.51.0         |      |
+| `vlagent`                    | 1.50.0         | 1.51.0         |      |
+| `vlogscli`                   | 1.50.0         | 1.51.0         |      |
+| `victoria-metrics`           | 1.145.0        | 1.146.0        |      |
+| `victoria-metrics-cluster`   | 1.145.0        | 1.146.0        |      |
+| `vmutils`                    | 1.145.0        | 1.146.0        |      |
+| `victoria-traces`            | 0.9.2          | 0.9.3          |      |
+| `code`                       | 1.124.0        | 1.125.1        |      |
+| `code-server`                | 4.123.0        | 4.125.0        |      |
+| `cloudflared`                | 2026.6.0       | 2026.6.1       |      |
+| `crush`                      | 0.76.0         | 0.79.1         |      |
+| `genai-toolbox`              | 1.1.0          | 1.5.0          |      |
 {.stretch-last}
 
 -------

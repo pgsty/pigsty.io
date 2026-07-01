@@ -122,7 +122,7 @@ variable "architecture" {
 }
 
 variable "distro" {
-  description = "Distribution code (el8,el9,el10,u22,u24,u26,d12,d13)"
+  description = "Distribution code (el8,el9,el10,u22,u24,d12,d13)"
   type        = string
   default     = "el9"       # Default uses Rocky Linux 9
 }
@@ -164,16 +164,15 @@ The following are commonly used [**ECS Public OS Image**](https://help.aliyun.co
 |--------|------|---------------------|----------------------|
 | CentOS 7.9 | `el7` | `centos_7_9_x64` | - |
 | Rocky 8.10 | `el8` | `rockylinux_8_10_x64` | `rockylinux_8_10_arm64` |
-| Rocky 9.7 | `el9` | `rockylinux_9_7_x64` | `rockylinux_9_7_arm64` |
-| Rocky 10.1 | `el10` | `rockylinux_10_1_x64` | `rockylinux_10_1_arm64` |
+| Rocky 9.8 | `el9` | `rockylinux_9_8_x64` | `rockylinux_9_8_arm64` |
+| Rocky 10.2 | `el10` | `rockylinux_10_2_x64` | `rockylinux_10_2_arm64` |
 | Debian 11.11 | `d11` | `debian_11_11_x64` | - |
-| Debian 12.13 | `d12` | `debian_12_13_x64` | `debian_12_13_arm64` |
-| Debian 13.3 | `d13` | `debian_13_3_x64` | `debian_13_3_arm64` |
-| Ubuntu 22.04 | `u22` | `ubuntu_22_04_x64_20G` | `ubuntu_22_04_arm64_20G` |
-| Ubuntu 24.04 | `u24` | `ubuntu_24_04_x64_20G` | `ubuntu_24_04_arm64_20G` |
-| Ubuntu 26.04 | `u26` | `ubuntu_26_04_x64_20G` | `ubuntu_26_04_arm64_20G` |
-| Anolis 8.9 | `an8` | `anolisos_8_9_x64` | - |
-| Alibaba Cloud Linux 3 | `al3` | `aliyun_3_0_x64` | - |
+| Debian 12.14 | `d12` | `debian_12_14_x64` | `debian_12_14_arm64` |
+| Debian 13.5 | `d13` | `debian_13_5_x64` | `debian_13_5_arm64` |
+| Ubuntu 22.04.5 LTS | `u22` | `ubuntu_22_04_x64_20G` | `ubuntu_22_04_arm64_20G` |
+| Ubuntu 24.04.4 LTS | `u24` | `ubuntu_24_04_x64_20G` | `ubuntu_24_04_arm64_20G` |
+| Anolis 8.10 | `an8` | `anolisos_8_10_x64` | `anolisos_8_10_arm64` |
+| Alibaba Cloud Linux 3 | `al3` | `aliyun_3_x64_20G_alibase_[0-9]+` | `aliyun_3_arm64_20G_alibase_[0-9]+` |
 {.full-width}
 
 ### OSS Storage Configuration
