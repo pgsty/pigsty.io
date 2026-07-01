@@ -36,7 +36,7 @@ Pigsty provides two monitoring dashboards related to the [`MINIO`](/docs/minio) 
 
 [![minio-overview.jpg](/img/dashboard/minio-overview.jpg)](https://demo.pigsty.io/d/minio-overview)
 
-MinIO monitoring metrics are collected through MinIO's native Prometheus endpoint (`/minio/v2/metrics/cluster`), and by default are scraped and stored by Victoria Metrics.
+MinIO monitoring metrics are collected through MinIO's native Prometheus endpoint (`/minio/v2/metrics/cluster`), and by default are scraped and stored by VictoriaMetrics.
 
 
 

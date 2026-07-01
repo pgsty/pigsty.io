@@ -56,7 +56,7 @@ Playbook [`minio-rm.yml`](https://github.com/pgsty/pigsty/blob/main/minio-rm.yml
 - `minio-id`          : Generate minio identity parameters for removal (with `any_errors_fatal` - stops immediately on identity validation failure)
 - `minio_safeguard`   : Safety check, prevent accidental deletion (default: `false`)
 - `minio_pause`       : Pause 3 seconds, allow user to abort (Ctrl+C to cancel)
-- `minio_deregister`  : Remove targets from Victoria/Prometheus monitoring, clean up DNS records
+- `minio_deregister`  : Remove targets from VictoriaMetrics monitoring, clean up DNS records
 - `minio_svc`         : Stop and disable minio systemd service
 - `minio_data`        : Remove minio data directory (disable with `minio_rm_data=false`)
 - `minio_pkg`         : Uninstall minio packages (enable with `minio_rm_pkg=true`)
@@ -117,4 +117,3 @@ If you need to remove a protected cluster, override with command-line parameters
 ## Demo
 
 [![asciicast](https://asciinema.org/a/566415.svg)](https://asciinema.org/a/566415)
-

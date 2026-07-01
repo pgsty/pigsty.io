@@ -43,7 +43,7 @@ Starting from Pigsty v3.6, cluster removal has been migrated from `minio.yml` pl
 {{% /alert %}}
 
 The removal playbook automatically performs the following:
-- Deregisters MinIO targets from Victoria/Prometheus monitoring
+- Deregisters MinIO targets from VictoriaMetrics monitoring
 - Removes records from the DNS service on INFRA nodes
 - Stops and disables MinIO systemd service
 - Deletes MinIO data directory and configuration files (optional)

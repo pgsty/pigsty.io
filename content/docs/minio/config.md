@@ -286,7 +286,7 @@ node_etc_hosts: ["10.10.10.9 sss.pigsty"] # Other nodes will use sss.pigsty doma
 
 ## Dedicated Load Balancer
 
-Pigsty allows using a dedicated load balancer server group instead of the cluster itself to run VIP and HAProxy. For example, the [`prod`](/docs/conf/pro) template uses this approach.
+Pigsty allows using a dedicated load balancer server group instead of the cluster itself to run VIP and HAProxy. For example, the [`ha/simu`](/docs/conf/simu) template uses this approach.
 
 ```yaml
 proxy:
@@ -380,4 +380,3 @@ Meanwhile, if you are using Pigsty's self-signed CA rather than a proper public 
 --------
 
 <br>
-
