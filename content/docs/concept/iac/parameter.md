@@ -14,18 +14,20 @@ In the **inventory**, you can use various parameters to fine-tune Pigsty customi
 
 ## Parameter List
 
-Pigsty provides approximately **380+** configuration parameters distributed across 8 default modules for fine-grained control of various system aspects. See [**Reference - Parameter List**](/docs/ref/param) for the complete list.
+Pigsty provides **359** configuration parameters distributed across 10 modules for fine-grained control of various system aspects. See [**Reference - Parameter List**](/docs/ref/param) for the complete list.
 
-| Module                             | Groups | Params | Description                                          |
-|:-----------------------------------|:------:|:------:|:-----------------------------------------------------|
-| [**PGSQL**](/docs/pgsql/param)     |   9    |  123   | Core configuration for PostgreSQL database clusters  |
-| [**INFRA**](/docs/infra/param)     |   10   |   82   | Infrastructure: repos, Nginx, DNS, monitoring, Grafana, etc. |
-| [**NODE**](/docs/node/param)       |   11   |   83   | Host node tuning: identity, DNS, packages, tuning, security, admin, time, VIP, etc. |
-| [**ETCD**](/docs/etcd/param)       |   2    |   13   | Distributed configuration store and service discovery |
-| [**REDIS**](/docs/redis/param)     |   1    |   21   | Redis cache and data structure server                |
-| [**MINIO**](/docs/minio/param)     |   2    |   21   | S3-compatible object storage service                 |
-| [**FERRET**](/docs/ferret/param)   |   1    |    9   | MongoDB-compatible database FerretDB                 |
-| [**DOCKER**](/docs/docker/param)   |   1    |    8   | Docker container engine                              |
+| Module                             | Groups | Params | Description                              |
+|:-----------------------------------|:------:|:------:|:-----------------------------------------|
+| [**PGSQL**](/docs/pgsql/param)     |   9    |  124   | PostgreSQL high-availability cluster configuration |
+| [**INFRA**](/docs/infra/param)     |   10   |   72   | Software repositories and Victoria observability infrastructure |
+| [**NODE**](/docs/node/param)       |   11   |   73   | Node initialization, system tuning, and operations baseline |
+| [**ETCD**](/docs/etcd/param)       |   2    |   13   | ETCD cluster and removal protection parameters |
+| [**MINIO**](/docs/minio/param)     |   2    |   21   | MinIO deployment and removal parameters |
+| [**REDIS**](/docs/redis/param)     |   2    |   21   | Redis deployment and removal parameters |
+| [**FERRET**](/docs/ferret/param)   |   1    |    9   | FerretDB Mongo API parameters            |
+| [**DOCKER**](/docs/docker/param)   |   1    |    8   | Docker engine parameters                 |
+| [**JUICE**](/docs/juice/param)     |   1    |    2   | JuiceFS instance and cache parameters    |
+| [**VIBE**](/docs/vibe/param)       |   1    |   16   | Code/Jupyter/Node.js/Claude configuration |
 {.stretch-last}
 
 

@@ -13,7 +13,7 @@ categories: [Concept]
 
 ## Overview
 
-Pigsty's PostgreSQL clusters come with out-of-the-box high availability, powered by [**Patroni**](https://patroni.readthedocs.io/en/latest/), [**Etcd**](https://etcd.io/), and [**HAProxy**](http://www.haproxy.org/).
+Pigsty's PostgreSQL clusters come with out-of-the-box high availability, with core capabilities provided by [**Patroni**](/docs/patroni), [**Etcd**](https://etcd.io/), and [**HAProxy**](http://www.haproxy.org/).
 
 When your PostgreSQL cluster has two or more instances, you automatically have self-healing database high availability without any additional configuration â€” as long as any instance in the cluster survives, the cluster can provide complete service. Clients only need to connect to any node in the cluster to get full service without worrying about primary-replica topology changes.
 
@@ -22,7 +22,7 @@ With default configuration, the primary failure Recovery Time Objective (RTO) â‰
 Pigsty includes built-in HAProxy load balancers for automatic traffic switching, providing DNS/VIP/LVS and other access methods for clients. Failover and switchover are almost transparent to the business side except for brief interruptions - applications don't need to modify connection strings or restart.
 The minimal maintenance window requirements bring great flexibility and convenience: you can perform rolling maintenance and upgrades on the entire cluster without application coordination. The feature that hardware failures can wait until the next day to handle lets developers, operations, and DBAs sleep well during incidents.
 
-~~![pigsty-ha](/img/pigsty/ha.png)~~
+![pigsty-ha](/img/pigsty/ha.png)
 
 Many large organizations and core institutions have been using Pigsty in production for extended periods. The largest deployment has 25K CPU cores and 220+ PostgreSQL ultra-large instances (64c / 512g / 3TB NVMe SSD). In this deployment case, dozens of hardware failures and various incidents occurred over five years, yet overall availability of over **99.999%** was maintained.
 
@@ -45,7 +45,7 @@ Many large organizations and core institutions have been using Pigsty in product
 **Limitations of High Availability**
 
 Since replication happens in real-time, all changes are immediately applied to replicas. Therefore, streaming replication-based HA solutions cannot handle data deletion or modification caused by human errors and software defects. (e.g., `DROP TABLE` or `DELETE` data)
-Such failures require using [**delayed clusters**](/docs/pgsql/config#delayed-cluster) or performing [**point-in-time recovery**](/docs/concept/pitr) using previous base backups and WAL archives.
+Such failures require using [**delayed clusters**](/docs/pgsql/config/cluster#delayed-cluster) or performing [**point-in-time recovery**](/docs/concept/pitr) using previous base backups and WAL archives.
 
 | Configuration Strategy | RTO | RPO |
 |:-----|-----------------|:-----|

@@ -297,7 +297,8 @@ The script reads configuration templates from the `conf/` directory, supporting 
 | `ha/trio` | 3-node HA cluster                          |
 | `ha/full` | 4-node complete sandbox environment        |
 | `ha/safe` | Security-hardened HA configuration         |
-| `ha/simu` | 42-node large-scale simulation environment |
+| `ha/simu` | 20-node production simulation environment  |
+| `ha/citus` | 13-node Citus distributed cluster         |
 
 ### Application Templates (`app/`)
 
@@ -306,7 +307,12 @@ The script reads configuration templates from the `conf/` directory, supporting 
 |   `supabase`   | Supabase self-hosted configuration  |
 |   `app/dify`   | Dify AI platform configuration      |
 |   `app/odoo`   | Odoo ERP configuration              |
+| `app/electric` | Electric sync engine configuration  |
+| `app/insforge` | Insforge backend platform configuration |
+| `app/hindsight` | Hindsight application configuration |
 |  `app/teable`  | Teable table database configuration |
+| `app/mattermost` | Mattermost collaboration platform configuration |
+|  `app/maybe`   | Maybe finance application configuration |
 | `app/registry` | Docker Registry configuration       |
 
 ### Special Kernel Templates
@@ -316,13 +322,20 @@ The script reads configuration templates from the `conf/` directory, supporting 
 | `ivory`  | IvorySQL: Oracle-compatible PostgreSQL                    |
 | `mssql`  | Babelfish: SQL Server-compatible PostgreSQL               |
 | `polar`  | PolarDB: Alibaba Cloud open-source distributed PostgreSQL |
-| `citus`  | Citus: Distributed PostgreSQL                             |
+| `ha/citus` | Citus: Distributed PostgreSQL HA cluster                |
+| `mysql`  | OpenHalo: MySQL protocol-compatible PostgreSQL            |
+| `pgtde`  | Percona PostgreSQL Server: transparent encryption         |
 | `oriole` | OrioleDB: Next-generation storage engine                  |
+| `agens`  | AgensGraph: graph database kernel                         |
+| `pgedge` | pgEdge: distributed PostgreSQL kernel                     |
+| `mongo`  | MongoDB-compatible stack template                         |
 
 ### Demo Templates (`demo/`)
 
 |   Template   | Description                    |
 |:------------:|:-------------------------------|
+|    `vibe`    | Vibe Coding development environment template |
+|   `docker`   | Docker application host template |
 | `demo/demo`  | Demo environment configuration |
 | `demo/redis` | Redis cluster demo             |
 | `demo/minio` | MinIO cluster demo             |
@@ -334,7 +347,7 @@ The script reads configuration templates from the `conf/` directory, supporting 
 
 ```bash
 $ ./configure
-configure pigsty v4.2.0 begin
+configure pigsty v4.3.0 begin
 [ OK ] region = china
 [ OK ] kernel  = Linux
 [ OK ] machine = x86_64

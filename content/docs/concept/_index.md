@@ -42,7 +42,7 @@ Pigsty provides:
 
 - **Stunning Observability**
 
-  A modern observability stack based on Prometheus and Grafana provides unparalleled [**monitoring best practices**](/docs/concept/monitor). Over three thousand types of monitoring metrics describe every aspect of the system, from global dashboards to CRUD operations on individual objects.
+  An observability stack based on VictoriaMetrics and Grafana provides unparalleled [**monitoring best practices**](/docs/concept/monitor). Over three thousand types of monitoring metrics describe every aspect of the system, from global dashboards to CRUD operations on individual objects.
 
 - **Declarative Configuration Management**
 

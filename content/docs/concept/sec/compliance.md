@@ -63,7 +63,7 @@ SOC2 focuses on **security, availability, confidentiality**. Below is a conceptu
 | CC6 Logical access control | Unauthorized access | HBA + RBAC + default privileges | Access approval and periodic audit |
 | CC6 Auth strength | Weak/reused passwords | SCRAM + `passwordcheck` | Password rotation policy |
 | CC6 Transport encryption | Plaintext transport | TLS/CA, `ssl`/`cert` | Enforced TLS policy |
-| CC7 Monitoring | Incidents unnoticed | Prometheus/Grafana | Alert handling process |
+| CC7 Monitoring | Incidents unnoticed | VictoriaMetrics/Grafana | Alert handling process |
 | CC7 Audit trail | No accountability | connection/DDL/slow query logs, `pgaudit` | Log retention and review |
 | CC9 Business continuity | Data not recoverable | pgBackRest + PITR | Regular recovery drills |
 {.full-width}

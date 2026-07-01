@@ -44,7 +44,7 @@ When nodes (by default) use the local software repo for installation, the `NODE`
 ## Standalone Installation
 
 By default, Pigsty installs on a single **node** (physical/virtual machine). The [`deploy.yml`](https://github.com/pgsty/pigsty/blob/main/deploy.yml) playbook installs [`INFRA`](/docs/infra), [`ETCD`](/docs/etcd), [`PGSQL`](/docs/pgsql), and optionally [`MINIO`](/docs/minio) modules on the **current** node,
-giving you a fully-featured observability stack (Prometheus, Grafana, Loki, AlertManager, PushGateway, BlackboxExporter, etc.), plus a built-in PostgreSQL standalone instance as a CMDB, ready to use out of the box (cluster name `pg-meta`, database name `meta`).
+giving you a fully-featured observability stack (VictoriaMetrics, VictoriaLogs, VictoriaTraces, Grafana, Alertmanager, Blackbox Exporter, etc.), plus a built-in PostgreSQL standalone instance as a CMDB, ready to use out of the box (cluster name `pg-meta`, database name `meta`).
 
 This node now has a complete self-monitoring system, visualization tools, and a Postgres database with PITR auto-configured (HA unavailable since you only have one node). You can use this node as a devbox, for testing, running demos, and data visualization/analysis. Or, use this node as an admin node to deploy and manage more nodes!
 
@@ -58,7 +58,7 @@ This node now has a complete self-monitoring system, visualization tools, and a 
 
 The installed [standalone meta node](#standalone-installation) can serve as an **admin node** and **monitoring center** to bring more nodes and database servers under its supervision and control.
 
-Pigsty's monitoring system can be used independently. If you want to install the Prometheus/Grafana observability stack, Pigsty provides best practices!
+Pigsty's monitoring system can be used independently. If you want to install the VictoriaMetrics/Grafana observability stack, Pigsty provides best practices!
 It offers rich dashboards for [host nodes](https://demo.pigsty.io/d/node-overview) and [PostgreSQL databases](https://demo.pigsty.io/d/pgsql-overview).
 Whether or not these nodes or PostgreSQL servers are managed by Pigsty, with simple configuration, you immediately have a production-grade monitoring and alerting system, bringing existing hosts and PostgreSQL under management.
 
@@ -96,4 +96,3 @@ Clients don't need to modify config or restart applications: Haproxy uses patron
 This process is seamless—for example, in case of replica failure or planned switchover, clients experience only a momentary flash of the current query.
 
 Software failures, human errors, and datacenter-level disasters are covered by pgbackrest and the optional [MinIO](/docs/minio) cluster. This provides local/cloud PITR capabilities and, in case of datacenter failure, offers cross-region replication and disaster recovery.
-
