@@ -51,14 +51,14 @@ The [NODE](/docs/node) module tunes target nodes into the desired state and inte
 
 [`NODE_PACKAGE`](#node_package) section configures node software repositories, package installation, and uv Python virtual environment.
 
-| Parameter                                             |    Type     |  Level  | Description                                        |
-|:------------------------------------------------------|:-----------:|:-------:|:---------------------------------------------------|
-| [`node_repo_modules`](#node_repo_modules)             |   `enum`    |   `C`   | which repo modules to enable on node? local default|
-| [`node_repo_remove`](#node_repo_remove)               |   `bool`    |   `C`   | remove existing repo on node when configuring?     |
-| [`node_packages`](#node_packages)                     | `string[]`  |   `C`   | packages to be installed on current nodes          |
-| [`node_default_packages`](#node_default_packages)     | `string[]`  |   `G`   | default packages to be installed on all nodes      |
-| [`node_uv_env`](#node_uv_env)                         |   `path`    |   `C`   | uv venv path, /data/venv by default, empty to skip |
-| [`node_pip_packages`](#node_pip_packages)             |  `string`   |   `C`   | pip packages to install in uv venv                 |
+| Parameter                                         |    Type    | Level | Description                                         |
+|:--------------------------------------------------|:----------:|:-----:|:----------------------------------------------------|
+| [`node_repo_modules`](#node_repo_modules)         |   `enum`   |  `C`  | which repo modules to enable on node? local default |
+| [`node_repo_remove`](#node_repo_remove)           |   `bool`   |  `C`  | remove existing repo on node when configuring?      |
+| [`node_packages`](#node_packages)                 | `string[]` |  `C`  | packages to be installed on current nodes           |
+| [`node_default_packages`](#node_default_packages) | `string[]` |  `G`  | default packages to be installed on all nodes       |
+| [`node_uv_env`](#node_uv_env)                     |   `path`   |  `C`  | uv venv path, /data/venv by default, empty to skip  |
+| [`node_pip_packages`](#node_pip_packages)         |  `string`  |  `C`  | pip packages to install in uv venv                  |
 
 [`NODE_TUNE`](#node_tune) section configures node kernel parameters, feature toggles, and tuning templates.
 
@@ -69,20 +69,20 @@ The [NODE](/docs/node) module tunes target nodes into the desired state and inte
 | [`node_static_network`](#node_static_network)           |   `bool`    |   `C`   | preserve dns resolver settings after reboot              |
 | [`node_disk_prefetch`](#node_disk_prefetch)             |   `bool`    |   `C`   | setup disk prefetch on HDD to increase performance       |
 | [`node_kernel_modules`](#node_kernel_modules)           | `string[]`  |   `C`   | kernel modules to be enabled on this node                |
-| [`node_hugepage_count`](#node_hugepage_count)           |   `int`     |   `C`   | number of 2MB hugepage, take precedence over ratio       |
-| [`node_hugepage_ratio`](#node_hugepage_ratio)           |  `float`    |   `C`   | node mem hugepage ratio, 0 disable it by default         |
-| [`node_overcommit_ratio`](#node_overcommit_ratio)       |  `float`    |   `C`   | node mem overcommit ratio (50-100), 0 disable it         |
+| [`node_hugepage_count`](#node_hugepage_count)           |    `int`    |   `C`   | number of 2MB hugepage, take precedence over ratio       |
+| [`node_hugepage_ratio`](#node_hugepage_ratio)           |   `float`   |   `C`   | node mem hugepage ratio, 0 disable it by default         |
+| [`node_overcommit_ratio`](#node_overcommit_ratio)       |   `float`   |   `C`   | node mem overcommit ratio (50-100), 0 disable it         |
 | [`node_tune`](#node_tune)                               |   `enum`    |   `C`   | node tuned profile: none,oltp,olap,crit,tiny             |
 | [`node_sysctl_params`](#node_sysctl_params)             |   `dict`    |   `C`   | extra sysctl parameters in k:v format                    |
 
 [`NODE_SEC`](#node_sec) section configures node security options, including SELinux and firewall.
 
-| Parameter                                                       |    Type     |  Level  | Description                                          |
-|:----------------------------------------------------------------|:-----------:|:-------:|:-----------------------------------------------------|
-| [`node_selinux_mode`](#node_selinux_mode)                       |   `enum`    |   `C`   | SELinux mode: disabled, permissive, enforcing        |
-| [`node_firewall_mode`](#node_firewall_mode)                     |   `enum`    |   `C`   | firewall mode: zone (default, enabled), off (disable), none (self-managed) |
-| [`node_firewall_intranet`](#node_firewall_intranet)             |  `cidr[]`   |   `C`   | intranet CIDR list for firewall rules                |
-| [`node_firewall_public_port`](#node_firewall_public_port)       |  `port[]`   |   `C`   | public exposed port list, default [22, 80, 443]      |
+| Parameter                                                 |   Type   | Level | Description                                                                |
+|:----------------------------------------------------------|:--------:|:-----:|:---------------------------------------------------------------------------|
+| [`node_selinux_mode`](#node_selinux_mode)                 |  `enum`  |  `C`  | SELinux mode: disabled, permissive, enforcing                              |
+| [`node_firewall_mode`](#node_firewall_mode)               |  `enum`  |  `C`  | firewall mode: zone (default, enabled), off (disable), none (self-managed) |
+| [`node_firewall_intranet`](#node_firewall_intranet)       | `cidr[]` |  `C`  | intranet CIDR list for firewall rules                                      |
+| [`node_firewall_public_port`](#node_firewall_public_port) | `port[]` |  `C`  | public exposed port list, default [22, 80, 443]                            |
 
 [`NODE_ADMIN`](#node_admin) section configures admin user, data directory, and shell aliases.
 
@@ -90,7 +90,7 @@ The [NODE](/docs/node) module tunes target nodes into the desired state and inte
 |:------------------------------------------------------------|:-----------:|:-------:|:-------------------------------------------------------|
 | [`node_data`](#node_data)                                   |   `path`    |   `C`   | node main data directory, `/data` by default           |
 | [`node_admin_enabled`](#node_admin_enabled)                 |   `bool`    |   `C`   | create a admin user on target node?                    |
-| [`node_admin_uid`](#node_admin_uid)                         |   `int`     |   `C`   | uid and gid for node admin user                        |
+| [`node_admin_uid`](#node_admin_uid)                         |    `int`    |   `C`   | uid and gid for node admin user                        |
 | [`node_admin_username`](#node_admin_username)               | `username`  |   `C`   | name of node admin user, `dba` by default              |
 | [`node_admin_sudo`](#node_admin_sudo)                       |   `enum`    |   `C`   | admin sudo privilege: limited, nopass, all, none       |
 | [`node_admin_ssh_exchange`](#node_admin_ssh_exchange)       |   `bool`    |   `C`   | exchange admin ssh key among node cluster              |
@@ -110,17 +110,17 @@ The [NODE](/docs/node) module tunes target nodes into the desired state and inte
 
 [`NODE_VIP`](#node_vip) section configures L2 VIP for node cluster, implemented by keepalived.
 
-| Parameter                                     |    Type     |  Level  | Description                                        |
-|:----------------------------------------------|:-----------:|:-------:|:---------------------------------------------------|
-| [`vip_enabled`](#vip_enabled)                 |   `bool`    |   `C`   | enable L2 vip on this node cluster?                |
-| [`vip_address`](#vip_address)                 |    `ip`     |   `C`   | node vip address in ipv4 format, required if enabled|
-| [`vip_vrid`](#vip_vrid)                       |   `int`     |   `C`   | integer 1-254, should be unique in same VLAN       |
-| [`vip_role`](#vip_role)                       |   `enum`    |   `I`   | optional, master/backup, backup by default         |
-| [`vip_preempt`](#vip_preempt)                 |   `bool`    |  `C/I`  | optional, true/false, enable vip preemption        |
-| [`vip_interface`](#vip_interface)             |  `string`   |  `C/I`  | node vip network interface, `eth0` by default      |
-| [`vip_dns_suffix`](#vip_dns_suffix)           |  `string`   |   `C`   | node vip dns name suffix, empty string by default  |
-| [`vip_auth_pass`](#vip_auth_pass)             | `password`  |   `C`   | vrrp authentication password, auto-generated if empty |
-| [`vip_exporter_port`](#vip_exporter_port)     |   `port`    |   `C`   | keepalived exporter listen port, 9650 by default   |
+| Parameter                                 |    Type    | Level | Description                                           |
+|:------------------------------------------|:----------:|:-----:|:------------------------------------------------------|
+| [`vip_enabled`](#vip_enabled)             |   `bool`   |  `C`  | enable L2 vip on this node cluster?                   |
+| [`vip_address`](#vip_address)             |    `ip`    |  `C`  | node vip address in ipv4 format, required if enabled  |
+| [`vip_vrid`](#vip_vrid)                   |   `int`    |  `C`  | integer 1-254, should be unique in same VLAN          |
+| [`vip_role`](#vip_role)                   |   `enum`   |  `I`  | optional, master/backup, backup by default            |
+| [`vip_preempt`](#vip_preempt)             |   `bool`   | `C/I` | optional, true/false, enable vip preemption           |
+| [`vip_interface`](#vip_interface)         |  `string`  | `C/I` | node vip network interface, `eth0` by default         |
+| [`vip_dns_suffix`](#vip_dns_suffix)       |  `string`  |  `C`  | node vip dns name suffix, empty string by default     |
+| [`vip_auth_pass`](#vip_auth_pass)         | `password` |  `C`  | vrrp authentication password, auto-generated if empty |
+| [`vip_exporter_port`](#vip_exporter_port) |   `port`   |  `C`  | keepalived exporter listen port, 9650 by default      |
 
 [`HAPROXY`](#haproxy) section configures HAProxy load balancer and service exposure.
 
@@ -139,11 +139,11 @@ The [NODE](/docs/node) module tunes target nodes into the desired state and inte
 
 [`NODE_EXPORTER`](#node_exporter) section configures node monitoring exporter.
 
-| Parameter                                               |    Type     |  Level  | Description                            |
-|:--------------------------------------------------------|:-----------:|:-------:|:---------------------------------------|
-| [`node_exporter_enabled`](#node_exporter_enabled)       |   `bool`    |   `C`   | setup node_exporter on this node?      |
-| [`node_exporter_port`](#node_exporter_port)             |   `port`    |   `C`   | node exporter listen port, 9100 default|
-| [`node_exporter_options`](#node_exporter_options)       |   `arg`     |   `C`   | extra server options for node_exporter |
+| Parameter                                         |  Type  | Level | Description                             |
+|:--------------------------------------------------|:------:|:-----:|:----------------------------------------|
+| [`node_exporter_enabled`](#node_exporter_enabled) | `bool` |  `C`  | setup node_exporter on this node?       |
+| [`node_exporter_port`](#node_exporter_port)       | `port` |  `C`  | node exporter listen port, 9100 default |
+| [`node_exporter_options`](#node_exporter_options) | `arg`  |  `C`  | extra server options for node_exporter  |
 
 [`VECTOR`](#vector) section configures Vector log collector.
 
@@ -189,11 +189,11 @@ node_load1{cls="pg-test", ins="pg-test-3", ip="10.10.10.13", job="nodes"}
 
 When executing the default PostgreSQL deployment, since Pigsty uses exclusive 1:1 deployment by default, you can borrow the database instance's identity parameters ([`pg_cluster`](/docs/pgsql/param#pg_cluster)) to the node's `ins` and `cls` labels through the [`node_id_from_pg`](#node_id_from_pg) parameter.
 
-|             Name              |   Type   | Level | Required   | Description            |
-|:-----------------------------:|:--------:|:-----:|:-----------|:-----------------------|
-|     `inventory_hostname`      |   `ip`   | **-** | **Required** | **Node IP Address**    |
-|    [`nodename`](#nodename)    | `string` | **I** | Optional   | **Node Name**          |
-| [`node_cluster`](#node_cluster) | `string` | **C** | Optional   | **Node Cluster Name**  |
+|              Name               |   Type   | Level | Required     | Description           |
+|:-------------------------------:|:--------:|:-----:|:-------------|:----------------------|
+|      `inventory_hostname`       |   `ip`   | **-** | **Required** | **Node IP Address**   |
+|     [`nodename`](#nodename)     | `string` | **I** | Optional     | **Node Name**         |
+| [`node_cluster`](#node_cluster) | `string` | **C** | Optional     | **Node Cluster Name** |
 
 
 ```yaml
@@ -1401,7 +1401,7 @@ This option enables/disables some metrics collectors. Please adjust according to
 
 ## `VECTOR`
 
-Vector is the log collection component used in Pigsty v4.0. It collects logs from various modules and sends them to VictoriaLogs service on infrastructure nodes.
+Vector is the log collection component used by Pigsty since v4. It collects logs from various modules and sends them to VictoriaLogs service on infrastructure nodes.
 
 * `INFRA`: Infrastructure component logs, collected only on Infra nodes.
     * `nginx-access`: `/var/log/nginx/access.log`
@@ -1442,7 +1442,7 @@ name: `vector_enabled`, type: `bool`, level: `C`
 
 Enable Vector log collection service? Default is `true`.
 
-Vector is the log collection agent used in Pigsty v4.0, replacing Promtail from previous versions. It collects node and service logs and sends them to VictoriaLogs.
+Vector is the log collection agent used by Pigsty since v4, replacing Promtail from previous versions. It collects node and service logs and sends them to VictoriaLogs.
 
 
 
