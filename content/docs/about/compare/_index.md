@@ -17,7 +17,7 @@ categories: [Reference]
 
 We've chosen Amazon [AWS RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/) (the global market leader) and Alibaba Cloud [RDS for PostgreSQL](https://www.alibabacloud.com/product/apsaradb-for-rds-postgresql) (China's market leader) as benchmarks for comparison.
 
-Both Aliyun RDS and AWS RDS are closed-source cloud database services, available only through rental models on public clouds. The following comparison is based on the latest PostgreSQL 16 as of February 2024.
+Both Aliyun RDS and AWS RDS are closed-source cloud database services, available only through rental models on public clouds. The following cloud-vendor information is a February 2024 archive based on PostgreSQL 16 at that time; the Pigsty column is maintained with the current v4.3.0 scope.
 
 
 -----------
@@ -36,8 +36,8 @@ Both Aliyun RDS and AWS RDS are closed-source cloud database services, available
 | Connection Pool    | <i class="fas fa-circle-check text-success"></i> Pgbouncer             | <i class="fa-solid fa-triangle-exclamation text-secondary"></i> Separate paid component: RDS | <i class="fa-solid fa-triangle-exclamation text-secondary"></i> Separate paid component: RDS Proxy |
 | High Availability    | <i class="fas fa-circle-check text-success"></i> Patroni / etcd        | <i class="fas fa-circle-check text-success"></i> Requires HA edition                 | <i class="fas fa-circle-check text-success"></i> Requires HA edition                       |
 | Point-in-Time Recovery  | <i class="fas fa-circle-check text-success"></i> pgBackRest / MinIO    | <i class="fas fa-circle-check text-success"></i> Backup supported                    | <i class="fas fa-circle-check text-success"></i> Backup supported                          |
-| Metrics Monitoring   | <i class="fas fa-circle-check text-success"></i> Prometheus / Exporter | <i class="fas fa-circle-check text-secondary"></i> Free basic / Paid advanced             | <i class="fas fa-circle-check text-secondary"></i>  Free basic / Paid advanced                  |
-| Log Collection   | <i class="fas fa-circle-check text-success"></i> Loki / Promtail       | <i class="fas fa-circle-check text-success"></i>  Basic support                     | <i class="fas fa-circle-check text-success"></i> Basic support                            |
+| Metrics Monitoring   | <i class="fas fa-circle-check text-success"></i> VictoriaMetrics / Exporter | <i class="fas fa-circle-check text-secondary"></i> Free basic / Paid advanced             | <i class="fas fa-circle-check text-secondary"></i>  Free basic / Paid advanced                  |
+| Log Collection   | <i class="fas fa-circle-check text-success"></i> VictoriaLogs / Vector       | <i class="fas fa-circle-check text-success"></i>  Basic support                     | <i class="fas fa-circle-check text-success"></i> Basic support                            |
 | Visualization  | <i class="fas fa-circle-check text-success"></i> Grafana / Echarts     | <i class="fas fa-circle-check text-secondary"></i> Basic monitoring                  | <i class="fas fa-circle-check text-secondary"></i> Basic monitoring                        |
 | Alert Aggregation | <i class="fas fa-circle-check text-success"></i> AlertManager          | <i class="fas fa-circle-check text-success"></i> Basic support                      | <i class="fas fa-circle-check text-success"></i> Basic support                            |
 

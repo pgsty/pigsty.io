@@ -13,6 +13,8 @@ categories: [Reference]
 
 ## Overview
 
+The cost data below is intended to illustrate order-of-magnitude differences. Cloud vendor pricing and discounts vary over time, region, instance size, and purchase model.
+
 |              EC2               |    Core·Month    |              RDS               |   Core·Month   |
 |:------------------------------:|:---------:|:------------------------------:|:-------:|
 |     DHH Self-Hosted Core-Month Price (192C 384G)      | **25.32** |         Junior Open Source DB DBA Reference Salary         | ¥15K/person·month |

@@ -47,7 +47,7 @@ Solving extension installation, high availability, connection pooling, monitorin
 
 ### Why is Pigsty better than RDS?
 
-Pigsty provides a feature set and infrastructure support far beyond RDS, including 531 extension plugins and 8+ kernel support.
+Pigsty provides a feature set and infrastructure support far beyond RDS, including 531 extension plugins and 12+ kernel support.
 Pigsty provides a unique professional-grade monitoring system in the PG ecosystem, along with architectural best practices battle-tested in complex scenarios, simple and easy to use.
 
 Moreover, forged in top-tier client scenarios like Tantan, Apple, and Alibaba, continuously nurtured with passion and love, its depth and maturity are incomparable to RDS's one-size-fits-all approach.

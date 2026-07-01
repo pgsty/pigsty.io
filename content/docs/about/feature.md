@@ -16,7 +16,7 @@ categories: [Reference]
 
 ## Value Propositions
 
-- [**Extensibility**](/img/pigsty/extension.png): Powerful [**extensions**](/docs/ref/extension) out-of-the-box: deep integration of **PostGIS**, **TimescaleDB**, **Citus**, **PGVector** and [**531**](/ext/list) plugins with Oracle / SQL Server [**compatible kernels**](/docs/pgsql/kernel).
+- [**Extensibility**](/img/pigsty/ecosystem.png): Powerful [**extensions**](/ext/list) out of the box: deep integration of **PostGIS**, **TimescaleDB**, **Citus**, **PGVector**, [**531**](/ext/list/) plugins, and [**12 PG kernels**](/docs/pgsql/kernel).
 - [**Reliability**](/img/pigsty/arch.png): Quickly create [**high-availability**](/docs/concept/ha/), self-healing [**PostgreSQL**](/docs/pgsql) clusters with auto-configured [**point-in-time recovery**](/docs/concept/pitr/), [**access control**](/docs/concept/sec/ac/), self-signed [**CA**](/docs/concept/sec/ca) and [**SSL**](/docs/setup/security/), ensuring rock-solid data.
 - [**Observability**](/img/pigsty/dashboard.jpg): Based on [**Prometheus**](/docs/infra#victoria-observability-suite) & [**Grafana**](/docs/infra#grafana) modern observability stack, providing stunning monitoring best practices. Modular design, can be used independently: [**Gallery**](https://github.com/pgsty/pigsty/wiki/Gallery) & [**Demo**](https://demo.pigsty.io).
 - [**Availability**](/img/pigsty/ha.png): Deliver stable, reliable, auto-routed, transaction-pooled, read-write separated high-performance database [**services**](/docs/pgsql/service#default-service), with flexible [**access**](/docs/pgsql/service#access-service) modes via HAProxy, Pgbouncer, and VIP.
