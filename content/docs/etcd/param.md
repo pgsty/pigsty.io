@@ -169,10 +169,10 @@ etcd initial cluster state, can be `new` or `existing`, default value: `new`.
 
 **Option Values**:
 
-| Value      | Description                  | Use Case                               |
-|:-----------|:-----------------------------|:---------------------------------------|
-| `new`      | Create a new etcd cluster    | Initial deployment, cluster rebuild    |
-| `existing` | Join an existing etcd cluster | Cluster expansion, adding new members  |
+| Value      | Description                   | Use Case                              |
+|:-----------|:------------------------------|:--------------------------------------|
+| `new`      | Create a new etcd cluster     | Initial deployment, cluster rebuild   |
+| `existing` | Join an existing etcd cluster | Cluster expansion, adding new members |
 
 **Important Notes**:
 
@@ -222,7 +222,7 @@ Parameter: `etcd_root_password`, Type: `password`, Level: `G`
 
 etcd root user password for RBAC authentication, default value is `Etcd.Root`.
 
-Pigsty v4.0 enables etcd RBAC (Role-Based Access Control) authentication by default. During cluster initialization, the `etcd_auth` task automatically creates the root user and enables authentication.
+Since v4.0, Pigsty has enabled etcd RBAC (Role-Based Access Control) authentication by default. During cluster initialization, the `etcd_auth` task automatically creates the root user and enables authentication.
 
 **Password Storage Location**:
 
@@ -280,9 +280,9 @@ When enabled, the [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook will 
 
 **Recommended Settings**:
 
-| Environment | Recommended | Description                                   |
-|:------------|:------------|:----------------------------------------------|
-| Dev/Test    | `false`     | Convenient for rapid rebuilding and testing   |
+| Environment | Recommended | Description                                              |
+|:------------|:------------|:---------------------------------------------------------|
+| Dev/Test    | `false`     | Convenient for rapid rebuilding and testing              |
 | Production  | `true`      | Prevents service interruption from accidental operations |
 
 In emergencies, you can override the configuration with command-line parameters:
@@ -311,10 +311,10 @@ When enabled, the [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook will 
 
 **Use Cases**:
 
-| Scenario        | Recommended     | Description                                  |
-|:----------------|:----------------|:---------------------------------------------|
-| Complete removal | `true` (default) | Full cleanup, free disk space               |
-| Stop service only | `false`        | Preserve data for troubleshooting or recovery |
+| Scenario          | Recommended      | Description                                   |
+|:------------------|:-----------------|:----------------------------------------------|
+| Complete removal  | `true` (default) | Full cleanup, free disk space                 |
+| Stop service only | `false`          | Preserve data for troubleshooting or recovery |
 
 ```bash
 # Stop service only, preserve data
@@ -334,10 +334,10 @@ When enabled, the [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook will 
 
 **Use Cases**:
 
-| Scenario         | Recommended      | Description                            |
-|:-----------------|:-----------------|:---------------------------------------|
-| Normal removal   | `false` (default) | Keep packages for quick redeployment  |
-| Complete cleanup | `true`           | Full uninstall, save disk space        |
+| Scenario         | Recommended       | Description                          |
+|:-----------------|:------------------|:-------------------------------------|
+| Normal removal   | `false` (default) | Keep packages for quick redeployment |
+| Complete cleanup | `true`            | Full uninstall, save disk space      |
 
 ```bash
 # Uninstall packages during removal
@@ -347,5 +347,4 @@ When enabled, the [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook will 
 {{% alert title="Tip" color="info" %}}
 Usually there's no need to uninstall etcd packages. Keeping the packages speeds up subsequent redeployments since no re-download or installation is required.
 {{% /alert %}}
-
 

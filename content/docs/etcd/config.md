@@ -16,12 +16,12 @@ Before deployment, define etcd cluster in [config inventory](/docs/setup/config)
 
 Even-numbered clusters don't make sense; 5+ node clusters uncommon. Typical configs: single, 3-node, 5-node.
 
-| Cluster Size | Quorum | Fault Tolerance | Use Case |
-|:-----|:----|:------|:---------|
-| 1 node | 1   | 0     | Dev, test, demo |
-| 3 nodes | 2   | 1     | Small-medium prod |
-| 5 nodes | 3   | 2     | Large prod |
-| 7 nodes | 4   | 3     | Special HA requirements |
+| Cluster Size | Quorum | Fault Tolerance | Use Case                |
+|:-------------|:-------|:----------------|:------------------------|
+| 1 node       | 1      | 0               | Dev, test, demo         |
+| 3 nodes      | 2      | 1               | Small-medium prod       |
+| 5 nodes      | 3      | 2               | Large prod              |
+| 7 nodes      | 4      | 3               | Special HA requirements |
 
 --------
 
@@ -67,7 +67,7 @@ etcd:
 
 5-node cluster tolerates 2 node failures, suitable for large prod.
 
-Example: Pigsty's prod sim template [`prod`](/docs/conf/pro) uses 5-node etcd:
+Example: Pigsty's production simulation template [`ha/simu`](/docs/conf/simu) uses a 5-node etcd cluster:
 
 ```yaml
 etcd:
@@ -115,7 +115,7 @@ ansible all -f 1 -b -a 'systemctl restart vip-manager' # restart vip-manager
 
 ## RBAC Authentication Config
 
-v4.0 enables etcd RBAC auth by default. Related params:
+Since v4.0, Pigsty has enabled etcd RBAC auth by default. Related params:
 
 | Parameter | Description | Default |
 |:----|:----|:------|
@@ -147,18 +147,18 @@ etcd:
 
 Module creates these directories/files on target hosts:
 
-| Path                                 | Purpose         | Permissions              |
-|:-----------------------------------|:-----------|:----------------|
-| `/etc/etcd/`                       | Config dir       | 0750, etcd:etcd |
-| `/etc/etcd/etcd.conf`              | Main config file | 0644, etcd:etcd |
-| `/etc/etcd/etcd.pass`              | Root password file| 0640, root:etcd |
-| `/etc/etcd/ca.crt`                 | CA cert         | 0644, etcd:etcd |
-| `/etc/etcd/server.crt`             | Server cert      | 0644, etcd:etcd |
-| `/etc/etcd/server.key`             | Server private key| 0600, etcd:etcd |
-| `/var/lib/etcd/`                   | Backup data dir   | 0770, etcd:etcd |
+| Path                               | Purpose                      | Permissions     |
+|:-----------------------------------|:-----------------------------|:----------------|
+| `/etc/etcd/`                       | Config dir                   | 0750, etcd:etcd |
+| `/etc/etcd/etcd.conf`              | Main config file             | 0644, etcd:etcd |
+| `/etc/etcd/etcd.pass`              | Root password file           | 0640, root:etcd |
+| `/etc/etcd/ca.crt`                 | CA cert                      | 0644, etcd:etcd |
+| `/etc/etcd/server.crt`             | Server cert                  | 0644, etcd:etcd |
+| `/etc/etcd/server.key`             | Server private key           | 0600, etcd:etcd |
+| `/var/lib/etcd/`                   | Backup data dir              | 0770, etcd:etcd |
 | `/data/etcd/`                      | Main data dir (configurable) | 0700, etcd:etcd |
-| `/etc/profile.d/etcdctl.sh`        | Client env vars  | 0755, root:root |
-| `/etc/systemd/system/etcd.service` | Systemd service | 0644, root:root |
+| `/etc/profile.d/etcdctl.sh`        | Client env vars              | 0755, root:root |
+| `/etc/systemd/system/etcd.service` | Systemd service              | 0644, root:root |
 
 
 <br>

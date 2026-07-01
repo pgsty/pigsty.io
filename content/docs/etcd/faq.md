@@ -236,7 +236,7 @@ etcdctl member remove <etcd_server_id>       # kick from cluster
 
 ## Configure etcd RBAC authentication?
 
-Pigsty v4.0 enables etcd RBAC auth by default. Root password set by [`etcd_root_password`](/docs/etcd/param#etcd_root_password), default: `Etcd.Root`.
+Since v4.0, Pigsty has enabled etcd RBAC auth by default. Root password set by [`etcd_root_password`](/docs/etcd/param#etcd_root_password), default: `Etcd.Root`.
 
 **Prod recommendation: change default password**
 
@@ -261,4 +261,3 @@ export ETCDCTL_KEY=/etc/etcd/server.key
 ```
 
 More: [RBAC Authentication](/docs/etcd/admin#rbac-authentication).
-

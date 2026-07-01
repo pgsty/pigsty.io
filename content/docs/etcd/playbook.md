@@ -34,7 +34,7 @@ The following subtasks are available in [`etcd.yml`](https://github.com/pgsty/pi
 - `etcd_member`   : Add new member to existing cluster (only runs when `etcd_init=existing`)
 - `etcd_launch`   : Launch etcd service
 - `etcd_auth`     : Enable RBAC authentication (create root user and enable auth)
-- `etcd_register` : Register etcd to VictoriaMetrics/Prometheus monitoring
+- `etcd_register` : Register etcd to VictoriaMetrics monitoring
 
 
 
@@ -130,4 +130,3 @@ When `etcd_safeguard` is set to `true`, the `etcd-rm.yml` playbook will detect r
 ```
 
 Unless you clearly understand what you're doing, we do not recommend arbitrarily removing etcd clusters.
-

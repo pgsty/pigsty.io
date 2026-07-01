@@ -93,7 +93,7 @@ export ETCDCTL_CERT=/etc/etcd/server.crt
 export ETCDCTL_KEY=/etc/etcd/server.key
 ```
 
-v4.0 enables RBAC auth by default—user auth required:
+Since v4.0, Pigsty has enabled RBAC auth for etcd by default, so user auth is still required:
 
 ```bash
 export ETCDCTL_USER="root:$(cat /etc/etcd/etcd.pass)"
@@ -114,7 +114,7 @@ e endpoint status                # view endpoint status
 
 ## RBAC Authentication
 
-v4.0 enables etcd RBAC auth by default. During cluster init, `etcd_auth` task auto-creates root user and enables auth.
+Since v4.0, Pigsty has enabled etcd RBAC auth by default. During cluster init, `etcd_auth` task auto-creates root user and enables auth.
 
 **Root user password** set by [`etcd_root_password`](/docs/etcd/param#etcd_root_password), default: `Etcd.Root`. Stored in `/etc/etcd/etcd.pass` with `0640` perms (root-owned, etcd-group readable).
 
@@ -430,4 +430,3 @@ Script features:
 - Auto-executes `etcd-rm.yml` playbook
 - Gracefully removes members from cluster
 - Cleans up data and config files
-
