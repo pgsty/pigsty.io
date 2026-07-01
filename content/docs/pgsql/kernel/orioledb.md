@@ -9,10 +9,10 @@ categories: [Concept]
 
 [OrioleDB](https://orioledb.com/) is a PostgreSQL storage engine extension that claims to provide 4x OLTP performance, no xid wraparound and table bloat issues, and "cloud-native" (data stored in S3) capabilities.
 
-OrioleDB's latest version is based on a [patched PostgreSQL 17.6](https://github.com/orioledb/postgres) and an additional [extension](https://github.com/orioledb/orioledb)
+Pigsty ships OrioleDB as a patched PostgreSQL kernel plus the [OrioleDB extension](https://github.com/orioledb/orioledb).
 
-You can run OrioleDB as an RDS using Pigsty. It's compatible with PG 17 and available on all supported Linux platforms.
-The latest version is beta14, based on PG 17_16 patch.
+You can run OrioleDB as an RDS using Pigsty. Current packages support PostgreSQL 16, 17, and 18 on supported Linux platforms.
+The current Pigsty package line is OrioleDB 1.8 beta16.
 
 
 ------
@@ -52,7 +52,8 @@ pg-meta:
 
     # OrioleDB specific settings
     pg_mode: oriole                                         # oriole compatibility mode
-    pg_packages: [ orioledb, pgsql-common ]                 # Install OrioleDB kernel
+    pg_version: 18                                          # OrioleDB supports PG 16, 17, and 18
+    pg_packages: [ oriole, pgsql-common ]                   # Install OrioleDB kernel
     pg_libs: 'orioledb, pg_stat_statements, auto_explain'   # Load OrioleDB extension
 ```
 
@@ -60,7 +61,7 @@ pg-meta:
 
 ## Usage
 
-To use OrioleDB, you need to install the `orioledb_17` and `oriolepg_17` packages (currently only RPM versions are available).
+To use OrioleDB, install the packages for the selected PostgreSQL major version. RPM packages use `oriolepg_$v` and `orioledb_$v`; DEB packages use `oriolepg-$v` and `oriolepg-$v-orioledb`, where `$v` can be `16`, `17`, or `18`.
 
 Initialize TPC-B-like tables with `pgbench` using 100 warehouses:
 
@@ -107,4 +108,3 @@ ALTER TABLE pgbench_tellers_o RENAME TO pgbench_tellers;
 - **Improved Performance**: Better space utilization and query performance
 
 > **Note**: Currently in Beta stage - thoroughly evaluate before production use.
-

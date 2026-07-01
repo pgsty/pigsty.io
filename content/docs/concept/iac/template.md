@@ -39,7 +39,7 @@ Use `./configure -c <conf>` to specify a configuration template, where `<conf>` 
 ./configure -c ivory            # IvorySQL kernel, Oracle syntax compatible (18)
 ./configure -c mysql            # OpenHalo kernel, MySQL compatible (14)
 ./configure -c pgtde            # Percona PostgreSQL Server transparent encryption (18)
-./configure -c oriole           # OrioleDB kernel, OLTP enhanced (17)
+./configure -c oriole           # OrioleDB kernel, OLTP enhanced (16~18)
 ./configure -c supabase         # Supabase self-hosted configuration (15~18)
 
 # Use multi-node HA templates
@@ -78,7 +78,7 @@ Templates for various database management systems and kernels:
 | [**`ivory.yml`**](/docs/conf/ivory/)       | IvorySQL kernel, Oracle syntax compatible (17)          |
 | [**`mysql.yml`**](/docs/conf/mysql/)       | OpenHalo kernel, MySQL compatible (14)                  |
 | [**`pgtde.yml`**](/docs/conf/pgtde/)       | Percona PostgreSQL Server transparent encryption (17)   |
-| [**`oriole.yml`**](/docs/conf/oriole/)     | OrioleDB kernel, OLTP enhanced (17, Debian pkg pending) |
+| [**`oriole.yml`**](/docs/conf/oriole/)     | OrioleDB kernel, OLTP enhanced (16~18)                  |
 | [**`supabase.yml`**](/docs/conf/supabase/) | Supabase self-hosted configuration (15~17)              |
 
 You can add more nodes later or use [HA templates](#ha-templates) to plan your cluster from the start.

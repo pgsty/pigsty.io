@@ -16,8 +16,9 @@ The `oriole` configuration template uses OrioleDB storage engine instead of Post
 - Config Name: `oriole`
 - Node Count: Single node
 - Description: OrioleDB bloat-free storage engine configuration
+- PostgreSQL Major: `16`, `17`, or `18`
 - OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
-- OS Arch: `x86_64`
+- OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/)
 
 Usage:
@@ -68,8 +69,7 @@ CREATE TABLE orders (
 ```
 
 **Notes**:
-- OrioleDB is based on PostgreSQL 17
+- OrioleDB supports PostgreSQL 16, 17, and 18; choose the major version with `pg_version`
 - Need to add `orioledb` to `shared_preload_libraries`
 - Some PostgreSQL features may not be fully supported
-- ARM64 architecture not supported
-
+- Use the matching OrioleDB packages for the selected PostgreSQL major and OS architecture
