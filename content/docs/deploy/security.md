@@ -97,7 +97,7 @@ If you want to further harden system security, here are some recommendations:
 - Consider using `pg_listen: '${ip},${vip},${lo}'` to bind to specific IP address(es) for enhanced security.
 
 **Don't expose any ports directly to public IP, except infrastructure egress Nginx ports (default 80/443)**
-- For convenience, components like Prometheus/Grafana listen on all IP addresses by default and can be accessed directly via public IP ports
+- For convenience, infrastructure components like VictoriaMetrics/Grafana listen on all IP addresses by default and can be accessed directly via public IP ports
 - You can modify their configurations to listen only on internal IP addresses, restricting access through the Nginx portal via domain names only. You can also use security groups or firewall rules to implement these security restrictions.
 - For convenience, Redis servers listen on all IP addresses by default. You can modify [**`redis_bind_address`**](/docs/redis/param#redis_bind_address) to listen only on internal IP addresses.
 

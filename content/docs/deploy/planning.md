@@ -72,7 +72,7 @@ Single-node variants:
 - **Rich** ([**`rich`**](/docs/conf/rich)): Production single-node template with local MinIO object storage, local software repo, and all PG extensions.
 - **Slim** ([**`slim`**](/docs/conf/slim)): Installs only [**PGSQL**](/docs/pgsql/) and [**ETCD**](/docs/etcd/), no monitoring infra. [**Slim installation**](/docs/setup/slim) can expand to [**multi-node HA deployment**](/docs/setup/slim#ha-cluster).
 - **Infra-only** ([**`infra`**](/docs/conf/infra)): Opposite of slim—installs only [**INFRA**](/docs/infra/) monitoring infrastructure, no database services, for monitoring other instances.
-- **Alternative kernels**: Replace vanilla PG with derivatives: [**`pgsql`**](/docs/conf/pgsql/), [**`citus`**](/docs/conf/citus/), [**`mssql`**](/docs/conf/mssql/), [**`polar`**](/docs/conf/polar/), [**`ivory`**](/docs/conf/ivory/), [**`mysql`**](/docs/conf/mysql/), [**`pgtde`**](/docs/conf/pgtde/), [**`oriole`**](/docs/conf/oriole/), [**`supabase`**](/docs/conf/supabase/).
+- **Alternative kernels**: Replace vanilla PG with derivatives: [**`pgsql`**](/docs/conf/pgsql/), [**`mssql`**](/docs/conf/mssql/), [**`polar`**](/docs/conf/polar/), [**`ivory`**](/docs/conf/ivory/), [**`mysql`**](/docs/conf/mysql/), [**`pgtde`**](/docs/conf/pgtde/), [**`oriole`**](/docs/conf/oriole/), [**`agens`**](/docs/conf/agens/), [**`pgedge`**](/docs/conf/pgedge/).
 
 
 --------
@@ -154,5 +154,4 @@ With proper virtualization infrastructure or abundant resources, you can [**use 
 | 15 |    `10.10.10.52`    |                       |                         |                           |      `pg-test-3`      |
 | 16 |       ......        |                       |                         |                           |                       |
 {.full-width}
-
 

@@ -107,7 +107,7 @@ To run the full 4-node sandbox, your machine should have at least **4 CPU cores*
 
 ```bash
 cd ~/pigsty
-make full       # Create 4-node sandbox with default RockyLinux 9 image
+make full       # Create 4-node sandbox with default Ubuntu 24.04 image
 make full9      # Create 4-node sandbox with RockyLinux 9
 make full12     # Create 4-node sandbox with Debian 12
 make full24     # Create 4-node sandbox with Ubuntu 24.04
@@ -221,6 +221,5 @@ This environment includes:
 - 4 MinIO nodes
 - 5 ETCD nodes
 - 6 PostgreSQL nodes (2 clusters, 3 nodes each)
-
 
 
