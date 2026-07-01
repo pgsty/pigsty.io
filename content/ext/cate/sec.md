@@ -8,14 +8,15 @@ icon: fas fa-shield-halved
 
 ## Extension List
 
-There are **31** extensions in **31** packages.
+There are **32** extensions in **32** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
 | [`passwordcheck_cracklib`](/ext/e/passwordcheck_cracklib) | [`passwordcheck_cracklib`](https://github.com/devrimgunduz/passwordcheck_cracklib) | `3.1.0` | <a class="ext-badge ext-badge--license lgpl21" href="/ext/license#lgpl21">LGPL-2.1</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Strengthen PostgreSQL user password checks with cracklib |
 | [`supautils`](/ext/e/supautils) | [`supautils`](https://github.com/supabase/supautils) | `3.2.1` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Extension that secures a cluster on a cloud environment |
-| [`pgsodium`](/ext/e/pgsodium) | [`pgsodium`](https://github.com/michelp/pgsodium) | `3.1.9` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Postgres extension for libsodium functions |
+| [`pgsodium`](/ext/e/pgsodium) | [`pgsodium`](https://github.com/michelp/pgsodium) | `3.1.11` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Postgres extension for libsodium functions |
 | [`column_encrypt`](/ext/e/column_encrypt) | [`column_encrypt`](https://github.com/vibhorkum/column_encrypt) | `4.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Transparent column-level encryption with encrypted_text and encrypted_bytea types |
+| [`passwordpolicy`](/ext/e/passwordpolicy) | [`passwordpolicy`](https://github.com/fmbiete/passwordpolicy) | `2.0.5` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Dynamically configurable PostgreSQL password complexity checks. |
 | [`supabase_vault`](/ext/e/supabase_vault) | [`pg_vault`](https://github.com/supabase/vault) | `0.3.1` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Supabase Vault Extension |
 | [`pg_session_jwt`](/ext/e/pg_session_jwt) | [`pg_session_jwt`](https://github.com/neondatabase/pg_session_jwt) | `0.5.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Manage authentication sessions using JWTs |
 | [`anon`](/ext/e/anon) | [`pg_anon`](https://gitlab.com/dalibo/postgresql_anonymizer/) | `3.1.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | PostgreSQL Anonymizer (anon) extension |
@@ -27,7 +28,7 @@ There are **31** extensions in **31** packages.
 | [`logerrors`](/ext/e/logerrors) | [`logerrors`](https://github.com/munakoiso/logerrors) | `2.1.5` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Function for collecting statistics about messages in logfile |
 | [`pg_auth_mon`](/ext/e/pg_auth_mon) | [`pg_auth_mon`](https://github.com/RafiaSabih/pg_auth_mon) | `3.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | monitor connection attempts per user |
 | [`pg_jobmon`](/ext/e/pg_jobmon) | [`pg_jobmon`](https://github.com/omniti-labs/pg_jobmon) | `1.4.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Extension for logging and monitoring functions in PostgreSQL |
-| [`credcheck`](/ext/e/credcheck) | [`credcheck`](https://github.com/MigOpsRepos/credcheck) | `4.7` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | credcheck - postgresql plain text credential checker |
+| [`credcheck`](/ext/e/credcheck) | [`credcheck`](https://github.com/MigOpsRepos/credcheck) | `5.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | credcheck - postgresql plain text credential checker |
 | [`pgcryptokey`](/ext/e/pgcryptokey) | [`pgcryptokey`](https://momjian.us/download/pgcryptokey/) | `0.85` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | cryptographic key management |
 | [`pg_pwhash`](/ext/e/pg_pwhash) | [`pg_pwhash`](https://github.com/cybertec-postgresql/pg_pwhash) | `1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Advanced password hashing methods for PostgreSQL |
 | [`login_hook`](/ext/e/login_hook) | [`login_hook`](https://github.com/splendiddata/login_hook) | `1.7` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | login_hook - hook to execute login_hook.login() at login time |
@@ -88,7 +89,7 @@ There are **31** extensions in **31** packages.
 
 ## pgsodium {#pgsodium}
 
-[**`pgsodium`**](/ext/e/pgsodium) - `3.1.9` : Postgres extension for libsodium functions
+[**`pgsodium`**](/ext/e/pgsodium) - `3.1.11` : Postgres extension for libsodium functions
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -97,7 +98,7 @@ There are **31** extensions in **31** packages.
 | **RPM** | `pgsodium_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **DEB** | `postgresql-$v-pgsodium` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
@@ -117,6 +118,25 @@ There are **31** extensions in **31** packages.
 | **DEB** | `postgresql-$v-column-encrypt` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
+## passwordpolicy {#passwordpolicy}
+
+[**`passwordpolicy`**](/ext/e/passwordpolicy) - `2.0.5` : Dynamically configurable PostgreSQL password complexity checks.
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`passwordpolicy`](/ext/e/passwordpolicy) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`passwordpolicy`](https://github.com/fmbiete/passwordpolicy) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `passwordpolicy_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-passwordpolicy` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
@@ -335,7 +355,7 @@ There are **31** extensions in **31** packages.
 
 ## credcheck {#credcheck}
 
-[**`credcheck`**](/ext/e/credcheck) - `4.7` : credcheck - postgresql plain text credential checker
+[**`credcheck`**](/ext/e/credcheck) - `5.0` : credcheck - postgresql plain text credential checker
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

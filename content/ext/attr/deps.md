@@ -5,11 +5,11 @@ description: "PostgreSQL extensions with dependency relationships"
 weight: 30
 ---
 
-**109** extensions depend on other extensions, **59** extensions are depended upon by others.
+**112** extensions depend on other extensions, **60** extensions are depended upon by others.
 
 ## Upstream Dependencies
 
-The following **109** extensions require other extensions to be installed first:
+The following **112** extensions require other extensions to be installed first:
 
 | **Extension** | **Requires** | **Description** |
 |:-----------|:-------------|:---------|
@@ -116,6 +116,9 @@ The following **109** extensions require other extensions to be installed first:
 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | [`documentdb`](/ext/e/documentdb) | DocumentDB Extended RUM index access method |
 | [`ora_btree_gin`](/ext/e/ora_btree_gin) | [`ivorysql_ora`](/ext/e/ivorysql_ora) | Support for indexing oracle datatypes in GIN |
 | [`ora_btree_gist`](/ext/e/ora_btree_gist) | [`ivorysql_ora`](/ext/e/ivorysql_ora) | Support for oracle indexing common datatypes in GiST |
+| [`db2fce`](/ext/e/db2fce) | [`plpgsql`](/ext/e/plpgsql) | DB2 compatibility functions, types, operators, and SYSIBM.SYSDUMMY1 for PostgreSQL. |
+| [`plpgsql_wrap`](/ext/e/plpgsql_wrap) | [`plpgsql`](/ext/e/plpgsql) | Oracle WRAP-equivalent PL/pgSQL language handler storing AES-256-GCM encrypted procedure source. |
+| [`pg_dbms_errlog`](/ext/e/pg_dbms_errlog) | [`pg_statement_rollback`](/ext/e/pg_statement_rollback) | Emulate DBMS_ERRLOG Oracle module to log DML errors in a dedicated table. |
 | [`pg_utl_smtp`](/ext/e/pg_utl_smtp) | [`plperlu`](/ext/e/plperlu) | Oracle UTL_SMTP compatibility extension for PostgreSQL |
 | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | [`babelfishpg_common`](/ext/e/babelfishpg_common) [`uuid-ossp`](/ext/e/uuid-ossp) | SQL Server Transact SQL compatibility |
 | [`babelfishpg_tds`](/ext/e/babelfishpg_tds) | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | SQL Server TDS protocol extension |
@@ -126,7 +129,7 @@ The following **109** extensions require other extensions to be installed first:
 
 ## Downstream Dependencies
 
-The following **59** extensions are depended upon by other extensions:
+The following **60** extensions are depended upon by other extensions:
 
 | **Extension** | **Required By** | **Description** |
 |:-----------|:-------------|:---------|
@@ -164,7 +167,7 @@ The following **59** extensions are depended upon by other extensions:
 | [`plluau`](/ext/e/plluau) | [`hstore_plluau`](/ext/e/hstore_plluau) | Lua as an untrusted procedural language |
 | [`plperl`](/ext/e/plperl) | [`bool_plperl`](/ext/e/bool_plperl) [`hstore_plperl`](/ext/e/hstore_plperl) [`jsonb_plperl`](/ext/e/jsonb_plperl) [`plperl`](/ext/e/plperl) [`sparql`](/ext/e/sparql) | PL/Perl procedural language |
 | [`plperlu`](/ext/e/plperlu) | [`bool_plperlu`](/ext/e/bool_plperlu) [`hstore_plperlu`](/ext/e/hstore_plperlu) [`jsonb_plperlu`](/ext/e/jsonb_plperlu) [`plperlu`](/ext/e/plperlu) [`pg_utl_smtp`](/ext/e/pg_utl_smtp) [`sparql`](/ext/e/sparql) | PL/PerlU untrusted procedural language |
-| [`plpgsql`](/ext/e/plpgsql) | [`data_historization`](/ext/e/data_historization) [`ddl_historization`](/ext/e/ddl_historization) [`pg4ml`](/ext/e/pg4ml) [`pg_drop_events`](/ext/e/pg_drop_events) [`pg_profile`](/ext/e/pg_profile) [`pg_upless`](/ext/e/pg_upless) [`plpgsql_check`](/ext/e/plpgsql_check) [`powa`](/ext/e/powa) [`table_version`](/ext/e/table_version) [`unit`](/ext/e/unit) [`biscuit`](/ext/e/biscuit) | PL/pgSQL procedural language |
+| [`plpgsql`](/ext/e/plpgsql) | [`data_historization`](/ext/e/data_historization) [`ddl_historization`](/ext/e/ddl_historization) [`pg4ml`](/ext/e/pg4ml) [`pg_drop_events`](/ext/e/pg_drop_events) [`pg_profile`](/ext/e/pg_profile) [`pg_upless`](/ext/e/pg_upless) [`plpgsql_check`](/ext/e/plpgsql_check) [`powa`](/ext/e/powa) [`table_version`](/ext/e/table_version) [`unit`](/ext/e/unit) [`biscuit`](/ext/e/biscuit) [`db2fce`](/ext/e/db2fce) | PL/pgSQL procedural language |
 | [`plpython3u`](/ext/e/plpython3u) | [`hstore_plpython3u`](/ext/e/hstore_plpython3u) [`jsonb_plpython3u`](/ext/e/jsonb_plpython3u) [`ltree_plpython3u`](/ext/e/ltree_plpython3u) [`omni_python`](/ext/e/omni_python) [`pg4ml`](/ext/e/pg4ml) | PL/Python3U untrusted procedural language |
 | [`roaringbitmap`](/ext/e/roaringbitmap) | [`pgfaceting`](/ext/e/pgfaceting) | support for Roaring Bitmaps |
 | [`pg_xenophile`](/ext/e/pg_xenophile) | [`l10n_table_dependent_extension`](/ext/e/l10n_table_dependent_extension) | More than the bare necessities for PostgreSQL i18n and l10n. |
@@ -185,6 +188,7 @@ The following **59** extensions are depended upon by other extensions:
 | [`postgres_fdw`](/ext/e/postgres_fdw) | [`omni_schema`](/ext/e/omni_schema) | foreign-data wrapper for remote PostgreSQL servers |
 | [`documentdb`](/ext/e/documentdb) | [`documentdb_distributed`](/ext/e/documentdb_distributed) [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | API surface for DocumentDB for PostgreSQL |
 | [`documentdb_core`](/ext/e/documentdb_core) | [`documentdb`](/ext/e/documentdb) [`documentdb_distributed`](/ext/e/documentdb_distributed) | Core API surface for DocumentDB on PostgreSQL |
+| [`pg_statement_rollback`](/ext/e/pg_statement_rollback) | [`pg_statement_rollback`](/ext/e/pg_statement_rollback) | Server side rollback at statement level for PostgreSQL like Oracle or DB2 |
 | [`ivorysql_ora`](/ext/e/ivorysql_ora) | [`ora_btree_gin`](/ext/e/ora_btree_gin) [`ora_btree_gist`](/ext/e/ora_btree_gist) | Oracle Compatible extension on Postgres Database |
 | [`babelfishpg_common`](/ext/e/babelfishpg_common) | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | SQL Server Transact SQL Datatype Support |
 | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | [`babelfishpg_tds`](/ext/e/babelfishpg_tds) | SQL Server Transact SQL compatibility |

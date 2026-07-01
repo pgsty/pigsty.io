@@ -8,22 +8,22 @@ icon: fas fa-bank
 
 ## Extension List
 
-There are **43** extensions in **41** packages.
+There are **44** extensions in **42** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
 | [`pg_repack`](/ext/e/pg_repack) | [`pg_repack`](https://github.com/reorg/pg_repack) | `1.5.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Reorganize tables in PostgreSQL databases with minimal locks |
 | [`pg_rewrite`](/ext/e/pg_rewrite) | [`pg_rewrite`](https://github.com/cybertec-postgresql/pg_rewrite) | `2.1.0` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Tool allows read write to the table during the rewriting |
 | [`pg_query_rewrite`](/ext/e/pg_query_rewrite) | [`pg_query_rewrite`](https://github.com/pierreforstmann/pg_query_rewrite) | `0.0.5` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Rewrite SQL statements with a PostgreSQL ProcessUtility hook |
-| [`pg_squeeze`](/ext/e/pg_squeeze) | [`pg_squeeze`](https://github.com/cybertec-postgresql/pg_squeeze) | `1.9.2` | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | A tool to remove unused space from a relation. |
+| [`pg_squeeze`](/ext/e/pg_squeeze) | [`pg_squeeze`](https://github.com/cybertec-postgresql/pg_squeeze) | `1.9.3` | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | A tool to remove unused space from a relation. |
 | [`pg_dirtyread`](/ext/e/pg_dirtyread) | [`pg_dirtyread`](https://github.com/df7cb/pg_dirtyread) | `2.8` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Read dead but unvacuumed rows from table |
-| [`pgfincore`](/ext/e/pgfincore) | [`pgfincore`](https://github.com/klando/pgfincore) | `1.3.1` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | examine and manage the os buffer cache |
+| [`pgfincore`](/ext/e/pgfincore) | [`pgfincore`](https://github.com/klando/pgfincore) | `1.4.0` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | examine and manage the os buffer cache |
 | [`pg_cooldown`](/ext/e/pg_cooldown) | [`pg_cooldown`](https://github.com/rbergm/pg_cooldown) | `0.1` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | remove buffered pages for specific relations |
 | [`ddlx`](/ext/e/ddlx) | [`pg_ddlx`](https://github.com/lacanoid/pgddl) | `0.30` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | DDL eXtractor functions |
 | [`pglinter`](/ext/e/pglinter) | [`pglinter`](https://github.com/pmpetit/pglinter) | `2.0.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | PostgreSQL Linting and Analysis Extension |
 | [`prioritize`](/ext/e/prioritize) | [`pg_prioritize`](https://github.com/schmiddy/pg_prioritize) | `1.0.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | get and set the priority of PostgreSQL backends |
 | [`pg_checksums`](/ext/e/pg_checksums) | [`pg_checksums`](https://github.com/credativ/pg_checksums) | `1.3` | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Activate/deactivate/verify checksums in offline Postgres clusters |
-| [`pg_readonly`](/ext/e/pg_readonly) | [`pg_readonly`](https://github.com/pierreforstmann/pg_readonly) | `1.0.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | cluster database read only |
+| [`pg_readonly`](/ext/e/pg_readonly) | [`pg_readonly`](https://github.com/pierreforstmann/pg_readonly) | `1.0.5` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | cluster database read only |
 | [`pgdd`](/ext/e/pgdd) | [`pgdd`](https://github.com/rustprooflabs/pgdd) | `0.6.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Introspect pg data dictionary via standard SQL |
 | [`pg_permissions`](/ext/e/pg_permissions) | [`pg_permissions`](https://github.com/cybertec-postgresql/pg_permissions) | `1.4` | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | view object permissions and compare them with the desired state |
 | [`pgautofailover`](/ext/e/pgautofailover) | [`pgautofailover`](https://github.com/hapostgres/pg_auto_failover) | `2.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | pg_auto_failover |
@@ -37,6 +37,7 @@ There are **43** extensions in **41** packages.
 | [`fio`](/ext/e/fio) | [`pg_fio`](https://github.com/csimsek/pgsql-fio) | `1.0` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostgreSQL File I/O Functions |
 | [`qos`](/ext/e/qos) | [`pg_qos`](https://github.com/appstonia/pg_qos) | `1.0` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | QoS resource governor extension for PostgreSQL sessions and queries |
 | [`pg_pathcheck`](/ext/e/pg_pathcheck) | [`pg_pathcheck`](https://github.com/danolivo/pg_pathcheck) | `0.9.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Validate planner Path trees for freed or corrupt memory |
+| [`pgdisablelogerror`](/ext/e/pgdisablelogerror) | [`pgdisablelogerror`](https://github.com/fmbiete/pgdisablelogerror) | `1.0` | <a class="ext-badge ext-badge--license bsd" href="/ext/license#bsd">BSD</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Disable selected SQLSTATE error codes from PostgreSQL server logging. |
 | [`pg_savior`](/ext/e/pg_savior) | [`pg_savior`](https://github.com/viggy28/pg_savior) | `0.1.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Postgres extension to save OOPS mistakes |
 | [`safeupdate`](/ext/e/safeupdate) | [`safeupdate`](https://github.com/eradman/pg-safeupdate) | `1.5` | <a class="ext-badge ext-badge--license isc" href="/ext/license#isc">ISC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Require criteria for UPDATE and DELETE |
 | [`pg_strict`](/ext/e/pg_strict) | [`pg_strict`](https://github.com/spa5k/pg_strict) | `1.0.5` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Prevent dangerous UPDATE and DELETE without WHERE clause |
@@ -119,7 +120,7 @@ There are **43** extensions in **41** packages.
 
 ## pg_squeeze {#pg_squeeze}
 
-[**`pg_squeeze`**](/ext/e/pg_squeeze) - `1.9.2` : A tool to remove unused space from a relation.
+[**`pg_squeeze`**](/ext/e/pg_squeeze) - `1.9.3` : A tool to remove unused space from a relation.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -157,7 +158,7 @@ There are **43** extensions in **41** packages.
 
 ## pgfincore {#pgfincore}
 
-[**`pgfincore`**](/ext/e/pgfincore) - `1.3.1` : examine and manage the os buffer cache
+[**`pgfincore`**](/ext/e/pgfincore) - `1.4.0` : examine and manage the os buffer cache
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -271,7 +272,7 @@ There are **43** extensions in **41** packages.
 
 ## pg_readonly {#pg_readonly}
 
-[**`pg_readonly`**](/ext/e/pg_readonly) - `1.0.4` : cluster database read only
+[**`pg_readonly`**](/ext/e/pg_readonly) - `1.0.5` : cluster database read only
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -318,7 +319,7 @@ There are **43** extensions in **41** packages.
 | **RPM** | `pg_permissions_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **DEB** | `postgresql-$v-pg-permissions` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
@@ -530,6 +531,25 @@ There are **43** extensions in **41** packages.
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
 | **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
 | | | **u26** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
+## pgdisablelogerror {#pgdisablelogerror}
+
+[**`pgdisablelogerror`**](/ext/e/pgdisablelogerror) - `1.0` : Disable selected SQLSTATE error codes from PostgreSQL server logging.
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`pgdisablelogerror`](/ext/e/pgdisablelogerror) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`pgdisablelogerror`](https://github.com/fmbiete/pgdisablelogerror) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `pgdisablelogerror_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-pgdisablelogerror` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license bsd" href="/ext/license#bsd">BSD</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
 

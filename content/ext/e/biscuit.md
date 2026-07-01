@@ -11,10 +11,10 @@ weight: 2170
     <div class="ext-card__title">CrystallineCore/Biscuit</div>
     <div class="ext-card__desc">https://github.com/CrystallineCore/Biscuit</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/Biscuit-2.3.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/Biscuit-2.4.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">Biscuit-2.3.0.tar.gz</div>
-    <div class="ext-card__desc">Biscuit-2.3.0.tar.gz</div>
+    <div class="ext-card__title">Biscuit-2.4.0.tar.gz</div>
+    <div class="ext-card__desc">Biscuit-2.4.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2170
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_biscuit`**](/ext/e/biscuit) | `2.3.0` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_biscuit`**](/ext/e/biscuit) | `2.4.0` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -45,114 +45,138 @@ weight: 2170
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.3.0` | {{< pgvers "18,17,16" >}} | `pg_biscuit` | `plpgsql` |
-| [**RPM**](/ext/rpm#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.3.0` | {{< pgvers "18,17,16" >}} | `biscuit_$v` | - |
-| [**DEB**](/ext/deb#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.3.0` | {{< pgvers "18,17,16" >}} | `postgresql-$v-biscuit` | - |
+| [**EXT**](/ext/list#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.4.0` | {{< pgvers "18,17,16" >}} | `pg_biscuit` | `plpgsql` |
+| [**RPM**](/ext/rpm#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.4.0` | {{< pgvers "18,17,16" >}} | `biscuit_$v` | - |
+| [**DEB**](/ext/deb#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.4.0` | {{< pgvers "18,17,16" >}} | `postgresql-$v-biscuit` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 2.3.0 3 | AVAIL PIGSTY 2.3.0 3 | AVAIL PIGSTY 2.3.0 3 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| el8.aarch64 | AVAIL PIGSTY 2.3.0 3 | AVAIL PIGSTY 2.3.0 3 | AVAIL PIGSTY 2.3.0 3 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| el9.x86_64 | AVAIL PIGSTY 2.3.0 3 | AVAIL PIGSTY 2.3.0 3 | AVAIL PIGSTY 2.3.0 3 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| el9.aarch64 | AVAIL PIGSTY 2.3.0 3 | AVAIL PIGSTY 2.3.0 3 | AVAIL PIGSTY 2.3.0 3 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| el10.x86_64 | AVAIL PIGSTY 2.3.0 3 | AVAIL PIGSTY 2.3.0 3 | AVAIL PIGSTY 2.3.0 3 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| el10.aarch64 | AVAIL PIGSTY 2.3.0 3 | AVAIL PIGSTY 2.3.0 3 | AVAIL PIGSTY 2.3.0 3 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| d12.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| d12.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| d13.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| d13.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u22.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u22.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u24.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u24.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u26.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u26.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| el8.x86_64 | AVAIL PGDG 2.4.0 3 | AVAIL PGDG 2.4.0 3 | AVAIL PGDG 2.4.0 3 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| el8.aarch64 | AVAIL PGDG 2.4.0 3 | AVAIL PGDG 2.4.0 3 | AVAIL PGDG 2.4.0 3 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| el9.x86_64 | AVAIL PGDG 2.4.0 5 | AVAIL PGDG 2.4.0 5 | AVAIL PGDG 2.4.0 5 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| el9.aarch64 | AVAIL PGDG 2.4.0 5 | AVAIL PGDG 2.4.0 5 | AVAIL PGDG 2.4.0 5 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| el10.x86_64 | AVAIL PGDG 2.4.0 5 | AVAIL PGDG 2.4.0 5 | AVAIL PGDG 2.4.0 5 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| el10.aarch64 | AVAIL PGDG 2.4.0 5 | AVAIL PGDG 2.4.0 5 | AVAIL PGDG 2.4.0 5 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| d12.x86_64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| d12.aarch64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| d13.x86_64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| d13.aarch64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| u22.x86_64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| u22.aarch64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| u24.x86_64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| u24.aarch64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| u26.x86_64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | AVAIL PIGSTY 2.4.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+@ el8.x86_64 18 biscuit_18 biscuit_18-2.4.0-1PGDG.rhel8.10.x86_64.rpm pgdg 2.4.0 62.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/biscuit_18-2.4.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 biscuit_18 biscuit_18-2.3.0-1PIGSTY.el8.x86_64.rpm pigsty 2.3.0 62.7KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/biscuit_18-2.3.0-1PIGSTY.el8.x86_64.rpm
-@ el8.x86_64 18 biscuit_18 biscuit_18-2.2.2-2PIGSTY.el8.x86_64.rpm pigsty 2.2.2 65.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/biscuit_18-2.2.2-2PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 18 biscuit_18 biscuit_18-2.2.2-1PGDG.rhel8.10.x86_64.rpm pgdg 2.2.2 63.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/biscuit_18-2.2.2-1PGDG.rhel8.10.x86_64.rpm
+@ el8.aarch64 18 biscuit_18 biscuit_18-2.4.0-1PGDG.rhel8.10.aarch64.rpm pgdg 2.4.0 59.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/biscuit_18-2.4.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 biscuit_18 biscuit_18-2.3.0-1PIGSTY.el8.aarch64.rpm pigsty 2.3.0 59.8KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/biscuit_18-2.3.0-1PIGSTY.el8.aarch64.rpm
-@ el8.aarch64 18 biscuit_18 biscuit_18-2.2.2-2PIGSTY.el8.aarch64.rpm pigsty 2.2.2 61.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/biscuit_18-2.2.2-2PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 18 biscuit_18 biscuit_18-2.2.2-1PGDG.rhel8.10.aarch64.rpm pgdg 2.2.2 59.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/biscuit_18-2.2.2-1PGDG.rhel8.10.aarch64.rpm
+@ el9.x86_64 18 biscuit_18 biscuit_18-2.4.0-1PGDG.rhel9.8.x86_64.rpm pgdg 2.4.0 62.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/biscuit_18-2.4.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 biscuit_18 biscuit_18-2.3.0-1PIGSTY.el9.x86_64.rpm pigsty 2.3.0 61.7KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/biscuit_18-2.3.0-1PIGSTY.el9.x86_64.rpm
-@ el9.x86_64 18 biscuit_18 biscuit_18-2.2.2-2PIGSTY.el9.x86_64.rpm pigsty 2.2.2 65.9KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/biscuit_18-2.2.2-2PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 18 biscuit_18 biscuit_18-2.2.2-1PGDG.rhel9.8.x86_64.rpm pgdg 2.2.2 65.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/biscuit_18-2.2.2-1PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 18 biscuit_18 biscuit_18-2.2.2-1PGDG.rhel9.7.x86_64.rpm pgdg 2.2.2 65.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/biscuit_18-2.2.2-1PGDG.rhel9.7.x86_64.rpm
+@ el9.x86_64 18 biscuit_18 biscuit_18-2.2.2-1PGDG.rhel9.6.x86_64.rpm pgdg 2.2.2 65.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/biscuit_18-2.2.2-1PGDG.rhel9.6.x86_64.rpm
+@ el9.aarch64 18 biscuit_18 biscuit_18-2.4.0-1PGDG.rhel9.8.aarch64.rpm pgdg 2.4.0 61.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/biscuit_18-2.4.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 biscuit_18 biscuit_18-2.3.0-1PIGSTY.el9.aarch64.rpm pigsty 2.3.0 60.4KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/biscuit_18-2.3.0-1PIGSTY.el9.aarch64.rpm
-@ el9.aarch64 18 biscuit_18 biscuit_18-2.2.2-2PIGSTY.el9.aarch64.rpm pigsty 2.2.2 63.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/biscuit_18-2.2.2-2PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 18 biscuit_18 biscuit_18-2.2.2-1PGDG.rhel9.8.aarch64.rpm pgdg 2.2.2 62.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/biscuit_18-2.2.2-1PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 18 biscuit_18 biscuit_18-2.2.2-1PGDG.rhel9.7.aarch64.rpm pgdg 2.2.2 62.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/biscuit_18-2.2.2-1PGDG.rhel9.7.aarch64.rpm
+@ el9.aarch64 18 biscuit_18 biscuit_18-2.2.2-1PGDG.rhel9.6.aarch64.rpm pgdg 2.2.2 62.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/biscuit_18-2.2.2-1PGDG.rhel9.6.aarch64.rpm
+@ el10.x86_64 18 biscuit_18 biscuit_18-2.4.0-1PGDG.rhel10.2.x86_64.rpm pgdg 2.4.0 64.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/biscuit_18-2.4.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 biscuit_18 biscuit_18-2.3.0-1PIGSTY.el10.x86_64.rpm pigsty 2.3.0 63.2KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/biscuit_18-2.3.0-1PIGSTY.el10.x86_64.rpm
-@ el10.x86_64 18 biscuit_18 biscuit_18-2.2.2-2PIGSTY.el10.x86_64.rpm pigsty 2.2.2 68.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/biscuit_18-2.2.2-2PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 18 biscuit_18 biscuit_18-2.2.2-1PGDG.rhel10.2.x86_64.rpm pgdg 2.2.2 67.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/biscuit_18-2.2.2-1PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 18 biscuit_18 biscuit_18-2.2.2-1PGDG.rhel10.1.x86_64.rpm pgdg 2.2.2 67.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/biscuit_18-2.2.2-1PGDG.rhel10.1.x86_64.rpm
+@ el10.x86_64 18 biscuit_18 biscuit_18-2.2.2-1PGDG.rhel10.0.x86_64.rpm pgdg 2.2.2 68.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/biscuit_18-2.2.2-1PGDG.rhel10.0.x86_64.rpm
+@ el10.aarch64 18 biscuit_18 biscuit_18-2.4.0-1PGDG.rhel10.2.aarch64.rpm pgdg 2.4.0 63.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/biscuit_18-2.4.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 biscuit_18 biscuit_18-2.3.0-1PIGSTY.el10.aarch64.rpm pigsty 2.3.0 62.3KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/biscuit_18-2.3.0-1PIGSTY.el10.aarch64.rpm
-@ el10.aarch64 18 biscuit_18 biscuit_18-2.2.2-2PIGSTY.el10.aarch64.rpm pigsty 2.2.2 65.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/biscuit_18-2.2.2-2PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 18 biscuit_18 biscuit_18-2.2.2-1PGDG.rhel10.2.aarch64.rpm pgdg 2.2.2 64.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/biscuit_18-2.2.2-1PGDG.rhel10.2.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-biscuit postgresql-18-biscuit_2.3.0-1PIGSTY~bookworm_amd64.deb pigsty 2.3.0 140.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.3.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-biscuit postgresql-18-biscuit_2.3.0-1PIGSTY~bookworm_arm64.deb pigsty 2.3.0 135.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.3.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-biscuit postgresql-18-biscuit_2.3.0-1PIGSTY~trixie_amd64.deb pigsty 2.3.0 140.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.3.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-biscuit postgresql-18-biscuit_2.3.0-1PIGSTY~trixie_arm64.deb pigsty 2.3.0 135.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.3.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-biscuit postgresql-18-biscuit_2.3.0-1PIGSTY~jammy_amd64.deb pigsty 2.3.0 143.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.3.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-biscuit postgresql-18-biscuit_2.3.0-1PIGSTY~jammy_arm64.deb pigsty 2.3.0 140.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.3.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-biscuit postgresql-18-biscuit_2.3.0-1PIGSTY~noble_amd64.deb pigsty 2.3.0 139.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.3.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-biscuit postgresql-18-biscuit_2.3.0-1PIGSTY~noble_arm64.deb pigsty 2.3.0 138.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.3.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-biscuit postgresql-18-biscuit_2.3.0-1PIGSTY~resolute_amd64.deb pigsty 2.3.0 139.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.3.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-biscuit postgresql-18-biscuit_2.3.0-1PIGSTY~resolute_arm64.deb pigsty 2.3.0 136.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.3.0-1PIGSTY~resolute_arm64.deb
+@ el10.aarch64 18 biscuit_18 biscuit_18-2.2.2-1PGDG.rhel10.1.aarch64.rpm pgdg 2.2.2 64.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/biscuit_18-2.2.2-1PGDG.rhel10.1.aarch64.rpm
+@ el10.aarch64 18 biscuit_18 biscuit_18-2.2.2-1PGDG.rhel10.0.aarch64.rpm pgdg 2.2.2 64.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/biscuit_18-2.2.2-1PGDG.rhel10.0.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-biscuit postgresql-18-biscuit_2.4.0-1PIGSTY~bookworm_amd64.deb pigsty 2.4.0 143.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.4.0-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-biscuit postgresql-18-biscuit_2.4.0-1PIGSTY~bookworm_arm64.deb pigsty 2.4.0 138.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.4.0-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-biscuit postgresql-18-biscuit_2.4.0-1PIGSTY~trixie_amd64.deb pigsty 2.4.0 143.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.4.0-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-biscuit postgresql-18-biscuit_2.4.0-1PIGSTY~trixie_arm64.deb pigsty 2.4.0 139.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.4.0-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-biscuit postgresql-18-biscuit_2.4.0-1PIGSTY~jammy_amd64.deb pigsty 2.4.0 146.1KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.4.0-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-biscuit postgresql-18-biscuit_2.4.0-1PIGSTY~jammy_arm64.deb pigsty 2.4.0 143.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.4.0-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-biscuit postgresql-18-biscuit_2.4.0-1PIGSTY~noble_amd64.deb pigsty 2.4.0 141.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.4.0-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-biscuit postgresql-18-biscuit_2.4.0-1PIGSTY~noble_arm64.deb pigsty 2.4.0 140.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.4.0-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-biscuit postgresql-18-biscuit_2.4.0-1PIGSTY~resolute_amd64.deb pigsty 2.4.0 141.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.4.0-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-biscuit postgresql-18-biscuit_2.4.0-1PIGSTY~resolute_arm64.deb pigsty 2.4.0 138.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-biscuit/postgresql-18-biscuit_2.4.0-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 17 biscuit_17 biscuit_17-2.4.0-1PGDG.rhel8.10.x86_64.rpm pgdg 2.4.0 62.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/biscuit_17-2.4.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 biscuit_17 biscuit_17-2.3.0-1PIGSTY.el8.x86_64.rpm pigsty 2.3.0 62.6KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/biscuit_17-2.3.0-1PIGSTY.el8.x86_64.rpm
-@ el8.x86_64 17 biscuit_17 biscuit_17-2.2.2-2PIGSTY.el8.x86_64.rpm pigsty 2.2.2 65.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/biscuit_17-2.2.2-2PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 17 biscuit_17 biscuit_17-2.2.2-1PGDG.rhel8.10.x86_64.rpm pgdg 2.2.2 63.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/biscuit_17-2.2.2-1PGDG.rhel8.10.x86_64.rpm
+@ el8.aarch64 17 biscuit_17 biscuit_17-2.4.0-1PGDG.rhel8.10.aarch64.rpm pgdg 2.4.0 59.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/biscuit_17-2.4.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 biscuit_17 biscuit_17-2.3.0-1PIGSTY.el8.aarch64.rpm pigsty 2.3.0 59.6KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/biscuit_17-2.3.0-1PIGSTY.el8.aarch64.rpm
-@ el8.aarch64 17 biscuit_17 biscuit_17-2.2.2-2PIGSTY.el8.aarch64.rpm pigsty 2.2.2 61.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/biscuit_17-2.2.2-2PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 17 biscuit_17 biscuit_17-2.2.2-1PGDG.rhel8.10.aarch64.rpm pgdg 2.2.2 59.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/biscuit_17-2.2.2-1PGDG.rhel8.10.aarch64.rpm
+@ el9.x86_64 17 biscuit_17 biscuit_17-2.4.0-1PGDG.rhel9.8.x86_64.rpm pgdg 2.4.0 62.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/biscuit_17-2.4.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 biscuit_17 biscuit_17-2.3.0-1PIGSTY.el9.x86_64.rpm pigsty 2.3.0 61.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/biscuit_17-2.3.0-1PIGSTY.el9.x86_64.rpm
-@ el9.x86_64 17 biscuit_17 biscuit_17-2.2.2-2PIGSTY.el9.x86_64.rpm pigsty 2.2.2 65.7KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/biscuit_17-2.2.2-2PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 17 biscuit_17 biscuit_17-2.2.2-1PGDG.rhel9.8.x86_64.rpm pgdg 2.2.2 65.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/biscuit_17-2.2.2-1PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 17 biscuit_17 biscuit_17-2.2.2-1PGDG.rhel9.7.x86_64.rpm pgdg 2.2.2 65.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/biscuit_17-2.2.2-1PGDG.rhel9.7.x86_64.rpm
+@ el9.x86_64 17 biscuit_17 biscuit_17-2.2.2-1PGDG.rhel9.6.x86_64.rpm pgdg 2.2.2 65.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/biscuit_17-2.2.2-1PGDG.rhel9.6.x86_64.rpm
+@ el9.aarch64 17 biscuit_17 biscuit_17-2.4.0-1PGDG.rhel9.8.aarch64.rpm pgdg 2.4.0 61.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/biscuit_17-2.4.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 biscuit_17 biscuit_17-2.3.0-1PIGSTY.el9.aarch64.rpm pigsty 2.3.0 60.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/biscuit_17-2.3.0-1PIGSTY.el9.aarch64.rpm
-@ el9.aarch64 17 biscuit_17 biscuit_17-2.2.2-2PIGSTY.el9.aarch64.rpm pigsty 2.2.2 63.6KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/biscuit_17-2.2.2-2PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 17 biscuit_17 biscuit_17-2.2.2-1PGDG.rhel9.8.aarch64.rpm pgdg 2.2.2 62.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/biscuit_17-2.2.2-1PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 17 biscuit_17 biscuit_17-2.2.2-1PGDG.rhel9.7.aarch64.rpm pgdg 2.2.2 62.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/biscuit_17-2.2.2-1PGDG.rhel9.7.aarch64.rpm
+@ el9.aarch64 17 biscuit_17 biscuit_17-2.2.2-1PGDG.rhel9.6.aarch64.rpm pgdg 2.2.2 62.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/biscuit_17-2.2.2-1PGDG.rhel9.6.aarch64.rpm
+@ el10.x86_64 17 biscuit_17 biscuit_17-2.4.0-1PGDG.rhel10.2.x86_64.rpm pgdg 2.4.0 64.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/biscuit_17-2.4.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 biscuit_17 biscuit_17-2.3.0-1PIGSTY.el10.x86_64.rpm pigsty 2.3.0 63.0KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/biscuit_17-2.3.0-1PIGSTY.el10.x86_64.rpm
-@ el10.x86_64 17 biscuit_17 biscuit_17-2.2.2-2PIGSTY.el10.x86_64.rpm pigsty 2.2.2 68.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/biscuit_17-2.2.2-2PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 17 biscuit_17 biscuit_17-2.2.2-1PGDG.rhel10.2.x86_64.rpm pgdg 2.2.2 68.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/biscuit_17-2.2.2-1PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 17 biscuit_17 biscuit_17-2.2.2-1PGDG.rhel10.1.x86_64.rpm pgdg 2.2.2 68.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/biscuit_17-2.2.2-1PGDG.rhel10.1.x86_64.rpm
+@ el10.x86_64 17 biscuit_17 biscuit_17-2.2.2-1PGDG.rhel10.0.x86_64.rpm pgdg 2.2.2 68.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/biscuit_17-2.2.2-1PGDG.rhel10.0.x86_64.rpm
+@ el10.aarch64 17 biscuit_17 biscuit_17-2.4.0-1PGDG.rhel10.2.aarch64.rpm pgdg 2.4.0 63.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/biscuit_17-2.4.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 biscuit_17 biscuit_17-2.3.0-1PIGSTY.el10.aarch64.rpm pigsty 2.3.0 61.9KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/biscuit_17-2.3.0-1PIGSTY.el10.aarch64.rpm
-@ el10.aarch64 17 biscuit_17 biscuit_17-2.2.2-2PIGSTY.el10.aarch64.rpm pigsty 2.2.2 65.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/biscuit_17-2.2.2-2PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 17 biscuit_17 biscuit_17-2.2.2-1PGDG.rhel10.2.aarch64.rpm pgdg 2.2.2 64.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/biscuit_17-2.2.2-1PGDG.rhel10.2.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-biscuit postgresql-17-biscuit_2.3.0-1PIGSTY~bookworm_amd64.deb pigsty 2.3.0 140.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.3.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-biscuit postgresql-17-biscuit_2.3.0-1PIGSTY~bookworm_arm64.deb pigsty 2.3.0 134.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.3.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-biscuit postgresql-17-biscuit_2.3.0-1PIGSTY~trixie_amd64.deb pigsty 2.3.0 140.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.3.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-biscuit postgresql-17-biscuit_2.3.0-1PIGSTY~trixie_arm64.deb pigsty 2.3.0 135.6KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.3.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-biscuit postgresql-17-biscuit_2.3.0-1PIGSTY~jammy_amd64.deb pigsty 2.3.0 166.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.3.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-biscuit postgresql-17-biscuit_2.3.0-1PIGSTY~jammy_arm64.deb pigsty 2.3.0 163.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.3.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-biscuit postgresql-17-biscuit_2.3.0-1PIGSTY~noble_amd64.deb pigsty 2.3.0 139.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.3.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-biscuit postgresql-17-biscuit_2.3.0-1PIGSTY~noble_arm64.deb pigsty 2.3.0 137.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.3.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-biscuit postgresql-17-biscuit_2.3.0-1PIGSTY~resolute_amd64.deb pigsty 2.3.0 139.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.3.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-biscuit postgresql-17-biscuit_2.3.0-1PIGSTY~resolute_arm64.deb pigsty 2.3.0 135.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.3.0-1PIGSTY~resolute_arm64.deb
+@ el10.aarch64 17 biscuit_17 biscuit_17-2.2.2-1PGDG.rhel10.1.aarch64.rpm pgdg 2.2.2 64.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/biscuit_17-2.2.2-1PGDG.rhel10.1.aarch64.rpm
+@ el10.aarch64 17 biscuit_17 biscuit_17-2.2.2-1PGDG.rhel10.0.aarch64.rpm pgdg 2.2.2 64.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/biscuit_17-2.2.2-1PGDG.rhel10.0.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-biscuit postgresql-17-biscuit_2.4.0-1PIGSTY~bookworm_amd64.deb pigsty 2.4.0 143.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.4.0-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-biscuit postgresql-17-biscuit_2.4.0-1PIGSTY~bookworm_arm64.deb pigsty 2.4.0 138.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.4.0-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-biscuit postgresql-17-biscuit_2.4.0-1PIGSTY~trixie_amd64.deb pigsty 2.4.0 143.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.4.0-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-biscuit postgresql-17-biscuit_2.4.0-1PIGSTY~trixie_arm64.deb pigsty 2.4.0 139.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.4.0-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-biscuit postgresql-17-biscuit_2.4.0-1PIGSTY~jammy_amd64.deb pigsty 2.4.0 169.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.4.0-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-biscuit postgresql-17-biscuit_2.4.0-1PIGSTY~jammy_arm64.deb pigsty 2.4.0 166.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.4.0-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-biscuit postgresql-17-biscuit_2.4.0-1PIGSTY~noble_amd64.deb pigsty 2.4.0 141.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.4.0-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-biscuit postgresql-17-biscuit_2.4.0-1PIGSTY~noble_arm64.deb pigsty 2.4.0 139.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.4.0-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-biscuit postgresql-17-biscuit_2.4.0-1PIGSTY~resolute_amd64.deb pigsty 2.4.0 141.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.4.0-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-biscuit postgresql-17-biscuit_2.4.0-1PIGSTY~resolute_arm64.deb pigsty 2.4.0 138.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-biscuit/postgresql-17-biscuit_2.4.0-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 16 biscuit_16 biscuit_16-2.4.0-1PGDG.rhel8.10.x86_64.rpm pgdg 2.4.0 62.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/biscuit_16-2.4.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 biscuit_16 biscuit_16-2.3.0-1PIGSTY.el8.x86_64.rpm pigsty 2.3.0 62.6KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/biscuit_16-2.3.0-1PIGSTY.el8.x86_64.rpm
-@ el8.x86_64 16 biscuit_16 biscuit_16-2.2.2-2PIGSTY.el8.x86_64.rpm pigsty 2.2.2 65.6KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/biscuit_16-2.2.2-2PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 16 biscuit_16 biscuit_16-2.2.2-1PGDG.rhel8.10.x86_64.rpm pgdg 2.2.2 63.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/biscuit_16-2.2.2-1PGDG.rhel8.10.x86_64.rpm
+@ el8.aarch64 16 biscuit_16 biscuit_16-2.4.0-1PGDG.rhel8.10.aarch64.rpm pgdg 2.4.0 59.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/biscuit_16-2.4.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 biscuit_16 biscuit_16-2.3.0-1PIGSTY.el8.aarch64.rpm pigsty 2.3.0 59.7KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/biscuit_16-2.3.0-1PIGSTY.el8.aarch64.rpm
-@ el8.aarch64 16 biscuit_16 biscuit_16-2.2.2-2PIGSTY.el8.aarch64.rpm pigsty 2.2.2 61.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/biscuit_16-2.2.2-2PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 16 biscuit_16 biscuit_16-2.2.2-1PGDG.rhel8.10.aarch64.rpm pgdg 2.2.2 59.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/biscuit_16-2.2.2-1PGDG.rhel8.10.aarch64.rpm
+@ el9.x86_64 16 biscuit_16 biscuit_16-2.4.0-1PGDG.rhel9.8.x86_64.rpm pgdg 2.4.0 62.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/biscuit_16-2.4.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 biscuit_16 biscuit_16-2.3.0-1PIGSTY.el9.x86_64.rpm pigsty 2.3.0 61.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/biscuit_16-2.3.0-1PIGSTY.el9.x86_64.rpm
-@ el9.x86_64 16 biscuit_16 biscuit_16-2.2.2-2PIGSTY.el9.x86_64.rpm pigsty 2.2.2 65.7KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/biscuit_16-2.2.2-2PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 16 biscuit_16 biscuit_16-2.2.2-1PGDG.rhel9.8.x86_64.rpm pgdg 2.2.2 65.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/biscuit_16-2.2.2-1PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 16 biscuit_16 biscuit_16-2.2.2-1PGDG.rhel9.7.x86_64.rpm pgdg 2.2.2 65.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/biscuit_16-2.2.2-1PGDG.rhel9.7.x86_64.rpm
+@ el9.x86_64 16 biscuit_16 biscuit_16-2.2.2-1PGDG.rhel9.6.x86_64.rpm pgdg 2.2.2 65.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/biscuit_16-2.2.2-1PGDG.rhel9.6.x86_64.rpm
+@ el9.aarch64 16 biscuit_16 biscuit_16-2.4.0-1PGDG.rhel9.8.aarch64.rpm pgdg 2.4.0 61.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/biscuit_16-2.4.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 biscuit_16 biscuit_16-2.3.0-1PIGSTY.el9.aarch64.rpm pigsty 2.3.0 60.1KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/biscuit_16-2.3.0-1PIGSTY.el9.aarch64.rpm
-@ el9.aarch64 16 biscuit_16 biscuit_16-2.2.2-2PIGSTY.el9.aarch64.rpm pigsty 2.2.2 63.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/biscuit_16-2.2.2-2PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 16 biscuit_16 biscuit_16-2.2.2-1PGDG.rhel9.8.aarch64.rpm pgdg 2.2.2 62.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/biscuit_16-2.2.2-1PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 16 biscuit_16 biscuit_16-2.2.2-1PGDG.rhel9.7.aarch64.rpm pgdg 2.2.2 62.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/biscuit_16-2.2.2-1PGDG.rhel9.7.aarch64.rpm
+@ el9.aarch64 16 biscuit_16 biscuit_16-2.2.2-1PGDG.rhel9.6.aarch64.rpm pgdg 2.2.2 62.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/biscuit_16-2.2.2-1PGDG.rhel9.6.aarch64.rpm
+@ el10.x86_64 16 biscuit_16 biscuit_16-2.4.0-1PGDG.rhel10.2.x86_64.rpm pgdg 2.4.0 64.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/biscuit_16-2.4.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 biscuit_16 biscuit_16-2.3.0-1PIGSTY.el10.x86_64.rpm pigsty 2.3.0 63.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/biscuit_16-2.3.0-1PIGSTY.el10.x86_64.rpm
-@ el10.x86_64 16 biscuit_16 biscuit_16-2.2.2-2PIGSTY.el10.x86_64.rpm pigsty 2.2.2 68.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/biscuit_16-2.2.2-2PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 16 biscuit_16 biscuit_16-2.2.2-1PGDG.rhel10.2.x86_64.rpm pgdg 2.2.2 68.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/biscuit_16-2.2.2-1PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 16 biscuit_16 biscuit_16-2.2.2-1PGDG.rhel10.1.x86_64.rpm pgdg 2.2.2 68.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/biscuit_16-2.2.2-1PGDG.rhel10.1.x86_64.rpm
+@ el10.x86_64 16 biscuit_16 biscuit_16-2.2.2-1PGDG.rhel10.0.x86_64.rpm pgdg 2.2.2 68.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/biscuit_16-2.2.2-1PGDG.rhel10.0.x86_64.rpm
+@ el10.aarch64 16 biscuit_16 biscuit_16-2.4.0-1PGDG.rhel10.2.aarch64.rpm pgdg 2.4.0 63.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/biscuit_16-2.4.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 biscuit_16 biscuit_16-2.3.0-1PIGSTY.el10.aarch64.rpm pigsty 2.3.0 62.0KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/biscuit_16-2.3.0-1PIGSTY.el10.aarch64.rpm
-@ el10.aarch64 16 biscuit_16 biscuit_16-2.2.2-2PIGSTY.el10.aarch64.rpm pigsty 2.2.2 65.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/biscuit_16-2.2.2-2PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 16 biscuit_16 biscuit_16-2.2.2-1PGDG.rhel10.2.aarch64.rpm pgdg 2.2.2 64.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/biscuit_16-2.2.2-1PGDG.rhel10.2.aarch64.rpm
-@ d12.x86_64 16 postgresql-16-biscuit postgresql-16-biscuit_2.3.0-1PIGSTY~bookworm_amd64.deb pigsty 2.3.0 140.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.3.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-biscuit postgresql-16-biscuit_2.3.0-1PIGSTY~bookworm_arm64.deb pigsty 2.3.0 135.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.3.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-biscuit postgresql-16-biscuit_2.3.0-1PIGSTY~trixie_amd64.deb pigsty 2.3.0 140.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.3.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-biscuit postgresql-16-biscuit_2.3.0-1PIGSTY~trixie_arm64.deb pigsty 2.3.0 135.6KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.3.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-biscuit postgresql-16-biscuit_2.3.0-1PIGSTY~jammy_amd64.deb pigsty 2.3.0 166.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.3.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-biscuit postgresql-16-biscuit_2.3.0-1PIGSTY~jammy_arm64.deb pigsty 2.3.0 163.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.3.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-biscuit postgresql-16-biscuit_2.3.0-1PIGSTY~noble_amd64.deb pigsty 2.3.0 139.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.3.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-biscuit postgresql-16-biscuit_2.3.0-1PIGSTY~noble_arm64.deb pigsty 2.3.0 137.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.3.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-biscuit postgresql-16-biscuit_2.3.0-1PIGSTY~resolute_amd64.deb pigsty 2.3.0 139.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.3.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-biscuit postgresql-16-biscuit_2.3.0-1PIGSTY~resolute_arm64.deb pigsty 2.3.0 135.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.3.0-1PIGSTY~resolute_arm64.deb
+@ el10.aarch64 16 biscuit_16 biscuit_16-2.2.2-1PGDG.rhel10.1.aarch64.rpm pgdg 2.2.2 64.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/biscuit_16-2.2.2-1PGDG.rhel10.1.aarch64.rpm
+@ el10.aarch64 16 biscuit_16 biscuit_16-2.2.2-1PGDG.rhel10.0.aarch64.rpm pgdg 2.2.2 64.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/biscuit_16-2.2.2-1PGDG.rhel10.0.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-biscuit postgresql-16-biscuit_2.4.0-1PIGSTY~bookworm_amd64.deb pigsty 2.4.0 143.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.4.0-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 16 postgresql-16-biscuit postgresql-16-biscuit_2.4.0-1PIGSTY~bookworm_arm64.deb pigsty 2.4.0 138.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.4.0-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 16 postgresql-16-biscuit postgresql-16-biscuit_2.4.0-1PIGSTY~trixie_amd64.deb pigsty 2.4.0 143.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.4.0-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 16 postgresql-16-biscuit postgresql-16-biscuit_2.4.0-1PIGSTY~trixie_arm64.deb pigsty 2.4.0 139.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.4.0-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 16 postgresql-16-biscuit postgresql-16-biscuit_2.4.0-1PIGSTY~jammy_amd64.deb pigsty 2.4.0 169.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.4.0-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 16 postgresql-16-biscuit postgresql-16-biscuit_2.4.0-1PIGSTY~jammy_arm64.deb pigsty 2.4.0 166.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.4.0-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 16 postgresql-16-biscuit postgresql-16-biscuit_2.4.0-1PIGSTY~noble_amd64.deb pigsty 2.4.0 141.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.4.0-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 16 postgresql-16-biscuit postgresql-16-biscuit_2.4.0-1PIGSTY~noble_arm64.deb pigsty 2.4.0 139.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.4.0-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 16 postgresql-16-biscuit postgresql-16-biscuit_2.4.0-1PIGSTY~resolute_amd64.deb pigsty 2.4.0 141.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.4.0-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 16 postgresql-16-biscuit postgresql-16-biscuit_2.4.0-1PIGSTY~resolute_arm64.deb pigsty 2.4.0 138.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-biscuit/postgresql-16-biscuit_2.4.0-1PIGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -221,7 +245,7 @@ CREATE EXTENSION biscuit CASCADE;  -- requires: plpgsql
 > SELECT * FROM users WHERE name LIKE '%john%';
 > ```
 >
-> Sources: [README](https://github.com/CrystallineCore/Biscuit), [Docs](https://biscuit.readthedocs.io/)
+> Sources: [README](https://github.com/CrystallineCore/Biscuit), [Docs](https://biscuit.readthedocs.io/), [v2.4.0 release](https://github.com/CrystallineCore/Biscuit/releases/tag/v2.4.0)
 
 `biscuit` is a PostgreSQL index access method for fast `LIKE` and `ILIKE` pattern matching, including multi-column searches. The upstream project positions it as a deterministic bitmap index that avoids the false-positive recheck overhead common in trigram-based searches.
 
@@ -236,6 +260,9 @@ CREATE INDEX idx_users_name ON users USING biscuit(name);
 
 CREATE INDEX idx_products_search
 ON products USING biscuit(name, description, category);
+
+CREATE INDEX idx_users_lower_name
+ON users USING biscuit (lower(name));
 ```
 
 Basic wildcard queries work with the index:
@@ -253,7 +280,7 @@ WHERE name LIKE '%widget%'
 LIMIT 10;
 ```
 
-## Index Behavior
+### Index Behavior
 
 Biscuit stores bitmap position indexes for each string and can match both forward and backward character positions. The upstream design highlights:
 
@@ -274,7 +301,7 @@ The implementation documents optimized paths for common pattern types:
 - substring patterns such as `'%abc%'`
 - multi-column predicates, where Biscuit reorders predicates by estimated selectivity
 
-## Performance Notes
+### Performance Notes
 
 The upstream README emphasizes bitmap-only evaluation and several execution optimizations, including:
 
@@ -286,7 +313,7 @@ The upstream README emphasizes bitmap-only evaluation and several execution opti
 
 The project README also includes a benchmark setup comparing Biscuit indexes with trigram-based approaches on a 1M-row table.
 
-## Requirements
+### Requirements
 
 The current upstream README lists these requirements for source builds:
 
@@ -295,3 +322,7 @@ The current upstream README lists these requirements for source builds:
 - optional CRoaring for improved performance
 
 The project publishes packages on [PGXN](https://pgxn.org/dist/biscuit/) and maintains a dedicated documentation site on Read the Docs.
+
+### Version Notes
+
+Biscuit 2.4.0 adds expression-index support, so indexes such as `USING biscuit (lower(col), (other_col::text))` are valid. The release also expands multi-version build support across PostgreSQL 16, 17, 18, and 19beta1, fixes duplicate rows in multi-column parallel scans, and makes the `biscuit_operators` view resilient to additional operator classes.

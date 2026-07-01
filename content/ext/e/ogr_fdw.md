@@ -20,7 +20,7 @@ weight: 1550
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`ogr_fdw`**](/ext/e/ogr_fdw) | `1.1.7` | <a class="ext-badge ext-badge--cate gis" href="/ext/cate/gis">GIS</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`ogr_fdw`**](/ext/e/ogr_fdw) | `1.1.8` | <a class="ext-badge ext-badge--cate gis" href="/ext/cate/gis">GIS</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -37,9 +37,9 @@ weight: 1550
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#gis) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.1.7` | {{< pgvers "18,17,16,15,14" >}} | `ogr_fdw` | - |
+| [**EXT**](/ext/list#gis) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.1.8` | {{< pgvers "18,17,16,15,14" >}} | `ogr_fdw` | - |
 | [**RPM**](/ext/rpm#gis) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.1.7` | {{< pgvers "18,17,16,15,14" >}} | `ogr_fdw_$v` | - |
-| [**DEB**](/ext/deb#gis) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.1.7` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-ogr-fdw` | - |
+| [**DEB**](/ext/deb#gis) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.1.8` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-ogr-fdw` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -47,46 +47,68 @@ weight: 1550
 |:--:|:--:|:--:|:--:|:--:|:--:|
 | el8.x86_64 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 4 | AVAIL PGDG 1.1.7 5 | AVAIL PGDG 1.1.7 8 | AVAIL PGDG 1.1.7 10 |
 | el8.aarch64 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 4 | AVAIL PGDG 1.1.7 5 | AVAIL PGDG 1.1.7 6 | AVAIL PGDG 1.1.7 6 |
-| el9.x86_64 | AVAIL PGDG 1.1.7 1 | AVAIL PGDG 1.1.7 1 | AVAIL PGDG 1.1.7 1 | AVAIL PGDG 1.1.7 1 | AVAIL PGDG 1.1.7 1 |
-| el9.aarch64 | AVAIL PGDG 1.1.7 1 | AVAIL PGDG 1.1.7 1 | AVAIL PGDG 1.1.7 1 | AVAIL PGDG 1.1.7 1 | AVAIL PGDG 1.1.7 1 |
-| el10.x86_64 | AVAIL PGDG 1.1.7 1 | AVAIL PGDG 1.1.7 1 | AVAIL PGDG 1.1.7 1 | AVAIL PGDG 1.1.7 1 | AVAIL PGDG 1.1.7 1 |
-| el10.aarch64 | AVAIL PGDG 1.1.7 1 | AVAIL PGDG 1.1.7 1 | AVAIL PGDG 1.1.7 1 | AVAIL PGDG 1.1.7 1 | AVAIL PGDG 1.1.7 1 |
-| d12.x86_64 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 |
-| d12.aarch64 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 |
-| d13.x86_64 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 |
-| d13.aarch64 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 |
-| u22.x86_64 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 |
-| u22.aarch64 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 |
-| u24.x86_64 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 |
-| u24.aarch64 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 |
-| u26.x86_64 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 |
-| u26.aarch64 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 | AVAIL PGDG 1.1.7 2 |
+| el9.x86_64 | AVAIL PGDG 1.1.7 4 | AVAIL PGDG 1.1.7 7 | AVAIL PGDG 1.1.7 8 | AVAIL PGDG 1.1.7 11 | AVAIL PGDG 1.1.7 12 |
+| el9.aarch64 | AVAIL PGDG 1.1.7 4 | AVAIL PGDG 1.1.7 7 | AVAIL PGDG 1.1.7 7 | AVAIL PGDG 1.1.7 8 | AVAIL PGDG 1.1.7 8 |
+| el10.x86_64 | AVAIL PGDG 1.1.7 4 | AVAIL PGDG 1.1.7 5 | AVAIL PGDG 1.1.7 5 | AVAIL PGDG 1.1.7 5 | AVAIL PGDG 1.1.7 5 |
+| el10.aarch64 | AVAIL PGDG 1.1.7 4 | AVAIL PGDG 1.1.7 4 | AVAIL PGDG 1.1.7 4 | AVAIL PGDG 1.1.7 4 | AVAIL PGDG 1.1.7 4 |
+| d12.x86_64 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 |
+| d12.aarch64 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 |
+| d13.x86_64 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 |
+| d13.aarch64 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 |
+| u22.x86_64 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 |
+| u22.aarch64 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 |
+| u24.x86_64 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 |
+| u24.aarch64 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 |
+| u26.x86_64 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 |
+| u26.aarch64 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 | AVAIL PGDG 1.1.8 3 |
 @ el8.x86_64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-6PGDG.rhel8.10.x86_64.rpm pgdg 1.1.7 51.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/ogr_fdw_18-1.1.7-6PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-1PGDG.rhel8.x86_64.rpm pgdg 1.1.7 51.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/ogr_fdw_18-1.1.7-1PGDG.rhel8.x86_64.rpm
 @ el8.aarch64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-6PGDG.rhel8.10.aarch64.rpm pgdg 1.1.7 50.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/ogr_fdw_18-1.1.7-6PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-1PGDG.rhel8.aarch64.rpm pgdg 1.1.7 49.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/ogr_fdw_18-1.1.7-1PGDG.rhel8.aarch64.rpm
 @ el9.x86_64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-6PGDG.rhel9.8.x86_64.rpm pgdg 1.1.7 49.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/ogr_fdw_18-1.1.7-6PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-6PGDG.rhel9.7.x86_64.rpm pgdg 1.1.7 49.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/ogr_fdw_18-1.1.7-6PGDG.rhel9.7.x86_64.rpm
+@ el9.x86_64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-6PGDG.rhel9.6.x86_64.rpm pgdg 1.1.7 49.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/ogr_fdw_18-1.1.7-6PGDG.rhel9.6.x86_64.rpm
+@ el9.x86_64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-1PGDG.rhel9.x86_64.rpm pgdg 1.1.7 49.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/ogr_fdw_18-1.1.7-1PGDG.rhel9.x86_64.rpm
 @ el9.aarch64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-6PGDG.rhel9.8.aarch64.rpm pgdg 1.1.7 48.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/ogr_fdw_18-1.1.7-6PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-6PGDG.rhel9.7.aarch64.rpm pgdg 1.1.7 48.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/ogr_fdw_18-1.1.7-6PGDG.rhel9.7.aarch64.rpm
+@ el9.aarch64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-6PGDG.rhel9.6.aarch64.rpm pgdg 1.1.7 48.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/ogr_fdw_18-1.1.7-6PGDG.rhel9.6.aarch64.rpm
+@ el9.aarch64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-1PGDG.rhel9.aarch64.rpm pgdg 1.1.7 48.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/ogr_fdw_18-1.1.7-1PGDG.rhel9.aarch64.rpm
 @ el10.x86_64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-6PGDG.rhel10.2.x86_64.rpm pgdg 1.1.7 50.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/ogr_fdw_18-1.1.7-6PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-6PGDG.rhel10.1.x86_64.rpm pgdg 1.1.7 50.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/ogr_fdw_18-1.1.7-6PGDG.rhel10.1.x86_64.rpm
+@ el10.x86_64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-6PGDG.rhel10.0.x86_64.rpm pgdg 1.1.7 50.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/ogr_fdw_18-1.1.7-6PGDG.rhel10.0.x86_64.rpm
+@ el10.x86_64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-1PGDG.rhel10.x86_64.rpm pgdg 1.1.7 50.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/ogr_fdw_18-1.1.7-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-6PGDG.rhel10.2.aarch64.rpm pgdg 1.1.7 49.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/ogr_fdw_18-1.1.7-6PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-6PGDG.rhel10.1.aarch64.rpm pgdg 1.1.7 49.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/ogr_fdw_18-1.1.7-6PGDG.rhel10.1.aarch64.rpm
+@ el10.aarch64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-6PGDG.rhel10.0.aarch64.rpm pgdg 1.1.7 49.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/ogr_fdw_18-1.1.7-6PGDG.rhel10.0.aarch64.rpm
+@ el10.aarch64 18 ogr_fdw_18 ogr_fdw_18-1.1.7-1PGDG.rhel10.aarch64.rpm pgdg 1.1.7 49.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/ogr_fdw_18-1.1.7-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.8-2.pgdg12+1_amd64.deb pgdg 1.1.8 90.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.8-2.pgdg12+1_amd64.deb
 @ d12.x86_64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-3.pgdg12+1_amd64.deb pgdg 1.1.7 90.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-3.pgdg12+1_amd64.deb
 @ d12.x86_64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-2.pgdg12+1_amd64.deb pgdg 1.1.7 90.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-2.pgdg12+1_amd64.deb
+@ d12.aarch64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.8-2.pgdg12+1_arm64.deb pgdg 1.1.8 88.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.8-2.pgdg12+1_arm64.deb
 @ d12.aarch64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-3.pgdg12+1_arm64.deb pgdg 1.1.7 88.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-3.pgdg12+1_arm64.deb
 @ d12.aarch64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-2.pgdg12+1_arm64.deb pgdg 1.1.7 88.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-2.pgdg12+1_arm64.deb
+@ d13.x86_64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.8-2.pgdg13+1_amd64.deb pgdg 1.1.8 90.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.8-2.pgdg13+1_amd64.deb
 @ d13.x86_64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-3.pgdg13+1_amd64.deb pgdg 1.1.7 90.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-3.pgdg13+1_amd64.deb
 @ d13.x86_64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-2.pgdg13+1_amd64.deb pgdg 1.1.7 90.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-2.pgdg13+1_amd64.deb
+@ d13.aarch64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.8-2.pgdg13+1_arm64.deb pgdg 1.1.8 89.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.8-2.pgdg13+1_arm64.deb
 @ d13.aarch64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-3.pgdg13+1_arm64.deb pgdg 1.1.7 89.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-3.pgdg13+1_arm64.deb
 @ d13.aarch64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-2.pgdg13+1_arm64.deb pgdg 1.1.7 89.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-2.pgdg13+1_arm64.deb
+@ u22.x86_64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.8-2.pgdg22.04+1_amd64.deb pgdg 1.1.8 92.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.8-2.pgdg22.04+1_amd64.deb
 @ u22.x86_64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-3.pgdg22.04+1_amd64.deb pgdg 1.1.7 92.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-3.pgdg22.04+1_amd64.deb
 @ u22.x86_64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-2.pgdg22.04+1_amd64.deb pgdg 1.1.7 92.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-2.pgdg22.04+1_amd64.deb
+@ u22.aarch64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.8-2.pgdg22.04+1_arm64.deb pgdg 1.1.8 89.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.8-2.pgdg22.04+1_arm64.deb
 @ u22.aarch64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-3.pgdg22.04+1_arm64.deb pgdg 1.1.7 89.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-3.pgdg22.04+1_arm64.deb
 @ u22.aarch64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-2.pgdg22.04+1_arm64.deb pgdg 1.1.7 89.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-2.pgdg22.04+1_arm64.deb
+@ u24.x86_64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.8-2.pgdg24.04+1_amd64.deb pgdg 1.1.8 89.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.8-2.pgdg24.04+1_amd64.deb
 @ u24.x86_64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-3.pgdg24.04+1_amd64.deb pgdg 1.1.7 89.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-3.pgdg24.04+1_amd64.deb
 @ u24.x86_64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-2.pgdg24.04+1_amd64.deb pgdg 1.1.7 89.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-2.pgdg24.04+1_amd64.deb
+@ u24.aarch64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.8-2.pgdg24.04+1_arm64.deb pgdg 1.1.8 87.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.8-2.pgdg24.04+1_arm64.deb
 @ u24.aarch64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-3.pgdg24.04+1_arm64.deb pgdg 1.1.7 87.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-3.pgdg24.04+1_arm64.deb
 @ u24.aarch64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-2.pgdg24.04+1_arm64.deb pgdg 1.1.7 87.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-2.pgdg24.04+1_arm64.deb
+@ u26.x86_64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.8-2.pgdg26.04+1_amd64.deb pgdg 1.1.8 88.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.8-2.pgdg26.04+1_amd64.deb
 @ u26.x86_64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-3.pgdg26.04+1_amd64.deb pgdg 1.1.7 88.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-3.pgdg26.04+1_amd64.deb
 @ u26.x86_64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-2.pgdg26.04+1_amd64.deb pgdg 1.1.7 88.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-2.pgdg26.04+1_amd64.deb
+@ u26.aarch64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.8-2.pgdg26.04+1_arm64.deb pgdg 1.1.8 87.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.8-2.pgdg26.04+1_arm64.deb
 @ u26.aarch64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-3.pgdg26.04+1_arm64.deb pgdg 1.1.7 87.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-3.pgdg26.04+1_arm64.deb
 @ u26.aarch64 18 postgresql-18-ogr-fdw postgresql-18-ogr-fdw_1.1.7-2.pgdg26.04+1_arm64.deb pgdg 1.1.7 87.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-18-ogr-fdw_1.1.7-2.pgdg26.04+1_arm64.deb
 @ el8.x86_64 17 ogr_fdw_17 ogr_fdw_17-1.1.7-6PGDG.rhel8.10.x86_64.rpm pgdg 1.1.7 51.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/ogr_fdw_17-1.1.7-6PGDG.rhel8.10.x86_64.rpm
@@ -98,27 +120,56 @@ weight: 1550
 @ el8.aarch64 17 ogr_fdw_17 ogr_fdw_17-1.1.6-1PGDG.rhel8.aarch64.rpm pgdg 1.1.6 49.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/ogr_fdw_17-1.1.6-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 17 ogr_fdw_17 ogr_fdw_17-1.1.5-4PGDG.rhel8.aarch64.rpm pgdg 1.1.5 48.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/ogr_fdw_17-1.1.5-4PGDG.rhel8.aarch64.rpm
 @ el9.x86_64 17 ogr_fdw_17 ogr_fdw_17-1.1.7-6PGDG.rhel9.8.x86_64.rpm pgdg 1.1.7 49.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/ogr_fdw_17-1.1.7-6PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 17 ogr_fdw_17 ogr_fdw_17-1.1.7-6PGDG.rhel9.7.x86_64.rpm pgdg 1.1.7 49.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/ogr_fdw_17-1.1.7-6PGDG.rhel9.7.x86_64.rpm
+@ el9.x86_64 17 ogr_fdw_17 ogr_fdw_17-1.1.7-6PGDG.rhel9.6.x86_64.rpm pgdg 1.1.7 49.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/ogr_fdw_17-1.1.7-6PGDG.rhel9.6.x86_64.rpm
+@ el9.x86_64 17 ogr_fdw_17 ogr_fdw_17-1.1.7-1PGDG.rhel9.x86_64.rpm pgdg 1.1.7 49.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/ogr_fdw_17-1.1.7-1PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 17 ogr_fdw_17 ogr_fdw_17-1.1.6-1PGDG.rhel9.x86_64.rpm pgdg 1.1.6 49.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/ogr_fdw_17-1.1.6-1PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 17 ogr_fdw_17 ogr_fdw_17-1.1.5-4PGDG.rhel9.x86_64.rpm pgdg 1.1.5 49.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/ogr_fdw_17-1.1.5-4PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 17 ogr_fdw_17 ogr_fdw_17-1.1.5-3PGDG.rhel9.x86_64.rpm pgdg 1.1.5 49.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/ogr_fdw_17-1.1.5-3PGDG.rhel9.x86_64.rpm
 @ el9.aarch64 17 ogr_fdw_17 ogr_fdw_17-1.1.7-6PGDG.rhel9.8.aarch64.rpm pgdg 1.1.7 48.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/ogr_fdw_17-1.1.7-6PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 17 ogr_fdw_17 ogr_fdw_17-1.1.7-6PGDG.rhel9.7.aarch64.rpm pgdg 1.1.7 48.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/ogr_fdw_17-1.1.7-6PGDG.rhel9.7.aarch64.rpm
+@ el9.aarch64 17 ogr_fdw_17 ogr_fdw_17-1.1.7-6PGDG.rhel9.6.aarch64.rpm pgdg 1.1.7 48.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/ogr_fdw_17-1.1.7-6PGDG.rhel9.6.aarch64.rpm
+@ el9.aarch64 17 ogr_fdw_17 ogr_fdw_17-1.1.7-1PGDG.rhel9.aarch64.rpm pgdg 1.1.7 48.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/ogr_fdw_17-1.1.7-1PGDG.rhel9.aarch64.rpm
+@ el9.aarch64 17 ogr_fdw_17 ogr_fdw_17-1.1.6-1PGDG.rhel9.aarch64.rpm pgdg 1.1.6 48.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/ogr_fdw_17-1.1.6-1PGDG.rhel9.aarch64.rpm
+@ el9.aarch64 17 ogr_fdw_17 ogr_fdw_17-1.1.5-4PGDG.rhel9.aarch64.rpm pgdg 1.1.5 48.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/ogr_fdw_17-1.1.5-4PGDG.rhel9.aarch64.rpm
+@ el9.aarch64 17 ogr_fdw_17 ogr_fdw_17-1.1.5-3PGDG.rhel9.aarch64.rpm pgdg 1.1.5 48.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/ogr_fdw_17-1.1.5-3PGDG.rhel9.aarch64.rpm
 @ el10.x86_64 17 ogr_fdw_17 ogr_fdw_17-1.1.7-6PGDG.rhel10.2.x86_64.rpm pgdg 1.1.7 50.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/ogr_fdw_17-1.1.7-6PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 17 ogr_fdw_17 ogr_fdw_17-1.1.7-6PGDG.rhel10.1.x86_64.rpm pgdg 1.1.7 50.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/ogr_fdw_17-1.1.7-6PGDG.rhel10.1.x86_64.rpm
+@ el10.x86_64 17 ogr_fdw_17 ogr_fdw_17-1.1.7-6PGDG.rhel10.0.x86_64.rpm pgdg 1.1.7 50.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/ogr_fdw_17-1.1.7-6PGDG.rhel10.0.x86_64.rpm
+@ el10.x86_64 17 ogr_fdw_17 ogr_fdw_17-1.1.7-1PGDG.rhel10.x86_64.rpm pgdg 1.1.7 50.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/ogr_fdw_17-1.1.7-1PGDG.rhel10.x86_64.rpm
+@ el10.x86_64 17 ogr_fdw_17 ogr_fdw_17-1.1.6-1PGDG.rhel10.x86_64.rpm pgdg 1.1.6 50.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/ogr_fdw_17-1.1.6-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 17 ogr_fdw_17 ogr_fdw_17-1.1.7-6PGDG.rhel10.2.aarch64.rpm pgdg 1.1.7 49.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/ogr_fdw_17-1.1.7-6PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 17 ogr_fdw_17 ogr_fdw_17-1.1.7-6PGDG.rhel10.1.aarch64.rpm pgdg 1.1.7 49.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/ogr_fdw_17-1.1.7-6PGDG.rhel10.1.aarch64.rpm
+@ el10.aarch64 17 ogr_fdw_17 ogr_fdw_17-1.1.7-6PGDG.rhel10.0.aarch64.rpm pgdg 1.1.7 49.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/ogr_fdw_17-1.1.7-6PGDG.rhel10.0.aarch64.rpm
+@ el10.aarch64 17 ogr_fdw_17 ogr_fdw_17-1.1.7-1PGDG.rhel10.aarch64.rpm pgdg 1.1.7 49.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/ogr_fdw_17-1.1.7-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.8-2.pgdg12+1_amd64.deb pgdg 1.1.8 90.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.8-2.pgdg12+1_amd64.deb
 @ d12.x86_64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-3.pgdg12+1_amd64.deb pgdg 1.1.7 90.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-3.pgdg12+1_amd64.deb
 @ d12.x86_64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-2.pgdg12+1_amd64.deb pgdg 1.1.7 89.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-2.pgdg12+1_amd64.deb
+@ d12.aarch64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.8-2.pgdg12+1_arm64.deb pgdg 1.1.8 88.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.8-2.pgdg12+1_arm64.deb
 @ d12.aarch64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-3.pgdg12+1_arm64.deb pgdg 1.1.7 88.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-3.pgdg12+1_arm64.deb
 @ d12.aarch64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-2.pgdg12+1_arm64.deb pgdg 1.1.7 88.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-2.pgdg12+1_arm64.deb
+@ d13.x86_64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.8-2.pgdg13+1_amd64.deb pgdg 1.1.8 90.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.8-2.pgdg13+1_amd64.deb
 @ d13.x86_64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-3.pgdg13+1_amd64.deb pgdg 1.1.7 90.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-3.pgdg13+1_amd64.deb
 @ d13.x86_64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-2.pgdg13+1_amd64.deb pgdg 1.1.7 90.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-2.pgdg13+1_amd64.deb
+@ d13.aarch64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.8-2.pgdg13+1_arm64.deb pgdg 1.1.8 89.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.8-2.pgdg13+1_arm64.deb
 @ d13.aarch64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-3.pgdg13+1_arm64.deb pgdg 1.1.7 89.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-3.pgdg13+1_arm64.deb
 @ d13.aarch64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-2.pgdg13+1_arm64.deb pgdg 1.1.7 88.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-2.pgdg13+1_arm64.deb
+@ u22.x86_64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.8-2.pgdg22.04+1_amd64.deb pgdg 1.1.8 106.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.8-2.pgdg22.04+1_amd64.deb
 @ u22.x86_64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-3.pgdg22.04+1_amd64.deb pgdg 1.1.7 106.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-3.pgdg22.04+1_amd64.deb
 @ u22.x86_64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-2.pgdg22.04+1_amd64.deb pgdg 1.1.7 106.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-2.pgdg22.04+1_amd64.deb
+@ u22.aarch64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.8-2.pgdg22.04+1_arm64.deb pgdg 1.1.8 104.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.8-2.pgdg22.04+1_arm64.deb
 @ u22.aarch64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-3.pgdg22.04+1_arm64.deb pgdg 1.1.7 104.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-3.pgdg22.04+1_arm64.deb
 @ u22.aarch64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-2.pgdg22.04+1_arm64.deb pgdg 1.1.7 103.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-2.pgdg22.04+1_arm64.deb
+@ u24.x86_64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.8-2.pgdg24.04+1_amd64.deb pgdg 1.1.8 89.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.8-2.pgdg24.04+1_amd64.deb
 @ u24.x86_64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-3.pgdg24.04+1_amd64.deb pgdg 1.1.7 89.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-3.pgdg24.04+1_amd64.deb
 @ u24.x86_64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-2.pgdg24.04+1_amd64.deb pgdg 1.1.7 89.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-2.pgdg24.04+1_amd64.deb
+@ u24.aarch64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.8-2.pgdg24.04+1_arm64.deb pgdg 1.1.8 88.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.8-2.pgdg24.04+1_arm64.deb
 @ u24.aarch64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-3.pgdg24.04+1_arm64.deb pgdg 1.1.7 88.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-3.pgdg24.04+1_arm64.deb
 @ u24.aarch64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-2.pgdg24.04+1_arm64.deb pgdg 1.1.7 87.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-2.pgdg24.04+1_arm64.deb
+@ u26.x86_64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.8-2.pgdg26.04+1_amd64.deb pgdg 1.1.8 88.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.8-2.pgdg26.04+1_amd64.deb
 @ u26.x86_64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-3.pgdg26.04+1_amd64.deb pgdg 1.1.7 88.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-3.pgdg26.04+1_amd64.deb
 @ u26.x86_64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-2.pgdg26.04+1_amd64.deb pgdg 1.1.7 89.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-2.pgdg26.04+1_amd64.deb
+@ u26.aarch64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.8-2.pgdg26.04+1_arm64.deb pgdg 1.1.8 87.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.8-2.pgdg26.04+1_arm64.deb
 @ u26.aarch64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-3.pgdg26.04+1_arm64.deb pgdg 1.1.7 86.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-3.pgdg26.04+1_arm64.deb
 @ u26.aarch64 17 postgresql-17-ogr-fdw postgresql-17-ogr-fdw_1.1.7-2.pgdg26.04+1_arm64.deb pgdg 1.1.7 87.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-17-ogr-fdw_1.1.7-2.pgdg26.04+1_arm64.deb
 @ el8.x86_64 16 ogr_fdw_16 ogr_fdw_16-1.1.7-6PGDG.rhel8.10.x86_64.rpm pgdg 1.1.7 52.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/ogr_fdw_16-1.1.7-6PGDG.rhel8.10.x86_64.rpm
@@ -132,27 +183,57 @@ weight: 1550
 @ el8.aarch64 16 ogr_fdw_16 ogr_fdw_16-1.1.5-4PGDG.rhel8.aarch64.rpm pgdg 1.1.5 48.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/ogr_fdw_16-1.1.5-4PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 16 ogr_fdw_16 ogr_fdw_16-1.1.4-2PGDG.rhel8.aarch64.rpm pgdg 1.1.4 47.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/ogr_fdw_16-1.1.4-2PGDG.rhel8.aarch64.rpm
 @ el9.x86_64 16 ogr_fdw_16 ogr_fdw_16-1.1.7-6PGDG.rhel9.8.x86_64.rpm pgdg 1.1.7 49.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/ogr_fdw_16-1.1.7-6PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 16 ogr_fdw_16 ogr_fdw_16-1.1.7-6PGDG.rhel9.7.x86_64.rpm pgdg 1.1.7 49.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/ogr_fdw_16-1.1.7-6PGDG.rhel9.7.x86_64.rpm
+@ el9.x86_64 16 ogr_fdw_16 ogr_fdw_16-1.1.7-6PGDG.rhel9.6.x86_64.rpm pgdg 1.1.7 49.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/ogr_fdw_16-1.1.7-6PGDG.rhel9.6.x86_64.rpm
+@ el9.x86_64 16 ogr_fdw_16 ogr_fdw_16-1.1.7-1PGDG.rhel9.x86_64.rpm pgdg 1.1.7 49.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/ogr_fdw_16-1.1.7-1PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 16 ogr_fdw_16 ogr_fdw_16-1.1.6-1PGDG.rhel9.x86_64.rpm pgdg 1.1.6 49.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/ogr_fdw_16-1.1.6-1PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 16 ogr_fdw_16 ogr_fdw_16-1.1.5-4PGDG.rhel9.x86_64.rpm pgdg 1.1.5 49.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/ogr_fdw_16-1.1.5-4PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 16 ogr_fdw_16 ogr_fdw_16-1.1.5-1PGDG.rhel9.x86_64.rpm pgdg 1.1.5 49.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/ogr_fdw_16-1.1.5-1PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 16 ogr_fdw_16 ogr_fdw_16-1.1.4-2PGDG.rhel9.x86_64.rpm pgdg 1.1.4 48.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/ogr_fdw_16-1.1.4-2PGDG.rhel9.x86_64.rpm
 @ el9.aarch64 16 ogr_fdw_16 ogr_fdw_16-1.1.7-6PGDG.rhel9.8.aarch64.rpm pgdg 1.1.7 48.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/ogr_fdw_16-1.1.7-6PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 16 ogr_fdw_16 ogr_fdw_16-1.1.7-6PGDG.rhel9.7.aarch64.rpm pgdg 1.1.7 48.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/ogr_fdw_16-1.1.7-6PGDG.rhel9.7.aarch64.rpm
+@ el9.aarch64 16 ogr_fdw_16 ogr_fdw_16-1.1.7-6PGDG.rhel9.6.aarch64.rpm pgdg 1.1.7 48.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/ogr_fdw_16-1.1.7-6PGDG.rhel9.6.aarch64.rpm
+@ el9.aarch64 16 ogr_fdw_16 ogr_fdw_16-1.1.7-1PGDG.rhel9.aarch64.rpm pgdg 1.1.7 48.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/ogr_fdw_16-1.1.7-1PGDG.rhel9.aarch64.rpm
+@ el9.aarch64 16 ogr_fdw_16 ogr_fdw_16-1.1.6-1PGDG.rhel9.aarch64.rpm pgdg 1.1.6 48.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/ogr_fdw_16-1.1.6-1PGDG.rhel9.aarch64.rpm
+@ el9.aarch64 16 ogr_fdw_16 ogr_fdw_16-1.1.5-4PGDG.rhel9.aarch64.rpm pgdg 1.1.5 48.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/ogr_fdw_16-1.1.5-4PGDG.rhel9.aarch64.rpm
+@ el9.aarch64 16 ogr_fdw_16 ogr_fdw_16-1.1.4-2PGDG.rhel9.aarch64.rpm pgdg 1.1.4 46.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/ogr_fdw_16-1.1.4-2PGDG.rhel9.aarch64.rpm
 @ el10.x86_64 16 ogr_fdw_16 ogr_fdw_16-1.1.7-6PGDG.rhel10.2.x86_64.rpm pgdg 1.1.7 50.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/ogr_fdw_16-1.1.7-6PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 16 ogr_fdw_16 ogr_fdw_16-1.1.7-6PGDG.rhel10.1.x86_64.rpm pgdg 1.1.7 50.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/ogr_fdw_16-1.1.7-6PGDG.rhel10.1.x86_64.rpm
+@ el10.x86_64 16 ogr_fdw_16 ogr_fdw_16-1.1.7-6PGDG.rhel10.0.x86_64.rpm pgdg 1.1.7 50.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/ogr_fdw_16-1.1.7-6PGDG.rhel10.0.x86_64.rpm
+@ el10.x86_64 16 ogr_fdw_16 ogr_fdw_16-1.1.7-1PGDG.rhel10.x86_64.rpm pgdg 1.1.7 50.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/ogr_fdw_16-1.1.7-1PGDG.rhel10.x86_64.rpm
+@ el10.x86_64 16 ogr_fdw_16 ogr_fdw_16-1.1.6-1PGDG.rhel10.x86_64.rpm pgdg 1.1.6 50.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/ogr_fdw_16-1.1.6-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 16 ogr_fdw_16 ogr_fdw_16-1.1.7-6PGDG.rhel10.2.aarch64.rpm pgdg 1.1.7 49.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/ogr_fdw_16-1.1.7-6PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 16 ogr_fdw_16 ogr_fdw_16-1.1.7-6PGDG.rhel10.1.aarch64.rpm pgdg 1.1.7 49.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/ogr_fdw_16-1.1.7-6PGDG.rhel10.1.aarch64.rpm
+@ el10.aarch64 16 ogr_fdw_16 ogr_fdw_16-1.1.7-6PGDG.rhel10.0.aarch64.rpm pgdg 1.1.7 49.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/ogr_fdw_16-1.1.7-6PGDG.rhel10.0.aarch64.rpm
+@ el10.aarch64 16 ogr_fdw_16 ogr_fdw_16-1.1.7-1PGDG.rhel10.aarch64.rpm pgdg 1.1.7 49.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/ogr_fdw_16-1.1.7-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.8-2.pgdg12+1_amd64.deb pgdg 1.1.8 90.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.8-2.pgdg12+1_amd64.deb
 @ d12.x86_64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-3.pgdg12+1_amd64.deb pgdg 1.1.7 90.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-3.pgdg12+1_amd64.deb
 @ d12.x86_64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-2.pgdg12+1_amd64.deb pgdg 1.1.7 90.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-2.pgdg12+1_amd64.deb
+@ d12.aarch64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.8-2.pgdg12+1_arm64.deb pgdg 1.1.8 88.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.8-2.pgdg12+1_arm64.deb
 @ d12.aarch64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-3.pgdg12+1_arm64.deb pgdg 1.1.7 88.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-3.pgdg12+1_arm64.deb
 @ d12.aarch64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-2.pgdg12+1_arm64.deb pgdg 1.1.7 88.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-2.pgdg12+1_arm64.deb
+@ d13.x86_64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.8-2.pgdg13+1_amd64.deb pgdg 1.1.8 90.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.8-2.pgdg13+1_amd64.deb
 @ d13.x86_64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-3.pgdg13+1_amd64.deb pgdg 1.1.7 90.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-3.pgdg13+1_amd64.deb
 @ d13.x86_64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-2.pgdg13+1_amd64.deb pgdg 1.1.7 90.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-2.pgdg13+1_amd64.deb
+@ d13.aarch64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.8-2.pgdg13+1_arm64.deb pgdg 1.1.8 88.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.8-2.pgdg13+1_arm64.deb
 @ d13.aarch64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-3.pgdg13+1_arm64.deb pgdg 1.1.7 89.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-3.pgdg13+1_arm64.deb
 @ d13.aarch64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-2.pgdg13+1_arm64.deb pgdg 1.1.7 88.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-2.pgdg13+1_arm64.deb
+@ u22.x86_64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.8-2.pgdg22.04+1_amd64.deb pgdg 1.1.8 106.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.8-2.pgdg22.04+1_amd64.deb
 @ u22.x86_64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-3.pgdg22.04+1_amd64.deb pgdg 1.1.7 106.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-3.pgdg22.04+1_amd64.deb
 @ u22.x86_64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-2.pgdg22.04+1_amd64.deb pgdg 1.1.7 105.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-2.pgdg22.04+1_amd64.deb
+@ u22.aarch64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.8-2.pgdg22.04+1_arm64.deb pgdg 1.1.8 103.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.8-2.pgdg22.04+1_arm64.deb
 @ u22.aarch64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-3.pgdg22.04+1_arm64.deb pgdg 1.1.7 103.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-3.pgdg22.04+1_arm64.deb
 @ u22.aarch64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-2.pgdg22.04+1_arm64.deb pgdg 1.1.7 103.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-2.pgdg22.04+1_arm64.deb
+@ u24.x86_64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.8-2.pgdg24.04+1_amd64.deb pgdg 1.1.8 89.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.8-2.pgdg24.04+1_amd64.deb
 @ u24.x86_64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-3.pgdg24.04+1_amd64.deb pgdg 1.1.7 89.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-3.pgdg24.04+1_amd64.deb
 @ u24.x86_64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-2.pgdg24.04+1_amd64.deb pgdg 1.1.7 89.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-2.pgdg24.04+1_amd64.deb
+@ u24.aarch64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.8-2.pgdg24.04+1_arm64.deb pgdg 1.1.8 87.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.8-2.pgdg24.04+1_arm64.deb
 @ u24.aarch64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-3.pgdg24.04+1_arm64.deb pgdg 1.1.7 87.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-3.pgdg24.04+1_arm64.deb
 @ u24.aarch64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-2.pgdg24.04+1_arm64.deb pgdg 1.1.7 87.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-2.pgdg24.04+1_arm64.deb
+@ u26.x86_64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.8-2.pgdg26.04+1_amd64.deb pgdg 1.1.8 88.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.8-2.pgdg26.04+1_amd64.deb
 @ u26.x86_64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-3.pgdg26.04+1_amd64.deb pgdg 1.1.7 88.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-3.pgdg26.04+1_amd64.deb
 @ u26.x86_64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-2.pgdg26.04+1_amd64.deb pgdg 1.1.7 89.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-2.pgdg26.04+1_amd64.deb
+@ u26.aarch64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.8-2.pgdg26.04+1_arm64.deb pgdg 1.1.8 86.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.8-2.pgdg26.04+1_arm64.deb
 @ u26.aarch64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-3.pgdg26.04+1_arm64.deb pgdg 1.1.7 87.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-3.pgdg26.04+1_arm64.deb
 @ u26.aarch64 16 postgresql-16-ogr-fdw postgresql-16-ogr-fdw_1.1.7-2.pgdg26.04+1_arm64.deb pgdg 1.1.7 87.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-16-ogr-fdw_1.1.7-2.pgdg26.04+1_arm64.deb
 @ el8.x86_64 15 ogr_fdw_15 ogr_fdw_15-1.1.7-6PGDG.rhel8.10.x86_64.rpm pgdg 1.1.7 52.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/ogr_fdw_15-1.1.7-6PGDG.rhel8.10.x86_64.rpm
@@ -170,27 +251,61 @@ weight: 1550
 @ el8.aarch64 15 ogr_fdw_15 ogr_fdw_15-1.1.4-2PGDG.rhel8.aarch64.rpm pgdg 1.1.4 48.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/ogr_fdw_15-1.1.4-2PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 15 ogr_fdw_15 ogr_fdw_15-1.1.4-1PGDG.rhel8.aarch64.rpm pgdg 1.1.4 47.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/ogr_fdw_15-1.1.4-1PGDG.rhel8.aarch64.rpm
 @ el9.x86_64 15 ogr_fdw_15 ogr_fdw_15-1.1.7-6PGDG.rhel9.8.x86_64.rpm pgdg 1.1.7 50.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/ogr_fdw_15-1.1.7-6PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 15 ogr_fdw_15 ogr_fdw_15-1.1.7-6PGDG.rhel9.7.x86_64.rpm pgdg 1.1.7 50.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/ogr_fdw_15-1.1.7-6PGDG.rhel9.7.x86_64.rpm
+@ el9.x86_64 15 ogr_fdw_15 ogr_fdw_15-1.1.7-6PGDG.rhel9.6.x86_64.rpm pgdg 1.1.7 51.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/ogr_fdw_15-1.1.7-6PGDG.rhel9.6.x86_64.rpm
+@ el9.x86_64 15 ogr_fdw_15 ogr_fdw_15-1.1.7-1PGDG.rhel9.x86_64.rpm pgdg 1.1.7 50.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/ogr_fdw_15-1.1.7-1PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 15 ogr_fdw_15 ogr_fdw_15-1.1.6-1PGDG.rhel9.x86_64.rpm pgdg 1.1.6 51.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/ogr_fdw_15-1.1.6-1PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 15 ogr_fdw_15 ogr_fdw_15-1.1.5-4PGDG.rhel9.x86_64.rpm pgdg 1.1.5 50.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/ogr_fdw_15-1.1.5-4PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 15 ogr_fdw_15 ogr_fdw_15-1.1.5-1PGDG.rhel9.x86_64.rpm pgdg 1.1.5 50.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/ogr_fdw_15-1.1.5-1PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 15 ogr_fdw_15 ogr_fdw_15-1.1.4-2PGDG.rhel9.x86_64.rpm pgdg 1.1.4 49.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/ogr_fdw_15-1.1.4-2PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 15 ogr_fdw_15 ogr_fdw_15-1.1.4-1PGDG.rhel9.x86_64.rpm pgdg 1.1.4 49.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/ogr_fdw_15-1.1.4-1PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 15 ogr_fdw_15 ogr_fdw_15-1.1.3-1.rhel9.x86_64.rpm pgdg 1.1.3 49.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/ogr_fdw_15-1.1.3-1.rhel9.x86_64.rpm
+@ el9.x86_64 15 ogr_fdw_15 ogr_fdw_15-1.1.2-2.rhel9.x86_64.rpm pgdg 1.1.2 49.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/ogr_fdw_15-1.1.2-2.rhel9.x86_64.rpm
 @ el9.aarch64 15 ogr_fdw_15 ogr_fdw_15-1.1.7-6PGDG.rhel9.8.aarch64.rpm pgdg 1.1.7 50.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/ogr_fdw_15-1.1.7-6PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 15 ogr_fdw_15 ogr_fdw_15-1.1.7-6PGDG.rhel9.7.aarch64.rpm pgdg 1.1.7 50.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/ogr_fdw_15-1.1.7-6PGDG.rhel9.7.aarch64.rpm
+@ el9.aarch64 15 ogr_fdw_15 ogr_fdw_15-1.1.7-6PGDG.rhel9.6.aarch64.rpm pgdg 1.1.7 50.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/ogr_fdw_15-1.1.7-6PGDG.rhel9.6.aarch64.rpm
+@ el9.aarch64 15 ogr_fdw_15 ogr_fdw_15-1.1.7-1PGDG.rhel9.aarch64.rpm pgdg 1.1.7 50.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/ogr_fdw_15-1.1.7-1PGDG.rhel9.aarch64.rpm
+@ el9.aarch64 15 ogr_fdw_15 ogr_fdw_15-1.1.6-1PGDG.rhel9.aarch64.rpm pgdg 1.1.6 50.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/ogr_fdw_15-1.1.6-1PGDG.rhel9.aarch64.rpm
+@ el9.aarch64 15 ogr_fdw_15 ogr_fdw_15-1.1.5-4PGDG.rhel9.aarch64.rpm pgdg 1.1.5 49.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/ogr_fdw_15-1.1.5-4PGDG.rhel9.aarch64.rpm
+@ el9.aarch64 15 ogr_fdw_15 ogr_fdw_15-1.1.4-2PGDG.rhel9.aarch64.rpm pgdg 1.1.4 48.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/ogr_fdw_15-1.1.4-2PGDG.rhel9.aarch64.rpm
+@ el9.aarch64 15 ogr_fdw_15 ogr_fdw_15-1.1.4-1PGDG.rhel9.aarch64.rpm pgdg 1.1.4 48.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/ogr_fdw_15-1.1.4-1PGDG.rhel9.aarch64.rpm
 @ el10.x86_64 15 ogr_fdw_15 ogr_fdw_15-1.1.7-6PGDG.rhel10.2.x86_64.rpm pgdg 1.1.7 51.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/ogr_fdw_15-1.1.7-6PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 15 ogr_fdw_15 ogr_fdw_15-1.1.7-6PGDG.rhel10.1.x86_64.rpm pgdg 1.1.7 51.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/ogr_fdw_15-1.1.7-6PGDG.rhel10.1.x86_64.rpm
+@ el10.x86_64 15 ogr_fdw_15 ogr_fdw_15-1.1.7-6PGDG.rhel10.0.x86_64.rpm pgdg 1.1.7 52.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/ogr_fdw_15-1.1.7-6PGDG.rhel10.0.x86_64.rpm
+@ el10.x86_64 15 ogr_fdw_15 ogr_fdw_15-1.1.7-1PGDG.rhel10.x86_64.rpm pgdg 1.1.7 52.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/ogr_fdw_15-1.1.7-1PGDG.rhel10.x86_64.rpm
+@ el10.x86_64 15 ogr_fdw_15 ogr_fdw_15-1.1.6-1PGDG.rhel10.x86_64.rpm pgdg 1.1.6 52.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/ogr_fdw_15-1.1.6-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 15 ogr_fdw_15 ogr_fdw_15-1.1.7-6PGDG.rhel10.2.aarch64.rpm pgdg 1.1.7 50.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/ogr_fdw_15-1.1.7-6PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 15 ogr_fdw_15 ogr_fdw_15-1.1.7-6PGDG.rhel10.1.aarch64.rpm pgdg 1.1.7 50.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/ogr_fdw_15-1.1.7-6PGDG.rhel10.1.aarch64.rpm
+@ el10.aarch64 15 ogr_fdw_15 ogr_fdw_15-1.1.7-6PGDG.rhel10.0.aarch64.rpm pgdg 1.1.7 50.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/ogr_fdw_15-1.1.7-6PGDG.rhel10.0.aarch64.rpm
+@ el10.aarch64 15 ogr_fdw_15 ogr_fdw_15-1.1.7-1PGDG.rhel10.aarch64.rpm pgdg 1.1.7 51.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/ogr_fdw_15-1.1.7-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.8-2.pgdg12+1_amd64.deb pgdg 1.1.8 91.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.8-2.pgdg12+1_amd64.deb
 @ d12.x86_64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-3.pgdg12+1_amd64.deb pgdg 1.1.7 91.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-3.pgdg12+1_amd64.deb
 @ d12.x86_64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-2.pgdg12+1_amd64.deb pgdg 1.1.7 90.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-2.pgdg12+1_amd64.deb
+@ d12.aarch64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.8-2.pgdg12+1_arm64.deb pgdg 1.1.8 89.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.8-2.pgdg12+1_arm64.deb
 @ d12.aarch64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-3.pgdg12+1_arm64.deb pgdg 1.1.7 88.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-3.pgdg12+1_arm64.deb
 @ d12.aarch64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-2.pgdg12+1_arm64.deb pgdg 1.1.7 88.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-2.pgdg12+1_arm64.deb
+@ d13.x86_64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.8-2.pgdg13+1_amd64.deb pgdg 1.1.8 91.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.8-2.pgdg13+1_amd64.deb
 @ d13.x86_64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-3.pgdg13+1_amd64.deb pgdg 1.1.7 91.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-3.pgdg13+1_amd64.deb
 @ d13.x86_64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-2.pgdg13+1_amd64.deb pgdg 1.1.7 91.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-2.pgdg13+1_amd64.deb
+@ d13.aarch64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.8-2.pgdg13+1_arm64.deb pgdg 1.1.8 89.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.8-2.pgdg13+1_arm64.deb
 @ d13.aarch64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-3.pgdg13+1_arm64.deb pgdg 1.1.7 89.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-3.pgdg13+1_arm64.deb
 @ d13.aarch64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-2.pgdg13+1_arm64.deb pgdg 1.1.7 89.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-2.pgdg13+1_arm64.deb
+@ u22.x86_64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.8-2.pgdg22.04+1_amd64.deb pgdg 1.1.8 107.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.8-2.pgdg22.04+1_amd64.deb
 @ u22.x86_64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-3.pgdg22.04+1_amd64.deb pgdg 1.1.7 107.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-3.pgdg22.04+1_amd64.deb
 @ u22.x86_64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-2.pgdg22.04+1_amd64.deb pgdg 1.1.7 107.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-2.pgdg22.04+1_amd64.deb
+@ u22.aarch64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.8-2.pgdg22.04+1_arm64.deb pgdg 1.1.8 104.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.8-2.pgdg22.04+1_arm64.deb
 @ u22.aarch64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-3.pgdg22.04+1_arm64.deb pgdg 1.1.7 104.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-3.pgdg22.04+1_arm64.deb
 @ u22.aarch64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-2.pgdg22.04+1_arm64.deb pgdg 1.1.7 104.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-2.pgdg22.04+1_arm64.deb
+@ u24.x86_64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.8-2.pgdg24.04+1_amd64.deb pgdg 1.1.8 90.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.8-2.pgdg24.04+1_amd64.deb
 @ u24.x86_64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-3.pgdg24.04+1_amd64.deb pgdg 1.1.7 90.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-3.pgdg24.04+1_amd64.deb
 @ u24.x86_64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-2.pgdg24.04+1_amd64.deb pgdg 1.1.7 90.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-2.pgdg24.04+1_amd64.deb
+@ u24.aarch64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.8-2.pgdg24.04+1_arm64.deb pgdg 1.1.8 88.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.8-2.pgdg24.04+1_arm64.deb
 @ u24.aarch64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-3.pgdg24.04+1_arm64.deb pgdg 1.1.7 88.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-3.pgdg24.04+1_arm64.deb
 @ u24.aarch64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-2.pgdg24.04+1_arm64.deb pgdg 1.1.7 88.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-2.pgdg24.04+1_arm64.deb
+@ u26.x86_64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.8-2.pgdg26.04+1_amd64.deb pgdg 1.1.8 89.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.8-2.pgdg26.04+1_amd64.deb
 @ u26.x86_64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-3.pgdg26.04+1_amd64.deb pgdg 1.1.7 89.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-3.pgdg26.04+1_amd64.deb
 @ u26.x86_64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-2.pgdg26.04+1_amd64.deb pgdg 1.1.7 89.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-2.pgdg26.04+1_amd64.deb
+@ u26.aarch64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.8-2.pgdg26.04+1_arm64.deb pgdg 1.1.8 88.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.8-2.pgdg26.04+1_arm64.deb
 @ u26.aarch64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-3.pgdg26.04+1_arm64.deb pgdg 1.1.7 88.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-3.pgdg26.04+1_arm64.deb
 @ u26.aarch64 15 postgresql-15-ogr-fdw postgresql-15-ogr-fdw_1.1.7-2.pgdg26.04+1_arm64.deb pgdg 1.1.7 88.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-15-ogr-fdw_1.1.7-2.pgdg26.04+1_arm64.deb
 @ el8.x86_64 14 ogr_fdw_14 ogr_fdw_14-1.1.7-6PGDG.rhel8.10.x86_64.rpm pgdg 1.1.7 52.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/ogr_fdw_14-1.1.7-6PGDG.rhel8.10.x86_64.rpm
@@ -210,27 +325,62 @@ weight: 1550
 @ el8.aarch64 14 ogr_fdw_14 ogr_fdw_14-1.1.4-2PGDG.rhel8.aarch64.rpm pgdg 1.1.4 48.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/ogr_fdw_14-1.1.4-2PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 14 ogr_fdw_14 ogr_fdw_14-1.1.4-1PGDG.rhel8.aarch64.rpm pgdg 1.1.4 47.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/ogr_fdw_14-1.1.4-1PGDG.rhel8.aarch64.rpm
 @ el9.x86_64 14 ogr_fdw_14 ogr_fdw_14-1.1.7-6PGDG.rhel9.8.x86_64.rpm pgdg 1.1.7 51.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/ogr_fdw_14-1.1.7-6PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 14 ogr_fdw_14 ogr_fdw_14-1.1.7-6PGDG.rhel9.7.x86_64.rpm pgdg 1.1.7 51.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/ogr_fdw_14-1.1.7-6PGDG.rhel9.7.x86_64.rpm
+@ el9.x86_64 14 ogr_fdw_14 ogr_fdw_14-1.1.7-6PGDG.rhel9.6.x86_64.rpm pgdg 1.1.7 51.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/ogr_fdw_14-1.1.7-6PGDG.rhel9.6.x86_64.rpm
+@ el9.x86_64 14 ogr_fdw_14 ogr_fdw_14-1.1.7-1PGDG.rhel9.x86_64.rpm pgdg 1.1.7 51.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/ogr_fdw_14-1.1.7-1PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 14 ogr_fdw_14 ogr_fdw_14-1.1.6-1PGDG.rhel9.x86_64.rpm pgdg 1.1.6 51.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/ogr_fdw_14-1.1.6-1PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 14 ogr_fdw_14 ogr_fdw_14-1.1.5-4PGDG.rhel9.x86_64.rpm pgdg 1.1.5 50.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/ogr_fdw_14-1.1.5-4PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 14 ogr_fdw_14 ogr_fdw_14-1.1.5-1PGDG.rhel9.x86_64.rpm pgdg 1.1.5 50.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/ogr_fdw_14-1.1.5-1PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 14 ogr_fdw_14 ogr_fdw_14-1.1.4-2PGDG.rhel9.x86_64.rpm pgdg 1.1.4 49.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/ogr_fdw_14-1.1.4-2PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 14 ogr_fdw_14 ogr_fdw_14-1.1.4-1PGDG.rhel9.x86_64.rpm pgdg 1.1.4 49.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/ogr_fdw_14-1.1.4-1PGDG.rhel9.x86_64.rpm
+@ el9.x86_64 14 ogr_fdw_14 ogr_fdw_14-1.1.3-1.rhel9.x86_64.rpm pgdg 1.1.3 50.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/ogr_fdw_14-1.1.3-1.rhel9.x86_64.rpm
+@ el9.x86_64 14 ogr_fdw_14 ogr_fdw_14-1.1.2-2.rhel9.x86_64.rpm pgdg 1.1.2 49.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/ogr_fdw_14-1.1.2-2.rhel9.x86_64.rpm
+@ el9.x86_64 14 ogr_fdw_14 ogr_fdw_14-1.1.2-1.rhel9.x86_64.rpm pgdg 1.1.2 50.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/ogr_fdw_14-1.1.2-1.rhel9.x86_64.rpm
 @ el9.aarch64 14 ogr_fdw_14 ogr_fdw_14-1.1.7-6PGDG.rhel9.8.aarch64.rpm pgdg 1.1.7 50.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/ogr_fdw_14-1.1.7-6PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 14 ogr_fdw_14 ogr_fdw_14-1.1.7-6PGDG.rhel9.7.aarch64.rpm pgdg 1.1.7 50.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/ogr_fdw_14-1.1.7-6PGDG.rhel9.7.aarch64.rpm
+@ el9.aarch64 14 ogr_fdw_14 ogr_fdw_14-1.1.7-6PGDG.rhel9.6.aarch64.rpm pgdg 1.1.7 50.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/ogr_fdw_14-1.1.7-6PGDG.rhel9.6.aarch64.rpm
+@ el9.aarch64 14 ogr_fdw_14 ogr_fdw_14-1.1.7-1PGDG.rhel9.aarch64.rpm pgdg 1.1.7 50.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/ogr_fdw_14-1.1.7-1PGDG.rhel9.aarch64.rpm
+@ el9.aarch64 14 ogr_fdw_14 ogr_fdw_14-1.1.6-1PGDG.rhel9.aarch64.rpm pgdg 1.1.6 50.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/ogr_fdw_14-1.1.6-1PGDG.rhel9.aarch64.rpm
+@ el9.aarch64 14 ogr_fdw_14 ogr_fdw_14-1.1.5-4PGDG.rhel9.aarch64.rpm pgdg 1.1.5 49.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/ogr_fdw_14-1.1.5-4PGDG.rhel9.aarch64.rpm
+@ el9.aarch64 14 ogr_fdw_14 ogr_fdw_14-1.1.4-2PGDG.rhel9.aarch64.rpm pgdg 1.1.4 48.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/ogr_fdw_14-1.1.4-2PGDG.rhel9.aarch64.rpm
+@ el9.aarch64 14 ogr_fdw_14 ogr_fdw_14-1.1.4-1PGDG.rhel9.aarch64.rpm pgdg 1.1.4 48.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/ogr_fdw_14-1.1.4-1PGDG.rhel9.aarch64.rpm
 @ el10.x86_64 14 ogr_fdw_14 ogr_fdw_14-1.1.7-6PGDG.rhel10.2.x86_64.rpm pgdg 1.1.7 51.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/ogr_fdw_14-1.1.7-6PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 14 ogr_fdw_14 ogr_fdw_14-1.1.7-6PGDG.rhel10.1.x86_64.rpm pgdg 1.1.7 51.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/ogr_fdw_14-1.1.7-6PGDG.rhel10.1.x86_64.rpm
+@ el10.x86_64 14 ogr_fdw_14 ogr_fdw_14-1.1.7-6PGDG.rhel10.0.x86_64.rpm pgdg 1.1.7 52.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/ogr_fdw_14-1.1.7-6PGDG.rhel10.0.x86_64.rpm
+@ el10.x86_64 14 ogr_fdw_14 ogr_fdw_14-1.1.7-1PGDG.rhel10.x86_64.rpm pgdg 1.1.7 52.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/ogr_fdw_14-1.1.7-1PGDG.rhel10.x86_64.rpm
+@ el10.x86_64 14 ogr_fdw_14 ogr_fdw_14-1.1.6-1PGDG.rhel10.x86_64.rpm pgdg 1.1.6 52.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/ogr_fdw_14-1.1.6-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 14 ogr_fdw_14 ogr_fdw_14-1.1.7-6PGDG.rhel10.2.aarch64.rpm pgdg 1.1.7 50.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/ogr_fdw_14-1.1.7-6PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 14 ogr_fdw_14 ogr_fdw_14-1.1.7-6PGDG.rhel10.1.aarch64.rpm pgdg 1.1.7 50.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/ogr_fdw_14-1.1.7-6PGDG.rhel10.1.aarch64.rpm
+@ el10.aarch64 14 ogr_fdw_14 ogr_fdw_14-1.1.7-6PGDG.rhel10.0.aarch64.rpm pgdg 1.1.7 50.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/ogr_fdw_14-1.1.7-6PGDG.rhel10.0.aarch64.rpm
+@ el10.aarch64 14 ogr_fdw_14 ogr_fdw_14-1.1.7-1PGDG.rhel10.aarch64.rpm pgdg 1.1.7 51.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/ogr_fdw_14-1.1.7-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.8-2.pgdg12+1_amd64.deb pgdg 1.1.8 91.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.8-2.pgdg12+1_amd64.deb
 @ d12.x86_64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-3.pgdg12+1_amd64.deb pgdg 1.1.7 90.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-3.pgdg12+1_amd64.deb
 @ d12.x86_64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-2.pgdg12+1_amd64.deb pgdg 1.1.7 90.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-2.pgdg12+1_amd64.deb
+@ d12.aarch64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.8-2.pgdg12+1_arm64.deb pgdg 1.1.8 89.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.8-2.pgdg12+1_arm64.deb
 @ d12.aarch64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-3.pgdg12+1_arm64.deb pgdg 1.1.7 88.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-3.pgdg12+1_arm64.deb
 @ d12.aarch64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-2.pgdg12+1_arm64.deb pgdg 1.1.7 88.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-2.pgdg12+1_arm64.deb
+@ d13.x86_64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.8-2.pgdg13+1_amd64.deb pgdg 1.1.8 91.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.8-2.pgdg13+1_amd64.deb
 @ d13.x86_64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-3.pgdg13+1_amd64.deb pgdg 1.1.7 91.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-3.pgdg13+1_amd64.deb
 @ d13.x86_64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-2.pgdg13+1_amd64.deb pgdg 1.1.7 91.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-2.pgdg13+1_amd64.deb
+@ d13.aarch64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.8-2.pgdg13+1_arm64.deb pgdg 1.1.8 89.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.8-2.pgdg13+1_arm64.deb
 @ d13.aarch64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-3.pgdg13+1_arm64.deb pgdg 1.1.7 89.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-3.pgdg13+1_arm64.deb
 @ d13.aarch64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-2.pgdg13+1_arm64.deb pgdg 1.1.7 89.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-2.pgdg13+1_arm64.deb
+@ u22.x86_64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.8-2.pgdg22.04+1_amd64.deb pgdg 1.1.8 107.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.8-2.pgdg22.04+1_amd64.deb
 @ u22.x86_64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-3.pgdg22.04+1_amd64.deb pgdg 1.1.7 107.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-3.pgdg22.04+1_amd64.deb
 @ u22.x86_64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-2.pgdg22.04+1_amd64.deb pgdg 1.1.7 106.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-2.pgdg22.04+1_amd64.deb
+@ u22.aarch64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.8-2.pgdg22.04+1_arm64.deb pgdg 1.1.8 104.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.8-2.pgdg22.04+1_arm64.deb
 @ u22.aarch64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-3.pgdg22.04+1_arm64.deb pgdg 1.1.7 104.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-3.pgdg22.04+1_arm64.deb
 @ u22.aarch64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-2.pgdg22.04+1_arm64.deb pgdg 1.1.7 104.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-2.pgdg22.04+1_arm64.deb
+@ u24.x86_64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.8-2.pgdg24.04+1_amd64.deb pgdg 1.1.8 90.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.8-2.pgdg24.04+1_amd64.deb
 @ u24.x86_64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-3.pgdg24.04+1_amd64.deb pgdg 1.1.7 90.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-3.pgdg24.04+1_amd64.deb
 @ u24.x86_64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-2.pgdg24.04+1_amd64.deb pgdg 1.1.7 90.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-2.pgdg24.04+1_amd64.deb
+@ u24.aarch64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.8-2.pgdg24.04+1_arm64.deb pgdg 1.1.8 88.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.8-2.pgdg24.04+1_arm64.deb
 @ u24.aarch64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-3.pgdg24.04+1_arm64.deb pgdg 1.1.7 88.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-3.pgdg24.04+1_arm64.deb
 @ u24.aarch64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-2.pgdg24.04+1_arm64.deb pgdg 1.1.7 88.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-2.pgdg24.04+1_arm64.deb
+@ u26.x86_64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.8-2.pgdg26.04+1_amd64.deb pgdg 1.1.8 89.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.8-2.pgdg26.04+1_amd64.deb
 @ u26.x86_64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-3.pgdg26.04+1_amd64.deb pgdg 1.1.7 89.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-3.pgdg26.04+1_amd64.deb
 @ u26.x86_64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-2.pgdg26.04+1_amd64.deb pgdg 1.1.7 89.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-2.pgdg26.04+1_amd64.deb
+@ u26.aarch64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.8-2.pgdg26.04+1_arm64.deb pgdg 1.1.8 88.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.8-2.pgdg26.04+1_arm64.deb
 @ u26.aarch64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-3.pgdg26.04+1_arm64.deb pgdg 1.1.7 88.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-3.pgdg26.04+1_arm64.deb
 @ u26.aarch64 14 postgresql-14-ogr-fdw postgresql-14-ogr-fdw_1.1.7-2.pgdg26.04+1_arm64.deb pgdg 1.1.7 88.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgsql-ogr-fdw/postgresql-14-ogr-fdw_1.1.7-2.pgdg26.04+1_arm64.deb
 {{< /pgext_matrix >}}

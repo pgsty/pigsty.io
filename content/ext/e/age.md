@@ -55,10 +55,10 @@ weight: 2600
 |:--:|:--:|:--:|:--:|:--:|:--:|
 | el8.x86_64 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 3 | AVAIL PIGSTY 1.6.0 2 | AVAIL PIGSTY 1.6.0 2 | AVAIL PIGSTY 1.6.0 2 |
 | el8.aarch64 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 3 | AVAIL PIGSTY 1.6.0 2 | AVAIL PIGSTY 1.6.0 2 | AVAIL PIGSTY 1.6.0 2 |
-| el9.x86_64 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.6.0 1 | AVAIL PIGSTY 1.6.0 1 | AVAIL PIGSTY 1.6.0 1 |
-| el9.aarch64 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.6.0 1 | AVAIL PIGSTY 1.6.0 1 | AVAIL PIGSTY 1.6.0 1 |
-| el10.x86_64 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.6.0 1 | AVAIL PIGSTY 1.6.0 1 | AVAIL PIGSTY 1.6.0 1 |
-| el10.aarch64 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.6.0 1 | AVAIL PIGSTY 1.6.0 1 | AVAIL PIGSTY 1.6.0 1 |
+| el9.x86_64 | AVAIL PIGSTY 1.7.0 4 | AVAIL PIGSTY 1.7.0 6 | AVAIL PIGSTY 1.6.0 3 | AVAIL PIGSTY 1.6.0 3 | AVAIL PIGSTY 1.6.0 3 |
+| el9.aarch64 | AVAIL PIGSTY 1.7.0 4 | AVAIL PIGSTY 1.7.0 6 | AVAIL PIGSTY 1.6.0 3 | AVAIL PIGSTY 1.6.0 3 | AVAIL PIGSTY 1.6.0 3 |
+| el10.x86_64 | AVAIL PIGSTY 1.7.0 4 | AVAIL PIGSTY 1.7.0 6 | AVAIL PIGSTY 1.6.0 3 | AVAIL PIGSTY 1.6.0 3 | AVAIL PIGSTY 1.6.0 3 |
+| el10.aarch64 | AVAIL PIGSTY 1.7.0 4 | AVAIL PIGSTY 1.7.0 6 | AVAIL PIGSTY 1.6.0 3 | AVAIL PIGSTY 1.6.0 3 | AVAIL PIGSTY 1.6.0 3 |
 | d12.x86_64 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PGDG 1.6.0 1 | AVAIL PGDG 1.6.0 1 | AVAIL PGDG 1.6.0 1 |
 | d12.aarch64 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PGDG 1.6.0 1 | AVAIL PGDG 1.6.0 1 | AVAIL PGDG 1.6.0 1 |
 | d13.x86_64 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PGDG 1.6.0 1 | AVAIL PGDG 1.6.0 1 | AVAIL PGDG 1.6.0 1 |
@@ -75,12 +75,20 @@ weight: 2600
 @ el8.aarch64 18 age_18 age_18-1.7.0-rc0_1PGDG.rhel8.10.aarch64.rpm pgdg 1.7.0 209.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/age_18-1.7.0-rc0_1PGDG.rhel8.10.aarch64.rpm
 @ el9.x86_64 18 age_18 age_18-1.7.0-2PIGSTY.el9.x86_64.rpm pigsty 1.7.0 229.2KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/age_18-1.7.0-2PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 18 age_18 age_18-1.7.0-rc0_1PGDG.rhel9.8.x86_64.rpm pgdg 1.7.0 225.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/age_18-1.7.0-rc0_1PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 18 age_18 age_18-1.7.0-rc0_1PGDG.rhel9.7.x86_64.rpm pgdg 1.7.0 225.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/age_18-1.7.0-rc0_1PGDG.rhel9.7.x86_64.rpm
+@ el9.x86_64 18 age_18 age_18-1.7.0-rc0_1PGDG.rhel9.6.x86_64.rpm pgdg 1.7.0 225.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/age_18-1.7.0-rc0_1PGDG.rhel9.6.x86_64.rpm
 @ el9.aarch64 18 age_18 age_18-1.7.0-2PIGSTY.el9.aarch64.rpm pigsty 1.7.0 221.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/age_18-1.7.0-2PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 18 age_18 age_18-1.7.0-rc0_1PGDG.rhel9.8.aarch64.rpm pgdg 1.7.0 216.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/age_18-1.7.0-rc0_1PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 18 age_18 age_18-1.7.0-rc0_1PGDG.rhel9.7.aarch64.rpm pgdg 1.7.0 216.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/age_18-1.7.0-rc0_1PGDG.rhel9.7.aarch64.rpm
+@ el9.aarch64 18 age_18 age_18-1.7.0-rc0_1PGDG.rhel9.6.aarch64.rpm pgdg 1.7.0 216.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/age_18-1.7.0-rc0_1PGDG.rhel9.6.aarch64.rpm
 @ el10.x86_64 18 age_18 age_18-1.7.0-2PIGSTY.el10.x86_64.rpm pigsty 1.7.0 231.5KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/age_18-1.7.0-2PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 18 age_18 age_18-1.7.0-rc0_1PGDG.rhel10.2.x86_64.rpm pgdg 1.7.0 227.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/age_18-1.7.0-rc0_1PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 18 age_18 age_18-1.7.0-rc0_1PGDG.rhel10.1.x86_64.rpm pgdg 1.7.0 227.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/age_18-1.7.0-rc0_1PGDG.rhel10.1.x86_64.rpm
+@ el10.x86_64 18 age_18 age_18-1.7.0-rc0_1PGDG.rhel10.0.x86_64.rpm pgdg 1.7.0 228.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/age_18-1.7.0-rc0_1PGDG.rhel10.0.x86_64.rpm
 @ el10.aarch64 18 age_18 age_18-1.7.0-2PIGSTY.el10.aarch64.rpm pigsty 1.7.0 221.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/age_18-1.7.0-2PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 18 age_18 age_18-1.7.0-rc0_1PGDG.rhel10.2.aarch64.rpm pgdg 1.7.0 218.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/age_18-1.7.0-rc0_1PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 18 age_18 age_18-1.7.0-rc0_1PGDG.rhel10.1.aarch64.rpm pgdg 1.7.0 218.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/age_18-1.7.0-rc0_1PGDG.rhel10.1.aarch64.rpm
+@ el10.aarch64 18 age_18 age_18-1.7.0-rc0_1PGDG.rhel10.0.aarch64.rpm pgdg 1.7.0 218.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/age_18-1.7.0-rc0_1PGDG.rhel10.0.aarch64.rpm
 @ d12.x86_64 18 postgresql-18-age postgresql-18-age_1.7.0-2PIGSTY~bookworm_amd64.deb pigsty 1.7.0 682.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/a/age/postgresql-18-age_1.7.0-2PIGSTY~bookworm_amd64.deb
 @ d12.x86_64 18 postgresql-18-age postgresql-18-age_1.7.0~rc0-1.pgdg12+1_amd64.deb pgdg 1.7.0 680.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-18-age/postgresql-18-age_1.7.0~rc0-1.pgdg12+1_amd64.deb
 @ d12.aarch64 18 postgresql-18-age postgresql-18-age_1.7.0-2PIGSTY~bookworm_arm64.deb pigsty 1.7.0 661.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/a/age/postgresql-18-age_1.7.0-2PIGSTY~bookworm_arm64.deb
@@ -109,12 +117,28 @@ weight: 2600
 @ el8.aarch64 17 age_17 age_17-1.6.0-rc0_1PGDG.rhel8.10.aarch64.rpm pgdg 1.6.0 207.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/age_17-1.6.0-rc0_1PGDG.rhel8.10.aarch64.rpm
 @ el9.x86_64 17 age_17 age_17-1.7.0-2PIGSTY.el9.x86_64.rpm pigsty 1.7.0 229.3KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/age_17-1.7.0-2PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 17 age_17 age_17-1.7.0-rc0_1PGDG.rhel9.8.x86_64.rpm pgdg 1.7.0 225.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/age_17-1.7.0-rc0_1PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 17 age_17 age_17-1.7.0-rc0_1PGDG.rhel9.7.x86_64.rpm pgdg 1.7.0 225.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/age_17-1.7.0-rc0_1PGDG.rhel9.7.x86_64.rpm
+@ el9.x86_64 17 age_17 age_17-1.7.0-rc0_1PGDG.rhel9.6.x86_64.rpm pgdg 1.7.0 225.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/age_17-1.7.0-rc0_1PGDG.rhel9.6.x86_64.rpm
+@ el9.x86_64 17 age_17 age_17-1.6.0-rc0_1PGDG.rhel9.7.x86_64.rpm pgdg 1.6.0 221.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/age_17-1.6.0-rc0_1PGDG.rhel9.7.x86_64.rpm
+@ el9.x86_64 17 age_17 age_17-1.6.0-rc0_1PGDG.rhel9.6.x86_64.rpm pgdg 1.6.0 221.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/age_17-1.6.0-rc0_1PGDG.rhel9.6.x86_64.rpm
 @ el9.aarch64 17 age_17 age_17-1.7.0-2PIGSTY.el9.aarch64.rpm pigsty 1.7.0 220.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/age_17-1.7.0-2PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 17 age_17 age_17-1.7.0-rc0_1PGDG.rhel9.8.aarch64.rpm pgdg 1.7.0 216.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/age_17-1.7.0-rc0_1PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 17 age_17 age_17-1.7.0-rc0_1PGDG.rhel9.7.aarch64.rpm pgdg 1.7.0 216.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/age_17-1.7.0-rc0_1PGDG.rhel9.7.aarch64.rpm
+@ el9.aarch64 17 age_17 age_17-1.7.0-rc0_1PGDG.rhel9.6.aarch64.rpm pgdg 1.7.0 216.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/age_17-1.7.0-rc0_1PGDG.rhel9.6.aarch64.rpm
+@ el9.aarch64 17 age_17 age_17-1.6.0-rc0_1PGDG.rhel9.7.aarch64.rpm pgdg 1.6.0 212.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/age_17-1.6.0-rc0_1PGDG.rhel9.7.aarch64.rpm
+@ el9.aarch64 17 age_17 age_17-1.6.0-rc0_1PGDG.rhel9.6.aarch64.rpm pgdg 1.6.0 212.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/age_17-1.6.0-rc0_1PGDG.rhel9.6.aarch64.rpm
 @ el10.x86_64 17 age_17 age_17-1.7.0-2PIGSTY.el10.x86_64.rpm pigsty 1.7.0 231.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/age_17-1.7.0-2PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 17 age_17 age_17-1.7.0-rc0_1PGDG.rhel10.2.x86_64.rpm pgdg 1.7.0 227.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/age_17-1.7.0-rc0_1PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 17 age_17 age_17-1.7.0-rc0_1PGDG.rhel10.1.x86_64.rpm pgdg 1.7.0 227.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/age_17-1.7.0-rc0_1PGDG.rhel10.1.x86_64.rpm
+@ el10.x86_64 17 age_17 age_17-1.7.0-rc0_1PGDG.rhel10.0.x86_64.rpm pgdg 1.7.0 228.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/age_17-1.7.0-rc0_1PGDG.rhel10.0.x86_64.rpm
+@ el10.x86_64 17 age_17 age_17-1.6.0-rc0_1PGDG.rhel10.1.x86_64.rpm pgdg 1.6.0 224.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/age_17-1.6.0-rc0_1PGDG.rhel10.1.x86_64.rpm
+@ el10.x86_64 17 age_17 age_17-1.6.0-rc0_1PGDG.rhel10.0.x86_64.rpm pgdg 1.6.0 224.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/age_17-1.6.0-rc0_1PGDG.rhel10.0.x86_64.rpm
 @ el10.aarch64 17 age_17 age_17-1.7.0-2PIGSTY.el10.aarch64.rpm pigsty 1.7.0 222.0KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/age_17-1.7.0-2PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 17 age_17 age_17-1.7.0-rc0_1PGDG.rhel10.2.aarch64.rpm pgdg 1.7.0 218.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/age_17-1.7.0-rc0_1PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 17 age_17 age_17-1.7.0-rc0_1PGDG.rhel10.1.aarch64.rpm pgdg 1.7.0 218.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/age_17-1.7.0-rc0_1PGDG.rhel10.1.aarch64.rpm
+@ el10.aarch64 17 age_17 age_17-1.7.0-rc0_1PGDG.rhel10.0.aarch64.rpm pgdg 1.7.0 218.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/age_17-1.7.0-rc0_1PGDG.rhel10.0.aarch64.rpm
+@ el10.aarch64 17 age_17 age_17-1.6.0-rc0_1PGDG.rhel10.1.aarch64.rpm pgdg 1.6.0 214.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/age_17-1.6.0-rc0_1PGDG.rhel10.1.aarch64.rpm
+@ el10.aarch64 17 age_17 age_17-1.6.0-rc0_1PGDG.rhel10.0.aarch64.rpm pgdg 1.6.0 214.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/age_17-1.6.0-rc0_1PGDG.rhel10.0.aarch64.rpm
 @ d12.x86_64 17 postgresql-17-age postgresql-17-age_1.7.0-2PIGSTY~bookworm_amd64.deb pigsty 1.7.0 682.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/a/age/postgresql-17-age_1.7.0-2PIGSTY~bookworm_amd64.deb
 @ d12.x86_64 17 postgresql-17-age postgresql-17-age_1.7.0~rc0-1.pgdg12+1_amd64.deb pgdg 1.7.0 680.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-17-age/postgresql-17-age_1.7.0~rc0-1.pgdg12+1_amd64.deb
 @ d12.aarch64 17 postgresql-17-age postgresql-17-age_1.7.0-2PIGSTY~bookworm_arm64.deb pigsty 1.7.0 663.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/a/age/postgresql-17-age_1.7.0-2PIGSTY~bookworm_arm64.deb
@@ -140,9 +164,17 @@ weight: 2600
 @ el8.aarch64 16 age_16 age_16-1.6.0-2PIGSTY.el8.aarch64.rpm pigsty 1.6.0 229.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/age_16-1.6.0-2PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 16 age_16 age_16-1.6.0-rc0_1PGDG.rhel8.10.aarch64.rpm pgdg 1.6.0 208.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/age_16-1.6.0-rc0_1PGDG.rhel8.10.aarch64.rpm
 @ el9.x86_64 16 age_16 age_16-1.6.0-2PIGSTY.el9.x86_64.rpm pigsty 1.6.0 227.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/age_16-1.6.0-2PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 16 age_16 age_16-1.6.0-rc0_1PGDG.rhel9.7.x86_64.rpm pgdg 1.6.0 223.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/age_16-1.6.0-rc0_1PGDG.rhel9.7.x86_64.rpm
+@ el9.x86_64 16 age_16 age_16-1.6.0-rc0_1PGDG.rhel9.6.x86_64.rpm pgdg 1.6.0 223.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/age_16-1.6.0-rc0_1PGDG.rhel9.6.x86_64.rpm
 @ el9.aarch64 16 age_16 age_16-1.6.0-2PIGSTY.el9.aarch64.rpm pigsty 1.6.0 219.2KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/age_16-1.6.0-2PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 16 age_16 age_16-1.6.0-rc0_1PGDG.rhel9.7.aarch64.rpm pgdg 1.6.0 213.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/age_16-1.6.0-rc0_1PGDG.rhel9.7.aarch64.rpm
+@ el9.aarch64 16 age_16 age_16-1.6.0-rc0_1PGDG.rhel9.6.aarch64.rpm pgdg 1.6.0 213.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/age_16-1.6.0-rc0_1PGDG.rhel9.6.aarch64.rpm
 @ el10.x86_64 16 age_16 age_16-1.6.0-2PIGSTY.el10.x86_64.rpm pigsty 1.6.0 230.0KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/age_16-1.6.0-2PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 16 age_16 age_16-1.6.0-rc0_1PGDG.rhel10.1.x86_64.rpm pgdg 1.6.0 226.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/age_16-1.6.0-rc0_1PGDG.rhel10.1.x86_64.rpm
+@ el10.x86_64 16 age_16 age_16-1.6.0-rc0_1PGDG.rhel10.0.x86_64.rpm pgdg 1.6.0 226.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/age_16-1.6.0-rc0_1PGDG.rhel10.0.x86_64.rpm
 @ el10.aarch64 16 age_16 age_16-1.6.0-2PIGSTY.el10.aarch64.rpm pigsty 1.6.0 219.9KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/age_16-1.6.0-2PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 16 age_16 age_16-1.6.0-rc0_1PGDG.rhel10.1.aarch64.rpm pgdg 1.6.0 215.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/age_16-1.6.0-rc0_1PGDG.rhel10.1.aarch64.rpm
+@ el10.aarch64 16 age_16 age_16-1.6.0-rc0_1PGDG.rhel10.0.aarch64.rpm pgdg 1.6.0 215.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/age_16-1.6.0-rc0_1PGDG.rhel10.0.aarch64.rpm
 @ d12.x86_64 16 postgresql-16-age postgresql-16-age_1.6.0~rc0-2.pgdg12+1_amd64.deb pgdg 1.6.0 680.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-16-age/postgresql-16-age_1.6.0~rc0-2.pgdg12+1_amd64.deb
 @ d12.aarch64 16 postgresql-16-age postgresql-16-age_1.6.0~rc0-2.pgdg12+1_arm64.deb pgdg 1.6.0 657.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-16-age/postgresql-16-age_1.6.0~rc0-2.pgdg12+1_arm64.deb
 @ d13.x86_64 16 postgresql-16-age postgresql-16-age_1.6.0~rc0-2.pgdg13+1_amd64.deb pgdg 1.6.0 678.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-16-age/postgresql-16-age_1.6.0~rc0-2.pgdg13+1_amd64.deb
@@ -158,9 +190,17 @@ weight: 2600
 @ el8.aarch64 15 age_15 age_15-1.6.0-2PIGSTY.el8.aarch64.rpm pigsty 1.6.0 233.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/age_15-1.6.0-2PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 15 age_15 age_15-1.6.0-rc0_1PGDG.rhel8.10.aarch64.rpm pgdg 1.6.0 211.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/age_15-1.6.0-rc0_1PGDG.rhel8.10.aarch64.rpm
 @ el9.x86_64 15 age_15 age_15-1.6.0-2PIGSTY.el9.x86_64.rpm pigsty 1.6.0 233.4KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/age_15-1.6.0-2PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 15 age_15 age_15-1.6.0-rc0_1PGDG.rhel9.7.x86_64.rpm pgdg 1.6.0 228.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/age_15-1.6.0-rc0_1PGDG.rhel9.7.x86_64.rpm
+@ el9.x86_64 15 age_15 age_15-1.6.0-rc0_1PGDG.rhel9.6.x86_64.rpm pgdg 1.6.0 228.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/age_15-1.6.0-rc0_1PGDG.rhel9.6.x86_64.rpm
 @ el9.aarch64 15 age_15 age_15-1.6.0-2PIGSTY.el9.aarch64.rpm pigsty 1.6.0 224.4KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/age_15-1.6.0-2PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 15 age_15 age_15-1.6.0-rc0_1PGDG.rhel9.7.aarch64.rpm pgdg 1.6.0 218.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/age_15-1.6.0-rc0_1PGDG.rhel9.7.aarch64.rpm
+@ el9.aarch64 15 age_15 age_15-1.6.0-rc0_1PGDG.rhel9.6.aarch64.rpm pgdg 1.6.0 218.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/age_15-1.6.0-rc0_1PGDG.rhel9.6.aarch64.rpm
 @ el10.x86_64 15 age_15 age_15-1.6.0-2PIGSTY.el10.x86_64.rpm pigsty 1.6.0 236.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/age_15-1.6.0-2PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 15 age_15 age_15-1.6.0-rc0_1PGDG.rhel10.1.x86_64.rpm pgdg 1.6.0 231.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/age_15-1.6.0-rc0_1PGDG.rhel10.1.x86_64.rpm
+@ el10.x86_64 15 age_15 age_15-1.6.0-rc0_1PGDG.rhel10.0.x86_64.rpm pgdg 1.6.0 231.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/age_15-1.6.0-rc0_1PGDG.rhel10.0.x86_64.rpm
 @ el10.aarch64 15 age_15 age_15-1.6.0-2PIGSTY.el10.aarch64.rpm pigsty 1.6.0 227.2KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/age_15-1.6.0-2PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 15 age_15 age_15-1.6.0-rc0_1PGDG.rhel10.1.aarch64.rpm pgdg 1.6.0 221.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/age_15-1.6.0-rc0_1PGDG.rhel10.1.aarch64.rpm
+@ el10.aarch64 15 age_15 age_15-1.6.0-rc0_1PGDG.rhel10.0.aarch64.rpm pgdg 1.6.0 221.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/age_15-1.6.0-rc0_1PGDG.rhel10.0.aarch64.rpm
 @ d12.x86_64 15 postgresql-15-age postgresql-15-age_1.6.0~rc0-1.pgdg12+1_amd64.deb pgdg 1.6.0 680.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-15-age/postgresql-15-age_1.6.0~rc0-1.pgdg12+1_amd64.deb
 @ d12.aarch64 15 postgresql-15-age postgresql-15-age_1.6.0~rc0-1.pgdg12+1_arm64.deb pgdg 1.6.0 660.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-15-age/postgresql-15-age_1.6.0~rc0-1.pgdg12+1_arm64.deb
 @ d13.x86_64 15 postgresql-15-age postgresql-15-age_1.6.0~rc0-1.pgdg13+1_amd64.deb pgdg 1.6.0 681.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-15-age/postgresql-15-age_1.6.0~rc0-1.pgdg13+1_amd64.deb
@@ -176,9 +216,17 @@ weight: 2600
 @ el8.aarch64 14 age_14 age_14-1.6.0-2PIGSTY.el8.aarch64.rpm pigsty 1.6.0 233.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/age_14-1.6.0-2PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 14 age_14 age_14-1.6.0-rc0_1PGDG.rhel8.10.aarch64.rpm pgdg 1.6.0 211.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/age_14-1.6.0-rc0_1PGDG.rhel8.10.aarch64.rpm
 @ el9.x86_64 14 age_14 age_14-1.6.0-2PIGSTY.el9.x86_64.rpm pigsty 1.6.0 233.4KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/age_14-1.6.0-2PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 14 age_14 age_14-1.6.0-rc0_1PGDG.rhel9.7.x86_64.rpm pgdg 1.6.0 228.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/age_14-1.6.0-rc0_1PGDG.rhel9.7.x86_64.rpm
+@ el9.x86_64 14 age_14 age_14-1.6.0-rc0_1PGDG.rhel9.6.x86_64.rpm pgdg 1.6.0 228.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/age_14-1.6.0-rc0_1PGDG.rhel9.6.x86_64.rpm
 @ el9.aarch64 14 age_14 age_14-1.6.0-2PIGSTY.el9.aarch64.rpm pigsty 1.6.0 223.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/age_14-1.6.0-2PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 14 age_14 age_14-1.6.0-rc0_1PGDG.rhel9.7.aarch64.rpm pgdg 1.6.0 218.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/age_14-1.6.0-rc0_1PGDG.rhel9.7.aarch64.rpm
+@ el9.aarch64 14 age_14 age_14-1.6.0-rc0_1PGDG.rhel9.6.aarch64.rpm pgdg 1.6.0 218.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/age_14-1.6.0-rc0_1PGDG.rhel9.6.aarch64.rpm
 @ el10.x86_64 14 age_14 age_14-1.6.0-2PIGSTY.el10.x86_64.rpm pigsty 1.6.0 235.9KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/age_14-1.6.0-2PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 14 age_14 age_14-1.6.0-rc0_1PGDG.rhel10.1.x86_64.rpm pgdg 1.6.0 230.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/age_14-1.6.0-rc0_1PGDG.rhel10.1.x86_64.rpm
+@ el10.x86_64 14 age_14 age_14-1.6.0-rc0_1PGDG.rhel10.0.x86_64.rpm pgdg 1.6.0 231.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/age_14-1.6.0-rc0_1PGDG.rhel10.0.x86_64.rpm
 @ el10.aarch64 14 age_14 age_14-1.6.0-2PIGSTY.el10.aarch64.rpm pigsty 1.6.0 227.0KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/age_14-1.6.0-2PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 14 age_14 age_14-1.6.0-rc0_1PGDG.rhel10.1.aarch64.rpm pgdg 1.6.0 221.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/age_14-1.6.0-rc0_1PGDG.rhel10.1.aarch64.rpm
+@ el10.aarch64 14 age_14 age_14-1.6.0-rc0_1PGDG.rhel10.0.aarch64.rpm pgdg 1.6.0 221.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/age_14-1.6.0-rc0_1PGDG.rhel10.0.aarch64.rpm
 @ d12.x86_64 14 postgresql-14-age postgresql-14-age_1.6.0~rc0-1.pgdg12+1_amd64.deb pgdg 1.6.0 680.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-14-age/postgresql-14-age_1.6.0~rc0-1.pgdg12+1_amd64.deb
 @ d12.aarch64 14 postgresql-14-age postgresql-14-age_1.6.0~rc0-1.pgdg12+1_arm64.deb pgdg 1.6.0 660.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-14-age/postgresql-14-age_1.6.0~rc0-1.pgdg12+1_arm64.deb
 @ d13.x86_64 14 postgresql-14-age postgresql-14-age_1.6.0~rc0-1.pgdg13+1_amd64.deb pgdg 1.6.0 681.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-14-age/postgresql-14-age_1.6.0~rc0-1.pgdg13+1_amd64.deb
@@ -255,7 +303,7 @@ CREATE EXTENSION age;
 
 ## Usage
 
-> [age: AGE graph database extension](https://github.com/apache/age)
+Sources: [Apache AGE repository](https://github.com/apache/age), [PG17 v1.7.0 branch](https://github.com/apache/age/tree/PG17/v1.7.0-rc0), [PG18 v1.7.0 branch](https://github.com/apache/age/tree/PG18/v1.7.0-rc0)
 
 Apache AGE brings graph database capabilities to PostgreSQL using the openCypher query language. It enables hybrid querying that combines SQL and Cypher, property indexes on vertices and edges, and the ability to query multiple graphs.
 
@@ -329,3 +377,7 @@ JOIN cypher('my_graph', $$
 $$) AS c(name agtype, id agtype)
 ON t.graph_id = c.id;
 ```
+
+### Version Notes
+
+Apache AGE 1.7.0 is published through PostgreSQL-major-specific branches for PostgreSQL 17 and 18. The README surface remains the same graph/Cypher workflow, with support focused on the newer PostgreSQL majors rather than PG14-16.

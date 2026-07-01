@@ -12,20 +12,20 @@ There are **29** extensions in **14** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
-| [`postgis`](/ext/e/postgis) | [`postgis`](https://git.osgeo.org/gitea/postgis/postgis) | `3.6.3` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostGIS geometry and geography spatial types and functions |
-| [`postgis_topology`](/ext/e/postgis_topology) | [`postgis`](https://git.osgeo.org/gitea/postgis/postgis) | `3.6.3` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostGIS topology spatial types and functions |
-| [`postgis_raster`](/ext/e/postgis_raster) | [`postgis`](https://git.osgeo.org/gitea/postgis/postgis) | `3.6.3` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostGIS raster types and functions |
-| [`postgis_sfcgal`](/ext/e/postgis_sfcgal) | [`postgis`](https://git.osgeo.org/gitea/postgis/postgis) | `3.6.3` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostGIS SFCGAL functions |
-| [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) | [`postgis`](https://git.osgeo.org/gitea/postgis/postgis) | `3.6.3` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostGIS tiger geocoder and reverse geocoder |
-| [`address_standardizer`](/ext/e/address_standardizer) | [`postgis`](https://git.osgeo.org/gitea/postgis/postgis) | `3.6.3` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Used to parse an address into constituent elements. Generally used to support geocoding address normalization step. |
-| [`address_standardizer_data_us`](/ext/e/address_standardizer_data_us) | [`postgis`](https://git.osgeo.org/gitea/postgis/postgis) | `3.6.3` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Address Standardizer US dataset example |
+| [`postgis`](/ext/e/postgis) | [`postgis`](https://git.osgeo.org/gitea/postgis/postgis) | `3.6.4` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostGIS geometry and geography spatial types and functions |
+| [`postgis_topology`](/ext/e/postgis_topology) | [`postgis`](https://git.osgeo.org/gitea/postgis/postgis) | `3.6.4` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostGIS topology spatial types and functions |
+| [`postgis_raster`](/ext/e/postgis_raster) | [`postgis`](https://git.osgeo.org/gitea/postgis/postgis) | `3.6.4` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostGIS raster types and functions |
+| [`postgis_sfcgal`](/ext/e/postgis_sfcgal) | [`postgis`](https://git.osgeo.org/gitea/postgis/postgis) | `3.6.4` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostGIS SFCGAL functions |
+| [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) | [`postgis`](https://git.osgeo.org/gitea/postgis/postgis) | `3.6.4` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostGIS tiger geocoder and reverse geocoder |
+| [`address_standardizer`](/ext/e/address_standardizer) | [`postgis`](https://git.osgeo.org/gitea/postgis/postgis) | `3.6.4` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Used to parse an address into constituent elements. Generally used to support geocoding address normalization step. |
+| [`address_standardizer_data_us`](/ext/e/address_standardizer_data_us) | [`postgis`](https://git.osgeo.org/gitea/postgis/postgis) | `3.6.4` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Address Standardizer US dataset example |
 | [`pgrouting`](/ext/e/pgrouting) | [`pgrouting`](https://github.com/pgRouting/pgrouting) | `4.0.1` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | pgRouting Extension |
 | [`pointcloud`](/ext/e/pointcloud) | [`pointcloud`](https://github.com/pgpointcloud/pointcloud) | `1.2.5` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | data type for lidar point clouds |
 | [`pointcloud_postgis`](/ext/e/pointcloud_postgis) | [`pointcloud`](https://github.com/pgpointcloud/pointcloud) | `1.2.5` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | integration for pointcloud LIDAR data and PostGIS geometry data |
 | [`h3`](/ext/e/h3) | [`pg_h3`](https://github.com/zachasme/h3-pg) | `4.2.3` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | H3 bindings for PostgreSQL |
 | [`h3_postgis`](/ext/e/h3_postgis) | [`pg_h3`](https://github.com/zachasme/h3-pg) | `4.2.3` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | H3 PostGIS integration |
 | [`q3c`](/ext/e/q3c) | [`q3c`](https://github.com/segasai/q3c) | `2.0.3` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | q3c sky indexing plugin |
-| [`ogr_fdw`](/ext/e/ogr_fdw) | [`ogr_fdw`](https://github.com/pramsey/pgsql-ogr-fdw) | `1.1.7` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | foreign-data wrapper for GIS data access |
+| [`ogr_fdw`](/ext/e/ogr_fdw) | [`ogr_fdw`](https://github.com/pramsey/pgsql-ogr-fdw) | `1.1.8` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | foreign-data wrapper for GIS data access |
 | [`geoip`](/ext/e/geoip) | [`geoip`](https://github.com/tvondra/geoip) | `0.3.0` | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | IP-based geolocation query |
 | [`pg_polyline`](/ext/e/pg_polyline) | [`pg_polyline`](https://github.com/yihong0618/pg_polyline) | `0.0.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Fast Google Encoded Polyline encoding & decoding for postgres |
 | [`pg_eviltransform`](/ext/e/pg_eviltransform) | [`pg_eviltransform`](https://github.com/aiyou178/pg_eviltransform) | `0.0.2` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Coordinate transforms for BD09/GCJ02 via PostGIS ST_Transform |
@@ -48,7 +48,7 @@ There are **29** extensions in **14** packages.
 
 ## postgis {#postgis}
 
-[**`postgis`**](/ext/e/postgis) - `3.6.3` : PostGIS geometry and geography spatial types and functions
+[**`postgis`**](/ext/e/postgis) - `3.6.4` : PostGIS geometry and geography spatial types and functions
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -67,7 +67,7 @@ There are **29** extensions in **14** packages.
 
 ## postgis_topology {#postgis_topology}
 
-[**`postgis`**](/ext/e/postgis_topology) - `3.6.3` : PostGIS topology spatial types and functions
+[**`postgis`**](/ext/e/postgis_topology) - `3.6.4` : PostGIS topology spatial types and functions
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -86,7 +86,7 @@ There are **29** extensions in **14** packages.
 
 ## postgis_raster {#postgis_raster}
 
-[**`postgis`**](/ext/e/postgis_raster) - `3.6.3` : PostGIS raster types and functions
+[**`postgis`**](/ext/e/postgis_raster) - `3.6.4` : PostGIS raster types and functions
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -105,7 +105,7 @@ There are **29** extensions in **14** packages.
 
 ## postgis_sfcgal {#postgis_sfcgal}
 
-[**`postgis`**](/ext/e/postgis_sfcgal) - `3.6.3` : PostGIS SFCGAL functions
+[**`postgis`**](/ext/e/postgis_sfcgal) - `3.6.4` : PostGIS SFCGAL functions
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -124,7 +124,7 @@ There are **29** extensions in **14** packages.
 
 ## postgis_tiger_geocoder {#postgis_tiger_geocoder}
 
-[**`postgis`**](/ext/e/postgis_tiger_geocoder) - `3.6.3` : PostGIS tiger geocoder and reverse geocoder
+[**`postgis`**](/ext/e/postgis_tiger_geocoder) - `3.6.4` : PostGIS tiger geocoder and reverse geocoder
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -143,7 +143,7 @@ There are **29** extensions in **14** packages.
 
 ## address_standardizer {#address_standardizer}
 
-[**`postgis`**](/ext/e/address_standardizer) - `3.6.3` : Used to parse an address into constituent elements. Generally used to support geocoding address normalization step.
+[**`postgis`**](/ext/e/address_standardizer) - `3.6.4` : Used to parse an address into constituent elements. Generally used to support geocoding address normalization step.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -162,7 +162,7 @@ There are **29** extensions in **14** packages.
 
 ## address_standardizer_data_us {#address_standardizer_data_us}
 
-[**`postgis`**](/ext/e/address_standardizer_data_us) - `3.6.3` : Address Standardizer US dataset example
+[**`postgis`**](/ext/e/address_standardizer_data_us) - `3.6.4` : Address Standardizer US dataset example
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -295,7 +295,7 @@ There are **29** extensions in **14** packages.
 
 ## ogr_fdw {#ogr_fdw}
 
-[**`ogr_fdw`**](/ext/e/ogr_fdw) - `1.1.7` : foreign-data wrapper for GIS data access
+[**`ogr_fdw`**](/ext/e/ogr_fdw) - `1.1.8` : foreign-data wrapper for GIS data access
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

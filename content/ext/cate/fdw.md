@@ -18,7 +18,7 @@ There are **26** extensions in **26** packages.
 | [`jdbc_fdw`](/ext/e/jdbc_fdw) | [`jdbc_fdw`](https://github.com/pgspider/jdbc_fdw) | `0.4.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | foreign-data wrapper for remote servers available over JDBC |
 | [`pgspider_ext`](/ext/e/pgspider_ext) | [`pgspider_ext`](https://github.com/pgspider/pgspider_ext) | `1.3.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | foreign-data wrapper for remote PGSpider servers |
 | [`mysql_fdw`](/ext/e/mysql_fdw) | [`mysql_fdw`](https://github.com/EnterpriseDB/mysql_fdw) | `2.9.3` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Foreign data wrapper for querying a MySQL server |
-| [`oracle_fdw`](/ext/e/oracle_fdw) | [`oracle_fdw`](https://github.com/laurenz/oracle_fdw) | `2.8.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | foreign data wrapper for Oracle access |
+| [`oracle_fdw`](/ext/e/oracle_fdw) | [`oracle_fdw`](https://github.com/laurenz/oracle_fdw) | `2.9.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | foreign data wrapper for Oracle access |
 | [`tds_fdw`](/ext/e/tds_fdw) | [`tds_fdw`](https://github.com/tds-fdw/tds_fdw) | `2.0.5` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Foreign data wrapper for querying a TDS database (Sybase or Microsoft SQL Server) |
 | [`db2_fdw`](/ext/e/db2_fdw) | [`db2_fdw`](https://github.com/wolfgangbrandl/db2_fdw) | `18.1.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | foreign data wrapper for DB2 access |
 | [`sqlite_fdw`](/ext/e/sqlite_fdw) | [`sqlite_fdw`](https://github.com/pgspider/sqlite_fdw) | `2.5.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | SQLite Foreign Data Wrapper |
@@ -71,11 +71,11 @@ There are **26** extensions in **26** packages.
 | **Extension** | [`multicorn`](/ext/e/multicorn) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Package** | [`multicorn`](https://github.com/pgsql-io/multicorn2) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **RPM** | `multicorn2_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | - | **d12** | - | - |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | - | - |
-| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | - | - |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | - | - |
-| | | **u26** | - | - |
+| **DEB** | `postgresql-$v-multicorn` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
 
@@ -107,7 +107,7 @@ There are **26** extensions in **26** packages.
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
 | **Extension** | [`jdbc_fdw`](/ext/e/jdbc_fdw) | **el8** | {{< pgvers "16,15,14" >}} | - |
-| **Package** | [`jdbc_fdw`](https://github.com/pgspider/jdbc_fdw) | **el9** | - | - |
+| **Package** | [`jdbc_fdw`](https://github.com/pgspider/jdbc_fdw) | **el9** | {{< pgvers "16,15,14" >}} | - |
 | **RPM** | `jdbc_fdw_$v` | **el10** | - | - |
 | **DEB** | - | **d12** | - | - |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | - | - |
@@ -159,7 +159,7 @@ There are **26** extensions in **26** packages.
 
 ## oracle_fdw {#oracle_fdw}
 
-[**`oracle_fdw`**](/ext/e/oracle_fdw) - `2.8.0` : foreign data wrapper for Oracle access
+[**`oracle_fdw`**](/ext/e/oracle_fdw) - `2.9.0` : foreign data wrapper for Oracle access
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -318,11 +318,11 @@ There are **26** extensions in **26** packages.
 | **Extension** | [`mongo_fdw`](/ext/e/mongo_fdw) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Package** | [`mongo_fdw`](https://github.com/EnterpriseDB/mongo_fdw) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **RPM** | `mongo_fdw_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | - | **d12** | - | - |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | - | - |
-| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | - | - |
-| **License** | <a class="ext-badge ext-badge--license lgpl30" href="/ext/license#lgpl30">LGPL-3.0</a> | **u24** | - | - |
-| | | **u26** | - | - |
+| **DEB** | `postgresql-$v-mongo-fdw` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license lgpl30" href="/ext/license#lgpl30">LGPL-3.0</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
 

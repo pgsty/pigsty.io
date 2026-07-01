@@ -11,11 +11,6 @@ weight: 5140
     <div class="ext-card__title">cybertec-postgresql/pg_permissions</div>
     <div class="ext-card__desc">https://github.com/cybertec-postgresql/pg_permissions</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_permissions-REL_1_3.tar.gz">
-    <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_permissions-REL_1_3.tar.gz</div>
-    <div class="ext-card__desc">pg_permissions-REL_1_3.tar.gz</div>
-  </a>
 </div>
 
 
@@ -42,181 +37,301 @@ weight: 5140
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `1.4` | {{< pgvers "18,17,16,15,14" >}} | `pg_permissions` | - |
+| [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.4` | {{< pgvers "18,17,16,15,14" >}} | `pg_permissions` | - |
 | [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.4` | {{< pgvers "18,17,16,15,14" >}} | `pg_permissions_$v` | - |
-| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-permissions` | - |
+| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.4` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-permissions` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 4 | AVAIL PGDG 1.4 4 | AVAIL PGDG 1.4 4 |
-| el8.aarch64 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 4 | AVAIL PGDG 1.4 4 | AVAIL PGDG 1.4 4 |
-| el9.x86_64 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 |
-| el9.aarch64 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 |
-| el10.x86_64 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 |
-| el10.aarch64 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 |
-| d12.x86_64 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 |
-| d12.aarch64 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 |
-| d13.x86_64 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 |
-| d13.aarch64 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 1 |
-| u22.x86_64 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 |
-| u22.aarch64 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 |
-| u24.x86_64 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 |
-| u24.aarch64 | AVAIL PGDG 1.4 1 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 |
-| u26.x86_64 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 |
-| u26.aarch64 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 |
+| el8.x86_64 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4.1 3 | AVAIL PGDG 1.4.1 5 | AVAIL PGDG 1.4.1 5 | AVAIL PGDG 1.4.1 5 |
+| el8.aarch64 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4.1 3 | AVAIL PGDG 1.4.1 5 | AVAIL PGDG 1.4.1 5 | AVAIL PGDG 1.4.1 5 |
+| el9.x86_64 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 4 | AVAIL PGDG 1.4 6 | AVAIL PGDG 1.4 6 | AVAIL PGDG 1.4 6 |
+| el9.aarch64 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 4 | AVAIL PGDG 1.4 6 | AVAIL PGDG 1.4 6 | AVAIL PGDG 1.4 6 |
+| el10.x86_64 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 4 | AVAIL PGDG 1.4 4 | AVAIL PGDG 1.4 4 | AVAIL PGDG 1.4 4 |
+| el10.aarch64 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 4 | AVAIL PGDG 1.4 4 | AVAIL PGDG 1.4 4 | AVAIL PGDG 1.4 4 |
+| d12.x86_64 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 |
+| d12.aarch64 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 |
+| d13.x86_64 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 |
+| d13.aarch64 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 2 |
+| u22.x86_64 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 |
+| u22.aarch64 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 |
+| u24.x86_64 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 |
+| u24.aarch64 | AVAIL PGDG 1.4 2 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 |
+| u26.x86_64 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 |
+| u26.aarch64 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 | AVAIL PGDG 1.4 3 |
 @ el8.x86_64 18 pg_permissions_18 pg_permissions_18-1.4-2PGDG.rhel8.noarch.rpm pgdg 1.4 13.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pg_permissions_18-1.4-2PGDG.rhel8.noarch.rpm
+@ el8.x86_64 18 pg_permissions_18 pg_permissions_18-1.4.1-1PGDG.rhel8.10.noarch.rpm pgdg 1.4.1 14.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pg_permissions_18-1.4.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.aarch64 18 pg_permissions_18 pg_permissions_18-1.4-2PGDG.rhel8.noarch.rpm pgdg 1.4 13.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pg_permissions_18-1.4-2PGDG.rhel8.noarch.rpm
+@ el8.aarch64 18 pg_permissions_18 pg_permissions_18-1.4.1-1PGDG.rhel8.10.noarch.rpm pgdg 1.4.1 14.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pg_permissions_18-1.4.1-1PGDG.rhel8.10.noarch.rpm
 @ el9.x86_64 18 pg_permissions_18 pg_permissions_18-1.4-2PGDG.rhel9.8.noarch.rpm pgdg 1.4 13.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pg_permissions_18-1.4-2PGDG.rhel9.8.noarch.rpm
+@ el9.x86_64 18 pg_permissions_18 pg_permissions_18-1.4-2PGDG.rhel9.noarch.rpm pgdg 1.4 13.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pg_permissions_18-1.4-2PGDG.rhel9.noarch.rpm
+@ el9.x86_64 18 pg_permissions_18 pg_permissions_18-1.4.1-1PGDG.rhel9.8.noarch.rpm pgdg 1.4.1 13.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pg_permissions_18-1.4.1-1PGDG.rhel9.8.noarch.rpm
 @ el9.aarch64 18 pg_permissions_18 pg_permissions_18-1.4-2PGDG.rhel9.8.noarch.rpm pgdg 1.4 13.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pg_permissions_18-1.4-2PGDG.rhel9.8.noarch.rpm
+@ el9.aarch64 18 pg_permissions_18 pg_permissions_18-1.4-2PGDG.rhel9.noarch.rpm pgdg 1.4 13.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pg_permissions_18-1.4-2PGDG.rhel9.noarch.rpm
+@ el9.aarch64 18 pg_permissions_18 pg_permissions_18-1.4.1-1PGDG.rhel9.8.noarch.rpm pgdg 1.4.1 13.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pg_permissions_18-1.4.1-1PGDG.rhel9.8.noarch.rpm
 @ el10.x86_64 18 pg_permissions_18 pg_permissions_18-1.4-2PGDG.rhel10.2.noarch.rpm pgdg 1.4 13.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_permissions_18-1.4-2PGDG.rhel10.2.noarch.rpm
+@ el10.x86_64 18 pg_permissions_18 pg_permissions_18-1.4-2PGDG.rhel10.noarch.rpm pgdg 1.4 13.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_permissions_18-1.4-2PGDG.rhel10.noarch.rpm
+@ el10.x86_64 18 pg_permissions_18 pg_permissions_18-1.4.1-1PGDG.rhel10.2.noarch.rpm pgdg 1.4.1 13.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_permissions_18-1.4.1-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 18 pg_permissions_18 pg_permissions_18-1.4-2PGDG.rhel10.2.noarch.rpm pgdg 1.4 13.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_permissions_18-1.4-2PGDG.rhel10.2.noarch.rpm
+@ el10.aarch64 18 pg_permissions_18 pg_permissions_18-1.4-2PGDG.rhel10.noarch.rpm pgdg 1.4 13.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_permissions_18-1.4-2PGDG.rhel10.noarch.rpm
+@ el10.aarch64 18 pg_permissions_18 pg_permissions_18-1.4.1-1PGDG.rhel10.2.noarch.rpm pgdg 1.4.1 13.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_permissions_18-1.4.1-1PGDG.rhel10.2.noarch.rpm
 @ d12.x86_64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4-2.pgdg12+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4-2.pgdg12+1_all.deb
+@ d12.x86_64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4.1-1.pgdg12+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4.1-1.pgdg12+1_all.deb
 @ d12.aarch64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4-2.pgdg12+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4-2.pgdg12+1_all.deb
+@ d12.aarch64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4.1-1.pgdg12+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4.1-1.pgdg12+1_all.deb
 @ d13.x86_64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4-2.pgdg13+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4-2.pgdg13+1_all.deb
+@ d13.x86_64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4.1-1.pgdg13+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4.1-1.pgdg13+1_all.deb
 @ d13.aarch64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4-2.pgdg13+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4-2.pgdg13+1_all.deb
+@ d13.aarch64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4.1-1.pgdg13+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4.1-1.pgdg13+1_all.deb
 @ u22.x86_64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4-2.pgdg22.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4-2.pgdg22.04+1_all.deb
+@ u22.x86_64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb
 @ u22.aarch64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4-2.pgdg22.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4-2.pgdg22.04+1_all.deb
+@ u22.aarch64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb
 @ u24.x86_64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4-2.pgdg24.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4-2.pgdg24.04+1_all.deb
+@ u24.x86_64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb
 @ u24.aarch64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4-2.pgdg24.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4-2.pgdg24.04+1_all.deb
+@ u24.aarch64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb
 @ u26.x86_64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4-2.pgdg26.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4-2.pgdg26.04+1_all.deb
+@ u26.x86_64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb
 @ u26.x86_64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.3-1PIGSTY~resolute_amd64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.3-1PIGSTY~resolute_amd64.deb
 @ u26.aarch64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4-2.pgdg26.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4-2.pgdg26.04+1_all.deb
+@ u26.aarch64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 18 postgresql-18-pg-permissions postgresql-18-pg-permissions_1.3-1PIGSTY~resolute_arm64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-permissions/postgresql-18-pg-permissions_1.3-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 17 pg_permissions_17 pg_permissions_17-1.4.1-1PGDG.rhel8.10.noarch.rpm pgdg 1.4.1 14.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pg_permissions_17-1.4.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.x86_64 17 pg_permissions_17 pg_permissions_17-1.4-1PGDG.rhel8.noarch.rpm pgdg 1.4 13.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pg_permissions_17-1.4-1PGDG.rhel8.noarch.rpm
 @ el8.x86_64 17 pg_permissions_17 pg_permissions_17-1.3-2PGDG.rhel8.noarch.rpm pgdg 1.3 13.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pg_permissions_17-1.3-2PGDG.rhel8.noarch.rpm
+@ el8.aarch64 17 pg_permissions_17 pg_permissions_17-1.4.1-1PGDG.rhel8.10.noarch.rpm pgdg 1.4.1 14.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/pg_permissions_17-1.4.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.aarch64 17 pg_permissions_17 pg_permissions_17-1.4-1PGDG.rhel8.noarch.rpm pgdg 1.4 13.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/pg_permissions_17-1.4-1PGDG.rhel8.noarch.rpm
 @ el8.aarch64 17 pg_permissions_17 pg_permissions_17-1.3-2PGDG.rhel8.noarch.rpm pgdg 1.3 13.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/pg_permissions_17-1.3-2PGDG.rhel8.noarch.rpm
 @ el9.x86_64 17 pg_permissions_17 pg_permissions_17-1.4-2PGDG.rhel9.8.noarch.rpm pgdg 1.4 13.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pg_permissions_17-1.4-2PGDG.rhel9.8.noarch.rpm
+@ el9.x86_64 17 pg_permissions_17 pg_permissions_17-1.4.1-1PGDG.rhel9.8.noarch.rpm pgdg 1.4.1 13.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pg_permissions_17-1.4.1-1PGDG.rhel9.8.noarch.rpm
+@ el9.x86_64 17 pg_permissions_17 pg_permissions_17-1.4-1PGDG.rhel9.noarch.rpm pgdg 1.4 13.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pg_permissions_17-1.4-1PGDG.rhel9.noarch.rpm
+@ el9.x86_64 17 pg_permissions_17 pg_permissions_17-1.3-2PGDG.rhel9.noarch.rpm pgdg 1.3 13.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pg_permissions_17-1.3-2PGDG.rhel9.noarch.rpm
 @ el9.aarch64 17 pg_permissions_17 pg_permissions_17-1.4-2PGDG.rhel9.8.noarch.rpm pgdg 1.4 13.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pg_permissions_17-1.4-2PGDG.rhel9.8.noarch.rpm
+@ el9.aarch64 17 pg_permissions_17 pg_permissions_17-1.4.1-1PGDG.rhel9.8.noarch.rpm pgdg 1.4.1 13.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pg_permissions_17-1.4.1-1PGDG.rhel9.8.noarch.rpm
+@ el9.aarch64 17 pg_permissions_17 pg_permissions_17-1.4-1PGDG.rhel9.noarch.rpm pgdg 1.4 13.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pg_permissions_17-1.4-1PGDG.rhel9.noarch.rpm
+@ el9.aarch64 17 pg_permissions_17 pg_permissions_17-1.3-2PGDG.rhel9.noarch.rpm pgdg 1.3 13.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pg_permissions_17-1.3-2PGDG.rhel9.noarch.rpm
 @ el10.x86_64 17 pg_permissions_17 pg_permissions_17-1.4-2PGDG.rhel10.2.noarch.rpm pgdg 1.4 13.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_permissions_17-1.4-2PGDG.rhel10.2.noarch.rpm
+@ el10.x86_64 17 pg_permissions_17 pg_permissions_17-1.4.1-1PGDG.rhel10.2.noarch.rpm pgdg 1.4.1 13.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_permissions_17-1.4.1-1PGDG.rhel10.2.noarch.rpm
+@ el10.x86_64 17 pg_permissions_17 pg_permissions_17-1.4-1PGDG.rhel10.noarch.rpm pgdg 1.4 13.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_permissions_17-1.4-1PGDG.rhel10.noarch.rpm
+@ el10.x86_64 17 pg_permissions_17 pg_permissions_17-1.3-2PGDG.rhel10.noarch.rpm pgdg 1.3 13.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_permissions_17-1.3-2PGDG.rhel10.noarch.rpm
 @ el10.aarch64 17 pg_permissions_17 pg_permissions_17-1.4-2PGDG.rhel10.2.noarch.rpm pgdg 1.4 13.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_permissions_17-1.4-2PGDG.rhel10.2.noarch.rpm
+@ el10.aarch64 17 pg_permissions_17 pg_permissions_17-1.4.1-1PGDG.rhel10.2.noarch.rpm pgdg 1.4.1 13.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_permissions_17-1.4.1-1PGDG.rhel10.2.noarch.rpm
+@ el10.aarch64 17 pg_permissions_17 pg_permissions_17-1.4-1PGDG.rhel10.noarch.rpm pgdg 1.4 13.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_permissions_17-1.4-1PGDG.rhel10.noarch.rpm
+@ el10.aarch64 17 pg_permissions_17 pg_permissions_17-1.3-2PGDG.rhel10.noarch.rpm pgdg 1.3 13.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_permissions_17-1.3-2PGDG.rhel10.noarch.rpm
 @ d12.x86_64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4-2.pgdg12+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4-2.pgdg12+1_all.deb
+@ d12.x86_64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4.1-1.pgdg12+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4.1-1.pgdg12+1_all.deb
 @ d12.x86_64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.3-1PIGSTY~bookworm_amd64.deb pigsty 1.3 7.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.3-1PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4-2.pgdg12+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4-2.pgdg12+1_all.deb
+@ d12.aarch64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4.1-1.pgdg12+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4.1-1.pgdg12+1_all.deb
 @ d12.aarch64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.3-1PIGSTY~bookworm_arm64.deb pigsty 1.3 7.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.3-1PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4-2.pgdg13+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4-2.pgdg13+1_all.deb
+@ d13.x86_64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4.1-1.pgdg13+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4.1-1.pgdg13+1_all.deb
 @ d13.aarch64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4-2.pgdg13+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4-2.pgdg13+1_all.deb
+@ d13.aarch64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4.1-1.pgdg13+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4.1-1.pgdg13+1_all.deb
 @ u22.x86_64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4-2.pgdg22.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4-2.pgdg22.04+1_all.deb
+@ u22.x86_64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb
 @ u22.x86_64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.3-1PIGSTY~jammy_amd64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.3-1PIGSTY~jammy_amd64.deb
 @ u22.aarch64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4-2.pgdg22.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4-2.pgdg22.04+1_all.deb
+@ u22.aarch64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb
 @ u22.aarch64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.3-1PIGSTY~jammy_arm64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.3-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4-2.pgdg24.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4-2.pgdg24.04+1_all.deb
+@ u24.x86_64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.3-1PIGSTY~noble_amd64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.3-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4-2.pgdg24.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4-2.pgdg24.04+1_all.deb
+@ u24.aarch64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb
 @ u24.aarch64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.3-1PIGSTY~noble_arm64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.3-1PIGSTY~noble_arm64.deb
 @ u26.x86_64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4-2.pgdg26.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4-2.pgdg26.04+1_all.deb
+@ u26.x86_64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb
 @ u26.x86_64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.3-1PIGSTY~resolute_amd64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.3-1PIGSTY~resolute_amd64.deb
 @ u26.aarch64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4-2.pgdg26.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4-2.pgdg26.04+1_all.deb
+@ u26.aarch64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 17 postgresql-17-pg-permissions postgresql-17-pg-permissions_1.3-1PIGSTY~resolute_arm64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-permissions/postgresql-17-pg-permissions_1.3-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 16 pg_permissions_16 pg_permissions_16-1.4.1-1PGDG.rhel8.10.noarch.rpm pgdg 1.4.1 14.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_permissions_16-1.4.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.x86_64 16 pg_permissions_16 pg_permissions_16-1.4-1PGDG.rhel8.noarch.rpm pgdg 1.4 13.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_permissions_16-1.4-1PGDG.rhel8.noarch.rpm
 @ el8.x86_64 16 pg_permissions_16 pg_permissions_16-1.3-2PGDG.rhel8.noarch.rpm pgdg 1.3 13.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_permissions_16-1.3-2PGDG.rhel8.noarch.rpm
 @ el8.x86_64 16 pg_permissions_16 pg_permissions_16-1.3-1PGDG.rhel8.noarch.rpm pgdg 1.3 13.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_permissions_16-1.3-1PGDG.rhel8.noarch.rpm
 @ el8.x86_64 16 pg_permissions_16 pg_permissions_16-1.1-3.rhel8.noarch.rpm pgdg 1.1 12.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_permissions_16-1.1-3.rhel8.noarch.rpm
+@ el8.aarch64 16 pg_permissions_16 pg_permissions_16-1.4.1-1PGDG.rhel8.10.noarch.rpm pgdg 1.4.1 14.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_permissions_16-1.4.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.aarch64 16 pg_permissions_16 pg_permissions_16-1.4-1PGDG.rhel8.noarch.rpm pgdg 1.4 13.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_permissions_16-1.4-1PGDG.rhel8.noarch.rpm
 @ el8.aarch64 16 pg_permissions_16 pg_permissions_16-1.3-2PGDG.rhel8.noarch.rpm pgdg 1.3 13.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_permissions_16-1.3-2PGDG.rhel8.noarch.rpm
 @ el8.aarch64 16 pg_permissions_16 pg_permissions_16-1.3-1PGDG.rhel8.noarch.rpm pgdg 1.3 13.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_permissions_16-1.3-1PGDG.rhel8.noarch.rpm
 @ el8.aarch64 16 pg_permissions_16 pg_permissions_16-1.1-3.rhel8.noarch.rpm pgdg 1.1 12.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_permissions_16-1.1-3.rhel8.noarch.rpm
 @ el9.x86_64 16 pg_permissions_16 pg_permissions_16-1.4-2PGDG.rhel9.8.noarch.rpm pgdg 1.4 13.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_permissions_16-1.4-2PGDG.rhel9.8.noarch.rpm
+@ el9.x86_64 16 pg_permissions_16 pg_permissions_16-1.4.1-1PGDG.rhel9.8.noarch.rpm pgdg 1.4.1 13.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_permissions_16-1.4.1-1PGDG.rhel9.8.noarch.rpm
+@ el9.x86_64 16 pg_permissions_16 pg_permissions_16-1.4-1PGDG.rhel9.noarch.rpm pgdg 1.4 13.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_permissions_16-1.4-1PGDG.rhel9.noarch.rpm
+@ el9.x86_64 16 pg_permissions_16 pg_permissions_16-1.3-2PGDG.rhel9.noarch.rpm pgdg 1.3 13.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_permissions_16-1.3-2PGDG.rhel9.noarch.rpm
+@ el9.x86_64 16 pg_permissions_16 pg_permissions_16-1.3-1PGDG.rhel9.noarch.rpm pgdg 1.3 12.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_permissions_16-1.3-1PGDG.rhel9.noarch.rpm
+@ el9.x86_64 16 pg_permissions_16 pg_permissions_16-1.1-3.rhel9.noarch.rpm pgdg 1.1 12.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_permissions_16-1.1-3.rhel9.noarch.rpm
 @ el9.aarch64 16 pg_permissions_16 pg_permissions_16-1.4-2PGDG.rhel9.8.noarch.rpm pgdg 1.4 13.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_permissions_16-1.4-2PGDG.rhel9.8.noarch.rpm
+@ el9.aarch64 16 pg_permissions_16 pg_permissions_16-1.4.1-1PGDG.rhel9.8.noarch.rpm pgdg 1.4.1 13.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_permissions_16-1.4.1-1PGDG.rhel9.8.noarch.rpm
+@ el9.aarch64 16 pg_permissions_16 pg_permissions_16-1.4-1PGDG.rhel9.noarch.rpm pgdg 1.4 13.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_permissions_16-1.4-1PGDG.rhel9.noarch.rpm
+@ el9.aarch64 16 pg_permissions_16 pg_permissions_16-1.3-2PGDG.rhel9.noarch.rpm pgdg 1.3 13.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_permissions_16-1.3-2PGDG.rhel9.noarch.rpm
+@ el9.aarch64 16 pg_permissions_16 pg_permissions_16-1.3-1PGDG.rhel9.noarch.rpm pgdg 1.3 12.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_permissions_16-1.3-1PGDG.rhel9.noarch.rpm
+@ el9.aarch64 16 pg_permissions_16 pg_permissions_16-1.1-3.rhel9.noarch.rpm pgdg 1.1 12.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_permissions_16-1.1-3.rhel9.noarch.rpm
 @ el10.x86_64 16 pg_permissions_16 pg_permissions_16-1.4-2PGDG.rhel10.2.noarch.rpm pgdg 1.4 13.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_permissions_16-1.4-2PGDG.rhel10.2.noarch.rpm
+@ el10.x86_64 16 pg_permissions_16 pg_permissions_16-1.4.1-1PGDG.rhel10.2.noarch.rpm pgdg 1.4.1 13.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_permissions_16-1.4.1-1PGDG.rhel10.2.noarch.rpm
+@ el10.x86_64 16 pg_permissions_16 pg_permissions_16-1.4-1PGDG.rhel10.noarch.rpm pgdg 1.4 13.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_permissions_16-1.4-1PGDG.rhel10.noarch.rpm
+@ el10.x86_64 16 pg_permissions_16 pg_permissions_16-1.3-2PGDG.rhel10.noarch.rpm pgdg 1.3 13.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_permissions_16-1.3-2PGDG.rhel10.noarch.rpm
 @ el10.aarch64 16 pg_permissions_16 pg_permissions_16-1.4-2PGDG.rhel10.2.noarch.rpm pgdg 1.4 13.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_permissions_16-1.4-2PGDG.rhel10.2.noarch.rpm
+@ el10.aarch64 16 pg_permissions_16 pg_permissions_16-1.4.1-1PGDG.rhel10.2.noarch.rpm pgdg 1.4.1 13.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_permissions_16-1.4.1-1PGDG.rhel10.2.noarch.rpm
+@ el10.aarch64 16 pg_permissions_16 pg_permissions_16-1.4-1PGDG.rhel10.noarch.rpm pgdg 1.4 13.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_permissions_16-1.4-1PGDG.rhel10.noarch.rpm
+@ el10.aarch64 16 pg_permissions_16 pg_permissions_16-1.3-2PGDG.rhel10.noarch.rpm pgdg 1.3 13.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_permissions_16-1.3-2PGDG.rhel10.noarch.rpm
 @ d12.x86_64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4-2.pgdg12+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4-2.pgdg12+1_all.deb
+@ d12.x86_64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4.1-1.pgdg12+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4.1-1.pgdg12+1_all.deb
 @ d12.x86_64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.3-1PIGSTY~bookworm_amd64.deb pigsty 1.3 7.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.3-1PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4-2.pgdg12+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4-2.pgdg12+1_all.deb
+@ d12.aarch64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4.1-1.pgdg12+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4.1-1.pgdg12+1_all.deb
 @ d12.aarch64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.3-1PIGSTY~bookworm_arm64.deb pigsty 1.3 7.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.3-1PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4-2.pgdg13+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4-2.pgdg13+1_all.deb
+@ d13.x86_64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4.1-1.pgdg13+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4.1-1.pgdg13+1_all.deb
 @ d13.aarch64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4-2.pgdg13+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4-2.pgdg13+1_all.deb
+@ d13.aarch64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4.1-1.pgdg13+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4.1-1.pgdg13+1_all.deb
 @ u22.x86_64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4-2.pgdg22.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4-2.pgdg22.04+1_all.deb
+@ u22.x86_64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb
 @ u22.x86_64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.3-1PIGSTY~jammy_amd64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.3-1PIGSTY~jammy_amd64.deb
 @ u22.aarch64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4-2.pgdg22.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4-2.pgdg22.04+1_all.deb
+@ u22.aarch64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb
 @ u22.aarch64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.3-1PIGSTY~jammy_arm64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.3-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4-2.pgdg24.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4-2.pgdg24.04+1_all.deb
+@ u24.x86_64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.3-1PIGSTY~noble_amd64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.3-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4-2.pgdg24.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4-2.pgdg24.04+1_all.deb
+@ u24.aarch64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb
 @ u24.aarch64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.3-1PIGSTY~noble_arm64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.3-1PIGSTY~noble_arm64.deb
 @ u26.x86_64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4-2.pgdg26.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4-2.pgdg26.04+1_all.deb
+@ u26.x86_64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb
 @ u26.x86_64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.3-1PIGSTY~resolute_amd64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.3-1PIGSTY~resolute_amd64.deb
 @ u26.aarch64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4-2.pgdg26.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4-2.pgdg26.04+1_all.deb
+@ u26.aarch64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 16 postgresql-16-pg-permissions postgresql-16-pg-permissions_1.3-1PIGSTY~resolute_arm64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-permissions/postgresql-16-pg-permissions_1.3-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 15 pg_permissions_15 pg_permissions_15-1.4.1-1PGDG.rhel8.10.noarch.rpm pgdg 1.4.1 14.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_permissions_15-1.4.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.x86_64 15 pg_permissions_15 pg_permissions_15-1.4-1PGDG.rhel8.noarch.rpm pgdg 1.4 13.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_permissions_15-1.4-1PGDG.rhel8.noarch.rpm
 @ el8.x86_64 15 pg_permissions_15 pg_permissions_15-1.3-2PGDG.rhel8.noarch.rpm pgdg 1.3 13.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_permissions_15-1.3-2PGDG.rhel8.noarch.rpm
 @ el8.x86_64 15 pg_permissions_15 pg_permissions_15-1.3-1PGDG.rhel8.noarch.rpm pgdg 1.3 13.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_permissions_15-1.3-1PGDG.rhel8.noarch.rpm
 @ el8.x86_64 15 pg_permissions_15 pg_permissions_15-1.1-2.rhel8.noarch.rpm pgdg 1.1 12.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_permissions_15-1.1-2.rhel8.noarch.rpm
+@ el8.aarch64 15 pg_permissions_15 pg_permissions_15-1.4.1-1PGDG.rhel8.10.noarch.rpm pgdg 1.4.1 14.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pg_permissions_15-1.4.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.aarch64 15 pg_permissions_15 pg_permissions_15-1.4-1PGDG.rhel8.noarch.rpm pgdg 1.4 13.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pg_permissions_15-1.4-1PGDG.rhel8.noarch.rpm
 @ el8.aarch64 15 pg_permissions_15 pg_permissions_15-1.3-2PGDG.rhel8.noarch.rpm pgdg 1.3 13.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pg_permissions_15-1.3-2PGDG.rhel8.noarch.rpm
 @ el8.aarch64 15 pg_permissions_15 pg_permissions_15-1.3-1PGDG.rhel8.noarch.rpm pgdg 1.3 13.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pg_permissions_15-1.3-1PGDG.rhel8.noarch.rpm
 @ el8.aarch64 15 pg_permissions_15 pg_permissions_15-1.1-2.rhel8.noarch.rpm pgdg 1.1 12.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pg_permissions_15-1.1-2.rhel8.noarch.rpm
 @ el9.x86_64 15 pg_permissions_15 pg_permissions_15-1.4-2PGDG.rhel9.8.noarch.rpm pgdg 1.4 13.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_permissions_15-1.4-2PGDG.rhel9.8.noarch.rpm
+@ el9.x86_64 15 pg_permissions_15 pg_permissions_15-1.4.1-1PGDG.rhel9.8.noarch.rpm pgdg 1.4.1 13.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_permissions_15-1.4.1-1PGDG.rhel9.8.noarch.rpm
+@ el9.x86_64 15 pg_permissions_15 pg_permissions_15-1.4-1PGDG.rhel9.noarch.rpm pgdg 1.4 13.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_permissions_15-1.4-1PGDG.rhel9.noarch.rpm
+@ el9.x86_64 15 pg_permissions_15 pg_permissions_15-1.3-2PGDG.rhel9.noarch.rpm pgdg 1.3 13.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_permissions_15-1.3-2PGDG.rhel9.noarch.rpm
+@ el9.x86_64 15 pg_permissions_15 pg_permissions_15-1.3-1PGDG.rhel9.noarch.rpm pgdg 1.3 12.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_permissions_15-1.3-1PGDG.rhel9.noarch.rpm
+@ el9.x86_64 15 pg_permissions_15 pg_permissions_15-1.1-2.rhel9.noarch.rpm pgdg 1.1 12.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_permissions_15-1.1-2.rhel9.noarch.rpm
 @ el9.aarch64 15 pg_permissions_15 pg_permissions_15-1.4-2PGDG.rhel9.8.noarch.rpm pgdg 1.4 13.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_permissions_15-1.4-2PGDG.rhel9.8.noarch.rpm
+@ el9.aarch64 15 pg_permissions_15 pg_permissions_15-1.4.1-1PGDG.rhel9.8.noarch.rpm pgdg 1.4.1 13.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_permissions_15-1.4.1-1PGDG.rhel9.8.noarch.rpm
+@ el9.aarch64 15 pg_permissions_15 pg_permissions_15-1.4-1PGDG.rhel9.noarch.rpm pgdg 1.4 13.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_permissions_15-1.4-1PGDG.rhel9.noarch.rpm
+@ el9.aarch64 15 pg_permissions_15 pg_permissions_15-1.3-2PGDG.rhel9.noarch.rpm pgdg 1.3 13.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_permissions_15-1.3-2PGDG.rhel9.noarch.rpm
+@ el9.aarch64 15 pg_permissions_15 pg_permissions_15-1.3-1PGDG.rhel9.noarch.rpm pgdg 1.3 12.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_permissions_15-1.3-1PGDG.rhel9.noarch.rpm
+@ el9.aarch64 15 pg_permissions_15 pg_permissions_15-1.1-2.rhel9.noarch.rpm pgdg 1.1 12.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_permissions_15-1.1-2.rhel9.noarch.rpm
 @ el10.x86_64 15 pg_permissions_15 pg_permissions_15-1.4-2PGDG.rhel10.2.noarch.rpm pgdg 1.4 13.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_permissions_15-1.4-2PGDG.rhel10.2.noarch.rpm
+@ el10.x86_64 15 pg_permissions_15 pg_permissions_15-1.4.1-1PGDG.rhel10.2.noarch.rpm pgdg 1.4.1 13.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_permissions_15-1.4.1-1PGDG.rhel10.2.noarch.rpm
+@ el10.x86_64 15 pg_permissions_15 pg_permissions_15-1.4-1PGDG.rhel10.noarch.rpm pgdg 1.4 13.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_permissions_15-1.4-1PGDG.rhel10.noarch.rpm
+@ el10.x86_64 15 pg_permissions_15 pg_permissions_15-1.3-2PGDG.rhel10.noarch.rpm pgdg 1.3 13.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_permissions_15-1.3-2PGDG.rhel10.noarch.rpm
 @ el10.aarch64 15 pg_permissions_15 pg_permissions_15-1.4-2PGDG.rhel10.2.noarch.rpm pgdg 1.4 13.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_permissions_15-1.4-2PGDG.rhel10.2.noarch.rpm
+@ el10.aarch64 15 pg_permissions_15 pg_permissions_15-1.4.1-1PGDG.rhel10.2.noarch.rpm pgdg 1.4.1 13.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_permissions_15-1.4.1-1PGDG.rhel10.2.noarch.rpm
+@ el10.aarch64 15 pg_permissions_15 pg_permissions_15-1.4-1PGDG.rhel10.noarch.rpm pgdg 1.4 13.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_permissions_15-1.4-1PGDG.rhel10.noarch.rpm
+@ el10.aarch64 15 pg_permissions_15 pg_permissions_15-1.3-2PGDG.rhel10.noarch.rpm pgdg 1.3 13.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_permissions_15-1.3-2PGDG.rhel10.noarch.rpm
 @ d12.x86_64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4-2.pgdg12+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4-2.pgdg12+1_all.deb
+@ d12.x86_64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4.1-1.pgdg12+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4.1-1.pgdg12+1_all.deb
 @ d12.x86_64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.3-1PIGSTY~bookworm_amd64.deb pigsty 1.3 7.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.3-1PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4-2.pgdg12+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4-2.pgdg12+1_all.deb
+@ d12.aarch64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4.1-1.pgdg12+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4.1-1.pgdg12+1_all.deb
 @ d12.aarch64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.3-1PIGSTY~bookworm_arm64.deb pigsty 1.3 7.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.3-1PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4-2.pgdg13+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4-2.pgdg13+1_all.deb
+@ d13.x86_64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4.1-1.pgdg13+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4.1-1.pgdg13+1_all.deb
 @ d13.aarch64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4-2.pgdg13+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4-2.pgdg13+1_all.deb
+@ d13.aarch64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4.1-1.pgdg13+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4.1-1.pgdg13+1_all.deb
 @ u22.x86_64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4-2.pgdg22.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4-2.pgdg22.04+1_all.deb
+@ u22.x86_64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb
 @ u22.x86_64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.3-1PIGSTY~jammy_amd64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.3-1PIGSTY~jammy_amd64.deb
 @ u22.aarch64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4-2.pgdg22.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4-2.pgdg22.04+1_all.deb
+@ u22.aarch64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb
 @ u22.aarch64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.3-1PIGSTY~jammy_arm64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.3-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4-2.pgdg24.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4-2.pgdg24.04+1_all.deb
+@ u24.x86_64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.3-1PIGSTY~noble_amd64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.3-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4-2.pgdg24.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4-2.pgdg24.04+1_all.deb
+@ u24.aarch64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb
 @ u24.aarch64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.3-1PIGSTY~noble_arm64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.3-1PIGSTY~noble_arm64.deb
 @ u26.x86_64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4-2.pgdg26.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4-2.pgdg26.04+1_all.deb
+@ u26.x86_64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb
 @ u26.x86_64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.3-1PIGSTY~resolute_amd64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.3-1PIGSTY~resolute_amd64.deb
 @ u26.aarch64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4-2.pgdg26.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4-2.pgdg26.04+1_all.deb
+@ u26.aarch64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 15 postgresql-15-pg-permissions postgresql-15-pg-permissions_1.3-1PIGSTY~resolute_arm64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-permissions/postgresql-15-pg-permissions_1.3-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 14 pg_permissions_14 pg_permissions_14-1.4.1-1PGDG.rhel8.10.noarch.rpm pgdg 1.4.1 14.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_permissions_14-1.4.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.x86_64 14 pg_permissions_14 pg_permissions_14-1.4-1PGDG.rhel8.noarch.rpm pgdg 1.4 13.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_permissions_14-1.4-1PGDG.rhel8.noarch.rpm
 @ el8.x86_64 14 pg_permissions_14 pg_permissions_14-1.3-2PGDG.rhel8.noarch.rpm pgdg 1.3 13.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_permissions_14-1.3-2PGDG.rhel8.noarch.rpm
 @ el8.x86_64 14 pg_permissions_14 pg_permissions_14-1.3-1PGDG.rhel8.noarch.rpm pgdg 1.3 13.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_permissions_14-1.3-1PGDG.rhel8.noarch.rpm
 @ el8.x86_64 14 pg_permissions_14 pg_permissions_14-1.1-2.rhel8.noarch.rpm pgdg 1.1 12.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_permissions_14-1.1-2.rhel8.noarch.rpm
+@ el8.aarch64 14 pg_permissions_14 pg_permissions_14-1.4.1-1PGDG.rhel8.10.noarch.rpm pgdg 1.4.1 14.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pg_permissions_14-1.4.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.aarch64 14 pg_permissions_14 pg_permissions_14-1.4-1PGDG.rhel8.noarch.rpm pgdg 1.4 13.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pg_permissions_14-1.4-1PGDG.rhel8.noarch.rpm
 @ el8.aarch64 14 pg_permissions_14 pg_permissions_14-1.3-2PGDG.rhel8.noarch.rpm pgdg 1.3 13.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pg_permissions_14-1.3-2PGDG.rhel8.noarch.rpm
 @ el8.aarch64 14 pg_permissions_14 pg_permissions_14-1.3-1PGDG.rhel8.noarch.rpm pgdg 1.3 13.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pg_permissions_14-1.3-1PGDG.rhel8.noarch.rpm
 @ el8.aarch64 14 pg_permissions_14 pg_permissions_14-1.1-2.rhel8.noarch.rpm pgdg 1.1 12.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pg_permissions_14-1.1-2.rhel8.noarch.rpm
 @ el9.x86_64 14 pg_permissions_14 pg_permissions_14-1.4-2PGDG.rhel9.8.noarch.rpm pgdg 1.4 13.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_permissions_14-1.4-2PGDG.rhel9.8.noarch.rpm
+@ el9.x86_64 14 pg_permissions_14 pg_permissions_14-1.4.1-1PGDG.rhel9.8.noarch.rpm pgdg 1.4.1 13.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_permissions_14-1.4.1-1PGDG.rhel9.8.noarch.rpm
+@ el9.x86_64 14 pg_permissions_14 pg_permissions_14-1.4-1PGDG.rhel9.noarch.rpm pgdg 1.4 13.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_permissions_14-1.4-1PGDG.rhel9.noarch.rpm
+@ el9.x86_64 14 pg_permissions_14 pg_permissions_14-1.3-2PGDG.rhel9.noarch.rpm pgdg 1.3 13.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_permissions_14-1.3-2PGDG.rhel9.noarch.rpm
+@ el9.x86_64 14 pg_permissions_14 pg_permissions_14-1.3-1PGDG.rhel9.noarch.rpm pgdg 1.3 12.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_permissions_14-1.3-1PGDG.rhel9.noarch.rpm
+@ el9.x86_64 14 pg_permissions_14 pg_permissions_14-1.1-2.rhel9.noarch.rpm pgdg 1.1 12.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_permissions_14-1.1-2.rhel9.noarch.rpm
 @ el9.aarch64 14 pg_permissions_14 pg_permissions_14-1.4-2PGDG.rhel9.8.noarch.rpm pgdg 1.4 13.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_permissions_14-1.4-2PGDG.rhel9.8.noarch.rpm
+@ el9.aarch64 14 pg_permissions_14 pg_permissions_14-1.4.1-1PGDG.rhel9.8.noarch.rpm pgdg 1.4.1 13.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_permissions_14-1.4.1-1PGDG.rhel9.8.noarch.rpm
+@ el9.aarch64 14 pg_permissions_14 pg_permissions_14-1.4-1PGDG.rhel9.noarch.rpm pgdg 1.4 13.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_permissions_14-1.4-1PGDG.rhel9.noarch.rpm
+@ el9.aarch64 14 pg_permissions_14 pg_permissions_14-1.3-2PGDG.rhel9.noarch.rpm pgdg 1.3 13.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_permissions_14-1.3-2PGDG.rhel9.noarch.rpm
+@ el9.aarch64 14 pg_permissions_14 pg_permissions_14-1.3-1PGDG.rhel9.noarch.rpm pgdg 1.3 12.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_permissions_14-1.3-1PGDG.rhel9.noarch.rpm
+@ el9.aarch64 14 pg_permissions_14 pg_permissions_14-1.1-2.rhel9.noarch.rpm pgdg 1.1 12.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_permissions_14-1.1-2.rhel9.noarch.rpm
 @ el10.x86_64 14 pg_permissions_14 pg_permissions_14-1.4-2PGDG.rhel10.2.noarch.rpm pgdg 1.4 13.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_permissions_14-1.4-2PGDG.rhel10.2.noarch.rpm
+@ el10.x86_64 14 pg_permissions_14 pg_permissions_14-1.4.1-1PGDG.rhel10.2.noarch.rpm pgdg 1.4.1 13.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_permissions_14-1.4.1-1PGDG.rhel10.2.noarch.rpm
+@ el10.x86_64 14 pg_permissions_14 pg_permissions_14-1.4-1PGDG.rhel10.noarch.rpm pgdg 1.4 13.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_permissions_14-1.4-1PGDG.rhel10.noarch.rpm
+@ el10.x86_64 14 pg_permissions_14 pg_permissions_14-1.3-2PGDG.rhel10.noarch.rpm pgdg 1.3 13.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_permissions_14-1.3-2PGDG.rhel10.noarch.rpm
 @ el10.aarch64 14 pg_permissions_14 pg_permissions_14-1.4-2PGDG.rhel10.2.noarch.rpm pgdg 1.4 13.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_permissions_14-1.4-2PGDG.rhel10.2.noarch.rpm
+@ el10.aarch64 14 pg_permissions_14 pg_permissions_14-1.4.1-1PGDG.rhel10.2.noarch.rpm pgdg 1.4.1 13.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_permissions_14-1.4.1-1PGDG.rhel10.2.noarch.rpm
+@ el10.aarch64 14 pg_permissions_14 pg_permissions_14-1.4-1PGDG.rhel10.noarch.rpm pgdg 1.4 13.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_permissions_14-1.4-1PGDG.rhel10.noarch.rpm
+@ el10.aarch64 14 pg_permissions_14 pg_permissions_14-1.3-2PGDG.rhel10.noarch.rpm pgdg 1.3 13.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_permissions_14-1.3-2PGDG.rhel10.noarch.rpm
 @ d12.x86_64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4-2.pgdg12+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4-2.pgdg12+1_all.deb
+@ d12.x86_64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4.1-1.pgdg12+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4.1-1.pgdg12+1_all.deb
 @ d12.x86_64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.3-1PIGSTY~bookworm_amd64.deb pigsty 1.3 7.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.3-1PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4-2.pgdg12+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4-2.pgdg12+1_all.deb
+@ d12.aarch64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4.1-1.pgdg12+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4.1-1.pgdg12+1_all.deb
 @ d12.aarch64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.3-1PIGSTY~bookworm_arm64.deb pigsty 1.3 7.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.3-1PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4-2.pgdg13+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4-2.pgdg13+1_all.deb
+@ d13.x86_64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4.1-1.pgdg13+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4.1-1.pgdg13+1_all.deb
 @ d13.aarch64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4-2.pgdg13+1_all.deb pgdg 1.4 8.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4-2.pgdg13+1_all.deb
+@ d13.aarch64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4.1-1.pgdg13+1_all.deb pgdg 1.4.1 11.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4.1-1.pgdg13+1_all.deb
 @ u22.x86_64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4-2.pgdg22.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4-2.pgdg22.04+1_all.deb
+@ u22.x86_64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb
 @ u22.x86_64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.3-1PIGSTY~jammy_amd64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.3-1PIGSTY~jammy_amd64.deb
 @ u22.aarch64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4-2.pgdg22.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4-2.pgdg22.04+1_all.deb
+@ u22.aarch64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4.1-1.pgdg22.04+1_all.deb
 @ u22.aarch64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.3-1PIGSTY~jammy_arm64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.3-1PIGSTY~jammy_arm64.deb
 @ u24.x86_64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4-2.pgdg24.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4-2.pgdg24.04+1_all.deb
+@ u24.x86_64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.3-1PIGSTY~noble_amd64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.3-1PIGSTY~noble_amd64.deb
 @ u24.aarch64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4-2.pgdg24.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4-2.pgdg24.04+1_all.deb
+@ u24.aarch64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4.1-1.pgdg24.04+1_all.deb
 @ u24.aarch64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.3-1PIGSTY~noble_arm64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.3-1PIGSTY~noble_arm64.deb
 @ u26.x86_64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4-2.pgdg26.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4-2.pgdg26.04+1_all.deb
+@ u26.x86_64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb
 @ u26.x86_64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.3-1PIGSTY~resolute_amd64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.3-1PIGSTY~resolute_amd64.deb
 @ u26.aarch64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4-2.pgdg26.04+1_all.deb pgdg 1.4 8.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4-2.pgdg26.04+1_all.deb
+@ u26.aarch64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb pgdg 1.4.1 10.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.4.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.3-1PIGSTY~resolute_arm64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.3-1PIGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
-
-## Build
-
-You can build the DEB packages for `pg_permissions` using `pig build`:
-
-```bash
-pig build pkg pg_permissions         # build DEB packages
-```
 
 
 ## Install
 
-You can install `pg_permissions` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) and [**PIGSTY**](/docs/repo/pgsql) repositories are added and enabled:
+You can install `pg_permissions` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) repository is added and enabled:
 
 ```bash
-pig repo add pgsql -u          # Add repo and update cache
+pig repo add pgdg -u          # Add PGDG repo and update cache
 ```
 
 Install the extension using [**pig**](/docs/pig) or `apt/yum/dnf`:

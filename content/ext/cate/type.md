@@ -20,7 +20,7 @@ There are **41** extensions in **40** packages.
 | [`pglite_fusion`](/ext/e/pglite_fusion) | [`pglite_fusion`](https://github.com/frectonz/pglite-fusion) | `0.0.6` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Embed an SQLite database in your PostgreSQL table |
 | [`md5hash`](/ext/e/md5hash) | [`md5hash`](https://github.com/tvondra/md5hash) | `1.0.1` | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | type for storing 128-bit binary data inline |
 | [`asn1oid`](/ext/e/asn1oid) | [`asn1oid`](https://github.com/df7cb/pgsql-asn1oid) | `1.6` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | asn1oid extension |
-| [`roaringbitmap`](/ext/e/roaringbitmap) | [`pg_roaringbitmap`](https://github.com/ChenHuajun/pg_roaringbitmap) | `1.1.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | support for Roaring Bitmaps |
+| [`roaringbitmap`](/ext/e/roaringbitmap) | [`pg_roaringbitmap`](https://github.com/ChenHuajun/pg_roaringbitmap) | `1.2.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | support for Roaring Bitmaps |
 | [`pgfaceting`](/ext/e/pgfaceting) | [`pgfaceting`](https://github.com/cybertec-postgresql/pgfaceting) | `0.2.0` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | fast faceting queries using an inverted index |
 | [`pg_sphere`](/ext/e/pg_sphere) | [`pgsphere`](https://github.com/postgrespro/pgsphere) | `1.5.2` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | spherical objects with useful functions, operators and index support |
 | [`country`](/ext/e/country) | [`pg_country`](https://github.com/adjust/pg-country) | `0.0.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Country data type, ISO 3166-1 |
@@ -212,7 +212,7 @@ There are **41** extensions in **40** packages.
 
 ## roaringbitmap {#roaringbitmap}
 
-[**`pg_roaringbitmap`**](/ext/e/roaringbitmap) - `1.1.0` : support for Roaring Bitmaps
+[**`pg_roaringbitmap`**](/ext/e/roaringbitmap) - `1.2.0` : support for Roaring Bitmaps
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

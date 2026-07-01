@@ -5,7 +5,7 @@ description: "PostgreSQL extensions that require dynamic loading"
 weight: 10
 ---
 
-The following **107** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
+The following **112** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
 
 You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) parameter in `postgresql.conf`, add the extension library, and restart the database.
 
@@ -31,6 +31,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`storage_engine`](/ext/e/storage_engine) | `storage_engine` | colcompress and rowcompress Table Access Methods with vectorized execution |
 | [`pg_clickhouse`](/ext/e/pg_clickhouse) | `pg_clickhouse` | Interfaces to query ClickHouse databases from PostgreSQL |
 | [`pg_parquet`](/ext/e/pg_parquet) | `pg_parquet` | copy data between Postgres and Parquet |
+| [`pg_ducklake`](/ext/e/pg_ducklake) | `pg_ducklake` | DuckLake lakehouse extension for PostgreSQL, backed by DuckDB and Parquet |
 | [`pg_orca`](/ext/e/pg_orca) | `pg_orca` | ORCA query optimizer as a PostgreSQL extension |
 | [`pg_sorted_heap`](/ext/e/pg_sorted_heap) | `pg_sorted_heap` | Sorted heap table AM with zone map scan pruning and built-in vector search |
 | [`age`](/ext/e/age) | `age` | AGE graph database extension |
@@ -62,11 +63,14 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pg_crash`](/ext/e/pg_crash) | `pg_crash` | Send random signals to random processes |
 | [`qos`](/ext/e/qos) | `qos` | QoS resource governor extension for PostgreSQL sessions and queries |
 | [`pg_pathcheck`](/ext/e/pg_pathcheck) | `pg_pathcheck` | Validate planner Path trees for freed or corrupt memory |
+| [`pgdisablelogerror`](/ext/e/pgdisablelogerror) | `$libdir/pgdisablelogerror` | Disable selected SQLSTATE error codes from PostgreSQL server logging. |
 | [`safeupdate`](/ext/e/safeupdate) | `safeupdate` | Require criteria for UPDATE and DELETE |
 | [`pg_strict`](/ext/e/pg_strict) | `pg_strict` | Prevent dangerous UPDATE and DELETE without WHERE clause |
 | [`pg_prewarm`](/ext/e/pg_prewarm) | `pg_prewarm` | prewarm relation data |
 | [`pg_tracing`](/ext/e/pg_tracing) | `pg_tracing` | Distributed Tracing for PostgreSQL |
 | [`pg_stat_ch`](/ext/e/pg_stat_ch) | `pg_stat_ch` | Export PostgreSQL query telemetry to ClickHouse |
+| [`pg_stat_log`](/ext/e/pg_stat_log) | `$libdir/pg_stat_log` | Track cumulative PostgreSQL log message statistics by backend, database, user, level, and SQLSTATE. |
+| [`pg_stat_plans`](/ext/e/pg_stat_plans) | `$libdir/pg_stat_plans` | Track per-plan call counts, execution times, and example EXPLAIN texts. |
 | [`pg_show_plans`](/ext/e/pg_show_plans) | `pg_show_plans` | show query plans of all currently running SQL statements |
 | [`pg_stat_kcache`](/ext/e/pg_stat_kcache) | `pg_stat_kcache` | Kernel statistics gathering |
 | [`pg_stat_monitor`](/ext/e/pg_stat_monitor) | `pg_stat_monitor` | The pg_stat_monitor is a PostgreSQL Query Performance Monitoring tool, based on PostgreSQL contrib module pg_stat_statements. pg_stat_monitor provides aggregated statistics, client information, plan details including plan, and histogram information. |
@@ -86,6 +90,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`supautils`](/ext/e/supautils) | `supautils` | Extension that secures a cluster on a cloud environment |
 | [`pgsodium`](/ext/e/pgsodium) | `pgsodium` | Postgres extension for libsodium functions |
 | [`column_encrypt`](/ext/e/column_encrypt) | `column_encrypt` | Transparent column-level encryption with encrypted_text and encrypted_bytea types |
+| [`passwordpolicy`](/ext/e/passwordpolicy) | `$libdir/passwordpolicy` | Dynamically configurable PostgreSQL password complexity checks. |
 | [`anon`](/ext/e/anon) | `anon` | PostgreSQL Anonymizer (anon) extension |
 | [`pgaudit`](/ext/e/pgaudit) | `pgaudit` | provides auditing functionality |
 | [`pgauditlogtofile`](/ext/e/pgauditlogtofile) | `pgauditlogtofile` | pgAudit addon to redirect audit log to an independent file |

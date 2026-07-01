@@ -31,7 +31,7 @@ There are **73** extensions in **34** packages.
 | [`jsonschema`](/ext/e/jsonschema) | [`jsonschema`](https://github.com/theory/pg-jsonschema-boon) | `0.1.9` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | JSON Schema validation functions for PostgreSQL |
 | [`jsquery`](/ext/e/jsquery) | [`jsquery`](https://github.com/postgrespro/jsquery) | `1.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | data type for jsonb inspection |
 | [`pg_hint_plan`](/ext/e/pg_hint_plan) | [`pg_hint_plan`](https://github.com/ossc-db/pg_hint_plan) | `1.8.0` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Give PostgreSQL ability to manually force some decisions in execution plans. |
-| [`hypopg`](/ext/e/hypopg) | [`hypopg`](https://github.com/HypoPG/hypopg) | `1.4.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Hypothetical indexes for PostgreSQL |
+| [`hypopg`](/ext/e/hypopg) | [`hypopg`](https://github.com/HypoPG/hypopg) | `1.4.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Hypothetical indexes for PostgreSQL |
 | [`index_advisor`](/ext/e/index_advisor) | [`index_advisor`](https://github.com/supabase/index_advisor) | `0.2.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Query index advisor |
 | [`plan_filter`](/ext/e/plan_filter) | [`pg_plan_filter`](https://github.com/pgexperts/pg_plan_filter) | `0.0.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | filter statements by their execution plans. |
 | [`pg_variables`](/ext/e/pg_variables) | [`pg_variables`](https://github.com/postgrespro/pg_variables) | `1.2.5` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Session-scoped variables with scalar, array, and record types |
@@ -40,8 +40,8 @@ There are **73** extensions in **34** packages.
 | [`pg_incremental`](/ext/e/pg_incremental) | [`pg_incremental`](https://github.com/CrunchyData/pg_incremental) | `1.5.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Incremental Processing by Crunchy Data |
 | [`pg_trickle`](/ext/e/pg_trickle) | [`pg_trickle`](https://github.com/trickle-labs/pg-trickle) | `0.81.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Streaming tables and differential view maintenance for PostgreSQL 18 |
 | [`pg_durable`](/ext/e/pg_durable) | [`pg_durable`](https://github.com/microsoft/pg_durable) | `0.2.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Durable SQL functions for PostgreSQL |
-| [`provsql`](/ext/e/provsql) | [`provsql`](https://github.com/PierreSenellart/provsql) | `1.9.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | Semiring provenance and uncertainty management for PostgreSQL |
-| [`orioledb`](/ext/e/orioledb) | [`orioledb`](https://github.com/orioledb/orioledb) | `1.7` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | OrioleDB, the next generation transactional engine |
+| [`provsql`](/ext/e/provsql) | [`provsql`](https://github.com/PierreSenellart/provsql) | `1.10.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | Semiring provenance and uncertainty management for PostgreSQL |
+| [`orioledb`](/ext/e/orioledb) | [`orioledb`](https://github.com/orioledb/orioledb) | `1.8` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | OrioleDB, the next generation transactional engine |
 | [`pg_cardano`](/ext/e/pg_cardano) | [`pg_cardano`](https://github.com/Fell-x27/pg_cardano) | `1.2.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | A suite of Cardano-related tools |
 | [`rdkit`](/ext/e/rdkit) | [`rdkit`](https://github.com/rdkit/rdkit) | `202503.6` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | Cheminformatics functionality for PostgreSQL. |
 | [`omni`](/ext/e/omni) | [`omnigres`](https://github.com/omnigres/omnigres) | `0.2.14` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Advanced adapter for Postgres extensions |
@@ -453,7 +453,7 @@ There are **73** extensions in **34** packages.
 
 ## hypopg {#hypopg}
 
-[**`hypopg`**](/ext/e/hypopg) - `1.4.2` : Hypothetical indexes for PostgreSQL
+[**`hypopg`**](/ext/e/hypopg) - `1.4.3` : Hypothetical indexes for PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -624,7 +624,7 @@ There are **73** extensions in **34** packages.
 
 ## provsql {#provsql}
 
-[**`provsql`**](/ext/e/provsql) - `1.9.0` : Semiring provenance and uncertainty management for PostgreSQL
+[**`provsql`**](/ext/e/provsql) - `1.10.0` : Semiring provenance and uncertainty management for PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -643,18 +643,18 @@ There are **73** extensions in **34** packages.
 
 ## orioledb {#orioledb}
 
-[**`orioledb`**](/ext/e/orioledb) - `1.7` : OrioleDB, the next generation transactional engine
+[**`orioledb`**](/ext/e/orioledb) - `1.8` : OrioleDB, the next generation transactional engine
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`orioledb`](/ext/e/orioledb) | **el8** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Package** | [`orioledb`](https://github.com/orioledb/orioledb) | **el9** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **RPM** | `orioledb_$v` | **el10** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **DEB** | `oriolepg-$v-orioledb` | **d12** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| | | **u26** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
+| **Extension** | [`orioledb`](/ext/e/orioledb) | **el8** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| **Package** | [`orioledb`](https://github.com/orioledb/orioledb) | **el9** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| **RPM** | `orioledb_$v` | **el10** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| **DEB** | `oriolepg-$v-orioledb` | **d12** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| | | **u26** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
 {.ext-table .ext-table--cate}
 
 

@@ -5,14 +5,14 @@ weight: 130
 icon: fa-brands fa-redhat
 ---
 
-There are **519** PostgreSQL extensions available on EL systems, in **436** packages.
+There are **526** PostgreSQL extensions available on EL systems, in **443** packages.
 
-**15** packages are EL exclusive, **2** DEB packages are missing corresponding RPM packages.
+**13** packages are EL exclusive, **2** DEB packages are missing corresponding RPM packages.
 
 | **Type** | **All** | **PGDG** | **PIGSTY** | **CONTRIB** | | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--------:|:------:|:--------:|:----------:|:-----------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|
-| [**EXT**](/ext/rpm) | 519 | 123 | 325 | 71 | | 494 | 498 | 490 | 481 | 463 |
-| [**PKG**](/ext/repo) | 436 | 110 | 265 | 0 | | 415 | 420 | 415 | 407 | 392 |
+| [**EXT**](/ext/rpm) | 526 | 130 | 325 | 71 | | 503 | 505 | 497 | 486 | 468 |
+| [**PKG**](/ext/repo) | 443 | 117 | 265 | 0 | | 424 | 427 | 422 | 412 | 397 |
 {.ext-table}
 
 
@@ -24,7 +24,7 @@ There are **519** PostgreSQL extensions available on EL systems, in **436** pack
 |:----------|:--------:|:--------:|:---------|:-----------:|:---------|
 | [`timescaledb`](/ext/e/timescaledb) | `2.28.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `timescaledb-tsl_$v` | {{< pgvers "18,17,16,15" >}} | - |
 | [`timescaledb_toolkit`](/ext/e/timescaledb_toolkit) | `1.23.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `timescaledb-toolkit_$v` | {{< pgvers "18,17,16,15" >}} | - |
-| [`pg_timeseries`](/ext/e/timeseries) | `0.2.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_timeseries_$v` | {{< pgvers "18,17,16,15,14" >}} | `pg_cron_$v`, `pg_partman_$v` |
+| [`pg_timeseries`](/ext/e/timeseries) | `0.2.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_timeseries_$v` | {{< pgvers "18,17,16,15,14" >}} | `pg_cron_$v`, `pg_partman_$v` |
 | [`periods`](/ext/e/periods) | `1.2.3` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `periods_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`temporal_tables`](/ext/e/temporal_tables) | `1.2.2` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `temporal_tables_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`emaj`](/ext/e/emaj) | `4.7.1` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `e-maj_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
@@ -33,7 +33,7 @@ There are **519** PostgreSQL extensions available on EL systems, in **436** pack
 | [`pg_task`](/ext/e/pg_task) | `2.1.29` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_task_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_later`](/ext/e/pg_later) | `0.4.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_later_$v` | {{< pgvers "18,17,16,15,14" >}} | `pgmq_$v` |
 | [`pg_dispatch`](/ext/e/pg_dispatch) | `0.1.5` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_dispatch_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
-| [`pg_background`](/ext/e/pg_background) | `2.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_background_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`pg_background`](/ext/e/pg_background) | `2.0.2` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_background_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_when`](/ext/e/pg_when) | `0.1.9` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_when_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_stl`](/ext/e/pg_stl) | `1.0.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_stl_$v` | {{< pgvers "16,17,18" >}} | - |
 {.ext-table}
@@ -66,7 +66,7 @@ There are **519** PostgreSQL extensions available on EL systems, in **436** pack
 
 | **Package** | **Version** | **Repo** | **Package** | **PG Ver** | **Deps** |
 |:----------|:--------:|:--------:|:---------|:-----------:|:---------|
-| [`pgvector`](/ext/e/vector) | `0.8.2` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pgvector_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`pgvector`](/ext/e/vector) | `0.8.3` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pgvector_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`vchord`](/ext/e/vchord) | `1.1.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `vchord_$v` | {{< pgvers "18,17,16,15,14" >}} | `pgvector_$v` |
 | [`pgvectorscale`](/ext/e/vectorscale) | `0.9.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pgvectorscale_$v` | {{< pgvers "18,17,16,15,14" >}} | `pgvector_$v` |
 | [`pg_vectorize`](/ext/e/vectorize) | `0.26.2` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_vectorize_$v` | {{< pgvers "18,17,16,15,14" >}} | `pgmq_$v`, `pg_cron_$v`, `pgvector_$v` |
@@ -94,7 +94,7 @@ There are **519** PostgreSQL extensions available on EL systems, in **436** pack
 | [`pg_bestmatch`](/ext/e/pg_bestmatch) | `0.0.2` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_bestmatch_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`vchord_bm25`](/ext/e/vchord_bm25) | `0.3.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `vchord_bm25_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_tokenizer`](/ext/e/pg_tokenizer) | `0.1.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_tokenizer_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
-| [`pg_biscuit`](/ext/e/biscuit) | `2.3.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `biscuit_$v` | {{< pgvers "18,17,16" >}} | - |
+| [`pg_biscuit`](/ext/e/biscuit) | `2.4.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `biscuit_$v` | {{< pgvers "18,17,16" >}} | - |
 | [`pg_textsearch`](/ext/e/pg_textsearch) | `1.2.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_textsearch_$v` | {{< pgvers "18,17" >}} | - |
 | [`pg_pinyin`](/ext/e/pg_pinyin) | `0.0.4` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_pinyin_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_kazsearch`](/ext/e/pg_kazsearch) | `2.2.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_kazsearch_$v` | {{< pgvers "18,17,16" >}} | - |
@@ -124,9 +124,10 @@ There are **519** PostgreSQL extensions available on EL systems, in **436** pack
 | [`pg_duckdb`](/ext/e/pg_duckdb) | `1.1.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_duckdb_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_mooncake`](/ext/e/pg_mooncake) | `0.2.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_mooncake_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`storage_engine`](/ext/e/storage_engine) | `2.4.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `storage_engine_$v` | {{< pgvers "18,17,16,15" >}} | - |
-| [`pg_clickhouse`](/ext/e/pg_clickhouse) | `0.3.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_clickhouse_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`pg_clickhouse`](/ext/e/pg_clickhouse) | `0.3.2` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_clickhouse_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`duckdb_fdw`](/ext/e/duckdb_fdw) | `1.4.3` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `duckdb_fdw_$v` | {{< pgvers "18,17,16,15,14" >}} | `pg_duckdb_$v` |
 | [`pg_parquet`](/ext/e/pg_parquet) | `0.5.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_parquet_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`pg_ducklake`](/ext/e/pg_ducklake) | `1.0.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_ducklake_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_fkpart`](/ext/e/pg_fkpart) | `1.7.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_fkpart_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_partman`](/ext/e/pg_partman) | `5.4.3` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_partman_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`plproxy`](/ext/e/plproxy) | `2.11.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `plproxy_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
@@ -149,7 +150,7 @@ There are **519** PostgreSQL extensions available on EL systems, in **436** pack
 | [`pgrdf`](/ext/e/pgrdf) | `0.6.4` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pgrdf_$v` | {{< pgvers "14,15,16,17" >}} | - |
 | [`pgq`](/ext/e/pgq) | `3.5.1` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pgq_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pgmq`](/ext/e/pgmq) | `1.11.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pgmq_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
-| [`pgmb`](/ext/e/pgmb) | `1.0.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pgmb_$v` | {{< pgvers "18,17,16,15,14" >}} | `pg_cron_$v`, `pg_http_$v` |
+| [`pgmb`](/ext/e/pgmb) | `1.0.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pgmb_$v` | {{< pgvers "18,17,16,15,14" >}} | `pg_cron_$v`, `pgsql_http_$v` |
 | [`ulak`](/ext/e/ulak) | `0.0.2` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `ulak_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`fsm_core`](/ext/e/fsm_core) | `1.1.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `fsm_core_$v` | {{< pgvers "15,16,17,18" >}} | `pgmq_$v` |
 | [`hll`](/ext/e/hll) | `2.21` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `hll_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
@@ -161,7 +162,7 @@ There are **519** PostgreSQL extensions available on EL systems, in **436** pack
 | [`jsonschema`](/ext/e/jsonschema) | `0.1.9` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `jsonschema_$v` | {{< pgvers "14,15,16,17,18" >}} | - |
 | [`jsquery`](/ext/e/jsquery) | `1.2` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `jsquery_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_hint_plan`](/ext/e/pg_hint_plan) | `1.8.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_hint_plan_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
-| [`hypopg`](/ext/e/hypopg) | `1.4.2` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `hypopg_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`hypopg`](/ext/e/hypopg) | `1.4.3` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `hypopg_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`index_advisor`](/ext/e/index_advisor) | `0.2.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `index_advisor_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_plan_filter`](/ext/e/plan_filter) | `0.0.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_plan_filter_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_variables`](/ext/e/pg_variables) | `1.2.5` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_variables_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
@@ -170,8 +171,8 @@ There are **519** PostgreSQL extensions available on EL systems, in **436** pack
 | [`pg_incremental`](/ext/e/pg_incremental) | `1.5.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_incremental_$v` | {{< pgvers "18,17,16" >}} | - |
 | [`pg_trickle`](/ext/e/pg_trickle) | `0.81.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_trickle_$v` | {{< pgvers "18" >}} | - |
 | [`pg_durable`](/ext/e/pg_durable) | `0.2.2` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_durable_$v` | {{< pgvers "14,15,16,17,18" >}} | - |
-| [`provsql`](/ext/e/provsql) | `1.9.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `provsql_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
-| [`orioledb`](/ext/e/orioledb) | `1.7` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `orioledb_$v` | {{< pgvers "17" >}} | `oriolepg_$v` |
+| [`provsql`](/ext/e/provsql) | `1.10.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `provsql_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`orioledb`](/ext/e/orioledb) | `1.8` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `orioledb_$v` | {{< pgvers "18,17,16" >}} | `oriolepg_$v` |
 | [`pg_cardano`](/ext/e/pg_cardano) | `1.2.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_cardano_$v` | {{< pgvers "18,17,16,15" >}} | - |
 | [`rdkit`](/ext/e/rdkit) | `202503.6` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `rdkit_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`omnigres`](/ext/e/omni) | `0.2.14` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `omnigres_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
@@ -218,7 +219,7 @@ There are **519** PostgreSQL extensions available on EL systems, in **436** pack
 | [`pglite_fusion`](/ext/e/pglite_fusion) | `0.0.6` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pglite_fusion_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`md5hash`](/ext/e/md5hash) | `1.0.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `md5hash_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`asn1oid`](/ext/e/asn1oid) | `1.6` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `asn1oid_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
-| [`pg_roaringbitmap`](/ext/e/roaringbitmap) | `1.1.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_roaringbitmap_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`pg_roaringbitmap`](/ext/e/roaringbitmap) | `1.2.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_roaringbitmap_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pgfaceting`](/ext/e/pgfaceting) | `0.2.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pgfaceting_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pgsphere`](/ext/e/pg_sphere) | `1.5.2` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pgsphere_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_country`](/ext/e/country) | `0.0.3` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_country_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
@@ -251,10 +252,10 @@ There are **519** PostgreSQL extensions available on EL systems, in **436** pack
 
 | **Package** | **Version** | **Repo** | **Package** | **PG Ver** | **Deps** |
 |:----------|:--------:|:--------:|:---------|:-----------:|:---------|
-| [`pg_gzip`](/ext/e/gzip) | `1.0.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_gzip_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`pg_gzip`](/ext/e/gzip) | `1.1.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pgsql_gzip_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_bzip`](/ext/e/bzip) | `1.0.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_bzip_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_zstd`](/ext/e/zstd) | `1.1.2` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_zstd_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
-| [`pg_http`](/ext/e/http) | `1.7.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_http_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`pg_http`](/ext/e/http) | `1.7.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pgsql_http_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_net`](/ext/e/pg_net) | `0.20.3` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_net_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_curl`](/ext/e/pg_curl) | `2.4.5` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_curl_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_retry`](/ext/e/pg_retry) | `1.0.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_retry_$v` | {{< pgvers "18,17" >}} | - |
@@ -271,7 +272,7 @@ There are **519** PostgreSQL extensions available on EL systems, in **436** pack
 | [`pg_extra_time`](/ext/e/pg_extra_time) | `2.1.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_extra_time_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pgpcre`](/ext/e/pgpcre) | `0.20190509` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pgpcre_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`re2`](/ext/e/re2) | `0.3.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `re2_$v` | {{< pgvers "18,17,16" >}} | - |
-| [`icu_ext`](/ext/e/icu_ext) | `1.10.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `icu_ext_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`icu_ext`](/ext/e/icu_ext) | `1.11.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `icu_ext_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pgqr`](/ext/e/pgqr) | `1.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pgqr_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_envvar`](/ext/e/envvar) | `1.0.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_envvar_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_byteamagic`](/ext/e/byteamagic) | `0.2.4` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_byteamagic_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
@@ -349,13 +350,13 @@ There are **519** PostgreSQL extensions available on EL systems, in **436** pack
 | [`pg_query_rewrite`](/ext/e/pg_query_rewrite) | `0.0.5` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_query_rewrite_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_squeeze`](/ext/e/pg_squeeze) | `1.9.2` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_squeeze_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_dirtyread`](/ext/e/pg_dirtyread) | `2.8` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_dirtyread_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
-| [`pgfincore`](/ext/e/pgfincore) | `1.3.1` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pgfincore_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`pgfincore`](/ext/e/pgfincore) | `1.4.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pgfincore_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_cooldown`](/ext/e/pg_cooldown) | `0.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_cooldown_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_ddlx`](/ext/e/ddlx) | `0.30` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `ddlx_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pglinter`](/ext/e/pglinter) | `2.0.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pglinter_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_prioritize`](/ext/e/prioritize) | `1.0.4` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_prioritize_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_checksums`](/ext/e/pg_checksums) | `1.3` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_checksums_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
-| [`pg_readonly`](/ext/e/pg_readonly) | `1.0.4` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_readonly_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`pg_readonly`](/ext/e/pg_readonly) | `1.0.5` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_readonly_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pgdd`](/ext/e/pgdd) | `0.6.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pgdd_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_permissions`](/ext/e/pg_permissions) | `1.4` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_permissions_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pgautofailover`](/ext/e/pgautofailover) | `2.2` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_auto_failover_$v` | {{< pgvers "17,16,15,14" >}} | - |
@@ -369,6 +370,7 @@ There are **519** PostgreSQL extensions available on EL systems, in **436** pack
 | [`pg_fio`](/ext/e/fio) | `1.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_fio_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_qos`](/ext/e/qos) | `1.0.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_qos_$v` | {{< pgvers "18,17,16,15" >}} | - |
 | [`pg_pathcheck`](/ext/e/pg_pathcheck) | `0.9.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_pathcheck_$v` | {{< pgvers "18,17" >}} | - |
+| [`pgdisablelogerror`](/ext/e/pgdisablelogerror) | `1.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pgdisablelogerror_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_savior`](/ext/e/pg_savior) | `0.1.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_savior_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`safeupdate`](/ext/e/safeupdate) | `1.5` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `safeupdate_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_strict`](/ext/e/pg_strict) | `1.0.5` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_strict_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
@@ -390,10 +392,12 @@ There are **519** PostgreSQL extensions available on EL systems, in **436** pack
 | [`pg_tracing`](/ext/e/pg_tracing) | `0.1.3` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_tracing_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_stat_ch`](/ext/e/pg_stat_ch) | `0.3.6` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_stat_ch_$v` | {{< pgvers "18,17,16" >}} | - |
 | [`pg_stat_backtrace`](/ext/e/pg_stat_backtrace) | `1.0.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_stat_backtrace_$v` | {{< pgvers "18,17,16,15,14" >}} | `libunwind` |
+| [`pg_stat_log`](/ext/e/pg_stat_log) | `0.1` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_stat_log_$v` | {{< pgvers "18" >}} | - |
+| [`pg_stat_plans`](/ext/e/pg_stat_plans) | `2.1.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_stat_plans_$v` | {{< pgvers "18,17,16" >}} | - |
 | [`pg_show_plans`](/ext/e/pg_show_plans) | `2.1.8` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_show_plans_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_stat_kcache`](/ext/e/pg_stat_kcache) | `2.3.1` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_stat_kcache_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_stat_monitor`](/ext/e/pg_stat_monitor) | `2.3.2` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_stat_monitor_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
-| [`pg_qualstats`](/ext/e/pg_qualstats) | `2.1.3` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_qualstats_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`pg_qualstats`](/ext/e/pg_qualstats) | `2.1.4` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_qualstats_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_store_plans`](/ext/e/pg_store_plans) | `1.10` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_store_plans_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_track_settings`](/ext/e/pg_track_settings) | `2.1.2` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_track_settings_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_track_optimizer`](/ext/e/pg_track_optimizer) | `0.9.2` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_track_optimizer_$v` | {{< pgvers "18,17" >}} | - |
@@ -422,8 +426,9 @@ There are **519** PostgreSQL extensions available on EL systems, in **436** pack
 |:----------|:--------:|:--------:|:---------|:-----------:|:---------|
 | [`passwordcheck_cracklib`](/ext/e/passwordcheck_cracklib) | `3.1.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `passwordcheck_cracklib_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`supautils`](/ext/e/supautils) | `3.2.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `supautils_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
-| [`pgsodium`](/ext/e/pgsodium) | `3.1.9` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pgsodium_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`pgsodium`](/ext/e/pgsodium) | `3.1.11` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pgsodium_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`column_encrypt`](/ext/e/column_encrypt) | `4.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `column_encrypt_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`passwordpolicy`](/ext/e/passwordpolicy) | `2.0.5` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `passwordpolicy_$v` | {{< pgvers "18,17,16,15,14" >}} | `cracklib` |
 | [`pg_vault`](/ext/e/supabase_vault) | `0.3.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `vault_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_session_jwt`](/ext/e/pg_session_jwt) | `0.5.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_session_jwt_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_anon`](/ext/e/anon) | `3.1.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_anon_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
@@ -462,7 +467,7 @@ There are **519** PostgreSQL extensions available on EL systems, in **436** pack
 | [`jdbc_fdw`](/ext/e/jdbc_fdw) | `0.4.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `jdbc_fdw_$v` | {{< pgvers "16,15,14" >}} | `java-11-openjdk-headless` |
 | [`pgspider_ext`](/ext/e/pgspider_ext) | `1.3.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pgspider_ext_$v` | {{< pgvers "17,16,15" >}} | - |
 | [`mysql_fdw`](/ext/e/mysql_fdw) | `2.9.3` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `mysql_fdw_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
-| [`oracle_fdw`](/ext/e/oracle_fdw) | `2.8.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `oracle_fdw_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`oracle_fdw`](/ext/e/oracle_fdw) | `2.9.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `oracle_fdw_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`tds_fdw`](/ext/e/tds_fdw) | `2.0.5` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `tds_fdw_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`db2_fdw`](/ext/e/db2_fdw) | `18.1.1` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `db2_fdw_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`sqlite_fdw`](/ext/e/sqlite_fdw) | `2.5.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `sqlite_fdw_$v` | {{< pgvers "17,16,15,14" >}} | - |
@@ -470,7 +475,7 @@ There are **519** PostgreSQL extensions available on EL systems, in **436** pack
 | [`etcd_fdw`](/ext/e/etcd_fdw) | `0.0.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `etcd_fdw_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`informix_fdw`](/ext/e/informix_fdw) | `0.6.3` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `informix_fdw_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`nominatim_fdw`](/ext/e/nominatim_fdw) | `1.3` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `nominatim_fdw_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
-| [`mongo_fdw`](/ext/e/mongo_fdw) | `5.5.3` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `mongo_fdw_$v` | {{< pgvers "16,15,14" >}} | - |
+| [`mongo_fdw`](/ext/e/mongo_fdw) | `5.5.3` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `mongo_fdw_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`redis_fdw`](/ext/e/redis_fdw) | `1.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `redis_fdw_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_redis_pubsub`](/ext/e/redis) | `0.0.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_redis_pubsub_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`kafka_fdw`](/ext/e/kafka_fdw) | `0.0.3` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `kafka_fdw_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
@@ -488,17 +493,19 @@ There are **519** PostgreSQL extensions available on EL systems, in **436** pack
 
 | **Package** | **Version** | **Repo** | **Package** | **PG Ver** | **Deps** |
 |:----------|:--------:|:--------:|:---------|:-----------:|:---------|
-| [`documentdb`](/ext/e/documentdb) | `0.112` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `documentdb_$v` | {{< pgvers "18,17,16,15" >}} | `postgresql$v-contrib`, `pg_cron_$v`, `pgvector_$v`, `rum_$v`, `postgis36_$v` |
+| [`documentdb`](/ext/e/documentdb) | `0.113` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `documentdb_$v` | {{< pgvers "18,17,16,15" >}} | `postgresql$v-contrib`, `pg_cron_$v`, `pgvector_$v`, `rum_$v`, `postgis36_$v` |
 | [`pg_projection`](/ext/e/pg_projection) | `1.0.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_projection_$v` | {{< pgvers "14,15,16,17,18" >}} | - |
 | [`orafce`](/ext/e/orafce) | `4.16.7` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `orafce_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
-| [`pgtt`](/ext/e/pgtt) | `4.4` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pgtt_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`pgtt`](/ext/e/pgtt) | `4.5` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pgtt_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`session_variable`](/ext/e/session_variable) | `3.4` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `session_variable_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_statement_rollback`](/ext/e/pg_statement_rollback) | `1.5` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_statement_rollback_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`ivorysql`](/ext/e/ivorysql_ora) | `5.1` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `ivorysql5` | {{< pgvers "18" >}} | - |
+| [`db2fce`](/ext/e/db2fce) | `0.0.17` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `db2fce_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`plpgsql_wrap`](/ext/e/plpgsql_wrap) | `1.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `plpgsql_wrap_$v` | {{< pgvers "18,17,16,15,14" >}} | `openssl-libs` |
 | [`pg_dbms_metadata`](/ext/e/pg_dbms_metadata) | `1.0.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_dbms_metadata_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
-| [`pg_dbms_lock`](/ext/e/pg_dbms_lock) | `1.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_dbms_lock_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`pg_dbms_lock`](/ext/e/pg_dbms_lock) | `2.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_dbms_lock_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`pg_dbms_job`](/ext/e/pg_dbms_job) | `2.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_dbms_job_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
-| [`pg_dbms_errlog`](/ext/e/pg_dbms_errlog) | `2.2` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_dbms_errlog_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
+| [`pg_dbms_errlog`](/ext/e/pg_dbms_errlog) | `2.2` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_dbms_errlog_$v` | {{< pgvers "18,17,16,15,14" >}} | `pg_statement_rollback_$v` |
 | [`pg_utl_smtp`](/ext/e/pg_utl_smtp) | `1.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_utl_smtp_$v` | {{< pgvers "18,17,16,15,14" >}} | - |
 | [`babelfish`](/ext/e/babelfishpg_common) | `5.5.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `babelfish_$v` | {{< pgvers "17" >}} | `babelfishpg_$v`, `antlr4-runtime413` |
 | [`spat`](/ext/e/spat) | `0.1.0a4` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `spat_$v` | {{< pgvers "17" >}} | - |

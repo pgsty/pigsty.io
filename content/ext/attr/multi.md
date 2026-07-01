@@ -15,13 +15,13 @@ Package [`postgis`](/ext/e/postgis) contains **7** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 1500 | [**`postgis`**](/ext/e/postgis) | `3.6.3` | `--s-d--` | - | PostGIS geometry and geography spatial types and functions |
-| 1501 | [`postgis_topology`](/ext/e/postgis_topology) | `3.6.3` | `--s-d--` | `topology` | PostGIS topology spatial types and functions |
-| 1502 | [`postgis_raster`](/ext/e/postgis_raster) | `3.6.3` | `--s-d--` | - | PostGIS raster types and functions |
-| 1503 | [`postgis_sfcgal`](/ext/e/postgis_sfcgal) | `3.6.3` | `--s-d-r` | - | PostGIS SFCGAL functions |
-| 1504 | [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) | `3.6.3` | `--s-dt-` | `tiger` | PostGIS tiger geocoder and reverse geocoder |
-| 1505 | [`address_standardizer`](/ext/e/address_standardizer) | `3.6.3` | `--s-d-r` | - | Used to parse an address into constituent elements. Generally used to support geocoding address normalization step. |
-| 1506 | [`address_standardizer_data_us`](/ext/e/address_standardizer_data_us) | `3.6.3` | `--s-d-r` | - | Address Standardizer US dataset example |
+| 1500 | [**`postgis`**](/ext/e/postgis) | `3.6.4` | `--s-d--` | - | PostGIS geometry and geography spatial types and functions |
+| 1501 | [`postgis_topology`](/ext/e/postgis_topology) | `3.6.4` | `--s-d--` | `topology` | PostGIS topology spatial types and functions |
+| 1502 | [`postgis_raster`](/ext/e/postgis_raster) | `3.6.4` | `--s-d--` | - | PostGIS raster types and functions |
+| 1503 | [`postgis_sfcgal`](/ext/e/postgis_sfcgal) | `3.6.4` | `--s-d-r` | - | PostGIS SFCGAL functions |
+| 1504 | [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) | `3.6.4` | `--s-dt-` | `tiger` | PostGIS tiger geocoder and reverse geocoder |
+| 1505 | [`address_standardizer`](/ext/e/address_standardizer) | `3.6.4` | `--s-d-r` | - | Used to parse an address into constituent elements. Generally used to support geocoding address normalization step. |
+| 1506 | [`address_standardizer_data_us`](/ext/e/address_standardizer_data_us) | `3.6.4` | `--s-d-r` | - | Address Standardizer US dataset example |
 {.ext-table}
 
 ### pointcloud
@@ -239,10 +239,10 @@ Package [`documentdb`](/ext/e/documentdb) contains **4** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 9000 | [**`documentdb`**](/ext/e/documentdb) | `0.112` | `--sLd--` | - | API surface for DocumentDB for PostgreSQL |
-| 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `0.112` | `--sLd--` | - | Core API surface for DocumentDB on PostgreSQL |
-| 9020 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `0.112` | `--sLd--` | - | Multi-Node API surface for DocumentDB |
-| 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `0.112` | `--sLd-r` | - | DocumentDB Extended RUM index access method |
+| 9000 | [**`documentdb`**](/ext/e/documentdb) | `0.113` | `--sLd--` | - | API surface for DocumentDB for PostgreSQL |
+| 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `0.113` | `--sLd--` | - | Core API surface for DocumentDB on PostgreSQL |
+| 9020 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `0.113` | `--sLd--` | - | Multi-Node API surface for DocumentDB |
+| 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `0.113` | `--sLd-r` | - | DocumentDB Extended RUM index access method |
 {.ext-table}
 
 ### ivorysql

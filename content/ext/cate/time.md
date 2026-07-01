@@ -23,7 +23,7 @@ There are **14** extensions in **14** packages.
 | [`pg_task`](/ext/e/pg_task) | [`pg_task`](https://github.com/RekGRpth/pg_task) | `2.1.29` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | execute any sql command at any specific time at background |
 | [`pg_later`](/ext/e/pg_later) | [`pg_later`](https://github.com/ChuckHend/pg_later) | `0.4.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Run queries now and get results later |
 | [`pg_dispatch`](/ext/e/pg_dispatch) | [`pg_dispatch`](https://github.com/Snehil-Shah/pg_dispatch) | `0.1.5` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Asynchronous SQL dispatcher built on pg_cron |
-| [`pg_background`](/ext/e/pg_background) | [`pg_background`](https://github.com/vibhorkum/pg_background) | `2.0` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Run SQL queries in the background |
+| [`pg_background`](/ext/e/pg_background) | [`pg_background`](https://github.com/vibhorkum/pg_background) | `2.0.2` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Run SQL queries in the background |
 | [`pg_when`](/ext/e/pg_when) | [`pg_when`](https://github.com/frectonz/pg-when) | `0.1.9` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Natural language time parsing for PostgreSQL |
 | [`pg_stl`](/ext/e/pg_stl) | [`pg_stl`](https://github.com/nadyaloseva/pg_ts_analysis) | `1.0.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Time series analysis functions for PostgreSQL |
 {.ext-table}
@@ -242,7 +242,7 @@ There are **14** extensions in **14** packages.
 
 ## pg_background {#pg_background}
 
-[**`pg_background`**](/ext/e/pg_background) - `2.0` : Run SQL queries in the background
+[**`pg_background`**](/ext/e/pg_background) - `2.0.2` : Run SQL queries in the background
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -251,7 +251,7 @@ There are **14** extensions in **14** packages.
 | **RPM** | `pg_background_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **DEB** | `postgresql-$v-pg-background` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
