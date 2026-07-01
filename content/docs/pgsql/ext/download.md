@@ -14,7 +14,9 @@ Before installing extensions, ensure that extension packages are downloaded to t
 
 ## Default Behavior
 
-Pigsty automatically downloads mainstream extensions available for the default PostgreSQL version to the local software repository during installation.
+Pigsty downloads the base PostgreSQL 18 kernel packages to the local software repository by default. The default extra download set is `repo_extra_packages_default: [ pgsql-main ]`, which includes the PostgreSQL kernel, client, procedural languages, and basic extension packages such as `pg_repack`, `wal2json`, and `pgvector`.
+
+If you need other extensions from the 531-extension catalog, explicitly add them to [`repo_extra_packages`](/docs/infra/param#repo_extra_packages). Pigsty does not download every extension to the local repository by default.
 
 Benefits of using a local repository:
 - Accelerated installation, avoiding repeated downloads
@@ -71,9 +73,9 @@ But may face:
 
 Extension packages come from two main sources:
 
-| Repository | Description |
-|:-----|:-----|
-| **PGDG** | PostgreSQL official repository, providing core extensions |
+| Repository | Description                                                      |
+|:-----------|:-----------------------------------------------------------------|
+| **PGDG**   | PostgreSQL official repository, providing core extensions        |
 | **Pigsty** | Pigsty supplementary repository, providing additional extensions |
 
 The Pigsty repository only includes extensions not present in the PGDG repository. Once an extension enters the PGDG repository, the Pigsty repository will remove it or keep it consistent.
@@ -85,4 +87,3 @@ Repository URLs:
 - Pigsty APT: https://repo.pigsty.io/apt/
 
 For detailed repository configuration, see [Extension Repository](/docs/pgsql/ext/repo/).
-

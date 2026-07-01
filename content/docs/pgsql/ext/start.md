@@ -9,7 +9,7 @@ categories: [Tutorial]
 
 Using extensions in Pigsty requires four steps: **Download**, **Install**, **Config**, and **Create**.
 
-1. **Download**: Download extension packages to the local repository (Pigsty has already downloaded mainstream extensions by default)
+1. **Download**: Download extension packages to the local repository (the default local repository only guarantees the base kernel and `pgsql-main` package set)
 2. **Install**: Install extension packages on cluster nodes
 3. **Config**: Some extensions need to be preloaded or configured with parameters
 4. **Create**: Execute `CREATE EXTENSION` in the database to create the extension
@@ -52,11 +52,11 @@ pg edit-config pg-meta --force -p shared_preload_libraries='timescaledb, pg_stat
 psql -d meta -c 'CREATE EXTENSION vector;'
 ```
 
-You can also use the [pig](/docs/pig/) package manager to install directly:
+You can also use the [pig](/docs/pig/) package manager to install extension packages, then run `CREATE EXTENSION` inside the database:
 
 ```bash
-pig install pgvector        # Install extension package
-pig extension create vector  # Create extension in database
+pig install pgvector                         # Install extension package
+psql -d meta -c 'CREATE EXTENSION vector;'   # Create extension in database
 ```
 
 
@@ -64,11 +64,11 @@ pig extension create vector  # Create extension in database
 
 ## Process Quick Reference
 
-| Step | Parameter/Command | Description |
-|:----:|:----------|:-----|
+|   Step   | Parameter/Command                                              | Description                                                |
+|:--------:|:---------------------------------------------------------------|:-----------------------------------------------------------|
 | Download | [`repo_extra_packages`](/docs/infra/param#repo_extra_packages) | Specify extension packages to download to local repository |
-| Install | [`pg_extensions`](/docs/pgsql/param#pg_extensions) | Specify extension packages to install on cluster |
-| Config | [`pg_libs`](/docs/pgsql/param#pg_libs) | Preload extensions to `shared_preload_libraries` |
-| Create | [`pg_databases.extensions`](/docs/pgsql/config/db) | Automatically execute `CREATE EXTENSION` in database |
+| Install  | [`pg_extensions`](/docs/pgsql/param#pg_extensions)             | Specify extension packages to install on cluster           |
+|  Config  | [`pg_libs`](/docs/pgsql/param#pg_libs)                         | Preload extensions to `shared_preload_libraries`           |
+|  Create  | [`pg_databases.extensions`](/docs/pgsql/config/db)             | Automatically execute `CREATE EXTENSION` in database       |
 
 > For detailed instructions, please refer to each subsection: [Download](/docs/pgsql/ext/download/), [Install](/docs/pgsql/ext/install/), [Config](/docs/pgsql/ext/config/), [Create](/docs/pgsql/ext/create/)

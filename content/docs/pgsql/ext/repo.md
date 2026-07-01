@@ -14,7 +14,7 @@ Pigsty provides supplementary extension repositories, offering additional extens
 
 ## YUM Repository
 
-Applicable to EL 7/8/9/10 and compatible systems (RHEL, Rocky, AlmaLinux, CentOS, etc.).
+Applicable to EL 8/9/10 and compatible systems (RHEL, Rocky, AlmaLinux, CentOS, etc.).
 
 ### Add Repository
 
@@ -46,7 +46,7 @@ curl -fsSL https://repo.pigsty.cc/yum/repo | sudo tee /etc/yum.repos.d/pigsty.re
 
 ## APT Repository
 
-Applicable to Debian 11/12/13 and Ubuntu 22.04/24.04/26.04 and compatible systems.
+Applicable to Debian 12/13 and Ubuntu 22.04/24.04/26.04 and compatible systems.
 
 ### Add Repository
 
@@ -58,7 +58,7 @@ curl -fsSL https://repo.pigsty.io/key | sudo gpg --dearmor -o /etc/apt/keyrings/
 distro_codename=$(lsb_release -cs)
 sudo tee /etc/apt/sources.list.d/pigsty.list > /dev/null <<EOF
 deb [signed-by=/etc/apt/keyrings/pigsty.gpg] https://repo.pigsty.io/apt/infra generic main
-deb [signed-by=/etc/apt/keyrings/pigsty.gpg] https://repo.pigsty.io/apt/pgsql ${distro_codename} main
+deb [signed-by=/etc/apt/keyrings/pigsty.gpg] https://repo.pigsty.io/apt/pgsql/${distro_codename} ${distro_codename} main
 EOF
 
 # Refresh cache

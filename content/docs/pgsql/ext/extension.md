@@ -16,18 +16,19 @@ Pigsty installs and enables some core extensions by default when initializing Po
 
 Extensions installed by default via [`pg_packages`](/docs/pgsql/param#pg_packages):
 
-| Extension | Description |
-|:-----|:-----|
-| `pg_repack` | Handle table bloat online, important maintenance tool |
-| `wal2json` | Logical decoding outputs JSON format changes, commonly used in CDC scenarios |
+| Extension   | Description                                                                  |
+|:------------|:-----------------------------------------------------------------------------|
+| `pg_repack` | Handle table bloat online, important maintenance tool                        |
+| `wal2json`  | Logical decoding outputs JSON format changes, commonly used in CDC scenarios |
+| `pgvector`  | Vector data type and indexes, installed with `pgsql-main` by default         |
 
-Extensions optionally installed via [`pg_extensions`](/docs/pgsql/param#pg_extensions) (commented by default):
+The default value of [`pg_extensions`](/docs/pgsql/param#pg_extensions) is an empty array `[]`. Declare additional extensions as needed, for example:
 
-| Extension | Description |
-|:-----|:-----|
-| `postgis` | Geospatial database extension |
+| Extension     | Description                    |
+|:--------------|:-------------------------------|
+| `postgis`     | Geospatial database extension  |
 | `timescaledb` | Time-series database extension |
-| `pgvector` | Vector data type and indexes |
+| `pgvector`    | Vector data type and indexes   |
 
 
 --------
@@ -36,23 +37,23 @@ Extensions optionally installed via [`pg_extensions`](/docs/pgsql/param#pg_exten
 
 Extensions enabled by default in all databases via [`pg_default_extensions`](/docs/pgsql/param#pg_default_extensions):
 
-| Extension | Schema | Description |
-|:-----|:-------|:-----|
+| Extension            | Schema  | Description                        |
+|:---------------------|:--------|:-----------------------------------|
 | `pg_stat_statements` | monitor | SQL statement execution statistics |
-| `pgstattuple` | monitor | Tuple-level statistics |
-| `pg_buffercache` | monitor | Buffer cache inspection |
-| `pageinspect` | monitor | Page-level inspection |
-| `pg_prewarm` | monitor | Relation prewarming |
-| `pg_visibility` | monitor | Visibility map inspection |
-| `pg_freespacemap` | monitor | Free space map inspection |
-| `postgres_fdw` | public | PostgreSQL foreign data wrapper |
-| `file_fdw` | public | File foreign data wrapper |
-| `btree_gist` | public | B-tree GiST operator classes |
-| `btree_gin` | public | B-tree GIN operator classes |
-| `pg_trgm` | public | Trigram matching |
-| `intagg` | public | Integer aggregator |
-| `intarray` | public | Integer array functions |
-| `pg_repack` | - | Online table reorganization |
+| `pgstattuple`        | monitor | Tuple-level statistics             |
+| `pg_buffercache`     | monitor | Buffer cache inspection            |
+| `pageinspect`        | monitor | Page-level inspection              |
+| `pg_prewarm`         | monitor | Relation prewarming                |
+| `pg_visibility`      | monitor | Visibility map inspection          |
+| `pg_freespacemap`    | monitor | Free space map inspection          |
+| `postgres_fdw`       | public  | PostgreSQL foreign data wrapper    |
+| `file_fdw`           | public  | File foreign data wrapper          |
+| `btree_gist`         | public  | B-tree GiST operator classes       |
+| `btree_gin`          | public  | B-tree GIN operator classes        |
+| `pg_trgm`            | public  | Trigram matching                   |
+| `intagg`             | public  | Integer aggregator                 |
+| `intarray`           | public  | Integer array functions            |
+| `pg_repack`          | repack  | Online table reorganization        |
 
 These extensions provide basic monitoring, operations, and feature enhancement capabilities.
 
@@ -63,10 +64,10 @@ These extensions provide basic monitoring, operations, and feature enhancement c
 
 Extensions preloaded by default into `shared_preload_libraries` via [`pg_libs`](/docs/pgsql/param#pg_libs):
 
-| Extension | Description |
-|:-----|:-----|
-| `pg_stat_statements` | Track execution statistics of all SQL statements |
-| `auto_explain` | Automatically log execution plans for slow queries |
+| Extension            | Description                                        |
+|:---------------------|:---------------------------------------------------|
+| `pg_stat_statements` | Track execution statistics of all SQL statements   |
+| `auto_explain`       | Automatically log execution plans for slow queries |
 
 These two extensions provide basic observability and are strongly recommended to keep.
 
@@ -105,4 +106,3 @@ For detailed extension usage, please refer to:
 - [Install Extensions](/docs/pgsql/ext/install/): How to install extensions
 - [Configure Extensions](/docs/pgsql/ext/config/): Preloading and parameter configuration
 - [Create Extensions](/docs/pgsql/ext/create/): Creating extensions in databases
-
