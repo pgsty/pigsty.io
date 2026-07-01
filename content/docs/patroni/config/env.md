@@ -18,9 +18,12 @@ It is possible to override some of the configuration parameters defined in the P
 ## Global/Universal
 
 - **PATRONI_CONFIGURATION**: it is possible to set the entire configuration for the Patroni via [PATRONI_CONFIGURATION](/docs/patroni/config#config) environment variable. In this case any other environment variables will not be considered!
-- **PATRONI_NAME**: name of the node where the current instance of Patroni is running. Must be unique for the cluster.
+- **PATRONI_THREAD_POOL_SIZE**: size of thread pool used by Patroni to execute asynchronous tasks and communicate via REST API with other members during leader race or failsafe checks. Minimal value is `5`, default value is `5`.
+- **PATRONI_THREAD_STACK_SIZE**: specifies the stack size to be used for threads started by Patroni. Value must be aligned by `64kB`. Minimal value is `64kB`, default value (set by Patroni) is `512kB`.
+- **PATRONI_NAME**: name of the node where the current instance of Patroni is running. Must be unique for the cluster. The value `__patroni_strict_sync_replica_placeholder__` is reserved for internal use by Patroni and cannot be used as a node name.
 - **PATRONI_NAMESPACE**: path within the configuration store where Patroni will keep information about the cluster. Default value: "/service"
 - **PATRONI_SCOPE**: cluster name
+- **PG_MALLOC_ARENA_MAX**: custom value for `MALLOC_ARENA_MAX` environment variable for `postmaster` process. If not set, `postmaster` will inherit `MALLOC_ARENA_MAX` value.
 
 --------
 
@@ -155,6 +158,15 @@ Environment names for Etcdv3 are similar as for Etcd, you just need to use `ETCD
 - **PATRONI_RAFT_PARTNER_ADDRS**: list of other Patroni nodes in the cluster in format `"'ip1:port1','ip2:port2'"`. It is important to quote every single entity!
 - **PATRONI_RAFT_DATA_DIR**: directory where to store Raft log and snapshot. If not specified the current working directory is used.
 - **PATRONI_RAFT_PASSWORD**: (optional) Encrypt Raft traffic with a specified password, requires `cryptography` python module.
+- **PATRONI_RAFT_MIN_TIMEOUT**: (optional) minimum election timeout in seconds for the underlying pysyncobj Raft implementation. Must be greater than 3 * `PATRONI_RAFT_APPEND_ENTRIES_PERIOD`. Default: `0.4`.
+- **PATRONI_RAFT_MAX_TIMEOUT**: (optional) maximum election timeout in seconds for the underlying pysyncobj Raft implementation. Must be greater than `PATRONI_RAFT_MIN_TIMEOUT`. Default: `1.4`.
+- **PATRONI_RAFT_CONNECTION_TIMEOUT**: (optional) time in seconds after which a connection with no data received is considered dead. Must be greater than or equal to `PATRONI_RAFT_MAX_TIMEOUT`. Default: `3.5`.
+- **PATRONI_RAFT_APPEND_ENTRIES_PERIOD**: (optional) interval in seconds for sending heartbeat commands. Must be less than one-third of `PATRONI_RAFT_MIN_TIMEOUT`. Default: `0.1`.
+- **PATRONI_RAFT_CONNECTION_RETRY_TIME**: (optional) interval in seconds between reconnection attempts to offline nodes. Default: `5.0`.
+- **PATRONI_RAFT_LEADER_FALLBACK_TIMEOUT**: (optional) time in seconds after which a leader with no response from the majority falls back to follower state. Must be greater than `PATRONI_RAFT_APPEND_ENTRIES_PERIOD`. Default: `30.0`.
+
+> [!NOTE]
+> Patroni validates these constraints at startup and will refuse to start if they are violated. These values cannot be changed at runtime and require a restart. See [Raft settings](/docs/patroni/config/yaml#raft_settings) for details, including the high-latency limitation.
 
 --------
 
@@ -215,6 +227,7 @@ Environment names for Etcdv3 are similar as for Etcd, you just need to use `ETCD
 
 ## REST API
 
+- **PATRONI_RESTAPI_THREAD_POOL_SIZE**: size of thread pool used by Patroni to process REST API requests. Minimal value is `5`, default value is `5`.
 - **PATRONI_RESTAPI_CONNECT_ADDRESS**: IP address and port to access the REST API.
 - **PATRONI_RESTAPI_LISTEN**: IP address and port that Patroni will listen to, to provide health-check information for HAProxy.
 - **PATRONI_RESTAPI_USERNAME**: Basic-auth username to protect unsafe REST API endpoints.

@@ -16,7 +16,9 @@ categories: [Reference]
 
 ## Global/Universal
 
-- **name**: the name of the host. Must be unique for the cluster.
+- **thread_pool_size**: size of thread pool used by Patroni to execute asynchronous tasks and communicate via REST API with other members during leader race or failsafe checks. Minimal value is `5`, default value is `5`.
+- **thread_stack_size**: specifies the stack size to be used for threads started by Patroni. Value must be aligned by `64kB`. Minimal value is `64kB`, default value (set by Patroni) is `512kB`.
+- **name**: the name of the host. Must be unique for the cluster. The value `__patroni_strict_sync_replica_placeholder__` is reserved for internal use by Patroni and cannot be used as a node name.
 - **namespace**: path within the configuration store where Patroni will keep information about the cluster. Default value: "/service"
 - **scope**: cluster name
 
@@ -222,6 +224,18 @@ If you want that Patroni works with Etcd cluster via protocol version 3, you nee
 - **data_dir**: directory where to store Raft log and snapshot. If not specified the current working directory is used.
 
 - **password**: (optional) Encrypt Raft traffic with a specified password, requires `cryptography` python module.
+- **min_timeout**: (optional) minimum election timeout in seconds for the underlying pysyncobj Raft implementation. Must be greater than 3 * `append_entries_period`. Default: `0.4`.
+- **max_timeout**: (optional) maximum election timeout in seconds for the underlying pysyncobj Raft implementation. Must be greater than `min_timeout`. Default: `1.4`.
+- **connection_timeout**: (optional) time in seconds after which a connection with no data received is considered dead. Must be greater than or equal to `max_timeout`. Default: `3.5`.
+- **append_entries_period**: (optional) interval in seconds for sending heartbeat (append_entries) commands. Must be less than one-third of `min_timeout`. Default: `0.1`.
+- **connection_retry_time**: (optional) interval in seconds between reconnection attempts to offline nodes. Default: `5.0`.
+- **leader_fallback_timeout**: (optional) time in seconds after which a leader with no response from the majority falls back to follower state. Must be greater than `append_entries_period`. Default: `30.0`.
+
+> [!NOTE]
+> These timeout parameters are useful for high-latency networks where the default pysyncobj timeouts are too aggressive. The following constraints must be satisfied: `min_timeout` > 3 * `append_entries_period`, `max_timeout` > `min_timeout`, `connection_timeout` >= `max_timeout`, and `leader_fallback_timeout` > `append_entries_period`. Patroni validates these at startup and will refuse to start if they are violated. These values cannot be changed at runtime and require a restart.
+>
+> [!WARNING]
+> These knobs only relax the pysyncobj election and connection timeouts; they do not extend the per-command deadline that Patroni applies to Raft operations. Each Raft command (leader-lock refresh, cluster-state write) must still complete within `retry_timeout` (default `10`). On very high-latency links - roughly above a few seconds of round-trip time - a single command can exceed `retry_timeout` even when `connection_timeout` is raised well above the RTT, so the DCS will appear unreachable and the primary may demote. On such links you must also raise `retry_timeout` and `ttl` accordingly, keeping `loop_wait + 2 * retry_timeout <= ttl`.
 
   Short FAQ about Raft implementation
 
@@ -337,16 +351,25 @@ If you want that Patroni works with Etcd cluster via protocol version 3, you nee
   - **custom_conf** : path to an optional custom `postgresql.conf` file, that will be used in place of `postgresql.base.conf`. The file must exist on all cluster nodes, be readable by PostgreSQL and will be included from its location on the real `postgresql.conf`. Note that Patroni will not monitor this file for changes, nor backup it. However, its settings can still be overridden by Patroni's own configuration facilities - see [dynamic configuration](/docs/patroni/config#config) for details.
 
   - **parameters**: configuration parameters (GUCs) for Postgres in format `{ssl: "on", ssl_cert_file: "cert_file"}`.
+  - **parameters_primary**: (optional) role-specific parameter overrides for primary. These values are merged with and override the base **parameters**.
+  - **parameters_replica**: (optional) role-specific parameter overrides for replica. These values are merged with and override the base **parameters**.
+  - **parameters_standby_leader**: (optional) role-specific parameter overrides for standby_leader. These values are merged with and override the base **parameters**.
 
   - **pg_hba**: list of lines that Patroni will use to generate `pg_hba.conf`. Patroni ignores this parameter if `hba_file` PostgreSQL parameter is set to a non-default value. Together with [dynamic configuration](/docs/patroni/config/dynamic#dynamic) this parameter simplifies management of `pg_hba.conf`.
 
     - **- host all all 0.0.0.0/0 md5**
     - **- host replication replicator 127.0.0.1/32 md5**: A line like this is required for replication.
+  - **pg_hba_primary**: (optional) role-specific pg_hba entries for primary. These completely replace **pg_hba** (no merging). If not defined, **pg_hba** is used.
+  - **pg_hba_replica**: (optional) role-specific pg_hba entries for replica. These completely replace **pg_hba** (no merging). If not defined, **pg_hba** is used.
+  - **pg_hba_standby_leader**: (optional) role-specific pg_hba entries for standby_leader. These completely replace **pg_hba** (no merging). If not defined, **pg_hba** is used.
 
   - **pg_ident**: list of lines that Patroni will use to generate `pg_ident.conf`. Patroni ignores this parameter if `ident_file` PostgreSQL parameter is set to a non-default value. Together with [dynamic configuration](/docs/patroni/config/dynamic#dynamic) this parameter simplifies management of `pg_ident.conf`.
 
     - **- mapname1 systemname1 pguser1**
     - **- mapname1 systemname2 pguser2**
+  - **pg_ident_primary**: (optional) role-specific pg_ident entries for primary. These completely replace **pg_ident** (no merging). If not defined, **pg_ident** is used.
+  - **pg_ident_replica**: (optional) role-specific pg_ident entries for replica. These completely replace **pg_ident** (no merging). If not defined, **pg_ident** is used.
+  - **pg_ident_standby_leader**: (optional) role-specific pg_ident entries for standby_leader. These completely replace **pg_ident** (no merging). If not defined, **pg_ident** is used.
 
   - **pg_ctl_timeout**: How long should pg_ctl wait when doing `start`, `stop` or `restart`. Default value is 60 seconds.
 
@@ -379,6 +402,7 @@ If you want that Patroni works with Etcd cluster via protocol version 3, you nee
 ## REST API
 
 - **restapi**:
+  - **thread_pool_size**: size of thread pool used by Patroni to process REST API requests. Minimal value is `5`, default value is `5`.
   - **connect_address**: IP address (or hostname) and port, to access the Patroni's [REST API](/docs/patroni/rest_api#rest_api). All the members of the cluster must be able to connect to this address, so unless the Patroni setup is intended for a demo inside the localhost, this address must be a non "localhost" or loopback address (ie: "localhost" or "127.0.0.1"). It can serve as an endpoint for HTTP health checks (read below about the "listen" REST API parameter), and also for user queries (either directly or via the REST API), as well as for the health checks done by the cluster members during leader elections (for example, to determine whether the leader is still running, or if there is a node which has a WAL position that is ahead of the one doing the query; etc.) The connect_address is put in the member key in DCS, making it possible to translate the member name into the address to connect to its REST API.
   - **listen**: IP address (or hostname) and port that Patroni will listen to for the REST API - to provide also the same health checks and cluster messaging between the participating nodes, as described above. to provide health-check information for HAProxy (or any other load balancer capable of doing a HTTP "OPTION" or "GET" checks).
   - **authentication**: (optional)
