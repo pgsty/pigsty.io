@@ -25,10 +25,10 @@ MySQL module is currently available in Pigsty Pro as a Beta Preview. Note that y
 
 ## Installation
 
-You can install MySQL 8.0 from the official software source on EL systems directly on the nodes managed by Pigsty.
+You can install MySQL from official repositories directly on nodes managed by Pigsty. EL uses the MySQL 8.4 community repository, while Debian/Ubuntu uses the MySQL 8.0 APT repository.
 
 ```bash
-# el 7,8,9
+# el9
 ./node.yml -t node_install -e '{"node_repo_modules":"node,mysql","node_packages":["mysql-community-server,mysql-community-client"]}'
 
 # debian / ubuntu
@@ -104,7 +104,7 @@ mysql_pass     : write mysql password
 mysql_db       : create mysql biz database
 mysql_user     : create mysql biz user
 mysql_exporter : launch mysql exporter
-mysql_register : register mysql service to prometheus
+mysql_register : register mysql service to VictoriaMetrics
 ```
 
 

@@ -31,13 +31,10 @@ Pigsty provides Kafka 3.8.0 RPM and DEB packages in the official Infra repositor
 ./node.yml -t node_install  -e '{"node_repo_modules":"infra","node_packages":["kafka"]}'
 ```
 
-Kafka requires a Java runtime environment, so you need to install an available JDK when installing Kafka (OpenJDK 17 is used by default, but other JDKs and versions, such as 8 and 11, can also be used).
+Kafka requires a Java runtime environment, so you need to install an available JDK when installing Kafka. OpenJDK 17 is used by default.
 
 ```bash
-# EL7 (no JDK 17 support)
-./node.yml -t node_install  -e '{"node_repo_modules":"node","node_packages":["java-11-openjdk-headless"]}'
-
-# EL8 / EL9 (use OpenJDK 17)
+# EL9 / EL10 (use OpenJDK 17)
 ./node.yml -t node_install  -e '{"node_repo_modules":"node","node_packages":["java-17-openjdk-headless"]}'
 
 # Debian / Ubuntu (use OpenJDK 17)
@@ -49,9 +46,7 @@ Kafka requires a Java runtime environment, so you need to install an available J
 
 ## Configuration
 
-Single node Kafka configuration example. Please note that in Pigsty single machine deployment mode, the 9093 port on the admin node is already occupied by AlertManager.
-
-It is recommended to use other ports when installing Kafka on the admin node, such as (9095).
+Single-node Kafka configuration example. Alertmanager now listens on `9059` by default and no longer occupies Kafka's common `9093` port. If another local service already uses `9093`, adjust `kafka_peer_port`.
 
 ```yaml
 kf-main:
@@ -60,7 +55,7 @@ kf-main:
   vars:
     kafka_cluster: kf-main
     kafka_data: /data/kafka
-    kafka_peer_port: 9095     # 9093 is already hold by alertmanager
+    kafka_peer_port: 9093     # Change to 9095 or another port if there is a conflict
 ```
 
 3-node Kraft mode Kafka cluster configuration example:
@@ -187,7 +182,7 @@ kafka_data: /data/kafka             # kafka data directory, `/data/kafka` by def
 kafka_version: 3.8.0                # kafka version string
 scala_version: 2.13                 # kafka binary scala version
 kafka_port: 9092                    # kafka broker listen port
-kafka_peer_port: 9093               # kafka broker peer listen port, 9093 by default (conflict with alertmanager)
+kafka_peer_port: 9093               # kafka broker peer listen port, 9093 by default
 kafka_exporter_port: 9308           # kafka exporter listen port, 9308 by default
 kafka_parameters:                   # kafka parameters to be added to server.properties
   num.network.threads: 3

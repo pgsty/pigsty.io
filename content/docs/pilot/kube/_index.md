@@ -43,13 +43,13 @@ If you prefer to deploy Kubernetes using the classic Kubeadm, please refer to th
 Kubernetes supports multiple container runtimes. If you want to use Containerd as the container runtime, please make sure Containerd is installed on the node.
 
 ```bash
-./node.yml -t node_install -e '{"node_repo_modules":"node,docker","node_packages":["containerd.io"]}'
+./node.yml -t node_install -e '{"node_repo_modules":"node,infra","node_packages":["containerd.io"]}'
 ```
 
-If you want to use Docker as the container runtime, you need to install Docker and bridge with the `cri-dockerd` project (not available on EL9/D11 and similar platforms yet):
+To use Docker as the container runtime, install Docker and provide the `cri-dockerd` bridge component yourself. The default package mapping currently only includes the `containerd.io` runtime:
 
 ```bash
-./node.yml -t node_install -e '{"node_repo_modules":"node,infra,docker","node_packages":["docker-ce,docker-compose-plugin,cri-dockerd"]}'
+./node.yml -t node_install -e '{"node_repo_modules":"node,infra","node_packages":["docker-ce,docker-compose-plugin"]}'
 ```
 
 

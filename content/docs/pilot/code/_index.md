@@ -65,7 +65,7 @@ After deployment, access via:
 - **Subpath**: `https://i.pigsty/code/`
 - **Subdomain**: `https://code.pigsty` (requires `infra_portal` config)
 
-Default password: `Code.Server`
+Default password: `Vibe.Coding`
 
 
 --------
@@ -78,7 +78,7 @@ Default password: `Code.Server`
 | `code_port`      | `8443`        | Code-Server listen port (localhost only)    |
 | `code_home`      | `/fs/code`    | Working directory (VS Code opens this folder)             |
 | `code_data`      | `/data/code`  | User data directory (extensions, settings)                   |
-| `code_password`  | `Code.Server` | Login password                             |
+| `code_password`  | `Vibe.Coding` | Login password                             |
 | `code_gallery`   | `openvsx`     | Extension marketplace: `openvsx` or `microsoft`     |
 {.full-width}
 
@@ -173,7 +173,7 @@ all:
       hosts:
         10.10.10.10:
           code_enabled: true
-          code_password: 'Code.Server'
+          code_password: 'Vibe.Coding'
           code_home: /fs/code           # Use JuiceFS mount point
           jupyter_enabled: true
           jupyter_password: 'Jupyter.Lab'
@@ -222,4 +222,3 @@ GitHub Copilot currently doesn't support Code-Server. Consider other AI coding a
 - **OS**: EL 8/9/10, Ubuntu 22/24/26, Debian 12/13
 - **Arch**: x86_64, ARM64
 - **Ansible**: 2.9+
-
