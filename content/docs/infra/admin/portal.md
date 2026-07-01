@@ -43,33 +43,33 @@ Only services with a `domain` defined will generate corresponding Nginx config f
 
 ### Basic Parameters
 
-| Parameter  | Description                              |
-|------------|------------------------------------------|
-| `domain`   | Optional proxy domain                    |
+| Parameter  | Description                                  |
+|------------|----------------------------------------------|
+| `domain`   | Optional proxy domain                        |
 | `endpoint` | Upstream service address (IP:PORT or socket) |
-| `path`     | Local directory for static content       |
-| `scheme`   | Protocol type (http/https), default http |
-| `domains`  | Additional domain list (aliases)         |
+| `path`     | Local directory for static content           |
+| `scheme`   | Protocol type (http/https), default http     |
+| `domains`  | Additional domain list (aliases)             |
 
 ### SSL/TLS Options
 
-| Parameter       | Description                              |
-|-----------------|------------------------------------------|
+| Parameter       | Description                                              |
+|-----------------|----------------------------------------------------------|
 | `certbot`       | Enable Let's Encrypt cert management, value is cert name |
-| `cert`          | Custom certificate file path             |
-| `key`           | Custom private key file path             |
-| `enforce_https` | Force HTTPS redirect (301)               |
+| `cert`          | Custom certificate file path                             |
+| `key`           | Custom private key file path                             |
+| `enforce_https` | Force HTTPS redirect (301)                               |
 
 ### Advanced Settings
 
-| Parameter   | Description                         |
-|-------------|-------------------------------------|
-| `config`    | Custom Nginx config snippet         |
+| Parameter   | Description                           |
+|-------------|---------------------------------------|
+| `config`    | Custom Nginx config snippet           |
 | `index`     | Enable directory listing (for static) |
-| `log`       | Custom log file name                |
-| `websocket` | Enable WebSocket support            |
-| `auth`      | Enable Basic Auth                   |
-| `realm`     | Basic Auth prompt message           |
+| `log`       | Custom log file name                  |
+| `websocket` | Enable WebSocket support              |
+| `auth`      | Enable Basic Auth                     |
+| `realm`     | Basic Auth prompt message             |
 
 
 ----------------
@@ -162,7 +162,7 @@ Three ways to resolve domains to Pigsty servers:
 For local development, add to `/etc/hosts`:
 
 ```
-<your_public_ip_address> i.pigsty g.pigsty p.pigsty a.pigsty
+<your_public_ip_address> i.pigsty
 ```
 
 Pigsty includes dnsmasq service, configurable via [`dns_records`](/docs/infra/param#dns_records) parameter for internal DNS resolution.
@@ -174,9 +174,9 @@ Pigsty includes dnsmasq service, configurable via [`dns_records`](/docs/infra/pa
 
 Configure HTTPS via [`nginx_sslmode`](/docs/infra/param#nginx_sslmode) parameter:
 
-| Mode      | Description                                     |
-|-----------|-------------------------------------------------|
-| `disable` | Listen HTTP only (`nginx_port`)                 |
+| Mode      | Description                                                    |
+|-----------|----------------------------------------------------------------|
+| `disable` | Listen HTTP only (`nginx_port`)                                |
 | `enable`  | Also listen HTTPS (`nginx_ssl_port`), default self-signed cert |
 | `enforce` | Force redirect to HTTPS, all port 80 requests get 301 redirect |
 
@@ -279,5 +279,4 @@ infra_portal:
   odoo         : { domain: odoo.pigsty.io ,endpoint: "127.0.0.1:8069"   ,websocket: true }
   mm           : { domain: mm.pigsty.io   ,endpoint: "10.10.10.10:8065" ,websocket: true }
 ```
-
 

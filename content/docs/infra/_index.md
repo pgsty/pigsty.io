@@ -16,20 +16,20 @@ categories: [Reference]
 
 Every Pigsty deployment includes a set of infrastructure components that provide services for managed nodes and database clusters:
 
-|           Component           |   Port   |   Domain   | Description                                                            |
-|:-----------------------------:|:--------:|:----------:|------------------------------------------------------------------------|
-|        [Nginx](#nginx)        | `80/443` | `i.pigsty` | Web service portal, local repo, and unified entry point                |
-|      [Grafana](#grafana)      |  `3000`  | `g.pigsty` | Visualization platform for monitoring dashboards and data apps         |
-| [VictoriaMetrics](#victoria)  |  `8428`  | `p.pigsty` | Time-series database with VMUI, compatible with Prometheus API         |
-|   [VictoriaLogs](#victoria)   |  `9428`  |     -      | Centralized log database, receives structured logs from Vector         |
-|  [VictoriaTraces](#victoria)  | `10428`  |     -      | Tracing and event storage for slow SQL / request tracing               |
-|     [VMAlert](#victoria)      |  `8880`  |     -      | Alert rule evaluator, triggers alerts based on VictoriaMetrics metrics |
-|   [AlertManager](#victoria)   |  `9059`  | `a.pigsty` | Alert aggregation and dispatch, receives notifications from VMAlert    |
-| [BlackboxExporter](#victoria) |  `9115`  |     -      | ICMP/TCP/HTTP blackbox probing                                         |
-|      [DNSMASQ](#dnsmasq)      |   `53`   |     -      | DNS server for internal domain resolution                              |
-|      [Chronyd](#chronyd)      |  `123`   |     -      | NTP time server                                                        |
-|   [PostgreSQL](#postgresql)   |  `5432`  |     -      | CMDB and default database                                              |
-|      [Ansible](#ansible)      |    -     |     -      | Runs playbooks, orchestrates all infrastructure                        |
+|           Component           |   Port   | Description                                                            |
+|:-----------------------------:|:--------:|------------------------------------------------------------------------|
+|        [Nginx](#nginx)        | `80/443` | Web service portal, local repo, and unified entry point                |
+|      [Grafana](#grafana)      |  `3000`  | Visualization platform for monitoring dashboards and data apps         |
+| [VictoriaMetrics](#victoria)  |  `8428`  | Time-series database with VMUI, compatible with Prometheus API         |
+|   [VictoriaLogs](#victoria)   |  `9428`  | Centralized log database, receives structured logs from Vector         |
+|  [VictoriaTraces](#victoria)  | `10428`  | Tracing and event storage for slow SQL / request tracing               |
+|     [VMAlert](#victoria)      |  `8880`  | Alert rule evaluator, triggers alerts based on VictoriaMetrics metrics |
+|   [AlertManager](#victoria)   |  `9059`  | Alert aggregation and dispatch, receives notifications from VMAlert    |
+| [BlackboxExporter](#victoria) |  `9115`  | ICMP/TCP/HTTP blackbox probing                                         |
+|      [DNSMASQ](#dnsmasq)      |   `53`   | DNS server for internal domain resolution                              |
+|      [Chronyd](#chronyd)      |  `123`   | NTP time server                                                        |
+|   [PostgreSQL](#postgresql)   |  `5432`  | CMDB and default database                                              |
+|      [Ansible](#ansible)      |    -     | Runs playbooks, orchestrates all infrastructure                        |
 
 
 
@@ -57,7 +57,8 @@ Nginx is the access entry point for all WebUI services in Pigsty, using port 80 
 
 Many infrastructure components with WebUI are exposed through Nginx, such as Grafana, VictoriaMetrics (VMUI), AlertManager, and HAProxy traffic management pages. Additionally, static file resources like yum/apt repos are served through Nginx.
 
-Nginx routes access requests to corresponding upstream components based on **domain names** according to [`infra_portal`](/docs/infra/param#infra_portal) configuration. If you use other domains or public domains, you can modify them here:
+Nginx exposes built-in Web services through subpaths under `i.pigsty` by default. It can also route access requests to corresponding upstream components based on **domain names** according to [`infra_portal`](/docs/infra/param#infra_portal) configuration.
+If you use other domains or public domains, you can modify them here:
 
 ```yaml
 infra_portal:  # domain names and upstream servers
@@ -114,13 +115,13 @@ Local repository configuration parameters are at: [Configuration: INFRA - REPO](
 
 ### Victoria Observability Suite
 
-Pigsty v4.0 uses the VictoriaMetrics family to replace Prometheus/Loki, providing unified monitoring, logging, and tracing capabilities:
+Pigsty v4 uses the VictoriaMetrics family to replace Prometheus/Loki, providing unified monitoring, logging, and tracing capabilities:
 
-* **VictoriaMetrics** listens on port `8428` by default, accessible via `http://p.pigsty` or `https://i.pigsty/vmetrics/` for VMUI, compatible with Prometheus API.
+* **VictoriaMetrics** listens on port `8428` by default, accessible via `https://i.pigsty/vmetrics/` for VMUI, compatible with Prometheus API. You can also configure a dedicated domain in `infra_portal`.
 * **VMAlert** evaluates alert rules in `/infra/rules/*.yml`, listens on port `8880`, and sends alert events to Alertmanager.
 * **VictoriaLogs** listens on port `9428`, supports the `https://i.pigsty/vlogs/` query interface. All nodes run Vector by default, pushing structured system logs, PostgreSQL logs, etc. to VictoriaLogs.
 * **VictoriaTraces** listens on port `10428` for slow SQL / Trace collection, Grafana accesses it as a Jaeger datasource.
-* **Alertmanager** listens on port `9059`, accessible via `http://a.pigsty` or `https://i.pigsty/alertmgr/` for managing alert notifications. After configuring SMTP, Webhook, etc., it can push messages.
+* **Alertmanager** listens on port `9059`, accessible via `https://i.pigsty/alertmgr/` for managing alert notifications. If `a.pigsty` is configured in `infra_portal`, it can also be accessed through a dedicated domain. After configuring SMTP, Webhook, etc., it can push messages.
 * **Blackbox Exporter** listens on port `9115` by default for Ping/TCP/HTTP probing, accessible via `https://i.pigsty/blackbox/`.
 
 For more information, see: [Configuration: INFRA - VICTORIA](/docs/infra/param#victoria) and [Configuration: INFRA - PROMETHEUS](/docs/infra/param#prometheus).
@@ -131,7 +132,7 @@ For more information, see: [Configuration: INFRA - VICTORIA](/docs/infra/param#v
 
 ### Grafana
 
-Grafana is the core of Pigsty's WebUI, listening on port `3000` by default, accessible directly via `IP:3000` or domain `http://g.pigsty`.
+Grafana is the core of Pigsty's WebUI, listening on port `3000` by default. It can be accessed through `https://i.pigsty/ui/` or directly via `IP:3000`; if `g.pigsty` is configured in `infra_portal`, it can also be accessed through a dedicated domain.
 
 Pigsty comes with preconfigured datasources for VictoriaMetrics / Logs / Traces (`vmetrics-*`, `vlogs-*`, `vtraces-*`), and numerous dashboards with URL-based navigation for quick problem location.
 
@@ -448,4 +449,3 @@ The [`INFRA`](/docs/infra/param#infra) module has the following 10 parameter gro
 For the latest default values, types, and hierarchy, please refer to the [Parameter Reference](/docs/infra/param/#parameter-overview) to stay consistent with the Pigsty version.
 
 </details>
-

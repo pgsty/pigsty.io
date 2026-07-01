@@ -17,7 +17,7 @@ Use domain names instead of IP addresses to access Pigsty's various web services
 Add the following static resolution records to `/etc/hosts`:
 
 ```
-10.10.10.10 i.pigsty g.pigsty p.pigsty a.pigsty
+10.10.10.10 i.pigsty
 ```
 
 Replace IP address with your actual Pigsty node's IP.
@@ -50,13 +50,12 @@ Replace IP address with your actual Pigsty node's IP.
 
 Pigsty predefines the following default domains:
 
-| Domain     | Service         | Port    | Purpose                          |
-|------------|-----------------|---------|----------------------------------|
-| `i.pigsty` | Nginx           | 80/443  | Default homepage, local repo, unified entry |
-| `g.pigsty` | Grafana         | 3000    | Monitoring and visualization     |
-| `p.pigsty` | VictoriaMetrics | 8428    | VMUI/PromQL entry                |
-| `a.pigsty` | AlertManager    | 9059    | Alert routing                    |
-| `m.pigsty` | MinIO           | 9001    | Object storage console           |
+| Domain     | Service | Port   | Purpose                                     |
+|------------|---------|--------|---------------------------------------------|
+| `i.pigsty` | Nginx   | 80/443 | Default homepage, local repo, unified entry |
+| `m.pigsty` | MinIO   | 9001   | Object storage console                      |
+
+Grafana, VictoriaMetrics, and Alertmanager are accessed by default through the `/ui/`, `/vmetrics/`, and `/alertmgr/` subpaths under `i.pigsty`. To use dedicated domains such as `g.pigsty`, `p.pigsty`, and `a.pigsty`, configure them explicitly in [`infra_portal`](/docs/infra/param#infra_portal) and [`dns_records`](/docs/infra/param#dns_records).
 
 
 ----------------
@@ -78,7 +77,7 @@ notepad C:\Windows\System32\drivers\etc\hosts
 Add content:
 
 ```
-10.10.10.10 i.pigsty g.pigsty p.pigsty a.pigsty m.pigsty
+10.10.10.10 i.pigsty m.pigsty
 ```
 
 ### Internal Dynamic Resolution
@@ -138,13 +137,13 @@ Pigsty automatically registers DNS records for PostgreSQL clusters and instances
 
 Cluster-level DNS target controlled by [`pg_dns_target`](/docs/pgsql/param#pg_dns_target):
 
-| Value     | Description                                    |
-|-----------|------------------------------------------------|
+| Value     | Description                                        |
+|-----------|----------------------------------------------------|
 | `auto`    | Auto-select: use VIP if available, else primary IP |
-| `primary` | Always point to primary IP                     |
-| `vip`     | Always point to VIP (requires VIP enabled)     |
-| `none`    | Don't register cluster DNS                     |
-| `<ip>`    | Specify fixed IP address                       |
+| `primary` | Always point to primary IP                         |
+| `vip`     | Always point to VIP (requires VIP enabled)         |
+| `none`    | Don't register cluster DNS                         |
+| `<ip>`    | Specify fixed IP address                           |
 
 Add suffix to cluster DNS via [`pg_dns_suffix`](/docs/pgsql/param#pg_dns_suffix).
 
@@ -175,11 +174,11 @@ node_etc_hosts:
 
 `node_dns_method` options:
 
-| Value       | Description                        |
-|-------------|------------------------------------|
+| Value       | Description                         |
+|-------------|-------------------------------------|
 | `add`       | Prepend to existing DNS server list |
-| `overwrite` | Completely overwrite DNS config    |
-| `none`      | Don't modify DNS config            |
+| `overwrite` | Completely overwrite DNS config     |
+| `none`      | Don't modify DNS config             |
 
 Default DNS options:
 
@@ -208,20 +207,20 @@ See [CA and Certificates](/docs/infra/admin/cert/) documentation for details.
 
 Pigsty reserves the following domains for various application services:
 
-| Domain        | Purpose              |
-|---------------|----------------------|
-| `adm.pigsty`  | PgAdmin interface    |
+| Domain        | Purpose                 |
+|---------------|-------------------------|
+| `adm.pigsty`  | PgAdmin interface       |
 | `ddl.pigsty`  | Bytebase DDL management |
-| `cli.pigsty`  | PgWeb CLI interface  |
-| `api.pigsty`  | PostgREST API service |
-| `lab.pigsty`  | Jupyter environment  |
-| `git.pigsty`  | Gitea Git service    |
-| `wiki.pigsty` | Wiki.js docs         |
-| `noco.pigsty` | NocoDB               |
-| `supa.pigsty` | Supabase             |
-| `dify.pigsty` | Dify AI              |
-| `odoo.pigsty` | Odoo ERP             |
-| `mm.pigsty`   | Mattermost           |
+| `cli.pigsty`  | PgWeb CLI interface     |
+| `api.pigsty`  | PostgREST API service   |
+| `lab.pigsty`  | Jupyter environment     |
+| `git.pigsty`  | Gitea Git service       |
+| `wiki.pigsty` | Wiki.js docs            |
+| `noco.pigsty` | NocoDB                  |
+| `supa.pigsty` | Supabase                |
+| `dify.pigsty` | Dify AI                 |
+| `odoo.pigsty` | Odoo ERP                |
+| `mm.pigsty`   | Mattermost              |
 
 Using these domains requires configuring corresponding services in [`infra_portal`](/docs/infra/param#infra_portal).
 
@@ -243,5 +242,4 @@ Using these domains requires configuring corresponding services in [`infra_porta
 ./pgsql.yml -t pg_dns_ins     # Register instance-level DNS only
 ./pgsql.yml -t pg_dns_cls     # Register cluster-level DNS only
 ```
-
 

@@ -578,7 +578,7 @@ name: `repo_upstream`, type: `upstream[]`, level: `G`
 
 Where to download upstream packages when building the local repository? This parameter has no default value. If not explicitly specified by the user in the configuration file, it will be loaded from the `repo_upstream_default` variable defined in [`roles/node_id/vars`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/) based on the current node's OS family.
 
-Pigsty provides complete upstream repository definitions for different OS versions (EL8/9/10, Debian 11/12/13, Ubuntu 22/24/26), including:
+Pigsty provides complete upstream repository definitions for currently supported OS versions (EL 8/9/10, Debian 12/13, Ubuntu 22/24/26), including:
 
 - OS base repositories (BaseOS, AppStream, EPEL, etc.)
 - PostgreSQL official PGDG repository
