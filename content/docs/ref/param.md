@@ -9,24 +9,24 @@ categories: [Reference]
 This is the parameter navigation page for Pigsty v4.x, without repeating full explanations for each parameter.
 For parameter details, please read each module's `param` page.
 
-According to current documentation scope, official modules contain about **360** parameters across **10** modules.
+According to current documentation scope, official modules contain exactly **360** parameters across **10** modules.
 
 --------
 
 ## Module Parameter Navigation
 
-| Module | Groups | Count | Description |
-|:-----------------------------------:|:---:|:---:|:-------------------------------|
-|  [**`PGSQL`**](/docs/pgsql/param)   |  9  | 125 | PostgreSQL HA cluster configuration |
-|  [**`INFRA`**](/docs/infra/param)   | 10  | 72  | Software repository and Victoria-based observability infra |
-|   [**`NODE`**](/docs/node/param)    | 11  | 73  | Node initialization, system tuning, and ops baseline |
-|   [**`ETCD`**](/docs/etcd/param)    |  2  | 13  | ETCD cluster and removal safeguard parameters |
-|  [**`MINIO`**](/docs/minio/param)   |  2  | 21  | MinIO deployment and removal parameters |
-|  [**`REDIS`**](/docs/redis/param)   |  2  | 21  | Redis deployment and removal parameters |
-| [**`FERRET`**](/docs/ferret/param)  |  1  |  9  | FerretDB (Mongo API) parameters |
-| [**`DOCKER`**](/docs/docker/param)  |  1  |  8  | Docker engine parameters |
-|  [**`JUICE`**](/docs/juice/param)   |  1  |  2  | JuiceFS instance and cache parameters |
-|   [**`VIBE`**](/docs/vibe/param)    |  1  | 16  | Code/Jupyter/Node.js/Claude configuration |
+|               Module               | Groups | Count | Description                                                |
+|:----------------------------------:|:------:|:-----:|:-----------------------------------------------------------|
+|  [**`PGSQL`**](/docs/pgsql/param)  |   9    |  125  | PostgreSQL HA cluster configuration                        |
+|  [**`INFRA`**](/docs/infra/param)  |   10   |  72   | Software repository and Victoria-based observability infra |
+|   [**`NODE`**](/docs/node/param)   |   11   |  73   | Node initialization, system tuning, and ops baseline       |
+|   [**`ETCD`**](/docs/etcd/param)   |   2    |  13   | ETCD cluster and removal safeguard parameters              |
+|  [**`MINIO`**](/docs/minio/param)  |   2    |  21   | MinIO deployment and removal parameters                    |
+|  [**`REDIS`**](/docs/redis/param)  |   2    |  21   | Redis deployment and removal parameters                    |
+| [**`FERRET`**](/docs/ferret/param) |   1    |   9   | FerretDB (Mongo API) parameters                            |
+| [**`DOCKER`**](/docs/docker/param) |   1    |   8   | Docker engine parameters                                   |
+|  [**`JUICE`**](/docs/juice/param)  |   1    |   2   | JuiceFS instance and cache parameters                      |
+|   [**`VIBE`**](/docs/vibe/param)   |   1    |  16   | Code/Jupyter/Node.js/Claude configuration                  |
 {.stretch-last}
 
 --------

@@ -236,13 +236,13 @@ The main template is [`roles/infra/templates/victoria/prometheus.yml`](https://g
 ## PostgreSQL FHS
 
 
-The following parameters are related to PostgreSQL directory layout:
+The following parameters and internal variables are related to PostgreSQL directory layout:
 
 * [**`pg_dbsu_home`**](/docs/pgsql/param#pg_dbsu_home): Postgres default user home directory, default: `/var/lib/pgsql`
 * [**`pg_bin_dir`**](/docs/pgsql/param#pg_bin_dir): Postgres binary directory, default: `/usr/pgsql/bin/`
-* [**`pg_data`**](/docs/pgsql/param#pg_data): Postgres data directory, default: `/pg/data`
 * [**`pg_fs_main`**](/docs/pgsql/param#pg_fs_main): Postgres primary data directory, default: `/data/postgres`
 * [**`pg_fs_backup`**](/docs/pgsql/param#pg_fs_backup): Postgres backup disk mount point, default: `/data/backups` (optional; can also be a subdirectory on primary disk)
+* [**`pg_data`**](/docs/pgsql/param#pg_data): Internal variable, fixed to the Postgres data-directory symlink `/pg/data`
 * **`pg_cluster_dir`**: Derived variable, `{{ pg_fs_main }}/{{ pg_cluster }}-{{ pg_version }}`
 * **`pg_backup_dir`**: Derived variable, `{{ pg_fs_backup }}/{{ pg_cluster }}-{{ pg_version }}`
 
