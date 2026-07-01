@@ -68,7 +68,7 @@ After installation, access Supa Studio on port `8000` with username `supabase` a
 ## What is Supabase?
 
 [Supabase](https://supabase.com/) is a BaaS (Backend as a Service), an open-source Firebase alternative, and the most popular database + backend solution in the AI Agent era.
-Supabase wraps PostgreSQL and provides authentication, messaging, edge functions, object storage, and automatically generates REST and GraphQL APIs based on your database schema.
+Supabase wraps PostgreSQL and provides authentication, messaging, edge functions, object storage, and automatically generates REST APIs based on your database schema. After enabling `pg_graphql` on demand, it can also provide GraphQL APIs.
 
 Supabase aims to provide developers with a one-stop backend solution, reducing the complexity of developing and maintaining backend infrastructure.
 It allows developers to skip most backend development work — **you only need to understand database design and frontend to ship quickly!**
@@ -98,7 +98,7 @@ We package all 10 missing Supabase extensions into ready-to-use RPM/DEB packages
 
 | Extension | Description |
 |---|---|
-| [`pg_graphql`](/ext/e/pg_graphql/) | GraphQL support in PostgreSQL (Rust), provided by PIGSTY |
+| [`pg_graphql`](/ext/e/pg_graphql/) | GraphQL support in PostgreSQL (Rust), provided by PIGSTY, enabled on demand |
 | [`pg_jsonschema`](/ext/e/pg_jsonschema/) | JSON Schema validation (Rust), provided by PIGSTY |
 | [`wrappers`](/ext/e/wrappers/) | Supabase foreign data wrapper bundle (Rust), provided by PIGSTY |
 | [`index_advisor`](/ext/e/index_advisor/) | Query index advisor (SQL), provided by PIGSTY |
@@ -110,10 +110,11 @@ We package all 10 missing Supabase extensions into ready-to-use RPM/DEB packages
 | [`pg_plan_filter`](/ext/e/plan_filter/) | Filter queries by execution plan cost (C), provided by PIGSTY |
 
 We also [install](/docs/pgsql/ext/install) most extensions by default in Supabase deployments. You can [enable](/docs/pgsql/ext/create) them as needed.
+Newer templates install the `pg_graphql` package but no longer create the `pg_graphql` extension object by default. If you need GraphQL APIs, run `CREATE EXTENSION IF NOT EXISTS pg_graphql;` in the target database; the event trigger in the template will rebuild the `graphql_public.graphql` entry point and permissions.
 
 Pigsty also handles the underlying [highly available](/docs/concept/ha/) [PostgreSQL](/docs/pgsql/) cluster, highly available [MinIO](/docs/minio/) object storage cluster, and even [Docker](/docs/docker/) deployment, [Nginx](/docs/infra/admin/portal) reverse proxy, [domain configuration](/docs/infra/admin/domain), and [HTTPS certificate issuance](/docs/infra/admin/cert). You can spin up any number of stateless Supabase container clusters using Docker Compose and store state in external Pigsty-managed database services.
 
-With this self-hosted architecture, you gain the freedom to use different kernels (PG 15-18, OrioleDB), install [**531**](/ext/list/) extensions, scale Supabase/Postgres/MinIO, freedom from database operations, and freedom from vendor lock-in — running locally forever. Compared to cloud service costs, you only need to prepare servers and run a few commands.
+With this self-hosted architecture, you gain the freedom to use different PostgreSQL kernels (PostgreSQL 14-18, default 18), install [**531**](/ext/list/) extensions, scale Supabase/Postgres/MinIO, freedom from database operations, and freedom from vendor lock-in — running locally forever. Compared to cloud service costs, you only need to prepare servers and run a few commands.
 
 
 ------
@@ -123,7 +124,7 @@ With this self-hosted architecture, you gain the freedom to use different kernel
 Let's start with single-node Supabase deployment. We'll cover multi-node high availability later.
 
 [Prepare](/docs/deploy/prepare) a fresh [Linux server](/docs/deploy/prepare), use the Pigsty [`supabase`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml) configuration template for [standard installation](/docs/setup/install),
-then run [`docker.yml`](/docs/docker/playbook#dockeryml) and `app.yml` to start stateless Supabase containers (default ports `8000`/`8433`).
+then run [`docker.yml`](/docs/docker/playbook#dockeryml) and `app.yml` to start stateless Supabase containers (default ports `8000`/`8443`).
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
@@ -160,6 +161,9 @@ Here are some key technical decisions for self-hosting Supabase:
 
 **Single-node deployment** doesn't provide PostgreSQL/MinIO high availability.
 However, single-node deployment still has significant advantages over the official pure Docker Compose approach: out-of-the-box monitoring, freedom to install extensions, component scaling capabilities, and point-in-time recovery as a safety net.
+
+Pigsty's Supabase template does not start the upstream Compose `db` or `supavisor` containers, and does not use Supabase's bundled connection pooler.
+Stateless containers connect directly to the PostgreSQL service managed by Pigsty; the single-node template uses service port `5436` by default, which always routes to the current primary.
 
 If you only have one server or choose to self-host on cloud servers, Pigsty recommends using external S3 instead of local MinIO for object storage to hold PostgreSQL backups and Supabase Storage.
 This deployment provides a minimum safety net RTO (hour-level recovery time) / RPO (MB-level data loss) disaster recovery in single-node conditions.
@@ -198,23 +202,29 @@ These are Pigsty component passwords. Strongly recommended to set before install
 
 Besides Pigsty component passwords, you need to [change Supabase keys](https://supabase.com/docs/guides/self-hosting/docker#securing-your-services), including:
 
-- [`JWT_SECRET`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L135): JWT signing key, at least 32 characters
-- [`ANON_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L136): Anonymous user JWT credential
-- [`SERVICE_ROLE_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L137): Service role JWT credential
-- [`PG_META_CRYPTO_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L138): PostgreSQL Meta service encryption key, at least 32 characters
-- [`DASHBOARD_USERNAME`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L140): Supabase Studio web UI default username, default `supabase`
-- [`DASHBOARD_PASSWORD`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L141): Supabase Studio web UI default password, default `pigsty`
-- [`LOGFLARE_PUBLIC_ACCESS_TOKEN`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L144): Logflare public access token, 32-64 random characters
-- [`LOGFLARE_PRIVATE_ACCESS_TOKEN`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L145): Logflare private access token, 32-64 random characters
+- [`JWT_SECRET`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L132): JWT signing key, at least 32 characters
+- [`ANON_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L133): Anonymous user JWT credential
+- [`SERVICE_ROLE_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L134): Service role JWT credential
+- [`SUPABASE_PUBLISHABLE_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L135) / [`SUPABASE_SECRET_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L136): New opaque API keys, can be left empty if not enabled
+- [`JWT_KEYS`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L137) / [`JWT_JWKS`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L138): Asymmetric JWT keys and JWKS, can be left empty if not enabled
+- [`ANON_KEY_ASYMMETRIC`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L139) / [`SERVICE_ROLE_KEY_ASYMMETRIC`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L140): Asymmetric signing JWTs, can be left empty if not enabled
+- [`PG_META_CRYPTO_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L141): PostgreSQL Meta service encryption key, at least 32 characters
+- [`SECRET_KEY_BASE`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L142): Random secret used by Realtime
+- [`DASHBOARD_USERNAME`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L144): Supabase Studio web UI default username, default `supabase`
+- [`DASHBOARD_PASSWORD`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L145): Supabase Studio web UI default password, default `pigsty`
+- [`LOGFLARE_PUBLIC_ACCESS_TOKEN`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L148): Logflare public access token, 32-64 random characters
+- [`LOGFLARE_PRIVATE_ACCESS_TOKEN`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L149): Logflare private access token, 32-64 random characters
 
 Please follow the [Supabase tutorial: Securing your services](https://supabase.com/docs/guides/self-hosting/docker#generate-api-keys):
 
 - Generate a `JWT_SECRET` with at least 40 characters, then use the tutorial tools to issue `ANON_KEY` and `SERVICE_ROLE_KEY` JWTs.
 - Use the tutorial tools to generate an `ANON_KEY` JWT based on `JWT_SECRET` and expiration time — this is the anonymous user credential.
 - Use the tutorial tools to generate a `SERVICE_ROLE_KEY` — this is the higher-privilege service role credential.
+- If you use newer opaque API keys or asymmetric JWTs, also generate and fill `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`, `JWT_KEYS`, `JWT_JWKS`, and the corresponding asymmetric `ANON_KEY` / `SERVICE_ROLE_KEY`.
 - Specify a random string of at least 32 characters for `PG_META_CRYPTO_KEY` to encrypt Studio UI and meta service interactions.
-- If using different PostgreSQL business user passwords, modify [`POSTGRES_PASSWORD`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L144) accordingly.
-- If your object storage uses different passwords, modify [`S3_ACCESS_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L154) and [`S3_SECRET_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L155) accordingly.
+- If using different PostgreSQL business user passwords, modify [`POSTGRES_PASSWORD`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L155) accordingly.
+- If your object storage uses different passwords, modify [`S3_ACCESS_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L166) and [`S3_SECRET_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L167) accordingly.
+- If Edge Functions are exposed to untrusted clients, set [`FUNCTIONS_VERIFY_JWT`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L180) to `true` as needed.
 
 After modifying Supabase credentials, restart Docker Compose to apply:
 
@@ -233,10 +243,10 @@ If using Supabase locally or on LAN, you can directly connect to Kong's HTTP por
 You can use an internal static-resolved domain, but for serious production deployments, we recommend using a real domain + HTTPS to access Supabase.
 In this case, your server should have a public IP, you should own a domain, use cloud/DNS/CDN provider's DNS resolution to point to the node's public IP (optional fallback: local `/etc/hosts` static resolution).
 
-The simple approach is to batch-replace the placeholder domain (`supa.pigsty`) with your actual domain, e.g., `supa.pigsty.cc`:
+The simple approach is to batch-replace the placeholder domain (`supa.pigsty`) with your actual domain, e.g., `supa.pigsty.io`:
 
 ```bash
-sed -ie 's/supa.pigsty/supa.pigsty.cc/g' ~/pigsty/pigsty.yml
+sed -ie 's/supa.pigsty/supa.pigsty.io/g' ~/pigsty/pigsty.yml
 ```
 
 If not configured beforehand, reload Nginx and Supabase configuration:
@@ -253,12 +263,12 @@ all:
   vars:
     certbot_sign: true                # Use certbot to sign real certificates
     infra_portal:
-      home: i.pigsty.cc               # Replace with your domain!
+      home: i.pigsty.io               # Replace with your domain!
       supa:
-        domain: supa.pigsty.cc        # Replace with your domain!
+        domain: supa.pigsty.io        # Replace with your domain!
         endpoint: "10.10.10.10:8000"
         websocket: true
-        certbot: supa.pigsty.cc       # Certificate name, usually same as domain
+        certbot: supa.pigsty.io       # Certificate name, usually same as domain
 
   children:
     supabase:
@@ -266,9 +276,9 @@ all:
         apps:
           supabase:                                         # Supabase app definition
             conf:                                           # Override /opt/supabase/.env
-              SITE_URL: https://supa.pigsty.cc              # <------- Change to your external domain name
-              API_EXTERNAL_URL: https://supa.pigsty.cc      # <------- Otherwise the storage API may not work!
-              SUPABASE_PUBLIC_URL: https://supa.pigsty.cc   # <------- Don't forget to set this in infra_portal!
+              SITE_URL: https://supa.pigsty.io              # <------- Change to your external domain name
+              API_EXTERNAL_URL: https://supa.pigsty.io      # <------- Otherwise the storage API may not work!
+              SUPABASE_PUBLIC_URL: https://supa.pigsty.io   # <------- Don't forget to set this in infra_portal!
 ```
 
 For complete domain/HTTPS configuration, see [Certificate Management](/docs/infra/admin/cert). You can also use Pigsty's built-in local static resolution and self-signed HTTPS certificates as fallback.
@@ -288,13 +298,18 @@ First, modify the S3 configuration in `all.children.supa.vars.apps.[supabase].co
 
 ```yaml
 # if using s3/minio as file storage
-S3_BUCKET: data                       # Replace with S3-compatible service info
-S3_ENDPOINT: https://sss.pigsty:9000  # Replace with S3-compatible service info
-S3_ACCESS_KEY: s3user_data            # Replace with S3-compatible service info
-S3_SECRET_KEY: S3User.Data            # Replace with S3-compatible service info
-S3_FORCE_PATH_STYLE: true             # Replace with S3-compatible service info
-S3_REGION: stub                       # Replace with S3-compatible service info
-S3_PROTOCOL: https                    # Replace with S3-compatible service info
+S3_BUCKET: data                            # Legacy template compatibility, keep aligned with GLOBAL_S3_BUCKET
+GLOBAL_S3_BUCKET: data                     # Bucket actually used by Supabase Storage
+S3_ENDPOINT: https://sss.pigsty:9000       # Replace with S3-compatible service info
+S3_ACCESS_KEY: s3user_data                 # Replace with S3-compatible service info
+S3_SECRET_KEY: S3User.Data                 # Replace with S3-compatible service info
+S3_FORCE_PATH_STYLE: true                  # Replace with S3-compatible service info
+S3_PROTOCOL: https                         # Replace with S3-compatible service info
+S3_REGION: stub                            # Legacy template compatibility
+REGION: stub                               # Region actually used by Supabase Storage
+STORAGE_TENANT_ID: stub                    # Supabase Storage tenant id
+S3_PROTOCOL_ACCESS_KEY_ID: s3user_data     # S3 protocol access key
+S3_PROTOCOL_ACCESS_KEY_SECRET: S3User.Data # S3 protocol access key
 ```
 
 Reload Supabase configuration:

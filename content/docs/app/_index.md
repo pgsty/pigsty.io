@@ -20,7 +20,8 @@ The recommended app install workflow in v4.3 is:
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
-./configure -c <template>     # e.g. app/dify, app/odoo, app/registry, supabase
+./bootstrap
+./configure -c <template>     # e.g. app/dify, app/insforge, app/registry, supabase
 vi pigsty.yml                 # edit passwords, domains, IPs, and secrets
 ./deploy.yml                  # deploy infrastructure and databases
 ./docker.yml                  # install Docker
@@ -29,9 +30,9 @@ vi pigsty.yml                 # edit passwords, domains, IPs, and secrets
 
 `app.yml` copies `app/<name>` templates to `/opt/<name>`, overwrites `.env` with `apps.<name>.conf`, then runs `docker compose up -d`.
 
-## Maintained Configuration Templates
+## Maintained Config Templates
 
-The following app templates are actively provided in v4.3 (`conf/app/*.yml` and `conf/supabase.yml`):
+The following app config templates are actively provided in v4.3 (`conf/app/*.yml`, `conf/supabase.yml`, and the `conf/app/supa.yml` symlink):
 
 - `app/dify`
 - `app/odoo`
@@ -40,13 +41,15 @@ The following app templates are actively provided in v4.3 (`conf/app/*.yml` and 
 - `app/electric`
 - `app/maybe`
 - `app/registry`
+- `app/insforge`
+- `app/hindsight`
 - `supabase`
 
 These templates work out of the box and align with the `./configure -c ...` + `./app.yml` workflow.
 
 ## Lightweight Compose Apps
 
-For apps like `gitea`, `postgrest`, `pgweb`, `wiki`, `kong`, and `bytebase`, you can also use the per-app Compose templates directly:
+For apps like `bytebase`, `ferretdb`, `gitea`, `jupyter`, `kong`, `metabase`, `minio`, `nocodb`, `pgadmin`, `pgweb`, `postgrest`, `pg_exporter`, and `wiki`, you can also use the per-app Compose templates directly:
 
 ```bash
 cd ~/pigsty/app/<name>

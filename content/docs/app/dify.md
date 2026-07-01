@@ -48,7 +48,7 @@ Once Dify starts, you can install various extensions, configure system models, a
 
 There are many reasons to self-host Dify, but the primary motivation is data security. The Docker Compose template provided by Dify uses basic default database images, lacking enterprise features like high availability, disaster recovery, monitoring, IaC, and PITR capabilities.
 
-Pigsty elegantly solves these issues for Dify, deploying all components with a single command based on configuration files and using mirrors to address China region access challenges. This makes Dify deployment and delivery very smooth. It handles PostgreSQL primary database, PGVector vector database, MinIO object storage, Redis, Prometheus monitoring, Grafana visualization, Nginx reverse proxy, and free HTTPS certificates all at once.
+Pigsty elegantly solves these issues for Dify, deploying all components with a single command based on configuration files and using mirrors to address China region access challenges. This makes Dify deployment and delivery very smooth. It handles PostgreSQL primary database, PGVector vector database, MinIO object storage, Redis, VictoriaMetrics monitoring, Grafana visualization, Nginx reverse proxy, and free HTTPS certificates all at once.
 
 Pigsty ensures all Dify state is stored in externally managed services, including metadata in PostgreSQL and other data in the file system. Dify instances launched via Docker Compose become stateless applications that can be destroyed and rebuilt at any time, greatly simplifying operations.
 
