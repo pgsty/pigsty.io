@@ -173,7 +173,7 @@ proceed with ./deploy.yml
 |:------------------------|:-----------------------------------------------------------------------------------|
 | `-i\|--ip`              | Primary internal IP of current host, replaces placeholder `10.10.10.10`            |
 | `-c\|--conf`            | [**Config template**](/docs/conf/) name relative to `conf/`, without `.yml` suffix |
-| `-v\|--version`         | PostgreSQL major version: `13`, `14`, `15`, `16`, `17`, `18`                       |
+| `-v\|--version`         | PostgreSQL major version: `14`, `15`, `16`, `17`, `18`                             |
 | `-r\|--region`          | Upstream repo region for faster downloads: (`default\|china\|europe`)              |
 | `-n\|--non-interactive` | Use command-line args for primary IP, skip interactive wizard                      |
 | `-x\|--proxy`           | Use current env vars to configure [`proxy_env`](/docs/infra/param#proxy_env)       |
