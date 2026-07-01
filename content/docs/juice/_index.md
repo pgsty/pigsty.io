@@ -52,7 +52,7 @@ flowchart LR
 - **PostgreSQL metadata**: Metadata stored in PostgreSQL for easy management and backup
 - **Multi-instance**: One node can mount multiple independent filesystem instances
 - **Multiple data backends**: PostgreSQL, MinIO, S3, and more
-- **Monitoring integration**: Each instance exposes Prometheus / Victoria metrics port
+- **Monitoring integration**: Each instance exposes Prometheus / Victoria-format metrics port
 - **Simple config**: Describe instances with the [**`juice_instances`**](/docs/juice/param#juice_instances) dict
 
 --------
