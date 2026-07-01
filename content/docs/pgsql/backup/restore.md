@@ -25,7 +25,7 @@ If you want to roll back the `pg-meta` cluster to a previous point in time, add 
 pg-meta:
   hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary } }
   vars:
-    pg_cluster: pg-meta2
+    pg_cluster: pg-meta
     pg_pitr: { time: '2025-07-13 10:00:00+00' }  # Recover from latest backup
 ```
 
@@ -40,12 +40,12 @@ Then run the `pgsql-pitr.yml` playbook, which will roll back the `pg-meta` clust
 
 ## Post-Recovery
 
-The recovered cluster will have `archive_mode` **disabled** to prevent accidental WAL writes.
-If the recovered database state is normal, you can enable `archive_mode` and perform a full backup.
+Pigsty v4.3 `pgsql-pitr.yml` keeps archiving settings by default (`archive: true`). If you are doing exploratory recovery and explicitly set `archive: false`, re-enable archiving and perform a full backup after recovery.
 
 ```bash title="postgres @ pg-meta $"
-psql -c 'ALTER SYSTEM RESET archive_mode; SELECT pg_reload_conf();'
-pg-backup full    # Perform new full backup
+psql -c 'ALTER SYSTEM RESET archive_mode;'
+pg restart pg-meta  # archive_mode is a postmaster parameter and requires restart
+pg-backup full    # Perform a new full backup
 ```
 
 
@@ -61,7 +61,7 @@ You can specify different types of recovery targets in `pg_pitr`, but they are m
 - [`lsn`](https://www.postgresql.org/docs/current/runtime-config-wal.html#RECOVERY-TARGET-LSN): Recover to a specific LSN (Log Sequence Number) point
 
 If any of the above parameters are specified, the recovery [`type`](https://www.postgresql.org/docs/current/runtime-config-wal.html#RECOVERY-TARGET-TYPE) will be set accordingly,
-otherwise it will be set to `latest` (end of WAL archive stream).
+otherwise `--type/--target` is not passed and recovery goes to the end of the WAL archive stream (Pigsty internal type: `default`).
 The special `immediate` type can be used to instruct pgbackrest to minimize recovery time by stopping at the first consistent point.
 
 
@@ -69,7 +69,7 @@ The special `immediate` type can be used to instruct pgbackrest to minimize reco
 
 {{< tabpane persist="disabled" >}}
 {{% tab header="Recovery Target Types" disabled=true /%}}
-{{< tab header="latest" lang="yaml" >}}
+{{< tab header="default/latest" lang="yaml" >}}
 pg_pitr: { }  # Recover to latest state (end of WAL archive stream)
 {{< /tab >}}
 {{< tab header="time" lang="yaml" >}}
@@ -121,7 +121,7 @@ Then use that named restore point in PITR:
 If you have a transaction that accidentally deleted some data, the best way to recover is to restore the database to the state before that transaction.
 
 ```bash title="Recover to before a transaction"
-./pgsql-pitr.yml -e '{"pg_pitr": { "xid": "250000", exclusive: true }}'
+./pgsql-pitr.yml -e '{"pg_pitr": { "xid": "250000", "exclusive": true }}'
 ```
 
 You can find the exact transaction ID from monitoring dashboards or from the `TXID` field in CSVLOG.
@@ -140,7 +140,7 @@ PostgreSQL uses [LSN](https://www.postgresql.org/docs/current/datatype-pg-lsn.ht
 You can find it in many places, such as the PG LSN panel in Pigsty dashboards.
 
 ```bash title="Recover to specified LSN"
-./pgsql-pitr.yml -e '{"pg_pitr": { "lsn": "0/4001C80", timeline: "1" }}'
+./pgsql-pitr.yml -e '{"pg_pitr": { "lsn": "0/4001C80", "timeline": "1" }}'
 ```
 
 To recover to an exact position in the WAL stream, you can also specify the [`timeline`](https://www.postgresql.org/docs/current/runtime-config-wal.html#RECOVERY-TARGET-TIMELINE) parameter (defaults to `latest`)
@@ -161,7 +161,7 @@ you can specify another "stanza" (another cluster's backup directory) as the rec
 pg-meta2:
   hosts: { 10.10.10.11: { pg_seq: 1, pg_role: primary } }
   vars:
-    pg_cluster: pg-meta2
+    pg_cluster: pg-meta
     pg_pitr: { cluster: pg-meta }  # Recover from pg-meta cluster backup
 ```
 
@@ -200,7 +200,7 @@ Let's execute step by step:
 ```bash
 ./pgsql-pitr.yml -l pg-meta -t down     # Pause patroni high availability
 ./pgsql-pitr.yml -l pg-meta -t pitr     # Run pitr process
-./pgsql-pitr.yml -l pg-meta -t up       # Generate pgbackrest config and recovery script
+./pgsql-pitr.yml -l pg-meta -t up       # Clean DCS, start postgres/patroni, and restore HA
 ```
 
 ```yaml
@@ -240,13 +240,13 @@ pg_pitr:                           # Define PITR task
     timeline: latest               # Target timeline, can be integer, defaults to latest
     exclusive: false               # Whether to exclude target point, defaults to false
     action: pause                  # Post-recovery action: pause, promote, shutdown
-    archive: false                 # Whether to keep archive settings? Defaults to false
+    archive: true                  # Whether to keep archive settings? Defaults to true
     db_exclude: [ template0, template1 ]
     db_include: []
     link_map:
       pg_wal: '/data/wal'
       pg_xact: '/data/pg_xact'
-    process: 4                     # Number of parallel recovery processes
+    process: 4                     # Number of parallel recovery processes, defaults to node_cpu
     repo: {}                       # Recovery source repository
     data: /pg/data                 # Data recovery location
     port: 5432                     # Listening port for recovered instance

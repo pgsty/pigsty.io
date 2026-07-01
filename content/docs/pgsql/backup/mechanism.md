@@ -7,7 +7,7 @@ categories: [Task, Concept]
 ---
 
 
-Backups can be invoked via built-in [scripts](#scripts), scheduled using node [crontab](#scheduled-backups),
+Backups can be invoked via built-in [scripts](#scripts), scheduled using [`pg_crontab`](/docs/pgsql/param#pg_crontab),
 managed by [pgbackrest](https://pgbackrest.org/), and stored in backup repositories,
 which can be local disk filesystems or MinIO / S3, supporting different [retention](#retention-policy) policies.
 
@@ -104,24 +104,24 @@ pg-backup diff   # Perform differential backup = pgbackrest --stanza=pg-meta --t
 
 Pigsty uses Linux crontab to schedule backup tasks. You can use it to define backup policies.
 
-For example, most single-node configuration templates have the following [`node_crontab`](/docs/node/param#node_crontab) for backups:
+For example, most single-node configuration templates have the following [`pg_crontab`](/docs/pgsql/param#pg_crontab) for backups:
 
 ```yaml title="Full backup at 1 AM daily"
-node_crontab: [ '00 01 * * * postgres /pg/bin/pg-backup full' ]
+pg_crontab: [ '00 01 * * * /pg/bin/pg-backup full' ]
 ```
 
 You can design more complex backup strategies using crontab and the `pg-backup` script, for example:
 
 ```yaml title="Full backup on Monday, incremental backups on weekdays"
-node_crontab:  # Full backup at 1 AM on Monday, incremental backups on weekdays
-  - '00 01 * * 1 postgres /pg/bin/pg-backup full'
-  - '00 01 * * 2,3,4,5,6,7 postgres /pg/bin/pg-backup'
+pg_crontab:  # Full backup at 1 AM on Monday, incremental backups on weekdays
+  - '00 01 * * 1 /pg/bin/pg-backup full'
+  - '00 01 * * 2,3,4,5,6,7 /pg/bin/pg-backup'
 ```
 
-To apply crontab changes, use [`node.yml`](/docs/node/playbook/#nodeyml) to update crontab on all nodes:
+To apply crontab changes, use [`pgsql.yml`](/docs/pgsql/playbook/#pgsqlyml) to update the database superuser crontab:
 
 ```bash title="Apply crontab"
-./node.yml -t node_crontab -l pg-meta    # Apply crontab changes to pg-meta group
+./pgsql.yml -t pg_crontab -l pg-meta    # Apply crontab changes to pg-meta group
 ```
 
 

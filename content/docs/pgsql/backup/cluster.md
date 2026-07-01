@@ -31,21 +31,22 @@ Using the Pigsty 4-node sandbox environment as an example, use the following com
 
 ## Post-PITR Cleanup
 
-When you restore a cluster using PITR, the new cluster's PITR functionality is disabled. This is because if it also tries to generate backups and archive WAL, it could dirty the backup repository of the previous cluster.
+When you restore a new cluster from another cluster using PITR, the backup repository stanza may still record the source cluster's system-id. If you back up the new cluster directly, pgBackRest will reject the write to avoid contaminating the source cluster's backup history.
 
 Therefore, after confirming that the state of this PITR-restored new cluster meets expectations, you need to perform the following cleanup:
 
-- Upgrade the backup repository Stanza to accept new backups from different clusters (only when restoring from another cluster)
-- Enable `archive_mode` to allow the new cluster to archive WAL logs (requires cluster restart)
+- Upgrade the backup repository stanza to accept the new cluster's system-id (only when restoring from another cluster)
+- If `archive: false` was explicitly set during PITR, reset `archive_mode` and restart the cluster
 - Perform a new full backup to ensure the new cluster's data is included (optional, can also wait for crontab scheduled execution)
 
 ```bash
 pb stanza-upgrade
 psql -c 'ALTER SYSTEM RESET archive_mode;'
+pg restart <cls>       # Only required if archive_mode was disabled
 pg-backup full
 ```
 
-Through these operations, your new cluster will have its own backup history starting from the first full backup. If you skip these steps, the new cluster's backups will not work, and WAL archiving will not take effect, meaning you cannot perform any backup or PITR operations on the new cluster.
+Through these operations, your new cluster will have its own backup history starting from the first full backup. If you skip these steps, the new cluster's backups may fail to write to the target repository; if archiving was disabled during PITR, no new WAL archives will be generated.
 
 
 ## Consequences of Not Cleaning Up
