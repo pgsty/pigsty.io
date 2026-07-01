@@ -36,13 +36,13 @@ FerretDB exposes Prometheus-format metrics through its built-in exporter on the 
 
 Key metric categories include:
 
-| Metric Prefix             | Description                       |
-|:--------------------------|:----------------------------------|
-| `ferretdb_*`              | FerretDB core metrics             |
-| `ferretdb_client_*`       | Client connection and request stats |
-| `ferretdb_postgresql_*`   | PostgreSQL backend status         |
-| `go_*`                    | Go runtime metrics                |
-| `process_*`               | Process-level metrics             |
+| Metric Prefix           | Description                         |
+|:------------------------|:------------------------------------|
+| `ferretdb_*`            | FerretDB core metrics               |
+| `ferretdb_client_*`     | Client connection and request stats |
+| `ferretdb_postgresql_*` | PostgreSQL backend status           |
+| `go_*`                  | Go runtime metrics                  |
+| `process_*`             | Process-level metrics               |
 
 For the complete list of metrics, see [Metrics](/docs/ferret/metric).
 
@@ -51,7 +51,7 @@ For the complete list of metrics, see [Metrics](/docs/ferret/metric).
 
 ## Alerting Rules
 
-Pigsty v4.1 default rule sets (`files/victoria/rules/*.yml`) do not include dedicated FerretDB alerts out of the box. You can add custom alerts based on `ferretdb_up`, for example:
+Pigsty's default rule sets (`files/victoria/rules/*.yml`) do not include dedicated FerretDB alerts out of the box. You can add custom alerts based on `ferretdb_up`, for example:
 
 ```yaml
 - alert: FerretDBDown

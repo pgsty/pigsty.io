@@ -141,7 +141,7 @@ Parameter: `mongo_exporter_port`, Type: `port`, Level: `C`
 
 Exporter port for mongo metrics collection.
 
-Default is `9216`. This port is used by FerretDB's built-in metrics exporter to expose monitoring metrics to Prometheus.
+Default is `9216`. This port is used by FerretDB's built-in metrics exporter to expose Prometheus-format metrics scraped by VictoriaMetrics.
 
 
 ----------------

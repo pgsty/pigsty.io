@@ -32,7 +32,7 @@ This playbook contains the following subtasks:
 | `mongo_config`   | Configure FerretDB service               |
 | `mongo_cert`     | Issue FerretDB SSL certificates          |
 | `mongo_launch`   | Launch FerretDB service                  |
-| `mongo_register` | Register FerretDB to Prometheus          |
+| `mongo_register` | Register FerretDB to VictoriaMetrics     |
 
 
 ----------------
@@ -74,7 +74,7 @@ Purge operations include:
 - Stop and disable ferretdb service
 - Remove systemd service file
 - Remove configuration files and SSL certificates
-- Deregister from Prometheus monitoring targets
+- Deregister from VictoriaMetrics monitoring targets
 
 ### `mongo_config`
 
@@ -101,7 +101,7 @@ The FerretDB service is configured with `Restart=on-failure`, so it will automat
 
 ### `mongo_register`
 
-Register FerretDB instance to Prometheus monitoring system:
+Register FerretDB instance to VictoriaMetrics monitoring system:
 - Create monitoring target file on all `infra` nodes
 - Target file path: `/infra/targets/mongo/<cluster>-<seq>.yml`
 - Contains instance IP, labels, and metrics port information

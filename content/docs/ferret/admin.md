@@ -41,7 +41,7 @@ This command will:
 - Stop the FerretDB service
 - Remove the systemd service file
 - Clean up configuration files and certificates
-- Deregister from Prometheus monitoring
+- Deregister from VictoriaMetrics monitoring targets
 
 
 ----------------
