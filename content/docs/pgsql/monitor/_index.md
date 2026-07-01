@@ -145,7 +145,7 @@ If you **can only access the target database via PGURL** (database connection st
 -------------------            ^------------------^
 ```
 
-In this mode, the monitoring system will not have metrics from hosts, connection pools, load balancers, or high availability components, but the database itself and real-time status information from the data catalog are still available. Pigsty provides two dedicated monitoring dashboards focused on PostgreSQL metrics: [PGRDS Cluster](https://demo.pigsty.io/d/pgrds-cluster) and [PGRDS Instance](https://demo.pigsty.io/d/pgrds-instance), while overview and database-level monitoring reuses existing dashboards. Since Pigsty cannot manage your RDS, users need to [configure monitoring objects](#monitor-setup) on the target database in advance.
+In this mode, the monitoring system will not have metrics from hosts, connection pools, load balancers, or high availability components, but the database itself and real-time status information from the data catalog are still available. Pigsty provides two dedicated monitoring dashboards focused on PostgreSQL metrics: [PGRDS Cluster](https://demo.pigsty.io/ui/d/pgrds-cluster) and [PGRDS Instance](https://demo.pigsty.io/ui/d/pgrds-instance), while overview and database-level monitoring reuses existing dashboards. Since Pigsty cannot manage your RDS, users need to [configure monitoring objects](#monitor-setup) on the target database in advance.
 
 
 
