@@ -28,12 +28,12 @@ Because the company behind it has ceased operations.
 
 ## Configuration
 
-PostgresML is an extension written in Rust, officially supporting Ubuntu. Pigsty maintains RPM versions of PostgresML on EL8 and EL9.
+PostgresML is an extension written in Rust. Pigsty maintains prebuilt packages for PG14-17 on EL8/EL9 and Debian/Ubuntu platforms.
 
 
 **Creating a New Cluster**
 
-PostgresML 2.7.9 is available for PostgreSQL 15, supporting Ubuntu 22.04 (official), Debian 12, and EL 8/9 (maintained by Pigsty). To enable `pgml`, you first need to install the extension:
+PostgresML 2.10.0 is available for PostgreSQL 14-17. The example below uses PG17; if you use PG14-16, change `pg_version` to the corresponding major version.
 
 ```yaml
 pg-meta:
@@ -47,12 +47,12 @@ pg-meta:
       - { name: meta ,baseline: cmdb.sql ,comment: pigsty meta database ,schemas: [pigsty] ,extensions: [{name: postgis, schema: public}, {name: timescaledb}]}
     pg_hba_rules:
       - {user: dbuser_view , db: all ,addr: infra ,auth: pwd ,title: 'allow grafana dashboard access cmdb from infra nodes'}
+    pg_version: 17
     pg_libs: 'pgml, pg_stat_statements, auto_explain'
-    pg_extensions: [ 'pgml_15 pgvector_15 wal2json_15 repack_15' ]  # ubuntu
-    #pg_extensions: [ 'postgresql-pgml-15 postgresql-15-pgvector postgresql-15-wal2json postgresql-15-repack' ]  # ubuntu
+    pg_extensions: [ pgml, pgvector, wal2json, pg_repack ]
 ```
 
-On EL 8/9, the extension name is `pgml_15`, corresponding to the Ubuntu/Debian name `postgresql-pgml-15`. You also need to add `pgml` to `pg_libs`.
+Pigsty resolves the `pgml` package alias to the platform-specific package name: `pgml_$v` on EL and `postgresql-$v-pgml` on Debian/Ubuntu. You also need to add `pgml` to `pg_libs`.
 
 
 **Enabling on an Existing Cluster**
@@ -60,9 +60,9 @@ On EL 8/9, the extension name is `pgml_15`, corresponding to the Ubuntu/Debian n
 To enable `pgml` on an existing cluster, you can install it using Ansible's `package` module:
 
 ```bash
-ansible pg-meta -m package -b -a 'name=pgml_15'
-# ansible el8,el9 -m package -b -a 'name=pgml_15'           # EL 8/9
-# ansible u22 -m package -b -a 'name=postgresql-pgml-15'    # Ubuntu 22.04 jammy
+ansible pg-meta -m package -b -a 'name=pgml_17'
+# ansible el8,el9 -m package -b -a 'name=pgml_17'              # EL 8/9
+# ansible u22,u24 -m package -b -a 'name=postgresql-17-pgml'   # Debian/Ubuntu
 ```
 
 

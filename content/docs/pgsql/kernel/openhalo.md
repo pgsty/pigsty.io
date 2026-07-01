@@ -9,7 +9,7 @@ categories: [Concept]
 
 [OpenHalo](https://www.openhalo.org/) is an open-source PostgreSQL kernel that provides MySQL wire-protocol compatibility.
 
-openHalo is based on PostgreSQL 14.18 and provides wire-level compatibility with MySQL 5.7.32-log / 8.0.
+openHalo is based on PostgreSQL 14.18 and provides wire-level compatibility with MySQL 5.7.32-log / 8.0. Pigsty delivers it through `pg_mode: mysql` and the `openhalo` package alias.
 
 Pigsty supports OpenHalo deployment on all supported Linux platforms.
 
@@ -53,7 +53,7 @@ pg-meta:
     # OpenHalo specific settings
     pg_mode: mysql
     pg_version: 14
-    pg_packages: [ openhalodb, pgsql-common ]
+    pg_packages: [ openhalo, pgsql-common ]
 ```
 
 OpenHalo provides a dedicated extension, `aux_mysql`, which includes functions and types needed for MySQL compatibility. Enable it in the `postgres` database to get full compatibility behavior.

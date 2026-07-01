@@ -22,7 +22,7 @@ Please note that adding IvorySQL directly to Pigsty's default software repositor
 
 ![](/img/pigsty/ivory.jpg)
 
-The current latest version of IvorySQL is **5.0**, corresponding to PostgreSQL version **18**. Please note that IvorySQL is currently only available on EL8/EL9.
+Pigsty's `ivorysql` package alias points to IvorySQL 5, compatible with PostgreSQL 18. Real package names are mapped by platform variables under `roles/node_id/vars/`; for example, EL uses `ivorysql5`, while Debian/Ubuntu uses `ivorysql-5`.
 
 > The last IvorySQL version supporting EL7 was 3.3, corresponding to PostgreSQL 16.3; the last version based on PostgreSQL 17 is IvorySQL 4.4
 
@@ -49,9 +49,9 @@ The following parameters need to be configured for IvorySQL database clusters:
 #----------------------------------#
 # Ivory SQL Configuration
 #----------------------------------#
-node_repo_modules: local,node,pgsql,ivory  # add ivorysql upstream repo
+node_repo_modules: node,infra,pgsql       # use Pigsty node/infra/pgsql repos
 pg_mode: ivory                    # IvorySQL Oracle Compatible Mode
-pg_packages: [ 'ivorysql patroni pgbouncer pgbackrest pg_exporter pgbadger vip-manager' ]
+pg_packages: [ ivorysql, pgsql-common ]
 pg_libs: 'liboracle_parser, pg_stat_statements, auto_explain'
 pg_extensions: [ ]                # do not install any vanilla postgresql extensions
 ```
@@ -63,7 +63,7 @@ pg_extensions: [ ]                # do not install any vanilla postgresql extens
 
 ## Client Access
 
-IvorySQL is equivalent to PostgreSQL 16, and any client tool compatible with the PostgreSQL wire protocol can access IvorySQL clusters.
+IvorySQL 5 is equivalent to PostgreSQL 18, and any client tool compatible with the PostgreSQL wire protocol can access IvorySQL clusters.
 
 --------
 

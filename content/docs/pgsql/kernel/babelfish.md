@@ -1,7 +1,7 @@
 ---
 title: Babelfish
 weight: 2104
-description: Use Babelfish (PG17) in Pigsty to provide SQL Server protocol/T-SQL compatibility; mainstream platform coverage is complete from v4.2.0.
+description: Use Babelfish (PG17) in Pigsty to provide SQL Server protocol/T-SQL compatibility.
 icon: fab fa-microsoft
 module: [PGSQL]
 categories: [Concept]
@@ -20,12 +20,12 @@ Pigsty lets you deploy Babelfish in `mssql` mode and provide, on top of PostgreS
 - T-SQL compatibility
 - Unified integration with Pigsty capabilities (HA, backup, monitoring, IaC)
 
-In **v4.2.0**, Babelfish defaults to **PostgreSQL 17** and is part of Pigsty's standard delivery path.
+In Pigsty v4, Babelfish defaults to **PostgreSQL 17** and is part of Pigsty's standard delivery path, with support for all Linux platforms.
 
 
 --------
 
-## What Changed in v4.2.0
+## Current Behavior
 
 Compared with older `Babelfish/PG15` docs, current behavior is:
 

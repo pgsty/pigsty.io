@@ -17,7 +17,7 @@ Supabase's motto is: "**Build in a weekend, Scale to millions**". Indeed, Supaba
 — But when you really scale to millions of users — you should seriously consider self-hosting Supabase — whether for functionality, performance, or cost considerations.
 
 Pigsty provides you with a complete one-click self-hosting solution for Supabase. Self-hosted Supabase enjoys full PostgreSQL monitoring, IaC, PITR, and high availability,
-and compared to Supabase cloud services, it provides up to [**531**](/ext/) out-of-the-box PostgreSQL extensions and can more fully utilize the performance and cost advantages of modern hardware.
+and compared to Supabase cloud services, it provides up to [**531**](/ext/list/) out-of-the-box PostgreSQL extensions and can more fully utilize the performance and cost advantages of modern hardware.
 
 For the complete self-hosting tutorial, please refer to: [**Supabase Self-Hosting Guide**](/docs/app/supabase)
 
@@ -28,14 +28,14 @@ For the complete self-hosting tutorial, please refer to: [**Supabase Self-Hostin
 
 ## Quick Start
 
-Pigsty's default [`supa.yml`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml) configuration template defines a single-node Supabase.
+Pigsty's default [`supabase.yml`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml) configuration template defines a single-node Supabase.
 
 First, use Pigsty's [standard installation process](/docs/setup/install) to install the MinIO and PostgreSQL instances required for Supabase:
 
 ```bash
  curl -fsSL https://repo.pigsty.io/get | bash
 ./bootstrap          # Environment check, install dependencies
-./configure -c supa  # Important: modify passwords and other key info in config!
+./configure -c supabase  # Important: modify passwords and other key info in config!
 ./deploy.yml         # Install Pigsty, deploy PGSQL and MINIO!
 ```
 

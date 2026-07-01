@@ -9,7 +9,7 @@ categories: [Concept]
 
 [PostgreSQL](https://www.postgresql.org/) is the world's most advanced and popular open-source database.
 
-Pigsty supports PostgreSQL 14 ~ 18 and provides 531 PG extensions.
+Pigsty installs PostgreSQL 18 by default, supports PostgreSQL 14 ~ 18, and provides 531 PG extensions.
 
 
 ------
@@ -70,7 +70,6 @@ To use a different PostgreSQL major version, you can configure it using the `-v`
 ./configure -c pgsql -v 16      # Use postgresql 16
 ./configure -c pgsql -v 15      # Use postgresql 15
 ./configure -c pgsql -v 14      # Use postgresql 14
-./configure -c pgsql -v 13      # Use postgresql 13
 ```
 
 If a PostgreSQL cluster is already installed, you need to uninstall it before installing a new version:
@@ -90,7 +89,7 @@ Pigsty provides a rich extension ecosystem for PostgreSQL, including:
 - **Geospatial**: postgis, h3, pgrouting
 - **Vector**: pgvector, pgml, vchord
 - **Search**: pg_trgm, zhparser, pgroonga
-- **Analytics**: citus, pg_duckdb, pg_analytics
+- **Analytics**: citus, pg_duckdb, pg_mooncake
 - **Features**: age, pg_graphql, rum
 - **Languages**: plpython3u, pljava, plv8
 - **Types**: hstore, ltree, citext
