@@ -1,5 +1,5 @@
 ---
-title: "PG Exporter 1.2 Documentation"
+title: "PG Exporter 1.3 Documentation"
 linkTitle: pg_exporter 
 weight: 8400
 icon: fas fa-magnifying-glass
@@ -19,7 +19,7 @@ The ultimate monitoring experience for PostgreSQL with **600+ metrics**, **decla
 
 | Feature                   | Description                                                                                                     |
 |---------------------------|-----------------------------------------------------------------------------------------------------------------|
-| **Comprehensive Metrics** | Monitor PostgreSQL (10-18+) and pgBouncer (1.8-1.25+) with 600+ metrics and ~3K time series per instance        |
+| **Comprehensive Metrics** | Monitor PostgreSQL (10-19+) and pgBouncer (1.8-1.25+) with 600+ metrics and ~3K time series per instance        |
 | **Declarative Config**    | Define custom metrics through YAML configs with fine-grained control over timeout, caching, and skip conditions |
 | **Custom Collectors**     | Define your own metrics with declarative YAML configuration and dynamic query planning                          |
 | **Auto-Discovery**        | Automatically discover and monitor multiple databases within a PostgreSQL instance                              |
@@ -34,8 +34,8 @@ The ultimate monitoring experience for PostgreSQL with **600+ metrics**, **decla
 
 ## Version Info
 
-- Current stable release: [`v1.2.2`](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.2)
-- Default config support: PostgreSQL **10-18+**
+- Current stable release: [`v1.3.0`](https://github.com/pgsty/pg_exporter/releases/tag/v1.3.0)
+- Default config support: PostgreSQL **10-19+**
 - Legacy config support: PostgreSQL **9.1-9.6** via the `legacy/` config bundle
 - pgBouncer support: **1.8-1.25+**
 
@@ -50,7 +50,7 @@ See [Release Notes](/docs/pg_exporter/release) for the full history.
 
 - Local-first connectivity: fall back to `postgresql:///?sslmode=disable` when no explicit URL is provided, which fits same-host deployments
 - Declarative collection: metric behavior is driven by YAML collector definitions with precise control over `ttl`, `timeout`, `tags`, and `fatal`
-- Dynamic planning: choose collector branches at runtime based on server version, role, extensions, and tags
+- Dynamic planning: choose the appropriate collector branch at runtime based on server version, role, extensions, and tags
 - Keep serving under failure: use non-blocking startup by default so HTTP endpoints still come up while the database is temporarily unavailable
 - Hot reload: support `POST` / `GET /reload` and `SIGHUP` reloads, with extra `SIGUSR1` support on non-Windows platforms
 - Split probes from traffic: health endpoints use cached background probes instead of blocking the database on every request
@@ -95,10 +95,11 @@ sudo apt install -y pg-exporter
 {{< /tab >}}
 
 {{< tab header="Binary" lang="bash" >}}
-wget https://github.com/pgsty/pg_exporter/releases/download/v1.2.2/pg_exporter-1.2.2.linux-amd64.tar.gz
-tar -xf pg_exporter-1.2.2.linux-amd64.tar.gz
-sudo install pg_exporter-1.2.2.linux-amd64/pg_exporter /usr/bin/
-sudo install pg_exporter-1.2.2.linux-amd64/pg_exporter.yml /etc/pg_exporter.yml
+VERSION=$(curl -fsSL https://api.github.com/repos/pgsty/pg_exporter/releases/latest | sed -n 's/.*"tag_name": "v\([^"]*\)".*/\1/p')
+wget "https://github.com/pgsty/pg_exporter/releases/download/v${VERSION}/pg_exporter-${VERSION}.linux-amd64.tar.gz"
+tar -xf "pg_exporter-${VERSION}.linux-amd64.tar.gz"
+sudo install "pg_exporter-${VERSION}.linux-amd64/pg_exporter" /usr/bin/
+sudo install "pg_exporter-${VERSION}.linux-amd64/pg_exporter.yml" /etc/pg_exporter.yml
 {{< /tab >}}
 
 {{< tab header="Source" lang="bash" >}}

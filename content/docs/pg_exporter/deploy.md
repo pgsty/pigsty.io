@@ -29,6 +29,7 @@ The configuration file uses YAML and is composed of **collector definitions** th
 These are the main production tradeoffs behind `pg_exporter`:
 
 - Local-first connectivity: the default URL is `postgresql:///?sslmode=disable`, which fits same-host deployments
+- Default config bundle: ships with 57 collector definition files, covering PostgreSQL 10-19+ and pgBouncer 1.8-1.25+ by default
 - Observable before connected: non-blocking startup is the default, so HTTP endpoints come up even when the target database is temporarily unavailable
 - Controllable failure mode: with `--fail-fast`, startup exits immediately if the target cannot be reached
 - Online changes: support hot reload through `POST` / `GET /reload` and `SIGHUP`, with extra `SIGUSR1` support on non-Windows platforms

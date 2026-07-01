@@ -8,10 +8,19 @@ category: [Tutorial]
 
 PG Exporter is an advanced PostgreSQL and pgBouncer metrics exporter for Prometheus. This guide will help you get up and running quickly.
 
-## Version Info
+## Prerequisites
 
-- Current stable release: [`v1.2.2`](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.2)
-- The default config supports PostgreSQL 10-18+; PostgreSQL 9.1-9.6 requires the `legacy/` config bundle
+Before you begin, ensure you have:
+
+- PostgreSQL 10-19+ or pgBouncer 1.8-1.25+ instance to monitor
+- PostgreSQL 9.1-9.6 legacy instances require the `legacy/` config bundle
+- A user account with appropriate permissions for monitoring
+- Prometheus Compatible System (for metrics scraping)
+- Basic understanding of PostgreSQL connection strings
+
+## Compatibility
+
+- The default config supports PostgreSQL 10-19+; PostgreSQL 9.1-9.6 requires the `legacy/` config bundle
 - pgBouncer 1.8-1.25+ is supported
 
 ## Design Rationale
@@ -19,28 +28,20 @@ PG Exporter is an advanced PostgreSQL and pgBouncer metrics exporter for Prometh
 `pg_exporter` follows three core runtime principles:
 
 - Local-first connectivity: if you do not pass `--url` or `PG_EXPORTER_URL`, it falls back to `postgresql:///?sslmode=disable`
-- Declarative collection: all business metrics come from YAML collectors, and runtime planning picks branches by version, role, extension, and tags
-- Keep serving under failure: non-blocking startup is the default, so HTTP endpoints still come up while the target database is temporarily unavailable
-
-## Prerequisites
-
-Before you begin, ensure you have:
-
-- PostgreSQL 10+ or pgBouncer 1.8+ instance to monitor
-- A user account with appropriate permissions for monitoring
-- Prometheus Compatible System (for metrics scraping)
-- Basic understanding of PostgreSQL connection strings
+- Declarative collection: all business metrics come from YAML collectors, and runtime planning picks branches by version, role, and tags
+- Keep serving under failure: non-blocking startup is the default, so HTTP endpoints come up first while the target database is temporarily unavailable, then recover health in the background
 
 ## Quick Start
 
 The fastest way to get started with PG Exporter:
 
 ```bash
-# Example: install the Linux amd64 release tarball
-wget https://github.com/pgsty/pg_exporter/releases/download/v1.2.2/pg_exporter-1.2.2.linux-amd64.tar.gz
-tar -xf pg_exporter-1.2.2.linux-amd64.tar.gz
-sudo install pg_exporter-1.2.2.linux-amd64/pg_exporter /usr/bin/
-sudo install pg_exporter-1.2.2.linux-amd64/pg_exporter.yml /etc/pg_exporter.yml
+# Example: install the Linux amd64 release tarball; replace the platform suffix if needed
+VERSION=$(curl -fsSL https://api.github.com/repos/pgsty/pg_exporter/releases/latest | sed -n 's/.*"tag_name": "v\([^"]*\)".*/\1/p')
+wget "https://github.com/pgsty/pg_exporter/releases/download/v${VERSION}/pg_exporter-${VERSION}.linux-amd64.tar.gz"
+tar -xf "pg_exporter-${VERSION}.linux-amd64.tar.gz"
+sudo install "pg_exporter-${VERSION}.linux-amd64/pg_exporter" /usr/bin/
+sudo install "pg_exporter-${VERSION}.linux-amd64/pg_exporter.yml" /etc/pg_exporter.yml
 
 # Run with the local-first default URL
 pg_exporter

@@ -81,7 +81,7 @@ collector_branch_name:           # Unique identifier for this collector
         scale: 1000              # Scale factor for the value
 ```
 
-Validation rules as of `v1.2.2`:
+Validation rules:
 
 - Each entry in `metrics` must define exactly one column mapping
 - Each collector must expose at least one `GAUGE` or `COUNTER` column
@@ -172,6 +172,7 @@ Version numbers follow PostgreSQL `server_version_num` rules:
 - `100000` = 10.0
 - `130200` = 13.2
 - `160100` = 16.1
+- `190000` = 19.0
 - `90600` = 9.6, relevant when using the legacy config bundle
 
 ## Tag System
@@ -268,6 +269,7 @@ PG Exporter ships with pre-organized collectors:
 | 8xx   | Optional      | Expensive/optional metrics      |
 | 9xx   | pgBouncer     | Connection pooler metrics       |
 | 10xx+ | Extensions    | Extension-specific metrics      |
+{.full-width}
 
 ## Real-World Examples
 

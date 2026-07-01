@@ -6,10 +6,11 @@ module: [PG_EXPORTER]
 category: [Reference]
 ---
 
-The latest stable version of `pg_exporter` is [v1.2.2](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.2)
+The latest stable version of `pg_exporter` is [v1.3.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.3.0)
 
 |     Version     |    Date    | Summary                                                 |                               GitHub                               |
 |:---------------:|:----------:|---------------------------------------------------------|:------------------------------------------------------------------:|
+| [v1.3.0](#v130) | 2026-06-24 | PostgreSQL 19 support, new PG19 collectors and branches | [v1.3.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.3.0) |
 | [v1.2.2](#v122) | 2026-04-14 | Routine Go 1.26.2 refresh, no functional changes        | [v1.2.2](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.2) |
 | [v1.2.1](#v121) | 2026-03-21 | Config style cleanup, Go 1.26.1 refresh                | [v1.2.1](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.1) |
 | [v1.2.0](#v120) | 2026-02-12 | Hot reload, non-blocking startup, PG9.x legacy support | [v1.2.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.0) |
@@ -40,6 +41,48 @@ The latest stable version of `pg_exporter` is [v1.2.2](https://github.com/pgsty/
 | [v0.0.3](#v003) | 2019-12-14 | Production environment testing                          | [v0.0.3](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.3) |
 | [v0.0.2](#v002) | 2019-12-09 | Early testing release                                   | [v0.0.2](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.2) |
 | [v0.0.1](#v001) | 2019-12-06 | Initial release with PgBouncer mode                     | [v0.0.1](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.1) |
+
+
+## v1.3.0
+
+`v1.3.0` adds PostgreSQL 19 support, and refreshes the default collector bundle, build toolchain, and config coverage tests.
+
+**Highlights:**
+
+- Default support range extended from **PostgreSQL 10-18+** to **10-19+**
+- Default config bundle includes **57** `config/*.yml` definition files
+- Build dependencies updated to Go `1.26.4`, `lib/pq v1.12.3`, Prometheus client `v1.23.2`, and exporter-toolkit `v0.16.0`
+- `pg_recovery_state`: collect `pg_stat_recovery` on recovery nodes, exposing promotion trigger status, replay LSN, timeline, recovery transaction time, and pause state
+- `pg_lock_stat`: collect PG19 `pg_stat_lock`, exposing waits, wait time, and fast-path overflow counts by `locktype`
+- `pg_vacuum_score`: collect the current-database summary from `pg_stat_autovacuum_scores`, exposing max autovacuum score and candidate table count
+- `pg_wal_19`: expose `wal_fpi_bytes` on PG19 as `pg_wal_fpi_bytes`
+- `pg_sub_19`: adapt sequence sync and logical replication conflict stats from `pg_stat_subscription_stats`, while keeping `sync_error_count` for legacy dashboards
+- `pg_recv`: recognize the PG13+ WAL receiver `connecting` state on PG19
+- `pg_slot`: recognize the PG19 replication slot invalidation reason `idle_timeout`
+- `pg_db_confl`: switch to an explicit column list to avoid accidentally exporting future view columns
+- `pg_backup`, `pg_vacuuming`, and `pg_clustering` continue reusing stable existing branches instead of changing the metric surface for low-value PG19 fields
+
+**Checksums**
+
+https://github.com/pgsty/pg_exporter/releases/download/v1.3.0/checksums.txt
+
+```bash
+c88c4ad7cde10531d75ec98fa536b2e7f531639f55c3b3c9866ee76934a4e2b2  checksums.txt
+dfc6d517300687a382557e6d77af1ecb513bdde2e961d01ca46efa008ae15569  pg-exporter_1.3.0-1_amd64.deb
+3d2ff642d0bb3657b28eb7c4b30bacc8ef9e4cbd057c870e6ec6817b47ac8092  pg-exporter_1.3.0-1_arm64.deb
+4cfe043eb193780515a1e00ab93250dd44ca0728b35cb037ed165c70c89b6b5a  pg-exporter_1.3.0-1_ppc64le.deb
+3ae4f8c554242ae52c4ba0fa07a9d95b702f72938ce55e8456dd97242cc46faf  pg_exporter-1.3.0-1.aarch64.rpm
+71a0023383170b4ef3c243d9bf08d530b819fa891fa784e87c74b2a55cb426ec  pg_exporter-1.3.0-1.ppc64le.rpm
+316a97ccb2df9a02de99dda33826857ec32bbd6fd874ffb950625bc064d62496  pg_exporter-1.3.0-1.x86_64.rpm
+4ab312f27f0ded7f0ff5591866a86311d13041fef3a015e92f44fcf4a2284ccd  pg_exporter-1.3.0.darwin-amd64.tar.gz
+2b20eb7b46c0790a8524f1c00a22ab57739bd60fd89ee947f6c2ba14e6a0d6bb  pg_exporter-1.3.0.darwin-arm64.tar.gz
+7a2a8ce818f30260d1e7267d0b9e1fd5b3cbd569d55ad184fc9d6fb3801f3ad7  pg_exporter-1.3.0.linux-amd64.tar.gz
+696619d19efbcf33f4afbae9748e72897289d2b7f772509cd6d465c9e818066d  pg_exporter-1.3.0.linux-arm64.tar.gz
+0c16ac4a912f328be90e973b5123a272c2747759be9f56bacb5542653226475e  pg_exporter-1.3.0.linux-ppc64le.tar.gz
+aa3724f4e8aeb732de18b7cb416283cbc2e94b9f511ec4b94e703792e8e8b10d  pg_exporter-1.3.0.windows-amd64.tar.gz
+```
+
+https://github.com/pgsty/pg_exporter/releases/tag/v1.3.0
 
 
 ## v1.2.2
@@ -234,7 +277,7 @@ Build with Go 1.25.5 and latest dependencies, collector updates:
 
 **Checksums**
 
-https://github.com/pgsty/pg_exporter/releases/download/v1.0.3/checksums.txt
+https://github.com/pgsty/pg_exporter/releases/download/v1.1.0/checksums.txt
 
 ```bash
 9c65f43e76213bb8a49d1eab2c76a27d9ab694e67bc79f0ad12769ea362b5ca2  pg-exporter_1.1.0-1_amd64.deb
