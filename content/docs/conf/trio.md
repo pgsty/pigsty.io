@@ -45,7 +45,7 @@ Source: [`pigsty/conf/ha/trio.yml`](https://github.com/pgsty/pigsty/blob/main/co
 The `ha/trio` template is Pigsty's **standard HA configuration**, providing true automatic failover capability.
 
 **Architecture**:
-- Three-node INFRA: Distributed deployment of Prometheus/Grafana/Nginx
+- Three-node INFRA: Distributed deployment of VictoriaMetrics/Grafana/Nginx
 - Three-node ETCD: DCS majority election, tolerates single-point failure
 - Three-node PostgreSQL: One primary, two replicas, automatic failover
 - Single-node MinIO: Can be expanded to multi-node as needed
@@ -64,4 +64,3 @@ The `ha/trio` template is Pigsty's **standard HA configuration**, providing true
 - For stronger data security, refer to [`ha/safe`](/docs/conf/safe/) template
 - For more demo features, refer to [`ha/full`](/docs/conf/full/) template
 - Production environments should enable `pgbackrest_method: minio` for remote backup
-

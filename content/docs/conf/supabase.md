@@ -8,7 +8,7 @@ categories: [Reference]
 
 The `supabase` configuration template provides a reference configuration for self-hosting Supabase, using Pigsty-managed PostgreSQL as the underlying storage.
 
-For more details, see **[Supabase Self-Hosting Tutorial](/docs/pgsql/kernel/supabase/)**
+For more details, see **[Supabase Self-Hosting Tutorial](/docs/app/supabase/)**
 
 
 --------
@@ -66,7 +66,7 @@ The `supabase` template provides a complete self-hosted Supabase solution, allow
 **Deployment Steps**:
 
 ```bash
-curl https://repo.pigsty.io/get | bash   # Download Pigsty
+curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
 ./configure -c supabase                   # Use supabase config template
 ./deploy.yml                              # Install Pigsty, PostgreSQL, MinIO
 ./docker.yml                              # Install Docker
@@ -77,7 +77,8 @@ curl https://repo.pigsty.io/get | bash   # Download Pigsty
 
 ```bash
 # Supabase Studio
-https://supa.pigsty   (username: supabase, password: pigsty)
+http://<IP>:8000
+http://supa.pigsty   (username: supabase, password: pigsty)
 
 # Direct PostgreSQL connection
 psql postgres://supabase_admin:DBUser.Supa@10.10.10.10:5432/postgres
@@ -94,4 +95,3 @@ psql postgres://supabase_admin:DBUser.Supa@10.10.10.10:5432/postgres
 - Configure proper domain names (`SITE_URL`, `API_EXTERNAL_URL`)
 - Production environments should enable HTTPS (can use certbot for auto certificates)
 - Docker network needs access to PostgreSQL (172.17.0.0/16 HBA rule configured)
-

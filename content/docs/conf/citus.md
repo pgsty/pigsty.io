@@ -94,7 +94,7 @@ pg_libs: 'citus, pg_cron, pg_stat_statements'
 
 ```bash
 # 1. Download Pigsty
-curl https://repo.pigsty.io/get | bash
+curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
 
 # 2. Use ha/citus template
 ./configure -c ha/citus
@@ -180,4 +180,3 @@ SELECT create_reference_table('tenants');
 - **Cross-shard Limits**: Foreign keys must include distribution column, some DDL restrictions
 - **Network**: Configure correct `pg_vip_interface` (default `eth1`)
 - **Architecture**: Citus extension does not support ARM64
-

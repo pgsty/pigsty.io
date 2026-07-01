@@ -59,7 +59,7 @@ The `meta` template is Pigsty's **default getting-started configuration**, desig
 **Key Features**:
 - Online installation mode without building local software repository (`repo_enabled: false`)
 - Default installs PostgreSQL 18 with `postgis` and `pgvector` extensions
-- Includes complete monitoring infrastructure (Grafana, Prometheus, Loki, etc.)
+- Includes complete observability infrastructure (Grafana, VictoriaMetrics, VictoriaLogs, etc.)
 - Preconfigured Docker and pgAdmin application examples
 - MinIO backup storage disabled by default, can be enabled as needed
 

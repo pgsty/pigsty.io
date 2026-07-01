@@ -60,11 +60,10 @@ The `app/odoo` template provides a one-click deployment solution for Odoo open-s
 
 ```bash
 # Odoo Web interface
-http://odoo.pigsty:8069
+http://<IP>:8069
+http://odoo.pigsty
 
-# Default admin account
-Username: admin
-Password: admin (set on first login)
+# Create or set the administrator account on first access
 ```
 
 **Use Cases**:
@@ -77,4 +76,3 @@ Password: admin (set on first login)
 - First access requires creating database and setting admin password
 - Production environments should enable HTTPS
 - Custom modules can be installed via `/data/odoo/addons`
-

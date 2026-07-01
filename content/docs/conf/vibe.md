@@ -75,7 +75,7 @@ By default, the `meta` database enables `postgis`, `timescaledb`, and `vector`; 
 
 ## VIBE Module Components
 
-In v4.2, the VIBE module provides AI coding sandbox capability; `vibe.yml` explicitly enables Code-Server and Jupyter, and reserves Claude customization via `claude_env`.
+The VIBE module provides AI coding sandbox capability; `vibe.yml` explicitly enables Code-Server and Jupyter, and reserves Claude customization via `claude_env`.
 
 **Code-Server**: VS Code in browser
 
@@ -138,7 +138,7 @@ juice_instances:
 
 ```bash
 # 1. Download Pigsty
-curl https://repo.pigsty.io/get | bash
+curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
 
 # 2. Use vibe config template
 ./configure -c vibe
@@ -203,4 +203,3 @@ psql postgres://dbuser_meta:DBUser.Meta@<ip>:5432/meta
 - **Resource requirements**: Recommend at least 2 cores 4GB memory, SSD disk
 - **Simplified architecture**: This template disables Patroni, PgBouncer etc HA components, suitable for single-node dev env
 - **Claude API**: Using Claude Code requires configuring API key in `claude_env`
-

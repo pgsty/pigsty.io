@@ -6,7 +6,7 @@ icon: fa-solid fa-tower-observation
 categories: [Reference]
 ---
 
-The `infra` configuration template only deploys Pigsty's observability infrastructure components (VictoriaMetrics/Grafana/Loki/Nginx, etc.), without PostgreSQL and etcd.
+The `infra` configuration template only deploys Pigsty's observability infrastructure components (VictoriaMetrics/Grafana/VictoriaLogs/Nginx, etc.), without PostgreSQL and etcd.
 
 Suitable for scenarios requiring a standalone monitoring stack, such as monitoring external PostgreSQL/RDS instances or other data sources.
 
@@ -77,4 +77,3 @@ pg_exporters:
 - This template will not install any databases
 - For full functionality, use [`meta`](/docs/conf/meta/) or [`rich`](/docs/conf/rich/) template
 - Can add multiple infra nodes for high availability as needed
-

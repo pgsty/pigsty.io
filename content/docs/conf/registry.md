@@ -56,14 +56,18 @@ The `app/registry` template provides a one-click deployment solution for Docker 
 
 **Configure Docker Client**:
 
-```bash
-# Edit /etc/docker/daemon.json
-{
-  "registry-mirrors": ["https://d.pigsty"],
-  "insecure-registries": ["d.pigsty"]
-}
+Edit `/etc/docker/daemon.json`:
 
-# Restart Docker
+```json
+{
+  "registry-mirrors": ["http://d.pigsty"],
+  "insecure-registries": ["d.pigsty:5000"]
+}
+```
+
+Restart Docker:
+
+```bash
 sudo systemctl restart docker
 ```
 
@@ -71,7 +75,7 @@ sudo systemctl restart docker
 
 ```bash
 # Registry API
-https://d.pigsty/v2/_catalog
+http://d.pigsty/v2/_catalog
 
 # Web UI
 http://dui.pigsty:5080
@@ -90,4 +94,3 @@ docker pull nginx:latest
 - Requires sufficient disk space to store cached images
 - Default cache TTL is 7 days (`REGISTRY_PROXY_TTL: 168h`)
 - Can configure HTTPS certificates (via certbot)
-
