@@ -97,7 +97,7 @@ Log Commands:
 ```bash
 # View backup info
 pig pb info                          # Show all backup info
-pig pb info --raw -o json            # Raw JSON output
+pig pb info --raw --raw-output json  # Raw JSON output
 pig pb ls                            # List all backups
 pig pb ls repo                       # List configured repos
 pig pb ls stanza                     # List all stanzas
@@ -121,7 +121,7 @@ pig pb check                         # Verify repository integrity
 
 # Cleanup
 pig pb expire                        # Clean up per retention policy
-pig pb expire --dry-run              # Dry run mode
+pig pb expire --plan                 # Preview cleanup plan only
 ```
 
 
@@ -166,7 +166,7 @@ Show detailed backup repository info including all backup sets and WAL archive s
 
 ```bash
 pig pb info                          # Show all backup info
-pig pb info --raw -o json            # Raw JSON output
+pig pb info --raw --raw-output json  # Raw JSON output
 pig pb info --set 20250101-120000F   # Show specific backup set details
 ```
 
@@ -175,7 +175,7 @@ pig pb info --set 20250101-120000F   # Show specific backup set details
 | Option | Short | Description |
 |:---|:---|:---|
 | `--raw` | `-R` | Raw output mode (pass through pgBackRest output) |
-| `--output` | `-o` | Output format: text, json (only in `--raw` mode) |
+| `--raw-output` | `-O` | Raw output format: text, json (only in `--raw` mode) |
 | `--set` | | Show specific backup set details |
 {.full-width}
 
@@ -245,7 +245,7 @@ Clean up expired backups and WAL archives per retention policy.
 ```bash
 pig pb expire                        # Clean up per policy
 pig pb expire --set 20250101-*       # Delete specific backup set
-pig pb expire --dry-run              # Dry run (display only)
+pig pb expire --plan                 # Preview cleanup plan only, do not delete
 ```
 
 **Options:**
@@ -253,7 +253,7 @@ pig pb expire --dry-run              # Dry run (display only)
 | Option | Description |
 |:---|:---|
 | `--set` | Delete specific backup set |
-| `--dry-run` | Dry run: only display what would be deleted |
+| `--plan` | Preview cleanup plan only, do not delete backups |
 {.full-width}
 
 **Retention Policy:**
@@ -292,6 +292,9 @@ pig pb restore -b 20251225-120000F   # Restore from specific backup set
 # Other options
 pig pb restore -t "..." -X           # Exclusive mode (stop before target)
 pig pb restore -t "..." -P           # Auto-promote after restore
+pig pb restore -t "..." -T current   # Recover along current timeline
+pig pb restore -d --target-action=pause  # Pause when target is reached
+pig pb restore -d --plan             # Preview restore plan only
 pig pb restore -y                    # Skip confirmation countdown
 ```
 
@@ -315,6 +318,9 @@ pig pb restore -y                    # Skip confirmation countdown
 | `--data` | `-D` | Target data directory |
 | `--exclusive` | `-X` | Exclusive mode: stop before target |
 | `--promote` | `-P` | Auto-promote to primary after restore |
+| `--target-action` | | Action when recovery target is reached: pause/promote/shutdown |
+| `--target-timeline` | `-T` | Recovery timeline: latest/current/N/0xN |
+| `--plan` | | Preview restore plan only, do not execute |
 | `--yes` | `-y` | Skip confirmation and countdown |
 {.full-width}
 

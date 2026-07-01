@@ -25,7 +25,7 @@ If [Postgres's future is unmatched extensibility](https://medium.com/@fengruohan
 
 ## Automation-Friendly
 
-PIG's command system is automation-ready out of the box: consistent argument conventions, stable output behavior, and `--dry-run` or confirmation flows for high-risk operations to reduce mistakes.
+PIG's command system is automation-ready out of the box: consistent argument conventions, stable output behavior, `--plan` previews, and confirmation flows for high-risk operations to reduce mistakes.
 
 
 > [ANNOUNCE pig: The Postgres Extension Wizard](https://www.postgresql.org/about/news/announce-pig-the-postgres-extension-wizard-2988/)

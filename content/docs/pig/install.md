@@ -35,31 +35,31 @@ You can specify a particular version to install by passing the version number as
 **Default Installation** (Cloudflare CDN):
 
 ```bash
-curl -fsSL https://repo.pigsty.io/pig | bash -s 1.4.2
+curl -fsSL https://repo.pigsty.io/pig | bash -s 1.5.0
 ```
 
 **China Mirror**:
 
 ```bash
-curl -fsSL https://repo.pigsty.cc/pig | bash -s 1.4.2
+curl -fsSL https://repo.pigsty.cc/pig | bash -s 1.5.0
 ```
 
 
 ## Download from Release Page
 
-You can also download `pig` installation packages (`RPM`/`DEB`/tarball) directly from the Pigsty repository: [GitHub v1.4.2 Stable Release Page](https://github.com/pgsty/pig/releases/tag/v1.4.2)
+You can also download `pig` installation packages (`RPM`/`DEB`/tarball) directly from the Pigsty repository: [GitHub v1.5.0 Stable Release Page](https://github.com/pgsty/pig/releases/tag/v1.5.0)
 
 ```
 latest
-└── v1.4.2
-    ├── pig_1.4.2-1_amd64.deb
-    ├── pig_1.4.2-1_arm64.deb
-    ├── pig-1.4.2-1.aarch64.rpm
-    ├── pig-1.4.2-1.x86_64.rpm
-    ├── pig-v1.4.2.linux-amd64.tar.gz
-    ├── pig-v1.4.2.linux-arm64.tar.gz
-    ├── pig-v1.4.2.darwin-amd64.tar.gz
-    └── pig-v1.4.2.darwin-arm64.tar.gz
+└── v1.5.0
+    ├── pig_1.5.0-1_amd64.deb
+    ├── pig_1.5.0-1_arm64.deb
+    ├── pig-1.5.0-1.aarch64.rpm
+    ├── pig-1.5.0-1.x86_64.rpm
+    ├── pig-v1.5.0.linux-amd64.tar.gz
+    ├── pig-v1.5.0.linux-arm64.tar.gz
+    ├── pig-v1.5.0.darwin-amd64.tar.gz
+    └── pig-v1.5.0.darwin-arm64.tar.gz
 ```
 
 After extracting, place the binary file in your system PATH.

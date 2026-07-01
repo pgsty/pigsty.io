@@ -43,18 +43,18 @@ $ curl -fsSL https://repo.pigsty.cc/pig | bash
 [INFO] kernel = Linux
 [INFO] machine = x86_64
 [INFO] package = deb
-[INFO] pkg_url = https://repo.pigsty.cc/pkg/pig/v1.4.2/pig_1.4.2-1_amd64.deb
-[INFO] download = /tmp/pig_1.4.2-1_amd64.deb
-[INFO] downloading pig v1.4.2
-curl -fSL https://repo.pigsty.cc/pkg/pig/v1.4.2/pig_1.4.2-1_amd64.deb -o /tmp/pig_1.4.2-1_amd64.deb
+[INFO] pkg_url = https://repo.pigsty.cc/pkg/pig/v1.5.0/pig_1.5.0-1_amd64.deb
+[INFO] download = /tmp/pig_1.5.0-1_amd64.deb
+[INFO] downloading pig v1.5.0
+curl -fSL https://repo.pigsty.cc/pkg/pig/v1.5.0/pig_1.5.0-1_amd64.deb -o /tmp/pig_1.5.0-1_amd64.deb
 ######################################################################## 100.0%
 [INFO] md5sum = 566e06f6da1fe9d635c41258d20cd9ff10de4e6e74b3b41ba2c6204ba22743c8
-[INFO] installing: dpkg -i /tmp/pig_1.4.2-1_amd64.deb
+[INFO] installing: dpkg -i /tmp/pig_1.5.0-1_amd64.deb
 (Reading database ... 166001 files and directories currently installed.)
-Preparing to unpack /tmp/pig_1.4.2-1_amd64.deb ...
-Unpacking pig (1.4.2-1) ...
-Setting up pig (1.4.2-1) ...
-[INFO] pig v1.4.2 installed successfully
+Preparing to unpack /tmp/pig_1.5.0-1_amd64.deb ...
+Unpacking pig (1.5.0-1) ...
+Setting up pig (1.5.0-1) ...
+[INFO] pig v1.5.0 installed successfully
 check https://pigsty.io/ext/ for details
 ```
 
@@ -66,7 +66,7 @@ PIG is a Go-written binary program, installed by default at `/usr/bin/pig`. `pig
 
 ```bash
 $ pig version
-pig version 1.4.2 linux/amd64
+pig version 1.5.0 linux/amd64
 ```
 
 Use `pig status` to print the current environment status, OS code, PG installation status, repository accessibility and latency.
@@ -75,7 +75,7 @@ Use `pig status` to print the current environment status, OS code, PG installati
 $ pig status
 
 # [Configuration] ================================
-Pig Version      : 1.4.2
+Pig Version      : 1.5.0
 Pig Config       : /home/vagrant/.pig/config.yml
 Log Level        : info
 Log Path         : stderr
@@ -115,10 +115,10 @@ Latest Pigsty Ver :  v4.3.0
 
 ## Automation Tips
 
-For production recovery tasks, it is recommended to run `--dry-run` first to preview the PITR execution plan before actually executing:
+For production recovery tasks, it is recommended to run `--plan` first to preview the PITR execution plan before actually executing:
 
 ```bash
-pig pitr -d --dry-run         # preview recovery steps only, no execution
+pig pitr -d --plan            # preview recovery steps only, no execution
 pig pitr -d -y                # skip confirmation (automation scenarios)
 ```
 

@@ -14,7 +14,7 @@ PIG is a command-line tool specifically designed for installing, managing, and b
 PIG is not a reinvented wheel, but rather a **PiggyBack** - a high-level abstraction layer that leverages existing Linux distribution package managers (`apt`/`dnf`).
 It abstracts away the differences between operating systems, chip architectures, and PG major versions, allowing you to install and manage PG kernels and 531 extensions with just a few simple commands.
 
-PIG is also automation-friendly by design: consistent parameter styles, clear error messages, and safe guards like `--dry-run` for high-risk operations.
+PIG is also automation-friendly by design: consistent parameter styles, clear error messages, preview switches like `--plan`, and confirmation steps.
 
 Please note: for extension installation, **pig is not a mandatory component**. You can still use apt/dnf package managers to directly access the [**Pigsty PGSQL**](/docs/repo/pgsql/) repository.
 
@@ -63,10 +63,10 @@ Run `pig help <command>` to get detailed help for subcommands.
 **Pigsty Management:**
 
 - [**pig sty**](/docs/pig/sty/): Manage Pigsty installation
-- [**pig postgres**](/docs/pig/pg/): Manage local PostgreSQL server
-- [**pig patroni**](/docs/pig/pt/): Manage Patroni HA cluster
-- [**pig pgbackrest**](/docs/pig/pb/): Manage pgBackRest backup & restore
-- [**pig pitr**](/docs/pig/pitr/): Orchestrated Point-In-Time Recovery
+- [**pig pg**](/docs/pig/pg/): Manage local PostgreSQL server
+- [**pig pt**](/docs/pig/pt/): Manage Patroni HA cluster
+- [**pig pb**](/docs/pig/pb/): Manage pgBackRest backup & restore
+- [**pig pitr**](/docs/pig/pitr/): Point-in-time recovery workflow
 
 
 ## About

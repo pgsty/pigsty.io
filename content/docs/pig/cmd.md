@@ -152,6 +152,8 @@ pig pg psql mydb                 # connect to database
 pig pg ps                        # show current connections
 pig pg vacuum mydb               # vacuum database
 pig pg tune -p olap              # generate tuned parameters
+pig pg fork dev                  # create local one-off physical fork
+pig pg fork list                 # list local forks
 pig pg log tail                  # real-time log viewing
 ```
 
@@ -162,8 +164,8 @@ Manage Patroni HA cluster. See [`pig pt`](/docs/pig/pt/) for details.
 
 ```bash
 pig pt list                      # list cluster members
-pig pt config                    # show cluster config
-pig pt config ttl=60             # modify cluster config
+pig pt config show               # show cluster config
+pig pt config set ttl=60         # modify cluster config
 pig pt status                    # check service status
 pig pt log -f                    # real-time log viewing
 ```
@@ -192,7 +194,7 @@ Orchestrated Point-In-Time Recovery. See [`pig pitr`](/docs/pig/pitr/) for detai
 pig pitr -d                      # recover to latest (most common)
 pig pitr -t "2025-01-01 12:00"   # recover to specific time
 pig pitr -I                      # recover to backup consistency point
-pig pitr -d --dry-run            # show execution plan without running
+pig pitr -d --plan               # show execution plan without running
 pig pitr -d -y                   # skip confirmation (for automation)
 pig pitr -d --skip-patroni       # skip Patroni management
 pig pitr -d --no-restart         # don't auto-start PostgreSQL after restore
