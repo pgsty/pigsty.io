@@ -362,7 +362,7 @@ Delayed clusters require additional resources, but are much faster than [PITR](/
 
 ## Citus Cluster
 
-Pigsty natively supports Citus. You can refer to [`files/pigsty/citus.yml`](https://github.com/pgsty/pigsty/blob/main/conf/citus.yml) and [`prod.yml`](https://github.com/pgsty/pigsty/blob/main/conf/prod.yml#L298) as examples.
+Pigsty natively supports Citus. You can refer to [`conf/ha/citus.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/citus.yml) as a complete example.
 
 To define a Citus cluster, you need to specify the following parameters:
 
@@ -410,7 +410,6 @@ SELECT create_reference_table('pgbench_branches')         ; SELECT truncate_loca
 SELECT create_reference_table('pgbench_history')          ; SELECT truncate_local_data_after_distributing_table($$public.pgbench_history$$);
 SELECT create_reference_table('pgbench_tellers')          ; SELECT truncate_local_data_after_distributing_table($$public.pgbench_tellers$$);
 ```
-
 
 
 

@@ -68,7 +68,7 @@ You can use package aliases in the following four parameters, and the aliases wi
 - [**`pg_extensions`**](/docs/pgsql/param#pg_extensions) - PG extension packages
 - [**`pg_packages`**](/docs/pgsql/param#pg_extensions) - PG kernel/base utility packages
 - [**`repo_packages`**](/docs/infra/param#repo_packages) - Package download parameter: packages to download to local repository
-- [**`repo_packages_extra`**](/docs/pgsql/param#pg_extensions) - Extension installation parameter: additional packages to download to local repository
+- [**`repo_extra_packages`**](/docs/pgsql/param#pg_extensions) - Extension installation parameter: additional packages to download to local repository
 
 
 --------

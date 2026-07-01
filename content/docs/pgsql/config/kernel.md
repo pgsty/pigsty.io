@@ -30,7 +30,7 @@ all:
 
 > Effect: Ansible will pull packages corresponding to `pg_version=18` during installation, pre-install extensions to the system, and database initialization scripts can then directly `CREATE EXTENSION`.
 
-Extension support varies across versions in Pigsty's offline repository: 14 has relatively fewer available extensions, while 17/18 have the broadest coverage. If an extension is not pre-packaged, it can be added via `repo_packages_extra`.
+Extension support varies across versions in Pigsty's offline repository: 14 has relatively fewer available extensions, while 17/18 have the broadest coverage. If an extension is not pre-packaged, it can be added via `repo_extra_packages`.
 
 
 ----------------
@@ -39,17 +39,19 @@ Extension support varies across versions in Pigsty's offline repository: 14 has 
 
 `pg_mode` controls the kernel "flavor" to deploy. Default `pgsql` indicates standard PostgreSQL. Pigsty currently supports the following modes:
 
-| Mode     | Scenario                                                     |
-|----------|--------------------------------------------------------------|
-| `pgsql`  | Standard PostgreSQL, HA + replication                        |
+| Mode     | Scenario                                                             |
+|----------|----------------------------------------------------------------------|
+| `pgsql`  | Standard PostgreSQL, HA + replication                                |
 | `citus`  | Citus distributed cluster, requires additional `pg_shard / pg_group` |
-| `gpsql`  | Cloudberry / Greenplum / MatrixDB       |
-| `mssql`  | Babelfish                               |
-| `mysql`  | OpenGauss/HaloDB compatible with MySQL protocol              |
-| `polar`  | Alibaba PolarDB (based on pg `polar` distribution)           |
-| `ivory`  | IvorySQL (Oracle-compatible syntax)                          |
-| `oriole` | OrioleDB storage engine                                      |
-| `oracle` | PostgreSQL + ora compatibility (`pg_mode: oracle`)           |
+| `gpsql`  | Cloudberry / Greenplum / MatrixDB                                    |
+| `mssql`  | Babelfish                                                            |
+| `mysql`  | OpenGauss/HaloDB compatible with MySQL protocol                      |
+| `polar`  | Alibaba PolarDB (based on pg `polar` distribution)                   |
+| `ivory`  | IvorySQL (Oracle-compatible syntax)                                  |
+| `oriole` | OrioleDB storage engine                                              |
+| `agens`  | AgensGraph graph database kernel                                     |
+| `pgedge` | pgEdge distributed replication kernel                                |
+| `oracle` | PostgreSQL + ora compatibility (`pg_mode: oracle`)                   |
 
 After selecting a mode, Pigsty will automatically load corresponding templates, dependency packages, and Patroni configurations. For example, deploying Citus:
 
@@ -105,12 +107,12 @@ pg-analytics:
 
 `pg_conf` points to Patroni templates in `roles/pgsql/templates/*.yml`. Pigsty includes four built-in general templates:
 
-| Template   | Applicable Scenario                         |
-|------------|---------------------------------------------|
-| `oltp.yml` | Default template, for 4–128 core TP workload |
-| `olap.yml` | Optimized for analytical scenarios          |
+| Template   | Applicable Scenario                                                                   |
+|------------|---------------------------------------------------------------------------------------|
+| `oltp.yml` | Default template, for 4–128 core TP workload                                          |
+| `olap.yml` | Optimized for analytical scenarios                                                    |
 | `crit.yml` | Emphasizes sync commit/minimal latency, suitable for zero-loss scenarios like finance |
-| `tiny.yml` | Lightweight machines / edge scenarios / resource-constrained environments |
+| `tiny.yml` | Lightweight machines / edge scenarios / resource-constrained environments             |
 
 You can directly replace the template or customize a YAML file in `templates/`, then specify it in cluster `vars`.
 
