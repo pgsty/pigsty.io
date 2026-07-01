@@ -14,8 +14,8 @@ categories: [Task]
 | Action                                | Command                       | Description                         |
 |:--------------------------------------|:------------------------------|:------------------------------------|
 | [**Create Cluster**](#create-cluster) | `bin/pgsql-add <cls>`         | Create a new PostgreSQL cluster     |
-| [**Expand Cluster**](#expand-cluster)      | `bin/pgsql-add <cls> <ip...>` | Add replica to existing cluster     |
-| [**Shrink Cluster**](#shrink-cluster)       | `bin/pgsql-rm <cls> <ip...>`  | Remove instance from cluster        |
+| [**Expand Cluster**](#expand-cluster) | `bin/pgsql-add <cls> <ip...>` | Add replica to existing cluster     |
+| [**Shrink Cluster**](#shrink-cluster) | `bin/pgsql-rm <cls> <ip...>`  | Remove instance from cluster        |
 | [**Remove Cluster**](#remove-cluster) | `bin/pgsql-rm <cls>`          | Destroy entire PostgreSQL cluster   |
 | [**Reload Service**](#reload-service) | `bin/pgsql-svc <cls> [ip...]` | Reload cluster load balancer config |
 | [**Reload HBA**](#reload-hba)         | `bin/pgsql-hba <cls> [ip...]` | Reload cluster HBA access rules     |
@@ -527,14 +527,14 @@ PITR supports multiple recovery target types:
 | XID         | `xid: "250000"`                      | Recover to before/after txn    |
 | Name        | `name: "before_migration"`           | Recover to named restore point |
 | LSN         | `lsn: "0/4001C80"`                   | Recover to specific WAL pos    |
-| Latest      | `type: "latest"`                     | Recover to end of WAL archive  |
+| Latest      | `pg_pitr: {}`                        | Recover to end of WAL archive  |
 
 {{% alert title="Post-PITR Processing" color="info" %}}
-Recovered cluster has `archive_mode` **disabled** to prevent accidental WAL overwrites.
-If recovered data is correct, enable archiving and perform new full backup:
+Pigsty v4.3 PITR keeps archiving enabled by default (`archive: true`). If you explicitly set `archive: false` for exploratory recovery, reset `archive_mode`, restart the cluster, and perform a new full backup after confirming the recovered data is correct:
 
 ```bash
-psql -c 'ALTER SYSTEM RESET archive_mode; SELECT pg_reload_conf();'
+psql -c 'ALTER SYSTEM RESET archive_mode;'
+pg restart <cls>
 pg-backup full    # Execute new full backup
 ```
 {{% /alert %}}

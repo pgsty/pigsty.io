@@ -43,13 +43,13 @@ For complete database definition reference, see [**Database Configuration**](/do
 
 Note: Some parameters can only be specified at **creation time**. Modifying these requires recreating the database (use `state: recreate`).
 
-| Action                            | Command                       | Description                              |
-|:----------------------------------|:------------------------------|:-----------------------------------------|
-| [**Create Database**](#create-database) | `bin/pgsql-db <cls> <db>` | Create new business database             |
-| [**Modify Database**](#modify-database) | `bin/pgsql-db <cls> <db>` | Modify existing database properties      |
-| [**Delete Database**](#delete-database) | `bin/pgsql-db <cls> <db>` | Delete database (requires `state: absent`) |
+| Action                                    | Command                   | Description                                    |
+|:------------------------------------------|:--------------------------|:-----------------------------------------------|
+| [**Create Database**](#create-database)   | `bin/pgsql-db <cls> <db>` | Create new business database                   |
+| [**Modify Database**](#modify-database)   | `bin/pgsql-db <cls> <db>` | Modify existing database properties            |
+| [**Delete Database**](#delete-database)   | `bin/pgsql-db <cls> <db>` | Delete database (requires `state: absent`)     |
 | [**Rebuild Database**](#rebuild-database) | `bin/pgsql-db <cls> <db>` | Drop and recreate (requires `state: recreate`) |
-| [**Clone Database**](#clone-database) | `bin/pgsql-db <cls> <db>` | Clone database using template            |
+| [**Clone Database**](#clone-database)     | `bin/pgsql-db <cls> <db>` | Clone database using template                  |
 {.full-width}
 
 
@@ -334,7 +334,7 @@ SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'meta';
 CREATE DATABASE meta_dev TEMPLATE meta STRATEGY FILE_COPY;
 ```
 
-**Limitations**: Instant clone only available on supported filesystems (xfs, brtfs, zfs, apfs); don't use `postgres` database as template; in high-concurrency environments, all template connections must be cleared within clone window (~200ms).
+**Limitations**: Instant clone only available on supported filesystems (xfs, btrfs, zfs, apfs); don't use `postgres` database as template; in high-concurrency environments, all template connections must be cleared within clone window (~200ms).
 
 
 ----------------

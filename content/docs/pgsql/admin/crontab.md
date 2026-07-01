@@ -62,11 +62,11 @@ pg_crontab:
   - '00 04 * * 1 /pg/bin/pg-repack'         # Weekly repack on Monday at 4:00 AM
 ```
 
-| Task          | Frequency    | Timing    | Description                |
-|:------------|:------|:------|:------------------|
-| `pg-backup` | Daily    | Early morning    | Full or incremental backup, depending on business needs   |
-| `pg-vacuum` | Weekly  | Sunday early morning  | Freeze aging transactions, prevent XID wraparound  |
-| `pg-repack` | Weekly/Monthly | Off-peak hours | Reorganize bloated tables/indexes, reclaim space      |
+| Task        | Frequency      | Timing               | Description                                             |
+|:------------|:---------------|:---------------------|:--------------------------------------------------------|
+| `pg-backup` | Daily          | Early morning        | Full or incremental backup, depending on business needs |
+| `pg-vacuum` | Weekly         | Sunday early morning | Freeze aging transactions, prevent XID wraparound       |
+| `pg-repack` | Weekly/Monthly | Off-peak hours       | Reorganize bloated tables/indexes, reclaim space        |
 {.full-width}
 
 {{% alert title="Primary Only Execution" color="secondary" %}}
@@ -141,11 +141,11 @@ pg-backup incr           # Execute incremental backup (based on most recent any 
 
 **Backup Types**
 
-| Type   | Parameter     | Description                        |
-|:-----|:-------|:--------------------------|
-| Full Backup | `full` | Complete backup of all data, only this backup needed for recovery        |
-| Differential | `diff` | Backup changes since last full backup, recovery needs full + diff |
-| Incremental | `incr` | Backup changes since last any backup, recovery needs complete chain  |
+| Type         | Parameter | Description                                                         |
+|:-------------|:----------|:--------------------------------------------------------------------|
+| Full Backup  | `full`    | Complete backup of all data, only this backup needed for recovery   |
+| Differential | `diff`    | Backup changes since last full backup, recovery needs full + diff   |
+| Incremental  | `incr`    | Backup changes since last any backup, recovery needs complete chain |
 {.full-width}
 
 **Execution Requirements**
@@ -218,12 +218,12 @@ VACUUM FREEZE schema.table_name;
 
 **Command Options**
 
-| Option              | Description                 | Default         |
-|:----------------|:-------------------|:------------|
-| `-h, --help`    | Show help message             | -           |
-| `-n, --dry-run` | Dry run mode, display only        | false       |
-| `-a, --age`     | Age threshold, tables exceeding need freeze    | 100000000   |
-| `-r, --ratio`   | Aging ratio threshold, full freeze if exceeded (%) | 40          |
+| Option          | Description                                        | Default   |
+|:----------------|:---------------------------------------------------|:----------|
+| `-h, --help`    | Show help message                                  | -         |
+| `-n, --dry-run` | Dry run mode, display only                         | false     |
+| `-a, --age`     | Age threshold, tables exceeding need freeze        | 100000000 |
+| `-r, --ratio`   | Aging ratio threshold, full freeze if exceeded (%) | 40        |
 {.full-width}
 
 **Logic**
@@ -286,14 +286,14 @@ pg_repack dbname -i schema.index
 
 **Command Options**
 
-| Option              | Description               | Default   |
-|:----------------|:-----------------|:------|
-| `-h, --help`    | Show help message           | -     |
-| `-n, --dry-run` | Dry run mode, display only      | false |
-| `-t, --table`   | Reorganize tables only             | false |
-| `-i, --index`   | Reorganize indexes only            | false |
-| `-T, --timeout` | Lock wait timeout (seconds)       | 10    |
-| `-j, --jobs`    | Parallel jobs            | 2     |
+| Option          | Description                 | Default |
+|:----------------|:----------------------------|:--------|
+| `-h, --help`    | Show help message           | -       |
+| `-n, --dry-run` | Dry run mode, display only  | false   |
+| `-t, --table`   | Reorganize tables only      | false   |
+| `-i, --index`   | Reorganize indexes only     | false   |
+| `-T, --timeout` | Lock wait timeout (seconds) | 10      |
+| `-j, --jobs`    | Parallel jobs               | 2       |
 {.full-width}
 
 **Auto-Selection Thresholds**
@@ -302,22 +302,22 @@ Script auto-selects objects to reorganize based on table/index size and bloat ra
 
 **Table Bloat Thresholds**
 
-| Size Range        | Bloat Threshold | Max Count |
-|:------------|:-----:|:----:|
-| < 256MB     | > 40% |  64  |
-| 256MB - 2GB | > 30% |  16  |
-| 2GB - 8GB   | > 20% |  4   |
-| 8GB - 64GB  | > 15% |  1   |
+| Size Range  | Bloat Threshold | Max Count |
+|:------------|:---------------:|:---------:|
+| < 256MB     |      > 40%      |    64     |
+| 256MB - 2GB |      > 30%      |    16     |
+| 2GB - 8GB   |      > 20%      |     4     |
+| 8GB - 64GB  |      > 15%      |     1     |
 {.full-width}
 
 **Index Bloat Thresholds**
 
-| Size Range        | Bloat Threshold | Max Count |
-|:------------|:-----:|:----:|
-| < 128MB     | > 40% |  64  |
-| 128MB - 1GB | > 35% |  16  |
-| 1GB - 8GB   | > 30% |  4   |
-| 8GB - 64GB  | > 20% |  1   |
+| Size Range  | Bloat Threshold | Max Count |
+|:------------|:---------------:|:---------:|
+| < 128MB     |      > 40%      |    64     |
+| 128MB - 1GB |      > 35%      |    16     |
+| 1GB - 8GB   |      > 30%      |     4     |
+| 8GB - 64GB  |      > 20%      |     1     |
 {.full-width}
 
 Tables/indexes over 64GB are skipped with a warning and require manual handling.
@@ -341,7 +341,7 @@ pg_crontab:
   - '00 04 * * 1 /pg/bin/pg-repack'     # Weekly Monday at 4:00 AM
 ```
 
-You can confirm database bloat through Pigsty's [**PGCAT Database - Table Bloat**](https://demo.pigsty.io/d/pgcat-database) panel and select high-bloat tables and indexes for reorganization.
+You can confirm database bloat through Pigsty's [**PGCAT Database - Table Bloat**](https://demo.pigsty.io/ui/d/pgcat-database) panel and select high-bloat tables and indexes for reorganization.
 
 For more details see: [**Managing Relation Bloat**](https://vonng.com/pg/bloat/)
 

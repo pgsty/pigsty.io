@@ -99,7 +99,7 @@ $ pgb -c "RELOAD;"
 Pgbouncer runs as the same `dbsu` as PostgreSQL, default `postgres` OS user. Pigsty provides `pgb` alias for easy management:
 
 ```bash
-alias pgb="psql -p 6432 -d pgbouncer -U postgres"
+alias pgb='psql -p6432 -dpgbouncer'
 ```
 
 Use `pgb` on database nodes to connect to Pgbouncer admin console for management commands and monitoring queries.
@@ -332,7 +332,7 @@ RELOAD;               -- Reload config files
 ```bash
 $ pgb -c "RELOAD;"              # Reload via admin console
 $ systemctl reload pgbouncer    # Reload via systemd
-$ kill -SIGHUP $(cat /var/run/pgbouncer/pgbouncer.pid)  # Reload via signal
+$ kill -SIGHUP $(cat /run/postgresql/pgbouncer.pid)  # Reload via signal
 ```
 
 Pigsty provides playbook task to reload Pgbouncer config:
@@ -428,16 +428,16 @@ Pgbouncer supports Unix signal control, useful when admin console is unavailable
 
 ```bash
 # Reload config via signal
-$ kill -SIGHUP $(cat /var/run/pgbouncer/pgbouncer.pid)
+$ kill -SIGHUP $(cat /run/postgresql/pgbouncer.pid)
 
 # Graceful shutdown via signal
-$ kill -SIGTERM $(cat /var/run/pgbouncer/pgbouncer.pid)
+$ kill -SIGTERM $(cat /run/postgresql/pgbouncer.pid)
 
 # Pause via signal
-$ kill -SIGUSR1 $(cat /var/run/pgbouncer/pgbouncer.pid)
+$ kill -SIGUSR1 $(cat /run/postgresql/pgbouncer.pid)
 
 # Resume via signal
-$ kill -SIGUSR2 $(cat /var/run/pgbouncer/pgbouncer.pid)
+$ kill -SIGUSR2 $(cat /run/postgresql/pgbouncer.pid)
 ```
 
 
