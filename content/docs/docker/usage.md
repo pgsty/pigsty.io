@@ -18,7 +18,7 @@ Pigsty has built-in [**Docker**](https://www.docker.com/) support, which you can
 
 Docker is an **optional module**. In Pigsty, whether Docker is installed is controlled by [`docker_enabled`](/docs/docker/param#docker_enabled), which is disabled by default.
 
-In v4.1, the `docker-ce` upstream repository belongs to the `infra` module. If you need to explicitly include Docker packages in the offline repository, use `repo_extra_packages` with the `docker` package alias (mapped to `docker-ce` and `docker-compose-plugin`).
+The `docker-ce` upstream repository belongs to the `infra` module. If you need to explicitly include Docker packages in the offline repository, use `repo_extra_packages` with the `docker` package alias (mapped to `docker-ce` and `docker-compose-plugin`).
 
 ```yaml
 repo_modules: infra,node,pgsql     # <--- Keep infra module (Docker upstream belongs to infra)
@@ -99,7 +99,7 @@ After downloading, the Docker packages will be available to all nodes via the lo
 
 If you've already completed Pigsty installation and the local repository is initialized, you can run `./infra.yml -t repo_build` after modifying the configuration to re-download and rebuild the offline repository.
 
-Installing Docker requires the Docker YUM/APT [repository](#repository). In v4.1, this repository belongs to the default `infra` module in `repo_upstream`, and is usually available out of the box.
+Installing Docker requires the Docker YUM/APT [repository](#repository). In the v4.x default `repo_upstream`, this repository belongs to the `infra` module and is usually available out of the box.
 
 
 
