@@ -129,7 +129,7 @@ enable_partitionwise_join: on       # smart partition JOIN
 enable_partitionwise_aggregate: on  # smart partition aggregation
 ```
 
-### IO Config (PG17+)
+### IO Config (PG18+)
 
 ```yaml
 io_workers: 50% × cpu (4-32)    # OLTP: 25% (4-16)
@@ -295,4 +295,3 @@ Focus on these metrics:
 - [**CRIT Template**](/docs/pgsql/template/crit/): Critical business template comparison
 - [**TINY Template**](/docs/pgsql/template/tiny/): Micro instance template comparison
 - [Offline Replica](/docs/pgsql/config/cluster#offline): Dedicated analytics instances
-

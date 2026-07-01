@@ -105,7 +105,7 @@ max_parallel_maintenance_workers: 33% × cpu (min 1)
 
 `max_parallel_workers_per_gather: 0` ensures queries won't spawn parallel workers, avoiding resource contention on low-core systems.
 
-### IO Config (PG17+)
+### IO Config (PG18+)
 
 ```yaml
 io_workers: 3   # fixed value, OLTP: 25% cpu (4-16)
@@ -352,4 +352,3 @@ pg-growing:
 - [**OLAP Template**](/docs/pgsql/template/olap/): Analytics template
 - [**CRIT Template**](/docs/pgsql/template/crit/): Critical business template
 - [Single-Node Install](/docs/setup/install#deploy): Pigsty single-node installation guide
-

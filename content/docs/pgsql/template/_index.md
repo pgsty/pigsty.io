@@ -124,7 +124,7 @@ The four templates differ significantly in key parameters:
 {.full-width}
 
 
-### IO Config (PG17+)
+### IO Config (PG18+)
 
 | Parameter           | OLTP           | OLAP           | CRIT          | TINY      |
 |:--------------------|:---------------|:---------------|:--------------|:----------|
