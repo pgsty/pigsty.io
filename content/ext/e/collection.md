@@ -211,6 +211,7 @@ CREATE EXTENSION collection;
 
 
 
+
 ## Usage
 
 > [collection: key-value collection data types for PL/pgSQL](https://github.com/aws/pgcollection)

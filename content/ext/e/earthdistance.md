@@ -51,6 +51,7 @@ CREATE EXTENSION earthdistance;
 
 
 
+
 ## Usage
 
 > [earthdistance: Great circle distances on the surface of the Earth](https://www.postgresql.org/docs/current/earthdistance.html)

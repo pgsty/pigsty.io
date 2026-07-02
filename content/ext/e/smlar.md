@@ -214,6 +214,7 @@ CREATE EXTENSION smlar;
 
 
 
+
 ## Usage
 
 > [smlar](https://github.com/jirutka/smlar): Effective similarity search for PostgreSQL arrays.

@@ -214,6 +214,7 @@ CREATE EXTENSION pg_sqlog CASCADE;  -- requires: file_fdw
 
 
 
+
 ## Usage
 
 > [pg_sqlog: access PostgreSQL CSV logs via SQL](https://github.com/kouber/pg_sqlog)

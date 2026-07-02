@@ -251,6 +251,7 @@ CREATE EXTENSION pgfaceting CASCADE;  -- requires: roaringbitmap
 
 
 
+
 ## Usage
 
 > [pgfaceting: fast faceted search using inverted indexes with roaring bitmaps](https://github.com/cybertec-postgresql/pgfaceting)

@@ -237,6 +237,7 @@ shared_preload_libraries = 'bgw_replstatus';
 
 
 
+
 ## Usage
 
 > [bgw_replstatus: lightweight replication status checker for load balancers](https://github.com/mhagander/bgw_replstatus)

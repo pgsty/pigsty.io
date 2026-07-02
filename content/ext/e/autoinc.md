@@ -51,6 +51,7 @@ CREATE EXTENSION autoinc;
 
 
 
+
 ## Usage
 
 > [autoinc: auto-increment trigger function](https://www.postgresql.org/docs/current/contrib-spi.html)

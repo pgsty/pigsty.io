@@ -52,6 +52,7 @@ CREATE EXTENSION uuid-ossp;
 
 
 
+
 ## Usage
 
 > [uuid-ossp: UUID generation functions](https://www.postgresql.org/docs/current/uuid-ossp.html)

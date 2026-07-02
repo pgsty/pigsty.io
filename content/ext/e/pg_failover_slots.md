@@ -384,6 +384,8 @@ shared_preload_libraries = 'pg_failover_slots';
 
 
 
+
+
 ## Usage
 
 Sources: [README](https://github.com/EnterpriseDB/pg_failover_slots/blob/master/README.md), [releases](https://github.com/EnterpriseDB/pg_failover_slots/releases)

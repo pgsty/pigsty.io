@@ -124,6 +124,7 @@ CREATE EXTENSION postgis_sfcgal CASCADE;  -- requires: postgis
 
 
 
+
 ## Usage
 
 > [PostGIS SFCGAL: 3D geometry and advanced operations powered by SFCGAL](https://github.com/postgis/postgis)

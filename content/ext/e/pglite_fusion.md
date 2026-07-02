@@ -220,6 +220,8 @@ CREATE EXTENSION pglite_fusion;
 ```
 
 
+
+
 ## Usage
 
 > https://github.com/frectonz/pglite-fusion/blob/main/README.md

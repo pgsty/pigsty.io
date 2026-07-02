@@ -51,6 +51,7 @@ CREATE EXTENSION pg_logicalinspect;
 
 
 
+
 ## Usage
 
 > [pg_logicalinspect: inspect logical decoding snapshot files](https://www.postgresql.org/docs/current/pglogicalinspect.html)

@@ -212,6 +212,9 @@ apt install -y postgresql-14-pg-variables   # PG 14
 CREATE EXTENSION pg_variables;
 ```
 
+
+
+
 ## Usage
 
 - Sources: [README](https://github.com/postgrespro/pg_variables/blob/master/README.md), [repository tags](https://github.com/postgrespro/pg_variables/tags), [control file](https://github.com/postgrespro/pg_variables/blob/master/pg_variables.control)

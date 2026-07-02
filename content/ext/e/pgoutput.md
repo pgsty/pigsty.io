@@ -48,6 +48,7 @@ weight: 9980
 
 
 
+
 ## Usage
 
 > [pgoutput: Logical Replication output plugin](https://www.postgresql.org/docs/current/protocol-logical-replication.html)

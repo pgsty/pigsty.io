@@ -51,6 +51,7 @@ CREATE EXTENSION pg_walinspect;
 
 
 
+
 ## Usage
 
 > [pg_walinspect: low-level WAL inspection](https://www.postgresql.org/docs/current/pgwalinspect.html)

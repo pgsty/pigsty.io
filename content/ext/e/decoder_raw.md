@@ -194,6 +194,7 @@ apt install -y postgresql-14-decoder-raw   # PG 14
 
 
 
+
 ## Usage
 
 > [decoder_raw: Output plugin for logical replication in Raw SQL format](https://github.com/michaelpq/pg_plugins/blob/main/decoder_raw/)

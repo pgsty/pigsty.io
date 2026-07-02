@@ -51,6 +51,7 @@ CREATE EXTENSION pgrowlocks;
 
 
 
+
 ## Usage
 
 > [pgrowlocks: display row-level locking information](https://www.postgresql.org/docs/current/pgrowlocks.html)

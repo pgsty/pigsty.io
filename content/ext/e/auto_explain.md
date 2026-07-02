@@ -48,6 +48,7 @@ weight: 6980
 
 
 
+
 ## Usage
 
 > [auto_explain: automatically log slow query plans](https://www.postgresql.org/docs/current/auto-explain.html)

@@ -132,6 +132,7 @@ CREATE EXTENSION pgroonga_database;
 
 
 
+
 ## Usage
 
 > [PGroonga Documentation](https://pgroonga.github.io/) | [GitHub: pgroonga/pgroonga](https://github.com/pgroonga/pgroonga)

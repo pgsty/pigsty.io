@@ -211,6 +211,7 @@ CREATE EXTENSION base62;
 
 
 
+
 ## Usage
 
 > [base62: base62 encoding/decoding data types for PostgreSQL](https://github.com/adjust/pg-base62)

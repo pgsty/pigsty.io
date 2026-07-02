@@ -170,6 +170,9 @@ apt install -y postgresql-16-pg-kazsearch   # PG 16
 CREATE EXTENSION pg_kazsearch;
 ```
 
+
+
+
 ## Usage
 
 Sources: [README](https://github.com/darkhanakh/pg-kazsearch/blob/v2.2.0/README.md), [v2.2.0 release](https://github.com/darkhanakh/pg-kazsearch/releases/tag/v2.2.0), [v2.1.0 release](https://github.com/darkhanakh/pg-kazsearch/releases/tag/v2.1.0)

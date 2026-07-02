@@ -236,6 +236,7 @@ apt install -y postgresql-14-wal2json   # PG 14
 
 
 
+
 ## Usage
 
 > [wal2json: Changing data capture in JSON format](https://github.com/eulerto/wal2json)

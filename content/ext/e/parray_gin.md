@@ -212,6 +212,9 @@ apt install -y postgresql-14-parray-gin   # PG 14
 CREATE EXTENSION parray_gin;
 ```
 
+
+
+
 ## Usage
 
 - Sources: [README](https://github.com/theirix/parray_gin/blob/master/README.md), [reference doc](https://github.com/theirix/parray_gin/blob/master/doc/parray_gin.md)

@@ -260,6 +260,7 @@ CREATE EXTENSION repmgr;
 
 
 
+
 ## Usage
 
 > [repmgr: Replication manager for PostgreSQL](https://github.com/EnterpriseDB/repmgr)

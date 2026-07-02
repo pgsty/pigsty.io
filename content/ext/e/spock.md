@@ -153,6 +153,7 @@ CREATE EXTENSION spock;
 
 
 
+
 ## Usage
 
 > [spock: Multi-master logical replication extension for PostgreSQL](https://github.com/pgEdge/spock)

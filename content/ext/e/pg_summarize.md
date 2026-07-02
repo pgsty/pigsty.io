@@ -214,6 +214,7 @@ CREATE EXTENSION pg_summarize;
 
 
 
+
 ## Usage
 
 > [pg_summarize](https://github.com/HexaCluster/pg_summarize): Text Summarization using LLMs, built using pgrx.

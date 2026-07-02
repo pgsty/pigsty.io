@@ -180,6 +180,7 @@ apt install -y postgresql-14-wal2mongo   # PG 14
 
 
 
+
 ## Usage
 
 > [wal2mongo: PostgreSQL logical decoding output plugin for MongoDB](https://github.com/HighgoSoftware/wal2mongo)

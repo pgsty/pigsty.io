@@ -85,8 +85,8 @@ Package [`citus`](/ext/e/citus) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 2400 | [**`citus`**](/ext/e/citus) | `14.0.0` | `--sLd--` | `pg_catalog` | Distributed PostgreSQL as an extension |
-| 2401 | [`citus_columnar`](/ext/e/citus_columnar) | `14.0.0` | `--s-d--` | `pg_catalog` | Citus columnar storage engine |
+| 2400 | [**`citus`**](/ext/e/citus) | `14.1.0` | `--sLd--` | `pg_catalog` | Distributed PostgreSQL as an extension |
+| 2401 | [`citus_columnar`](/ext/e/citus_columnar) | `14.1.0` | `--s-d--` | `pg_catalog` | Citus columnar storage engine |
 {.ext-table}
 
 ### omnigres

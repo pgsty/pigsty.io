@@ -55,6 +55,7 @@ CREATE EXTENSION plpython3u;
 
 
 
+
 ## Usage
 
 > [plpython3u: PL/Python3 untrusted procedural language](https://www.postgresql.org/docs/current/plpython.html)

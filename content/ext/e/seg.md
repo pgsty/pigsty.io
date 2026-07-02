@@ -51,6 +51,7 @@ CREATE EXTENSION seg;
 
 
 
+
 ## Usage
 
 > [seg: line segment / floating-point interval data type](https://www.postgresql.org/docs/current/seg.html)

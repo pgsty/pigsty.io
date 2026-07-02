@@ -366,6 +366,7 @@ CREATE EXTENSION emaj CASCADE;  -- requires: dblink, btree_gist
 
 
 
+
 ## Usage
 
 > [E-Maj: logs and rollbacks table content changes](https://github.com/dalibo/emaj)

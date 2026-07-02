@@ -512,6 +512,7 @@ shared_preload_libraries = 'decoderbufs';
 
 
 
+
 ## Usage
 
 > [decoderbufs: Logical decoding plugin that delivers WAL stream changes using a Protocol Buffer format](https://github.com/debezium/postgres-decoderbufs)

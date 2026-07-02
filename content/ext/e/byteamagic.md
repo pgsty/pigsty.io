@@ -208,6 +208,9 @@ apt install -y postgresql-14-pg-byteamagic   # PG 14
 CREATE EXTENSION byteamagic;
 ```
 
+
+
+
 ## Usage
 
 Sources: [official repo](https://github.com/nmandery/pg_byteamagic), [official doc](https://raw.githubusercontent.com/nmandery/pg_byteamagic/master/doc/byteamagic.md)
