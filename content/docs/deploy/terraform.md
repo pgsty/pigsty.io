@@ -91,8 +91,8 @@ Pigsty provides multiple predefined cloud resource templates in the [`terraform/
 | [`aliyun.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/aliyun.tf) | Alibaba Cloud | Single-node meta template, supports all distros and AMD/ARM (default) |
 | [`aliyun-s3.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/aliyun-s3.tf) | Alibaba Cloud | Single-node template + OSS bucket for PITR backup |
 | [`aliyun-full.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/aliyun-full.tf) | Alibaba Cloud | 4-node sandbox template, supports all distros and AMD/ARM |
-| [`aliyun-oss.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/aliyun-oss.tf) | Alibaba Cloud | 5-node build template, supports all distros and AMD/ARM |
-| [`aliyun-pro.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/aliyun-pro.tf) | Alibaba Cloud | Multi-distro test template for cross-OS testing |
+| [`aliyun-oss.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/aliyun-oss.tf) | Alibaba Cloud | 6-node build template, supports all distros and AMD/ARM |
+| [`aliyun-pro.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/aliyun-pro.tf) | Alibaba Cloud | 7-node multi-distro test template for cross-OS testing |
 | [`aws-cn.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/aws-cn.tf) | AWS | AWS China region single-node environment |
 | [`qcloud.tf`](https://github.com/pgsty/pigsty/tree/main/terraform/spec/qcloud.tf) | Tencent Cloud | Tencent Cloud single-node environment |
 
@@ -122,7 +122,7 @@ variable "architecture" {
 }
 
 variable "distro" {
-  description = "Distribution code (el8,el9,el10,u22,u24,d12,d13)"
+  description = "Distribution code (el8,el9,el10,u22,u24,u26,d12,d13)"
   type        = string
   default     = "el9"       # Default uses Rocky Linux 9
 }
@@ -171,6 +171,7 @@ The following are commonly used [**ECS Public OS Image**](https://help.aliyun.co
 | Debian 13.5 | `d13` | `debian_13_5_x64` | `debian_13_5_arm64` |
 | Ubuntu 22.04.5 LTS | `u22` | `ubuntu_22_04_x64_20G` | `ubuntu_22_04_arm64_20G` |
 | Ubuntu 24.04.4 LTS | `u24` | `ubuntu_24_04_x64_20G` | `ubuntu_24_04_arm64_20G` |
+| Ubuntu 26.04.0 LTS | `u26` | `ubuntu_26_04_x64_20G` | `ubuntu_26_04_arm64_20G` |
 | Anolis 8.10 | `an8` | `anolisos_8_10_x64` | `anolisos_8_10_arm64` |
 | Alibaba Cloud Linux 3 | `al3` | `aliyun_3_x64_20G_alibase_[0-9]+` | `aliyun_3_arm64_20G_alibase_[0-9]+` |
 {.full-width}
