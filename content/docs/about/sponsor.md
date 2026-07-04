@@ -39,8 +39,8 @@ Pigsty is a project invested by [**Miracle Plus**](https://www.miracleplus.com/e
 
 Special thanks to Vercel for sponsoring pigsty and hosting the Pigsty website.
 
-[![Vercel OSS Program](https://vercel.com/oss/program-badge.svg)](https://vercel.com/oss)
+[![Vercel OSS Program](/img/icon/vercel.svg)](https://vercel.com/oss)
 
 Special thanks to JetBrains for sponsoring Pigsty with JetBrains Open Source License
 
-[![JetBrains logo.](https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.svg)](https://jb.gg/OpenSource)
+[![JetBrains logo.](/img/icon/jetbrains.svg)](https://jb.gg/OpenSource)
