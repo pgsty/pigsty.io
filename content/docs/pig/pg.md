@@ -7,54 +7,50 @@ module: [PIG]
 categories: [Reference]
 ---
 
-The `pig pg` command (alias `pig postgres`) manages local PostgreSQL server and databases. It wraps native tools like `pg_ctl`, `psql`, `vacuumdb`, providing a simplified server management experience.
+The `pig pg` command (alias `pig postgres`) manages local PostgreSQL servers and databases. It wraps local primitives such as `pg_ctl`, `psql`, and `vacuumdb`; use `pig pt` for Patroni cluster operations and `pig pitr` for orchestrated PITR.
 
 ```bash
-pig pg - Manage local postgres server (pg_ctl, psql, vacuumdb)
+pig pg - Local PostgreSQL primitives (pg_ctl / psql / local files).
 
-Control Commands (via pg_ctl or systemctl):
-  pig pg init                      initialize postgres data directory
-  pig pg start                     start postgres server
-  pig pg stop                      stop postgres server
-  pig pg restart                   restart postgres server
-  pig pg reload                    reload postgres server
-  pig pg status                    show postgres server status
-  pig pg promote                   promote replica to primary
-  pig pg role                      detect and print postgres role
+Server Control (via pg_ctl):
+  pig pg init     [-v ver] [-D datadir]     initialize data directory
+  pig pg start    [-D datadir]              start PostgreSQL server
+  pig pg stop     [-D datadir] [-m fast]    stop PostgreSQL server
+  pig pg restart  [-D datadir] [-m fast]    restart PostgreSQL server
+  pig pg reload   [-D datadir]              reload configuration
+  pig pg status   [-D datadir]              show server status
+  pig pg promote  [-D datadir]              promote standby to primary
+  pig pg role     [-D datadir] [-V]         detect instance role (primary/replica)
 
-Connection & Query (via psql):
-  pig pg psql [db] [-c sql]        connect to postgres
-  pig pg ps                        show current connections
-  pig pg kill [-a] [-x] [-u user] [-d db] [-q sql] [-w secs]
-  pig pg clone <src> [dst]         clone database with FILE_COPY
+Service Management (via systemctl):
+  pig pg svc start                          start postgres systemd service
+  pig pg svc stop                           stop postgres systemd service
+  pig pg svc restart                        restart postgres systemd service
+  pig pg svc reload                         reload postgres systemd service
+  pig pg svc status                         show postgres service status
 
-Maintenance (via vacuumdb & pg_repack):
-  pig pg vacuum  [db] [-a]         vacuum database
-  pig pg analyze [db] [-a]         analyze database
-  pig pg freeze  [db] [-a]         vacuum freeze tables
-  pig pg repack  [db] [-a]         online repack database
+Connection & Query:
+  pig pg psql     [db] [-c cmd]             connect to database via psql
+  pig pg ps       [-a] [-u user]            show current connections
+  pig pg kill     [-x] [-u user]            terminate connections (dry-run by default)
+  pig pg clone    <src> [dst]               clone database with CREATE DATABASE TEMPLATE
+
+Database Maintenance:
+  pig pg vacuum   [db] [-a] [-t table]      vacuum tables
+  pig pg analyze  [db] [-a] [-t table]      analyze tables
+  pig pg freeze   [db] [-a] [-t table]      vacuum freeze tables
+  pig pg repack   [db] [-a] [-t table]      repack tables (online rebuild)
 
 Tuning:
   pig pg tune     [-p profile]     generate optimized parameters
 
 Instance Fork:
-  pig pg fork init <name> [-s]     create local physical fork
-  pig pg fork list                 list managed /pg/data-* forks
-  pig pg fork start|stop|rm <name> manage an existing fork
+  pig pg fork init <name> [-D datadir]      fork PGDATA into /pg/data-<name>
+  pig pg fork list                          list managed forks
+  pig pg fork start|stop|rm <name>          manage fork lifecycle
 
-Log Commands:
-  pig pg log list                  list log files
-  pig pg log tail <logfile>        tail -f log file
-  pig pg log show <logfile>        show log file
-  pig pg log grep <pattern>        search log file
-  pig pg log less <logfile>        less log file
-
-Service Management (via systemctl):
-  pig pg svc start                 start postgres service
-  pig pg svc stop                  stop postgres service
-  pig pg svc restart               restart postgres service
-  pig pg svc reload                reload postgres service
-  pig pg svc status                show postgres service status
+Utilities:
+  pig pg log <list|tail|cat|less|grep>      view PostgreSQL logs
 ```
 
 ## Command Overview
@@ -89,7 +85,7 @@ Service Management (via systemctl):
 |:--------|:------|:------------|:------|
 | `pg vacuum` | `vac, vc` | Vacuum tables | Wraps vacuumdb |
 | `pg analyze` | `ana, az` | Analyze tables | Wraps vacuumdb --analyze-only |
-| `pg freeze` | `frz` | Freeze vacuum | Wraps vacuumdb --freeze |
+| `pg freeze` | | Freeze vacuum | Wraps vacuumdb --freeze |
 | `pg repack` | `rp` | Online table repacking | Requires pg_repack extension |
 {.full-width}
 
@@ -107,7 +103,7 @@ Service Management (via systemctl):
 | `pg fork` | | Shortcut for `fork init` | Creates a managed fork by default, does not start it |
 | `pg fork init` | `create` | Create a local one-off physical copy | Default `/pg/data-<name>` |
 | `pg fork list` | | List managed forks | Scans `/pg/data-*` |
-| `pg fork start` | | Start an existing fork | Supports managed names or unmanaged `-d` directories |
+| `pg fork start` | | Start an existing fork | Supports managed names or unmanaged `--dst-data` directories |
 | `pg fork stop` | | Stop an existing fork | Supports shutdown mode |
 | `pg fork rm` | `remove, delete` | Remove a fork | Running forks require `--stop` |
 {.full-width}
@@ -124,7 +120,7 @@ Service Management (via systemctl):
 | `pg log grep` | `g, search` | Search logs | |
 {.full-width}
 
-**Service Subcommand** (`pg svc`):
+**Service Subcommand** (`pg svc`, also `pg service` or `pg s`):
 
 | Command | Alias | Description |
 |:--------|:------|:------------|
@@ -167,7 +163,7 @@ pig pg tune -c 8 -m 32768 -d 500  # Override CPU / memory / disk detection
 # Instance fork
 pig pg fork dev                   # Create /pg/data-dev
 pig pg fork init dev --start      # Create and start fork, auto-assign high port
-pig pg fork init dev -s -p 15433  # Create and start on specified port
+pig pg fork init dev -s --dst-port 15433  # Create and start on specified port
 pig pg fork list                  # List /pg/data-* forks
 
 # Log viewing
@@ -202,11 +198,16 @@ These options apply to all `pig pg` subcommands:
 
 Initialize PostgreSQL data directory. Wraps `initdb`.
 
+- Data checksums are enabled by default unless explicitly disabled with `-K|--no-data-checksums`.
+- Prefer the platform-independent built-in `C.UTF-8` locale on PG 17+, fall back to system `C.UTF-8` / `C`, then system default locale.
+- If the data directory already exists, the command refuses to run unless `-f|--force` is used. If PostgreSQL is running on that data directory, it refuses even with `--force` to prevent data loss.
+- Extra arguments after `--` are passed to `initdb`, for example `--waldir=/wal`. Use `initdb` directly if you need to override locale or encoding options.
+
 ```bash
 pig pg init                       # Initialize with defaults
 pig pg init -v 18                 # Specify PostgreSQL 18
 pig pg init -D /data/pg18         # Specify data directory
-pig pg init -k                    # Enable data checksums
+pig pg init -K                    # Disable data checksums
 pig pg init -f                    # Force init (remove existing data)
 pig pg init -- --waldir=/wal      # Pass extra args to initdb
 ```
@@ -215,10 +216,9 @@ pig pg init -- --waldir=/wal      # Pass extra args to initdb
 
 | Option | Short | Default | Description |
 |:---|:---|:---|:---|
-| `--encoding` | `-E` | UTF8 | Database encoding |
-| `--locale` | | C | Locale setting |
-| `--data-checksum` | `-k` | false | Enable data checksums |
-| `--force` | `-f` | false | Force init, remove existing data (dangerous!) |
+| `--no-data-checksums` | `-K` | false | Disable data checksums |
+| `--force` | `-f` | false | Force init and remove existing data (dangerous!) |
+| `--yes` | `-y` | false | Skip overwrite confirmation when used with `--force` |
 {.full-width}
 
 **Safety:** Even with `--force`, command refuses to run if PostgreSQL is running.
@@ -232,8 +232,8 @@ Start PostgreSQL server.
 pig pg start                      # Start with defaults
 pig pg start -D /data/pg18        # Specify data directory
 pig pg start -l /pg/log/pg.log    # Redirect output to log file
-pig pg start -o "-p 5433"         # Pass options to postgres
-pig pg start -y                   # Force start (skip running check)
+pig pg start -O "-p 5433"         # Pass options to postgres
+pig pg start -o json              # Structured JSON output
 pig pg start -S                   # Use systemctl to start
 ```
 
@@ -243,10 +243,11 @@ pig pg start -S                   # Use systemctl to start
 |:---|:---|:---|
 | `--log` | `-l` | Redirect stdout/stderr to log file |
 | `--timeout` | `-t` | Wait timeout (seconds) |
-| `--no-wait` | `-W` | Don't wait for startup completion |
-| `--options` | `-o` | Options to pass to postgres |
-| `--yes` | `-y` | Force start (even if already running) |
+| `--no-wait` | | Don't wait for startup completion |
+| `--options` | `-O` | Options to pass to postgres |
 {.full-width}
+
+If PostgreSQL is already running, the command prints the existing postmaster PID and returns successfully.
 
 
 ### pg stop
@@ -258,6 +259,7 @@ pig pg stop                       # Fast shutdown (default)
 pig pg stop -m smart              # Wait for clients to disconnect
 pig pg stop -m immediate          # Immediate shutdown
 pig pg stop -S                    # Use systemctl to stop
+pig pg stop --plan                # Preview stop plan
 ```
 
 **Options:**
@@ -266,7 +268,8 @@ pig pg stop -S                    # Use systemctl to stop
 |:---|:---|:---|:---|
 | `--mode` | `-m` | fast | Shutdown mode: smart/fast/immediate |
 | `--timeout` | `-t` | 60 | Wait timeout (seconds) |
-| `--no-wait` | `-W` | false | Don't wait for shutdown completion |
+| `--no-wait` | | false | Don't wait for shutdown completion |
+| `--plan` | | false | Preview local `pg_ctl stop` plan only |
 {.full-width}
 
 **Shutdown Modes:**
@@ -286,11 +289,12 @@ Restart PostgreSQL server.
 ```bash
 pig pg restart                    # Fast restart
 pig pg restart -m immediate       # Immediate restart
-pig pg restart -o "-p 5433"       # Restart with new options
+pig pg restart -O "-p 5433"       # Restart with new options
 pig pg restart -S                 # Use systemctl to restart
+pig pg restart --plan             # Preview restart plan
 ```
 
-**Options:** Same as `pg stop`, plus `--options` (`-o`) to pass to postgres.
+**Options:** Same as `pg stop`, plus `--options` (`-O`) to pass to postgres.
 
 
 ### pg reload
@@ -333,6 +337,8 @@ Promote replica to primary.
 ```bash
 pig pg promote                    # Promote replica
 pig pg promote -D /data/pg18      # Specify data directory
+pig pg promote --plan             # Preview promotion plan
+pig pg promote -y                 # Skip confirmation prompt
 ```
 
 **Options:**
@@ -340,7 +346,9 @@ pig pg promote -D /data/pg18      # Specify data directory
 | Option | Short | Description |
 |:---|:---|:---|
 | `--timeout` | `-t` | Wait timeout (seconds) |
-| `--no-wait` | `-W` | Don't wait for promotion completion |
+| `--no-wait` | | Don't wait for promotion completion |
+| `--plan` | | Preview promotion plan only |
+| `--yes` | `-y` | Skip confirmation prompt |
 {.full-width}
 
 
@@ -429,7 +437,7 @@ pig pg kill -u admin -x           # Terminate user's connections
 pig pg kill -d mydb -x            # Terminate database connections
 pig pg kill -s idle -x            # Terminate idle connections
 pig pg kill --cancel -x           # Cancel queries instead of terminating
-pig pg kill -w 5 -x               # Repeat every 5 seconds
+pig pg kill --watch 5 -x          # Repeat every 5 seconds
 pig pg kill --plan                # Preview connection termination plan
 ```
 
@@ -445,7 +453,7 @@ pig pg kill --plan                # Preview connection termination plan
 | `--query` | `-q` | Filter by query pattern |
 | `--all` | `-a` | Include replication connections |
 | `--cancel` | `-c` | Cancel queries instead of terminating |
-| `--watch` | `-w` | Repeat every N seconds |
+| `--watch` | | Repeat every N seconds |
 | `--plan` | | Preview execution plan without terminating connections |
 {.full-width}
 
@@ -460,7 +468,7 @@ Clone a database inside the current PostgreSQL instance. This command wraps `CRE
 pig pg clone meta                       # Clone meta as meta_1/meta_2/...
 pig pg clone meta meta_fork            # Clone to a specific database name
 pig pg clone meta meta_fork --owner dba # Try to change new database owner
-pig pg clone meta meta_fork -p 5433     # Connect to a specific local port
+pig pg clone meta meta_fork --port 5433 # Connect to a specific local port
 pig pg clone meta meta_fork --plan      # Preview clone plan
 ```
 
@@ -468,7 +476,7 @@ pig pg clone meta meta_fork --plan      # Preview clone plan
 
 | Option | Short | Description |
 |:-------|:------|:------------|
-| `--port` | `-p` | PostgreSQL port, default `5432` or `$PG_PORT` |
+| `--port` | | PostgreSQL port, default `5432` or `$PG_PORT` |
 | `--conn-db` | | Database used to execute `CREATE DATABASE`; defaults to `template1` when cloning `postgres` |
 | `--owner` | | Try to change the owner of the cloned database |
 | `--conn-limit` | | Connection limit for the new database (`-1` unlimited, `0` disallow connections) |
@@ -612,14 +620,14 @@ pig pg tune -o yaml               # structured YAML output
 
 ### pg fork
 
-Create a local one-off PostgreSQL physical copy for temporary analysis, troubleshooting, recovery validation, and development testing. Managed forks are written to `/pg/data-<name>` by default and are not registered with Pigsty, systemd, or Patroni. When `-d|--dst-data` is specified explicitly, the command creates an unmanaged fork that is not enumerated by `fork list`.
+Create a local one-off PostgreSQL physical copy for temporary analysis, troubleshooting, recovery validation, and development testing. Managed forks are written to `/pg/data-<name>` by default and are not registered with Pigsty, systemd, or Patroni. When `--dst-data` is specified explicitly, the command creates an unmanaged fork that is not enumerated by `fork list`.
 
 ```bash
 pig pg fork dev                       # Create /pg/data-dev, do not start
 pig pg fork init dev --start          # Create and start, probing ports from 15432
-pig pg fork init dev -s -p 15433      # Create and start on specified port
-pig pg fork init dev -D /pg/data2 -P 15431  # Specify source dir and source port
-pig pg fork init dev -d /tmp/dev      # Create unmanaged fork
+pig pg fork init dev -s --dst-port 15433    # Create and start on specified port
+pig pg fork init dev -D /pg/data2 --src-port 15431  # Specify source dir and source port
+pig pg fork init dev --dst-data /tmp/dev    # Create unmanaged fork
 pig pg fork list                      # List managed forks
 pig pg fork start dev                 # Start existing managed fork
 pig pg fork stop dev                  # Stop existing managed fork
@@ -631,13 +639,12 @@ pig pg fork init dev --plan           # Show execution plan only
 
 | Option | Short | Default | Description |
 |:-------|:------|:--------|:------------|
-| `--dst-data` | `-d` | `/pg/data-<name>` | Unmanaged target data directory |
-| `--dst-port` | `-p` | auto-detect | Target port, probes free ports starting at 15432 |
+| `--dst-data` | | `/pg/data-<name>` | Unmanaged target data directory |
+| `--dst-port` | | auto-detect | Target port, probes free ports starting at 15432 |
 | `--src-data` | | `/pg/data` or `$PG_DATA` | Source data directory; can also be set globally with `pg -D/--data` |
-| `--src-port` | `-P` | `5432` or `$PG_PORT` | Source port |
+| `--src-port` | | `5432` or `$PG_PORT` | Source port |
 | `--start` | `-s` | false | Start the fork after creation |
 | `--force` | `-f` | false | Overwrite an existing stopped target directory and skip confirmation |
-| `--list` | | false | List `/pg/data-*` forks |
 | `--timeout` | `-t` | 60 | Startup wait timeout in seconds |
 | `--yes` | `-y` | false | Skip confirmation prompt |
 | `--plan` | | false | Show execution plan only |
@@ -648,9 +655,9 @@ pig pg fork init dev --plan           # Show execution plan only
 | Command | Common Options | Description |
 |:--------|:---------------|:------------|
 | `pig pg fork list` | | List managed forks |
-| `pig pg fork start <name>` | `-p/--dst-port`, `-t/--timeout` | Start existing fork |
-| `pig pg fork stop <name>` | `-m/--mode`, `-t/--timeout` | Stop existing fork |
-| `pig pg fork rm <name>` | `--stop`, `-f/--force`, `-y/--yes` | Remove fork; running forks require `--stop` |
+| `pig pg fork start <name> or --dst-data <dir>` | `--dst-data`, `--dst-port`, `-t/--timeout`, `--plan` | Start existing fork |
+| `pig pg fork stop <name> or --dst-data <dir>` | `--dst-data`, `-m/--mode`, `-t/--timeout`, `--plan` | Stop existing fork |
+| `pig pg fork rm <name> or --dst-data <dir>` | `--dst-data`, `--stop`, `-m/--mode`, `-t/--timeout`, `-f/--force`, `-y/--yes`, `--plan` | Remove fork; running forks require `--stop` |
 {.full-width}
 
 **Behavior Notes:**
@@ -659,7 +666,7 @@ pig pg fork init dev --plan           # Show execution plan only
 - The command prefers CoW/reflink. If only ordinary copy is available, interactive mode warns about disk-space risk and waits for confirmation.
 - To avoid deleting source data by mistake, the target directory cannot be `/`, `/pg`, source PGDATA, or a parent/child of source PGDATA. Symlinks are resolved before checks.
 - After copy, runtime and replication state is cleaned from the fork and `fork.json` is written. The new instance starts only when `-s|--start` is specified.
-- Managed forks must be managed by name. Unmanaged forks require `-d|--dst-data` when starting, stopping, or removing.
+- Managed forks must be managed by name. Unmanaged forks require `--dst-data` when starting, stopping, or removing.
 
 **List Forks:**
 
@@ -755,6 +762,8 @@ Open log file with less. Defaults to end of file (`+G`).
 
 ```bash
 pig pg log less                   # Open latest log with less
+pig pg log vi                     # Alias
+pig pg log v                      # Alias
 pig pg log less postgresql.csv    # Open specific log file
 ```
 
@@ -781,7 +790,7 @@ pig pg log grep ERROR pg.csv      # Search specific log file
 
 ## pg svc Subcommand
 
-`pg svc` provides systemctl-based PostgreSQL service management:
+`pg svc` (also `pg service` or `pg s`) provides systemctl-based PostgreSQL service management:
 
 ```bash
 pig pg svc start                 # Start postgres service
@@ -809,7 +818,7 @@ pig pg svc status                # Show service status
 
 `pig pg` is not a simple wrapper of PostgreSQL native tools, but a higher-level abstraction for common operations:
 
-- Service control commands (init/start/stop/restart/reload/promote) call `pg_ctl` or `systemctl`
+- Service control commands (init/start/stop/restart/reload/promote) call `pg_ctl`
 - `status` command shows process and related service status beyond `pg_ctl status`
 - Connection management commands (psql/ps/kill) call `psql`
 - `clone` command uses SQL to create a database copy
@@ -830,4 +839,4 @@ For full native tool functionality, call the respective commands directly.
 
 **Platform Support:**
 
-This command is designed for Linux systems, some features depend on `systemctl` and `journalctl`.
+This command is designed for Linux systems. Some features depend on `systemctl`, and log commands depend on readable PostgreSQL log files plus common tools such as `tail`, `less`, and `grep`.

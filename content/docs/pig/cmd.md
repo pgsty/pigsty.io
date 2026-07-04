@@ -7,15 +7,19 @@ module: [PIG]
 categories: [Reference]
 ---
 
-`pig` CLI provides comprehensive tools for managing PostgreSQL installations, extensions, repositories, and building extensions from source. Check command documentation with `pig help <command>`.
+The `pig` CLI provides a comprehensive toolkit for managing PostgreSQL installations, extensions, repositories, and extension builds from source. Use `pig help <command>` to view command documentation.
 
-- [**pig repo**](/docs/pig/repo/): Manage software repositories
-- [**pig ext**](/docs/pig/ext/): Manage PostgreSQL extensions
-- [**pig build**](/docs/pig/build/): Build extensions from source
-- [**pig sty**](/docs/pig/sty/): Manage Pigsty installation
-- [**pig pg**](/docs/pig/pg/): Manage local PostgreSQL server
-- [**pig pt**](/docs/pig/pt/): Manage Patroni HA cluster
-- [**pig pb**](/docs/pig/pb/): Manage pgBackRest backup & restore
+- [**pig repo**](/docs/pig/repo/): manage software repositories
+- [**pig ext**](/docs/pig/ext/): manage PostgreSQL extensions
+- [**pig build**](/docs/pig/build/): build extensions from source
+- **pig install**: install packages with the native package manager and translate PostgreSQL aliases
+- [**pig sty**](/docs/pig/sty/): manage Pigsty installation
+- [**pig pg**](/docs/pig/pg/): manage local PostgreSQL servers
+- [**pig pt**](/docs/pig/pt/): manage Patroni HA clusters
+- [**pig pb**](/docs/pig/pb/): manage pgBackRest backup and restore
+- [**pig pitr**](/docs/pig/pitr/): run the full PITR workflow
+- **pig context**: output an environment context snapshot for humans and agents
+
 
 ## Overview
 
@@ -27,10 +31,10 @@ Usage:
 
 Examples:
 
-  pig repo add -ru            # overwrite existing repo & update cache
-  pig install pg18            # install PostgreSQL 18 PGDG package
-  pig install pg_duckdb       # install a PostgreSQL extension
-  pig install pgactive -v 18  # install extension for specific PG major
+  pig repo add -ru            # overwrite existing repo and update cache
+  pig install pg18            # install PostgreSQL 18 PGDG packages
+  pig install pg_duckdb       # install a specific PostgreSQL extension
+  pig install pgactive -v 18  # install extension for a specific PG version
 
   visit https://pigsty.io/ext/ for details
 
@@ -41,12 +45,13 @@ PostgreSQL Extension Manager
 
 Pigsty Management Commands
   do          Run admin tasks
-  patroni     Manage Patroni cluster
-  pg_exporter Manage pg_exporter and metrics
-  pgbackrest  Manage pgBackRest backup and restore
-  pitr        Orchestrated PITR
-  postgres    Manage local PostgreSQL server and databases
+  postgres    Manage local PostgreSQL server and databases (alias: pg)
+  patroni     Manage Patroni cluster with patronictl (alias: pt)
+  pgbackrest  Manage pgBackRest backup and restore (alias: pb)
+  pg_exporter Manage pg_exporter and metrics (alias: pe)
+  pitr        Orchestrated point-in-time recovery
   sty         Manage Pigsty installation
+  context     Show environment context snapshot
 
 Additional Commands:
   completion  Generate shell completion scripts
@@ -61,12 +66,13 @@ Flags:
   -h, --help               help for pig
   -H, --home string        Pigsty home path
   -i, --inventory string   config inventory path
-  -t, --toggle             placeholder flag shown in help output
       --log-level string   log level: debug, info, warn, error, fatal, panic (default "info")
       --log-path string    log file path, terminal by default
+  -o, --output string      output format: text, yaml, json, json-pretty (default "text")
 
 Use "pig [command] --help" for more information about a command.
 ```
+
 
 ## pig repo
 
@@ -75,16 +81,14 @@ Manage APT/YUM repositories for PostgreSQL packages. See [`pig repo`](/docs/pig/
 ```bash
 pig repo list                    # list available repositories
 pig repo info   pgdg             # show repository details
-pig repo status                  # check current repo status
+pig repo status                  # check current repository status
 pig repo add    pgdg pigsty -u   # add repositories
-pig repo rm     old-repo         # remove repositories
+pig repo rm     old-repo         # remove repository
 pig repo update                  # update package cache
 pig repo create /www/pigsty      # create local repository
 pig repo cache                   # create offline package
 pig repo boot                    # bootstrap from offline package
 ```
-
-
 
 
 ## pig ext
@@ -97,14 +101,12 @@ pig ext info    pg_duckdb        # extension details
 pig ext status                   # show installed extensions
 pig ext add     pg_duckdb -y     # install extension
 pig ext rm      old_extension    # remove extension
-pig ext update                   # update extensions
+pig ext update                   # update extension
 pig ext scan                     # scan installed extensions
 pig ext import  pg_duckdb        # download for offline use
-pig ext link    18               # link PG version to PATH
+pig ext link    17               # link PG version into PATH
 pig ext reload                   # refresh extension catalog
 ```
-
-
 
 
 ## pig build
@@ -112,14 +114,14 @@ pig ext reload                   # refresh extension catalog
 Build PostgreSQL extensions from source. See [`pig build`](/docs/pig/build/) for details.
 
 ```bash
-# environment setup
+# Environment setup
 pig build spec                   # initialize build specs
-pig build repo                   # setup repositories
+pig build repo                   # configure repositories
 pig build tool                   # install build tools
 pig build rust -y                # force reinstall Rust (default does not reinstall)
 pig build pgrx                   # install PGRX framework
 
-# build extensions
+# Build extensions
 pig build pkg citus              # complete build pipeline = get + dep + ext
 pig build get citus              # download source
 pig build dep citus              # install dependencies
@@ -127,9 +129,23 @@ pig build ext citus              # build package
 ```
 
 
+## pig install
+
+Install packages through the system's native package manager and translate PostgreSQL kernel, extension, and common aliases into package names. Use `-n/--no-translation` when you need to pass raw system package names directly.
+
+```bash
+pig install pg_duckdb            # install extension and translate package name
+pig install pg18                 # install PostgreSQL 18 kernel package group
+pig install nginx htop vim       # install multiple system packages
+pig install unknown-package -n   # disable translation and use raw package name
+pig install pg18 --plan          # preview installation plan
+pig install pg_vector -y         # auto-confirm installation
+```
+
+
 ## pig sty
 
-Install Pigsty distribution. See [`pig sty`](/docs/pig/sty/) for details.
+Install the Pigsty distribution. See [`pig sty`](/docs/pig/sty/) for details.
 
 ```bash
 pig sty init                     # install Pigsty to ~/pigsty
@@ -139,9 +155,21 @@ pig sty deploy                   # run deployment playbook
 ```
 
 
+## pig context
+
+Output an environment context snapshot covering host, PostgreSQL, Patroni, pgBackRest, and installed extensions. This command is useful for troubleshooting and for automation scripts that need a quick view of the current node.
+
+```bash
+pig context                      # text output
+pig context -o json              # JSON output
+pig context -m postgres          # only output PostgreSQL module (host included by default)
+pig context -m postgres,!host    # exclude host module
+```
+
+
 ## pig pg
 
-Manage local PostgreSQL server. See [`pig pg`](/docs/pig/pg/) for details.
+Manage the local PostgreSQL server. See [`pig pg`](/docs/pig/pg/) for details.
 
 ```bash
 pig pg init                      # initialize data directory
@@ -152,50 +180,48 @@ pig pg psql mydb                 # connect to database
 pig pg ps                        # show current connections
 pig pg vacuum mydb               # vacuum database
 pig pg tune -p olap              # generate tuned parameters
-pig pg fork dev                  # create local one-off physical fork
+pig pg fork dev                  # create a local one-off physical fork
 pig pg fork list                 # list local forks
-pig pg log tail                  # real-time log viewing
+pig pg log tail                  # tail logs in real time
 ```
 
 
 ## pig pt
 
-Manage Patroni HA cluster. See [`pig pt`](/docs/pig/pt/) for details.
+Manage Patroni HA clusters. See [`pig pt`](/docs/pig/pt/) for details.
 
 ```bash
 pig pt list                      # list cluster members
-pig pt config show               # show cluster config
-pig pt config set ttl=60         # modify cluster config
+pig pt config show               # show cluster configuration
+pig pt config set ttl=60         # modify cluster configuration
 pig pt status                    # check service status
-pig pt log -f                    # real-time log viewing
+pig pt log -f                    # tail logs in real time
 ```
 
 
 ## pig pb
 
-Manage pgBackRest backup & recovery. See [`pig pb`](/docs/pig/pb/) for details.
+Manage pgBackRest backup and restore. See [`pig pb`](/docs/pig/pb/) for details.
 
 ```bash
-pig pb info                      # show backup info
+pig pb info                      # show backup information
 pig pb ls                        # list all backups
 pig pb backup                    # create backup
 pig pb backup full               # full backup
 pig pb restore -d                # restore to latest
-pig pb restore -t "2025-01-01"   # restore to specific time
-pig pb log tail                  # real-time log viewing
+pig pb restore -t "2025-01-01"   # restore to a specific time
+pig pb log tail                  # tail logs in real time
 ```
 
 
 ## pig pitr
 
-Orchestrated Point-In-Time Recovery. See [`pig pitr`](/docs/pig/pitr/) for details.
+Run orchestrated point-in-time recovery (PITR). See [`pig pitr`](/docs/pig/pitr/) for details.
 
 ```bash
-pig pitr -d                      # recover to latest (most common)
-pig pitr -t "2025-01-01 12:00"   # recover to specific time
+pig pitr -d                      # recover to latest data
+pig pitr -t "2025-01-01 12:00:00+08"  # recover to a specific time
 pig pitr -I                      # recover to backup consistency point
 pig pitr -d --plan               # show execution plan without running
-pig pitr -d -y                   # skip confirmation (for automation)
-pig pitr -d --skip-patroni       # skip Patroni management
-pig pitr -d --no-restart         # don't auto-start PostgreSQL after restore
+pig pitr -d -y                   # skip confirmation for automation
 ```

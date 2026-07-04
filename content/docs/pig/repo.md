@@ -1,89 +1,84 @@
 ---
 title: "pig repo"
-description: "Manage software repositories with pig repo subcommand"
+description: "Manage software repositories with pig repo"
 weight: 110
 icon: fas fa-warehouse
 module: [PIG]
 categories: [Reference]
 ---
 
-The `pig repo` command is a comprehensive tool for managing package repositories on Linux systems. It provides functionality to add, remove, create, and manage software repositories for both RPM-based (RHEL/CentOS/Rocky/Alma) and Debian-based (Debian/Ubuntu) distributions.
+The `pig repo` command is a comprehensive package repository manager. It can add, remove, create, and manage repositories on RPM systems (RHEL/CentOS/Rocky/Alma) and Debian systems (Debian/Ubuntu).
 
 ```bash
-pig repo - Manage Linux software repo (apt/dnf)
+pig repo - Manage Linux APT/YUM Repo
 
-Usage: pig repo <command>
+  pig repo list                    # available repo list             (info)
+  pig repo info   [repo|module...] # show repo info                  (info)
+  pig repo status                  # show current repo status        (info)
+  pig repo add    [repo|module...] # add repo and modules            (root)
+  pig repo rm     [repo|module...] # remove repo & modules           (root)
+  pig repo update                  # update repo pkg cache           (root)
+  pig repo create                  # create repo on current system   (root)
+  pig repo boot                    # boot repo from offline package  (root)
+  pig repo cache                   # cache repo as offline package   (root)
 
-Commands:
-  add       Add new repository
-  set       Wipe and overwrite and update repository
-  rm        Remove repository
-  list      Print available repo and module list
-  info      Get repo detailed information
-  status    Show current repo status
-  update    Update repo cache
-  create    Create local YUM/APT repository
-  cache     Create offline package from local repo
-  boot      Bootstrap repo from offline package
-  reload    Refresh repo catalog
-
-Flags:
-  -h, --help   help for repo
-
-Global Flags:
-      --debug              enable debug mode
-  -H, --home string        pigsty home path
-  -i, --inventory string   config inventory path
-      --log-level string   log level: debug, info, warn, error, fatal, panic (default "info")
-      --log-path string    log file path, terminal by default
-
-Use "pig repo [command] --help" for more information about a command.
+Examples:
+  pig repo add -ru                 # add all repo and update cache (brute but effective)
+  pig repo add pigsty -u           # gentle version, only add pigsty repo and update cache
+  pig repo add node pgdg pigsty    # essential repo to install postgres packages
+  pig repo add all                 # all = node + pgdg + pigsty
+  pig repo add all extra           # extra module has non-free and some 3rd repo for certain extensions
+  pig repo update                  # update repo cache
+  pig repo create                  # update local repo /www/pigsty meta
+  pig repo boot                    # extract /tmp/pkg.tgz to /www/pigsty
+  pig repo cache                   # cache /www/pigsty into /tmp/pkg.tgz
 ```
 
 | Command | Description | Notes |
 |:---|:---|:---|
-| `repo list` | Print available repo and module list | |
-| `repo info` | Get repo detailed information | |
-| `repo status` | Show current repo status | |
-| `repo add` | Add new repository | Requires sudo or root |
-| `repo set` | Wipe, overwrite, and update repository | Requires sudo or root |
-| `repo rm` | Remove repository | Requires sudo or root |
-| `repo update` | Update repo cache | Requires sudo or root |
+| `repo list` | Print available repositories and modules | |
+| `repo info` | Show repository details | |
+| `repo status` | Show current repository status | |
+| `repo add` | Add repositories | Requires sudo or root |
+| `repo set` | Clear, overwrite, and update repositories | Requires sudo or root |
+| `repo rm` | Remove repositories | Requires sudo or root |
+| `repo update` | Update repository cache | Requires sudo or root |
 | `repo create` | Create local YUM/APT repository | Requires sudo or root |
 | `repo cache` | Create offline package from local repo | Requires sudo or root |
-| `repo boot` | Bootstrap repo from offline package | Requires sudo or root |
-| `repo reload` | Refresh repo catalog | |
+| `repo boot` | Bootstrap repository from offline package | Requires sudo or root |
+| `repo reload` | Refresh repository catalog | |
+{.full-width}
 
 
 ## Quick Start
 
 ```bash
-# Method 1: Clean existing repos, add all necessary repos and update cache (recommended)
-pig repo add all --remove --update    # Remove old repos, add all essentials, update cache
+# Method 1: clean existing repositories, add all required repos, and update cache (recommended)
+pig repo add all --remove --update    # remove old repos, add all required repos, update cache
 
-# Method 1 variant: One-step
+# Method 1 variant: one step
 pig repo set                          # = pig repo add all --remove --update
 
-# Method 2: Gentle approach - only add required repos, keep existing config
-pig repo add pgsql                    # Add PGDG and Pigsty repos with cache update
-pig repo add pigsty --region=china    # Add Pigsty repo, specify China region
-pig repo add pgdg   --region=europe   # Add PGDG repo, specify Europe region
-pig repo add infra  --region=default  # Add INFRA repo, specify default region
+# Method 2: gentle mode - only add required repos and keep current repo configuration
+pig repo add pgsql                    # add PGDG and Pigsty PGSQL repositories
+pig repo add pigsty --region=china    # add Pigsty repositories with China region
+pig repo add pgdg   --region=europe   # add PGDG repositories with Europe region
+pig repo add infra  --region=default  # add INFRA repositories with default region
 
-# If no -u|--update option above, run this command additionally
-pig repo update                       # Update system package cache
+# If the commands above did not use -u|--update, run this as an extra step
+pig repo update                       # update system package cache
 ```
 
 
 ## Modules
 
-In pig, APT/YUM repositories are organized into **modules** — groups of repositories serving a specific purpose.
+In pig, APT/YUM repositories are organized as **modules**: groups of repositories serving a specific purpose.
 
 | Module | Description | Repository List |
 |:---:|:---|:---|
-| `all` | All core modules required for PG install | `node` + `infra` + `pgsql` |
+| `all` | All core modules required to install PG | `node` + `infra` + `pgsql` |
 | `pgsql` | PGDG + Pigsty PG extensions | `pigsty-pgsql` + `pgdg` |
-| `pigsty` | Pigsty Infra + PGSQL repos | pigsty-infra, pigsty-pgsql |
+| `pigsty` | Pigsty Infra + PGSQL repositories | pigsty-infra, pigsty-pgsql |
 | `pgdg` | PGDG official repositories | pgdg-common, pgdg14-18 |
 | `node` | Linux system repositories | base, updates, extras, epel, baseos, appstream... |
 | `infra` | Infrastructure component repositories | pigsty-infra, nginx, docker-ce |
@@ -92,16 +87,64 @@ In pig, APT/YUM repositories are organized into **modules** — groups of reposi
 | `extra` | PGDG non-free and third-party extensions | pgdg-extras, timescaledb, citus |
 | `groonga` | PGroonga repository | groonga |
 | `mssql` | WiltonDB repository (deprecated) | babelfish |
-| `percona` | Percona PG + PG_TDE repository | percona |
+| `percona` | Percona PG + PG_TDE | percona |
 | `llvm` | LLVM toolchain repository | llvm |
 | `kube` | Kubernetes repository | kubernetes |
 | `grafana` | Grafana repository | grafana |
-| `haproxy` | HAProxy repository | haproxyd, haproxyu |
+| `haproxy` | HAProxy repositories | haproxyd, haproxyu |
 | `redis` | Redis repository | redis |
 | `mongo` | MongoDB repository | mongo |
 | `mysql` | MySQL repository | mysql |
 | `click` | ClickHouse repository | clickhouse |
 | `gitlab` | GitLab repository | gitlab-ce, gitlab-ee |
+{.full-width}
+
+Pig also includes APT/DNF repositories for other databases and systems such as `redis`, `kubernetes`, `grafana`, `clickhouse`, `gitlab`, `haproxy`, `mongodb`, and `mysql`.
+
+In general, `node` (Linux system repositories) and `pgsql` (PGDG + Pigsty) are required for PostgreSQL installation. The `infra` repository is optional and contains tools, IvorySQL kernel packages, and similar components. The special `all` module adds all required repositories at once and is a suitable starting point for most users.
+
+```bash
+pig repo add all      # add node, pgsql, and infra repositories
+pig repo add          # default to the all module when no argument is given
+pig repo set          # set clears/backups existing definitions and overwrites with new repo definitions
+```
+
+
+## Repository Definitions
+
+The full repository definition bundled with Pigsty is in [`cli/repo/assets/repo.yml`](https://github.com/pgsty/pig/blob/main/cli/repo/assets/repo.yml).
+
+You can create `~/.pig/repo.yml` to explicitly modify and override pig's repository definitions. When editing repository definitions, you can add extra regional mirror URLs under `baseurl`, such as China or Europe mirrors. When `--region` is specified, pig first looks for the matching regional URL and falls back to the `default` URL if the region is unavailable.
+
+
+## repo list
+
+`pig repo list` lists all repository modules available on the current system.
+
+```bash
+pig repo list                # list repositories available on current system
+pig repo list all            # list all repositories without filtering
+```
+
+
+## repo info
+
+Show detailed information for specific repositories or modules, including URLs, metadata, regional mirrors, and `.repo` / `.list` repository file content.
+
+```bash
+pig repo info pgdg               # show pgdg module information
+pig repo info pigsty pgdg        # show multiple modules
+pig repo info all                # show all modules
+```
+
+
+## repo status
+
+Show current repository configuration on the system.
+
+```bash
+pig repo status
+```
 
 
 ## repo add
@@ -109,29 +152,36 @@ In pig, APT/YUM repositories are organized into **modules** — groups of reposi
 Add repository configuration files to the system. Requires root/sudo privileges.
 
 ```bash
-pig repo add pgdg                # Add PGDG repository
-pig repo add pgdg pigsty         # Add multiple repositories
-pig repo add all                 # Add all essential repos (pgdg + pigsty + node)
-pig repo add pigsty -u           # Add and update cache
-pig repo add all -r              # Remove existing repos before adding
-pig repo add all -ru             # Remove, add, and update (complete reset)
-pig repo add pgdg --region=china # Use China mirrors
+pig repo add pgdg                # add PGDG repository
+pig repo add pgdg pigsty         # add multiple repositories
+pig repo add all                 # add all required repositories (pgdg + pigsty + node)
+pig repo add pigsty -u           # add and update cache
+pig repo add all -r              # remove existing repos before adding
+pig repo add all -ru             # remove, add, and update (full reset)
+pig repo add pgdg --region=china # use China mirror
 ```
 
 **Options:**
-- `-r|--remove`: Remove existing repos before adding new ones
-- `-u|--update`: Run package cache update after adding repos
-- `--region <region>`: Use regional mirror repositories (`default` / `china` / `europe`)
+
+- `-r|--remove`: remove existing repositories before adding new ones
+- `-u|--update`: run package cache update after adding repositories
+- `--region <region>`: use regional mirror repositories (`default` / `china` / `europe`)
+
+| Platform | Module Location |
+|:---:|:---|
+| EL | `/etc/yum.repos.d/<module>.repo` |
+| Debian | `/etc/apt/sources.list.d/<module>.list` |
+{.full-width}
 
 
 ## repo set
 
-Equivalent to `repo add --remove --update`. Wipes existing repositories and sets up new ones, then updates cache.
+Equivalent to `repo add --remove --update`. It clears existing repositories, sets up new ones, then updates cache.
 
 ```bash
-pig repo set                     # Replace with default repos
-pig repo set pgdg pigsty         # Replace with specific repos and update
-pig repo set all --region=china  # Use China mirrors
+pig repo set                     # replace with default repositories
+pig repo set pgdg pigsty         # replace with selected repositories and update
+pig repo set all --region=china  # use China mirror
 ```
 
 
@@ -140,110 +190,86 @@ pig repo set all --region=china  # Use China mirrors
 Remove repository configuration files and back them up.
 
 ```bash
-pig repo rm                      # Remove all repos
-pig repo rm pgdg                 # Remove specific repo
-pig repo rm pgdg pigsty -u       # Remove and update cache
+pig repo rm                      # remove all repositories
+pig repo rm pgdg                 # remove selected repository
+pig repo rm pgdg pigsty -u       # remove and update cache
 ```
+
+| Platform | Backup Location |
+|:---:|:---|
+| EL | `/etc/yum.repos.d/backup/` |
+| Debian | `/etc/apt/sources.list.d/backup/` |
+{.full-width}
 
 
 ## repo update
 
-Update package manager cache to reflect repository changes.
+Update package-manager cache to reflect repository changes.
 
 ```bash
-pig repo update                  # Update package cache
+pig repo update                  # update package cache
 ```
 
 | Platform | Equivalent Command |
 |:---:|:---|
 | EL | `dnf makecache` |
 | Debian | `apt update` |
+{.full-width}
 
 
 ## repo create
 
-Create local package repository for offline installations.
+Create a local package repository for offline installation.
 
 ```bash
-pig repo create                  # Create at default location (/www/pigsty)
-pig repo create /srv/repo        # Create at custom location
+pig repo create                  # create at default location (/www/pigsty)
+pig repo create /srv/repo        # create at custom location
 ```
+
+| Platform | Dependency |
+|:---:|:---|
+| EL | `createrepo_c` |
+| Debian | `dpkg-dev` |
+{.full-width}
 
 
 ## repo cache
 
-Create compressed tarball of repository contents for offline distribution.
+Create a compressed tarball of repository contents for offline distribution.
 
 ```bash
-pig repo cache                   # Default: /www to /tmp/pkg.tgz
-pig repo cache -d /srv           # Custom source directory
+pig repo cache                   # default: /www to /tmp/pkg.tgz
+pig repo cache -d /srv           # custom source directory
 ```
+
+**Options:**
+
+- `-d, --dir`: source directory, default `/www/`
+- `-p, --path`: output path, default `/tmp/pkg.tgz`
 
 
 ## repo boot
 
-Extract and set up local repository from offline package.
+Extract and set up a local repository from an offline package.
 
 ```bash
-pig repo boot                    # Default: /tmp/pkg.tgz to /www
-pig repo boot -p /mnt/pkg.tgz   # Custom package path
-pig repo boot -d /srv           # Custom target directory
+pig repo boot                    # default: /tmp/pkg.tgz to /www
+pig repo boot -p /mnt/pkg.tgz    # custom package path
+pig repo boot -d /srv            # custom target directory
 ```
+
+**Options:**
+
+- `-p, --path`: package path, default `/tmp/pkg.tgz`
+- `-d, --dir`: target directory, default `/www/`
 
 
 ## repo reload
 
-Refresh repo metadata from GitHub to latest version.
+Refresh repository metadata from GitHub to the latest version.
 
 ```bash
-pig repo reload                  # Refresh repo catalog
+pig repo reload                  # refresh repository catalog
 ```
 
 The updated file is placed in `~/.pig/repo.yml`.
-
-
---------
-
-## Common Scenarios
-
-### Scenario 1: Fresh PostgreSQL Installation
-
-```bash
-# Setup repositories
-sudo pig repo add -ru
-
-# Install PostgreSQL 18
-sudo pig ext install pg18
-
-# Install popular extensions
-sudo pig ext add pg_duckdb postgis timescaledb
-```
-
-### Scenario 2: Air-gapped Environment
-
-```bash
-# On internet-connected machine:
-sudo pig repo add -ru
-sudo pig ext install pg18
-sudo pig ext add pg_duckdb postgis
-sudo pig repo create
-sudo pig repo cache
-
-# Transfer /tmp/pkg.tgz to air-gapped machine
-
-# On air-gapped machine:
-sudo pig repo boot
-sudo pig repo add local
-sudo pig ext install pg18
-sudo pig ext add pg_duckdb postgis
-```
-
-### Scenario 3: Using Regional Mirrors
-
-```bash
-# For users in China
-sudo pig repo add all --region=china -u
-
-# Check mirror URLs
-pig repo info pgdg
-```

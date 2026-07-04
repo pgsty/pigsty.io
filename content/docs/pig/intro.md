@@ -19,7 +19,7 @@ Pig isn't reinventing the wheel; it fully leverages native system package manage
 You do not need to choose between "the standard way" and "shortcuts". Pig respects existing repositories, follows OS best practices, and coexists harmoniously with existing repositories and packages.
 If your Linux system and PostgreSQL major version are not in the [supported list](#linux-compatibility), you can use [`pig build`](/docs/pig/build/) to compile extensions for your specific combination.
 
-Want to supercharge your Postgres and escape the hassle? Visit the [PIG official documentation](https://pig.pgsty.com) for guides, and check out the extensive [extension list](/ext/list),
+Want to supercharge your Postgres and escape the hassle? Visit the [PIG official documentation](https://pigsty.io/docs/pig/) for guides, and check out the extensive [extension list](/ext/list),
 turning your local Postgres database into an all-capable multi-modal data platform with one click.
 If [Postgres's future is unmatched extensibility](https://medium.com/@fengruohang/postgres-is-eating-the-database-world-157c204dcfc4), then Pig is the magic lamp that helps you unlock it. After all, no one ever complains about "too many extensions".
 

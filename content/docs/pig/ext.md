@@ -1,49 +1,33 @@
 ---
 title: "pig ext"
-description: "Manage PostgreSQL extensions with pig ext subcommand"
+description: "Manage PostgreSQL extensions with pig ext"
 weight: 120
 icon: fas fa-puzzle-piece
 module: [PIG]
 categories: [Reference]
 ---
 
-The `pig ext` command is a comprehensive tool for managing PostgreSQL extensions.
-It allows users to search, install, remove, update, and manage PostgreSQL extensions and even kernel packages.
+The `pig ext` command is an all-in-one tool for managing PostgreSQL extensions. It lets you search, install, remove, update, and manage PostgreSQL extensions, and it can also handle PostgreSQL kernel packages.
 
 ```bash
 pig ext - Manage PostgreSQL Extensions
 
-Usage: pig ext <command>
+  pig repo add -ru             # add all repo and update cache (brute but effective)
+  pig ext add pg18             # install optional postgresql 18 package
+  pig ext list duck            # search extension in catalog
+  pig ext scan -v 18           # scan installed extension for pg 18
+  pig ext add pg_duckdb        # install certain postgresql extension
 
-Commands:
-  add       Install extension for PostgreSQL
-  avail     Show extension availability matrix
-  info      Get extension information
-  link      Link PostgreSQL version to PATH
-  list      List & Search PostgreSQL extensions
-  reload    Refresh extension catalog
-  rm        Remove extension from PostgreSQL
-  scan      Scan installed PostgreSQL extensions
-  status    Show installed PostgreSQL extensions
-  update    Update extension for PostgreSQL
-
-Aliases:
-  add, install, ins, get
-  rm, remove, del, uninstall
-
-Flags:
-  -h, --help               help for ext
-  -p, --pgconfig string    pg_config path
-  -v, --version int        pg major version
-
-Global Flags:
-      --debug              enable debug mode
-  -H, --home string        pigsty home path
-  -i, --inventory string   config inventory path
-      --log-level string   log level: debug, info, warn, error, fatal, panic (default "info")
-      --log-path string    log file path, terminal by default
-
-Use "pig ext [command] --help" for more information about a command.
+Examples:
+  pig ext list    [query]      # list & search extension
+  pig ext info    [ext...]     # get information of a specific extension
+  pig ext status  [-v]         # show installed extension and pg status
+  pig ext add     [ext...]     # install extension for current pg version
+  pig ext rm      [ext...]     # remove extension for current pg version
+  pig ext update  [ext...]     # update extension to the latest version
+  pig ext import  [ext...]     # download extension to local repo
+  pig ext link    [ext...]     # link postgres installation to path
+  pig ext reload               # reload the latest extension catalog data
 ```
 
 | Command | Description | Notes |
@@ -56,174 +40,22 @@ Use "pig ext [command] --help" for more information about a command.
 | `ext add` | Install extensions | Requires sudo or root |
 | `ext rm` | Remove extensions | Requires sudo or root |
 | `ext update` | Update extensions | Requires sudo or root |
-| `ext import` | Download for offline use | Requires sudo or root |
-| `ext link` | Link PG version to PATH | Requires sudo or root |
+| `ext import` | Download extensions for offline use | Requires sudo or root |
+| `ext link` | Link a PG version into PATH | Requires sudo or root |
 | `ext reload` | Refresh extension catalog | |
 {.full-width}
 
 
 ## Quick Start
 
-```bash
-pig ext list                     # List all extensions
-pig ext list duck                # Search for "duck" extensions
-pig ext info pg_duckdb           # Show pg_duckdb extension info
-pig install pg_duckdb            # Install pg_duckdb extension
-pig install pg_duckdb -v 18      # Install pg_duckdb for PG 18
-pig ext status                   # Show installed extensions
-```
-
-
-## ext list
-
-List or search extensions.
+Before installing PostgreSQL extensions, add the required repositories with [`pig repo add`](/docs/pig/repo/):
 
 ```bash
-pig ext list                     # List all extensions
-pig ext list duck                # Search for "duck" extensions
-pig ext list -v 18               # Filter by PG version
-pig ext ls olap                  # List OLAP category extensions
-pig ext ls gis -v 16             # List GIS extensions for PG 16
-pig ext ls rag                   # List RAG category extensions
+pig repo add pgdg pigsty -u    # gentle way to add pgdg and pigsty repos
+pig repo set                   # brute-force way to remove and add all required repos
 ```
 
-Category filter is achieved by specifying the category name directly as query parameter. Supported categories: `time`, `gis`, `rag`, `fts`, `olap`, `feat`, `lang`, `type`, `func`, `util`, `admin`, `stat`, `sec`, `fdw`, `sim`, `etl`.
-
-**Options:**
-
-- `-v|--version`: Filter by PG version
-- `--pkg`: Show package names instead of extension names, list leading extensions only
-
-
-## ext info
-
-Display detailed information about specific extensions.
-
-```bash
-pig ext info pg_duckdb           # Show pg_duckdb info
-pig ext info vector postgis      # Show info for multiple extensions
-```
-
-
-## ext avail
-
-Display the availability matrix for extensions, showing availability across different operating systems, architectures, and PostgreSQL versions.
-
-```bash
-pig ext avail                     # Show availability for all packages on current system
-pig ext avail timescaledb         # Show availability matrix for timescaledb
-pig ext avail postgis pg_duckdb   # Show availability for multiple extensions
-pig ext av pgvector               # Show availability for pgvector
-pig ext matrix citus              # Alias for avail command
-```
-
-The availability matrix shows extension availability across operating systems (EL8/9/10, Debian 12/13, Ubuntu 22/24/26), architectures (x86_64/aarch64), and PostgreSQL versions (14-18).
-
-
-## ext status
-
-Display the status of installed extensions for the active PostgreSQL instance.
-
-```bash
-pig ext status                   # Show installed extensions
-pig ext status -v 18             # Show installed extensions for PG 18
-```
-
-
-## ext add
-
-Install extensions. Also available via alias `pig install`.
-
-```bash
-pig ext add pg_duckdb            # Install pg_duckdb
-pig ext add pg_duckdb -v 18      # Install for PG 18
-pig ext add pg_duckdb -y         # Auto-confirm installation
-pig ext add vector postgis       # Install multiple extensions
-
-# Using alias
-pig install pg_duckdb
-pig install pg_duckdb -v 18 -y
-```
-
-**Options:**
-- `-v|--version`: Specify PG major version
-- `-y|--yes`: Auto-confirm installation
-
-
-## ext rm
-
-Remove extensions.
-
-```bash
-pig ext rm pg_duckdb             # Remove pg_duckdb
-pig ext rm pg_duckdb -v 18       # Remove for PG 18
-```
-
-
-## ext update
-
-Update installed extensions.
-
-```bash
-pig ext update                   # Update all extensions
-pig ext update pg_duckdb         # Update specific extension
-```
-
-
-## ext scan
-
-Scan installed PostgreSQL installations and their extensions.
-
-```bash
-pig ext scan                     # Scan all installed PG versions
-pig ext scan -v 18               # Scan PG 18
-```
-
-
-## ext import
-
-Download extension packages for offline use.
-
-```bash
-pig ext import pg_duckdb         # Download pg_duckdb
-pig ext import pg_duckdb -v 18   # Download for PG 18
-```
-
-
-## ext link
-
-Link a specific PG version to the system PATH.
-
-```bash
-pig ext link 18                  # Link PG 18 to PATH
-```
-
-This command creates a `/usr/pgsql` symlink and writes to `/etc/profile.d/pgsql.sh`.
-
-
-## ext reload
-
-Refresh extension metadata from GitHub.
-
-```bash
-pig ext reload                   # Refresh extension catalog
-```
-
-The updated file is placed in `~/.pig/extension.csv`. The latest online catalog is also published at [**pigsty.io/ext/data/extension.csv**](https://pigsty.io/ext/data/extension.csv).
-
-
---------
-
-## Examples
-
-To install PostgreSQL extensions, you'll have to add the [**repo**](/docs/pig/repo/) first:
-
-```bash
-pig repo add pgdg pigsty -u    # gentle way to add pgdg and pigsty repo
-pig repo set                   # brute way to remove and add all required repos
-```
-
-Then you can search and install PostgreSQL extensions:
+Then search and install PostgreSQL extensions:
 
 ```bash
 pig ext install pg_duckdb
@@ -234,23 +66,215 @@ pig ext install pg_stat_statements
 pig ext install pg_stat_kcache
 ```
 
-Check [**extension list**](/ext/list/) for available extensions and their names.
+See the [**extension list**](/ext/list/) for available extensions and package names.
 
 **Notes:**
 
-1. When no PostgreSQL version is specified, the tool will try to detect the active PostgreSQL installation from `pg_config` in your `PATH`
-2. PostgreSQL can be specified either by major version number (`-v`) or by pg_config path (`-p`). If `-v` is given, pig will use the well-known default path of PGDG kernel packages for the given version.
-   - On EL distros, it's `/usr/pgsql-$v/bin/pg_config` for PG$v
-   - On DEB distros, it's `/usr/lib/postgresql/$v/bin/pg_config` for PG$v
-   - If `-p` is given, pig will use the `pg_config` path to find the PostgreSQL installation
-3. The extension manager supports different package formats based on the underlying operating system:
+1. If no PostgreSQL version is specified, pig tries to detect the active PostgreSQL installation from `pg_config` in `PATH`.
+2. PostgreSQL can be selected by major version (`-v`) or by pg_config path (`-p`).
+   - With `-v`, pig uses the default PGDG kernel package path for that major version.
+     - EL distros: `/usr/pgsql-$v/bin/pg_config`
+     - DEB distros: `/usr/lib/postgresql/$v/bin/pg_config`
+   - With `-p`, pig locates PostgreSQL directly from that path.
+3. The extension manager automatically adapts to the OS package format:
    - RPM packages for RHEL/CentOS/Rocky Linux/AlmaLinux
    - DEB packages for Debian/Ubuntu
-4. Some extensions may have dependencies that will be automatically resolved during installation
-5. Use the `-y` flag with caution as it will automatically confirm all prompts
+4. Extension dependencies are resolved automatically when possible.
+5. Use `-y` carefully because it auto-confirms prompts.
 
-Pigsty assumes you already have installed the official PGDG kernel packages. If not, you can install them with:
+Pigsty assumes official PGDG kernel packages are installed. If not, install them with:
 
 ```bash
-pig ext install pg18          # install PostgreSQL 18 kernels (all but devel)
+pig ext install pg18          # install PostgreSQL 18 kernel packages except devel
 ```
+
+
+## ext list
+
+List or search extensions in the extension catalog.
+
+```bash
+pig ext list                     # list all extensions
+pig ext list duck                # search extensions containing "duck"
+pig ext list -v 18               # filter by PG version
+pig ext ls olap                  # list OLAP category extensions
+pig ext ls gis -v 16             # list GIS extensions for PG 16
+pig ext ls rag                   # list RAG category extensions
+```
+
+Category filtering is done by passing the category name as the query. Supported categories include: `time`, `gis`, `rag`, `fts`, `olap`, `feat`, `lang`, `type`, `func`, `util`, `admin`, `stat`, `sec`, `fdw`, `sim`, and `etl`.
+
+**Options:**
+
+- `-v|--version`: filter by PG version
+- `--pkg`: show package names instead of extension names, listing only leading extensions
+
+**Status column:**
+
+- `installed`: extension is installed
+- `available`: extension is available but not installed
+- `not avail`: extension is not available on the current system
+
+The default extension catalog is defined in [**`cli/ext/assets/extension.csv`**](https://github.com/pgsty/pig/blob/main/cli/ext/assets/extension.csv).
+
+Use `pig ext reload` to refresh to the latest catalog. The downloaded catalog is stored at `~/.pig/extension.csv`; the latest online catalog is also published at [**pigsty.io/ext/data/extension.csv**](https://pigsty.io/ext/data/extension.csv).
+
+
+## ext info
+
+Show detailed information for selected extensions.
+
+```bash
+pig ext info postgis        # show PostGIS details
+pig ext info timescaledb    # show TimescaleDB details
+pig ext info vector postgis # show multiple extensions
+```
+
+
+## ext avail
+
+Show the extension availability matrix across operating systems, architectures, and PostgreSQL versions.
+
+```bash
+pig ext avail                     # show package availability on current system
+pig ext avail timescaledb         # show timescaledb availability matrix
+pig ext avail postgis pg_duckdb   # show multiple extensions
+pig ext av pgvector               # show pgvector availability
+pig ext matrix citus              # alias for avail
+```
+
+The matrix shows availability across operating systems (EL8/9/10, Debian 12/13, Ubuntu 22/24/26), architectures (x86_64/aarch64), and PostgreSQL versions (14-18).
+
+
+## ext status
+
+Show installed extension status for the current PostgreSQL instance.
+
+```bash
+pig ext status              # show installed extensions
+pig ext status -c           # include contrib extensions
+pig ext status -v 16        # show installed extensions for PG 16
+```
+
+**Options:**
+
+- `-c|--contrib`: include contrib extensions in the result
+
+
+## ext scan
+
+Scan installed extensions for the current PostgreSQL instance.
+
+```bash
+pig ext scan [-v version]
+```
+
+This command scans the PostgreSQL extension directory and finds extensions that are actually installed.
+
+
+## ext add
+
+Install one or more PostgreSQL extensions. Same-level aliases for `pig ext add` include `pig ext install`, `pig ext ins`, and `pig ext a`. The top-level [`pig install`](/docs/pig/cmd/#install) command is a separate native package-manager wrapper that also supports PostgreSQL and extension alias translation.
+
+```bash
+pig ext add pg_duckdb            # install pg_duckdb
+pig ext add pg_duckdb -v 18      # install for PG 18
+pig ext add pg_duckdb -y         # auto-confirm installation
+pig ext add vector postgis       # install multiple extensions
+pig ext add postgis --plan       # preview install plan without executing
+
+# Using alias
+pig install pg_duckdb
+pig install pg_duckdb -v 18 -y
+
+# Install PostgreSQL kernel packages
+pig ext install pgsql            # install latest PostgreSQL kernel
+pig ext a pg18                   # install PostgreSQL 18 kernel packages
+pig ext ins pg16                 # install PostgreSQL 16 kernel packages
+pig ext install pg15-core        # install PostgreSQL 15 core packages
+pig ext install pg14-main -y     # install PG 14 + common extensions (vector, repack, wal2json)
+```
+
+**Options:**
+
+- `-v|--version`: specify PG major version
+- `-y|--yes`: auto-confirm installation
+- `--plan`: preview the install plan without running package-manager commands
+
+
+## ext rm
+
+Remove one or more PostgreSQL extensions.
+
+```bash
+pig ext rm pg_duckdb             # remove pg_duckdb
+pig ext rm pg_duckdb -v 18       # remove PG 18 package
+pig ext rm pgvector -y           # auto-confirm removal
+pig ext rm pgvector --plan       # preview remove plan without executing
+```
+
+**Options:**
+
+- `-v|--version`: specify PG major version
+- `-y|--yes`: auto-confirm removal
+- `--plan`: preview the remove plan without running package-manager commands
+
+
+## ext update
+
+Update explicitly selected installed extensions to the latest version. For safety, `pig ext update` with no arguments is a no-op; you must name the targets explicitly.
+
+```bash
+pig ext update                   # no-op: explicit targets are required
+pig ext update pg_duckdb         # update one extension
+pig ext update postgis timescaledb  # update multiple extensions
+pig ext update pg_duckdb -y      # auto-confirm update
+```
+
+**Options:**
+
+- `-v|--version`: specify PG major version
+- `-y|--yes`: auto-confirm update
+
+
+## ext import
+
+Download extension packages into a local repository for offline installation.
+
+```bash
+pig ext import postgis                # import PostGIS packages
+pig ext import timescaledb pg_cron    # import multiple extension packages
+pig ext import pg16                   # import PostgreSQL 16 packages
+pig ext import pgsql-common           # import common utility packages
+pig ext import -d /www/pigsty postgis # import to a selected path
+```
+
+**Options:**
+
+- `-d|--repo`: local repository directory (default: `/www/pigsty`)
+
+
+## ext link
+
+Link a selected PG version into the system PATH.
+
+```bash
+pig ext link 18                  # link PG 18 to PATH
+pig ext link 16                  # link PG 16 to /usr/pgsql
+pig ext link /usr/pgsql-16       # link from a selected path to /usr/pgsql
+pig ext link null                # remove current PostgreSQL link
+pig ext link none                # null / none / nil / nop / no all remove the link
+```
+
+This command creates the `/usr/pgsql` symlink and writes `/etc/profile.d/pgsql.sh`.
+
+
+## ext reload
+
+Refresh extension metadata.
+
+```bash
+pig ext reload                   # refresh extension catalog
+```
+
+The updated catalog is stored at `~/.pig/extension.csv`.

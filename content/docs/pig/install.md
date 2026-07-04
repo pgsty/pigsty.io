@@ -26,6 +26,7 @@ curl -fsSL https://repo.pigsty.cc/pig | bash
 ```
 
 This script downloads the latest `pig` RPM/DEB package from the Pigsty [software repository](/docs/repo/) and installs it using `rpm` or `dpkg`.
+Script installation targets Linux x86_64 / aarch64 RPM or DEB distributions. On macOS, use the binary from the release tarball.
 
 
 ## Specify Version
@@ -45,9 +46,12 @@ curl -fsSL https://repo.pigsty.cc/pig | bash -s 1.5.0
 ```
 
 
-## Download from Release Page
+## Download Release Artifacts
 
-You can also download `pig` installation packages (`RPM`/`DEB`/tarball) directly from the Pigsty repository: [GitHub v1.5.0 Stable Release Page](https://github.com/pgsty/pig/releases/tag/v1.5.0)
+You can also download `pig` installation packages (`RPM`/`DEB`/tarball) directly from the Pigsty software repository. Current `v1.5.0` artifacts are available at:
+
+- <https://repo.pigsty.io/pkg/pig/v1.5.0/>
+- <https://repo.pigsty.cc/pkg/pig/v1.5.0/>
 
 ```
 latest
@@ -131,7 +135,8 @@ You can also build `pig` yourself. `pig` is developed in Go and is very easy to 
 
 ```bash
 git clone https://github.com/pgsty/pig.git; cd pig
-go get -u; go build
+go mod download
+make build
 ```
 
 All RPM/DEB packages are automatically built through GitHub CI/CD workflow using goreleaser.
