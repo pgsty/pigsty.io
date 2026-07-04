@@ -41,3 +41,6 @@ Special thanks to Vercel for sponsoring pigsty and hosting the Pigsty website.
 
 [![Vercel OSS Program](https://vercel.com/oss/program-badge.svg)](https://vercel.com/oss)
 
+Special thanks to JetBrains for sponsoring Pigsty with JetBrains Open Source License
+
+[![JetBrains logo.](https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.svg)](https://jb.gg/OpenSource)

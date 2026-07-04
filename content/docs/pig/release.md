@@ -7,14 +7,15 @@ module: [PIG]
 categories: [Reference]
 ---
 
-The latest stable version is [v1.4.2](https://github.com/pgsty/pig/releases/tag/v1.4.2).
+The latest stable version is [v1.5.0](https://github.com/pgsty/pig/releases/tag/v1.5.0).
 
 |     Version     |    Date    | Summary                                                            |                           GitHub                           |
 |:---------------:|:----------:|--------------------------------------------------------------------|:----------------------------------------------------------:|
-| [v1.4.2](#v142) | 2026-06-18 | 524 extensions, PG19 beta, pgrx 0.18.1, Patroni fixes             | [v1.4.2](https://github.com/pgsty/pig/releases/tag/v1.4.2) |
+| [v1.5.0](#v150) | 2026-07-04 | 531 extensions, pigsty v4.4, pg/pt/pb/pitr rework, clone & fork    | [v1.5.0](https://github.com/pgsty/pig/releases/tag/v1.5.0) |
+| [v1.4.2](#v142) | 2026-06-18 | 524 extensions, PG19 beta, pgrx 0.18.1, Patroni fixes              | [v1.4.2](https://github.com/pgsty/pig/releases/tag/v1.4.2) |
 | [v1.4.1](#v141) | 2026-05-01 | 510 extensions, Ubuntu 26.04 support, repo calibration             | [v1.4.1](https://github.com/pgsty/pig/releases/tag/v1.4.1) |
 | [v1.4.0](#v140) | 2026-04-19 | 510 extensions, pgrx 0.18.0, more building specs                   | [v1.4.0](https://github.com/pgsty/pig/releases/tag/v1.4.0) |
-| [v1.3.4](#v134) | 2026-04-14 | 504 extensions refreshed, release checksums updated             | [v1.3.4](https://github.com/pgsty/pig/releases/tag/v1.3.4) |
+| [v1.3.4](#v134) | 2026-04-14 | 504 extensions refreshed, release checksums updated                | [v1.3.4](https://github.com/pgsty/pig/releases/tag/v1.3.4) |
 | [v1.3.3](#v133) | 2026-04-10 | 481 extensions and Go 1.26.2 update                                | [v1.3.3](https://github.com/pgsty/pig/releases/tag/v1.3.3) |
 | [v1.3.2](#v132) | 2026-03-23 | Routine metadata refresh, new `pg tune`, new build aliases         | [v1.3.2](https://github.com/pgsty/pig/releases/tag/v1.3.2) |
 | [v1.3.1](#v131) | 2026-03-05 | Retire PG13 defaults, unify PG14-18 support window, 464 extensions | [v1.3.1](https://github.com/pgsty/pig/releases/tag/v1.3.1) |
@@ -49,6 +50,50 @@ The latest stable version is [v1.4.2](https://github.com/pgsty/pig/releases/tag/
 | [v0.1.1](#v011) | 2025-01-09 | Update Extension List                                              | [v0.1.1](https://github.com/pgsty/pig/releases/tag/v0.1.1) |
 | [v0.1.0](#v010) | 2024-12-29 | repo, ext, sty, and self-update                                    | [v0.1.0](https://github.com/pgsty/pig/releases/tag/v0.1.0) |
 | [v0.0.1](#v001) | 2024-12-23 | Genesis Release                                                    | [v0.0.1](https://github.com/pgsty/pig/releases/tag/v0.0.1) |
+
+
+--------
+
+## v1.5.0
+
+Pig `v1.5.0` is a PostgreSQL operations release for day-to-day DBA work. It adds local database clone/fork workflows, clarifies the boundaries between `pg`, `pt`, `pb`, and `pitr`, and tightens preview, confirmation, and structured-output behavior for high-risk operations.
+
+**Highlights**
+
+- `pig pg` is now more focused on local PostgreSQL operations. `pig pg clone` creates quick database-level copies, while `pig pg fork` creates disposable physical instance forks for local validation, recovery drills, and isolated experiments.
+- Recovery flows are split more clearly: `pig pitr` is the orchestration entry point across Patroni, PostgreSQL, and pgBackRest; `pig pb restore` remains the low-level pgBackRest restore primitive. Restore commands now require an explicit target and provide more concrete plans and post-restore guidance.
+- Patroni operations are more predictable: high-risk actions such as `pig pt restart`, `reinit`, `switchover`, and `failover` use Pig-managed confirmation and plan output; `pig pt config pg` points operators to `pig pt restart --pending` when a restart is required.
+- Automation is safer: structured output no longer implies confirmation for destructive commands. High-risk execution requires explicit `-y/--yes`, while `--plan` and `next_actions` are more consistent for preview-then-execute workflows.
+- Logs and status output are more useful during incidents: `pg`, `pb`, and `pt` log commands now cover common latest / tail / show / grep workflows, and structured log snapshots use JSONL semantics.
+- Build and release defaults were refreshed: Pig is `1.5.0`, embedded Pigsty is `4.4.0`, and `pig build pgrx` defaults to `cargo-pgrx 0.19.1`.
+
+**Extension Catalog**
+
+- Available extensions: **524 -> 531**, with no removals.
+- New extensions: `pg_ducklake`, `pgdisablelogerror`, `pg_stat_log`, `pg_stat_plans`, `passwordpolicy`, `db2fce`, `plpgsql_wrap`.
+- Refreshed a batch of existing extension versions and package metadata, including `timescaledb 2.28.2`, `postgis 3.6.4`, `vector 0.8.4`, `biscuit 2.4.1`, `citus 14.1.0`, `orioledb 1.8`, `documentdb 0.113`, `credcheck 5.0`, and `pgtt 4.5`.
+- `orioledb` aliases no longer pin to PG17; they resolve against the requested PostgreSQL major. EL9 ARM64 Patroni aliases now point to noarch packages.
+
+**Compatibility Notes**
+
+- Use `-y/--yes` for destructive operations in automation; structured output mode no longer substitutes for human confirmation.
+- `pig pb restore` and `pig pitr` require exactly one explicit recovery target; use `--target-action=promote` for auto-promote behavior.
+- Several ambiguous short options were cleaned up. For log commands, `-o json` means a JSONL snapshot and is not used for tail/follow streaming modes.
+
+**Checksums**
+
+```bash
+f0f6706fc63b5df3717d932f4d1886ceb0775a5fe38a070e657e2b7dae2cd5e8  pig-1.5.0-1.aarch64.rpm
+4d0f2edc22860ebf4559fb823bdda4142807b9c9fd5c0043cff217f14fd3173a  pig-1.5.0-1.x86_64.rpm
+3d8a80c6a9c6fa1398bd6b439ea3abb5ceae33ba69c0c8ccc4f00b1d7303dbe9  pig-v1.5.0.darwin-amd64.tar.gz
+416aa9f54cec92aca77d648a965bddf6ffe1ac896073020f781cb93dec1d832d  pig-v1.5.0.darwin-arm64.tar.gz
+8f9e95db0538d72decb4b06715d9e954aea1d439de0a4921f08ab1db4bcd865c  pig-v1.5.0.linux-amd64.tar.gz
+cea0b9e86662064d7ee9249ae510d53f68d041c44d7dfb92f480626e58b33db4  pig-v1.5.0.linux-arm64.tar.gz
+1cc2fe2e566d135a02dea1ddb0263c39cb3a3948c1cc16e24fa3ed0df5fbe5f5  pig_1.5.0-1_amd64.deb
+6f298185513bbae0292b758a7d5b86f3e640b3a6e99717dd8d290b99e321eee9  pig_1.5.0-1_arm64.deb
+```
+
+Release: https://github.com/pgsty/pig/releases/tag/v1.5.0
 
 
 --------

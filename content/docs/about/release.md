@@ -183,55 +183,55 @@ Development version.
 | `pg_exporter`                | `1.2.2`          | `1.3.0`          |                                                |
 | `pgschema`                   | `1.9.0`          | `1.11.1`         |                                                |
 | `pgstream`                   | `1.0.1`          | `1.1.0`          |                                                |
-| `codex`                      | `0.125.0`        | `0.142.0`        |                                                |
-| `claude`                     | `2.1.123`        | `2.1.187`        | downloaded through the 8118 proxy and verified |
-| `opencode`                   | `1.14.30`        | `1.17.9`         |                                                |
-| `agentsview`                 | `0.26.0`         | `0.34.5`         | upstream moved to kenn-io/agentsview           |
-| `genai-toolbox`              | `1.1.0`          | `1.5.0`          |                                                |
-| `crush`                      | `0.64.0`         | `0.79.1`         | direct-download artifact refresh               |
-| `code`                       | `1.118.1`        | `1.125.1`        | direct-download artifact refresh               |
-| `code-server`                | `4.117.0`        | `4.125.0`        | direct-download artifact refresh               |
+| `codex`                      | `0.125.0`        | `0.142.5`        | release tag `rust-v0.142.5`                    |
+| `claude`                     | `2.1.123`        | `2.1.201`        | downloaded through the 8118 proxy and verified |
+| `opencode`                   | `1.14.30`        | `1.17.13`        |                                                |
+| `agentsview`                 | `0.26.0`         | `0.36.1`         | upstream moved to kenn-io/agentsview           |
+| `genai-toolbox`              | `1.1.0`          | `1.6.0`          | external build artifacts as `mcp-toolbox`      |
+| `crush`                      | `0.64.0`         | `0.81.0`         | direct-download artifact refresh               |
+| `code`                       | `1.118.1`        | `1.127.0`        | direct-download artifact refresh               |
+| `code-server`                | `4.117.0`        | `4.127.0`        | direct-download artifact refresh               |
 | `victoria-metrics`           | `1.142.0`        | `1.146.0`        | VictoriaMetrics main package                   |
 | `victoria-metrics-cluster`   | `1.142.0`        | `1.146.0`        | VictoriaMetrics companion package              |
 | `vmutils`                    | `1.142.0`        | `1.146.0`        | VictoriaMetrics companion package              |
 | `victoria-logs`              | `1.50.0`         | `1.51.0`         | VictoriaLogs main package                      |
 | `vlagent`                    | `1.50.0`         | `1.51.0`         | VictoriaLogs companion package                 |
 | `vlogscli`                   | `1.50.0`         | `1.51.0`         | VictoriaLogs companion package                 |
-| `victoria-traces`            | `0.8.2`          | `0.9.3`          |                                                |
-| `prometheus`                 | `3.11.3`         | `3.12.0`         |                                                |
+| `victoria-traces`            | `0.8.2`          | `0.9.4`          |                                                |
+| `prometheus`                 | `3.11.3`         | `3.13.0`         |                                                |
 | `alertmanager`               | `0.32.1`         | `0.33.0`         |                                                |
 | `pushgateway`                | `1.11.2`         | `1.11.3`         |                                                |
 | `node_exporter`              | `1.11.1`         | `1.11.1`         | tarball cache; version metadata fix            |
 | `redis_exporter`             | `1.82.0`         | `1.86.0`         |                                                |
 | `mongodb_exporter`           | `0.50.0`         | `0.51.0`         |                                                |
-| `grafana`                    | `13.0.1`         | `13.0.2`         | skipped 13.1 nightly                           |
+| `grafana`                    | `13.0.1`         | `13.1.0`         | direct-download artifact refresh               |
 | `grafana-victorialogs-ds`    | `0.26.3`         | `0.29.0`         |                                                |
-| `grafana-victoriametrics-ds` | `0.24.0`         | `0.25.0`         |                                                |
+| `grafana-victoriametrics-ds` | `0.24.0`         | `0.25.1`         |                                                |
 | `vector`                     | `0.55.0`         | `0.56.0`         |                                                |
 | `minio`                      | `20260417000000` | `20260618000000` |                                                |
-| `seaweedfs`                  | `4.22`           | `4.35`           |                                                |
+| `seaweedfs`                  | `4.22`           | `4.37`           |                                                |
 | `rustfs`                     | `1.0.0-b1`       | `1.0.0-b8`       | prerelease line                                |
 | `duckdb`                     | `1.5.2`          | `1.5.4`          |                                                |
 | `kafka`                      | `4.2.0`          | `4.3.1`          |                                                |
-| `etcd`                       | `3.6.10`         | `3.6.12`         |                                                |
+| `etcd`                       | `3.6.10`         | `3.6.13`         |                                                |
 | `restic`                     | `0.18.1`         | `0.19.0`         |                                                |
 | `tigerbeetle`                | `0.17.2`         | `0.17.8`         |                                                |
 | `tigerfs`                    | `0.6.0`          | `0.7.0`          |                                                |
 | `caddy`                      | `2.11.2`         | `2.11.4`         |                                                |
 | `cloudflared`                | `2026.2.0`       | `2026.6.1`       | direct-download artifact refresh               |
-| `headscale`                  | `0.28.0`         | `0.29.1`         |                                                |
+| `headscale`                  | `0.28.0`         | `0.29.2`         |                                                |
 | `v2ray`                      | `5.48.0`         | `5.49.0`         |                                                |
 | `nodejs`                     | `24.15.0`        | `24.18.0`        | kept on the 24.x line                          |
 | `golang`                     | `1.26.2`         | `1.26.4`         |                                                |
 | `hugo`                       | `0.161.1`        | `0.163.3`        |                                                |
-| `uv`                         | `0.11.8`         | `0.11.24`        |                                                |
+| `uv`                         | `0.11.8`         | `0.11.26`        |                                                |
 | `rclone`                     | `1.73.5`         | `1.74.3`         | direct-download artifact refresh               |
 | `asciinema`                  | `3.2.0`          | `3.2.1`          |                                                |
-| `stalwart`                   | `0.16.2`         | `0.16.10`        |                                                |
+| `stalwart`                   | `0.16.2`         | `0.16.11`        |                                                |
 | `maddy`                      | `0.9.3`          | `0.9.5`          |                                                |
-| `dblab`                      | `0.38.0`         | `0.42.0`         |                                                |
-| `npgsqlrest`                 | `3.12.0`         | `3.18.1`         |                                                |
-| `postgrest`                  | `14.10`          | `14.13`          |                                                |
+| `dblab`                      | `0.38.0`         | `0.42.1`         |                                                |
+| `npgsqlrest`                 | `3.12.0`         | `3.19.0`         |                                                |
+| `postgrest`                  | `14.10`          | `14.14`          |                                                |
 | `sabiql`                     | `1.11.1`         | `1.13.0`         |                                                |
 | `pev2`                       | `1.21.0`         | `1.22.0`         |                                                |
 | `rainfrog`                   | `0.3.18`         | `0.3.19`         |                                                |
@@ -525,7 +525,7 @@ A maintenance release that adds 3 new extensions.
 **Major Changes**
 
 - **New Extensions**: `pg_eviltransform` is added to the GIS package group, `pg_pinyin` to the FTS group, and `pg_qos` to the admin group — all for PG 14–18.
-- **PG13 Removed**: All `pgdg13`, `pgdg13-nonfree` repo entries and PG13 package aliases (`pg13-*`) are removed from every platform variant (EL7/8/9/10, Debian 12/13, Ubuntu 22/24, both x86_64 and aarch64).
+- **PG13 Removed**: All `pgdg13`, `pgdg13-nonfree` repo entries and PG13 package aliases (`pg13-*`) are removed from every platform variant (EL7/8/9/10, Debian 12/13, Ubuntu 22/24/26, both x86_64 and aarch64).
 - Config templates (`fat.yml`, `pro.yml`, `dev.yml`, `el.yml`, `debian.yml`) no longer reference PG13 packages or repos. Extension version comments are updated to reflect PG 14–18 coverage only.
 - **Percona Repo**: Origin URL updated from `ppg-18.1` to `ppg-18.3` to track the latest Percona PostgreSQL distribution.
 - **Nginx Repo**: Module tag for the Nginx upstream APT repo corrected from `infra` to `nginx` on Debian/Ubuntu platforms.
