@@ -1,7 +1,7 @@
 ---
 title: AgensGraph
 weight: 2115
-description: Use the AgensGraph (PG16) graph database kernel in Pigsty to get property graph and Cypher/SQL hybrid query capabilities within the PostgreSQL ecosystem.
+description: Use the AgensGraph (PG17) graph database kernel in Pigsty to get property graph and Cypher/SQL hybrid query capabilities within the PostgreSQL ecosystem.
 icon: fa-solid fa-project-diagram
 module: [PGSQL]
 categories: [Concept]
@@ -18,8 +18,8 @@ Pigsty integrates AgensGraph through `pg_mode: agens` while preserving most of t
 
 - Kernel package: `agensgraph`
 - Mode identifier: `pg_mode: agens`
-- Current template version: `AgensGraph 2.16`
-- Current version string: `PostgreSQL 16.9 (AgensGraph 2.16)`
+- Current template version: `AgensGraph 2.17.0`
+- Current version string: `PostgreSQL 17.10 (AgensGraph 2.17.0)`
 - Built-in template: `agens`
 - Typical use cases: graph relationship analysis, path queries, knowledge graphs, and risk/association analysis layered onto relational data
 
@@ -55,7 +55,7 @@ Key configuration for AgensGraph in Pigsty:
 all:
   vars:
     node_repo_modules: node,infra,pgsql
-    pg_version: 16
+    pg_version: 17
 
   children:
     pg-meta:
@@ -114,7 +114,7 @@ transactions, privileges, and backup workflows still follow PostgreSQL, while gr
 
 ## Notes
 
-- AgensGraph is currently fixed to the PG16-compatible line, so do not assume PG17 / PG18 extension availability will carry over.
+- AgensGraph is currently fixed to the PG17-compatible line, so do not assume PG18 extension availability will carry over.
 - The default `agens` template is single-node for quick validation; production deployments should extend to an HA topology.
 - Not all third-party PostgreSQL extensions are guaranteed to work on the AgensGraph kernel; verify compatibility first.
 - Graph objects and relational objects can coexist in the same database, but in production it is usually better to define clear database or naming conventions so they do not become tangled together.
@@ -130,5 +130,5 @@ transactions, privileges, and backup workflows still follow PostgreSQL, while gr
 - [PGSQL kernel mode config](/docs/pgsql/config/kernel/)
 - AgensGraph repository: <https://github.com/skaiworldwide-oss/agensgraph>
 - AgensGraph official docs: <https://tech.skaiworldwide.com/docs/en/agensgraph/latest/>
-- AgensGraph Quick Guide: <https://tech.skaiworldwide.com/docs/en/agensgraph/16/quick_guide/index.html>
-- AgensGraph 2.16.0 Release Notes: <https://tech.skaiworldwide.com/docs/en/agensgraph/latest/release_notes/agensgraph_release_notes_2_16_0.html>
+- AgensGraph Quick Guide: <https://tech.skaiworldwide.com/docs/en/agensgraph/17/quick_guide/index.html>
+- AgensGraph 2.17.0 Release Notes: <https://tech.skaiworldwide.com/docs/en/agensgraph/latest/release_notes/agensgraph_release_notes_2_17_0.html>

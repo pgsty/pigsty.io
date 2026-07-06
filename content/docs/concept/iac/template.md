@@ -39,7 +39,7 @@ Use `./configure -c <conf>` to specify a configuration template, where `<conf>` 
 ./configure -c mysql            # OpenHalo kernel, MySQL compatible (14)
 ./configure -c pgtde            # Percona PostgreSQL Server transparent encryption (18)
 ./configure -c oriole           # OrioleDB kernel, OLTP enhanced (16~18)
-./configure -c agens            # AgensGraph graph database kernel (16)
+./configure -c agens            # AgensGraph graph database kernel (17)
 ./configure -c pgedge           # pgEdge distributed database kernel (18)
 ./configure -c ha/citus         # Citus distributed HA PostgreSQL (14~18)
 ./configure -c supabase         # Supabase self-hosted configuration (15~18)
@@ -80,7 +80,7 @@ Templates for various database management systems and kernels:
 | [**`mysql.yml`**](/docs/conf/mysql/)       | OpenHalo kernel, MySQL compatible (14)                  |
 | [**`pgtde.yml`**](/docs/conf/pgtde/)       | Percona PostgreSQL Server transparent encryption (18)   |
 | [**`oriole.yml`**](/docs/conf/oriole/)     | OrioleDB kernel, OLTP enhanced (16~18)                  |
-| [**`agens.yml`**](/docs/conf/agens/)       | AgensGraph graph database kernel (16)                   |
+| [**`agens.yml`**](/docs/conf/agens/)       | AgensGraph graph database kernel (17)                   |
 | [**`pgedge.yml`**](/docs/conf/pgedge/)     | pgEdge distributed database kernel (18)                 |
 | [**`supabase.yml`**](/docs/conf/supabase/) | Supabase self-hosted configuration (15~18)              |
 

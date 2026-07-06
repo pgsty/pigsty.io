@@ -17,7 +17,7 @@ For the full guide, see: **[AgensGraph kernel guide](/docs/pgsql/kernel/agensgra
 
 - Config name: `agens`
 - Node count: Single node
-- Description: AgensGraph (PG16) graph database kernel template
+- Description: AgensGraph (PG17) graph database kernel template
 - Supported OS: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - Supported arch: `x86_64`, `aarch64`
 - Related templates: [`meta`](/docs/conf/meta/), [`pgsql`](/docs/conf/pgsql/)
@@ -49,7 +49,7 @@ The `agens` template enables `pg_mode: agens` in the `pg-meta` cluster and insta
 - Property graph model support (Vertex / Edge)
 - Cypher query syntax, can be combined with SQL
 - Compatible with PostgreSQL ecosystem and standard operations
-- Based on PostgreSQL 16-compatible kernel by default
+- Based on PostgreSQL 17-compatible kernel by default
 
 **Typical use cases**:
 
@@ -59,6 +59,6 @@ The `agens` template enables `pg_mode: agens` in the `pg-meta` cluster and insta
 
 **Caveats**:
 
-- Current AgensGraph template is pinned to `pg_version: 16`
+- Current AgensGraph template is pinned to `pg_version: 17`
 - Default topology is single-node for quick validation; production should extend with HA topology planning
 - Graph schema and Cypher semantics should follow official AgensGraph docs

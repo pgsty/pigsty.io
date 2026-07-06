@@ -51,6 +51,6 @@ These version strings mostly come from the current Pigsty repository packages. O
 | [**Percona**](/docs/pgsql/kernel/percona)       | `PostgreSQL 18.1 - Percona Server for PostgreSQL 18.1.1 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11.0.1), 64-bit`      |
 | [**OrioleDB**](/docs/pgsql/kernel/orioledb)     | `OrioleDB 1.8 beta16 packages for PostgreSQL 16, 17, and 18`                                                                                                 |
 | [**PolarDB**](/docs/pgsql/kernel/polardb)       | `POLARDB_17_STABLE (based on PostgreSQL 17, latest upstream release v17.9.1.0)`                                                                               |
-| [**AgensGraph**](/docs/pgsql/kernel/agensgraph) | `PostgreSQL 16.9 (AgensGraph 2.16) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), 64-bit`                               |
+| [**AgensGraph**](/docs/pgsql/kernel/agensgraph) | `PostgreSQL 17.10 (AgensGraph 2.17.0; agensgraph-17 package)`                                                                                               |
 | [**pgEdge**](/docs/pgsql/kernel/pgedge)         | `PostgreSQL 18.3 (pgEdge; pgedge-18 package, Spock 5.0.6)`                                                                                                      |
 | [**Cloudberry**](/docs/pgsql/kernel/cloudberry) | `PostgreSQL 14.4 (Apache Cloudberry 2.0.0-incubating build 1) on aarch64-unknown-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), 64-bit` |
