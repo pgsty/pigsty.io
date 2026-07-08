@@ -265,8 +265,8 @@ Package [`babelfish`](/ext/e/babelfishpg_common) contains **4** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 9300 | [**`babelfishpg_common`**](/ext/e/babelfishpg_common) | `5.5.0` | `--s-d-r` | - | SQL Server Transact SQL Datatype Support |
-| 9310 | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | `5.5.0` | `--s-d-r` | - | SQL Server Transact SQL compatibility |
+| 9300 | [**`babelfishpg_common`**](/ext/e/babelfishpg_common) | `5.4.0` | `--s-d-r` | - | SQL Server Transact SQL Datatype Support |
+| 9310 | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | `5.4.0` | `--s-d-r` | - | SQL Server Transact SQL compatibility |
 | 9320 | [`babelfishpg_tds`](/ext/e/babelfishpg_tds) | `1.0.0` | `--sLd-r` | - | SQL Server TDS protocol extension |
 | 9330 | [`babelfishpg_money`](/ext/e/babelfishpg_money) | `1.1.0` | `--s-dt-` | - | SQL Server Money Data Type |
 {.ext-table}

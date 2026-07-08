@@ -34,8 +34,8 @@ There are **29** extensions in **18** packages.
 | [`pg_dbms_job`](/ext/e/pg_dbms_job) | [`pg_dbms_job`](https://github.com/MigOpsRepos/pg_dbms_job) | `2.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Extension to add Oracle DBMS_JOB full compatibility to PostgreSQL |
 | [`pg_dbms_errlog`](/ext/e/pg_dbms_errlog) | [`pg_dbms_errlog`](https://github.com/HexaCluster/pg_dbms_errlog) | `2.2` | <a class="ext-badge ext-badge--license isc" href="/ext/license#isc">ISC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Emulate DBMS_ERRLOG Oracle module to log DML errors in a dedicated table. |
 | [`pg_utl_smtp`](/ext/e/pg_utl_smtp) | [`pg_utl_smtp`](https://github.com/hexacluster/pg_utl_smtp) | `1.0.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Oracle UTL_SMTP compatibility extension for PostgreSQL |
-| [`babelfishpg_common`](/ext/e/babelfishpg_common) | [`babelfish`](https://babelfishpg.org/) | `5.5.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | SQL Server Transact SQL Datatype Support |
-| [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | [`babelfish`](https://babelfishpg.org/) | `5.5.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | SQL Server Transact SQL compatibility |
+| [`babelfishpg_common`](/ext/e/babelfishpg_common) | [`babelfish`](https://babelfishpg.org/) | `5.4.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | SQL Server Transact SQL Datatype Support |
+| [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | [`babelfish`](https://babelfishpg.org/) | `5.4.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | SQL Server Transact SQL compatibility |
 | [`babelfishpg_tds`](/ext/e/babelfishpg_tds) | [`babelfish`](https://babelfishpg.org/) | `1.0.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | SQL Server TDS protocol extension |
 | [`babelfishpg_money`](/ext/e/babelfishpg_money) | [`babelfish`](https://babelfishpg.org/) | `1.1.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | SQL Server Money Data Type |
 | [`spat`](/ext/e/spat) | [`spat`](https://github.com/Florents-Tselai/spat) | `0.1.0a4` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Redis-like In-Memory DB Embedded in Postgres |
@@ -466,18 +466,18 @@ There are **29** extensions in **18** packages.
 
 ## babelfishpg_common {#babelfishpg_common}
 
-[**`babelfish`**](/ext/e/babelfishpg_common) - `5.5.0` : SQL Server Transact SQL Datatype Support
+[**`babelfish`**](/ext/e/babelfishpg_common) - `5.4.0` : SQL Server Transact SQL Datatype Support
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`babelfishpg_common`](/ext/e/babelfishpg_common) | **el8** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Package** | [`babelfish`](https://babelfishpg.org/) | **el9** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **RPM** | `babelfish_$v` | **el10** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **DEB** | `babelfishpg-$v-babelfish` | **d12** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| | | **u26** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
+| **Extension** | [`babelfishpg_common`](/ext/e/babelfishpg_common) | **el8** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Package** | [`babelfish`](https://babelfishpg.org/) | **el9** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **RPM** | `babelfish-$v` | **el10** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **DEB** | `babelfish-$v` | **d12** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| | | **u26** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
 {.ext-table .ext-table--cate}
 
 
@@ -485,18 +485,18 @@ There are **29** extensions in **18** packages.
 
 ## babelfishpg_tsql {#babelfishpg_tsql}
 
-[**`babelfish`**](/ext/e/babelfishpg_tsql) - `5.5.0` : SQL Server Transact SQL compatibility
+[**`babelfish`**](/ext/e/babelfishpg_tsql) - `5.4.0` : SQL Server Transact SQL compatibility
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | **el8** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Package** | [`babelfish`](https://babelfishpg.org/) | **el9** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **RPM** | `babelfish_$v` | **el10** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **DEB** | `babelfishpg-$v-babelfish` | **d12** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| | | **u26** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
+| **Extension** | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | **el8** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Package** | [`babelfish`](https://babelfishpg.org/) | **el9** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **RPM** | `babelfish-$v` | **el10** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **DEB** | `babelfish-$v` | **d12** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| | | **u26** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
 {.ext-table .ext-table--cate}
 
 
@@ -508,14 +508,14 @@ There are **29** extensions in **18** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`babelfishpg_tds`](/ext/e/babelfishpg_tds) | **el8** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Package** | [`babelfish`](https://babelfishpg.org/) | **el9** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **RPM** | `babelfish_$v` | **el10** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **DEB** | `babelfishpg-$v-babelfish` | **d12** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| | | **u26** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
+| **Extension** | [`babelfishpg_tds`](/ext/e/babelfishpg_tds) | **el8** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Package** | [`babelfish`](https://babelfishpg.org/) | **el9** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **RPM** | `babelfish-$v` | **el10** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **DEB** | `babelfish-$v` | **d12** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| | | **u26** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
 {.ext-table .ext-table--cate}
 
 
@@ -527,14 +527,14 @@ There are **29** extensions in **18** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`babelfishpg_money`](/ext/e/babelfishpg_money) | **el8** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Package** | [`babelfish`](https://babelfishpg.org/) | **el9** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **RPM** | `babelfish_$v` | **el10** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **DEB** | `babelfishpg-$v-babelfish` | **d12** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
-| | | **u26** | {{< pgvers "17" >}} | {{< pgvers "17" >}} |
+| **Extension** | [`babelfishpg_money`](/ext/e/babelfishpg_money) | **el8** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Package** | [`babelfish`](https://babelfishpg.org/) | **el9** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **RPM** | `babelfish-$v` | **el10** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **DEB** | `babelfish-$v` | **d12** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| | | **u26** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
 {.ext-table .ext-table--cate}
 
 
@@ -586,7 +586,7 @@ There are **29** extensions in **18** packages.
 |:---:|:---|:---:|:---:|:---:|
 | **Extension** | [`aux_mysql`](/ext/e/aux_mysql) | **el8** | {{< pgvers "14" >}} | {{< pgvers "14" >}} |
 | **Package** | [`openhalo`](https://github.com/HaloTech-Co-Ltd/openHalo) | **el9** | {{< pgvers "14" >}} | {{< pgvers "14" >}} |
-| **RPM** | `openhalodb_$v` | **el10** | {{< pgvers "14" >}} | {{< pgvers "14" >}} |
+| **RPM** | `openhalodb-$v` | **el10** | {{< pgvers "14" >}} | {{< pgvers "14" >}} |
 | **DEB** | `openhalodb-$v` | **d12** | {{< pgvers "14" >}} | {{< pgvers "14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "14" >}} | {{< pgvers "14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "14" >}} | {{< pgvers "14" >}} |

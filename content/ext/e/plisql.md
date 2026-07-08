@@ -11,6 +11,11 @@ weight: 9180
     <div class="ext-card__title">pl/plisql</div>
     <div class="ext-card__desc">https://github.com/IvorySQL/IvorySQL/tree/master/src/pl/plisql</div>
   </a>
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/ivorysql-5.4.tar.gz">
+    <div class="ext-card__kicker">Source</div>
+    <div class="ext-card__title">ivorysql-5.4.tar.gz</div>
+    <div class="ext-card__desc">ivorysql-5.4.tar.gz</div>
+  </a>
 </div>
 
 
@@ -42,8 +47,8 @@ weight: 9180
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
 | [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18" >}} | `ivorysql` | - |
-| [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `5.1` | {{< pgvers "18" >}} | `ivorysql5` | - |
-| [**DEB**](/ext/deb#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `5.1` | {{< pgvers "18" >}} | `ivorysql-5` | - |
+| [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `5.4` | {{< pgvers "18" >}} | `ivorysql5` | - |
+| [**DEB**](/ext/deb#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `5.4` | {{< pgvers "18" >}} | `ivorysql-5` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -66,6 +71,14 @@ weight: 9180
 | u26.x86_64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
 | u26.aarch64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
 {{< /pgext_matrix >}}
+
+## Build
+
+You can build the RPM / DEB packages for `ivorysql` using `pig build`:
+
+```bash
+pig build pkg ivorysql         # build RPM / DEB packages
+```
 
 
 ## Install
