@@ -83,7 +83,7 @@ Development version.
 - Added automatic VIP network interface detection.
 - Added about 21 PostgreSQL extensions, bringing the total available extension count to 531, with improved Ubuntu 26 extension coverage.
 - Enabled lz4 compression for PostgreSQL WAL by default, and changed pgBackRest's default compression from lz4 to zstd. [#744](https://github.com/pgsty/pigsty/issues/744)
-- Updated support for the latest EL minor releases: EL 9.8 / 10.2, with corresponding terraform/vagrant template updates.
+- Reverted the EL minor release baseline to EL 9.7 / 10.1, with corresponding terraform/vagrant template updates.
 - Provide an Agent Runtime environment for Codex by default instead of Claude Code/OpenCode (`AGENTS.md`).
 
 **Bug Fixes**

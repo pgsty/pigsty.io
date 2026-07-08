@@ -47,7 +47,7 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 <p><b>Architecture Support: x86_64, Arm64</b></p>
 <p><b>OS Support: Latest minor versions of three families</b><p>
 <ul>
-<li>EL 9.8 / 10.2</li>
+<li>EL 9.7 / 10.1</li>
 <li>Debian 12.14 / 13.5</li>
 <li>Ubuntu 26.04.0 / 24.04.4 / 22.04.5</li>
 </ul>
@@ -140,7 +140,7 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 
 Pigsty Open Source Edition uses the [**Apache-2.0**](/docs/about/license) license, provides complete core functionality, requires no fees, but does not guarantee any warranty service. If you find defects in Pigsty, we welcome you to submit an [Issue](https://github.com/pgsty/pigsty/issues/) on Github.
 
-For the open source edition, we provide pre-built standard offline software packages for PostgreSQL 18 on seven mainstream distro releases with current minor baselines: EL 9.8 / 10.2, Debian 12.14 / 13.5, Ubuntu 26.04.0 / 24.04.4 / 22.04.5, with both `x86_64` and `aarch64` builds.
+For the open source edition, we provide pre-built standard offline software packages for PostgreSQL 18 on seven mainstream distro releases with current minor baselines: EL 9.7 / 10.1, Debian 12.14 / 13.5, Ubuntu 26.04.0 / 24.04.4 / 22.04.5, with both `x86_64` and `aarch64` builds.
 
 Using the Pigsty open source version allows junior development/operations engineers to have **70%+** of the capabilities of professional DBAs. Even without database experts, they can easily set up a highly available, high-performance, easy-to-maintain, secure and reliable PostgreSQL database cluster.
 
