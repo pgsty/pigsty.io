@@ -22,7 +22,7 @@ Kernel configuration templates should link to this overview and to their dedicat
 | [**PostgreSQL**](/docs/pgsql)                   | **Native kernel, full extension set** | Vanilla PostgreSQL with 531 extensions        |
 | [**Supabase**](/docs/pgsql/kernel/supabase)     | **Backend as a Service**              | PostgreSQL-based BaaS, Firebase alternative   |
 | [**Citus**](/docs/pgsql/kernel/citus)           | **Horizontal scaling**                | Distributed PostgreSQL via native extension   |
-| [**Babelfish**](/docs/pgsql/kernel/babelfish)   | **SQL Server compatible**             | SQL Server wire-protocol compatibility (PG17) |
+| [**Babelfish**](/docs/pgsql/kernel/babelfish)   | **SQL Server compatible**             | SQL Server wire-protocol compatibility (PG17/18) |
 | [**IvorySQL**](/docs/pgsql/kernel/ivorysql)     | **Oracle compatible**                 | Oracle syntax and PL/SQL compatibility        |
 | [**OpenHalo**](/docs/pgsql/kernel/openhalo)     | **MySQL compatible**                  | MySQL wire-protocol compatibility             |
 | [**Percona**](/docs/pgsql/kernel/percona)       | **Transparent data encryption**       | Percona distribution with pg_tde              |
@@ -38,19 +38,17 @@ Kernel configuration templates should link to this overview and to their dedicat
 
 ## Versions
 
-Below are the version strings or current package references for each PG kernel flavor. Citus, FerretDB, and Supabase use the same base PostgreSQL versioning pattern as vanilla PostgreSQL.
-
-These version strings mostly come from the current Pigsty repository packages. One thing worth noting: Cloudberry `2.0.0` is currently RPM-only, pgEdge is currently delivered as a PG18-series kernel, and PolarDB is currently shown using the upstream stable branch `POLARDB_17_STABLE` and latest upstream release naming.
-
-| Kernel                                          | Description                                                                                                                                                    |
-|:------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**PostgreSQL**](/docs/pgsql)                   | `PostgreSQL 18.2 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-5), 64-bit`                                                  |
-| [**Babelfish**](/docs/pgsql/kernel/babelfish)   | `Babelfish 17.7 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), 64-bit`                                                  |
-| [**IvorySQL**](/docs/pgsql/kernel/ivorysql)     | `PostgreSQL 18.1 (IvorySQL 5.1) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 9.5.0, 64-bit`                                                                |
-| [**OpenHalo**](/docs/pgsql/kernel/openhalo)     | `openHalo 1.0.14.18 (260226) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), 64-bit`                                     |
-| [**Percona**](/docs/pgsql/kernel/percona)       | `PostgreSQL 18.1 - Percona Server for PostgreSQL 18.1.1 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11.0.1), 64-bit`      |
-| [**OrioleDB**](/docs/pgsql/kernel/orioledb)     | `OrioleDB 1.8 beta16 packages for PostgreSQL 16, 17, and 18`                                                                                                 |
-| [**PolarDB**](/docs/pgsql/kernel/polardb)       | `POLARDB_17_STABLE (based on PostgreSQL 17, latest upstream release v17.9.1.0)`                                                                               |
-| [**AgensGraph**](/docs/pgsql/kernel/agensgraph) | `PostgreSQL 17.10 (AgensGraph 2.17.0; agensgraph-17 package)`                                                                                               |
-| [**pgEdge**](/docs/pgsql/kernel/pgedge)         | `PostgreSQL 18.3 (pgEdge; pgedge-18 package, Spock 5.0.6)`                                                                                                      |
-| [**Cloudberry**](/docs/pgsql/kernel/cloudberry) | `PostgreSQL 14.4 (Apache Cloudberry 2.0.0-incubating build 1) on aarch64-unknown-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), 64-bit` |
+| Kernel | Debian / Ubuntu | EL |
+|:-------|:----------------|:---|
+| [**PostgreSQL / Citus**](/docs/pgsql/kernel/citus) | `PostgreSQL 18.4 (Ubuntu 18.4-1.pgdg26.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0, 64-bit` | `PostgreSQL 18.4 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 14.3.1 20251022 (Red Hat 14.3.1-4), 64-bit` |
+| [**IvorySQL**](/docs/pgsql/kernel/ivorysql) | `PostgreSQL 18.4 (IvorySQL 5.4) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 9.5.0, 64-bit` | `PostgreSQL 18.4 (IvorySQL 5.4) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 9.5.0, 64-bit` |
+| [**Babelfish**](/docs/pgsql/kernel/babelfish) | `Babelfish 17.7 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0, 64-bit` | `Babelfish 17.7 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 14.3.1 20251022 (Red Hat 14.3.1-4), 64-bit` |
+| [**PolarDB**](/docs/pgsql/kernel/polardb) | `PostgreSQL 17.10 (PolarDB 17.10.1.0 build accf02e2) on x86_64-linux-gnu` | `PostgreSQL 17.10 (PolarDB 17.10.1.0 build accf02e2) on x86_64-linux-gnu` |
+| [**Percona**](/docs/pgsql/kernel/percona) | `PostgreSQL 18.4 - Percona Server for PostgreSQL 18.4.1 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0, 64-bit` | `PostgreSQL 18.4 - Percona Server for PostgreSQL 18.4.1 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 14.3.1 20250617 (Red Hat 14.3.1-2), 64-bit` |
+| [**OrioleDB**](/docs/pgsql/kernel/orioledb) | `OrioleDB 18.4 (OrioleDB 1.8-beta16) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0, 64-bit` | `OrioleDB 18.4 (OrioleDB 1.8-beta16) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 14.3.1 20251022 (Red Hat 14.3.1-4), 64-bit` |
+| [**OpenHalo**](/docs/pgsql/kernel/openhalo) | `openHalo 14.18 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0, 64-bit` | `openHalo 14.18 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 14.3.1 20251022 (Red Hat 14.3.1-4), 64-bit` |
+| [**FerretDB / DocumentDB**](/docs/ferret) | `PostgreSQL 18.4 (Ubuntu 18.4-1.pgdg26.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0, 64-bit` | `PostgreSQL 18.4 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 14.3.1 20251022 (Red Hat 14.3.1-4), 64-bit` |
+| [**AgensGraph**](/docs/pgsql/kernel/agensgraph) | `PostgreSQL 17.10 (AgensGraph 2.17.0) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0, 64-bit` | `PostgreSQL 17.10 (AgensGraph 2.17.0) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 14.3.1 20251022 (Red Hat 14.3.1-4), 64-bit` |
+| [**pgEdge**](/docs/pgsql/kernel/pgedge) | `PostgreSQL 18.4 (pgEdge 5.0.10) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0, 64-bit` | `PostgreSQL 18.4 (pgEdge 5.0.10) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 14.3.1 20251022 (Red Hat 14.3.1-4), 64-bit` |
+| [**Cloudberry**](/docs/pgsql/kernel/cloudberry) |  | `PostgreSQL 14.4 (Apache Cloudberry 2.0.0-incubating build 1) on aarch64-unknown-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), 64-bit` |
+{.full-width}

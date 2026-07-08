@@ -132,3 +132,15 @@ transactions, privileges, and backup workflows still follow PostgreSQL, while gr
 - AgensGraph official docs: <https://tech.skaiworldwide.com/docs/en/agensgraph/latest/>
 - AgensGraph Quick Guide: <https://tech.skaiworldwide.com/docs/en/agensgraph/17/quick_guide/index.html>
 - AgensGraph 2.17.0 Release Notes: <https://tech.skaiworldwide.com/docs/en/agensgraph/latest/release_notes/agensgraph_release_notes_2_17_0.html>
+
+
+--------
+
+## Available Extensions
+
+The AgensGraph kernel has **60** available extensions. After removing bundled PG Contrib extensions, the following extra extensions remain:
+
+| Extension | Version | Description |
+|:----------|:--------|:------------|
+| [meta](/ext/e/meta) | `1.0` | Utility functions for agensgraph |
+{.full-width}

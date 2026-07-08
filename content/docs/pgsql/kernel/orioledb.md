@@ -11,7 +11,7 @@ categories: [Concept]
 
 Pigsty ships OrioleDB as a patched PostgreSQL kernel plus the [OrioleDB extension](https://github.com/orioledb/orioledb).
 
-You can run OrioleDB as an RDS using Pigsty. Current packages support PostgreSQL 16, 17, and 18 on supported Linux platforms.
+You can run OrioleDB as an RDS using Pigsty. Current packages support PostgreSQL 16, 17, and 18 on supported Linux platforms. `pg_mode` still uses `oriole` for the `/usr/oriole-$v` install path, while the `orioledb` package alias resolves to versioned kernel packages such as `orioledb-16`, `orioledb-17`, and `orioledb-18`.
 The current Pigsty package line is OrioleDB 1.8 beta16.
 
 
@@ -53,7 +53,7 @@ pg-meta:
     # OrioleDB specific settings
     pg_mode: oriole                                         # oriole compatibility mode
     pg_version: 18                                          # OrioleDB supports PG 16, 17, and 18
-    pg_packages: [ oriole, pgsql-common ]                   # Install OrioleDB kernel
+    pg_packages: [ orioledb, pgsql-common ]                 # Install OrioleDB kernel
     pg_libs: 'orioledb, pg_stat_statements, auto_explain'   # Load OrioleDB extension
 ```
 
@@ -61,7 +61,7 @@ pg-meta:
 
 ## Usage
 
-To use OrioleDB, install the packages for the selected PostgreSQL major version. RPM packages use `oriolepg_$v` and `orioledb_$v`; DEB packages use `oriolepg-$v` and `oriolepg-$v-orioledb`, where `$v` can be `16`, `17`, or `18`.
+To use OrioleDB, install the `orioledb` package alias. Pigsty resolves it to the selected PG16, PG17, or PG18 OrioleDB kernel package according to `pg_version`.
 
 Initialize TPC-B-like tables with `pgbench` using 100 warehouses:
 
@@ -108,3 +108,15 @@ ALTER TABLE pgbench_tellers_o RENAME TO pgbench_tellers;
 - **Improved Performance**: Better space utilization and query performance
 
 > **Note**: Currently in Beta stage - thoroughly evaluate before production use.
+
+
+--------
+
+## Available Extensions
+
+The OrioleDB kernel has **53** available extensions. After removing bundled PG Contrib extensions, the following extra extensions remain:
+
+| Extension | Version | Description |
+|:----------|:--------|:------------|
+| [orioledb](/ext/e/orioledb) | `1.8` | OrioleDB -- the next generation transactional engine |
+{.full-width}

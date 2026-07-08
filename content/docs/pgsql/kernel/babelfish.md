@@ -1,7 +1,7 @@
 ---
 title: Babelfish
 weight: 2104
-description: Use Babelfish (PG17) in Pigsty to provide SQL Server protocol/T-SQL compatibility.
+description: Use Babelfish (PG17/18) in Pigsty to provide SQL Server protocol/T-SQL compatibility.
 icon: fab fa-microsoft
 module: [PGSQL]
 categories: [Concept]
@@ -20,7 +20,7 @@ Pigsty lets you deploy Babelfish in `mssql` mode and provide, on top of PostgreS
 - T-SQL compatibility
 - Unified integration with Pigsty capabilities (HA, backup, monitoring, IaC)
 
-In Pigsty v4, Babelfish defaults to **PostgreSQL 17** and is part of Pigsty's standard delivery path, with support for all Linux platforms.
+In Pigsty v4, Babelfish supports **PostgreSQL 17/18**. The default template uses `pg_version: 17`, and Babelfish is part of Pigsty's standard delivery path with support for all Linux platforms.
 
 
 --------
@@ -29,7 +29,7 @@ In Pigsty v4, Babelfish defaults to **PostgreSQL 17** and is part of Pigsty's st
 
 Compared with older `Babelfish/PG15` docs, current behavior is:
 
-- Default kernel upgraded to **PG17** (`pg_version: 17`)
+- Supported kernel majors are **PG17/18**; the template defaults to **PG17** (`pg_version: 17`)
 - Default package group: `babelfish + pgsql-common + sqlcmd`
 - Mainstream platform coverage:
   - OS: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
@@ -46,7 +46,7 @@ Compared with older `Babelfish/PG15` docs, current behavior is:
 Use the built-in Pigsty template:
 
 ```bash
-./configure -c mssql
+./configure -c mssql [-v 17/18]
 ./deploy.yml
 ```
 
@@ -65,7 +65,7 @@ Core parameters in the `mssql` template:
 
 ```yaml
 pg_mode: mssql
-pg_version: 17
+pg_version: 17  # optional: 18
 pg_packages: [ babelfish, pgsql-common, sqlcmd ]
 pg_libs: 'babelfishpg_tds, pg_stat_statements, auto_explain'
 
@@ -132,3 +132,18 @@ sqlcmd -S <any-node-ip>,5434 -U dbuser_mssql -P DBUser.MSSQL
 - [`mssql` config template](/docs/conf/mssql/)
 - [PGSQL kernel mode config](/docs/pgsql/config/kernel/)
 - [Official SQL Server `sqlcmd` docs](https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-utility)
+
+
+--------
+
+## Available Extensions
+
+The Babelfish kernel has **55** available extensions. After removing bundled PG Contrib extensions, the following extra extensions remain:
+
+| Extension | Version | Description |
+|:----------|:--------|:------------|
+| [babelfishpg_common](/ext/e/babelfishpg_common) | `5.4.0` | Transact SQL Datatype Support |
+| [babelfishpg_money](/ext/e/babelfishpg_money) | `1.1.0` | babelfishpg_money |
+| [babelfishpg_tds](/ext/e/babelfishpg_tds) | `1.0.0` | TDS protocol extension |
+| [babelfishpg_tsql](/ext/e/babelfishpg_tsql) | `5.4.0` | Transact SQL compatibility |
+{.full-width}

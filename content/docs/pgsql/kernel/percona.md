@@ -61,26 +61,26 @@ pg-meta:
 
 ------
 
-## Extensions
+## Available Extensions
 
-Percona provides 80 available extensions, including `pg_tde`, `pgvector`, `postgis`, `pgaudit`, `set_user`, `pg_stat_monitor`, and other useful third-party extensions.
+The Percona Postgres kernel has **73** available extensions. After removing bundled PG Contrib extensions, the following extra extensions remain:
 
-| Extension       | Version | Description                                                       |
-|-----------------|---------|-------------------------------------------------------------------|
-| pg_tde          | 2.1     | Percona transparent data encryption access method                 |
-| vector          | 0.8.1   | Vector data type and ivfflat and hnsw access methods              |
-| postgis         | 3.5.4   | PostGIS geometry and geography types and functions                |
-| pgaudit         | 18.0    | Provides auditing functionality                                   |
-| pg_stat_monitor | 2.3     | PostgreSQL query performance monitoring tool                      |
-| set_user        | 4.2.0   | Similar to SET ROLE but with additional logging                   |
-| pg_repack       | 1.5.3   | Reorganize tables in PostgreSQL databases with minimal locks      |
-| hstore          | 1.8     | Data type for storing sets of (key, value) pairs                  |
-| ltree           | 1.3     | Data type for hierarchical tree-like structures                   |
-| pg_trgm         | 1.6     | Text similarity measurement and index searching based on trigrams |
+| Extension | Version | Description |
+|:----------|:--------|:------------|
+| [address_standardizer](/ext/e/address_standardizer) | `3.5.6` | Used to parse an address into constituent elements. Generally used to support geocoding address normalization step. |
+| [address_standardizer_data_us](/ext/e/address_standardizer_data_us) | `3.5.6` | Address Standardizer US dataset example |
+| [pg_repack](/ext/e/pg_repack) | `1.5.3` | Reorganize tables in PostgreSQL databases with minimal locks |
+| [pg_stat_monitor](/ext/e/pg_stat_monitor) | `2.3` | The pg_stat_monitor is a PostgreSQL Query Performance Monitoring tool, based on PostgreSQL contrib module pg_stat_statements. pg_stat_monitor provides aggregated statistics, client information, plan details including plan, and histogram information. |
+| [pg_tde](/ext/e/pg_tde) | `2.2` | pg_tde access method |
+| [pgaudit](/ext/e/pgaudit) | `18.0` | provides auditing functionality |
+| [postgis](/ext/e/postgis) | `3.5.6` | PostGIS geometry and geography spatial types and functions |
+| [postgis_raster](/ext/e/postgis_raster) | `3.5.6` | PostGIS raster types and functions |
+| [postgis_sfcgal](/ext/e/postgis_sfcgal) | `3.5.6` | PostGIS SFCGAL functions |
+| [postgis_tiger_geocoder](/ext/e/postgis_tiger_geocoder) | `3.5.6` | PostGIS tiger geocoder and reverse geocoder |
+| [postgis_topology](/ext/e/postgis_topology) | `3.5.6` | PostGIS topology spatial types and functions |
+| [set_user](/ext/e/set_user) | `4.2.0` | similar to SET ROLE but with added logging |
+| [vector](/ext/e/vector) | `0.8.2` | vector data type and ivfflat and hnsw access methods |
 {.full-width}
-
-For the complete list of 80 extensions, please refer to the [Percona Postgres official documentation](https://docs.percona.com/postgresql/18/extensions.html).
-
 
 ------
 

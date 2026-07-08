@@ -113,3 +113,21 @@ The [OpenHalo](https://github.com/pgsty/openHalo) kernel packaged by Pigsty is b
 Pigsty does not provide warranty coverage for OpenHalo kernel behavior. Kernel-specific issues should be addressed with the upstream vendor.
 
 > **Warning**: This kernel is currently in beta1 stage; evaluate risks carefully before production use.
+
+
+--------
+
+## Available Extensions
+
+The OpenHalo kernel has **59** available extensions. After removing bundled PG Contrib extensions, the following extra extensions remain:
+
+| Extension | Version | Description |
+|:----------|:--------|:------------|
+| [aux_mysql](/ext/e/aux_mysql) | `1.5` | MySQL Supplementary Extension |
+| hstore_plpython2u | `1.0` | transform between hstore and plpython2u |
+| hstore_plpythonu | `1.0` | transform between hstore and plpythonu |
+| jsonb_plpython2u | `1.0` | transform between jsonb and plpython2u |
+| jsonb_plpythonu | `1.0` | transform between jsonb and plpythonu |
+| ltree_plpython2u | `1.0` | transform between ltree and plpython2u |
+| ltree_plpythonu | `1.0` | transform between ltree and plpythonu |
+{.full-width}

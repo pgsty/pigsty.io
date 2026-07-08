@@ -1,7 +1,7 @@
 ---
 title: pgEdge
 weight: 2116
-description: Use the pgEdge (PG18) kernel in Pigsty to build distributed PostgreSQL for edge scenarios on top of Spock multi-master logical replication.
+description: Use the pgEdge (PG15-18) kernel in Pigsty to build distributed PostgreSQL for edge scenarios on top of Spock multi-master logical replication.
 icon: fa-solid fa-network-wired
 module: [PGSQL]
 categories: [Concept]
@@ -16,12 +16,12 @@ categories: [Concept]
 
 Pigsty integrates pgEdge through `pg_mode: pgedge` and delivers it through the standard PostgreSQL cluster workflow:
 
-- `pgedge`: a PG18-compatible kernel
+- `pgedge`: a PG15, PG16, PG17, and PG18 compatible kernel; the template defaults to PG18
 - [`spock`](/ext/e/spock/): Active-active multi-master logical replication
 - [`snowflake`](/ext/e/snowflake/): Distributed unique sequences
 - [`lolor`](/ext/e/lolor/): Large object logical replication compatibility layer
 
-In the current Pigsty repository, pgEdge PG18 is shipped as the `pgedge-18 18.3` package, together with `spock 5.0.6`, `snowflake 2.4`, and `lolor 1.2.2`. PG17 packages are still kept as a transition option, but the `pgedge` configuration template now defaults to `pg_version: 18`.
+The current Pigsty repository ships versioned pgEdge kernel packages for `pgedge-15`, `pgedge-16`, `pgedge-17`, and `pgedge-18`; the template defaults to `pg_version: 18`. The `spock`, `snowflake`, and `lolor` control files, SQL files, and shared libraries are bundled in the `pgedge-$v` kernel package, so they are no longer listed as separate `pg_extensions` packages to install.
 From the client side, pgEdge is still PostgreSQL wire compatible, so `psql`, JDBC/ODBC, DBeaver, and similar tools work as usual.
 
 The delivery model in Pigsty is: validate the kernel on a single node first, then expand to a multi-node replication topology.
@@ -59,7 +59,6 @@ Key parameters in the `pgedge` template (matching `conf/pgedge.yml`):
 pg_mode: pgedge
 pg_version: 18
 pg_packages: [ pgedge, pgsql-common ]
-pg_extensions: [ spock, snowflake, lolor ]
 pg_libs: 'spock, lolor, pg_stat_statements, auto_explain'
 pg_databases:
   - { name: meta ,baseline: cmdb.sql ,comment: pigsty meta database ,schemas: [pigsty] ,extensions: [spock, snowflake, lolor] }
@@ -121,3 +120,17 @@ If your schema already uses `serial` or `identity`, plan the `snowflake` sequenc
 - [pgEdge official docs](https://docs.pgedge.com/)
 - [Spock Limitations](https://docs.pgedge.com/spock-v5/development/limitations/)
 - [Snowflake Sequences](https://docs.pgedge.com/platform/snowflake)
+
+
+--------
+
+## Available Extensions
+
+The pgEdge kernel has **63** available extensions. After removing bundled PG Contrib extensions, the following extra extensions remain:
+
+| Extension | Version | Description |
+|:----------|:--------|:------------|
+| [lolor](/ext/e/lolor) | `1.2.2` | Large Objects support for logical replication |
+| [snowflake](/ext/e/snowflake) | `2.5.0` | Snowflake style IDs for PostgreSQL |
+| [spock](/ext/e/spock) | `5.0.10` | PostgreSQL Logical Replication |
+{.full-width}

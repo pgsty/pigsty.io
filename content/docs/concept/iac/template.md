@@ -33,14 +33,14 @@ Use `./configure -c <conf>` to specify a configuration template, where `<conf>` 
 
 # Use different database kernels
 ./configure -c pgsql            # Native PostgreSQL kernel, basic features (14~18)
-./configure -c mssql            # Babelfish kernel, SQL Server protocol compatible (17)
+./configure -c mssql            # Babelfish kernel, SQL Server protocol compatible (17/18)
 ./configure -c polar            # PolarDB PG kernel, Aurora/RAC style (17)
 ./configure -c ivory            # IvorySQL kernel, Oracle syntax compatible (18)
 ./configure -c mysql            # OpenHalo kernel, MySQL compatible (14)
 ./configure -c pgtde            # Percona PostgreSQL Server transparent encryption (18)
 ./configure -c oriole           # OrioleDB kernel, OLTP enhanced (16~18)
 ./configure -c agens            # AgensGraph graph database kernel (17)
-./configure -c pgedge           # pgEdge distributed database kernel (18)
+./configure -c pgedge           # pgEdge distributed database kernel (15~18, default 18)
 ./configure -c ha/citus         # Citus distributed HA PostgreSQL (14~18)
 ./configure -c supabase         # Supabase self-hosted configuration (15~18)
 
@@ -74,14 +74,14 @@ Templates for various database management systems and kernels:
 | Template                                   | Description                                             |
 |--------------------------------------------|---------------------------------------------------------|
 | [**`pgsql.yml`**](/docs/conf/pgsql/)       | Native PostgreSQL kernel, basic features (14~18)        |
-| [**`mssql.yml`**](/docs/conf/mssql/)       | Babelfish kernel, SQL Server protocol compatible (17)   |
+| [**`mssql.yml`**](/docs/conf/mssql/)       | Babelfish kernel, SQL Server protocol compatible (17/18) |
 | [**`polar.yml`**](/docs/conf/polar/)       | PolarDB PG kernel, Aurora/RAC style (17)                |
 | [**`ivory.yml`**](/docs/conf/ivory/)       | IvorySQL kernel, Oracle syntax compatible (18)          |
 | [**`mysql.yml`**](/docs/conf/mysql/)       | OpenHalo kernel, MySQL compatible (14)                  |
 | [**`pgtde.yml`**](/docs/conf/pgtde/)       | Percona PostgreSQL Server transparent encryption (18)   |
 | [**`oriole.yml`**](/docs/conf/oriole/)     | OrioleDB kernel, OLTP enhanced (16~18)                  |
 | [**`agens.yml`**](/docs/conf/agens/)       | AgensGraph graph database kernel (17)                   |
-| [**`pgedge.yml`**](/docs/conf/pgedge/)     | pgEdge distributed database kernel (18)                 |
+| [**`pgedge.yml`**](/docs/conf/pgedge/)     | pgEdge distributed database kernel (15~18, default 18)  |
 | [**`supabase.yml`**](/docs/conf/supabase/) | Supabase self-hosted configuration (15~18)              |
 
 You can add more nodes later or use [HA templates](#ha-templates) to plan your cluster from the start.

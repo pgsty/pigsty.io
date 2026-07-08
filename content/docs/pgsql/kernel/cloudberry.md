@@ -19,14 +19,14 @@ In Pigsty, Cloudberry uses `gpsql` mode and shares the same identity model, moni
 - Kernel package: `cloudberry`
 - Mode identifier: `pg_mode: gpsql`
 - Role flag: `gp_role: master | segment`
-- Current repo version: `Cloudberry 2.0.0`
-- Current version string: `PostgreSQL 14.4 (Apache Cloudberry 2.0.0-incubating build 1)`
-- Default binary directory: `/usr/local/cloudberry`
+- Current repo version: `Cloudberry 2.1.0`
+- Current main package version: `2.1.0-2PIGSTY`
+- Default binary directory: `/usr/cloudberry`
 
 The important boundary is this: Pigsty currently focuses on package delivery, node management, monitoring onboarding, access control, and configuration orchestration for Cloudberry.
 For MPP cluster initialization, scale-out, rebalance, and other upstream-specific operational actions, you should still use the official Cloudberry toolchain.
 
-> According to the current release notes, Cloudberry is currently an **RPM-only** kernel in the Pigsty repository.
+> The current Pigsty repository provides `cloudberry`, `cloudberry-backup`, and `cloudberry-pxf` packages for both DEB and RPM platforms.
 
 
 --------
