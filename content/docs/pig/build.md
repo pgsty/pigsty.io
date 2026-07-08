@@ -15,9 +15,10 @@ pig build - Build Postgres Extension
 Environment Setup:
   pig build spec                   # init build spec and directory (~ext)
   pig build repo                   # init build repo (=repo set -ru)
+  pig build repo --beta            # init build repo with PostgreSQL beta repo
   pig build tool  [mini|full|...]  # init build toolset
-  pig build rust  [-y]             # install Rust toolchain
-  pig build pgrx  [-v <ver>]       # install & init pgrx (0.19.1)
+  pig build rust  [-y] [-m]        # install Rust toolchain
+  pig build pgrx  [-v <ver>] [-b]  # install & init pgrx (0.19.1)
   pig build proxy [id@host:port ]  # init build proxy (optional)
 
 Package Building:
@@ -68,7 +69,9 @@ For finer control:
 # Environment setup
 pig build spec                   # initialize build specs
 pig build repo                   # configure repositories
+pig build repo --beta            # configure repositories and add PostgreSQL 19 beta repo
 pig build tool                   # install build tools
+pig build tool --beta            # install build tools plus PG19 beta build packages
 
 # Build steps
 pig build get citus              # download source
@@ -138,9 +141,16 @@ Initialize package repositories required for building extensions.
 
 ```bash
 pig build repo                   # equivalent to: pig repo set -ru
+pig build repo -m                # use pigsty.cc mirror/proxy sources
+pig build repo --beta            # also enable the PostgreSQL 19 beta repo module
 ```
 
-**What it does:** initializes build repositories with `pig repo set -ru`: remove old repositories, add required repositories, and refresh package caches.
+**What it does:** initializes build repositories with `pig repo set -ru`: remove old repositories, add required repositories, and refresh package caches. `--beta/-b` appends the `beta` module for explicit PostgreSQL 19 beta builds; the stable default path still uses PG14-18.
+
+**Options:**
+
+- `-b|--beta`: additionally enable PostgreSQL beta repository modules
+- `-m|--mirror`: prefer the `pigsty.cc` mirror/proxy sources
 
 
 ## build tool
@@ -152,13 +162,14 @@ pig build tool                   # install default toolset
 pig build tool mini              # minimal toolset
 pig build tool full              # full toolset
 pig build tool rust              # add Rust development tools
+pig build tool --beta            # add PG19 beta build dependencies
 ```
 
 **Toolsets:**
 
-- **Minimal (`mini`)**: GCC/Clang compilers, Make, core build tools, PostgreSQL development headers, and basic libraries.
-- **Default**: minimal tools plus extra compilers, development libraries, and packaging tools such as `rpmbuild` and `dpkg-dev`.
-- **Full (`full`)**: default tools plus language-specific development tools and advanced debugging or profiling utilities.
+- **Minimal (`mini`)**: GCC/Clang compilers, Make, and generic build essentials; does not install PostgreSQL server/devel packages.
+- **Default / `full`**: compilers, development libraries, packaging tools such as `rpmbuild` and `dpkg-dev`, plus stable PG14-18 build dependencies.
+- **`--beta`**: additionally installs PG19 beta server/devel build packages on top of the default toolset.
 
 
 ## build rust
@@ -168,9 +179,10 @@ Install the Rust toolchain required by Rust-based extensions.
 ```bash
 pig build rust                   # install with confirmation
 pig build rust -y                # force reinstall Rust toolchain
+pig build rust -m                # use China mirror mode and write Cargo mirror config
 ```
 
-**Installed components:** Rust compiler (`rustc`), Cargo, Rust standard library, and development tools.
+**Installed components:** Rust compiler (`rustc`), Cargo, Rust standard library, and development tools. `-m|--mirror` uses mirror mode and writes `rsproxy.cn` Cargo configuration.
 
 
 ## build pgrx
@@ -182,9 +194,10 @@ pig build pgrx                   # install latest stable version (0.19.1)
 pig build pgrx -v 0.19.1         # install a specific pgrx version
 pig build pgrx --pg 18,17,16     # initialize pgrx for selected PG versions
 pig build pgrx --pg init         # run cargo pgrx init without PG arguments
+pig build pgrx -b                # include PostgreSQL 19 beta pg_config during auto-detection
 ```
 
-**Prerequisites:** Rust toolchain and PostgreSQL development headers must be installed first.
+**Prerequisites:** Rust toolchain and PostgreSQL development headers must be installed first. Default auto-detection only covers stable PG14-18; use `-b|--beta`, or explicitly pass `--pg 19`, when PG19 beta is required.
 
 
 ## build proxy
@@ -300,6 +313,7 @@ sudo dpkg -i ~/ext/pkg/*partman*.deb     # Debian
 pig build spec
 pig build tool
 pig build rust                   # add -y only if you need to force reinstall
+pig build rust -m                # use mirror mode in China network environments
 pig build pgrx
 
 # 2. Build Rust extension
@@ -368,6 +382,11 @@ cargo install --locked cargo-pgrx@0.19.1
 
 # Reinitialize PGRX
 cargo pgrx init
+
+# When PG19 beta is required
+pig build repo --beta
+pig build tool --beta
+pig build pgrx -b
 ```
 
 

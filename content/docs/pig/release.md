@@ -7,10 +7,11 @@ module: [PIG]
 categories: [Reference]
 ---
 
-The latest stable version is [v1.5.0](https://github.com/pgsty/pig/releases/tag/v1.5.0).
+The latest stable version is [v1.5.1](https://github.com/pgsty/pig/releases/tag/v1.5.1).
 
 |     Version     |    Date    | Summary                                                            |                           GitHub                           |
 |:---------------:|:----------:|--------------------------------------------------------------------|:----------------------------------------------------------:|
+| [v1.5.1](#v151) | 2026-07-08 | PG kernel fork updates, mirror mode, bug fixes                    | [v1.5.1](https://github.com/pgsty/pig/releases/tag/v1.5.1) |
 | [v1.5.0](#v150) | 2026-07-04 | 531 extensions, pigsty v4.4, pg/pt/pb/pitr rework, clone & fork    | [v1.5.0](https://github.com/pgsty/pig/releases/tag/v1.5.0) |
 | [v1.4.2](#v142) | 2026-06-18 | 524 extensions, PG19 beta, pgrx 0.18.1, Patroni fixes              | [v1.4.2](https://github.com/pgsty/pig/releases/tag/v1.4.2) |
 | [v1.4.1](#v141) | 2026-05-01 | 510 extensions, Ubuntu 26.04 support, repo calibration             | [v1.4.1](https://github.com/pgsty/pig/releases/tag/v1.4.1) |
@@ -50,6 +51,38 @@ The latest stable version is [v1.5.0](https://github.com/pgsty/pig/releases/tag/
 | [v0.1.1](#v011) | 2025-01-09 | Update Extension List                                              | [v0.1.1](https://github.com/pgsty/pig/releases/tag/v0.1.1) |
 | [v0.1.0](#v010) | 2024-12-29 | repo, ext, sty, and self-update                                    | [v0.1.0](https://github.com/pgsty/pig/releases/tag/v0.1.0) |
 | [v0.0.1](#v001) | 2024-12-23 | Genesis Release                                                    | [v0.0.1](https://github.com/pgsty/pig/releases/tag/v0.0.1) |
+
+
+--------
+
+## v1.5.1
+
+Pig `v1.5.1` updates PG kernel forks to the latest package names.
+
+**Highlights**
+
+- Add mirror/proxy mode to repo, build, sty, update, and extension update workflows; `pig build rust -m` also configures Cargo mirror settings with `rsproxy.cn`.
+- Add explicit PostgreSQL 19 beta switches for repo, tool, and pgrx builds, while keeping PostgreSQL 18 and PG14-18 as the stable defaults.
+- Refresh kernel and fork package aliases for IvorySQL, PolarDB, OrioleDB, OpenHaloDB, Babelfish, and the pgEdge suite.
+- Improve the Cloudberry package build flow for `cloudberry`, `cloudberry-backup`, and `cloudberry-pxf`.
+- Refresh source/package metadata for Cloudberry, Babelfish, OrioleDB, pgEdge, PolarDB, `polarstore`, `zlog`, `libpgfeutils`, and `libfq`.
+- Improve repository generation for newer EL release strings, including PGDG on EL9.6+ / EL10+ and EPEL's EL10 `10z` stream.
+- Refresh extension versions including `pg_ivm 1.15`, `spock 5.0.10`, `snowflake 2.5.0`, `pg_tde 2.2`, `decoderbufs 3.6.0`, and IvorySQL `5.4` packages.
+
+**Checksums**
+
+```bash
+bc83887d640ed299a967b4eda2ae6db621a985abfa022fccabf508f7ec7b98e3  pig-1.5.1-1.aarch64.rpm
+f0eab8e638d9e00a9172751446db869d0fe6ca7f382c7d540a931e0764014c0a  pig-1.5.1-1.x86_64.rpm
+b32d894dc444ef2b9ec00816d50d82b5834e64c35b3bb18f08b6286a7ca8e8e7  pig-v1.5.1.darwin-amd64.tar.gz
+4d768829b7e93fac6c732e27f665d3ab3945ec8bc1c336e5b91980932e8c9932  pig-v1.5.1.darwin-arm64.tar.gz
+69f4a016af52f1ee8f1a1ffc1e405bb3be551c3813b6d24f70ef8394330be5eb  pig-v1.5.1.linux-amd64.tar.gz
+f49becb5fd556b36a9aa8de0c27bdbe210f7958f59254d780774828f2340e77b  pig-v1.5.1.linux-arm64.tar.gz
+a0d15145409d8a2629a74d3071f7af593e470920f22d9af4bf6f96725dbb6d49  pig_1.5.1-1_amd64.deb
+f05b9b5abef5992ed16cbb5b6a6e3e5e58230072e3665ecc57b9ce2df3edb9a6  pig_1.5.1-1_arm64.deb
+```
+
+Release: https://github.com/pgsty/pig/releases/tag/v1.5.1
 
 
 --------

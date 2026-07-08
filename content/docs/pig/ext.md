@@ -229,12 +229,14 @@ pig ext update                   # no-op: explicit targets are required
 pig ext update pg_duckdb         # update one extension
 pig ext update postgis timescaledb  # update multiple extensions
 pig ext update pg_duckdb -y      # auto-confirm update
+pig ext update pg_duckdb -m      # use pigsty.cc mirror/proxy sources
 ```
 
 **Options:**
 
 - `-v|--version`: specify PG major version
 - `-y|--yes`: auto-confirm update
+- `-m|--mirror`: prefer the `pigsty.cc` mirror as the update source
 
 
 ## ext import
@@ -260,8 +262,11 @@ Link a selected PG version into the system PATH.
 
 ```bash
 pig ext link 18                  # link PG 18 to PATH
+pig ext link pg17                # strip the pg prefix and link PG 17
 pig ext link 16                  # link PG 16 to /usr/pgsql
 pig ext link /usr/pgsql-16       # link from a selected path to /usr/pgsql
+pig ext link polar               # link PolarDB / PolarPG installation
+pig ext link /usr/polar-17       # link from a selected PolarDB path
 pig ext link null                # remove current PostgreSQL link
 pig ext link none                # null / none / nil / nop / no all remove the link
 ```

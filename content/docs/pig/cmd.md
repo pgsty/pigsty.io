@@ -14,11 +14,14 @@ The `pig` CLI provides a comprehensive toolkit for managing PostgreSQL installat
 - [**pig build**](/docs/pig/build/): build extensions from source
 - **pig install**: install packages with the native package manager and translate PostgreSQL aliases
 - [**pig sty**](/docs/pig/sty/): manage Pigsty installation
+- **pig do**: run Pigsty administration playbook tasks
+- **pig pe**: access pg_exporter metrics and configuration
 - [**pig pg**](/docs/pig/pg/): manage local PostgreSQL servers
 - [**pig pt**](/docs/pig/pt/): manage Patroni HA clusters
 - [**pig pb**](/docs/pig/pb/): manage pgBackRest backup and restore
 - [**pig pitr**](/docs/pig/pitr/): run the full PITR workflow
 - **pig context**: output an environment context snapshot for humans and agents
+- **pig status / update / version**: inspect environment status, upgrade pig, and print version information
 
 
 ## Overview
@@ -117,9 +120,13 @@ Build PostgreSQL extensions from source. See [`pig build`](/docs/pig/build/) for
 # Environment setup
 pig build spec                   # initialize build specs
 pig build repo                   # configure repositories
+pig build repo --beta            # configure repositories and add PostgreSQL 19 beta repo
 pig build tool                   # install build tools
+pig build tool --beta            # install build tools plus PG19 beta build packages
 pig build rust -y                # force reinstall Rust (default does not reinstall)
+pig build rust -m                # use China mirror mode and write Cargo mirror config
 pig build pgrx                   # install PGRX framework
+pig build pgrx -b                # include PostgreSQL 19 beta pg_config during auto-detection
 
 # Build extensions
 pig build pkg citus              # complete build pipeline = get + dep + ext
@@ -152,6 +159,33 @@ pig sty init                     # install Pigsty to ~/pigsty
 pig sty boot                     # install Ansible prerequisites
 pig sty conf                     # generate configuration
 pig sty deploy                   # run deployment playbook
+```
+
+
+## pig do
+
+Run Pigsty administration tasks through the corresponding Ansible playbooks.
+
+```bash
+pig do pgsql-add  <cls> [ip...]       # add cluster or instances
+pig do pgsql-rm   <cls> [ip...]       # remove cluster or instances
+pig do pgsql-db   <cls> <dbname>      # create or update database
+pig do pgsql-user <cls> <username>    # create or update user
+pig do pgsql-ext  <cls> [ext...]      # install extensions
+pig do node-pkg   <sel> [pkg...]      # install node packages
+```
+
+
+## pig pe
+
+Access PostgreSQL monitoring metrics exposed by pg_exporter. The default endpoint is `127.0.0.1:9630`.
+
+```bash
+pig pe list                    # list available metric types
+pig pe get                     # get all pg_ prefixed metrics
+pig pe stat                    # show exporter statistics
+pig pe reload                  # reload pg_exporter configuration
+pig pe --host 127.0.0.1 -p 9630 get
 ```
 
 
@@ -224,4 +258,17 @@ pig pitr -t "2025-01-01 12:00:00+08"  # recover to a specific time
 pig pitr -I                      # recover to backup consistency point
 pig pitr -d --plan               # show execution plan without running
 pig pitr -d -y                   # skip confirmation for automation
+```
+
+
+## Helper Commands
+
+```bash
+pig status                       # show current environment status
+pig status -o json               # structured status output
+pig update                       # upgrade pig itself to the latest version
+pig update -m                    # upgrade using the pigsty.cc mirror
+pig update -v 1.5.1              # upgrade to a selected version
+pig version                      # show pig version information
+pig version -o json              # structured version output
 ```

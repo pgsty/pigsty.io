@@ -28,6 +28,7 @@ Examples:
   pig repo add node pgdg pigsty    # essential repo to install postgres packages
   pig repo add all                 # all = node + pgdg + pigsty
   pig repo add all extra           # extra module has non-free and some 3rd repo for certain extensions
+  pig repo add all -m              # use mirror/proxy for postgres repos
   pig repo update                  # update repo cache
   pig repo create                  # update local repo /www/pigsty meta
   pig repo boot                    # extract /tmp/pkg.tgz to /www/pigsty
@@ -64,6 +65,7 @@ pig repo add pgsql                    # add PGDG and Pigsty PGSQL repositories
 pig repo add pigsty --region=china    # add Pigsty repositories with China region
 pig repo add pgdg   --region=europe   # add PGDG repositories with Europe region
 pig repo add infra  --region=default  # add INFRA repositories with default region
+pig repo add all -m                   # mirror mode, prefer pigsty.cc and domestic proxy sources
 
 # If the commands above did not use -u|--update, run this as an extra step
 pig repo update                       # update system package cache
@@ -114,7 +116,7 @@ pig repo set          # set clears/backups existing definitions and overwrites w
 
 The full repository definition bundled with Pigsty is in [`cli/repo/assets/repo.yml`](https://github.com/pgsty/pig/blob/main/cli/repo/assets/repo.yml).
 
-You can create `~/.pig/repo.yml` to explicitly modify and override pig's repository definitions. When editing repository definitions, you can add extra regional mirror URLs under `baseurl`, such as China or Europe mirrors. When `--region` is specified, pig first looks for the matching regional URL and falls back to the `default` URL if the region is unavailable.
+You can create `~/.pig/repo.yml` to explicitly modify and override pig's repository definitions. When editing repository definitions, you can add extra regional mirror URLs under `baseurl`, such as China or Europe mirrors. When `--region` is specified, pig first looks for the matching regional URL and falls back to the `default` URL if the region is unavailable. The common `-m|--mirror` shortcut is mirror-first mode, which quickly selects `pigsty.cc` and domestic PostgreSQL mirror/proxy sources.
 
 
 ## repo list
@@ -159,12 +161,14 @@ pig repo add pigsty -u           # add and update cache
 pig repo add all -r              # remove existing repos before adding
 pig repo add all -ru             # remove, add, and update (full reset)
 pig repo add pgdg --region=china # use China mirror
+pig repo add pgsql -m            # mirror mode, prefer pigsty.cc and domestic proxy sources
 ```
 
 **Options:**
 
 - `-r|--remove`: remove existing repositories before adding new ones
 - `-u|--update`: run package cache update after adding repositories
+- `-m|--mirror`: use mirror/proxy mode, preferring `pigsty.cc` and domestic PostgreSQL mirrors
 - `--region <region>`: use regional mirror repositories (`default` / `china` / `europe`)
 
 | Platform | Module Location |
@@ -182,7 +186,10 @@ Equivalent to `repo add --remove --update`. It clears existing repositories, set
 pig repo set                     # replace with default repositories
 pig repo set pgdg pigsty         # replace with selected repositories and update
 pig repo set all --region=china  # use China mirror
+pig repo set -m                  # use mirror/proxy mode
 ```
+
+`repo set` supports the same `--region` and `-m|--mirror` region selection as `repo add`; it always uses overwrite semantics, equivalent to `repo add all --remove --update`.
 
 
 ## repo rm

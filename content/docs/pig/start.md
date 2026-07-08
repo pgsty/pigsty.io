@@ -43,18 +43,18 @@ $ curl -fsSL https://repo.pigsty.io/pig | bash
 [INFO] kernel = Linux
 [INFO] machine = x86_64
 [INFO] package = deb
-[INFO] pkg_url = https://repo.pigsty.io/pkg/pig/v1.5.0/pig_1.5.0-1_amd64.deb
-[INFO] download = /tmp/pig_1.5.0-1_amd64.deb
-[INFO] downloading pig v1.5.0
-curl -fSL https://repo.pigsty.io/pkg/pig/v1.5.0/pig_1.5.0-1_amd64.deb -o /tmp/pig_1.5.0-1_amd64.deb
+[INFO] pkg_url = https://repo.pigsty.io/pkg/pig/v1.5.1/pig_1.5.1-1_amd64.deb
+[INFO] download = /tmp/pig_1.5.1-1_amd64.deb
+[INFO] downloading pig v1.5.1
+curl -fSL https://repo.pigsty.io/pkg/pig/v1.5.1/pig_1.5.1-1_amd64.deb -o /tmp/pig_1.5.1-1_amd64.deb
 ######################################################################## 100.0%
-[INFO] md5sum = b7d18865090df8c03523c79ec2744e91
-[INFO] installing: dpkg -i /tmp/pig_1.5.0-1_amd64.deb
+[INFO] md5sum = bbb9188284765db916a7539e13167289
+[INFO] installing: dpkg -i /tmp/pig_1.5.1-1_amd64.deb
 (Reading database ... 166001 files and directories currently installed.)
-Preparing to unpack /tmp/pig_1.5.0-1_amd64.deb ...
-Unpacking pig (1.5.0-1) ...
-Setting up pig (1.5.0-1) ...
-[INFO] pig v1.5.0 installed successfully
+Preparing to unpack /tmp/pig_1.5.1-1_amd64.deb ...
+Unpacking pig (1.5.1-1) ...
+Setting up pig (1.5.1-1) ...
+[INFO] pig v1.5.1 installed successfully
 check https://pgext.cloud for details
 ```
 
@@ -66,7 +66,7 @@ PIG is a Go-written binary program, installed by default at `/usr/bin/pig`. `pig
 
 ```bash
 $ pig version
-pig version 1.5.0 linux/amd64
+pig version 1.5.1 linux/amd64
 ```
 
 Use `pig status` to print the current environment status, OS code, PG installation status, repository accessibility and latency.
@@ -75,7 +75,7 @@ Use `pig status` to print the current environment status, OS code, PG installati
 $ pig status
 
 # [Configuration] ================================
-Pig Version      : 1.5.0
+Pig Version      : 1.5.1
 Pig Config       : /home/vagrant/.pig/config.yml
 Log Level        : info
 Log Path         : stderr
@@ -172,11 +172,13 @@ pig repo add pgsql           # [Optional] Add PGDG and PIGSTY together as one "p
 pig repo update              # Update cache: apt update / yum makecache
 ```
 
-PIG detects your network environment and chooses Cloudflare global CDN or China cloud CDN, but you can force a specific region with `--region`:
+PIG detects your network environment and chooses Cloudflare global CDN or China cloud CDN, but you can force a specific region with `--region`.
+In China network environments, you can also use `-m|--mirror` as a shortcut mirror mode, which prefers `pigsty.cc` and domestic PostgreSQL mirror/proxy sources:
 
 ```bash
 pig repo set      --region=china              # use China mirror for faster downloads
 pig repo add pgdg --region=default --update   # force PGDG upstream repo
+pig repo set -m                                # overwrite repositories with mirror/proxy mode
 ```
 
 PIG does not support offline installation. You can download RPM/DEB packages yourself and copy them to isolated servers for installation.
