@@ -1,12 +1,12 @@
 ---
 title: mssql
 weight: 420
-description: Babelfish (PG17) kernel template, providing Microsoft SQL Server protocol and T-SQL compatibility
+description: Babelfish (PG17/18) kernel template, providing Microsoft SQL Server protocol and T-SQL compatibility
 icon: fa-brands fa-windows
 categories: [Reference]
 ---
 
-The `mssql` configuration template uses the **Babelfish (PG17)** kernel instead of native PostgreSQL, providing Microsoft SQL Server wire protocol (TDS) and T-SQL syntax compatibility.
+The `mssql` configuration template uses the **Babelfish (PG17/18)** kernel instead of native PostgreSQL, providing Microsoft SQL Server wire protocol (TDS) and T-SQL syntax compatibility. The template defaults to `pg_version: 17`; use `./configure -c mssql -v 18` to select PG18.
 
 Since Pigsty v4.2, Babelfish is built directly by Pigsty, no longer using the WiltonDB repository, and is available on all [supported Linux platforms](/docs/ref/linux).
 
@@ -19,7 +19,7 @@ For the complete tutorial, see: **[Babelfish (MSSQL) Kernel Guide](/docs/pgsql/k
 
 - Config Name: `mssql`
 - Node Count: Single node
-- Description: Babelfish (PG17) configuration template with SQL Server protocol compatibility
+- Description: Babelfish (PG17/18) configuration template with SQL Server protocol compatibility
 - OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/)
@@ -27,7 +27,7 @@ For the complete tutorial, see: **[Babelfish (MSSQL) Kernel Guide](/docs/pgsql/k
 Usage:
 
 ```bash
-./configure -c mssql [-i <primary_ip>]
+./configure -c mssql [-v 17/18] [-i <primary_ip>]
 ```
 
 
@@ -49,7 +49,7 @@ The `mssql` template allows you to use SQL Server Management Studio (SSMS) or ot
 **Key Features**:
 - Uses TDS protocol (port 1433), compatible with SQL Server clients
 - Supports T-SQL syntax, low migration cost
-- Retains PostgreSQL's ACID properties and extension ecosystem (PG17 under the hood)
+- Retains PostgreSQL's ACID properties and extension ecosystem (PG17/18 under the hood, default PG17)
 - Supports `multi-db` and `single-db` migration modes
 - Default package set: `babelfish + pgsql-common + sqlcmd`
 - Default extension set includes `babelfishpg_common`, `babelfishpg_tsql`, `babelfishpg_tds`, `babelfishpg_money`, `tds_fdw`, etc.
@@ -74,7 +74,7 @@ sqlcmd -S 10.10.10.10,1433 -U dbuser_mssql -P DBUser.MSSQL -d mssql
 - Leveraging PostgreSQL ecosystem while maintaining T-SQL compatibility
 
 **Notes**:
-- Babelfish kernel is based on PostgreSQL 17 and does not support PG18+ specific features
+- Babelfish can target PostgreSQL 17 or 18; validate T-SQL compatibility separately for the target major version before production use
 - Default migration mode is `multi-db` (`babelfishpg_tsql.migration_mode`), configurable to `single-db` when needed
 - Some T-SQL syntax may have compatibility differences, refer to Babelfish compatibility documentation
 - Must use `md5` authentication method (not `scram-sha-256`)

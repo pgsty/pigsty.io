@@ -46,8 +46,8 @@ The `pgedge` template enables `pg_mode: pgedge` in `pg-meta` and pre-installs pg
 
 **Key features**:
 
-- Uses `pgedge` kernel package (PG18-compatible)
-- Installs [`spock`](/ext/e/spock/), [`snowflake`](/ext/e/snowflake/), and [`lolor`](/ext/e/lolor/) extensions by default
+- Uses the `pgedge` kernel package (PG15/16/17/18 compatible, default PG18)
+- Bundles `spock`, `snowflake`, and `lolor` in the `pgedge-$v` kernel package and creates them in the `meta` database by default
 - Preloads [`spock`](/ext/e/spock/) and [`lolor`](/ext/e/lolor/) for multi-master setup readiness
 - Keeps Pigsty standard backup, monitoring, and operations workflow
 
