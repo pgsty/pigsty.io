@@ -269,7 +269,7 @@ weight: 4080
 @ el10.x86_64 14 pg_net_14 pg_net_14-0.19.0-1PGDG.rhel10.x86_64.rpm pgdg 0.19.0 31.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_net_14-0.19.0-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 14 pg_net_14 pg_net_14-0.16.0-1PGDG.rhel10.x86_64.rpm pgdg 0.16.0 29.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_net_14-0.16.0-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 14 pg_net_14 pg_net_14-0.15.1-1PGDG.rhel10.x86_64.rpm pgdg 0.15.1 29.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_net_14-0.15.1-1PGDG.rhel10.x86_64.rpm
-@ el10.aarch64 14 pg_net_14 pg_net_14-0.20.4-1PGDG.rhel10.1.aarch64.rpm pgdg 0.20.4 35.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_net_14-0.20.4-1PGDG.rhel10.1.aarch64.rpm
+@ el10.aarch64 14 pg_net_14 pg_net_14-0.20.4-1PGDG.rhel10.2.aarch64.rpm pgdg 0.20.4 35.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_net_14-0.20.4-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 pg_net_14 pg_net_14-0.20.3-1PIGSTY.el10.aarch64.rpm pigsty 0.20.3 37.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_net_14-0.20.3-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 14 pg_net_14 pg_net_14-0.20.3-1PGDG.rhel10.1.aarch64.rpm pgdg 0.20.3 34.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_net_14-0.20.3-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 14 pg_net_14 pg_net_14-0.20.3-1PGDG.rhel10.0.aarch64.rpm pgdg 0.20.3 34.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_net_14-0.20.3-1PGDG.rhel10.0.aarch64.rpm
@@ -368,7 +368,7 @@ CREATE EXTENSION pg_net;
 
 ## Usage
 
-Sources: [official README](https://github.com/supabase/pg_net), [v0.20.3 release notes](https://github.com/supabase/pg_net/releases/tag/v0.20.3), [local package metadata](../db/extension.csv).
+Sources: [official README](https://github.com/supabase/pg_net), [v0.20.3 release notes](https://github.com/supabase/pg_net/releases/tag/v0.20.3).
 
 `pg_net` queues asynchronous HTTP and HTTPS requests from SQL. It creates the `net` schema, stores pending work in `net.http_request_queue`, and stores responses in `net._http_response`. A background worker uses `libcurl` to process queued requests.
 

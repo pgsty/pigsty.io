@@ -12,13 +12,13 @@
 # Author    :   Ruohang Feng (rh@vonng.com)
 # License   :   AGPLv3
 #==============================================================#
-DEFAULT_VERSION=v4.3.0
+DEFAULT_VERSION=v4.4.0
 
-# To install the latest version of pigsty (v4.3.0):
+# To install the latest version of pigsty (v4.4.0):
 # curl -fsSL https://repo.pigsty.io/beta | bash
 
-# To install a specific version of pigsty (e.g. v4.3.0)
-# curl -fsSL https://repo.pigsty.io/beta | bash -s v4.3.0
+# To install a specific version of pigsty (e.g. v4.4.0)
+# curl -fsSL https://repo.pigsty.io/beta | bash -s v4.4.0
 
 
 #--------------------------------------------------------------#
@@ -156,4 +156,3 @@ log_line "TodoList"
 log_hint "cd ${INSTALL_TO}"
 log_hint './configure      # [OPTIONAL] preflight-check and config generation'
 log_hint './install.yml    # deployment everything described by your config'
-
