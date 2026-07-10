@@ -1,14 +1,14 @@
 ---
 title: "InsForge: AI Backend-as-a-Service"
 weight: 566
-description: Self-host InsForge OSS with Pigsty v4.3 and keep state in external PostgreSQL.
+description: Self-host InsForge OSS with Pigsty v4.4 and keep state in external PostgreSQL.
 module: [SOFTWARE]
 categories: [Reference]
 ---
 
 [**InsForge**](https://github.com/InsForge/InsForge) is an open-source Backend-as-a-Service platform for AI coding agents, providing authentication, REST APIs, edge functions, realtime subscriptions, and an LLM gateway.
 
-Pigsty v4.3 provides the `app/insforge` configuration template (`conf/app/insforge.yml`), using external PostgreSQL by default and launching stateless services through Docker Compose.
+Pigsty v4.4 provides the `app/insforge` configuration template (`conf/app/insforge.yml`), using external PostgreSQL by default and launching stateless services through Docker Compose.
 
 ## Quick Start
 

@@ -1,14 +1,14 @@
 ---
 title: "Hindsight: AI Long-Term Memory"
 weight: 567
-description: Self-host Hindsight with Pigsty v4.3 and store long-term memory in external PostgreSQL.
+description: Self-host Hindsight with Pigsty v4.4 and store long-term memory in external PostgreSQL.
 module: [SOFTWARE]
 categories: [Reference]
 ---
 
 [**Hindsight**](https://github.com/vectorize-io/hindsight) is a PostgreSQL-native long-term memory service for AI agents.
 
-Pigsty v4.3 provides the `app/hindsight` configuration template (`conf/app/hindsight.yml`), using Pigsty-managed PostgreSQL by default instead of Hindsight's built-in development database.
+Pigsty v4.4 provides the `app/hindsight` configuration template (`conf/app/hindsight.yml`), using Pigsty-managed PostgreSQL by default instead of Hindsight's built-in development database.
 
 ## Quick Start
 
