@@ -216,7 +216,7 @@ ssh-keygen -t rsa -b 2048 -N '' -f ~/.ssh/id_rsa -q
 
 ## Supported Images
 
-Pigsty v4.3 uses the `cloud-image/*` boxes from [**Vagrant Cloud**](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image). VirtualBox and libvirt both provide `amd64` / `arm64` architecture variants.
+Pigsty v4.4 uses the `cloud-image/*` boxes from [**Vagrant Cloud**](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image). VirtualBox and libvirt both provide `amd64` / `arm64` architecture variants.
 
 ### VirtualBox
 

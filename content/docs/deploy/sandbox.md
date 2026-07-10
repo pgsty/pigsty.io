@@ -47,7 +47,7 @@ all:
       vars: { pg_cluster: pg-test }
 
   vars:
-    version: v4.3.0
+    version: v4.4.0
     admin_ip: 10.10.10.10
     region: default
     pg_version: 18
@@ -114,7 +114,7 @@ make full24     # Create 4-node sandbox with Ubuntu 24.04
 make full26     # Create 4-node sandbox with Ubuntu 26.04
 ```
 
-Pigsty v4.3 uses the `cloud-image/*` boxes from [**Vagrant Cloud**](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image). The following tables list the VirtualBox/libvirt image versions available for the 4-node local sandbox.
+Pigsty v4.4 uses the `cloud-image/*` boxes from [**Vagrant Cloud**](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image). The following tables list the VirtualBox/libvirt image versions available for the 4-node local sandbox.
 
 #### VirtualBox
 
@@ -221,5 +221,4 @@ This environment includes:
 - 4 MinIO nodes
 - 5 ETCD nodes
 - 6 PostgreSQL nodes (2 clusters, 3 nodes each)
-
 
