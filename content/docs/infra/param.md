@@ -946,7 +946,7 @@ You can pass additional command-line options to certbot through this parameter, 
 
 Pigsty enables DNSMASQ service on Infra nodes by default to resolve auxiliary domain names such as `i.pigsty`, `m.pigsty`, `api.pigsty`, etc., and optionally `sss.pigsty` for MinIO.
 
-Resolution records are stored in the `/etc/hosts.d/default` file on Infra nodes. To use this DNS server, you must add `nameserver <ip>` to `/etc/resolv.conf`. The [`node_dns_servers`](/docs/node/param#node_dns_servers) parameter handles this.
+Resolution records are stored in the `/etc/dnsmasq.d/pigsty/default` file on Infra nodes. To use this DNS server, you must add `nameserver <ip>` to `/etc/resolv.conf`. The [`node_dns_servers`](/docs/node/param#node_dns_servers) parameter handles this.
 
 ```yaml
 dns_enabled: true                 # setup dnsmasq on this infra node?
@@ -983,7 +983,7 @@ DNSMASQ default listening port, default is `53`. It's not recommended to modify 
 
 name: `dns_records`, type: `string[]`, level: `G`
 
-Dynamic DNS records resolved by dnsmasq, generally used to resolve auxiliary domain names to the admin node. These records are written to the `/etc/hosts.d/default` file on infrastructure nodes.
+Dynamic DNS records resolved by dnsmasq, generally used to resolve auxiliary domain names to the admin node. These records are written to the `/etc/dnsmasq.d/pigsty/default` file on infrastructure nodes.
 
 v4.x default value:
 

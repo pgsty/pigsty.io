@@ -275,7 +275,7 @@ For more information, see: [**Playbooks: Pigsty Playbook**](/docs/setup/playbook
 
 **DNSMASQ** provides DNS resolution on [**INFRA nodes**](/docs/concept/arch/node#infra-node), resolving domain names to their corresponding IP addresses.
 
-DNSMASQ listens on port `53` (UDP/TCP) by default, providing DNS resolution for all nodes. Records are stored in the `/infra/hosts` directory.
+DNSMASQ listens on port `53` (UDP/TCP) by default, providing DNS resolution for all nodes. Records are stored in the `/etc/dnsmasq.d/pigsty` directory.
 
 Other modules automatically register their domain names with **DNSMASQ** during deployment, which you can use as needed.
 DNS is completely optional—**Pigsty works normally without it**.

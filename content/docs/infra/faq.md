@@ -88,7 +88,7 @@ If you accidentally delete the registered haproxy proxy settings in `/etc/nginx/
 
 ## How to restore DNS registration records in DNSMASQ?
 
-PGSQL cluster/instance domains are registered by default to `/etc/hosts.d/<name>` on infra nodes. You can restore them using the following command:
+PGSQL cluster/instance domains are registered by default to `/etc/dnsmasq.d/pigsty/<name>` on infra nodes. You can restore them using the following command:
 
 ```bash
 ./pgsql.yml -t pg_dns    # Register pg DNS names to dnsmasq on infra nodes
@@ -155,4 +155,3 @@ bin/repo-add infra   node,infra    # Add node and infra repos for infra group
 bin/repo-add infra   node,local    # Add node repo and local pigsty repo for infra group
 bin/repo-add pg-test node,pgsql    # Add node and pgsql repos for pg-test group
 ```
-

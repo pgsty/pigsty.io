@@ -155,7 +155,7 @@ Pigsty installs Ansible on the meta node by default. Ansible is a popular operat
 
 DNSMASQ provides DNS **resolution** services within the environment. Domain names from other modules are registered with the DNSMASQ service on INFRA nodes.
 
-DNS records are placed by default in the `/etc/hosts.d/` directory on all INFRA nodes.
+DNS records are placed by default in the `/etc/dnsmasq.d/pigsty/` directory on all INFRA nodes.
 
 DNSMASQ configuration parameters are at: [Configuration: INFRA - DNS](/docs/infra/param#dns)
 
