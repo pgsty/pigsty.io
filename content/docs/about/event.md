@@ -13,6 +13,10 @@ categories: [Reference]
 
 ## Recent News
 
+- **2026-07-10**: **Pigsty v4.4.0 officially released: PG19 beta support and 531 extensions**
+  - Release Notes: [v4.4.0](/docs/about/release#v440)
+  - Highlights: PostgreSQL 18.4 / 19 beta support, 531 total extensions, kernel and package updates, and Pig CLI improvements.
+
 - **2026-05-01**: **Pigsty v4.3.0 officially released: 510 extensions, Ubuntu 26 support**
   - Release Notes: [v4.3.0](/docs/about/release#v430)
   - Highlights: Infra / PGSQL / kernel package batch updates, Ubuntu 26.04 offline package coverage, and 510 total extensions.

@@ -17,7 +17,7 @@ categories: [Reference]
 
 We've chosen Amazon [AWS RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/) (the global market leader) and Alibaba Cloud [RDS for PostgreSQL](https://www.alibabacloud.com/product/apsaradb-for-rds-postgresql) (China's market leader) as benchmarks for comparison.
 
-Both Aliyun RDS and AWS RDS are closed-source cloud database services, available only through rental models on public clouds. The following cloud-vendor information is a February 2024 archive based on PostgreSQL 16 at that time; the Pigsty column is maintained with the current v4.3.0 scope.
+Both Aliyun RDS and AWS RDS are closed-source cloud database services, available only through rental models on public clouds. The following cloud-vendor information is a February 2024 archive based on PostgreSQL 16 at that time; the Pigsty column is maintained with the current v4.4.0 scope.
 
 
 -----------

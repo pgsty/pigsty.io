@@ -6,11 +6,11 @@ icon: fa-solid fa-scroll
 categories: [Reference]
 ---
 
-These docs currently correspond to [**v4.3.0**](#v430).
+These docs currently correspond to [**v4.4.0**](#v440).
 
 |     Version     | Release Date | Summary                                                                         |                                       Release Page                                        |
 |:---------------:|:------------:|---------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------:|
-| [v4.4.0](#440)  |  2026-07-10  | PG 19 beta support, 531 extensions, kernel updates, pig CLI improvements        |               [v4.4.0](https://github.com/pgsty/pigsty/releases/tag/v4.4.0)               |
+| [v4.4.0](#v440) |  2026-07-10  | PG 19 beta support, 531 extensions, kernel updates, pig CLI improvements        |               [v4.4.0](https://github.com/pgsty/pigsty/releases/tag/v4.4.0)               |
 | [v4.3.0](#v430) |  2026-05-01  | 510 extensions, batch Infra / PGSQL / kernel package updates, Ubuntu 26 support |               [v4.3.0](https://github.com/pgsty/pigsty/releases/tag/v4.3.0)               |
 | [v4.2.2](#v422) |  2026-03-23  | Insforge template, pdu, pgdog, tigerfs, ivorysql 5.3                            |               [v4.2.2](https://github.com/pgsty/pigsty/releases/tag/v4.2.2)               |
 | [v4.2.1](#v421) |  2026-03-06  | Maintenance release: 3 new extensions, drop PG13, bug fixes                     |               [v4.2.1](https://github.com/pgsty/pigsty/releases/tag/v4.2.1)               |
@@ -207,12 +207,12 @@ Pigsty v4.4.0 is a maintenance release focused on PostgreSQL 18.4 / 19 beta, ker
 | `pgschema`                   | `1.9.0`          | `1.12.0`         |                                                |
 | `pgstream`                   | `1.0.1`          | `1.1.1`          |                                                |
 | `pg-hardstorage`             | new              | `1.0.8`          |                                                |
-| `codex`                      | `0.125.0`        | `0.143.0`        | release tag `rust-v0.143.0`                    |
-| `claude`                     | `2.1.123`        | `2.1.204`        | downloaded through the 8118 proxy and verified |
-| `opencode`                   | `1.14.30`        | `1.17.15`        |                                                |
-| `agentsview`                 | `0.26.0`         | `0.36.1`         | upstream moved to kenn-io/agentsview           |
+| `codex`                      | `0.125.0`        | `0.144.1`        | release tag `rust-v0.144.1`                    |
+| `claude`                     | `2.1.123`        | `2.1.206`        | downloaded through the 8118 proxy and verified |
+| `opencode`                   | `1.14.30`        | `1.17.18`        |                                                |
+| `agentsview`                 | `0.26.0`         | `0.37.5`         | upstream moved to kenn-io/agentsview           |
 | `genai-toolbox`              | `1.1.0`          | `1.6.0`          | external build artifacts as `mcp-toolbox`      |
-| `crush`                      | `0.64.0`         | `0.82.0`         | direct-download artifact refresh               |
+| `crush`                      | `0.64.0`         | `0.84.0`         | direct-download artifact refresh               |
 | `code`                       | `1.118.1`        | `1.128.0`        | direct-download artifact refresh               |
 | `code-server`                | `4.117.0`        | `4.127.0`        | direct-download artifact refresh               |
 | `victoria-metrics`           | `1.142.0`        | `1.147.0`        | VictoriaMetrics main package                   |
@@ -222,7 +222,7 @@ Pigsty v4.4.0 is a maintenance release focused on PostgreSQL 18.4 / 19 beta, ker
 | `vlagent`                    | `1.50.0`         | `1.51.0`         | VictoriaLogs companion package                 |
 | `vlogscli`                   | `1.50.0`         | `1.51.0`         | VictoriaLogs companion package                 |
 | `victoria-traces`            | `0.8.2`          | `0.9.4`          |                                                |
-| `prometheus`                 | `3.11.3`         | `3.13.0`         |                                                |
+| `prometheus`                 | `3.11.3`         | `3.13.1`         |                                                |
 | `alertmanager`               | `0.32.1`         | `0.33.1`         |                                                |
 | `pushgateway`                | `1.11.2`         | `1.11.3`         |                                                |
 | `node_exporter`              | `1.11.1`         | `1.11.1`         | tarball cache; version metadata fix            |
@@ -233,7 +233,7 @@ Pigsty v4.4.0 is a maintenance release focused on PostgreSQL 18.4 / 19 beta, ker
 | `grafana-victoriametrics-ds` | `0.24.0`         | `0.25.2`         |                                                |
 | `vector`                     | `0.55.0`         | `0.56.0`         |                                                |
 | `minio`                      | `20260417000000` | `20260618000000` |                                                |
-| `seaweedfs`                  | `4.22`           | `4.38`           |                                                |
+| `seaweedfs`                  | `4.22`           | `4.39`           |                                                |
 | `rustfs`                     | `1.0.0-b1`       | `1.0.0-b8`       | prerelease line                                |
 | `duckdb`                     | `1.5.2`          | `1.5.4`          |                                                |
 | `kafka`                      | `4.2.0`          | `4.3.1`          |                                                |
@@ -243,24 +243,44 @@ Pigsty v4.4.0 is a maintenance release focused on PostgreSQL 18.4 / 19 beta, ker
 | `tigerbeetle`                | `0.17.2`         | `0.17.9`         |                                                |
 | `tigerfs`                    | `0.6.0`          | `0.7.0`          |                                                |
 | `caddy`                      | `2.11.2`         | `2.11.4`         |                                                |
-| `cloudflared`                | `2026.2.0`       | `2026.6.1`       | direct-download artifact refresh               |
+| `cloudflared`                | `2026.2.0`       | `2026.7.1`       | direct-download artifact refresh               |
 | `headscale`                  | `0.28.0`         | `0.29.2`         |                                                |
 | `v2ray`                      | `5.48.0`         | `5.51.2`         |                                                |
 | `nodejs`                     | `24.15.0`        | `24.18.0`        | kept on the 24.x line                          |
 | `golang`                     | `1.26.2`         | `1.26.5`         |                                                |
 | `hugo`                       | `0.161.1`        | `0.164.0`        |                                                |
 | `uv`                         | `0.11.8`         | `0.11.28`        |                                                |
-| `rclone`                     | `1.73.5`         | `1.74.3`         | direct-download artifact refresh               |
+| `rclone`                     | `1.73.5`         | `1.74.4`         | direct-download artifact refresh               |
 | `asciinema`                  | `3.2.0`          | `3.2.1`          |                                                |
 | `stalwart`                   | `0.16.2`         | `0.16.12`        |                                                |
 | `maddy`                      | `0.9.3`          | `0.9.5`          |                                                |
 | `dblab`                      | `0.38.0`         | `0.43.0`         |                                                |
-| `npgsqlrest`                 | `3.12.0`         | `3.19.0`         |                                                |
+| `npgsqlrest`                 | `3.12.0`         | `3.20.0`         |                                                |
 | `postgrest`                  | `14.10`          | `14.14`          |                                                |
 | `sabiql`                     | `1.11.1`         | `1.14.0`         |                                                |
 | `pev2`                       | `1.21.0`         | `1.22.0`         |                                                |
 | `rainfrog`                   | `0.3.18`         | `0.3.19`         |                                                |
 {.stretch-last}
+
+**Checksums**
+
+```bash
+7de8b932412f1863fd9c033a7be355d7  pigsty-pkg-v4.4.0.d12.aarch64.tgz
+2e5006a8d35eb1c087dc0ed11cf14d14  pigsty-pkg-v4.4.0.d12.x86_64.tgz
+955308c00d3890f6e82a6a83bc624760  pigsty-pkg-v4.4.0.d13.aarch64.tgz
+350f31c66de0aafff3bd91c2c9d740a0  pigsty-pkg-v4.4.0.d13.x86_64.tgz
+0b4817a8edbab0bdf37ecee730fb0412  pigsty-pkg-v4.4.0.el10.aarch64.tgz
+4584a61e4456749e68d86e4817cfe526  pigsty-pkg-v4.4.0.el10.x86_64.tgz
+21621daf510a532829c36464d48f9198  pigsty-pkg-v4.4.0.el9.aarch64.tgz
+504afd5030e2738a25e1b4c570d0e654  pigsty-pkg-v4.4.0.el9.x86_64.tgz
+461c999424dee587ca33fe1a63df40d7  pigsty-pkg-v4.4.0.u22.aarch64.tgz
+20ccc5ab8f9f4648b05bcd304f9fb5fc  pigsty-pkg-v4.4.0.u22.x86_64.tgz
+d092c48ee55116ed5e2c99a3d909ccdd  pigsty-pkg-v4.4.0.u24.aarch64.tgz
+24fa5399d8421305961fcaf91325b382  pigsty-pkg-v4.4.0.u24.x86_64.tgz
+36f69b699d8b3041d35384970e157631  pigsty-pkg-v4.4.0.u26.aarch64.tgz
+330047d117b20f04317dce506edd5d9a  pigsty-pkg-v4.4.0.u26.x86_64.tgz
+3077203c0c656ec99abc32b227f6566b  pigsty-v4.4.0.tgz
+```
 
 
 ------

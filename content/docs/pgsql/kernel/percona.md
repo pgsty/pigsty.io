@@ -9,7 +9,7 @@ categories: [Concept]
 
 [Percona Postgres](https://www.percona.com/postgresql/software/postgresql-distribution) is a patched Postgres kernel with [`pg_tde`](https://docs.percona.com/pg-tde/index.html) (Transparent Data Encryption) extension.
 
-In Pigsty v4.3.0, the `percona-main` package set uses Percona PostgreSQL 18 and additionally installs common components such as `pg_tde`, PostGIS, pgvector, wal2json, pg_repack, pgaudit, and pg_stat_monitor.
+In Pigsty v4.4.0, the `percona-main` package set uses Percona PostgreSQL 18 and additionally installs common components such as `pg_tde`, PostGIS, pgvector, wal2json, pg_repack, pgaudit, and pg_stat_monitor.
 
 - [Performance Test for Percona Transparent Data Encryption (TDE)](https://andreas.scherbaum.la/post/2025-06-30_performance-test-for-percona-transparent-data-encryption-tde/)
 

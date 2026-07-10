@@ -530,7 +530,7 @@ PITR supports multiple recovery target types:
 | Latest      | `pg_pitr: {}`                        | Recover to end of WAL archive  |
 
 {{% alert title="Post-PITR Processing" color="info" %}}
-Pigsty v4.3 PITR keeps archiving enabled by default (`archive: true`). If you explicitly set `archive: false` for exploratory recovery, reset `archive_mode`, restart the cluster, and perform a new full backup after confirming the recovered data is correct:
+Pigsty v4.4 PITR keeps archiving enabled by default (`archive: true`). If you explicitly set `archive: false` for exploratory recovery, reset `archive_mode`, restart the cluster, and perform a new full backup after confirming the recovered data is correct:
 
 ```bash
 psql -c 'ALTER SYSTEM RESET archive_mode;'

@@ -40,7 +40,7 @@ Then run the `pgsql-pitr.yml` playbook, which will roll back the `pg-meta` clust
 
 ## Post-Recovery
 
-Pigsty v4.3 `pgsql-pitr.yml` keeps archiving settings by default (`archive: true`). If you are doing exploratory recovery and explicitly set `archive: false`, re-enable archiving and perform a full backup after recovery.
+Pigsty v4.4 `pgsql-pitr.yml` keeps archiving settings by default (`archive: true`). If you are doing exploratory recovery and explicitly set `archive: false`, re-enable archiving and perform a full backup after recovery.
 
 ```bash title="postgres @ pg-meta $"
 psql -c 'ALTER SYSTEM RESET archive_mode;'
