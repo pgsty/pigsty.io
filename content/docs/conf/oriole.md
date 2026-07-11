@@ -25,6 +25,11 @@ Usage:
 
 ```bash
 ./configure -c oriole [-i <primary_ip>]
+
+# Select a PostgreSQL major version explicitly
+./configure -c oriole -v 16
+./configure -c oriole -v 17
+./configure -c oriole -v 18
 ```
 
 
@@ -69,7 +74,7 @@ CREATE TABLE orders (
 ```
 
 **Notes**:
-- OrioleDB supports PostgreSQL 16, 17, and 18; choose the major version with `pg_version`
+- OrioleDB supports PostgreSQL 16, 17, and 18; the template defaults to PG18, and you can select a major version with `-v 16`, `-v 17`, or `-v 18`
 - Need to add `orioledb` to `shared_preload_libraries`
 - Some PostgreSQL features may not be fully supported
 - Use the matching OrioleDB packages for the selected PostgreSQL major and OS architecture

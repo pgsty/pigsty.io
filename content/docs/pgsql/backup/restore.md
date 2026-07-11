@@ -232,7 +232,7 @@ The `pg_pitr` parameter has more options available:
 ```yaml
 pg_pitr:                           # Define PITR task
     cluster: "some_pg_cls_name"    # Source cluster name
-    type: latest                   # Recovery target type: time, xid, name, lsn, immediate, latest
+    type: default                  # Recovery target type: default, time, xid, name, lsn, immediate
     time: "2025-01-01 10:00:00+00" # Recovery target: time, mutually exclusive with xid, name, lsn
     name: "some_restore_point"     # Recovery target: named restore point, mutually exclusive with time, xid, lsn
     xid:  "100000"                 # Recovery target: transaction ID, mutually exclusive with time, name, lsn

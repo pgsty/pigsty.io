@@ -15,8 +15,6 @@ One thing to keep in mind is that not every kernel has the same delivery depth i
 PostgreSQL, Citus, Babelfish, IvorySQL, PolarDB, AgensGraph, and pgEdge already have relatively clear templates and configuration paths;
 Cloudberry and Greenplum, by contrast, are more often managed through `gpsql` mode, and their MPP initialization plus scale-out operations are still better handled with upstream tooling.
 
-Kernel configuration templates should link to this overview and to their dedicated kernel guide. When a kernel has dedicated extensions, prefer linking to the extension catalog, such as [`spock`](/ext/e/spock/), [`snowflake`](/ext/e/snowflake/), and [`lolor`](/ext/e/lolor/).
-
 | Kernel                                          | Key Feature                           | Description                                   |
 |:------------------------------------------------|:--------------------------------------|:----------------------------------------------|
 | [**PostgreSQL**](/docs/pgsql)                   | **Native kernel, full extension set** | Vanilla PostgreSQL with 531 extensions        |

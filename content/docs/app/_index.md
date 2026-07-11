@@ -2,26 +2,26 @@
 title: Applications
 weight: 550
 description: >
-  Application templates and data applets for Pigsty v4.4: run stateless apps with Docker Compose and host state in external PostgreSQL and MinIO.
+  Pigsty application templates and data applets: run stateless apps with Docker Compose and host state in external PostgreSQL and MinIO.
 icon: fa-solid fa-chart-line
 module: [APP]
 categories: [Reference]
 ---
 
-In Pigsty v4.4, "applications" fall into two categories:
+Pigsty "applications" fall into two categories:
 
 - **Software Templates**: Docker Compose templates under `~/pigsty/app/<name>` for stateless business components.
 - **Data Applets**: PostgreSQL + Grafana analytics demos, mainly for learning and showcase use.
 
 
-## v4.4 App Model
+## Application Model
 
-The recommended app install workflow in v4.4 is:
+The recommended application deployment workflow is:
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
 ./bootstrap
-./configure -c <template>     # e.g. app/dify, app/insforge, app/registry, supabase
+./configure -c <template>     # e.g. app/dify, app/immich, app/jumpserver, app/maybe, supabase
 vi pigsty.yml                 # edit passwords, domains, IPs, and secrets
 ./deploy.yml                  # deploy infrastructure and databases
 ./docker.yml                  # install Docker
@@ -32,7 +32,7 @@ vi pigsty.yml                 # edit passwords, domains, IPs, and secrets
 
 ## Maintained Config Templates
 
-The following app config templates are actively provided in v4.4 (`conf/app/*.yml`, `conf/supabase.yml`, and the `conf/app/supa.yml` symlink):
+The following app config templates are actively maintained (`conf/app/*.yml`, `conf/supabase.yml`, and the `conf/app/supa.yml` symlink):
 
 - `app/dify`
 - `app/odoo`
@@ -40,6 +40,8 @@ The following app config templates are actively provided in v4.4 (`conf/app/*.ym
 - `app/mattermost`
 - `app/electric`
 - `app/maybe`
+- `app/immich`
+- `app/jumpserver`
 - `app/registry`
 - `app/insforge`
 - `app/hindsight`
@@ -66,4 +68,4 @@ If you want to manage them uniformly via Pigsty IaC:
 
 Data applets like `pglog`, `covid`, `db-engine`, `sf-survey`, `cloud`, and `isd` are kept as reference examples for data modeling and visualization ideas.
 
-They are no longer the primary application delivery path in v4.4. Prefer the software template workflow above.
+They are no longer the primary application delivery path. Prefer the software template workflow above.

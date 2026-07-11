@@ -92,7 +92,6 @@ all:
     #minio: { hosts: { 10.10.10.10: { minio_seq: 1 } }, vars: { minio_cluster: minio } }
 
   vars:                               # Global variables
-    version: v4.4.0                   # Pigsty version string
     admin_ip: 10.10.10.10             # Admin node IP address
     region: default                   # Upstream mirror region: default|china|europe
     node_tune: oltp                   # Node tuning specs: oltp,olap,tiny,crit
@@ -205,7 +204,7 @@ psql postgres://dbuser_odoo:DBUser.Odoo@10.10.10.10:5432/odoo
 
 ```yaml
     infra_portal:                     # Domain names and upstream servers
-      home         : { domain: h.pigsty }
+      home         : { domain: i.pigsty }
       odoo         : { domain: odoo.pigsty, endpoint: "127.0.0.1:8069", websocket: true }  # <------ Add this line
 ./infra.yml -t nginx   # Setup nginx infra portal
 ```

@@ -35,6 +35,12 @@ pb info
 
 `pb` is the Pigsty alias for `pgbackrest` with automatic stanza detection.
 
+For a sandbox drill, `/pg/bin/pg-heartbeat` can generate a timestamped workload that makes the recovery boundary easy to verify:
+
+```bash
+sudo -iu postgres /pg/bin/pg-heartbeat
+```
+
 
 --------
 
@@ -48,12 +54,21 @@ pg-pitr -t "2025-07-13 03:03:00+00"
 
 Typical sequence:
 
-1. Stop Patroni and PostgreSQL.
+1. Stop Patroni and PostgreSQL. If you need to stop PostgreSQL directly, use `pg-stop` only after Patroni has been stopped or paused so it cannot restart the instance or trigger failover.
 2. Run `pgbackrest restore` with the selected target.
 3. Start PostgreSQL and replay WAL.
 4. Verify data state, then promote if correct.
-5. Re-enable archive mode and restart services.
+5. Verify archive mode and reset it only when required.
 6. Rebuild replicas if needed and resume cluster automation.
+
+With `pgsql-pitr.yml`, Pigsty v4.4 preserves archive settings by default. A manual `pgbackrest restore`, an older recovery script, or an explicit `archive: false` run may leave `archive_mode = off` in `postgresql.auto.conf`; in that case, reset it and restart PostgreSQL because `archive_mode` is a postmaster parameter:
+
+```bash
+psql -c 'show archive_mode'
+psql -c 'ALTER SYSTEM RESET archive_mode;'
+pg-restart
+psql -c 'show archive_mode'
+```
 
 
 --------

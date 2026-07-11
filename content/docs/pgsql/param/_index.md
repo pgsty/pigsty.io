@@ -994,9 +994,10 @@ Bootstrap PostgreSQL cluster with Patroni and set up 1:1 corresponding Pgbouncer
 
 It also initializes the database cluster with default roles, users, privileges, schemas, and extensions defined in [`PG_PROVISION`](#pg_provision).
 
+The following parameters configure the PGSQL bootstrap stage. The internal variable [`pg_data`](#pg_data) always represents the `/pg/data` symlink and must not be overridden in inventory. Configure [`pg_fs_main`](#pg_fs_main) to change the physical location of the primary data directory.
+
 
 ```yaml
-pg_data: /pg/data                 # postgres data directory, `/pg/data` by default
 pg_fs_main: /data/postgres        # postgres main data directory, `/data/postgres` by default
 pg_fs_backup: /data/backups       # postgres backup data directory, `/data/backups` by default
 pg_storage_type: SSD              # storage type for pg main data, SSD,HDD, SSD by default
@@ -1039,11 +1040,11 @@ pg_lc_ctype: C                    # database character type, `C` by default
 
 ### `pg_data`
 
-Parameter Name: `pg_data`, Type: `path`, Level: `C`
+Internal Variable: `pg_data`, Type: `path`
 
-Postgres data directory, default is `/pg/data`.
+`pg_data` is an internal Pigsty variable, not a user configuration parameter. It always represents the PostgreSQL data-directory symlink at `/pg/data`.
 
-This is a symlink to the underlying actual data directory, used in multiple places, please don't modify it. See [PGSQL File Structure](/docs/ref/fhs) for details.
+Patroni templates, maintenance scripts, and cleanup workflows all rely on this symlink. Do not override or modify it in `pigsty.yml`. Configure [`pg_fs_main`](#pg_fs_main) to change the underlying physical data location. See [PGSQL File Structure](/docs/ref/fhs) for details.
 
 
 

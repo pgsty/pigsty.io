@@ -62,7 +62,7 @@ Pig `v1.5.1` updates PG kernel forks to the latest package names.
 **Highlights**
 
 - Add mirror/proxy mode to repo, build, sty, update, and extension update workflows; `pig build rust -m` also configures Cargo mirror settings with `rsproxy.cn`.
-- Add explicit PostgreSQL 19 beta switches for repo, tool, and pgrx builds, while keeping PostgreSQL 18 and PG14-18 as the stable defaults.
+- Add explicit PostgreSQL 19 beta build switches: `pig build repo --beta`, `pig build tool --beta`, and `pig build pgrx -b`, while keeping PostgreSQL 18 and PG14-18 as the stable defaults.
 - Refresh kernel and fork package aliases for IvorySQL, PolarDB, OrioleDB, OpenHaloDB, Babelfish, and the pgEdge suite.
 - Improve the Cloudberry package build flow for `cloudberry`, `cloudberry-backup`, and `cloudberry-pxf`.
 - Refresh source/package metadata for Cloudberry, Babelfish, OrioleDB, pgEdge, PolarDB, `polarstore`, `zlog`, `libpgfeutils`, and `libfq`.

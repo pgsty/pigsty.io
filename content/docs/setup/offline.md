@@ -90,7 +90,7 @@ d092c48ee55116ed5e2c99a3d909ccdd  pigsty-pkg-v4.4.0.u24.aarch64.tgz
 
 When OS minor versions don't match, it may work or may fail—we don't recommend taking the risk.
 
-Please note that Pigsty's EL9/EL10 packages are built on 9.7/10.1, Debian packages are built on 12.13/13.4, and Ubuntu packages are built on 22.04.5/24.04.4/26.04.0.
+Please note that Pigsty's EL9/EL10 packages are built on 9.7/10.1, Debian packages are built on 12.14/13.5, and Ubuntu packages are built on 22.04.5/24.04.4/26.04.0.
 Cross-minor installation may fail due to OpenSSL/system library differences.
 Use online installation on matching OS versions to build your own offline package, or contact us for custom packages.
 

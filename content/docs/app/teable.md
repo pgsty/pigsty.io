@@ -1,14 +1,14 @@
 ---
 title: "Teable: AI No-Code Database"
 weight: 580
-description: Self-host Teable on Pigsty v4.4 with external PostgreSQL and MinIO.
+description: Self-host Teable with Pigsty, external PostgreSQL, and MinIO.
 module: [SOFTWARE]
 categories: [Reference]
 ---
 
 [**Teable**](https://teable.io/) is a no-code database platform for team collaboration.
 
-Pigsty v4.4 provides the `app/teable` template (`conf/app/teable.yml`) and depends on **PostgreSQL + MinIO + Docker** by default (no Redis dependency).
+Pigsty provides the `app/teable` template (`conf/app/teable.yml`) and depends on **PostgreSQL + MinIO + Docker** by default (no Redis dependency).
 
 ## Quick Start
 

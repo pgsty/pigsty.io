@@ -157,8 +157,8 @@ If etcd cluster membership changes (add/remove members), refresh etcd service en
 |:--------|:--------|:--------|
 | etcd member config | `/etc/etcd/etcd.conf` | `./etcd.yml -t etcd_conf` |
 | etcdctl env vars | `/etc/profile.d/etcdctl.sh` | `./etcd.yml -t etcd_config` |
-| Patroni DCS config | `/pg/bin/patroni.yml` | `./pgsql.yml -t pg_conf` |
-| VIP-Manager config | `/etc/default/vip-manager` | `./pgsql.yml -t pg_vip_config` |
+| Patroni DCS config | `/etc/patroni/patroni.yml` | `./pgsql.yml -t pg_conf` |
+| VIP-Manager config | `/etc/default/vip-manager.yml` | `./pgsql.yml -t pg_vip_config` |
 
 **Refresh etcd member config:**
 

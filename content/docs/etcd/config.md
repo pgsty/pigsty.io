@@ -90,8 +90,8 @@ Services using etcd in Pigsty:
 
 | Service | Purpose | Config File |
 |:----|:----|:--------|
-| **Patroni** | PG HA, stores cluster state and config | `/pg/bin/patroni.yml` |
-| **VIP-Manager** | Binds L2 VIP on PG clusters | `/etc/default/vip-manager` |
+| **Patroni** | PG HA, stores cluster state and config | `/etc/patroni/patroni.yml` |
+| **VIP-Manager** | Binds L2 VIP on PG clusters | `/etc/default/vip-manager.yml` |
 
 When etcd cluster membership changes permanently, [reload related service configs](/docs/etcd/admin#reload-config) to ensure correct access.
 

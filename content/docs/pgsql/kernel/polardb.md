@@ -38,6 +38,8 @@ Use the built-in Pigsty template:
 
 ## Change Summary
 
+Starting with Pigsty v4.4, the PolarDB PG kernel uses packages built and maintained by Pigsty. The main changes are:
+
 | Item | Old docs / old default | Current |
 |------|-------------------------|---------|
 | Kernel baseline | PostgreSQL 15 | PostgreSQL 17 |

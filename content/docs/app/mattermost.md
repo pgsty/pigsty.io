@@ -1,14 +1,14 @@
 ---
 title: "Mattermost: Open-Source Team Collaboration"
 weight: 595
-description: Deploy Mattermost on Pigsty v4.4 and store state in external PostgreSQL.
+description: Deploy Mattermost with Pigsty and store state in external PostgreSQL.
 module: [SOFTWARE]
 categories: [Reference]
 ---
 
 [**Mattermost**](https://mattermost.com/) is an open-source team collaboration platform and a private alternative to Slack.
 
-Pigsty v4.4 provides `app/mattermost` (`conf/app/mattermost.yml`), which stores app state in external PostgreSQL and persists file directories on host paths.
+Pigsty provides `app/mattermost` (`conf/app/mattermost.yml`), which stores app state in external PostgreSQL and persists file directories on host paths.
 
 ## Quick Start
 

@@ -75,95 +75,102 @@ These docs currently correspond to [**v4.4.0**](#v440).
 
 ## v4.4.0
 
-Pigsty v4.4.0 is a maintenance release focused on PostgreSQL 18.4 / 19 beta, kernel forks, the extension catalog, the platform matrix, and production operability.
+Pigsty v4.4.0 is a maintenance release centered on PostgreSQL 18.4, PostgreSQL 19 beta readiness, 531 extensions, refreshed kernel variants, and broader platform coverage.
+
+Released on **2026-07-10**. See the [GitHub release](https://github.com/pgsty/pigsty/releases/tag/v4.4.0) and [all changes since v4.3.0](https://github.com/pgsty/pigsty/compare/v4.3.0...v4.4.0).
 
 **Highlights**
 
-- PostgreSQL version updates: baseline refreshed to the 18.4 series, PostgreSQL 19 beta1 support added, and a `pg19.yml` config template provided.
-- Extension refresh: added 21 PostgreSQL extensions, bringing the total available extension count to 531, with full Ubuntu 26 extension coverage.
-- Automatic NIC selection: deployment now selects the NIC for the primary IP automatically, so Node VIP and PG VIP no longer require a manual interface name.
-- Management CLI improvements: `pig` management capabilities were expanded with clone and fork support, improved information display, and a smoother PITR experience.
-- Compression strategy improvements: PostgreSQL WAL now uses lz4 compression by default, and pgBackRest's default compression changed from lz4 to zstd. [#744](https://github.com/pgsty/pigsty/issues/744)
-- OS updates: Debian/Ubuntu minor release baselines were raised to the latest point releases.
-- Agent Runtime: Codex is now the default Agent Runtime instead of Claude Code/OpenCode.
-- New app templates: added the Immich self-hosted photo album template, refreshed the Supabase self-hosting template, and updated the maybe app template.
+- **PostgreSQL 18.4 / 19 beta:** PostgreSQL 18.4 is now the production default, with a minimal PostgreSQL 19 beta template for evaluation.
+- **531 extensions and refreshed kernels:** The catalog adds 21 extensions and updates major PostgreSQL variants across the supported platform matrix.
+- **Safer operations with Pig 1.5.1:** New clone, fork, and PITR workflows arrive alongside automatic VIP discovery, Zstandard pgBackRest compression, and dedicated Patroni log collection.
+- **Security, applications, and tooling:** Secret handling and repository automation are hardened, with new app templates, a redesigned portal, and optional Codex support.
+- **Platform validation:** All 14 offline deployment tests pass across seven OS baselines on both `x86_64` and `aarch64`.
+
+**Upgrade Notes**
+
+- Generated pgBackRest configurations now use `compress-type=zst`; preserve intentional local overrides before re-rendering them. [#744](https://github.com/pgsty/pigsty/issues/744)
+- Patroni logs now use `/pg/log/patroni` and `job=patroni`; update custom log queries and alert rules that use the old syslog selector.
+- VIP interfaces now default to `auto`, dnsmasq records move to `/etc/dnsmasq.d/pigsty`, and Pigsty manages `/etc/default/haproxy`; preserve explicit network overrides where needed.
+- The default etcd backend quota drops from 16 GiB to 8 GiB; check existing backend usage before applying the new configuration.
+- `pig` automation must use `-y/--yes` for destructive commands, while `pig pb restore` and `pig pitr` require one explicit recovery target. See the [`pig` v1.5](https://pigsty.io/docs/pig/release/#v150) notes.
+- Supabase analytics moves to the `_supabase` database and `_analytics` schema; existing deployments should create them before switching stacks.
+
+**Security and Operations**
+
+- The `pg-pitr` wrapper adds safer target selection, timelines, dry runs, and stronger checks against unsafe recovery targets.
+- Application secrets are hidden from Ansible output, generated `.env` files use mode `0600`, and Grafana no longer prints the administrator password.
+- The `dbsu` sudo policy gains controlled journal access, while the repository adds a security policy, CodeQL, Dependabot, pinned actions, and release-signing automation.
+
+**Applications and Tooling**
+
+- Added Immich, Maybe, and JumpServer templates; refreshed Supabase, Dify, InsForge, Registry, Jupyter, Kong, Odoo, Teable, Mattermost, and related launch helpers.
+- Rebuilt the bilingual infrastructure portal and added opt-in Codex CLI support to the experimental VIBE module; Claude Code remains its default managed coding agent.
+- Removed the legacy FerretDB Compose template; the FERRET module remains available.
 
 **Bug Fixes**
 
-- Fixed EL 10 AppStream repository conflicts caused by PGDG packages with the same names.
-- Fixed the EPEL EL10 repository URL to use the major version as `releasever`. [#752](https://github.com/pgsty/pigsty/issues/752)
-- When `/www` already exists, bootstrap and repo tasks now use the existing directory directly instead of creating a symlink. [#753](https://github.com/pgsty/pigsty/issues/753)
-- Fixed Redis Sentinel password concatenation logic. [#748](https://github.com/pgsty/pigsty/issues/748)
-- Aligned the RPM package names for `pg_http`, `pg_gzip`, and `apache-age` with PGDG. [#750](https://github.com/pgsty/pigsty/issues/750)
-- Fixed Debian/Ubuntu behavior where the vector log collector was not correctly prevented from auto-starting.
-- Improved the special handling logic for the `el9.aarch64` PGDG Patroni package name, using the noarch suffix filter instead of a hardcoded version.
-- Fixed the default NIC selection policy for local Vagrant / VirtualBox environments.
-- Render `io_workers` only in PG18 templates, avoiding PG19 beta configs that use a changed or no longer applicable GUC.
-- Adjusted profile scripts and aliases to avoid unnecessary output in `sh` and non-interactive shells.
-
-**Design Changes**
-
-- Patroni logs are now collected from local files under `/pg/log/patroni` instead of the default syslog target.
-- The limited sudo privileges for dbsu now also allow querying `journalctl` logs for owned components.
-- Updated the Supabase self-hosting template to the latest version, and refreshed the Immich and maybe app templates.
-- Removed the PolarDB-O kernel support stub and adjusted the PolarDB / Cloudberry FHS layout.
-- The default `pgbackrest.conf` compression changed from `compress-type=lz4` to `compress-type=zst`.
-- The `vip_interface` and `pg_vip_interface` defaults changed to `auto`, which automatically uses the NIC associated with the primary IP.
+- Fixed EL10 PostgreSQL/libpq provider conflicts, EPEL path handling, and PGDG minor-version repository rules. [#752](https://github.com/pgsty/pigsty/issues/752)
+- Reused an existing `/www` directory during bootstrap and fixed Redis Sentinel HA password rendering. [#753](https://github.com/pgsty/pigsty/issues/753) [#748](https://github.com/pgsty/pigsty/issues/748)
+- Corrected RPM naming and package groups for `pg_http`, `pg_gzip`, `apache-age`, and `odbc_fdw`. [#750](https://github.com/pgsty/pigsty/issues/750)
+- Prevented unexpected service starts during Debian and Ubuntu package installation, and improved EL9 aarch64 Patroni package handling.
+- Fixed VirtualBox private-network routing and default NIC selection.
+- Fixed shell portability and Vector log lifecycle issues, along with PG19 `io_workers`, Teable HBA, and application runtime defaults.
 
 **PostgreSQL and Extension Package Changes**
 
-- PostgreSQL 19beta1
-- Patroni 4.1.3
-- OrioleDB 16/17/18 support
-- [PGSQL RPM changes](/docs/repo/pgsql/rpm)
-- [PGSQL DEB changes](/docs/repo/pgsql/deb)
-- [PGSQL INFRA changes](/docs/repo/infra/log)
+The release adds 21 extensions, updates the PostgreSQL 18.4 package graph, introduces the PostgreSQL 19 beta template, and refreshes major kernel variants. Versions below are verified against final repository metadata and, where bundled, the v4.4.0 artifacts; PG major ranges describe catalog and repository coverage.
 
-**Package Update**
+[PostgreSQL RPM changes](https://pigsty.io/docs/repo/pgsql/rpm/) · [PostgreSQL DEB changes](https://pigsty.io/docs/repo/pgsql/deb/) · [Infrastructure package changes](https://pigsty.io/docs/repo/infra/log/)
 
-| Package               | Old                 | New                            | Comment                                          |
+| Package               | Old Version         | New Version                    | Notes                                            |
 |-----------------------|---------------------|--------------------------------|--------------------------------------------------|
 | `polardb-17`          | `17.9.1.0`          | `17.10.1.0`                    | PG 17; RPM added                                 |
 | `agensgraph-17`       | `2.16.0`            | `2.17.0`                       | PG 17.10                                         |
 | `openhalodb-14`       | `1.0-beta`          | `1.0-2`                        | OpenHaloDB                                       |
 | `babelfish-17`        | `5.4.0`             | `5.4.0`                        | PG 17.7; rebuild                                 |
-| `babelfish-18`        | new                 | `6.0.0`                        | PG 18.3                                          |
-| `pgedge`              | new / `17.9 / 18.3` | `15.18 / 16.14 / 17.10 / 18.4` | PG 15-18; 15/16 added; Spock 5.0.10              |
+| `babelfish-18`        | -                   | `6.0.0`                        | PG 18.3                                          |
+| `pgedge`              | `17.9 / 18.3`       | `15.18 / 16.14 / 17.10 / 18.4` | PG 15/16 added; PG 17/18 updated; Spock 5.0.10   |
 | `ivorysql-18`         | `5.0`               | `5.4`                          | PG 18; RPM added                                 |
 | `cloudberry`          | `2.1.0-1`           | `2.1.0-2 / 2.1.0-3`            | DEB/RPM rebuild; RPM path `/usr/cloudberry`      |
 | `cloudberry-backup`   | `2.1.0-1`           | `2.1.0-2 / 2.1.0-3`            | backup subpackage                                |
 | `cloudberry-pxf`      | `2.1.0-1`           | `2.1.0-2 / 2.1.0-3`            | PXF subpackage                                   |
-| `pg_ducklake`         | new                 | `1.0.0`                        | new, PG 14-18                                    |
-| `psql_bm25s`          | new                 | `0.4.13`                       | new BM25 retrieval extension, PG 17-18, RPM only |
-| `mongo_fdw`           | new                 | `5.5.3`                        | new, PG 14-18, DEB only                          |
-| `multicorn`           | new                 | `3.2`                          | new, PG 14-18, DEB only                          |
-| `pg_orca`             | new                 | `1.0.0`                        | new, PG 18 only                                  |
-| `pg_sorted_heap`      | new                 | `0.14.0`                       | new, PG 16-18                                    |
-| `pg_stl`              | new                 | `1.0.0`                        | new, PG 16-18                                    |
-| `fsm_core`            | new                 | `1.1.0`                        | new, PG 15-18                                    |
-| `pg_projection`       | new                 | `1.0.0`                        | new, PG 14-18                                    |
-| `pg_task`             | new                 | `2.1.29`                       | new, PG 14-18, pcre2grep fix                     |
-| `pg_stat_backtrace`   | new                 | `1.0.0`                        | new, PG 14-18, libunwind                         |
-| `pg_mockable`         | new                 | `1.1.0`                        | new, PG 14-18                                    |
-| `db2fce`              | new                 | `0.0.17`                       | new, PG 14-18, RPM only                          |
-| `pg_uuid_v8`          | new                 | `1.0.0`                        | new, PG 14-18                                    |
-| `pg_extra_time`       | new                 | `2.1.0`                        | new, PG 14-18                                    |
-| `pg_pinyin`           | new                 | `0.0.4`                        | new, PG 14-18                                    |
-| `passwordpolicy`      | new                 | `2.0.5`                        | new, PG 14-18, DEB only                          |
-| `pgdisablelogerror`   | new                 | `1.0`                          | new, PG 14-18, DEB only                          |
-| `plpgsql_wrap`        | new                 | `1.0`                          | new, PG 14-18, DEB only                          |
+| `pg_ducklake`         | -                   | `1.0.0`                        | PG 14-18                                         |
+| `psql_bm25s`          | -                   | `0.4.13`                       | BM25 retrieval; PG 17-18                         |
+| `mongo_fdw`           | `5.5.3`             | `5.5.3`                        | new DEB packaging; existing PGDG RPM, PG 14-18   |
+| `multicorn`           | `3.2`               | `3.2`                          | new DEB packaging; existing PGDG RPM, PG 14-18   |
+| `pg_orca`             | -                   | `1.0.0`                        | PG 18 only                                       |
+| `pg_sorted_heap`      | -                   | `0.14.0`                       | PG 16-18                                         |
+| `pg_stl`              | -                   | `1.0.0`                        | PG 16-18                                         |
+| `fsm_core`            | -                   | `1.1.0`                        | PG 15-18                                         |
+| `pg_projection`       | -                   | `1.0.0`                        | PG 14-18                                         |
+| `graph`               | -                   | `0.1.7`                        | PG 14-18                                         |
+| `jsonschema`          | -                   | `0.1.9`                        | PG 14-18                                         |
+| `pg_durable`          | -                   | `0.2.2`                        | PG 14-18                                         |
+| `pg_stat_log`         | -                   | `0.1`                          | PG 18 only                                       |
+| `pg_stat_plans`       | -                   | `2.1.0`                        | PG 16-18                                         |
+| `pg_task`             | `1.0.0`             | `2.1.29`                       | PG 14-18, pcre2grep fix                          |
+| `pg_stat_backtrace`   | -                   | `1.0.0`                        | PG 14-18; libunwind                              |
+| `pg_mockable`         | -                   | `1.1.0`                        | PG 14-18                                         |
+| `db2fce`              | -                   | `0.0.17`                       | PG 14-18                                         |
+| `pg_uuid_v8`          | -                   | `1.0.0`                        | PG 14-18                                         |
+| `pg_extra_time`       | `2.0.0`             | `2.1.0`                        | PG 14-18                                         |
+| `pg_pinyin`           | `0.0.2`             | `0.0.4`                        | PG 14-18                                         |
+| `passwordpolicy`      | -                   | `2.0.5`                        | PG 14-18                                         |
+| `pgdisablelogerror`   | -                   | `1.0`                          | PG 14-18                                         |
+| `plpgsql_wrap`        | -                   | `1.0`                          | PG 14-18                                         |
 | `timescaledb`         | `2.26.4`            | `2.28.2`                       | PG 15-18                                         |
 | `documentdb`          | `0.110`             | `0.113`                        | PG 15-18                                         |
 | `citus`               | `14.0.0-4`          | `14.1.0`                       | PG 16-18                                         |
 | `pgvector`            | `0.8.2`             | `0.8.4`                        | PG 14-18                                         |
 | `orioledb`            | `1.7-beta15`        | `1.8-beta16`                   | Build for PG 16, 17, 18                          |
 | `pg_search`           | `0.23.1`            | `0.24.0`                       | PG 15-18                                         |
-| `pg_textsearch`       | `1.1.0`             | `1.2.0`                        | BM25 full-text search, PG 17-18, RPM only        |
+| `pg_textsearch`       | `1.1.0`             | `1.2.0`                        | BM25 full-text search, PG 17-18                  |
 | `storage_engine`      | `1.3.4`             | `2.4.0`                        | PGXN 2.x bump, PG 15-18                          |
 | `pg_clickhouse`       | `0.2.0`             | `0.3.2`                        | PGXN bump, ClickHouse integration                |
 | `provsql`             | `1.2.3`             | `1.10.0`                       | PGXN bump, PG 14-18                              |
 | `pgclone`             | `4.0.0`             | `4.3.2`                        | PGXN bump, PG 14-18                              |
-| `biscuit`             | `2.2.2`             | `2.4.1`                        | PG 16-18                                         |
+| `biscuit`             | `2.2.2`             | `2.4.0` DEB / `2.4.1` RPM      | PG 16-18                                         |
 | `pgmnemo`             | `0.7.2`             | `0.12.1`                       | PG 14-18                                         |
 | `rdf_fdw`             | `2.5.0`             | `2.6.0`                        | PG 14-18, libcurl compatibility patch            |
 | `roaringbitmap`       | `1.1.0`             | `1.2.0-2`                      | PG 14-18, llvm-lto packaging fix                 |
@@ -184,82 +191,82 @@ Pigsty v4.4.0 is a maintenance release focused on PostgreSQL 18.4 / 19 beta, ker
 | `pg_gzip`             | `1.0.0`             | `1.1.0`                        | PG 14-18, RPM rename to `pgsql_gzip_$v`          |
 | `age`                 | `1.7.0`             | `1.7.0`                        | PG 17-18, RPM rename to `age_$v`                 |
 | `pg_trickle`          | `0.40.0`            | `0.81.0`                       | PG 18 only                                       |
-| `re2`                 | `0.1.1`             | `0.3.0`                        | PG 16-18                                         |
-| `pg_background`       | `1.9.2`             | `2.0`                          | PG 14-18                                         |
+| `re2`                 | `0.1.1`             | `0.4.0`                        | PG 16-18                                         |
+| `pg_background`       | `1.9.2`             | `2.0.2` DEB / `2.0` RPM        | PG 14-18                                         |
 | `firebird_fdw`        | `1.4.1`             | `1.4.2`                        | PG 14-18                                         |
-| `pg_net`              | `0.20.2`            | `0.20.3`                       | PG 14-18, EL10 only                              |
-| `pg_dirtyread`        | `2.7`               | `2.8`                          | PG 14-18, RPM only                               |
-| `pg_stat_ch`          | `0.3.6`             | `0.3.6`                        | PG 16-18, EL9/EL10 only, rebuild                 |
+| `pg_net`              | `0.20.2`            | `0.20.3`                       | DEB + EL10 RPM; EL8/9 RPM stays on `0.9.2`       |
+| `pg_dirtyread`        | `2.7`               | `2.8`                          | PG 14-18                                         |
+| `pg_stat_ch`          | `0.3.6`             | `0.3.6`                        | PG 16-18, rebuild                                |
 | `pggraph`             | `0.1.5`             | `0.1.7`                        | PG 14-18                                         |
-| `pgsql_tweaks`        | `1.0.2`             | `1.0.3`                        | PG 14-18                                         |
-| `pgfincore`           | `1.3.1`             | `1.4.0`                        | PG 14-18, RPM only                               |
-| `toastinfo`           | `1.5`               | `1.7`                          | PG 14-18, RPM only                               |
-| `pg_ivm`              | `1.14`              | `1.15`                         | PG 14-18, DEB only                               |
+| `pgsql_tweaks`        | `1.0.2`             | `1.0.5`                        | PG 14-18; PGDG RPM also carries `1.0.3`          |
+| `pgfincore`           | `1.3.1`             | `1.4.0`                        | PG 14-18                                         |
+| `toastinfo`           | `1.5`               | `1.7`                          | PG 14-18                                         |
+| `pg_ivm`              | `1.14`              | `1.15` DEB / `1.14` RPM        | PG 14-18                                         |
 | `timeseries`          | `0.2.0`             | `0.2.1`                        | PG 14-18                                         |
 {.stretch-last}
 
-**Infra Update**
+**Infrastructure Package Changes**
 
-| Name                         | Old              | New              | Comment                                        |
-|------------------------------|------------------|------------------|------------------------------------------------|
-| `pig`                        | `1.4.1`          | `1.5.1`          | Pigsty 4.4.0, 531 extensions; pgrx 0.18.1      |
-| `pg_exporter`                | `1.2.2`          | `1.3.0`          |                                                |
-| `pgschema`                   | `1.9.0`          | `1.12.0`         |                                                |
-| `pgstream`                   | `1.0.1`          | `1.1.1`          |                                                |
-| `pg-hardstorage`             | new              | `1.0.8`          |                                                |
-| `codex`                      | `0.125.0`        | `0.144.1`        | release tag `rust-v0.144.1`                    |
-| `claude`                     | `2.1.123`        | `2.1.206`        | downloaded through the 8118 proxy and verified |
-| `opencode`                   | `1.14.30`        | `1.17.18`        |                                                |
-| `agentsview`                 | `0.26.0`         | `0.37.5`         | upstream moved to kenn-io/agentsview           |
-| `genai-toolbox`              | `1.1.0`          | `1.6.0`          | external build artifacts as `mcp-toolbox`      |
-| `crush`                      | `0.64.0`         | `0.84.0`         | direct-download artifact refresh               |
-| `code`                       | `1.118.1`        | `1.128.0`        | direct-download artifact refresh               |
-| `code-server`                | `4.117.0`        | `4.127.0`        | direct-download artifact refresh               |
-| `victoria-metrics`           | `1.142.0`        | `1.147.0`        | VictoriaMetrics main package                   |
-| `victoria-metrics-cluster`   | `1.142.0`        | `1.147.0`        | VictoriaMetrics companion package              |
-| `vmutils`                    | `1.142.0`        | `1.147.0`        | VictoriaMetrics companion package              |
-| `victoria-logs`              | `1.50.0`         | `1.51.0`         | VictoriaLogs main package                      |
-| `vlagent`                    | `1.50.0`         | `1.51.0`         | VictoriaLogs companion package                 |
-| `vlogscli`                   | `1.50.0`         | `1.51.0`         | VictoriaLogs companion package                 |
-| `victoria-traces`            | `0.8.2`          | `0.9.4`          |                                                |
-| `prometheus`                 | `3.11.3`         | `3.13.1`         |                                                |
-| `alertmanager`               | `0.32.1`         | `0.33.1`         |                                                |
-| `pushgateway`                | `1.11.2`         | `1.11.3`         |                                                |
-| `node_exporter`              | `1.11.1`         | `1.11.1`         | tarball cache; version metadata fix            |
-| `redis_exporter`             | `1.82.0`         | `1.86.0`         |                                                |
-| `mongodb_exporter`           | `0.50.0`         | `0.51.0`         |                                                |
-| `grafana`                    | `13.0.1`         | `13.1.0`         | direct-download artifact refresh               |
-| `grafana-victorialogs-ds`    | `0.26.3`         | `0.29.0`         |                                                |
-| `grafana-victoriametrics-ds` | `0.24.0`         | `0.25.2`         |                                                |
-| `vector`                     | `0.55.0`         | `0.56.0`         |                                                |
-| `minio`                      | `20260417000000` | `20260618000000` |                                                |
-| `seaweedfs`                  | `4.22`           | `4.39`           |                                                |
-| `rustfs`                     | `1.0.0-b1`       | `1.0.0-b8`       | prerelease line                                |
-| `duckdb`                     | `1.5.2`          | `1.5.4`          |                                                |
-| `kafka`                      | `4.2.0`          | `4.3.1`          |                                                |
-| `etcd`                       | `3.6.10`         | `3.6.13`         |                                                |
-| `restic`                     | `0.18.1`         | `0.19.1`         |                                                |
-| `juicefs`                    | `1.3.1`          | `1.4.0`          |                                                |
-| `tigerbeetle`                | `0.17.2`         | `0.17.9`         |                                                |
-| `tigerfs`                    | `0.6.0`          | `0.7.0`          |                                                |
-| `caddy`                      | `2.11.2`         | `2.11.4`         |                                                |
-| `cloudflared`                | `2026.2.0`       | `2026.7.1`       | direct-download artifact refresh               |
-| `headscale`                  | `0.28.0`         | `0.29.2`         |                                                |
-| `v2ray`                      | `5.48.0`         | `5.51.2`         |                                                |
-| `nodejs`                     | `24.15.0`        | `24.18.0`        | kept on the 24.x line                          |
-| `golang`                     | `1.26.2`         | `1.26.5`         |                                                |
-| `hugo`                       | `0.161.1`        | `0.164.0`        |                                                |
-| `uv`                         | `0.11.8`         | `0.11.28`        |                                                |
-| `rclone`                     | `1.73.5`         | `1.74.4`         | direct-download artifact refresh               |
-| `asciinema`                  | `3.2.0`          | `3.2.1`          |                                                |
-| `stalwart`                   | `0.16.2`         | `0.16.12`        |                                                |
-| `maddy`                      | `0.9.3`          | `0.9.5`          |                                                |
-| `dblab`                      | `0.38.0`         | `0.43.0`         |                                                |
-| `npgsqlrest`                 | `3.12.0`         | `3.20.0`         |                                                |
-| `postgrest`                  | `14.10`          | `14.14`          |                                                |
-| `sabiql`                     | `1.11.1`         | `1.14.0`         |                                                |
-| `pev2`                       | `1.21.0`         | `1.22.0`         |                                                |
-| `rainfrog`                   | `0.3.18`         | `0.3.19`         |                                                |
+| Package                      | Old Version      | New Version      | Notes                               |
+|------------------------------|------------------|------------------|-------------------------------------|
+| `pig`                        | `1.4.1`          | `1.5.1`          |                                     |
+| `pg_exporter`                | `1.2.2`          | `1.3.0`          |                                     |
+| `pgschema`                   | `1.9.0`          | `1.12.0`         |                                     |
+| `pgstream`                   | `1.0.1`          | `1.1.1`          |                                     |
+| `pg-hardstorage`             | -                | `1.0.8`          |                                     |
+| `codex`                      | `0.125.0`        | `0.144.1`        |                                     |
+| `claude`                     | `2.1.123`        | `2.1.206`        |                                     |
+| `opencode`                   | `1.14.30`        | `1.17.18`        |                                     |
+| `agentsview`                 | `0.26.0`         | `0.37.5`         |                                     |
+| `genai-toolbox`              | `1.1.0`          | `1.6.0`          | packaged as `mcp-toolbox`           |
+| `crush`                      | `0.64.0`         | `0.84.0`         |                                     |
+| `code`                       | `1.118.1`        | `1.128.0`        |                                     |
+| `code-server`                | `4.117.0`        | `4.127.0`        |                                     |
+| `victoria-metrics`           | `1.142.0`        | `1.147.0`        |                                     |
+| `victoria-metrics-cluster`   | `1.142.0`        | `1.147.0`        |                                     |
+| `vmutils`                    | `1.142.0`        | `1.147.0`        |                                     |
+| `victoria-logs`              | `1.50.0`         | `1.51.0`         |                                     |
+| `vlagent`                    | `1.50.0`         | `1.51.0`         |                                     |
+| `vlogscli`                   | `1.50.0`         | `1.51.0`         |                                     |
+| `victoria-traces`            | `0.8.2`          | `0.9.4`          |                                     |
+| `prometheus`                 | `3.11.3`         | `3.13.1`         |                                     |
+| `alertmanager`               | `0.32.1`         | `0.33.1`         |                                     |
+| `pushgateway`                | `1.11.2`         | `1.11.3`         |                                     |
+| `node_exporter`              | `1.11.1`         | `1.11.1`         | tarball cache; version metadata fix |
+| `redis_exporter`             | `1.82.0`         | `1.86.0`         |                                     |
+| `mongodb_exporter`           | `0.50.0`         | `0.51.0`         |                                     |
+| `grafana`                    | `13.0.1`         | `13.1.0`         |                                     |
+| `grafana-victorialogs-ds`    | `0.26.3`         | `0.29.0`         |                                     |
+| `grafana-victoriametrics-ds` | `0.24.0`         | `0.25.2`         |                                     |
+| `vector`                     | `0.55.0`         | `0.56.0`         |                                     |
+| `minio`                      | `20260417000000` | `20260618000000` |                                     |
+| `seaweedfs`                  | `4.22`           | `4.39`           |                                     |
+| `rustfs`                     | `1.0.0-b1`       | `1.0.0-b8`       | prerelease line                     |
+| `duckdb`                     | `1.5.2`          | `1.5.4`          |                                     |
+| `kafka`                      | `4.2.0`          | `4.3.1`          |                                     |
+| `etcd`                       | `3.6.10`         | `3.6.13`         |                                     |
+| `restic`                     | `0.18.1`         | `0.19.1`         |                                     |
+| `juicefs`                    | `1.3.1`          | `1.4.0`          |                                     |
+| `tigerbeetle`                | `0.17.2`         | `0.17.9`         |                                     |
+| `tigerfs`                    | `0.6.0`          | `0.7.0`          |                                     |
+| `caddy`                      | `2.11.2`         | `2.11.4`         |                                     |
+| `cloudflared`                | `2026.2.0`       | `2026.7.1`       |                                     |
+| `headscale`                  | `0.28.0`         | `0.29.2`         |                                     |
+| `v2ray`                      | `5.48.0`         | `5.51.2`         |                                     |
+| `nodejs`                     | `24.15.0`        | `24.18.0`        |                                     |
+| `golang`                     | `1.26.2`         | `1.26.5`         |                                     |
+| `hugo`                       | `0.161.1`        | `0.164.0`        |                                     |
+| `uv`                         | `0.11.8`         | `0.11.28`        |                                     |
+| `rclone`                     | `1.73.5`         | `1.74.4`         |                                     |
+| `asciinema`                  | `3.2.0`          | `3.2.1`          |                                     |
+| `stalwart`                   | `0.16.2`         | `0.16.12`        |                                     |
+| `maddy`                      | `0.9.3`          | `0.9.5`          |                                     |
+| `dblab`                      | `0.38.0`         | `0.43.0`         |                                     |
+| `npgsqlrest`                 | `3.12.0`         | `3.20.0`         |                                     |
+| `postgrest`                  | `14.10`          | `14.14`          |                                     |
+| `sabiql`                     | `1.11.1`         | `1.14.0`         |                                     |
+| `pev2`                       | `1.21.0`         | `1.22.0`         |                                     |
+| `rainfrog`                   | `0.3.18`         | `0.3.19`         |                                     |
 {.stretch-last}
 
 **Checksums**
@@ -417,7 +424,7 @@ d092c48ee55116ed5e2c99a3d909ccdd  pigsty-pkg-v4.4.0.u24.aarch64.tgz
 | `pg_exporter`                | 1.2.1          | 1.2.2          | Direct-link metadata update                                  |
 | `pgflo`                      | 0.0.15         | -              | Removed                                                      |
 | `pgschema`                   | 1.7.4          | 1.9.0          |                                                              |
-| `pig`                        | 1.3.2          | 1.4.2          | Metadata only                                                |
+| `pig`                        | 1.3.2          | 1.4.1          | Metadata only                                                |
 | `postgrest`                  | 14.7           | 14.10          |                                                              |
 | `prometheus`                 | 3.10.0         | 3.11.3         |                                                              |
 | `rainfrog`                   | 0.3.17         | 0.3.18         |                                                              |

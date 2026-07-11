@@ -165,6 +165,12 @@ However, single-node deployment still has significant advantages over the offici
 Pigsty's Supabase template does not start the upstream Compose `db` or `supavisor` containers, and does not use Supabase's bundled connection pooler.
 Stateless containers connect directly to the PostgreSQL service managed by Pigsty; the single-node template uses service port `5436` by default, which always routes to the current primary.
 
+Logflare / Analytics in the template no longer writes to `postgres._analytics` in the application database. Instead, it uses the separate `_supabase` database and its `_analytics` schema.
+This prevents internal scheduling tables such as `oban_jobs` and `oban_peers` from being created in the project database's `public` schema and triggering Supabase Advisor RLS warnings. `LOGFLARE_DB` and `LOGFLARE_SCHEMA` control these locations.
+
+The Query Performance page in Supabase Studio accesses `pg_stat_statements` with a `public, extensions` search path.
+Pigsty keeps the `pg_stat_statements` extension objects in the `monitor` schema for compatibility with `pg_exporter` and existing monitoring dashboards. The template creates a compatibility view and functions in the `extensions` schema for Studio.
+
 If you only have one server or choose to self-host on cloud servers, Pigsty recommends using external S3 instead of local MinIO for object storage to hold PostgreSQL backups and Supabase Storage.
 This deployment provides a minimum safety net RTO (hour-level recovery time) / RPO (MB-level data loss) disaster recovery in single-node conditions.
 
@@ -202,18 +208,20 @@ These are Pigsty component passwords. Strongly recommended to set before install
 
 Besides Pigsty component passwords, you need to [change Supabase keys](https://supabase.com/docs/guides/self-hosting/docker#securing-your-services), including:
 
-- [`JWT_SECRET`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L132): JWT signing key, at least 32 characters
-- [`ANON_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L133): Anonymous user JWT credential
-- [`SERVICE_ROLE_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L134): Service role JWT credential
-- [`SUPABASE_PUBLISHABLE_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L135) / [`SUPABASE_SECRET_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L136): New opaque API keys, can be left empty if not enabled
-- [`JWT_KEYS`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L137) / [`JWT_JWKS`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L138): Asymmetric JWT keys and JWKS, can be left empty if not enabled
-- [`ANON_KEY_ASYMMETRIC`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L139) / [`SERVICE_ROLE_KEY_ASYMMETRIC`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L140): Asymmetric signing JWTs, can be left empty if not enabled
-- [`PG_META_CRYPTO_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L141): PostgreSQL Meta service encryption key, at least 32 characters
-- [`SECRET_KEY_BASE`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L142): Random secret used by Realtime
-- [`DASHBOARD_USERNAME`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L144): Supabase Studio web UI default username, default `supabase`
-- [`DASHBOARD_PASSWORD`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L145): Supabase Studio web UI default password, default `pigsty`
-- [`LOGFLARE_PUBLIC_ACCESS_TOKEN`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L148): Logflare public access token, 32-64 random characters
-- [`LOGFLARE_PRIVATE_ACCESS_TOKEN`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L149): Logflare private access token, 32-64 random characters
+- [`JWT_SECRET`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L140): JWT signing key, at least 32 characters
+- [`ANON_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L141): Anonymous user JWT credential
+- [`SERVICE_ROLE_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L142): Service role JWT credential
+- [`SUPABASE_PUBLISHABLE_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L143) / [`SUPABASE_SECRET_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L144): New opaque API keys, can be left empty if not enabled
+- [`JWT_KEYS`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L145) / [`JWT_JWKS`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L146): Asymmetric JWT keys and JWKS, can be left empty if not enabled
+- [`ANON_KEY_ASYMMETRIC`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L147) / [`SERVICE_ROLE_KEY_ASYMMETRIC`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L148): Asymmetric signing JWTs, can be left empty if not enabled
+- [`PG_META_CRYPTO_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L149): PostgreSQL Meta service encryption key, at least 32 characters
+- [`SECRET_KEY_BASE`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L150): Random secret used by Realtime
+- [`REALTIME_DB_ENC_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L151): Realtime database encryption key
+- [`DASHBOARD_USERNAME`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L153): Supabase Studio web UI default username, default `supabase`
+- [`DASHBOARD_PASSWORD`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L154): Supabase Studio web UI default password, default `pigsty`
+- [`LOGFLARE_PUBLIC_ACCESS_TOKEN`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L157): Logflare public access token, 32-64 random characters
+- [`LOGFLARE_PRIVATE_ACCESS_TOKEN`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L158): Logflare private access token, 32-64 random characters
+- [`LOGFLARE_DB`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L159) / [`LOGFLARE_SCHEMA`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L160): Internal database and schema used by Logflare / Analytics, defaulting to `_supabase` / `_analytics`
 
 Please follow the [Supabase tutorial: Securing your services](https://supabase.com/docs/guides/self-hosting/docker#generate-api-keys):
 
@@ -222,9 +230,11 @@ Please follow the [Supabase tutorial: Securing your services](https://supabase.c
 - Use the tutorial tools to generate a `SERVICE_ROLE_KEY` — this is the higher-privilege service role credential.
 - If you use newer opaque API keys or asymmetric JWTs, also generate and fill `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`, `JWT_KEYS`, `JWT_JWKS`, and the corresponding asymmetric `ANON_KEY` / `SERVICE_ROLE_KEY`.
 - Specify a random string of at least 32 characters for `PG_META_CRYPTO_KEY` to encrypt Studio UI and meta service interactions.
-- If using different PostgreSQL business user passwords, modify [`POSTGRES_PASSWORD`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L155) accordingly.
-- If your object storage uses different passwords, modify [`S3_ACCESS_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L166) and [`S3_SECRET_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L167) accordingly.
-- If Edge Functions are exposed to untrusted clients, set [`FUNCTIONS_VERIFY_JWT`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L180) to `true` as needed.
+- If using different PostgreSQL business user passwords, modify [`POSTGRES_PASSWORD`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L166) accordingly.
+- If your object storage uses different passwords, modify [`S3_ACCESS_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L177) and [`S3_SECRET_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L178) accordingly.
+- If Edge Functions are exposed to untrusted clients, set [`FUNCTIONS_VERIFY_JWT`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L191) to `true` as needed.
+- [`API_EXTERNAL_URL`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L170) should now be the external Auth service URL, retaining the `/auth/v1` suffix, for example `https://supa.pigsty.io/auth/v1`; keep `SITE_URL` and `SUPABASE_PUBLIC_URL` at the site root URL.
+- The current template defaults [`PGRST_DB_SCHEMAS`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L187) to `public,graphql_public`; the `storage` schema is used by the Storage API and is no longer exposed through PostgREST by default.
 
 After modifying Supabase credentials, restart Docker Compose to apply:
 
@@ -277,7 +287,7 @@ all:
           supabase:                                         # Supabase app definition
             conf:                                           # Override /opt/supabase/.env
               SITE_URL: https://supa.pigsty.io              # <------- Change to your external domain name
-              API_EXTERNAL_URL: https://supa.pigsty.io      # <------- Otherwise the storage API may not work!
+              API_EXTERNAL_URL: https://supa.pigsty.io/auth/v1 # <--- Auth external URL; keep /auth/v1
               SUPABASE_PUBLIC_URL: https://supa.pigsty.io   # <------- Don't forget to set this in infra_portal!
 ```
 

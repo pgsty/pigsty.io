@@ -182,8 +182,9 @@ These options apply to all `pig pg` subcommands:
 | `--version` | `-v` | auto-detect | PostgreSQL major version |
 | `--data` | `-D` | `/pg/data` | Data directory path |
 | `--dbsu` | `-U` | `postgres` | Database superuser (or `$PIG_DBSU` env) |
-| `--systemd` | `-S` | false | Use systemctl instead of pg_ctl |
 {.full-width}
+
+Systemd service operations use the dedicated `pig pg svc ...` commands; the local `pg_ctl` primitives do not have a global `--systemd` / `-S` switch.
 
 **Version Detection Logic:**
 
@@ -226,7 +227,7 @@ pig pg init -- --waldir=/wal      # Pass extra args to initdb
 
 ### pg start
 
-Start PostgreSQL server.
+Start PostgreSQL with `pg_ctl start`. For a Patroni-managed instance, prefer `pig pt start` so PostgreSQL starts under Patroni. For a systemd-managed PostgreSQL service, use `pig pg svc start`.
 
 ```bash
 pig pg start                      # Start with defaults
@@ -234,7 +235,6 @@ pig pg start -D /data/pg18        # Specify data directory
 pig pg start -l /pg/log/pg.log    # Redirect output to log file
 pig pg start -O "-p 5433"         # Pass options to postgres
 pig pg start -o json              # Structured JSON output
-pig pg start -S                   # Use systemctl to start
 ```
 
 **Options:**
@@ -252,13 +252,14 @@ If PostgreSQL is already running, the command prints the existing postmaster PID
 
 ### pg stop
 
-Stop PostgreSQL server.
+Stop PostgreSQL with `pg_ctl stop`.
+
+On a Patroni-managed instance, stopping PostgreSQL directly can make Patroni restart it or initiate failover. Use `pig pt stop` or `pig pt svc stop` to stop Patroni and PostgreSQL together.
 
 ```bash
 pig pg stop                       # Fast shutdown (default)
 pig pg stop -m smart              # Wait for clients to disconnect
 pig pg stop -m immediate          # Immediate shutdown
-pig pg stop -S                    # Use systemctl to stop
 pig pg stop --plan                # Preview stop plan
 ```
 
@@ -290,7 +291,6 @@ Restart PostgreSQL server.
 pig pg restart                    # Fast restart
 pig pg restart -m immediate       # Immediate restart
 pig pg restart -O "-p 5433"       # Restart with new options
-pig pg restart -S                 # Use systemctl to restart
 pig pg restart --plan             # Preview restart plan
 ```
 
@@ -304,7 +304,6 @@ Reload PostgreSQL configuration. Sends SIGHUP signal to server.
 ```bash
 pig pg reload                     # Reload configuration
 pig pg reload -D /data/pg18       # Specify data directory
-pig pg reload -S                  # Use systemctl reload
 ```
 
 
@@ -403,6 +402,8 @@ pig pg psql -f script.sql         # Execute SQL script file
 | `--file` | `-f` | Execute SQL script file |
 {.full-width}
 
+When the global `-D/--data` option is specified, `pg psql` reads `postmaster.pid` from that directory as the database superuser and connects with the recorded port and Unix socket directory. If the postmaster information cannot be read or parsed, the command fails instead of silently connecting to the default instance.
+
 
 ### pg ps
 
@@ -498,7 +499,7 @@ pig pg vacuum                     # Vacuum current database
 pig pg vacuum mydb                # Vacuum specific database
 pig pg vacuum -a                  # Vacuum all databases
 pig pg vacuum mydb -t mytable     # Vacuum specific table
-pig pg vacuum mydb -n myschema    # Vacuum tables in schema
+pig pg vacuum mydb --schema myschema  # Vacuum tables in schema
 pig pg vacuum mydb --full         # VACUUM FULL (requires exclusive lock)
 ```
 
@@ -507,7 +508,7 @@ pig pg vacuum mydb --full         # VACUUM FULL (requires exclusive lock)
 | Option | Short | Description |
 |:---|:---|:---|
 | `--all` | `-a` | Process all databases |
-| `--schema` | `-n` | Specify schema |
+| `--schema` | | Specify schema |
 | `--table` | `-t` | Specify table |
 | `--verbose` | `-V` | Verbose output |
 | `--full` | `-F` | VACUUM FULL (requires exclusive lock) |
@@ -551,7 +552,7 @@ Online table repacking. Requires `pg_repack` extension.
 pig pg repack mydb                # Repack all tables in database
 pig pg repack -a                  # Repack all databases
 pig pg repack mydb -t mytable     # Repack specific table
-pig pg repack mydb -n myschema    # Repack tables in schema
+pig pg repack mydb --schema myschema  # Repack tables in schema
 pig pg repack mydb -j 4           # Use 4 parallel jobs
 pig pg repack mydb --plan         # Show tables to be repacked
 ```
@@ -561,11 +562,11 @@ pig pg repack mydb --plan         # Show tables to be repacked
 | Option | Short | Description |
 |:---|:---|:---|
 | `--all` | `-a` | Process all databases |
-| `--schema` | `-n` | Specify schema |
+| `--schema` | | Specify schema |
 | `--table` | `-t` | Specify table |
 | `--verbose` | `-V` | Verbose output |
 | `--jobs` | `-j` | Number of parallel jobs (default 1) |
-| `--plan` | `-N` | Show tables to be repacked |
+| `--plan` | | Show tables to be repacked |
 {.full-width}
 
 
@@ -654,7 +655,7 @@ pig pg fork init dev --plan           # Show execution plan only
 
 | Command | Common Options | Description |
 |:--------|:---------------|:------------|
-| `pig pg fork list` | | List managed forks |
+| `pig pg fork list` | `-o json/yaml` | List managed forks with optional structured output |
 | `pig pg fork start <name> or --dst-data <dir>` | `--dst-data`, `--dst-port`, `-t/--timeout`, `--plan` | Start existing fork |
 | `pig pg fork stop <name> or --dst-data <dir>` | `--dst-data`, `-m/--mode`, `-t/--timeout`, `--plan` | Stop existing fork |
 | `pig pg fork rm <name> or --dst-data <dir>` | `--dst-data`, `--stop`, `-m/--mode`, `-t/--timeout`, `-f/--force`, `-y/--yes`, `--plan` | Remove fork; running forks require `--stop` |
@@ -670,7 +671,9 @@ pig pg fork init dev --plan           # Show execution plan only
 
 **List Forks:**
 
-`pig pg fork list` scans `/pg/data-*` and reads `fork.json`. Text status only distinguishes `forked` and `orphan`; it does not check live process state.
+`pig pg fork list` scans `/pg/data-*`, reads `fork.json`, and refreshes each managed fork's runtime state. Text output shows `NAME`, `PORT`, `STATE`, `PID`, `AGE`, `SOURCE`, `COPY`, and `DATA`; state is reported as `running`, `stopped`, or `orphan`.
+
+JSON and YAML output return the full machine-readable fork objects, including source and target endpoints, copy and backup metadata, management commands, and Pig build metadata.
 
 **Structured Output:**
 

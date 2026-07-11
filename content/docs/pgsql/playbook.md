@@ -558,7 +558,7 @@ The [`pgsql-pitr.yml`](https://github.com/pgsty/pigsty/blob/main/pgsql-pitr.yml)
 ```yaml
 pg_pitr:                           # Define PITR task
   cluster: "pg-meta"               # Source cluster name (for restoring from another cluster's backup)
-  type: latest                     # Recovery target type: time, xid, name, lsn, immediate, latest
+  type: default                    # Recovery target type: default, time, xid, name, lsn, immediate
   time: "2025-01-01 10:00:00+00"   # Recovery target: point in time
   name: "some_restore_point"       # Recovery target: named restore point
   xid: "100000"                    # Recovery target: transaction ID
@@ -567,7 +567,7 @@ pg_pitr:                           # Define PITR task
   timeline: latest                 # Target timeline, can be integer, default: latest
   exclusive: false                 # Exclude target point, default: false
   action: pause                    # Post-recovery action: pause, promote, shutdown
-  archive: true                    # Keep archive settings, default: true
+  archive: true                    # Keep archive settings, default: true; set false for exploratory recovery
   backup: false                    # Backup existing data to /pg/data-backup before restore? default: false
   db_include: []                   # Include only these databases
   db_exclude: []                   # Exclude these databases
@@ -608,7 +608,7 @@ This playbook contains the following subtasks:
 
 | Type        | Description                                         | Example                                        |
 |-------------|-----------------------------------------------------|------------------------------------------------|
-| `latest`    | Recover to end of WAL archive stream (latest state) | `{"pg_pitr": {}}`                              |
+| `default`   | Recover to end of WAL archive stream (latest state) | `{"pg_pitr": {}}`                              |
 | `time`      | Recover to specific point in time                   | `{"pg_pitr": {"time": "2025-07-13 10:00:00"}}` |
 | `xid`       | Recover to specific transaction ID                  | `{"pg_pitr": {"xid": "250000"}}`               |
 | `name`      | Recover to named restore point                      | `{"pg_pitr": {"name": "before_ddl"}}`          |
