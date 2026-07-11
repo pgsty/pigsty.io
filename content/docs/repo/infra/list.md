@@ -120,7 +120,7 @@ PostgreSQL related tools, DBMS, and other utilities
 | [`duckdb`](https://github.com/duckdb/duckdb)                | `1.5.4`   | [MIT](https://github.com/duckdb/duckdb/blob/main/LICENSE)                          | Embedded OLAP                           |
 | [`ferretdb`](https://github.com/FerretDB/FerretDB)          | `2.7.0`   | [Apache-2.0](https://github.com/FerretDB/FerretDB/blob/main/LICENSE)               | MongoDB over PG                         |
 | [`tigerbeetle`](https://github.com/tigerbeetle/tigerbeetle) | `0.17.9` | [Apache-2.0](https://github.com/tigerbeetle/tigerbeetle/blob/main/LICENSE)         | Financial OLTP                          |
-| [`ivorysql`](https://github.com/IvorySQL/IvorySQL)          | `5.3`     | [Apache-2.0](https://github.com/IvorySQL/IvorySQL/blob/IVORY_REL_5_STABLE/LICENSE) | Oracle compatible PG 18.1               |
+| [`ivorysql`](https://github.com/IvorySQL/IvorySQL)          | `5.4`     | [Apache-2.0](https://github.com/IvorySQL/IvorySQL/blob/IVORY_REL_5_STABLE/LICENSE) | Oracle compatible PG 18.4               |
 {.stretch-last}
 
 

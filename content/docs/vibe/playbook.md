@@ -7,7 +7,7 @@ module: [VIBE]
 categories: [Task]
 ---
 
-VIBE module provides `vibe.yml` playbook to deploy Code-Server, JupyterLab, Node.js and Claude Code config.
+VIBE provides the `vibe.yml` playbook to deploy Code-Server, JupyterLab, Node.js, Claude Code, and Codex CLI.
 
 > `vibe.yml` includes only `node_id` and `vibe` roles, it does not include `node/infra`.
 > Run [`deploy.yml`](/docs/deploy/) first, or explicitly run [`node.yml`](/docs/node/playbook) and [`infra.yml`](/docs/infra/playbook).
@@ -45,19 +45,23 @@ vibe
 │   ├── jupyter_dir
 │   ├── jupyter_config
 │   └── jupyter_launch
-├── nodejs            # Node.js runtime
+├── nodejs            # Node.js runtime and additional npm packages
 │   ├── nodejs_install
 │   ├── nodejs_config
 │   └── nodejs_pkg
-└── claude            # Claude Code config
+├── codex             # Codex CLI
+│   └── codex_install
+└── claude            # Claude Code
+    ├── claude_install
     └── claude_config
 ```
 
 Notes:
 
 - `jupyter_install` uses `uv pip`, it does not create venv
-- `claude_config` only writes `~/.claude` config
-- Claude CLI is installed by `nodejs_pkg` via `npm_packages` (includes `@anthropic-ai/claude-code` by default)
+- `nodejs_pkg` installs only the additional packages declared in `npm_packages`; the list is empty by default
+- `claude_install` installs Claude CLI with `claude_package`, while `claude_config` writes the `~/.claude` configuration
+- `codex_install` installs `@openai/codex` and does not manage Codex configuration
 
 --------
 
@@ -76,6 +80,7 @@ Component-level:
 ./vibe.yml -l <host> -t jupyter
 ./vibe.yml -l <host> -t nodejs
 ./vibe.yml -l <host> -t claude
+./vibe.yml -l <host> -t codex
 ```
 
 Config updates:
@@ -93,6 +98,7 @@ Disable components:
 ./vibe.yml -l <host> -e jupyter_enabled=false
 ./vibe.yml -l <host> -e nodejs_enabled=false
 ./vibe.yml -l <host> -e claude_enabled=false
+./vibe.yml -l <host> -e codex_enabled=false
 ```
 
 --------

@@ -117,7 +117,7 @@ The [NODE](/docs/node) module tunes target nodes into the desired state and inte
 | [`vip_vrid`](#vip_vrid)                   |   `int`    |  `C`  | integer 1-254, should be unique in same VLAN          |
 | [`vip_role`](#vip_role)                   |   `enum`   |  `I`  | optional, master/backup, backup by default            |
 | [`vip_preempt`](#vip_preempt)             |   `bool`   | `C/I` | optional, true/false, enable vip preemption           |
-| [`vip_interface`](#vip_interface)         |  `string`  | `C/I` | node vip network interface, `eth0` by default         |
+| [`vip_interface`](#vip_interface)         |  `string`  | `C/I` | node vip network interface, `auto` by default         |
 | [`vip_dns_suffix`](#vip_dns_suffix)       |  `string`  |  `C`  | node vip dns name suffix, empty string by default     |
 | [`vip_auth_pass`](#vip_auth_pass)         | `password` |  `C`  | vrrp authentication password, auto-generated if empty |
 | [`vip_exporter_port`](#vip_exporter_port) |   `port`   |  `C`  | keepalived exporter listen port, 9650 by default      |
@@ -1071,7 +1071,7 @@ vip_enabled: false                # enable vip on this node cluster?
 # vip_vrid:            [IDENTITY] # required, integer, 1-254, should be unique among same VLAN
 vip_role: backup                  # optional, `master/backup`, backup by default, use as init role
 vip_preempt: false                # optional, `true/false`, false by default, enable vip preemption
-vip_interface: eth0               # node vip network interface to listen, `eth0` by default
+vip_interface: auto               # node vip network interface to listen, `auto` by default
 vip_dns_suffix: ''                # node vip dns name suffix, empty string by default
 vip_auth_pass: ''                 # vrrp auth password, empty to use `<cls>-<vrid>` as default
 vip_exporter_port: 9650           # keepalived exporter listen port, 9650 by default
@@ -1145,7 +1145,9 @@ Preemption means when a `backup` node has higher priority than the currently ali
 
 name: `vip_interface`, type: `string`, level: `C/I`
 
-Network interface for node VIP to listen on. Default is `eth0`.
+Network interface for the node VIP. The default is `auto`; Pigsty detects the interface associated with the node IP in the inventory.
+
+For non-standard routing, policy routing, or other unusual network environments where auto-detection is unsuitable, explicitly override the interface name at the instance or node level.
 
 You should use the same interface name as the node's primary IP address (the IP address you put in the inventory).
 
@@ -1415,7 +1417,7 @@ Vector is the log collection component used by Pigsty since v4. It collects logs
 
 * `PGSQL`: PostgreSQL-related logs, collection enabled only when node has [PGSQL](/docs/pgsql) module configured.
     * `postgres`: `/pg/log/postgres/*`
-    * `patroni`: `/pg/log/patroni.log`
+    * `patroni`: `/pg/log/patroni/patroni.log` (`job=patroni`)
     * `pgbouncer`: `/pg/log/pgbouncer/pgbouncer.log`
     * `pgbackrest`: `/pg/log/pgbackrest/*.log`
 

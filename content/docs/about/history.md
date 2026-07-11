@@ -60,7 +60,7 @@ We then decided to open-source Pigsty and began a series of technical sharing an
 
 In 2022, the Pigsty project received seed funding from Miracle Plus, initiated by Dr. Qi Lu, allowing me to work on this full-time.
 
-As an open-source project, Pigsty has developed quite well. In these years of full-time work, Pigsty's GitHub stars have grown from a few hundred to 4,600+; it made the HN front page, and growth began snowballing.
+As an open-source project, Pigsty has developed quite well. In these years of full-time work, Pigsty's GitHub stars grew from a few hundred to 5,213 as of 2026-07-11; it made the HN front page, and growth began snowballing.
 In November 2025, Pigsty won the **Magneto Award** at the PostgreSQL Ecosystem Conference. In 2026, Pigsty's subproject PGEXT.CLOUD was selected for a PGCon.Dev 2026 talk.
 Pigsty became the first Chinese open-source project to appear on the stage of this core PostgreSQL ecosystem conference.
 

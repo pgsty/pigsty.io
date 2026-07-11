@@ -51,7 +51,9 @@ These templates work out of the box and align with the `./configure -c ...` + `.
 
 ## Lightweight Compose Apps
 
-For apps like `bytebase`, `ferretdb`, `gitea`, `jupyter`, `kong`, `metabase`, `minio`, `nocodb`, `pgadmin`, `pgweb`, `postgrest`, `pg_exporter`, and `wiki`, you can also use the per-app Compose templates directly:
+For apps like `bytebase`, `gitea`, `jupyter`, `kong`, `metabase`, `minio`, `nocodb`, `pgadmin`, `pgweb`, `postgrest`, `pg_exporter`, and `wiki`, you can also use the per-app Compose templates directly.
+
+The FerretDB Compose template has been removed. Deploy it with the [`FERRET` module](/docs/ferret/) and the [`mongo` configuration template](/docs/conf/mongo/):
 
 ```bash
 cd ~/pigsty/app/<name>

@@ -178,5 +178,5 @@ SELECT create_reference_table('tenants');
 - **PostgreSQL Version**: Citus supports PG 14~18, this template defaults to PG18
 - **Distribution Column**: Choose wisely (typically tenant_id or timestamp), critical for performance
 - **Cross-shard Limits**: Foreign keys must include distribution column, some DDL restrictions
-- **Network**: Configure correct `pg_vip_interface` (default `eth1`)
+- **Network**: `pg_vip_interface` defaults to `auto`; specify an interface explicitly for unusual network environments
 - **Architecture**: Citus extension does not support ARM64

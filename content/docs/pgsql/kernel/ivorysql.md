@@ -15,9 +15,8 @@ categories: [Concept]
 
 ## Overview
 
-The IvorySQL kernel is supported in the Pigsty open-source version. Your server needs internet access to download relevant packages directly from IvorySQL's official repository.
-
-Please note that adding IvorySQL directly to Pigsty's default software repository will affect the installation of the native PostgreSQL kernel. Pigsty Professional Edition provides offline installation solutions including the IvorySQL kernel.
+The Pigsty PGSQL repository directly provides IvorySQL 5.4 packages compatible with PostgreSQL 18.4 across the currently supported EL, Debian, Ubuntu, and dual-architecture platforms.
+Online installation uses Pigsty's `pgsql` repository; the Professional Edition also provides offline delivery for the corresponding platforms.
 
 
 ![](/img/pigsty/ivory.jpg)
@@ -32,10 +31,11 @@ Pigsty's `ivorysql` package alias points to IvorySQL 5, compatible with PostgreS
 
 ## Installation
 
-If your environment has internet access, you can add the IvorySQL repository directly to the node using the following method, then execute the PGSQL playbook for installation:
+Install with Pigsty's built-in `ivory` configuration template:
 
 ```bash
-./node.yml -t node_repo -e '{"node_repo_modules":"local,node,pgsql,ivory"}'
+./configure -c ivory
+./deploy.yml
 ```
 
 

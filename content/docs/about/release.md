@@ -86,6 +86,7 @@ Released on **2026-07-10**. See the [GitHub release](https://github.com/pgsty/pi
 - **Safer operations with Pig 1.5.1:** New clone, fork, and PITR workflows arrive alongside automatic VIP discovery, Zstandard pgBackRest compression, and dedicated Patroni log collection.
 - **Security, applications, and tooling:** Secret handling and repository automation are hardened, with new app templates, a redesigned portal, and optional Codex support.
 - **Platform validation:** All 14 offline deployment tests pass across seven OS baselines on both `x86_64` and `aarch64`.
+- **Offline artifacts:** The Community Edition publishes six dual-architecture offline packages for Debian 13, EL 10, and Ubuntu 24.04 on GitHub. Prebuilt packages for the other validated baselines are available with the Professional Edition.
 
 **Upgrade Notes**
 
@@ -268,6 +269,8 @@ The release adds 21 extensions, updates the PostgreSQL 18.4 package graph, intro
 | `pev2`                       | `1.21.0`         | `1.22.0`         |                                     |
 | `rainfrog`                   | `0.3.18`         | `0.3.19`         |                                     |
 {.stretch-last}
+
+The MD5 list below covers all 14 validated artifacts. Six Community Edition artifacts are published on GitHub, while the remaining eight are delivered with the Professional Edition. GitHub records SHA-256 digests for the uploaded Community Edition artifacts.
 
 **Checksums**
 

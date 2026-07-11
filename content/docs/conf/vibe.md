@@ -1,12 +1,12 @@
 ---
 title: vibe
 weight: 260
-description: VIBE AI coding sandbox config template, integrating Code-Server, JupyterLab, Claude Code and JuiceFS web development environment
+description: VIBE AI coding sandbox config template, integrating Code-Server, JupyterLab, Claude Code, Codex CLI, and JuiceFS
 icon: fa-solid fa-laptop-code
 categories: [Reference]
 ---
 
-The `vibe` config template provides a ready-to-use **AI coding sandbox**, integrating Code-Server (Web VS Code), JupyterLab, Claude Code observability, JuiceFS distributed filesystem, and a feature-rich PostgreSQL database.
+The `vibe` config template provides a ready-to-use **AI coding sandbox**, integrating Code-Server (Web VS Code), JupyterLab, Claude Code observability, Codex CLI, JuiceFS distributed filesystem, and a feature-rich PostgreSQL database.
 
 
 --------
@@ -15,7 +15,7 @@ The `vibe` config template provides a ready-to-use **AI coding sandbox**, integr
 
 - Config Name: `vibe`
 - Node Count: Single node
-- Description: VIBE AI coding sandbox with Code-Server + JupyterLab + Claude Code + JuiceFS + PostgreSQL
+- Description: VIBE AI coding sandbox with Code-Server + JupyterLab + Claude Code + Codex CLI + JuiceFS + PostgreSQL
 - OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/)
@@ -49,6 +49,7 @@ The `vibe` template is an **AI-era Web coding sandbox**, enabling development, d
 | **Code-Server** | Web version of VS Code, full-featured code editor | `http://<ip>/code`    |
 | **JupyterLab**  | Interactive data science notebook, Python/SQL | `http://<ip>/jupyter` |
 | **Claude Code** | AI coding runtime and observability entrypoint (`claude_env` customizable) | Terminal / Dashboard |
+| **Codex CLI**   | OpenAI agentic coding CLI; VIBE installs it but does not manage its configuration | Terminal |
 | **JuiceFS**     | PostgreSQL-based distributed filesystem | Mount point `/fs`        |
 | **PostgreSQL 18** | Feature-rich database with `pg18-main` + categorized extension package groups | Port `5432` |
 
@@ -75,7 +76,7 @@ By default, the `meta` database enables `postgis`, `timescaledb`, and `vector`; 
 
 ## VIBE Module Components
 
-The VIBE module provides AI coding sandbox capability; `vibe.yml` explicitly enables Code-Server and Jupyter, and reserves Claude customization via `claude_env`.
+The VIBE module provides AI coding sandbox capability; `vibe.yml` explicitly enables Code-Server and Jupyter and installs Claude Code and Codex CLI by default.
 
 **Code-Server**: VS Code in browser
 
@@ -98,6 +99,11 @@ The VIBE module provides AI coding sandbox capability; `vibe.yml` explicitly ena
 - Uses module default behavior to bootstrap Claude runtime
 - Supports endpoint/API key overrides through `claude_env`
 - Provides `claude-code` dashboard for usage monitoring
+
+**Codex CLI**: AI coding assistant
+
+- Controlled by `codex_enabled`, which defaults to `true`
+- VIBE installs `@openai/codex` only; it does not write Codex configuration or connect Codex to the Claude Code dashboard
 
 
 --------
@@ -153,7 +159,7 @@ vi pigsty.yml
 # 5. Deploy JuiceFS filesystem
 ./juice.yml
 
-# 6. Deploy VIBE module (Code-Server, JupyterLab, Claude Code)
+# 6. Deploy VIBE module (Code-Server, JupyterLab, Claude Code, Codex CLI)
 ./vibe.yml
 ```
 

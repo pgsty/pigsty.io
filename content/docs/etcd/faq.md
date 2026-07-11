@@ -93,7 +93,7 @@ For custom etcd data: backup and restore after recovery.
 
 Simple answer: **don't fill up etcd**.
 
-Pigsty v2.6+ enables etcd auto-compaction and 16GB backend quota—usually fine.
+Pigsty enables etcd auto-compaction by default, with the current backend quota set to 8 GiB. This is usually sufficient, but actual usage should still be monitored.
 
 etcd's [data model](https://etcd.io/docs/v3.5/learning/data_model/) = each write generates new version.
 
@@ -104,7 +104,7 @@ Pigsty's default etcd config includes optimizations:
 ```yaml
 auto-compaction-mode: periodic      # periodic auto compaction
 auto-compaction-retention: "24h"    # retain 24 hours history
-quota-backend-bytes: 17179869184    # 16 GiB quota
+quota-backend-bytes: 8589934592     # 8 GiB quota
 ```
 
 More details: [etcd official maintenance guide](https://etcd.io/docs/v3.5/op-guide/maintenance/).

@@ -75,19 +75,31 @@ If using custom `infra_portal`, set `websocket: true`.
 
 ### CLI not found
 
-First check whether `nodejs_pkg` completed (`@anthropic-ai/claude-code` is installed by default):
+First check whether `claude_install` completed:
 
 ```bash
 which claude
 npm list -g --depth=0 | grep '@anthropic-ai/claude-code'
-./vibe.yml -l <host> -t nodejs_pkg
+./vibe.yml -l <host> -t claude_install
 ```
 
-If `nodejs_enabled` is disabled or `npm_packages` is overridden, install manually:
+If `claude_enabled` is disabled, install manually:
 
 ```bash
 npm install -g @anthropic-ai/claude-code
 ```
+
+Use `claude_package` to select a different npm package.
+
+### Codex CLI not found
+
+```bash
+which codex
+npm list -g --depth=0 | grep '@openai/codex'
+./vibe.yml -l <host> -t codex_install
+```
+
+Confirm that `codex_enabled: true`. VIBE installs Codex CLI only and does not generate Codex configuration.
 
 ### API key not set
 

@@ -8,7 +8,7 @@ weight: 5410
 The Pigsty PGSQL Repo is designed to work together with the official PostgreSQL Global Development Group ([PGDG](https://www.postgresql.org/download/linux/)) repo.
 Together, they can provide [531 PostgreSQL Extensions](/ext/) out-of-the-box.
 
-> Mirror synced at 2025-12-29 12:00:00
+> The PGDG mirror is continuously synchronized. Refer to each repository's `InRelease` or `repomd.xml` metadata for its actual state.
 
 
 ---------
@@ -35,7 +35,7 @@ Since 2025-05, PGDG has closed the rsync/ftp sync channel, which makes almost al
 
 Currently, Pigsty, Yandex, and Xtom are providing regular synced mirror service.
 
-The Pigsty PGDG mirror is a subset of the official PGDG repo, covering EL 7-10, Debian 11-13, Ubuntu 22.04 - 26.04, with x86_64 & arm64 and PG 14 - 19alpha.
+The Pigsty PGDG mirror is a subset of the official PGDG repo, covering EL 7-10, Debian 11-13, and Ubuntu 22.04 - 26.04 on x86_64 and arm64. The stable repository covers supported PostgreSQL 14 - 18 releases, while the `beta` module additionally provides PostgreSQL 19 Beta.
 
 {{% alert title="2025-11 Update Notice: Aliyun/Tsinghua TUNA Resumed" color="info" %}}
 Currently, the Aliyun/Tsinghua TUNA mirror sites have resumed PGDG repository synchronization.

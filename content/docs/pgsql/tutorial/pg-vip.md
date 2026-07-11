@@ -35,14 +35,14 @@ pg-test:
     # Enable L2 VIP
     pg_vip_enabled: true
     pg_vip_address: 10.10.10.3/24
-    pg_vip_interface: eth1
+    #pg_vip_interface: auto
 ```
 
 Beware that [`pg_vip_address`](/docs/pgsql/param#pg_vip_address) must be a valid IP address with subnet and available in the current L2 network.
 
-Beware that [`pg_vip_interface`](/docs/pgsql/param#pg_vip_interface) must be a valid network interface name and should be the same as the one using IPv4 address in the inventory.
+[`pg_vip_interface`](/docs/pgsql/param#pg_vip_interface) defaults to `auto`, in which case Pigsty detects the interface for each instance from the IPv4 address in the inventory.
 
-If the network interface name is different among cluster members, users should explicitly specify the `pg_vip_interface` parameter for each instance, for example:
+If auto-detection is unsuitable for non-standard or policy-routing environments, explicitly specify a valid interface name for each instance, for example:
 
 ```yaml
 pg-test:
@@ -58,7 +58,6 @@ pg-test:
     # Enable L2 VIP
     pg_vip_enabled: true
     pg_vip_address: 10.10.10.3/24
-    #pg_vip_interface: eth1
 ```
 
 To refresh the VIP configuration and restart the VIP-Manager, use the following command:

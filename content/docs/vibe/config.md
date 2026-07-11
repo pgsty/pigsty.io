@@ -1,7 +1,7 @@
 ---
 title: Configuration
 weight: 4810
-description: VIBE module configuration for Code-Server, JupyterLab, Node.js, and Claude Code.
+description: VIBE module configuration for Code-Server, JupyterLab, Node.js, Claude Code, and Codex CLI.
 icon: fas fa-sliders
 module: [VIBE]
 categories: [Reference]
@@ -18,7 +18,8 @@ VIBE supports enabling components on demand and exposes services via a unified w
 | Code-Server | `code_enabled` | Enabled | VS Code in browser |
 | JupyterLab | `jupyter_enabled` | Disabled | Notebook / terminal / editor |
 | Node.js | `nodejs_enabled` | Enabled | Node.js runtime and npm |
-| Claude Code | `claude_enabled` | Enabled | CLI config and observability |
+| Claude Code | `claude_enabled` | Enabled | CLI installation, config, and observability |
+| Codex CLI | `codex_enabled` | Enabled | CLI installation only; configuration is not managed |
 {.full-width}
 
 Note: module default is `jupyter_enabled: false`, while `conf/vibe.yml` explicitly sets it to `true`.
@@ -35,6 +36,7 @@ all:
           code_enabled: true
           jupyter_enabled: true
           claude_enabled: true
+          codex_enabled: true
 ```
 
 --------
@@ -109,31 +111,29 @@ uv venv /data/venv
 ```yaml
 nodejs_enabled: true
 nodejs_registry: ''
-npm_packages:
-  - '@anthropic-ai/claude-code'
-  - happy-coder
+npm_packages: []
 ```
 
 Notes:
 
 - When `nodejs_registry` is empty and `region=china`, default registry is `https://registry.npmmirror.com`
-- `npm_packages` are installed via `npm install -g` and available globally
-- `@anthropic-ai/claude-code` is installed by default, so manual Claude CLI install is usually unnecessary
+- `npm_packages` installs additional global npm packages and is empty by default
+- Claude Code and Codex CLI are installed by their own dedicated tasks
 
 --------
 
 ## Claude Code
 
-`claude` task only writes configuration (`claude_config`).
-By default, Claude CLI is installed by the `nodejs` task through `npm_packages` (including `@anthropic-ai/claude-code`).
+The `claude` task installs the CLI (`claude_install`) and writes its configuration (`claude_config`).
 
 ```yaml
 claude_enabled: true
+claude_package: '@anthropic-ai/claude-code'
 claude_env:
   ANTHROPIC_API_KEY: sk-ant-xxx
 ```
 
-If `nodejs_enabled` is disabled or `npm_packages` is emptied, install Claude CLI manually.
+When Claude or Codex is enabled, VIBE ensures that the Node.js runtime is installed. Override `claude_package` to use a different Claude npm package.
 
 Generated files:
 
@@ -141,6 +141,16 @@ Generated files:
 - `~/.claude/settings.json`
 
 `claude_env` is merged with default OpenTelemetry env vars, sending telemetry to VictoriaMetrics / VictoriaLogs.
+
+--------
+
+## Codex CLI
+
+```yaml
+codex_enabled: true
+```
+
+The `codex` task runs `npm install -g @openai/codex`. VIBE installs Codex CLI only; it does not write Codex configuration or connect it to VIBE's Claude Code observability.
 
 --------
 

@@ -122,8 +122,7 @@ systemctl restart jupyter
 
 ## Claude Code
 
-The `claude_config` subtask only writes config files.
-Claude CLI is installed globally by `nodejs_pkg` through `npm_packages` (which includes `@anthropic-ai/claude-code` by default).
+The `claude_install` subtask installs Claude CLI, while `claude_config` writes the configuration files.
 
 ```bash
 which claude
@@ -144,9 +143,23 @@ Update config:
 Reinstall/install Claude CLI:
 
 ```bash
-./vibe.yml -l <host> -t nodejs_pkg
+./vibe.yml -l <host> -t claude_install
 # or install manually
 npm install -g @anthropic-ai/claude-code
+```
+
+Override `claude_package` if you need a different npm package.
+
+--------
+
+## Codex CLI
+
+VIBE installs `@openai/codex` through `codex_install`, but does not manage Codex configuration:
+
+```bash
+which codex
+codex --version
+./vibe.yml -l <host> -t codex_install
 ```
 
 To configure for another user, run as that user or copy the files manually.

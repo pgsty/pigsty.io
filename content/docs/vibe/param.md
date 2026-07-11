@@ -1,19 +1,20 @@
 ---
 title: Parameters
 weight: 4820
-description: VIBE module parameters (16 total).
+description: VIBE module parameters (18 total).
 icon: fas fa-cog
 module: [VIBE]
 categories: [Reference]
 ---
 
-VIBE module has **16** parameters, grouped as:
+VIBE module has **18** parameters, grouped as:
 
 - Common
 - Code-Server
 - JupyterLab
 - Node.js
 - Claude Code
+- Codex CLI
 
 --------
 
@@ -34,9 +35,11 @@ VIBE module has **16** parameters, grouped as:
 | [`jupyter_venv`](#jupyter_venv) | `path` | `C` | `/data/venv` | Python venv path |
 | [`nodejs_enabled`](#nodejs_enabled) | `bool` | `C` | `true` | Enable Node.js |
 | [`nodejs_registry`](#nodejs_registry) | `url` | `C` | `''` | npm registry mirror |
-| [`npm_packages`](#npm_packages) | `string[]` | `C` | `['@anthropic-ai/claude-code','happy-coder']` | Global npm packages |
-| [`claude_enabled`](#claude_enabled) | `bool` | `C` | `true` | Enable Claude config |
+| [`npm_packages`](#npm_packages) | `string[]` | `C` | `[]` | Additional global npm packages |
+| [`claude_enabled`](#claude_enabled) | `bool` | `C` | `true` | Install and configure Claude Code |
+| [`claude_package`](#claude_package) | `string` | `C` | `@anthropic-ai/claude-code` | Claude Code npm package |
 | [`claude_env`](#claude_env) | `dict` | `C` | `{}` | Claude env vars |
+| [`codex_enabled`](#codex_enabled) | `bool` | `C` | `true` | Install Codex CLI |
 {.full-width}
 
 --------
@@ -62,10 +65,13 @@ jupyter_venv: /data/venv
 
 nodejs_enabled: true
 nodejs_registry: ''
-npm_packages: [ '@anthropic-ai/claude-code' , 'happy-coder' ]
+npm_packages: []
 
 claude_enabled: true
+claude_package: '@anthropic-ai/claude-code'
 claude_env: {}
+
+codex_enabled: true
 ```
 
 --------
@@ -140,8 +146,8 @@ npm registry mirror; when empty and `region=china`, defaults to `https://registr
 
 ### `npm_packages`
 
-Global npm packages, tagged `nodejs_pkg`.
-Defaults include `@anthropic-ai/claude-code` and `happy-coder`.
+Additional global npm packages, tagged `nodejs_pkg`; empty by default.
+Claude Code and Codex CLI are installed by their own dedicated tasks and do not need to be added here.
 
 --------
 
@@ -149,8 +155,11 @@ Defaults include `@anthropic-ai/claude-code` and `happy-coder`.
 
 ### `claude_enabled`
 
-Enable Claude Code config task (`claude_config`).
-Claude CLI is installed by `nodejs_pkg` based on `npm_packages` by default.
+Enable Claude Code installation and configuration. `claude_install` installs the CLI, while `claude_config` writes its configuration.
+
+### `claude_package`
+
+The npm package used for Claude Code; defaults to `@anthropic-ai/claude-code`.
 
 ### `claude_env`
 
@@ -159,8 +168,19 @@ Extra env vars merged into default OpenTelemetry config.
 Default env vars include:
 
 - `CLAUDE_CODE_ENABLE_TELEMETRY=1`
-- `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`
 - `OTEL_METRICS_EXPORTER=otlp`
 - `OTEL_LOGS_EXPORTER=otlp`
+- `OTEL_EXPORTER_OTLP_METRICS_PROTOCOL=http/protobuf`
+- `OTEL_EXPORTER_OTLP_LOGS_PROTOCOL=http/protobuf`
 - `OTEL_EXPORTER_OTLP_METRICS_ENDPOINT=http://127.0.0.1:8428/opentelemetry/v1/metrics`
 - `OTEL_EXPORTER_OTLP_LOGS_ENDPOINT=http://127.0.0.1:9428/insert/opentelemetry/v1/logs`
+- `OTEL_RESOURCE_ATTRIBUTES=ip=<inventory_hostname>,job=claude`
+
+--------
+
+## Codex CLI
+
+### `codex_enabled`
+
+Whether to install Codex CLI; defaults to `true`. When enabled, `codex_install` runs `npm install -g @openai/codex`.
+VIBE installs Codex CLI only; it does not manage Codex configuration or configure OpenTelemetry for it.

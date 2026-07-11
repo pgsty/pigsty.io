@@ -2,13 +2,13 @@
 title: "Module: VIBE"
 weight: 4800
 description: >
-  Deploy an AI coding sandbox with Pigsty: Code-Server, JupyterLab, Node.js, and Claude Code.
+  Deploy an AI coding sandbox with Pigsty: Code-Server, JupyterLab, Node.js, Claude Code, and Codex CLI.
 icon: fas fa-laptop-code
 module: [VIBE]
 categories: [Reference]
 ---
 
-The VIBE module provides a **browser-based dev environment** with Code-Server, JupyterLab, Node.js, and Claude Code,
+The VIBE module provides a **browser-based dev environment** with Code-Server, JupyterLab, Node.js, Claude Code, and Codex CLI,
 and can work with [`JUICE`](/docs/juice) shared storage and [`PGSQL`](/docs/pgsql) database capabilities.
 
 VIBE depends on [`NODE`](/docs/node) and [`INFRA`](/docs/infra):
@@ -26,6 +26,7 @@ VIBE depends on [`NODE`](/docs/node) and [`INFRA`](/docs/infra):
 | JupyterLab | Interactive notebooks | 8888 | `/jupyter/` |
 | Node.js | Runtime and npm | - | CLI |
 | Claude Code | CLI + observability config | - | CLI / Grafana |
+| Codex CLI | CLI installation; configuration is not managed | - | CLI |
 {.full-width}
 
 Notes:
@@ -58,7 +59,7 @@ Default entry points (via `infra_portal.home`):
 - **Unified workspace**: `vibe_data` as root for Code-Server and Jupyter
 - **Optional shared storage**: work with `JUICE` for multi-node sharing
 - **Observability**: Claude Code OpenTelemetry integrates with VictoriaMetrics/VictoriaLogs
-- **Composable**: enable Code/Jupyter/Node.js/Claude as needed
+- **Composable**: enable Code/Jupyter/Node.js/Claude/Codex as needed
 
 --------
 

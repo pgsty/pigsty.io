@@ -181,7 +181,7 @@ You can define multiple PGSQL clusters and further organize them into a horizont
 | [`pg_default_services`](#pg_default_services)         | `service[]` | `G/C` | postgres default service definition list, shared globally         |
 | [`pg_vip_enabled`](#pg_vip_enabled)                   |   `bool`    |  `C`  | enable L2 VIP for pgsql primary? disabled by default              |
 | [`pg_vip_address`](#pg_vip_address)                   |   `cidr4`   |  `C`  | vip address in `<ipv4>/<mask>` format, required if vip enabled    |
-| [`pg_vip_interface`](#pg_vip_interface)               |  `string`   | `C/I` | vip network interface to bindg, eth0 by default                   |
+| [`pg_vip_interface`](#pg_vip_interface)               |  `string`   | `C/I` | vip network interface to bind, `auto` by default                  |
 | [`pg_dns_suffix`](#pg_dns_suffix)                     |  `string`   |  `C`  | pgsql dns suffix, empty by default                                |
 | [`pg_dns_target`](#pg_dns_target)                     |   `enum`    |  `C`  | PG DNS resolves to: auto, primary, vip, none, or specific IP      |
 
@@ -2079,7 +2079,7 @@ pg_default_services:              # postgres default service definitions
   - { name: offline ,port: 5438 ,dest: postgres ,check: /replica   ,selector: "[? pg_role == `offline` || pg_offline_query ]" , backup: "[? pg_role == `replica` && !pg_offline_query]"}
 pg_vip_enabled: false             # enable a l2 vip for pgsql primary? false by default
 pg_vip_address: 127.0.0.1/24      # vip address in `<ipv4>/<mask>` format, require if vip is enabled
-pg_vip_interface: eth0            # vip network interface to listen, eth0 by default
+pg_vip_interface: auto            # vip network interface to listen, auto by default
 pg_dns_suffix: ''                 # pgsql dns suffix, '' by default
 pg_dns_target: auto               # auto, primary, vip, none, or ad hoc ip
 ```
@@ -2287,11 +2287,9 @@ Default value: `127.0.0.1/24`. This value consists of two parts: `ipv4` and `mas
 
 Parameter Name: `pg_vip_interface`, Type: `string`, Level: `C/I`
 
-VIP network interface to listen, `eth0` by default.
+VIP network interface to listen on, `auto` by default. Pigsty detects the interface associated with the instance IP in the inventory.
 
-It should be your node's primary network interface name, i.e., the IP address used in your inventory.
-
-If your nodes have multiple network interfaces with different names, you can override it in instance variables:
+For non-standard routing, policy routing, or other unusual network environments where auto-detection is unsuitable, explicitly override it in the instance variables:
 
 ```yaml
 pg-test:
