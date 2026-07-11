@@ -49,6 +49,7 @@ The `app/registry` template provides a one-click deployment solution for Docker 
 - Supports image caching and local storage
 
 **Key Features**:
+- Pins `registry:3.1.1` and `joxit/docker-registry-ui:2.6.0` by default
 - Acts as proxy cache for Docker Hub to accelerate image pulls
 - Caches images to local storage `/data/registry`
 - Provides Web UI to view cached images

@@ -1,6 +1,6 @@
 ---
 title: supabase
-weight: 510
+weight: 805
 description: Self-host Supabase using Pigsty-managed PostgreSQL, an open-source Firebase alternative
 icon: fa-solid fa-bolt
 categories: [Reference]
@@ -60,6 +60,7 @@ The `supabase` template provides a complete self-hosted Supabase solution, allow
 - Uses Pigsty-managed PostgreSQL instead of Supabase's built-in database container
 - Supports PostgreSQL high availability (can be expanded to three-node cluster)
 - Installs all Supabase-required extensions (pg_net, pgjwt, pg_graphql, vector, etc.)
+- Stores internal analytics data in the dedicated `_supabase` database and advances processing with the scheduled `supa-kick` task
 - Integrated MinIO object storage for file uploads and backups
 - HTTPS support with Let's Encrypt automatic certificates
 

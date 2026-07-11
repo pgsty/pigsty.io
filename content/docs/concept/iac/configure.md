@@ -30,13 +30,13 @@ This command will use the selected template as a base, detect the current node's
 
 ## Features
 
-The **`configure`** script performs the following adjustments based on environment and input, generating a `pigsty.yml` configuration file in the current directory.
+The **`configure`** script performs the following adjustments based on environment and input, generating `pigsty.yml` in the Pigsty directory by default.
 
 - Detects the current node IP address; if multiple IPs exist, prompts the user to input a **primary IP address** as the node's identity
 - Uses the IP address to replace the placeholder **`10.10.10.10`** in the configuration template and sets it as the [**`admin_ip`**](/docs/infra/param#admin_ip) parameter value
 - Detects the current region, setting [**`region`**](/docs/infra/param#region) to **`default`** (global default repos) or **`china`** (using Chinese mirror repos)
 - For micro instances (vCPU < 4), uses the **`tiny`** parameter template for [**`node_tune`**](/docs/node/param#node_tune) and [**`pg_conf`**](/docs/pgsql/param#pg_conf) to optimize resource usage
-- If **`-v`** PG major version is specified, sets [**`pg_version`**](/docs/pgsql/param#pg_version) and all PG alias parameters to the corresponding major version
+- If **`-v`** is specified, switches [**`pg_version`**](/docs/pgsql/param#pg_version) and `pg18-*` package-group aliases in the template to that major version; fixed-kernel templates `mssql`, `polar`, and `pg19` are excluded from this replacement
 - If **`-g`** is specified, replaces all default passwords with randomly generated strong passwords for enhanced security (**strongly recommended**)
 - When PG major version ≥ 17, prioritizes the built-in **`C.UTF-8`** locale, or the OS-supported **`C.UTF-8`**
 - Checks if the core dependency **`ansible`** for deployment is available in the current environment
@@ -59,12 +59,14 @@ The **`configure`** script performs the following adjustments based on environme
 ./configure -c slim               # Use minimal template (PGSQL + ETCD only)
 ./configure -c ha/full            # Use 4-node HA sandbox template
 ./configure -c ha/trio            # Use 3-node HA template
-./configure -c app/supa           # Use Supabase self-hosted template
+./configure -c supabase           # Use Supabase self-hosted template
+./configure -c app/immich         # Use Immich photo-management template
 
 # Specify PostgreSQL version
 ./configure -v 18                 # Use PostgreSQL 18
 ./configure -v 16                 # Use PostgreSQL 16
 ./configure -c rich -v 15         # rich template + PG 15
+./configure -c pg19               # Use the dedicated PostgreSQL 19 Beta template
 
 # Region and proxy
 ./configure -r china              # Use Chinese mirrors
@@ -94,7 +96,7 @@ The **`configure`** script performs the following adjustments based on environme
 ./configure
     [-c|--conf <template>]      # Configuration template name (meta|rich|slim|ha/full|...)
     [-i|--ip <ipaddr>]          # Specify primary IP address
-    [-v|--version <pgver>]      # PostgreSQL major version (14|15|16|17|18)
+    [-v|--version <pgver>]      # PostgreSQL major version (14|15|16|17|18|19)
     [-r|--region <region>]      # Upstream software repo region (default|china|europe)
     [-o|--output <file>]        # Output configuration file path (default: pigsty.yml)
     [-s|--skip]                 # Skip IP address detection and replacement
@@ -111,13 +113,13 @@ The **`configure`** script performs the following adjustments based on environme
 |:------------------------|:-----------------------------------------------------------------------------------------------------------|
 | `-c, --conf`            | Generate config from `conf/<template>.yml`, supports subdirectories like `ha/full`                         |
 | `-i, --ip`              | Replace placeholder `10.10.10.10` in config template with specified IP                                     |
-| `-v, --version`         | Specify PostgreSQL major version (14-18), keeps template default if not specified                          |
+| `-v, --version`         | Specify PostgreSQL major version (14-19); PG19 is Beta, so prefer the dedicated `pg19` template           |
 | `-r, --region`          | Set software repo mirror region: `default`, `china` (Chinese mirrors), `europe` (European)                 |
-| `-o, --output`          | Specify output file path, defaults to `pigsty.yml`                                                         |
-| `-s, --skip`            | Skip IP address detection and replacement, keep `10.10.10.10` placeholder in template                      |
+| `-o, --output`          | Output path, default `pigsty.yml`; relative paths use Pigsty home, absolute paths are used as given        |
+| `-s, --skip`            | Skip IP probing, target SSH/Sudo checks, and effective IP replacement; keep `10.10.10.10`                 |
 | `-x, --proxy`           | Write current environment proxy variables (`HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`, `NO_PROXY`) to config |
-| `-n, --non-interactive` | Non-interactive mode, don't ask any questions (requires `-i` to specify IP)                                |
-| `-p, --port`            | Specify SSH port (when using non-default port 22)                                                          |
+| `-n, --non-interactive` | Non-interactive mode; a single/demo IP is auto-selected, while ambiguous multi-IP hosts require `-i`      |
+| `-p, --port`            | SSH port used by readiness checks only; it does not write `ansible_port` into the generated config        |
 | `-g, --generate`        | **Generate random values for passwords in config file, improving security (strongly recommended)**         |
 
 
@@ -149,7 +151,7 @@ The `configure` script executes detection and configuration in the following ord
 │         ↓                                                   │
 │  8. check_ssh             Detect passwordless SSH to self   │
 │         ↓                                                   │
-│  9. check_proxy           Handle proxy environment vars     │
+│  9. check_proxy_env       Handle proxy environment vars     │
 │         ↓                                                   │
 │ 10. check_ipaddr          Detect/input primary IP address   │
 │         ↓                                                   │
@@ -176,12 +178,13 @@ The `configure` script executes detection and configuration in the following ord
 The script automatically detects the network environment to determine if you're in mainland China (behind GFW):
 
 ```bash
-# Check network environment by accessing Google
-curl -I -s --connect-timeout 1 www.google.com
+# The actual probe uses HTTPS with a two-second total timeout
+curl -I -s --max-time 2 https://www.google.com
 ```
 
-- If Google is inaccessible, automatically sets `region: china` to use domestic mirrors
-- If accessible, uses `region: default` default mirrors
+- If Google is reachable, uses the `region: default` repositories
+- If Google is unreachable but `https://pigsty.cc` is reachable, sets `region: china`
+- If neither endpoint is reachable, falls back to `region: default` and emits an internet-unreachable warning
 - Can manually specify region via `-r` argument
 
 
@@ -205,7 +208,7 @@ The script determines the primary IP address in the following priority:
 
 ### Low-End Hardware Optimization
 
-When CPU core count ≤ 4 is detected, the script automatically adjusts configuration:
+When fewer than 4 CPU cores are detected (1-3 cores), the script automatically adjusts configuration:
 
 ```bash
 [WARN] replace oltp template with tiny due to cpu < 4
@@ -261,6 +264,8 @@ It also replaces the following placeholder passwords:
 - `S3User.Backup` → random password
 - `S3User.Meta` → random password
 - `S3User.Data` → random password
+- `DBUser.Supa` → random password
+- `Vibe.Coding` → random password
 
 ```bash
 $ ./configure -g
@@ -276,7 +281,7 @@ $ ./configure -g
 
 ## Configuration Templates
 
-The script reads configuration templates from the `conf/` directory, supporting the following templates:
+The script reads templates from `conf/`. The value of `-c` is a path relative to that directory without the `.yml` suffix, such as `ha/full` or `app/immich`.
 
 ### Core Templates
 
@@ -287,6 +292,7 @@ The script reads configuration templates from the `conf/` directory, supporting 
 |  `slim`  | Minimal version: PostgreSQL + ETCD only, no monitoring infrastructure           |
 |  `fat`   | Complete version: rich base with more extensions installed                      |
 | `pgsql`  | Pure PostgreSQL template                                                        |
+|  `pg19`  | Single-node PostgreSQL 19 Beta evaluation template                              |
 | `infra`  | Pure infrastructure template                                                    |
 
 ### HA Templates (`ha/`)
@@ -300,7 +306,7 @@ The script reads configuration templates from the `conf/` directory, supporting 
 | `ha/simu`  | 20-node production simulation environment |
 | `ha/citus` | 13-node Citus distributed cluster         |
 
-### Application Templates (`app/`)
+### Application Templates
 
 |     Template     | Description                                     |
 |:----------------:|:------------------------------------------------|
@@ -314,6 +320,8 @@ The script reads configuration templates from the `conf/` directory, supporting 
 | `app/mattermost` | Mattermost collaboration platform configuration |
 |   `app/maybe`    | Maybe finance application configuration         |
 |  `app/registry`  | Docker Registry configuration                   |
+|  `app/immich`    | Immich photo and video management               |
+| `app/jumpserver` | JumpServer bastion host                          |
 
 ### Special Kernel Templates
 
@@ -330,15 +338,25 @@ The script reads configuration templates from the `conf/` directory, supporting 
 |  `pgedge`  | pgEdge: distributed PostgreSQL kernel                     |
 |  `mongo`   | MongoDB-compatible stack template                         |
 
-### Demo Templates (`demo/`)
+### Demo and Build Templates
 
-|   Template   | Description                                  |
-|:------------:|:---------------------------------------------|
-|    `vibe`    | Vibe Coding development environment template |
-|   `docker`   | Docker application host template             |
-| `demo/demo`  | Demo environment configuration               |
-| `demo/redis` | Redis cluster demo                           |
-| `demo/minio` | MinIO cluster demo                           |
+|    Template    | Description                                      |
+|:--------------:|:-------------------------------------------------|
+|     `vibe`     | Vibe Coding development environment              |
+|    `docker`    | Run Pigsty inside a Docker container              |
+|  `demo/bare`   | Minimal readable single-node example              |
+|   `demo/el`    | Full parameter example for EL distributions       |
+| `demo/debian`  | Full parameter example for Debian/Ubuntu          |
+|  `demo/demo`   | Multi-module demo environment                     |
+| `demo/kernel`  | Ten-node database-kernel matrix                   |
+| `demo/redis`   | Redis replica, Sentinel, and native Cluster demo  |
+| `demo/minio`   | Multi-node, multi-drive MinIO demo                |
+| `demo/remote`  | Remote PostgreSQL/RDS monitoring example          |
+|  `demo/saas`   | Legacy single-node SaaS component bundle          |
+|  `demo/wool`   | Small cloud-instance example for China            |
+|  `build/oss`   | Cross-distribution open-source package build env  |
+|  `build/dev`   | Three-node development and build environment      |
+{.full-width}
 
 
 -----------------

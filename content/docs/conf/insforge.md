@@ -44,11 +44,13 @@ Source: [`pigsty/conf/app/insforge.yml`](https://github.com/pgsty/pigsty/blob/ma
 
 The `app/insforge` template deploys by default:
 
-- InsForge main service: `ghcr.io/insforge/insforge-oss:v2.0.1`, port `7130`
+- InsForge main service: `ghcr.io/insforge/insforge-oss:v2.2.6`, port `7130`
 - PostgREST: `postgrest/postgrest:v12.2.12`, port `5430`
 - Deno Runtime: port `7133`
 - PostgreSQL database: `insforge`
 - Extensions: `pgcrypto`, `http`, `pg_cron`
+- PostgreSQL 18 with `BYPASSRLS` enabled for `project_admin`
+- Local Docker-network HBA range: `172.16.0.0/12`
 - Nginx entrypoint: `isf.pigsty` -> `10.10.10.10:7130`
 
 **Access**:
@@ -58,4 +60,4 @@ http://<IP>:7130
 http://isf.pigsty
 ```
 
-The default admin account is `admin@example.com` / `pigsty`. For production, change `JWT_SECRET`, `ADMIN_PASSWORD`, and the database password.
+The default admin account is `admin@example.com` / `pigsty`. For production, change `JWT_SECRET`, `ENCRYPTION_KEY`, `ROOT_ADMIN_PASSWORD`, and the database password, keeping encryption and grant settings aligned with `pg_parameters`.

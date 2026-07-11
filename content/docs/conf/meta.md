@@ -31,7 +31,7 @@ Usage: This is the default config template, so there's no need to specify `-c me
 For example, if you want to install PostgreSQL 16 rather than the default 18, you can use the `-v` arg in `configure`:
 
 ```bash
-./configure -v 16   # or 17,15,14,13....
+./configure -v 16   # or 17, 15, 14; use the pg19 template for PG19 Beta
 ```
 
 

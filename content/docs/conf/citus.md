@@ -1,6 +1,6 @@
 ---
 title: ha/citus
-weight: 520
+weight: 660
 description: 13-node Citus distributed PostgreSQL cluster, 1 coordinator + 5 worker groups with HA
 icon: fa-solid fa-cubes
 categories: [Reference]
