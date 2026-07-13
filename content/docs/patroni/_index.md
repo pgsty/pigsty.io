@@ -1,5 +1,5 @@
 ---
-title: "Patroni 4.1.3 Documentation"
+title: "Patroni 4.1.4 Documentation"
 linkTitle: patroni
 weight: 8050
 icon: fas fa-yin-yang
