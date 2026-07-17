@@ -109,7 +109,8 @@ Additionally, Pigsty provides PG-compatible / derivative kernel support. You can
 [**`OpenHaloDB`**](/docs/pgsql/kernel/openhalo) for MySQL compatibility, and [**`OrioleDB`**](/docs/pgsql/kernel/orioledb) for ultimate OLTP performance.
 
 Furthermore, you can use [**`FerretDB`**](/docs/ferret/) for MongoDB compatibility, [**`Supabase`**](/docs/pgsql/kernel/supabase) for Firebase compatibility, and [**`PolarDB`**](/docs/pgsql/kernel/polardb) to meet domestic compliance requirements.
-More professional/pilot modules will be continuously introduced to Pigsty, such as [**`GPSQL`**](/docs/pgsql/kernel/greenplum), [KAFKA](/docs/pilot/kafka/), [DUCKDB](/docs/pilot/duckdb/), [TIGERBEETLE](/docs/pilot/tigerbeetle/), [KUBERNETES](/docs/pilot/kube/), [CONSUL](/docs/pilot/consul/), [GREENPLUM](/docs/pgsql/kernel/greenplum/), [CLOUDBERRY](/docs/pgsql/kernel/cloudberry/), [MYSQL](/docs/pilot/mysql/), ...
+Message queues are covered by the [**`KAFKA`**](/docs/kafka/) module, which deploys Kafka 4.x dynamic KRaft clusters.
+More professional/pilot modules will be continuously introduced to Pigsty, such as [**`GPSQL`**](/docs/pgsql/kernel/greenplum), [DUCKDB](/docs/pilot/duckdb/), [TIGERBEETLE](/docs/pilot/tigerbeetle/), [KUBERNETES](/docs/pilot/kube/), [CONSUL](/docs/pilot/consul/), [GREENPLUM](/docs/pgsql/kernel/greenplum/), [CLOUDBERRY](/docs/pgsql/kernel/cloudberry/), [MYSQL](/docs/pilot/mysql/), ...
 
 [![pigsty-sandbox.jpg](/img/pigsty/sandbox.png)](/docs/ref/module/)
 

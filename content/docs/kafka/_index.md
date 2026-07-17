@@ -1,0 +1,128 @@
+---
+title: 'Module: Kafka'
+weight: 4900
+description: Deploy, secure, and monitor Apache Kafka 4.x dynamic KRaft clusters with Pigsty.
+icon: fas fa-share-nodes
+module: [KAFKA]
+categories: [Reference]
+aliases: [/docs/pilot/kafka]
+---
+
+
+[Kafka](https://kafka.apache.org/) is a distributed event-streaming platform. Pigsty's [`KAFKA`](/docs/kafka) module deploys **Apache Kafka 4.x dynamic KRaft** clusters on managed nodes from RPM/DEB packages, with unified management of security, resources, lifecycle, and observability.
+
+{{% alert title="Current status: Beta module" color="info" %}}
+The Kafka module is currently in Beta. Test it thoroughly and confirm it meets your requirements before using it in serious production.
+That includes dynamic KRaft, strict rolling restart, TLS/SCRAM/ACL, declarative topics/users, credential and certificate rotation, and the full monitoring pipeline.
+{{% /alert %}}
+
+
+--------
+
+## Module Capabilities
+
+The KAFKA module currently provides:
+
+- Native dynamic KRaft, with no ZooKeeper installed and no static `controller.quorum.voters` rendered
+- Support for the three native roles `combined`, `broker`, and `controller`, in both combined and separated topologies
+- Random generation of a Cluster ID and Controller Directory ID for new clusters, with identity protected by a minimal bootstrap manifest
+- Selection of a cold-start/repair, broker-only serial admission, or strict single-node rolling path based on live health
+- Checks before and after each rolling step for controller majority and voter catch-up, offline partitions, under-min-ISR, and ISR catch-up
+- Two security profiles, `plaintext` and the production `scram`; the latter enables TLS, SCRAM-SHA-512, controller mTLS, ACLs, and default-deny authorization
+- Declarative convergence of topics, user credentials, ACLs, and quotas, without implicitly deleting business topics
+- Protected rotation of internal credentials and certificates, preserving the currently valid material on failure
+- Collection of JMX, broker, request, replication, KRaft, topic, partition, and consumer group metrics
+- Ingestion of Kafka and exporter logs into VictoriaLogs, with three Grafana dashboards and matching alerts
+
+
+--------
+
+## Module Architecture
+
+The KAFKA module depends on [`NODE`](/docs/node) for node management, the package repository, and base monitoring, and on [`INFRA`](/docs/infra) for VictoriaMetrics, VictoriaLogs, Grafana, and Alertmanager.
+
+```mermaid
+flowchart LR
+    admin["Pigsty admin node"] -->|"kafka.yml / exact cluster"| kafka["Kafka 4.x / dynamic KRaft"]
+    kafka --> jmx["Each Kafka JVM / JMX :9404"]
+    kafka --> exporter["Up to two brokers / kafka_exporter :9308"]
+    kafka --> journal["Journald"]
+    jmx --> vm["VictoriaMetrics"]
+    exporter --> vm
+    journal --> vector["Vector"] --> vl["VictoriaLogs"]
+    vm --> grafana["Grafana"]
+    vl --> grafana
+    vm --> alert["Alertmanager"]
+
+    style kafka fill:#70C1B3,stroke:#4f968b,color:#fff
+    style vm fill:#E66B7A,stroke:#b84e5c,color:#fff
+    style vl fill:#C98367,stroke:#9e634e,color:#fff
+    style grafana fill:#F29C64,stroke:#c77845,color:#fff
+```
+
+Every Kafka JVM has a JMX Exporter injected and is registered as `job=kafka`. The protocol-level `kafka_exporter` runs only on the first two broker-capable nodes ordered by `kafka_seq`; a single-broker cluster runs only one, and pure controllers run none. They return the same logical-cluster view, so recording rules deduplicate before aggregating.
+
+
+--------
+
+## Documentation
+
+| Document                             | Contents                                                              |
+|:-----------------------------------|:--------------------------------------------------------------------|
+| [Quickstart](/docs/kafka/start)    | From a single node to a three-node secure cluster: client access, parameter changes, and go-live checks |
+| [Cluster Config](/docs/kafka/config)   | Topology, dynamic KRaft, network, storage, security, and resource declarations |
+| [Parameters](/docs/kafka/param)    | 15 persistent public parameters plus transient operational variables |
+| [Administration](/docs/kafka/admin)    | Status checks, topics, messages, consumer groups, and topology changes |
+| [Playbook](/docs/kafka/playbook) | `kafka.yml` lifecycle, task tags, rotation, and teardown safeguards |
+| [Monitoring](/docs/kafka/monitor)  | Metrics pipeline, dashboards, log queries, and alert rules |
+| [Metrics](/docs/kafka/metric)   | Metric dictionary for JMX, the protocol exporter, and recording rules |
+| [FAQ](/docs/kafka/faq)      | Questions on roles, identity, security, exporters, and scaling |
+{.full-width}
+
+
+--------
+
+## First Time
+
+The [Quickstart](/docs/kafka/start) offers a complete path from scratch, building up step by step:
+
+1. Deploy a combined single-node development cluster and read/write topics and messages;
+2. Deploy a separate three-node dynamic KRaft cluster with TLS/SCRAM/ACL enabled;
+3. Create an application principal, topics, and quotas, and connect securely from an external client;
+4. Change heap, broker, and topic parameters, and observe online convergence and strict rolling restart;
+5. Complete go-live checks covering quorum, ISR, network, security, monitoring, and runbooks.
+
+If you are already familiar with Kafka/Pigsty, jump straight to [Cluster Config](/docs/kafka/config) or [Parameters](/docs/kafka/param).
+
+
+--------
+
+## Default Ports
+
+|  Port  | Service          | Deployment scope        | `plaintext` | `scram`                  |
+|:------:|:-----------------|:-----------------------|:------------|:-------------------------|
+| `9092` | Kafka Broker     | Broker-capable nodes    | PLAINTEXT   | SASL_SSL + SCRAM-SHA-512 |
+| `9093` | KRaft Controller | Controller-capable nodes | PLAINTEXT   | Mutual TLS               |
+| `9308` | kafka_exporter   | Up to two broker-capable nodes | HTTP metrics | HTTP metrics, TLS/SCRAM on the backend |
+| `9404` | JMX Exporter     | All Kafka nodes         | HTTP metrics | HTTP metrics             |
+{.full-width}
+
+All four ports must differ from one another, and all are adjustable via parameters. The HTTP ports of the JMX and protocol exporters should still be restricted to the monitoring network by firewall.
+
+
+--------
+
+## Current Boundaries
+
+The current role provides a core production baseline for Kafka, not a replacement for a full streaming platform or a managed service. The following capabilities still require an explicit runbook or a separate component:
+
+- Adding, removing, or replacing controllers: the cluster uses a dynamic quorum, but membership changes must go through explicit format, catch-up, and `add-controller`/`remove-controller` procedures; editing the manifest itself never adds or removes a voter
+- Reassignment of existing partitions after broker scale-out, broker decommissioning, and replica rebalancing
+- Raising the frozen `default.replication.factor` after scale-out: Kafka 4.3 requires an explicit data-migration and static-config maintenance window
+- Changing the replication factor of an existing topic, deleting topics, and deleting users
+- Online migration of a formatted cluster from `plaintext` to `scram`
+- Kafka version upgrades, feature-level finalization, data backup, restore, and disaster drills
+- Multiple listeners, NAT/public addresses, multi-client networks on the same broker, and tiered storage
+- Kafka Connect, Schema Registry, MirrorMaker 2, Cruise Control, and web UIs
+
+These boundaries should be documented explicitly in your production plan, approval process, and drills; they cannot be substituted by rerunning an ordinary inventory.

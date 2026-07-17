@@ -24,6 +24,7 @@ categories: [Reference]
 | [**`DOCKER`**](/docs/docker) | Extension |   GA   | `/docs/docker` | Docker daemon and the runtime capability for containerized apps.                                      |
 |  [**`JUICE`**](/docs/juice)  | Extension |  BETA  | `/docs/juice`  | JuiceFS distributed file system using PostgreSQL as metadata engine.                                  |
 |   [**`VIBE`**](/docs/vibe)   | Extension |  BETA  |  `/docs/vibe`  | Browser-based dev environment with Code-Server, JupyterLab, Node.js, and Claude Code.                 |
+|  [**`KAFKA`**](/docs/kafka)  | Extension |  BETA  | `/docs/kafka`  | Apache Kafka 4.x dynamic KRaft cluster deployment, security baseline, and monitoring.                 |
 {.stretch-last}
 
 
@@ -45,7 +46,7 @@ Although these four modules are usually installed together, separate use is stil
 
 ## Extension Modules
 
-Pigsty provides six <span class="text-secondary"><b>extension</b></span> modules. They are not mandatory for core functionality, but can enhance PostgreSQL capabilities:
+Pigsty provides seven <span class="text-secondary"><b>extension</b></span> modules. They are not mandatory for core functionality, but can enhance PostgreSQL capabilities:
 
 - [**`MINIO`**](/docs/minio): S3-compatible object storage, optional PostgreSQL backup repository, with production deployment and monitoring support.
 - [**`REDIS`**](/docs/redis): Redis server with standalone/sentinel/cluster production deployment and full monitoring support.
@@ -53,16 +54,17 @@ Pigsty provides six <span class="text-secondary"><b>extension</b></span> modules
 - [**`DOCKER`**](/docs/docker): Docker daemon service for one-click deployment of stateless software templates on Pigsty.
 - [**`JUICE`**](/docs/juice): JuiceFS distributed filesystem module using PostgreSQL as metadata engine, providing shared POSIX storage.
 - [**`VIBE`**](/docs/vibe): Browser-based development environment with Code-Server, JupyterLab, Node.js, and Claude Code.
+- [**`KAFKA`**](/docs/kafka): Apache Kafka 4.x dynamic KRaft clusters with TLS/SCRAM/ACL security baseline, declarative topics/users, and full monitoring.
 
 
 ----------------
 
 ## Ecosystem Modules
 
-The modules below are closely related to the PostgreSQL ecosystem. They are optional ecosystem capabilities and are not counted in the 10 official modules above:
+The modules below are closely related to the PostgreSQL ecosystem. They are optional ecosystem capabilities and are not counted in the 11 official modules above:
 
 - [**`SUPABASE`**](/docs/pgsql/kernel/supabase), [**`DUCKDB`**](/docs/pilot/duckdb): peripheral ecosystem integration.
 - [**`MSSQL`**](/docs/pgsql/kernel/babelfish), [**`IVORY`**](/docs/pgsql/kernel/ivorysql), [**`POLAR`**](/docs/pgsql/kernel/polardb), [**`CITUS`**](/docs/pgsql/kernel/citus), [**`CLOUDBERRY`**](/docs/pgsql/kernel/cloudberry), [**`PGEDGE`**](/docs/pgsql/kernel/pgedge): kernel replacement, distributed, and MPP forms.
 - [**`MYSQL`**](/docs/pgsql/kernel/openhalo), [**`ORIOLE`**](/docs/pgsql/kernel/orioledb), [**`PGTDE`**](/docs/pgsql/kernel/percona), [**`AGENS`**](/docs/pgsql/kernel/agensgraph): protocol compatibility, storage engine, transparent encryption, and graph database kernels.
 - [**`GREENPLUM`**](/docs/pgsql/kernel/greenplum), [**`NEON`**](/docs/pgsql/kernel/neon): historical docs retained, no longer default public capabilities.
-- [**`KAFKA`**](/docs/pilot/kafka), [**`KUBE`**](/docs/pilot/kube/), [**`VICTORIA`**](/blog/db/victoria-stack/), [**`JUPYTER`**](/docs/app/jupyter/): pilot modules, currently not open for public use.
+- [**`KUBE`**](/docs/pilot/kube/), [**`VICTORIA`**](/blog/db/victoria-stack/), [**`JUPYTER`**](/docs/app/jupyter/): pilot modules, currently not open for public use.

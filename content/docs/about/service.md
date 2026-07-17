@@ -249,7 +249,7 @@ Pigsty Professional/Enterprise Edition includes the following additional feature
     - [**Supabase**](/docs/pgsql/kernel/supabase): Reliably self-host production-grade open-source Firebase
     - [**MinIO**](/docs/minio): Enterprise PB-level object storage planning and self-hosting
     - [**DuckDB**](/docs/pilot/duckdb): Provides comprehensive DuckDB support, and PostgreSQL + DuckDB OLAP extension plugin support
-    - [**Kafka**](/docs/pilot/kafka): Provides high-availability Kafka cluster deployment and monitoring
+    - [**Kafka**](/docs/kafka): Provides high-availability Kafka cluster deployment and monitoring
     - Kubernetes, VictoriaMetrics & VictoriaLogs
 - **Domestic Operating System Support**: Provides domestic innovation OS support options (**Enterprise Edition subscription only**)
 - **Domestic ARM Architecture Support**: Provides domestic ARM64 architecture support options (**Enterprise Edition subscription only**)
