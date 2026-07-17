@@ -52,9 +52,9 @@ Pigsty provides:
 
   A modular [**architecture**](/docs/concept/arch) design that can be freely combined to suit different scenarios. Beyond the core PostgreSQL module, it also provides optional modules for Redis, MinIO, Etcd, FerretDB, and support for various PG-compatible kernels.
 
-- **Solid Security Best Practices**
+- [**Solid Security Best Practices**](/docs/concept/sec/)
 
-  Industry-leading security best practices: self-signed CA certificate encryption, AES encrypted backups, scram-sha-256 encrypted passwords, out-of-the-box ACL model, HBA rule sets following the principle of least privilege, ensuring data security.
+  Industry-leading security practices: a [**self-signed CA**](/docs/concept/sec/ca) for encrypted communication, AES-encrypted backups, SCRAM-SHA-256 password hashing, an out-of-the-box [**ACL model**](/docs/concept/sec/ac), and least-privilege [**HBA rules**](/docs/concept/sec/auth).
 
 - **Simple and Easy Deployment**
 

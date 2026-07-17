@@ -26,7 +26,7 @@ This approach is simple and direct, but when infrastructure scales and requires 
 |:-------------:|:---------------------------|:---------------------------------------|
 | **Querying**  | Manual search/grep         | SQL queries with any conditions, aggregation analysis |
 | **Versioning** | Depends on Git or manual backup | Database transactions, audit logs, time-travel snapshots |
-| **Access Control** | File system permissions, coarse-grained | PostgreSQL fine-grained access control |
+| **Access Control** | File system permissions, coarse-grained | PostgreSQL [**fine-grained access control**](/docs/concept/sec/ac) |
 | **Concurrent Editing** | Requires file locking or merge conflicts | Database transactions naturally support concurrency |
 | **External Integration** | Requires YAML parsing | Standard SQL interface, easy integration with any language |
 | **Scalability** | Difficult to maintain when file becomes too large | Scales to physical limits |

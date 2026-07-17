@@ -1,82 +1,72 @@
 ---
 title: ha/safe
 weight: 630
-description: Security-hardened HA configuration template with high-standard security best practices
+description: Three-node high-availability and security-hardening configuration example.
 icon: fa-solid fa-shield-halved
 categories: [Reference]
 ---
 
-The `ha/safe` configuration template is based on the `ha/trio` template, providing a security-hardened configuration with high-standard security best practices.
+`ha/safe` uses a three-node high-availability topology to demonstrate TLS, client certificates, password checks, backup encryption, the CRIT parameter template, and related security settings. It is a configuration example to customize, not a compliance-certified template.
 
 
 --------
 
 ## Overview
 
-- Config Name: `ha/safe`
-- Node Count: Three nodes (optional delayed replica)
-- Description: Security-hardened HA configuration with high-standard security best practices
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
-- OS Arch: `x86_64` (some security extensions unavailable on ARM64)
-- Related: [`ha/trio`](/docs/conf/trio/), [`ha/full`](/docs/conf/full/)
+- Configuration: `ha/safe`
+- Nodes: 3 INFRA, etcd, and PostgreSQL nodes; optional delayed replica
+- Operating systems: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
+- Architecture: `x86_64`; some security extensions do not have ARM64 packages
+- Related configurations: [**`ha/trio`**](/docs/conf/trio/), [**`ha/full`**](/docs/conf/full/)
 
-Usage:
+Generate the configuration:
 
 ```bash
-./configure -c ha/safe [-i <primary_ip>]
+./configure -c ha/safe -g [-i <primary_ip>]
 ```
 
-
---------
-
-## Security Hardening Measures
-
-The `ha/safe` template implements the following security hardening:
-
-- **Mandatory SSL Encryption**: SSL enabled for both PostgreSQL and PgBouncer
-- **Strong Password Policy**: `passwordcheck` extension enforces password complexity
-- **User Expiration**: All users set to 20-year expiration
-- **Minimal Connection Scope**: Limit PostgreSQL/Patroni/PgBouncer listen addresses
-- **Strict HBA Rules**: Mandatory SSL authentication, admin requires certificate
-- **Audit Logs**: Record connection and disconnection events
-- **Delayed Replica**: Optional 1-hour delayed replica for recovery from mistakes
-- **Critical Template**: Uses `crit.yml` tuning template for zero data loss
+`-g` randomizes only credentials recognized by the configuration wizard. You must still replace MinIO users, the pgBackRest `cipher_pass`, and other template example values.
 
 
 --------
 
-## Content
+## Hardening Controls
 
-Source: [`pigsty/conf/ha/safe.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/safe.yml)
+| Setting | Template Behavior | Boundary and Follow-up |
+|:---|:---|:---|
+| PostgreSQL HBA | Main TCP rules use `ssl`; public administrator access uses `cert` | Local `ident` and selected localhost `pwd` rules remain |
+| PgBouncer | `pgbouncer_sslmode: require` | Clients must still verify the server certificate where required |
+| Patroni | REST API uses HTTPS and a constrained listen address | Basic Auth remains; rotate the password |
+| Password check | `passwordcheck` is preloaded through `pg_libs` | Affects only newly set or changed passwords |
+| Account lifetime | Built-in and example application users set `expire_in: 7300` | Twenty years is not a rotation policy; shorten it to organizational requirements |
+| Listen addresses | PostgreSQL is limited to `${ip},${vip},${lo}` | Firewalls and HBA are still required |
+| Backup | Uses MinIO with AES-256-CBC | `pgBR.${pg_cluster}` is a predictable example and must be replaced |
+| PostgreSQL parameters | `pg-meta` uses `crit.yml` | Strict synchronous mode can block writes without a synchronous replica |
+| Logging | CRIT logs connection and disconnection events | Fine-grained SQL auditing requires explicit `pgaudit` configuration |
+| Security extensions | Installs `passwordcheck`, `credcheck`, `pgaudit`, and related packages | Installation does not preload, create, or configure an extension |
+| Delayed replica | Provides a commented one-hour delayed-cluster example | Not created by default; enable it explicitly |
+{.full-width}
+
+
+--------
+
+## Preflight Checklist
+
+- Replace every public example credential, especially `minio_users`, `pgbackrest_repo`, application users, and API passwords.
+- Confirm that the three nodes occupy independent failure domains, and update IPs, VIP, and domains for the target network.
+- Configure database clients with `sslmode=verify-full` and a trusted CA.
+- Confirm that the availability impact of strict synchronous mode meets application requirements.
+- Preload and configure `pgaudit`, `credcheck`, and other extensions as required.
+- Check extension package availability on ARM64.
+- Test backup recovery, failover, and certificate verification.
+
+See [**Security Model**](/docs/concept/sec/level), [**Authentication**](/docs/concept/sec/auth), [**Encrypted Communication**](/docs/concept/sec/ca), and [**Data Security**](/docs/concept/sec/data) for the underlying mechanisms.
+
+
+--------
+
+## Configuration
+
+Source: [**`pigsty/conf/ha/safe.yml`**](https://github.com/pgsty/pigsty/blob/main/conf/ha/safe.yml)
 
 {{< readfile file="yaml/ha/safe.yml" code="true" lang="yaml" >}}
-
-
---------
-
-## Explanation
-
-The `ha/safe` template is Pigsty's **security-hardened configuration**, designed for production environments with high security requirements.
-
-**Security Features Summary**:
-
-| Security Measure | Description |
-|:--|:--|
-| SSL Encryption | Full-chain SSL for PostgreSQL/PgBouncer/Patroni |
-| Strong Password | `passwordcheck` extension enforces complexity |
-| User Expiration | All users expire in 20 years (`expire_in: 7300`) |
-| Strict HBA | Admin remote access requires certificate |
-| Encrypted Backup | MinIO backup with AES-256-CBC encryption |
-| Audit Logs | `pgaudit` extension for SQL audit logging |
-| Delayed Replica | 1-hour delayed replica for mistake recovery |
-
-**Use Cases**:
-- Finance, healthcare, government sectors with high security requirements
-- Environments needing compliance audit requirements
-- Critical business with extremely high data security demands
-
-**Notes**:
-- Some security extensions unavailable on ARM64 architecture, enable appropriately
-- All default passwords must be changed to strong passwords
-- Recommend using with regular security audits
-

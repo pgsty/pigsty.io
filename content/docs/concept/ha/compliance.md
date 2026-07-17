@@ -11,6 +11,8 @@ categories: [Concept]
 
 ## Overview
 
+This page focuses on business continuity and disaster recovery. See [**Compliance**](/docs/concept/sec/compliance) for general mappings of access control, encrypted communication, audit, and other security controls.
+
 This document compiles the **RTO** (Recovery Time Objective) and **RPO** (Recovery Point Objective) compliance requirements from major international and Chinese standards for database disaster recovery. These standards cover critical industries including finance, healthcare, payments, and publicly traded companies, serving as important references for database selection and architecture design.
 
 **Key Conclusion**: PostgreSQL + Patroni synchronous replication mode, with properly configured `ttl`/`loop_wait` parameters, can fully meet the financial industry's core system requirements of **RPO=0, RTO<2 hours**. In fact, Pigsty's default configuration can achieve second-level RTO, far exceeding minimum regulatory requirements.

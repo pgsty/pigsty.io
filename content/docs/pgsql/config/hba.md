@@ -1,7 +1,7 @@
 ---
 title: HBA Rules
 weight: 60
-description: Detailed explanation of PostgreSQL and Pgbouncer Host-Based Authentication (HBA) rules configuration in Pigsty.
+description: Configuration reference for PostgreSQL and PgBouncer Host-Based Authentication (HBA) rules in Pigsty.
 icon: fa-solid fa-key
 module: [PGSQL]
 categories: [Reference]
@@ -9,15 +9,15 @@ categories: [Reference]
 
 ## Overview
 
-HBA (Host-Based Authentication) controls "who can connect to the database from where and how".
-Pigsty manages HBA rules declaratively through [**`pg_default_hba_rules`**](#pg_default_hba_rules) and [**`pg_hba_rules`**](#pg_hba_rules).
+HBA (Host-Based Authentication) controls "who can connect to the database, from where, and how". See [**Authentication**](/docs/concept/sec/auth) for the authentication model and default rules.
+Pigsty manages HBA rules declaratively through [<span id="default-hba"></span>\n<span id="pg_default_hba_rules"></span>\n\n**`pg_default_hba_rules`**](#pg_default_hba_rules) and [<span id="pg_hba_rules"></span>\n\n**`pg_hba_rules`**](#pg_hba_rules).
 
 Pigsty renders the following config files during cluster init or HBA refresh:
 
 | Config File    | Path                          | Description                 |
 |:---------------|:------------------------------|:----------------------------|
 | PostgreSQL HBA | `/pg/data/pg_hba.conf`        | PostgreSQL server HBA rules |
-| Pgbouncer HBA  | `/etc/pgbouncer/pgb_hba.conf` | Connection pool HBA rules   |
+| PgBouncer HBA  | `/etc/pgbouncer/pgb_hba.conf` | Connection pool HBA rules   |
 
 HBA rules are controlled by these parameters:
 
@@ -25,8 +25,8 @@ HBA rules are controlled by these parameters:
 |:--------------------------------------------------|:------|:---------------------------------|
 | [`pg_default_hba_rules`](#pg_default_hba_rules)   | G     | PostgreSQL global default HBA    |
 | [`pg_hba_rules`](#pg_hba_rules)                   | G/C/I | PostgreSQL cluster/instance add  |
-| [`pgb_default_hba_rules`](#pgb_default_hba_rules) | G     | Pgbouncer global default HBA     |
-| [`pgb_hba_rules`](#pgb_hba_rules)                 | G/C/I | Pgbouncer cluster/instance add   |
+| [`pgb_default_hba_rules`](#pgb_default_hba_rules) | G     | PgBouncer global default HBA     |
+| [`pgb_hba_rules`](#pgb_hba_rules)                 | G/C/I | PgBouncer cluster/instance add   |
 
 Rule features:
 
@@ -54,7 +54,7 @@ Script executes the following playbook:
 
 **PostgreSQL only**: `./pgsql.yml -l <cls> -t pg_hba,pg_reload -e pg_reload=true`
 
-**Pgbouncer only**: `./pgsql.yml -l <cls> -t pgbouncer_hba,pgbouncer_reload`
+**PgBouncer only**: `./pgsql.yml -l <cls> -t pgbouncer_hba,pgbouncer_reload`
 
 {{% alert title="Don't edit config files directly" color="warning" %}}
 Don't directly edit `/pg/data/pg_hba.conf` or `/etc/pgbouncer/pgb_hba.conf` - they'll be overwritten on next playbook run.
@@ -99,9 +99,9 @@ pg_hba_rules:
   - {user: app_user, db: app_db, addr: intra, auth: pwd, title: 'app user access'}
 ```
 
-**`pgb_default_hba_rules`**
+<span id="pgb_default_hba_rules"></span>\n\n**`pgb_default_hba_rules`**
 
-Pgbouncer global default HBA rule list, usually defined in `all.vars`.
+PgBouncer global default HBA rule list, usually defined in `all.vars`.
 
 - Type: `rule[]`, Level: Global (G)
 
@@ -116,18 +116,18 @@ pgb_default_hba_rules:
   - {user: 'all'        ,db: all         ,addr: intra     ,auth: pwd   ,title: 'allow all user intra access with pwd' ,order: 400}
 ```
 
-**`pgb_hba_rules`**
+<span id="pgb_hba_rules"></span>\n\n**`pgb_hba_rules`**
 
-Pgbouncer cluster/instance-level additional HBA rules.
+PgBouncer cluster/instance-level additional HBA rules.
 
 - Type: `rule[]`, Level: Global/Cluster/Instance (G/C/I), Default: `[]`
 
-> **Note**: Pgbouncer HBA does not support `db: replication`.
+> **Note**: PgBouncer HBA does not support `db: replication`.
 
 
 ----------------
 
-## Rule Fields
+<span id="define-hba"></span>\n\n## Rule Fields
 
 Each HBA rule is a YAML dict supporting these fields:
 
@@ -188,7 +188,7 @@ Pigsty provides auth method aliases for simplified config:
 | `trust`     | `trust`                    | `host`          | Unconditional trust (dangerous)|
 | `deny` / `reject` | `reject`             | `host`          | Reject connection              |
 | `ident`     | `ident`                    | `host`          | OS user mapping (PostgreSQL)   |
-| `peer`      | `peer`                     | `local`         | OS user mapping (Pgbouncer/local) |
+| `peer`      | `peer`                     | `local`         | OS user mapping (PgBouncer/local) |
 
 > `pg_pwd_enc` defaults to `scram-sha-256`, can be set to `md5` for legacy client compatibility.
 
@@ -265,7 +265,7 @@ PostgreSQL HBA is **first-match-wins**, rule order is critical. Pigsty controls 
 | 600   | dbrole_readonly intra          |
 | 650   | dbrole_offline intra           |
 
-**Pgbouncer Default Rules Order**
+**PgBouncer Default Rules Order**
 
 | Order | Rule Description    |
 |:------|:--------------------|
@@ -363,7 +363,7 @@ pg_hba_rules:
   - {user: hr_user, db: hr_db, addr: '10.30.0.0/16', auth: ssl, title: 'hr only'}
 ```
 
-**Pgbouncer Dedicated Rules**: Note no `db: replication` support
+**PgBouncer Dedicated Rules**: Note no `db: replication` support
 
 ```yaml
 pgb_hba_rules:
@@ -412,7 +412,7 @@ pg-prod:
 ```bash
 psql -c "TABLE pg_hba_file_rules"         # View via SQL (recommended)
 cat /pg/data/pg_hba.conf                  # View PostgreSQL HBA file
-cat /etc/pgbouncer/pgb_hba.conf           # View Pgbouncer HBA file
+cat /etc/pgbouncer/pgb_hba.conf           # View PgBouncer HBA file
 grep '^#' /pg/data/pg_hba.conf | head -20 # View rule titles (verify order)
 ```
 
@@ -438,8 +438,8 @@ psql -h <host> -p 5432 -U <user> -d <db> -c "SELECT 1"
 1. **Order sensitive**: PostgreSQL HBA is first-match-wins, use `order` wisely
 2. **Role matching**: Ensure `role` field matches target instance's `pg_role`
 3. **Address format**: CIDR must be correct, e.g., `10.0.0.0/8` not `10.0.0.0/255.0.0.0`
-4. **Pgbouncer limitation**: Does not support `db: replication`
-5. **SSL prerequisite**: Ensure SSL is configured before using `ssl`, `cert` auth
+4. **PgBouncer limitation**: Does not support `db: replication`
+5. **TLS prerequisite**: `ssl` and `cert` require server-side TLS; clients must still use `verify-full` to authenticate the server
 6. **Test first**: Validate in test environment before modifying HBA
 7. **Refresh on scale**: Rules using `addr: cluster` need refresh after cluster membership changes
 
@@ -448,7 +448,8 @@ psql -h <host> -p 5432 -U <user> -d <db> -c "SELECT 1"
 
 ## Related Documentation
 
-- [**HBA Management**](/docs/pgsql/misc/hba/): Daily HBA rule management operations
+- [**HBA Management**](/docs/pgsql/admin/hba/): Refresh, verification, and troubleshooting
 - [**User Config**](/docs/pgsql/config/user/): User and role configuration
 - [**Access Control**](/docs/pgsql/config/acl/): Role system and permission model
-- [**Security & Compliance**](/docs/concept/sec/): PostgreSQL cluster security features
+- [**Authentication**](/docs/concept/sec/auth): HBA, SCRAM, client certificates, and default rules
+- [**Encrypted Communication**](/docs/concept/sec/ca): TLS and server certificate verification

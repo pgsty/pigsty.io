@@ -10,7 +10,7 @@ module: [INFRA]
 categories: [Concept]
 ---
 
-Pigsty's monitoring system has three pillars: metrics, logs, and alerting, and is available out-of-the-box.
+Pigsty's monitoring system has three pillars—metrics, logs, and alerting—and is available out of the box. Logs and alerts are also important inputs for [**audit and traceability**](/docs/concept/sec/data#audit-and-traceability).
 It can monitor clusters managed by Pigsty, existing PostgreSQL clusters, and external RDS services.
 
 

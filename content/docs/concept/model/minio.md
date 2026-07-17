@@ -160,6 +160,8 @@ After MinIO cluster deployment, Pigsty automatically creates the following resou
 | `s3user_data` | `S3User.Data`      | `data`  | Access `data` bucket       |
 {.full-width}
 
+These passwords are publicly documented [**default credentials**](/docs/concept/sec/compliance#default-credentials-checklist), intended only for demonstrations and local development. Replace them before production deployment.
+
 `pgbackrest` is used for PostgreSQL cluster backups; `s3user_meta` and `s3user_data` are reserved users not actively used.
 
 
@@ -179,5 +181,4 @@ minio_up{cls="minio", ins="minio-4", ip="10.10.10.13", job="minio"}
 For example, the `cls`, `ins`, `ip` labels correspond to cluster name, instance name, and node IP—the identifiers for these three core entities.
 They appear along with the `job` label in **all** MinIO monitoring metrics collected by [**VictoriaMetrics**](/docs/concept/arch/infra#victoriametrics).
 The `job` name for collecting MinIO metrics is fixed as `minio`.
-
 

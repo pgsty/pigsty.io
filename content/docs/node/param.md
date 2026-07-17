@@ -759,7 +759,7 @@ node_firewall_intranet:
 
 This parameter defines IP address ranges considered as "internal network". Traffic from these networks will be allowed to access all service ports without separate open rules.
 
-Hosts within these CIDR ranges will be treated as trusted intranet hosts with more relaxed firewall rules. Also, in PG/PGB HBA rules, the intranet ranges defined here will be treated as "intranet".
+Hosts within these CIDR ranges are treated as trusted intranet hosts with more permissive firewall rules. The same ranges are treated as "intranet" by [**PG/PGB HBA rules**](/docs/concept/sec/auth).
 Because the default firewall mode is `zone`, this list is active by default.
 
 

@@ -1,81 +1,73 @@
 ---
 title: Access Control
 weight: 70
-description: Default role system and privilege model provided by Pigsty
+description: Configuration reference for Pigsty built-in roles, users, default privileges, and database ACLs.
 icon: fa-solid fa-lock
 module: [PGSQL]
 categories: [Reference]
 ---
 
-> Access control is determined by the combination of "role system + privilege templates + HBA". This section focuses on how to declare roles and object privileges through configuration parameters.
+> Access control combines roles, object privileges, database ACLs, and HBA. This page covers configuration parameters; see [**Access Control Concepts**](/docs/concept/sec/ac) for design and boundaries.
 
-Pigsty provides a streamlined ACL model, fully described by the following parameters:
+Pigsty provides a compact ACL model described by these parameters:
 
-- `pg_default_roles`: System roles and system users.
-- `pg_users`: Business users and roles.
-- `pg_default_privileges`: Default privileges for objects created by administrators/owners.
-- `pg_revoke_public`, `pg_default_schemas`, `pg_default_extensions`: Control the default behavior of `template1`.
+- `pg_default_roles`: system roles and system users.
+- `pg_users`: application users and roles.
+- `pg_default_privileges`: default privileges on objects created by managed administrators and owners.
+- `pg_revoke_public`, `pg_default_schemas`, and `pg_default_extensions`: default behavior for `template1`.
 
-After understanding these parameters, you can write fully reproducible privilege configurations.
+Manage these parameters together with HBA and database definitions to produce reproducible access-control configuration.
 
 
 ----------------
 
 ## Default Role System (pg_default_roles)
 
-By default, it includes 4 business roles + 4 system users:
+The defaults contain four business roles and four system users:
 
-| Name               | Type      | Description                                                    |
-|--------------------|-----------|----------------------------------------------------------------|
-| `dbrole_readonly`  | `NOLOGIN` | Shared by all business, has SELECT/USAGE                       |
-| `dbrole_readwrite` | `NOLOGIN` | Inherits read-only role, with INSERT/UPDATE/DELETE             |
-| `dbrole_admin`     | `NOLOGIN` | Inherits `pg_monitor` + read-write role, can create objects and triggers |
-| `dbrole_offline`   | `NOLOGIN` | Restricted read-only role, only allowed to access offline instances |
-| `postgres`         | User      | System superuser, same as `pg_dbsu`                            |
-| `replicator`       | User      | Used for streaming replication and backup, inherits monitoring and read-only privileges |
-| `dbuser_dba`       | User      | Primary admin account, also synced to pgbouncer                |
-| `dbuser_monitor`   | User      | Monitoring account, has `pg_monitor` privilege, records slow SQL by default |
+| Name | Type | Description |
+|:---|:---|:---|
+| `dbrole_readonly` | `NOLOGIN` | Shared read-only role with SELECT and USAGE |
+| `dbrole_readwrite` | `NOLOGIN` | Inherits read-only and adds INSERT, UPDATE, and DELETE |
+| `dbrole_admin` | `NOLOGIN` | Inherits `pg_monitor` and read-write; can create objects and triggers |
+| `dbrole_offline` | `NOLOGIN` | Independent read-only role; instance scope must be restricted explicitly through HBA |
+| `postgres` | User | System superuser; same name as `pg_dbsu` |
+| `replicator` | User | Streaming replication and backup; inherits monitoring and read-only privileges |
+| `dbuser_dba` | User | Primary administration account, also synchronized to PgBouncer |
+| `dbuser_monitor` | User | Monitoring account with `pg_monitor`; records slow SQL by default |
+{.full-width}
 
-These definitions are in `pg_default_roles`. They can theoretically be customized, but if you replace names, you must synchronize updates in HBA/ACL/script references.
-
-Example: Add an additional `dbrole_etl` for offline tasks:
-
-```yaml
-pg_default_roles:
-  - { name: dbrole_etl, login: false, roles: [dbrole_offline], comment: 'etl read-only role' }
-  - { name: dbrole_admin, login: false, roles: [pg_monitor, dbrole_readwrite, dbrole_etl] }
-```
-
-> Effect: All users inheriting `dbrole_admin` automatically have `dbrole_etl` privileges, can access offline instances and execute ETL.
+These definitions live in `pg_default_roles`. The parameter is a complete list. When customizing it, copy and retain the required default roles and system users, then add new roles in dependency order. If a role name changes, update references in HBA, default privileges, and scripts.
 
 
 ----------------
 
 ## Default Users and Credential Parameters
 
-System user usernames/passwords are controlled by the following parameters:
+These parameters control system-user names and passwords:
 
-| Parameter                    | Default Value      | Purpose                               |
-|------------------------------|--------------------|---------------------------------------|
-| `pg_dbsu`                    | `postgres`         | Database/system superuser             |
-| `pg_dbsu_password`           | Empty string       | dbsu password (disabled by default)   |
-| `pg_replication_username`    | `replicator`       | Replication username                  |
-| `pg_replication_password`    | `DBUser.Replicator`| Replication user password             |
-| `pg_admin_username`          | `dbuser_dba`       | Admin username                        |
-| `pg_admin_password`          | `DBUser.DBA`       | Admin password                        |
-| `pg_monitor_username`        | `dbuser_monitor`   | Monitoring user                       |
-| `pg_monitor_password`        | `DBUser.Monitor`   | Monitoring user password              |
+| Parameter | Default | Purpose |
+|:---|:---|:---|
+| `pg_dbsu` | `postgres` | Database and OS superuser |
+| `pg_dbsu_password` | Empty string | dbsu password, disabled by default |
+| `pg_replication_username` | `replicator` | Replication user name |
+| `pg_replication_password` | `DBUser.Replicator` | Replication password |
+| `pg_admin_username` | `dbuser_dba` | Administrator user name |
+| `pg_admin_password` | `DBUser.DBA` | Administrator password |
+| `pg_monitor_username` | `dbuser_monitor` | Monitoring user |
+| `pg_monitor_password` | `DBUser.Monitor` | Monitoring password |
+{.full-width}
 
-> If you modify these parameters, please synchronize updates to the corresponding user definitions in `pg_default_roles` to avoid role attribute inconsistencies.
+After changing these parameters, update the corresponding user definitions in `pg_default_roles` so user names and role attributes remain consistent.
 
 
 ----------------
 
-## Business Roles and Authorization (pg_users)
+## Application Roles and Grants (pg_users)
 
-Business users are declared through `pg_users` (see [User Configuration](/docs/pgsql/config/user) for detailed fields), where the `roles` field controls the granted business roles.
+Declare application users with `pg_users`; see [User Configuration](/docs/pgsql/config/user) for field details. The `roles` field grants business roles.
 
-Example: Create one read-only and one read-write user:
+Example read-only and read-write users:
 
 ```yaml
 pg_users:
@@ -83,16 +75,16 @@ pg_users:
   - { name: app_writer,  password: DBUser.Writer,  roles: [dbrole_readwrite], pgbouncer: true }
 ```
 
-> By inheriting `dbrole_*` to control access privileges, no need to GRANT for each database separately. Combined with [`pg_hba_rules`](/docs/pgsql/config/hba), you can distinguish access sources.
+Application users inherit default object privileges through `dbrole_*`. Database `CONNECT` privileges and [`pg_hba_rules`](/docs/pgsql/config/hba) continue to control which databases and sources can connect.
 
-For finer-grained ACL, you can use standard `GRANT/REVOKE` in `baseline` SQL or subsequent playbooks. Pigsty won't prevent you from granting additional privileges.
+For finer ACLs, use standard `GRANT` and `REVOKE` in baseline SQL or a later playbook, and include those additional grants in reviews.
 
 
 ----------------
 
-## Default Privilege Templates (pg_default_privileges)
+## Default Privilege Template (pg_default_privileges)
 
-`pg_default_privileges` will set DEFAULT PRIVILEGE on `postgres`, `dbuser_dba`, `dbrole_admin` (after business admin `SET ROLE`). The default template is as follows:
+`pg_default_privileges` applies to `pg_dbsu`, `pg_admin_username`, `dbrole_admin`, and every declared database owner. The default template is:
 
 ```yaml
 pg_default_privileges:
@@ -115,19 +107,19 @@ pg_default_privileges:
   - GRANT CREATE     ON SCHEMAS   TO dbrole_admin
 ```
 
-> As long as objects are created by the above administrators, they will automatically carry the corresponding privileges without manual GRANT. If business needs a custom template, simply replace this array.
+> Objects created by these identities receive the corresponding privileges automatically. Other object creators need their own `ALTER DEFAULT PRIVILEGES` configuration.
 
 Additional notes:
 
-- `pg_revoke_public` defaults to `true`, meaning automatic revocation of `PUBLIC`'s `CREATE` privilege on databases and the `public` schema.
-- `pg_default_schemas` and `pg_default_extensions` control pre-created schemas/extensions in `template1/postgres`, typically used for monitoring objects (`monitor` schema, `pg_stat_statements`, etc.).
+- `pg_revoke_public` defaults to `true`, revoking `CREATE` from `PUBLIC` on databases and the `public` schema.
+- `pg_default_schemas` and `pg_default_extensions` control schemas and extensions created in `template1/postgres`, usually for monitoring objects such as the `monitor` schema and `pg_stat_statements`.
 
 
 ----------------
 
-## Common Configuration Scenarios
+## Common Scenarios
 
-### Provide Read-Only Account for Partners
+### Read-only Account for a Partner
 
 ```yaml
 pg_users:
@@ -138,9 +130,9 @@ pg_hba_rules:
   - { user: partner_ro, db: analytics, addr: 203.0.113.0/24, auth: ssl }
 ```
 
-> Effect: Partner account only has default read-only privileges after login, and can only access the `analytics` database via TLS from the specified network segment.
+This adds an HBA rule allowing the partner to reach `analytics` over TLS from the specified CIDR. `pg_hba_rules` does not remove broader default rules. If the account must reach only this database, also narrow the default HBA policy and configure database `CONNECT` privileges.
 
-### Grant DDL Capability to Business Administrators
+### DDL for an Application Administrator
 
 ```yaml
 pg_users:
@@ -149,9 +141,9 @@ pg_users:
     roles: [dbrole_admin]
 ```
 
-> Business administrators can inherit the default DDL privilege template by `SET ROLE dbrole_admin` or logging in directly as `app_admin`.
+> `app_admin` inherits DDL privileges from `dbrole_admin`. To apply the default privileges configured for `dbrole_admin` to new objects, run `SET ROLE dbrole_admin` first. If `app_admin` is a declared database owner, it can also create objects directly as that owner.
 
-### Customize Default Privileges
+### Custom Default Privileges
 
 ```yaml
 pg_default_privileges:
@@ -160,15 +152,25 @@ pg_default_privileges:
   - GRANT SELECT ON TABLES TO reporting_group
 ```
 
-> After replacing the default template, all objects created by administrators will carry the new privilege definitions, avoiding per-object authorization.
+This parameter replaces the complete default privilege list. Referenced roles must already exist. Changes affect only objects created afterward; grant privileges separately on existing objects.
 
 
 ----------------
 
-## Coordination with Other Components
+## Integration with Other Components
 
-- **HBA Rules**: Use `pg_hba_rules` to bind roles with sources (e.g., only allow `dbrole_offline` to access offline instances).
-- **Pgbouncer**: Users with `pgbouncer: true` will be written to `userlist.txt`, and `pool_mode/pool_connlimit` can control connection pool-level quotas.
-- **Grafana/Monitoring**: `dbuser_monitor`'s privileges come from `pg_default_roles`. If you add a new monitoring user, remember to grant `pg_monitor` + access to the `monitor` schema.
+- **HBA rules:** use `pg_hba_rules` to bind roles, databases, and sources. To restrict `dbrole_offline`, set `role: offline` on its rule.
+- **PgBouncer:** users with `pgbouncer: true` are written to `userlist.txt`; `pool_mode` and `pool_connlimit` control pool-level quotas.
+- **Database monitoring:** `dbuser_monitor` receives privileges from `pg_default_roles`. When adding another monitoring user, grant `pg_monitor` and check access to the `monitor` schema.
 
-Through these parameters, you can version the privilege system along with code, truly achieving "configuration as policy".
+These parameters can be versioned with the inventory. Continue to review effective privileges through PostgreSQL catalogs.
+
+
+----------------
+
+## Related Documentation
+
+- [**Access Control Concepts**](/docs/concept/sec/ac): roles, default privileges, and isolation boundaries
+- [**Authentication**](/docs/concept/sec/auth): HBA, SCRAM, and client certificates
+- [**User Configuration**](/docs/pgsql/config/user): user and role fields
+- [**HBA Configuration**](/docs/pgsql/config/hba): connection-entry rules

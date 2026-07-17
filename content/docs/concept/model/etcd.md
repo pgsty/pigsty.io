@@ -90,7 +90,7 @@ Each ETCD instance listens on the following two ports:
 | **2380** | [**`etcd_peer_port`**](/docs/etcd/param#etcd_peer_port) | Peer communication port, used for Raft consensus     |
 {.full-width}
 
-ETCD clusters enable TLS encrypted communication by default and use RBAC authentication mechanism. Clients need correct certificates and passwords to access ETCD services.
+ETCD clusters enable [**TLS-encrypted communication**](/docs/concept/sec/ca) by default and use RBAC authentication. Clients need the correct certificates and passwords to access ETCD services.
 
 
 ----------------
@@ -124,5 +124,4 @@ etcd_up{cls="etcd", ins="etcd-3", ip="10.10.10.12", job="etcd"}
 For example, the `cls`, `ins`, `ip` labels correspond to cluster name, instance name, and node IP—the identifiers for these three core entities.
 They appear along with the `job` label in **all** ETCD monitoring metrics collected by [**VictoriaMetrics**](/docs/concept/arch/infra#victoriametrics).
 The `job` name for collecting ETCD metrics is fixed as `etcd`.
-
 

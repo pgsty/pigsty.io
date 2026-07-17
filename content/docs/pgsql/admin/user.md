@@ -39,7 +39,7 @@ bin/pgsql-user pg-meta dbuser_app    # Create/modify dbuser_app user on pg-meta 
 {{% /tab %}}
 {{< /tabpane >}}
 
-For complete user definition reference, see [**User Configuration**](/docs/pgsql/config/user). For access permissions, see [**ACL: Role Privileges**](/docs/concept/sec/ac/#default-roles).
+For the complete user definition reference, see [**User Configuration**](/docs/pgsql/config/user). See [**Access Control**](/docs/concept/sec/ac#role-system) for roles and privileges, and [**Authentication**](/docs/concept/sec/auth) for credential management.
 
 Note: User `name` cannot be modified after creation. To rename, delete the old user and create new one.
 

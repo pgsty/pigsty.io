@@ -30,7 +30,7 @@ Many large organizations and core institutions have been using Pigsty in product
 
 **What problems does High Availability solve?**
 
-* Elevates data security C/IA availability to a new level: RPO ≈ 0, RTO < 45s.
+* Elevates availability in the [**data security**](/docs/concept/sec/data) C/IA model: RPO ≈ 0, RTO < 45s.
 * Gains seamless rolling maintenance capability, minimizing maintenance window requirements and bringing great convenience.
 * Hardware failures can self-heal immediately without human intervention, allowing operations and DBAs to sleep well.
 * Replicas can handle read-only requests, offloading primary load and fully utilizing resources.

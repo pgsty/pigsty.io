@@ -55,7 +55,7 @@ After installation, access the sandbox homepage via IP: `http://<ip>`. Assuming 
 | Claude Monitor    | [`http://10.10.10.10/ui/d/claude-code`](http://10.10.10.10/ui/d/claude-code) |
 {.full-width}
 
-> Tip: If deploying on a public cloud server, check [**Security Best Practices**](/docs/setup/security), change passwords (`configure -g`), and [**enable firewall**](/docs/node/param#node_firewall_mode).
+> When deploying on a public cloud server, start with [**Security Recommendations**](/docs/setup/security): run `configure -g`, review the credentials it does not cover, and [**enable the firewall**](/docs/node/param#node_firewall_mode).
 
 --------
 

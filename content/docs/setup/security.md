@@ -1,102 +1,79 @@
 ---
-title: Security Tips
-linkTitle: Security
+title: Security Recommendations
 weight: 290
-description: Three security hardening tips for single-node quick-start deployment
+description: Basic security checks for quick-start and single-node deployments.
 icon: fas fa-shield-halved
 module: [PIGSTY]
 categories: [Tutorial]
 ---
 
+The default configuration targets local demonstrations and development or testing on a trusted intranet. If other hosts can reach the deployment, complete at least three checks: credentials, network boundaries, and critical files.
 
-For Demo/Dev single-node deployments, Pigsty's default config is secure enough as long as you [**change default passwords**](#passwords).
-
-If your deployment is exposed to Internet or office network, consider adding [**firewall**](#firewall) rules to restrict port access and source IPs for enhanced security.
-
-Additionally, we recommend protecting Pigsty's [**critical files**](#files) (config files and CA private key) from unauthorized access and backing them up regularly.
-
-For enterprise prod envs with strict security requirements, refer to the [**Deployment - Security Hardening**](/docs/deploy/security/) documentation for advanced configuration.
+Production environments should also review the [**Security Model**](/docs/concept/sec/level), [**Compliance**](/docs/concept/sec/compliance), and [**Security Considerations**](/docs/deploy/security/).
 
 
 ----------------
 
 ## Passwords
 
-Pigsty is an open-source project with **well-known default passwords**. If your deployment is exposed to Internet or office network, you must change all default passwords!
+Pigsty default credentials are public in the source code and documentation and must not be used directly in production.
 
-|           Module           | Parameter                                                              | Default Value       |
-|:--------------------------:|------------------------------------------------------------------------|---------------------|
-| [**`INFRA`**](/docs/infra) | [`grafana_admin_password`](/docs/infra/param#grafana_admin_password)   | `pigsty`            |
-| [**`INFRA`**](/docs/infra) | [`grafana_view_password`](/docs/infra/param#grafana_view_password)     | `DBUser.Viewer`     |
-| [**`PGSQL`**](/docs/pgsql) | [`pg_admin_password`](/docs/pgsql/param#pg_admin_password)             | `DBUser.DBA`        |
-| [**`PGSQL`**](/docs/pgsql) | [`pg_monitor_password`](/docs/pgsql/param#pg_monitor_password)         | `DBUser.Monitor`    |
-| [**`PGSQL`**](/docs/pgsql) | [`pg_replication_password`](/docs/pgsql/param#pg_replication_password) | `DBUser.Replicator` |
-| [**`PGSQL`**](/docs/pgsql) | [`patroni_password`](/docs/pgsql/param#patroni_password)               | `Patroni.API`       |
-|  [**`NODE`**](/docs/node)  | [`haproxy_admin_password`](/docs/node/param#haproxy_admin_password)    | `pigsty`            |
-| [**`MINIO`**](/docs/minio) | [`minio_secret_key`](/docs/minio/param#minio_secret_key)               | `S3User.MinIO`      |
-|  [**`ETCD`**](/docs/etcd)  | [`etcd_root_password`](/docs/etcd/param#etcd_root_password)            | `Etcd.Root`         |
-{.full-width}
-
-To avoid manually modifying passwords, Pigsty's **configuration wizard** provides automatic random strong password generation using the `-g` argument with `configure`.
+The configuration wizard can randomize built-in parameters and example credentials that it recognizes:
 
 ```bash
-$ ./configure -g
-configure pigsty v4.4.0 begin
-[ OK ] region = china
-[WARN] kernel  = Darwin, can be used as admin node only
-[ OK ] machine = arm64
-[ OK ] package = brew (macOS)
-[WARN] primary_ip = default placeholder 10.10.10.10 (macOS)
-[ OK ] mode = meta (unknown distro)
-[ OK ] locale  = C.UTF-8
-[ OK ] generating random passwords...
-    grafana_admin_password   : CdG0bDcfm3HFT9H2cvFuv9w7
-    pg_admin_password        : 86WqSGdokjol7WAU9fUxY8IG
-    pg_monitor_password      : 0X7PtgMmLxuCd2FveaaqBuX9
-    pg_replication_password  : 4iAjjXgEY32hbRGVUMeFH460
-    patroni_password         : DsD38QLTSq36xejzEbKwEqBK
-    haproxy_admin_password   : uhdWhepXrQBrFeAhK9sCSUDo
-    minio_secret_key         : z6zrYUN1SbdApQTmfRZlyWMT
-    etcd_root_password       : Bmny8op1li1wKlzcaAmvPiWc
-    DBUser.Meta              : U5v3CmeXICcMdhMNzP9JN3KY
-    DBUser.Viewer            : 9cGQF1QMNCtV3KlDn44AEzpw
-    S3User.Backup            : 2gjgSCFYNmDs5tOAiviCqM2X
-    S3User.Meta              : XfqkAKY6lBtuDMJ2GZezA15T
-    S3User.Data              : OygorcpCbV7DpDmqKe3G6UOj
-[ OK ] random passwords generated, check and save them
-[ OK ] ansible = ready
-[ OK ] pigsty configured
-[WARN] don't forget to check it and change passwords!
-proceed with ./deploy.yml
+./configure -g
 ```
+
+`configure -g` does not replace:
+
+- the pgBackRest `cipher_pass`;
+- MinIO users and selected example passwords in `ha/safe`;
+- database, object-storage, or application credentials added by the user.
+
+After generation, inspect `pigsty.yml` and replace every uncovered credential. The wizard prints generated passwords to the terminal, so protect terminal history and automation logs as sensitive data.
+
+See the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) for the complete scope.
 
 
 ----------------
 
 ## Firewall
 
-For deployments exposed to Internet or office networks, we strongly recommend configuring **firewall rules** to limit access IP ranges and ports.
+[**`node_firewall_mode`**](/docs/node/param#node_firewall_mode) defaults to `zone`. It trusts the intranet defined by [**`node_firewall_intranet`**](/docs/node/param#node_firewall_intranet) and restricts ports exposed to public networks.
 
-You can use your cloud provider's security group features, or Linux distribution firewall services (like `firewalld`, `ufw`, `iptables`, etc.) to implement this.
-
-| Direction | Protocol | Port     | Service    | Description                              |
-|:---------:|:--------:|----------|------------|------------------------------------------|
-|  Inbound  |   TCP    | **22**   | SSH        | Allow SSH login access                   |
-|  Inbound  |   TCP    | **80**   | Nginx      | Allow Nginx HTTP access                  |
-|  Inbound  |   TCP    | **443**  | Nginx      | Allow Nginx HTTPS access                 |
-|  Inbound  |   TCP    | **5432** | PostgreSQL | Remote database access, enable as needed |
+| Port | Service | Public by Default |
+|:---:|:---|:---|
+| `22` | SSH | Yes |
+| `80` | Nginx HTTP | Yes |
+| `443` | Nginx HTTPS | Yes |
+| `5432` | PostgreSQL | Not in the base default; exposed additionally by the demo `pigsty.yml` |
 {.full-width}
 
-Pigsty supports configuring firewall rules to allow 22/80/443/5432 from external networks, but this is not enabled by default.
+Production deployments should normally remove `5432` from the demo configuration. If applications need direct database access, restrict source addresses in the cloud security group, host firewall, and HBA.
+
+Also verify that the intranet definition matches the actual trust boundary. The default RFC 1918 ranges may be too broad; office networks, container networks, and other tenant networks should not become trusted automatically.
 
 
 ----------------
 
 ## Files
 
-In Pigsty, you need to protect the following files:
+The following files and directories contain highly sensitive information:
 
-- **`pigsty.yml`**: Pigsty main config file, contains access information and passwords for all nodes
-- **`files/pki/ca/ca.key`**: Pigsty self-signed CA private key, used to issue all SSL certificates in the deployment (auto-generated during deployment)
+- `pigsty.yml`: system and application credentials, node definitions, and service configuration;
+- `files/pki/ca/ca.key`: local CA private key;
+- the administration user's SSH private key, used to access managed nodes;
+- `files/pki/misc/*.key`: client-certificate private keys;
+- `/pg/tmp/pg-user-*.sql`: SQL containing plaintext passwords generated during user creation.
 
-We recommend strictly controlling access permissions for these two files, regularly backing them up, and storing them in a secure location.
+Restrict access to the admin node and configuration repository. Do not commit complete inventories or private keys to public repositories. Maintain controlled backups of the CA private key and required configuration.
+
+
+----------------
+
+## Related Documentation
+
+- [**Security and Compliance**](/docs/concept/sec/): security chapter entry point
+- [**Authentication**](/docs/concept/sec/auth): HBA, passwords, and client certificates
+- [**Encrypted Communication**](/docs/concept/sec/ca): CA, TLS, and server verification
+- [**Production Security Considerations**](/docs/deploy/security/): complete launch checklist

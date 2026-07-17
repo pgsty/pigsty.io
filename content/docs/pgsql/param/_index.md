@@ -444,13 +444,13 @@ pg_exporters: # list all remote instances here, alloc a unique unused local port
 
 Parameter Name: `pg_offline_query`, Type: `bool`, Level: `I`
 
-Set to `true` to enable offline queries on this instance, default is `false`.
+Set to `true` to mark this instance as eligible for offline queries. The default is `false`.
 
-When this parameter is enabled on a PostgreSQL instance, users belonging to the `dbrole_offline` group can directly connect to this PostgreSQL instance to execute offline queries (slow queries, interactive queries, ETL/analytics queries).
+The flag adds the instance to the default `offline` service candidate set and activates HBA rules with `role: offline` on that instance. It does not grant connection access by itself; effective access still depends on generated HBA rules, database `CONNECT` privileges, and role attributes.
 
 Instances with this flag have an effect similar to setting `pg_role` = `offline` for the instance, with the only difference being that `offline` instances by default do not serve `replica` service requests and exist as dedicated offline/analytics replica instances.
 
-If you don't have spare instances available for this purpose, you can select a regular replica and enable this parameter at the instance level to handle offline queries when needed.
+If no dedicated offline instance is available, enable the parameter on a regular replica. To restrict `dbrole_offline` to these instances, also set `role: offline` explicitly on the corresponding HBA rule.
 
 
 
@@ -475,7 +475,7 @@ Users should **pay close attention** to this section of parameters, as this is w
 * Pgbouncer connection pool-specific HBA rules: [`pgb_hba_rules`](#pgb_hba_rules)
 * Cron job (crontab) definition: [`pg_crontab`](#pg_crontab)
 
-[Default](/docs/concept/sec/ac/#default-users) database users and their credentials. It is strongly recommended to change these user passwords in production environments.
+[Default database users](/docs/concept/sec/ac#role-system) and their credentials. Their passwords must be changed in production.
 
 * PG admin user: [`pg_admin_username`](#pg_admin_username) / [`pg_admin_password`](#pg_admin_password)
 * PG replication user: [`pg_replication_username`](#pg_replication_username) / [`pg_replication_password`](#pg_replication_password)
@@ -1630,10 +1630,10 @@ If you have custom key management requirements (such as using HashiCorp Vault, A
 
 If [`PG_BOOTSTRAP`](#pg_bootstrap) is about creating a new cluster, then PG_PROVISION is about creating default objects in the cluster, including:
 
-* [Default Roles](/docs/concept/sec/ac/#default-roles)
-* [Default Users](/docs/concept/sec/ac/#default-users)
-* [Default Privileges](/docs/concept/sec/ac/#default-privileges)
-* [Default HBA Rules](/docs/pgsql/config/hba#default-hba)
+* [Default Roles](/docs/concept/sec/ac#role-system)
+* [Default Users](/docs/concept/sec/ac#role-system)
+* [Default Privileges](/docs/concept/sec/ac#default-privileges)
+* [Default HBA Rules](/docs/pgsql/config/hba#pg_default_hba_rules)
 * Default Schemas
 * Default Extensions
 
@@ -1745,7 +1745,7 @@ Parameter Name: `pg_default_roles`, Type: `role[]`, Level: `G/C`
 
 Default roles and users in Postgres cluster.
 
-Pigsty has a built-in role system. Please check [PGSQL Access Control: Role System](/docs/concept/sec/ac/#role-system) for details.
+Pigsty has a built-in role system. See [PGSQL Access Control: Role System](/docs/concept/sec/ac#role-system) for details.
 
 ```yaml
 pg_default_roles:                 # default roles and users in postgres cluster
@@ -1789,7 +1789,7 @@ pg_default_privileges:            # default privileges when admin user creates o
   - GRANT CREATE     ON SCHEMAS   TO dbrole_admin
 ```
 
-Pigsty provides corresponding default privilege settings based on the default role system. Please check [PGSQL Access Control: Privileges](/docs/concept/sec/ac/#default-privileges) for details.
+Pigsty provides matching default privileges for the built-in role system. See [PGSQL Access Control: Default Privileges](/docs/concept/sec/ac#default-privileges) for details.
 
 
 
@@ -1875,7 +1875,7 @@ pg_default_hba_rules:             # postgres default host-based authentication r
   - {user: '+dbrole_offline' ,db: all    ,addr: intra     ,auth: pwd   ,title: 'allow etl offline tasks from intranet',order: 650}
 ```
 
-The default value provides a fair security level for common scenarios. Please check [PGSQL Authentication](/docs/pgsql/config/hba) for details.
+The defaults target ordinary deployments on a trusted intranet; they are not a hardened baseline for public or regulated environments. The default `+dbrole_offline` rule has no `role` field and therefore applies to every instance. For instance isolation, copy the complete default list and set that rule to `role: offline`. See [**Authentication**](/docs/concept/sec/auth) and [**Access Control: Offline Role and Instance Isolation**](/docs/concept/sec/ac#offline-role-and-instance-isolation).
 
 This parameter is an array of [HBA](/docs/pgsql/config/hba#define-hba) rule objects, identical in format to [`pg_hba_rules`](#pg_hba_rules).
 It's recommended to configure unified [`pg_default_hba_rules`](#pg_default_hba_rules) globally, and use [`pg_hba_rules`](#pg_hba_rules) for additional customization on specific clusters. Rules from both parameters are applied sequentially, with the latter having higher priority.

@@ -1,348 +1,228 @@
 ---
 title: CRIT Template
 weight: 40
-description: PostgreSQL config template optimized for critical/financial workloads with data safety and audit compliance
+description: PostgreSQL parameter template for consistency-first workloads, with strict synchronous replication, data checksums, and detailed connection logging.
 icon: fa-solid fa-shield-halved
 module: [PGSQL]
 categories: [Reference]
 ---
 
+`crit.yml` targets transactional workloads with elevated consistency and audit requirements. It forces data checksums and Patroni strict synchronous mode, adds connection logging, and adjusts selected WAL, timeout, and parallel-query parameters.
 
-`crit.yml` is optimized for **critical/financial workloads**. Designed for 4-128 core CPUs with forced sync replication, data checksums, full audit logging, and strict security. Trades performance for maximum data safety.
+The template increases write latency and may block writes when no synchronous replica is available. Before use, confirm consistency objectives, failure domains, client commit settings, and availability requirements.
 
-> Pair with [**`node_tune`**](/docs/node/param#node_tune) = `crit` for OS-level tuning, optimizing dirty page management.
-
-
-----------------
-
-## Use Cases
-
-CRIT template is ideal for:
-
-- **Financial transactions**: Bank transfers, payment settlement, securities trading
-- **Core accounting**: General ledger systems, accounting systems
-- **Compliance audit**: Businesses requiring complete operation records
-- **Critical business**: Any scenario that cannot tolerate data loss
-
-**Requirements**:
-- Zero data loss (RPO = 0)
-- Data integrity verification
-- Complete audit logs
-- Strict security policies
-- Acceptable performance trade-offs
+Also evaluate [**`node_tune: crit`**](/docs/node/param#node_tune), although host tuning and database parameters can be selected independently.
 
 
 ----------------
+
+<span id="use-cases"></span>
 
 ## Usage
 
-Specify [**`pg_conf`**](/docs/pgsql/param#pg_conf) = `crit.yml` in cluster definition:
-
 ```yaml
-pg-finance:
+pg-critical:
   hosts:
     10.10.10.11: { pg_seq: 1, pg_role: primary }
     10.10.10.12: { pg_seq: 2, pg_role: replica }
     10.10.10.13: { pg_seq: 3, pg_role: replica }
   vars:
-    pg_cluster: pg-finance
-    pg_conf: crit.yml    # PostgreSQL critical template
-    node_tune: crit      # OS critical tuning
+    pg_cluster: pg-critical
+    pg_conf: crit.yml
+    node_tune: crit
 ```
 
-**Recommendation**: Critical clusters should have at least 3 nodes to maintain sync replication when one node fails.
+A three-node topology leaves room to select another synchronous replica after one node fails. Continued write availability still depends on remaining node state, DCS, network, and synchronous-replica selection. Exercise failures on the target topology.
 
 
 ----------------
 
-## Core Features
+<span id="core-features"></span>
+<span id="forced-sync-replication"></span>
 
-### Forced Sync Replication
+## Strict Synchronous Replication
 
-CRIT template **forces sync replication** regardless of [`pg_rpo`](/docs/pgsql/param#pg_rpo) setting:
+CRIT does not derive synchronous mode from [**`pg_rpo`**](/docs/pgsql/param#pg_rpo). It enables these settings unconditionally:
 
 ```yaml
-synchronous_mode: true   # forced on, ignores pg_rpo
+synchronous_mode: true
+synchronous_mode_strict: true
 ```
 
-Every transaction commit waits for at least one replica confirmation, ensuring **RPO = 0** (zero data loss).
+`synchronous_mode_strict` prevents Patroni from falling back to asynchronous replication when no synchronous replica is available. The primary therefore blocks writes that require synchronous acknowledgment.
 
-**Cost**: Write latency increases (typically 1-5ms depending on network).
+The mode targets preservation of acknowledged transactions when:
 
-### Forced Data Checksums
+- the session has not lowered `synchronous_commit` to `local`, `off`, or another asynchronous level;
+- a synchronous replica acknowledges WAL during commit;
+- failover selects only an eligible node containing the required WAL.
 
-CRIT template **forces data checksums** regardless of [`pg_checksum`](/docs/pgsql/param#pg_checksum) setting:
+RPO must therefore be validated against client parameters, replication state, and the failure model; it cannot be inferred from the template name alone.
+
+To require acknowledgment from multiple synchronous replicas, change Patroni dynamic configuration:
+
+```bash
+pg edit-config pg-critical
+```
+
+```yaml
+synchronous_node_count: 2
+```
+
+A higher synchronous-replica count imposes stricter conditions for accepting writes.
+
+
+----------------
+
+<span id="forced-data-checksums"></span>
+
+## Data Checksums
+
+CRIT initialization always includes:
 
 ```yaml
 initdb:
-  - data-checksums   # forced on, ignores pg_checksum
+  - data-checksums
 ```
 
-Data checksums detect silent disk corruption (bit rot), critical for financial data.
-
-### Disabled Parallel Query
-
-CRIT template disables parallel query gather operations:
-
-```yaml
-max_parallel_workers_per_gather: 0   # parallel queries disabled
-```
-
-Parallel cost estimates are also increased:
-
-```yaml
-parallel_setup_cost: 2000
-parallel_tuple_cost: 0.2
-min_parallel_table_scan_size: 32MB
-min_parallel_index_scan_size: 2MB
-```
-
-**Reason**: Parallel queries may cause unstable latency. For latency-sensitive financial transactions, predictable stable performance is more important.
+This overrides a disabled [**`pg_checksum`**](/docs/pgsql/param#pg_checksum) setting and enables page checksums for a new cluster. Checksums detect page damage after write; they do not detect logical errors or every memory error.
 
 
 ----------------
 
-## Parameter Details
+<span id="audit-logging-key-differences"></span>
+<span id="query-logging"></span>
 
-### Connection Management
+## Connection and Query Logging
 
-```yaml
-max_connections: 500/1000   # depends on pgbouncer usage
-superuser_reserved_connections: 10
-```
-
-Same as OLTP template.
-
-### Memory Config
-
-| Parameter | Formula | Description |
-|:----------|:--------|:------------|
-| `shared_buffers` | mem × `pg_shared_buffer_ratio` | Default ratio 0.25 |
-| `maintenance_work_mem` | shared_buffers × 25% | For VACUUM, CREATE INDEX |
-| `work_mem` | 64MB - 1GB | Same as OLTP |
-| `effective_cache_size` | total mem - shared_buffers | Estimated cache memory |
-
-### WAL Config (Key Differences)
+CRIT logs DDL, statements taking longer than 100 ms, and disconnection events:
 
 ```yaml
-wal_writer_delay: 10ms              # OLTP: 20ms, more frequent flush
-wal_writer_flush_after: 0           # OLTP: 1MB, immediate flush, no buffer
-idle_replication_slot_timeout: 3d   # OLTP: 7d, stricter slot cleanup
+log_statement: ddl
+log_min_duration_statement: 100
+log_disconnections: 'on'
 ```
 
-`wal_writer_flush_after: 0` ensures every WAL write flushes to disk immediately, minimizing data loss risk.
+PostgreSQL 18 and later use:
 
-### Replication Config (PG15-)
-
-```yaml
-vacuum_defer_cleanup_age: 500000    # PG15 and below only
-```
-
-Preserves 500K recent transactions from vacuum cleanup, providing more catchup buffer for replicas.
-
-### Audit Logging (Key Differences)
-
-CRIT template enables full connection audit:
-
-**PostgreSQL 18+**:
 ```yaml
 log_connections: 'receipt,authentication,authorization'
 ```
 
-**PostgreSQL 17 and below**:
-```yaml
-log_connections: 'on'
-log_disconnections: 'on'
-```
+Earlier versions use `log_connections: on`. These records support connection auditing but are not fine-grained SQL audit logs. Enable `pgaudit` separately to record object reads and writes, roles, or statement classes.
 
-Records complete connection lifecycle:
-- Connection receipt
-- Authentication process
-- Authorization result
-- Disconnection
-
-### Query Logging
-
-```yaml
-log_min_duration_statement: 100     # log queries > 100ms
-log_statement: ddl                  # log all DDL
-track_activity_query_size: 32768    # OLTP: 8192, capture full queries
-```
-
-32KB `track_activity_query_size` ensures capturing complete long query text.
-
-### Statistics Tracking
-
-```yaml
-track_io_timing: on
-track_cost_delay_timing: on         # PG18+, track vacuum cost delay
-track_functions: all
-track_activity_query_size: 32768
-```
-
-### Client Timeouts (Key Differences)
-
-```yaml
-idle_in_transaction_session_timeout: 1min   # OLTP: 10min, stricter
-```
-
-1-minute idle transaction timeout quickly releases zombie transactions holding locks.
-
-### Extension Config
-
-```yaml
-shared_preload_libraries: '$libdir/passwordcheck, pg_stat_statements, auto_explain'
-```
-
-**Note**: CRIT template loads `passwordcheck` by default, enforcing password complexity.
+`track_activity_query_size` is set to 32 KiB to retain longer active-query text. Logs may contain SQL and business data; restrict access and set an appropriate retention period.
 
 
 ----------------
 
-## Key Differences from OLTP
+## Watchdog
 
-| Parameter | [**CRIT**](/docs/pgsql/template/crit/) | [**OLTP**](/docs/pgsql/template/oltp/) | Reason |
-|:----------|:-----------------|:-----------------|:-------|
-| synchronous_mode | **Forced true** | Depends on pg_rpo | Zero data loss |
-| data-checksums | **Forced on** | Optional | Data integrity |
-| max_parallel_workers_per_gather | **0** | 20% cpu | Stable latency |
-| wal_writer_delay | 10ms | 20ms | More frequent flush |
-| wal_writer_flush_after | **0** | 1MB | Immediate flush |
-| idle_replication_slot_timeout | 3d | 7d | Stricter cleanup |
-| idle_in_transaction_session_timeout | **1min** | 10min | Quick lock release |
-| track_activity_query_size | **32KB** | 8KB | Complete query capture |
-| log_connections | **Full logging** | Auth only | Audit compliance |
-| log_disconnections | **on** | off | Audit compliance |
-| passwordcheck | **Enabled** | Not enabled | Password security |
-| vacuum_defer_cleanup_age | 500000 | 0 | Replica catchup buffer |
+CRIT changes Patroni watchdog from disabled to `automatic`:
+
+```yaml
+watchdog:
+  mode: automatic
+  device: /dev/watchdog
+```
+
+`automatic` activates only when the system has a usable watchdog device. If fencing must be mandatory, verify hardware, virtualization support, and device permissions before setting `required` explicitly. A bad configuration can prevent primary startup or disrupt failover.
 
 
 ----------------
 
-## Performance Impact
+<span id="parameter-details"></span>
+<span id="key-differences-from-oltp"></span>
+<span id="disabled-parallel-query"></span>
 
-Using CRIT template has these impacts:
+## Key Parameter Differences
 
-### Increased Write Latency
+| Parameter | CRIT | OLTP Default | Effect |
+|:---|:---|:---|:---|
+| `synchronous_mode` | Always enabled | Derived from `pg_rpo` | Consistency first |
+| `synchronous_mode_strict` | `true` | General template behavior | Blocks writes without a synchronous replica |
+| `data-checksums` | Always enabled | Controlled by `pg_checksum` | Page-damage detection |
+| `max_parallel_workers_per_gather` | `0` | Calculated from CPU | Reduces parallel-query variability |
+| `wal_writer_delay` | `10ms` | `20ms` | Processes WAL more frequently |
+| `wal_writer_flush_after` | `0` | `1MB` | Changes WAL flush behavior |
+| `idle_replication_slot_timeout` | `3d` | `7d` | Removes idle replication slots sooner |
+| `idle_in_transaction_session_timeout` | `1min` | `10min` | Terminates idle transactions sooner |
+| `track_activity_query_size` | `32KiB` | `8KiB` | Retains longer query text |
+| `log_connections` | Detailed connection events | PostgreSQL 18 logs authorization by default | Adds connection-audit detail |
+| `log_disconnections` | `on` | `off` | Records disconnections |
+{.full-width}
 
-Sync replication adds 1-5ms write latency (network-dependent):
-
-```
-Async replication: commit -> local flush -> return to client
-Sync replication:  commit -> local flush -> wait replica confirm -> return to client
-```
-
-### Reduced Write Throughput
-
-Due to replica confirmation wait, write TPS may drop 10-30%.
-
-### More Stable Query Latency
-
-With parallel queries disabled, query latency is more predictable without parallel startup overhead variance.
-
-### Slightly Increased Resource Overhead
-
-More frequent WAL flushes and complete audit logs add extra IO overhead.
+CRIT also disables parallel gather for individual queries and adjusts parallel costs, autovacuum, WAL, and statistics parameters. The active values for a release are defined in `roles/pgsql/templates/crit.yml`.
 
 
 ----------------
 
-## HA Configuration
+<span id="extension-config"></span>
 
-### Minimum Recommended Setup
+## Preloaded Extensions
 
-```yaml
-pg-critical:
-  hosts:
-    10.10.10.11: { pg_seq: 1, pg_role: primary }
-    10.10.10.12: { pg_seq: 2, pg_role: replica }
-    10.10.10.13: { pg_seq: 3, pg_role: replica }
-  vars:
-    pg_cluster: pg-critical
-    pg_conf: crit.yml    # PostgreSQL critical template
-    node_tune: crit      # OS critical tuning
-```
-
-3-node setup ensures sync replication continues when one node fails.
-
-### Cross-DC Deployment
-
-For financial-grade disaster recovery:
+CRIT generates `shared_preload_libraries` from [**`pg_libs`**](/docs/pgsql/param#pg_libs). The role default sets:
 
 ```yaml
-pg-critical:
-  hosts:
-    10.10.10.11: { pg_seq: 1, pg_role: primary, pg_weight: 100 }  # DC A
-    10.10.10.12: { pg_seq: 2, pg_role: replica, pg_weight: 100 }  # DC A
-    10.20.10.13: { pg_seq: 3, pg_role: replica, pg_weight: 0 }    # DC B (standby)
-  vars:
-    pg_cluster: pg-critical
-    pg_conf: crit.yml    # PostgreSQL critical template
-    node_tune: crit      # OS critical tuning
+pg_libs: 'pg_stat_statements, auto_explain'
 ```
 
-### Quorum Commit
-
-For higher consistency, configure multiple sync replicas:
-
-```bash
-$ pg edit-config pg-critical
-synchronous_mode: true
-synchronous_node_count: 2    # require 2 replica confirmations
-```
-
-
-----------------
-
-## Security Hardening Tips
-
-### Password Policy
-
-CRIT template has `passwordcheck` enabled; further configure:
-
-```sql
--- Set password encryption
-ALTER SYSTEM SET password_encryption = 'scram-sha-256';
-```
-
-### Audit Extension
-
-Consider `pgaudit` for detailed auditing:
+Selecting `crit.yml` alone **does not load `passwordcheck`**. Configure it explicitly when password-complexity checks are required:
 
 ```yaml
-pg_libs: 'pg_stat_statements, auto_explain, pgaudit'
+pg_libs: '$libdir/passwordcheck, pg_stat_statements, auto_explain'
+```
+
+[**`ha/safe`**](/docs/conf/safe) includes this override. To use `pgaudit`, also add it to `pg_libs` and configure the audit scope:
+
+```yaml
+pg_libs: '$libdir/passwordcheck, pg_stat_statements, auto_explain, pgaudit'
 pg_parameters:
   pgaudit.log: 'ddl, role, write'
 ```
 
-### Network Isolation
 
-Ensure database network is isolated; use [HBA rules](/docs/pgsql/config/hba) to restrict access.
+----------------
+
+<span id="performance-impact"></span>
+<span id="ha-configuration"></span>
+
+## Performance and Availability Impact
+
+- Synchronous commit waits for a synchronous replica; write latency includes at least replica network and WAL durability time.
+- Strict synchronous mode blocks writes when no synchronous replica is available.
+- Disabling parallel gather can reduce throughput for large queries, but also reduces resource variability from parallel execution.
+- More detailed logging and statistics consume additional I/O, CPU, and storage.
+- A shorter idle-transaction timeout may terminate application sessions that hold a transaction open without executing statements.
+
+The impact depends on hardware, network, queries, and client behavior. Test with the actual workload instead of relying on a fixed latency or throughput percentage.
 
 
 ----------------
 
-## Monitoring Metrics
+<span id="security-hardening-tips"></span>
+<span id="monitoring-metrics"></span>
 
-For critical clusters, focus on:
+## Launch Checklist
 
-- **Replication lag**: Sync lag should be near zero
-- **Transaction commit time**: p99 latency
-- **Lock waits**: Long lock waits may impact business
-- **Checkpoints**: Checkpoint duration and frequency
-- **WAL generation rate**: Predict disk space needs
+- [ ] Deploy at least one usable synchronous replica and verify write behavior during node failure
+- [ ] Check whether applications change `synchronous_commit`
+- [ ] Select watchdog `automatic` or `required` according to availability requirements
+- [ ] Verify collection, access control, and retention for connection logs
+- [ ] Configure `pg_libs` and extension parameters explicitly when password checks or SQL auditing are required
+- [ ] Test write latency, throughput, and idle-transaction timeouts with the production workload
+- [ ] Exercise primary, synchronous-replica, DCS, and network-partition failures
 
 
 ----------------
 
-## References
+<span id="references"></span>
 
-- [**`pg_conf`**](/docs/pgsql/param#pg_conf): PostgreSQL config template selection
-- [**`node_tune`**](/docs/node/param#node_tune): OS tuning template, should match `pg_conf`
-- [**`pg_rpo`**](/docs/pgsql/param#pg_rpo): Recovery point objective parameter
-- [**OLTP Template**](/docs/pgsql/template/oltp/): Transaction template comparison
-- [**OLAP Template**](/docs/pgsql/template/olap/): Analytics template comparison
-- [**TINY Template**](/docs/pgsql/template/tiny/): Micro instance template comparison
-- [Sync Standby](/docs/pgsql/config/cluster#sync-standby): Sync replication configuration
-- [Quorum Commit](/docs/pgsql/config/cluster#quorum-commit): Higher consistency level
+## Related Documentation
 
+- [**Security Model**](/docs/concept/sec/level): where CRIT fits in the overall hardening path
+- [**Data Security**](/docs/concept/sec/data): boundaries of synchronous replication, checksums, and auditing
+- [**`ha/safe` Configuration**](/docs/conf/safe): three-node hardening example that includes CRIT
+- [**Sync Standby**](/docs/pgsql/config/cluster#sync-standby): synchronous replication configuration
+- [**Quorum Commit**](/docs/pgsql/config/cluster#quorum-commit): synchronous replica count
+- [**OLTP Template**](/docs/pgsql/template/oltp/): general transaction template

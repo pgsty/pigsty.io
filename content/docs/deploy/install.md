@@ -166,7 +166,7 @@ The script replaces IP placeholder `10.10.10.10` with the current node's primary
 Generated config is at `~/pigsty/pigsty.yml`. Review and modify before installation.
 
 {{% alert title="Change default passwords!" color="danger" %}}
-We strongly recommend modifying default passwords and credentials before installation. See [**Security Hardening**](/docs/setup/security/#passwords).
+Change default passwords and credentials before installation. See [**Security Recommendations**](/docs/setup/security#passwords).
 {{% /alert %}}
 
 

@@ -55,7 +55,7 @@ Here, `node_exporter` exposes host metrics, `vector` sends logs to the collectio
 
 A Pigsty deployment has exactly **one admin node**—the node that runs Ansible playbooks and issues control/deployment commands.
 
-This node has `ssh/sudo` access to all other nodes. Admin node security is critical; ensure access is strictly controlled.
+This node has `ssh/sudo` access to all other nodes. Admin node security is critical and access must be strictly controlled; see [**Security Model: Trust Boundaries**](/docs/concept/sec/level#trust-boundaries) for its trust scope and critical assets.
 
 During [**single-node installation**](/docs/setup/install) and [**configuration**](/docs/concept/iac/configure), the current node becomes the admin node.
 However, alternatives exist. For example, if your laptop can SSH to all managed nodes and has Ansible installed, it can serve as the admin node—though this isn't recommended for production.
@@ -192,4 +192,3 @@ Typical node counts by deployment scale:
 | Small prod  |   1   |   2   |  3   |   0   |   N   |
 | Large prod  |   2   |   3   |  5   |  4+   |   N   |
 {.full-width}
-

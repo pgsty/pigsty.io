@@ -305,7 +305,7 @@ This is the MinIO super administrator's password, used together with [`minio_acc
 {{% alert title="Security Warning: Change the default password!" color="danger" %}}
 Using default passwords is a high-risk behavior! Make sure to change this password in your production deployment.
 
-Tip: Running `./configure` or `./configure -g` will automatically replace these default passwords in the configuration template.
+Tip: `./configure -g` randomizes default passwords recognized by the configuration wizard. See the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) for the complete scope.
 {{% /alert %}}
 
 
@@ -493,5 +493,4 @@ Parameter: `minio_rm_pkg`, Type: `bool`, Level: `G/C/A`
 Uninstall MinIO packages during removal? Default value is `false`.
 
 When enabled, the [`minio-rm.yml`](/docs/minio/playbook/#minio-rmyml) playbook will uninstall MinIO packages during cluster removal. This is disabled by default to preserve the MinIO installation for potential future use.
-
 

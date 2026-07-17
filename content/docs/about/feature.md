@@ -17,7 +17,7 @@ categories: [Reference]
 ## Value Propositions
 
 - [**Extensibility**](/img/pigsty/ecosystem.png): Powerful [**extensions**](/ext/list) out of the box: deep integration of **PostGIS**, **TimescaleDB**, **Citus**, **PGVector**, [**531**](/ext/list/) plugins, and [**12 PG kernels**](/docs/pgsql/kernel).
-- [**Reliability**](/img/pigsty/arch.png): Quickly create [**high-availability**](/docs/concept/ha/), self-healing [**PostgreSQL**](/docs/pgsql) clusters with auto-configured [**point-in-time recovery**](/docs/concept/pitr/), [**access control**](/docs/concept/sec/ac/), self-signed [**CA**](/docs/concept/sec/ca) and [**SSL**](/docs/setup/security/), ensuring rock-solid data.
+- [**Reliability**](/img/pigsty/arch.png): Quickly create [**high-availability**](/docs/concept/ha/), self-healing [**PostgreSQL**](/docs/pgsql) clusters with built-in [**point-in-time recovery**](/docs/concept/pitr/), [**access control**](/docs/concept/sec/ac), a self-signed [**CA**](/docs/concept/sec/ca), and [**TLS**](/docs/concept/sec/ca).
 - [**Observability**](/img/pigsty/dashboard.jpg): Based on [**Prometheus**](/docs/infra#victoria-observability-suite) & [**Grafana**](/docs/infra#grafana) modern observability stack, providing stunning monitoring best practices. Modular design, can be used independently: [**Gallery**](https://github.com/pgsty/pigsty/wiki/Gallery) & [**Demo**](https://demo.pigsty.io).
 - [**Availability**](/img/pigsty/ha.png): Deliver stable, reliable, auto-routed, transaction-pooled, read-write separated high-performance database [**services**](/docs/pgsql/service#default-service), with flexible [**access**](/docs/pgsql/service#access-service) modes via HAProxy, Pgbouncer, and VIP.
 - [**Maintainability**](/img/pigsty/iac.jpg): [**Easy to use**](/docs/setup/install), [**Infrastructure as Code**](/docs/pgsql/config), [**Management SOPs**](/docs/pgsql/admin/), auto-tuning, local software repository, [**Vagrant**](/docs/deploy/vagrant) [**sandbox**](/docs/deploy/sandbox) and [**Terraform**](/docs/deploy/terraform) templates, zero-downtime [**migration**](/docs/pgsql/migration) solutions.
@@ -38,7 +38,7 @@ Pigsty is a better local open-source RDS for PostgreSQL alternative:
 - [Stunning Observability](#stunning-observability): Based on modern observability stack Prometheus/Grafana, providing stunning, unparalleled database observability capabilities.
 - [Battle-Tested Reliability](#battle-tested-reliability): Self-healing high-availability architecture: automatic failover on hardware failure, seamless traffic switching. With auto-configured PITR as safety net for accidental data deletion!
 - [Easy to Use and Maintain](#easy-to-use-and-maintain): Declarative API, GitOps ready, foolproof operation, Database/Infra-as-Code and management SOPs encapsulating management complexity!
-- [Solid Security Practices](#solid-security-practices): Encryption and backup all included, with built-in basic ACL best practices. As long as hardware and keys are secure, you don't need to worry about database security!
+- [Solid Security Practices](#solid-security-practices): HBA, ACL, TLS, backup, logging, and host-firewall foundations, with explicit default boundaries and production hardening requirements.
 - [Broad Application Scenarios](#broad-application-scenarios): Low-code data application development, or use preset Docker Compose templates to spin up massive software using PostgreSQL with one click!
 - [Open-Source Free Software](#open-source-free-software): Own better database services at less than 1/10 the cost of cloud databases! Truly "own" your data and achieve autonomy!
 
@@ -148,7 +148,7 @@ Visit the [**Screenshot Gallery**](https://github.com/pgsty/pigsty/wiki/Gallery)
 
 For table/database drops caused by software defects or human error, Pigsty provides out-of-the-box [PITR](/docs/concept/pitr) point-in-time recovery capability, enabled by default without additional configuration. As long as storage space allows, base backups and WAL archiving based on `pgBackRest` give you the ability to quickly return to any point in the past. You can use local directories/disks, or dedicated MinIO clusters or S3 object storage services to retain longer recovery windows, according to your budget.
 
-More importantly, Pigsty makes high availability and self-healing the standard for PostgreSQL clusters. The [high-availability self-healing architecture](/docs/concept/ha) based on `patroni`, `etcd`, and `haproxy` lets you handle hardware failures with ease: RTO < 30s for primary failure automatic failover (configurable), with zero data loss RPO = 0 in consistency-first mode. As long as any instance in the cluster survives, the cluster can provide complete service, and clients only need to connect to any node in the cluster to get full service.
+Pigsty provides a [high-availability self-healing architecture](/docs/concept/ha) based on Patroni, etcd, and HAProxy. When the node, network, quorum, and synchronous-replica assumptions hold, it can fail over the primary automatically. Actual RTO and RPO depend on replication mode, failure type, timeout settings, and client reconnection behavior.
 
 Pigsty includes built-in HAProxy load balancers for automatic traffic switching, providing DNS/VIP/LVS and other access methods for clients. Failover and active switchover are almost imperceptible to the business side except for brief interruptions, and applications don't need to modify connection strings or restart. The minimal maintenance window requirements bring great flexibility and convenience: you can perform rolling maintenance and upgrades on the entire cluster without application coordination. The feature that hardware failures can wait until the next day to handle lets developers, operations, and DBAs sleep well.
 Many large organizations and core institutions have been using Pigsty in production for extended periods. The largest deployment has 25K CPU cores and 200+ PostgreSQL ultra-large instances; in this deployment case, dozens of hardware failures and various incidents occurred over six to seven years, DBAs changed several times, but still maintained availability higher than 99.999%.
@@ -178,23 +178,13 @@ Beyond that, Pigsty's own installation and deployment is also one-click foolproo
 
 ## Solid Security Practices
 
-**Encryption and backup all included. As long as hardware and keys are secure, you don't need to worry about database security.**
+Pigsty provides the security foundations required for database deployment: layered HBA, built-in roles and default privileges, SCRAM-SHA-256, page checksums, a local CA, component certificates, backup, PITR, centralized logs, and firewall configuration.
 
-**Pigsty is designed for high-standard, demanding enterprise scenarios**, adopting industry-leading [security best practices](/docs/setup/security) to protect your data security (confidentiality/integrity/availability). The default configuration's security is sufficient to meet compliance requirements for most scenarios.
+The defaults target development, testing, and demonstrations on a trusted intranet. Production deployments must replace public credentials, review network boundaries, enforce TLS where required, configure server-certificate verification, and establish backup recovery, privilege review, and incident-response processes.
 
-Pigsty creates self-signed CAs (or uses your provided CA) to issue certificates and encrypt network communication. Sensitive management pages and API endpoints that need protection are password-protected.
-Database backups use AES encryption, database passwords use scram-sha-256 encryption, and plugins are provided to enforce password strength policies.
-Pigsty provides an out-of-the-box, easy-to-use, easily extensible [**ACL**](/docs/concept/sec/ac/) model, providing read/write/admin/ETL permission distinctions, with [**HBA**](/docs/pgsql/config/hba) rule sets following the principle of least privilege, ensuring system confidentiality through multiple layers of protection.
+[**Security and Compliance**](/docs/concept/sec/) documents each mechanism's default state and boundary. [**Security Considerations**](/docs/deploy/security/) provides production hardening guidance, and [**Compliance**](/docs/concept/sec/compliance) maps relevant controls to MLPS and SOC 2. Whether a deployment meets a specific requirement depends on scope, organizational process, continuous evidence, and the auditor's conclusion.
 
-Pigsty enables database checksums by default to avoid silent data corruption, with replicas providing bad block fallback. Provides CRIT zero-data-loss configuration templates, using watchdog to ensure HA fencing as a fallback.
-You can audit database operations through the audit plugin, with all system and database logs collected for reference to meet compliance requirements.
-
-Pigsty correctly configures SELinux and firewall settings, and follows the principle of least privilege in designing OS user groups and file permissions, ensuring system security baselines meet compliance requirements.
-Security is also uncompromised for auxiliary optional components like Etcd and MinIO — both use RBAC models and TLS encrypted communication, ensuring overall system security.
-
-A properly configured system can easily pass MLPS Level 3 / SOC 2. As long as you follow security best practices, deploy on internal networks with properly configured security groups and firewalls, database security will no longer be your pain point.
-
-[![pigsty-acl.jpg](/img/pigsty/acl.jpg)](/docs/setup/security)
+[![pigsty-acl.jpg](/img/pigsty/acl.jpg)](/docs/concept/sec/)
 
 
 

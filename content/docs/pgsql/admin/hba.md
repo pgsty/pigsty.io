@@ -47,7 +47,7 @@ bin/pgsql-hba pg-meta 10.10.10.11 10.10.10.12  # Refresh multiple instances
 {{% /tab %}}
 {{< /tabpane >}}
 
-For complete HBA rule definition reference, see [**HBA Configuration**](/docs/pgsql/config/hba). For overall access control design, see [**Security & Compliance**](/docs/concept/sec/).
+For rule syntax, see [**HBA Configuration**](/docs/pgsql/config/hba). For authentication methods, default boundaries, and credential management, see [**Authentication**](/docs/concept/sec/auth).
 
 | Action                                      | Description                                         | Risk |
 |:--------------------------------------------|:----------------------------------------------------|:----:|
@@ -357,5 +357,5 @@ cat /etc/pgbouncer/pgb_hba.conf    # View Pgbouncer HBA rules
 - [**HBA Configuration**](/docs/pgsql/config/hba/): HBA rule config syntax and parameter details
 - [**User Management**](/docs/pgsql/admin/user/): User and role management operations
 - [**Access Control**](/docs/pgsql/config/acl/): Role system and permission model
-- [**Security & Compliance**](/docs/concept/sec/): PostgreSQL cluster security features
-
+- [**Authentication**](/docs/concept/sec/auth): Authentication methods, default boundaries, and credential management
+- [**Encrypted Communication**](/docs/concept/sec/ca): TLS and client certificate verification

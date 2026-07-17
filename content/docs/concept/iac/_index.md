@@ -94,7 +94,7 @@ as well as different clusters: such as [**standby clusters**](/docs/pgsql/config
 
 ## Customize Cluster Content
 
-Not only can you define clusters declaratively, but you can also define databases, users, services, and HBA rules within the cluster. For example, the following config file deeply customizes the content of the default `pg-meta` single-node database cluster:
+Not only can you define clusters declaratively, but you can also define databases, users, services, and [**HBA rules**](/docs/concept/sec/auth) within the cluster. For example, the following config file deeply customizes the content of the default `pg-meta` single-node database cluster:
 
 Including: declaring six business databases and seven business users, adding an extra `standby` service (synchronous standby, providing read capability with no replication delay), defining some additional `pg_hba` rules, an L2 VIP address pointing to the cluster primary, and a customized backup strategy.
 
@@ -190,12 +190,12 @@ pg-meta:
 
 ## Declare Access Control
 
-You can also deeply customize Pigsty's access control capabilities through declarative configuration. For example, the following config file provides deep security customization for the `pg-meta` cluster:
+You can also customize Pigsty's [**access control**](/docs/concept/sec/ac) through declarative configuration. For example, the following config file provides deep security customization for the `pg-meta` cluster:
 
 Uses the three-node core cluster template: `crit.yml`, to ensure data consistency is prioritized with zero data loss during failover.
 Enables L2 VIP and restricts database and connection pool listening addresses to local loopback IP + internal network IP + VIP three specific addresses.
-The template enforces Patroni's SSL API and Pgbouncer's SSL, and in HBA rules, enforces SSL usage for accessing the database cluster.
-Also enables the `$libdir/passwordcheck` extension in `pg_libs` to enforce password strength security policy.
+The template enables [**TLS**](/docs/concept/sec/ca) for the Patroni API and PgBouncer, and requires SSL for database access through HBA.
+It also enables `$libdir/passwordcheck` in `pg_libs` to enforce a [**password-strength policy**](/docs/concept/sec/auth#password-policy).
 
 Finally, a separate `pg-meta-delay` cluster is declared as `pg-meta`'s delayed replica from one hour ago, for emergency data deletion recovery.
 
@@ -375,5 +375,4 @@ minio:
           - { name: minio-2 ,ip: 10.10.10.11 , port: 9000 , options: 'check-ssl ca-file /etc/pki/ca.crt check port 9000' }
           - { name: minio-3 ,ip: 10.10.10.12 , port: 9000 , options: 'check-ssl ca-file /etc/pki/ca.crt check port 9000' }
 ```
-
 

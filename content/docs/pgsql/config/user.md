@@ -567,14 +567,14 @@ Integer, mutable. User-level max pool connections, default `-1` (unlimited).
 
 ## ACL System
 
-Pigsty provides a built-in, out-of-the-box access control / [**ACL**](/docs/concept/sec/ac/#default-roles) system. Just assign these four default roles to business users:
+Pigsty provides a built-in access control / [**ACL**](/docs/concept/sec/ac#role-system) model. Assign these default business roles to users as required:
 
-| Role               | Privileges           | Typical Use Case             |
-|--------------------|----------------------|------------------------------|
-| `dbrole_readwrite` | Global read-write    | Primary business prod accounts |
-| `dbrole_readonly`  | Global read-only     | Other business read-only access |
-| `dbrole_admin`     | DDL privileges       | Business admins, table creation |
-| `dbrole_offline`   | Restricted read-only (offline only) | Individual users, ETL/analytics |
+| Role | Privileges | Typical Use Case |
+|:---|:---|:---|
+| `dbrole_readwrite` | Global read-write | Primary application accounts |
+| `dbrole_readonly` | Global read-only | Read-only application access |
+| `dbrole_admin` | DDL privileges | Application administrators and table creation |
+| `dbrole_offline` | Independent read-only; instance scope controlled by HBA | Ad hoc users, ETL, and analytics |
 {.full-width}
 
 ```yaml
@@ -597,8 +597,10 @@ pg_users:
 
   - name: dbuser_etl
     password: DBUser.ETL
-    roles: [dbrole_offline]      # Offline analytics account
+    roles: [dbrole_offline]      # Analytics account; restrict instance scope through HBA
 ```
+
+`dbrole_offline` does not itself restrict a user to offline instances. To establish that boundary, set `role: offline` on the corresponding HBA rule; see [**Offline Role and Instance Isolation**](/docs/concept/sec/ac#offline-role-and-instance-isolation).
 
 To redesign your own ACL system, customize:
 
@@ -644,4 +646,4 @@ Pgbouncer runs as same `dbsu` as PostgreSQL (default `postgres` OS user). Use `p
 
 For user management operations, see [**User Management**](/docs/pgsql/admin/user).
 
-For user access privileges, see [**ACL: Role Privileges**](/docs/concept/sec/ac/#default-roles).
+For user access privileges, see [**Access Control: Role System**](/docs/concept/sec/ac#role-system).

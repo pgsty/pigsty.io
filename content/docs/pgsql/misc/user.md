@@ -77,12 +77,12 @@ Each user/role definition is an object that may include the following fields. Us
 
 **ACL System**
 
-Pigsty has a built-in, out-of-the-box access control / [ACL](/docs/concept/sec/ac/#default-roles) system. You can easily use it by simply assigning the following four default roles to business users:
+Pigsty provides a built-in access control / [ACL](/docs/concept/sec/ac#role-system) model. Assign its default business roles to users as required:
 
 - `dbrole_readwrite`: Role with global read-write access (production accounts primarily used by business should have database read-write privileges)
 - `dbrole_readonly`: Role with global read-only access (if other businesses need read-only access, use this role)
 - `dbrole_admin`: Role with DDL privileges (business administrators, scenarios requiring table creation in applications)
-- `dbrole_offline`: Restricted read-only access role (can only access [offline](/docs/pgsql/config#offline-replica) instances, typically for individual users)
+- `dbrole_offline`: Independent read-only role for ad hoc queries, ETL, and analytics; restrict its instance scope explicitly through HBA
 
 If you want to redesign your own ACL system, consider customizing the following parameters and templates:
 
@@ -172,4 +172,3 @@ Pigsty also provides a utility function `pgb-route` that can quickly switch pgbo
 The connection pool user configuration files `userlist.txt` and `useropts.txt` are automatically refreshed when you [create users](#creating-users), and take effect through online configuration reload, normally without affecting existing connections.
 
 Note that the [`pgbouncer_auth_query`](/docs/pgsql/param#pgbouncer_auth_query) parameter allows you to use dynamic queries to complete connection pool user authentication—this is a compromise when you don't want to manage users in the connection pool.
-

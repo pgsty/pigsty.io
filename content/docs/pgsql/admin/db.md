@@ -39,7 +39,7 @@ bin/pgsql-db pg-meta some_db    # Create/modify some_db database on pg-meta clus
 {{% /tab %}}
 {{< /tabpane >}}
 
-For complete database definition reference, see [**Database Configuration**](/docs/pgsql/config/db). For access permissions, see [**ACL: Database Privileges**](/docs/concept/sec/ac/#database-privileges).
+For the complete database definition reference, see [**Database Configuration**](/docs/pgsql/config/db). For database access permissions, see [**Access Control: Database Isolation**](/docs/concept/sec/ac#database-isolation).
 
 Note: Some parameters can only be specified at **creation time**. Modifying these requires recreating the database (use `state: recreate`).
 

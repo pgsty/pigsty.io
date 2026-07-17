@@ -55,7 +55,7 @@ categories: [Tutorial, Reference]
 | Upgrade PostgreSQL | [**Version Upgrade**](/docs/pgsql/admin/upgrade/) | [**Kernel Versions**](/docs/pgsql/config/kernel/) |
 | Install or enable extensions | [**Extensions**](/docs/pgsql/ext/) | [**Extension Management**](/docs/pgsql/admin/ext/) |
 | Migrate existing databases | [**Data Migration**](/docs/pgsql/migration/) | [**Migration Playbook**](/docs/pgsql/playbook/#pgsql-migrationyml) |
-| Harden security | [**Security Considerations**](/docs/deploy/security/) | [**Access Control**](/docs/pgsql/security/), [**CA & Certificates**](/docs/infra/admin/cert/) |
+| Harden security | [**Security Considerations**](/docs/deploy/security/) | [**Access Control**](/docs/concept/sec/ac), [**CA & Certificates**](/docs/concept/sec/ca) |
 | Manage domains and web entrypoints | [**Domain Management**](/docs/infra/admin/domain/) | [**Nginx Management**](/docs/infra/admin/portal/) |
 | Maintain infrastructure | [**INFRA Administration**](/docs/infra/admin/) | `infra.yml`, `infra-rm.yml` |
 | Maintain Etcd | [**ETCD Config**](/docs/etcd/config/) | [**ETCD Management**](/docs/etcd/admin/), [**ETCD FAQ**](/docs/etcd/faq/) |
@@ -83,7 +83,7 @@ First distinguish three names: cluster name, database name, and service name.
 
 `pg_cluster` is the top-level name Pigsty uses to manage a PostgreSQL cluster. It affects instance names, service names, backup stanzas, monitoring labels, and many file paths. It is not a display name that can be casually changed. See [**PGSQL Cluster Model**](/docs/concept/model/pgsql/) for naming rules, [**Cluster Instance Config**](/docs/pgsql/config/cluster/) for instance roles, and [**Service/Access**](/docs/pgsql/service/) for service names and connection entrypoints.
 
-Database names and user names are logical objects inside PostgreSQL. See [**Database Config**](/docs/pgsql/config/db/) and [**Database Management**](/docs/pgsql/admin/db/) for databases; [**User/Role Config**](/docs/pgsql/config/user/) and [**User Management**](/docs/pgsql/admin/user/) for users and roles; and [**Access Control**](/docs/pgsql/security/) plus [**ACL Config**](/docs/pgsql/config/acl/) for the privilege model.
+Database names and user names are logical objects inside PostgreSQL. See [**Database Config**](/docs/pgsql/config/db/) and [**Database Management**](/docs/pgsql/admin/db/) for databases; [**User/Role Config**](/docs/pgsql/config/user/) and [**User Management**](/docs/pgsql/admin/user/) for users and roles; and [**Access Control**](/docs/concept/sec/ac) plus [**ACL Config**](/docs/pgsql/config/acl/) for the privilege model.
 
 In practice, use lowercase letters, digits, and hyphens for cluster names, such as `pg-meta`, `pg-test`, and `pg-user-prod`. Use `snake_case` for database object names. Avoid non-ASCII names, spaces, mixed case, and SQL keywords. For more background, read [**Database Cluster Management Concepts and Entity Naming Rules**](https://vonng.com/pg/entity-and-naming/) and [**PostgreSQL Convention (2024 Edition)**](https://vonng.com/pg/pg-convention/).
 
@@ -172,7 +172,7 @@ If you need horizontal scaling, then read [**Citus Cluster Deployment**](/docs/p
 
 ## Security And Entrypoints
 
-For deployment security, start with [**Security Considerations**](/docs/deploy/security/). For the security model, see [**Security Compliance**](/docs/concept/sec/). For PostgreSQL privileges, see [**Access Control**](/docs/pgsql/security/) and [**ACL Config**](/docs/pgsql/config/acl/); for authentication rules, see [**HBA Config**](/docs/pgsql/config/hba/) and [**HBA Management**](/docs/pgsql/admin/hba/).
+For deployment security, start with [**Security Considerations**](/docs/deploy/security/). For the security model, see [**Security and Compliance**](/docs/concept/sec/). For PostgreSQL privileges, see [**Access Control**](/docs/concept/sec/ac) and [**ACL Config**](/docs/pgsql/config/acl/); for authentication rules, see [**Authentication**](/docs/concept/sec/auth), [**HBA Config**](/docs/pgsql/config/hba/), and [**HBA Management**](/docs/pgsql/admin/hba/).
 
 For certificates, see [**CA & Certificates**](/docs/infra/admin/cert/). For domains, Nginx, and web entrypoints, see [**Domain Management**](/docs/infra/admin/domain/) and [**Nginx Management**](/docs/infra/admin/portal/).
 

@@ -325,7 +325,7 @@ name: `cert_validity`, type: `interval`, level: `G`
 
 Certificate validity period for issued certificates, default is 20 years, sufficient for most scenarios. Default value: `7300d`
 
-This parameter affects the validity of all certificates issued by the Pigsty CA, including:
+This parameter affects the validity of all certificates issued by the [**Pigsty CA**](/docs/concept/sec/ca), including:
 
 - PostgreSQL server certificates
 - Patroni API certificates

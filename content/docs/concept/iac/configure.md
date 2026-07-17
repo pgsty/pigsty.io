@@ -37,7 +37,7 @@ The **`configure`** script performs the following adjustments based on environme
 - Detects the current region, setting [**`region`**](/docs/infra/param#region) to **`default`** (global default repos) or **`china`** (using Chinese mirror repos)
 - For micro instances (vCPU < 4), uses the **`tiny`** parameter template for [**`node_tune`**](/docs/node/param#node_tune) and [**`pg_conf`**](/docs/pgsql/param#pg_conf) to optimize resource usage
 - If **`-v`** is specified, switches [**`pg_version`**](/docs/pgsql/param#pg_version) and `pg18-*` package-group aliases in the template to that major version; fixed-kernel templates `mssql`, `polar`, and `pg19` are excluded from this replacement
-- If **`-g`** is specified, replaces all default passwords with randomly generated strong passwords for enhanced security (**strongly recommended**)
+- If **`-g`** is specified, replaces default passwords recognized by the configuration wizard with randomly generated strong passwords; review uncovered values against the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) (**strongly recommended**)
 - When PG major version ≥ 17, prioritizes the built-in **`C.UTF-8`** locale, or the OS-supported **`C.UTF-8`**
 - Checks if the core dependency **`ansible`** for deployment is available in the current environment
 - Also checks if the deployment target node is SSH-reachable and can execute commands with sudo (**`-s`** to skip)
@@ -412,7 +412,7 @@ The script supports the following environment variables:
 
 2. **IP address selection**: Choose an **internal IP** as the primary IP address, not a public IP or `127.0.0.1`.
 
-3. **Password security**: In production environments, **always** modify default passwords in the configuration file, or use the `-g` argument to generate random passwords.
+3. **Password security**: In production, **always** change default passwords in the configuration file. Use `-g` to randomize recognized credentials, then review the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) for remaining values.
 
 4. **Configuration review**: After the script completes, it's recommended to review the generated `pigsty.yml` file to confirm the configuration meets expectations.
 
