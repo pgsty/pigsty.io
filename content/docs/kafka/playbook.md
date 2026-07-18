@@ -9,7 +9,7 @@ aliases: [/docs/pilot/kafka/playbook]
 ---
 
 
-The KAFKA module ships two playbooks: [`kafka.yml`](https://github.com/pgsty/pigsty/blob/main/kafka.yml) deploys an Apache Kafka 4.x dynamic KRaft cluster and converges its security,
+The KAFKA module ships two playbooks: [`kafka.yml`](https://github.com/pgsty/pigsty/blob/main/kafka.yml) deploys an Apache Kafka 4.1+ dynamic KRaft cluster and converges its security,
 resource, and monitoring state; [`kafka-rm.yml`](https://github.com/pgsty/pigsty/blob/main/kafka-rm.yml) tears down a cluster or removes a member.
 
 {{% alert title="Exact Full-Cluster Constraint" color="warning" %}}
@@ -115,24 +115,23 @@ An ordinary configuration change should run the full `kafka.yml` and let the rol
 Before writing any config, the role validates that:
 
 - The limit contains exactly all members of one Kafka cluster;
-- `kafka_seq` is unique, and the role sequences are either all omitted or all explicit;
+- `kafka_seq` is unique, and the roles are either all omitted or all explicit;
 - There is at least one controller and one broker;
 - Racks are either all present or all absent across the broker-capable nodes;
 - Ports are valid and non-conflicting, and the role-owned keys are not overridden by `kafka_parameters`;
 - The manifest, security profile, `meta.properties`, and the live cluster identity are consistent.
 
-A new cluster randomly generates the cluster ID and the initial controller directory IDs and formats each node in explicit dynamic mode. When `${kafka_data}/metadata/meta.properties` already exists, it only validates the cluster ID, node ID, and directory ID; it does not reformat automatically.
+A new cluster randomly generates the cluster ID and the initial controller directory IDs and formats each node in explicit dynamic mode. When `${kafka_data}/metadata/meta.properties` already exists, it validates the cluster ID and node ID locally; initial controller directory IDs are compared against the live quorum after startup. The role never reformats existing storage automatically.
 
-The bootstrap manifest lives at:
+The authoritative bootstrap manifest lives on every cluster member:
 
 ```text
-files/kafka/<kafka_cluster>/manifest.yml
+/etc/kafka/manifest.yml
 ```
 
-Each cluster member also keeps an authoritative copy at `/etc/kafka/manifest.yml` (a `scram` cluster additionally has `/etc/kafka/secrets.yml`). The live cluster is the authoritative runtime fact, but an ordinary playbook will not silently rewrite either side on conflict:
+Each member of a `scram` cluster additionally has `/etc/kafka/secrets.yml`; the admin node keeps no kafka state and resolves both from any member copy on every run. The live cluster is the authoritative runtime fact, but an ordinary playbook will not silently rewrite either side on conflict:
 
-- When the admin-node cache is lost, it is restored automatically from any member's node copy, without reformatting;
-- When neither the admin node nor any member has a manifest but the storage is already formatted, it fails closed and asks you to restore the manifest first;
+- When no member has a manifest copy but the storage is already formatted, it fails closed and asks you to restore the file on any member first;
 - When a manifest exists but all data disks are empty, it fails closed;
 - When the cluster ID, security profile, or controller identity conflicts, it fails closed;
 - A non-initial controller newly added in the inventory does not automatically become a voter.
@@ -207,7 +206,7 @@ The role uses active/standby internal identities: it first updates the inactive 
   -e kafka_rotate_confirm=kf-main
 ```
 
-The role discards the node certificates already issued in the admin-node cache, re-issues a private key and certificate for each node from the same Pigsty CA, updates the PEM certificate bundle on the nodes, and enters the strict rolling restart. Because the old and new certificates are issued by the same CA and trust each other, no staged trust swap is needed; if the health precheck fails, the rotation does not begin and the existing certificates on the nodes are left unchanged.
+The role discards the node certificates already issued in the shared PKI tree, re-issues a private key and certificate for each node from the same Pigsty CA, updates the PEM certificate bundle on the nodes, and enters the strict rolling restart. Because the old and new certificates are issued by the same CA and trust each other, no staged trust swap is needed; if the health precheck fails, the rotation does not begin and the existing certificates on the nodes are left unchanged.
 
 
 --------
@@ -217,20 +216,20 @@ The role discards the node certificates already issued in the admin-node cache, 
 Cluster removal is not in `kafka.yml`; it uses the separate [`kafka-rm.yml`](https://github.com/pgsty/pigsty/blob/main/kafka-rm.yml) playbook:
 
 ```bash
-./kafka-rm.yml -l kf-main                          # Remove the cluster: deregister monitoring, stop services, delete config; deletes data and manifest by default
-./kafka-rm.yml -l kf-main -e kafka_rm_data=false   # Keep the on-disk data, remove only services and config
+./kafka-rm.yml -l kf-main                          # Remove the cluster: deregister monitoring and stop services; deletes data and /etc/kafka recovery state by default
+./kafka-rm.yml -l kf-main -e kafka_rm_data=false   # Keep data and /etc/kafka recovery state; remove only service integration
 ./kafka-rm.yml -l kf-main -e kafka_rm_pkg=true     # Also uninstall the kafka-stack packages (the shared Java runtime is not removed)
 ```
 
-The execution order is: deregister the VictoriaMetrics targets (`kafka_deregister`) → stop and disable the `kafka`/`kafka_exporter` services (`kafka`) → delete the config, Systemd units, and helper scripts (`kafka_config`) → delete the data directories and the admin-node manifest/secrets/PKI cache (`kafka_data`, controlled by `kafka_rm_data`) → optionally uninstall the packages (`kafka_pkg`, controlled by `kafka_rm_pkg`).
+The execution order is: deregister the VictoriaMetrics targets (`kafka_deregister`) → stop and disable the `kafka`/`kafka_exporter` services (`kafka`) → delete exporter config, Systemd environment/units, and helper scripts (`kafka_config`) → delete the data directories and node-local `/etc/kafka` recovery state (`kafka_data`, controlled by `kafka_rm_data`) → optionally uninstall the packages (`kafka_pkg`, controlled by `kafka_rm_pkg`).
 
 The safeguard switch is `kafka_safeguard`: when set to `true` (on the command line or in the inventory), the playbook aborts immediately and deletes nothing.
 
 {{% alert title="Permanent Deletion" color="danger" %}}
-`kafka_rm_data` defaults to `true`: a single default-parameter run of `kafka-rm.yml` deletes the selected nodes' data/KRaft metadata, node security state, and the bootstrap manifest, secrets, and PKI cache on the admin node. The playbook has no extra gate such as a confirmation string, so before running it you must verify the `-l` target, the backup or an explicit rebuild intent, and the impact on producers/consumers by hand.
+`kafka_rm_data` defaults to `true`: a single default-parameter run of `kafka-rm.yml` deletes the selected nodes' data/KRaft metadata and `/etc/kafka` recovery state. The playbook has no extra gate such as a confirmation string, so before running it you must verify the `-l` target, the backup or an explicit rebuild intent, and the impact on producers/consumers by hand.
 {{% /alert %}}
 
-`kafka-rm.yml` can also select a single member for scale-in (for example, `-l 10.10.10.13`). But removing a controller-capable member is a quorum membership change: you must first complete the explicit `remove-controller` procedure and confirm the new majority. An identity conflict, an exporter anomaly, or an ordinary startup failure is not a reason to delete data.
+`kafka-rm.yml` only cleans a single member after it has been decommissioned (for example, `-l 10.10.10.13`): first move partitions/leaders away from a broker; for a controller-capable member, first complete the explicit `remove-controller` procedure and confirm the new majority; and never reduce the broker count below an existing topic's RF. Skipping decommissioning leaves stale voters or replicas unhealthy. An identity conflict, an exporter anomaly, or an ordinary startup failure is not a reason to delete data.
 
 
 --------

@@ -86,7 +86,7 @@ Unset by default, used only to assert the identity of an existing cluster during
 kafka_cluster_id: MkU3OEVBNTcwNTJENDM2Qk
 ```
 
-Do not set it for an ordinary new cluster. The role generates the Cluster ID randomly and writes it into `files/kafka/<kafka_cluster>/manifest.yml`. This parameter does not relabel existing data; it fails closed when it conflicts with the manifest or `meta.properties`.
+Do not set it for an ordinary new cluster. The role generates the Cluster ID randomly and writes it into every member's `/etc/kafka/manifest.yml`. This parameter does not relabel existing data; it fails closed when it conflicts with the manifest or `meta.properties`.
 
 
 ### `kafka_rack`
@@ -293,4 +293,4 @@ The following variables are used only via the command-line `-e` for one-off oper
 | Tear down the cluster | `kafka-rm.yml` | `kafka_rm_data` (default `true`), `kafka_rm_pkg` (default `false`), `kafka_safeguard` (default `false`) | `kafka_safeguard=true` aborts all deletion |
 {.full-width}
 
-The two rotation actions are mutually exclusive, and must target a precise, complete cluster. `kafka-rm.yml` deletes the data directory and the Manifest/Secret/PKI cache on the admin node by default, so before running it you must explicitly confirm the target cluster and your backup/rebuild intent. For the commands and full semantics, see [Playbooks](/docs/kafka/playbook).
+The two rotation actions are mutually exclusive, and must target a precise, complete cluster. `kafka-rm.yml` deletes the data directory and node-local `/etc/kafka` recovery state by default; `kafka_rm_data=false` retains both. Before running it, explicitly confirm the target cluster and your backup/rebuild intent. For the commands and full semantics, see [Playbooks](/docs/kafka/playbook).

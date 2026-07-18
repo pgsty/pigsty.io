@@ -1,7 +1,7 @@
 ---
 title: 'Module: Kafka'
 weight: 4900
-description: Deploy, secure, and monitor Apache Kafka 4.x dynamic KRaft clusters with Pigsty.
+description: Deploy, secure, and monitor Apache Kafka 4.1+ dynamic KRaft clusters with Pigsty.
 icon: fas fa-share-nodes
 module: [KAFKA]
 categories: [Reference]
@@ -9,7 +9,7 @@ aliases: [/docs/pilot/kafka]
 ---
 
 
-[Kafka](https://kafka.apache.org/) is a distributed event-streaming platform. Pigsty's [`KAFKA`](/docs/kafka) module deploys **Apache Kafka 4.x dynamic KRaft** clusters on managed nodes from RPM/DEB packages, with unified management of security, resources, lifecycle, and observability.
+[Kafka](https://kafka.apache.org/) is a distributed event-streaming platform. Pigsty's [`KAFKA`](/docs/kafka) module deploys **Apache Kafka 4.1+ dynamic KRaft** clusters on managed nodes from RPM/DEB packages, with unified management of security, resources, lifecycle, and observability.
 
 {{% alert title="Current status: Beta module" color="info" %}}
 The Kafka module is currently in Beta. Test it thoroughly and confirm it meets your requirements before using it in serious production.
@@ -43,7 +43,7 @@ The KAFKA module depends on [`NODE`](/docs/node) for node management, the packag
 
 ```mermaid
 flowchart LR
-    admin["Pigsty admin node"] -->|"kafka.yml / exact cluster"| kafka["Kafka 4.x / dynamic KRaft"]
+    admin["Pigsty admin node"] -->|"kafka.yml / exact cluster"| kafka["Kafka 4.1+ / dynamic KRaft"]
     kafka --> jmx["Each Kafka JVM / JMX :9404"]
     kafka --> exporter["Up to two brokers / kafka_exporter :9308"]
     kafka --> journal["Journald"]
@@ -114,7 +114,7 @@ All four ports must differ from one another, and all are adjustable via paramete
 
 ## Current Boundaries
 
-The current role provides a core production baseline for Kafka, not a replacement for a full streaming platform or a managed service. The following capabilities still require an explicit runbook or a separate component:
+The current role provides a core deployment baseline for Kafka, not a replacement for a full streaming platform or a managed service. The following capabilities still require an explicit runbook or a separate component:
 
 - Adding, removing, or replacing controllers: the cluster uses a dynamic quorum, but membership changes must go through explicit format, catch-up, and `add-controller`/`remove-controller` procedures; editing the manifest itself never adds or removes a voter
 - Reassignment of existing partitions after broker scale-out, broker decommissioning, and replica rebalancing

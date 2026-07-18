@@ -1,7 +1,7 @@
 ---
 title: FAQ
 weight: 4908
-description: Frequently asked questions about the Pigsty Kafka 4.x dynamic KRaft module.
+description: Frequently asked questions about the Pigsty Kafka 4.1+ dynamic KRaft module.
 icon: fa-solid fa-circle-question
 module: [KAFKA]
 categories: [Reference]
@@ -20,7 +20,7 @@ It is not a managed Kafka product. Production still requires `kafka_security: sc
 
 ## Why is there no ZooKeeper and no `controller.quorum.voters`?
 
-This module targets Kafka 4.x and uses native dynamic KRaft, with no ZooKeeper installed and no static quorum created. All members render `controller.quorum.bootstrap.servers`; new clusters are formatted explicitly with `--initial-controllers`/`--no-initial-controllers`, and after startup the role verifies that the directory IDs of the initial controllers have joined the live quorum.
+This module targets Kafka 4.1+ and uses native dynamic KRaft, with no ZooKeeper installed and no static quorum created. All members render `controller.quorum.bootstrap.servers`; new clusters are formatted explicitly with `--initial-controllers`/`--no-initial-controllers`, and after startup the role verifies that the directory IDs of the initial controllers have joined the live quorum.
 
 The initial controller identity is written into the bootstrap manifest. Later controller additions and removals still require the explicit `add-controller`/`remove-controller` management procedures; editing the inventory alone is not enough.
 
@@ -79,7 +79,7 @@ This is a protective failure. Do not delete `meta.properties`, the manifest, or 
 
 ## What happens if the manifest is lost or only an old one remains?
 
-Every cluster member keeps an authoritative copy of the manifest at `/etc/kafka/manifest.yml` (a `scram` cluster also has `/etc/kafka/secrets.yml`). When the `files/kafka/<cluster>/` cache on the admin node is lost, the role automatically restores it from any member's node copy and does not reformat. Only when both the admin node and all member copies are lost, while the storage has already been formatted, does the role fail closed and prompt you to restore the manifest first; a formatted `scram` cluster likewise fails closed when the secret material cannot be found on either side.
+Every cluster member keeps an authoritative copy of the manifest at `/etc/kafka/manifest.yml` (a `scram` cluster also has `/etc/kafka/secrets.yml`). The admin node keeps no kafka state and resolves both from any member copy on every run, so replacing the admin node or losing the local checkout does not affect cluster management. Only when all member copies are lost while the storage has already been formatted does the role fail closed and prompt you to restore the file on any member first; a formatted `scram` cluster likewise fails closed when no member holds the secret material. Issued node certificates are cached under `files/pki/kafka/` and are simply re-signed from the Pigsty CA when absent.
 
 Conversely, if the manifest exists but all Kafka data disks are empty, the role fails closed to avoid accidentally reviving a vanished cluster under an old identity. If you genuinely intend to rebuild, you must first run `kafka-rm.yml` and follow an explicit rebuild procedure.
 
@@ -240,6 +240,6 @@ The payload verified on 2026-07-16 is Kafka 4.3.1, `kafka_exporter` 1.9.0, and J
 
 ## How do I safely wipe Kafka data?
 
-`kafka.yml` never performs cleanup; cluster teardown uses the separate `kafka-rm.yml` playbook. By default (`kafka_rm_data=true`) it permanently deletes the data/KRaft metadata, the node security state, the monitoring targets, and the manifest/secret/PKI cache on the admin node; setting `kafka_safeguard=true` forcibly aborts any deletion.
+`kafka.yml` never performs cleanup; cluster teardown uses the separate `kafka-rm.yml` playbook. By default (`kafka_rm_data=true`) it permanently deletes the data/KRaft metadata, node-local `/etc/kafka` recovery state, and monitoring targets; setting it to `false` retains both data and recovery state. Setting `kafka_safeguard=true` forcibly aborts any deletion.
 
 The playbook has no extra gate such as a confirmation string, so before running it you must manually confirm the exact `-l` target, a recoverable backup or a clear intent to rebuild, and the business-decommissioned status. For the full semantics, see [Playbook: cluster teardown](/docs/kafka/playbook#cluster-teardown).

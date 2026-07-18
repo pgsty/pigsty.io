@@ -23,7 +23,7 @@ Here, "from scratch" means starting before any Kafka is deployed. You will need 
 | Stage | Goal | End Result |
 |:---:|:---|:---|
 | 1 | Deploy a single-node dev cluster | One combined node, PLAINTEXT, an RF=1 topic, CLI read/write |
-| 2 | Deploy a three-node production baseline | Three combined nodes, dynamic KRaft, TLS/SCRAM/ACL, RF=3/minISR=2 |
+| 2 | Deploy a three-node secure HA demo baseline | Three combined nodes, dynamic KRaft, TLS/SCRAM/ACL, RF=3/minISR=2 |
 | 3 | Connect application clients | Produce/consume using an application principal, the Pigsty CA, and SASL_SSL |
 | 4 | Change core parameters | Walk through heap, broker parameters, topic partitions/retention, and a secure rolling restart |
 | 5 | Launch acceptance | Check quorum, ISR, end-to-end read/write, monitoring, capacity, and runbooks |

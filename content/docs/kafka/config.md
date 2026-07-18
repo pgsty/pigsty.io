@@ -131,19 +131,18 @@ A new cluster uses the dynamic quorum directly: every node renders `controller.q
 - Each node is formatted explicitly with either `--initial-controllers` or `--no-initial-controllers` mode;
 - After startup, the role waits for the dynamic quorum to elect a leader, and verifies that every initial controller's Directory ID is present in the live quorum.
 
-The bootstrap-only facts are kept in the admin-side cache:
+The bootstrap-only facts live on every cluster member:
 
 ```text
-files/kafka/<kafka_cluster>/manifest.yml
+/etc/kafka/manifest.yml
 ```
 
-At the same time, every cluster member keeps an authoritative copy at `/etc/kafka/manifest.yml` (a `scram` cluster also has `/etc/kafka/secrets.yml`). The manifest records only the cluster identity, the initial controller identities, the security profile, and the initial RF/minISR. The live cluster is always the authority on runtime facts:
+Each member of a `scram` cluster also holds `/etc/kafka/secrets.yml`. The admin node keeps no kafka state at all: the manifest and secrets are resolved from any member copy on every run, and the issued node certificates live in the shared PKI tree (`files/pki/kafka/`, with CSRs under `files/pki/csr/`) and are simply re-signed from the Pigsty CA when absent. The manifest records only the cluster identity, the initial controller identities, the security profile, and the initial RF/minISR. The live cluster is always the authority on runtime facts:
 
 - When the manifest conflicts with the live identity or security profile, ordinary playbooks fail closed;
 - When an old manifest exists but all data disks are empty, reviving the old cluster is refused;
-- When the admin-side cache is lost, it can be recovered automatically from any member's node copy, without reformatting;
-- When no manifest can be found on either the admin node or any member while storage is already formatted, the role fails closed and asks you to restore the manifest first;
-- An already-formatted `scram` cluster likewise fails closed when neither the admin node nor any member holds the secret material.
+- When no member holds a manifest copy while storage is already formatted, the role fails closed and asks you to restore the file on any member first;
+- An already-formatted `scram` cluster likewise fails closed when no member holds the secret material.
 
 Adding, replacing, or removing a controller is not an ordinary inventory operation. A new controller must be explicitly formatted against the existing cluster, started, and caught up, and then registered with Kafka `add-controller`; removal requires the corresponding `remove-controller` procedure. The role refuses to add an unregistered new controller to the voter set based on inventory alone.
 
@@ -351,7 +350,7 @@ The role installs `java-runtime` and `kafka-stack` through platform mappings. Th
 | `/etc/kafka/pki/kafka.pem` | PEM private key and certificate on a `scram` node; the trust anchor uses the system `/etc/pki/ca.crt` |
 | `${kafka_data}/data/` | Topic log data |
 | `${kafka_data}/metadata/` | KRaft metadata and `meta.properties` |
-| `files/kafka/<cluster>/` | Manifest/Secret/PKI cache on the admin node |
+| `files/pki/kafka/` | Issued node certs on the admin node (`<cluster>-<seq>.key/.crt`, CSRs under `files/pki/csr/`) |
 {.full-width}
 
 These files are managed by the role. Persistent intent belongs in `pigsty.yml`. Do not edit generated files directly on the nodes, and do not copy passwords, private keys, or role-owned secret contents into inventory, logs, or tickets.
