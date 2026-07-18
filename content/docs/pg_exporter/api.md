@@ -7,25 +7,22 @@ category: [Reference]
 ---
 
 
-PG Exporter provides a comprehensive REST API for metrics collection, health checks, traffic routing, and operational control. All endpoints are exposed over HTTP/HTTPS on the configured port (default: `9630`).
-
-
---------
-
-## Endpoint Overview
+`pg_exporter` exposes four kinds of HTTP endpoints on its listen port (default `:9630`): metrics, health checks, traffic routing, and operational management. The full endpoint list:
 
 | Endpoint                       | Method   | Description                 |
 |--------------------------------|----------|-----------------------------|
-| [`/metrics`](#get-metrics)     | GET      | Prometheus metrics endpoint |
-| [`/up`](#health-checks)        | GET      | Basic aliveness check       |
-| [`/health`](#health-checks)    | GET      | Alias of `/up`              |
-| [`/primary`](#traffic-routing) | GET      | Primary server check        |
-| [`/replica`](#traffic-routing) | GET      | Replica server check        |
-| [`/read`](#traffic-routing)    | GET      | Read traffic routing        |
-| [`/reload`](#operational-endpoints) | GET/POST | Reload configuration        |
-| [`/explain`](#operational-endpoints) | GET      | Explain query planning      |
-| [`/stat`](#operational-endpoints)    | GET      | Runtime statistics          |
+| [`/metrics`](#get-metrics)     | GET      | Prometheus metrics endpoint (path configurable via `--web.telemetry-path`) |
+| [`/up`](#health-checks)        | GET      | Aliveness check; aliases `/health`, `/liveness`, `/readiness`, `/read` |
+| [`/primary`](#traffic-routing) | GET      | Primary check; aliases `/leader`, `/master`, `/read-write`, `/rw` |
+| [`/replica`](#traffic-routing) | GET      | Replica check; aliases `/standby`, `/slave`, `/read-only`, `/ro` |
+| [`/reload`](#operational-endpoints) | GET/POST | Hot-reload collector configuration |
+| [`/explain`](#operational-endpoints) | GET      | Show per-collector planning decisions |
+| [`/stat`](#operational-endpoints)    | GET      | Per-collector runtime statistics (hits / errors / duration) |
+| `/version`                     | GET      | Version and build information (plain text) |
+| `/`                            | GET      | Landing page linking to the metrics endpoint |
 {.full-width}
+
+Health and routing endpoints answer from a cached background-probe role state (`primary` / `replica` / `down` / `starting` / `unknown`) — they never query the database synchronously per HTTP request, so probe storms cannot reach the database.
 
 
 --------
@@ -59,7 +56,7 @@ pg_in_recovery 0
 
 # HELP pg_exporter_build_info A metric with a constant '1' value labeled with version, revision, branch, goversion, builddate, goos, and goarch from which pg_exporter was built.
 # TYPE pg_exporter_build_info gauge
-pg_exporter_build_info{version="1.3.0",branch="main",revision="<git-sha>",builddate="<build-date>",goversion="go1.26.4",goos="linux",goarch="amd64"} 1
+pg_exporter_build_info{version="v1.4.0",branch="main",revision="<git-sha>",builddate="<build-date>",goversion="go1.26.5",goos="linux",goarch="amd64"} 1
 
 # ... additional metrics
 ```
@@ -73,6 +70,31 @@ Metrics follow the Prometheus exposition format:
 # TYPE <metric_name> <type>
 <metric_name>{<label_name>="<label_value>",...} <value> <timestamp>
 ```
+
+#### Self-Monitoring Metrics
+
+Besides business metrics defined by YAML collectors, `/metrics` also exposes the exporter's own runtime metrics (disable the `pg_exporter_*` part with `--disable-intro`; the prefix follows `--namespace` and becomes `pgbouncer_` in pgBouncer mode):
+
+| Metric | Labels | Description |
+|--------|--------|-------------|
+| `pg_up` | — | 1 when the target database is reachable, 0 otherwise |
+| `pg_version` | — | Server version in `server_version_num` format |
+| `pg_in_recovery` | — | 1 when in recovery mode (replica) |
+| `pg_exporter_build_info` | version, revision, ... | Constant 1 with build info in labels |
+| `pg_exporter_up` | — | Constant 1 while the exporter is alive |
+| `pg_exporter_uptime` | — | Seconds since the exporter started |
+| `pg_exporter_scrape_total_count` / `_error_count` | — | Cumulative scrape / failure counts |
+| `pg_exporter_scrape_duration` | — | Duration of the last scrape in seconds |
+| `pg_exporter_last_scrape_time` | — | Timestamp of the last scrape |
+| `pg_exporter_server_scrape_*` | datname | Per-database scrape duration and success/failure counters |
+| `pg_exporter_query_scrape_duration` | datname, query | Last execution duration per collector |
+| `pg_exporter_query_scrape_total_count` / `_error_count` | datname, query | Execution / failure counts per collector |
+| `pg_exporter_query_scrape_hit_count` / `_metric_count` | datname, query | Rows returned / metrics emitted per collector |
+| `pg_exporter_query_scrape_predicate_skip_count` | datname, query | Times skipped because a predicate returned false |
+| `pg_exporter_query_cache_ttl` | datname, query | Result cache TTL per collector |
+{.full-width}
+
+`pg_exporter_query_scrape_duration` and `_error_count` pinpoint slow and failing collectors directly — the machine-readable equivalent of `/stat`.
 
 
 --------
@@ -111,31 +133,22 @@ Alias of `/up` with identical behavior.
 curl http://localhost:9630/health
 ```
 
-### GET /liveness
+### GET /liveness and GET /readiness
 
-Kubernetes liveness probe endpoint.
+Path aliases provided for Kubernetes probe conventions, with behavior identical to `/up` (same handler):
 
 ```yaml
 livenessProbe:
-  httpGet:
-    path: /liveness
-    port: 9630
+  httpGet: { path: /liveness, port: 9630 }
   initialDelaySeconds: 30
   periodSeconds: 10
-```
-
-### GET /readiness
-
-Kubernetes readiness probe endpoint.
-
-```yaml
 readinessProbe:
-  httpGet:
-    path: /readiness
-    port: 9630
+  httpGet: { path: /readiness, port: 9630 }
   initialDelaySeconds: 5
   periodSeconds: 5
 ```
+
+Note that both share the same semantics: they return 503 when the target database is unreachable. If you don't want "database down" to restart the exporter Pod, use a TCP probe on the listen port for liveness instead.
 
 
 --------
@@ -376,25 +389,6 @@ backend pg_read
   server pg3 10.0.0.3:5432 check port 9630 inter 3000 fall 2 rise 2
 ```
 
-### Nginx Example
+### A Note on Nginx
 
-```nginx
-upstream pg_primary {
-    server 10.0.0.1:5432;
-    server 10.0.0.2:5432 backup;
-}
-
-upstream pg_replicas {
-    server 10.0.0.2:5432;
-    server 10.0.0.3:5432;
-}
-
-server {
-    listen 5432;
-
-    location / {
-        proxy_pass http://pg_primary;
-        health_check uri=/primary port=9630;
-    }
-}
-```
+Open-source Nginx does not support active out-of-band HTTP health checks (the `health_check` directive is an NGINX Plus feature), and PostgreSQL traffic requires the `stream` module rather than `http` proxying. For role-based PostgreSQL traffic routing, prefer HAProxy as shown above, or solutions like Patroni + vip-manager.

@@ -19,22 +19,22 @@ The ultimate monitoring experience for PostgreSQL with **600+ metrics**, **decla
 
 | Feature                   | Description                                                                                                     |
 |---------------------------|-----------------------------------------------------------------------------------------------------------------|
-| **Comprehensive Metrics** | Monitor PostgreSQL (10-19+) and pgBouncer (1.8-1.25+) with 600+ metrics and ~3K time series per instance        |
-| **Declarative Config**    | Define custom metrics through YAML configs with fine-grained control over timeout, caching, and skip conditions |
-| **Custom Collectors**     | Define your own metrics with declarative YAML configuration and dynamic query planning                          |
-| **Auto-Discovery**        | Automatically discover and monitor multiple databases within a PostgreSQL instance                              |
-| **Dynamic Planning**      | Automatically adapt metric collection based on PostgreSQL version, extensions, and server characteristics       |
-| **Production Ready**      | Battle-tested in real-world environments across 12K+ cores for 6+ years with enterprise reliability             |
-| **Health Check APIs**     | Comprehensive HTTP endpoints for service health and traffic routing with primary/replica detection              |
-| **Smart Caching**         | Built-in caching mechanism with configurable TTL to reduce database load and improve performance                |
-| **Extension Aware**       | Native support for TimescaleDB, Citus, pg_stat_statements, pg_wait_sampling and automatic detection             |
+| **Comprehensive Metrics** | 600+ metrics covering nearly every statistics view of PostgreSQL (10-19+) and pgBouncer (1.8-1.25+)             |
+| **Declarative Collectors**| Every metric comes from a YAML collector definition — a SQL query plus execution conditions; add, change, or remove metrics without touching code |
+| **Dynamic Planning**      | Each collector branch is admitted per target based on version, primary/replica role, installed extensions, and tags |
+| **Auto-Discovery**        | Automatically discovers and scrapes every database in an instance, distinguished by the `datname` label         |
+| **Health Check APIs**     | `/up`, `/primary`, `/replica` endpoints serve directly as load-balancer probes for primary/replica traffic routing |
+| **Smart Caching**         | Per-collector TTL caching decouples scrape frequency from query frequency — probe and scrape storms never reach the database |
+| **Snapshot Histograms**   | `HISTOGRAM` column type aggregates SQL snapshots into classic Prometheus histogram distributions                |
+| **Extension Aware**       | Native support for pg_stat_statements, pg_wait_sampling, citus, and timescaledb                                 |
+| **Production Ready**      | Battle-tested in real-world environments across 12K+ cores for 6+ years                                         |
 
 
 --------
 
 ## Version Info
 
-- Current stable release: [`v1.3.0`](https://github.com/pgsty/pg_exporter/releases/tag/v1.3.0)
+- Current stable release: [`v1.4.0`](https://github.com/pgsty/pg_exporter/releases/tag/v1.4.0)
 - Default config support: PostgreSQL **10-19+**
 - Legacy config support: PostgreSQL **9.1-9.6** via the `legacy/` config bundle
 - pgBouncer support: **1.8-1.25+**

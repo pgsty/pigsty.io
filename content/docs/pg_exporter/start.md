@@ -4,293 +4,120 @@ weight: 5610
 icon: fas fa-rocket
 module: [PG_EXPORTER]
 category: [Tutorial]
+description: Get pg_exporter running and see PostgreSQL metrics in Prometheus within ten minutes
 ---
 
-PG Exporter is an advanced PostgreSQL and pgBouncer metrics exporter for Prometheus. This guide will help you get up and running quickly.
+This page is the shortest path: install `pg_exporter`, connect it to a PostgreSQL instance, verify metrics output, and hook it into Prometheus.
 
-## Prerequisites
+You only need two things: a reachable PostgreSQL 10-19+ (or pgBouncer 1.8+) instance, and permission to create a user in it. For older PostgreSQL 9.1-9.6 instances, see [Compatibility](/docs/pg_exporter/install/#compatibility).
 
-Before you begin, ensure you have:
 
-- PostgreSQL 10-19+ or pgBouncer 1.8-1.25+ instance to monitor
-- PostgreSQL 9.1-9.6 legacy instances require the `legacy/` config bundle
-- A user account with appropriate permissions for monitoring
-- Prometheus Compatible System (for metrics scraping)
-- Basic understanding of PostgreSQL connection strings
+--------
 
-## Compatibility
+## Step 1: Install
 
-- The default config supports PostgreSQL 10-19+; PostgreSQL 9.1-9.6 requires the `legacy/` config bundle
-- pgBouncer 1.8-1.25+ is supported
-
-## Design Rationale
-
-`pg_exporter` follows three core runtime principles:
-
-- Local-first connectivity: if you do not pass `--url` or `PG_EXPORTER_URL`, it falls back to `postgresql:///?sslmode=disable`
-- Declarative collection: all business metrics come from YAML collectors, and runtime planning picks branches by version, role, and tags
-- Keep serving under failure: non-blocking startup is the default, so HTTP endpoints come up first while the target database is temporarily unavailable, then recover health in the background
-
-## Quick Start
-
-The fastest way to get started with PG Exporter:
+On Linux amd64 you can download the binary directly (for other platforms and RPM/DEB/Docker options, see the [Installation guide](/docs/pg_exporter/install/)):
 
 ```bash
-# Example: install the Linux amd64 release tarball; replace the platform suffix if needed
 VERSION=$(curl -fsSL https://api.github.com/repos/pgsty/pg_exporter/releases/latest | sed -n 's/.*"tag_name": "v\([^"]*\)".*/\1/p')
 wget "https://github.com/pgsty/pg_exporter/releases/download/v${VERSION}/pg_exporter-${VERSION}.linux-amd64.tar.gz"
 tar -xf "pg_exporter-${VERSION}.linux-amd64.tar.gz"
 sudo install "pg_exporter-${VERSION}.linux-amd64/pg_exporter" /usr/bin/
 sudo install "pg_exporter-${VERSION}.linux-amd64/pg_exporter.yml" /etc/pg_exporter.yml
-
-# Run with the local-first default URL
-pg_exporter
-
-# Or point to a PostgreSQL / pgBouncer target explicitly
-PG_EXPORTER_URL='postgres://user:pass@localhost:5432/postgres' pg_exporter
-
-# Verify metrics are available
-curl http://localhost:9630/metrics
 ```
 
-## Understanding the Basics
+Confirm the installation:
 
-### Connection String
-
-PG Exporter uses standard PostgreSQL connection URLs:
-
-```
-postgres://[user][:password]@[host][:port]/[database][?param=value]
+```bash
+pg_exporter --version
+# pg_exporter v1.4.0 (built with go1.26.5 on linux/amd64)
 ```
 
-Examples:
-- Default fallback URL when nothing is specified: `postgresql:///?sslmode=disable`
-- Local PostgreSQL: `postgres:///postgres`
-- Remote with auth: `postgres://monitor:password@db.example.com:5432/postgres`
-- With SSL: `postgres://user:pass@host/db?sslmode=require`
-- pgBouncer: `postgres://pgbouncer:password@localhost:6432/pgbouncer`
 
-URL source priority from high to low:
-1. `--url`
-2. `PG_EXPORTER_URL`
-3. `PGURL`
-4. `PG_EXPORTER_URL_FILE`
-5. Default `postgresql:///?sslmode=disable`
+--------
 
-### Built-in Metrics
+## Step 2: Create a Monitoring User
 
-PG Exporter provides 4 core built-in metrics out of the box:
-
-| Metric                   | Type  | Description                                             |
-|--------------------------|-------|---------------------------------------------------------|
-| `pg_up`                  | Gauge | 1 if exporter can connect to PostgreSQL, 0 otherwise    |
-| `pg_version`             | Gauge | PostgreSQL server version number                        |
-| `pg_in_recovery`         | Gauge | 1 if server is in recovery mode (replica), 0 if primary |
-| `pg_exporter_build_info` | Gauge | Exporter version and build information                  |
-
-The exporter also exposes `pg_exporter_*` self-monitoring metrics by default. You can disable them with `--disable-intro`.
-
-### Configuration File
-
-All other metrics (600+) are defined in the `pg_exporter.yml` configuration file. By default, PG Exporter looks for this file in:
-
-1. Path specified by `--config` flag
-2. Path in `PG_EXPORTER_CONFIG` environment variable
-3. Current directory (`./pg_exporter.yml`)
-4. System config (`/etc/pg_exporter.yml` or `/etc/pg_exporter/`)
-
-## Your First Monitoring Setup
-
-### Step 1: Create a Monitoring User
-
-Create a dedicated PostgreSQL user for monitoring:
+Create a dedicated monitoring user on the target PostgreSQL. The built-in `pg_monitor` role (PostgreSQL 10+) covers all read permissions the default collectors need:
 
 ```sql
--- Create monitoring user
-CREATE USER pg_monitor WITH PASSWORD 'secure_password';
-
--- Grant necessary permissions
-GRANT pg_monitor TO pg_monitor;
-GRANT CONNECT ON DATABASE postgres TO pg_monitor;
-
--- For PostgreSQL 10+, pg_monitor role provides read access to monitoring views
--- For older versions, you may need additional grants
+CREATE USER monitor WITH PASSWORD 'S3cret';
+GRANT pg_monitor TO monitor;
 ```
 
-### Step 2: Test Connection
+If you are just trying it out locally as a superuser like `postgres`, you can skip this step.
 
-Verify the exporter can connect to your database:
+
+--------
+
+## Step 3: Run and Verify
+
+Use `--dry-run` to confirm the configuration parses, then start for real:
 
 ```bash
-# Set connection URL
-export PG_EXPORTER_URL='postgres://pg_monitor:secure_password@localhost:5432/postgres'
+export PG_EXPORTER_URL='postgres://monitor:S3cret@localhost:5432/postgres'
 
-# Run in dry-run mode to test configuration
-pg_exporter --dry-run
+pg_exporter --dry-run     # print parsed collector config, then exit
+pg_exporter               # start for real, listening on :9630 by default
 ```
 
-### Step 3: Run the Exporter
+Without any URL, `pg_exporter` falls back to the local-first default `postgresql:///?sslmode=disable`, which fits running on the same host as PostgreSQL. The full URL source precedence (`--url` > `PG_EXPORTER_URL` > `PGURL` > `PG_EXPORTER_URL_FILE` > default) is documented in the [Deployment guide](/docs/pg_exporter/deploy/).
 
-Start PG Exporter:
+Pull the metrics from another terminal:
 
 ```bash
-# Run with default settings
-pg_exporter
-
-# Or with custom flags
-pg_exporter \
-  --url='postgres://pg_monitor:secure_password@localhost:5432/postgres' \
-  --web.listen-address=':9630' \
-  --log.level=info
+curl -s http://localhost:9630/metrics | grep -E '^pg_(up|version|in_recovery) '
 ```
 
-### Step 4: Configure Prometheus
+You should see the three core built-in metrics:
 
-Add PG Exporter as a target in your `prometheus.yml`:
+```prometheus
+pg_up 1              # 1 when the target is reachable, 0 otherwise
+pg_version 170000    # version in server_version_num format
+pg_in_recovery 0     # 1 on replicas, 0 on primaries
+```
+
+`pg_up 1` means the pipeline works — the remaining 600+ metrics (`pg_db_*`, `pg_table_*`, `pg_wal_*`, ...) all come from the declarative collector definitions in `pg_exporter.yml`. If `pg_up` is `0`, restart with `pg_exporter --log.level=debug` and inspect the connection error.
+
+
+--------
+
+## Step 4: Hook into Prometheus
+
+Add a scrape target in `prometheus.yml`:
 
 ```yaml
 scrape_configs:
   - job_name: 'postgresql'
+    scrape_interval: 15s
     static_configs:
       - targets: ['localhost:9630']
-        labels:
-          instance: 'postgres-primary'
 ```
 
-### Step 5: Verify Metrics
+Collectors cache results per their `ttl` (most realtime collectors use `ttl: 10`): as long as the TTL is below the scrape interval, every scrape gets fresh data, while high-frequency scraping can never overwhelm the database. This is also why setting `scrape_interval` below the common TTLs is not recommended.
 
-Check that metrics are being collected:
+That's it. For Grafana, you can reuse the PostgreSQL dashboards from [Pigsty](https://pigsty.io), or explore the [live demo](https://g.pgsty.com).
 
-```bash
-# View raw metrics
-curl http://localhost:9630/metrics | grep pg_
 
-# Check exporter statistics
-curl http://localhost:9630/stat
-
-# Review current query planning
-curl http://localhost:9630/explain
-```
-
-{{% alert title="Note" color="info" %}}
-`/reload`, `/stat`, and `/explain` are management endpoints. In production, protect them with `--web.config.file` or expose them only on trusted internal networks.
-{{% /alert %}}
-
-## Auto-Discovery Mode
-
-PG Exporter can automatically discover and monitor all databases in a PostgreSQL instance:
-
-```bash
-# Enable auto-discovery (default behavior)
-pg_exporter --auto-discovery
-
-# Exclude specific databases
-pg_exporter --auto-discovery \
-  --exclude-database="template0,template1,postgres"
-
-# Include only specific databases
-pg_exporter --auto-discovery \
-  --include-database="app_db,analytics_db"
-```
-
-When auto-discovery is enabled:
-- Cluster-level metrics (1xx-5xx) are collected once per instance
-- Database-level metrics (6xx-8xx) are collected for each discovered database
-- Metrics are labeled with `datname` to distinguish between databases
-
-## Monitoring pgBouncer
-
-To monitor pgBouncer instead of PostgreSQL:
-
-```bash
-# Connect to pgBouncer admin database
-PG_EXPORTER_URL='postgres://pgbouncer:password@localhost:6432/pgbouncer' \
-pg_exporter --config=/etc/pg_exporter.yml
-```
-
-The exporter automatically detects pgBouncer and:
-- Uses `pgbouncer` namespace for metrics
-- Executes pgBouncer-specific collectors (9xx series)
-- Provides pgBouncer-specific health checks
-
-## Using Docker
-
-Run PG Exporter in a container:
-
-```bash
-docker run -d \
-  --name pg_exporter \
-  -p 9630:9630 \
-  -e PG_EXPORTER_URL="postgres://user:pass@host.docker.internal:5432/postgres" \
-  pgsty/pg_exporter:latest
-```
-
-With custom configuration:
-
-```bash
-docker run -d \
-  --name pg_exporter \
-  -p 9630:9630 \
-  -v /path/to/pg_exporter.yml:/etc/pg_exporter.yml \
-  -e PG_EXPORTER_URL="postgres://user:pass@db:5432/postgres" \
-  pgsty/pg_exporter:latest
-```
-
-## Health Checks
-
-PG Exporter provides health check endpoints for load balancers and orchestrators:
-
-```bash
-# Basic health check
-curl http://localhost:9630/up
-# Returns: 200 if connected, 503 if not
-
-# Primary detection
-curl http://localhost:9630/primary
-# Returns: 200 if primary, 404 if replica, 503 if unknown
-
-# Replica detection
-curl http://localhost:9630/replica
-# Returns: 200 if replica, 404 if primary, 503 if unknown
-```
+--------
 
 ## Troubleshooting
 
-### Connection Issues
+| Symptom | What to do |
+|---------|-----------|
+| `pg_up 0`, connection fails | Run `pg_exporter --log.level=debug` and read the error; check URL, `pg_hba.conf`, and network reachability |
+| Some metrics are missing | `curl localhost:9630/explain` to see each collector's planning verdict (version gates, tags, predicates) |
+| A collector keeps failing | `curl localhost:9630/stat` for per-collector error counters and durations |
+| Scrapes are slow | Find the slow collector in `/stat`, raise its `ttl`, or set `skip: true` |
+{.full-width}
 
-```bash
-# Test with detailed logging
-pg_exporter --log.level=debug --dry-run
+`/stat`, `/explain`, and `/reload` are management endpoints — protect them with `--web.config.file` (TLS/auth) or keep them on a trusted network in production. See the [API Reference](/docs/pg_exporter/api/).
 
-# Check server planning
-pg_exporter --explain
-```
 
-### Permission Errors
-
-Ensure the monitoring user has necessary permissions:
-
-```sql
--- Check current permissions
-SELECT * FROM pg_roles WHERE rolname = 'pg_monitor';
-
--- Grant additional permissions if needed
-GRANT USAGE ON SCHEMA pg_catalog TO pg_monitor;
-GRANT SELECT ON ALL TABLES IN SCHEMA pg_catalog TO pg_monitor;
-```
-
-### Slow Scrapes
-
-If scrapes are timing out:
-
-1. Check slow queries: `curl http://localhost:9630/stat`
-2. Adjust collector timeouts in configuration
-3. Use caching for expensive queries (set `ttl` in collector config)
-4. Disable expensive collectors if not needed
+--------
 
 ## Next Steps
 
-- [Installation Guide](/docs/pg_exporter/install/) - Detailed installation instructions for all platforms
-- [Configuration Reference](/docs/pg_exporter/config/) - Complete configuration documentation
-- [Deployment Guide](/docs/pg_exporter/deploy/) - Production deployment best practices
-- [API Reference](/docs/pg_exporter/api/) - Full API endpoint documentation
+- Monitor **pgBouncer**, enable **auto-discovery**, deploy with **systemd / Docker / Kubernetes**: [Deployment guide](/docs/pg_exporter/deploy/)
+- Understand and customize **collectors** (GAUGE/COUNTER/HISTOGRAM, TTL, tags, version gates): [Configuration reference](/docs/pg_exporter/config/)
+- **Health check and primary/replica traffic routing** endpoints (`/up`, `/primary`, `/replica`): [API Reference](/docs/pg_exporter/api/)

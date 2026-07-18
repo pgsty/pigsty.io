@@ -7,22 +7,9 @@ category: [Reference]
 ---
 
 
-PG Exporter uses a powerful and flexible configuration system that allows you to define custom metrics, control collection behavior, and optimize performance.
-This guide covers all aspects of configuration from basic setup to advanced customization.
+Every business metric in `pg_exporter` is driven by a YAML **collector** definition: one SQL query plus its execution conditions (version, role, tags, predicates) and runtime controls (caching, timeout). This page is the complete reference for collector definitions.
 
-
-## Metrics Collectors
-
-
-PG Exporter uses a declarative YAML configuration system that provides incredible flexibility and control over metric collection. This guide covers all aspects of configuring PG Exporter for your specific monitoring needs.
-
-## Configuration Overview
-
-PG Exporter's configuration is centered around **collectors** - individual metric queries with associated metadata. The configuration can be:
-
-- A single monolithic YAML file (`pg_exporter.yml`)
-- A directory containing multiple YAML files (merged alphabetically)
-- Custom path specified via command-line or environment variable
+A configuration can be a single YAML file (like the default `pg_exporter.yml`) or a directory of YAML files — the official default bundle is merged from the 58 definition files under [`config/`](https://github.com/pgsty/pg_exporter/tree/main/config).
 
 ## Configuration Loading
 
@@ -74,20 +61,22 @@ collector_branch_name:           # Unique identifier for this collector
   # Metric Definitions
   metrics:
     - column_name:
-        usage: GAUGE             # GAUGE, COUNTER, LABEL, or DISCARD
+        usage: GAUGE             # GAUGE, COUNTER, HISTOGRAM, LABEL, or DISCARD
         rename: metric_name      # Optional: rename the metric
         description: "Help text" # Metric description
         default: 0               # Default value if NULL
         scale: 1000              # Scale factor for the value
+        bucket: [1, 10, 100]     # Bucket upper bounds for HISTOGRAM columns (strictly increasing, +Inf appended)
 ```
 
 Validation rules:
 
 - Each entry in `metrics` must define exactly one column mapping
-- Each collector must expose at least one `GAUGE` or `COUNTER` column
-- `usage` only accepts `GAUGE`, `COUNTER`, `LABEL`, or `DISCARD`
+- Each collector must expose at least one `GAUGE`, `COUNTER`, or `HISTOGRAM` column
+- `usage` only accepts `GAUGE`, `COUNTER`, `HISTOGRAM`, `LABEL`, or `DISCARD`
+- `HISTOGRAM` columns must define `bucket`: a finite, strictly increasing list of bucket upper bounds; the `+Inf` bucket is appended automatically
 - Metric names and label names are validated against Prometheus naming rules during load; invalid configs fail fast
-- Constant labels are checked for conflicts during load; they cannot overlap with query labels or built-in dynamic labels such as `datname` and `query`
+- Constant labels are checked for conflicts during load; they cannot overlap with query labels or built-in dynamic labels such as `datname` and `query`; when any `HISTOGRAM` collector is configured, `le` is reserved and cannot be used as a constant label
 - If you use one-line inline `metrics` definitions, keep `description` values double-quoted to avoid YAML ambiguity
 
 ## Core Configuration Elements
@@ -126,8 +115,48 @@ Each column in the query result must be mapped to a metric type:
 |-------|-------------|---------|
 | `GAUGE` | Instantaneous value that can go up or down | Current connections |
 | `COUNTER` | Cumulative value that only increases | Total transactions |
+| `HISTOGRAM` | Snapshot histogram deriving `_bucket` / `_count` / `_sum` series | Transaction age distribution |
 | `LABEL` | Use as a Prometheus label | Database name |
 | `DISCARD` | Ignore this column | Internal values |
+
+### Histogram Columns (HISTOGRAM)
+
+`v1.4.0` introduces the `HISTOGRAM` column type: every row returned by the query counts
+as one observation, aggregated per label group into a classic Prometheus histogram
+snapshot, deriving three series families: `<name>_bucket` (with the `le` label and the
+`+Inf` bucket), `<name>_count`, and `<name>_sum`:
+
+```yaml
+pg_xact_age:
+  name: pg_xact_age
+  desc: "Open transaction age distribution histogram"
+  query: |
+    SELECT datname,
+           greatest(0, extract(epoch FROM now() - xact_start)) AS seconds
+    FROM pg_stat_activity
+    WHERE pid <> pg_backend_pid() AND backend_type = 'client backend'
+      AND datname IS NOT NULL AND xact_start IS NOT NULL;
+  ttl: 10
+  tags: [cluster]
+  metrics:
+    - datname: {usage: LABEL, description: "Database name"}
+    - seconds:
+        usage: HISTOGRAM
+        bucket: [1, 3, 10, 30, 100, 300, 1000, 3000, 10000, 30000, 100000]
+        description: "Open transaction age snapshot in seconds"
+```
+
+Usage notes:
+
+- This is a **snapshot** histogram: the whole distribution is rebuilt on every scrape,
+  so bucket counts can go up or down — gauge-like semantics. `histogram_quantile()`
+  works directly, but `rate()` / `increase()` over `_count` / `_sum` is meaningless
+- SQL `NULL` observations are ignored by default; with an explicit `default`, they
+  count as the default value
+- `scale` is applied to the observation before bucket assignment; as with scalar
+  columns, timestamp and boolean values are exempt from `scale`
+- The [`pg_xact_age`](https://github.com/pgsty/pg_exporter/blob/main/config/0450-pg_xact_age.yml)
+  collector in the default bundle serves as the reference implementation
 
 ### Cache Control (TTL)
 
@@ -174,6 +203,14 @@ Version numbers follow PostgreSQL `server_version_num` rules:
 - `160100` = 16.1
 - `190000` = 19.0
 - `90600` = 9.6, relevant when using the legacy config bundle
+
+## Execution Model
+
+Understanding the full path from a collector definition to emitted metrics helps answer "why is this metric missing":
+
+1. **Planning** (on connection setup or hot reload): each collector branch is checked in turn — target type (PostgreSQL / pgBouncer), `min_version` / `max_version` gates, `tags` matching against server role and exporter tags, and the `skip` switch. Branches that fail any check are not installed on that target. `curl localhost:9630/explain` shows exactly the verdict of this step.
+2. **Scraping** (on every `/metrics` request): for each installed collector — if the cache is still within `ttl`, the cached result is returned; otherwise `predicate_queries` run first (any false verdict skips this round and bumps `pg_exporter_query_scrape_predicate_skip_count`), then the main query executes under `timeout`, and results are converted to metrics and cached.
+3. **Failure semantics**: a normal collector failure only affects itself (`pg_exporter_query_scrape_error_count` goes up, its metric group is absent this round); a failing collector marked `fatal: true` fails the whole server scrape.
 
 ## Tag System
 
@@ -452,11 +489,11 @@ partition_metrics:
 Check collector execution statistics:
 
 ```bash
-# View collector statistics
+# View collector statistics (hit / error / skip counters and durations)
 curl http://localhost:9630/stat
 
-# Check which collectors are slow
-curl http://localhost:9630/metrics | grep pg_exporter_collector_duration
+# Per-collector duration and error counters, by datname/query
+curl -s http://localhost:9630/metrics | grep -E 'pg_exporter_query_scrape_(duration|error_count)'
 ```
 
 ## Troubleshooting Configuration

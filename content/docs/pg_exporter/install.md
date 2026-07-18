@@ -7,8 +7,7 @@ module: [PG_EXPORTER]
 category: [Tutorial]
 ---
 
-PG Exporter provides multiple installation methods to suit different deployment scenarios.
-This guide covers all available installation options with detailed instructions for each platform.
+`pg_exporter` can be installed via Pigsty, YUM/APT repositories, GitHub release packages (RPM/DEB/Tarball), Docker images, or built from source — pick whichever fits your infrastructure.
 
 
 
@@ -28,22 +27,22 @@ curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
 
 You can also download `pg_exporter` package (`RPM`/`DEB`/ Tarball) directly from the [Latest GitHub Release Page](https://github.com/pgsty/pg_exporter/releases/latest):
 
-**v1.3.0 Release Files:**
+**v1.4.0 Release Files:**
 
 | Type                    | File                                                                                                                                           |
 |-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| DEB (amd64)             | [pg-exporter_1.3.0-1_amd64.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.3.0/pg-exporter_1.3.0-1_amd64.deb)                   |
-| DEB (arm64)             | [pg-exporter_1.3.0-1_arm64.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.3.0/pg-exporter_1.3.0-1_arm64.deb)                   |
-| DEB (ppc64le)           | [pg-exporter_1.3.0-1_ppc64le.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.3.0/pg-exporter_1.3.0-1_ppc64le.deb)               |
-| RPM (aarch64)           | [pg_exporter-1.3.0-1.aarch64.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.3.0/pg_exporter-1.3.0-1.aarch64.rpm)               |
-| RPM (x86_64)            | [pg_exporter-1.3.0-1.x86_64.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.3.0/pg_exporter-1.3.0-1.x86_64.rpm)                 |
-| RPM (ppc64le)           | [pg_exporter-1.3.0-1.ppc64le.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.3.0/pg_exporter-1.3.0-1.ppc64le.rpm)               |
-| Tarball (Linux amd64)   | [pg_exporter-1.3.0.linux-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.3.0/pg_exporter-1.3.0.linux-amd64.tar.gz)     |
-| Tarball (Linux arm64)   | [pg_exporter-1.3.0.linux-arm64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.3.0/pg_exporter-1.3.0.linux-arm64.tar.gz)     |
-| Tarball (Linux ppc64le) | [pg_exporter-1.3.0.linux-ppc64le.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.3.0/pg_exporter-1.3.0.linux-ppc64le.tar.gz) |
-| Tarball (macOS amd64)   | [pg_exporter-1.3.0.darwin-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.3.0/pg_exporter-1.3.0.darwin-amd64.tar.gz)   |
-| Tarball (macOS arm64)   | [pg_exporter-1.3.0.darwin-arm64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.3.0/pg_exporter-1.3.0.darwin-arm64.tar.gz)   |
-| Tarball (Windows amd64) | [pg_exporter-1.3.0.windows-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.3.0/pg_exporter-1.3.0.windows-amd64.tar.gz) |
+| DEB (amd64)             | [pg-exporter_1.4.0-1_amd64.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.4.0/pg-exporter_1.4.0-1_amd64.deb)                   |
+| DEB (arm64)             | [pg-exporter_1.4.0-1_arm64.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.4.0/pg-exporter_1.4.0-1_arm64.deb)                   |
+| DEB (ppc64le)           | [pg-exporter_1.4.0-1_ppc64le.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.4.0/pg-exporter_1.4.0-1_ppc64le.deb)               |
+| RPM (aarch64)           | [pg_exporter-1.4.0-1.aarch64.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.4.0/pg_exporter-1.4.0-1.aarch64.rpm)               |
+| RPM (x86_64)            | [pg_exporter-1.4.0-1.x86_64.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.4.0/pg_exporter-1.4.0-1.x86_64.rpm)                 |
+| RPM (ppc64le)           | [pg_exporter-1.4.0-1.ppc64le.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.4.0/pg_exporter-1.4.0-1.ppc64le.rpm)               |
+| Tarball (Linux amd64)   | [pg_exporter-1.4.0.linux-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.4.0/pg_exporter-1.4.0.linux-amd64.tar.gz)     |
+| Tarball (Linux arm64)   | [pg_exporter-1.4.0.linux-arm64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.4.0/pg_exporter-1.4.0.linux-arm64.tar.gz)     |
+| Tarball (Linux ppc64le) | [pg_exporter-1.4.0.linux-ppc64le.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.4.0/pg_exporter-1.4.0.linux-ppc64le.tar.gz) |
+| Tarball (macOS amd64)   | [pg_exporter-1.4.0.darwin-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.4.0/pg_exporter-1.4.0.darwin-amd64.tar.gz)   |
+| Tarball (macOS arm64)   | [pg_exporter-1.4.0.darwin-arm64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.4.0/pg_exporter-1.4.0.darwin-arm64.tar.gz)   |
+| Tarball (Windows amd64) | [pg_exporter-1.4.0.windows-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.4.0/pg_exporter-1.4.0.windows-amd64.tar.gz) |
 
 You can install it directly with your OS package manager (`rpm`/`dpkg`), or just place the binary in your `$PATH`. Current tarballs also include `pg_exporter.yml`, `package/pg_exporter.default`, `package/pg_exporter.service`, and `LICENSE` for manual deployments.
 
@@ -121,11 +120,6 @@ docker run -d \
 {{% alert title="Warning" color="warning" %}}
 The current Docker image is built from `scratch`. If you connect to remote PostgreSQL with `sslmode=verify-ca` or `verify-full`, mount an explicit CA certificate (`sslrootcert` or a system CA bundle), otherwise TLS verification may fail.
 {{% /alert %}}
-
-
-## Binary
-
-`pg_exporter` can be installed as a standalone binary. Download the tarball for your platform from the release page, extract it, and place the binary in your `$PATH`.
 
 
 ## Compatibility
