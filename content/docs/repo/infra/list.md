@@ -110,6 +110,17 @@ allow_loading_unsigned_plugins = victoriametrics-logs-datasource,victoriametrics
 
 --------
 
+## Kubernetes
+
+| Name                                                                                            | Version  | License                                                                                           | Comment                                                   |
+|-------------------------------------------------------------------------------------------------|----------|---------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
+| [`k3s`](https://github.com/k3s-io/k3s)                                                          | `1.36.2` | [Apache-2.0](https://github.com/k3s-io/k3s/blob/master/LICENSE)                                   | Lightweight Kubernetes; upstream `v1.36.2+k3s1`           |
+| [`k3s-images`](https://github.com/k3s-io/k3s/releases/tag/v1.36.2%2Bk3s1)                       | `1.36.2` | Multiple                                                                                          | Exact-match, architecture-specific offline system images  |
+{.stretch-last}
+
+
+--------
+
 ## Databases
 
 PostgreSQL related tools, DBMS, and other utilities
