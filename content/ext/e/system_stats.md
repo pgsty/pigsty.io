@@ -11,10 +11,10 @@ weight: 6420
     <div class="ext-card__title">EnterpriseDB/system_stats</div>
     <div class="ext-card__desc">https://github.com/EnterpriseDB/system_stats</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/system_stats-4.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/system_stats-4.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">system_stats-4.0.tar.gz</div>
-    <div class="ext-card__desc">system_stats-4.0.tar.gz</div>
+    <div class="ext-card__title">system_stats-4.1.tar.gz</div>
+    <div class="ext-card__desc">system_stats-4.1.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 6420
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`system_stats`**](/ext/e/system_stats) | `4.0` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`system_stats`**](/ext/e/system_stats) | `4.1` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,13 +38,16 @@ weight: 6420
 {.ext-table .ext-table--rel}
 
 
+> PGDG RPM and PIGSTY DEB package/source version 4.1 cover PostgreSQL 14-18; SQL/control version is 4.0.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#stat) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `4.0` | {{< pgvers "18,17,16,15,14" >}} | `system_stats` | - |
-| [**RPM**](/ext/rpm#stat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.0` | {{< pgvers "18,17,16,15,14" >}} | `system_stats_$v` | - |
-| [**DEB**](/ext/deb#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `4.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-system-stats` | - |
+| [**EXT**](/ext/list#stat) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `4.1` | {{< pgvers "18,17,16,15,14" >}} | `system_stats` | - |
+| [**RPM**](/ext/rpm#stat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.1` | {{< pgvers "18,17,16,15,14" >}} | `system_stats_$v` | - |
+| [**DEB**](/ext/deb#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `4.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-system-stats` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -56,16 +59,16 @@ weight: 6420
 | el9.aarch64 | AVAIL PGDG 4.1 8 | AVAIL PGDG 4.1 8 | AVAIL PGDG 4.1 9 | AVAIL PGDG 4.1 10 | AVAIL PGDG 4.1 10 |
 | el10.x86_64 | AVAIL PGDG 4.1 8 | AVAIL PGDG 4.1 8 | AVAIL PGDG 4.1 8 | AVAIL PGDG 4.1 8 | AVAIL PGDG 4.1 8 |
 | el10.aarch64 | AVAIL PGDG 4.1 8 | AVAIL PGDG 4.1 8 | AVAIL PGDG 4.1 8 | AVAIL PGDG 4.1 8 | AVAIL PGDG 4.1 8 |
-| d12.x86_64 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 |
-| d12.aarch64 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 |
-| d13.x86_64 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 |
-| d13.aarch64 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 |
-| u22.x86_64 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 |
-| u22.aarch64 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 |
-| u24.x86_64 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 |
-| u24.aarch64 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 |
-| u26.x86_64 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 |
-| u26.aarch64 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 | AVAIL PIGSTY 4.0 1 |
+| d12.x86_64 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 |
+| d12.aarch64 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 |
+| d13.x86_64 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 |
+| d13.aarch64 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 |
+| u22.x86_64 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 |
+| u22.aarch64 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 |
+| u24.x86_64 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 |
+| u24.aarch64 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 |
+| u26.x86_64 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 |
+| u26.aarch64 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 | AVAIL PIGSTY 4.1 1 |
 @ el8.x86_64 18 system_stats_18 system_stats_18-4.1-1PGDG.rhel8.10.x86_64.rpm pgdg 4.1 32.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/system_stats_18-4.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 system_stats_18 system_stats_18-4.0-1PGDG.rhel8.10.x86_64.rpm pgdg 4.0 32.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/system_stats_18-4.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 system_stats_18 system_stats_18-3.2-2PGDG.rhel8.x86_64.rpm pgdg 3.2 28.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/system_stats_18-3.2-2PGDG.rhel8.x86_64.rpm
@@ -106,16 +109,16 @@ weight: 6420
 @ el10.aarch64 18 system_stats_18 system_stats_18-3.2-2PGDG.rhel10.aarch64.rpm pgdg 3.2 28.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/system_stats_18-3.2-2PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 18 system_stats_18 system_stats_18-3.2.1-1PGDG.rhel10.1.aarch64.rpm pgdg 3.2.1 29.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/system_stats_18-3.2.1-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 18 system_stats_18 system_stats_18-3.2.1-1PGDG.rhel10.0.aarch64.rpm pgdg 3.2.1 29.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/system_stats_18-3.2.1-1PGDG.rhel10.0.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-system-stats postgresql-18-system-stats_4.0-1PIGSTY~bookworm_amd64.deb pigsty 4.0 67.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-18-system-stats_4.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-system-stats postgresql-18-system-stats_4.0-1PIGSTY~bookworm_arm64.deb pigsty 4.0 66.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-18-system-stats_4.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-system-stats postgresql-18-system-stats_4.0-1PIGSTY~trixie_amd64.deb pigsty 4.0 67.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-18-system-stats_4.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-system-stats postgresql-18-system-stats_4.0-1PIGSTY~trixie_arm64.deb pigsty 4.0 66.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-18-system-stats_4.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-system-stats postgresql-18-system-stats_4.0-1PIGSTY~jammy_amd64.deb pigsty 4.0 70.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-18-system-stats_4.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-system-stats postgresql-18-system-stats_4.0-1PIGSTY~jammy_arm64.deb pigsty 4.0 70.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-18-system-stats_4.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-system-stats postgresql-18-system-stats_4.0-1PIGSTY~noble_amd64.deb pigsty 4.0 70.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-18-system-stats_4.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-system-stats postgresql-18-system-stats_4.0-1PIGSTY~noble_arm64.deb pigsty 4.0 69.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-18-system-stats_4.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-system-stats postgresql-18-system-stats_4.0-1PIGSTY~resolute_amd64.deb pigsty 4.0 69.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-18-system-stats_4.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-system-stats postgresql-18-system-stats_4.0-1PIGSTY~resolute_arm64.deb pigsty 4.0 68.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-18-system-stats_4.0-1PIGSTY~resolute_arm64.deb
+@ d12.x86_64 18 postgresql-18-system-stats postgresql-18-system-stats_4.1-1PIGSTY~bookworm_amd64.deb pigsty 4.1 67.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-18-system-stats_4.1-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-system-stats postgresql-18-system-stats_4.1-1PIGSTY~bookworm_arm64.deb pigsty 4.1 66.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-18-system-stats_4.1-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-system-stats postgresql-18-system-stats_4.1-1PIGSTY~trixie_amd64.deb pigsty 4.1 67.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-18-system-stats_4.1-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-system-stats postgresql-18-system-stats_4.1-1PIGSTY~trixie_arm64.deb pigsty 4.1 66.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-18-system-stats_4.1-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-system-stats postgresql-18-system-stats_4.1-1PIGSTY~jammy_amd64.deb pigsty 4.1 70.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-18-system-stats_4.1-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-system-stats postgresql-18-system-stats_4.1-1PIGSTY~jammy_arm64.deb pigsty 4.1 70.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-18-system-stats_4.1-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-system-stats postgresql-18-system-stats_4.1-1PIGSTY~noble_amd64.deb pigsty 4.1 70.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-18-system-stats_4.1-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-system-stats postgresql-18-system-stats_4.1-1PIGSTY~noble_arm64.deb pigsty 4.1 69.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-18-system-stats_4.1-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-system-stats postgresql-18-system-stats_4.1-1PIGSTY~resolute_amd64.deb pigsty 4.1 70.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-18-system-stats_4.1-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-system-stats postgresql-18-system-stats_4.1-1PIGSTY~resolute_arm64.deb pigsty 4.1 69.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-18-system-stats_4.1-1PIGSTY~resolute_arm64.deb
 @ el8.x86_64 17 system_stats_17 system_stats_17-4.1-1PGDG.rhel8.10.x86_64.rpm pgdg 4.1 32.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/system_stats_17-4.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 system_stats_17 system_stats_17-4.0-1PGDG.rhel8.10.x86_64.rpm pgdg 4.0 32.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/system_stats_17-4.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 system_stats_17 system_stats_17-3.2.1-1PGDG.rhel8.10.x86_64.rpm pgdg 3.2.1 30.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/system_stats_17-3.2.1-1PGDG.rhel8.10.x86_64.rpm
@@ -156,16 +159,16 @@ weight: 6420
 @ el10.aarch64 17 system_stats_17 system_stats_17-3.2-2PGDG.rhel10.aarch64.rpm pgdg 3.2 28.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/system_stats_17-3.2-2PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 17 system_stats_17 system_stats_17-3.2.1-1PGDG.rhel10.1.aarch64.rpm pgdg 3.2.1 29.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/system_stats_17-3.2.1-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 17 system_stats_17 system_stats_17-3.2.1-1PGDG.rhel10.0.aarch64.rpm pgdg 3.2.1 29.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/system_stats_17-3.2.1-1PGDG.rhel10.0.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-system-stats postgresql-17-system-stats_4.0-1PIGSTY~bookworm_amd64.deb pigsty 4.0 67.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-17-system-stats_4.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-system-stats postgresql-17-system-stats_4.0-1PIGSTY~bookworm_arm64.deb pigsty 4.0 66.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-17-system-stats_4.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-system-stats postgresql-17-system-stats_4.0-1PIGSTY~trixie_amd64.deb pigsty 4.0 67.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-17-system-stats_4.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-system-stats postgresql-17-system-stats_4.0-1PIGSTY~trixie_arm64.deb pigsty 4.0 66.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-17-system-stats_4.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-system-stats postgresql-17-system-stats_4.0-1PIGSTY~jammy_amd64.deb pigsty 4.0 77.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-17-system-stats_4.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-system-stats postgresql-17-system-stats_4.0-1PIGSTY~jammy_arm64.deb pigsty 4.0 77.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-17-system-stats_4.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-system-stats postgresql-17-system-stats_4.0-1PIGSTY~noble_amd64.deb pigsty 4.0 69.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-17-system-stats_4.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-system-stats postgresql-17-system-stats_4.0-1PIGSTY~noble_arm64.deb pigsty 4.0 69.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-17-system-stats_4.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-system-stats postgresql-17-system-stats_4.0-1PIGSTY~resolute_amd64.deb pigsty 4.0 69.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-17-system-stats_4.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-system-stats postgresql-17-system-stats_4.0-1PIGSTY~resolute_arm64.deb pigsty 4.0 68.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-17-system-stats_4.0-1PIGSTY~resolute_arm64.deb
+@ d12.x86_64 17 postgresql-17-system-stats postgresql-17-system-stats_4.1-1PIGSTY~bookworm_amd64.deb pigsty 4.1 67.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-17-system-stats_4.1-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-system-stats postgresql-17-system-stats_4.1-1PIGSTY~bookworm_arm64.deb pigsty 4.1 66.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-17-system-stats_4.1-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-system-stats postgresql-17-system-stats_4.1-1PIGSTY~trixie_amd64.deb pigsty 4.1 67.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-17-system-stats_4.1-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-system-stats postgresql-17-system-stats_4.1-1PIGSTY~trixie_arm64.deb pigsty 4.1 66.6KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-17-system-stats_4.1-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-system-stats postgresql-17-system-stats_4.1-1PIGSTY~jammy_amd64.deb pigsty 4.1 77.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-17-system-stats_4.1-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-system-stats postgresql-17-system-stats_4.1-1PIGSTY~jammy_arm64.deb pigsty 4.1 77.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-17-system-stats_4.1-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-system-stats postgresql-17-system-stats_4.1-1PIGSTY~noble_amd64.deb pigsty 4.1 70.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-17-system-stats_4.1-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-system-stats postgresql-17-system-stats_4.1-1PIGSTY~noble_arm64.deb pigsty 4.1 69.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-17-system-stats_4.1-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-system-stats postgresql-17-system-stats_4.1-1PIGSTY~resolute_amd64.deb pigsty 4.1 70.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-17-system-stats_4.1-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-system-stats postgresql-17-system-stats_4.1-1PIGSTY~resolute_arm64.deb pigsty 4.1 69.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-17-system-stats_4.1-1PIGSTY~resolute_arm64.deb
 @ el8.x86_64 16 system_stats_16 system_stats_16-4.1-1PGDG.rhel8.10.x86_64.rpm pgdg 4.1 32.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/system_stats_16-4.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 system_stats_16 system_stats_16-4.0-1PGDG.rhel8.10.x86_64.rpm pgdg 4.0 32.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/system_stats_16-4.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 system_stats_16 system_stats_16-3.2.1-1PGDG.rhel8.10.x86_64.rpm pgdg 3.2.1 30.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/system_stats_16-3.2.1-1PGDG.rhel8.10.x86_64.rpm
@@ -210,16 +213,16 @@ weight: 6420
 @ el10.aarch64 16 system_stats_16 system_stats_16-3.2-2PGDG.rhel10.aarch64.rpm pgdg 3.2 28.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/system_stats_16-3.2-2PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 16 system_stats_16 system_stats_16-3.2.1-1PGDG.rhel10.1.aarch64.rpm pgdg 3.2.1 29.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/system_stats_16-3.2.1-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 16 system_stats_16 system_stats_16-3.2.1-1PGDG.rhel10.0.aarch64.rpm pgdg 3.2.1 29.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/system_stats_16-3.2.1-1PGDG.rhel10.0.aarch64.rpm
-@ d12.x86_64 16 postgresql-16-system-stats postgresql-16-system-stats_4.0-1PIGSTY~bookworm_amd64.deb pigsty 4.0 67.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-16-system-stats_4.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-system-stats postgresql-16-system-stats_4.0-1PIGSTY~bookworm_arm64.deb pigsty 4.0 66.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-16-system-stats_4.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-system-stats postgresql-16-system-stats_4.0-1PIGSTY~trixie_amd64.deb pigsty 4.0 67.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-16-system-stats_4.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-system-stats postgresql-16-system-stats_4.0-1PIGSTY~trixie_arm64.deb pigsty 4.0 66.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-16-system-stats_4.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-system-stats postgresql-16-system-stats_4.0-1PIGSTY~jammy_amd64.deb pigsty 4.0 77.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-16-system-stats_4.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-system-stats postgresql-16-system-stats_4.0-1PIGSTY~jammy_arm64.deb pigsty 4.0 77.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-16-system-stats_4.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-system-stats postgresql-16-system-stats_4.0-1PIGSTY~noble_amd64.deb pigsty 4.0 69.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-16-system-stats_4.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-system-stats postgresql-16-system-stats_4.0-1PIGSTY~noble_arm64.deb pigsty 4.0 69.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-16-system-stats_4.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-system-stats postgresql-16-system-stats_4.0-1PIGSTY~resolute_amd64.deb pigsty 4.0 69.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-16-system-stats_4.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-system-stats postgresql-16-system-stats_4.0-1PIGSTY~resolute_arm64.deb pigsty 4.0 68.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-16-system-stats_4.0-1PIGSTY~resolute_arm64.deb
+@ d12.x86_64 16 postgresql-16-system-stats postgresql-16-system-stats_4.1-1PIGSTY~bookworm_amd64.deb pigsty 4.1 67.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-16-system-stats_4.1-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 16 postgresql-16-system-stats postgresql-16-system-stats_4.1-1PIGSTY~bookworm_arm64.deb pigsty 4.1 66.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-16-system-stats_4.1-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 16 postgresql-16-system-stats postgresql-16-system-stats_4.1-1PIGSTY~trixie_amd64.deb pigsty 4.1 67.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-16-system-stats_4.1-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 16 postgresql-16-system-stats postgresql-16-system-stats_4.1-1PIGSTY~trixie_arm64.deb pigsty 4.1 66.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-16-system-stats_4.1-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 16 postgresql-16-system-stats postgresql-16-system-stats_4.1-1PIGSTY~jammy_amd64.deb pigsty 4.1 77.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-16-system-stats_4.1-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 16 postgresql-16-system-stats postgresql-16-system-stats_4.1-1PIGSTY~jammy_arm64.deb pigsty 4.1 77.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-16-system-stats_4.1-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 16 postgresql-16-system-stats postgresql-16-system-stats_4.1-1PIGSTY~noble_amd64.deb pigsty 4.1 70.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-16-system-stats_4.1-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 16 postgresql-16-system-stats postgresql-16-system-stats_4.1-1PIGSTY~noble_arm64.deb pigsty 4.1 69.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-16-system-stats_4.1-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 16 postgresql-16-system-stats postgresql-16-system-stats_4.1-1PIGSTY~resolute_amd64.deb pigsty 4.1 69.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-16-system-stats_4.1-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 16 postgresql-16-system-stats postgresql-16-system-stats_4.1-1PIGSTY~resolute_arm64.deb pigsty 4.1 69.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-16-system-stats_4.1-1PIGSTY~resolute_arm64.deb
 @ el8.x86_64 15 system_stats_15 system_stats_15-4.1-1PGDG.rhel8.10.x86_64.rpm pgdg 4.1 33.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/system_stats_15-4.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 system_stats_15 system_stats_15-4.0-1PGDG.rhel8.10.x86_64.rpm pgdg 4.0 33.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/system_stats_15-4.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 system_stats_15 system_stats_15-3.2.1-1PGDG.rhel8.10.x86_64.rpm pgdg 3.2.1 31.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/system_stats_15-3.2.1-1PGDG.rhel8.10.x86_64.rpm
@@ -268,16 +271,16 @@ weight: 6420
 @ el10.aarch64 15 system_stats_15 system_stats_15-3.2-2PGDG.rhel10.aarch64.rpm pgdg 3.2 30.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/system_stats_15-3.2-2PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 15 system_stats_15 system_stats_15-3.2.1-1PGDG.rhel10.1.aarch64.rpm pgdg 3.2.1 31.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/system_stats_15-3.2.1-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 15 system_stats_15 system_stats_15-3.2.1-1PGDG.rhel10.0.aarch64.rpm pgdg 3.2.1 31.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/system_stats_15-3.2.1-1PGDG.rhel10.0.aarch64.rpm
-@ d12.x86_64 15 postgresql-15-system-stats postgresql-15-system-stats_4.0-1PIGSTY~bookworm_amd64.deb pigsty 4.0 67.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-15-system-stats_4.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 15 postgresql-15-system-stats postgresql-15-system-stats_4.0-1PIGSTY~bookworm_arm64.deb pigsty 4.0 66.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-15-system-stats_4.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 15 postgresql-15-system-stats postgresql-15-system-stats_4.0-1PIGSTY~trixie_amd64.deb pigsty 4.0 68.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-15-system-stats_4.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 15 postgresql-15-system-stats postgresql-15-system-stats_4.0-1PIGSTY~trixie_arm64.deb pigsty 4.0 66.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-15-system-stats_4.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 15 postgresql-15-system-stats postgresql-15-system-stats_4.0-1PIGSTY~jammy_amd64.deb pigsty 4.0 79.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-15-system-stats_4.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 15 postgresql-15-system-stats postgresql-15-system-stats_4.0-1PIGSTY~jammy_arm64.deb pigsty 4.0 79.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-15-system-stats_4.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 15 postgresql-15-system-stats postgresql-15-system-stats_4.0-1PIGSTY~noble_amd64.deb pigsty 4.0 71.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-15-system-stats_4.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 15 postgresql-15-system-stats postgresql-15-system-stats_4.0-1PIGSTY~noble_arm64.deb pigsty 4.0 70.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-15-system-stats_4.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 15 postgresql-15-system-stats postgresql-15-system-stats_4.0-1PIGSTY~resolute_amd64.deb pigsty 4.0 70.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-15-system-stats_4.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 15 postgresql-15-system-stats postgresql-15-system-stats_4.0-1PIGSTY~resolute_arm64.deb pigsty 4.0 70.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-15-system-stats_4.0-1PIGSTY~resolute_arm64.deb
+@ d12.x86_64 15 postgresql-15-system-stats postgresql-15-system-stats_4.1-1PIGSTY~bookworm_amd64.deb pigsty 4.1 68.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-15-system-stats_4.1-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 15 postgresql-15-system-stats postgresql-15-system-stats_4.1-1PIGSTY~bookworm_arm64.deb pigsty 4.1 67.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-15-system-stats_4.1-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 15 postgresql-15-system-stats postgresql-15-system-stats_4.1-1PIGSTY~trixie_amd64.deb pigsty 4.1 68.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-15-system-stats_4.1-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 15 postgresql-15-system-stats postgresql-15-system-stats_4.1-1PIGSTY~trixie_arm64.deb pigsty 4.1 67.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-15-system-stats_4.1-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 15 postgresql-15-system-stats postgresql-15-system-stats_4.1-1PIGSTY~jammy_amd64.deb pigsty 4.1 79.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-15-system-stats_4.1-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 15 postgresql-15-system-stats postgresql-15-system-stats_4.1-1PIGSTY~jammy_arm64.deb pigsty 4.1 79.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-15-system-stats_4.1-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 15 postgresql-15-system-stats postgresql-15-system-stats_4.1-1PIGSTY~noble_amd64.deb pigsty 4.1 71.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-15-system-stats_4.1-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 15 postgresql-15-system-stats postgresql-15-system-stats_4.1-1PIGSTY~noble_arm64.deb pigsty 4.1 71.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-15-system-stats_4.1-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 15 postgresql-15-system-stats postgresql-15-system-stats_4.1-1PIGSTY~resolute_amd64.deb pigsty 4.1 71.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-15-system-stats_4.1-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 15 postgresql-15-system-stats postgresql-15-system-stats_4.1-1PIGSTY~resolute_arm64.deb pigsty 4.1 70.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-15-system-stats_4.1-1PIGSTY~resolute_arm64.deb
 @ el8.x86_64 14 system_stats_14 system_stats_14-4.1-1PGDG.rhel8.10.x86_64.rpm pgdg 4.1 33.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/system_stats_14-4.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 system_stats_14 system_stats_14-4.0-1PGDG.rhel8.10.x86_64.rpm pgdg 4.0 33.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/system_stats_14-4.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 system_stats_14 system_stats_14-3.2.1-1PGDG.rhel8.10.x86_64.rpm pgdg 3.2.1 31.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/system_stats_14-3.2.1-1PGDG.rhel8.10.x86_64.rpm
@@ -325,16 +328,16 @@ weight: 6420
 @ el10.aarch64 14 system_stats_14 system_stats_14-3.2-2PGDG.rhel10.aarch64.rpm pgdg 3.2 30.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/system_stats_14-3.2-2PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 14 system_stats_14 system_stats_14-3.2.1-1PGDG.rhel10.1.aarch64.rpm pgdg 3.2.1 31.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/system_stats_14-3.2.1-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 14 system_stats_14 system_stats_14-3.2.1-1PGDG.rhel10.0.aarch64.rpm pgdg 3.2.1 31.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/system_stats_14-3.2.1-1PGDG.rhel10.0.aarch64.rpm
-@ d12.x86_64 14 postgresql-14-system-stats postgresql-14-system-stats_4.0-1PIGSTY~bookworm_amd64.deb pigsty 4.0 67.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-14-system-stats_4.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 14 postgresql-14-system-stats postgresql-14-system-stats_4.0-1PIGSTY~bookworm_arm64.deb pigsty 4.0 66.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-14-system-stats_4.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 14 postgresql-14-system-stats postgresql-14-system-stats_4.0-1PIGSTY~trixie_amd64.deb pigsty 4.0 67.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-14-system-stats_4.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 14 postgresql-14-system-stats postgresql-14-system-stats_4.0-1PIGSTY~trixie_arm64.deb pigsty 4.0 66.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-14-system-stats_4.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 14 postgresql-14-system-stats postgresql-14-system-stats_4.0-1PIGSTY~jammy_amd64.deb pigsty 4.0 78.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-14-system-stats_4.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 14 postgresql-14-system-stats postgresql-14-system-stats_4.0-1PIGSTY~jammy_arm64.deb pigsty 4.0 78.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-14-system-stats_4.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 14 postgresql-14-system-stats postgresql-14-system-stats_4.0-1PIGSTY~noble_amd64.deb pigsty 4.0 71.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-14-system-stats_4.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 14 postgresql-14-system-stats postgresql-14-system-stats_4.0-1PIGSTY~noble_arm64.deb pigsty 4.0 70.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-14-system-stats_4.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 14 postgresql-14-system-stats postgresql-14-system-stats_4.0-1PIGSTY~resolute_amd64.deb pigsty 4.0 70.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-14-system-stats_4.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 14 postgresql-14-system-stats postgresql-14-system-stats_4.0-1PIGSTY~resolute_arm64.deb pigsty 4.0 70.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-14-system-stats_4.0-1PIGSTY~resolute_arm64.deb
+@ d12.x86_64 14 postgresql-14-system-stats postgresql-14-system-stats_4.1-1PIGSTY~bookworm_amd64.deb pigsty 4.1 68.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-14-system-stats_4.1-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 14 postgresql-14-system-stats postgresql-14-system-stats_4.1-1PIGSTY~bookworm_arm64.deb pigsty 4.1 67.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/system-stats/postgresql-14-system-stats_4.1-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 14 postgresql-14-system-stats postgresql-14-system-stats_4.1-1PIGSTY~trixie_amd64.deb pigsty 4.1 68.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-14-system-stats_4.1-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 14 postgresql-14-system-stats postgresql-14-system-stats_4.1-1PIGSTY~trixie_arm64.deb pigsty 4.1 67.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/system-stats/postgresql-14-system-stats_4.1-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 14 postgresql-14-system-stats postgresql-14-system-stats_4.1-1PIGSTY~jammy_amd64.deb pigsty 4.1 79.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-14-system-stats_4.1-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 14 postgresql-14-system-stats postgresql-14-system-stats_4.1-1PIGSTY~jammy_arm64.deb pigsty 4.1 79.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/system-stats/postgresql-14-system-stats_4.1-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 14 postgresql-14-system-stats postgresql-14-system-stats_4.1-1PIGSTY~noble_amd64.deb pigsty 4.1 71.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-14-system-stats_4.1-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 14 postgresql-14-system-stats postgresql-14-system-stats_4.1-1PIGSTY~noble_arm64.deb pigsty 4.1 70.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/system-stats/postgresql-14-system-stats_4.1-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 14 postgresql-14-system-stats postgresql-14-system-stats_4.1-1PIGSTY~resolute_amd64.deb pigsty 4.1 71.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-14-system-stats_4.1-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 14 postgresql-14-system-stats postgresql-14-system-stats_4.1-1PIGSTY~resolute_arm64.deb pigsty 4.1 70.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/system-stats/postgresql-14-system-stats_4.1-1PIGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build

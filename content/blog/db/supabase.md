@@ -34,7 +34,7 @@ But there is no doubt that when you really grow to millions of users, some may c
 That's where Pigsty comes in. Pigsty provides a complete one-click self-hosting solution for Supabase.
 Self-hosted Supabase can enjoy full PostgreSQL monitoring, IaC, PITR, and high availability capability,
 
-You can run the latest PostgreSQL 17/16/15/14 kernels (Supabase currently uses 15), along with [531](/ext/list/) PostgreSQL extensions out of the box.
+You can run the latest PostgreSQL 17/16/15/14 kernels (Supabase currently uses 15), along with [555](/ext/list/) PostgreSQL extensions out of the box.
 It runs on [mainstream](/docs/ref/linux) Linux distributions with production-grade [HA](/docs/concept/ha) [PostgreSQL](/docs/pgsql), [MinIO](/docs/minio), the Prometheus and Grafana stack for observability, and Nginx for reverse proxying.
 
 [**TIME**](/ext/cate/time): [`timescaledb`](/ext/e/timescaledb) [`timescaledb_toolkit`](/ext/e/timescaledb_toolkit) [`timeseries`](/ext/e/timeseries) [`periods`](/ext/e/periods) [`temporal_tables`](/ext/e/temporal_tables) [`emaj`](/ext/e/emaj) [`table_version`](/ext/e/table_version) [`pg_cron`](/ext/e/pg_cron) [`pg_later`](/ext/e/pg_later) [`pg_background`](/ext/e/pg_background)

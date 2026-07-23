@@ -30,6 +30,7 @@ weight: 2790
 
 | **Related** | [`index_advisor`](/ext/e/index_advisor) [`pg_qualstats`](/ext/e/pg_qualstats) [`powa`](/ext/e/powa) [`pg_hint_plan`](/ext/e/pg_hint_plan) [`auto_explain`](/ext/e/auto_explain) [`pg_stat_statements`](/ext/e/pg_stat_statements) [`btree_gin`](/ext/e/btree_gin) [`pg_show_plans`](/ext/e/pg_show_plans) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Depended By** | [`index_advisor`](/ext/e/index_advisor) |
 {.ext-table .ext-table--rel}
 
 

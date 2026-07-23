@@ -1,5 +1,5 @@
 ---
-title: "PG Exporter 1.3 Documentation"
+title: "PG Exporter 1.4 Documentation"
 linkTitle: pg_exporter 
 weight: 8400
 icon: fas fa-magnifying-glass
@@ -155,7 +155,7 @@ The demo showcases real PostgreSQL clusters monitored by PG Exporter, featuring:
 - Real-time metrics visualization with Grafana
 - Multiple PostgreSQL versions and configurations
 - Extension-specific metrics and monitoring
-- Complete observability stack powered by [Pigsty](https://pgsty.com)
+- Complete observability stack powered by [Pigsty](https://pigsty.io)
 
 
 --------
@@ -164,7 +164,7 @@ The demo showcases real PostgreSQL clusters monitored by PG Exporter, featuring:
 
 - [**GitHub**](https://github.com/pgsty/pg_exporter) - Source code, issues, and contributions
 - [**Discussions**](https://github.com/pgsty/pg_exporter/discussions) - Ask questions and share experiences
-- [**Pigsty**](https://pgsty.com) - Complete PostgreSQL Distro with PG Exporter
+- [**Pigsty**](https://pigsty.io) - Complete PostgreSQL Distro with PG Exporter
 
 
 --------

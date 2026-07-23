@@ -11,10 +11,10 @@ weight: 9020
     <div class="ext-card__title">documentdb/documentdb</div>
     <div class="ext-card__desc">https://github.com/documentdb/documentdb</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/documentdb-0.113-0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/documentdb-0.114-0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">documentdb-0.113-0.tar.gz</div>
-    <div class="ext-card__desc">documentdb-0.113-0.tar.gz</div>
+    <div class="ext-card__title">documentdb-0.114-0.tar.gz</div>
+    <div class="ext-card__desc">documentdb-0.114-0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 9020
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`documentdb`**](/ext/e/documentdb) | `0.113` | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`documentdb`**](/ext/e/documentdb) | `0.114` | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -45,30 +45,30 @@ weight: 9020
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.113` | {{< pgvers "18,17,16,15" >}} | `documentdb` | `citus`, `documentdb_core`, `documentdb` |
-| [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.113` | {{< pgvers "18,17,16,15" >}} | `documentdb_$v` | `postgresql$v-contrib`, `pg_cron_$v`, `pgvector_$v`, `rum_$v`, `postgis36_$v` |
-| [**DEB**](/ext/deb#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.113` | {{< pgvers "18,17,16,15" >}} | `postgresql-$v-documentdb` | `postgresql-$v-cron`, `postgresql-$v-pgvector`, `postgresql-$v-rum`, `postgresql-$v-postgis-3` |
+| [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.114` | {{< pgvers "18,17,16,15" >}} | `documentdb` | `citus`, `documentdb_core`, `documentdb` |
+| [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.114` | {{< pgvers "18,17,16,15" >}} | `documentdb_$v` | `postgresql$v-contrib`, `pg_cron_$v`, `pgvector_$v`, `rum_$v`, `postgis36_$v` |
+| [**DEB**](/ext/deb#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.114` | {{< pgvers "18,17,16,15" >}} | `postgresql-$v-documentdb` | `postgresql-$v-cron`, `postgresql-$v-pgvector`, `postgresql-$v-rum`, `postgresql-$v-postgis-3` |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | MISS PIGSTY - 0 |
-| el8.aarch64 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | MISS PIGSTY - 0 |
-| el9.x86_64 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | MISS PIGSTY - 0 |
-| el9.aarch64 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | MISS PIGSTY - 0 |
-| el10.x86_64 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | MISS PIGSTY - 0 |
-| el10.aarch64 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | MISS PIGSTY - 0 |
-| d12.x86_64 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | MISS PIGSTY - 0 |
-| d12.aarch64 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | MISS PIGSTY - 0 |
-| d13.x86_64 | AVAIL PGDG 0.113 4 | AVAIL PGDG 0.113 4 | AVAIL PGDG 0.113 4 | AVAIL PGDG 0.113 4 | MISS PIGSTY - 0 |
-| d13.aarch64 | AVAIL PGDG 0.113 4 | AVAIL PGDG 0.113 4 | AVAIL PGDG 0.113 4 | AVAIL PGDG 0.113 4 | MISS PIGSTY - 0 |
-| u22.x86_64 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | MISS PIGSTY - 0 |
-| u22.aarch64 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | MISS PIGSTY - 0 |
-| u24.x86_64 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | MISS PIGSTY - 0 |
-| u24.aarch64 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | AVAIL PIGSTY 0.113 1 | MISS PIGSTY - 0 |
-| u26.x86_64 | AVAIL PGDG 0.113 4 | AVAIL PGDG 0.113 4 | AVAIL PGDG 0.113 4 | AVAIL PGDG 0.113 4 | MISS PIGSTY - 0 |
-| u26.aarch64 | AVAIL PGDG 0.113 4 | AVAIL PGDG 0.113 4 | AVAIL PGDG 0.113 4 | AVAIL PGDG 0.113 4 | MISS PIGSTY - 0 |
+| el8.x86_64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
+| el8.aarch64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
+| el9.x86_64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
+| el9.aarch64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
+| el10.x86_64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
+| el10.aarch64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
+| d12.x86_64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
+| d12.aarch64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
+| d13.x86_64 | AVAIL PGDG 0.114 4 | AVAIL PGDG 0.114 4 | AVAIL PGDG 0.114 4 | AVAIL PGDG 0.114 4 | N/A PIGSTY - 0 |
+| d13.aarch64 | AVAIL PGDG 0.114 4 | AVAIL PGDG 0.114 4 | AVAIL PGDG 0.114 4 | AVAIL PGDG 0.114 4 | N/A PIGSTY - 0 |
+| u22.x86_64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
+| u22.aarch64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
+| u24.x86_64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
+| u24.aarch64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
+| u26.x86_64 | AVAIL PGDG 0.114 4 | AVAIL PGDG 0.114 4 | AVAIL PGDG 0.114 4 | AVAIL PGDG 0.114 4 | N/A PIGSTY - 0 |
+| u26.aarch64 | AVAIL PGDG 0.114 4 | AVAIL PGDG 0.114 4 | AVAIL PGDG 0.114 4 | AVAIL PGDG 0.114 4 | N/A PIGSTY - 0 |
 {{< /pgext_matrix >}}
 
 ## Build
@@ -136,34 +136,43 @@ shared_preload_libraries = 'citus, pg_documentdb, pg_documentdb_core';
 CREATE EXTENSION documentdb_distributed CASCADE;  -- requires: citus, documentdb_core, documentdb
 ```
 
-
-
-
 ## Usage
 
-> [documentdb_distributed: Multi-Node API surface for DocumentDB](https://github.com/documentdb/documentdb)
+Sources:
 
-The `documentdb_distributed` extension provides multi-node distributed capabilities for DocumentDB on PostgreSQL. It extends the core DocumentDB functionality to support horizontal scaling across multiple PostgreSQL nodes.
+- [`documentdb_distributed` v0.114-0 control file](https://github.com/documentdb/documentdb/blob/v0.114-0/internal/pg_documentdb_distributed/documentdb_distributed.control)
+- [DocumentDB package scope](https://github.com/documentdb/documentdb/blob/v0.114-0/packaging/README.md)
+- [Official preload helper](https://github.com/documentdb/documentdb/blob/v0.114-0/scripts/preload_libraries.sh)
+- [DocumentDB v0.114-0 changelog](https://github.com/documentdb/documentdb/blob/v0.114-0/CHANGELOG.md)
 
-### Overview
+`documentdb_distributed` is DocumentDB's internal multi-node execution layer. It integrates the public `documentdb` API with Citus; it is not a standalone document API and does not add a separate client workflow.
 
-This extension works in conjunction with `documentdb_core` to provide distributed document database operations. It enables:
+### Prerequisites and Install
 
-- Sharding of document collections across multiple nodes
-- Distributed query execution for MongoDB-compatible operations
-- Horizontal scaling for large document workloads
+All nodes need matching builds of Citus, `documentdb_core`, `documentdb`, and `documentdb_distributed`. The official helper places the libraries in preload order; restart every node after changing it:
 
-### Prerequisites
-
-The `documentdb_distributed` extension requires:
-
-- `documentdb_core` extension installed and configured
-- A multi-node PostgreSQL cluster (typically using Citus for distribution)
-
-### Enabling
-
-```sql
-CREATE EXTENSION documentdb_distributed;
+```conf
+shared_preload_libraries = 'citus, pg_cron, pg_documentdb_core, pg_documentdb, pg_documentdb_distributed'
 ```
 
-The distributed layer transparently routes CRUD operations and aggregation pipelines across the cluster nodes while maintaining MongoDB wire protocol compatibility.
+After the Citus topology and the base DocumentDB stack are configured, install the distributed component as a superuser:
+
+```sql
+CREATE EXTENSION documentdb CASCADE;
+CREATE EXTENSION documentdb_distributed;
+
+SELECT extname, extversion
+FROM pg_extension
+WHERE extname IN ('citus', 'documentdb_core', 'documentdb', 'documentdb_distributed');
+```
+
+Use the normal DocumentDB gateway or `documentdb_api` functions after installation. Collection placement, shard topology, worker availability, and metadata consistency must be managed as part of the cluster deployment.
+
+### Important Boundaries
+
+- The control file requires `citus`, `documentdb_core`, and `documentdb` and marks the extension superuser-only and non-relocatable.
+- `documentdb_distributed` supplies distributed planner and execution support to existing DocumentDB commands; it is not an alternative to the public API extension.
+- Release versions should remain synchronized across coordinators and workers before extension upgrades are attempted.
+- Backup, restore, failover, and rolling-upgrade procedures must include both Citus metadata and DocumentDB data.
+
+The upstream `packaging/README.md` explicitly says the standard packages do not include the `internal/pg_documentdb_distributed` component. Confirm that a distribution actually ships this extension before adding it to configuration. Version 0.114-0 includes a sharded `$sample` optimization fix behind a feature flag; it should not be treated as unconditional behavior.

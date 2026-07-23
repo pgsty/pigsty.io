@@ -39,7 +39,7 @@ weight: 4700
 |:----:|:----:|:----:|:------:|:--------:|:----:|
 | [**EXT**](/ext/list#func) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.4.4` | {{< pgvers "18,17,16,15,14" >}} | `tdigest` | - |
 | [**RPM**](/ext/rpm#func) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.4.4` | {{< pgvers "18,17,16,15,14" >}} | `tdigest_$v` | - |
-| [**DEB**](/ext/deb#func) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.4.3` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-tdigest` | - |
+| [**DEB**](/ext/deb#func) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.4.4` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-tdigest` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -51,16 +51,16 @@ weight: 4700
 | el9.aarch64 | AVAIL PGDG 1.4.4 3 | AVAIL PGDG 1.4.4 4 | AVAIL PGDG 1.4.4 3 | AVAIL PGDG 1.4.4 4 | AVAIL PGDG 1.4.4 4 |
 | el10.x86_64 | AVAIL PGDG 1.4.4 3 | AVAIL PGDG 1.4.4 3 | AVAIL PGDG 1.4.4 3 | AVAIL PGDG 1.4.4 3 | AVAIL PGDG 1.4.4 3 |
 | el10.aarch64 | AVAIL PGDG 1.4.4 3 | AVAIL PGDG 1.4.4 3 | AVAIL PGDG 1.4.4 3 | AVAIL PGDG 1.4.4 3 | AVAIL PGDG 1.4.4 3 |
-| d12.x86_64 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 |
-| d12.aarch64 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 |
-| d13.x86_64 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 |
-| d13.aarch64 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 |
-| u22.x86_64 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 |
-| u22.aarch64 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 |
-| u24.x86_64 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 |
-| u24.aarch64 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 |
-| u26.x86_64 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 |
-| u26.aarch64 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 | AVAIL PGDG 1.4.3 1 |
+| d12.x86_64 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 |
+| d12.aarch64 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 |
+| d13.x86_64 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 |
+| d13.aarch64 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 |
+| u22.x86_64 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 |
+| u22.aarch64 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 |
+| u24.x86_64 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 |
+| u24.aarch64 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 |
+| u26.x86_64 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 |
+| u26.aarch64 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 | AVAIL PGDG 1.4.4 2 |
 @ el8.x86_64 18 tdigest_18 tdigest_18-1.4.4-4PGDG.rhel8.10.x86_64.rpm pgdg 1.4.4 34.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/tdigest_18-1.4.4-4PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 tdigest_18 tdigest_18-1.4.2-2PGDG.rhel8.x86_64.rpm pgdg 1.4.2 33.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/tdigest_18-1.4.2-2PGDG.rhel8.x86_64.rpm
 @ el8.aarch64 18 tdigest_18 tdigest_18-1.4.4-4PGDG.rhel8.10.aarch64.rpm pgdg 1.4.4 33.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/tdigest_18-1.4.4-4PGDG.rhel8.10.aarch64.rpm
@@ -77,15 +77,25 @@ weight: 4700
 @ el10.aarch64 18 tdigest_18 tdigest_18-1.4.4-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4.4 34.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/tdigest_18-1.4.4-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 tdigest_18 tdigest_18-1.4.2-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4.2 32.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/tdigest_18-1.4.2-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 tdigest_18 tdigest_18-1.4.2-2PGDG.rhel10.aarch64.rpm pgdg 1.4.2 33.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/tdigest_18-1.4.2-2PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.4-1.pgdg12+1_amd64.deb pgdg 1.4.4 59.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.4-1.pgdg12+1_amd64.deb
 @ d12.x86_64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.3-2.pgdg12+1_amd64.deb pgdg 1.4.3 57.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.3-2.pgdg12+1_amd64.deb
+@ d12.aarch64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.4-1.pgdg12+1_arm64.deb pgdg 1.4.4 59.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.4-1.pgdg12+1_arm64.deb
 @ d12.aarch64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.3-2.pgdg12+1_arm64.deb pgdg 1.4.3 56.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.3-2.pgdg12+1_arm64.deb
+@ d13.x86_64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.4-1.pgdg13+1_amd64.deb pgdg 1.4.4 59.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.4-1.pgdg13+1_amd64.deb
 @ d13.x86_64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.3-2.pgdg13+1_amd64.deb pgdg 1.4.3 57.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.3-2.pgdg13+1_amd64.deb
+@ d13.aarch64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.4-1.pgdg13+1_arm64.deb pgdg 1.4.4 59.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.4-1.pgdg13+1_arm64.deb
 @ d13.aarch64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.3-2.pgdg13+1_arm64.deb pgdg 1.4.3 56.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.3-2.pgdg13+1_arm64.deb
+@ u22.x86_64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.4-1.pgdg22.04+1_amd64.deb pgdg 1.4.4 59.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.4-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.3-2.pgdg22.04+1_amd64.deb pgdg 1.4.3 58.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.3-2.pgdg22.04+1_amd64.deb
+@ u22.aarch64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.4-1.pgdg22.04+1_arm64.deb pgdg 1.4.4 58.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.4-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.3-2.pgdg22.04+1_arm64.deb pgdg 1.4.3 57.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.3-2.pgdg22.04+1_arm64.deb
+@ u24.x86_64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.4-1.pgdg24.04+1_amd64.deb pgdg 1.4.4 59.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.4-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.3-2.pgdg24.04+1_amd64.deb pgdg 1.4.3 57.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.3-2.pgdg24.04+1_amd64.deb
+@ u24.aarch64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.4-1.pgdg24.04+1_arm64.deb pgdg 1.4.4 59.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.4-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.3-2.pgdg24.04+1_arm64.deb pgdg 1.4.3 56.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.3-2.pgdg24.04+1_arm64.deb
+@ u26.x86_64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.4-1.pgdg26.04+1_amd64.deb pgdg 1.4.4 59.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.4-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.3-2.pgdg26.04+1_amd64.deb pgdg 1.4.3 57.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.3-2.pgdg26.04+1_amd64.deb
+@ u26.aarch64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.4-1.pgdg26.04+1_arm64.deb pgdg 1.4.4 59.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.4-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 18 postgresql-18-tdigest postgresql-18-tdigest_1.4.3-2.pgdg26.04+1_arm64.deb pgdg 1.4.3 56.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-18-tdigest_1.4.3-2.pgdg26.04+1_arm64.deb
 @ el8.x86_64 17 tdigest_17 tdigest_17-1.4.4-4PGDG.rhel8.10.x86_64.rpm pgdg 1.4.4 34.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/tdigest_17-1.4.4-4PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 tdigest_17 tdigest_17-1.4.2-1PGDG.rhel8.x86_64.rpm pgdg 1.4.2 33.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/tdigest_17-1.4.2-1PGDG.rhel8.x86_64.rpm
@@ -107,15 +117,25 @@ weight: 4700
 @ el10.aarch64 17 tdigest_17 tdigest_17-1.4.4-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4.4 34.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/tdigest_17-1.4.4-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 tdigest_17 tdigest_17-1.4.2-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4.2 32.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/tdigest_17-1.4.2-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 tdigest_17 tdigest_17-1.4.2-2PGDG.rhel10.aarch64.rpm pgdg 1.4.2 33.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/tdigest_17-1.4.2-2PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.4-1.pgdg12+1_amd64.deb pgdg 1.4.4 59.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.4-1.pgdg12+1_amd64.deb
 @ d12.x86_64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.3-2.pgdg12+1_amd64.deb pgdg 1.4.3 57.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.3-2.pgdg12+1_amd64.deb
+@ d12.aarch64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.4-1.pgdg12+1_arm64.deb pgdg 1.4.4 59.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.4-1.pgdg12+1_arm64.deb
 @ d12.aarch64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.3-2.pgdg12+1_arm64.deb pgdg 1.4.3 56.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.3-2.pgdg12+1_arm64.deb
+@ d13.x86_64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.4-1.pgdg13+1_amd64.deb pgdg 1.4.4 59.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.4-1.pgdg13+1_amd64.deb
 @ d13.x86_64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.3-2.pgdg13+1_amd64.deb pgdg 1.4.3 57.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.3-2.pgdg13+1_amd64.deb
+@ d13.aarch64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.4-1.pgdg13+1_arm64.deb pgdg 1.4.4 59.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.4-1.pgdg13+1_arm64.deb
 @ d13.aarch64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.3-2.pgdg13+1_arm64.deb pgdg 1.4.3 57.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.3-2.pgdg13+1_arm64.deb
+@ u22.x86_64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.4-1.pgdg22.04+1_amd64.deb pgdg 1.4.4 62.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.4-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.3-2.pgdg22.04+1_amd64.deb pgdg 1.4.3 60.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.3-2.pgdg22.04+1_amd64.deb
+@ u22.aarch64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.4-1.pgdg22.04+1_arm64.deb pgdg 1.4.4 61.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.4-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.3-2.pgdg22.04+1_arm64.deb pgdg 1.4.3 59.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.3-2.pgdg22.04+1_arm64.deb
+@ u24.x86_64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.4-1.pgdg24.04+1_amd64.deb pgdg 1.4.4 59.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.4-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.3-2.pgdg24.04+1_amd64.deb pgdg 1.4.3 57.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.3-2.pgdg24.04+1_amd64.deb
+@ u24.aarch64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.4-1.pgdg24.04+1_arm64.deb pgdg 1.4.4 59.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.4-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.3-2.pgdg24.04+1_arm64.deb pgdg 1.4.3 56.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.3-2.pgdg24.04+1_arm64.deb
+@ u26.x86_64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.4-1.pgdg26.04+1_amd64.deb pgdg 1.4.4 59.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.4-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.3-2.pgdg26.04+1_amd64.deb pgdg 1.4.3 57.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.3-2.pgdg26.04+1_amd64.deb
+@ u26.aarch64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.4-1.pgdg26.04+1_arm64.deb pgdg 1.4.4 59.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.4-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 17 postgresql-17-tdigest postgresql-17-tdigest_1.4.3-2.pgdg26.04+1_arm64.deb pgdg 1.4.3 56.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-17-tdigest_1.4.3-2.pgdg26.04+1_arm64.deb
 @ el8.x86_64 16 tdigest_16 tdigest_16-1.4.4-4PGDG.rhel8.10.x86_64.rpm pgdg 1.4.4 34.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/tdigest_16-1.4.4-4PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 tdigest_16 tdigest_16-1.4.1-1PGDG.rhel8.x86_64.rpm pgdg 1.4.1 33.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/tdigest_16-1.4.1-1PGDG.rhel8.x86_64.rpm
@@ -133,15 +153,25 @@ weight: 4700
 @ el10.aarch64 16 tdigest_16 tdigest_16-1.4.4-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4.4 34.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/tdigest_16-1.4.4-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 tdigest_16 tdigest_16-1.4.2-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4.2 32.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/tdigest_16-1.4.2-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 tdigest_16 tdigest_16-1.4.2-2PGDG.rhel10.aarch64.rpm pgdg 1.4.2 33.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/tdigest_16-1.4.2-2PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.4-1.pgdg12+1_amd64.deb pgdg 1.4.4 59.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.4-1.pgdg12+1_amd64.deb
 @ d12.x86_64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.3-2.pgdg12+1_amd64.deb pgdg 1.4.3 57.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.3-2.pgdg12+1_amd64.deb
+@ d12.aarch64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.4-1.pgdg12+1_arm64.deb pgdg 1.4.4 59.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.4-1.pgdg12+1_arm64.deb
 @ d12.aarch64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.3-2.pgdg12+1_arm64.deb pgdg 1.4.3 56.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.3-2.pgdg12+1_arm64.deb
+@ d13.x86_64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.4-1.pgdg13+1_amd64.deb pgdg 1.4.4 59.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.4-1.pgdg13+1_amd64.deb
 @ d13.x86_64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.3-2.pgdg13+1_amd64.deb pgdg 1.4.3 57.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.3-2.pgdg13+1_amd64.deb
+@ d13.aarch64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.4-1.pgdg13+1_arm64.deb pgdg 1.4.4 59.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.4-1.pgdg13+1_arm64.deb
 @ d13.aarch64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.3-2.pgdg13+1_arm64.deb pgdg 1.4.3 57.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.3-2.pgdg13+1_arm64.deb
+@ u22.x86_64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.4-1.pgdg22.04+1_amd64.deb pgdg 1.4.4 62.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.4-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.3-2.pgdg22.04+1_amd64.deb pgdg 1.4.3 60.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.3-2.pgdg22.04+1_amd64.deb
+@ u22.aarch64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.4-1.pgdg22.04+1_arm64.deb pgdg 1.4.4 61.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.4-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.3-2.pgdg22.04+1_arm64.deb pgdg 1.4.3 59.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.3-2.pgdg22.04+1_arm64.deb
+@ u24.x86_64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.4-1.pgdg24.04+1_amd64.deb pgdg 1.4.4 59.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.4-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.3-2.pgdg24.04+1_amd64.deb pgdg 1.4.3 57.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.3-2.pgdg24.04+1_amd64.deb
+@ u24.aarch64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.4-1.pgdg24.04+1_arm64.deb pgdg 1.4.4 59.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.4-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.3-2.pgdg24.04+1_arm64.deb pgdg 1.4.3 56.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.3-2.pgdg24.04+1_arm64.deb
+@ u26.x86_64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.4-1.pgdg26.04+1_amd64.deb pgdg 1.4.4 59.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.4-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.3-2.pgdg26.04+1_amd64.deb pgdg 1.4.3 57.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.3-2.pgdg26.04+1_amd64.deb
+@ u26.aarch64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.4-1.pgdg26.04+1_arm64.deb pgdg 1.4.4 59.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.4-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 16 postgresql-16-tdigest postgresql-16-tdigest_1.4.3-2.pgdg26.04+1_arm64.deb pgdg 1.4.3 56.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-16-tdigest_1.4.3-2.pgdg26.04+1_arm64.deb
 @ el8.x86_64 15 tdigest_15 tdigest_15-1.4.4-4PGDG.rhel8.10.x86_64.rpm pgdg 1.4.4 34.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/tdigest_15-1.4.4-4PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 tdigest_15 tdigest_15-1.4.1-1PGDG.rhel8.x86_64.rpm pgdg 1.4.1 33.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/tdigest_15-1.4.1-1PGDG.rhel8.x86_64.rpm
@@ -163,15 +193,25 @@ weight: 4700
 @ el10.aarch64 15 tdigest_15 tdigest_15-1.4.4-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4.4 34.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/tdigest_15-1.4.4-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 tdigest_15 tdigest_15-1.4.2-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4.2 32.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/tdigest_15-1.4.2-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 tdigest_15 tdigest_15-1.4.2-2PGDG.rhel10.aarch64.rpm pgdg 1.4.2 33.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/tdigest_15-1.4.2-2PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.4-1.pgdg12+1_amd64.deb pgdg 1.4.4 59.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.4-1.pgdg12+1_amd64.deb
 @ d12.x86_64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.3-2.pgdg12+1_amd64.deb pgdg 1.4.3 57.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.3-2.pgdg12+1_amd64.deb
+@ d12.aarch64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.4-1.pgdg12+1_arm64.deb pgdg 1.4.4 59.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.4-1.pgdg12+1_arm64.deb
 @ d12.aarch64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.3-2.pgdg12+1_arm64.deb pgdg 1.4.3 56.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.3-2.pgdg12+1_arm64.deb
+@ d13.x86_64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.4-1.pgdg13+1_amd64.deb pgdg 1.4.4 59.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.4-1.pgdg13+1_amd64.deb
 @ d13.x86_64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.3-2.pgdg13+1_amd64.deb pgdg 1.4.3 57.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.3-2.pgdg13+1_amd64.deb
+@ d13.aarch64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.4-1.pgdg13+1_arm64.deb pgdg 1.4.4 59.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.4-1.pgdg13+1_arm64.deb
 @ d13.aarch64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.3-2.pgdg13+1_arm64.deb pgdg 1.4.3 57.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.3-2.pgdg13+1_arm64.deb
+@ u22.x86_64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.4-1.pgdg22.04+1_amd64.deb pgdg 1.4.4 62.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.4-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.3-2.pgdg22.04+1_amd64.deb pgdg 1.4.3 60.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.3-2.pgdg22.04+1_amd64.deb
+@ u22.aarch64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.4-1.pgdg22.04+1_arm64.deb pgdg 1.4.4 61.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.4-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.3-2.pgdg22.04+1_arm64.deb pgdg 1.4.3 59.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.3-2.pgdg22.04+1_arm64.deb
+@ u24.x86_64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.4-1.pgdg24.04+1_amd64.deb pgdg 1.4.4 59.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.4-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.3-2.pgdg24.04+1_amd64.deb pgdg 1.4.3 57.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.3-2.pgdg24.04+1_amd64.deb
+@ u24.aarch64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.4-1.pgdg24.04+1_arm64.deb pgdg 1.4.4 59.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.4-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.3-2.pgdg24.04+1_arm64.deb pgdg 1.4.3 56.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.3-2.pgdg24.04+1_arm64.deb
+@ u26.x86_64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.4-1.pgdg26.04+1_amd64.deb pgdg 1.4.4 59.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.4-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.3-2.pgdg26.04+1_amd64.deb pgdg 1.4.3 57.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.3-2.pgdg26.04+1_amd64.deb
+@ u26.aarch64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.4-1.pgdg26.04+1_arm64.deb pgdg 1.4.4 59.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.4-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 15 postgresql-15-tdigest postgresql-15-tdigest_1.4.3-2.pgdg26.04+1_arm64.deb pgdg 1.4.3 56.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-15-tdigest_1.4.3-2.pgdg26.04+1_arm64.deb
 @ el8.x86_64 14 tdigest_14 tdigest_14-1.4.4-4PGDG.rhel8.10.x86_64.rpm pgdg 1.4.4 34.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/tdigest_14-1.4.4-4PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 tdigest_14 tdigest_14-1.4.1-1PGDG.rhel8.x86_64.rpm pgdg 1.4.1 33.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/tdigest_14-1.4.1-1PGDG.rhel8.x86_64.rpm
@@ -193,15 +233,25 @@ weight: 4700
 @ el10.aarch64 14 tdigest_14 tdigest_14-1.4.4-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4.4 34.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/tdigest_14-1.4.4-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 tdigest_14 tdigest_14-1.4.2-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4.2 32.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/tdigest_14-1.4.2-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 tdigest_14 tdigest_14-1.4.2-2PGDG.rhel10.aarch64.rpm pgdg 1.4.2 33.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/tdigest_14-1.4.2-2PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.4-1.pgdg12+1_amd64.deb pgdg 1.4.4 59.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.4-1.pgdg12+1_amd64.deb
 @ d12.x86_64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.3-2.pgdg12+1_amd64.deb pgdg 1.4.3 57.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.3-2.pgdg12+1_amd64.deb
+@ d12.aarch64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.4-1.pgdg12+1_arm64.deb pgdg 1.4.4 59.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.4-1.pgdg12+1_arm64.deb
 @ d12.aarch64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.3-2.pgdg12+1_arm64.deb pgdg 1.4.3 56.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.3-2.pgdg12+1_arm64.deb
+@ d13.x86_64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.4-1.pgdg13+1_amd64.deb pgdg 1.4.4 59.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.4-1.pgdg13+1_amd64.deb
 @ d13.x86_64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.3-2.pgdg13+1_amd64.deb pgdg 1.4.3 57.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.3-2.pgdg13+1_amd64.deb
+@ d13.aarch64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.4-1.pgdg13+1_arm64.deb pgdg 1.4.4 59.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.4-1.pgdg13+1_arm64.deb
 @ d13.aarch64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.3-2.pgdg13+1_arm64.deb pgdg 1.4.3 56.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.3-2.pgdg13+1_arm64.deb
+@ u22.x86_64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.4-1.pgdg22.04+1_amd64.deb pgdg 1.4.4 62.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.4-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.3-2.pgdg22.04+1_amd64.deb pgdg 1.4.3 60.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.3-2.pgdg22.04+1_amd64.deb
+@ u22.aarch64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.4-1.pgdg22.04+1_arm64.deb pgdg 1.4.4 61.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.4-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.3-2.pgdg22.04+1_arm64.deb pgdg 1.4.3 59.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.3-2.pgdg22.04+1_arm64.deb
+@ u24.x86_64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.4-1.pgdg24.04+1_amd64.deb pgdg 1.4.4 59.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.4-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.3-2.pgdg24.04+1_amd64.deb pgdg 1.4.3 57.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.3-2.pgdg24.04+1_amd64.deb
+@ u24.aarch64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.4-1.pgdg24.04+1_arm64.deb pgdg 1.4.4 59.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.4-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.3-2.pgdg24.04+1_arm64.deb pgdg 1.4.3 56.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.3-2.pgdg24.04+1_arm64.deb
+@ u26.x86_64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.4-1.pgdg26.04+1_amd64.deb pgdg 1.4.4 59.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.4-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.3-2.pgdg26.04+1_amd64.deb pgdg 1.4.3 57.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.3-2.pgdg26.04+1_amd64.deb
+@ u26.aarch64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.4-1.pgdg26.04+1_arm64.deb pgdg 1.4.4 58.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.4-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 14 postgresql-14-tdigest postgresql-14-tdigest_1.4.3-2.pgdg26.04+1_arm64.deb pgdg 1.4.3 56.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/t/tdigest/postgresql-14-tdigest_1.4.3-2.pgdg26.04+1_arm64.deb
 {{< /pgext_matrix >}}
 
@@ -263,9 +313,13 @@ CREATE EXTENSION tdigest;
 
 ## Usage
 
-> [tdigest: t-digest percentile estimation for PostgreSQL](https://github.com/tvondra/tdigest)
+Sources:
 
-Implements t-digest for on-line accumulation of rank-based statistics such as quantiles and trimmed means. Much faster than `percentile_cont`, supports parallelism, and allows pre-aggregation.
+- [tdigest v1.4.4 README](https://github.com/tvondra/tdigest/blob/v1.4.4/README.md)
+- [v1.4.4 release](https://github.com/tvondra/tdigest/releases/tag/v1.4.4)
+- [Extension control file](https://github.com/tvondra/tdigest/blob/v1.4.4/tdigest.control)
+
+`tdigest` implements an approximate, mergeable t-digest for online rank statistics such as quantiles, percentile ranks, and trimmed means. It supports parallel aggregation and storing pre-aggregated digests for later rollups.
 
 ```sql
 CREATE EXTENSION tdigest;
@@ -323,3 +377,10 @@ CREATE TABLE p AS SELECT a, b, tdigest(c, 100) AS d FROM t GROUP BY a, b;
 -- Query pre-aggregated data (~1.5ms vs ~7s for exact)
 SELECT a, tdigest_percentile(d, 0.95) FROM p GROUP BY a ORDER BY a;
 ```
+
+### Caveats
+
+- Results are estimates. Validate the chosen compression against exact `percentile_cont` results on representative data before setting accuracy targets.
+- Higher compression usually improves tail accuracy but increases state size and CPU cost.
+- Stored digests can be merged across groups and time windows. Version `1.4.4` fixes combining digests created with different parameters, so use that patch level when heterogeneous states may meet.
+- Version `1.4.4` also strengthens text-input parsing and validation and adds PostgreSQL 19 build/test coverage; malformed serialized digests that older builds accepted may now be rejected.

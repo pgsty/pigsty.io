@@ -11,10 +11,10 @@ weight: 9570
     <div class="ext-card__title">pgEdge/spock</div>
     <div class="ext-card__desc">https://github.com/pgEdge/spock</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/spock-5.0.6.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/spock-5.0.10.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">spock-5.0.6.tar.gz</div>
-    <div class="ext-card__desc">spock-5.0.6.tar.gz</div>
+    <div class="ext-card__title">spock-5.0.10.tar.gz</div>
+    <div class="ext-card__desc">spock-5.0.10.tar.gz</div>
   </a>
 </div>
 
@@ -46,29 +46,29 @@ weight: 9570
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
 | [**EXT**](/ext/list#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `5.0.10` | {{< pgvers "18,17,16,15" >}} | `spock` | - |
-| [**RPM**](/ext/rpm#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `5.0.10` | {{< pgvers "18,17,16,15" >}} | `pgedge-$v` | - |
-| [**DEB**](/ext/deb#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `5.0.10` | {{< pgvers "18,17,16,15" >}} | `pgedge-$v` | - |
+| [**RPM**](/ext/rpm#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `18.4` | {{< pgvers "18,17,16,15" >}} | `pgedge-$v` | - |
+| [**DEB**](/ext/deb#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `18.4` | {{< pgvers "18,17,16,15" >}} | `pgedge-$v` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | FORK PIGSTY 18.4 1 | FORK PIGSTY 17.10 1 | FORK PIGSTY 16.14 1 | FORK PIGSTY 15.18 1 | MISS PIGSTY - 0 |
-| el8.aarch64 | FORK PIGSTY 18.4 1 | FORK PIGSTY 17.10 1 | FORK PIGSTY 16.14 1 | FORK PIGSTY 15.18 1 | MISS PIGSTY - 0 |
-| el9.x86_64 | FORK PIGSTY 18.4 1 | FORK PIGSTY 17.10 1 | FORK PIGSTY 16.14 1 | FORK PIGSTY 15.18 1 | MISS PIGSTY - 0 |
-| el9.aarch64 | FORK PIGSTY 18.4 1 | FORK PIGSTY 17.10 1 | FORK PIGSTY 16.14 1 | FORK PIGSTY 15.18 1 | MISS PIGSTY - 0 |
-| el10.x86_64 | FORK PIGSTY 18.4 1 | FORK PIGSTY 17.10 1 | FORK PIGSTY 16.14 1 | FORK PIGSTY 15.18 1 | MISS PIGSTY - 0 |
-| el10.aarch64 | FORK PIGSTY 18.4 1 | FORK PIGSTY 17.10 1 | FORK PIGSTY 16.14 1 | FORK PIGSTY 15.18 1 | MISS PIGSTY - 0 |
-| d12.x86_64 | FORK PIGSTY 18.4 1 | FORK PIGSTY 17.10 1 | FORK PIGSTY 16.14 1 | FORK PIGSTY 15.18 1 | MISS PIGSTY - 0 |
-| d12.aarch64 | FORK PIGSTY 18.4 1 | FORK PIGSTY 17.10 1 | FORK PIGSTY 16.14 1 | FORK PIGSTY 15.18 1 | MISS PIGSTY - 0 |
-| d13.x86_64 | FORK PIGSTY 18.4 1 | FORK PIGSTY 17.10 1 | FORK PIGSTY 16.14 1 | FORK PIGSTY 15.18 1 | MISS PIGSTY - 0 |
-| d13.aarch64 | FORK PIGSTY 18.4 1 | FORK PIGSTY 17.10 1 | FORK PIGSTY 16.14 1 | FORK PIGSTY 15.18 1 | MISS PIGSTY - 0 |
-| u22.x86_64 | FORK PIGSTY 18.4 1 | FORK PIGSTY 17.10 1 | FORK PIGSTY 16.14 1 | FORK PIGSTY 15.18 1 | MISS PIGSTY - 0 |
-| u22.aarch64 | FORK PIGSTY 18.4 1 | FORK PIGSTY 17.10 1 | FORK PIGSTY 16.14 1 | FORK PIGSTY 15.18 1 | MISS PIGSTY - 0 |
-| u24.x86_64 | FORK PIGSTY 18.4 1 | FORK PIGSTY 17.10 1 | FORK PIGSTY 16.14 1 | FORK PIGSTY 15.18 1 | MISS PIGSTY - 0 |
-| u24.aarch64 | FORK PIGSTY 18.4 1 | FORK PIGSTY 17.10 1 | FORK PIGSTY 16.14 1 | FORK PIGSTY 15.18 1 | MISS PIGSTY - 0 |
-| u26.x86_64 | FORK PIGSTY 18.4 1 | FORK PIGSTY 17.10 1 | FORK PIGSTY 16.14 1 | FORK PIGSTY 15.18 1 | MISS PIGSTY - 0 |
-| u26.aarch64 | FORK PIGSTY 18.4 1 | FORK PIGSTY 17.10 1 | FORK PIGSTY 16.14 1 | FORK PIGSTY 15.18 1 | MISS PIGSTY - 0 |
+| el8.x86_64 | AVAIL PIGSTY 18.4 1 | AVAIL PIGSTY 17.10 1 | AVAIL PIGSTY 16.14 1 | AVAIL PIGSTY 15.18 1 | N/A PIGSTY - 0 |
+| el8.aarch64 | AVAIL PIGSTY 18.4 1 | AVAIL PIGSTY 17.10 1 | AVAIL PIGSTY 16.14 1 | AVAIL PIGSTY 15.18 1 | N/A PIGSTY - 0 |
+| el9.x86_64 | AVAIL PIGSTY 18.4 1 | AVAIL PIGSTY 17.10 1 | AVAIL PIGSTY 16.14 1 | AVAIL PIGSTY 15.18 1 | N/A PIGSTY - 0 |
+| el9.aarch64 | AVAIL PIGSTY 18.4 1 | AVAIL PIGSTY 17.10 1 | AVAIL PIGSTY 16.14 1 | AVAIL PIGSTY 15.18 1 | N/A PIGSTY - 0 |
+| el10.x86_64 | AVAIL PIGSTY 18.4 1 | AVAIL PIGSTY 17.10 1 | AVAIL PIGSTY 16.14 1 | AVAIL PIGSTY 15.18 1 | N/A PIGSTY - 0 |
+| el10.aarch64 | AVAIL PIGSTY 18.4 1 | AVAIL PIGSTY 17.10 1 | AVAIL PIGSTY 16.14 1 | AVAIL PIGSTY 15.18 1 | N/A PIGSTY - 0 |
+| d12.x86_64 | AVAIL PIGSTY 18.4 1 | AVAIL PIGSTY 17.10 1 | AVAIL PIGSTY 16.14 1 | AVAIL PIGSTY 15.18 1 | N/A PIGSTY - 0 |
+| d12.aarch64 | AVAIL PIGSTY 18.4 1 | AVAIL PIGSTY 17.10 1 | AVAIL PIGSTY 16.14 1 | AVAIL PIGSTY 15.18 1 | N/A PIGSTY - 0 |
+| d13.x86_64 | AVAIL PIGSTY 18.4 1 | AVAIL PIGSTY 17.10 1 | AVAIL PIGSTY 16.14 1 | AVAIL PIGSTY 15.18 1 | N/A PIGSTY - 0 |
+| d13.aarch64 | AVAIL PIGSTY 18.4 1 | AVAIL PIGSTY 17.10 1 | AVAIL PIGSTY 16.14 1 | AVAIL PIGSTY 15.18 1 | N/A PIGSTY - 0 |
+| u22.x86_64 | AVAIL PIGSTY 18.4 1 | AVAIL PIGSTY 17.10 1 | AVAIL PIGSTY 16.14 1 | AVAIL PIGSTY 15.18 1 | N/A PIGSTY - 0 |
+| u22.aarch64 | AVAIL PIGSTY 18.4 1 | AVAIL PIGSTY 17.10 1 | AVAIL PIGSTY 16.14 1 | AVAIL PIGSTY 15.18 1 | N/A PIGSTY - 0 |
+| u24.x86_64 | AVAIL PIGSTY 18.4 1 | AVAIL PIGSTY 17.10 1 | AVAIL PIGSTY 16.14 1 | AVAIL PIGSTY 15.18 1 | N/A PIGSTY - 0 |
+| u24.aarch64 | AVAIL PIGSTY 18.4 1 | AVAIL PIGSTY 17.10 1 | AVAIL PIGSTY 16.14 1 | AVAIL PIGSTY 15.18 1 | N/A PIGSTY - 0 |
+| u26.x86_64 | AVAIL PIGSTY 18.4 1 | AVAIL PIGSTY 17.10 1 | AVAIL PIGSTY 16.14 1 | AVAIL PIGSTY 15.18 1 | N/A PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 18.4 1 | AVAIL PIGSTY 17.10 1 | AVAIL PIGSTY 16.14 1 | AVAIL PIGSTY 15.18 1 | N/A PIGSTY - 0 |
 @ el8.x86_64 18 pgedge-18 pgedge-18-18.4-1PIGSTY.el8.x86_64.rpm pigsty 18.4 13.2MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgedge-18-18.4-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 18 pgedge-18 pgedge-18-18.4-1PIGSTY.el8.aarch64.rpm pigsty 18.4 12.8MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgedge-18-18.4-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 18 pgedge-18 pgedge-18-18.4-1PIGSTY.el9.x86_64.rpm pigsty 18.4 12.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgedge-18-18.4-1PIGSTY.el9.x86_64.rpm
@@ -205,9 +205,15 @@ CREATE EXTENSION spock;
 
 ## Usage
 
-> [spock: Multi-master logical replication extension for PostgreSQL](https://github.com/pgEdge/spock)
+Sources:
 
-Multi-master logical replication for PostgreSQL 15+. Each node acts as both publisher and subscriber.
+- [Spock v5.0.10 README](https://github.com/pgEdge/spock/blob/v5.0.10/README.md)
+- [Getting started](https://github.com/pgEdge/spock/blob/v5.0.10/docs/getting_started.md)
+- [Configuration reference](https://github.com/pgEdge/spock/blob/v5.0.10/docs/configuring.md)
+- [Limitations](https://github.com/pgEdge/spock/blob/v5.0.10/docs/limitations.md)
+- [Release notes](https://github.com/pgEdge/spock/blob/v5.0.10/docs/spock_release_notes.md)
+
+`spock` provides active-active logical replication for PostgreSQL 15 through 18. Each participating database is a Spock node; a multi-master topology is formed by creating directed subscriptions between nodes.
 
 ### Configuration
 
@@ -287,3 +293,16 @@ SELECT spock.repset_add_all_tables('default', '{public}');
 - Row and column filtering
 - Supports PostgreSQL 15, 16, 17, and 18
 - Tables must have primary keys and matching schemas across nodes
+
+### Operations and Caveats
+
+- Install `spock` and add it to `shared_preload_libraries` on every participating server before creating nodes or subscriptions.
+- Keep table definitions, data types, primary keys, and relevant unique indexes identical across nodes. Coordinate DDL even when DDL replication is enabled.
+- Replicated tables need a primary key or another usable replica identity. Temporary and unlogged tables are not replication targets.
+- Spock operates per database. Repeat extension and topology setup for each database that participates.
+- Active-active conflict handling depends on commit timestamps and policy. Test simultaneous inserts and updates, especially nullable unique keys, before production use.
+- Upstream documents platform/build requirements in the README; verify that the PostgreSQL build and Spock package used on every node are compatible.
+
+### Version 5.0.10
+
+`5.0.10` is a patch release in the 5.0 line. Its release notes include fixes for unique indexes containing `NULL`, `NULLS NOT DISTINCT` conflict handling, refreshing cached index metadata after an index is dropped, exception-path memory handling, and numerical version checks used during rolling patch upgrades. Upgrade every node to a compatible patch level and validate subscriptions after the rolling change.

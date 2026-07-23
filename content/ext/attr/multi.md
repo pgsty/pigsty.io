@@ -5,7 +5,7 @@ description: "PostgreSQL packages containing multiple extensions"
 weight: 40
 ---
 
-The following **21** packages contain multiple extensions, totaling **104** extensions.
+The following **24** packages contain multiple extensions, totaling **124** extensions.
 
 When installing these packages, you will get all extensions in the package. The lead extension is shown in bold.
 
@@ -65,7 +65,7 @@ Package [`mobilitydb`](/ext/e/mobilitydb) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 1650 | [**`mobilitydb`**](/ext/e/mobilitydb) | `1.3.0` | `--s-d-r` | - | MobilityDB geospatial trajectory data management & analysis platform |
+| 1650 | [**`mobilitydb`**](/ext/e/mobilitydb) | `1.3.0` | `--sLd--` | - | MobilityDB geospatial trajectory data management & analysis platform |
 | 1651 | [`mobilitydb_datagen`](/ext/e/mobilitydb_datagen) | `1.3.0` | `----d-r` | - | MobilityDB random data generator functions |
 {.ext-table}
 
@@ -79,6 +79,24 @@ Package [`pgroonga`](/ext/e/pgroonga) contains **2** extensions:
 | 2111 | [`pgroonga_database`](/ext/e/pgroonga_database) | `4.0.4` | `--s-dtr` | - | PGroonga database management module |
 {.ext-table}
 
+### hunspell
+
+Package [`hunspell`](/ext/e/hunspell_cs_cz) contains **10** extensions:
+
+| **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
+|:------:|:-----------|:--------:|:--------:|:---------|:---------|
+| 2270 | [**`hunspell_cs_cz`**](/ext/e/hunspell_cs_cz) | `1.0` | `----d-r` | - | Czech Hunspell Dictionary |
+| 2271 | [**`hunspell_de_de`**](/ext/e/hunspell_de_de) | `1.0` | `----d-r` | - | German Hunspell Dictionary |
+| 2272 | [**`hunspell_en_us`**](/ext/e/hunspell_en_us) | `1.0` | `----d-r` | - | en_US Hunspell Dictionary |
+| 2273 | [**`hunspell_fr`**](/ext/e/hunspell_fr) | `1.0` | `----d-r` | - | French Hunspell Dictionary |
+| 2274 | [**`hunspell_ne_np`**](/ext/e/hunspell_ne_np) | `1.0` | `----d-r` | - | Nepali Hunspell Dictionary |
+| 2275 | [**`hunspell_nl_nl`**](/ext/e/hunspell_nl_nl) | `1.0` | `----d-r` | - | Dutch Hunspell Dictionary |
+| 2276 | [**`hunspell_nn_no`**](/ext/e/hunspell_nn_no) | `1.0` | `----d-r` | - | Norwegian (norsk) Hunspell Dictionary |
+| 2277 | [**`hunspell_pt_pt`**](/ext/e/hunspell_pt_pt) | `1.0` | `----d-r` | - | Portuguese Hunspell Dictionary |
+| 2278 | [**`hunspell_ru_ru`**](/ext/e/hunspell_ru_ru) | `1.0` | `----d-r` | - | Russian Hunspell Dictionary |
+| 2279 | [**`hunspell_ru_ru_aot`**](/ext/e/hunspell_ru_ru_aot) | `1.0` | `----d-r` | - | Russian Hunspell Dictionary (from AOT.ru group) |
+{.ext-table}
+
 ### citus
 
 Package [`citus`](/ext/e/citus) contains **2** extensions:
@@ -87,6 +105,22 @@ Package [`citus`](/ext/e/citus) contains **2** extensions:
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
 | 2400 | [**`citus`**](/ext/e/citus) | `14.1.0` | `--sLd--` | `pg_catalog` | Distributed PostgreSQL as an extension |
 | 2401 | [`citus_columnar`](/ext/e/citus_columnar) | `14.1.0` | `--s-d--` | `pg_catalog` | Citus columnar storage engine |
+{.ext-table}
+
+### pg_lake
+
+Package [`pg_lake`](/ext/e/pg_lake) contains **8** extensions:
+
+| **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
+|:------:|:-----------|:--------:|:--------:|:---------|:---------|
+| 2560 | [**`pg_lake`**](/ext/e/pg_lake) | `3.4` | `-bsLd--` | `lake` | Data lake extension by Snowflake |
+| 2561 | [`pg_extension_base`](/ext/e/pg_extension_base) | `3.4` | `--sLd--` | `extension_base` | Extension development kit by Snowflake |
+| 2562 | [`pg_extension_updater`](/ext/e/pg_extension_updater) | `3.4` | `--sLd--` | `extension_updater` | Automatic extension updater |
+| 2563 | [`pg_map`](/ext/e/pg_map) | `3.4` | `--s-d--` | `map_type` | Map type for PostgreSQL, bundled as a required pg_lake component. |
+| 2564 | [`pg_lake_engine`](/ext/e/pg_lake_engine) | `3.4` | `--sLd--` | `__lake__internal__nsp__` | Query engine for data lake queries |
+| 2565 | [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) | `3.4` | `--s-d--` | `lake_iceberg` | Iceberg implementation in Postgres |
+| 2566 | [`pg_lake_table`](/ext/e/pg_lake_table) | `3.4` | `--sLd--` | `__pg_lake_table_writes` | Data lake tables and Iceberg tables |
+| 2567 | [`pg_lake_copy`](/ext/e/pg_lake_copy) | `3.4` | `--sLd--` | `pg_catalog` | Copy to/from data lake files |
 {.ext-table}
 
 ### omnigres
@@ -219,8 +253,18 @@ Package [`pgpool`](/ext/e/pgpool_adm) contains **3** extensions:
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
 | 5900 | [**`pgpool_adm`**](/ext/e/pgpool_adm) | `4.7.2` | `----d--` | - | Administrative functions for pgPool |
-| 5910 | [`pgpool_recovery`](/ext/e/pgpool_recovery) | `4.7.1` | `----d--` | - | recovery functions for pgpool-II for V4.3 |
-| 5920 | [`pgpool_regclass`](/ext/e/pgpool_regclass) | `4.7.1` | `----d--` | - | replacement for regclass |
+| 5910 | [`pgpool_recovery`](/ext/e/pgpool_recovery) | `4.7.2` | `----d--` | - | recovery functions for pgpool-II for V4.3 |
+| 5920 | [`pgpool_regclass`](/ext/e/pgpool_regclass) | `4.7.2` | `----d--` | - | replacement for regclass |
+{.ext-table}
+
+### pg_flight_recorder
+
+Package [`pg_flight_recorder`](/ext/e/pgfr_record) contains **2** extensions:
+
+| **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
+|:------:|:-----------|:--------:|:--------:|:---------|:---------|
+| 6060 | [**`pgfr_record`**](/ext/e/pgfr_record) | `2.29.2` | `----d--` | `pgfr_record` | Server-side PostgreSQL performance flight recorder |
+| 6061 | [`pgfr_analyze`](/ext/e/pgfr_analyze) | `2.29.2` | `----d--` | `pgfr_analyze` | Reporting and analysis functions for pgfr_record |
 {.ext-table}
 
 ### pgnodemx
@@ -229,8 +273,8 @@ Package [`pgnodemx`](/ext/e/pgnodemx) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 6440 | [**`pgnodemx`**](/ext/e/pgnodemx) | `1.7` | `--sLd-r` | - | Capture node OS metrics via SQL queries |
-| 6450 | [`pg_proctab`](/ext/e/pg_proctab) | `1.7` | `--s-d-r` | - | PostgreSQL extension to access the OS process table |
+| 6440 | [**`pgnodemx`**](/ext/e/pgnodemx) | `2.0.1` | `--sLd-r` | - | Capture node OS metrics via SQL queries |
+| 6450 | [`pg_proctab`](/ext/e/pg_proctab) | `2.0.1` | `--s-d-r` | - | PostgreSQL extension to access the OS process table |
 {.ext-table}
 
 ### documentdb
@@ -239,10 +283,10 @@ Package [`documentdb`](/ext/e/documentdb) contains **4** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 9000 | [**`documentdb`**](/ext/e/documentdb) | `0.113` | `--sLd--` | - | API surface for DocumentDB for PostgreSQL |
-| 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `0.113` | `--sLd--` | - | Core API surface for DocumentDB on PostgreSQL |
-| 9020 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `0.113` | `--sLd--` | - | Multi-Node API surface for DocumentDB |
-| 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `0.113` | `--sLd-r` | - | DocumentDB Extended RUM index access method |
+| 9000 | [**`documentdb`**](/ext/e/documentdb) | `0.114` | `--sLd--` | - | API surface for DocumentDB for PostgreSQL |
+| 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `0.114` | `--sLd--` | - | Core API surface for DocumentDB on PostgreSQL |
+| 9020 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `0.114` | `--sLd--` | - | Multi-Node API surface for DocumentDB |
+| 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `0.114` | `--sLd-r` | - | DocumentDB Extended RUM index access method |
 {.ext-table}
 
 ### ivorysql
@@ -277,7 +321,7 @@ Package [`pglogical`](/ext/e/pglogical) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 9500 | [**`pglogical`**](/ext/e/pglogical) | `2.4.6` | `--sLd--` | `pglogical` | PostgreSQL Logical Replication |
-| 9501 | [`pglogical_origin`](/ext/e/pglogical_origin) | `2.4.6` | `--s-d--` | `pglogical_origin` | Dummy extension for compatibility when upgrading from Postgres 9.4 |
+| 9500 | [**`pglogical`**](/ext/e/pglogical) | `2.4.7` | `--sLd--` | `pglogical` | PostgreSQL Logical Replication |
+| 9501 | [`pglogical_origin`](/ext/e/pglogical_origin) | `2.4.7` | `--s-d--` | `pglogical_origin` | Dummy extension for compatibility when upgrading from Postgres 9.4 |
 {.ext-table}
 

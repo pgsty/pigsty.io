@@ -11,6 +11,11 @@ weight: 8650
     <div class="ext-card__title">CrunchyData/pgbouncer_fdw</div>
     <div class="ext-card__desc">https://github.com/CrunchyData/pgbouncer_fdw</div>
   </a>
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgbouncer_fdw-1.4.0.tar.gz">
+    <div class="ext-card__kicker">Source</div>
+    <div class="ext-card__title">pgbouncer_fdw-1.4.0.tar.gz</div>
+    <div class="ext-card__desc">pgbouncer_fdw-1.4.0.tar.gz</div>
+  </a>
 </div>
 
 
@@ -25,7 +30,7 @@ weight: 8650
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 8650  | [**`pgbouncer_fdw`**](/ext/e/pgbouncer_fdw) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 8650  | [**`pgbouncer_fdw`**](/ext/e/pgbouncer_fdw) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
 | **Related** | [`dblink`](/ext/e/dblink) [`dblink`](/ext/e/dblink) [`postgres_fdw`](/ext/e/postgres_fdw) [`pg_stat_monitor`](/ext/e/pg_stat_monitor) [`pg_stat_statements`](/ext/e/pg_stat_statements) [`wrappers`](/ext/e/wrappers) [`multicorn`](/ext/e/multicorn) [`odbc_fdw`](/ext/e/odbc_fdw) [`jdbc_fdw`](/ext/e/jdbc_fdw) |
@@ -33,12 +38,16 @@ weight: 8650
 {.ext-table .ext-table--rel}
 
 
+> Requires dblink and PgBouncer >= 1.17; live queries require a configured PgBouncer admin console.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#fdw) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.4.0` | {{< pgvers "18,17,16,15,14" >}} | `pgbouncer_fdw` | `dblink` |
+| [**EXT**](/ext/list#fdw) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `1.4.0` | {{< pgvers "18,17,16,15,14" >}} | `pgbouncer_fdw` | `dblink` |
 | [**RPM**](/ext/rpm#fdw) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.4.0` | {{< pgvers "18,17,16,15,14" >}} | `pgbouncer_fdw_$v` | - |
+| [**DEB**](/ext/deb#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgbouncer-fdw` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -50,16 +59,16 @@ weight: 8650
 | el9.aarch64 | AVAIL PGDG 1.4.0 2 | AVAIL PGDG 1.4.0 5 | AVAIL PGDG 1.4.0 7 | AVAIL PGDG 1.4.0 7 | AVAIL PGDG 1.4.0 7 |
 | el10.x86_64 | AVAIL PGDG 1.4.0 2 | AVAIL PGDG 1.4.0 2 | AVAIL PGDG 1.4.0 2 | AVAIL PGDG 1.4.0 2 | AVAIL PGDG 1.4.0 2 |
 | el10.aarch64 | AVAIL PGDG 1.4.0 2 | AVAIL PGDG 1.4.0 2 | AVAIL PGDG 1.4.0 2 | AVAIL PGDG 1.4.0 2 | AVAIL PGDG 1.4.0 2 |
-| d12.x86_64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
-| d12.aarch64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
-| d13.x86_64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
-| d13.aarch64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
-| u22.x86_64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
-| u22.aarch64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
-| u24.x86_64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
-| u24.aarch64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
-| u26.x86_64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
-| u26.aarch64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
+| d12.x86_64 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 |
+| d12.aarch64 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 |
+| d13.x86_64 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 |
+| d13.aarch64 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 |
+| u22.x86_64 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 |
+| u22.aarch64 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 |
+| u24.x86_64 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 |
+| u24.aarch64 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 |
+| u26.x86_64 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 |
+| u26.aarch64 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 | AVAIL PIGSTY 1.4.0 1 |
 @ el8.x86_64 18 pgbouncer_fdw_18 pgbouncer_fdw_18-1.4.0-1PGDG.rhel8.x86_64.rpm pgdg 1.4.0 24.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pgbouncer_fdw_18-1.4.0-1PGDG.rhel8.x86_64.rpm
 @ el8.aarch64 18 pgbouncer_fdw_18 pgbouncer_fdw_18-1.4.0-1PGDG.rhel8.aarch64.rpm pgdg 1.4.0 23.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pgbouncer_fdw_18-1.4.0-1PGDG.rhel8.aarch64.rpm
 @ el9.x86_64 18 pgbouncer_fdw_18 pgbouncer_fdw_18-1.4.0-1PGDG.rhel9.8.x86_64.rpm pgdg 1.4.0 21.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pgbouncer_fdw_18-1.4.0-1PGDG.rhel9.8.x86_64.rpm
@@ -70,6 +79,16 @@ weight: 8650
 @ el10.x86_64 18 pgbouncer_fdw_18 pgbouncer_fdw_18-1.4.0-1PGDG.rhel10.x86_64.rpm pgdg 1.4.0 22.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pgbouncer_fdw_18-1.4.0-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 18 pgbouncer_fdw_18 pgbouncer_fdw_18-1.4.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.4.0 22.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pgbouncer_fdw_18-1.4.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 pgbouncer_fdw_18 pgbouncer_fdw_18-1.4.0-1PGDG.rhel10.aarch64.rpm pgdg 1.4.0 22.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pgbouncer_fdw_18-1.4.0-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-pgbouncer-fdw postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgbouncer-fdw/postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb
+@ d12.aarch64 18 postgresql-18-pgbouncer-fdw postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgbouncer-fdw/postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb
+@ d13.x86_64 18 postgresql-18-pgbouncer-fdw postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgbouncer-fdw/postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb
+@ d13.aarch64 18 postgresql-18-pgbouncer-fdw postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgbouncer-fdw/postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb
+@ u22.x86_64 18 postgresql-18-pgbouncer-fdw postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgbouncer-fdw/postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb
+@ u22.aarch64 18 postgresql-18-pgbouncer-fdw postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgbouncer-fdw/postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb
+@ u24.x86_64 18 postgresql-18-pgbouncer-fdw postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgbouncer-fdw/postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb
+@ u24.aarch64 18 postgresql-18-pgbouncer-fdw postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgbouncer-fdw/postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb
+@ u26.x86_64 18 postgresql-18-pgbouncer-fdw postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgbouncer-fdw/postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb
+@ u26.aarch64 18 postgresql-18-pgbouncer-fdw postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgbouncer-fdw/postgresql-18-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb
 @ el8.x86_64 17 pgbouncer_fdw_17 pgbouncer_fdw_17-1.4.0-1PGDG.rhel8.x86_64.rpm pgdg 1.4.0 24.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pgbouncer_fdw_17-1.4.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 17 pgbouncer_fdw_17 pgbouncer_fdw_17-1.3.0-1PGDG.rhel8.x86_64.rpm pgdg 1.3.0 23.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pgbouncer_fdw_17-1.3.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 17 pgbouncer_fdw_17 pgbouncer_fdw_17-1.2.0-1PGDG.rhel8.x86_64.rpm pgdg 1.2.0 21.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pgbouncer_fdw_17-1.2.0-1PGDG.rhel8.x86_64.rpm
@@ -92,6 +111,16 @@ weight: 8650
 @ el10.x86_64 17 pgbouncer_fdw_17 pgbouncer_fdw_17-1.4.0-1PGDG.rhel10.x86_64.rpm pgdg 1.4.0 22.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pgbouncer_fdw_17-1.4.0-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 17 pgbouncer_fdw_17 pgbouncer_fdw_17-1.4.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.4.0 22.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pgbouncer_fdw_17-1.4.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 pgbouncer_fdw_17 pgbouncer_fdw_17-1.4.0-1PGDG.rhel10.aarch64.rpm pgdg 1.4.0 22.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pgbouncer_fdw_17-1.4.0-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-pgbouncer-fdw postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgbouncer-fdw/postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb
+@ d12.aarch64 17 postgresql-17-pgbouncer-fdw postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgbouncer-fdw/postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb
+@ d13.x86_64 17 postgresql-17-pgbouncer-fdw postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgbouncer-fdw/postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb
+@ d13.aarch64 17 postgresql-17-pgbouncer-fdw postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgbouncer-fdw/postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb
+@ u22.x86_64 17 postgresql-17-pgbouncer-fdw postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgbouncer-fdw/postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb
+@ u22.aarch64 17 postgresql-17-pgbouncer-fdw postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgbouncer-fdw/postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb
+@ u24.x86_64 17 postgresql-17-pgbouncer-fdw postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgbouncer-fdw/postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb
+@ u24.aarch64 17 postgresql-17-pgbouncer-fdw postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgbouncer-fdw/postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb
+@ u26.x86_64 17 postgresql-17-pgbouncer-fdw postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgbouncer-fdw/postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb
+@ u26.aarch64 17 postgresql-17-pgbouncer-fdw postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgbouncer-fdw/postgresql-17-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb
 @ el8.x86_64 16 pgbouncer_fdw_16 pgbouncer_fdw_16-1.4.0-1PGDG.rhel8.x86_64.rpm pgdg 1.4.0 24.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pgbouncer_fdw_16-1.4.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 16 pgbouncer_fdw_16 pgbouncer_fdw_16-1.3.0-1PGDG.rhel8.x86_64.rpm pgdg 1.3.0 23.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pgbouncer_fdw_16-1.3.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 16 pgbouncer_fdw_16 pgbouncer_fdw_16-1.2.0-1PGDG.rhel8.x86_64.rpm pgdg 1.2.0 21.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pgbouncer_fdw_16-1.2.0-1PGDG.rhel8.x86_64.rpm
@@ -122,6 +151,16 @@ weight: 8650
 @ el10.x86_64 16 pgbouncer_fdw_16 pgbouncer_fdw_16-1.4.0-1PGDG.rhel10.x86_64.rpm pgdg 1.4.0 22.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pgbouncer_fdw_16-1.4.0-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 16 pgbouncer_fdw_16 pgbouncer_fdw_16-1.4.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.4.0 22.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pgbouncer_fdw_16-1.4.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 pgbouncer_fdw_16 pgbouncer_fdw_16-1.4.0-1PGDG.rhel10.aarch64.rpm pgdg 1.4.0 22.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pgbouncer_fdw_16-1.4.0-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-pgbouncer-fdw postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgbouncer-fdw/postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb
+@ d12.aarch64 16 postgresql-16-pgbouncer-fdw postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgbouncer-fdw/postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb
+@ d13.x86_64 16 postgresql-16-pgbouncer-fdw postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgbouncer-fdw/postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb
+@ d13.aarch64 16 postgresql-16-pgbouncer-fdw postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgbouncer-fdw/postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb
+@ u22.x86_64 16 postgresql-16-pgbouncer-fdw postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgbouncer-fdw/postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb
+@ u22.aarch64 16 postgresql-16-pgbouncer-fdw postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgbouncer-fdw/postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb
+@ u24.x86_64 16 postgresql-16-pgbouncer-fdw postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgbouncer-fdw/postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb
+@ u24.aarch64 16 postgresql-16-pgbouncer-fdw postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgbouncer-fdw/postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb
+@ u26.x86_64 16 postgresql-16-pgbouncer-fdw postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgbouncer-fdw/postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb
+@ u26.aarch64 16 postgresql-16-pgbouncer-fdw postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgbouncer-fdw/postgresql-16-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb
 @ el8.x86_64 15 pgbouncer_fdw_15 pgbouncer_fdw_15-1.4.0-1PGDG.rhel8.x86_64.rpm pgdg 1.4.0 24.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pgbouncer_fdw_15-1.4.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 15 pgbouncer_fdw_15 pgbouncer_fdw_15-1.3.0-1PGDG.rhel8.x86_64.rpm pgdg 1.3.0 23.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pgbouncer_fdw_15-1.3.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 15 pgbouncer_fdw_15 pgbouncer_fdw_15-1.2.0-1PGDG.rhel8.x86_64.rpm pgdg 1.2.0 21.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pgbouncer_fdw_15-1.2.0-1PGDG.rhel8.x86_64.rpm
@@ -152,6 +191,16 @@ weight: 8650
 @ el10.x86_64 15 pgbouncer_fdw_15 pgbouncer_fdw_15-1.4.0-1PGDG.rhel10.x86_64.rpm pgdg 1.4.0 22.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pgbouncer_fdw_15-1.4.0-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 15 pgbouncer_fdw_15 pgbouncer_fdw_15-1.4.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.4.0 22.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pgbouncer_fdw_15-1.4.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 pgbouncer_fdw_15 pgbouncer_fdw_15-1.4.0-1PGDG.rhel10.aarch64.rpm pgdg 1.4.0 22.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pgbouncer_fdw_15-1.4.0-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-pgbouncer-fdw postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgbouncer-fdw/postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb
+@ d12.aarch64 15 postgresql-15-pgbouncer-fdw postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgbouncer-fdw/postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb
+@ d13.x86_64 15 postgresql-15-pgbouncer-fdw postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgbouncer-fdw/postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb
+@ d13.aarch64 15 postgresql-15-pgbouncer-fdw postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgbouncer-fdw/postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb
+@ u22.x86_64 15 postgresql-15-pgbouncer-fdw postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgbouncer-fdw/postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb
+@ u22.aarch64 15 postgresql-15-pgbouncer-fdw postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgbouncer-fdw/postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb
+@ u24.x86_64 15 postgresql-15-pgbouncer-fdw postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgbouncer-fdw/postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb
+@ u24.aarch64 15 postgresql-15-pgbouncer-fdw postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgbouncer-fdw/postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb
+@ u26.x86_64 15 postgresql-15-pgbouncer-fdw postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgbouncer-fdw/postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb
+@ u26.aarch64 15 postgresql-15-pgbouncer-fdw postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgbouncer-fdw/postgresql-15-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb
 @ el8.x86_64 14 pgbouncer_fdw_14 pgbouncer_fdw_14-1.4.0-1PGDG.rhel8.x86_64.rpm pgdg 1.4.0 24.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pgbouncer_fdw_14-1.4.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 14 pgbouncer_fdw_14 pgbouncer_fdw_14-1.3.0-1PGDG.rhel8.x86_64.rpm pgdg 1.3.0 23.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pgbouncer_fdw_14-1.3.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 14 pgbouncer_fdw_14 pgbouncer_fdw_14-1.2.0-1PGDG.rhel8.x86_64.rpm pgdg 1.2.0 21.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pgbouncer_fdw_14-1.2.0-1PGDG.rhel8.x86_64.rpm
@@ -184,15 +233,33 @@ weight: 8650
 @ el10.x86_64 14 pgbouncer_fdw_14 pgbouncer_fdw_14-1.4.0-1PGDG.rhel10.x86_64.rpm pgdg 1.4.0 22.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pgbouncer_fdw_14-1.4.0-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 14 pgbouncer_fdw_14 pgbouncer_fdw_14-1.4.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.4.0 22.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pgbouncer_fdw_14-1.4.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 pgbouncer_fdw_14 pgbouncer_fdw_14-1.4.0-1PGDG.rhel10.aarch64.rpm pgdg 1.4.0 22.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pgbouncer_fdw_14-1.4.0-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-pgbouncer-fdw postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgbouncer-fdw/postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb
+@ d12.aarch64 14 postgresql-14-pgbouncer-fdw postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pgbouncer-fdw/postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~bookworm_all.deb
+@ d13.x86_64 14 postgresql-14-pgbouncer-fdw postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgbouncer-fdw/postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb
+@ d13.aarch64 14 postgresql-14-pgbouncer-fdw postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb pigsty 1.4.0 16.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pgbouncer-fdw/postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~trixie_all.deb
+@ u22.x86_64 14 postgresql-14-pgbouncer-fdw postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgbouncer-fdw/postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb
+@ u22.aarch64 14 postgresql-14-pgbouncer-fdw postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pgbouncer-fdw/postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~jammy_all.deb
+@ u24.x86_64 14 postgresql-14-pgbouncer-fdw postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgbouncer-fdw/postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb
+@ u24.aarch64 14 postgresql-14-pgbouncer-fdw postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgbouncer-fdw/postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~noble_all.deb
+@ u26.x86_64 14 postgresql-14-pgbouncer-fdw postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgbouncer-fdw/postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb
+@ u26.aarch64 14 postgresql-14-pgbouncer-fdw postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb pigsty 1.4.0 16.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgbouncer-fdw/postgresql-14-pgbouncer-fdw_1.4.0-1PIGSTY~resolute_all.deb
 {{< /pgext_matrix >}}
+
+## Build
+
+You can build the DEB packages for `pgbouncer_fdw` using `pig build`:
+
+```bash
+pig build pkg pgbouncer_fdw         # build DEB packages
+```
 
 
 ## Install
 
-You can install `pgbouncer_fdw` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) repository is added and enabled:
+You can install `pgbouncer_fdw` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) and [**PIGSTY**](/docs/repo/pgsql) repositories are added and enabled:
 
 ```bash
-pig repo add pgdg -u          # Add PGDG repo and update cache
+pig repo add pgsql -u          # Add repo and update cache
 ```
 
 Install the extension using [**pig**](/docs/pig) or `apt/yum/dnf`:
@@ -219,6 +286,15 @@ dnf install -y pgbouncer_fdw_17       # PG 17
 dnf install -y pgbouncer_fdw_16       # PG 16
 dnf install -y pgbouncer_fdw_15       # PG 15
 dnf install -y pgbouncer_fdw_14       # PG 14
+```
+{{% /tab %}}
+{{% tab header="apt" %}}
+```bash
+apt install -y postgresql-18-pgbouncer-fdw   # PG 18
+apt install -y postgresql-17-pgbouncer-fdw   # PG 17
+apt install -y postgresql-16-pgbouncer-fdw   # PG 16
+apt install -y postgresql-15-pgbouncer-fdw   # PG 15
+apt install -y postgresql-14-pgbouncer-fdw   # PG 14
 ```
 {{% /tab %}}
 {{< /tabpane >}}

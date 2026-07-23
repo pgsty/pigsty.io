@@ -6,12 +6,57 @@ icon: fa-solid fa-clipboard-list
 categories: [Reference]
 ---
 
-## 2026-07-19
+## 2026-07-23
 
-| Name                  | Old | New    | Comment                                                |
-|:----------------------|:----|:-------|:-------------------------------------------------------|
-| `k3s`                 | -   | 1.36.2 | Upstream `v1.36.2+k3s1`; amd64 and arm64               |
-| `k3s-images`          | -   | 1.36.2 | Exact-match system image package for both architectures |
+| Name                       | Old      | New      | Comment                                            |
+|:---------------------------|:---------|:---------|:---------------------------------------------------|
+| `claude`                   | 2.1.215  | 2.1.218  | Verified against the official manifest via proxy   |
+| `codex`                    | 0.144.6  | 0.145.0  | Release tag `rust-v0.145.0`                        |
+| `dblab`                    | 0.44.1   | 0.46.0   |                                                    |
+| `duckdb`                   | 1.5.4    | 1.5.5    |                                                    |
+| `grafana-infinity-ds`      | 3.8.0    | 3.11.1   |                                                    |
+| `grafana-victorialogs-ds`  | 0.30.0   | 0.30.1   |                                                    |
+| `opencode`                 | 1.18.3   | 1.18.4   |                                                    |
+| `pg-timetable`             | 6.3.0    | 7.0.0    | Major release                                      |
+| `pgstream`                 | 1.2.0    | 1.2.2    |                                                    |
+| `stalwart`                 | 0.16.13  | 0.16.14  |                                                    |
+| `uv`                       | 0.11.29  | 0.11.31  |                                                    |
+| `grafana`                  | 13.1.0   | 13.1.1   | Direct-download artifacts                          |
+| `pg-hardstorage`           | 1.0.12   | 1.0.13   | Direct-download artifacts                          |
+| `crush`                    | 0.85.0   | 0.86.0   | Direct-download artifacts                          |
+| `code`                     | 1.129.1  | 1.130.0  | Direct-download artifacts                          |
+{.stretch-last}
+
+-------
+
+## 2026-07-20
+
+Rename `xxx_exporter` rpm packages to `xxx-exporter` style to keep consistent with deb packaging convention.
+
+| Name                       | Old              | New              | Comment                                                              |
+|:---------------------------|:-----------------|:-----------------|:---------------------------------------------------------------------|
+| `pg-exporter`              | 1.3.0            | 1.4.0            | Repackaged from the upstream Linux tarball                            |
+| `victoria-metrics`         | 1.147.0          | 1.148.0          | VictoriaMetrics main package                                         |
+| `victoria-metrics-cluster` | 1.147.0          | 1.148.0          | VictoriaMetrics companion package                                    |
+| `vmutils`                  | 1.147.0          | 1.148.0          | VictoriaMetrics companion package                                    |
+| `victoria-logs`            | 1.51.0           | 1.52.0           | VictoriaLogs main package                                            |
+| `vlogscli`                 | 1.51.0           | 1.52.0           | VictoriaLogs companion package                                       |
+| `vlagent`                  | 1.51.0           | 1.52.0           | VictoriaLogs companion package                                       |
+| `grafana-victorialogs-ds`  | 0.29.0           | 0.30.0           |                                                                      |
+| `seaweedfs`                | 4.39             | 4.40             |                                                                      |
+| `rustfs`                   | 1.0.0-b9         | 1.0.0-b10        | Prerelease line; preview releases excluded                           |
+| `sabiql`                   | 1.14.0           | 1.15.1           |                                                                      |
+| `timescaledb-tools`        | 0.19.0-1         | 0.19.0-2         | Bundles timescaledb-parallel-copy 0.13.0                             |
+| `claude`                   | 2.1.211          | 2.1.215          | Downloaded through the 8118 proxy and verified                       |
+| `codex`                    | 0.144.4          | 0.144.6          | Release tag `rust-v0.144.6`                                          |
+| `genai-toolbox`            | 1.6.0            | 1.7.0            | External build from official GCS binary and arm64 container artifact |
+| `opencode`                 | 1.18.2           | 1.18.3           |                                                                      |
+| `pg-hardstorage`           | 1.0.10           | 1.0.12           | Direct-download artifacts                                            |
+| `code`                     | 1.129.0          | 1.129.1          | Direct-download artifacts                                            |
+| `code-server`              | 4.128.0          | 4.129.0          | Direct-download artifacts                                            |
+| `pev2`                     | 1.22.0           | 1.23.0           | Noarch package                                                       |
+| `k3s`                      | -                | 1.36.2           | Upstream `v1.36.2+k3s1`; amd64 and arm64                             |
+| `k3s-images`               | -                | 1.36.2           | Exact-match system image package for both architectures              |
 {.stretch-last}
 
 -------

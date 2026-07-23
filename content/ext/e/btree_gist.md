@@ -30,7 +30,7 @@ weight: 4940
 
 | **Related** | [`btree_gin`](/ext/e/btree_gin) [`unaccent`](/ext/e/unaccent) [`fuzzystrmatch`](/ext/e/fuzzystrmatch) [`pg_trgm`](/ext/e/pg_trgm) [`prefix`](/ext/e/prefix) [`citext`](/ext/e/citext) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Depended By** | [`emaj`](/ext/e/emaj) [`omni_auth`](/ext/e/omni_auth) [`periods`](/ext/e/periods) [`pgautofailover`](/ext/e/pgautofailover) [`powa`](/ext/e/powa) |
+| **Depended By** | [`emaj`](/ext/e/emaj) [`omni_auth`](/ext/e/omni_auth) [`periods`](/ext/e/periods) [`pg_lake_table`](/ext/e/pg_lake_table) [`pgautofailover`](/ext/e/pgautofailover) [`powa`](/ext/e/powa) |
 {.ext-table .ext-table--rel}
 
 

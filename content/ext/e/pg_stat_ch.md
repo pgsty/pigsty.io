@@ -25,7 +25,7 @@ weight: 6020
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_stat_ch`**](/ext/e/pg_stat_ch) | `0.3.6` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license apache20 and mit and bsd2clause and bsd3clause" href="/ext/license#apache20andmitandbsd2clauseandbsd3clause">Apache-2.0 AND MIT AND BSD-2-Clause AND BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> |
+| [**`pg_stat_ch`**](/ext/e/pg_stat_ch) | `0.3.6` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -53,22 +53,22 @@ weight: 6020
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| el8.aarch64 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| el9.x86_64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| el9.aarch64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| el10.x86_64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| el10.aarch64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| d12.x86_64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| d12.aarch64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| d13.x86_64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| d13.aarch64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u22.x86_64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u22.aarch64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u24.x86_64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u24.aarch64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u26.x86_64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u26.aarch64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
+| el8.x86_64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el8.aarch64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.x86_64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.aarch64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.x86_64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.aarch64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d12.x86_64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d12.aarch64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d13.x86_64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d13.aarch64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u22.x86_64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u22.aarch64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u24.x86_64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u24.aarch64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u26.x86_64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | AVAIL PIGSTY 0.3.6 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 @ el9.x86_64 18 pg_stat_ch_18 pg_stat_ch_18-0.3.6-1PIGSTY.el9.x86_64.rpm pigsty 0.3.6 872.4KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_stat_ch_18-0.3.6-1PIGSTY.el9.x86_64.rpm
 @ el9.aarch64 18 pg_stat_ch_18 pg_stat_ch_18-0.3.6-1PIGSTY.el9.aarch64.rpm pigsty 0.3.6 829.2KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_stat_ch_18-0.3.6-1PIGSTY.el9.aarch64.rpm
 @ el10.x86_64 18 pg_stat_ch_18 pg_stat_ch_18-0.3.6-1PIGSTY.el10.x86_64.rpm pigsty 0.3.6 822.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_stat_ch_18-0.3.6-1PIGSTY.el10.x86_64.rpm

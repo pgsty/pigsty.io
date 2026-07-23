@@ -11,10 +11,10 @@ weight: 8500
     <div class="ext-card__title">supabase/wrappers</div>
     <div class="ext-card__desc">https://github.com/supabase/wrappers</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/wrappers-0.6.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/wrappers-0.6.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">wrappers-0.6.1.tar.gz</div>
-    <div class="ext-card__desc">wrappers-0.6.1.tar.gz</div>
+    <div class="ext-card__title">wrappers-0.6.2.tar.gz</div>
+    <div class="ext-card__desc">wrappers-0.6.2.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 8500
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`wrappers`**](/ext/e/wrappers) | `0.6.1` | <a class="ext-badge ext-badge--cate fdw" href="/ext/cate/fdw">FDW</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`wrappers`**](/ext/e/wrappers) | `0.6.2` | <a class="ext-badge ext-badge--cate fdw" href="/ext/cate/fdw">FDW</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,117 +38,114 @@ weight: 8500
 {.ext-table .ext-table--rel}
 
 
-> pgrx patched to 0.18.1.
-
-
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.6.1` | {{< pgvers "18,17,16,15,14" >}} | `wrappers` | - |
-| [**RPM**](/ext/rpm#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.6.1` | {{< pgvers "18,17,16,15,14" >}} | `wrappers_$v` | - |
-| [**DEB**](/ext/deb#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.6.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-wrappers` | - |
+| [**EXT**](/ext/list#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.6.2` | {{< pgvers "18,17,16,15,14" >}} | `wrappers` | - |
+| [**RPM**](/ext/rpm#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.6.2` | {{< pgvers "18,17,16,15,14" >}} | `wrappers_$v` | - |
+| [**DEB**](/ext/deb#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.6.2` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-wrappers` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 |
-| el8.aarch64 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 |
-| el9.x86_64 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 |
-| el9.aarch64 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 |
-| el10.x86_64 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 |
-| el10.aarch64 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 |
-| d12.x86_64 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 |
-| d12.aarch64 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 |
-| d13.x86_64 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 |
-| d13.aarch64 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 |
-| u22.x86_64 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 |
-| u22.aarch64 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 |
-| u24.x86_64 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 |
-| u24.aarch64 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 |
-| u26.x86_64 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 |
-| u26.aarch64 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 | AVAIL PIGSTY 0.6.1 1 |
-@ el8.x86_64 18 wrappers_18 wrappers_18-0.6.1-1PIGSTY.el8.x86_64.rpm pigsty 0.6.1 460.9KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/wrappers_18-0.6.1-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 18 wrappers_18 wrappers_18-0.6.1-1PIGSTY.el8.aarch64.rpm pigsty 0.6.1 440.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/wrappers_18-0.6.1-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 18 wrappers_18 wrappers_18-0.6.1-1PIGSTY.el9.x86_64.rpm pigsty 0.6.1 468.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/wrappers_18-0.6.1-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 18 wrappers_18 wrappers_18-0.6.1-1PIGSTY.el9.aarch64.rpm pigsty 0.6.1 465.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/wrappers_18-0.6.1-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 18 wrappers_18 wrappers_18-0.6.1-1PIGSTY.el10.x86_64.rpm pigsty 0.6.1 467.4KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/wrappers_18-0.6.1-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 18 wrappers_18 wrappers_18-0.6.1-1PIGSTY.el10.aarch64.rpm pigsty 0.6.1 465.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/wrappers_18-0.6.1-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.1-1PIGSTY~bookworm_amd64.deb pigsty 0.6.1 372.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-18-wrappers_0.6.1-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.1-1PIGSTY~bookworm_arm64.deb pigsty 0.6.1 331.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-18-wrappers_0.6.1-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.1-1PIGSTY~trixie_amd64.deb pigsty 0.6.1 372.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-18-wrappers_0.6.1-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.1-1PIGSTY~trixie_arm64.deb pigsty 0.6.1 332.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-18-wrappers_0.6.1-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.1-1PIGSTY~jammy_amd64.deb pigsty 0.6.1 406.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-18-wrappers_0.6.1-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.1-1PIGSTY~jammy_arm64.deb pigsty 0.6.1 388.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-18-wrappers_0.6.1-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.1-1PIGSTY~noble_amd64.deb pigsty 0.6.1 405.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-18-wrappers_0.6.1-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.1-1PIGSTY~noble_arm64.deb pigsty 0.6.1 383.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-18-wrappers_0.6.1-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.1-1PIGSTY~resolute_amd64.deb pigsty 0.6.1 400.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-18-wrappers_0.6.1-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.1-1PIGSTY~resolute_arm64.deb pigsty 0.6.1 381.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-18-wrappers_0.6.1-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 17 wrappers_17 wrappers_17-0.6.1-1PIGSTY.el8.x86_64.rpm pigsty 0.6.1 459.8KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/wrappers_17-0.6.1-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 17 wrappers_17 wrappers_17-0.6.1-1PIGSTY.el8.aarch64.rpm pigsty 0.6.1 440.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/wrappers_17-0.6.1-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 17 wrappers_17 wrappers_17-0.6.1-1PIGSTY.el9.x86_64.rpm pigsty 0.6.1 466.7KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/wrappers_17-0.6.1-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 17 wrappers_17 wrappers_17-0.6.1-1PIGSTY.el9.aarch64.rpm pigsty 0.6.1 464.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/wrappers_17-0.6.1-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 17 wrappers_17 wrappers_17-0.6.1-1PIGSTY.el10.x86_64.rpm pigsty 0.6.1 466.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/wrappers_17-0.6.1-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 17 wrappers_17 wrappers_17-0.6.1-1PIGSTY.el10.aarch64.rpm pigsty 0.6.1 464.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/wrappers_17-0.6.1-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.1-1PIGSTY~bookworm_amd64.deb pigsty 0.6.1 371.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-17-wrappers_0.6.1-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.1-1PIGSTY~bookworm_arm64.deb pigsty 0.6.1 331.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-17-wrappers_0.6.1-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.1-1PIGSTY~trixie_amd64.deb pigsty 0.6.1 371.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-17-wrappers_0.6.1-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.1-1PIGSTY~trixie_arm64.deb pigsty 0.6.1 331.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-17-wrappers_0.6.1-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.1-1PIGSTY~jammy_amd64.deb pigsty 0.6.1 406.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-17-wrappers_0.6.1-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.1-1PIGSTY~jammy_arm64.deb pigsty 0.6.1 388.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-17-wrappers_0.6.1-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.1-1PIGSTY~noble_amd64.deb pigsty 0.6.1 405.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-17-wrappers_0.6.1-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.1-1PIGSTY~noble_arm64.deb pigsty 0.6.1 383.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-17-wrappers_0.6.1-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.1-1PIGSTY~resolute_amd64.deb pigsty 0.6.1 400.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-17-wrappers_0.6.1-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.1-1PIGSTY~resolute_arm64.deb pigsty 0.6.1 381.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-17-wrappers_0.6.1-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 16 wrappers_16 wrappers_16-0.6.1-1PIGSTY.el8.x86_64.rpm pigsty 0.6.1 459.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/wrappers_16-0.6.1-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 16 wrappers_16 wrappers_16-0.6.1-1PIGSTY.el8.aarch64.rpm pigsty 0.6.1 439.6KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/wrappers_16-0.6.1-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 16 wrappers_16 wrappers_16-0.6.1-1PIGSTY.el9.x86_64.rpm pigsty 0.6.1 466.3KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/wrappers_16-0.6.1-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 16 wrappers_16 wrappers_16-0.6.1-1PIGSTY.el9.aarch64.rpm pigsty 0.6.1 464.3KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/wrappers_16-0.6.1-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 16 wrappers_16 wrappers_16-0.6.1-1PIGSTY.el10.x86_64.rpm pigsty 0.6.1 466.9KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/wrappers_16-0.6.1-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 16 wrappers_16 wrappers_16-0.6.1-1PIGSTY.el10.aarch64.rpm pigsty 0.6.1 464.3KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/wrappers_16-0.6.1-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.1-1PIGSTY~bookworm_amd64.deb pigsty 0.6.1 371.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-16-wrappers_0.6.1-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.1-1PIGSTY~bookworm_arm64.deb pigsty 0.6.1 332.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-16-wrappers_0.6.1-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.1-1PIGSTY~trixie_amd64.deb pigsty 0.6.1 372.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-16-wrappers_0.6.1-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.1-1PIGSTY~trixie_arm64.deb pigsty 0.6.1 331.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-16-wrappers_0.6.1-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.1-1PIGSTY~jammy_amd64.deb pigsty 0.6.1 406.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-16-wrappers_0.6.1-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.1-1PIGSTY~jammy_arm64.deb pigsty 0.6.1 388.1KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-16-wrappers_0.6.1-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.1-1PIGSTY~noble_amd64.deb pigsty 0.6.1 405.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-16-wrappers_0.6.1-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.1-1PIGSTY~noble_arm64.deb pigsty 0.6.1 383.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-16-wrappers_0.6.1-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.1-1PIGSTY~resolute_amd64.deb pigsty 0.6.1 400.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-16-wrappers_0.6.1-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.1-1PIGSTY~resolute_arm64.deb pigsty 0.6.1 381.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-16-wrappers_0.6.1-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 15 wrappers_15 wrappers_15-0.6.1-1PIGSTY.el8.x86_64.rpm pigsty 0.6.1 454.9KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/wrappers_15-0.6.1-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 15 wrappers_15 wrappers_15-0.6.1-1PIGSTY.el8.aarch64.rpm pigsty 0.6.1 435.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/wrappers_15-0.6.1-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 15 wrappers_15 wrappers_15-0.6.1-1PIGSTY.el9.x86_64.rpm pigsty 0.6.1 461.8KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/wrappers_15-0.6.1-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 15 wrappers_15 wrappers_15-0.6.1-1PIGSTY.el9.aarch64.rpm pigsty 0.6.1 460.1KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/wrappers_15-0.6.1-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 15 wrappers_15 wrappers_15-0.6.1-1PIGSTY.el10.x86_64.rpm pigsty 0.6.1 462.0KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/wrappers_15-0.6.1-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 15 wrappers_15 wrappers_15-0.6.1-1PIGSTY.el10.aarch64.rpm pigsty 0.6.1 460.5KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/wrappers_15-0.6.1-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.1-1PIGSTY~bookworm_amd64.deb pigsty 0.6.1 368.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-15-wrappers_0.6.1-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.1-1PIGSTY~bookworm_arm64.deb pigsty 0.6.1 328.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-15-wrappers_0.6.1-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.1-1PIGSTY~trixie_amd64.deb pigsty 0.6.1 368.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-15-wrappers_0.6.1-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.1-1PIGSTY~trixie_arm64.deb pigsty 0.6.1 328.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-15-wrappers_0.6.1-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.1-1PIGSTY~jammy_amd64.deb pigsty 0.6.1 406.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-15-wrappers_0.6.1-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.1-1PIGSTY~jammy_arm64.deb pigsty 0.6.1 385.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-15-wrappers_0.6.1-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.1-1PIGSTY~noble_amd64.deb pigsty 0.6.1 401.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-15-wrappers_0.6.1-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.1-1PIGSTY~noble_arm64.deb pigsty 0.6.1 380.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-15-wrappers_0.6.1-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.1-1PIGSTY~resolute_amd64.deb pigsty 0.6.1 400.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-15-wrappers_0.6.1-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.1-1PIGSTY~resolute_arm64.deb pigsty 0.6.1 378.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-15-wrappers_0.6.1-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 14 wrappers_14 wrappers_14-0.6.1-1PIGSTY.el8.x86_64.rpm pigsty 0.6.1 454.7KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/wrappers_14-0.6.1-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 14 wrappers_14 wrappers_14-0.6.1-1PIGSTY.el8.aarch64.rpm pigsty 0.6.1 435.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/wrappers_14-0.6.1-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 14 wrappers_14 wrappers_14-0.6.1-1PIGSTY.el9.x86_64.rpm pigsty 0.6.1 461.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/wrappers_14-0.6.1-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 14 wrappers_14 wrappers_14-0.6.1-1PIGSTY.el9.aarch64.rpm pigsty 0.6.1 459.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/wrappers_14-0.6.1-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 14 wrappers_14 wrappers_14-0.6.1-1PIGSTY.el10.x86_64.rpm pigsty 0.6.1 461.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/wrappers_14-0.6.1-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 14 wrappers_14 wrappers_14-0.6.1-1PIGSTY.el10.aarch64.rpm pigsty 0.6.1 460.4KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/wrappers_14-0.6.1-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.1-1PIGSTY~bookworm_amd64.deb pigsty 0.6.1 368.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-14-wrappers_0.6.1-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.1-1PIGSTY~bookworm_arm64.deb pigsty 0.6.1 329.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-14-wrappers_0.6.1-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.1-1PIGSTY~trixie_amd64.deb pigsty 0.6.1 368.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-14-wrappers_0.6.1-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.1-1PIGSTY~trixie_arm64.deb pigsty 0.6.1 329.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-14-wrappers_0.6.1-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.1-1PIGSTY~jammy_amd64.deb pigsty 0.6.1 406.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-14-wrappers_0.6.1-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.1-1PIGSTY~jammy_arm64.deb pigsty 0.6.1 385.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-14-wrappers_0.6.1-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.1-1PIGSTY~noble_amd64.deb pigsty 0.6.1 401.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-14-wrappers_0.6.1-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.1-1PIGSTY~noble_arm64.deb pigsty 0.6.1 380.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-14-wrappers_0.6.1-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.1-1PIGSTY~resolute_amd64.deb pigsty 0.6.1 400.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-14-wrappers_0.6.1-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.1-1PIGSTY~resolute_arm64.deb pigsty 0.6.1 378.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-14-wrappers_0.6.1-1PIGSTY~resolute_arm64.deb
+| el8.x86_64 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 |
+| el8.aarch64 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 |
+| el9.x86_64 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 |
+| el9.aarch64 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 |
+| el10.x86_64 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 |
+| el10.aarch64 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 |
+| d12.x86_64 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 |
+| d12.aarch64 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 |
+| d13.x86_64 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 |
+| d13.aarch64 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 |
+| u22.x86_64 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 |
+| u22.aarch64 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 |
+| u24.x86_64 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 |
+| u24.aarch64 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 |
+| u26.x86_64 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 |
+| u26.aarch64 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 | AVAIL PIGSTY 0.6.2 1 |
+@ el8.x86_64 18 wrappers_18 wrappers_18-0.6.2-1PIGSTY.el8.x86_64.rpm pigsty 0.6.2 461.0KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/wrappers_18-0.6.2-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 18 wrappers_18 wrappers_18-0.6.2-1PIGSTY.el8.aarch64.rpm pigsty 0.6.2 440.4KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/wrappers_18-0.6.2-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 18 wrappers_18 wrappers_18-0.6.2-1PIGSTY.el9.x86_64.rpm pigsty 0.6.2 467.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/wrappers_18-0.6.2-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 18 wrappers_18 wrappers_18-0.6.2-1PIGSTY.el9.aarch64.rpm pigsty 0.6.2 465.4KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/wrappers_18-0.6.2-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 18 wrappers_18 wrappers_18-0.6.2-1PIGSTY.el10.x86_64.rpm pigsty 0.6.2 466.9KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/wrappers_18-0.6.2-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 18 wrappers_18 wrappers_18-0.6.2-1PIGSTY.el10.aarch64.rpm pigsty 0.6.2 465.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/wrappers_18-0.6.2-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.2-1PIGSTY~bookworm_amd64.deb pigsty 0.6.2 372.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-18-wrappers_0.6.2-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.2-1PIGSTY~bookworm_arm64.deb pigsty 0.6.2 331.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-18-wrappers_0.6.2-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.2-1PIGSTY~trixie_amd64.deb pigsty 0.6.2 372.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-18-wrappers_0.6.2-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.2-1PIGSTY~trixie_arm64.deb pigsty 0.6.2 331.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-18-wrappers_0.6.2-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.2-1PIGSTY~jammy_amd64.deb pigsty 0.6.2 411.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-18-wrappers_0.6.2-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.2-1PIGSTY~jammy_arm64.deb pigsty 0.6.2 388.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-18-wrappers_0.6.2-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.2-1PIGSTY~noble_amd64.deb pigsty 0.6.2 406.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-18-wrappers_0.6.2-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.2-1PIGSTY~noble_arm64.deb pigsty 0.6.2 383.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-18-wrappers_0.6.2-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.2-1PIGSTY~resolute_amd64.deb pigsty 0.6.2 403.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-18-wrappers_0.6.2-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-wrappers postgresql-18-wrappers_0.6.2-1PIGSTY~resolute_arm64.deb pigsty 0.6.2 381.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-18-wrappers_0.6.2-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 17 wrappers_17 wrappers_17-0.6.2-1PIGSTY.el8.x86_64.rpm pigsty 0.6.2 460.0KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/wrappers_17-0.6.2-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 17 wrappers_17 wrappers_17-0.6.2-1PIGSTY.el8.aarch64.rpm pigsty 0.6.2 440.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/wrappers_17-0.6.2-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 17 wrappers_17 wrappers_17-0.6.2-1PIGSTY.el9.x86_64.rpm pigsty 0.6.2 466.9KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/wrappers_17-0.6.2-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 17 wrappers_17 wrappers_17-0.6.2-1PIGSTY.el9.aarch64.rpm pigsty 0.6.2 464.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/wrappers_17-0.6.2-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 17 wrappers_17 wrappers_17-0.6.2-1PIGSTY.el10.x86_64.rpm pigsty 0.6.2 467.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/wrappers_17-0.6.2-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 17 wrappers_17 wrappers_17-0.6.2-1PIGSTY.el10.aarch64.rpm pigsty 0.6.2 465.0KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/wrappers_17-0.6.2-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.2-1PIGSTY~bookworm_amd64.deb pigsty 0.6.2 372.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-17-wrappers_0.6.2-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.2-1PIGSTY~bookworm_arm64.deb pigsty 0.6.2 332.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-17-wrappers_0.6.2-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.2-1PIGSTY~trixie_amd64.deb pigsty 0.6.2 372.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-17-wrappers_0.6.2-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.2-1PIGSTY~trixie_arm64.deb pigsty 0.6.2 331.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-17-wrappers_0.6.2-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.2-1PIGSTY~jammy_amd64.deb pigsty 0.6.2 410.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-17-wrappers_0.6.2-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.2-1PIGSTY~jammy_arm64.deb pigsty 0.6.2 388.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-17-wrappers_0.6.2-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.2-1PIGSTY~noble_amd64.deb pigsty 0.6.2 405.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-17-wrappers_0.6.2-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.2-1PIGSTY~noble_arm64.deb pigsty 0.6.2 383.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-17-wrappers_0.6.2-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.2-1PIGSTY~resolute_amd64.deb pigsty 0.6.2 403.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-17-wrappers_0.6.2-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-wrappers postgresql-17-wrappers_0.6.2-1PIGSTY~resolute_arm64.deb pigsty 0.6.2 381.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-17-wrappers_0.6.2-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 16 wrappers_16 wrappers_16-0.6.2-1PIGSTY.el8.x86_64.rpm pigsty 0.6.2 459.6KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/wrappers_16-0.6.2-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 16 wrappers_16 wrappers_16-0.6.2-1PIGSTY.el8.aarch64.rpm pigsty 0.6.2 439.7KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/wrappers_16-0.6.2-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 16 wrappers_16 wrappers_16-0.6.2-1PIGSTY.el9.x86_64.rpm pigsty 0.6.2 466.5KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/wrappers_16-0.6.2-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 16 wrappers_16 wrappers_16-0.6.2-1PIGSTY.el9.aarch64.rpm pigsty 0.6.2 464.4KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/wrappers_16-0.6.2-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 16 wrappers_16 wrappers_16-0.6.2-1PIGSTY.el10.x86_64.rpm pigsty 0.6.2 466.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/wrappers_16-0.6.2-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 16 wrappers_16 wrappers_16-0.6.2-1PIGSTY.el10.aarch64.rpm pigsty 0.6.2 464.5KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/wrappers_16-0.6.2-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.2-1PIGSTY~bookworm_amd64.deb pigsty 0.6.2 372.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-16-wrappers_0.6.2-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.2-1PIGSTY~bookworm_arm64.deb pigsty 0.6.2 332.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-16-wrappers_0.6.2-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.2-1PIGSTY~trixie_amd64.deb pigsty 0.6.2 371.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-16-wrappers_0.6.2-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.2-1PIGSTY~trixie_arm64.deb pigsty 0.6.2 332.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-16-wrappers_0.6.2-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.2-1PIGSTY~jammy_amd64.deb pigsty 0.6.2 410.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-16-wrappers_0.6.2-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.2-1PIGSTY~jammy_arm64.deb pigsty 0.6.2 388.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-16-wrappers_0.6.2-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.2-1PIGSTY~noble_amd64.deb pigsty 0.6.2 405.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-16-wrappers_0.6.2-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.2-1PIGSTY~noble_arm64.deb pigsty 0.6.2 383.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-16-wrappers_0.6.2-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.2-1PIGSTY~resolute_amd64.deb pigsty 0.6.2 403.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-16-wrappers_0.6.2-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 16 postgresql-16-wrappers postgresql-16-wrappers_0.6.2-1PIGSTY~resolute_arm64.deb pigsty 0.6.2 381.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-16-wrappers_0.6.2-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 15 wrappers_15 wrappers_15-0.6.2-1PIGSTY.el8.x86_64.rpm pigsty 0.6.2 455.0KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/wrappers_15-0.6.2-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 15 wrappers_15 wrappers_15-0.6.2-1PIGSTY.el8.aarch64.rpm pigsty 0.6.2 435.6KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/wrappers_15-0.6.2-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 15 wrappers_15 wrappers_15-0.6.2-1PIGSTY.el9.x86_64.rpm pigsty 0.6.2 463.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/wrappers_15-0.6.2-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 15 wrappers_15 wrappers_15-0.6.2-1PIGSTY.el9.aarch64.rpm pigsty 0.6.2 460.4KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/wrappers_15-0.6.2-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 15 wrappers_15 wrappers_15-0.6.2-1PIGSTY.el10.x86_64.rpm pigsty 0.6.2 462.4KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/wrappers_15-0.6.2-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 15 wrappers_15 wrappers_15-0.6.2-1PIGSTY.el10.aarch64.rpm pigsty 0.6.2 461.0KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/wrappers_15-0.6.2-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.2-1PIGSTY~bookworm_amd64.deb pigsty 0.6.2 368.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-15-wrappers_0.6.2-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.2-1PIGSTY~bookworm_arm64.deb pigsty 0.6.2 329.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-15-wrappers_0.6.2-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.2-1PIGSTY~trixie_amd64.deb pigsty 0.6.2 368.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-15-wrappers_0.6.2-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.2-1PIGSTY~trixie_arm64.deb pigsty 0.6.2 328.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-15-wrappers_0.6.2-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.2-1PIGSTY~jammy_amd64.deb pigsty 0.6.2 406.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-15-wrappers_0.6.2-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.2-1PIGSTY~jammy_arm64.deb pigsty 0.6.2 384.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-15-wrappers_0.6.2-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.2-1PIGSTY~noble_amd64.deb pigsty 0.6.2 401.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-15-wrappers_0.6.2-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.2-1PIGSTY~noble_arm64.deb pigsty 0.6.2 380.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-15-wrappers_0.6.2-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.2-1PIGSTY~resolute_amd64.deb pigsty 0.6.2 399.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-15-wrappers_0.6.2-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 15 postgresql-15-wrappers postgresql-15-wrappers_0.6.2-1PIGSTY~resolute_arm64.deb pigsty 0.6.2 378.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-15-wrappers_0.6.2-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 14 wrappers_14 wrappers_14-0.6.2-1PIGSTY.el8.x86_64.rpm pigsty 0.6.2 454.8KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/wrappers_14-0.6.2-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 14 wrappers_14 wrappers_14-0.6.2-1PIGSTY.el8.aarch64.rpm pigsty 0.6.2 435.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/wrappers_14-0.6.2-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 14 wrappers_14 wrappers_14-0.6.2-1PIGSTY.el9.x86_64.rpm pigsty 0.6.2 462.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/wrappers_14-0.6.2-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 14 wrappers_14 wrappers_14-0.6.2-1PIGSTY.el9.aarch64.rpm pigsty 0.6.2 459.9KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/wrappers_14-0.6.2-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 14 wrappers_14 wrappers_14-0.6.2-1PIGSTY.el10.x86_64.rpm pigsty 0.6.2 462.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/wrappers_14-0.6.2-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 14 wrappers_14 wrappers_14-0.6.2-1PIGSTY.el10.aarch64.rpm pigsty 0.6.2 460.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/wrappers_14-0.6.2-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.2-1PIGSTY~bookworm_amd64.deb pigsty 0.6.2 368.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-14-wrappers_0.6.2-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.2-1PIGSTY~bookworm_arm64.deb pigsty 0.6.2 329.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/w/wrappers/postgresql-14-wrappers_0.6.2-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.2-1PIGSTY~trixie_amd64.deb pigsty 0.6.2 368.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-14-wrappers_0.6.2-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.2-1PIGSTY~trixie_arm64.deb pigsty 0.6.2 330.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/w/wrappers/postgresql-14-wrappers_0.6.2-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.2-1PIGSTY~jammy_amd64.deb pigsty 0.6.2 406.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-14-wrappers_0.6.2-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.2-1PIGSTY~jammy_arm64.deb pigsty 0.6.2 385.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/w/wrappers/postgresql-14-wrappers_0.6.2-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.2-1PIGSTY~noble_amd64.deb pigsty 0.6.2 401.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-14-wrappers_0.6.2-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.2-1PIGSTY~noble_arm64.deb pigsty 0.6.2 380.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/w/wrappers/postgresql-14-wrappers_0.6.2-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.2-1PIGSTY~resolute_amd64.deb pigsty 0.6.2 399.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-14-wrappers_0.6.2-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 14 postgresql-14-wrappers postgresql-14-wrappers_0.6.2-1PIGSTY~resolute_arm64.deb pigsty 0.6.2 378.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/w/wrappers/postgresql-14-wrappers_0.6.2-1PIGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -217,7 +214,13 @@ CREATE EXTENSION wrappers;
 
 ## Usage
 
-Sources: [official README](https://github.com/supabase/wrappers/blob/v0.6.1/README.md), [official docs](https://fdw.dev/), [v0.6.1 release](https://github.com/supabase/wrappers/releases/tag/v0.6.1)
+Sources:
+
+- [Wrappers v0.6.2 README](https://github.com/supabase/wrappers/blob/v0.6.2/README.md)
+- [Official FDW documentation](https://fdw.dev/)
+- [v0.6.2 release](https://github.com/supabase/wrappers/releases/tag/v0.6.2)
+- [MongoDB FDW documentation](https://fdw.dev/catalog/mongodb/)
+- [Security guidance](https://fdw.dev/guides/security/)
 
 `wrappers` is both a Rust framework for writing PostgreSQL foreign data wrappers and a packaged collection of Supabase-maintained FDWs. A single extension installs many wrapper implementations, then each foreign server chooses the specific wrapper type it needs.
 
@@ -256,18 +259,20 @@ CREATE FOREIGN TABLE stripe_customers (
 
 Upstream ships wrappers for databases and services such as BigQuery, ClickHouse, DuckDB, DynamoDB, MySQL/Doris, Redis, S3, S3 Vectors, Stripe, Snowflake, Slack, Notion, OpenAPI, Infura, and many others. Read and write support varies by wrapper, but pushdown for `WHERE`, `ORDER BY`, and `LIMIT` is a core framework feature.
 
-### Version Notes
+### Version 0.6.2
 
-The `v0.6.1` release keeps the same extension model but expands the catalog and wrapper behavior. Official release notes call out:
+The `v0.6.2` release keeps the same extension model and adds:
 
-- new DynamoDB FDW support
-- MySQL/Doris support through `mysql_fdw`
-- schema evolution support for `iceberg_fdw`
-- vault secret lookup by name in `_id` options
-- aggregate pushdown support for COUNT, SUM, AVG, MIN, and MAX, including MySQL FDW support
-- parameter-state refresh/rescan fixes and dependency/security updates
+- a MongoDB FDW with read and write support
+- session-variable credentials for per-request authentication in WASM wrappers
+- RFC 8288 `Link` header pagination for the OpenAPI FDW
+- runtime, dependency, and wrapper-specific fixes documented in the release notes
+
+Wrapper-specific pages remain the authority for server options, foreign-table columns, pushdown, and write support.
 
 ### Caveats
 
 - Wrapper-specific options, supported objects, and write support differ widely; check the official catalog page for the exact FDW you use.
 - The docs warn that logical restores can fail when materialized views depend on foreign tables, so avoid that pattern or rely on physical backups.
+- Foreign tables do not provide a security boundary by themselves. Keep them in private schemas, grant access deliberately, use the least-privileged remote credentials available, and apply Row Level Security to local tables that expose or cache remote data.
+- Keep API keys and tokens in the supported secret store or per-request credential mechanism instead of embedding them in SQL checked into source control.

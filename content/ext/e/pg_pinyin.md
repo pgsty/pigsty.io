@@ -11,10 +11,10 @@ weight: 2190
     <div class="ext-card__title">aiyou178/pg_pinyin</div>
     <div class="ext-card__desc">https://github.com/aiyou178/pg_pinyin</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_pinyin-0.0.4.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_pinyin-0.0.5.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_pinyin-0.0.4.tar.gz</div>
-    <div class="ext-card__desc">pg_pinyin-0.0.4.tar.gz</div>
+    <div class="ext-card__title">pg_pinyin-0.0.5.tar.gz</div>
+    <div class="ext-card__desc">pg_pinyin-0.0.5.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2190
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_pinyin`**](/ext/e/pg_pinyin) | `0.0.4` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`pg_pinyin`**](/ext/e/pg_pinyin) | `0.0.5` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,117 +38,117 @@ weight: 2190
 {.ext-table .ext-table--rel}
 
 
-> optional tokenizer-input overload can integrate with pg_search; pgrx patched to 0.18.1.
+> optional tokenizer-input overload can integrate with pg_search.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.4` | {{< pgvers "18,17,16,15,14" >}} | `pg_pinyin` | - |
-| [**RPM**](/ext/rpm#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.4` | {{< pgvers "18,17,16,15,14" >}} | `pg_pinyin_$v` | - |
-| [**DEB**](/ext/deb#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.4` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pinyin` | - |
+| [**EXT**](/ext/list#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.5` | {{< pgvers "18,17,16,15,14" >}} | `pg_pinyin` | - |
+| [**RPM**](/ext/rpm#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.5` | {{< pgvers "18,17,16,15,14" >}} | `pg_pinyin_$v` | - |
+| [**DEB**](/ext/deb#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.5` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pinyin` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 |
-| el8.aarch64 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 |
-| el9.x86_64 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 |
-| el9.aarch64 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 |
-| el10.x86_64 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 |
-| el10.aarch64 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 |
-| d12.x86_64 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 |
-| d12.aarch64 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 |
-| d13.x86_64 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 |
-| d13.aarch64 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 |
-| u22.x86_64 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 |
-| u22.aarch64 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 |
-| u24.x86_64 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 |
-| u24.aarch64 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 |
-| u26.x86_64 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 |
-| u26.aarch64 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 | AVAIL PIGSTY 0.0.4 1 |
-@ el8.x86_64 18 pg_pinyin_18 pg_pinyin_18-0.0.4-2PIGSTY.el8.x86_64.rpm pigsty 0.0.4 3.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_pinyin_18-0.0.4-2PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 18 pg_pinyin_18 pg_pinyin_18-0.0.4-2PIGSTY.el8.aarch64.rpm pigsty 0.0.4 3.0MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_pinyin_18-0.0.4-2PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 18 pg_pinyin_18 pg_pinyin_18-0.0.4-2PIGSTY.el9.x86_64.rpm pigsty 0.0.4 3.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_pinyin_18-0.0.4-2PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 18 pg_pinyin_18 pg_pinyin_18-0.0.4-2PIGSTY.el9.aarch64.rpm pigsty 0.0.4 3.1MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_pinyin_18-0.0.4-2PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 18 pg_pinyin_18 pg_pinyin_18-0.0.4-2PIGSTY.el10.x86_64.rpm pigsty 0.0.4 3.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_pinyin_18-0.0.4-2PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 18 pg_pinyin_18 pg_pinyin_18-0.0.4-2PIGSTY.el10.aarch64.rpm pigsty 0.0.4 3.0MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_pinyin_18-0.0.4-2PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.4-2PIGSTY~bookworm_amd64.deb pigsty 0.0.4 2.6MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.4-2PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.4-2PIGSTY~bookworm_arm64.deb pigsty 0.0.4 2.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.4-2PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.4-2PIGSTY~trixie_amd64.deb pigsty 0.0.4 2.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.4-2PIGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.4-2PIGSTY~trixie_arm64.deb pigsty 0.0.4 2.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.4-2PIGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.4-2PIGSTY~jammy_amd64.deb pigsty 0.0.4 2.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.4-2PIGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.4-2PIGSTY~jammy_arm64.deb pigsty 0.0.4 2.7MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.4-2PIGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.4-2PIGSTY~noble_amd64.deb pigsty 0.0.4 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.4-2PIGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.4-2PIGSTY~noble_arm64.deb pigsty 0.0.4 2.7MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.4-2PIGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.4-2PIGSTY~resolute_amd64.deb pigsty 0.0.4 2.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.4-2PIGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.4-2PIGSTY~resolute_arm64.deb pigsty 0.0.4 2.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.4-2PIGSTY~resolute_arm64.deb
-@ el8.x86_64 17 pg_pinyin_17 pg_pinyin_17-0.0.4-2PIGSTY.el8.x86_64.rpm pigsty 0.0.4 3.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_pinyin_17-0.0.4-2PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 17 pg_pinyin_17 pg_pinyin_17-0.0.4-2PIGSTY.el8.aarch64.rpm pigsty 0.0.4 3.0MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_pinyin_17-0.0.4-2PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 17 pg_pinyin_17 pg_pinyin_17-0.0.4-2PIGSTY.el9.x86_64.rpm pigsty 0.0.4 3.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_pinyin_17-0.0.4-2PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 17 pg_pinyin_17 pg_pinyin_17-0.0.4-2PIGSTY.el9.aarch64.rpm pigsty 0.0.4 3.1MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_pinyin_17-0.0.4-2PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 17 pg_pinyin_17 pg_pinyin_17-0.0.4-2PIGSTY.el10.x86_64.rpm pigsty 0.0.4 3.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_pinyin_17-0.0.4-2PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 17 pg_pinyin_17 pg_pinyin_17-0.0.4-2PIGSTY.el10.aarch64.rpm pigsty 0.0.4 3.0MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_pinyin_17-0.0.4-2PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.4-2PIGSTY~bookworm_amd64.deb pigsty 0.0.4 2.6MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.4-2PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.4-2PIGSTY~bookworm_arm64.deb pigsty 0.0.4 2.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.4-2PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.4-2PIGSTY~trixie_amd64.deb pigsty 0.0.4 2.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.4-2PIGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.4-2PIGSTY~trixie_arm64.deb pigsty 0.0.4 2.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.4-2PIGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.4-2PIGSTY~jammy_amd64.deb pigsty 0.0.4 2.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.4-2PIGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.4-2PIGSTY~jammy_arm64.deb pigsty 0.0.4 2.7MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.4-2PIGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.4-2PIGSTY~noble_amd64.deb pigsty 0.0.4 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.4-2PIGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.4-2PIGSTY~noble_arm64.deb pigsty 0.0.4 2.7MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.4-2PIGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.4-2PIGSTY~resolute_amd64.deb pigsty 0.0.4 2.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.4-2PIGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.4-2PIGSTY~resolute_arm64.deb pigsty 0.0.4 2.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.4-2PIGSTY~resolute_arm64.deb
-@ el8.x86_64 16 pg_pinyin_16 pg_pinyin_16-0.0.4-2PIGSTY.el8.x86_64.rpm pigsty 0.0.4 3.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_pinyin_16-0.0.4-2PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 16 pg_pinyin_16 pg_pinyin_16-0.0.4-2PIGSTY.el8.aarch64.rpm pigsty 0.0.4 3.0MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_pinyin_16-0.0.4-2PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 16 pg_pinyin_16 pg_pinyin_16-0.0.4-2PIGSTY.el9.x86_64.rpm pigsty 0.0.4 3.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_pinyin_16-0.0.4-2PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 16 pg_pinyin_16 pg_pinyin_16-0.0.4-2PIGSTY.el9.aarch64.rpm pigsty 0.0.4 3.1MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_pinyin_16-0.0.4-2PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 16 pg_pinyin_16 pg_pinyin_16-0.0.4-2PIGSTY.el10.x86_64.rpm pigsty 0.0.4 3.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_pinyin_16-0.0.4-2PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 16 pg_pinyin_16 pg_pinyin_16-0.0.4-2PIGSTY.el10.aarch64.rpm pigsty 0.0.4 3.0MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_pinyin_16-0.0.4-2PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.4-2PIGSTY~bookworm_amd64.deb pigsty 0.0.4 2.6MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.4-2PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.4-2PIGSTY~bookworm_arm64.deb pigsty 0.0.4 2.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.4-2PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.4-2PIGSTY~trixie_amd64.deb pigsty 0.0.4 2.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.4-2PIGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.4-2PIGSTY~trixie_arm64.deb pigsty 0.0.4 2.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.4-2PIGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.4-2PIGSTY~jammy_amd64.deb pigsty 0.0.4 2.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.4-2PIGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.4-2PIGSTY~jammy_arm64.deb pigsty 0.0.4 2.7MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.4-2PIGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.4-2PIGSTY~noble_amd64.deb pigsty 0.0.4 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.4-2PIGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.4-2PIGSTY~noble_arm64.deb pigsty 0.0.4 2.7MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.4-2PIGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.4-2PIGSTY~resolute_amd64.deb pigsty 0.0.4 2.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.4-2PIGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.4-2PIGSTY~resolute_arm64.deb pigsty 0.0.4 2.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.4-2PIGSTY~resolute_arm64.deb
-@ el8.x86_64 15 pg_pinyin_15 pg_pinyin_15-0.0.4-2PIGSTY.el8.x86_64.rpm pigsty 0.0.4 3.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_pinyin_15-0.0.4-2PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 15 pg_pinyin_15 pg_pinyin_15-0.0.4-2PIGSTY.el8.aarch64.rpm pigsty 0.0.4 3.0MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_pinyin_15-0.0.4-2PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 15 pg_pinyin_15 pg_pinyin_15-0.0.4-2PIGSTY.el9.x86_64.rpm pigsty 0.0.4 3.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_pinyin_15-0.0.4-2PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 15 pg_pinyin_15 pg_pinyin_15-0.0.4-2PIGSTY.el9.aarch64.rpm pigsty 0.0.4 3.0MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_pinyin_15-0.0.4-2PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 15 pg_pinyin_15 pg_pinyin_15-0.0.4-2PIGSTY.el10.x86_64.rpm pigsty 0.0.4 3.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_pinyin_15-0.0.4-2PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 15 pg_pinyin_15 pg_pinyin_15-0.0.4-2PIGSTY.el10.aarch64.rpm pigsty 0.0.4 3.0MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_pinyin_15-0.0.4-2PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.4-2PIGSTY~bookworm_amd64.deb pigsty 0.0.4 2.6MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.4-2PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.4-2PIGSTY~bookworm_arm64.deb pigsty 0.0.4 2.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.4-2PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.4-2PIGSTY~trixie_amd64.deb pigsty 0.0.4 2.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.4-2PIGSTY~trixie_amd64.deb
-@ d13.aarch64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.4-2PIGSTY~trixie_arm64.deb pigsty 0.0.4 2.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.4-2PIGSTY~trixie_arm64.deb
-@ u22.x86_64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.4-2PIGSTY~jammy_amd64.deb pigsty 0.0.4 2.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.4-2PIGSTY~jammy_amd64.deb
-@ u22.aarch64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.4-2PIGSTY~jammy_arm64.deb pigsty 0.0.4 2.7MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.4-2PIGSTY~jammy_arm64.deb
-@ u24.x86_64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.4-2PIGSTY~noble_amd64.deb pigsty 0.0.4 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.4-2PIGSTY~noble_amd64.deb
-@ u24.aarch64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.4-2PIGSTY~noble_arm64.deb pigsty 0.0.4 2.7MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.4-2PIGSTY~noble_arm64.deb
-@ u26.x86_64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.4-2PIGSTY~resolute_amd64.deb pigsty 0.0.4 2.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.4-2PIGSTY~resolute_amd64.deb
-@ u26.aarch64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.4-2PIGSTY~resolute_arm64.deb pigsty 0.0.4 2.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.4-2PIGSTY~resolute_arm64.deb
-@ el8.x86_64 14 pg_pinyin_14 pg_pinyin_14-0.0.4-2PIGSTY.el8.x86_64.rpm pigsty 0.0.4 3.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_pinyin_14-0.0.4-2PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 14 pg_pinyin_14 pg_pinyin_14-0.0.4-2PIGSTY.el8.aarch64.rpm pigsty 0.0.4 3.0MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_pinyin_14-0.0.4-2PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 14 pg_pinyin_14 pg_pinyin_14-0.0.4-2PIGSTY.el9.x86_64.rpm pigsty 0.0.4 3.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_pinyin_14-0.0.4-2PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 14 pg_pinyin_14 pg_pinyin_14-0.0.4-2PIGSTY.el9.aarch64.rpm pigsty 0.0.4 3.0MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_pinyin_14-0.0.4-2PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 14 pg_pinyin_14 pg_pinyin_14-0.0.4-2PIGSTY.el10.x86_64.rpm pigsty 0.0.4 3.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_pinyin_14-0.0.4-2PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 14 pg_pinyin_14 pg_pinyin_14-0.0.4-2PIGSTY.el10.aarch64.rpm pigsty 0.0.4 3.0MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_pinyin_14-0.0.4-2PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.4-2PIGSTY~bookworm_amd64.deb pigsty 0.0.4 2.6MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.4-2PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.4-2PIGSTY~bookworm_arm64.deb pigsty 0.0.4 2.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.4-2PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.4-2PIGSTY~trixie_amd64.deb pigsty 0.0.4 2.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.4-2PIGSTY~trixie_amd64.deb
-@ d13.aarch64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.4-2PIGSTY~trixie_arm64.deb pigsty 0.0.4 2.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.4-2PIGSTY~trixie_arm64.deb
-@ u22.x86_64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.4-2PIGSTY~jammy_amd64.deb pigsty 0.0.4 2.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.4-2PIGSTY~jammy_amd64.deb
-@ u22.aarch64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.4-2PIGSTY~jammy_arm64.deb pigsty 0.0.4 2.7MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.4-2PIGSTY~jammy_arm64.deb
-@ u24.x86_64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.4-2PIGSTY~noble_amd64.deb pigsty 0.0.4 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.4-2PIGSTY~noble_amd64.deb
-@ u24.aarch64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.4-2PIGSTY~noble_arm64.deb pigsty 0.0.4 2.7MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.4-2PIGSTY~noble_arm64.deb
-@ u26.x86_64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.4-2PIGSTY~resolute_amd64.deb pigsty 0.0.4 2.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.4-2PIGSTY~resolute_amd64.deb
-@ u26.aarch64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.4-2PIGSTY~resolute_arm64.deb pigsty 0.0.4 2.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.4-2PIGSTY~resolute_arm64.deb
+| el8.x86_64 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 |
+| el8.aarch64 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 |
+| el9.x86_64 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 |
+| el9.aarch64 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 |
+| el10.x86_64 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 |
+| el10.aarch64 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 |
+| d12.x86_64 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 |
+| d12.aarch64 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 |
+| d13.x86_64 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 |
+| d13.aarch64 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 |
+| u22.x86_64 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 |
+| u22.aarch64 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 |
+| u24.x86_64 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 |
+| u24.aarch64 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 |
+| u26.x86_64 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 |
+| u26.aarch64 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 | AVAIL PIGSTY 0.0.5 1 |
+@ el8.x86_64 18 pg_pinyin_18 pg_pinyin_18-0.0.5-1PIGSTY.el8.x86_64.rpm pigsty 0.0.5 3.0MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_pinyin_18-0.0.5-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 18 pg_pinyin_18 pg_pinyin_18-0.0.5-1PIGSTY.el8.aarch64.rpm pigsty 0.0.5 2.8MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_pinyin_18-0.0.5-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 18 pg_pinyin_18 pg_pinyin_18-0.0.5-1PIGSTY.el9.x86_64.rpm pigsty 0.0.5 2.9MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_pinyin_18-0.0.5-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 18 pg_pinyin_18 pg_pinyin_18-0.0.5-1PIGSTY.el9.aarch64.rpm pigsty 0.0.5 2.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_pinyin_18-0.0.5-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 18 pg_pinyin_18 pg_pinyin_18-0.0.5-1PIGSTY.el10.x86_64.rpm pigsty 0.0.5 2.9MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_pinyin_18-0.0.5-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 18 pg_pinyin_18 pg_pinyin_18-0.0.5-1PIGSTY.el10.aarch64.rpm pigsty 0.0.5 2.8MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_pinyin_18-0.0.5-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.5-1PIGSTY~bookworm_amd64.deb pigsty 0.0.5 2.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.5-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.5-1PIGSTY~bookworm_arm64.deb pigsty 0.0.5 2.2MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.5-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.5-1PIGSTY~trixie_amd64.deb pigsty 0.0.5 2.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.5-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.5-1PIGSTY~trixie_arm64.deb pigsty 0.0.5 2.2MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.5-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.5-1PIGSTY~jammy_amd64.deb pigsty 0.0.5 2.7MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.5-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.5-1PIGSTY~jammy_arm64.deb pigsty 0.0.5 2.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.5-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.5-1PIGSTY~noble_amd64.deb pigsty 0.0.5 2.7MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.5-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.5-1PIGSTY~noble_arm64.deb pigsty 0.0.5 2.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.5-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.5-1PIGSTY~resolute_amd64.deb pigsty 0.0.5 2.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.5-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-pinyin postgresql-18-pinyin_0.0.5-1PIGSTY~resolute_arm64.deb pigsty 0.0.5 2.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-18-pinyin_0.0.5-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 17 pg_pinyin_17 pg_pinyin_17-0.0.5-1PIGSTY.el8.x86_64.rpm pigsty 0.0.5 3.0MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_pinyin_17-0.0.5-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 17 pg_pinyin_17 pg_pinyin_17-0.0.5-1PIGSTY.el8.aarch64.rpm pigsty 0.0.5 2.8MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_pinyin_17-0.0.5-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 17 pg_pinyin_17 pg_pinyin_17-0.0.5-1PIGSTY.el9.x86_64.rpm pigsty 0.0.5 2.9MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_pinyin_17-0.0.5-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 17 pg_pinyin_17 pg_pinyin_17-0.0.5-1PIGSTY.el9.aarch64.rpm pigsty 0.0.5 2.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_pinyin_17-0.0.5-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 17 pg_pinyin_17 pg_pinyin_17-0.0.5-1PIGSTY.el10.x86_64.rpm pigsty 0.0.5 2.9MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_pinyin_17-0.0.5-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 17 pg_pinyin_17 pg_pinyin_17-0.0.5-1PIGSTY.el10.aarch64.rpm pigsty 0.0.5 2.8MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_pinyin_17-0.0.5-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.5-1PIGSTY~bookworm_amd64.deb pigsty 0.0.5 2.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.5-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.5-1PIGSTY~bookworm_arm64.deb pigsty 0.0.5 2.2MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.5-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.5-1PIGSTY~trixie_amd64.deb pigsty 0.0.5 2.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.5-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.5-1PIGSTY~trixie_arm64.deb pigsty 0.0.5 2.2MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.5-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.5-1PIGSTY~jammy_amd64.deb pigsty 0.0.5 2.7MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.5-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.5-1PIGSTY~jammy_arm64.deb pigsty 0.0.5 2.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.5-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.5-1PIGSTY~noble_amd64.deb pigsty 0.0.5 2.7MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.5-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.5-1PIGSTY~noble_arm64.deb pigsty 0.0.5 2.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.5-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.5-1PIGSTY~resolute_amd64.deb pigsty 0.0.5 2.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.5-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-pinyin postgresql-17-pinyin_0.0.5-1PIGSTY~resolute_arm64.deb pigsty 0.0.5 2.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-17-pinyin_0.0.5-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 16 pg_pinyin_16 pg_pinyin_16-0.0.5-1PIGSTY.el8.x86_64.rpm pigsty 0.0.5 3.0MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_pinyin_16-0.0.5-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 16 pg_pinyin_16 pg_pinyin_16-0.0.5-1PIGSTY.el8.aarch64.rpm pigsty 0.0.5 2.8MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_pinyin_16-0.0.5-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 16 pg_pinyin_16 pg_pinyin_16-0.0.5-1PIGSTY.el9.x86_64.rpm pigsty 0.0.5 2.9MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_pinyin_16-0.0.5-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 16 pg_pinyin_16 pg_pinyin_16-0.0.5-1PIGSTY.el9.aarch64.rpm pigsty 0.0.5 2.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_pinyin_16-0.0.5-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 16 pg_pinyin_16 pg_pinyin_16-0.0.5-1PIGSTY.el10.x86_64.rpm pigsty 0.0.5 2.9MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_pinyin_16-0.0.5-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 16 pg_pinyin_16 pg_pinyin_16-0.0.5-1PIGSTY.el10.aarch64.rpm pigsty 0.0.5 2.8MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_pinyin_16-0.0.5-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.5-1PIGSTY~bookworm_amd64.deb pigsty 0.0.5 2.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.5-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.5-1PIGSTY~bookworm_arm64.deb pigsty 0.0.5 2.2MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.5-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.5-1PIGSTY~trixie_amd64.deb pigsty 0.0.5 2.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.5-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.5-1PIGSTY~trixie_arm64.deb pigsty 0.0.5 2.2MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.5-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.5-1PIGSTY~jammy_amd64.deb pigsty 0.0.5 2.7MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.5-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.5-1PIGSTY~jammy_arm64.deb pigsty 0.0.5 2.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.5-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.5-1PIGSTY~noble_amd64.deb pigsty 0.0.5 2.7MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.5-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.5-1PIGSTY~noble_arm64.deb pigsty 0.0.5 2.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.5-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.5-1PIGSTY~resolute_amd64.deb pigsty 0.0.5 2.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.5-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 16 postgresql-16-pinyin postgresql-16-pinyin_0.0.5-1PIGSTY~resolute_arm64.deb pigsty 0.0.5 2.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-16-pinyin_0.0.5-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 15 pg_pinyin_15 pg_pinyin_15-0.0.5-1PIGSTY.el8.x86_64.rpm pigsty 0.0.5 3.0MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_pinyin_15-0.0.5-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 15 pg_pinyin_15 pg_pinyin_15-0.0.5-1PIGSTY.el8.aarch64.rpm pigsty 0.0.5 2.8MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_pinyin_15-0.0.5-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 15 pg_pinyin_15 pg_pinyin_15-0.0.5-1PIGSTY.el9.x86_64.rpm pigsty 0.0.5 2.9MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_pinyin_15-0.0.5-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 15 pg_pinyin_15 pg_pinyin_15-0.0.5-1PIGSTY.el9.aarch64.rpm pigsty 0.0.5 2.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_pinyin_15-0.0.5-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 15 pg_pinyin_15 pg_pinyin_15-0.0.5-1PIGSTY.el10.x86_64.rpm pigsty 0.0.5 2.9MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_pinyin_15-0.0.5-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 15 pg_pinyin_15 pg_pinyin_15-0.0.5-1PIGSTY.el10.aarch64.rpm pigsty 0.0.5 2.8MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_pinyin_15-0.0.5-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.5-1PIGSTY~bookworm_amd64.deb pigsty 0.0.5 2.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.5-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.5-1PIGSTY~bookworm_arm64.deb pigsty 0.0.5 2.2MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.5-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.5-1PIGSTY~trixie_amd64.deb pigsty 0.0.5 2.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.5-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.5-1PIGSTY~trixie_arm64.deb pigsty 0.0.5 2.2MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.5-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.5-1PIGSTY~jammy_amd64.deb pigsty 0.0.5 2.7MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.5-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.5-1PIGSTY~jammy_arm64.deb pigsty 0.0.5 2.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.5-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.5-1PIGSTY~noble_amd64.deb pigsty 0.0.5 2.7MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.5-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.5-1PIGSTY~noble_arm64.deb pigsty 0.0.5 2.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.5-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.5-1PIGSTY~resolute_amd64.deb pigsty 0.0.5 2.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.5-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.5-1PIGSTY~resolute_arm64.deb pigsty 0.0.5 2.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.5-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 14 pg_pinyin_14 pg_pinyin_14-0.0.5-1PIGSTY.el8.x86_64.rpm pigsty 0.0.5 3.0MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_pinyin_14-0.0.5-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 14 pg_pinyin_14 pg_pinyin_14-0.0.5-1PIGSTY.el8.aarch64.rpm pigsty 0.0.5 2.8MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_pinyin_14-0.0.5-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 14 pg_pinyin_14 pg_pinyin_14-0.0.5-1PIGSTY.el9.x86_64.rpm pigsty 0.0.5 2.9MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_pinyin_14-0.0.5-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 14 pg_pinyin_14 pg_pinyin_14-0.0.5-1PIGSTY.el9.aarch64.rpm pigsty 0.0.5 2.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_pinyin_14-0.0.5-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 14 pg_pinyin_14 pg_pinyin_14-0.0.5-1PIGSTY.el10.x86_64.rpm pigsty 0.0.5 2.9MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_pinyin_14-0.0.5-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 14 pg_pinyin_14 pg_pinyin_14-0.0.5-1PIGSTY.el10.aarch64.rpm pigsty 0.0.5 2.8MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_pinyin_14-0.0.5-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.5-1PIGSTY~bookworm_amd64.deb pigsty 0.0.5 2.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.5-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.5-1PIGSTY~bookworm_arm64.deb pigsty 0.0.5 2.2MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.5-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.5-1PIGSTY~trixie_amd64.deb pigsty 0.0.5 2.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.5-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.5-1PIGSTY~trixie_arm64.deb pigsty 0.0.5 2.2MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.5-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.5-1PIGSTY~jammy_amd64.deb pigsty 0.0.5 2.7MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.5-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.5-1PIGSTY~jammy_arm64.deb pigsty 0.0.5 2.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.5-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.5-1PIGSTY~noble_amd64.deb pigsty 0.0.5 2.7MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.5-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.5-1PIGSTY~noble_arm64.deb pigsty 0.0.5 2.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.5-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.5-1PIGSTY~resolute_amd64.deb pigsty 0.0.5 2.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.5-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.5-1PIGSTY~resolute_arm64.deb pigsty 0.0.5 2.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.5-1PIGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -212,103 +212,68 @@ apt install -y postgresql-14-pinyin   # PG 14
 CREATE EXTENSION pg_pinyin;
 ```
 
-
-
-
 ## Usage
 
-> Sources: [pg_pinyin upstream README](https://github.com/aiyou178/pg_pinyin), [Chinese README](https://github.com/aiyou178/pg_pinyin/blob/main/README.zh-CN.md).
+Sources:
 
-`pg_pinyin` converts Chinese text to Pinyin, either character by character or by word. It is useful for generated search columns, trigram search, and `pg_search` BM25 queries that need Pinyin input.
+- [pg_pinyin v0.0.5 README](https://github.com/aiyou178/pg_pinyin/blob/v0.0.5/readme.md)
+- [pg_pinyin v0.0.5 control file](https://github.com/aiyou178/pg_pinyin/blob/v0.0.5/pg_pinyin.control)
+- [0.0.4 to 0.0.5 upgrade SQL](https://github.com/aiyou178/pg_pinyin/blob/v0.0.5/pg_pinyin--0.0.4--0.0.5.sql)
 
-```sql
-CREATE EXTENSION pg_pinyin;
-```
+pg_pinyin romanizes Chinese text and exposes tokenizer and query helpers for search applications. Use pg_pinyin to create stable Pinyin search keys, tokenize Han text, or expand Pinyin input into a pg_search regular-expression query.
 
-### Functions
+Version 0.0.5 is primarily a packaging and toolchain update; its upgrade script makes no SQL catalog changes, so the user-facing API remains compatible with 0.0.4.
 
-| Function | Description |
-|----------|-------------|
-| `pinyin_char_romanize(text)` | Character-level Pinyin romanization |
-| `pinyin_char_romanize(text, suffix text)` | Character-level romanization with a custom dictionary suffix |
-| `pinyin_word_romanize(text)` | Word-level Pinyin romanization |
-| `pinyin_word_romanize(text, suffix text)` | Word-level romanization with a custom dictionary suffix |
-| `pinyin_word_romanize(tokenizer_input anyelement)` | Word-level romanization from a `pg_search` tokenizer input such as `name::pdb.icu::text[]` |
-| `pinyin_word_romanize(tokenizer_input anyelement, suffix text)` | Tokenizer-input romanization with a custom dictionary suffix |
-| `pinyin_regex_phrase(text, slope integer DEFAULT NULL, max_expansions integer DEFAULT NULL, generated_pinyin boolean DEFAULT false)` | `pg_search` query helper returning `pdb.query`, available when `pg_search` was enabled before `CREATE EXTENSION pg_pinyin` |
-| `pinyin_regex_phrase_patterns(text, generated_pinyin boolean DEFAULT false)` | Internal helper returning regex phrase tokens as `text[]` |
+### Create the Extension
 
-### Generated Column + Trigram Search
+    CREATE EXTENSION pg_pinyin;
 
-```sql
-CREATE EXTENSION IF NOT EXISTS pg_pinyin;
-CREATE EXTENSION IF NOT EXISTS pg_trgm;
+The extension is relocatable and does not require shared_preload_libraries or a server restart.
 
-CREATE TABLE voice (
-  id bigserial PRIMARY KEY,
-  description text NOT NULL,
-  pinyin text GENERATED ALWAYS AS (public.pinyin_char_romanize(description)) STORED
-);
+### Romanize Text
 
-CREATE INDEX voice_pinyin_trgm_idx ON voice USING gin (pinyin gin_trgm_ops);
+Romanize character by character or use word-aware segmentation:
 
-INSERT INTO voice (description) VALUES ('郑爽ABC');
-SELECT id, description, pinyin FROM voice;
-```
+    SELECT pinyin_char_romanize('重庆');
+    SELECT pinyin_word_romanize('重庆火锅');
+    SELECT pinyin_word_romanize('重庆火锅', ' ');
 
-### Word Tokenization + pg_search
+Both functions accept an optional suffix inserted after each emitted Pinyin unit. Character mode is deterministic per character; word mode uses the bundled word dictionary to resolve contextual pronunciations.
 
-For word-oriented search, use `pinyin_word_romanize`. When `pg_search` is available, it can consume tokenizer input such as `pdb.icu::text[]`.
+### Use pg_search Tokenizer Input
 
-```sql
-CREATE EXTENSION IF NOT EXISTS pg_search;
-CREATE EXTENSION IF NOT EXISTS pg_pinyin;
+Word romanization also accepts a pg_search tokenizer result when that extension is available:
 
-CREATE TABLE voice (
-  id bigserial PRIMARY KEY,
-  description text NOT NULL,
-  pinyin text GENERATED ALWAYS AS (public.pinyin_word_romanize(description)) STORED
-);
+    SELECT pinyin_word_romanize(
+      description::pdb.icu::text[]
+    )
+    FROM documents;
 
-CREATE INDEX voice_pinyin_bm25_idx
-ON voice
-USING bm25 (id, pinyin)
-WITH (key_field='id');
+The overload returns romanized text; it does not expose a row-per-token API. Use the plain-text overload when pg_search tokenization is not required.
 
-SELECT *
-FROM voice
-WHERE pinyin @@@ public.pinyin_regex_phrase('zhengshuang');
+### Build a pg_search Query
 
-SELECT public.pinyin_word_romanize('郑爽ABC'::pdb.icu::text[]);
-```
+When pg_search was installed before pg_pinyin, pg_pinyin provides a typed overload that returns pdb.query:
 
-`pinyin_regex_phrase` has return type `pdb.query`, so `pg_search` must be enabled in the database before `pg_pinyin` is created. If `pg_pinyin` is created first, upstream documents that the romanization functions are installed, but `pinyin_regex_phrase` is installed as an error stub with a clear exception.
+    SELECT *
+    FROM documents
+    WHERE id @@@ pinyin_regex_phrase(
+      'chong qing',
+      slope => 1,
+      max_expansions => 64,
+      generated_pinyin => true
+    );
 
-### Dictionary Tables
+If pg_search is absent, the same entry point is installed as an error-reporting stub rather than silently returning a different type. Install dependencies in the intended order and test the function signature after upgrades.
 
-The extension seeds bundled dictionary tables under schema `pinyin` during `CREATE EXTENSION pg_pinyin`; no separate data-load step is needed for normal extension usage. The bundled data covers character mappings, word tokens, and word mappings.
+### Object Index
 
-Provide custom dictionary tables in schema `pinyin` with a suffix. Calls using that suffix merge the base dictionary with the suffix tables, and suffix entries take priority.
+- pinyin_char_romanize(text [, suffix]) returns character-based Pinyin text.
+- pinyin_word_romanize(text [, suffix]) returns dictionary-segmented Pinyin text.
+- pinyin_word_romanize(tokenizer_input [, suffix]) accepts a pg_search tokenizer result.
+- pinyin_regex_phrase(text, slope, max_expansions, generated_pinyin) constructs a pg_search Pinyin phrase query when that integration is available.
+- pinyin_regex_phrase_patterns is an internal pattern-building helper; prefer the public query function.
 
-```sql
-CREATE TABLE IF NOT EXISTS pinyin.pinyin_mapping_suffix1 (
-  character text PRIMARY KEY,
-  pinyin text NOT NULL
-);
+### Operational Notes
 
-CREATE TABLE IF NOT EXISTS pinyin.pinyin_words_suffix1 (
-  word text PRIMARY KEY,
-  pinyin text NOT NULL
-);
-
-INSERT INTO pinyin.pinyin_mapping_suffix1 (character, pinyin)
-VALUES ('郑', '|zhengx|')
-ON CONFLICT (character) DO UPDATE SET pinyin = EXCLUDED.pinyin;
-
-INSERT INTO pinyin.pinyin_words_suffix1 (word, pinyin)
-VALUES ('郑爽', '|zhengx| |shuangx|')
-ON CONFLICT (word) DO UPDATE SET pinyin = EXCLUDED.pinyin;
-
-SELECT public.pinyin_char_romanize('郑爽ABC', '_suffix1');
-SELECT public.pinyin_word_romanize('郑爽ABC'::pdb.icu::text[], '_suffix1');
-```
+The extension ships generated character and word dictionaries in its pinyin schema. Treat those tables as extension-managed data rather than application tables. Romanization is normalization, not translation, and ambiguous or domain-specific readings may require application-side review.

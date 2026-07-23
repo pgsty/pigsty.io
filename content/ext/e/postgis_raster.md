@@ -36,7 +36,7 @@ weight: 1502
 
 | **Related** | [`postgis`](/ext/e/postgis) [`pointcloud_postgis`](/ext/e/pointcloud_postgis) [`pointcloud`](/ext/e/pointcloud) [`pgrouting`](/ext/e/pgrouting) [`h3`](/ext/e/h3) [`q3c`](/ext/e/q3c) [`ogr_fdw`](/ext/e/ogr_fdw) [`geoip`](/ext/e/geoip) [`pg_polyline`](/ext/e/pg_polyline) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Depended By** | [`h3_postgis`](/ext/e/h3_postgis) |
+| **Depended By** | [`h3_postgis`](/ext/e/h3_postgis) [`pgh_hgm`](/ext/e/pgh_hgm) [`pgh_raster`](/ext/e/pgh_raster) |
 {.ext-table .ext-table--rel}
 
 

@@ -8,17 +8,17 @@ icon: fas fa-clock
 
 ## Extension List
 
-There are **14** extensions in **14** packages.
+There are **15** extensions in **15** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
-| [`timescaledb`](/ext/e/timescaledb) | [`timescaledb`](https://github.com/timescale/timescaledb) | `2.28.2` | <a class="ext-badge ext-badge--license timescale" href="/ext/license#timescale">Timescale</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Enables scalable inserts and complex queries for time-series data |
+| [`timescaledb`](/ext/e/timescaledb) | [`timescaledb`](https://github.com/timescale/timescaledb) | `2.28.3` | <a class="ext-badge ext-badge--license timescale" href="/ext/license#timescale">Timescale</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Enables scalable inserts and complex queries for time-series data |
 | [`timescaledb_toolkit`](/ext/e/timescaledb_toolkit) | [`timescaledb_toolkit`](https://github.com/timescale/timescaledb-toolkit) | `1.23.0` | <a class="ext-badge ext-badge--license timescale" href="/ext/license#timescale">Timescale</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Library of analytical hyperfunctions, time-series pipelining, and other SQL utilities |
 | [`timeseries`](/ext/e/timeseries) | [`pg_timeseries`](https://github.com/ChuckHend/pg_timeseries) | `0.2.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Convenience API for time series stack |
 | [`periods`](/ext/e/periods) | [`periods`](https://github.com/xocolatl/periods) | `1.2.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Provide Standard SQL functionality for PERIODs and SYSTEM VERSIONING |
-| [`temporal_tables`](/ext/e/temporal_tables) | [`temporal_tables`](https://pgxn.org/dist/temporal_tables/) | `1.2.2` | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | temporal tables |
+| [`temporal_tables`](/ext/e/temporal_tables) | [`temporal_tables`](https://pgxn.org/dist/temporal_tables/) | `1.2.2` | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | temporal tables |
 | [`emaj`](/ext/e/emaj) | [`emaj`](https://github.com/dalibo/emaj) | `4.7.1` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Enables fine-grained write logging and time travel on subsets of the database. |
-| [`table_version`](/ext/e/table_version) | [`table_version`](https://github.com/linz/postgresql-tableversion) | `1.11.1` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | PostgreSQL table versioning extension |
+| [`table_version`](/ext/e/table_version) | [`table_version`](https://github.com/linz/postgresql-tableversion) | `1.11.1` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | PostgreSQL table versioning extension |
 | [`pg_cron`](/ext/e/pg_cron) | [`pg_cron`](https://github.com/citusdata/pg_cron) | `1.6.7` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Job scheduler for PostgreSQL |
 | [`pg_task`](/ext/e/pg_task) | [`pg_task`](https://github.com/RekGRpth/pg_task) | `2.1.29` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | execute any sql command at any specific time at background |
 | [`pg_later`](/ext/e/pg_later) | [`pg_later`](https://github.com/ChuckHend/pg_later) | `0.4.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Run queries now and get results later |
@@ -26,6 +26,7 @@ There are **14** extensions in **14** packages.
 | [`pg_background`](/ext/e/pg_background) | [`pg_background`](https://github.com/vibhorkum/pg_background) | `2.0.2` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Run SQL queries in the background |
 | [`pg_when`](/ext/e/pg_when) | [`pg_when`](https://github.com/frectonz/pg-when) | `0.1.9` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Natural language time parsing for PostgreSQL |
 | [`pg_stl`](/ext/e/pg_stl) | [`pg_stl`](https://github.com/nadyaloseva/pg_ts_analysis) | `1.0.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Time series analysis functions for PostgreSQL |
+| [`cron_utils`](/ext/e/cron_utils) | [`cron_utils`](https://github.com/Myshkouski/pg-cron-utils) | `0.1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Parse cron expressions and compute previous or next trigger times |
 {.ext-table}
 
 
@@ -33,18 +34,18 @@ There are **14** extensions in **14** packages.
 
 ## timescaledb {#timescaledb}
 
-[**`timescaledb`**](/ext/e/timescaledb) - `2.28.2` : Enables scalable inserts and complex queries for time-series data
+[**`timescaledb`**](/ext/e/timescaledb) - `2.28.3` : Enables scalable inserts and complex queries for time-series data
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`timescaledb`](/ext/e/timescaledb) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15" >}} |
-| **Package** | [`timescaledb`](https://github.com/timescale/timescaledb) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15" >}} |
-| **RPM** | `timescaledb-tsl_$v` | **el10** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Extension** | [`timescaledb`](/ext/e/timescaledb) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`timescaledb`](https://github.com/timescale/timescaledb) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `timescaledb-tsl_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **DEB** | `postgresql-$v-timescaledb-tsl` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license timescale" href="/ext/license#timescale">Timescale</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
 
@@ -119,7 +120,7 @@ There are **14** extensions in **14** packages.
 | **DEB** | `postgresql-$v-temporal-tables` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
@@ -157,7 +158,7 @@ There are **14** extensions in **14** packages.
 | **DEB** | `postgresql-$v-table-version` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
@@ -292,5 +293,24 @@ There are **14** extensions in **14** packages.
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
 | **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
 | | | **u26** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
+## cron_utils {#cron_utils}
+
+[**`cron_utils`**](/ext/e/cron_utils) - `0.1.0` : Parse cron expressions and compute previous or next trigger times
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`cron_utils`](/ext/e/cron_utils) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`cron_utils`](https://github.com/Myshkouski/pg-cron-utils) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `cron_utils_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-cron-utils` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 

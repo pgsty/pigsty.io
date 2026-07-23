@@ -20,7 +20,7 @@ enabling zero-friction workflow from **"prompting code"** to **"production deplo
 |         Feature          | Description                                                                                                                                                            |
 |:------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |       🤖 AI Coding       | Pre-installed **Claude Code**, **Codex CLI**, OpenCode, VS Code, Jupyter full stack, Python/Go/Node.js dev env ready                                                   |
-|     🐘 Data Capable      | PostgreSQL 18 + [**531**](/ext/list) extensions, vector/timeseries/geo/graph/analytics, add Supabase for complex apps                                                  |
+|     🐘 Data Capable      | PostgreSQL 18 + [**555**](/ext/list) extensions, vector/timeseries/geo/graph/analytics, add Supabase for complex apps                                                  |
 |    💾 Shared Storage     | [**JuiceFS**](/docs/juice/) stores working directory in database, multi-agent/multi-user collaboration, files never lost, rollback to any point                        |
 |     ⏱️ Time Machine      | Database **PITR** + filesystem snapshot sync, messed up? One-click restore to any point in time, keep db and filesystem consistent!                                    |
 |     🔀 Instant Clone     | **CoW** sub-second [**Fork Large Database**](/docs/pgsql/admin/db#clone-database), fork existing instances/clusters, no extra storage, rebuild anytime, tinker freely! |

@@ -5,11 +5,11 @@ description: "PostgreSQL extensions with dependency relationships"
 weight: 30
 ---
 
-**112** extensions depend on other extensions, **60** extensions are depended upon by others.
+**122** extensions depend on other extensions, **72** extensions are depended upon by others.
 
 ## Upstream Dependencies
 
-The following **112** extensions require other extensions to be installed first:
+The following **122** extensions require other extensions to be installed first:
 
 | **Extension** | **Requires** | **Description** |
 |:-----------|:-------------|:---------|
@@ -46,6 +46,12 @@ The following **112** extensions require other extensions to be installed first:
 | [`biscuit`](/ext/e/biscuit) | [`plpgsql`](/ext/e/plpgsql) | IAM-LIKE pattern matching with bitmap indexing |
 | [`pg_mooncake`](/ext/e/pg_mooncake) | [`pg_duckdb`](/ext/e/pg_duckdb) | Columnstore Table in Postgres |
 | [`pg_partman`](/ext/e/pg_partman) | [`plpgsql`](/ext/e/plpgsql) | Extension to manage partitioned tables by time or ID |
+| [`pg_lake`](/ext/e/pg_lake) | [`pg_lake_copy`](/ext/e/pg_lake_copy) [`pg_lake_table`](/ext/e/pg_lake_table) | Data lake extension by Snowflake |
+| [`pg_extension_updater`](/ext/e/pg_extension_updater) | [`pg_extension_base`](/ext/e/pg_extension_base) | Automatic extension updater |
+| [`pg_lake_engine`](/ext/e/pg_lake_engine) | [`pg_extension_base`](/ext/e/pg_extension_base) [`pg_map`](/ext/e/pg_map) | Query engine for data lake queries |
+| [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) | [`pg_lake_engine`](/ext/e/pg_lake_engine) [`plpgsql`](/ext/e/plpgsql) | Iceberg implementation in Postgres |
+| [`pg_lake_table`](/ext/e/pg_lake_table) | [`btree_gist`](/ext/e/btree_gist) [`pg_lake_engine`](/ext/e/pg_lake_engine) [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) | Data lake tables and Iceberg tables |
+| [`pg_lake_copy`](/ext/e/pg_lake_copy) | [`pg_lake_engine`](/ext/e/pg_lake_engine) [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) [`pg_lake_table`](/ext/e/pg_lake_table) | Copy to/from data lake files |
 | [`pgmb`](/ext/e/pgmb) | [`pg_cron`](/ext/e/pg_cron) [`http`](/ext/e/http) | A simple PostgreSQL Message Broker system |
 | [`fsm_core`](/ext/e/fsm_core) | [`ltree`](/ext/e/ltree) [`pgmq`](/ext/e/pgmq) [`pg_jsonschema`](/ext/e/pg_jsonschema) | Finite state machine toolkit for PostgreSQL |
 | [`index_advisor`](/ext/e/index_advisor) | [`hypopg`](/ext/e/hypopg) | Query index advisor |
@@ -69,12 +75,12 @@ The following **112** extensions require other extensions to be installed first:
 | [`hstore_pllua`](/ext/e/hstore_pllua) | [`hstore`](/ext/e/hstore) [`pllua`](/ext/e/pllua) | Hstore transform for Lua |
 | [`hstore_plluau`](/ext/e/hstore_plluau) | [`hstore`](/ext/e/hstore) [`plluau`](/ext/e/plluau) | Hstore transform for untrusted Lua |
 | [`plpgsql_check`](/ext/e/plpgsql_check) | [`plpgsql`](/ext/e/plpgsql) | extended check for plpgsql functions |
+| [`pgsqlmock`](/ext/e/pgsqlmock) | [`plpgsql`](/ext/e/plpgsql) [`pgtap`](/ext/e/pgtap) | Mocking and faking helpers for PostgreSQL unit tests |
 | [`pgtap`](/ext/e/pgtap) | [`plpgsql`](/ext/e/plpgsql) | Unit testing for PostgreSQL |
-| [`plperl`](/ext/e/plperl) | [`plperl`](/ext/e/plperl) | PL/Perl procedural language |
+| [`faker`](/ext/e/faker) | [`plpython3u`](/ext/e/plpython3u) | Wrapper for the Faker Python library |
 | [`bool_plperl`](/ext/e/bool_plperl) | [`plperl`](/ext/e/plperl) | transform between bool and plperl |
 | [`hstore_plperl`](/ext/e/hstore_plperl) | [`hstore`](/ext/e/hstore) [`plperl`](/ext/e/plperl) | transform between hstore and plperl |
 | [`jsonb_plperl`](/ext/e/jsonb_plperl) | [`plperl`](/ext/e/plperl) | transform between jsonb and plperl |
-| [`plperlu`](/ext/e/plperlu) | [`plperlu`](/ext/e/plperlu) | PL/PerlU untrusted procedural language |
 | [`bool_plperlu`](/ext/e/bool_plperlu) | [`plperlu`](/ext/e/plperlu) | transform between bool and plperlu |
 | [`jsonb_plperlu`](/ext/e/jsonb_plperlu) | [`plperlu`](/ext/e/plperlu) | transform between jsonb and plperlu |
 | [`hstore_plperlu`](/ext/e/hstore_plperlu) | [`hstore`](/ext/e/hstore) [`plperlu`](/ext/e/plperlu) | transform between hstore and plperlu |
@@ -95,6 +101,7 @@ The following **112** extensions require other extensions to be installed first:
 | [`data_historization`](/ext/e/data_historization) | [`plpgsql`](/ext/e/plpgsql) | PLPGSQL Script to historize data in partitionned table |
 | [`schedoc`](/ext/e/schedoc) | [`ddl_historization`](/ext/e/ddl_historization) | Cross documentation between Django and DBT projects |
 | [`sparql`](/ext/e/sparql) | [`plperl`](/ext/e/plperl) [`plperlu`](/ext/e/plperlu) | Query SPARQL datasource with SQL |
+| [`fbsql`](/ext/e/fbsql) | [`plr`](/ext/e/plr) | Closure-preserving formula-based statistical modeling in SQL |
 | [`pg_accumulator`](/ext/e/pg_accumulator) | [`plpgsql`](/ext/e/plpgsql) | Accumulation registers for balance and turnover tracking in PostgreSQL |
 | [`pgautofailover`](/ext/e/pgautofailover) | [`btree_gist`](/ext/e/btree_gist) | pg_auto_failover |
 | [`pg_upless`](/ext/e/pg_upless) | [`plpgsql`](/ext/e/plpgsql) | Detect Useless UPDATE |
@@ -102,6 +109,8 @@ The following **112** extensions require other extensions to be installed first:
 | [`pg_drop_events`](/ext/e/pg_drop_events) | [`plpgsql`](/ext/e/plpgsql) | logs transaction ids of drop table, drop column, drop materialized view statements |
 | [`pgelog`](/ext/e/pgelog) | [`dblink`](/ext/e/dblink) [`pg_variables`](/ext/e/pg_variables) | Extended logging via pseudo-autonomous transactions |
 | [`pg_profile`](/ext/e/pg_profile) | [`dblink`](/ext/e/dblink) [`plpgsql`](/ext/e/plpgsql) | PostgreSQL load profile repository and report builder |
+| [`pgfr_record`](/ext/e/pgfr_record) | [`pg_cron`](/ext/e/pg_cron) | Server-side PostgreSQL performance flight recorder |
+| [`pgfr_analyze`](/ext/e/pgfr_analyze) | [`pgfr_record`](/ext/e/pgfr_record) | Reporting and analysis functions for pgfr_record |
 | [`pg_stat_kcache`](/ext/e/pg_stat_kcache) | [`pg_stat_statements`](/ext/e/pg_stat_statements) | Kernel statistics gathering |
 | [`pg_sqlog`](/ext/e/pg_sqlog) | [`file_fdw`](/ext/e/file_fdw) | Provide SQL interface to logs |
 | [`powa`](/ext/e/powa) | [`plpgsql`](/ext/e/plpgsql) [`pg_stat_statements`](/ext/e/pg_stat_statements) [`btree_gist`](/ext/e/btree_gist) | PostgreSQL Workload Analyser-core |
@@ -118,6 +127,7 @@ The following **112** extensions require other extensions to be installed first:
 | [`ora_btree_gist`](/ext/e/ora_btree_gist) | [`ivorysql_ora`](/ext/e/ivorysql_ora) | Support for oracle indexing common datatypes in GiST |
 | [`db2fce`](/ext/e/db2fce) | [`plpgsql`](/ext/e/plpgsql) | DB2 compatibility functions, types, operators, and SYSIBM.SYSDUMMY1 for PostgreSQL. |
 | [`plpgsql_wrap`](/ext/e/plpgsql_wrap) | [`plpgsql`](/ext/e/plpgsql) | Oracle WRAP-equivalent PL/pgSQL language handler storing AES-256-GCM encrypted procedure source. |
+| [`pg_dbms_lock`](/ext/e/pg_dbms_lock) | [`pg_background`](/ext/e/pg_background) | Extension to add Oracle DBMS_LOCK full compatibility to PostgreSQL |
 | [`pg_dbms_errlog`](/ext/e/pg_dbms_errlog) | [`pg_statement_rollback`](/ext/e/pg_statement_rollback) | Emulate DBMS_ERRLOG Oracle module to log DML errors in a dedicated table. |
 | [`pg_utl_smtp`](/ext/e/pg_utl_smtp) | [`plperlu`](/ext/e/plperlu) | Oracle UTL_SMTP compatibility extension for PostgreSQL |
 | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | [`babelfishpg_common`](/ext/e/babelfishpg_common) [`uuid-ossp`](/ext/e/uuid-ossp) | SQL Server Transact SQL compatibility |
@@ -129,25 +139,34 @@ The following **112** extensions require other extensions to be installed first:
 
 ## Downstream Dependencies
 
-The following **60** extensions are depended upon by other extensions:
+The following **72** extensions are depended upon by other extensions:
 
 | **Extension** | **Required By** | **Description** |
 |:-----------|:-------------|:---------|
-| [`pg_cron`](/ext/e/pg_cron) | [`documentdb`](/ext/e/documentdb) [`pg_incremental`](/ext/e/pg_incremental) [`timeseries`](/ext/e/timeseries) [`vectorize`](/ext/e/vectorize) [`pgmb`](/ext/e/pgmb) | Job scheduler for PostgreSQL |
-| [`postgis`](/ext/e/postgis) | [`documentdb`](/ext/e/documentdb) [`h3_postgis`](/ext/e/h3_postgis) [`mobilitydb`](/ext/e/mobilitydb) [`pgrouting`](/ext/e/pgrouting) [`pointcloud_postgis`](/ext/e/pointcloud_postgis) [`postgis_raster`](/ext/e/postgis_raster) [`postgis_sfcgal`](/ext/e/postgis_sfcgal) [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) [`postgis_topology`](/ext/e/postgis_topology) [`pg_eviltransform`](/ext/e/pg_eviltransform) | PostGIS geometry and geography spatial types and functions |
-| [`postgis_raster`](/ext/e/postgis_raster) | [`h3_postgis`](/ext/e/h3_postgis) | PostGIS raster types and functions |
+| [`pg_cron`](/ext/e/pg_cron) | [`documentdb`](/ext/e/documentdb) [`pg_dispatch`](/ext/e/pg_dispatch) [`pglock`](/ext/e/pglock) [`pgmb`](/ext/e/pgmb) [`timeseries`](/ext/e/timeseries) [`vectorize`](/ext/e/vectorize) | Job scheduler for PostgreSQL |
+| [`postgis`](/ext/e/postgis) | [`documentdb`](/ext/e/documentdb) [`h3_postgis`](/ext/e/h3_postgis) [`mobilitydb`](/ext/e/mobilitydb) [`pg_eviltransform`](/ext/e/pg_eviltransform) [`pgh_consistency`](/ext/e/pgh_consistency) [`pgh_hgm`](/ext/e/pgh_hgm) [`pgh_output`](/ext/e/pgh_output) [`pgh_output_en_au`](/ext/e/pgh_output_en_au) [`pgh_output_pt_br`](/ext/e/pgh_output_pt_br) [`pgh_raster`](/ext/e/pgh_raster) [`pghydro`](/ext/e/pghydro) [`pgrouting`](/ext/e/pgrouting) [`pointcloud_postgis`](/ext/e/pointcloud_postgis) [`postgis_raster`](/ext/e/postgis_raster) [`postgis_sfcgal`](/ext/e/postgis_sfcgal) [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) [`postgis_topology`](/ext/e/postgis_topology) | PostGIS geometry and geography spatial types and functions |
+| [`postgis_raster`](/ext/e/postgis_raster) | [`h3_postgis`](/ext/e/h3_postgis) [`pgh_hgm`](/ext/e/pgh_hgm) [`pgh_raster`](/ext/e/pgh_raster) | PostGIS raster types and functions |
 | [`pointcloud`](/ext/e/pointcloud) | [`pointcloud_postgis`](/ext/e/pointcloud_postgis) | data type for lidar point clouds |
 | [`h3`](/ext/e/h3) | [`h3_postgis`](/ext/e/h3_postgis) | H3 bindings for PostgreSQL |
+| [`pghydro`](/ext/e/pghydro) | [`pgh_consistency`](/ext/e/pgh_consistency) [`pgh_hgm`](/ext/e/pgh_hgm) [`pgh_output`](/ext/e/pgh_output) [`pgh_output_en_au`](/ext/e/pgh_output_en_au) [`pgh_output_pt_br`](/ext/e/pgh_output_pt_br) [`pgh_raster`](/ext/e/pgh_raster) | Drainage network analysis core for PostgreSQL and PostGIS |
+| [`pgh_raster`](/ext/e/pgh_raster) | [`pgh_hgm`](/ext/e/pgh_hgm) | Raster hydrology extension for PgHydro |
 | [`mobilitydb`](/ext/e/mobilitydb) | [`mobilitydb_datagen`](/ext/e/mobilitydb_datagen) | MobilityDB geospatial trajectory data management & analysis platform |
 | [`vector`](/ext/e/vector) | [`documentdb`](/ext/e/documentdb) [`pgmnemo`](/ext/e/pgmnemo) [`vchord`](/ext/e/vchord) [`vectorize`](/ext/e/vectorize) [`vectorscale`](/ext/e/vectorscale) | vector data type and ivfflat and hnsw access methods |
 | [`fuzzystrmatch`](/ext/e/fuzzystrmatch) | [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) | determine similarities and distance between strings |
 | [`citus`](/ext/e/citus) | [`documentdb_distributed`](/ext/e/documentdb_distributed) | Distributed PostgreSQL as an extension |
 | [`pg_duckdb`](/ext/e/pg_duckdb) | [`pg_mooncake`](/ext/e/pg_mooncake) | DuckDB Embedded in Postgres |
 | [`pg_partman`](/ext/e/pg_partman) | [`timeseries`](/ext/e/timeseries) | Extension to manage partitioned tables by time or ID |
+| [`pg_extension_base`](/ext/e/pg_extension_base) | [`pg_extension_updater`](/ext/e/pg_extension_updater) [`pg_lake_engine`](/ext/e/pg_lake_engine) | Extension development kit by Snowflake |
+| [`pg_map`](/ext/e/pg_map) | [`pg_lake_engine`](/ext/e/pg_lake_engine) | Map type for PostgreSQL, bundled as a required pg_lake component. |
+| [`pg_lake_engine`](/ext/e/pg_lake_engine) | [`pg_lake_copy`](/ext/e/pg_lake_copy) [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) [`pg_lake_table`](/ext/e/pg_lake_table) | Query engine for data lake queries |
+| [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) | [`pg_lake_copy`](/ext/e/pg_lake_copy) [`pg_lake_table`](/ext/e/pg_lake_table) | Iceberg implementation in Postgres |
+| [`pg_lake_table`](/ext/e/pg_lake_table) | [`pg_lake`](/ext/e/pg_lake) [`pg_lake_copy`](/ext/e/pg_lake_copy) | Data lake tables and Iceberg tables |
+| [`pg_lake_copy`](/ext/e/pg_lake_copy) | [`pg_lake`](/ext/e/pg_lake) | Copy to/from data lake files |
 | [`tablefunc`](/ext/e/tablefunc) | [`pg4ml`](/ext/e/pg4ml) | functions that manipulate whole tables, including crosstab |
 | [`pgmq`](/ext/e/pgmq) | [`fsm_core`](/ext/e/fsm_core) [`pg_later`](/ext/e/pg_later) [`vectorize`](/ext/e/vectorize) | A lightweight message queue. Like AWS SQS and RSMQ but on Postgres. |
-| [`rum`](/ext/e/rum) | [`documentdb`](/ext/e/documentdb) | RUM index access method |
 | [`pg_jsonschema`](/ext/e/pg_jsonschema) | [`fsm_core`](/ext/e/fsm_core) | PostgreSQL extension providing JSON Schema validation |
+| [`hypopg`](/ext/e/hypopg) | [`index_advisor`](/ext/e/index_advisor) | Hypothetical indexes for PostgreSQL |
+| [`pg_variables`](/ext/e/pg_variables) | [`pgelog`](/ext/e/pgelog) | Session-scoped variables with scalar, array, and record types |
 | [`omni_cloudevents`](/ext/e/omni_cloudevents) | [`omni_email`](/ext/e/omni_email) [`omni_schema`](/ext/e/omni_schema) [`omni_test`](/ext/e/omni_test) | CloudEvents support |
 | [`omni_http`](/ext/e/omni_http) | [`omni_httpc`](/ext/e/omni_httpc) [`omni_httpd`](/ext/e/omni_httpd) | Basic HTTP types |
 | [`omni_httpc`](/ext/e/omni_httpc) | [`omni_aws`](/ext/e/omni_aws) [`omni_containers`](/ext/e/omni_containers) [`omni_kube`](/ext/e/omni_kube) | HTTP client |
@@ -165,30 +184,33 @@ The following **60** extensions are depended upon by other extensions:
 | [`omni_yaml`](/ext/e/omni_yaml) | [`omni_kube`](/ext/e/omni_kube) [`omni_schema`](/ext/e/omni_schema) | YAML toolkit |
 | [`pllua`](/ext/e/pllua) | [`hstore_pllua`](/ext/e/hstore_pllua) | Lua as a procedural language |
 | [`plluau`](/ext/e/plluau) | [`hstore_plluau`](/ext/e/hstore_plluau) | Lua as an untrusted procedural language |
-| [`plperl`](/ext/e/plperl) | [`bool_plperl`](/ext/e/bool_plperl) [`hstore_plperl`](/ext/e/hstore_plperl) [`jsonb_plperl`](/ext/e/jsonb_plperl) [`plperl`](/ext/e/plperl) [`sparql`](/ext/e/sparql) | PL/Perl procedural language |
-| [`plperlu`](/ext/e/plperlu) | [`bool_plperlu`](/ext/e/bool_plperlu) [`hstore_plperlu`](/ext/e/hstore_plperlu) [`jsonb_plperlu`](/ext/e/jsonb_plperlu) [`plperlu`](/ext/e/plperlu) [`pg_utl_smtp`](/ext/e/pg_utl_smtp) [`sparql`](/ext/e/sparql) | PL/PerlU untrusted procedural language |
-| [`plpgsql`](/ext/e/plpgsql) | [`data_historization`](/ext/e/data_historization) [`ddl_historization`](/ext/e/ddl_historization) [`pg4ml`](/ext/e/pg4ml) [`pg_drop_events`](/ext/e/pg_drop_events) [`pg_profile`](/ext/e/pg_profile) [`pg_upless`](/ext/e/pg_upless) [`plpgsql_check`](/ext/e/plpgsql_check) [`powa`](/ext/e/powa) [`table_version`](/ext/e/table_version) [`unit`](/ext/e/unit) [`biscuit`](/ext/e/biscuit) [`db2fce`](/ext/e/db2fce) | PL/pgSQL procedural language |
+| [`plperl`](/ext/e/plperl) | [`bool_plperl`](/ext/e/bool_plperl) [`hstore_plperl`](/ext/e/hstore_plperl) [`jsonb_plperl`](/ext/e/jsonb_plperl) [`sparql`](/ext/e/sparql) | PL/Perl procedural language |
+| [`plperlu`](/ext/e/plperlu) | [`bool_plperlu`](/ext/e/bool_plperlu) [`hstore_plperlu`](/ext/e/hstore_plperlu) [`jsonb_plperlu`](/ext/e/jsonb_plperlu) [`pg_utl_smtp`](/ext/e/pg_utl_smtp) [`sparql`](/ext/e/sparql) | PL/PerlU untrusted procedural language |
+| [`plpgsql`](/ext/e/plpgsql) | [`biscuit`](/ext/e/biscuit) [`currency`](/ext/e/currency) [`data_historization`](/ext/e/data_historization) [`db2fce`](/ext/e/db2fce) [`ddl_historization`](/ext/e/ddl_historization) [`pg4ml`](/ext/e/pg4ml) [`pg_accumulator`](/ext/e/pg_accumulator) [`pg_drop_events`](/ext/e/pg_drop_events) [`pg_fsql`](/ext/e/pg_fsql) [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) [`pg_partman`](/ext/e/pg_partman) [`pg_profile`](/ext/e/pg_profile) [`pg_upless`](/ext/e/pg_upless) [`pgh_consistency`](/ext/e/pgh_consistency) [`pgh_hgm`](/ext/e/pgh_hgm) [`pgh_output`](/ext/e/pgh_output) [`pgh_output_en_au`](/ext/e/pgh_output_en_au) [`pgh_output_pt_br`](/ext/e/pgh_output_pt_br) [`pgh_raster`](/ext/e/pgh_raster) [`pghydro`](/ext/e/pghydro) [`pgrouting`](/ext/e/pgrouting) [`pgtap`](/ext/e/pgtap) [`plpgsql_check`](/ext/e/plpgsql_check) [`plpgsql_wrap`](/ext/e/plpgsql_wrap) [`powa`](/ext/e/powa) [`table_version`](/ext/e/table_version) [`unit`](/ext/e/unit) | PL/pgSQL procedural language |
 | [`plpython3u`](/ext/e/plpython3u) | [`hstore_plpython3u`](/ext/e/hstore_plpython3u) [`jsonb_plpython3u`](/ext/e/jsonb_plpython3u) [`ltree_plpython3u`](/ext/e/ltree_plpython3u) [`omni_python`](/ext/e/omni_python) [`pg4ml`](/ext/e/pg4ml) | PL/Python3U untrusted procedural language |
 | [`roaringbitmap`](/ext/e/roaringbitmap) | [`pgfaceting`](/ext/e/pgfaceting) | support for Roaring Bitmaps |
 | [`pg_xenophile`](/ext/e/pg_xenophile) | [`l10n_table_dependent_extension`](/ext/e/l10n_table_dependent_extension) | More than the bare necessities for PostgreSQL i18n and l10n. |
 | [`ip4r`](/ext/e/ip4r) | [`geoip`](/ext/e/geoip) | IPv4/v6 and IPv4/v6 range index type for PostgreSQL |
 | [`cube`](/ext/e/cube) | [`earthdistance`](/ext/e/earthdistance) [`pg4ml`](/ext/e/pg4ml) | data type for multidimensional cubes |
 | [`ltree`](/ext/e/ltree) | [`fsm_core`](/ext/e/fsm_core) [`ltree_plpython3u`](/ext/e/ltree_plpython3u) | data type for hierarchical tree-like structures |
-| [`hstore`](/ext/e/hstore) | [`hstore_pllua`](/ext/e/hstore_pllua) [`hstore_plluau`](/ext/e/hstore_plluau) [`hstore_plpython3u`](/ext/e/hstore_plpython3u) [`pg_readme`](/ext/e/pg_readme) [`pg_readme_test_extension`](/ext/e/pg_readme_test_extension) | data type for storing sets of (key, value) pairs |
-| [`pg_net`](/ext/e/pg_net) | [`pgmb`](/ext/e/pgmb) | Async HTTP Requests |
+| [`hstore`](/ext/e/hstore) | [`hstore_pllua`](/ext/e/hstore_pllua) [`hstore_plluau`](/ext/e/hstore_plluau) [`hstore_plperl`](/ext/e/hstore_plperl) [`hstore_plperlu`](/ext/e/hstore_plperlu) [`hstore_plpython3u`](/ext/e/hstore_plpython3u) [`pg_auditor`](/ext/e/pg_auditor) [`pg_readme`](/ext/e/pg_readme) [`pg_readme_test_extension`](/ext/e/pg_readme_test_extension) [`pg_xenophile`](/ext/e/pg_xenophile) | data type for storing sets of (key, value) pairs |
+| [`http`](/ext/e/http) | [`pgmb`](/ext/e/pgmb) | HTTP client for PostgreSQL, allows web page retrieval inside the database. |
 | [`ddl_historization`](/ext/e/ddl_historization) | [`schedoc`](/ext/e/schedoc) | Historize the ddl changes inside PostgreSQL database |
 | [`tsm_system_rows`](/ext/e/tsm_system_rows) | [`documentdb`](/ext/e/documentdb) | TABLESAMPLE method which accepts number of rows as a limit |
 | [`uuid-ossp`](/ext/e/uuid-ossp) | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) [`provsql`](/ext/e/provsql) | generate universally unique identifiers (UUIDs) |
-| [`btree_gist`](/ext/e/btree_gist) | [`emaj`](/ext/e/emaj) [`omni_auth`](/ext/e/omni_auth) [`periods`](/ext/e/periods) [`pgautofailover`](/ext/e/pgautofailover) [`powa`](/ext/e/powa) | support for indexing common datatypes in GiST |
+| [`btree_gist`](/ext/e/btree_gist) | [`emaj`](/ext/e/emaj) [`omni_auth`](/ext/e/omni_auth) [`periods`](/ext/e/periods) [`pg_lake_table`](/ext/e/pg_lake_table) [`pgautofailover`](/ext/e/pgautofailover) [`powa`](/ext/e/powa) | support for indexing common datatypes in GiST |
+| [`pg_prewarm`](/ext/e/pg_prewarm) | [`pgcozy`](/ext/e/pgcozy) | prewarm relation data |
+| [`pgfr_record`](/ext/e/pgfr_record) | [`pgfr_analyze`](/ext/e/pgfr_analyze) | Server-side PostgreSQL performance flight recorder |
+| [`pg_buffercache`](/ext/e/pg_buffercache) | [`pgcozy`](/ext/e/pgcozy) | examine the shared buffer cache |
 | [`pg_stat_statements`](/ext/e/pg_stat_statements) | [`pg_stat_kcache`](/ext/e/pg_stat_kcache) [`powa`](/ext/e/powa) | track planning and execution statistics of all SQL statements executed |
 | [`pgsodium`](/ext/e/pgsodium) | [`supabase_vault`](/ext/e/supabase_vault) | Postgres extension for libsodium functions |
-| [`pgcrypto`](/ext/e/pgcrypto) | [`omni_auth`](/ext/e/omni_auth) [`omni_aws`](/ext/e/omni_aws) [`omni_credentials`](/ext/e/omni_credentials) [`omni_rest`](/ext/e/omni_rest) [`pgcryptokey`](/ext/e/pgcryptokey) [`pgjwt`](/ext/e/pgjwt) | cryptographic functions |
-| [`dblink`](/ext/e/dblink) | [`emaj`](/ext/e/emaj) [`mimeo`](/ext/e/mimeo) [`omni_schema`](/ext/e/omni_schema) [`omni_test`](/ext/e/omni_test) [`omni_vfs`](/ext/e/omni_vfs) [`pg_jobmon`](/ext/e/pg_jobmon) [`pg_profile`](/ext/e/pg_profile) | connect to other PostgreSQL databases from within a database |
+| [`pgcrypto`](/ext/e/pgcrypto) | [`column_encrypt`](/ext/e/column_encrypt) [`omni_auth`](/ext/e/omni_auth) [`omni_aws`](/ext/e/omni_aws) [`omni_credentials`](/ext/e/omni_credentials) [`omni_rest`](/ext/e/omni_rest) [`pg_dispatch`](/ext/e/pg_dispatch) [`pgcryptokey`](/ext/e/pgcryptokey) [`pgjwt`](/ext/e/pgjwt) | cryptographic functions |
+| [`dblink`](/ext/e/dblink) | [`emaj`](/ext/e/emaj) [`mimeo`](/ext/e/mimeo) [`omni_schema`](/ext/e/omni_schema) [`omni_test`](/ext/e/omni_test) [`omni_vfs`](/ext/e/omni_vfs) [`pg_jobmon`](/ext/e/pg_jobmon) [`pg_profile`](/ext/e/pg_profile) [`pgbouncer_fdw`](/ext/e/pgbouncer_fdw) [`pgelog`](/ext/e/pgelog) | connect to other PostgreSQL databases from within a database |
 | [`file_fdw`](/ext/e/file_fdw) | [`pg_sqlog`](/ext/e/pg_sqlog) | foreign-data wrapper for flat file access |
 | [`postgres_fdw`](/ext/e/postgres_fdw) | [`omni_schema`](/ext/e/omni_schema) | foreign-data wrapper for remote PostgreSQL servers |
 | [`documentdb`](/ext/e/documentdb) | [`documentdb_distributed`](/ext/e/documentdb_distributed) [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | API surface for DocumentDB for PostgreSQL |
 | [`documentdb_core`](/ext/e/documentdb_core) | [`documentdb`](/ext/e/documentdb) [`documentdb_distributed`](/ext/e/documentdb_distributed) | Core API surface for DocumentDB on PostgreSQL |
-| [`pg_statement_rollback`](/ext/e/pg_statement_rollback) | [`pg_statement_rollback`](/ext/e/pg_statement_rollback) | Server side rollback at statement level for PostgreSQL like Oracle or DB2 |
+| [`pg_statement_rollback`](/ext/e/pg_statement_rollback) | [`pg_dbms_errlog`](/ext/e/pg_dbms_errlog) | Server side rollback at statement level for PostgreSQL like Oracle or DB2 |
 | [`ivorysql_ora`](/ext/e/ivorysql_ora) | [`ora_btree_gin`](/ext/e/ora_btree_gin) [`ora_btree_gist`](/ext/e/ora_btree_gist) | Oracle Compatible extension on Postgres Database |
 | [`babelfishpg_common`](/ext/e/babelfishpg_common) | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | SQL Server Transact SQL Datatype Support |
 | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | [`babelfishpg_tds`](/ext/e/babelfishpg_tds) | SQL Server Transact SQL compatibility |

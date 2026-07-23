@@ -11,10 +11,10 @@ weight: 2200
     <div class="ext-card__title">darkhanakh/pg-kazsearch</div>
     <div class="ext-card__desc">https://github.com/darkhanakh/pg-kazsearch</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_kazsearch-2.2.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_kazsearch-2.3.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_kazsearch-2.2.0.tar.gz</div>
-    <div class="ext-card__desc">pg_kazsearch-2.2.0.tar.gz</div>
+    <div class="ext-card__title">pg_kazsearch-2.3.0.tar.gz</div>
+    <div class="ext-card__desc">pg_kazsearch-2.3.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2200
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_kazsearch`**](/ext/e/pg_kazsearch) | `2.2.0` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license lgpl30" href="/ext/license#lgpl30">LGPL-3.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`pg_kazsearch`**](/ext/e/pg_kazsearch) | `2.3.0` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license lgpl30" href="/ext/license#lgpl30">LGPL-3.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -34,85 +34,85 @@ weight: 2200
 {.ext-table}
 
 
-> Upstream release/package version is 2.0.0; extension control version is 0.1.0; pgrx patched to 0.18.1.
+> Upstream 2.3.0 uses pgrx 0.17.0; PIGSTY packaging builds with pgrx 0.19.1 for PostgreSQL 16 through 18.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.2.0` | {{< pgvers "18,17,16" >}} | `pg_kazsearch` | - |
-| [**RPM**](/ext/rpm#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.2.0` | {{< pgvers "18,17,16" >}} | `pg_kazsearch_$v` | - |
-| [**DEB**](/ext/deb#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.2.0` | {{< pgvers "18,17,16" >}} | `postgresql-$v-pg-kazsearch` | - |
+| [**EXT**](/ext/list#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.3.0` | {{< pgvers "18,17,16" >}} | `pg_kazsearch` | - |
+| [**RPM**](/ext/rpm#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.3.0` | {{< pgvers "18,17,16" >}} | `pg_kazsearch_$v` | - |
+| [**DEB**](/ext/deb#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.3.0` | {{< pgvers "18,17,16" >}} | `postgresql-$v-pg-kazsearch` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| el8.aarch64 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| el9.x86_64 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| el9.aarch64 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| el10.x86_64 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| el10.aarch64 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| d12.x86_64 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| d12.aarch64 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| d13.x86_64 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| d13.aarch64 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u22.x86_64 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u22.aarch64 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u24.x86_64 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u24.aarch64 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u26.x86_64 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-| u26.aarch64 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | AVAIL PIGSTY 2.2.0 1 | MISS PIGSTY - 0 | MISS PIGSTY - 0 |
-@ el8.x86_64 18 pg_kazsearch_18 pg_kazsearch_18-2.2.0-1PIGSTY.el8.x86_64.rpm pigsty 2.2.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_kazsearch_18-2.2.0-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 18 pg_kazsearch_18 pg_kazsearch_18-2.2.0-1PIGSTY.el8.aarch64.rpm pigsty 2.2.0 986.7KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_kazsearch_18-2.2.0-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 18 pg_kazsearch_18 pg_kazsearch_18-2.2.0-1PIGSTY.el9.x86_64.rpm pigsty 2.2.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_kazsearch_18-2.2.0-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 18 pg_kazsearch_18 pg_kazsearch_18-2.2.0-1PIGSTY.el9.aarch64.rpm pigsty 2.2.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_kazsearch_18-2.2.0-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 18 pg_kazsearch_18 pg_kazsearch_18-2.2.0-1PIGSTY.el10.x86_64.rpm pigsty 2.2.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_kazsearch_18-2.2.0-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 18 pg_kazsearch_18 pg_kazsearch_18-2.2.0-1PIGSTY.el10.aarch64.rpm pigsty 2.2.0 1009.5KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_kazsearch_18-2.2.0-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~bookworm_amd64.deb pigsty 2.2.0 837.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~bookworm_arm64.deb pigsty 2.2.0 731.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~trixie_amd64.deb pigsty 2.2.0 838.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~trixie_arm64.deb pigsty 2.2.0 732.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~jammy_amd64.deb pigsty 2.2.0 935.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~jammy_arm64.deb pigsty 2.2.0 861.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~noble_amd64.deb pigsty 2.2.0 927.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~noble_arm64.deb pigsty 2.2.0 848.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~resolute_amd64.deb pigsty 2.2.0 921.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~resolute_arm64.deb pigsty 2.2.0 847.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.2.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 17 pg_kazsearch_17 pg_kazsearch_17-2.2.0-1PIGSTY.el8.x86_64.rpm pigsty 2.2.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_kazsearch_17-2.2.0-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 17 pg_kazsearch_17 pg_kazsearch_17-2.2.0-1PIGSTY.el8.aarch64.rpm pigsty 2.2.0 983.9KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_kazsearch_17-2.2.0-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 17 pg_kazsearch_17 pg_kazsearch_17-2.2.0-1PIGSTY.el9.x86_64.rpm pigsty 2.2.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_kazsearch_17-2.2.0-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 17 pg_kazsearch_17 pg_kazsearch_17-2.2.0-1PIGSTY.el9.aarch64.rpm pigsty 2.2.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_kazsearch_17-2.2.0-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 17 pg_kazsearch_17 pg_kazsearch_17-2.2.0-1PIGSTY.el10.x86_64.rpm pigsty 2.2.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_kazsearch_17-2.2.0-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 17 pg_kazsearch_17 pg_kazsearch_17-2.2.0-1PIGSTY.el10.aarch64.rpm pigsty 2.2.0 1009.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_kazsearch_17-2.2.0-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~bookworm_amd64.deb pigsty 2.2.0 837.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~bookworm_arm64.deb pigsty 2.2.0 730.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~trixie_amd64.deb pigsty 2.2.0 836.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~trixie_arm64.deb pigsty 2.2.0 731.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~jammy_amd64.deb pigsty 2.2.0 936.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~jammy_arm64.deb pigsty 2.2.0 858.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~noble_amd64.deb pigsty 2.2.0 928.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~noble_arm64.deb pigsty 2.2.0 848.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~resolute_amd64.deb pigsty 2.2.0 919.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~resolute_arm64.deb pigsty 2.2.0 845.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.2.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 16 pg_kazsearch_16 pg_kazsearch_16-2.2.0-1PIGSTY.el8.x86_64.rpm pigsty 2.2.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_kazsearch_16-2.2.0-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 16 pg_kazsearch_16 pg_kazsearch_16-2.2.0-1PIGSTY.el8.aarch64.rpm pigsty 2.2.0 983.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_kazsearch_16-2.2.0-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 16 pg_kazsearch_16 pg_kazsearch_16-2.2.0-1PIGSTY.el9.x86_64.rpm pigsty 2.2.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_kazsearch_16-2.2.0-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 16 pg_kazsearch_16 pg_kazsearch_16-2.2.0-1PIGSTY.el9.aarch64.rpm pigsty 2.2.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_kazsearch_16-2.2.0-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 16 pg_kazsearch_16 pg_kazsearch_16-2.2.0-1PIGSTY.el10.x86_64.rpm pigsty 2.2.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_kazsearch_16-2.2.0-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 16 pg_kazsearch_16 pg_kazsearch_16-2.2.0-1PIGSTY.el10.aarch64.rpm pigsty 2.2.0 1009.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_kazsearch_16-2.2.0-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~bookworm_amd64.deb pigsty 2.2.0 835.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~bookworm_arm64.deb pigsty 2.2.0 729.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~trixie_amd64.deb pigsty 2.2.0 834.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~trixie_arm64.deb pigsty 2.2.0 730.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~jammy_amd64.deb pigsty 2.2.0 933.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~jammy_arm64.deb pigsty 2.2.0 859.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~noble_amd64.deb pigsty 2.2.0 926.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~noble_arm64.deb pigsty 2.2.0 846.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~resolute_amd64.deb pigsty 2.2.0 919.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~resolute_arm64.deb pigsty 2.2.0 843.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.2.0-1PIGSTY~resolute_arm64.deb
+| el8.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el8.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d12.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d12.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d13.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d13.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u22.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u22.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u24.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u24.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u26.x86_64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | AVAIL PIGSTY 2.3.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+@ el8.x86_64 18 pg_kazsearch_18 pg_kazsearch_18-2.3.0-1PIGSTY.el8.x86_64.rpm pigsty 2.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_kazsearch_18-2.3.0-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 18 pg_kazsearch_18 pg_kazsearch_18-2.3.0-1PIGSTY.el8.aarch64.rpm pigsty 2.3.0 1016.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_kazsearch_18-2.3.0-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 18 pg_kazsearch_18 pg_kazsearch_18-2.3.0-1PIGSTY.el9.x86_64.rpm pigsty 2.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_kazsearch_18-2.3.0-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 18 pg_kazsearch_18 pg_kazsearch_18-2.3.0-1PIGSTY.el9.aarch64.rpm pigsty 2.3.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_kazsearch_18-2.3.0-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 18 pg_kazsearch_18 pg_kazsearch_18-2.3.0-1PIGSTY.el10.x86_64.rpm pigsty 2.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_kazsearch_18-2.3.0-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 18 pg_kazsearch_18 pg_kazsearch_18-2.3.0-1PIGSTY.el10.aarch64.rpm pigsty 2.3.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_kazsearch_18-2.3.0-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~bookworm_amd64.deb pigsty 2.3.0 858.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~bookworm_arm64.deb pigsty 2.3.0 749.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~trixie_amd64.deb pigsty 2.3.0 858.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~trixie_arm64.deb pigsty 2.3.0 749.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~jammy_amd64.deb pigsty 2.3.0 959.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~jammy_arm64.deb pigsty 2.3.0 883.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~noble_amd64.deb pigsty 2.3.0 953.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~noble_arm64.deb pigsty 2.3.0 869.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~resolute_amd64.deb pigsty 2.3.0 945.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-pg-kazsearch postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~resolute_arm64.deb pigsty 2.3.0 867.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-kazsearch/postgresql-18-pg-kazsearch_2.3.0-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 17 pg_kazsearch_17 pg_kazsearch_17-2.3.0-1PIGSTY.el8.x86_64.rpm pigsty 2.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_kazsearch_17-2.3.0-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 17 pg_kazsearch_17 pg_kazsearch_17-2.3.0-1PIGSTY.el8.aarch64.rpm pigsty 2.3.0 1013.8KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_kazsearch_17-2.3.0-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 17 pg_kazsearch_17 pg_kazsearch_17-2.3.0-1PIGSTY.el9.x86_64.rpm pigsty 2.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_kazsearch_17-2.3.0-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 17 pg_kazsearch_17 pg_kazsearch_17-2.3.0-1PIGSTY.el9.aarch64.rpm pigsty 2.3.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_kazsearch_17-2.3.0-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 17 pg_kazsearch_17 pg_kazsearch_17-2.3.0-1PIGSTY.el10.x86_64.rpm pigsty 2.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_kazsearch_17-2.3.0-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 17 pg_kazsearch_17 pg_kazsearch_17-2.3.0-1PIGSTY.el10.aarch64.rpm pigsty 2.3.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_kazsearch_17-2.3.0-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~bookworm_amd64.deb pigsty 2.3.0 856.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~bookworm_arm64.deb pigsty 2.3.0 748.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~trixie_amd64.deb pigsty 2.3.0 857.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~trixie_arm64.deb pigsty 2.3.0 748.6KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~jammy_amd64.deb pigsty 2.3.0 958.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~jammy_arm64.deb pigsty 2.3.0 881.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~noble_amd64.deb pigsty 2.3.0 948.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~noble_arm64.deb pigsty 2.3.0 868.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~resolute_amd64.deb pigsty 2.3.0 941.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-pg-kazsearch postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~resolute_arm64.deb pigsty 2.3.0 866.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-kazsearch/postgresql-17-pg-kazsearch_2.3.0-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 16 pg_kazsearch_16 pg_kazsearch_16-2.3.0-1PIGSTY.el8.x86_64.rpm pigsty 2.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_kazsearch_16-2.3.0-1PIGSTY.el8.x86_64.rpm
+@ el8.aarch64 16 pg_kazsearch_16 pg_kazsearch_16-2.3.0-1PIGSTY.el8.aarch64.rpm pigsty 2.3.0 1012.5KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_kazsearch_16-2.3.0-1PIGSTY.el8.aarch64.rpm
+@ el9.x86_64 16 pg_kazsearch_16 pg_kazsearch_16-2.3.0-1PIGSTY.el9.x86_64.rpm pigsty 2.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_kazsearch_16-2.3.0-1PIGSTY.el9.x86_64.rpm
+@ el9.aarch64 16 pg_kazsearch_16 pg_kazsearch_16-2.3.0-1PIGSTY.el9.aarch64.rpm pigsty 2.3.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_kazsearch_16-2.3.0-1PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 16 pg_kazsearch_16 pg_kazsearch_16-2.3.0-1PIGSTY.el10.x86_64.rpm pigsty 2.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_kazsearch_16-2.3.0-1PIGSTY.el10.x86_64.rpm
+@ el10.aarch64 16 pg_kazsearch_16 pg_kazsearch_16-2.3.0-1PIGSTY.el10.aarch64.rpm pigsty 2.3.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_kazsearch_16-2.3.0-1PIGSTY.el10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~bookworm_amd64.deb pigsty 2.3.0 856.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~bookworm_arm64.deb pigsty 2.3.0 747.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~trixie_amd64.deb pigsty 2.3.0 853.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~trixie_arm64.deb pigsty 2.3.0 747.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~jammy_amd64.deb pigsty 2.3.0 956.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~jammy_arm64.deb pigsty 2.3.0 881.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~noble_amd64.deb pigsty 2.3.0 954.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~noble_arm64.deb pigsty 2.3.0 867.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~resolute_amd64.deb pigsty 2.3.0 941.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 16 postgresql-16-pg-kazsearch postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~resolute_arm64.deb pigsty 2.3.0 863.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-kazsearch/postgresql-16-pg-kazsearch_2.3.0-1PIGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -170,16 +170,18 @@ apt install -y postgresql-16-pg-kazsearch   # PG 16
 CREATE EXTENSION pg_kazsearch;
 ```
 
-
-
-
 ## Usage
 
-Sources: [README](https://github.com/darkhanakh/pg-kazsearch/blob/v2.2.0/README.md), [v2.2.0 release](https://github.com/darkhanakh/pg-kazsearch/releases/tag/v2.2.0), [v2.1.0 release](https://github.com/darkhanakh/pg-kazsearch/releases/tag/v2.1.0)
+Sources:
 
-`pg_kazsearch` is a PostgreSQL full-text search extension for the Kazakh language. The README says it supports PostgreSQL 16-18 and creates a ready-to-use text search configuration `kazakh_cfg` and dictionary `pg_kazsearch_dict`. Version 2.2.0 adds Latin-script Kazakh support in the core stemmer; successful Latin and Cyrillic inputs converge to canonical Cyrillic stems.
+- [Official v2.3.0 README](https://github.com/darkhanakh/pg-kazsearch/blob/v2.3.0/README.md)
+- [v2.3.0 release](https://github.com/darkhanakh/pg-kazsearch/releases/tag/v2.3.0)
+- [PostgreSQL extension control file](https://github.com/darkhanakh/pg-kazsearch/blob/v2.3.0/pg_ext/pg_kazsearch.control)
+- [v2.2.0 to v2.3.0 upgrade SQL](https://github.com/darkhanakh/pg-kazsearch/blob/v2.3.0/pg_ext/sql/pg_kazsearch--2.2.0--2.3.0.sql)
 
-### Quick start
+`pg_kazsearch` provides Kazakh full-text stemming for PostgreSQL 16 through 18. It installs a ready-to-use `kazakh_cfg` configuration and `pg_kazsearch_dict` dictionary. Cyrillic and supported modern Latin-script Kazakh converge to canonical Cyrillic stems so documents and queries can match across scripts.
+
+### Core Workflow
 
 ```sql
 CREATE EXTENSION pg_kazsearch;
@@ -187,51 +189,56 @@ CREATE EXTENSION pg_kazsearch;
 SELECT ts_lexize('pg_kazsearch_dict', 'алмаларымыздағы');
 -- {алма}
 
-SELECT to_tsvector('kazakh_cfg', 'президенттің жарлығы');
--- 'жарлық':2 'президент':1
+SELECT to_tsvector('kazakh_cfg', 'мектептеріміздегі оқушылардың');
+-- 'мектеп':1 'оқушы':2
 ```
 
-### Add Kazakh FTS to a table
+Add a weighted stored vector and GIN index:
 
 ```sql
 ALTER TABLE articles ADD COLUMN fts tsvector
-    GENERATED ALWAYS AS (
-        setweight(to_tsvector('kazakh_cfg', title), 'A') ||
-        setweight(to_tsvector('kazakh_cfg', body), 'B')
-    ) STORED;
+GENERATED ALWAYS AS (
+    setweight(to_tsvector('kazakh_cfg', title), 'A') ||
+    setweight(to_tsvector('kazakh_cfg', body), 'B')
+) STORED;
 
-CREATE INDEX idx_fts ON articles USING GIN (fts);
+CREATE INDEX articles_fts_idx ON articles USING GIN (fts);
 
 SELECT title
 FROM articles
 WHERE fts @@ websearch_to_tsquery('kazakh_cfg', 'президенттің жарлығы')
-ORDER BY ts_rank_cd(fts, websearch_to_tsquery('kazakh_cfg', 'президенттің жарлығы')) DESC
-LIMIT 10;
+ORDER BY ts_rank_cd(
+    fts,
+    websearch_to_tsquery('kazakh_cfg', 'президенттің жарлығы')
+) DESC;
 ```
 
-### Tuning
+### Dictionary Tuning
 
-The README documents runtime dictionary tuning without restart:
+Penalty weights can be changed at runtime:
 
 ```sql
 ALTER TEXT SEARCH DICTIONARY pg_kazsearch_dict
-  (w_deriv = 3.5, w_short_char = 100.0);
+    (w_deriv = 3.5, w_short_char = 100.0);
 ```
 
-Control Latin handling with `script_mode`; the default `auto` mode detects supported modern Kazakh Latin orthography and normalizes to Cyrillic output:
+The default `script_mode = auto` detects supported modern Kazakh Latin orthography and returns Cyrillic stems. Disable Latin handling when strict Cyrillic-only behavior is required:
 
 ```sql
 ALTER TEXT SEARCH DICTIONARY pg_kazsearch_dict
-  (script_mode = cyrillic_only);
+    (script_mode = cyrillic_only);
 ```
 
-### Release and packaging notes
+### Upgrade and Search Caveats
 
-- This project's CSV tracks package/source version `2.2.0`, extension control version `0.1.0`, `pgrx` `0.18.1`, and PostgreSQL versions 16-18.
-- Upstream release `v2.2.0` adds Latin-script Kazakh support to the core stemmer.
-- Upstream release `v2.0.0` introduced the current Rust / `pgrx` PostgreSQL extension packaging.
-- Upstream release `v2.1.0` adds an Elasticsearch plugin alongside the PostgreSQL extension; the PostgreSQL SQL usage in the README is unchanged.
+- Stemmer upgrades change index terms. After upgrading to `2.3.0`, recompute stored `tsvector` columns or repopulate trigger-maintained vectors, then `VACUUM (ANALYZE)` the table.
 
-### Caveat
+```sql
+ALTER EXTENSION pg_kazsearch UPDATE;
+UPDATE articles SET title = title;
+VACUUM (ANALYZE) articles;
+```
 
-The PostgreSQL-facing docs are concise and focused on stemming plus FTS usage. For this stub, avoid inferring extra SQL objects beyond `kazakh_cfg`, `pg_kazsearch_dict`, and the documented examples above.
+- Long-lived sessions opened before an upgrade should reconnect so they load the new dictionary.
+- Latin support targets the modern orthography. Mixed-script input, legacy apostrophe/acute/digraph spellings, and low-confidence ASCII tokens may remain unchanged.
+- `websearch_to_tsquery` uses strict AND semantics for ordinary terms. Applications that need broader recall should deliberately implement and measure a fallback query rather than silently changing all searches to OR.

@@ -47,7 +47,7 @@ Solving extension installation, high availability, connection pooling, monitorin
 
 ### Why is Pigsty better than RDS?
 
-Pigsty provides a feature set and infrastructure support far beyond RDS, including 531 extension plugins and 12+ kernel support.
+Pigsty provides a feature set and infrastructure support far beyond RDS, including 555 extension plugins and 12+ kernel support.
 Pigsty provides a unique professional-grade monitoring system in the PG ecosystem, along with architectural best practices battle-tested in complex scenarios, simple and easy to use.
 
 Moreover, forged in top-tier client scenarios like Tantan, Apple, and Alibaba, continuously nurtured with passion and love, its depth and maturity are incomparable to RDS's one-size-fits-all approach.
@@ -64,7 +64,7 @@ Pigsty can simultaneously reduce software licensing/services/labor costs. Self-b
 
 ### How does Pigsty help developers?
 
-Pigsty integrates the most comprehensive extensions in the PG ecosystem (531), providing an All-in-PG solution: a single component replacing specialized components like Redis, Kafka, MySQL, ES, vector databases, OLAP / big data analytics.
+Pigsty integrates the most comprehensive extensions in the PG ecosystem (555), providing an All-in-PG solution: a single component replacing specialized components like Redis, Kafka, MySQL, ES, vector databases, OLAP / big data analytics.
 
 Greatly improving R&D efficiency and agility while reducing complexity costs, and developers can achieve self-service management and autonomous DevOps with Pigsty's support, without needing a DBA.
 

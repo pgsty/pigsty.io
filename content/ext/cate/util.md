@@ -16,7 +16,7 @@ There are **39** extensions in **38** packages.
 | [`bzip`](/ext/e/bzip) | [`pg_bzip`](https://github.com/steve-chavez/pg_bzip) | `1.0.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Bzip compression and decompression |
 | [`zstd`](/ext/e/zstd) | [`pg_zstd`](https://github.com/grahamedgecombe/pgzstd) | `1.1.2` | <a class="ext-badge ext-badge--license isc" href="/ext/license#isc">ISC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Zstandard compression algorithm implementation in PostgreSQL |
 | [`http`](/ext/e/http) | [`pg_http`](https://github.com/pramsey/pgsql-http) | `1.7.2` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | HTTP client for PostgreSQL, allows web page retrieval inside the database. |
-| [`pg_net`](/ext/e/pg_net) | [`pg_net`](https://github.com/supabase/pg_net) | `0.20.3` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Async HTTP Requests |
+| [`pg_net`](/ext/e/pg_net) | [`pg_net`](https://github.com/supabase/pg_net) | `0.20.5` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Async HTTP Requests |
 | [`pg_curl`](/ext/e/pg_curl) | [`pg_curl`](https://github.com/RekGRpth/pg_curl) | `2.4.5` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Run curl actions for data transfer in URL syntax |
 | [`pg_retry`](/ext/e/pg_retry) | [`pg_retry`](https://github.com/Agent-Hellboy/pg_retry) | `1.0.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Retry SQL statements on transient errors with exponential backoff |
 | [`pg_fsql`](/ext/e/pg_fsql) | [`pg_fsql`](https://github.com/yurc/pg_fsql) | `1.1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Recursive SQL template engine with JSONB-driven execution |
@@ -31,11 +31,11 @@ There are **39** extensions in **38** packages.
 | [`pgsql_tweaks`](/ext/e/pgsql_tweaks) | [`pgsql_tweaks`](https://codeberg.org/pgsql_tweaks/pgsql_tweaks) | `1.0.5` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Some functions and views for daily usage |
 | [`pg_extra_time`](/ext/e/pg_extra_time) | [`pg_extra_time`](https://github.com/bigsmoke/pg_extra_time) | `2.1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Some date time functions and operators that, |
 | [`pgpcre`](/ext/e/pgpcre) | [`pgpcre`](https://github.com/petere/pgpcre) | `0.20190509` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Perl Compatible Regular Expression functions |
-| [`re2`](/ext/e/re2) | [`re2`](https://github.com/ClickHouse/pg_re2) | `0.4.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | ClickHouse-compatible regex functions using RE2 |
+| [`re2`](/ext/e/re2) | [`re2`](https://github.com/ClickHouse/pg_re2) | `0.4.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | ClickHouse-compatible regex functions using RE2 |
 | [`icu_ext`](/ext/e/icu_ext) | [`icu_ext`](https://github.com/dverite/icu_ext) | `1.11.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Access ICU functions |
-| [`pgqr`](/ext/e/pgqr) | [`pgqr`](https://github.com/AbdulYadi/pgqr) | `1.0` | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | QR Code generator from PostgreSQL |
+| [`pgqr`](/ext/e/pgqr) | [`pgqr`](https://github.com/AbdulYadi/pgqr) | `1.0` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | QR Code generator from PostgreSQL |
 | [`envvar`](/ext/e/envvar) | [`pg_envvar`](https://github.com/theory/pg-envvar) | `1.0.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Fetch the value of an environment variable |
-| [`byteamagic`](/ext/e/byteamagic) | [`pg_byteamagic`](https://github.com/nmandery/pg_byteamagic) | `0.2.4` | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Detect MIME types and file formats from PostgreSQL bytea values |
+| [`byteamagic`](/ext/e/byteamagic) | [`pg_byteamagic`](https://github.com/nmandery/pg_byteamagic) | `0.2.4` | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Detect MIME types and file formats from PostgreSQL bytea values |
 | [`floatfile`](/ext/e/floatfile) | [`floatfile`](https://github.com/pjungwir/floatfile) | `1.3.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Simple file storage for arrays of floats |
 | [`external_file`](/ext/e/external_file) | [`external_file`](https://github.com/darold/external_file) | `1.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Access external server-side files through PostgreSQL functions |
 | [`pg_render`](/ext/e/pg_render) | [`pg_render`](https://github.com/mkaski/pg_render) | `0.1.3` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Render HTML in SQL |
@@ -46,10 +46,10 @@ There are **39** extensions in **38** packages.
 | [`schedoc`](/ext/e/schedoc) | [`pg_schedoc`](https://github.com/ZeroGachis/pg_schedoc) | `0.0.1` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Cross documentation between Django and DBT projects |
 | [`pg_isok`](/ext/e/pg_isok) | [`pg_isok`](https://codeberg.org/kop/pg_isok) | `1.4.1` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Query-based data integrity management and soft alerting for PostgreSQL |
 | [`hashlib`](/ext/e/hashlib) | [`pg_hashlib`](https://github.com/markokr/pghashlib) | `1.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Stable hash functions for Postgres |
-| [`xxhash`](/ext/e/xxhash) | [`pg_xxhash`](https://github.com/hatarist/pg_xxhash) | `0.0.1` | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | xxhash functions for PostgreSQL |
+| [`xxhash`](/ext/e/xxhash) | [`pg_xxhash`](https://github.com/hatarist/pg_xxhash) | `0.0.1` | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | xxhash functions for PostgreSQL |
 | [`shacrypt`](/ext/e/shacrypt) | [`shacrypt`](https://github.com/dverite/postgres-shacrypt) | `1.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Implements SHA256-CRYPT and SHA512-CRYPT password encryption schemes |
 | [`cryptint`](/ext/e/cryptint) | [`cryptint`](https://github.com/dverite/cryptint) | `1.0.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Encryption functions for int and bigint values |
-| [`pguecc`](/ext/e/pguecc) | [`pg_ecdsa`](https://github.com/ameensol/pg-ecdsa) | `1.0` | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | uECC bindings for Postgres |
+| [`pguecc`](/ext/e/pguecc) | [`pg_ecdsa`](https://github.com/ameensol/pg-ecdsa) | `1.0` | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | uECC bindings for Postgres |
 | [`sparql`](/ext/e/sparql) | [`pgsparql`](https://github.com/lacanoid/pgsparql) | `1.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Query SPARQL datasource with SQL |
 {.ext-table}
 
@@ -134,7 +134,7 @@ There are **39** extensions in **38** packages.
 
 ## pg_net {#pg_net}
 
-[**`pg_net`**](/ext/e/pg_net) - `0.20.3` : Async HTTP Requests
+[**`pg_net`**](/ext/e/pg_net) - `0.20.5` : Async HTTP Requests
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -419,7 +419,7 @@ There are **39** extensions in **38** packages.
 
 ## re2 {#re2}
 
-[**`re2`**](/ext/e/re2) - `0.4.0` : ClickHouse-compatible regex functions using RE2
+[**`re2`**](/ext/e/re2) - `0.4.1` : ClickHouse-compatible regex functions using RE2
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -467,7 +467,7 @@ There are **39** extensions in **38** packages.
 | **DEB** | `postgresql-$v-pgqr` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license bsd 3clause" href="/ext/license#bsd3clause">BSD 3-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
@@ -505,7 +505,7 @@ There are **39** extensions in **38** packages.
 | **DEB** | `postgresql-$v-pg-byteamagic` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
@@ -714,7 +714,7 @@ There are **39** extensions in **38** packages.
 | **DEB** | `postgresql-$v-pg-xxhash` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
@@ -771,7 +771,7 @@ There are **39** extensions in **38** packages.
 | **DEB** | `postgresql-$v-pg-ecdsa` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 

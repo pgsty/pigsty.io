@@ -8,7 +8,7 @@ icon: fas fa-square-root-variable
 
 ## Extension List
 
-There are **52** extensions in **52** packages.
+There are **54** extensions in **54** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
@@ -23,22 +23,24 @@ There are **52** extensions in **52** packages.
 | [`typeid`](/ext/e/typeid) | [`pg_typeid`](https://github.com/blitss/typeid-postgres) | `0.3.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Allows to use TypeIDs in Postgres natively |
 | [`snowflake`](/ext/e/snowflake) | [`snowflake`](https://github.com/pgEdge/snowflake) | `2.5.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Snowflake-style 64-bit ID generator and sequence utilities for PostgreSQL |
 | [`topn`](/ext/e/topn) | [`topn`](https://github.com/citusdata/postgresql-topn) | `2.7.0` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | type for top-n JSONB |
-| [`quantile`](/ext/e/quantile) | [`quantile`](https://github.com/tvondra/quantile) | `1.1.8` | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Quantile aggregation function |
-| [`lower_quantile`](/ext/e/lower_quantile) | [`lower_quantile`](https://github.com/tvondra/lower_quantile) | `1.0.3` | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Lower quantile aggregate function |
-| [`count_distinct`](/ext/e/count_distinct) | [`count_distinct`](https://github.com/tvondra/count_distinct) | `3.0.2` | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | An alternative to COUNT(DISTINCT …) aggregate, usable with HashAggregate |
+| [`quantile`](/ext/e/quantile) | [`quantile`](https://github.com/tvondra/quantile) | `1.1.8` | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Quantile aggregation function |
+| [`lower_quantile`](/ext/e/lower_quantile) | [`lower_quantile`](https://github.com/tvondra/lower_quantile) | `1.0.3` | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Lower quantile aggregate function |
+| [`count_distinct`](/ext/e/count_distinct) | [`count_distinct`](https://github.com/tvondra/count_distinct) | `3.0.2` | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | An alternative to COUNT(DISTINCT …) aggregate, usable with HashAggregate |
 | [`omnisketch`](/ext/e/omnisketch) | [`omnisketch`](https://github.com/tvondra/omnisketch) | `1.0.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | data structure for on-line agg of data into approximate sketch |
 | [`ddsketch`](/ext/e/ddsketch) | [`ddsketch`](https://github.com/tvondra/ddsketch) | `1.0.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Provides ddsketch aggregate function |
 | [`vasco`](/ext/e/vasco) | [`vasco`](https://github.com/Florents-Tselai/vasco) | `0.1.0` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | discover hidden correlations in your data with MIC |
 | [`xicor`](/ext/e/xicor) | [`pgxicor`](https://github.com/Florents-Tselai/pgxicor) | `0.1.1` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | XI Correlation Coefficient in Postgres |
 | [`weighted_statistics`](/ext/e/weighted_statistics) | [`pg_weighted_statistics`](https://github.com/schmidni/pg_weighted_statistics) | `1.0.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | High-performance weighted statistics functions for sparse data |
 | [`datasketches`](/ext/e/datasketches) | [`datasketches`](https://github.com/apache/datasketches-postgresql) | `1.7.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | Approximate analytics sketches and aggregates for PostgreSQL |
+| [`fbsql`](/ext/e/fbsql) | [`fbsql`](https://github.com/dsc-chiba-u/FbSQL) | `0.1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Closure-preserving formula-based statistical modeling in SQL |
 | [`tdigest`](/ext/e/tdigest) | [`tdigest`](https://github.com/tvondra/tdigest) | `1.4.4` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Provides tdigest aggregate function. |
 | [`first_last_agg`](/ext/e/first_last_agg) | [`first_last_agg`](https://github.com/wulczer/first_last_agg) | `0.1.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | first() and last() aggregate functions |
 | [`extra_window_functions`](/ext/e/extra_window_functions) | [`extra_window_functions`](https://github.com/xocolatl/extra_window_functions) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Extra Window Functions for PostgreSQL |
 | [`floatvec`](/ext/e/floatvec) | [`floatvec`](https://github.com/pjungwir/floatvec) | `1.1.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Math for vectors (arrays) of numbers |
 | [`aggs_for_vecs`](/ext/e/aggs_for_vecs) | [`aggs_for_vecs`](https://github.com/pjungwir/aggs_for_vecs) | `1.4.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Aggregate functions for array inputs |
 | [`aggs_for_arrays`](/ext/e/aggs_for_arrays) | [`aggs_for_arrays`](https://github.com/pjungwir/aggs_for_arrays) | `1.3.3` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Various functions for computing statistics on arrays of numbers |
-| [`pg_csv`](/ext/e/pg_csv) | [`pg_csv`](https://github.com/PostgREST/pg_csv) | `1.0.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Flexible CSV processing for Postgres |
+| [`argm`](/ext/e/argm) | [`argm`](https://github.com/bashtanov/argm) | `1.1.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | argmax, argmin, and anyold aggregate functions |
+| [`pg_csv`](/ext/e/pg_csv) | [`pg_csv`](https://github.com/PostgREST/pg_csv) | `1.0.2` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Flexible CSV processing for Postgres |
 | [`arraymath`](/ext/e/arraymath) | [`pg_arraymath`](https://github.com/pramsey/pgsql-arraymath) | `1.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Array math and operators that work element by element on the contents of arrays |
 | [`pg_math`](/ext/e/pg_math) | [`pg_math`](https://github.com/chanukyasds/pg_math) | `1.1.0` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | GSL statistical functions for postgresql |
 | [`random`](/ext/e/random) | [`pg_random`](https://github.com/tvondra/random) | `2.0.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | random data generator |
@@ -290,7 +292,7 @@ There are **52** extensions in **52** packages.
 | **DEB** | `postgresql-$v-quantile` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
@@ -309,7 +311,7 @@ There are **52** extensions in **52** packages.
 | **DEB** | `postgresql-$v-lower-quantile` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
@@ -328,7 +330,7 @@ There are **52** extensions in **52** packages.
 | **DEB** | `postgresql-$v-count-distinct` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license bsd 2clause" href="/ext/license#bsd2clause">BSD 2-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
@@ -449,6 +451,25 @@ There are **52** extensions in **52** packages.
 
 ---------
 
+## fbsql {#fbsql}
+
+[**`fbsql`**](/ext/e/fbsql) - `0.1.0` : Closure-preserving formula-based statistical modeling in SQL
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`fbsql`](/ext/e/fbsql) | **el8** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| **Package** | [`fbsql`](https://github.com/dsc-chiba-u/FbSQL) | **el9** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| **RPM** | `fbsql_$v` | **el10** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| **DEB** | `postgresql-$v-fbsql` | **d12** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | **d13** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| | | **u26** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
 ## tdigest {#tdigest}
 
 [**`tdigest`**](/ext/e/tdigest) - `1.4.4` : Provides tdigest aggregate function.
@@ -563,9 +584,28 @@ There are **52** extensions in **52** packages.
 
 ---------
 
+## argm {#argm}
+
+[**`argm`**](/ext/e/argm) - `1.1.1` : argmax, argmin, and anyold aggregate functions
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`argm`](/ext/e/argm) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`argm`](https://github.com/bashtanov/argm) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `argm_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-argm` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
 ## pg_csv {#pg_csv}
 
-[**`pg_csv`**](/ext/e/pg_csv) - `1.0.1` : Flexible CSV processing for Postgres
+[**`pg_csv`**](/ext/e/pg_csv) - `1.0.2` : Flexible CSV processing for Postgres
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -574,7 +614,7 @@ There are **52** extensions in **52** packages.
 | **RPM** | `pg_csv_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **DEB** | `postgresql-$v-pg-csv` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}

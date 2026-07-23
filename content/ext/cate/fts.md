@@ -8,11 +8,11 @@ icon: fas fa-magnifying-glass
 
 ## Extension List
 
-There are **25** extensions in **24** packages.
+There are **28** extensions in **18** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
-| [`pg_search`](/ext/e/pg_search) | [`pg_search`](https://github.com/paradedb/paradedb/tree/dev/pg_search) | `0.24.0` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Full text search for PostgreSQL using BM25 |
+| [`pg_search`](/ext/e/pg_search) | [`pg_search`](https://github.com/paradedb/paradedb/tree/dev/pg_search) | `0.24.3` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Full text search for PostgreSQL using BM25 |
 | [`pgroonga`](/ext/e/pgroonga) | [`pgroonga`](https://github.com/pgroonga/pgroonga) | `4.0.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Use Groonga as index, fast full text search platform for all languages! |
 | [`pgroonga_database`](/ext/e/pgroonga_database) | [`pgroonga`](https://github.com/pgroonga/pgroonga) | `4.0.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PGroonga database management module |
 | [`pg_bigm`](/ext/e/pg_bigm) | [`pg_bigm`](https://github.com/pgbigm/pg_bigm) | `1.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | create 2-gram (bigram) index for faster full text search. |
@@ -20,21 +20,24 @@ There are **25** extensions in **24** packages.
 | [`pg_bestmatch`](/ext/e/pg_bestmatch) | [`pg_bestmatch`](https://github.com/tensorchord/pg_bestmatch.rs) | `0.0.2` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Generate BM25 sparse vector inside PostgreSQL |
 | [`vchord_bm25`](/ext/e/vchord_bm25) | [`vchord_bm25`](https://github.com/tensorchord/VectorChord-bm25) | `0.3.0` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | A postgresql extension for bm25 ranking algorithm |
 | [`pg_tokenizer`](/ext/e/pg_tokenizer) | [`pg_tokenizer`](https://github.com/tensorchord/pg_tokenizer.rs) | `0.1.1` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Tokenizers for full-text search |
-| [`biscuit`](/ext/e/biscuit) | [`pg_biscuit`](https://github.com/CrystallineCore/Biscuit) | `2.4.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | IAM-LIKE pattern matching with bitmap indexing |
+| [`biscuit`](/ext/e/biscuit) | [`pg_biscuit`](https://github.com/CrystallineCore/Biscuit) | `2.4.3` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | IAM-LIKE pattern matching with bitmap indexing |
 | [`pg_textsearch`](/ext/e/pg_textsearch) | [`pg_textsearch`](https://github.com/timescale/pg_textsearch) | `1.2.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Full-text search with BM25 ranking |
-| [`pg_pinyin`](/ext/e/pg_pinyin) | [`pg_pinyin`](https://github.com/aiyou178/pg_pinyin) | `0.0.4` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Pinyin romanization and search helpers for PostgreSQL |
-| [`pg_kazsearch`](/ext/e/pg_kazsearch) | [`pg_kazsearch`](https://github.com/darkhanakh/pg-kazsearch) | `2.2.0` | <a class="ext-badge ext-badge--license lgpl30" href="/ext/license#lgpl30">LGPL-3.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Kazakh full-text search extension for PostgreSQL |
+| [`pg_pinyin`](/ext/e/pg_pinyin) | [`pg_pinyin`](https://github.com/aiyou178/pg_pinyin) | `0.0.5` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Pinyin romanization and search helpers for PostgreSQL |
+| [`pg_kazsearch`](/ext/e/pg_kazsearch) | [`pg_kazsearch`](https://github.com/darkhanakh/pg-kazsearch) | `2.3.0` | <a class="ext-badge ext-badge--license lgpl30" href="/ext/license#lgpl30">LGPL-3.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Kazakh full-text search extension for PostgreSQL |
 | [`psql_bm25s`](/ext/e/psql_bm25s) | [`psql_bm25s`](https://github.com/Intelligent-Internet/psql_bm25s) | `0.4.13` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostgreSQL extension for BM25-family lexical retrieval |
-| [`hunspell_cs_cz`](/ext/e/hunspell_cs_cz) | [`hunspell_cs_cz`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | Czech Hunspell Dictionary |
-| [`hunspell_de_de`](/ext/e/hunspell_de_de) | [`hunspell_de_de`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | German Hunspell Dictionary |
-| [`hunspell_en_us`](/ext/e/hunspell_en_us) | [`hunspell_en_us`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | en_US Hunspell Dictionary |
-| [`hunspell_fr`](/ext/e/hunspell_fr) | [`hunspell_fr`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | French Hunspell Dictionary |
-| [`hunspell_ne_np`](/ext/e/hunspell_ne_np) | [`hunspell_ne_np`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | Nepali Hunspell Dictionary |
-| [`hunspell_nl_nl`](/ext/e/hunspell_nl_nl) | [`hunspell_nl_nl`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | Dutch Hunspell Dictionary |
-| [`hunspell_nn_no`](/ext/e/hunspell_nn_no) | [`hunspell_nn_no`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | Norwegian (norsk) Hunspell Dictionary |
-| [`hunspell_pt_pt`](/ext/e/hunspell_pt_pt) | [`hunspell_pt_pt`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | Portuguese Hunspell Dictionary |
-| [`hunspell_ru_ru`](/ext/e/hunspell_ru_ru) | [`hunspell_ru_ru`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | Russian Hunspell Dictionary |
-| [`hunspell_ru_ru_aot`](/ext/e/hunspell_ru_ru_aot) | [`hunspell_ru_ru_aot`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | Russian Hunspell Dictionary (from AOT.ru group) |
+| [`pg_fts`](/ext/e/pg_fts) | [`pg_fts`](https://codeberg.org/gregburd/pg_fts) | `0.2.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Full-text search with BM25 and BM25F ranking |
+| [`pg_cjk_parser`](/ext/e/pg_cjk_parser) | [`pg_cjk_parser`](https://github.com/huangjimmy/pg_cjk_parser) | `0.1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | CJK bigram parser derived from PostgreSQL full-text search |
+| [`pg_jieba`](/ext/e/pg_jieba) | [`pg_jieba`](https://github.com/jaiminpan/pg_jieba) | `1.1.0` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | Chinese full-text search parser based on cppjieba |
+| [`hunspell_cs_cz`](/ext/e/hunspell_cs_cz) | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | Czech Hunspell Dictionary |
+| [`hunspell_de_de`](/ext/e/hunspell_de_de) | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | German Hunspell Dictionary |
+| [`hunspell_en_us`](/ext/e/hunspell_en_us) | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | en_US Hunspell Dictionary |
+| [`hunspell_fr`](/ext/e/hunspell_fr) | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | French Hunspell Dictionary |
+| [`hunspell_ne_np`](/ext/e/hunspell_ne_np) | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | Nepali Hunspell Dictionary |
+| [`hunspell_nl_nl`](/ext/e/hunspell_nl_nl) | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | Dutch Hunspell Dictionary |
+| [`hunspell_nn_no`](/ext/e/hunspell_nn_no) | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | Norwegian (norsk) Hunspell Dictionary |
+| [`hunspell_pt_pt`](/ext/e/hunspell_pt_pt) | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | Portuguese Hunspell Dictionary |
+| [`hunspell_ru_ru`](/ext/e/hunspell_ru_ru) | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | Russian Hunspell Dictionary |
+| [`hunspell_ru_ru_aot`](/ext/e/hunspell_ru_ru_aot) | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | Russian Hunspell Dictionary (from AOT.ru group) |
 | [`fuzzystrmatch`](/ext/e/fuzzystrmatch) | [`fuzzystrmatch`](https://www.postgresql.org/docs/current/fuzzystrmatch.html) | `1.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | determine similarities and distance between strings |
 | [`pg_trgm`](/ext/e/pg_trgm) | [`pg_trgm`](https://www.postgresql.org/docs/current/pgtrgm.html) | `1.6` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | text similarity measurement and index searching based on trigrams |
 {.ext-table}
@@ -44,7 +47,7 @@ There are **25** extensions in **24** packages.
 
 ## pg_search {#pg_search}
 
-[**`pg_search`**](/ext/e/pg_search) - `0.24.0` : Full text search for PostgreSQL using BM25
+[**`pg_search`**](/ext/e/pg_search) - `0.24.3` : Full text search for PostgreSQL using BM25
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -196,7 +199,7 @@ There are **25** extensions in **24** packages.
 
 ## biscuit {#biscuit}
 
-[**`pg_biscuit`**](/ext/e/biscuit) - `2.4.1` : IAM-LIKE pattern matching with bitmap indexing
+[**`pg_biscuit`**](/ext/e/biscuit) - `2.4.3` : IAM-LIKE pattern matching with bitmap indexing
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -234,7 +237,7 @@ There are **25** extensions in **24** packages.
 
 ## pg_pinyin {#pg_pinyin}
 
-[**`pg_pinyin`**](/ext/e/pg_pinyin) - `0.0.4` : Pinyin romanization and search helpers for PostgreSQL
+[**`pg_pinyin`**](/ext/e/pg_pinyin) - `0.0.5` : Pinyin romanization and search helpers for PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -253,7 +256,7 @@ There are **25** extensions in **24** packages.
 
 ## pg_kazsearch {#pg_kazsearch}
 
-[**`pg_kazsearch`**](/ext/e/pg_kazsearch) - `2.2.0` : Kazakh full-text search extension for PostgreSQL
+[**`pg_kazsearch`**](/ext/e/pg_kazsearch) - `2.3.0` : Kazakh full-text search extension for PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -289,16 +292,73 @@ There are **25** extensions in **24** packages.
 
 ---------
 
+## pg_fts {#pg_fts}
+
+[**`pg_fts`**](/ext/e/pg_fts) - `0.2.0` : Full-text search with BM25 and BM25F ranking
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`pg_fts`](/ext/e/pg_fts) | **el8** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Package** | [`pg_fts`](https://codeberg.org/gregburd/pg_fts) | **el9** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **RPM** | `pg_fts_$v` | **el10** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **DEB** | `postgresql-$v-pg-fts` | **d12** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| | | **u26** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
+## pg_cjk_parser {#pg_cjk_parser}
+
+[**`pg_cjk_parser`**](/ext/e/pg_cjk_parser) - `0.1.0` : CJK bigram parser derived from PostgreSQL full-text search
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`pg_cjk_parser`](/ext/e/pg_cjk_parser) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`pg_cjk_parser`](https://github.com/huangjimmy/pg_cjk_parser) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `pg_cjk_parser_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-pg-cjk-parser` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
+## pg_jieba {#pg_jieba}
+
+[**`pg_jieba`**](/ext/e/pg_jieba) - `1.1.0` : Chinese full-text search parser based on cppjieba
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`pg_jieba`](/ext/e/pg_jieba) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`pg_jieba`](https://github.com/jaiminpan/pg_jieba) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `pg_jieba_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-pg-jieba` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
 ## hunspell_cs_cz {#hunspell_cs_cz}
 
-[**`hunspell_cs_cz`**](/ext/e/hunspell_cs_cz) - `1.0` : Czech Hunspell Dictionary
+[**`hunspell`**](/ext/e/hunspell_cs_cz) - `1.0` : Czech Hunspell Dictionary
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
 | **Extension** | [`hunspell_cs_cz`](/ext/e/hunspell_cs_cz) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell_cs_cz`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_cs_cz_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell-cs-cz` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
@@ -310,14 +370,14 @@ There are **25** extensions in **24** packages.
 
 ## hunspell_de_de {#hunspell_de_de}
 
-[**`hunspell_de_de`**](/ext/e/hunspell_de_de) - `1.0` : German Hunspell Dictionary
+[**`hunspell`**](/ext/e/hunspell_de_de) - `1.0` : German Hunspell Dictionary
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
 | **Extension** | [`hunspell_de_de`](/ext/e/hunspell_de_de) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell_de_de`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_de_de_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell-de-de` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
@@ -329,14 +389,14 @@ There are **25** extensions in **24** packages.
 
 ## hunspell_en_us {#hunspell_en_us}
 
-[**`hunspell_en_us`**](/ext/e/hunspell_en_us) - `1.0` : en_US Hunspell Dictionary
+[**`hunspell`**](/ext/e/hunspell_en_us) - `1.0` : en_US Hunspell Dictionary
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
 | **Extension** | [`hunspell_en_us`](/ext/e/hunspell_en_us) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell_en_us`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_en_us_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell-en-us` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
@@ -348,14 +408,14 @@ There are **25** extensions in **24** packages.
 
 ## hunspell_fr {#hunspell_fr}
 
-[**`hunspell_fr`**](/ext/e/hunspell_fr) - `1.0` : French Hunspell Dictionary
+[**`hunspell`**](/ext/e/hunspell_fr) - `1.0` : French Hunspell Dictionary
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
 | **Extension** | [`hunspell_fr`](/ext/e/hunspell_fr) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell_fr`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_fr_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell-fr` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
@@ -367,14 +427,14 @@ There are **25** extensions in **24** packages.
 
 ## hunspell_ne_np {#hunspell_ne_np}
 
-[**`hunspell_ne_np`**](/ext/e/hunspell_ne_np) - `1.0` : Nepali Hunspell Dictionary
+[**`hunspell`**](/ext/e/hunspell_ne_np) - `1.0` : Nepali Hunspell Dictionary
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
 | **Extension** | [`hunspell_ne_np`](/ext/e/hunspell_ne_np) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell_ne_np`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_ne_np_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell-ne-np` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
@@ -386,14 +446,14 @@ There are **25** extensions in **24** packages.
 
 ## hunspell_nl_nl {#hunspell_nl_nl}
 
-[**`hunspell_nl_nl`**](/ext/e/hunspell_nl_nl) - `1.0` : Dutch Hunspell Dictionary
+[**`hunspell`**](/ext/e/hunspell_nl_nl) - `1.0` : Dutch Hunspell Dictionary
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
 | **Extension** | [`hunspell_nl_nl`](/ext/e/hunspell_nl_nl) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell_nl_nl`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_nl_nl_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell-nl-nl` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
@@ -405,14 +465,14 @@ There are **25** extensions in **24** packages.
 
 ## hunspell_nn_no {#hunspell_nn_no}
 
-[**`hunspell_nn_no`**](/ext/e/hunspell_nn_no) - `1.0` : Norwegian (norsk) Hunspell Dictionary
+[**`hunspell`**](/ext/e/hunspell_nn_no) - `1.0` : Norwegian (norsk) Hunspell Dictionary
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
 | **Extension** | [`hunspell_nn_no`](/ext/e/hunspell_nn_no) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell_nn_no`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_nn_no_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell-nn-no` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
@@ -424,18 +484,18 @@ There are **25** extensions in **24** packages.
 
 ## hunspell_pt_pt {#hunspell_pt_pt}
 
-[**`hunspell_pt_pt`**](/ext/e/hunspell_pt_pt) - `1.0` : Portuguese Hunspell Dictionary
+[**`hunspell`**](/ext/e/hunspell_pt_pt) - `1.0` : Portuguese Hunspell Dictionary
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`hunspell_pt_pt`](/ext/e/hunspell_pt_pt) | **el8** | - | - |
-| **Package** | [`hunspell_pt_pt`](https://github.com/postgrespro/hunspell_dicts) | **el9** | - | - |
-| **RPM** | `hunspell_pt_pt_$v` | **el10** | - | - |
-| **DEB** | `postgresql-$v-hunspell-pt-pt` | **d12** | - | - |
-| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | - | - |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | - | - |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | - | - |
-| | | **u26** | - | - |
+| **Extension** | [`hunspell_pt_pt`](/ext/e/hunspell_pt_pt) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
 
@@ -443,14 +503,14 @@ There are **25** extensions in **24** packages.
 
 ## hunspell_ru_ru {#hunspell_ru_ru}
 
-[**`hunspell_ru_ru`**](/ext/e/hunspell_ru_ru) - `1.0` : Russian Hunspell Dictionary
+[**`hunspell`**](/ext/e/hunspell_ru_ru) - `1.0` : Russian Hunspell Dictionary
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
 | **Extension** | [`hunspell_ru_ru`](/ext/e/hunspell_ru_ru) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell_ru_ru`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_ru_ru_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell-ru-ru` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
@@ -462,14 +522,14 @@ There are **25** extensions in **24** packages.
 
 ## hunspell_ru_ru_aot {#hunspell_ru_ru_aot}
 
-[**`hunspell_ru_ru_aot`**](/ext/e/hunspell_ru_ru_aot) - `1.0` : Russian Hunspell Dictionary (from AOT.ru group)
+[**`hunspell`**](/ext/e/hunspell_ru_ru_aot) - `1.0` : Russian Hunspell Dictionary (from AOT.ru group)
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
 | **Extension** | [`hunspell_ru_ru_aot`](/ext/e/hunspell_ru_ru_aot) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell_ru_ru_aot`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_ru_ru_aot_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell-ru-ru-aot` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |

@@ -192,7 +192,7 @@ For more information, see: [**Config: PGSQL - PG_MONITOR**](/docs/pgsql/param/#p
 
 Pigsty currently supports PostgreSQL 14-18 (lifecycle major versions), installed via binary packages from the [**PGDG official repo**](/docs/repo/pgdg/).
 Pigsty also allows you to use other [**PG kernel forks**](/docs/pgsql/kernel) to replace the default PostgreSQL kernel,
-and install up to [**531**](/docs/pgsql/ext) extension plugins on top of the PG kernel.
+and install up to [**555**](/docs/pgsql/ext) extension plugins on top of the PG kernel.
 
 **PostgreSQL** processes are managed by default by the [**HA**](/docs/concept/ha) agent—[**Patroni**](#patroni).
 When a cluster has only one node, that instance is the primary; when the cluster has multiple nodes, other instances automatically join as replicas:

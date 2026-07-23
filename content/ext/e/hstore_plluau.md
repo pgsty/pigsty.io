@@ -36,26 +36,24 @@ weight: 3031
 {.ext-table .ext-table--rel}
 
 
-> missing pg12-15 on el.aarch64
-
-
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#lang) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `2.0.12` | {{< pgvers "18,17,16,15,14" >}} | `pllua` | `hstore`, `plluau` |
+| [**EXT**](/ext/list#lang) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `2.0.12` | {{< pgvers "18,17,16,15,14" >}} | `pllua` | `hstore`, `plluau` |
+| [**RPM**](/ext/rpm#lang) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.0.12` | {{< pgvers "18,17,16,15,14" >}} | `pllua_$v` | - |
 | [**DEB**](/ext/deb#lang) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `2.0.12` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pllua` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | MISS PGDG - 0 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.11 2 | AVAIL PGDG 2.0.11 2 |
-| el8.aarch64 | MISS PGDG - 0 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 | MISS PGDG - 0 | MISS PGDG - 0 |
-| el9.x86_64 | MISS PGDG - 0 | AVAIL PGDG 2.0.12 2 | AVAIL PGDG 2.0.12 2 | AVAIL PGDG 2.0.12 3 | AVAIL PGDG 2.0.12 2 |
-| el9.aarch64 | MISS PGDG - 0 | AVAIL PGDG 2.0.12 2 | AVAIL PGDG 2.0.12 2 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 |
-| el10.x86_64 | MISS PGDG - 0 | AVAIL PGDG 2.0.12 2 | AVAIL PGDG 2.0.12 2 | AVAIL PGDG 2.0.12 2 | AVAIL PGDG 2.0.12 2 |
-| el10.aarch64 | MISS PGDG - 0 | AVAIL PGDG 2.0.12 2 | AVAIL PGDG 2.0.12 2 | AVAIL PGDG 2.0.12 2 | AVAIL PGDG 2.0.12 2 |
+| el8.x86_64 | AVAIL PIGSTY 2.0.12 1 | AVAIL PIGSTY 2.0.12 2 | AVAIL PIGSTY 2.0.12 2 | AVAIL PIGSTY 2.0.12 3 | AVAIL PIGSTY 2.0.12 3 |
+| el8.aarch64 | AVAIL PIGSTY 2.0.12 1 | AVAIL PIGSTY 2.0.12 2 | AVAIL PIGSTY 2.0.12 2 | AVAIL PIGSTY 2.0.12 1 | AVAIL PIGSTY 2.0.12 1 |
+| el9.x86_64 | AVAIL PIGSTY 2.0.12 1 | AVAIL PIGSTY 2.0.12 3 | AVAIL PIGSTY 2.0.12 3 | AVAIL PIGSTY 2.0.12 4 | AVAIL PIGSTY 2.0.12 3 |
+| el9.aarch64 | AVAIL PIGSTY 2.0.12 1 | AVAIL PIGSTY 2.0.12 3 | AVAIL PIGSTY 2.0.12 3 | AVAIL PIGSTY 2.0.12 2 | AVAIL PIGSTY 2.0.12 2 |
+| el10.x86_64 | AVAIL PIGSTY 2.0.12 1 | AVAIL PIGSTY 2.0.12 3 | AVAIL PIGSTY 2.0.12 3 | AVAIL PIGSTY 2.0.12 3 | AVAIL PIGSTY 2.0.12 3 |
+| el10.aarch64 | AVAIL PIGSTY 2.0.12 1 | AVAIL PIGSTY 2.0.12 3 | AVAIL PIGSTY 2.0.12 3 | AVAIL PIGSTY 2.0.12 3 | AVAIL PIGSTY 2.0.12 3 |
 | d12.x86_64 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 |
 | d12.aarch64 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 |
 | d13.x86_64 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 |
@@ -71,10 +69,10 @@ weight: 3031
 
 ## Install
 
-You can install `pllua` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) repository is added and enabled:
+You can install `pllua` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) and [**PIGSTY**](/docs/repo/pgsql) repositories are added and enabled:
 
 ```bash
-pig repo add pgdg -u          # Add PGDG repo and update cache
+pig repo add pgsql -u          # Add repo and update cache
 ```
 
 Install the extension using [**pig**](/docs/pig) or `apt/yum/dnf`:
@@ -92,6 +90,15 @@ pig ext install -y pllua -v 17  # PG 17
 pig ext install -y pllua -v 16  # PG 16
 pig ext install -y pllua -v 15  # PG 15
 pig ext install -y pllua -v 14  # PG 14
+```
+{{% /tab %}}
+{{% tab header="dnf" %}}
+```bash
+dnf install -y pllua_18       # PG 18
+dnf install -y pllua_17       # PG 17
+dnf install -y pllua_16       # PG 16
+dnf install -y pllua_15       # PG 15
+dnf install -y pllua_14       # PG 14
 ```
 {{% /tab %}}
 {{% tab header="apt" %}}
