@@ -48,6 +48,7 @@ Extension support varies across versions in Pigsty's offline repository: 14 has 
 | `mysql`  | OpenGauss/HaloDB compatible with MySQL protocol                      |
 | `polar`  | Alibaba PolarDB (based on pg `polar` distribution)                   |
 | `ivory`  | IvorySQL (Oracle-compatible syntax)                                  |
+| `pgtde`  | Percona PostgreSQL with pg_tde under `/usr/pgtde-$v`                 |
 | `oriole` | OrioleDB storage engine                                              |
 | `agens`  | AgensGraph graph database kernel                                     |
 | `pgedge` | pgEdge distributed replication kernel                                |

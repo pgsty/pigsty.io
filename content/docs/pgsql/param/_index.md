@@ -42,7 +42,7 @@ You can define multiple PGSQL clusters and further organize them into a horizont
 
 | Parameter                               |   Type   | Level | Description                                                              |
 |:----------------------------------------|:--------:|:-----:|:-------------------------------------------------------------------------|
-| [`pg_mode`](#pg_mode)                   |  `enum`  |  `C`  | pgsql cluster mode: pgsql,citus,mssql,mysql,polar,ivory,oracle,gpsql     |
+| [`pg_mode`](#pg_mode)                   |  `enum`  |  `C`  | pgsql cluster mode: pgsql,citus,mssql,mysql,ivory,pgtde,polar,oracle,gpsql |
 | [`pg_cluster`](#pg_cluster)             | `string` |  `C`  | pgsql cluster name, REQUIRED identity parameter                          |
 | [`pg_seq`](#pg_seq)                     |  `int`   |  `I`  | pgsql instance seq number, REQUIRED identity parameter                   |
 | [`pg_role`](#pg_role)                   |  `enum`  |  `I`  | pgsql instance role, REQUIRED, could be primary, replica, offline        |
@@ -288,6 +288,7 @@ Available mode options include:
 - `mssql`: Babelfish MSSQL wire protocol compatible kernel
 - `mysql`: OpenHalo/HaloDB MySQL wire protocol compatible kernel
 - `ivory`: IvorySQL Oracle compatible kernel
+- `pgtde`: Percona PostgreSQL with pg_tde
 - `polar`: PolarDB for PostgreSQL kernel
 - `oracle`: PolarDB for Oracle kernel
 - `gpsql`: Greenplum parallel database cluster (monitoring)
