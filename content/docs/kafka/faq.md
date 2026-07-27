@@ -11,9 +11,9 @@ aliases: [/docs/pilot/kafka/faq]
 
 ## How mature is the current KAFKA module?
 
-The current role implements a production-grade v1 baseline: dynamic KRaft, full cluster guardrails, cold-start/repair, broker-only serial admission, strict rolling restart, TLS/SCRAM/ACL, declarative convergence of topics/users, internal credential and certificate rotation, and the full monitoring pipeline.
+The current role implements a production-grade v1 baseline: dynamic KRaft, full cluster guardrails, cold-start/repair, serial broker admission and dynamic controller join, member retirement (including dead nodes), three-command failed-node replacement, strict rolling restart, TLS/SCRAM/ACL, declarative convergence of topics/users, internal credential and certificate rotation, and the full monitoring pipeline.
 
-It is not a managed Kafka product. Production still requires `kafka_security: scram`, an odd number of controllers, sufficient brokers/RF/minISR, plus your own capacity planning, reassignment, controller membership, upgrade, backup, restore, and failure drills. The default `plaintext` is only suitable for development or a trusted, isolated network.
+It is not a managed Kafka product. Production still requires `kafka_security: scram`, an odd number of controllers, sufficient brokers/RF/minISR, plus your own capacity planning, reassignment/data balancing, upgrade, backup, restore, and failure drills. The default `plaintext` is only suitable for development or a trusted, isolated network.
 
 
 --------
@@ -22,7 +22,7 @@ It is not a managed Kafka product. Production still requires `kafka_security: sc
 
 This module targets Kafka 4.1+ and uses native dynamic KRaft, with no ZooKeeper installed and no static quorum created. All members render `controller.quorum.bootstrap.servers`; new clusters are formatted explicitly with `--initial-controllers`/`--no-initial-controllers`, and after startup the role verifies that the directory IDs of the initial controllers have joined the live quorum.
 
-The initial controller identity is written into the bootstrap manifest. Later controller additions and removals still require the explicit `add-controller`/`remove-controller` management procedures; editing the inventory alone is not enough.
+The initial controller identity is written into the bootstrap manifest, but it is only a birth certificate: after the cluster's first commission, live quorum membership is authoritative in Raft itself. Later controller additions and removals are orchestrated by the playbooks — additions go through `kafka.yml`'s observer catch-up + `add-controller` join flow, removals through a `kafka-rm.yml` strict-subset retirement (automatic `remove-controller`) — you only edit the inventory and run the matching playbook.
 
 
 --------
@@ -40,7 +40,7 @@ The cluster roles must either be omitted entirely and consistently use `combined
 
 ## Will controller port 9093 collide with Alertmanager?
 
-The controller uses Kafka KRaft's conventional port `9093` by default. Alertmanager on a Pigsty Infra node also uses `9093` by default: the two collide only when Kafka and Infra share the same node. In that case, adjust [`kafka_controller_port`](/docs/kafka/param#kafka_controller_port) for that cluster; the role only enforces that the four Kafka ports `9092`, `9093`, `9308`, and `9404` differ from one another, and does not automatically detect port conflicts with other services.
+The controller uses Kafka KRaft's conventional port `9093` by default. In current Pigsty versions Alertmanager listens on [`alertmanager_port`](/docs/infra/param#alertmanager_port) `9059` by default (its cluster port is `9094`), so the defaults do not collide even when Kafka shares an Infra node. If you changed those ports and created a clash, adjust [`kafka_controller_port`](/docs/kafka/param#kafka_controller_port) for that cluster; the role only enforces that the four Kafka ports `9092`, `9093`, `9308`, and `9404` differ from one another, and does not automatically detect port conflicts with other services.
 
 
 --------
@@ -208,23 +208,26 @@ Exposure across NAT, the public internet, multiple networks, or Kubernetes usual
 
 ## Can I just add a broker?
 
-A healthy cluster supports adding a **pure broker**. After updating the full inventory, you still need the exact full-cluster limit:
+Yes. Declare the new member in the inventory (`broker`, `combined`, and `controller` all work), then run against the complete cluster:
 
 ```bash
 ./kafka.yml --check -l kf-main
 ./kafka.yml -l kf-main
 ```
 
-The role formats, starts, and verifies the registration of the new broker one at a time. You cannot limit the run to the new node only. After it joins, existing partitions are not migrated automatically; you must run and monitor reassignment separately. "The broker is registered" does not mean "capacity is already balanced."
+The role formats, starts, and verifies the registration of each new broker one at a time (combined/controller nodes additionally catch up and get promoted to voters). You cannot limit the run to the new node only. After it joins, existing partitions are not migrated automatically; you must run and monitor reassignment separately. "The broker is registered" does not mean "capacity is already balanced."
 
 
 --------
 
 ## Can I just add or remove a controller?
 
-Not by inventory alone. Although the cluster uses a dynamic quorum, a new controller must be explicitly formatted, started, and caught up against the existing Cluster ID, and then have `add-controller` applied; removal requires `remove-controller`, majority verification, and a node decommissioning procedure.
+Yes. Edit the inventory and let the playbooks orchestrate every step of the [KRaft membership change](https://kafka.apache.org/43/operations/kraft/#controller-membership-changes):
 
-The role refuses to automatically treat a new controller in the inventory as a voter. Use [Kafka 4.3 KRaft membership changes](https://kafka.apache.org/43/operations/kraft/#controller-membership-changes) together with a separate, rehearsed runbook.
+- **Add**: `./kafka.yml -l <cls>` formats the new combined/controller node with `--no-initial-controllers`, lets it catch up as an observer, promotes it with `add-controller`, one node at a time with health gates throughout;
+- **Remove**: `./kafka-rm.yml -l <ip>` (a strict subset of the cluster) performs `remove-controller` and the broker unregistration through a surviving member — it works even when the node is unreachable — then delete the member from the inventory.
+
+You still own the planning: keep the controller count odd with a live majority after the change, make one membership change at a time, and drain the partitions off a removed broker first (or let a same-`kafka_seq` replacement take them over).
 
 
 --------
@@ -240,6 +243,6 @@ The payload verified on 2026-07-16 is Kafka 4.3.1, `kafka_exporter` 1.9.0, and J
 
 ## How do I safely wipe Kafka data?
 
-`kafka.yml` never performs cleanup; cluster teardown uses the separate `kafka-rm.yml` playbook. By default (`kafka_rm_data=true`) it permanently deletes the data/KRaft metadata, node-local `/etc/kafka` recovery state, and monitoring targets; setting it to `false` retains both data and recovery state. Setting `kafka_safeguard=true` forcibly aborts any deletion.
+`kafka.yml` never performs cleanup; removal uses the separate `kafka-rm.yml` playbook. Selecting a whole cluster with `-l` (or running bare for all clusters) is a teardown; selecting a strict subset retires those members first (voter entry and broker registration removed through a surviving member) before the local cleanup. By default (`kafka_rm_data=true`) it permanently deletes the data/KRaft metadata, node-local `/etc/kafka` recovery state, and monitoring targets; setting it to `false` retains both data and recovery state. Setting `kafka_safeguard=true` forcibly aborts any deletion.
 
 The playbook has no extra gate such as a confirmation string, so before running it you must manually confirm the exact `-l` target, a recoverable backup or a clear intent to rebuild, and the business-decommissioned status. For the full semantics, see [Playbook: cluster teardown](/docs/kafka/playbook#cluster-teardown).

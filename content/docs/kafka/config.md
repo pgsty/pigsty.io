@@ -129,7 +129,7 @@ A new cluster uses the dynamic quorum directly: every node renders `controller.q
 - The Cluster ID is generated randomly, not hashed from the cluster name;
 - The Directory IDs of the initial controllers are generated randomly and frozen;
 - Each node is formatted explicitly with either `--initial-controllers` or `--no-initial-controllers` mode;
-- After startup, the role waits for the dynamic quorum to elect a leader, and verifies that every initial controller's Directory ID is present in the live quorum.
+- After the first bootstrap startup, the role waits for the dynamic quorum to elect a leader, and verifies that every initial controller's Directory ID has entered the live quorum.
 
 The bootstrap-only facts live on every cluster member:
 
@@ -144,7 +144,7 @@ Each member of a `scram` cluster also holds `/etc/kafka/secrets.yml`. The admin 
 - When no member holds a manifest copy while storage is already formatted, the role fails closed and asks you to restore the file on any member first;
 - An already-formatted `scram` cluster likewise fails closed when no member holds the secret material.
 
-Adding, replacing, or removing a controller is not an ordinary inventory operation. A new controller must be explicitly formatted against the existing cluster, started, and caught up, and then registered with Kafka `add-controller`; removal requires the corresponding `remove-controller` procedure. The role refuses to add an unregistered new controller to the voter set based on inventory alone.
+The manifest is the cluster's birth certificate: after the first commission, membership is authoritative in the live Raft state. Combined/controller nodes newly declared in the inventory are then joined to the dynamic quorum by the playbook (fresh format → observer catch-up → `add-controller` promotion), and retirement is a `kafka-rm.yml` strict-subset run (automatic `remove-controller` and broker unregistration) — see [Expand Cluster](/docs/kafka/admin#expand-cluster) and [Shrink Cluster](/docs/kafka/admin#shrink-cluster).
 
 
 --------

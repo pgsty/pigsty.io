@@ -26,7 +26,8 @@ The KAFKA module currently provides:
 - Native dynamic KRaft, with no ZooKeeper installed and no static `controller.quorum.voters` rendered
 - Support for the three native roles `combined`, `broker`, and `controller`, in both combined and separated topologies
 - Random generation of a Cluster ID and Controller Directory ID for new clusters, with identity protected by a minimal bootstrap manifest
-- Selection of a cold-start/repair, broker-only serial admission, or strict single-node rolling path based on live health
+- Selection of a cold-start/repair, serial broker admission, dynamic controller join, or strict single-node rolling path based on live health
+- Playbook-orchestrated member retirement and failed-node replacement: `kafka-rm.yml` strict-subset retirement (dead nodes included), three commands to replace a node
 - Checks before and after each rolling step for controller majority and voter catch-up, offline partitions, under-min-ISR, and ISR catch-up
 - Two security profiles, `plaintext` and the production `scram`; the latter enables TLS, SCRAM-SHA-512, controller mTLS, ACLs, and default-deny authorization
 - Declarative convergence of topics, user credentials, ACLs, and quotas, without implicitly deleting business topics
@@ -116,8 +117,7 @@ All four ports must differ from one another, and all are adjustable via paramete
 
 The current role provides a core deployment baseline for Kafka, not a replacement for a full streaming platform or a managed service. The following capabilities still require an explicit runbook or a separate component:
 
-- Adding, removing, or replacing controllers: the cluster uses a dynamic quorum, but membership changes must go through explicit format, catch-up, and `add-controller`/`remove-controller` procedures; editing the manifest itself never adds or removes a voter
-- Reassignment of existing partitions after broker scale-out, broker decommissioning, and replica rebalancing
+- Reassignment of existing partitions after broker scale-out and replica rebalancing (member join/retirement/replacement is orchestrated by the playbooks; data movement still needs an explicit plan)
 - Raising the frozen `default.replication.factor` after scale-out: Kafka 4.3 requires an explicit data-migration and static-config maintenance window
 - Changing the replication factor of an existing topic, deleting topics, and deleting users
 - Online migration of a formatted cluster from `plaintext` to `scram`

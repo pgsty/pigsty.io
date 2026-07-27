@@ -29,8 +29,8 @@ Here, "from scratch" means starting before any Kafka is deployed. You will need 
 | 5 | Launch acceptance | Check quorum, ISR, end-to-end read/write, monitoring, capacity, and runbooks |
 {.full-width}
 
-{{% alert title="Don't Treat the Two Examples as an In-Place Upgrade" color="warning" %}}
-The `kf-dev` and `kf-main` below are two separate, brand-new clusters. Do not turn the single-node `kf-dev` into a three-controller cluster in place by simply adding two more combined nodes to it; changing controller membership in a dynamic quorum requires an explicit format, catch-up, and `add-controller` procedure. If you need to preserve the single-node data, design a dedicated migration plan.
+{{% alert title="The Two Examples Are Separate Clusters" color="warning" %}}
+The `kf-dev` and `kf-main` below are two separate, brand-new clusters. If you do need it, you can also grow the single-node `kf-dev` into a three-controller cluster in place: declare two new combined nodes and rerun `./kafka.yml -l kf-dev`, and the role formats each one, catches it up as an observer, and promotes it with `add-controller`, one at a time — but for a demo it is still simpler to build a fresh cluster. See [Expand Cluster](/docs/kafka/admin#expand-cluster) for the semantics.
 {{% /alert %}}
 
 
@@ -283,7 +283,7 @@ When deploying Kafka, you must select all three members:
 ./kafka.yml -l kf-main
 ```
 
-You cannot use `-l 10.10.10.11` alone, nor select `kf-dev,kf-main` at once. The role rejects a missing, partial, or cross-cluster limit.
+You cannot use `-l 10.10.10.11` alone: every selected cluster must be complete, and a partial selection is refused. Selecting several complete clusters at once (`-l kf-dev,kf-main`) or running bare against all clusters is allowed.
 
 
 ### 3. Verify the Health of All Three Nodes
@@ -492,7 +492,7 @@ For all 15 public parameters, their defaults, and the reserved keys, see the [Pa
 - `kafka_rack` expresses only real failure domains, and replica placement has been verified;
 - data-disk capacity, throughput, latency, retention, peak write rate, and recovery time have been load-tested;
 - there is an explicit reassignment plan for after a new broker joins, since existing topics' RF is not raised automatically;
-- the procedures for Kafka data backup/rebuild, broker replacement, controller membership, and disaster recovery are all defined.
+- the procedures for Kafka data backup/rebuild and disaster recovery are defined, and [failed-node replacement](/docs/kafka/admin#replace-failed-node) and member retirement have been rehearsed.
 
 
 ### Security and Network
