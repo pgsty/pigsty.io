@@ -1,5 +1,5 @@
 ---
-title: "pgBackRest 2.58 Documentation"
+title: "pgBackRest 2.59 Documentation"
 linkTitle: "pgbackrest"
 weight: 8200
 icon: fas fa-couch
@@ -9,7 +9,7 @@ module: [PGBACKREST]
 categories: [Concept]
 ---
 
-> snapshot of pgBackrest 2.58 documentation: <https://pgbackrest.org/>
+> snapshot of pgBackRest 2.59 documentation: <https://pgbackrest.org/>
 
 
 --------
@@ -18,10 +18,33 @@ categories: [Concept]
 
 pgBackRest is a reliable backup and restore solution for PostgreSQL that seamlessly scales up to the largest databases and workloads.
 
-pgBackRest [v2.58.0](https://github.com/pgbackrest/pgbackrest/releases/tag/release/2.58.0) is the current stable release. Release notes are on the [Releases](/docs/pgbackrest/release/) page.
+pgBackRest [v2.59.0](https://github.com/pgbackrest/pgbackrest/releases/tag/release/2.59.0) is the current stable release. Release notes are on the [Releases](/docs/pgbackrest/release/) page.
 
-Please give us a star on [GitHub](https://github.com/pgbackrest/pgbackrest) if you like pgBackRest! Consider a [sponsorship](https://github.com/sponsors/dwsteele) if you use pgBackRest in your enterprise.
+Please give us a star on [GitHub](https://github.com/pgbackrest/pgbackrest) if you like pgBackRest!
 
+
+--------
+
+## News
+
+**July 20, 2026** - [New Distribution Tarball](/docs/pgbackrest/news/#distribution-tarball)
+
+**July 20, 2026** - [pgBackRest 2.59.0 Released](/docs/pgbackrest/news/#release-2-59-0)
+
+**May 18, 2026** - [pgBackRest Will Continue!](/docs/pgbackrest/news/#will-continue)
+
+
+--------
+
+## Sponsors
+
+pgBackRest would not exist without sponsorship. Writing new features, fixing bugs, reviewing contributions, answering questions from the community, and maintenance all take a considerable amount of time. Please consider a [sponsorship](https://github.com/sponsors/dwsteele) if you use pgBackRest in your enterprise.
+
+Our sponsors: [AWS](https://aws.amazon.com), [Supabase](https://supabase.com), [pgEdge](https://pgedge.com), [Tiger Data](https://tigerdata.com), [Percona](https://percona.com), [Eon](https://eon.io), [Xata](https://xata.io), [Dalibo](https://dalibo.com), and [Data Egret](https://dataegret.com/).
+
+We are grateful to our sponsors for investing in open-source infrastructure that benefits the entire PostgreSQL community.
+
+Past sponsors: [Crunchy Data](https://crunchydata.com), [Resonate](https://resonate.com).
 
 
 --------
@@ -51,7 +74,7 @@ Full, differential, and incremental backups are supported. pgBackRest is not sus
 
 ### Backup Rotation & Archive Expiration
 
-Retention polices can be set for full and differential backups to create coverage for any time frame. The WAL archive can be maintained for all backups or strictly for the most recent backups. In the latter case WAL required to make older backups consistent will be maintained in the archive.
+Retention policies can be set for full and differential backups to create coverage for any time frame. The WAL archive can be maintained for all backups or strictly for the most recent backups. In the latter case WAL required to make older backups consistent will be maintained in the archive.
 
 
 ### Backup Integrity
@@ -117,6 +140,13 @@ pgBackRest repositories can be located in S3, Azure, and GCS compatible object s
 pgBackRest can encrypt the repository to secure backups wherever they are stored.
 
 
+### Ransomware & Malware Protection
+
+When the repository is stored on versioned object storage, pgBackRest can read the repository as it was at a point-in-time. If backups are deleted or corrupted by accident, malware, or ransomware, a target time can be used to recover data from before the damage occurred.
+
+Versioning is supported by S3, Azure, and GCS compatible object stores. Object locking for S3 and soft delete for GCS or Azure can provide additional protection against tampering.
+
+
 ### Compatibility with ten versions of PostgreSQL
 
 pgBackRest includes support for ten versions of PostgreSQL, the five supported versions and the last five EOL versions. This allows ample time to upgrade to a supported version.
@@ -132,10 +162,6 @@ pgBackRest strives to be easy to configure and operate:
 - Command pages for command-line operations: [backup](/docs/pgbackrest/command/backup/), [restore](/docs/pgbackrest/command/restore/), [check](/docs/pgbackrest/command/check/), and [info](/docs/pgbackrest/command/info/).
 - [Configuration reference](/docs/pgbackrest/configuration/) for creating pgBackRest configurations.
 
-Documentation for v1 can be found [here](http://www.pgbackrest.org/1). No further releases are planned for v1 because v2 is backward-compatible with v1 options and repositories.
-
-
-
 
 --------
 
@@ -150,13 +176,6 @@ Contributions to pgBackRest are always welcome! Please see our [Contributing Gui
 
 pgBackRest is completely free and open source under the [MIT](https://github.com/pgbackrest/pgbackrest/blob/main/LICENSE) license. You may use it for personal or commercial purposes without any restrictions whatsoever. Bug reports are taken very seriously and will be addressed as quickly as possible. Please report bugs [here](https://github.com/pgbackrest/pgbackrest/issues).
 
-Creating a robust disaster recovery policy with proper replication and backup strategies can be a very complex and daunting task. You may find that you need help during the architecture phase and ongoing support to ensure that your enterprise continues running smoothly. There are a variety of PostgreSQL support companies that can provide this service.
+Creating a robust disaster recovery policy with proper replication and backup strategies can be a very complex and daunting task. You may find that you need help during the architecture phase and ongoing support to ensure that your enterprise continues running smoothly.
 
-
---------
-
-## Recognition
-
-[Crunchy Data](http://www.crunchydata.com) and [Resonate](http://www.resonate.com) have both generously supported the development of pgBackRest.
-
-[Armchair](https://thenounproject.com/icon/armchair-129971) graphic by [Alexander Skowalsky](https://thenounproject.com/sandorsz).
+Our [sponsors](#sponsors) offer products and services that include pgBackRest support and can help with your disaster recovery needs.

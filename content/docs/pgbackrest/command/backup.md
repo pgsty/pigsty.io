@@ -144,6 +144,8 @@ Automatically run the `expire` command after a successful backup.
 
 The setting is enabled by default. Use caution when disabling this option as doing so will result in retaining all backups and archives indefinitely, which could cause your repository to run out of space. The `expire` command will need to be run regularly to prevent this from happening.
 
+When `expire` is run automatically after a successful backup it uses the configuration of the `backup` command, so options set only in an `expire` command section (e.g. `[global:expire]`) are not applied. To apply `expire`-specific configuration, disable this option and run the `expire` command separately.
+
 ```yaml
 default: y
 example: --expire-auto
@@ -226,6 +228,19 @@ example: --type=full
 
 ## General Options
 
+### Allow Run as Root Option (`--allow-root`)
+
+Allow the command to run as the root user.
+
+By default only the `restore` command may be run as the root user since it is designed to carefully manage file ownership. Running other commands as root risks creating files (e.g. in the repository) that are owned by root and therefore inaccessible to the PostgreSQL user, causing later commands to fail.
+
+Enable this option to run a command as root anyway. However, it is far better to run pgBackRest as the user that owns the repository and PostgreSQL cluster.
+
+```yaml
+default: n
+example: --allow-root
+```
+
 ### Buffer Size Option (`--buffer-size`)
 
 Buffer size for I/O operations.
@@ -286,16 +301,16 @@ Sets the level to be used for file compression when `compress-type` does not equ
 
 ```yaml
 default (depending on compress-type):
-   bz2 - 9
-   gz - 6
-   lz4 - 1
-   zst - 3
+    bz2 - 9
+    gz - 6
+    lz4 - 1
+    zst - 3
 
 allow range (depending on compress-type):
-   bz2 - [1, 9]
-   gz - [-1, 9]
-   lz4 - [-5, 12]
-   zst - [-7, 22]
+    bz2 - [1, 9]
+    gz - [-1, 9]
+    lz4 - [-5, 12]
+    zst - [-7, 22]
 
 example: --compress-level=9
 ```
@@ -420,7 +435,7 @@ example: --lock-path=/backup/db/lock
 
 Use a neutral umask.
 
-Sets the umask to 0000 so modes in the repository are created in a sensible way. The default directory mode is 0750 and default file mode is 0640. The lock and log directories set the directory and file mode to 0770 and 0660 respectively.
+Sets the umask to 0000 so modes in the repository are created in a sensible way. The default directory mode is 0750 and default file mode is 0640.
 
 To use the executing user's umask instead specify `neutral-umask=n` in the config file or `--no-neutral-umask` on the command line.
 
@@ -781,7 +796,7 @@ example: --repo1-bundle-limit=10MiB
 
 Target size for file bundles.
 
-Defines the total size of files that will be added to a single bundle. Most bundles will be smaller than this size but it is possible that some will be slightly larger, so do not set this option to the maximum size that your file system allows.
+Defines the target size for files that will be added to a single bundle. The uncompressed bundle size may be as large as `repo-bundle-size` + `repo-bundle-limit`, so do not set this option to the maximum size that your file system allows.
 
 In general, it is not a good idea to set this option too high because retries will need to redo the entire bundle.
 
@@ -980,7 +995,7 @@ Use this option to specify a non-default port for the repository host protocol.
 
 ```yaml
 default (depending on repo-host-type):
-   tls - 8432
+    tls - 8432
 
 allowed: [0, 65535]
 example: --repo1-host-port=25
@@ -1151,6 +1166,8 @@ The following types are supported:
 - `shared` - Shared keys
 - `auto` - Automatically retrieve temporary credentials
 - `web-id` - Automatically retrieve web identity credentials
+- `pod-id` - Automatically retrieve EKS pod identity credentials
+- `process` - Retrieve credentials by executing a process
 
 ```yaml
 default: shared
@@ -1165,6 +1182,18 @@ Enables S3 server-side encryption using the specified AWS key management service
 
 ```yaml
 example: --repo1-s3-kms-key-id=bceb4f13-6939-4be3-910d-df54dee817b7
+```
+
+### S3 Authentication Process Command Option (`--repo-s3-process-cmd`)
+
+S3 authentication process command.
+
+Command (and optional arguments) to execute for retrieving temporary S3 credentials. The first list entry is the command and the remaining entries are passed as parameters.
+
+The process must output JSON containing `AccessKeyId`, `SecretAccessKey`, `SessionToken`, and `Expiration` fields. Credentials will be automatically refreshed before the expiration time. See [Process Credential Provider](https://docs.aws.amazon.com/sdkref/latest/guide/feature-process-credentials.html#feature-process-credentials-output) for format details.
+
+```yaml
+example: --repo1-s3-process-cmd=/usr/local/bin/get-credentials --repo1-s3-process-cmd=--role --repo1-s3-process-cmd=my-role
 ```
 
 ### S3 Repository Region Option (`--repo-s3-region`)
@@ -1196,6 +1225,28 @@ The AWS role name (not the full ARN) used to retrieve temporary credentials when
 
 ```yaml
 example: --repo1-s3-role=authrole
+```
+
+### S3 Repository Service Option (`--repo-s3-service`)
+
+S3 signing service.
+
+The S3 signing service used in SigV4 authentication. Defaults to `s3` for standard S3 endpoints. Set to `s3-outposts` when using an S3 Outposts endpoint.
+
+```yaml
+default: s3
+example: --repo1-s3-service=s3-outposts
+```
+
+### S3 Repository STS Endpoint Option (`--repo-s3-sts-host`)
+
+S3 repository STS endpoint.
+
+The STS endpoint used to retrieve temporary credentials when `repo-s3-key-type=web-id` is configured. Set to a regional endpoint (e.g. `sts.us-east-1.amazonaws.com`) to use regional STS, which may be required for GovCloud, China regions, or to reduce latency.
+
+```yaml
+default: sts.amazonaws.com
+example: --repo1-s3-sts-host=sts.us-east-1.amazonaws.com
 ```
 
 ### S3 Repository URI Style Option (`--repo-s3-uri-style`)
@@ -1386,14 +1437,14 @@ If a file is larger than 1GiB (the maximum size PostgreSQL will create by defaul
 
 ```yaml
 default (depending on repo-type):
-   azure - 4MiB
-   gcs - 4MiB
-   s3 - 5MiB
+    azure - 4MiB
+    gcs - 4MiB
+    s3 - 5MiB
 
 allow range (depending on repo-type):
-   azure - [4MiB, 1GiB]
-   gcs - [4MiB, 1GiB]
-   s3 - [5MiB, 1GiB]
+    azure - [4MiB, 1GiB]
+    gcs - [4MiB, 1GiB]
+    s3 - [5MiB, 1GiB]
 
 example: --repo1-storage-upload-chunk-size=16MiB
 ```
@@ -1569,7 +1620,7 @@ Use this option to specify a non-default port for the PostgreSQL host protocol.
 
 ```yaml
 default (depending on pg-host-type):
-   tls - 8432
+    tls - 8432
 
 allowed: [0, 65535]
 example: --pg1-host-port=25

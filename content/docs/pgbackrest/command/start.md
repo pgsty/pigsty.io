@@ -14,6 +14,19 @@ If the pgBackRest processes were previously stopped using the `stop` command the
 
 ## General Options
 
+### Allow Run as Root Option (`--allow-root`)
+
+Allow the command to run as the root user.
+
+By default only the `restore` command may be run as the root user since it is designed to carefully manage file ownership. Running other commands as root risks creating files (e.g. in the repository) that are owned by root and therefore inaccessible to the PostgreSQL user, causing later commands to fail.
+
+Enable this option to run a command as root anyway. However, it is far better to run pgBackRest as the user that owns the repository and PostgreSQL cluster.
+
+```yaml
+default: n
+example: --allow-root
+```
+
 ### Config Option (`--config`)
 
 pgBackRest configuration file.
@@ -64,7 +77,7 @@ example: --lock-path=/backup/db/lock
 
 Use a neutral umask.
 
-Sets the umask to 0000 so modes in the repository are created in a sensible way. The default directory mode is 0750 and default file mode is 0640. The lock and log directories set the directory and file mode to 0770 and 0660 respectively.
+Sets the umask to 0000 so modes in the repository are created in a sensible way. The default directory mode is 0750 and default file mode is 0640.
 
 To use the executing user's umask instead specify `neutral-umask=n` in the config file or `--no-neutral-umask` on the command line.
 

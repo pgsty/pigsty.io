@@ -18,7 +18,7 @@ To speed up execution, limit the output to only progress information by specifyi
 
 Each stanza has a separate section and it is possible to limit output to a single stanza with the `--stanza` option. The stanza '`status`' gives a brief indication of the stanza's health. If this is '`ok`' then pgBackRest is functioning normally. If there are multiple repositories, then a status of '`mixed`' indicates that the stanza is not in a healthy state on one or more of the repositories; in this case the state of the stanza will be detailed per repository. For cases in which an error on a repository occurred that is not one of the known error codes, then an error code of '`other`' will be used and the full error details will be provided. The '`wal archive min/max`' shows the minimum and maximum WAL currently stored in the archive and, in the case of multiple repositories, will be reported across all repositories unless the `--repo` option is set. Note that there may be gaps due to archive retention policies or other reasons.
 
-The '`backup/expire running`' and/or '`restore running`' messages will appear beside the '`status`' information if any of those commands are currently running on the host.
+The '`backup/expire running`' and/or '`restore running`' messages will appear beside the '`status`' information if any of those commands are currently running on the host. Per-repo progress will also be reported in text output and a '`repo`' array will be included in JSON output.
 
 The backups are displayed oldest to newest. The oldest backup will *always* be a full backup (indicated by an `F` at the end of the label) but the newest backup can be full, differential (ends with `D`), or incremental (ends with `I`).
 
@@ -87,6 +87,19 @@ example: --type=full
 ```
 
 ## General Options
+
+### Allow Run as Root Option (`--allow-root`)
+
+Allow the command to run as the root user.
+
+By default only the `restore` command may be run as the root user since it is designed to carefully manage file ownership. Running other commands as root risks creating files (e.g. in the repository) that are owned by root and therefore inaccessible to the PostgreSQL user, causing later commands to fail.
+
+Enable this option to run a command as root anyway. However, it is far better to run pgBackRest as the user that owns the repository and PostgreSQL cluster.
+
+```yaml
+default: n
+example: --allow-root
+```
 
 ### Buffer Size Option (`--buffer-size`)
 
@@ -625,7 +638,7 @@ Use this option to specify a non-default port for the repository host protocol.
 
 ```yaml
 default (depending on repo-host-type):
-   tls - 8432
+    tls - 8432
 
 allowed: [0, 65535]
 example: --repo1-host-port=25
@@ -706,6 +719,8 @@ The following types are supported:
 - `shared` - Shared keys
 - `auto` - Automatically retrieve temporary credentials
 - `web-id` - Automatically retrieve web identity credentials
+- `pod-id` - Automatically retrieve EKS pod identity credentials
+- `process` - Retrieve credentials by executing a process
 
 ```yaml
 default: shared
@@ -720,6 +735,18 @@ Enables S3 server-side encryption using the specified AWS key management service
 
 ```yaml
 example: --repo1-s3-kms-key-id=bceb4f13-6939-4be3-910d-df54dee817b7
+```
+
+### S3 Authentication Process Command Option (`--repo-s3-process-cmd`)
+
+S3 authentication process command.
+
+Command (and optional arguments) to execute for retrieving temporary S3 credentials. The first list entry is the command and the remaining entries are passed as parameters.
+
+The process must output JSON containing `AccessKeyId`, `SecretAccessKey`, `SessionToken`, and `Expiration` fields. Credentials will be automatically refreshed before the expiration time. See [Process Credential Provider](https://docs.aws.amazon.com/sdkref/latest/guide/feature-process-credentials.html#feature-process-credentials-output) for format details.
+
+```yaml
+example: --repo1-s3-process-cmd=/usr/local/bin/get-credentials --repo1-s3-process-cmd=--role --repo1-s3-process-cmd=my-role
 ```
 
 ### S3 Repository Region Option (`--repo-s3-region`)
@@ -751,6 +778,28 @@ The AWS role name (not the full ARN) used to retrieve temporary credentials when
 
 ```yaml
 example: --repo1-s3-role=authrole
+```
+
+### S3 Repository Service Option (`--repo-s3-service`)
+
+S3 signing service.
+
+The S3 signing service used in SigV4 authentication. Defaults to `s3` for standard S3 endpoints. Set to `s3-outposts` when using an S3 Outposts endpoint.
+
+```yaml
+default: s3
+example: --repo1-s3-service=s3-outposts
+```
+
+### S3 Repository STS Endpoint Option (`--repo-s3-sts-host`)
+
+S3 repository STS endpoint.
+
+The STS endpoint used to retrieve temporary credentials when `repo-s3-key-type=web-id` is configured. Set to a regional endpoint (e.g. `sts.us-east-1.amazonaws.com`) to use regional STS, which may be required for GovCloud, China regions, or to reduce latency.
+
+```yaml
+default: sts.amazonaws.com
+example: --repo1-s3-sts-host=sts.us-east-1.amazonaws.com
 ```
 
 ### S3 Repository URI Style Option (`--repo-s3-uri-style`)
@@ -941,14 +990,14 @@ If a file is larger than 1GiB (the maximum size PostgreSQL will create by defaul
 
 ```yaml
 default (depending on repo-type):
-   azure - 4MiB
-   gcs - 4MiB
-   s3 - 5MiB
+    azure - 4MiB
+    gcs - 4MiB
+    s3 - 5MiB
 
 allow range (depending on repo-type):
-   azure - [4MiB, 1GiB]
-   gcs - [4MiB, 1GiB]
-   s3 - [5MiB, 1GiB]
+    azure - [4MiB, 1GiB]
+    gcs - [4MiB, 1GiB]
+    s3 - [5MiB, 1GiB]
 
 example: --repo1-storage-upload-chunk-size=16MiB
 ```

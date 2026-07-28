@@ -41,6 +41,19 @@ example: --tls-server-port=8000
 
 ## General Options
 
+### Allow Run as Root Option (`--allow-root`)
+
+Allow the command to run as the root user.
+
+By default only the `restore` command may be run as the root user since it is designed to carefully manage file ownership. Running other commands as root risks creating files (e.g. in the repository) that are owned by root and therefore inaccessible to the PostgreSQL user, causing later commands to fail.
+
+Enable this option to run a command as root anyway. However, it is far better to run pgBackRest as the user that owns the repository and PostgreSQL cluster.
+
+```yaml
+default: n
+example: --allow-root
+```
+
 ### Buffer Size Option (`--buffer-size`)
 
 Buffer size for I/O operations.
