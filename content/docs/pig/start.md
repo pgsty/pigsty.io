@@ -43,18 +43,18 @@ $ curl -fsSL https://repo.pigsty.io/pig | bash
 [INFO] kernel = Linux
 [INFO] machine = x86_64
 [INFO] package = deb
-[INFO] pkg_url = https://repo.pigsty.io/pkg/pig/v1.5.1/pig_1.5.1-1_amd64.deb
-[INFO] download = /tmp/pig_1.5.1-1_amd64.deb
-[INFO] downloading pig v1.5.1
-curl -fSL https://repo.pigsty.io/pkg/pig/v1.5.1/pig_1.5.1-1_amd64.deb -o /tmp/pig_1.5.1-1_amd64.deb
+[INFO] pkg_url = https://repo.pigsty.io/pkg/pig/v1.6.0/pig_1.6.0-1_amd64.deb
+[INFO] download = /tmp/pig_1.6.0-1_amd64.deb
+[INFO] downloading pig v1.6.0
+curl -fSL https://repo.pigsty.io/pkg/pig/v1.6.0/pig_1.6.0-1_amd64.deb -o /tmp/pig_1.6.0-1_amd64.deb
 ######################################################################## 100.0%
 [INFO] md5sum = bbb9188284765db916a7539e13167289
-[INFO] installing: dpkg -i /tmp/pig_1.5.1-1_amd64.deb
+[INFO] installing: dpkg -i /tmp/pig_1.6.0-1_amd64.deb
 (Reading database ... 166001 files and directories currently installed.)
-Preparing to unpack /tmp/pig_1.5.1-1_amd64.deb ...
-Unpacking pig (1.5.1-1) ...
-Setting up pig (1.5.1-1) ...
-[INFO] pig v1.5.1 installed successfully
+Preparing to unpack /tmp/pig_1.6.0-1_amd64.deb ...
+Unpacking pig (1.6.0-1) ...
+Setting up pig (1.6.0-1) ...
+[INFO] pig v1.6.0 installed successfully
 check https://pgext.cloud for details
 ```
 
@@ -66,7 +66,7 @@ PIG is a Go-written binary program, installed by default at `/usr/bin/pig`. `pig
 
 ```bash
 $ pig version
-pig version 1.5.1 linux/amd64
+pig version 1.6.0 linux/amd64
 ```
 
 Use `pig status` to print the current environment status, OS code, PG installation status, repository accessibility and latency.
@@ -75,7 +75,7 @@ Use `pig status` to print the current environment status, OS code, PG installati
 $ pig status
 
 # [Configuration] ================================
-Pig Version      : 1.5.1
+Pig Version      : 1.6.0
 Pig Config       : /home/vagrant/.pig/config.yml
 Log Level        : info
 Log Path         : stderr
@@ -129,10 +129,10 @@ Use the `pig ext list` command to print the built-in PG extension catalog.
 
 ```bash
 $ pig ext list
-✓ Found 555 extensions
+✓ Found 562 extensions
 Name                Status     Version     Cate   Flags   License         Repo     PGVer  Package                               Description
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-timescaledb         available  2.28.2      TIME   -dslt-  Timescale       PIGSTY   15-18  postgresql-18-timescaledb-tsl         Enables scalable inserts and complex queries for time-series dat
+timescaledb         available  2.28.3      TIME   -dslt-  Timescale       PIGSTY   15-18  postgresql-18-timescaledb-tsl         Enables scalable inserts and complex queries for time-series dat
 timescaledb_toolkit available  1.23.0      TIME   -ds---  Timescale       PIGSTY   15-18  postgresql-18-timescaledb-toolkit     Library of analytical hyperfunctions, time-series pipelining, an
 timeseries          available  0.2.1       TIME   -d----  PostgreSQL      PIGSTY   14-18  postgresql-18-pg-timeseries           Convenience API for time series stack
 periods             available  1.2.3       TIME   -ds---  PostgreSQL      PGDG     14-18  postgresql-18-periods                 Provide Standard SQL functionality for PERIODs and SYSTEM VERSIO
@@ -141,7 +141,7 @@ pg_bulkload         available  3.1.23      ETL    bds---  BSD 3-Clause    PIGSTY
 test_decoding       available  -           ETL    --s--x  PostgreSQL      CONTRIB  14-18  postgresql-18                         SQL-based test/example module for WAL logical decoding
 pgoutput            available  -           ETL    --s---  PostgreSQL      CONTRIB  14-18  postgresql-18                         Logical Replication output plugin
 
-(555 Rows)
+(562 Rows)
 ```
 
 All extension metadata is defined in a data file named [`extension.csv`](https://github.com/pgsty/pig/blob/main/cli/ext/assets/extension.csv).

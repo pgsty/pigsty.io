@@ -19,6 +19,7 @@ pig sty - Init (Download), Bootstrap, Configure, and Deploy Pigsty
   pig sty deploy                  # use pigsty to deploy everything (CAUTION!)
   pig sty get                     # download pigsty source tarball
   pig sty list                    # list available pigsty versions
+  pig sty grafana <verb>          # manage grafana dashboards (native HTTP)
 
 Examples:
   pig sty init                 # extract and init ~/pigsty
@@ -35,7 +36,12 @@ Examples:
 | `sty deploy` | Run deployment playbook | |
 | `sty list` | List available Pigsty versions | |
 | `sty get` | Download Pigsty source tarball | |
+| `sty grafana` | Manage Grafana dashboards (alias `gf`) | New in v1.6.0 |
 {.full-width}
+
+> Since v1.6.0, the former `pig sty edit` / `validate` / `check` commands moved to the
+> root-level [`pig inventory`](/docs/pig/inventory/) command group, and the experimental
+> `pig sty dashboard` was replaced by `pig sty grafana`.
 
 
 ## Quick Start
@@ -123,12 +129,12 @@ pig sty conf --raw                 # use legacy shell configure workflow
 - `-r|--region`: upstream repository region, such as default/china/europe
 - `-m|--mirror`: equivalent to `--region china`
 - `-O|--output-file`: output config file path, default `pigsty.yml`
-- `-s|--skip`: skip IP probing
+- `-s|--skip`: use a placeholder IP and skip the admin SSH/sudo preflight
 - `-p|--port`: SSH port
 - `-x|--proxy`: write proxy settings from environment variables
 - `-n|--non-interactive`: non-interactive mode
 - `-g|--generate`: generate random default passwords, recommended
-- `--raw`: use the legacy shell configure workflow
+- `--raw`: use the legacy shell configure workflow (generated passwords remain visible)
 
 See: <https://pigsty.io/docs/setup/install/#configure>
 
@@ -139,15 +145,15 @@ Deploy Pigsty with the `deploy.yml` playbook.
 
 ```bash
 pig sty deploy       # run deploy.yml, falling back to install.yml if not found
-pig sty install      # same as deploy, for backward compatibility
 pig sty d            # short alias
 pig sty de           # short alias
-pig sty ins          # short alias
 ```
 
 This command runs the `deploy.yml` playbook from your Pigsty installation directory. For backward compatibility, if `deploy.yml` does not exist but `install.yml` exists, `install.yml` is used instead.
 
-> **Warning**: This operation modifies your system. Use it carefully.
+> **Warning**: This operation modifies your system, and **invocation is explicit consent** —
+> deploy starts immediately without a `--yes` gate; use Ctrl+C to interrupt a mistaken run.
+> (The `pig sty install` / `ins` aliases were removed in v1.6.0.)
 
 
 ## sty list
@@ -168,3 +174,38 @@ pig sty get                      # download latest version
 pig sty get v3.4.0               # download selected version
 pig sty get -m                   # prefer the pigsty.cc mirror
 ```
+
+
+## sty grafana
+
+Since v1.6.0, `pig sty grafana` (alias `gf`) manages Grafana dashboards through the native
+HTTP API, replacing the experimental `pig sty dashboard`. The `PATH` argument may select the
+grafana root, one direct folder, or one dashboard JSON file; without `PATH`, pig resolves
+`<PIGSTY_HOME>/files/grafana` and never falls back to the current directory.
+
+```bash
+pig sty grafana info             # check Grafana health, authentication, and basic info
+pig sty grafana list             # list all dashboards in the active organization
+pig sty grafana boot             # bootstrap Grafana around the existing pigsty dashboards
+pig sty grafana init             # load the complete dashboard corpus, then bootstrap
+pig sty grafana load [PATH]      # load dashboards selected by a local path
+pig sty grafana dump [PATH]      # export remote dashboards into a local path
+pig sty grafana clean [PATH]     # delete dashboards selected by a path (--dry-run/--yes)
+pig sty grafana lang zh-Hans     # set the organization and current-user language
+pig sty grafana style            # set the organization and current-user visual style
+```
+
+**Connection and credentials**:
+
+| Option            | Description                                                     |
+|:------------------|:----------------------------------------------------------------|
+| `--endpoint`      | Grafana origin and optional path prefix (default `http://i.pigsty/ui`) |
+| `--username`      | Grafana API username                                            |
+| `--password`      | Grafana API password (**insecure**: visible in process arguments and shell history) |
+| `--password-file` | Owner-only file containing the password (recommended)           |
+{.full-width}
+
+Password resolution order: `--password` → `--password-file` → the `GRAFANA_PASSWORD`
+environment variable → `all.vars.grafana_admin_password` from the inventory.
+The HTTP client enforces timeouts and response-size limits, refuses redirects, and
+verifies TLS certificates by default.

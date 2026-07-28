@@ -13,11 +13,12 @@ The `pig` CLI provides a comprehensive toolkit for managing PostgreSQL installat
 - [**pig ext**](/docs/pig/ext/): manage PostgreSQL extensions
 - [**pig build**](/docs/pig/build/): build extensions from source
 - **pig install**: install packages with the native package manager and translate PostgreSQL aliases
-- [**pig sty**](/docs/pig/sty/): manage Pigsty installation
+- [**pig sty**](/docs/pig/sty/): manage Pigsty installation and Grafana dashboards
+- [**pig inventory**](/docs/pig/inventory/): inspect, edit, validate, and exchange the Pigsty inventory (new in v1.6.0)
 - **pig do**: run Pigsty administration playbook tasks
 - **pig pe**: access pg_exporter metrics and configuration
 - [**pig pg**](/docs/pig/pg/): manage local PostgreSQL servers
-- [**pig pt**](/docs/pig/pt/): manage Patroni HA clusters
+- [**pig pt**](/docs/pig/pt/): run patronictl transparently with service and config helpers
 - [**pig pb**](/docs/pig/pb/): manage pgBackRest backup and restore
 - [**pig pitr**](/docs/pig/pitr/): run the full PITR workflow
 - **pig context**: output an environment context snapshot for humans and agents
@@ -47,14 +48,15 @@ PostgreSQL Extension Manager
   repo        Manage Linux software repo (apt/dnf)
 
 Pigsty Management Commands
-  do          Run admin tasks
-  postgres    Manage local PostgreSQL server and databases (alias: pg)
-  patroni     Manage Patroni cluster with patronictl (alias: pt)
-  pgbackrest  Manage pgBackRest backup and restore (alias: pb)
-  pg_exporter Manage pg_exporter and metrics (alias: pe)
-  pitr        Orchestrated point-in-time recovery
-  sty         Manage Pigsty installation
   context     Show environment context snapshot
+  do          Run admin tasks
+  inventory   Inspect, edit, validate, check, and exchange Pigsty Inventory
+  patroni     Run patronictl with Pigsty service and config helpers (alias: pt)
+  pg_exporter Manage pg_exporter and metrics (alias: pe)
+  pgbackrest  Manage pgBackRest backup and restore (alias: pb)
+  pitr        Point-in-time recovery using pgBackRest
+  postgres    Manage local PostgreSQL server and databases (alias: pg)
+  sty         Manage Pigsty installation and controller services
 
 Additional Commands:
   completion  Generate shell completion scripts
@@ -159,6 +161,27 @@ pig sty init                     # install Pigsty to ~/pigsty
 pig sty boot                     # install Ansible prerequisites
 pig sty conf                     # generate configuration
 pig sty deploy                   # run deployment playbook
+pig sty list                     # list available Pigsty releases
+pig sty get 4.4.0                # download a Pigsty release
+pig sty grafana list             # manage Grafana dashboards (info/list/boot/load/init/dump/clean/lang/style)
+```
+
+
+## pig inventory
+
+Inspect, edit, validate, check, and exchange the Pigsty inventory (`pigsty.yml`) with the
+CMDB. Root-level command group with alias `inv`; see [`pig inventory`](/docs/pig/inventory/)
+for details. (New in v1.6.0)
+
+```bash
+pig inventory status             # inspect the active inventory source
+pig inventory list               # list inventory topology and value kinds
+pig inventory show               # show verbatim inventory YAML (may contain secrets)
+pig inventory edit               # edit the inventory (or one fragment) in $EDITOR
+pig inventory validate           # validate one complete static Pigsty inventory
+pig inventory check              # check inventory, controller, and target readiness
+pig inventory diff other.yml     # compare declarations without emitting values
+pig inventory cmdb check         # exchange with the PostgreSQL CMDB (experimental)
 ```
 
 
@@ -222,14 +245,15 @@ pig pg log tail                  # tail logs in real time
 
 ## pig pt
 
-Manage Patroni HA clusters. See [`pig pt`](/docs/pig/pt/) for details.
+Run `patronictl` transparently to manage Patroni HA clusters. See [`pig pt`](/docs/pig/pt/) for details.
 
 ```bash
-pig pt list                      # list cluster members
-pig pt config show               # show cluster configuration
-pig pt config set ttl=60         # modify cluster configuration
-pig pt status                    # check service status
-pig pt log -f                    # tail logs in real time
+pig pt list pg-meta              # list cluster members (native passthrough)
+pig pt show-config pg-meta       # show cluster dynamic config (native passthrough)
+pig pt set ttl=60                # local sugar: update Patroni/PG settings
+pig pt restart pg-test --pending # apply pending restarts (native passthrough)
+pig pt status                    # local: combined service and cluster status
+pig pt log -f                    # local: tail logs in real time
 ```
 
 
@@ -268,7 +292,7 @@ pig status                       # show current environment status
 pig status -o json               # structured status output
 pig update                       # upgrade pig itself to the latest version
 pig update -m                    # upgrade using the pigsty.cc mirror
-pig update -v 1.5.1              # upgrade to a selected version
+pig update -v 1.6.0              # upgrade to a selected version
 pig version                      # show pig version information
 pig version -o json              # structured version output
 ```

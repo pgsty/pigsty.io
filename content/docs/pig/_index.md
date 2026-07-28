@@ -1,5 +1,5 @@
 ---
-title: "PIG 1.5 Documentation"
+title: "PIG 1.6 Documentation"
 linkTitle: "pig"
 weight: 5200
 description: "PostgreSQL Extension Ecosystem Package Manager"
@@ -12,7 +12,7 @@ sidebar_root_for: self
 
 PIG is a command-line tool specifically designed for installing, managing, and building PostgreSQL and its extensions. Developed in Go, it is ready to use out of the box, simple, and lightweight (about 5 MB).
 PIG is not a reinvented wheel, but rather a **PiggyBack** - a high-level abstraction layer that leverages existing Linux distribution package managers (`apt`/`dnf`).
-It abstracts away the differences between operating systems, chip architectures, and PG major versions, allowing you to install and manage PG kernels and 555 extensions with just a few simple commands.
+It abstracts away the differences between operating systems, chip architectures, and PG major versions, allowing you to install and manage PG kernels and 562 packaged extensions with just a few simple commands.
 
 PIG is also automation-friendly by design: consistent parameter styles, clear error messages, preview switches like `--plan`, and confirmation steps.
 
@@ -63,10 +63,11 @@ Run `pig help <command>` to get detailed help for subcommands.
 
 **Pigsty Management:**
 
-- [**pig sty**](/docs/pig/sty/): Manage Pigsty installation
+- [**pig sty**](/docs/pig/sty/): Manage Pigsty installation and Grafana dashboards
+- [**pig inventory**](/docs/pig/inventory/): Inspect, edit, validate, and exchange the Pigsty inventory
 - [**pig context**](/docs/pig/cmd/#pig-context): Collect host, PostgreSQL, Patroni, pgBackRest, and extension context
 - [**pig pg**](/docs/pig/pg/): Manage local PostgreSQL server
-- [**pig pt**](/docs/pig/pt/): Manage Patroni HA cluster
+- [**pig pt**](/docs/pig/pt/): Run patronictl transparently to manage Patroni HA clusters
 - [**pig pb**](/docs/pig/pb/): Manage pgBackRest backup & restore
 - [**pig pitr**](/docs/pig/pitr/): Point-in-time recovery workflow
 
