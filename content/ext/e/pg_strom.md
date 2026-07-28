@@ -28,7 +28,7 @@ weight: 2530
 | 2530  | [**`pg_strom`**](/ext/e/pg_strom) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`pg4ml`](/ext/e/pg4ml) [`pgml`](/ext/e/pgml) [`columnar`](/ext/e/columnar) [`citus`](/ext/e/citus) [`pg_analytics`](/ext/e/pg_analytics) [`citus_columnar`](/ext/e/citus_columnar) [`pg_duckdb`](/ext/e/pg_duckdb) [`pg_mooncake`](/ext/e/pg_mooncake) |
+| **Related** | [`pg4ml`](/ext/e/pg4ml) [`pgml`](/ext/e/pgml) [`columnar`](/ext/e/columnar) [`citus`](/ext/e/citus) `pg_analytics` [`citus_columnar`](/ext/e/citus_columnar) [`pg_duckdb`](/ext/e/pg_duckdb) [`pg_mooncake`](/ext/e/pg_mooncake) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

@@ -5,17 +5,17 @@ description: "PostgreSQL extensions with dependency relationships"
 weight: 30
 ---
 
-**122** extensions depend on other extensions, **72** extensions are depended upon by others.
+**125** extensions depend on other extensions, **74** extensions are depended upon by others.
 
 ## Upstream Dependencies
 
-The following **122** extensions require other extensions to be installed first:
+The following **125** extensions require other extensions to be installed first:
 
 | **Extension** | **Requires** | **Description** |
 |:-----------|:-------------|:---------|
 | [`timeseries`](/ext/e/timeseries) | [`pg_cron`](/ext/e/pg_cron) [`pg_partman`](/ext/e/pg_partman) | Convenience API for time series stack |
 | [`periods`](/ext/e/periods) | [`btree_gist`](/ext/e/btree_gist) | Provide Standard SQL functionality for PERIODs and SYSTEM VERSIONING |
-| [`emaj`](/ext/e/emaj) | [`dblink`](/ext/e/dblink) [`btree_gist`](/ext/e/btree_gist) | Enables fine-grained write logging and time travel on subsets of the database. |
+| [`emaj`](/ext/e/emaj) | [`btree_gist`](/ext/e/btree_gist) [`dblink`](/ext/e/dblink) | Enables fine-grained write logging and time travel on subsets of the database. |
 | [`table_version`](/ext/e/table_version) | [`plpgsql`](/ext/e/plpgsql) | PostgreSQL table versioning extension |
 | [`pg_later`](/ext/e/pg_later) | [`pgmq`](/ext/e/pgmq) | Run queries now and get results later |
 | [`pg_dispatch`](/ext/e/pg_dispatch) | [`pgcrypto`](/ext/e/pgcrypto) [`pg_cron`](/ext/e/pg_cron) | Asynchronous SQL dispatcher built on pg_cron |
@@ -38,11 +38,13 @@ The following **122** extensions require other extensions to be installed first:
 | [`mobilitydb`](/ext/e/mobilitydb) | [`postgis`](/ext/e/postgis) | MobilityDB geospatial trajectory data management & analysis platform |
 | [`mobilitydb_datagen`](/ext/e/mobilitydb_datagen) | [`mobilitydb`](/ext/e/mobilitydb) | MobilityDB random data generator functions |
 | [`earthdistance`](/ext/e/earthdistance) | [`cube`](/ext/e/cube) | calculate great-circle distances on the surface of the Earth |
+| [`qdgc_postgis`](/ext/e/qdgc_postgis) | [`qdgc`](/ext/e/qdgc) [`postgis`](/ext/e/postgis) | Add PostGIS geometry and geography bindings plus area-to-cell fills for QDGC. |
 | [`vchord`](/ext/e/vchord) | [`vector`](/ext/e/vector) | Vector database plugin for Postgres, written in Rust |
 | [`vectorscale`](/ext/e/vectorscale) | [`vector`](/ext/e/vector) | Advanced indexing for vector data with DiskANN |
 | [`vectorize`](/ext/e/vectorize) | [`pg_cron`](/ext/e/pg_cron) [`pgmq`](/ext/e/pgmq) [`vector`](/ext/e/vector) | The simplest way to do vector search on Postgres |
 | [`pg4ml`](/ext/e/pg4ml) | [`plpgsql`](/ext/e/plpgsql) [`tablefunc`](/ext/e/tablefunc) [`cube`](/ext/e/cube) [`plpython3u`](/ext/e/plpython3u) | Machine learning framework for PostgreSQL |
 | [`pgmnemo`](/ext/e/pgmnemo) | [`vector`](/ext/e/vector) | Provenance-gated vector memory for LLM agents in PostgreSQL |
+| [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) | [`pgcontext`](/ext/e/pgcontext) [`vector`](/ext/e/vector) | Optional pgvector compatibility bridge for pgcontext HNSW indexes. |
 | [`biscuit`](/ext/e/biscuit) | [`plpgsql`](/ext/e/plpgsql) | IAM-LIKE pattern matching with bitmap indexing |
 | [`pg_mooncake`](/ext/e/pg_mooncake) | [`pg_duckdb`](/ext/e/pg_duckdb) | Columnstore Table in Postgres |
 | [`pg_partman`](/ext/e/pg_partman) | [`plpgsql`](/ext/e/plpgsql) | Extension to manage partitioned tables by time or ID |
@@ -106,6 +108,7 @@ The following **122** extensions require other extensions to be installed first:
 | [`pgautofailover`](/ext/e/pgautofailover) | [`btree_gist`](/ext/e/btree_gist) | pg_auto_failover |
 | [`pg_upless`](/ext/e/pg_upless) | [`plpgsql`](/ext/e/plpgsql) | Detect Useless UPDATE |
 | [`pgcozy`](/ext/e/pgcozy) | [`pg_buffercache`](/ext/e/pg_buffercache) [`pg_prewarm`](/ext/e/pg_prewarm) | Pre-warming shared buffers according to previous pg_buffercache snapshots for PostgreSQL. |
+| [`pg_column_tetris`](/ext/e/pg_column_tetris) | [`plpgsql`](/ext/e/plpgsql) | Enforce optimal column alignment to minimize row padding |
 | [`pg_drop_events`](/ext/e/pg_drop_events) | [`plpgsql`](/ext/e/plpgsql) | logs transaction ids of drop table, drop column, drop materialized view statements |
 | [`pgelog`](/ext/e/pgelog) | [`dblink`](/ext/e/dblink) [`pg_variables`](/ext/e/pg_variables) | Extended logging via pseudo-autonomous transactions |
 | [`pg_profile`](/ext/e/pg_profile) | [`dblink`](/ext/e/dblink) [`plpgsql`](/ext/e/plpgsql) | PostgreSQL load profile repository and report builder |
@@ -139,7 +142,7 @@ The following **122** extensions require other extensions to be installed first:
 
 ## Downstream Dependencies
 
-The following **72** extensions are depended upon by other extensions:
+The following **74** extensions are depended upon by other extensions:
 
 | **Extension** | **Required By** | **Description** |
 |:-----------|:-------------|:---------|
@@ -151,11 +154,13 @@ The following **72** extensions are depended upon by other extensions:
 | [`pghydro`](/ext/e/pghydro) | [`pgh_consistency`](/ext/e/pgh_consistency) [`pgh_hgm`](/ext/e/pgh_hgm) [`pgh_output`](/ext/e/pgh_output) [`pgh_output_en_au`](/ext/e/pgh_output_en_au) [`pgh_output_pt_br`](/ext/e/pgh_output_pt_br) [`pgh_raster`](/ext/e/pgh_raster) | Drainage network analysis core for PostgreSQL and PostGIS |
 | [`pgh_raster`](/ext/e/pgh_raster) | [`pgh_hgm`](/ext/e/pgh_hgm) | Raster hydrology extension for PgHydro |
 | [`mobilitydb`](/ext/e/mobilitydb) | [`mobilitydb_datagen`](/ext/e/mobilitydb_datagen) | MobilityDB geospatial trajectory data management & analysis platform |
+| [`qdgc`](/ext/e/qdgc) | [`qdgc_postgis`](/ext/e/qdgc_postgis) | Encode, decode, navigate, and fill Extended Quarter Degree Grid Cell codes in pure SQL. |
 | [`vector`](/ext/e/vector) | [`documentdb`](/ext/e/documentdb) [`pgmnemo`](/ext/e/pgmnemo) [`vchord`](/ext/e/vchord) [`vectorize`](/ext/e/vectorize) [`vectorscale`](/ext/e/vectorscale) | vector data type and ivfflat and hnsw access methods |
+| [`pgcontext`](/ext/e/pgcontext) | [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) | Vector, filter-aware HNSW, and hybrid retrieval over authoritative PostgreSQL tables. |
 | [`fuzzystrmatch`](/ext/e/fuzzystrmatch) | [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) | determine similarities and distance between strings |
 | [`citus`](/ext/e/citus) | [`documentdb_distributed`](/ext/e/documentdb_distributed) | Distributed PostgreSQL as an extension |
 | [`pg_duckdb`](/ext/e/pg_duckdb) | [`pg_mooncake`](/ext/e/pg_mooncake) | DuckDB Embedded in Postgres |
-| [`pg_partman`](/ext/e/pg_partman) | [`timeseries`](/ext/e/timeseries) | Extension to manage partitioned tables by time or ID |
+| [`pg_partman`](/ext/e/pg_partman) | [`partman_to_cstore`](/ext/e/partman_to_cstore) [`timeseries`](/ext/e/timeseries) | Extension to manage partitioned tables by time or ID |
 | [`pg_extension_base`](/ext/e/pg_extension_base) | [`pg_extension_updater`](/ext/e/pg_extension_updater) [`pg_lake_engine`](/ext/e/pg_lake_engine) | Extension development kit by Snowflake |
 | [`pg_map`](/ext/e/pg_map) | [`pg_lake_engine`](/ext/e/pg_lake_engine) | Map type for PostgreSQL, bundled as a required pg_lake component. |
 | [`pg_lake_engine`](/ext/e/pg_lake_engine) | [`pg_lake_copy`](/ext/e/pg_lake_copy) [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) [`pg_lake_table`](/ext/e/pg_lake_table) | Query engine for data lake queries |

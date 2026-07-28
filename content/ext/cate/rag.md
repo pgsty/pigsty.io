@@ -8,7 +8,7 @@ icon: fas fa-brain
 
 ## Extension List
 
-There are **13** extensions in **13** packages.
+There are **15** extensions in **14** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
@@ -24,7 +24,9 @@ There are **13** extensions in **13** packages.
 | [`pg_tiktoken_c`](/ext/e/pg_tiktoken_c) | [`pg_tiktoken_c`](https://github.com/relytcloud/pg_tiktoken_c) | `1.1` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Fast tiktoken BPE tokenizer for PostgreSQL implemented in C |
 | [`pg4ml`](/ext/e/pg4ml) | [`pg4ml`](https://gitee.com/guotiecheng/plpgsql_pg4ml) | `2.0` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Machine learning framework for PostgreSQL |
 | [`pgml`](/ext/e/pgml) | [`pgml`](https://github.com/postgresml/postgresml) | `2.10.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Run AL/ML workloads with SQL interface |
-| [`pgmnemo`](/ext/e/pgmnemo) | [`pgmnemo`](https://github.com/pgmnemo/pgmnemo) | `0.13.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Provenance-gated vector memory for LLM agents in PostgreSQL |
+| [`pgmnemo`](/ext/e/pgmnemo) | [`pgmnemo`](https://github.com/pgmnemo/pgmnemo) | `0.14.2` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Provenance-gated vector memory for LLM agents in PostgreSQL |
+| [`pgcontext`](/ext/e/pgcontext) | [`pgcontext`](https://pgxn.org/dist/pgContext/0.2.0/) | `0.2.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Vector, filter-aware HNSW, and hybrid retrieval over authoritative PostgreSQL tables. |
+| [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) | [`pgcontext`](https://pgxn.org/dist/pgContext/0.2.0/) | `0.2.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Optional pgvector compatibility bridge for pgcontext HNSW indexes. |
 {.ext-table}
 
 
@@ -260,7 +262,7 @@ There are **13** extensions in **13** packages.
 
 ## pgmnemo {#pgmnemo}
 
-[**`pgmnemo`**](/ext/e/pgmnemo) - `0.13.0` : Provenance-gated vector memory for LLM agents in PostgreSQL
+[**`pgmnemo`**](/ext/e/pgmnemo) - `0.14.2` : Provenance-gated vector memory for LLM agents in PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -272,5 +274,43 @@ There are **13** extensions in **13** packages.
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
+## pgcontext {#pgcontext}
+
+[**`pgcontext`**](/ext/e/pgcontext) - `0.2.0` : Vector, filter-aware HNSW, and hybrid retrieval over authoritative PostgreSQL tables.
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`pgcontext`](/ext/e/pgcontext) | **el8** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Package** | [`pgcontext`](https://pgxn.org/dist/pgContext/0.2.0/) | **el9** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **RPM** | `pgcontext_$v` | **el10** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **DEB** | `postgresql-$v-pgcontext` | **d12** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| | | **u26** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
+## pgcontext_pgvector {#pgcontext_pgvector}
+
+[**`pgcontext`**](/ext/e/pgcontext_pgvector) - `0.2.0` : Optional pgvector compatibility bridge for pgcontext HNSW indexes.
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) | **el8** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Package** | [`pgcontext`](https://pgxn.org/dist/pgContext/0.2.0/) | **el9** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **RPM** | `pgcontext_$v` | **el10** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **DEB** | `postgresql-$v-pgcontext` | **d12** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| | | **u26** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
 {.ext-table .ext-table--cate}
 

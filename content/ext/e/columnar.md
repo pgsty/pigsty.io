@@ -33,7 +33,7 @@ weight: 2410
 | 2410  | [**`columnar`**](/ext/e/columnar) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`citus`](/ext/e/citus) [`citus_columnar`](/ext/e/citus_columnar) [`pg_mooncake`](/ext/e/pg_mooncake) [`timescaledb`](/ext/e/timescaledb) [`pg_analytics`](/ext/e/pg_analytics) [`pg_parquet`](/ext/e/pg_parquet) [`pg_duckdb`](/ext/e/pg_duckdb) [`duckdb_fdw`](/ext/e/duckdb_fdw) |
+| **Related** | [`citus`](/ext/e/citus) [`citus_columnar`](/ext/e/citus_columnar) [`pg_mooncake`](/ext/e/pg_mooncake) [`timescaledb`](/ext/e/timescaledb) `pg_analytics` [`pg_parquet`](/ext/e/pg_parquet) [`pg_duckdb`](/ext/e/pg_duckdb) [`duckdb_fdw`](/ext/e/duckdb_fdw) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

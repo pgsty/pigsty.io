@@ -33,7 +33,7 @@ weight: 2640
 | 2640  | [**`pgrdf`**](/ext/e/pgrdf) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `pgrdf` |
 {.ext-table}
 
-| **Related** | [`rdf_fdw`](/ext/e/rdf_fdw) [`pg_sparql`](/ext/e/pg_sparql) [`rdkit`](/ext/e/rdkit) |
+| **Related** | [`rdf_fdw`](/ext/e/rdf_fdw) [`sparql`](/ext/e/sparql) [`rdkit`](/ext/e/rdkit) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

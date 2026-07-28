@@ -5,7 +5,7 @@ description: "PostgreSQL packages containing multiple extensions"
 weight: 40
 ---
 
-The following **24** packages contain multiple extensions, totaling **124** extensions.
+The following **26** packages contain multiple extensions, totaling **128** extensions.
 
 When installing these packages, you will get all extensions in the package. The lead extension is shown in bold.
 
@@ -67,6 +67,26 @@ Package [`mobilitydb`](/ext/e/mobilitydb) contains **2** extensions:
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
 | 1650 | [**`mobilitydb`**](/ext/e/mobilitydb) | `1.3.0` | `--sLd--` | - | MobilityDB geospatial trajectory data management & analysis platform |
 | 1651 | [`mobilitydb_datagen`](/ext/e/mobilitydb_datagen) | `1.3.0` | `----d-r` | - | MobilityDB random data generator functions |
+{.ext-table}
+
+### qdgc
+
+Package [`qdgc`](/ext/e/qdgc) contains **2** extensions:
+
+| **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
+|:------:|:-----------|:--------:|:--------:|:---------|:---------|
+| 1700 | [**`qdgc`**](/ext/e/qdgc) | `0.1.0` | `----dtr` | - | Encode, decode, navigate, and fill Extended Quarter Degree Grid Cell codes in pure SQL. |
+| 1710 | [`qdgc_postgis`](/ext/e/qdgc_postgis) | `0.1.0` | `----d-r` | - | Add PostGIS geometry and geography bindings plus area-to-cell fills for QDGC. |
+{.ext-table}
+
+### pgcontext
+
+Package [`pgcontext`](/ext/e/pgcontext) contains **2** extensions:
+
+| **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
+|:------:|:-----------|:--------:|:--------:|:---------|:---------|
+| 1960 | [**`pgcontext`**](/ext/e/pgcontext) | `0.2.0` | `--s-d--` | `pgcontext` | Vector, filter-aware HNSW, and hybrid retrieval over authoritative PostgreSQL tables. |
+| 1970 | [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) | `0.2.0` | `--s-d--` | - | Optional pgvector compatibility bridge for pgcontext HNSW indexes. |
 {.ext-table}
 
 ### pgroonga

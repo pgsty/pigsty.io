@@ -33,7 +33,7 @@ weight: 8800
 | 8800  | [**`aws_s3`**](/ext/e/aws_s3) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`pg_parquet`](/ext/e/pg_parquet) [`hdfs_fdw`](/ext/e/hdfs_fdw) [`file_fdw`](/ext/e/file_fdw) [`duckdb_fdw`](/ext/e/duckdb_fdw) [`wrappers`](/ext/e/wrappers) [`pg_bulkload`](/ext/e/pg_bulkload) [`columnar`](/ext/e/columnar) [`pg_analytics`](/ext/e/pg_analytics) |
+| **Related** | [`pg_parquet`](/ext/e/pg_parquet) [`hdfs_fdw`](/ext/e/hdfs_fdw) [`file_fdw`](/ext/e/file_fdw) [`duckdb_fdw`](/ext/e/duckdb_fdw) [`wrappers`](/ext/e/wrappers) [`pg_bulkload`](/ext/e/pg_bulkload) [`columnar`](/ext/e/columnar) `pg_analytics` |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 
