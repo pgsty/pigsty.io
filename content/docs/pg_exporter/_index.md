@@ -17,24 +17,24 @@ The ultimate monitoring experience for PostgreSQL with **600+ metrics**, **decla
 
 ## Features
 
-| Feature                   | Description                                                                                                     |
-|---------------------------|-----------------------------------------------------------------------------------------------------------------|
-| **Comprehensive Metrics** | 600+ metrics covering nearly every statistics view of PostgreSQL (10-19+) and pgBouncer (1.8-1.25+)             |
-| **Declarative Collectors**| Every metric comes from a YAML collector definition — a SQL query plus execution conditions; add, change, or remove metrics without touching code |
-| **Dynamic Planning**      | Each collector branch is admitted per target based on version, primary/replica role, installed extensions, and tags |
-| **Auto-Discovery**        | Automatically discovers and scrapes every database in an instance, distinguished by the `datname` label         |
-| **Health Check APIs**     | `/up`, `/primary`, `/replica` endpoints serve directly as load-balancer probes for primary/replica traffic routing |
-| **Smart Caching**         | Per-collector TTL caching decouples scrape frequency from query frequency — probe and scrape storms never reach the database |
-| **Snapshot Histograms**   | `HISTOGRAM` column type aggregates SQL snapshots into classic Prometheus histogram distributions                |
-| **Extension Aware**       | Native support for pg_stat_statements, pg_wait_sampling, citus, and timescaledb                                 |
-| **Production Ready**      | Battle-tested in real-world environments across 12K+ cores for 6+ years                                         |
+| Feature                    | Description                                                                                                                                       |
+|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Comprehensive Metrics**  | 600+ metrics covering nearly every statistics view of PostgreSQL (10-19+) and pgBouncer (1.8-1.25+)                                               |
+| **Declarative Collectors** | Every metric comes from a YAML collector definition — a SQL query plus execution conditions; add, change, or remove metrics without touching code |
+| **Dynamic Planning**       | Each collector branch is admitted per target based on version, primary/replica role, installed extensions, and tags                               |
+| **Auto-Discovery**         | Automatically discovers and scrapes every database in an instance, distinguished by the `datname` label                                           |
+| **Health Check APIs**      | `/up`, `/primary`, `/replica` endpoints serve directly as load-balancer probes for primary/replica traffic routing                                |
+| **Smart Caching**          | Per-collector TTL caching decouples scrape frequency from query frequency — probe and scrape storms never reach the database                      |
+| **Snapshot Histograms**    | `HISTOGRAM` column type aggregates SQL snapshots into classic Prometheus histogram distributions                                                  |
+| **Extension Aware**        | Native support for pg_stat_statements, pg_wait_sampling, citus, and timescaledb                                                                   |
+| **Production Ready**       | Battle-tested in real-world environments across 12K+ cores for 6+ years                                                                           |
 
 
 --------
 
 ## Version Info
 
-- Current stable release: [`v1.4.0`](https://github.com/pgsty/pg_exporter/releases/tag/v1.4.0)
+- Current stable release: [`v1.4.1`](https://github.com/pgsty/pg_exporter/releases/tag/v1.4.1)
 - Default config support: PostgreSQL **10-19+**
 - Legacy config support: PostgreSQL **9.1-9.6** via the `legacy/` config bundle
 - pgBouncer support: **1.8-1.25+**
@@ -97,7 +97,8 @@ sudo apt install -y pg-exporter
 {{< tab header="Binary" lang="bash" >}}
 VERSION=$(curl -fsSL https://api.github.com/repos/pgsty/pg_exporter/releases/latest | sed -n 's/.*"tag_name": "v\([^"]*\)".*/\1/p')
 wget "https://github.com/pgsty/pg_exporter/releases/download/v${VERSION}/pg_exporter-${VERSION}.linux-amd64.tar.gz"
-tar -xf "pg_exporter-${VERSION}.linux-amd64.tar.gz"
+mkdir -p "pg_exporter-${VERSION}.linux-amd64"
+tar -xf "pg_exporter-${VERSION}.linux-amd64.tar.gz" -C "pg_exporter-${VERSION}.linux-amd64"
 sudo install "pg_exporter-${VERSION}.linux-amd64/pg_exporter" /usr/bin/
 sudo install "pg_exporter-${VERSION}.linux-amd64/pg_exporter.yml" /etc/pg_exporter.yml
 {{< /tab >}}

@@ -77,6 +77,7 @@ Validation rules:
 - `HISTOGRAM` columns must define `bucket`: a finite, strictly increasing list of bucket upper bounds; the `+Inf` bucket is appended automatically
 - Metric names and label names are validated against Prometheus naming rules during load; invalid configs fail fast
 - Constant labels are checked for conflicts during load; they cannot overlap with query labels or built-in dynamic labels such as `datname` and `query`; when any `HISTOGRAM` collector is configured, `le` is reserved and cannot be used as a constant label
+- The SQL result must include every column declared as `LABEL`; since `v1.4.1`, a missing label column fails that collector's entire scrape instead of emitting an empty label or retaining stale results, while other non-fatal collectors continue normally
 - If you use one-line inline `metrics` definitions, keep `description` values double-quoted to avoid YAML ambiguity
 
 ## Core Configuration Elements
@@ -111,13 +112,13 @@ query: |
 
 Each column in the query result must be mapped to a metric type:
 
-| Usage | Description | Example |
-|-------|-------------|---------|
-| `GAUGE` | Instantaneous value that can go up or down | Current connections |
-| `COUNTER` | Cumulative value that only increases | Total transactions |
+| Usage       | Description                                                      | Example                      |
+|-------------|------------------------------------------------------------------|------------------------------|
+| `GAUGE`     | Instantaneous value that can go up or down                       | Current connections          |
+| `COUNTER`   | Cumulative value that only increases                             | Total transactions           |
 | `HISTOGRAM` | Snapshot histogram deriving `_bucket` / `_count` / `_sum` series | Transaction age distribution |
-| `LABEL` | Use as a Prometheus label | Database name |
-| `DISCARD` | Ignore this column | Internal values |
+| `LABEL`     | Use as a Prometheus label                                        | Database name                |
+| `DISCARD`   | Ignore this column                                               | Internal values              |
 
 ### Histogram Columns (HISTOGRAM)
 
@@ -218,22 +219,22 @@ Tags control when and where collectors execute:
 
 ### Built-in Tags
 
-| Tag | Description |
-|-----|-------------|
-| `cluster` | Execute once per PostgreSQL cluster |
-| `primary` / `master` | Only on primary servers |
-| `standby` / `replica` | Only on replica servers |
-| `pgbouncer` | Only for pgBouncer connections |
+| Tag                   | Description                         |
+|-----------------------|-------------------------------------|
+| `cluster`             | Execute once per PostgreSQL cluster |
+| `primary` / `master`  | Only on primary servers             |
+| `standby` / `replica` | Only on replica servers             |
+| `pgbouncer`           | Only for pgBouncer connections      |
 
 ### Prefixed Tags
 
-| Prefix | Example | Description |
-|--------|---------|-------------|
-| `dbname:` | `dbname:postgres` | Only on specific database |
-| `username:` | `username:monitor` | Only with specific user |
+| Prefix       | Example                        | Description                 |
+|--------------|--------------------------------|-----------------------------|
+| `dbname:`    | `dbname:postgres`              | Only on specific database   |
+| `username:`  | `username:monitor`             | Only with specific user     |
 | `extension:` | `extension:pg_stat_statements` | Only if extension installed |
-| `schema:` | `schema:public` | Only if schema exists |
-| `not:` | `not:slow` | NOT when exporter has tag |
+| `schema:`    | `schema:public`                | Only if schema exists       |
+| `not:`       | `not:slow`                     | NOT when exporter has tag   |
 
 ### Custom Tags
 

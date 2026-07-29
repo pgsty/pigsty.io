@@ -6,42 +6,62 @@ module: [PG_EXPORTER]
 category: [Reference]
 ---
 
-The latest stable version of `pg_exporter` is [v1.4.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.4.0)
+The latest stable version of `pg_exporter` is [v1.4.1](https://github.com/pgsty/pg_exporter/releases/tag/v1.4.1)
 
-|     Version     |    Date    | Summary                                                 |                               GitHub                               |
-|:---------------:|:----------:|---------------------------------------------------------|:------------------------------------------------------------------:|
+|     Version     |    Date    | Summary                                                    |                               GitHub                               |
+|:---------------:|:----------:|------------------------------------------------------------|:------------------------------------------------------------------:|
+| [v1.4.1](#v141) | 2026-07-29 | Subscription count and label validation fixes; RPM rename  | [v1.4.1](https://github.com/pgsty/pg_exporter/releases/tag/v1.4.1) |
 | [v1.4.0](#v140) | 2026-07-18 | Snapshot histograms, pg_xact_age collector, HTTP hardening | [v1.4.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.4.0) |
-| [v1.3.0](#v130) | 2026-06-24 | PostgreSQL 19 support, new PG19 collectors and branches | [v1.3.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.3.0) |
-| [v1.2.2](#v122) | 2026-04-14 | Routine Go 1.26.2 refresh, no functional changes        | [v1.2.2](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.2) |
-| [v1.2.1](#v121) | 2026-03-21 | Config style cleanup, Go 1.26.1 refresh                | [v1.2.1](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.1) |
-| [v1.2.0](#v120) | 2026-02-12 | Hot reload, non-blocking startup, PG9.x legacy support | [v1.2.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.0) |
-| [v1.1.2](#v112) | 2026-01-16 | fix pg_timeline conf issue, build with latest deps      | [v1.1.2](https://github.com/pgsty/pg_exporter/releases/tag/v1.1.2) |
-| [v1.1.1](#v111) | 2025-12-30 | New pg_timeline collector, pg_sub_16 branch, bug fixes  | [v1.1.1](https://github.com/pgsty/pg_exporter/releases/tag/v1.1.1) |
-| [v1.1.0](#v110) | 2025-12-15 | Update default metrics collectors, bump to go 1.25.5    | [v1.1.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.1.0) |
-| [v1.0.3](#v103) | 2025-11-20 | Routine update on 1.25.4, fix unsupported libpq env     | [v1.0.3](https://github.com/pgsty/pg_exporter/releases/tag/v1.0.3) |
-| [v1.0.2](#v102) | 2025-08-14 | Build for more os arch with goreleaser                  | [v1.0.2](https://github.com/pgsty/pg_exporter/releases/tag/v1.0.2) |
-| [v1.0.1](#v101) | 2025-07-17 | DockerHub images, Go 1.24.5, disable pg_tsdb_hypertable | [v1.0.1](https://github.com/pgsty/pg_exporter/releases/tag/v1.0.1) |
-| [v1.0.0](#v100) | 2025-05-06 | PostgreSQL 18 support, new WAL/checkpointer/I/O metrics | [v1.0.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.0.0) |
-| [v0.9.0](#v090) | 2025-04-26 | TimescaleDB, Citus, pg_wait_sampling collectors         | [v0.9.0](https://github.com/pgsty/pg_exporter/releases/tag/v0.9.0) |
-| [v0.8.1](#v081) | 2025-02-14 | Dependencies update, docker image tags                  | [v0.8.1](https://github.com/pgsty/pg_exporter/releases/tag/v0.8.1) |
-| [v0.8.0](#v080) | 2025-02-14 | PgBouncer 1.24 support, Go 1.24, logging refactor       | [v0.8.0](https://github.com/pgsty/pg_exporter/releases/tag/v0.8.0) |
-| [v0.7.1](#v071) | 2024-12-29 | Routine update, configuration as Reader support         | [v0.7.1](https://github.com/pgsty/pg_exporter/releases/tag/v0.7.1) |
-| [v0.7.0](#v070) | 2024-08-13 | PostgreSQL 17 support, predicate queries feature        | [v0.7.0](https://github.com/pgsty/pg_exporter/releases/tag/v0.7.0) |
-| [v0.6.0](#v060) | 2023-10-18 | PostgreSQL 16 support, ARM64 packages, security fixes   | [v0.6.0](https://github.com/pgsty/pg_exporter/releases/tag/v0.6.0) |
-| [v0.5.0](#v050) | 2022-04-27 | RPM/DEB builds, column scaling, metrics enhancements    | [v0.5.0](https://github.com/pgsty/pg_exporter/releases/tag/v0.5.0) |
-| [v0.4.1](#v041) | 2022-03-08 | Collector updates, connect-timeout parameter            | [v0.4.1](https://github.com/pgsty/pg_exporter/releases/tag/v0.4.1) |
-| [v0.4.0](#v040) | 2021-07-12 | PostgreSQL 14 support, auto-discovery feature           | [v0.4.0](https://github.com/pgsty/pg_exporter/releases/tag/v0.4.0) |
-| [v0.3.2](#v032) | 2021-02-01 | Shadow DSN fixes, documentation updates                 | [v0.3.2](https://github.com/pgsty/pg_exporter/releases/tag/v0.3.2) |
-| [v0.3.1](#v031) | 2020-12-04 | Configuration fixes for older PostgreSQL versions       | [v0.3.1](https://github.com/pgsty/pg_exporter/releases/tag/v0.3.1) |
-| [v0.3.0](#v030) | 2020-10-29 | PostgreSQL 13 support, REST APIs, dummy server          | [v0.3.0](https://github.com/pgsty/pg_exporter/releases/tag/v0.3.0) |
-| [v0.2.0](#v020) | 2020-03-21 | YUM packages, configuration reload support              | [v0.2.0](https://github.com/pgsty/pg_exporter/releases/tag/v0.2.0) |
-| [v0.1.2](#v012) | 2020-02-20 | Dynamic configuration reload, bulky mode                | [v0.1.2](https://github.com/pgsty/pg_exporter/releases/tag/v0.1.2) |
-| [v0.1.1](#v011) | 2020-01-10 | Startup hang bug fix                                    | [v0.1.1](https://github.com/pgsty/pg_exporter/releases/tag/v0.1.1) |
-| [v0.1.0](#v010) | 2020-01-08 | Initial stable release                                  | [v0.1.0](https://github.com/pgsty/pg_exporter/releases/tag/v0.1.0) |
-| [v0.0.4](#v004) | 2019-12-20 | Production tested release                               | [v0.0.4](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.4) |
-| [v0.0.3](#v003) | 2019-12-14 | Production environment testing                          | [v0.0.3](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.3) |
-| [v0.0.2](#v002) | 2019-12-09 | Early testing release                                   | [v0.0.2](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.2) |
-| [v0.0.1](#v001) | 2019-12-06 | Initial release with PgBouncer mode                     | [v0.0.1](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.1) |
+| [v1.3.0](#v130) | 2026-06-24 | PostgreSQL 19 support, new PG19 collectors and branches    | [v1.3.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.3.0) |
+| [v1.2.2](#v122) | 2026-04-14 | Routine Go 1.26.2 refresh, no functional changes           | [v1.2.2](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.2) |
+| [v1.2.1](#v121) | 2026-03-21 | Config style cleanup, Go 1.26.1 refresh                    | [v1.2.1](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.1) |
+| [v1.2.0](#v120) | 2026-02-12 | Hot reload, non-blocking startup, PG9.x legacy support     | [v1.2.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.2.0) |
+| [v1.1.2](#v112) | 2026-01-16 | fix pg_timeline conf issue, build with latest deps         | [v1.1.2](https://github.com/pgsty/pg_exporter/releases/tag/v1.1.2) |
+| [v1.1.1](#v111) | 2025-12-30 | New pg_timeline collector, pg_sub_16 branch, bug fixes     | [v1.1.1](https://github.com/pgsty/pg_exporter/releases/tag/v1.1.1) |
+| [v1.1.0](#v110) | 2025-12-15 | Update default metrics collectors, bump to go 1.25.5       | [v1.1.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.1.0) |
+| [v1.0.3](#v103) | 2025-11-20 | Routine update on 1.25.4, fix unsupported libpq env        | [v1.0.3](https://github.com/pgsty/pg_exporter/releases/tag/v1.0.3) |
+| [v1.0.2](#v102) | 2025-08-14 | Build for more os arch with goreleaser                     | [v1.0.2](https://github.com/pgsty/pg_exporter/releases/tag/v1.0.2) |
+| [v1.0.1](#v101) | 2025-07-17 | DockerHub images, Go 1.24.5, disable pg_tsdb_hypertable    | [v1.0.1](https://github.com/pgsty/pg_exporter/releases/tag/v1.0.1) |
+| [v1.0.0](#v100) | 2025-05-06 | PostgreSQL 18 support, new WAL/checkpointer/I/O metrics    | [v1.0.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.0.0) |
+| [v0.9.0](#v090) | 2025-04-26 | TimescaleDB, Citus, pg_wait_sampling collectors            | [v0.9.0](https://github.com/pgsty/pg_exporter/releases/tag/v0.9.0) |
+| [v0.8.1](#v081) | 2025-02-14 | Dependencies update, docker image tags                     | [v0.8.1](https://github.com/pgsty/pg_exporter/releases/tag/v0.8.1) |
+| [v0.8.0](#v080) | 2025-02-14 | PgBouncer 1.24 support, Go 1.24, logging refactor          | [v0.8.0](https://github.com/pgsty/pg_exporter/releases/tag/v0.8.0) |
+| [v0.7.1](#v071) | 2024-12-29 | Routine update, configuration as Reader support            | [v0.7.1](https://github.com/pgsty/pg_exporter/releases/tag/v0.7.1) |
+| [v0.7.0](#v070) | 2024-08-13 | PostgreSQL 17 support, predicate queries feature           | [v0.7.0](https://github.com/pgsty/pg_exporter/releases/tag/v0.7.0) |
+| [v0.6.0](#v060) | 2023-10-18 | PostgreSQL 16 support, ARM64 packages, security fixes      | [v0.6.0](https://github.com/pgsty/pg_exporter/releases/tag/v0.6.0) |
+| [v0.5.0](#v050) | 2022-04-27 | RPM/DEB builds, column scaling, metrics enhancements       | [v0.5.0](https://github.com/pgsty/pg_exporter/releases/tag/v0.5.0) |
+| [v0.4.1](#v041) | 2022-03-08 | Collector updates, connect-timeout parameter               | [v0.4.1](https://github.com/pgsty/pg_exporter/releases/tag/v0.4.1) |
+| [v0.4.0](#v040) | 2021-07-12 | PostgreSQL 14 support, auto-discovery feature              | [v0.4.0](https://github.com/pgsty/pg_exporter/releases/tag/v0.4.0) |
+| [v0.3.2](#v032) | 2021-02-01 | Shadow DSN fixes, documentation updates                    | [v0.3.2](https://github.com/pgsty/pg_exporter/releases/tag/v0.3.2) |
+| [v0.3.1](#v031) | 2020-12-04 | Configuration fixes for older PostgreSQL versions          | [v0.3.1](https://github.com/pgsty/pg_exporter/releases/tag/v0.3.1) |
+| [v0.3.0](#v030) | 2020-10-29 | PostgreSQL 13 support, REST APIs, dummy server             | [v0.3.0](https://github.com/pgsty/pg_exporter/releases/tag/v0.3.0) |
+| [v0.2.0](#v020) | 2020-03-21 | YUM packages, configuration reload support                 | [v0.2.0](https://github.com/pgsty/pg_exporter/releases/tag/v0.2.0) |
+| [v0.1.2](#v012) | 2020-02-20 | Dynamic configuration reload, bulky mode                   | [v0.1.2](https://github.com/pgsty/pg_exporter/releases/tag/v0.1.2) |
+| [v0.1.1](#v011) | 2020-01-10 | Startup hang bug fix                                       | [v0.1.1](https://github.com/pgsty/pg_exporter/releases/tag/v0.1.1) |
+| [v0.1.0](#v010) | 2020-01-08 | Initial stable release                                     | [v0.1.0](https://github.com/pgsty/pg_exporter/releases/tag/v0.1.0) |
+| [v0.0.4](#v004) | 2019-12-20 | Production tested release                                  | [v0.0.4](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.4) |
+| [v0.0.3](#v003) | 2019-12-14 | Production environment testing                             | [v0.0.3](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.3) |
+| [v0.0.2](#v002) | 2019-12-09 | Early testing release                                      | [v0.0.2](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.2) |
+| [v0.0.1](#v001) | 2019-12-06 | Initial release with PgBouncer mode                        | [v0.0.1](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.1) |
+
+
+## v1.4.1
+
+`v1.4.1` is a maintenance release focused on metric accuracy and RPM upgrade compatibility.
+
+**Highlights:**
+
+- Fix `pg_subrel_count` overcounting when parallel logical replication apply workers are active: deduplicate `pg_stat_subscription` by subscription ID and name before aggregating subscription relation states
+- If a query result omits a configured `LABEL` column, that collector's scrape now fails atomically instead of emitting an empty label or retaining stale results; other non-fatal collectors continue normally
+- Rename the official RPM package and artifact prefix from `pg_exporter` to `pg-exporter`; the new package provides and obsoletes the legacy name, allowing direct upgrades
+- Refresh version and standalone package metadata, add missing-label regression coverage, and validate RPM configuration, artifact names, and compatibility metadata in CI
+
+**Upgrade Notes:**
+
+- Custom collector SQL must return every `LABEL` column; the result schema must remain complete even when the query returns zero rows
+- If automation matches GitHub RPM file names directly, update `pg_exporter-*.rpm` to `pg-exporter-*.rpm`
+
+https://github.com/pgsty/pg_exporter/releases/tag/v1.4.1
 
 
 ## v1.4.0

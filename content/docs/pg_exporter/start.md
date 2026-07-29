@@ -21,7 +21,8 @@ On Linux amd64 you can download the binary directly (for other platforms and RPM
 ```bash
 VERSION=$(curl -fsSL https://api.github.com/repos/pgsty/pg_exporter/releases/latest | sed -n 's/.*"tag_name": "v\([^"]*\)".*/\1/p')
 wget "https://github.com/pgsty/pg_exporter/releases/download/v${VERSION}/pg_exporter-${VERSION}.linux-amd64.tar.gz"
-tar -xf "pg_exporter-${VERSION}.linux-amd64.tar.gz"
+mkdir -p "pg_exporter-${VERSION}.linux-amd64"
+tar -xf "pg_exporter-${VERSION}.linux-amd64.tar.gz" -C "pg_exporter-${VERSION}.linux-amd64"
 sudo install "pg_exporter-${VERSION}.linux-amd64/pg_exporter" /usr/bin/
 sudo install "pg_exporter-${VERSION}.linux-amd64/pg_exporter.yml" /etc/pg_exporter.yml
 ```
@@ -30,7 +31,7 @@ Confirm the installation:
 
 ```bash
 pg_exporter --version
-# pg_exporter v1.4.0 (built with go1.26.5 on linux/amd64)
+# pg_exporter v1.4.1 (built with go1.26.5 on linux/amd64)
 ```
 
 
@@ -103,12 +104,12 @@ That's it. For Grafana, you can reuse the PostgreSQL dashboards from [Pigsty](ht
 
 ## Troubleshooting
 
-| Symptom | What to do |
-|---------|-----------|
+| Symptom                     | What to do                                                                                                 |
+|-----------------------------|------------------------------------------------------------------------------------------------------------|
 | `pg_up 0`, connection fails | Run `pg_exporter --log.level=debug` and read the error; check URL, `pg_hba.conf`, and network reachability |
-| Some metrics are missing | `curl localhost:9630/explain` to see each collector's planning verdict (version gates, tags, predicates) |
-| A collector keeps failing | `curl localhost:9630/stat` for per-collector error counters and durations |
-| Scrapes are slow | Find the slow collector in `/stat`, raise its `ttl`, or set `skip: true` |
+| Some metrics are missing    | `curl localhost:9630/explain` to see each collector's planning verdict (version gates, tags, predicates)   |
+| A collector keeps failing   | `curl localhost:9630/stat` for per-collector error counters and durations                                  |
+| Scrapes are slow            | Find the slow collector in `/stat`, raise its `ttl`, or set `skip: true`                                   |
 {.full-width}
 
 `/stat`, `/explain`, and `/reload` are management endpoints — protect them with `--web.config.file` (TLS/auth) or keep them on a trusted network in production. See the [API Reference](/docs/pg_exporter/api/).
