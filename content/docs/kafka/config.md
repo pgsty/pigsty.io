@@ -45,7 +45,7 @@ Before filling in the inventory, confirm at least the following:
 | `controller` | `controller` | － | ✓ | ✓ | － |
 {.full-width}
 
-`kafka_role` is declared independently per node, and defaults to `combined` when omitted. A cluster must contain at least one controller-capable node and at least one broker-capable node; an even number of controllers produces a warning, and production typically uses 3 controllers.
+`kafka_role` is all-or-nothing: cluster members either all omit it (and consistently use `combined`) or all declare it explicitly — a mix is refused during the identity precheck. A cluster must contain at least one controller-capable node and at least one broker-capable node; an even number of controllers produces a warning, and production typically uses 3 controllers.
 
 
 --------
@@ -347,6 +347,7 @@ The role installs `java-runtime` and `kafka-stack` through platform mappings. Th
 | `/etc/kafka/jmx_exporter.yml` | Bounded JMX metrics rules |
 | `/etc/kafka/manifest.yml` | Authoritative copy of the bootstrap manifest on the node |
 | `/etc/kafka/secrets.yml` | Copy of the internal secrets on a `scram` node |
+| `/etc/kafka/.pigsty-applied-static.sha256` | Fingerprint of the static config proven live; the rolling-restart trigger |
 | `/etc/kafka/pki/kafka.pem` | PEM private key and certificate on a `scram` node; the trust anchor uses the system `/etc/pki/ca.crt` |
 | `${kafka_data}/data/` | Topic log data |
 | `${kafka_data}/metadata/` | KRaft metadata and `meta.properties` |

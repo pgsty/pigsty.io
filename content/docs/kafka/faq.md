@@ -40,7 +40,7 @@ The cluster roles must either be omitted entirely and consistently use `combined
 
 ## Will controller port 9093 collide with Alertmanager?
 
-The controller uses Kafka KRaft's conventional port `9093` by default. In current Pigsty versions Alertmanager listens on [`alertmanager_port`](/docs/infra/param#alertmanager_port) `9059` by default (its cluster port is `9094`), so the defaults do not collide even when Kafka shares an Infra node. If you changed those ports and created a clash, adjust [`kafka_controller_port`](/docs/kafka/param#kafka_controller_port) for that cluster; the role only enforces that the four Kafka ports `9092`, `9093`, `9308`, and `9404` differ from one another, and does not automatically detect port conflicts with other services.
+No. Pigsty's Alertmanager listens on [`alertmanager_port`](/docs/infra/param#alertmanager_port) `9059` with cluster port `9094`, clear of the KRaft controller's conventional port `9093`. If you changed those ports and created a clash, adjust [`kafka_controller_port`](/docs/kafka/param#kafka_controller_port) for that cluster — the role only enforces that the four Kafka ports `9092`, `9093`, `9308`, and `9404` differ from one another, and does not detect port conflicts with other services.
 
 
 --------
@@ -88,21 +88,9 @@ Conversely, if the manifest exists but all Kafka data disks are empty, the role 
 
 ## Why are some keys in `kafka_parameters` rejected?
 
-Identity, the dynamic quorum, listeners, storage, replication, rack, and security must be managed uniformly by the role. The reserved patterns include:
+Identity, the dynamic quorum, listeners, storage, replication, rack, and security must have a single source of authority, so those keys are owned by the role: if any one of them appears, the identity precheck fails before anything is written. For the complete reserved list, see [`kafka_parameters`](/docs/kafka/param#kafka_parameters).
 
-```text
-process.roles, node.id, controller.quorum.*,
-listeners, advertised.listeners, listener.security.protocol.map,
-inter.broker.listener.name, controller.listener.names,
-log.dirs, metadata.log.dir, broker.rack,
-min.insync.replicas, default.replication.factor,
-offsets.topic.replication.factor,
-transaction.state.log.*, share.coordinator.state.topic.*,
-authorizer.class.name, super.users, allow.everyone.if.no.acl.found,
-sasl.*, ssl.*, listener.*
-```
-
-Use the corresponding 15 public parameters; there are no variables for advertised addresses, path subdirectories, the listener map, or exporter options.
+Use the corresponding public parameters instead. The role provides no variables for advertised addresses, path subdirectories, the listener map, or exporter options.
 
 
 --------
@@ -197,37 +185,23 @@ Both exporters query the same logical cluster and may return the same topic/part
 
 ## Should applications go through HAProxy, a Keepalived VIP, or an LB?
 
-Usually not. Kafka producers/consumers are cluster-aware smart clients: they first connect to any available seed in `bootstrap.servers` to fetch metadata, then connect directly to each partition leader. A production configuration should provide at least two, and usually three, broker seed addresses, and should let the application reach every address a broker advertises directly.
+No. Kafka producers and consumers are cluster-aware clients: once they reach any seed in `bootstrap.servers` and fetch metadata, they connect directly to each partition leader. A VIP or generic TCP LB neither understands partition leaders nor rewrites the broker addresses in metadata; putting one in the data plane only adds long-connection state, an extra point of failure, and troubleshooting complexity.
 
-A VIP or a generic TCP LB understands neither partition leaders nor rewrites the broker addresses in Kafka metadata; placing one in the data plane usually only adds long-connection state, an extra point of failure, and troubleshooting complexity. If a corporate platform mandates a single discovery entry point, DNS or a TCP LB may serve bootstrap only, but `advertised.listeners` must still return a client-reachable address for each broker, and the LB must not become the only network path.
+If a platform mandates a single discovery entry point, DNS or a TCP LB may serve bootstrap only, but `advertised.listeners` still returns a client-reachable address for each broker, and the application network must reach every broker. Exposure across NAT, the public internet, multiple networks, or Kubernetes requires a dedicated external address and an additional listener per broker; the current module always advertises the inventory address and does not support such mapping.
 
-Exposure across NAT, the public internet, multiple networks, or Kubernetes usually requires a separate external address per broker and additional listeners. The current module always advertises the inventory address and does not support such mapping. See [Quickstart: why applications should connect directly to multiple brokers](/docs/kafka/start#3-why-applications-should-connect-directly-to-multiple-brokers) and [Cluster Config: network and listeners](/docs/kafka/config#network-and-listeners).
-
-
---------
-
-## Can I just add a broker?
-
-Yes. Declare the new member in the inventory (`broker`, `combined`, and `controller` all work), then run against the complete cluster:
-
-```bash
-./kafka.yml --check -l kf-main
-./kafka.yml -l kf-main
-```
-
-The role formats, starts, and verifies the registration of each new broker one at a time (combined/controller nodes additionally catch up and get promoted to voters). You cannot limit the run to the new node only. After it joins, existing partitions are not migrated automatically; you must run and monitor reassignment separately. "The broker is registered" does not mean "capacity is already balanced."
+See [Quickstart: why applications should connect directly to multiple brokers](/docs/kafka/start#3-why-applications-should-connect-directly-to-multiple-brokers) and [Cluster Config: network and listeners](/docs/kafka/config#network-and-listeners).
 
 
 --------
 
-## Can I just add or remove a controller?
+## Can I just add or remove a broker or controller?
 
 Yes. Edit the inventory and let the playbooks orchestrate every step of the [KRaft membership change](https://kafka.apache.org/43/operations/kraft/#controller-membership-changes):
 
-- **Add**: `./kafka.yml -l <cls>` formats the new combined/controller node with `--no-initial-controllers`, lets it catch up as an observer, promotes it with `add-controller`, one node at a time with health gates throughout;
+- **Add**: declare the new member in the inventory (`broker`, `combined`, and `controller` all work) and run `./kafka.yml -l <cls>` against the **complete cluster** (you cannot limit the run to the new node only). Pure brokers are formatted, started, and verified as registered one at a time; combined/controller nodes are formatted with `--no-initial-controllers`, catch up as observers, then get promoted with `add-controller`. One node at a time, with health gates throughout.
 - **Remove**: `./kafka-rm.yml -l <ip>` (a strict subset of the cluster) performs `remove-controller` and the broker unregistration through a surviving member — it works even when the node is unreachable — then delete the member from the inventory.
 
-You still own the planning: keep the controller count odd with a live majority after the change, make one membership change at a time, and drain the partitions off a removed broker first (or let a same-`kafka_seq` replacement take them over).
+You still own the planning: keep the controller count odd with a live majority after the change, make one membership change at a time, and drain the partitions off a removed broker first (or let a same-`kafka_seq` replacement take them over). After a node joins, existing partitions are not migrated automatically; you must run and monitor reassignment separately — "the broker is registered" does not mean "capacity is already balanced."
 
 
 --------
@@ -243,6 +217,6 @@ The payload verified on 2026-07-16 is Kafka 4.3.1, `kafka_exporter` 1.9.0, and J
 
 ## How do I safely wipe Kafka data?
 
-`kafka.yml` never performs cleanup; removal uses the separate `kafka-rm.yml` playbook. Selecting a whole cluster with `-l` (or running bare for all clusters) is a teardown; selecting a strict subset retires those members first (voter entry and broker registration removed through a surviving member) before the local cleanup. By default (`kafka_rm_data=true`) it permanently deletes the data/KRaft metadata, node-local `/etc/kafka` recovery state, and monitoring targets; setting it to `false` retains both data and recovery state. Setting `kafka_safeguard=true` forcibly aborts any deletion.
+`kafka.yml` never performs cleanup; deletion lives only in the separate `kafka-rm.yml` playbook. Selecting a whole cluster with `-l` (or running bare for all clusters) is a teardown; selecting a strict subset is member retirement. By default `kafka_rm_data=true` permanently deletes the data/KRaft metadata, node-local `/etc/kafka` recovery state, and monitoring targets; `kafka_rm_data=false` keeps the data and recovery state, and `kafka_safeguard=true` aborts any deletion.
 
-The playbook has no extra gate such as a confirmation string, so before running it you must manually confirm the exact `-l` target, a recoverable backup or a clear intent to rebuild, and the business-decommissioned status. For the full semantics, see [Playbook: cluster teardown](/docs/kafka/playbook#cluster-teardown).
+The playbook has no extra gate such as a confirmation string, so before running it you must manually confirm the exact `-l` target, a recoverable backup or a clear intent to rebuild, and the business-decommissioned status. For the full semantics, see [Playbook: `kafka-rm.yml`](/docs/kafka/playbook#kafka-rmyml).

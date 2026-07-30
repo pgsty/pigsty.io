@@ -218,6 +218,8 @@ Defaults to `plaintext`, and accepts only:
 
 `scram` simultaneously configures the Pigsty CA-issued node certificates, the role-owned admin/monitoring/internal identities, and the ordering in which TLS/SCRAM and ACLs are enabled. The security profile is written into the bootstrap manifest; once the cluster is formatted, an ordinary rerun can neither switch `plaintext` to `scram` nor switch back.
 
+Node certificate validity follows Pigsty's shared CA parameter [`cert_validity`](/docs/infra/param#cert_validity) (`7300d` by default); the KAFKA module has no separate certificate validity parameter.
+
 
 ### `kafka_users`
 
@@ -271,7 +273,7 @@ kafka_topics:
       retention.ms: 604800000
 ```
 
-`name` is unique within the list; both partitions and RF must be at least 1, and RF cannot exceed the current broker count. The convergence semantics are:
+The identity precheck only validates that `name` is unique within the list. Partition and RF validity (at least 1, and RF not exceeding the current broker count) is decided by Kafka at creation time, so such errors surface during the resource convergence stage rather than under `--check`. The convergence semantics are:
 
 - The topic is created idempotently when it does not exist;
 - Partitions may only increase; decreasing fails;
@@ -294,3 +296,18 @@ The following variables are used only via the command-line `-e` for one-off oper
 {.full-width}
 
 The two rotation actions are mutually exclusive, and must target a precise, complete cluster. `kafka-rm.yml` deletes the data directory and node-local `/etc/kafka` recovery state by default; `kafka_rm_data=false` retains both. Before running it, explicitly confirm the target cluster and your backup/rebuild intent. For the commands and full semantics, see [Playbooks](/docs/kafka/playbook).
+
+
+### `kafka_safeguard`
+
+For `kafka-rm.yml` only, `false` by default. When set to `true`, the removal role aborts before deregistration, retirement, service shutdown, and deletion. This is a boolean safety switch; it does not probe whether the cluster is alive.
+
+
+### `kafka_rm_data`
+
+For `kafka-rm.yml` only, `true` by default. When enabled it deletes the entire `kafka_data` directory and `/etc/kafka`, the latter holding the manifest, credential copies, and the recovery state required to re-adopt retained storage. Setting it to `false` keeps both, but monitoring targets are still deregistered, services still stopped, and runtime integration config still removed.
+
+
+### `kafka_rm_pkg`
+
+For `kafka-rm.yml` only, `false` by default. When set to `true` it uninstalls the `kafka-stack` packages from the platform mapping (the Kafka, Kafka Exporter, and JMX Exporter payload); the shared Java runtime is never uninstalled.

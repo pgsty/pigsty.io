@@ -355,16 +355,14 @@ The Kafka Java client supports `SASL_SSL` + SCRAM and a PEM truststore. A real a
 
 ### 3. Why Applications Should Connect Directly to Multiple Brokers
 
-The Kafka client is itself a cluster-aware, intelligent client. `bootstrap.servers` is used only to obtain the initial metadata; once connected, the client uses that metadata to connect directly to the leader broker of each partition and refreshes its routing whenever a leader changes. The standard practice in production is therefore to:
+The Kafka client is itself cluster-aware. `bootstrap.servers` is used only to obtain the initial metadata; once connected, the client uses that metadata to connect directly to the leader broker of each partition and refreshes its routing whenever a leader changes. The standard practice in production is therefore to:
 
 - configure at least two, and usually three, broker addresses in `bootstrap.servers`, located in different failure domains;
 - allow the application to reach `9092` on **all brokers**, and ensure that each broker's advertised `inventory_hostname` is resolvable and routable;
 - let producers and consumers rely on the Kafka client's own retry, metadata-refresh, idempotence, and consumer-group protocols;
 - not place HAProxy, a Keepalived VIP, a layer-4 load balancer, or a layer-7 reverse proxy in front of the Kafka data plane.
 
-A single VIP or LB cannot substitute for the broker addresses in Kafka's metadata, nor can it transparently forward a connection to the correct partition leader; it also adds complexity around long-lived connection state, fault localization, and capacity planning. If your platform must provide a unified discovery entry point, you can use a DNS name or a TCP load balancer as a **bootstrap-only entry point**, but each broker's `advertised.listeners` must still return an address that the client can reach directly, and the application must not be permitted to reach only the LB.
-
-Scenarios that span NAT, the public internet, Kubernetes, or multiple networks usually require a dedicated externally reachable address/port and an additional listener for each broker. The current module fixes the inventory address as `advertised.listeners` and does not support arbitrary listener mappings of this kind; do not use a single HAProxy VIP to paper over an address model that does not hold.
+A single VIP or LB can neither substitute for the broker addresses in Kafka's metadata nor transparently forward a connection to the correct partition leader; it only adds complexity around long-lived connection state, fault localization, and capacity planning. If your platform must provide a unified discovery entry point, a DNS name or TCP load balancer can serve as a bootstrap-only entry point, but each broker's `advertised.listeners` must still return an address the client can reach directly, and the application must not be permitted to reach only the LB. Scenarios that span NAT, the public internet, Kubernetes, or multiple networks require a dedicated externally reachable address and an additional listener per broker; the current module fixes the inventory address as `advertised.listeners` and does not support such mappings.
 
 
 ### 4. Authenticate and Read/Write with the Application Identity
@@ -512,7 +510,7 @@ For all 15 public parameters, their defaults, and the reserved keys, see the [Pa
 - the dynamic quorum has exactly one leader, and every expected controller is in the current voters;
 - there are no offline, under-replicated, or under-min-ISR partitions;
 - produce/consume verification is done over the real application network with a real principal;
-- the [Kafka Overview](https://demo.pigsty.cc/ui/d/kafka-overview), [Kafka Instance](https://demo.pigsty.cc/ui/d/kafka-instance), and [Kafka Node](https://demo.pigsty.cc/ui/d/kafka-node) dashboards show healthy data;
+- the [Kafka Overview](https://demo.pigsty.cc/ui/d/kafka-overview), [Kafka Instance](https://demo.pigsty.cc/ui/d/kafka-instance), [Kafka Topic](https://demo.pigsty.cc/ui/d/kafka-topic), and [Kafka Consumer](https://demo.pigsty.cc/ui/d/kafka-consumer) dashboards show healthy data;
 - alert routing, log search, capacity thresholds, on-call responsibilities, and rollback conditions are confirmed;
 - upgrades, feature-level changes, topic deletion, user deletion, and cluster teardown each have a separate approval process.
 
@@ -529,12 +527,12 @@ We recommend continuing along the following path:
 |:---|:---|
 | Plan a combined or separated controller/broker topology, network, rack, storage, and security | [Cluster Configuration](/docs/kafka/config) |
 | Look up the 15 public parameters, their defaults, schema, and reserved keys | [Parameter Reference](/docs/kafka/param) |
+| Look up quorum, topic, user, message, consumer-group, and scaling operations | [Day-to-Day Administration](/docs/kafka/admin) |
 | Understand the `kafka.yml` lifecycle, strict rolling restart, rotation, and cluster teardown | [Playbook](/docs/kafka/playbook) |
-| Look up quorum, topic, user, message, consumer-group, and scale-out operations | [Day-to-Day Administration](/docs/kafka/admin) |
 | Use the dashboards, alerts, PromQL, and VictoriaLogs | [Monitoring and Alerting](/docs/kafka/monitor) |
 | Understand every JMX/exporter/recording-rule metric | [Metric Definitions](/docs/kafka/metric) |
 | Troubleshoot identity conflicts, connectivity, SCRAM, exporters, lag, and scaling issues | [FAQ](/docs/kafka/faq) |
 | Return to the overview of module capabilities, default ports, and boundaries | [Kafka Module Home](/docs/kafka) |
 {.full-width}
 
-One recommended reading path is: **Quick Start → Cluster Configuration → Parameter Reference → Playbook → Day-to-Day Administration → Monitoring and Alerting → FAQ**.
+One recommended reading path is: **Quick Start → Cluster Configuration → Parameter Reference → Day-to-Day Administration → Playbook → Monitoring and Alerting → FAQ**.

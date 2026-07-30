@@ -23,17 +23,15 @@ That includes dynamic KRaft, strict rolling restart, TLS/SCRAM/ACL, declarative 
 
 The KAFKA module currently provides:
 
-- Native dynamic KRaft, with no ZooKeeper installed and no static `controller.quorum.voters` rendered
-- Support for the three native roles `combined`, `broker`, and `controller`, in both combined and separated topologies
-- Random generation of a Cluster ID and Controller Directory ID for new clusters, with identity protected by a minimal bootstrap manifest
-- Selection of a cold-start/repair, serial broker admission, dynamic controller join, or strict single-node rolling path based on live health
-- Playbook-orchestrated member retirement and failed-node replacement: `kafka-rm.yml` strict-subset retirement (dead nodes included), three commands to replace a node
+- Native dynamic KRaft: no ZooKeeper installed, and no static `controller.quorum.voters` rendered
+- Three native roles `combined` / `broker` / `controller`, in both combined and separated control-plane/data-plane topologies
+- New clusters get a random Cluster ID and Controller Directory IDs, frozen by a minimal bootstrap manifest that fails closed on conflict
+- Automatic path selection from live health: cold start/repair, serial broker admission, dynamic controller join, or strict single-node rolling restart
 - Checks before and after each rolling step for controller majority and voter catch-up, offline partitions, under-min-ISR, and ISR catch-up
-- Two security profiles, `plaintext` and the production `scram`; the latter enables TLS, SCRAM-SHA-512, controller mTLS, ACLs, and default-deny authorization
-- Declarative convergence of topics, user credentials, ACLs, and quotas, without implicitly deleting business topics
-- Protected rotation of internal credentials and certificates, preserving the currently valid material on failure
-- Collection of JMX, broker, request, replication, KRaft, topic, partition, and consumer group metrics
-- Ingestion of Kafka and exporter logs into VictoriaLogs, with three Grafana dashboards and matching alerts
+- Playbook-orchestrated member retirement and failed-node replacement: `kafka-rm.yml` strict-subset retirement (dead nodes included), three commands to replace a node
+- Two security profiles, `plaintext` and the production `scram` (TLS, SCRAM-SHA-512, controller mTLS, ACLs, and default-deny authorization)
+- Declarative convergence of topics, user credentials, ACLs, and quotas without implicit deletion; protected rotation for internal credentials and certificates
+- Full observability: JMX and protocol exporters, 19 recording rules, 15 alert rules, 4 Grafana dashboards, and logs in VictoriaLogs
 
 
 --------
@@ -85,15 +83,9 @@ Every Kafka JVM has a JMX Exporter injected and is registered as `job=kafka`. Th
 
 ## First Time
 
-The [Quickstart](/docs/kafka/start) offers a complete path from scratch, building up step by step:
+The [Quickstart](/docs/kafka/start) offers a complete path from scratch, building up step by step: single-node development cluster → three-node TLS/SCRAM/ACL secure cluster → application client access → parameter and resource changes → go-live checks.
 
-1. Deploy a combined single-node development cluster and read/write topics and messages;
-2. Deploy a separate three-node dynamic KRaft cluster with TLS/SCRAM/ACL enabled;
-3. Create an application principal, topics, and quotas, and connect securely from an external client;
-4. Change heap, broker, and topic parameters, and observe online convergence and strict rolling restart;
-5. Complete go-live checks covering quorum, ISR, network, security, monitoring, and runbooks.
-
-If you are already familiar with Kafka/Pigsty, jump straight to [Cluster Config](/docs/kafka/config) or [Parameters](/docs/kafka/param).
+If you are already familiar with Kafka and Pigsty, jump straight to [Cluster Config](/docs/kafka/config) or [Parameters](/docs/kafka/param).
 
 
 --------

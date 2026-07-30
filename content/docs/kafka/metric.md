@@ -100,7 +100,7 @@ Ephemeral consumers that never commit an offset, clients that use external offse
 
 ## JMX: JVM Baseline
 
-`excludeJvmMetrics: false` makes the JMX Exporter expose the standard JVM/process metrics. The Kafka Node dashboard mainly uses:
+`excludeJvmMetrics: false` makes the JMX Exporter expose the standard JVM/process metrics. The Kafka Instance dashboard mainly uses:
 
 | Metric | Meaning |
 |:---|:---|
@@ -235,18 +235,14 @@ A healthy cluster should have exactly one active controller. Any increase in `of
 
 | Metric | Aggregation Level | Window | Meaning |
 |:---|:---:|:---:|:---|
-| `kafka:topic:msg_rate1m` | Topic/Exporter | 1m | Forward growth rate of current offset |
-| `kafka:topic:msg_rate5m` | Topic/Exporter | 5m | Forward growth rate of current offset |
-| `kafka:ins:msg_rate1m` | Exporter instance | 1m | Message append rate in the instance view |
-| `kafka:ins:msg_rate5m` | Exporter instance | 5m | Message append rate in the instance view |
+| `kafka:topic:msg_rate1m` | Topic | 1m | Forward growth rate of current offset, deduplicated across exporters |
+| `kafka:topic:msg_rate5m` | Topic | 5m | Forward growth rate of current offset, deduplicated across exporters |
 | `kafka:cls:msg_rate1m` | Logical cluster | 1m | Message append rate, deduplicated across exporters |
 | `kafka:cls:msg_rate5m` | Logical cluster | 5m | Message append rate, deduplicated across exporters |
-| `kafka:topic:csg_rate1m` | Group/Topic/Exporter | 1m | Forward growth rate of commit offset |
-| `kafka:topic:csg_rate5m` | Group/Topic/Exporter | 5m | Forward growth rate of commit offset |
-| `kafka:ins:csg_rate1m` | Exporter instance | 1m | Consumer commit rate in the instance view |
-| `kafka:ins:csg_rate5m` | Exporter instance | 5m | Consumer commit rate in the instance view |
-| `kafka:cls:csg_rate1m` | Logical cluster | 1m | Consumer commit rate, deduplicated across exporters |
-| `kafka:cls:csg_rate5m` | Logical cluster | 5m | Consumer commit rate, deduplicated across exporters |
+| `kafka:csg_topic:commit_rate5m` | Group/Topic | 5m | Forward growth rate of commit offset |
+| `kafka:csg_topic:lag` | Group/Topic | current | Partition lag, deduplicated and summed |
+| `kafka:csg:lag` | Consumer group | current | Total group lag across topics |
+| `kafka:cls:lag` | Logical cluster | current | Total cluster lag across consumer groups |
 {.full-width}
 
 ### JVM and Broker
@@ -255,10 +251,15 @@ A healthy cluster should have exactly one active controller. Any increase in `of
 |:---|:---|
 | `kafka:ins:jvm_heap_used_ratio` | Heap used / heap max |
 | `kafka:ins:jvm_cpu_cores` | 5-minute JVM CPU core consumption |
+| `kafka:ins:load` | Saturation of the instance's busiest request thread pool |
+| `kafka:cls:load` | Average load across the cluster's instances |
 | `kafka:ins:jvm_gc_time_rate5m` | 5-minute GC time rate |
 | `kafka:ins:messages_in_rate5m` | Broker 5-minute message receive rate |
 | `kafka:ins:bytes_in_rate5m` | Broker 5-minute inbound client byte rate |
 | `kafka:ins:bytes_out_rate5m` | Broker 5-minute outbound client byte rate |
+| `kafka:ins:request_error_rate5m` | 5-minute rate of non-`NONE` request errors |
+| `kafka:cls:under_replicated_partitions` | Total under-replicated partitions in the cluster |
+| `kafka:cls:offline_partitions` | Offline partitions in the cluster |
 {.full-width}
 
 

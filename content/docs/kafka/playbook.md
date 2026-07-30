@@ -19,7 +19,7 @@ Every selected `kafka_cluster` must include all of its members: a partial select
 
 --------
 
-## Basic Usage
+## `kafka.yml`
 
 ```bash
 ./kafka.yml --check -l kf-main   # dry run first
@@ -216,9 +216,16 @@ The role discards the node certificates already issued in the shared PKI tree, r
 
 --------
 
-## Cluster Teardown
+## `kafka-rm.yml`
 
-Cluster removal is not in `kafka.yml`; it uses the separate [`kafka-rm.yml`](https://github.com/pgsty/pigsty/blob/main/kafka-rm.yml) playbook:
+Removal is not in `kafka.yml`; it uses the separate [`kafka-rm.yml`](https://github.com/pgsty/pigsty/blob/main/kafka-rm.yml) playbook. Selecting **all members** of a cluster with `-l` is a teardown, selecting a **strict subset** is member retirement; both share the same execution order:
+
+Deregister the VictoriaMetrics targets (`kafka_deregister`) → stop and disable the `kafka`/`kafka_exporter` services (`kafka`) → remove the KRaft voter entry and broker registration through a surviving member (`kafka_retire`, which only has a surviving member to work through when a strict subset is selected) → delete exporter config, Systemd environment/units, and helper scripts (`kafka_config`) → delete the data directories and node-local `/etc/kafka` recovery state (`kafka_data`, controlled by `kafka_rm_data`) → optionally uninstall the packages (`kafka_pkg`, controlled by `kafka_rm_pkg`).
+
+The safeguard switch is `kafka_safeguard`: when set to `true` (on the command line or in the inventory), the playbook aborts immediately and deletes nothing. An identity conflict, an exporter anomaly, or an ordinary startup failure is not a reason to delete data — converge with [`kafka.yml`](#kafkayml) first and read the failure reason.
+
+
+### Cluster Teardown
 
 ```bash
 ./kafka-rm.yml -l kf-main                          # Remove the cluster: deregister monitoring and stop services; deletes data and /etc/kafka recovery state by default
@@ -226,30 +233,24 @@ Cluster removal is not in `kafka.yml`; it uses the separate [`kafka-rm.yml`](htt
 ./kafka-rm.yml -l kf-main -e kafka_rm_pkg=true     # Also uninstall the kafka-stack packages (the shared Java runtime is not removed)
 ```
 
-The execution order is: deregister the VictoriaMetrics targets (`kafka_deregister`) → stop and disable the `kafka`/`kafka_exporter` services (`kafka`) → delete exporter config, Systemd environment/units, and helper scripts (`kafka_config`) → delete the data directories and node-local `/etc/kafka` recovery state (`kafka_data`, controlled by `kafka_rm_data`) → optionally uninstall the packages (`kafka_pkg`, controlled by `kafka_rm_pkg`).
-
-The safeguard switch is `kafka_safeguard`: when set to `true` (on the command line or in the inventory), the playbook aborts immediately and deletes nothing.
-
 {{% alert title="Permanent Deletion" color="danger" %}}
 `kafka_rm_data` defaults to `true`: a single default-parameter run of `kafka-rm.yml` deletes the selected nodes' data/KRaft metadata and `/etc/kafka` recovery state. The playbook has no extra gate such as a confirmation string, so before running it you must verify the `-l` target, the backup or an explicit rebuild intent, and the impact on producers/consumers by hand.
 {{% /alert %}}
 
-Selecting a **strict subset** of a cluster with `-l` (for example, `-l 10.10.10.13`) is member retirement rather than teardown: the playbook removes the leaving node's KRaft voter entry through a surviving member (`remove-controller`, strictly serialized for several members) and drops its broker registration (`unregister`) before the local cleanup. The playbook tolerates unreachable targets, so it also applies to nodes that are already dead — this is step one of [Replace Failed Node](/docs/kafka/admin#replace-failed-node).
 
-Automated retirement does not remove the need for planning: after the shrink, the remaining controllers should stay odd-numbered and keep a live majority, and the remaining broker count must not fall below the highest topic RF; when the retiring broker still hosts partition replicas, the playbook prints a warning — a planned shrink should drain with a reassignment first. An identity conflict, an exporter anomaly, or an ordinary startup failure is not a reason to delete data.
+### Member Retirement
+
+```bash
+./kafka-rm.yml -l 10.10.10.13                      # Retire one member: drop its voter entry and broker registration, then clean the node
+```
+
+The playbook removes the leaving node's KRaft voter entry through a surviving member (`remove-controller`, strictly serialized for several members) and drops its broker registration (`unregister`) before the local cleanup. Every metadata action is delegated to the survivor, so this also works for nodes that are already dead and unreachable — this is step one of [Replace Failed Node](/docs/kafka/admin#replace-failed-node).
+
+Automated retirement does not remove the need for planning: after the shrink, the remaining controllers should stay odd-numbered and keep a live majority, and the remaining broker count must not fall below the highest topic RF; when the retiring broker still hosts partition replicas, the playbook prints a warning — a planned shrink should drain with a reassignment first.
 
 
 --------
 
 ## Playbook Boundaries
 
-`kafka.yml` currently does not perform automatically:
-
-- Reassignment of existing partitions after a new broker joins, pre-retirement drain, and data balancing;
-- Changing the RF of an existing topic, deleting a topic, or deleting a user;
-- Online migration between `plaintext` and `scram` for a formatted cluster;
-- Kafka version upgrades, feature-level finalization, cross-version migration, and rollback;
-- Kafka data backup, recovery orchestration, and disaster drills;
-- Ecosystem components such as Connect, Schema Registry, MirrorMaker, and Cruise Control.
-
-These operations require their own production runbooks. For day-to-day read-only checks and resource management, see [Administration](/docs/kafka/admin).
+Neither playbook performs partition reassignment and data balancing, topic/user deletion, online `plaintext` → `scram` migration, version upgrades and feature-level finalization, or data backup and disaster recovery, and neither deploys ecosystem components such as Connect, Schema Registry, MirrorMaker, or Cruise Control. For the full list see [Module Boundaries](/docs/kafka#current-boundaries); for day-to-day read-only checks and resource management, see [Administration](/docs/kafka/admin).

@@ -65,7 +65,7 @@ The exporter queries the entire Kafka cluster through a broker, so the two expor
 
 ## Grafana Dashboards
 
-Pigsty ships three complementary dashboards:
+Pigsty ships four complementary dashboards:
 
 ### [Kafka Overview](https://demo.pigsty.cc/ui/d/kafka-overview)
 
@@ -85,35 +85,45 @@ Common variables: `cls`, `members`, `topic`, `group`, `topk`.
 
 ### [Kafka Instance](https://demo.pigsty.cc/ui/d/kafka-instance)
 
-Use the `ins` variable to select a broker instance running `kafka_exporter`, and view cluster metadata and consumer state from the protocol perspective, correlated with host resources.
+Use the `ins` variable to select any Kafka broker/controller JVM, including controller-only nodes, correlated with host resources.
 
 Main content:
 
-- Exporter availability, identity, runtime, and scrape cost
-- Broker directory, topic inventory, partition topology
-- Leader distribution, ISR deficit, leaderless, and non-preferred
-- Topic offset span, append/commit progress
-- Consumer group inventory, members, offsets, and lag
-- Node CPU/memory, disk I/O, network, filesystem, and logs
-
-Common variables: `ins`, `cls`, `ip`, `topic`, `consumergroup`, `topk`.
-
-
-### [Kafka Node](https://demo.pigsty.cc/ui/d/kafka-node)
-
-Use the `ins` variable to select any Kafka JVM, including controller-only nodes, and view JMX, broker, and KRaft internal state.
-
-Main content:
-
+- Instance identity, role, JMX availability, and scrape quality
 - JVM heap, GC, threads, buffer pool, CPU, FD, and uptime
-- Broker message/network/replication throughput and ISR churn
-- Request rate, errors, P95/P99 latency, queues, and handler/network idle
-- Under-replicated, under min ISR, offline replica/log directory
-- KRaft member state, metadata log, propagation lag, and snapshot
-- Active controller, fenced broker, offline partition, and event latency
-- JMX scrape quality, host pressure, and Kafka logs
+- Broker throughput, replication state, request errors/latency/queues, and handler/network idle
+- KRaft member state, metadata log, controller health, and event latency
+- Node CPU/memory, disk I/O, network, filesystem, and Kafka logs
 
 Common variables: `cls`, `ins`, `ip`.
+
+
+### [Kafka Topic](https://demo.pigsty.cc/ui/d/kafka-topic)
+
+Use `cls` and `topic` to select a logical topic and inspect topic/partition state from the protocol view.
+
+Main content:
+
+- Topic and partition inventory, leader, replicas, ISR, and preferred leader
+- Current offset, retention span, and message append rate
+- Leaderless, ISR deficit, and non-preferred replica
+- Associated consumer groups, commit progress, and lag
+
+Common variables: `cls`, `topic`, `topk`.
+
+
+### [Kafka Consumer](https://demo.pigsty.cc/ui/d/kafka-consumer)
+
+Use `cls` and `group` to select a consumer group and inspect members, committed offsets, consumption progress, and backlog.
+
+Main content:
+
+- Consumer group inventory and member count
+- Committed offsets by group/topic/partition
+- Commit rate, total lag, maximum partition lag, and backlog trend
+- Drill-down from group to topic/partition
+
+Common variables: `cls`, `group`, `topic`, `topk`.
 
 
 --------
@@ -123,11 +133,12 @@ Common variables: `cls`, `ins`, `ip`.
 | Question | Preferred Dashboard | Drill-Down Path |
 |:---|:---|:---|
 | Which cluster or topic is misbehaving? | Kafka Overview | Select `cls`, `topic`, `group` |
-| Why is a consumer group falling behind? | Kafka Instance | Group → Topic → Partition offset |
-| Is a particular broker overloaded? | Kafka Node | Request path → JVM → Node resources |
-| Is the KRaft controller healthy? | Kafka Node | KRaft metadata plane → Controller health |
-| Are there leaderless/URP/ISR problems? | Kafka Overview | Cluster → Kafka Node |
-| Is the exporter missing data, or is Kafka itself unhealthy? | Instance + Node | Compare `kafka_exporter_up` with `kafka_up` |
+| Why is a consumer group falling behind? | Kafka Consumer | Group → Topic → Partition offset |
+| Is a particular topic/partition unhealthy? | Kafka Topic | Topic → Partition → Consumer |
+| Is a particular broker overloaded? | Kafka Instance | Request path → JVM → Node resources |
+| Is the KRaft controller healthy? | Kafka Instance | KRaft metadata plane → Controller health |
+| Are there leaderless/URP/ISR problems? | Kafka Overview | Cluster → Kafka Instance / Topic |
+| Is the exporter missing data, or is Kafka itself unhealthy? | Overview + Instance | Compare `kafka_exporter_up` with `kafka_up` |
 {.full-width}
 
 
@@ -140,17 +151,21 @@ The Kafka rule file lives at `/infra/rules/kafka.yml`. The main recorded metrics
 | Metric | Meaning |
 |:---|:---|
 | `kafka:topic:msg_rate1m/5m` | 1m/5m forward change rate of a topic's current offset |
-| `kafka:ins:msg_rate1m/5m` | Message append rate as seen by a single exporter |
 | `kafka:cls:msg_rate1m/5m` | Deduplicated cluster message append rate |
-| `kafka:topic:csg_rate1m/5m` | 1m/5m forward change rate of a consumer group's commit offset |
-| `kafka:ins:csg_rate1m/5m` | Consumer commit rate as seen by a single exporter |
-| `kafka:cls:csg_rate1m/5m` | Deduplicated cluster consumer commit rate |
+| `kafka:csg_topic:commit_rate5m` | 5-minute commit progress rate per consumer group/topic |
+| `kafka:csg_topic:lag` | Total lag per consumer group/topic |
+| `kafka:csg:lag` | Total lag of a consumer group across topics |
+| `kafka:cls:lag` | Total lag of all consumer groups in a Kafka cluster |
 | `kafka:ins:jvm_heap_used_ratio` | Kafka JVM heap usage ratio |
 | `kafka:ins:jvm_cpu_cores` | Number of CPU cores consumed by the Kafka JVM |
+| `kafka:ins:load` / `kafka:cls:load` | Saturation of the busiest request thread pool, and the cluster average |
 | `kafka:ins:jvm_gc_time_rate5m` | 5-minute GC time rate |
 | `kafka:ins:messages_in_rate5m` | Broker 5-minute message receive rate |
 | `kafka:ins:bytes_in_rate5m` | Broker 5-minute inbound client byte rate |
 | `kafka:ins:bytes_out_rate5m` | Broker 5-minute outbound client byte rate |
+| `kafka:ins:request_error_rate5m` | Broker 5-minute request error rate |
+| `kafka:cls:under_replicated_partitions` | Total under-replicated partitions in the cluster |
+| `kafka:cls:offline_partitions` | Offline partitions in the cluster |
 {.full-width}
 
 Rates derived from offset changes represent progress, not client request counts. Log truncation, offset rollback, or an exporter restart can produce a transient negative change; the rules use `clamp_min(..., 0)` to keep only forward progress.
@@ -162,19 +177,21 @@ Rates derived from offset changes represent progress, not client request counts.
 
 | Alert | Condition | Duration | Severity | Preferred Drill-Down |
 |:---|:---|:---:|:---:|:---|
-| `KafkaDown` | `up{job="kafka"} < 1` | 1m | CRIT | Kafka Node / `ins` |
-| `KafkaExporterDown` | `up{job="kafka_exporter"} < 1` | 1m | CRIT | Kafka Instance / `ins` |
-| `KafkaJmxScrapeError` | `jmx_scrape_error > 0` | 3m | WARN | Kafka Node / JMX Collector |
-| `KafkaJvmHeapHigh` | Heap usage > 90% | 15m | WARN | Kafka Node / JVM Memory |
-| `KafkaJvmDeadlock` | JVM deadlocked threads > 0 | 1m | CRIT | Kafka Node / JVM Threads |
-| `KafkaRequestHandlerSaturated` | Handler idle < 10% | 10m | WARN | Kafka Node / Request Path |
-| `KafkaUnderReplicatedPartitions` | URP > 0 | 5m | WARN | Kafka Node / Replication |
-| `KafkaUnderMinISR` | Under min ISR > 0 | 1m | CRIT | Kafka Node / Replication |
-| `KafkaOfflineLogDirectory` | Offline log directory > 0 | 1m | CRIT | Kafka Node / Disk Pressure |
-| `KafkaOfflinePartitions` | Controller offline partitions > 0 | 1m | CRIT | Kafka Node / `cls` |
-| `KafkaControllerCountMismatch` | Active controller count is not 1 | 1m | CRIT | Kafka Node / `cls` |
-| `KafkaFencedBrokers` | Fenced brokers > 0 | 5m | WARN | Kafka Node / `cls` |
-| `KafkaUncleanLeaderElection` | An unclean leader election in the last 5 minutes | immediate | CRIT | Kafka Node / `cls` |
+| `KafkaDown` | `up{job="kafka",role=~".+"} < 1` | 1m | CRIT | Kafka Instance / `ins` |
+| `KafkaExporterDown` | `up{job="kafka",role=""} < 1` | 1m | CRIT | Kafka Instance / `ins` |
+| `KafkaJmxScrapeError` | `jmx_scrape_error{job="kafka"} > 0` | 3m | WARN | Kafka Instance / JMX Collector |
+| `KafkaJvmHeapHigh` | Heap usage > 90% | 15m | WARN | Kafka Instance / JVM Memory |
+| `KafkaJvmDeadlock` | JVM deadlocked threads > 0 | 1m | CRIT | Kafka Instance / JVM Threads |
+| `KafkaRequestHandlerSaturated` | Handler idle < 10% | 10m | WARN | Kafka Instance / Request Path |
+| `KafkaNetworkProcessorSaturated` | Network processor idle < 10% | 10m | WARN | Kafka Instance / Request Path |
+| `KafkaUnderReplicatedPartitions` | URP > 0 | 5m | WARN | Kafka Instance / Replication |
+| `KafkaUnderMinISR` | Under min ISR > 0 | 1m | CRIT | Kafka Instance / Replication |
+| `KafkaOfflineLogDirectory` | Offline log directory > 0 | 1m | CRIT | Kafka Instance / Disk Pressure |
+| `KafkaOfflinePartitions` | Controller offline partitions > 0 | 1m | CRIT | Kafka Overview / `cls` |
+| `KafkaControllerCountMismatch` | Active controller count is not 1 | 1m | CRIT | Kafka Overview / `cls` |
+| `KafkaFencedBrokers` | Fenced brokers > 0 | 5m | WARN | Kafka Overview / `cls` |
+| `KafkaUncleanLeaderElection` | An unclean leader election in the last 5 minutes | immediate | CRIT | Kafka Overview / `cls` |
+| `KafkaConsumerLagGrowing` | Group lag > 100000 and still growing after 30m | 30m | WARN | Kafka Consumer / `group` |
 {.full-width}
 
 An unclean leader election can mean data loss. Immediately preserve the controller/broker logs, confirm the affected topics and replicas, and only then decide on a recovery action.
@@ -229,7 +246,7 @@ job:syslog unit:kafka_exporter
 ip:10.10.10.11 job:syslog (unit:kafka OR app:kafka)
 ```
 
-The log panel on the Kafka Node dashboard uses similar queries and shows time, level, systemd unit, and message. When diagnosing, align the logs with the KRaft, ISR, request queue, GC, disk I/O, and network metrics from the same time window.
+The log panel on the Kafka Instance dashboard uses similar queries and shows time, level, systemd unit, and message. When diagnosing, align the logs with the KRaft, ISR, request queue, GC, disk I/O, and network metrics from the same time window.
 
 
 --------
