@@ -96,7 +96,7 @@ Comprehensive references, the extension catalog, ready-to-use templates, and com
 {{< nav-card title="Reference Manual" link="/docs/ref/" icon="fa-solid fa-map" desc="Detailed reference lists: operating systems, file hierarchy, ports, metrics, and product comparisons." >}}
 [Linux Support](/docs/ref/linux) [Modules](/docs/ref/module) [File Hierarchy](/docs/ref/fhs) [Ports](/docs/ref/port) [Comparison](/docs/about/compare) [Cost Reference](/docs/about/compare/cost) [SOP](/docs/sop/)
 {{< /nav-card >}}
-{{< nav-card title="Extension Catalog" link="/ext/" icon="fa-solid fa-puzzle-piece" desc="A complete catalog of 555 PostgreSQL ecosystem extensions: metadata, docs, downloads, and support matrix." >}}
+{{< nav-card title="Packaged Extensions" link="/ext/" icon="fa-solid fa-puzzle-piece" desc="A catalog of 562 packaged PostgreSQL ecosystem extensions: metadata, docs, downloads, and support matrix." >}}
 [Extension List](/ext/list) [OS Support](/ext/os) [Software Repo](/docs/repo/)
 {{< /nav-card >}}
 {{< nav-card title="Templates" link="/docs/conf/" icon="fa-solid fa-cubes" desc="Ready-to-use cluster configuration templates, plus containerized software and application templates." >}}

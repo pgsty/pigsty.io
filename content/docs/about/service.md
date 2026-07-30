@@ -48,7 +48,7 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 <p><b>OS Support: Latest minor versions of three families</b><p>
 <ul>
 <li>EL 9.7 / 10.1</li>
-<li>Debian 12.14 / 13.5</li>
+<li>Debian 12.14 / 13.6</li>
 <li>Ubuntu 26.04.0 / 24.04.4 / 22.04.5</li>
 </ul>
 <p><b>Features: <a href="/docs/ref/module#core-modules">Core Modules</a></b></p>
@@ -140,8 +140,8 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 
 Pigsty Open Source Edition uses the [**Apache-2.0**](/docs/about/license) license, provides complete core functionality, requires no fees, but does not guarantee any warranty service. If you find defects in Pigsty, we welcome you to submit an [Issue](https://github.com/pgsty/pigsty/issues/) on Github.
 
-Pigsty Open Source supports seven currently validated baselines: EL 9.7 / 10.1, Debian 12.14 / 13.5, and Ubuntu 26.04.0 / 24.04.4 / 22.04.5, across both `x86_64` and `aarch64`.
-The Community Edition publishes six dual-architecture offline artifacts for EL 10.1, Debian 13.5, and Ubuntu 24.04.4 on GitHub. Prebuilt packages for the remaining baselines are available with the Professional Edition; see the [offline installation guide](/docs/setup/offline/).
+Pigsty Open Source supports seven currently validated baselines: EL 9.7 / 10.1, Debian 12.14 / 13.6, and Ubuntu 26.04.0 / 24.04.4 / 22.04.5, across both `x86_64` and `aarch64`.
+The Community Edition publishes six dual-architecture offline artifacts for EL 10.1, Debian 13.6, and Ubuntu 24.04.4 on GitHub. Prebuilt packages for the remaining baselines are available with the Professional Edition; see the [offline installation guide](/docs/setup/offline/).
 
 Using the Pigsty open source version allows junior development/operations engineers to have **70%+** of the capabilities of professional DBAs. Even without database experts, they can easily set up a highly available, high-performance, easy-to-maintain, secure and reliable PostgreSQL database cluster.
 
@@ -244,7 +244,7 @@ Pigsty Professional/Enterprise Edition includes the following additional feature
     - [**IvorySQL**](/docs/pgsql/kernel/ivorysql): Based on PG, provides Oracle syntax/type/stored procedure compatibility
     - [**PolarDB PG**](/docs/pgsql/kernel/polardb): Provides support for open-source PolarDB for PostgreSQL kernel
     - [**PolarDB O**](/docs/pgsql/kernel/polardb-o): Domestic innovation database with Oracle-compatible kernel for local compliance requirements (**Enterprise Edition subscription only**)
-- **Extension Support Capability**: Provides out-of-the-box installation for 555 available PG extensions for PG 14-18 on mainstream operating systems.
+- **Extension Support Capability**: Provides out-of-the-box installation for 562 available PG extensions for PG 14-18 on mainstream operating systems.
 - **Complete Functional Modules**: Provides all functional modules:
     - [**Supabase**](/docs/pgsql/kernel/supabase): Reliably self-host production-grade open-source Firebase
     - [**MinIO**](/docs/minio): Enterprise PB-level object storage planning and self-hosting

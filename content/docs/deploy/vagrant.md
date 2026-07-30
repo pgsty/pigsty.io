@@ -59,7 +59,7 @@ make simu24     # Create 20-node simubox with Ubuntu 24.04.4
 make full26     # Create 4-node sandbox with Ubuntu 26.04.0
 ```
 
-Available OS suffixes: `8` (EL8), `9` (EL9), `10` (EL10), `12` (Debian 12.14), `13` (Debian 13.5), `22` (Ubuntu 22.04.5), `24` (Ubuntu 24.04.4), `26` (Ubuntu 26.04.0)
+Available OS suffixes: `8` (EL8), `9` (EL9), `10` (EL10), `12` (Debian 12.14), `13` (Debian 13.6), `22` (Ubuntu 22.04.5), `24` (Ubuntu 24.04.4), `26` (Ubuntu 26.04.0)
 
 ### Build Environment
 

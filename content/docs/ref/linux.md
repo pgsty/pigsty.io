@@ -13,7 +13,7 @@ Pigsty runs bare-metal without containers. Supports actively maintained mainstre
 
 ## Overview
 
-**Recommended OS versions:** RockyLinux 10.1 / 9.7, Ubuntu 26.04.0 / 24.04.4 / 22.04.5, Debian 13.5 / 12.14.
+**Recommended OS versions:** RockyLinux 10.1 / 9.7, Ubuntu 26.04.0 / 24.04.4 / 22.04.5, Debian 13.6 / 12.14.
 
 | Distro                    |                Arch                |                                             OS Code                                             |                       PG18                       |                       PG17                       |                       PG16                       |                       PG15                       |                       PG14                       |
 |:--------------------------|:----------------------------------:|:-----------------------------------------------------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|
@@ -90,7 +90,7 @@ Ubuntu 26.04 provides the newest LTS baseline, while Ubuntu 24.04 remains the co
 
 ## Debian
 
-Pigsty supports Debian 12 / 13, latest Debian 13.5 recommended:
+Pigsty supports Debian 12 / 13, latest Debian 13.6 recommended:
 
 | Debian Distro          |                Arch                |                                            OS Code                                            |                       PG18                       |                       PG17                       |                          PG16                           |                          PG15                           |                          PG14                           |
 |:-----------------------|:----------------------------------:|:---------------------------------------------------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------:|
@@ -101,7 +101,7 @@ Pigsty supports Debian 12 / 13, latest Debian 13.5 recommended:
 | Debian 11 (`bullseye`) | <b class="text-sky-600">x86_64</b> |  [`d11.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/d11.x86_64.yml)  |                                                  |                                                  | <i class="fas fa-triangle-exclamation text-danger"></i> | <i class="fas fa-triangle-exclamation text-danger"></i> | <i class="fas fa-triangle-exclamation text-danger"></i> |
 | Debian 11 (`bullseye`) | <b class="text-danger">aarch64</b> |                                               -                                               |                                                  |                                                  |                                                         |                                                         |                                                         |
 
-{{% alert title="Debian 12.14 / 13.5 Recommended" color="success" %}}
+{{% alert title="Debian 12.14 / 13.6 Recommended" color="success" %}}
 {{% /alert %}}
 
 {{% alert title="Debian 11 EOL @ 2024-07" color="danger" %}}
@@ -119,7 +119,7 @@ For local VM deployment, use these Vagrant base images (same as used in Pigsty d
 - [`cloud-image/rocky-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-9): RockyLinux 9.7
 - [`cloud-image/almalinux-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-10): AlmaLinux 10.1
 - [`cloud-image/debian-12`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-12): Debian 12.14
-- [`cloud-image/debian-13`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-13): Debian 13.5
+- [`cloud-image/debian-13`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-13): Debian 13.6
 - [`cloud-image/ubuntu-22.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-22.04): Ubuntu 22.04.5
 - [`cloud-image/ubuntu-24.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-24.04): Ubuntu 24.04.4
 - [`cloud-image/ubuntu-26.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-26.04): Ubuntu 26.04.0

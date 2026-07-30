@@ -208,7 +208,7 @@ We recommend starting with **PGSQL Overview**. Many elements in the dashboards a
 
 One of PostgreSQL's most powerful features is its [**extension ecosystem**](/docs/pgsql/ext). Extensions can add new data types, functions, index methods, and more to the database.
 
-Pigsty provides [**555 extensions**](/ext/list) covering 16 major categories including time-series, geographic, vector, and full-text search, installable with one click.
+Pigsty provides [**562 extensions**](/ext/list) covering 16 major categories including time-series, geographic, vector, and full-text search, installable with one click.
 Start with three commonly used extensions, then [**install**](/docs/pgsql/ext/install) more extensions such as `timescaledb` as needed.
 
 - [**`postgis`**](/ext/e/postgis): Geographic information system for processing maps and location data (installed by default)

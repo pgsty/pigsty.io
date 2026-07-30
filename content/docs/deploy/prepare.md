@@ -138,7 +138,7 @@ For local-only access, add the following to `/etc/hosts` on machines accessing t
 
 Pigsty runs on **Linux**. It supports **14** mainstream distributions: [**Compatible OS List**](/docs/ref/linux/)
 
-We recommend **RockyLinux 10.1**, **Debian 13.5**, or **Ubuntu 26.04.0 / 24.04.4** as default options.
+We recommend **RockyLinux 10.1**, **Debian 13.6**, or **Ubuntu 26.04.0 / 24.04.4** as default options.
 
 On macOS and Windows, use VM software or Docker systemd images to run Pigsty.
 

@@ -7,7 +7,7 @@ module: [PGSQL]
 categories: [Reference]
 ---
 
-Extensions are the soul of PostgreSQL. Pigsty includes 555 pre-compiled, out-of-the-box extension plugins, fully unleashing PostgreSQL's potential.
+Extensions are the soul of PostgreSQL. Pigsty includes 562 pre-compiled, out-of-the-box extension plugins, fully unleashing PostgreSQL's potential.
 
 
 --------

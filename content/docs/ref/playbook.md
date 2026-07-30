@@ -22,6 +22,7 @@ This page summarizes Pigsty v4.x playbook entries and usage guidance by module. 
 | [**`DOCKER`**](/docs/docker/playbook) | 1  | `docker.yml`                                                                                                                    |
 | [**`JUICE`**](/docs/juice/playbook)   | 1  | `juice.yml`                                                                                                                     |
 | [**`VIBE`**](/docs/vibe/playbook)     | 1  | `vibe.yml`                                                                                                                      |
+| [**`KAFKA`**](/docs/kafka/playbook)   | 2  | `kafka.yml` `kafka-rm.yml`                                                                                                      |
 {.full-width}
 
 --------
@@ -52,6 +53,8 @@ This page summarizes Pigsty v4.x playbook entries and usage guidance by module. 
 | [**`docker.yml`**](/docs/docker/playbook#dockeryml)                  | `DOCKER` | Deploy Docker engine |
 | [**`juice.yml`**](/docs/juice/playbook#juiceyml)                     | `JUICE`  | Deploy/remove JuiceFS instances |
 | [**`vibe.yml`**](/docs/vibe/playbook#vibeyml)                        |  `VIBE`  | Deploy VIBE dev environment |
+| [**`kafka.yml`**](/docs/kafka/playbook#kafkayml)                     | `KAFKA`  | Create or converge a complete dynamic KRaft cluster |
+| [**`kafka-rm.yml`**](/docs/kafka/playbook#kafka-rmyml)               | `KAFKA`  | Remove a Kafka cluster, or safely retire a single member |
 {.full-width}
 
 --------
@@ -79,6 +82,7 @@ Several modules provide deletion safeguards through `*_safeguard` parameters:
 - **PGSQL**: [**`pg_safeguard`**](/docs/pgsql/param#pg_safeguard)
 - **ETCD**: [**`etcd_safeguard`**](/docs/etcd/param#etcd_safeguard)
 - **MINIO**: [**`minio_safeguard`**](/docs/minio/param#minio_safeguard)
+- **KAFKA**: [**`kafka_safeguard`**](/docs/kafka/param#kafka_safeguard)
 
 By default, these safeguard parameters are undefined (not enabled). In production, explicitly set them to `true` for initialized clusters.
 
@@ -88,6 +92,7 @@ When safeguard is `true`, corresponding `*-rm.yml` playbooks abort immediately. 
 ./pgsql-rm.yml -l pg-test -e pg_safeguard=false
 ./etcd-rm.yml  -l etcd    -e etcd_safeguard=false
 ./minio-rm.yml -l minio   -e minio_safeguard=false
+./kafka-rm.yml -l kf-main -e kafka_safeguard=false
 ```
 
 
@@ -202,3 +207,14 @@ bin/pgmon-add <cls>              # monitor remote cluster (wrapper)
 ./docker.yml -l <host>           # install Docker
 ./app.yml -e app=<name>          # deploy Docker Compose app
 ```
+
+### KAFKA Module
+
+```bash
+./kafka.yml -l <cls>             # create / converge a complete Kafka cluster
+./kafka.yml -l <cls> --check     # read-only precheck
+./kafka-rm.yml -l <cls>          # remove the whole cluster
+./kafka-rm.yml -l <ip>           # retire a single member from the cluster
+```
+
+For ordinary convergence, `-l` must cover every declared member of the selected Kafka cluster; only `kafka-rm.yml` accepts a single member, for retirement.

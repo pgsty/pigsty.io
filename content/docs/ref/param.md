@@ -27,6 +27,7 @@ According to current documentation scope, official modules contain exactly **360
 | [**`DOCKER`**](/docs/docker/param) |   1    |   8   | Docker engine parameters                                   |
 |  [**`JUICE`**](/docs/juice/param)  |   1    |   2   | JuiceFS instance and cache parameters                      |
 |   [**`VIBE`**](/docs/vibe/param)   |   1    |  16   | Code/Jupyter/Node.js/Claude configuration                  |
+|  [**`KAFKA`**](/docs/kafka/param)  |   2    |  18   | Kafka deployment and removal safeguard parameters          |
 {.stretch-last}
 
 --------
@@ -45,6 +46,7 @@ According to current documentation scope, official modules contain exactly **360
 | [**`DOCKER`**](/docs/docker/param)  | [`DOCKER`](/docs/docker/param) |
 |  [**`JUICE`**](/docs/juice/param)   | [`JUICE`](/docs/juice/param) |
 |   [**`VIBE`**](/docs/vibe/param)    | [`VIBE`](/docs/vibe/param) |
+|  [**`KAFKA`**](/docs/kafka/param)   | [`KAFKA`](/docs/kafka/param/#parameter-overview), [`KAFKA_REMOVE`](/docs/kafka/param/#transient-protected-operational-variables) |
 {.stretch-last}
 
 --------

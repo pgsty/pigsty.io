@@ -10,7 +10,7 @@ hide: True
 
 Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` and `~/pgsty/pgext/db/extension.csv`. For full details, see [**PGEXT.CLOUD**](/ext/list/).
 
-There are currently **555** available PostgreSQL extensions.
+[**PGEXT.CLOUD**](https://pgext.cloud/) catalogs **2,230** PostgreSQL extensions in total. Of these, **562** are packaged and available through Pigsty repositories:
 
 ### TIME
 
