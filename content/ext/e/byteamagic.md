@@ -33,6 +33,10 @@ weight: 4275
 | 4275  | [**`byteamagic`**](/ext/e/byteamagic) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
+| **Related** | [`external_file`](/ext/e/external_file) [`pgpdf`](/ext/e/pgpdf) [`omni_mimetypes`](/ext/e/omni_mimetypes) [`fio`](/ext/e/fio) [`envvar`](/ext/e/envvar) [`floatfile`](/ext/e/floatfile) [`file_fdw`](/ext/e/file_fdw) |
+|:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+{.ext-table .ext-table--rel}
+
 
 > Extension name is byteamagic; package name is pg_byteamagic.
 

@@ -28,7 +28,7 @@ weight: 5970
 | 5970  | [**`adminpack`**](/ext/e/adminpack) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`fio`](/ext/e/fio) [`lo`](/ext/e/lo) [`file_fdw`](/ext/e/file_fdw) [`ddlx`](/ext/e/ddlx) [`pgdd`](/ext/e/pgdd) [`pg_catcheck`](/ext/e/pg_catcheck) [`pg_cheat_funcs`](/ext/e/pg_cheat_funcs) [`pg_repack`](/ext/e/pg_repack) |
+| **Related** | [`pg_checksums`](/ext/e/pg_checksums) [`amcheck`](/ext/e/amcheck) [`pg_repack`](/ext/e/pg_repack) [`pg_catcheck`](/ext/e/pg_catcheck) [`pg_surgery`](/ext/e/pg_surgery) [`pg_orphaned`](/ext/e/pg_orphaned) [`pg_pathcheck`](/ext/e/pg_pathcheck) [`pg_isok`](/ext/e/pg_isok) [`pageinspect`](/ext/e/pageinspect) [`pg_squeeze`](/ext/e/pg_squeeze) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

@@ -33,6 +33,10 @@ weight: 9530
 | 9530  | [**`logical_ddl`**](/ext/e/logical_ddl) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `logical_ddl` |
 {.ext-table}
 
+| **Related** | [`pglogical`](/ext/e/pglogical) [`pgl_ddl_deploy`](/ext/e/pgl_ddl_deploy) [`spock`](/ext/e/spock) [`pgactive`](/ext/e/pgactive) [`mimeo`](/ext/e/mimeo) [`pgoutput`](/ext/e/pgoutput) [`lolor`](/ext/e/lolor) |
+|:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+{.ext-table .ext-table--rel}
+
 
 > Pigsty carries the upstream RAISE WARNING typo fix for 0.1.0.
 

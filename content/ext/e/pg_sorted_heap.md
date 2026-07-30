@@ -33,7 +33,7 @@ weight: 2550
 | 2550  | [**`pg_sorted_heap`**](/ext/e/pg_sorted_heap) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`storage_engine`](/ext/e/storage_engine) [`pg_ivm`](/ext/e/pg_ivm) [`vector`](/ext/e/vector) [`vchord`](/ext/e/vchord) [`pg_search`](/ext/e/pg_search) |
+| **Related** | [`pg_mooncake`](/ext/e/pg_mooncake) [`storage_engine`](/ext/e/storage_engine) [`columnar`](/ext/e/columnar) [`orioledb`](/ext/e/orioledb) [`citus_columnar`](/ext/e/citus_columnar) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

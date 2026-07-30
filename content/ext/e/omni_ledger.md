@@ -69,7 +69,7 @@ weight: 2955
 | 2979  | [**`omni_yaml`**](/ext/e/omni_yaml) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `omni_yaml` |
 {.ext-table}
 
-| **Related** | [`omni_id`](/ext/e/omni_id) [`omni_polyfill`](/ext/e/omni_polyfill) |
+| **Related** | [`omni_id`](/ext/e/omni_id) [`omni_polyfill`](/ext/e/omni_polyfill) [`financial`](/ext/e/financial) [`pg_accumulator`](/ext/e/pg_accumulator) [`currency`](/ext/e/currency) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

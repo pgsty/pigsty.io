@@ -33,7 +33,7 @@ weight: 2660
 | 2660  | [**`pgmq`**](/ext/e/pgmq) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `pgmq` |
 {.ext-table}
 
-| **Related** | [`kafka_fdw`](/ext/e/kafka_fdw) [`pg_task`](/ext/e/pg_task) [`pg_net`](/ext/e/pg_net) [`pg_background`](/ext/e/pg_background) [`pgagent`](/ext/e/pgagent) [`pg_jobmon`](/ext/e/pg_jobmon) |
+| **Related** | [`redis`](/ext/e/redis) [`pgmb`](/ext/e/pgmb) [`ulak`](/ext/e/ulak) [`redis_fdw`](/ext/e/redis_fdw) [`pg_durable`](/ext/e/pg_durable) [`pgq`](/ext/e/pgq) [`tcn`](/ext/e/tcn) [`pgmqtt`](/ext/e/pgmqtt) [`pgmemcache`](/ext/e/pgmemcache) [`fsm_core`](/ext/e/fsm_core) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Depended By** | [`fsm_core`](/ext/e/fsm_core) [`pg_later`](/ext/e/pg_later) [`vectorize`](/ext/e/vectorize) |
 {.ext-table .ext-table--rel}

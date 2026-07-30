@@ -12,7 +12,7 @@ sidebar_expanded: true
 | <a class="ext-badge ext-badge--cate time" href="/ext/cate/time">TIME</a> | 15 | 15 | TimescaleDB, Versioning & Temporal Table, Crontab, Async & Background Job Scheduler, ... |
 | <a class="ext-badge ext-badge--cate gis" href="/ext/cate/gis">GIS</a> | 31 | 15 | GeoSpatial Data Types, Operators, and Indexes, Hexagonal Indexing, OGR Data FDW, GeoIP & MobilityDB, etc... |
 | <a class="ext-badge ext-badge--cate rag" href="/ext/cate/rag">RAG</a> | 15 | 14 | Vector Database with Ivfflat, HNSW, DiskANN Indexes, AI & ML in SQL interface, Similarity Funcs, etc...  |
-| <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | 28 | 27 | ElasticSearch Alternative with BM25, 2-gram/3-gram Fuzzy Search, Zhparser & Hunspell Segregation Dicts, etc... |
+| <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | 28 | 18 | ElasticSearch Alternative with BM25, 2-gram/3-gram Fuzzy Search, Zhparser & Hunspell Segregation Dicts, etc... |
 | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | 25 | 17 | DuckDB Integration with FDW & PG Lakehouse, Access Parquet from File/S3, Sharding with Citus/Partman/PlProxy, ... |
 | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | 73 | 34 | OpenCypher with AGE, GraphQL, JsonSchema, Hints & Hypo Index, HLL, Rum, IVM, ChemRDKit, and Message Queues,... |
 | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | 38 | 25 | Develop, Test, Package, and Deliver Stored Procedures written in various PL/Languages: Java, Js, Lua, R, Sh, PRQL, ... |

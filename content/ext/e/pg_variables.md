@@ -33,7 +33,7 @@ weight: 2820
 | 2820  | [**`pg_variables`**](/ext/e/pg_variables) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`session_variable`](/ext/e/session_variable) [`orafce`](/ext/e/orafce) [`plisql`](/ext/e/plisql) |
+| **Related** | [`session_variable`](/ext/e/session_variable) [`omni_var`](/ext/e/omni_var) [`pg_fsql`](/ext/e/pg_fsql) [`pg_query_rewrite`](/ext/e/pg_query_rewrite) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Depended By** | [`pgelog`](/ext/e/pgelog) |
 {.ext-table .ext-table--rel}

@@ -33,7 +33,7 @@ weight: 1540
 | 1540  | [**`q3c`**](/ext/e/q3c) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`h3`](/ext/e/h3) [`pg_geohash`](/ext/e/pg_geohash) [`earthdistance`](/ext/e/earthdistance) [`pg_sphere`](/ext/e/pg_sphere) [`postgis`](/ext/e/postgis) [`postgis_topology`](/ext/e/postgis_topology) [`postgis_raster`](/ext/e/postgis_raster) [`postgis_sfcgal`](/ext/e/postgis_sfcgal) |
+| **Related** | [`pg_sphere`](/ext/e/pg_sphere) [`earthdistance`](/ext/e/earthdistance) [`postgis`](/ext/e/postgis) [`h3`](/ext/e/h3) [`pointcloud`](/ext/e/pointcloud) [`pgrouting`](/ext/e/pgrouting) [`pg_geohash`](/ext/e/pg_geohash) [`mobilitydb`](/ext/e/mobilitydb) [`qdgc`](/ext/e/qdgc) [`pg_eviltransform`](/ext/e/pg_eviltransform) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

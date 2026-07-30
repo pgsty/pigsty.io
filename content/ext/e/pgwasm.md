@@ -33,7 +33,7 @@ weight: 3150
 | 3150  | [**`pgwasm`**](/ext/e/pgwasm) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `pgwasm` |
 {.ext-table}
 
-| **Related** | `wasm` `pg_extism` `plrust` |
+| **Related** | [`plv8`](/ext/e/plv8) [`pljs`](/ext/e/pljs) [`pllua`](/ext/e/pllua) [`pg_tle`](/ext/e/pg_tle) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

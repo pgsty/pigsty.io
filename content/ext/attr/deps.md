@@ -5,11 +5,11 @@ description: "PostgreSQL extensions with dependency relationships"
 weight: 30
 ---
 
-**125** extensions depend on other extensions, **74** extensions are depended upon by others.
+**126** extensions depend on other extensions, **74** extensions are depended upon by others.
 
 ## Upstream Dependencies
 
-The following **125** extensions require other extensions to be installed first:
+The following **126** extensions require other extensions to be installed first:
 
 | **Extension** | **Requires** | **Description** |
 |:-----------|:-------------|:---------|
@@ -43,8 +43,9 @@ The following **125** extensions require other extensions to be installed first:
 | [`vectorscale`](/ext/e/vectorscale) | [`vector`](/ext/e/vector) | Advanced indexing for vector data with DiskANN |
 | [`vectorize`](/ext/e/vectorize) | [`pg_cron`](/ext/e/pg_cron) [`pgmq`](/ext/e/pgmq) [`vector`](/ext/e/vector) | The simplest way to do vector search on Postgres |
 | [`pg4ml`](/ext/e/pg4ml) | [`plpgsql`](/ext/e/plpgsql) [`tablefunc`](/ext/e/tablefunc) [`cube`](/ext/e/cube) [`plpython3u`](/ext/e/plpython3u) | Machine learning framework for PostgreSQL |
-| [`pgmnemo`](/ext/e/pgmnemo) | [`vector`](/ext/e/vector) | Provenance-gated vector memory for LLM agents in PostgreSQL |
+| [`pgmnemo`](/ext/e/pgmnemo) | [`vector`](/ext/e/vector) | Single-plan multimodal agent memory for PostgreSQL |
 | [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) | [`pgcontext`](/ext/e/pgcontext) [`vector`](/ext/e/vector) | Optional pgvector compatibility bridge for pgcontext HNSW indexes. |
+| [`pg_search`](/ext/e/pg_search) | [`vector`](/ext/e/vector) | Full text search for PostgreSQL using BM25 |
 | [`biscuit`](/ext/e/biscuit) | [`plpgsql`](/ext/e/plpgsql) | IAM-LIKE pattern matching with bitmap indexing |
 | [`pg_mooncake`](/ext/e/pg_mooncake) | [`pg_duckdb`](/ext/e/pg_duckdb) | Columnstore Table in Postgres |
 | [`pg_partman`](/ext/e/pg_partman) | [`plpgsql`](/ext/e/plpgsql) | Extension to manage partitioned tables by time or ID |
@@ -155,7 +156,7 @@ The following **74** extensions are depended upon by other extensions:
 | [`pgh_raster`](/ext/e/pgh_raster) | [`pgh_hgm`](/ext/e/pgh_hgm) | Raster hydrology extension for PgHydro |
 | [`mobilitydb`](/ext/e/mobilitydb) | [`mobilitydb_datagen`](/ext/e/mobilitydb_datagen) | MobilityDB geospatial trajectory data management & analysis platform |
 | [`qdgc`](/ext/e/qdgc) | [`qdgc_postgis`](/ext/e/qdgc_postgis) | Encode, decode, navigate, and fill Extended Quarter Degree Grid Cell codes in pure SQL. |
-| [`vector`](/ext/e/vector) | [`documentdb`](/ext/e/documentdb) [`pgmnemo`](/ext/e/pgmnemo) [`vchord`](/ext/e/vchord) [`vectorize`](/ext/e/vectorize) [`vectorscale`](/ext/e/vectorscale) | vector data type and ivfflat and hnsw access methods |
+| [`vector`](/ext/e/vector) | [`documentdb`](/ext/e/documentdb) [`pgmnemo`](/ext/e/pgmnemo) [`vchord`](/ext/e/vchord) [`vectorize`](/ext/e/vectorize) [`vectorscale`](/ext/e/vectorscale) [`pg_search`](/ext/e/pg_search) | vector data type and ivfflat and hnsw access methods |
 | [`pgcontext`](/ext/e/pgcontext) | [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) | Vector, filter-aware HNSW, and hybrid retrieval over authoritative PostgreSQL tables. |
 | [`fuzzystrmatch`](/ext/e/fuzzystrmatch) | [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) | determine similarities and distance between strings |
 | [`citus`](/ext/e/citus) | [`documentdb_distributed`](/ext/e/documentdb_distributed) | Distributed PostgreSQL as an extension |

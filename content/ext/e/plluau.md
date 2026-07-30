@@ -31,7 +31,7 @@ weight: 3030
 | 3031  | [**`hstore_plluau`**](/ext/e/hstore_plluau) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | `pg_catalog` |
 {.ext-table}
 
-| **Related** | [`plperlu`](/ext/e/plperlu) [`plpgsql`](/ext/e/plpgsql) [`plpython3u`](/ext/e/plpython3u) [`plv8`](/ext/e/plv8) [`pljava`](/ext/e/pljava) [`pltclu`](/ext/e/pltclu) |
+| **Related** | [`plperlu`](/ext/e/plperlu) [`plpython3u`](/ext/e/plpython3u) [`pltclu`](/ext/e/pltclu) [`plperl`](/ext/e/plperl) [`plv8`](/ext/e/plv8) [`pljs`](/ext/e/pljs) [`pljava`](/ext/e/pljava) [`plsh`](/ext/e/plsh) [`plr`](/ext/e/plr) [`plxslt`](/ext/e/plxslt) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Depended By** | [`hstore_plluau`](/ext/e/hstore_plluau) |
 {.ext-table .ext-table--rel}

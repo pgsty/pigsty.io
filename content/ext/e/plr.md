@@ -28,7 +28,7 @@ weight: 3100
 | 3100  | [**`plr`**](/ext/e/plr) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`plpgsql`](/ext/e/plpgsql) [`pgml`](/ext/e/pgml) [`plpython3u`](/ext/e/plpython3u) [`pg_tle`](/ext/e/pg_tle) [`plv8`](/ext/e/plv8) [`pljava`](/ext/e/pljava) [`plperl`](/ext/e/plperl) [`pllua`](/ext/e/pllua) |
+| **Related** | [`plxslt`](/ext/e/plxslt) [`pltcl`](/ext/e/pltcl) [`plperl`](/ext/e/plperl) [`pljava`](/ext/e/pljava) [`plsh`](/ext/e/plsh) [`plpython3u`](/ext/e/plpython3u) [`plpgsql`](/ext/e/plpgsql) [`plperlu`](/ext/e/plperlu) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

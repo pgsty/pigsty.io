@@ -28,7 +28,7 @@ weight: 9410
 | 9410  | [**`pgmemcache`**](/ext/e/pgmemcache) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`redis_fdw`](/ext/e/redis_fdw) [`redis`](/ext/e/redis) `spat` [`mongo_fdw`](/ext/e/mongo_fdw) [`kafka_fdw`](/ext/e/kafka_fdw) [`documentdb`](/ext/e/documentdb) [`documentdb_core`](/ext/e/documentdb_core) [`documentdb_distributed`](/ext/e/documentdb_distributed) |
+| **Related** | [`pgmq`](/ext/e/pgmq) [`redis`](/ext/e/redis) [`redis_fdw`](/ext/e/redis_fdw) [`pgmb`](/ext/e/pgmb) [`ulak`](/ext/e/ulak) [`pgq`](/ext/e/pgq) [`tcn`](/ext/e/tcn) [`pgmqtt`](/ext/e/pgmqtt) [`pg_durable`](/ext/e/pg_durable) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

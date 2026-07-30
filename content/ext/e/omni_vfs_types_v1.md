@@ -69,7 +69,7 @@ weight: 2975
 | 2979  | [**`omni_yaml`**](/ext/e/omni_yaml) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `omni_yaml` |
 {.ext-table}
 
-| **Related** |  |
+| **Related** | [`external_file`](/ext/e/external_file) [`floatfile`](/ext/e/floatfile) [`byteamagic`](/ext/e/byteamagic) [`fio`](/ext/e/fio) [`envvar`](/ext/e/envvar) [`file_fdw`](/ext/e/file_fdw) [`pgpdf`](/ext/e/pgpdf) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Depended By** | [`omni_vfs`](/ext/e/omni_vfs) |
 {.ext-table .ext-table--rel}

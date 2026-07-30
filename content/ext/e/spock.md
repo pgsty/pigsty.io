@@ -33,7 +33,7 @@ weight: 9570
 | 9570  | [**`spock`**](/ext/e/spock) | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `spock` |
 {.ext-table}
 
-| **Related** | [`lolor`](/ext/e/lolor) [`snowflake`](/ext/e/snowflake) |
+| **Related** | [`pglogical`](/ext/e/pglogical) [`pgactive`](/ext/e/pgactive) [`mimeo`](/ext/e/mimeo) [`pgoutput`](/ext/e/pgoutput) [`pgl_ddl_deploy`](/ext/e/pgl_ddl_deploy) [`logical_ddl`](/ext/e/logical_ddl) [`postgres_fdw`](/ext/e/postgres_fdw) [`lolor`](/ext/e/lolor) [`citus`](/ext/e/citus) [`plproxy`](/ext/e/plproxy) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

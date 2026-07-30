@@ -33,7 +33,7 @@ weight: 3140
 | 3140  | [**`plx`**](/ext/e/plx) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`plpgsql`](/ext/e/plpgsql) [`plv8`](/ext/e/plv8) [`pllua`](/ext/e/pllua) [`pljava`](/ext/e/pljava) [`plperl`](/ext/e/plperl) [`plpython3u`](/ext/e/plpython3u) [`plprql`](/ext/e/plprql) [`plsh`](/ext/e/plsh) |
+| **Related** | [`plpgsql`](/ext/e/plpgsql) [`plisql`](/ext/e/plisql) [`plpgsql_wrap`](/ext/e/plpgsql_wrap) [`orafce`](/ext/e/orafce) [`db2fce`](/ext/e/db2fce) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

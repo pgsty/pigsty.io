@@ -106,15 +106,15 @@ Package [`hunspell`](/ext/e/hunspell_cs_cz) contains **10** extensions:
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
 | 2270 | [**`hunspell_cs_cz`**](/ext/e/hunspell_cs_cz) | `1.0` | `----d-r` | - | Czech Hunspell Dictionary |
-| 2271 | [**`hunspell_de_de`**](/ext/e/hunspell_de_de) | `1.0` | `----d-r` | - | German Hunspell Dictionary |
-| 2272 | [**`hunspell_en_us`**](/ext/e/hunspell_en_us) | `1.0` | `----d-r` | - | en_US Hunspell Dictionary |
-| 2273 | [**`hunspell_fr`**](/ext/e/hunspell_fr) | `1.0` | `----d-r` | - | French Hunspell Dictionary |
-| 2274 | [**`hunspell_ne_np`**](/ext/e/hunspell_ne_np) | `1.0` | `----d-r` | - | Nepali Hunspell Dictionary |
-| 2275 | [**`hunspell_nl_nl`**](/ext/e/hunspell_nl_nl) | `1.0` | `----d-r` | - | Dutch Hunspell Dictionary |
-| 2276 | [**`hunspell_nn_no`**](/ext/e/hunspell_nn_no) | `1.0` | `----d-r` | - | Norwegian (norsk) Hunspell Dictionary |
-| 2277 | [**`hunspell_pt_pt`**](/ext/e/hunspell_pt_pt) | `1.0` | `----d-r` | - | Portuguese Hunspell Dictionary |
-| 2278 | [**`hunspell_ru_ru`**](/ext/e/hunspell_ru_ru) | `1.0` | `----d-r` | - | Russian Hunspell Dictionary |
-| 2279 | [**`hunspell_ru_ru_aot`**](/ext/e/hunspell_ru_ru_aot) | `1.0` | `----d-r` | - | Russian Hunspell Dictionary (from AOT.ru group) |
+| 2271 | [`hunspell_de_de`](/ext/e/hunspell_de_de) | `1.0` | `----d-r` | - | German Hunspell Dictionary |
+| 2272 | [`hunspell_en_us`](/ext/e/hunspell_en_us) | `1.0` | `----d-r` | - | en_US Hunspell Dictionary |
+| 2273 | [`hunspell_fr`](/ext/e/hunspell_fr) | `1.0` | `----d-r` | - | French Hunspell Dictionary |
+| 2274 | [`hunspell_ne_np`](/ext/e/hunspell_ne_np) | `1.0` | `----d-r` | - | Nepali Hunspell Dictionary |
+| 2275 | [`hunspell_nl_nl`](/ext/e/hunspell_nl_nl) | `1.0` | `----d-r` | - | Dutch Hunspell Dictionary |
+| 2276 | [`hunspell_nn_no`](/ext/e/hunspell_nn_no) | `1.0` | `----d-r` | - | Norwegian (norsk) Hunspell Dictionary |
+| 2277 | [`hunspell_pt_pt`](/ext/e/hunspell_pt_pt) | `1.0` | `----d-r` | - | Portuguese Hunspell Dictionary |
+| 2278 | [`hunspell_ru_ru`](/ext/e/hunspell_ru_ru) | `1.0` | `----d-r` | - | Russian Hunspell Dictionary |
+| 2279 | [`hunspell_ru_ru_aot`](/ext/e/hunspell_ru_ru_aot) | `1.0` | `----d-r` | - | Russian Hunspell Dictionary (from AOT.ru group) |
 {.ext-table}
 
 ### citus
@@ -341,7 +341,7 @@ Package [`pglogical`](/ext/e/pglogical) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 9500 | [**`pglogical`**](/ext/e/pglogical) | `2.4.7` | `--sLd--` | `pglogical` | PostgreSQL Logical Replication |
+| 9500 | [**`pglogical`**](/ext/e/pglogical) | `2.4.8` | `--sLd--` | `pglogical` | PostgreSQL Logical Replication |
 | 9501 | [`pglogical_origin`](/ext/e/pglogical_origin) | `2.4.7` | `--s-d--` | `pglogical_origin` | Dummy extension for compatibility when upgrading from Postgres 9.4 |
 {.ext-table}
 

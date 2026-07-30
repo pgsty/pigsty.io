@@ -33,7 +33,7 @@ weight: 4850
 | 4850  | [**`convert`**](/ext/e/convert) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `convert` |
 {.ext-table}
 
-| **Related** | [`unit`](/ext/e/unit) |
+| **Related** | [`postgis`](/ext/e/postgis) [`pg_eviltransform`](/ext/e/pg_eviltransform) [`earthdistance`](/ext/e/earthdistance) [`h3`](/ext/e/h3) [`ogr_fdw`](/ext/e/ogr_fdw) [`nominatim_fdw`](/ext/e/nominatim_fdw) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

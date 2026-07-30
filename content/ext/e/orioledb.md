@@ -33,7 +33,7 @@ weight: 2910
 | 2910  | [**`orioledb`**](/ext/e/orioledb) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`pg_mooncake`](/ext/e/pg_mooncake) [`citus_columnar`](/ext/e/citus_columnar) `pg_analytics` [`pg_duckdb`](/ext/e/pg_duckdb) [`timescaledb`](/ext/e/timescaledb) [`citus`](/ext/e/citus) [`pg_strom`](/ext/e/pg_strom) |
+| **Related** | [`pg_mooncake`](/ext/e/pg_mooncake) [`storage_engine`](/ext/e/storage_engine) [`columnar`](/ext/e/columnar) [`pg_sorted_heap`](/ext/e/pg_sorted_heap) [`citus_columnar`](/ext/e/citus_columnar) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

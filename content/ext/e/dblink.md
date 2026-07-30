@@ -28,7 +28,7 @@ weight: 8970
 | 8970  | [**`dblink`**](/ext/e/dblink) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`plproxy`](/ext/e/plproxy) [`pgbouncer_fdw`](/ext/e/pgbouncer_fdw) [`postgres_fdw`](/ext/e/postgres_fdw) [`citus`](/ext/e/citus) [`wrappers`](/ext/e/wrappers) [`pgspider_ext`](/ext/e/pgspider_ext) [`pglogical`](/ext/e/pglogical) [`repmgr`](/ext/e/repmgr) |
+| **Related** | [`postgres_fdw`](/ext/e/postgres_fdw) [`db_migrator`](/ext/e/db_migrator) [`pgspider_ext`](/ext/e/pgspider_ext) [`pglogical`](/ext/e/pglogical) [`citus`](/ext/e/citus) [`pgclone`](/ext/e/pgclone) [`plproxy`](/ext/e/plproxy) [`mimeo`](/ext/e/mimeo) [`mysql_fdw`](/ext/e/mysql_fdw) [`db2_fdw`](/ext/e/db2_fdw) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Depended By** | [`emaj`](/ext/e/emaj) [`mimeo`](/ext/e/mimeo) [`omni_schema`](/ext/e/omni_schema) [`omni_test`](/ext/e/omni_test) [`omni_vfs`](/ext/e/omni_vfs) [`pg_jobmon`](/ext/e/pg_jobmon) [`pg_profile`](/ext/e/pg_profile) [`pgbouncer_fdw`](/ext/e/pgbouncer_fdw) [`pgelog`](/ext/e/pgelog) |
 {.ext-table .ext-table--rel}

@@ -33,7 +33,7 @@ weight: 8810
 | 8810  | [**`log_fdw`**](/ext/e/log_fdw) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`pg_sqlog`](/ext/e/pg_sqlog) [`pgaudit`](/ext/e/pgaudit) [`file_fdw`](/ext/e/file_fdw) [`auto_explain`](/ext/e/auto_explain) [`pgauditlogtofile`](/ext/e/pgauditlogtofile) [`logerrors`](/ext/e/logerrors) [`wrappers`](/ext/e/wrappers) [`multicorn`](/ext/e/multicorn) |
+| **Related** | [`pg_sqlog`](/ext/e/pg_sqlog) [`file_fdw`](/ext/e/file_fdw) [`pg_stat_log`](/ext/e/pg_stat_log) [`logerrors`](/ext/e/logerrors) [`pgelog`](/ext/e/pgelog) [`aws_s3`](/ext/e/aws_s3) [`pg_csv`](/ext/e/pg_csv) [`pg_bulkload`](/ext/e/pg_bulkload) [`pg_parquet`](/ext/e/pg_parquet) [`pg_lake`](/ext/e/pg_lake) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

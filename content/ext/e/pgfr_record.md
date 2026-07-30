@@ -34,7 +34,7 @@ weight: 6060
 | 6061  | [**`pgfr_analyze`**](/ext/e/pgfr_analyze) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `pgfr_analyze` |
 {.ext-table}
 
-| **Related** | [`pg_cron`](/ext/e/pg_cron) [`pg_stat_statements`](/ext/e/pg_stat_statements) [`pg_cron`](/ext/e/pg_cron) [`pg_profile`](/ext/e/pg_profile) [`pgmonitor`](/ext/e/pgmonitor) |
+| **Related** | [`pg_cron`](/ext/e/pg_cron) [`pg_stat_log`](/ext/e/pg_stat_log) [`pg_tracing`](/ext/e/pg_tracing) [`pg_stat_backtrace`](/ext/e/pg_stat_backtrace) [`logerrors`](/ext/e/logerrors) [`pgelog`](/ext/e/pgelog) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Depended By** | [`pgfr_analyze`](/ext/e/pgfr_analyze) |
 {.ext-table .ext-table--rel}

@@ -33,7 +33,7 @@ weight: 8710
 | 8710  | [**`redis_fdw`**](/ext/e/redis_fdw) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`mongo_fdw`](/ext/e/mongo_fdw) [`redis`](/ext/e/redis) [`kafka_fdw`](/ext/e/kafka_fdw) [`wrappers`](/ext/e/wrappers) [`multicorn`](/ext/e/multicorn) `spat` [`pgmemcache`](/ext/e/pgmemcache) [`odbc_fdw`](/ext/e/odbc_fdw) |
+| **Related** | [`pgmq`](/ext/e/pgmq) [`redis`](/ext/e/redis) [`pgmb`](/ext/e/pgmb) [`pgmemcache`](/ext/e/pgmemcache) [`ulak`](/ext/e/ulak) [`pgq`](/ext/e/pgq) [`tcn`](/ext/e/tcn) [`pgmqtt`](/ext/e/pgmqtt) [`mongo_fdw`](/ext/e/mongo_fdw) [`pg_durable`](/ext/e/pg_durable) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

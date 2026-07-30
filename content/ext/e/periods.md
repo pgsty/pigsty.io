@@ -33,7 +33,7 @@ weight: 1030
 | 1030  | [**`periods`**](/ext/e/periods) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`btree_gist`](/ext/e/btree_gist) [`timescaledb_toolkit`](/ext/e/timescaledb_toolkit) [`timescaledb`](/ext/e/timescaledb) [`timeseries`](/ext/e/timeseries) [`temporal_tables`](/ext/e/temporal_tables) [`emaj`](/ext/e/emaj) [`table_version`](/ext/e/table_version) [`pg_cron`](/ext/e/pg_cron) [`pg_partman`](/ext/e/pg_partman) |
+| **Related** | [`btree_gist`](/ext/e/btree_gist) [`temporal_tables`](/ext/e/temporal_tables) [`table_version`](/ext/e/table_version) [`data_historization`](/ext/e/data_historization) [`pgmemento`](/ext/e/pgmemento) [`table_log`](/ext/e/table_log) [`emaj`](/ext/e/emaj) [`ddl_historization`](/ext/e/ddl_historization) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

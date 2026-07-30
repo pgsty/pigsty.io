@@ -33,6 +33,10 @@ weight: 2947
 | 2947  | [**`omni_datasets`**](/ext/e/omni_datasets) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `omni_datasets` |
 {.ext-table}
 
+| **Related** | [`faker`](/ext/e/faker) [`pg_fact_loader`](/ext/e/pg_fact_loader) [`db_migrator`](/ext/e/db_migrator) [`postgres_fdw`](/ext/e/postgres_fdw) [`dbt2`](/ext/e/dbt2) |
+|:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+{.ext-table .ext-table--rel}
+
 
 ## Version
 

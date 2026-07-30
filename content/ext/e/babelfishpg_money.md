@@ -36,7 +36,7 @@ weight: 9330
 | 9330  | [**`babelfishpg_money`**](/ext/e/babelfishpg_money) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`babelfishpg_common`](/ext/e/babelfishpg_common) [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) [`babelfishpg_tds`](/ext/e/babelfishpg_tds) [`financial`](/ext/e/financial) [`tds_fdw`](/ext/e/tds_fdw) [`numeral`](/ext/e/numeral) [`orafce`](/ext/e/orafce) [`pgtt`](/ext/e/pgtt) |
+| **Related** | [`currency`](/ext/e/currency) [`financial`](/ext/e/financial) [`pg_accumulator`](/ext/e/pg_accumulator) [`omni_ledger`](/ext/e/omni_ledger) [`tds_fdw`](/ext/e/tds_fdw) [`orafce`](/ext/e/orafce) [`db2fce`](/ext/e/db2fce) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

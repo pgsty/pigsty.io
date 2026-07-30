@@ -28,7 +28,7 @@ weight: 8980
 | 8980  | [**`file_fdw`**](/ext/e/file_fdw) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`log_fdw`](/ext/e/log_fdw) [`wrappers`](/ext/e/wrappers) [`sqlite_fdw`](/ext/e/sqlite_fdw) [`aws_s3`](/ext/e/aws_s3) [`pg_bulkload`](/ext/e/pg_bulkload) [`multicorn`](/ext/e/multicorn) [`hdfs_fdw`](/ext/e/hdfs_fdw) [`postgres_fdw`](/ext/e/postgres_fdw) |
+| **Related** | [`aws_s3`](/ext/e/aws_s3) [`pg_bulkload`](/ext/e/pg_bulkload) [`pg_parquet`](/ext/e/pg_parquet) [`pg_lake`](/ext/e/pg_lake) [`pg_csv`](/ext/e/pg_csv) [`pg_ducklake`](/ext/e/pg_ducklake) [`pg_fact_loader`](/ext/e/pg_fact_loader) [`log_fdw`](/ext/e/log_fdw) [`omni_csv`](/ext/e/omni_csv) [`pg_sqlog`](/ext/e/pg_sqlog) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Depended By** | [`pg_sqlog`](/ext/e/pg_sqlog) |
 {.ext-table .ext-table--rel}

@@ -33,7 +33,7 @@ weight: 2500
 | 2500  | [**`pg_fkpart`**](/ext/e/pg_fkpart) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `pgfkpart` |
 {.ext-table}
 
-| **Related** | [`citus`](/ext/e/citus) [`pg_partman`](/ext/e/pg_partman) [`timescaledb`](/ext/e/timescaledb) [`periods`](/ext/e/periods) [`temporal_tables`](/ext/e/temporal_tables) [`btree_gist`](/ext/e/btree_gist) [`emaj`](/ext/e/emaj) [`table_version`](/ext/e/table_version) |
+| **Related** | [`timescaledb`](/ext/e/timescaledb) [`pg_partman`](/ext/e/pg_partman) [`pg_ttl_index`](/ext/e/pg_ttl_index) [`citus`](/ext/e/citus) [`timeseries`](/ext/e/timeseries) [`pg_cron`](/ext/e/pg_cron) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

@@ -33,7 +33,7 @@ weight: 3890
 | 3890  | [**`pgcalendar`**](/ext/e/pgcalendar) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `pgcalendar` |
 {.ext-table}
 
-| **Related** | [`periods`](/ext/e/periods) [`temporal_tables`](/ext/e/temporal_tables) [`timeseries`](/ext/e/timeseries) [`pg_cron`](/ext/e/pg_cron) |
+| **Related** | [`pg_rrule`](/ext/e/pg_rrule) [`pg_when`](/ext/e/pg_when) [`cron_utils`](/ext/e/cron_utils) [`pg_cron`](/ext/e/pg_cron) [`pg_duration`](/ext/e/pg_duration) [`pg_bikram_sambat`](/ext/e/pg_bikram_sambat) [`timestamp9`](/ext/e/timestamp9) [`pgsql_tweaks`](/ext/e/pgsql_tweaks) [`pg_extra_time`](/ext/e/pg_extra_time) [`pg_math`](/ext/e/pg_math) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

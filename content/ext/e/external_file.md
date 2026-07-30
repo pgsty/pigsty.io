@@ -33,6 +33,10 @@ weight: 4285
 | 4285  | [**`external_file`**](/ext/e/external_file) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `external_file` |
 {.ext-table}
 
+| **Related** | [`fio`](/ext/e/fio) [`floatfile`](/ext/e/floatfile) [`file_fdw`](/ext/e/file_fdw) [`byteamagic`](/ext/e/byteamagic) [`aws_s3`](/ext/e/aws_s3) [`envvar`](/ext/e/envvar) [`pg_bulkload`](/ext/e/pg_bulkload) [`basic_archive`](/ext/e/basic_archive) [`basebackup_to_shell`](/ext/e/basebackup_to_shell) [`pg_parquet`](/ext/e/pg_parquet) |
+|:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+{.ext-table .ext-table--rel}
+
 
 > Fixed schema external_file; superuser required.
 

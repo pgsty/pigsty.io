@@ -69,6 +69,10 @@ weight: 2977
 | 2979  | [**`omni_yaml`**](/ext/e/omni_yaml) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `omni_yaml` |
 {.ext-table}
 
+| **Related** | [`pg_background`](/ext/e/pg_background) [`pg_task`](/ext/e/pg_task) [`pgmq`](/ext/e/pgmq) [`pg_durable`](/ext/e/pg_durable) [`pg_later`](/ext/e/pg_later) [`pg_dispatch`](/ext/e/pg_dispatch) [`ulak`](/ext/e/ulak) [`redis`](/ext/e/redis) [`pgmb`](/ext/e/pgmb) [`pg_cron`](/ext/e/pg_cron) |
+|:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+{.ext-table .ext-table--rel}
+
 
 ## Version
 

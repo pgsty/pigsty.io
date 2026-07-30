@@ -33,7 +33,7 @@ weight: 4170
 | 4170  | [**`pg_smtp_client`**](/ext/e/pg_smtp_client) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `smtp_client` |
 {.ext-table}
 
-| **Related** | [`http`](/ext/e/http) [`pg_net`](/ext/e/pg_net) [`pg_html5_email_address`](/ext/e/pg_html5_email_address) [`gzip`](/ext/e/gzip) [`bzip`](/ext/e/bzip) [`zstd`](/ext/e/zstd) [`pg_curl`](/ext/e/pg_curl) [`pgjq`](/ext/e/pgjq) |
+| **Related** | [`pg_html5_email_address`](/ext/e/pg_html5_email_address) [`emailaddr`](/ext/e/emailaddr) [`pg_utl_smtp`](/ext/e/pg_utl_smtp) [`omni_email`](/ext/e/omni_email) [`uri`](/ext/e/uri) [`ip4r`](/ext/e/ip4r) [`url_encode`](/ext/e/url_encode) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

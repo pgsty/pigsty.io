@@ -33,7 +33,7 @@ weight: 6020
 | 6020  | [**`pg_stat_ch`**](/ext/e/pg_stat_ch) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`pg_tracing`](/ext/e/pg_tracing) [`pg_stat_monitor`](/ext/e/pg_stat_monitor) [`pg_stat_kcache`](/ext/e/pg_stat_kcache) [`powa`](/ext/e/powa) |
+| **Related** | [`pg_clickhouse`](/ext/e/pg_clickhouse) [`pg_stat_monitor`](/ext/e/pg_stat_monitor) [`pgmonitor`](/ext/e/pgmonitor) [`pg_datasentinel`](/ext/e/pg_datasentinel) [`duckdb_fdw`](/ext/e/duckdb_fdw) [`pgsentinel`](/ext/e/pgsentinel) [`pgnodemx`](/ext/e/pgnodemx) [`pg_duckdb`](/ext/e/pg_duckdb) [`system_stats`](/ext/e/system_stats) [`pg_profile`](/ext/e/pg_profile) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

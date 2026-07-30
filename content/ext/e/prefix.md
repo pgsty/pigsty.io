@@ -33,7 +33,7 @@ weight: 3500
 | 3500  | [**`prefix`**](/ext/e/prefix) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`semver`](/ext/e/semver) [`ltree`](/ext/e/ltree) [`citext`](/ext/e/citext) [`pg_trgm`](/ext/e/pg_trgm) [`unit`](/ext/e/unit) [`pgpdf`](/ext/e/pgpdf) [`pglite_fusion`](/ext/e/pglite_fusion) [`md5hash`](/ext/e/md5hash) |
+| **Related** | [`ip4r`](/ext/e/ip4r) [`ltree`](/ext/e/ltree) [`seg`](/ext/e/seg) [`cube`](/ext/e/cube) [`uri`](/ext/e/uri) [`emailaddr`](/ext/e/emailaddr) [`pg_html5_email_address`](/ext/e/pg_html5_email_address) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

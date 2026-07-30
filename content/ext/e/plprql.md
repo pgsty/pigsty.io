@@ -33,7 +33,7 @@ weight: 3040
 | 3040  | [**`plprql`**](/ext/e/plprql) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`pg_tle`](/ext/e/pg_tle) [`plpgsql`](/ext/e/plpgsql) [`plv8`](/ext/e/plv8) [`plperl`](/ext/e/plperl) [`plpython3u`](/ext/e/plpython3u) [`pllua`](/ext/e/pllua) [`hstore_pllua`](/ext/e/hstore_pllua) [`plluau`](/ext/e/plluau) |
+| **Related** | [`pg_duckdb`](/ext/e/pg_duckdb) [`pg_lake`](/ext/e/pg_lake) [`tablefunc`](/ext/e/tablefunc) [`pg_parquet`](/ext/e/pg_parquet) [`pg_ducklake`](/ext/e/pg_ducklake) [`duckdb_fdw`](/ext/e/duckdb_fdw) [`extra_window_functions`](/ext/e/extra_window_functions) [`first_last_agg`](/ext/e/first_last_agg) [`pg_mooncake`](/ext/e/pg_mooncake) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

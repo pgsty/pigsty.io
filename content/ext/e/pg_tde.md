@@ -33,7 +33,7 @@ weight: 7500
 | 7500  | [**`pg_tde`**](/ext/e/pg_tde) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`pgsodium`](/ext/e/pgsodium) [`pgsmcrypto`](/ext/e/pgsmcrypto) [`pgcrypto`](/ext/e/pgcrypto) [`anon`](/ext/e/anon) [`pgcryptokey`](/ext/e/pgcryptokey) [`faker`](/ext/e/faker) [`sslutils`](/ext/e/sslutils) [`uuid-ossp`](/ext/e/uuid-ossp) |
+| **Related** | [`column_encrypt`](/ext/e/column_encrypt) [`pg_enigma`](/ext/e/pg_enigma) [`supabase_vault`](/ext/e/supabase_vault) [`pgsodium`](/ext/e/pgsodium) [`pgcryptokey`](/ext/e/pgcryptokey) [`anon`](/ext/e/anon) [`pgcrypto`](/ext/e/pgcrypto) [`pgsmcrypto`](/ext/e/pgsmcrypto) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

@@ -28,7 +28,7 @@ weight: 3090
 | 3090  | [**`pljava`**](/ext/e/pljava) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `sqlj` |
 {.ext-table}
 
-| **Related** | [`plpgsql`](/ext/e/plpgsql) [`plv8`](/ext/e/plv8) [`plperl`](/ext/e/plperl) [`plpython3u`](/ext/e/plpython3u) [`pg_tle`](/ext/e/pg_tle) [`pllua`](/ext/e/pllua) [`plluau`](/ext/e/plluau) [`pltclu`](/ext/e/pltclu) |
+| **Related** | [`plxslt`](/ext/e/plxslt) [`pltcl`](/ext/e/pltcl) [`plperl`](/ext/e/plperl) [`plsh`](/ext/e/plsh) [`plr`](/ext/e/plr) [`plpython3u`](/ext/e/plpython3u) [`plpgsql`](/ext/e/plpgsql) [`plperlu`](/ext/e/plperlu) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

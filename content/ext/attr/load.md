@@ -5,7 +5,7 @@ description: "PostgreSQL extensions that require dynamic loading"
 weight: 10
 ---
 
-The following **125** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
+The following **124** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
 
 You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) parameter in `postgresql.conf`, add the extension library, and restart the database.
 
@@ -54,7 +54,6 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`omni`](/ext/e/omni) | `omni--0.2.14.so` | Advanced adapter for Postgres extensions |
 | [`pg_tle`](/ext/e/pg_tle) | `pg_tle` | Trusted Language Extensions for PostgreSQL |
 | [`pldbgapi`](/ext/e/pldbgapi) | `$libdir/plugin_debugger` | server-side support for debugging PL/pgSQL functions |
-| [`plpgsql_check`](/ext/e/plpgsql_check) | `plpgsql_check` | extended check for plpgsql functions |
 | [`plprofiler`](/ext/e/plprofiler) | `plprofiler` | server-side support for profiling PL/pgSQL functions |
 | [`pg_regresql`](/ext/e/pg_regresql) | `pg_regresql` | Trust pg_class statistics for planning instead of physical relation size |
 | [`pgpdf`](/ext/e/pgpdf) | `pgpdf` | PDF type with meta admin & Full-Text Search |

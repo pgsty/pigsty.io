@@ -31,7 +31,7 @@ weight: 3292
 | 3293  | [**`hstore_plpython3u`**](/ext/e/hstore_plpython3u) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`ltree`](/ext/e/ltree) [`plpython3u`](/ext/e/plpython3u) [`faker`](/ext/e/faker) [`plperl`](/ext/e/plperl) [`plpgsql`](/ext/e/plpgsql) [`pg_tle`](/ext/e/pg_tle) |
+| **Related** | [`ltree`](/ext/e/ltree) [`plpython3u`](/ext/e/plpython3u) [`ltree`](/ext/e/ltree) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

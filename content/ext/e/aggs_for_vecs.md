@@ -33,7 +33,7 @@ weight: 4740
 | 4740  | [**`aggs_for_vecs`**](/ext/e/aggs_for_vecs) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`aggs_for_arrays`](/ext/e/aggs_for_arrays) [`first_last_agg`](/ext/e/first_last_agg) [`arraymath`](/ext/e/arraymath) [`floatvec`](/ext/e/floatvec) [`vector`](/ext/e/vector) [`topn`](/ext/e/topn) |
+| **Related** | [`intarray`](/ext/e/intarray) [`arraymath`](/ext/e/arraymath) [`floatvec`](/ext/e/floatvec) [`aggs_for_arrays`](/ext/e/aggs_for_arrays) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

@@ -33,7 +33,7 @@ weight: 5260
 | 5260  | [**`pgdisablelogerror`**](/ext/e/pgdisablelogerror) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`logerrors`](/ext/e/logerrors) [`pgauditlogtofile`](/ext/e/pgauditlogtofile) |
+| **Related** | [`pg_stat_log`](/ext/e/pg_stat_log) [`pgelog`](/ext/e/pgelog) [`logerrors`](/ext/e/logerrors) [`pgaudit`](/ext/e/pgaudit) [`pg_sqlog`](/ext/e/pg_sqlog) [`log_fdw`](/ext/e/log_fdw) [`pg_auth_mon`](/ext/e/pg_auth_mon) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

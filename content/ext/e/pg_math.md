@@ -33,7 +33,7 @@ weight: 4780
 | 4780  | [**`pg_math`**](/ext/e/pg_math) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`pg_idkit`](/ext/e/pg_idkit) [`pgx_ulid`](/ext/e/pgx_ulid) [`pg_uuidv7`](/ext/e/pg_uuidv7) [`permuteseq`](/ext/e/permuteseq) [`pg_hashids`](/ext/e/pg_hashids) [`sequential_uuids`](/ext/e/sequential_uuids) [`topn`](/ext/e/topn) [`quantile`](/ext/e/quantile) |
+| **Related** | [`weighted_statistics`](/ext/e/weighted_statistics) [`vasco`](/ext/e/vasco) [`xicor`](/ext/e/xicor) [`fbsql`](/ext/e/fbsql) [`pgsql_tweaks`](/ext/e/pgsql_tweaks) [`pg_extra_time`](/ext/e/pg_extra_time) [`pgcalendar`](/ext/e/pgcalendar) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

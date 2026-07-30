@@ -34,7 +34,7 @@ weight: 1651
 | 1651  | [**`mobilitydb_datagen`**](/ext/e/mobilitydb_datagen) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`mobilitydb`](/ext/e/mobilitydb) [`mobilitydb`](/ext/e/mobilitydb) [`postgis`](/ext/e/postgis) [`timescaledb`](/ext/e/timescaledb) [`pgrouting`](/ext/e/pgrouting) |
+| **Related** | [`mobilitydb`](/ext/e/mobilitydb) [`pgrouting`](/ext/e/pgrouting) [`faker`](/ext/e/faker) [`random`](/ext/e/random) [`h3`](/ext/e/h3) [`pg_polyline`](/ext/e/pg_polyline) [`dbt2`](/ext/e/dbt2) [`tsm_system_time`](/ext/e/tsm_system_time) [`tsm_system_rows`](/ext/e/tsm_system_rows) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

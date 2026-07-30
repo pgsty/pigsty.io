@@ -28,7 +28,7 @@ weight: 8990
 | 8990  | [**`postgres_fdw`**](/ext/e/postgres_fdw) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`citus`](/ext/e/citus) [`plproxy`](/ext/e/plproxy) [`wrappers`](/ext/e/wrappers) [`pgspider_ext`](/ext/e/pgspider_ext) [`dblink`](/ext/e/dblink) [`mimeo`](/ext/e/mimeo) [`multicorn`](/ext/e/multicorn) [`mysql_fdw`](/ext/e/mysql_fdw) |
+| **Related** | [`db_migrator`](/ext/e/db_migrator) [`pgspider_ext`](/ext/e/pgspider_ext) [`dblink`](/ext/e/dblink) [`mimeo`](/ext/e/mimeo) [`pgclone`](/ext/e/pgclone) [`pglogical`](/ext/e/pglogical) [`mysql_fdw`](/ext/e/mysql_fdw) [`citus`](/ext/e/citus) [`plproxy`](/ext/e/plproxy) [`db2_fdw`](/ext/e/db2_fdw) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Depended By** | [`omni_schema`](/ext/e/omni_schema) |
 {.ext-table .ext-table--rel}

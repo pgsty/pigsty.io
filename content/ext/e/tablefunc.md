@@ -28,7 +28,7 @@ weight: 2590
 | 2590  | [**`tablefunc`**](/ext/e/tablefunc) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`cube`](/ext/e/cube) [`plr`](/ext/e/plr) [`orafce`](/ext/e/orafce) [`timescaledb`](/ext/e/timescaledb) [`citus`](/ext/e/citus) [`pg_partman`](/ext/e/pg_partman) [`citus_columnar`](/ext/e/citus_columnar) |
+| **Related** | [`pg_duckdb`](/ext/e/pg_duckdb) [`first_last_agg`](/ext/e/first_last_agg) [`extra_window_functions`](/ext/e/extra_window_functions) [`argm`](/ext/e/argm) [`pg_lake`](/ext/e/pg_lake) [`plprql`](/ext/e/plprql) [`duckdb_fdw`](/ext/e/duckdb_fdw) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Depended By** | [`pg4ml`](/ext/e/pg4ml) |
 {.ext-table .ext-table--rel}

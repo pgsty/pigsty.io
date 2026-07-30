@@ -33,7 +33,7 @@ weight: 1840
 | 1840  | [**`pg_similarity`**](/ext/e/pg_similarity) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`vector`](/ext/e/vector) [`smlar`](/ext/e/smlar) [`fuzzystrmatch`](/ext/e/fuzzystrmatch) [`pg_trgm`](/ext/e/pg_trgm) [`vchord`](/ext/e/vchord) [`pg_bigm`](/ext/e/pg_bigm) [`citext`](/ext/e/citext) [`unaccent`](/ext/e/unaccent) |
+| **Related** | [`pg_trgm`](/ext/e/pg_trgm) [`smlar`](/ext/e/smlar) [`fuzzystrmatch`](/ext/e/fuzzystrmatch) [`pgpcre`](/ext/e/pgpcre) [`re2`](/ext/e/re2) [`pg_bigm`](/ext/e/pg_bigm) [`biscuit`](/ext/e/biscuit) [`vector`](/ext/e/vector) [`imgsmlr`](/ext/e/imgsmlr) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

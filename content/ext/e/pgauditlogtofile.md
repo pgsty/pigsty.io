@@ -28,7 +28,7 @@ weight: 7110
 | 7110  | [**`pgauditlogtofile`**](/ext/e/pgauditlogtofile) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`pgaudit`](/ext/e/pgaudit) [`pg_auth_mon`](/ext/e/pg_auth_mon) [`logerrors`](/ext/e/logerrors) [`pg_permissions`](/ext/e/pg_permissions) [`login_hook`](/ext/e/login_hook) [`set_user`](/ext/e/set_user) [`pg_drop_events`](/ext/e/pg_drop_events) [`table_log`](/ext/e/table_log) |
+| **Related** | [`pgaudit`](/ext/e/pgaudit) [`pgelog`](/ext/e/pgelog) [`logerrors`](/ext/e/logerrors) [`pg_stat_log`](/ext/e/pg_stat_log) [`table_log`](/ext/e/table_log) [`pgmemento`](/ext/e/pgmemento) [`pg_auditor`](/ext/e/pg_auditor) [`pg_roast`](/ext/e/pg_roast) [`pg_permissions`](/ext/e/pg_permissions) [`pg_drop_events`](/ext/e/pg_drop_events) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

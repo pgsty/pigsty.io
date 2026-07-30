@@ -25,7 +25,7 @@ weight: 2520
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`plproxy`**](/ext/e/plproxy) | `2.12.0` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license 0bsd" href="/ext/license#0bsd">0BSD</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`plproxy`**](/ext/e/plproxy) | `2.12.0` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license isc" href="/ext/license#isc">ISC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -33,12 +33,12 @@ weight: 2520
 | 2520  | [**`plproxy`**](/ext/e/plproxy) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`citus`](/ext/e/citus) [`dblink`](/ext/e/dblink) [`postgres_fdw`](/ext/e/postgres_fdw) [`pg_partman`](/ext/e/pg_partman) [`odbc_fdw`](/ext/e/odbc_fdw) [`jdbc_fdw`](/ext/e/jdbc_fdw) [`citus_columnar`](/ext/e/citus_columnar) [`columnar`](/ext/e/columnar) |
+| **Related** | [`postgres_fdw`](/ext/e/postgres_fdw) [`pgspider_ext`](/ext/e/pgspider_ext) [`pgactive`](/ext/e/pgactive) [`citus`](/ext/e/citus) [`spock`](/ext/e/spock) [`db_migrator`](/ext/e/db_migrator) [`dblink`](/ext/e/dblink) [`pglogical`](/ext/e/pglogical) [`mimeo`](/ext/e/mimeo) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 
 
-> PIGSTY RPM and PGDG DEB are aligned at 2.12.0.
+> PIGSTY RPM and PGDG DEB are aligned at 2.12.0.; Upstream COPYRIGHT text matches ISC.
 
 
 ## Version

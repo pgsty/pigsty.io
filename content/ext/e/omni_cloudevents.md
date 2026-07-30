@@ -69,7 +69,7 @@ weight: 2943
 | 2979  | [**`omni_yaml`**](/ext/e/omni_yaml) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `omni_yaml` |
 {.ext-table}
 
-| **Related** | [`omni_web`](/ext/e/omni_web) |
+| **Related** | [`omni_web`](/ext/e/omni_web) [`tcn`](/ext/e/tcn) [`pgmq`](/ext/e/pgmq) [`ulak`](/ext/e/ulak) [`pgmb`](/ext/e/pgmb) [`redis`](/ext/e/redis) [`pg_durable`](/ext/e/pg_durable) [`pgq`](/ext/e/pgq) [`pgmqtt`](/ext/e/pgmqtt) [`redis_fdw`](/ext/e/redis_fdw) [`pg_task`](/ext/e/pg_task) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Depended By** | [`omni_email`](/ext/e/omni_email) [`omni_schema`](/ext/e/omni_schema) [`omni_test`](/ext/e/omni_test) |
 {.ext-table .ext-table--rel}
