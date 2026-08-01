@@ -56,7 +56,7 @@ allow_loading_unsigned_plugins = victoriametrics-logs-datasource,victoriametrics
 
 | Name                                                                   | Version  | License                                                                           | Comment                                   |
 |------------------------------------------------------------------------|----------|-----------------------------------------------------------------------------------|-------------------------------------------|
-| [`prometheus`](https://github.com/prometheus/prometheus)               | `3.13.1` | [Apache-2.0](https://github.com/prometheus/prometheus/blob/main/LICENSE)          | Cloud-native monitoring & TSDB            |
+| [`prometheus`](https://github.com/prometheus/prometheus)               | `3.13.2` | [Apache-2.0](https://github.com/prometheus/prometheus/blob/main/LICENSE)          | Cloud-native monitoring & TSDB            |
 | [`pushgateway`](https://github.com/prometheus/pushgateway)             | `1.11.3` | [Apache-2.0](https://github.com/prometheus/pushgateway/blob/master/LICENSE)       | Metrics push gateway for short-lived jobs |
 | [`alertmanager`](https://github.com/prometheus/alertmanager)           | `0.33.1` | [Apache-2.0](https://github.com/prometheus/alertmanager/blob/main/LICENSE)        | Alert management & notification dispatch  |
 | [`blackbox-exporter`](https://github.com/prometheus/blackbox_exporter) | `0.28.0` | [Apache-2.0](https://github.com/prometheus/blackbox_exporter/blob/master/LICENSE) | Blackbox probing, endpoint availability   |
