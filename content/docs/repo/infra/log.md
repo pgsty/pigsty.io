@@ -6,6 +6,15 @@ icon: fa-solid fa-clipboard-list
 categories: [Reference]
 ---
 
+## 2026-08-02
+
+| Name  | Old   | New   | Comment                     |
+|:------|:------|:------|:----------------------------|
+| `pig` | 1.6.0 | 1.6.1 | Refreshed extension catalog |
+{.stretch-last}
+
+-------
+
 ## 2026-08-01
 
 | Name         | Old    | New    | Comment                        |
