@@ -47,10 +47,10 @@ Thumbs.db
 # Temporary files and experimental directories
 temp/
 play/
-bin/
 
-# Utility scripts (managed separately)
-bin/*.py
+# Utility scripts (managed separately); link checker tracked for make check
+bin/*
+!bin/check_internal_links.py
 
 # ==============================================================================
 # AI Assistant Configuration

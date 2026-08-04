@@ -8,6 +8,8 @@ defaultContentLanguage: en
 enableRobotsTXT: true
 enableGitInfo: true
 rssLimit: 200
+# Keep author casing on list-page titles (don't render pg_duckdb as Pg_duckdb).
+capitalizeListTitles: false
 
 #=======================================#
 # Hugo Module (replaces theme: docsy)
@@ -89,6 +91,9 @@ markup:
     style: tango
     codeFences: true
     noClasses: false
+  tableOfContents:
+    startLevel: 2
+    endLevel: 4
 
 #=======================================#
 # Outputs
@@ -152,8 +157,16 @@ params:
     taxonomyCloudTitle: [Module, Category, Tags]
     taxonomyPageHeader: [Module, Category, Tags]
 
-  # Search
-  offlineSearch: true
+  # Article column width: normal (1050px, default) | wide (1300px) | full.
+  # Override per page via front matter (page_width: wide) or per section via cascade.
+  page_width: normal
+  # ICP filing number (centered in the one-line footer; empty = hidden).
+  footer_icp: ""
+
+  # Site search is provided by our own ⌘K dialog (self-hosted lunr + /index.json).
+  # Docsy offlineSearch MUST stay off: its offline-search.js fires $.ajax(undefined)
+  # and throws when it cannot find a .td-search input on the page.
+  offlineSearch: false
   prism_syntax_highlighting: false
 
   # UI settings
@@ -170,6 +183,19 @@ params:
     sidebar_root_enabled: true
     ul_show: 3
     showLightDarkModeMenu: true
+    # TOC highlighting is done by silo-docs.js (IntersectionObserver); Docsy's
+    # Bootstrap ScrollSpy injection has an attribute-escaping bug and never worked.
+    scrollSpy:
+      disable: true
+    # ---- Fumadocs-style sidebar chrome ----
+    # Root dropdown below the search box: lists every sidebar_root_for: self section.
+    sidebar_root_menu: true
+    # Sidebar width (px): defaults 268/286 by breakpoint, drag-resizable & persisted;
+    # min/max clamp the drag range, overridable per section via cascade.
+    sidebar_width_min: 220
+    sidebar_width_max: 480
+    # Sidebar item overflow: ellipsis (default) | wrap.
+    sidebar_item_overflow: ellipsis
 
     # Feedback section (requires Google Analytics)
     feedback:

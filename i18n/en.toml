@@ -10,7 +10,7 @@ other = "Next"
 other = "Read more"
 
 [ui_search]
-other = "Search this site…"
+other = "Search"
 
 # Used in sentences such as "Posted in News"
 [ui_in]
@@ -94,3 +94,66 @@ other = "No"
 other = "On this page"
 [toc_top_of_page]
 other = "Top of page"
+
+
+# Fumadocs-style docs chrome (sidebar / TOC / search dialog)
+
+[silo_sidebar_nav]
+other = "Documentation menu"
+
+[silo_sidebar_collapse]
+other = "Collapse sidebar"
+
+[silo_sidebar_expand]
+other = "Expand sidebar"
+
+[silo_drawer_open]
+other = "Open navigation"
+
+[silo_drawer_close]
+other = "Close navigation"
+
+[silo_theme_toggle]
+other = "Toggle theme"
+
+[silo_lang_label]
+other = "Language"
+
+[silo_search_nav]
+other = "to navigate"
+
+[silo_search_open]
+other = "to select"
+
+[silo_search_close]
+other = "to close"
+
+[silo_search_empty]
+other = "No results found"
+
+[silo_search_loading]
+other = "Loading search index…"
+
+[silo_root_menu_label]
+other = "Switch section"
+
+[silo_footer_author]
+other = "Ruohang Feng"
+
+[silo_toc_hide]
+other = "Hide this panel"
+
+[silo_toc_show]
+other = "Show table of contents"
+
+[silo_quick_docs]
+other = "Documentation"
+
+[silo_quick_blog]
+other = "Blog"
+
+[silo_tags_title]
+other = "Tags"
+
+[silo_published_on]
+other = "Published"

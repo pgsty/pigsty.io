@@ -1,6 +1,8 @@
 ---
 title: Pigsty Docs v4.4
 linkTitle: Docs
+icon: fa-solid fa-book
+sidebar_root_for: self
 weight: 10
 categories: [Reference]
 no_list: true
@@ -45,7 +47,7 @@ Learn the project, understand the concepts, get hands-on on a single node, then 
 curl -fsSL https://repo.pigsty.io/get | bash -s v4.4.0   # download pigsty source
 cd ~/pigsty      # enter source dir
 ./configure      # generate config
-./install.yml    # run installation
+./deploy.yml     # run installation
 ```
 
 [**Download**](/docs/setup/install#install), [**Configure**](/docs/setup/install#configure) and [**Deploy**](/docs/setup/install#deploy) — Pigsty completes installation in minutes! You can [**add more nodes**](/docs/deploy/install) and database clusters later.
@@ -63,7 +65,7 @@ Pigsty is composed of [**modules**](/docs/ref/module). Among them, `PGSQL` / `IN
 {{< nav-card title="PGSQL" link="/docs/pgsql/" icon="fa-solid fa-database" accent="copper" badge="REQUIRED" desc="Self-healing HA PostgreSQL clusters: HA, PITR, IaC, ACL, and monitoring included, with massive extension support out of the box." >}}
 [Configuration](/docs/pgsql/config/) [Administration](/docs/pgsql/admin/) [Backup & PITR](/docs/pgsql/backup/) [Services](/docs/pgsql/service/) [Kernels](/docs/pgsql/kernel/) [Parameters](/docs/pgsql/param/)
 {{< /nav-card >}}
-{{< nav-card title="INFRA" link="/docs/infra/" icon="fa-solid fa-bank" accent="copper" badge="REQUIRED" desc="Nginx, local software repo, DNS, NTP, and the Prometheus & Grafana observability stack." >}}
+{{< nav-card title="INFRA" link="/docs/infra/" icon="fa-solid fa-bank" accent="copper" badge="REQUIRED" desc="Nginx, local software repo, DNS, NTP, and the VictoriaMetrics & Grafana observability stack." >}}
 [Config](/docs/infra/config) [Admin](/docs/infra/admin/) [Playbooks](/docs/infra/playbook) [Monitoring](/docs/infra/monitor) [Parameters](/docs/infra/param)
 {{< /nav-card >}}
 {{< nav-card title="NODE" link="/docs/node/" icon="fa-solid fa-server" accent="copper" badge="REQUIRED" desc="Manage host nodes into the desired state: node monitoring, log collection, VIP, and HAProxy load balancing." >}}

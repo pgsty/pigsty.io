@@ -1,6 +1,8 @@
 ---
 title: Pigsty Packaged Extension Catalog
-linkTitle: Pigsty Packaged Extension Catalog
+linkTitle: Extensions
+icon: fa-solid fa-puzzle-piece
+sidebar_root_for: self
 description: >
   Extensions are the soul of PostgreSQL. Pigsty builds, packages, collects, and integrates 562 PG ecosystem extensions for out-of-the-box use.
 weight: 20
