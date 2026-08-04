@@ -196,7 +196,7 @@ UPDATE pg_index SET indisvalid = false WHERE indexrelid = 'pgbench_accounts_pkey
 
 Actually, [**`pg_stat_statements`**](/ext/e/pg_stat_statements) provides the `mean` and `stddev` metrics, which you can use with properties of the normal distribution to estimate percentile metrics. But this is only a rough estimate, and you need to reset the counters periodically, otherwise the effectiveness of the full historical statistics will degrade over time.
 
-[![pgss.jpg](pgss.jpg)](https://vonng.com/en/pg/pgss/)
+[![pgss.jpg](/img/hero/pg/pgss.jpg)](https://vonng.com/en/pg/pgss/)
 
 > RT Distribution with [PGSQL QUERY](https://demo.pigsty.io/d/pgsql-query) Dashboard from [PGSS](https://vonng.com/en/pg/pgss/)
 

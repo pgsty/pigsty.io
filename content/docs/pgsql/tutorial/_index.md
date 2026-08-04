@@ -9,7 +9,7 @@ categories: [Tutorial]
 
 This section provides step-by-step tutorials for common PostgreSQL tasks and scenarios.
 
-- [**Citus Cluster**](citus/): Deploy and manage Citus distributed clusters
-- [**Disaster Drill**](drill/): Emergency recovery when 2 of 3 nodes fail
-- [**PG VIP**](pg-vip/): Configure L2 VIP for PostgreSQL clusters
+- [**Citus Cluster**](/docs/pgsql/tutorial/citus/): Deploy and manage Citus distributed clusters
+- [**Disaster Drill**](/docs/pgsql/tutorial/drill/): Emergency recovery when 2 of 3 nodes fail
+- [**PG VIP**](/docs/pgsql/tutorial/pg-vip/): Configure L2 VIP for PostgreSQL clusters
 

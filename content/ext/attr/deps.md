@@ -161,7 +161,7 @@ The following **74** extensions are depended upon by other extensions:
 | [`fuzzystrmatch`](/ext/e/fuzzystrmatch) | [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) | determine similarities and distance between strings |
 | [`citus`](/ext/e/citus) | [`documentdb_distributed`](/ext/e/documentdb_distributed) | Distributed PostgreSQL as an extension |
 | [`pg_duckdb`](/ext/e/pg_duckdb) | [`pg_mooncake`](/ext/e/pg_mooncake) | DuckDB Embedded in Postgres |
-| [`pg_partman`](/ext/e/pg_partman) | [`partman_to_cstore`](/ext/e/partman_to_cstore) [`timeseries`](/ext/e/timeseries) | Extension to manage partitioned tables by time or ID |
+| [`pg_partman`](/ext/e/pg_partman) | `partman_to_cstore` [`timeseries`](/ext/e/timeseries) | Extension to manage partitioned tables by time or ID |
 | [`pg_extension_base`](/ext/e/pg_extension_base) | [`pg_extension_updater`](/ext/e/pg_extension_updater) [`pg_lake_engine`](/ext/e/pg_lake_engine) | Extension development kit by Snowflake |
 | [`pg_map`](/ext/e/pg_map) | [`pg_lake_engine`](/ext/e/pg_lake_engine) | Map type for PostgreSQL, bundled as a required pg_lake component. |
 | [`pg_lake_engine`](/ext/e/pg_lake_engine) | [`pg_lake_copy`](/ext/e/pg_lake_copy) [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) [`pg_lake_table`](/ext/e/pg_lake_table) | Query engine for data lake queries |

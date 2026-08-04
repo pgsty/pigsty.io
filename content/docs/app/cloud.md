@@ -161,14 +161,4 @@ FROM aws_ec2;
 
 ## Visualization
 
-[![](/img/blog/cloud/ecs-1.png)](https://demo.pigsty.io/d/ecs?viewPanel=79)
-
-[![](/img/blog/cloud/ecs-2.png)](https://demo.pigsty.io/d/ecs?viewPanel=63)
-
-[![](/img/blog/cloud/ecs-3.png)](https://demo.pigsty.io/d/ecs?viewPanel=69)
-
-[![](/img/blog/cloud/ecs-5.png)](https://demo.pigsty.io/d/ecs?viewPanel=79)
-
-[![](/img/blog/cloud/ecs-6.png)](https://demo.pigsty.io/d/ecs?viewPanel=16)
-
-[![](/img/blog/cloud/ecs-7.png)](https://demo.pigsty.io/d/ecs?viewPanel=45)
+Browse the interactive panels in the online demo: [https://demo.pigsty.io/d/ecs](https://demo.pigsty.io/d/ecs)

@@ -126,8 +126,6 @@ The **recovery window** is defined by two boundaries:
 - **Left boundary**: earliest available base backup
 - **Right boundary**: latest archived WAL
 
-![pitr-scope](/img/pigsty/pitr-scope.png)
-
 Window length depends on backup frequency, backup retention, and WAL retention:
 
 - `local` repo keeps **2 full backups** by default, window is **24–48 hours**.

@@ -127,7 +127,7 @@ This option does not replace the pgBackRest `cipher_pass`, every MinIO example c
 - forces data checksums regardless of `pg_checksum`;
 - enables strict synchronous replication (`synchronous_mode_strict`), blocking writes that require synchronous acknowledgment when no synchronous replica is available;
 - logs connection and disconnection events; PostgreSQL 18 also separates connection receipt, authentication, and authorization stages;
-- configures [**watchdog**](/docs/concept/ha/failure/partition#2-linux-watchdog) as `automatic`, which activates only when a usable device exists.
+- configures [**watchdog**](/docs/concept/ha/failure/partition/#2-linux-watchdog) as `automatic`, which activates only when a usable device exists.
 
 Strict synchronous mode targets preservation of acknowledged transactions, but still depends on `synchronous_commit`, synchronous replica state, and failover eligibility. Validate [**RPO**](/docs/concept/ha/rpo) with failure exercises on the target topology.
 

@@ -105,7 +105,7 @@ The main entrypoint for database operations is [**PGSQL Administration**](/docs/
 | View HA status, switchover, restart, and reinitialize replicas | [**Patroni Management**](/docs/pgsql/admin/patroni/) |
 | Manage connection pools | [**Pgbouncer Management**](/docs/pgsql/admin/pgbouncer/) |
 | Start and stop PostgreSQL, Patroni, Pgbouncer, and Exporter | [**Component Management**](/docs/pgsql/admin/component/) |
-| Manage backups, checks, cleanup, and restore | [**pgBackRest Management**](/docs/pgsql/admin/pgbackrest/) |
+| Manage backups, checks, cleanup, and restore | [**Backup & Restore**](/docs/pgsql/backup/) |
 | Configure scheduled backup, vacuum, analyze, and other tasks | [**Crontab**](/docs/pgsql/admin/crontab/) |
 | Upgrade versions and extensions | [**Version Upgrade**](/docs/pgsql/admin/upgrade/), [**Extension Management**](/docs/pgsql/admin/ext/) |
 

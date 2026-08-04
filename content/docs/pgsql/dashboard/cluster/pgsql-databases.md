@@ -8,4 +8,4 @@ description: Database CRUD, slow queries, and table statistics across all instan
 
 PGSQL Databases focuses on database-level CRUD operations, slow queries, and table statistics across all instances in a cluster.
 
-[![pgsql-databases](/img/panel/pgsql-databases.webp)](https://demo.pigsty.io/ui/d/pgsql-databases)
+[![pgsql-databases](/img/panel/pgsql-database.webp)](https://demo.pigsty.io/ui/d/pgsql-databases)

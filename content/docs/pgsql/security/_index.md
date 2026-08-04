@@ -41,7 +41,7 @@ PostgreSQL security combines authentication, authorization, network boundaries, 
 ## Administration and Verification
 
 - [**User Management**](/docs/pgsql/admin/user): create, update, and remove users.
-- [**HBA Management**](/docs/pgsql/admin/hba): refresh rules, inspect effective configuration, and troubleshoot authentication.
+- [**HBA Management**](/docs/pgsql/admin/hba/): refresh rules, inspect effective configuration, and troubleshoot authentication.
 - [**Security Considerations**](/docs/deploy/security): production hardening and acceptance checklist.
 - [**Security Recommendations**](/docs/setup/security): minimum password, network, and file checks before installation.
 

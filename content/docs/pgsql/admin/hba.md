@@ -3,7 +3,6 @@ title: Managing PostgreSQL HBA Rules
 linkTitle: HBA Admin
 weight: 50
 description: HBA management - refresh rules, verify config, troubleshoot, Pgbouncer HBA
-draft: true
 icon: fa-solid fa-key
 module: [PGSQL]
 categories: [Task]

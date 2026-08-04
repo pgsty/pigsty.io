@@ -3,7 +3,6 @@ title: Network Partition
 weight: 50
 description: Primary loses DCS connectivity, causing lease expiration and triggering split-brain protection and failover
 icon: fa-solid fa-network-wired
-draft: true
 module: [PGSQL]
 categories: [Concept]
 ---

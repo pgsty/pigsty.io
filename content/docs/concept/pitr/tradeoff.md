@@ -84,15 +84,11 @@ Assume DB is 100GB, daily change 10GB:
 
 **Daily full backups (keep 2)**
 
-![pitr-space](/img/pigsty/pitr-space.png)
-
 - Full backups: 100GB × 2 ≈ 200GB
 - WAL archive: 10GB × 2 ≈ 20GB
 - Total: ~2–3x DB size
 
 **Weekly full + daily incremental (keep 14 days)**
-
-![pitr-space2](/img/pigsty/pitr-space2.png)
 
 - Full backups: 100GB × 2 ≈ 200GB
 - Incremental: ~10GB × 12 ≈ 120GB
