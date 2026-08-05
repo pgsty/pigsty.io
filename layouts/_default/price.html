@@ -81,7 +81,7 @@
                 <p class="dropdown-group-title silkscreen">Docs</p>
                 <div class="dropdown-cols">
                   <ul class="dropdown-col">
-                    <li><a href="/docs/"><i class="fas fa-book"></i>Pigsty v4.4</a></li>
+                    <li><a href="/docs/"><i class="fas fa-book"></i>Pigsty {{ .Site.Params.version_short }}</a></li>
                     <li><a href="https://doc.pgsty.com" target="_blank" rel="noopener"><i class="fas fa-book-open"></i>Pigsty v3.7</a></li>
                     <li><a href="/docs/pig/"><i class="fas fa-piggy-bank"></i>PIG CLI</a></li>
                     <li><a href="/docs/piglet/"><i class="fas fa-piggy-bank fa-shake"></i>Piglet.Run</a></li>
@@ -251,7 +251,7 @@
           <ul class="pricing-features">
             <li><i class="fas fa-check"></i> OSS License</li>
             <li><i class="fas fa-check"></i> PostgreSQL 18</li>
-            <li><i class="fas fa-check"></i> 562 Extensions</li>
+            <li><i class="fas fa-check"></i> {{ .Site.Params.pgext_count }} Extensions</li>
             <li><i class="fas fa-check"></i> Unlimited nodes</li>
             <li><i class="fas fa-check"></i> EL9/10, D12/13, U22/24</li>
             <li><i class="fas fa-times muted"></i> <span class="muted">No Warranty</span></li>

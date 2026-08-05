@@ -62,7 +62,7 @@ The `fat` template is Pigsty's **full-featured test configuration**, designed fo
 |:--|:--|
 | PostgreSQL 14-18 | Five major versions' kernels and all extensions |
 | Extension Categories | `time`, `gis`, `rag`, `fts`, `olap`, `feat`, `lang`, `type`, `util`, `func`, `admin`, `stat`, `sec`, `fdw`, `sim`, `etl` |
-| Enterprise Components | Kafka, Java Runtime, Sealos, TigerBeetle |
+| Enterprise Components | `kafka-stack`, Java Runtime, Sealos, TigerBeetle |
 | Database Kernels | PolarDB, IvorySQL |
 
 **Differences from rich**:

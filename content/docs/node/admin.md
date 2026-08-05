@@ -54,6 +54,9 @@ bin/node-rm 10.10.10.10              # remove node '10.10.10.10'
 
 You can also remove an entire cluster at once, or use wildcards to match nodes in the inventory to remove from Pigsty.
 
+Here, “remove node” means removing NODE management. The playbook deregisters monitoring, logging, and the HAProxy portal; stops Node Exporter, Vector, HAProxy, and optional VIP services; and deletes `vector_data` (default: `/data/vector`).
+It does not uninstall packages, remove the admin user or `node_data`, stop Docker, or delete Docker data. See [`node-rm.yml`](/docs/node/playbook#node-rmyml) for the exact boundary.
+
 {{< asciinema file="demo/node-rm.cast" speed="1.2" autoplay="true" loop="true" >}}
 
 
@@ -134,6 +137,7 @@ If you want to add or reconfigure monitoring on existing nodes, use the followin
 ./node.yml -t node_tune      # configure tuned profile
 ./node.yml -t node_sysctl    # set additional sysctl parameters
 ./node.yml -t node_profile   # configure node environment variables: /etc/profile.d/node.sh
+./node.yml -t node_alias     # configure command aliases: /etc/profile.d/node.alias.sh
 ./node.yml -t node_ulimit    # configure node resource limits
 ./node.yml -t node_data      # configure node primary data directory
 ./node.yml -t node_admin     # configure admin user and ssh keys

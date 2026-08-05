@@ -26,7 +26,7 @@ For example, Pigsty's default single-node `pg-meta`.`meta` database can be conne
 ```bash
 psql postgres://dbuser_dba:DBUser.DBA@10.10.10.10/meta     # Connect directly with DBA superuser
 psql postgres://dbuser_meta:DBUser.Meta@10.10.10.10/meta   # Connect with default business admin user
-psql postgres://dbuser_view:DBUser.View@pg-meta/meta       # Connect with default read-only user via instance domain name
+psql postgres://dbuser_view:DBUser.Viewer@pg-meta/meta     # Connect with default read-only user via instance domain name
 ```
 
 
@@ -55,7 +55,7 @@ In addition, depending on specific business scenarios, there may be other servic
 
 - **Default Direct Service (default)**: Allows (admin) users to access the database directly, bypassing the connection pool
 - **Offline Replica Service (offline)**: Dedicated replicas that do not handle online read-only traffic, used for ETL and analytical queries
-- **Standby Replica Service (standby)**: Read-only service without replication lag, handled by [sync standby](/docs/pgsql/config#sync-standby)/primary for read-only queries
+- **Standby Replica Service (standby)**: Read-only service without replication lag, handled by [sync standby](/docs/pgsql/config/cluster#sync-standby)/primary for read-only queries
 - **Delayed Replica Service (delayed)**: Access old data from the same cluster at a previous point in time, handled by [delayed replica](/docs/pgsql/config#delayed-cluster)
 
 
@@ -86,7 +86,7 @@ You can see how these four services work from the sample cluster [architecture d
 
 [![pigsty-ha.png](/img/pigsty/ha.png)](/docs/concept/ha)
 
-Note that the `pg-meta` domain name points to the cluster's L2 VIP, which in turn points to the haproxy load balancer on the cluster primary, which routes traffic to different instances. See [Accessing Services](#accessing-services) for details.
+The actual DNS target of `pg-meta` is controlled by [`pg_dns_target`](/docs/pgsql/param#pg_dns_target). The default `auto` points to the L2 VIP when VIP is enabled; otherwise it points to the inventory primary's IP. VIP is not enabled by default. See [Accessing Services](#accessing-services).
 
 
 
@@ -149,9 +149,9 @@ Here's a custom service example `standby`: when you want to provide a read-only 
   options: 'inter 3s fastinter 1s downinter 5s rise 3 fall 3 on-marked-down shutdown-sessions slowstart 30s maxconn 3000 maxqueue 128 weight 100'
 ```
 
-The above service definition will be converted to haproxy configuration file `/etc/haproxy/pg-test-standby.conf` on the sample three-node `pg-test`:
+The above service definition will be converted to haproxy configuration file `/etc/haproxy/pg-test-standby.cfg` on the sample three-node `pg-test`:
 
-```yaml
+```text
 #---------------------------------------------------------------------
 # service: pg-test-standby @ 10.10.10.11:5435
 #---------------------------------------------------------------------
@@ -167,13 +167,13 @@ listen pg-test-standby
     http-check send meth OPTIONS uri /sync   # <---- Here uses /sync, Patroni health check API, only sync standby and primary return 200 healthy status code
     http-check expect status 200             # <---- Health check return code 200 means normal
     default-server inter 3s fastinter 1s downinter 5s rise 3 fall 3 on-marked-down shutdown-sessions slowstart 30s maxconn 3000 maxqueue 128 weight 100
-    # servers: # All three instances of pg-test cluster are selected by selector: "[]", since there are no filter conditions, they all become backend servers for pg-test-replica service. But due to /sync health check, only primary and sync standby can actually handle requests
+    # servers: selector "[]" includes all three pg-test instances as pg-test-standby backends; /sync admits only the primary and synchronous standby.
     server pg-test-1 10.10.10.11:6432 check port 8008 weight 100 backup  # <----- Only primary satisfies condition pg_role == `primary`, selected by backup selector
     server pg-test-3 10.10.10.13:6432 check port 8008 weight 100         #        Therefore serves as service fallback instance: normally doesn't handle requests, only handles read-only requests when all other replicas fail, thus maximally avoiding read-write service being affected by read-only service
     server pg-test-2 10.10.10.12:6432 check port 8008 weight 100         #
 ```
 
-Here, all three instances of the `pg-test` cluster are selected by `selector: "[]"`, rendered into the backend server list of the `pg-test-replica` service. But due to the `/sync` health check, Patroni Rest API only returns healthy HTTP 200 status code on the primary and [sync standby](/docs/pgsql/config#sync-standby), so only the primary and sync standby can actually handle requests.
+Here, all three instances of the `pg-test` cluster are selected by `selector: "[]"`, rendered into the backend server list of the `pg-test-standby` service. But due to the `/sync` health check, Patroni Rest API only returns healthy HTTP 200 status code on the primary and [sync standby](/docs/pgsql/config/cluster#sync-standby), so only the primary and sync standby can actually handle requests.
 Additionally, the primary satisfies the condition `pg_role == primary`, is selected by the backup selector, and is marked as a backup server, only used when no other instances (i.e., sync standby) can meet the demand.
 
 
@@ -197,7 +197,7 @@ If the value of `pg_default_service_dest` is `postgres`, then the primary servic
 
 <details><summary>Example: haproxy configuration for pg-test-primary</summary>
 
-```yaml
+```text
 listen pg-test-primary
     bind *:5433         # <--- primary service defaults to port 5433
     mode tcp
@@ -310,7 +310,7 @@ listen pg-test-default
 
 ## Offline Service
 
-The Offline service provides services on port 5438. It also bypasses the connection pool to directly access the PostgreSQL database, typically used for slow queries/analytical queries/ETL reads/personal user interactive queries. Its service definition is as follows:
+The Offline service provides services on port 5438. It bypasses the connection pool to directly access the PostgreSQL database, typically used for slow queries, analytical queries, ETL reads, and personal interactive queries:
 
 ```yaml
 - { name: offline ,port: 5438 ,dest: postgres ,check: /replica   ,selector: "[? pg_role == `offline` || pg_offline_query ]" , backup: "[? pg_role == `replica` && !pg_offline_query]"}
@@ -346,8 +346,8 @@ listen pg-test-offline
 
 The Offline service provides limited read-only service, typically used for two types of queries: interactive queries (personal users), slow queries and long transactions (analytics/ETL).
 
-The Offline service requires extra maintenance care: when the cluster experiences primary-replica switchover or automatic failover, the cluster's instance roles change, but Haproxy's configuration does not automatically change. For clusters with multiple replicas, this is usually not a problem.
-However, for simplified small clusters with one primary and one replica running Offline queries, primary-replica switchover means the replica becomes the primary (health check fails), and the original primary becomes a replica (not in the Offline backend list), so no instance can carry the Offline service. Therefore, you need to manually [reload services](/docs/pgsql/admin#reload-services) to make the changes effective.
+The Offline service requires extra care. HAProxy's `/replica` health check automatically rejects the new primary after a switchover, but `selector` uses static `pg_role` / `pg_offline_query` labels from the inventory. In a one-primary-one-replica cluster where only the replica serves Offline queries, a switchover may temporarily leave no eligible backend.
+Reloading an unchanged inventory does not add the old primary to the Offline backend list. First update the inventory labels (or `pg_offline_query`) to match the new plan and then [reload services](/docs/pgsql/admin/cluster#reload-service), or switch the primary back.
 
 If your business model is relatively simple, you can consider removing the Default service and Offline service, and use the Primary service and Replica service to connect directly to the database.
 
@@ -357,7 +357,7 @@ If your business model is relatively simple, you can consider removing the Defau
 
 ## Reload Services
 
-When cluster members change, such as adding/removing replicas, primary-replica switchover, or adjusting relative weights, you need to [reload services](/docs/pgsql/admin#reload-services) to make the changes effective.
+Reload services when cluster membership changes, service definitions or static selector labels change, or relative weights are adjusted. Normal Primary/Replica switchover is handled by Patroni health checks and does not require a separate reload.
 
 ```bash
 bin/pgsql-svc <cls> [ip...]         # Reload services for lb cluster or lb instance
@@ -403,7 +403,7 @@ Pigsty uses different **ports** to distinguish [pg services](#service-overview)
 
 
 ```bash
-# Access via cluster domain name
+# Access via cluster domain name (the examples below assume L2 VIP is enabled; without it, auto targets the inventory primary IP)
 postgres://test@pg-test:5432/test # DNS -> L2 VIP -> Primary direct connection
 postgres://test@pg-test:6432/test # DNS -> L2 VIP -> Primary connection pool -> Primary
 postgres://test@pg-test:5433/test # DNS -> L2 VIP -> HAProxy -> Primary connection pool -> Primary

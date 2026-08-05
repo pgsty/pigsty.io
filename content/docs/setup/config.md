@@ -12,7 +12,7 @@ categories: [Tutorial]
 Besides using the [**configuration wizard**](/docs/concept/iac/configure) to auto-generate configs, you can write Pigsty config files from scratch.
 This tutorial guides you through building a complex [**inventory**](/docs/concept/iac/inventory) step by step.
 
-If you define everything in the [**inventory**](/docs/concept/iac/inventory) upfront, a single `deploy.yml` playbook run completes all deployment—but it hides the details.
+If you define NODE, INFRA, ETCD, MINIO, and PGSQL in the [**inventory**](/docs/concept/iac/inventory) upfront, `deploy.yml` can deploy this core path in one run—but it hides the details. Optional modules such as Docker, Redis, Kafka, native MySQL, JUICE, and VIBE require their own playbooks.
 
 This doc breaks down all modules and playbooks, showing how to incrementally build from a simple config to a complete deployment.
 
@@ -175,7 +175,7 @@ all:
 
 We added two new groups: `etcd` and `pg-meta`, defining a single-node etcd cluster and a single-node PostgreSQL cluster.
 
-Use `./deploy.yml` to redeploy everything, or incrementally deploy:
+Use `./deploy.yml` to converge the defined modules in the core path again, or deploy incrementally:
 
 ```bash title="~/pigsty"
 ./etcd.yml  -l etcd      # Install ETCD module on etcd group
@@ -230,7 +230,7 @@ bin/pgsql-db   pg-meta meta             # Ensure database meta exists in pg-meta
 
 ## Configure PG Version and Extensions
 
-You can install [**different major versions**](/docs/pgsql/config/kernel) of PostgreSQL, and up to [**562**](/ext/list) [**extensions**](/docs/pgsql/ext). Let's remove the current default PG 18 and install PG 16:
+You can install [**different major versions**](/docs/pgsql/config/kernel) of PostgreSQL, and up to [**{{< param pgext_count >}}**](/ext/list) [**extensions**](/docs/pgsql/ext). Let's remove the current default PG 18 and install PG 16:
 
 ```bash
 ./pgsql-rm.yml -l pg-meta   # Remove old pg-meta cluster (it's PG 18)

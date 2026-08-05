@@ -6,6 +6,35 @@ icon: fa-solid fa-clipboard-list
 categories: [Reference]
 ---
 
+## 2026-08-05
+
+| Name                    | Old            | New            | Comment                                      |
+|:------------------------|:---------------|:---------------|:---------------------------------------------|
+| `agentsview`            | 0.39.0         | 0.40.1         | Built as dual-architecture RPM/DEB           |
+| `claude`                | 2.1.220        | 2.1.222        | Official manifest verified via proxy; built  |
+| `code-server`           | 4.130.0        | 4.131.0        | Official artifacts downloaded and verified  |
+| `crush`                 | 0.87.0         | 0.88.0         | Official links only; redistribution blocked  |
+| `grafana`               | 13.1.1         | 13.1.2         | Official artifacts verified; security fix    |
+| `juicefs`               | 1.4.0          | 1.4.1          | Built as dual-architecture RPM/DEB           |
+| `mcli`                  | 20260417000000 | 20260804000000 | pgsty fork artifacts downloaded and verified |
+| `minio`                 | 20260618000000 | 20260804000000 | pgsty fork artifacts downloaded and verified |
+| `mongodb-exporter`      | 0.51.0         | 0.52.0         | Built as dual-architecture RPM/DEB           |
+| `mtail`                 | 3.0.8          | 3.4.6          | Built as dual-architecture RPM/DEB           |
+| `nodejs`                | 24.18.1        | 24.19.0        | Node.js 24.x LTS; built                      |
+| `opencode`              | 1.18.9         | 1.18.13        | Built as dual-architecture RPM/DEB           |
+| `pg-hardstorage`        | 1.0.17         | 1.1.1          | Official artifacts downloaded and verified  |
+| `pgbackrest-exporter`   | 0.23.0         | 0.24.0         | Built as dual-architecture RPM/DEB           |
+| `pgstream`              | 1.2.5          | 1.3.1          | Built as dual-architecture RPM/DEB           |
+| `rclone`                | 1.74.4         | 1.75.0         | Official artifacts downloaded and verified  |
+| `rustfs`                | 1.0.0-b11      | 1.0.0-b12      | Beta line; built as dual-architecture RPM/DEB |
+| `stalwart`              | 0.16.15        | 0.16.16        | Built as dual-architecture RPM/DEB           |
+| `uv`                    | 0.12.0         | 0.12.1         | Built as dual-architecture RPM/DEB           |
+| `vray`                  | 5.51.2         | 5.52.0         | Latest stable; built as dual-architecture RPM/DEB |
+| `xray`                  | 26.3.27        | 26.7.28        | Latest dated release; built as dual-architecture RPM/DEB |
+{.stretch-last}
+
+-------
+
 ## 2026-08-02
 
 | Name  | Old   | New   | Comment                     |

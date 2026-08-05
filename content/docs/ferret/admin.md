@@ -43,6 +43,8 @@ This command will:
 - Clean up configuration files and certificates
 - Deregister from VictoriaMetrics monitoring targets
 
+This command does not uninstall the `ferretdb2` package, delete the `mongod` operating-system user, or remove data from the backend PostgreSQL database.
+
 
 ----------------
 

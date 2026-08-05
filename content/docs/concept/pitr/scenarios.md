@@ -176,7 +176,7 @@ Local repo is lost together with the host, so recovery is impossible.
 4. Validate data and restore service
 
 ```bash
-./pgsql-pitr.yml -l pg-meta   # restore to end of WAL archive
+./pgsql-pitr.yml -l pg-meta   # with no recovery target, replay to the end of the WAL archive and promote explicitly
 ```
 
 

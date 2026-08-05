@@ -23,6 +23,7 @@ This page summarizes Pigsty v4.x playbook entries and usage guidance by module. 
 | [**`JUICE`**](/docs/juice/playbook)   | 1  | `juice.yml`                                                                                                                     |
 | [**`VIBE`**](/docs/vibe/playbook)     | 1  | `vibe.yml`                                                                                                                      |
 | [**`KAFKA`**](/docs/kafka/playbook)   | 2  | `kafka.yml` `kafka-rm.yml`                                                                                                      |
+| [**`MYSQL` (pilot)**](/docs/pilot/mysql/) | 2 | `mysql.yml` `mysql-rm.yml`                                                                                                   |
 {.full-width}
 
 --------
@@ -55,6 +56,8 @@ This page summarizes Pigsty v4.x playbook entries and usage guidance by module. 
 | [**`vibe.yml`**](/docs/vibe/playbook#vibeyml)                        |  `VIBE`  | Deploy VIBE dev environment |
 | [**`kafka.yml`**](/docs/kafka/playbook#kafkayml)                     | `KAFKA`  | Create or converge a complete dynamic KRaft cluster |
 | [**`kafka-rm.yml`**](/docs/kafka/playbook#kafka-rmyml)               | `KAFKA`  | Remove a Kafka cluster, or safely retire a single member |
+| [**`mysql.yml`**](/docs/pilot/mysql/)                                | `MYSQL`  | Converge a native MySQL 8.4 single node or three-node InnoDB Cluster (pilot) |
+| [**`mysql-rm.yml`**](/docs/pilot/mysql/)                             | `MYSQL`  | Stop or retire a native MySQL instance or cluster while preserving local state (pilot) |
 {.full-width}
 
 --------
@@ -82,9 +85,11 @@ Several modules provide deletion safeguards through `*_safeguard` parameters:
 - **PGSQL**: [**`pg_safeguard`**](/docs/pgsql/param#pg_safeguard)
 - **ETCD**: [**`etcd_safeguard`**](/docs/etcd/param#etcd_safeguard)
 - **MINIO**: [**`minio_safeguard`**](/docs/minio/param#minio_safeguard)
+- **REDIS**: [**`redis_safeguard`**](/docs/redis/param#redis_safeguard)
 - **KAFKA**: [**`kafka_safeguard`**](/docs/kafka/param#kafka_safeguard)
+- **MYSQL (pilot)**: [`mysql_safeguard`](/docs/pilot/mysql/) and an exact-match `mysql_rm_confirm` jointly protect native MySQL retirement
 
-By default, these safeguard parameters are undefined (not enabled). In production, explicitly set them to `true` for initialized clusters.
+The PGSQL, ETCD, MINIO, REDIS, and KAFKA role defaults are explicitly `false`; set them to `true` for initialized production clusters. Native MySQL is the exception: `mysql_safeguard` defaults to `true`, and even after disabling it you must provide a `mysql_rm_confirm` value that exactly matches the target instance or cluster.
 
 When safeguard is `true`, corresponding `*-rm.yml` playbooks abort immediately. You can force override via CLI:
 
@@ -92,7 +97,9 @@ When safeguard is `true`, corresponding `*-rm.yml` playbooks abort immediately. 
 ./pgsql-rm.yml -l pg-test -e pg_safeguard=false
 ./etcd-rm.yml  -l etcd    -e etcd_safeguard=false
 ./minio-rm.yml -l minio   -e minio_safeguard=false
+./redis-rm.yml -l redis-test -e redis_safeguard=false
 ./kafka-rm.yml -l kf-main -e kafka_safeguard=false
+./mysql-rm.yml -l my-test -e mysql_safeguard=false -e mysql_rm_confirm=my-test
 ```
 
 
@@ -136,10 +143,10 @@ Use `-t` to run only selected task subsets:
 ### INFRA Module
 
 ```bash
-./deploy.yml                     # one-pass full Pigsty deployment
+./deploy.yml                     # deploy the core chain in one pass
 ./infra.yml                      # initialize infrastructure
 ./infra-rm.yml                   # remove infrastructure
-./cache.yml                      # build offline package cache
+./cache.yml -l <infra-host>      # build an offline package from an existing repo on an Infra node
 ./cert.yml -e cn=<name>          # issue client certificate
 ```
 
@@ -218,3 +225,16 @@ bin/pgmon-add <cls>              # monitor remote cluster (wrapper)
 ```
 
 For ordinary convergence, `-l` must cover every declared member of the selected Kafka cluster; only `kafka-rm.yml` accepts a single member, for retirement.
+
+### MYSQL Pilot Module
+
+```bash
+./mysql.yml -l <cls> --check
+./mysql.yml -l <cls>             # accepts only a complete 1- or 3-member cluster scope
+./mysql-rm.yml -l <instance> --check \
+  -e mysql_safeguard=false -e mysql_rm_confirm=<instance>
+./mysql-rm.yml -l <cls> \
+  -e mysql_safeguard=false -e mysql_rm_confirm=<cls>
+```
+
+`mysql-rm.yml` stops the service, writes a retirement marker, and deregisters monitoring, but does not delete data directories, backups, configuration, certificates, packages, or InnoDB Cluster metadata.

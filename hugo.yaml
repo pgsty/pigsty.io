@@ -119,8 +119,10 @@ cascade:
 #=======================================#
 params:
   # metadata
-  description: 'Pigsty is a free and open-source PostgreSQL distribution, a local-first RDS with battery-included monitoring, HA, PITR, IaC, and 555 PG extensions and 12 kernels'
-  version: 4.4.0
+  description: 'Pigsty is a free and open-source PostgreSQL distribution, a local-first RDS with battery-included monitoring, HA, PITR, IaC, and 562 PG extensions and 12 kernels'
+  version: v4.4.0           # Latest Pigsty release, .Site.Params.version in templates, {{< param version >}} in content
+  version_short: v4.4       # Short form (major.minor) for display, e.g. navbar dropdown
+  pgext_count: 562          # Number of packaged PG extensions, {{< param pgext_count >}} in content
   copyright:
     authors: Ruohang Feng
     from_year: 2018

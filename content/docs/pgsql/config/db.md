@@ -68,7 +68,7 @@ Each database definition is a complex object with fields below. Only `name` is r
   tablespace: pg_default          # Optional, default tablespace
   is_template: false              # Optional, mark as template database
   allowconn: true                 # Optional, allow connections, default true
-  revokeconn: false               # Optional, revoke public CONNECT privilege, default false
+  revokeconn: false               # Optional; when true, retain CONNECT only for owner, admin, monitor, and replication users
   register_datasource: true       # Optional, register to grafana datasource? default true
   connlimit: -1                   # Optional, connection limit, -1 means unlimited
   parameters:                     # Optional, database-level params via ALTER DATABASE SET
@@ -76,8 +76,8 @@ Each database definition is a complex object with fields below. Only `name` is r
     statement_timeout: '30s'
   pool_auth_user: dbuser_meta     # Optional, auth user for pgbouncer auth_query
   pool_mode: transaction          # Optional, database-level pgbouncer pool mode
-  pool_size: 64                   # Optional, database-level pgbouncer default pool size
-  pool_reserve: 32                # Optional, database-level pgbouncer reserve pool
+  pool_size: 50                   # Optional, database-level pgbouncer default pool size
+  pool_reserve: 30                # Optional, database-level pgbouncer reserve pool
   pool_size_min: 0                # Optional, database-level pgbouncer min pool size
   pool_connlimit: 100             # Optional, database-level max database connections
 ```
@@ -115,15 +115,15 @@ Parameters marked "**Immutable**" only take effect at creation; changing them re
 | [**`allowconn`**](#allowconn)                       | Privilege| `bool`               | Mutable   | Allow connections, default `true`                    |
 | [**`revokeconn`**](#revokeconn)                     | Privilege| `bool`               | Mutable   | Revoke PUBLIC CONNECT privilege                      |
 | [**`connlimit`**](#connlimit)                       | Privilege| `int`                | Mutable   | Connection limit, `-1` for unlimited                 |
-| [**`baseline`**](#baseline)                         | Init     | `string`             | Mutable   | SQL baseline file path, runs only on first create    |
+| [**`baseline`**](#baseline)                         | Init     | `string`             | Mutable   | SQL baseline file path, runs on every provisioning   |
 | [**`schemas`**](#schemas)                           | Init     | `(string\|object)[]` | Mutable   | Schema definitions to create                         |
 | [**`extensions`**](#extensions)                     | Init     | `(string\|object)[]` | Mutable   | Extension definitions to install                     |
 | [**`parameters`**](#parameters)                     | Init     | `object`             | Mutable   | Database-level parameters                            |
 | [**`pgbouncer`**](#pgbouncer)                       | Pool     | `bool`               | Mutable   | Add to connection pool, default `true`               |
 | [**`pool_mode`**](#pool_mode)                       | Pool     | `enum`               | Mutable   | Pool mode: `transaction` (default)                   |
-| [**`pool_size`**](#pool_size)                       | Pool     | `int`                | Mutable   | Default pool size, default `64`                      |
+| [**`pool_size`**](#pool_size)                       | Pool     | `int`                | Mutable   | Default pool size, default `50`                      |
 | [**`pool_size_min`**](#pool_size_min)               | Pool     | `int`                | Mutable   | Min pool size, default `0`                           |
-| [**`pool_reserve`**](#pool_reserve)                 | Pool     | `int`                | Mutable   | Reserve pool size, default `32`                      |
+| [**`pool_reserve`**](#pool_reserve)                 | Pool     | `int`                | Mutable   | Reserve pool size, default `30`                      |
 | [**`pool_connlimit`**](#pool_connlimit)             | Pool     | `int`                | Mutable   | Max database connections, default `100`              |
 | [**`pool_auth_user`**](#pool_auth_user)             | Pool     | `string`             | Mutable   | Auth query user                                      |
 | [**`register_datasource`**](#register_datasource)   | Monitor  | `bool`               | Mutable   | Register to Grafana datasource, default `true`       |
@@ -138,7 +138,7 @@ Parameters marked "**Immutable**" only take effect at creation; changing them re
 
 String, required. Database name - must be unique within the cluster.
 
-Must be a valid PostgreSQL identifier: max 63 chars, no SQL keywords, starts with letter or underscore, followed by letters, digits, or underscores. Must match: **`^[A-Za-z_][A-Za-z0-9_$]{0,62}$`**
+The current role does not enforce this regular expression, and SQL identifiers are double-quoted. However, the name is also used in temporary file paths and shell/SQL command assembly. For safe operation across the entire automation chain, keep it within 63 bytes, follow **`^[A-Za-z_][A-Za-z0-9_$]{0,62}$`**, and avoid spaces, quotes, slashes, or other special characters.
 
 ```yaml
 - name: myapp              # Simple naming
@@ -182,7 +182,7 @@ GRANT ALL PRIVILEGES ON DATABASE "myapp" TO "new_owner";
 
 String. Database comment, defaults to `business database {name}`.
 
-Set via `COMMENT ON DATABASE`, supports Chinese and special chars (Pigsty auto-escapes quotes). Stored in `pg_database.datacl`, viewable via `\l+`.
+Set via `COMMENT ON DATABASE`, supports Chinese and special characters (Pigsty auto-escapes quotes). Stored in the shared-object comment catalog `pg_shdescription`, viewable via `\l+`.
 
 ```sql
 COMMENT ON DATABASE "myapp" IS 'my main application database';
@@ -224,8 +224,8 @@ Enum, immutable. Clone strategy: `FILE_COPY` or `WAL_LOG`. Available PG15+.
 
 | Strategy    | Description                  | Use Case                   |
 |-------------|------------------------------|----------------------------|
-| `FILE_COPY` | Direct file copy, PG15+ default | Large templates, general   |
-| `WAL_LOG`   | Clone via WAL logging        | Small templates, non-blocking |
+| `FILE_COPY` | Direct file copy with checkpoints before and after | Large templates, lower WAL volume |
+| `WAL_LOG`   | Block-by-block copy written to WAL; PG15+ default | Small templates, non-blocking |
 {.full-width}
 
 `WAL_LOG` doesn't block template connections during clone but less efficient for large templates. Ignored on PG14 and earlier.
@@ -432,11 +432,11 @@ ALTER DATABASE "limited_db" CONNECTION LIMIT 50;
 
 ### `baseline`
 
-String, one-time. SQL baseline file path executed after database creation.
+String. SQL baseline file path executed while provisioning the database.
 
 Baseline files typically contain schema definitions, initial data, stored procedures. Path is relative to Ansible search path, usually in `files/`.
 
-Baseline runs only on first creation; skipped if database exists. `state: recreate` re-runs baseline.
+Whenever `baseline` is defined, the current role runs the file on every provisioning pass for that database, even if the database already exists. It also runs after `state: recreate`. Make the baseline SQL idempotent, or avoid rerunning it against an existing database.
 
 ```yaml
 - name: myapp
@@ -497,7 +497,7 @@ extensions:
     state: absent            # Uninstall extension (CASCADE)
 ```
 
-Install uses `CASCADE` to auto-install dependencies; uninstall uses `CASCADE` (deletes dependent objects).
+Installation uses `IF NOT EXISTS ... CASCADE`; PostgreSQL emits a NOTICE and skips an extension that already exists, while automatically installing dependencies when possible. Uninstallation uses `CASCADE` and deletes dependent objects.
 
 ```sql
 CREATE EXTENSION IF NOT EXISTS "vector" WITH SCHEMA "public" VERSION '0.5.1' CASCADE;
@@ -559,9 +559,9 @@ Enum, mutable. Pgbouncer pool mode: `transaction`, `session`, or `statement`. De
 
 ### `pool_size`
 
-Integer, mutable. Pgbouncer default pool size, default `64`.
+Integer, mutable. Pgbouncer default pool size, default `50`.
 
-Pool size determines backend connections reserved for this database. Adjust based on workload.
+Pool size is the regular backend-connection limit for this database's pool; `pool_size_min` controls prewarmed connections. Adjust it for the workload.
 
 ```yaml
 - name: high_load_db
@@ -581,14 +581,14 @@ Values > 0 pre-create specified backend connections for connection warming, redu
 
 ### `pool_reserve`
 
-Integer, mutable. Pgbouncer reserve pool size, default `32`.
+Integer, mutable. Pgbouncer reserve pool size, default `30`.
 
 When default pool exhausted, Pgbouncer can allocate up to `pool_reserve` additional connections for burst traffic.
 
 ```yaml
 - name: bursty_db
-  pool_size: 64
-  pool_reserve: 64           # Allow burst to 128 connections
+  pool_size: 50
+  pool_reserve: 30           # Allow up to 30 more connections after the regular pool is exhausted
 ```
 
 ### `pool_connlimit`

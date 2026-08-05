@@ -13,18 +13,14 @@ categories: [Reference]
 
 ## What components are included in the INFRA module?
 
-- **Ansible**: Used for automation configuration, deployment, and daily operations.
-- **Nginx**: Exposes WebUIs like Grafana, VictoriaMetrics (VMUI), Alertmanager, and hosts local YUM/APT repositories.
-- **Self-signed CA**: Issues SSL/TLS certificates for components like Nginx, Patroni, pgBackRest.
-- **VictoriaMetrics Suite**: Replaces Prometheus/Loki, including VictoriaMetrics (TSDB), VMAlert (alert evaluation), VictoriaLogs (centralized logs), VictoriaTraces (tracing).
-- **Vector**: Node-side log collector, pushes system/database logs to VictoriaLogs.
-- **AlertManager**: Aggregates and dispatches alert notifications.
-- **Grafana**: Monitoring/visualization platform with numerous preconfigured dashboards and datasources.
-- **Chronyd**: Provides NTP time synchronization.
+Strictly following the current source, the `infra` role directly manages:
+
+- **Nginx**: Exposes Grafana, VictoriaMetrics (VMUI), Alertmanager, and other WebUIs, and hosts local YUM/APT repositories.
 - **DNSMasq**: Provides DNS registration and resolution.
-- **ETCD**: Acts as PostgreSQL HA DCS (can also be deployed on dedicated cluster).
-- **PostgreSQL**: Acts as CMDB on the admin node (optional).
-- **Docker**: Runs stateless tools or applications on nodes (optional).
+- **VictoriaMetrics suite**: VictoriaMetrics, VMAlert, VictoriaLogs, and VictoriaTraces.
+- **Alertmanager, Blackbox Exporter, and Grafana**: Alert dispatch, blackbox probing, and visualization.
+
+`infra.yml` also chains the CA, repository, NODE, HAProxy, and node-monitoring roles, so it configures supporting capabilities such as the self-signed CA, Chronyd, Node Exporter, and Vector on Infra nodes. ETCD, PostgreSQL, and Docker are separate modules and are not deployed by `infra.yml`; use `etcd.yml`, `pgsql.yml`, and `docker.yml`, respectively.
 
 
 

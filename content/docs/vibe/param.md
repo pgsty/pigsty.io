@@ -80,7 +80,7 @@ codex_enabled: true
 
 ### `vibe_data`
 
-Workspace dir: default root for Code-Server and JupyterLab, and location for `CLAUDE.md` / `AGENTS.md`.
+Workspace directory, default `/fs`. Code-Server and JupyterLab use it as their workspace root; `vibe_dir` renders `AGENTS.md` here and creates a `CLAUDE.md` symlink to it.
 
 --------
 
@@ -88,11 +88,11 @@ Workspace dir: default root for Code-Server and JupyterLab, and location for `CL
 
 ### `code_enabled`
 
-Enable Code-Server.
+Enable Code-Server, default `true`.
 
 ### `code_port`
 
-Listen port, bound to `127.0.0.1`, forwarded by Nginx `/code/`.
+Listen port, default `8443`; bound to `127.0.0.1` and forwarded by Nginx `/code/`.
 
 ### `code_data`
 
@@ -100,7 +100,7 @@ Data dir, config file at `code_data/code-server/config.yaml` (default `/data/cod
 
 ### `code_password`
 
-Login password, must be changed in production.
+Login password, default `Vibe.Coding`; it must be changed in production.
 
 ### `code_gallery`
 
@@ -126,11 +126,11 @@ Data dir, config file at `jupyter_data/jupyter_config.py` (default `/data/jupyte
 
 ### `jupyter_password`
 
-Access token written to `c.IdentityProvider.token`.
+Access token, default `Vibe.Coding`, written to `c.IdentityProvider.token`.
 
 ### `jupyter_venv`
 
-Python venv path for JupyterLab, must be created beforehand (usually by `NODE` module).
+Python venv path for JupyterLab, default `/data/venv`; it must be created beforehand (usually by the `NODE` module).
 
 --------
 
@@ -138,7 +138,7 @@ Python venv path for JupyterLab, must be created beforehand (usually by `NODE` m
 
 ### `nodejs_enabled`
 
-Enable Node.js.
+Enable the standalone Node.js installation task, default `true`.
 
 ### `nodejs_registry`
 
@@ -155,7 +155,7 @@ Claude Code and Codex CLI are installed by their own dedicated tasks and do not 
 
 ### `claude_enabled`
 
-Enable Claude Code installation and configuration. `claude_install` installs the CLI, while `claude_config` writes its configuration.
+Enable Claude Code installation and configuration, default `true`. `claude_install` installs the CLI, while `claude_config` writes its configuration.
 
 ### `claude_package`
 

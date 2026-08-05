@@ -40,12 +40,12 @@ Level 6 requires real-time synchronous updates of customer data, ensuring busine
 
 **Pigsty Capability Comparison**:
 
-| Configuration                    | RTO        | RPO               | GB Level |
-|:---------------------------------|:-----------|:------------------|:---------|
-| Default Async (`pg_rto=30`)      | ~30-40s    | May lose < 1MB    | Level 5  |
-| Default Sync (`pg_rto=30`)       | ~30-35s    | 0                 | Level 6  |
-| Aggressive Sync (`pg_rto=15`)    | ~10-15s    | 0                 | Level 6  |
-| Two-site Three-center + Sync    | ~15-30s    | 0                 | Level 6  |
+| Configuration | RTO | RPO | GB Level |
+|:--------------|:----|:----|:---------|
+| Default async (`pg_rto: norm`) | Target < 45s | Possible loss; 1MiB sampled candidate threshold | Evaluate with the complete architecture |
+| Maximum-availability sync (`norm` + `pg_rpo: 0`) | Target < 45s | Normally 0; may degrade without a synchronous replica | Evaluate with the complete architecture |
+| Fast strict sync (`fast` + `crit.yml`) | Target < 30s | 0 for acknowledged transactions | Evaluate with the complete architecture |
+| Two-site, three-center + sync | Depends on network and selected RTO preset | Depends on sync/strict mode | Evaluate with the complete architecture |
 {.full-width}
 
 
@@ -291,10 +291,10 @@ Bank ICT policies should be fully documented, including:
 
 | Compliance Requirement | Patroni Default Config | Patroni Optimized Config | Meets Requirements |
 |:-----------------------|:-----------------------|:-------------------------|:-------------------|
-| PCI-DSS Core Trading | RTO~35s, RPO may lose | RTO~15s, RPO=0 (sync) | ✅ Meets after optimization |
+| PCI-DSS Core Trading | Target RTO<45s; async may lose data | `fast` + strict sync targets RTO<30s, RPO=0 | Confirm through business-impact analysis and drills |
 | SOX Financial Systems | ✅ | ✅ | ✅ Meets by default |
 | HIPAA EHR | ✅ | ✅ | ✅ Meets by default |
-| Basel III Core Banking | Requires sync config | RTO~15s, RPO=0 | ✅ Meets after optimization |
+| Basel III Core Banking | Requires sync config | `fast` + strict sync targets RTO<30s, RPO=0 | Confirm against regulations and drills |
 | SHARE 78 Tier 7 | Tier 6 | Tier 6-7 | ✅ Achievable with connection pool |
 {.full-width}
 
@@ -306,24 +306,25 @@ Bank ICT policies should be fully documented, including:
 ### Standard Compliance Configuration (SOX/HIPAA General Systems)
 
 ```yaml
-pg_rto: 30                            # Standard TTL
-pg_rpo: 1048576                       # Allow 1MB data loss
+pg_rto: norm                          # One of the four valid presets; target RTO < 45s
+pg_rpo: 1048576                       # 1MiB sampled candidate-lag threshold, not a hard loss bound
 
 # Corresponding Patroni configuration
 bootstrap:
   dcs:
     ttl: 30
-    loop_wait: 10
+    loop_wait: 5
     retry_timeout: 10
+    primary_start_timeout: 25
     synchronous_mode: false           # Async replication
-    # RTO: ~30-40s, RPO: May lose several seconds of data
+    # Target RTO < 45s; actual async loss depends on write rate, TTL, and sampling
 ```
 
 
 ### Strict Compliance Configuration (PCI-DSS/Basel III Core Systems)
 
 ```yaml
-pg_rto: 15                            # Shorter TTL
+pg_rto: fast                          # Fast preset; target RTO < 30s
 pg_rpo: 0                             # Zero data loss
 pg_conf: crit.yml                     # Use critical business template
 
@@ -333,11 +334,11 @@ bootstrap:
     ttl: 20
     loop_wait: 5
     retry_timeout: 5
-    primary_start_timeout: 0
+    primary_start_timeout: 15
     synchronous_mode: true            # Sync replication
     synchronous_mode_strict: true     # Strict mode
     synchronous_node_count: 1
-    # RTO: ~10-15s, RPO: 0
+    # Target RTO < 30s; acknowledged transactions have RPO: 0
 ```
 
 
@@ -350,6 +351,6 @@ bootstrap:
 3. **SOX emphasizes data integrity**: 7-year data retention and complete audit trails are core requirements
 4. **PostgreSQL + Patroni fully capable**:
    - Synchronous replication mode achieves **RPO=0**
-   - Automatic failover achieves **RTO<30 seconds**
+   - The `fast` preset targets **RTO<30 seconds** for automatic failover
    - Far exceeds minimum requirements of most compliance standards
 5. **Testing is a common requirement**: All standards require regular DR drills and documentation

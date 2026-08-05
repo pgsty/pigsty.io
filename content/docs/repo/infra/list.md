@@ -12,7 +12,7 @@ weight: 5441
 
 | Name                                                                                     | Version  | License                                                                                | Comment                                      |
 |------------------------------------------------------------------------------------------|----------|----------------------------------------------------------------------------------------|----------------------------------------------|
-| [`grafana`](https://github.com/grafana/grafana/)                                         | `13.1.1` | [AGPLv3](https://github.com/grafana/grafana/blob/main/LICENSE)                         | Observability and visualization platform     |
+| [`grafana`](https://github.com/grafana/grafana/)                                         | `13.1.2` | [AGPLv3](https://github.com/grafana/grafana/blob/main/LICENSE)                         | Observability and visualization platform     |
 | [`loki`](https://github.com/grafana/loki)                                                | `3.6.7`  | [AGPLv3](https://github.com/grafana/loki/blob/main/LICENSE)                            | Log aggregation system (obsolete, frozen)    |
 | [`promtail`](https://github.com/grafana/loki/releases/tag/v3.6.7)                        | `3.6.7`  | [AGPLv3](https://github.com/grafana/loki/blob/main/LICENSE)                            | Loki log collection agent (obsolete, frozen) |
 | [`logcli`](https://github.com/grafana/loki/releases/tag/v3.6.7)                          | `3.6.7`  | [AGPLv3](https://github.com/grafana/loki/blob/main/LICENSE)                            | Loki query CLI (obsolete, frozen)            |
@@ -70,7 +70,7 @@ allow_loading_unsigned_plugins = victoriametrics-logs-datasource,victoriametrics
 | Name                                                                      | Version  | License                                                                               | Comment                            |
 |---------------------------------------------------------------------------|----------|---------------------------------------------------------------------------------------|------------------------------------|
 | [`pg-exporter`](https://github.com/pgsty/pg_exporter)                     | `1.4.1`  | [Apache-2.0](https://github.com/pgsty/pg_exporter/blob/master/LICENSE)                | Advanced Postgres metrics exporter |
-| [`pgbackrest-exporter`](https://github.com/woblerr/pgbackrest_exporter)   | `0.23.0` | [MIT](https://github.com/woblerr/pgbackrest_exporter/blob/master/LICENSE)             | Expose pgbackrest metrics          |
+| [`pgbackrest-exporter`](https://github.com/woblerr/pgbackrest_exporter)   | `0.24.0` | [MIT](https://github.com/woblerr/pgbackrest_exporter/blob/master/LICENSE)             | Expose pgbackrest metrics          |
 | [`node-exporter`](https://github.com/prometheus/node_exporter)            | `1.12.1` | [Apache-2.0](https://github.com/prometheus/node_exporter/blob/master/LICENSE)         | Expose Linux node metrics          |
 | [`keepalived-exporter`](https://github.com/mehdy/keepalived-exporter)     | `1.7.1`  | [GPL-3.0](https://github.com/mehdy/keepalived-exporter/blob/master/LICENSE)           | Expose keepalived/VIP metrics      |
 | [`nginx-exporter`](https://github.com/nginxinc/nginx-prometheus-exporter) | `1.5.1`  | [Apache-2.0](https://github.com/nginxinc/nginx-prometheus-exporter/blob/main/LICENSE) | Expose nginx metrics               |
@@ -79,8 +79,8 @@ allow_loading_unsigned_plugins = victoriametrics-logs-datasource,victoriametrics
 | [`redis-exporter`](https://github.com/oliver006/redis_exporter)           | `1.88.0` | [MIT](https://github.com/oliver006/redis_exporter/blob/master/LICENSE)                | Expose redis metrics               |
 | [`kafka-exporter`](https://github.com/danielqsj/kafka_exporter)           | `1.9.0`  | [Apache-2.0](https://github.com/danielqsj/kafka_exporter/blob/master/LICENSE)         | Expose kafka metrics               |
 | [`jmx-exporter`](https://github.com/prometheus/jmx_exporter)              | `1.6.0`  | [Apache-2.0](https://github.com/prometheus/jmx_exporter/blob/main/LICENSE)             | Expose JVM metrics (noarch)        |
-| [`mongodb-exporter`](https://github.com/percona/mongodb_exporter)         | `0.51.0` | [Apache-2.0](https://github.com/percona/mongodb_exporter/blob/main/LICENSE)           | Expose mongodb metrics             |
-| [`mtail`](https://github.com/google/mtail)                                | `3.0.8`  | [Apache-2.0](https://github.com/google/mtail/blob/main/LICENSE)                       | Parse logs and generate metrics    |
+| [`mongodb-exporter`](https://github.com/percona/mongodb_exporter)         | `0.52.0` | [Apache-2.0](https://github.com/percona/mongodb_exporter/blob/main/LICENSE)           | Expose mongodb metrics             |
+| [`mtail`](https://github.com/google/mtail)                                | `3.4.6`  | [Apache-2.0](https://github.com/google/mtail/blob/main/LICENSE)                       | Parse logs and generate metrics    |
 | [`vector`](https://github.com/vectordotdev/vector/releases)               | `0.57.0` | [MPL-2.0](https://github.com/vectordotdev/vector/blob/master/LICENSE)                 | Versatile log collector            |
 {.stretch-last}
 
@@ -91,14 +91,14 @@ allow_loading_unsigned_plugins = victoriametrics-logs-datasource,victoriametrics
 
 | Name                                                    | Version          | License                                                                         | Comment                            |
 |---------------------------------------------------------|------------------|---------------------------------------------------------------------------------|------------------------------------|
-| [`minio`](https://github.com/pgsty/minio)               | `20260618000000` | [AGPLv3](https://github.com/minio/minio/blob/master/LICENSE)                    | FOSS S3 server, now built by pgsty |
-| [`mcli`](https://github.com/pgsty/mc)                   | `20260417000000` | [AGPLv3](https://github.com/pgsty/mc/blob/main/LICENSE)                         | FOSS S3 client, now built by pgsty |
-| [`rustfs`](https://github.com/rustfs/rustfs)            | `1.0.0-b11`      | [Apache-2.0](https://github.com/rustfs/rustfs/blob/main/LICENSE)                | FOSS MinIO, Beta                   |
+| [`minio`](https://github.com/pgsty/minio)               | `20260804000000` | [AGPLv3](https://github.com/minio/minio/blob/master/LICENSE)                    | FOSS S3 server, now built by pgsty |
+| [`mcli`](https://github.com/pgsty/mc)                   | `20260804000000` | [AGPLv3](https://github.com/pgsty/mc/blob/main/LICENSE)                         | FOSS S3 client, now built by pgsty |
+| [`rustfs`](https://github.com/rustfs/rustfs)            | `1.0.0-b12`      | [Apache-2.0](https://github.com/rustfs/rustfs/blob/main/LICENSE)                | FOSS MinIO, Beta                   |
 | [`garage`](https://git.deuxfleurs.fr/Deuxfleurs/garage) | `2.3.0`          | [AGPL-3.0](https://git.deuxfleurs.fr/Deuxfleurs/garage/src/branch/main/LICENSE) | Lightweight S3                     |
 | [`seaweedfs`](https://github.com/seaweedfs/seaweedfs)   | `4.40`           | [Apache-2.0](https://github.com/seaweedfs/seaweedfs/blob/master/LICENSE)        | S3 for small files                 |
-| [`rclone`](https://github.com/rclone/rclone/)           | `1.74.4`         | [MIT](https://github.com/rclone/rclone/blob/master/COPYING)                     | S3 command line tool               |
+| [`rclone`](https://github.com/rclone/rclone/)           | `1.75.0`         | [MIT](https://github.com/rclone/rclone/blob/master/COPYING)                     | S3 command line tool               |
 | [`restic`](https://github.com/restic/restic)            | `0.19.1`         | [BSD-2](https://github.com/restic/restic/blob/master/LICENSE)                   | Backup tool                        |
-| [`juicefs`](https://github.com/juicedata/juicefs)       | `1.4.0`          | [Apache-2.0](https://github.com/juicedata/juicefs/blob/main/LICENSE)            | Filesystem over S3                 |
+| [`juicefs`](https://github.com/juicedata/juicefs)       | `1.4.1`          | [Apache-2.0](https://github.com/juicedata/juicefs/blob/main/LICENSE)            | Filesystem over S3                 |
 {.stretch-last}
 
 {{% alert title="MinIO is now maintained by a pgsty fork" color="info" %}}
@@ -146,9 +146,9 @@ Pig package manager, PostgreSQL tools, and other database related utilities
 |-----------------------------------------------------------------------------------------|------------|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------|
 | [`pig`](https://github.com/pgsty/pig)                                                   | `1.6.1`    | [Apache-2.0](https://github.com/pgsty/pig/blob/main/LICENSE)                            | PG package manager                                              |
 | [`vip-manager`](https://github.com/cybertec-postgresql/vip-manager)                     | `4.2.0`    | [BSD-2](https://github.com/cybertec-postgresql/vip-manager/blob/master/LICENSE)         | Bind L2 VIP to PG primary                                       |
-| [`pg-hardstorage`](https://github.com/cybertec-postgresql/pg_hardstorage)                | `1.0.17`    | [Apache-2.0](https://github.com/cybertec-postgresql/pg_hardstorage/blob/main/LICENSE)   | PostgreSQL backup with continuous WAL streaming                 |
+| [`pg-hardstorage`](https://github.com/cybertec-postgresql/pg_hardstorage)                | `1.1.1`     | [Apache-2.0](https://github.com/cybertec-postgresql/pg_hardstorage/blob/main/LICENSE)   | PostgreSQL backup with continuous WAL streaming                 |
 | [`pgschema`](https://github.com/pgplex/pgschema)                                        | `1.12.1`   | [Apache-2.0](https://github.com/pgplex/pgschema/blob/main/LICENSE)                      | Terraform-style declarative Postgres schema migration CLI       |
-| [`pgstream`](https://github.com/xataio/pgstream)                                        | `1.2.5`    | [Apache-2.0](https://github.com/xataio/pgstream/blob/main/LICENSE)                      | PostgreSQL replication with DDL changes                         |
+| [`pgstream`](https://github.com/xataio/pgstream)                                        | `1.3.1`    | [Apache-2.0](https://github.com/xataio/pgstream/blob/main/LICENSE)                      | PostgreSQL replication with DDL changes                         |
 | [`pg-timetable`](https://github.com/cybertec-postgresql/pg_timetable)                   | `7.0.0`    | [PostgreSQL](https://github.com/cybertec-postgresql/pg_timetable/blob/master/LICENSE)   | Advanced scheduling for PostgreSQL                              |
 | [`timescaledb-tools`](https://github.com/timescale/timescaledb-tune)                    | `0.19.0`   | [Apache-2.0](https://github.com/timescale/timescaledb-tune/blob/main/LICENSE)           | Optimize timescaledb params                                     |
 | [`timescaledb-event-streamer`](https://github.com/noctarius/timescaledb-event-streamer) | `0.20.0`   | [Apache-2.0](https://github.com/noctarius/timescaledb-event-streamer/blob/main/LICENSE) | CDC on timescaledb hypertable                                   |
@@ -160,8 +160,8 @@ Pig package manager, PostgreSQL tools, and other database related utilities
 | [`asciinema`](https://github.com/asciinema/asciinema)                                   | `3.2.1`    | [GPL-3.0](https://github.com/asciinema/asciinema/blob/main/LICENSE)                     | Terminal session recorder and player                            |
 | [`pev2`](https://github.com/dalibo/pev2)                                                | `1.23.0`   | [PostgreSQL](https://github.com/dalibo/pev2/blob/master/LICENSE.md)                     | PostgreSQL explain visualizer 2                                 |
 | [`sealos`](https://github.com/labring/sealos)                                           | `5.1.1`    | [Apache-2.0](https://github.com/labring/sealos/blob/main/LICENSE)                       | Battery-included Kubernetes distribution                        |
-| [`vray`](https://github.com/v2fly/v2ray-core)                                           | `5.51.2`   | [MIT](https://github.com/v2fly/v2ray-core/blob/master/LICENSE)                          | Build proxies to bypass network restrictions                    |
-| [`xray`](https://github.com/XTLS/Xray-core)                                             | `26.3.27`   | [MPL-2.0](https://github.com/XTLS/Xray-core/blob/main/LICENSE)                          | Next-generation proxy core with advanced routing and transports |
+| [`vray`](https://github.com/v2fly/v2ray-core)                                           | `5.52.0`   | [MIT](https://github.com/v2fly/v2ray-core/blob/master/LICENSE)                          | Build proxies to bypass network restrictions                    |
+| [`xray`](https://github.com/XTLS/Xray-core)                                             | `26.7.28`   | [MPL-2.0](https://github.com/XTLS/Xray-core/blob/main/LICENSE)                          | Next-generation proxy core with advanced routing and transports |
 | [`gost`](https://github.com/ginuerzh/gost)                                              | `2.12.0`   | [MIT](https://github.com/ginuerzh/gost/blob/master/LICENSE)                             | General-purpose tunneling and proxy tool written in Go          |
 | [`sabiql`](https://github.com/riii111/sabiql)                                           | `1.15.1`   | [MIT](https://github.com/riii111/sabiql/blob/main/LICENSE)                              | Modern SQL client for PostgreSQL and MySQL                      |
 | [`postgrest`](https://github.com/PostgREST/postgrest)                                   | `14.16`    | [MIT](https://github.com/PostgREST/postgrest/blob/main/LICENSE)                         | PostgreSQL RESTful API server                                   |
@@ -170,7 +170,7 @@ Pig package manager, PostgreSQL tools, and other database related utilities
 | [`hugo`](https://github.com/gohugoio/hugo)                                              | `0.164.0`  | [Apache-2.0](https://github.com/gohugoio/hugo/blob/master/LICENSE)                      | Fast static site generator                                      |
 | [`cloudflared`](https://github.com/cloudflare/cloudflared)                              | `2026.7.3` | [Apache-2.0](https://github.com/cloudflare/cloudflared/blob/master/LICENSE)             | Cloudflare tunnel client                                        |
 | [`headscale`](https://github.com/juanfont/headscale)                                    | `0.29.3`   | [BSD-3](https://github.com/juanfont/headscale/blob/main/LICENSE)                        | Self-hosted Tailscale control server                            |
-| [`stalwart`](https://github.com/stalwartlabs/stalwart)                                  | `0.16.15`  | [AGPLv3](https://github.com/stalwartlabs/stalwart/blob/main/LICENSE)                    | Modern full-featured mail server                                |
+| [`stalwart`](https://github.com/stalwartlabs/stalwart)                                  | `0.16.16`  | [AGPLv3](https://github.com/stalwartlabs/stalwart/blob/main/LICENSE)                    | Modern full-featured mail server                                |
 | [`maddy`](https://github.com/foxcpp/maddy)                                              | `0.9.5`    | [GPL-3.0](https://github.com/foxcpp/maddy/blob/master/LICENSE)                          | Lightweight mail server                                         |
 {.stretch-last}
 
@@ -183,15 +183,15 @@ AI agents, MCP toolboxes, coding IDEs, Python/Go/Node tools...
 
 | Name                                                           | Version   | License                                                                     | Comment                                                    |
 |----------------------------------------------------------------|-----------|-----------------------------------------------------------------------------|------------------------------------------------------------|
-| [`claude`](https://github.com/anthropics/claude-code)          | `2.1.220` | [Proprietary](https://www.anthropic.com/legal/terms)                        | Claude Code - Anthropic agentic coding                     |
-| [`opencode`](https://github.com/anomalyco/opencode)            | `1.18.9`  | [MIT](https://github.com/anomalyco/opencode/blob/main/LICENSE)              | Terminal AI coding assistant                               |
+| [`claude`](https://github.com/anthropics/claude-code)          | `2.1.222` | [Proprietary](https://www.anthropic.com/legal/terms)                        | Claude Code - Anthropic agentic coding                     |
+| [`opencode`](https://github.com/anomalyco/opencode)            | `1.18.13` | [MIT](https://github.com/anomalyco/opencode/blob/main/LICENSE)              | Terminal AI coding assistant                               |
 | [`codex`](https://github.com/openai/codex)                     | `0.146.0` | [Apache-2.0](https://github.com/openai/codex/blob/main/LICENSE)             | OpenAI coding agent CLI                                    |
-| [`crush`](https://github.com/charmbracelet/crush)              | `0.87.0`  | [FSL-1.1-MIT](https://github.com/charmbracelet/crush/blob/main/LICENSE.md)  | Charm's terminal AI coding agent                           |
-| [`agentsview`](https://github.com/kenn-io/agentsview)          | `0.39.0`  | [MIT](https://github.com/kenn-io/agentsview/blob/main/LICENSE)              | Browse and replay AI coding agent trajectories in terminal |
+| [`crush`](https://github.com/charmbracelet/crush)              | `0.88.0`  | [FSL-1.1-MIT](https://github.com/charmbracelet/crush/blob/main/LICENSE.md)  | Charm's terminal AI coding agent                           |
+| [`agentsview`](https://github.com/kenn-io/agentsview)          | `0.40.1`  | [MIT](https://github.com/kenn-io/agentsview/blob/main/LICENSE)              | Browse and replay AI coding agent trajectories in terminal |
 | [`code`](https://code.visualstudio.com/)                       | `1.131.0` | [MIT](https://github.com/microsoft/vscode/blob/main/LICENSE.txt)            | Visual Studio Code editor                                  |
-| [`code-server`](https://github.com/coder/code-server)          | `4.130.0` | [MIT](https://github.com/coder/code-server/blob/main/LICENSE)               | VS Code in the browser                                     |
+| [`code-server`](https://github.com/coder/code-server)          | `4.131.0` | [MIT](https://github.com/coder/code-server/blob/main/LICENSE)               | VS Code in the browser                                     |
 | [`genai-toolbox`](https://github.com/googleapis/mcp-toolbox)   | `1.8.0`   | [Apache-2.0](https://github.com/googleapis/mcp-toolbox/blob/main/LICENSE)   | Google database MCP server                                 |
-| [`uv`](https://github.com/astral-sh/uv)                        | `0.12.0`  | [MIT](https://github.com/astral-sh/uv/blob/main/LICENSE-MIT)                | Next-gen Python package manager                            |
+| [`uv`](https://github.com/astral-sh/uv)                        | `0.12.1`  | [MIT](https://github.com/astral-sh/uv/blob/main/LICENSE-MIT)                | Next-gen Python package manager                            |
 | [`golang`](https://golang.org/)                                | `1.26.5`  | [BSD-3](https://github.com/golang/go/blob/master/LICENSE)                   | Go compiler                                                |
-| [`nodejs`](https://nodejs.org/)                                | `24.18.1` | [MIT/Mixed](https://github.com/nodejs/node/blob/main/LICENSE)               | Server-side JavaScript runtime                             |
+| [`nodejs`](https://nodejs.org/)                                | `24.19.0` | [MIT/Mixed](https://github.com/nodejs/node/blob/main/LICENSE)               | Server-side JavaScript runtime                             |
 {.stretch-last}

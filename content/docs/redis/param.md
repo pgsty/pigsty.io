@@ -40,7 +40,7 @@ The [`REDIS_REMOVE`](#redis_remove) parameter group controls Redis instance remo
 
 | Parameter                                 |  Type  |  Level  | Description                                    |
 |:------------------------------------------|:------:|:-------:|:-----------------------------------------------|
-| [`redis_safeguard`](#redis_safeguard)     | `bool` | `G/C/A` | Prevent removing running Redis instances?      |
+| [`redis_safeguard`](#redis_safeguard)     | `bool` | `G/C/A` | Refuse removal unconditionally when `true`     |
 | [`redis_rm_data`](#redis_rm_data)         | `bool` | `G/C/A` | Remove Redis data directory when removing?     |
 | [`redis_rm_pkg`](#redis_rm_pkg)           | `bool` | `G/C/A` | Uninstall Redis packages when removing?        |
 
@@ -68,7 +68,7 @@ redis_cluster_replicas: 1             # Replicas per master in Redis native clus
 redis_sentinel_monitor: []            # Master list for Sentinel, sentinel mode only
 
 # REDIS_REMOVE
-redis_safeguard: false                # Prevent removing running Redis instances?
+redis_safeguard: false                # Refuse removal unconditionally when true
 redis_rm_data: true                   # Remove Redis data directory when removing?
 redis_rm_pkg: false                   # Uninstall Redis packages when removing?
 ```
@@ -152,6 +152,7 @@ Enable Redis Exporter monitoring component?
 Enabled by default, deploying one exporter per Redis node, listening on [`redis_exporter_port`](#redis_exporter_port) `9121` by default. It scrapes metrics from all Redis instances on the node.
 
 When set to `false`, `roles/redis/tasks/exporter.yml` still renders config files but skips starting the `redis_exporter` systemd service (the `redis_exporter_launch` task has `when: redis_exporter_enabled|bool`), allowing manually configured exporters to remain.
+`redis_register` still writes this node's VictoriaMetrics file-discovery target. If you do not provide your own exporter on the same port, handle that target as well to avoid continuous scrape failures.
 
 
 
@@ -356,9 +357,7 @@ The following parameters are used by the [`redis_remove`](https://github.com/pgs
 
 Parameter: `redis_safeguard`, Type: `bool`, Level: `G/C/A`
 
-Redis safety guard to prevent accidental removal: when enabled, the `redis-rm.yml` playbook cannot remove running Redis instances.
-
-Default is `false`. When set to `true`, the `redis-rm.yml` playbook refuses to execute, preventing accidental deletion of running Redis instances.
+Redis deletion safeguard, default `false`. When set to `true`, `redis-rm.yml` aborts before deregistration, service shutdown, or deletion. This is a static Boolean switch and does not probe whether a Redis instance is running.
 
 Override with CLI argument `-e redis_safeguard=false` to force removal.
 
@@ -378,6 +377,6 @@ Set to `false` to preserve data directories for later recovery.
 
 Parameter: `redis_rm_pkg`, Type: `bool`, Level: `G/C/A`
 
-Uninstall Redis and redis_exporter packages when removing Redis instances? Default is `false`.
+Uninstall the Redis and `redis-exporter` packages when removing Redis instances? Default is `false`.
 
 Typically not needed to uninstall packages; only enable when completely cleaning up a node.

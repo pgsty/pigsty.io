@@ -51,7 +51,7 @@ Pigsty documentation sites ([**pigsty.cc**](https://pigsty.cc), [**pigsty.io**](
 
 Open-source software used or related to the Pigsty project.
 
-For 562 PostgreSQL extension plugin licenses, refer to [**PostgreSQL Extension License List**](/ext/license/).
+For {{< param pgext_count >}} PostgreSQL extension plugin licenses, refer to [**PostgreSQL Extension License List**](/ext/license/).
 
 | **Module** | **Software Name**                                                 | **License**                                                                                               | **Purpose & Description**                   |  **Necessity**  |
 |:----------:|:------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------|:--------------------------------------------|:---------------:|

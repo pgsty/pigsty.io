@@ -43,6 +43,12 @@ This page lists default ports used by Pigsty module components. Adjust as needed
 |  [**`KAFKA`**](/docs/kafka)    |       **`KRaft controller`**       | `9093`  | [**`kafka_controller_port`**](/docs/kafka/param#kafka_controller_port)       | 🧪 BETA  |
 |  [**`KAFKA`**](/docs/kafka)    |        **`kafka_exporter`**        | `9308`  | [**`kafka_exporter_port`**](/docs/kafka/param#kafka_exporter_port)           | 🧪 BETA  |
 |  [**`KAFKA`**](/docs/kafka)    |         **`JMX exporter`**         | `9404`  | [**`kafka_jmx_exporter_port`**](/docs/kafka/param#kafka_jmx_exporter_port)   | 🧪 BETA  |
+| [**`MYSQL`**](/docs/pilot/mysql/) |          **`mysqld`**            | `3306`  | Fixed value (the current pilot exposes no port parameter)                    | 🧪 PILOT |
+| [**`MYSQL`**](/docs/pilot/mysql/) |     **`MySQL X Protocol`**       | `33060` | Fixed value; loopback-only on a single node, member-facing in a 3-node topology | 🧪 PILOT |
+| [**`MYSQL`**](/docs/pilot/mysql/) |    **`Group Replication`**       | `33061` | Fixed value; three-node InnoDB Cluster only                                  | 🧪 PILOT |
+| [**`MYSQL`**](/docs/pilot/mysql/) |     **`MySQL Router RW`**        | `6446`  | Fixed value; three-node InnoDB Cluster only                                  | 🧪 PILOT |
+| [**`MYSQL`**](/docs/pilot/mysql/) |     **`MySQL Router RO`**        | `6447`  | Fixed value; three-node InnoDB Cluster only                                  | 🧪 PILOT |
+| [**`MYSQL`**](/docs/pilot/mysql/) |     **`mysqld_exporter`**        | `9104`  | Fixed value; controlled by `mysql_exporter_enabled`                          | 🧪 PILOT |
 |  [**`PGSQL`**](/docs/pgsql)    |          **`postgres`**            | `5432`  | [**`pg_port`**](/docs/pgsql/param#pg_port)                                   | Enabled  |
 |  [**`PGSQL`**](/docs/pgsql)    |         **`pgbouncer`**            | `6432`  | [**`pgbouncer_port`**](/docs/pgsql/param#pgbouncer_port)                     | Enabled  |
 |  [**`PGSQL`**](/docs/pgsql)    |          **`patroni`**             | `8008`  | [**`patroni_port`**](/docs/pgsql/param#patroni_port)                         | Enabled  |
@@ -56,6 +62,8 @@ This page lists default ports used by Pigsty module components. Adjust as needed
 |  [**`PGSQL`**](/docs/pgsql)    | **`{{ pg_cluster }}-<service>`**   | `543x`  | [**`pg_services`**](/docs/pgsql/param#pg_services)                           | Optional |
 {.full-width}
 
+The native MySQL pilot reuses port `3306` for MySQL Shell AdminAPI. XtraBackup is invoked by a local systemd timer and has no listening port, while the role explicitly disables the MySQL Router REST management interface. The table lists only network endpoints currently managed by the role.
+
 
 ## Public Port Recommendations
 
@@ -64,7 +72,7 @@ If you use firewall [**`zone`**](/docs/node/param#node_firewall_mode) mode, expo
 - Minimal management surface: `22, 80, 443` (recommended)
 - If public direct DB access is required: additionally expose `5432`
 
-Avoid exposing internal component ports directly to the public internet: `etcd` (`2379/2380`), `patroni` (`8008`), exporters (`9xxx`), `minio` (`9000/9001`), `redis` (`6379`), `ferretdb` (`27017/27018`), Kafka (`9092/9093`), etc.
+Avoid exposing internal component ports directly to the public internet: `etcd` (`2379/2380`), `patroni` (`8008`), exporters (`9xxx`), `minio` (`9000/9001`), `redis` (`6379`), `ferretdb` (`27017/27018`), Kafka (`9092/9093`), MySQL Group Replication (`33061`), etc.
 
 ```yaml
 node_firewall_mode: zone

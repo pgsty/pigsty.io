@@ -12,7 +12,7 @@ categories: [Concept]
 For scenarios where data integrity is critical, such as financial transactions, RPO = 0 is typically required, meaning no data loss is allowed.
 
 However, stricter RPO targets come at a cost: higher write latency, reduced system throughput, and the risk that replica failures may cause primary unavailability.
-For typical scenarios, some data loss is acceptable (e.g., up to 1MB) in exchange for higher availability and performance.
+For typical scenarios, some data loss is acceptable in exchange for higher availability and performance.
 
 --------
 
@@ -21,14 +21,13 @@ For typical scenarios, some data loss is acceptable (e.g., up to 1MB) in exchang
 In asynchronous replication scenarios, there is typically some replication lag between replicas and the primary (depending on network and throughput, normally in the range of 10KB-100KB / 100µs-10ms).
 This means when the primary fails, replicas may not have fully synchronized with the latest data. If a failover occurs, the new primary may lose some unreplicated data.
 
-The upper limit of potential data loss is controlled by the [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) parameter, which defaults to `1048576` (`1MB`), meaning up to 1MiB of data loss can be tolerated during failover.
+The [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) parameter is written to Patroni's `maximum_lag_on_failover` and defaults to `1048576` (1MiB). It is the **sampled lag threshold that permits a replica to participate as a failover candidate**, not a hard upper bound on actual data loss.
 
 When the cluster primary fails, if any replica has replication lag within this threshold, Pigsty will automatically promote that replica to be the new primary.
 However, when all replicas exceed this threshold, Pigsty will refuse [**automatic failover**] to prevent data loss.
 Manual intervention is then required to decide whether to wait for the primary to recover (which may never happen) or accept the data loss and force-promote a replica.
 
-You need to configure this value based on your business requirements, making a **trade-off** between **availability** and **consistency**.
-Increasing this value improves the success rate of automatic failover but also increases the upper limit of potential data loss.
+Because the primary's WAL position is not sampled continuously, the worst-case loss under asynchronous replication can also include WAL generated during the most recent `ttl` window (on average, roughly another `loop_wait/2` of WAL). Configure this threshold with your workload's write rate in mind. Increasing it improves the chance of automatic failover but also broadens candidate eligibility.
 
 When you set [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) = 0, Pigsty enables **synchronous replication**, ensuring the primary only returns write success after at least one replica has persisted the data.
 This configuration ensures zero replication lag but introduces significant write latency and reduces overall throughput.
@@ -40,7 +39,7 @@ flowchart LR
     B -->|No| C{Lag < RPO?}
     B -->|Yes| D{Sync Replica<br/>Available?}
 
-    C -->|Yes| E[Lossy Auto Failover<br/>RPO < 1MB]
+    C -->|Yes| E[Lossy Auto Failover<br/>Sampled candidate lag is within threshold]
     C -->|No| F[Refuse Auto Failover<br/>Wait for Primary Recovery<br/>or Manual Intervention]
 
     D -->|Yes| G[Lossless Auto Failover<br/>RPO = 0]
@@ -67,7 +66,7 @@ Pigsty provides three protection modes to help users make trade-offs under diffe
 
 {{% alert title="Maximum Performance" color="primary" %}}
 - **Default mode**, asynchronous replication, transactions commit with only local WAL persistence, no waiting for replicas, replica failures are completely transparent to the primary
-- Primary failure may lose unsent/unreceived WAL (typically < 1MB, normally 10ms/100ms, 10KB/100KB range under normal network conditions)
+- Primary failure may lose unsent/unreceived WAL. The default sampled candidate-lag threshold is 1MiB, but this is not a hard upper bound on actual loss
 - Optimized for performance, suitable for typical business scenarios that tolerate minor data loss during failures
 {{% /alert %}}
 
@@ -90,7 +89,7 @@ Pigsty provides three protection modes to help users make trade-offs under diffe
 | **Write Latency**          |          <span class="text-success">**Lowest**</span>           |      <span class="text-warning">**Medium**</span> (+1 network RTT)       | <span class="text-warning">**Medium**</span> (+1 network RTT) |
 | **Throughput**             |          <span class="text-success">**Highest**</span>          |              <span class="text-warning">**Reduced**</span>               |         <span class="text-warning">**Reduced**</span>         |
 | **Replica Failure Impact** |           <span class="text-success">**None**</span>            |  <span class="text-primary">**Auto degrade, service continues**</span>   |   <span class="text-danger">**Primary stops writes**</span>   |
-| **RPO**                    |           <span class="text-warning">**< 1MB**</span>           |  <span class="text-primary">**= 0 (normal) / < 1MB (degraded)**</span>   |           <span class="text-success">**= 0**</span>           |
+| **RPO**                    | <span class="text-warning">**Possible loss; 1MiB default candidate threshold**</span> | <span class="text-primary">**= 0 normally / possible loss after degradation**</span> | <span class="text-success">**= 0**</span> |
 | **Use Case**               |               Typical business, performance first               |                     Critical business, safety first                      |               Financial core, compliance first                |
 | **Configuration**          |                         Default config                          |              [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) = `0`              |    [**`pg_conf`**](/docs/pgsql/param#pg_conf): `crit.yml`     |
 {.full-width}
@@ -128,11 +127,11 @@ You can also directly [**configure**](/docs/pgsql/admin/patroni#modify-config) t
 ## Recommendations
 
 **Maximum Performance mode** (asynchronous replication) is the default mode used by Pigsty and is sufficient for the vast majority of workloads.
-Tolerating minor data loss during failures (typically in the range of a few KB to hundreds of KB) in exchange for higher throughput and availability is the recommended configuration for typical business scenarios.
-In this case, you can adjust the maximum allowed data loss through the [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) parameter to suit different business needs.
+It tolerates some loss during a failure in exchange for higher throughput and availability.
+In this mode, [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) adjusts the sampled lag threshold for failover candidates; actual worst-case loss also depends on write rate, `ttl`, and sampling timing.
 
 
-**Maximum Availability mode** (synchronous replication) is suitable for scenarios with high data integrity requirements that cannot tolerate data loss.
+**Maximum Availability mode** (synchronous replication) is suitable for scenarios with high data-integrity requirements. Acknowledged transactions have zero loss while a synchronous replica is healthy, but the cluster can degrade when all synchronous replicas are unavailable.
 In this mode, a minimum of two-node PostgreSQL cluster (one primary, one replica) is required.
 Set [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) to 0 to enable this mode.
 

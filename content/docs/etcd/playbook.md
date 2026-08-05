@@ -123,7 +123,7 @@ etcd:
     etcd_safeguard: true  # Enable safeguard protection
 ```
 
-When `etcd_safeguard` is set to `true`, the `etcd-rm.yml` playbook will detect running etcd instances and abort to prevent accidental deletion. You can override this behavior using command-line parameters:
+When `etcd_safeguard` is set to `true`, `etcd-rm.yml` aborts before any deregistration, cluster-leave, service-stop, or deletion action. It is a boolean guard and does not probe whether the instance is alive. Override it with a command-line parameter:
 
 ```bash
 ./etcd-rm.yml -e etcd_safeguard=false  # Force override safeguard

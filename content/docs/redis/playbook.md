@@ -24,7 +24,7 @@ The [`redis.yml`](https://github.com/pgsty/pigsty/blob/main/redis.yml) playbook 
 
 ```bash
 redis_node        : Init redis node
-  - redis_install : Install redis & redis_exporter
+  - redis_install : Install Redis and the `redis-exporter` package
   - redis_user    : Create OS user redis
   - redis_dir     : Configure redis FHS directory structure
 redis_exporter    : Configure redis_exporter monitoring

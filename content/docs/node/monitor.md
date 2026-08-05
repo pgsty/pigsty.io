@@ -6,14 +6,14 @@ icon: fa-solid fa-binoculars
 categories: [Reference]
 ---
 
-The NODE module in Pigsty provides 6 monitoring dashboards and comprehensive alerting rules.
+Pigsty currently provides 10 monitoring dashboards in the NODE dashboard directory, along with comprehensive alerting rules.
 
 
 ----------------
 
 ## Dashboards
 
-The NODE module provides 6 monitoring dashboards:
+The NODE dashboard directory currently contains 10 dashboards. The JuiceFS and Claude Code dashboards show data only after those components are deployed and emit metrics.
 
 ### NODE Overview
 
@@ -55,6 +55,34 @@ Monitors detailed status of L2 virtual IPs.
 Tracks the operational status of HAProxy load balancers.
 
 [![node-haproxy.jpg](/img/dashboard/node-haproxy.jpg)](https://demo.pigsty.io/d/node-haproxy)
+
+
+### Node Disk
+
+Focuses on per-disk I/O latency, throughput, queue depth, and other storage metrics.
+
+[![node-disk.webp](/img/panel/node-disk.webp)](https://demo.pigsty.io/d/node-disk)
+
+
+### Node Vector
+
+Shows Vector collection and forwarding status, plus log-pipeline health.
+
+[![node-vector.webp](/img/dashboard/node-vector.webp)](https://demo.pigsty.io/d/node-vector)
+
+
+### Node JuiceFS
+
+Shows JuiceFS client cache, object storage, metadata operations, and read/write performance.
+
+[Open the Node JuiceFS Dashboard](https://demo.pigsty.io/d/node-juice)
+
+
+### Claude Code
+
+Shows sessions, tokens, costs, and logs reported by Claude Code through OpenTelemetry.
+
+[Open the Claude Code Dashboard](https://demo.pigsty.io/d/claude-code)
 
 
 ----------------

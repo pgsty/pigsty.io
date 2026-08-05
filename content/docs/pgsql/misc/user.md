@@ -64,7 +64,7 @@ Each user/role definition is an object that may include the following fields. Us
   roles: [dbrole_admin]           # Optional, default roles are: dbrole_{admin,readonly,readwrite,offline}
   parameters: {}                  # Optional, use `ALTER ROLE SET` to configure role-level database parameters for this role
   pool_mode: transaction          # Optional, pgbouncer pool mode defaulting to transaction, user level
-  pool_connlimit: -1              # Optional, user-level maximum database connections, default -1 disables limit
+  pool_connlimit: 100             # Optional, user-level max pool connections; omitted inherits global default 100
   search_path: public             # Optional, key-value configuration parameters per postgresql documentation (e.g., use pigsty as default search_path)
 ```
 
@@ -88,7 +88,7 @@ If you want to redesign your own ACL system, consider customizing the following 
 
 - [`pg_default_roles`](/docs/pgsql/param#pg_default_roles): System-wide roles and global users
 - [`pg_default_privileges`](/docs/pgsql/param#pg_default_privileges): Default privileges for newly created objects
-- [`roles/pgsql/templates/pg-init-role.sql`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/pg-init-role.sql): Role creation SQL template
+- [`roles/pgsql/templates/pg-init-roles.sql`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/pg-init-roles.sql): Role creation SQL template
 - [`roles/pgsql/templates/pg-init-template.sql`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/pg-init-template.sql): Privilege SQL template
 
 
@@ -166,8 +166,6 @@ dbuser_monitor              = pool_mode=session max_user_connections=8
 When you [create a database](#creating-databases), the Pgbouncer database list definition file will be refreshed and take effect through online configuration reload, without affecting existing connections.
 
 Pgbouncer runs with the same `dbsu` as PostgreSQL, which defaults to the `postgres` operating system user. You can use the `pgb` alias to access pgbouncer management functions using the dbsu.
-
-Pigsty also provides a utility function `pgb-route` that can quickly switch pgbouncer database traffic to other nodes in the cluster, useful for zero-downtime migration:
 
 The connection pool user configuration files `userlist.txt` and `useropts.txt` are automatically refreshed when you [create users](#creating-users), and take effect through online configuration reload, normally without affecting existing connections.
 

@@ -14,7 +14,7 @@ Pigsty provides four preset Patroni/PostgreSQL config templates optimized for di
 |:-------------------------|:----------|:------------------|:--------------------------|
 | [**`/docs/pgsql/template/oltp.yml`**](/docs/pgsql/template/oltp)   | 4-128C    | OLTP transactions | High concurrency, low latency |
 | [**`/docs/pgsql/template/olap.yml`**](/docs/pgsql/template/olap)   | 4-128C    | OLAP analytics    | Large queries, high parallelism |
-| [**`/docs/pgsql/template/crit.yml`**](/docs/pgsql/template/crit)   | 4-128C    | Critical/Finance  | Data safety, audit, zero-loss |
+| [**`/docs/pgsql/template/crit.yml`**](/docs/pgsql/template/crit)   | 4-128C    | Consistency-first | Consistency-first, detailed auditing |
 | [**`/docs/pgsql/template/tiny.yml`**](/docs/pgsql/template/tiny)   | 1-3C      | Tiny instances    | Resource-constrained envs |
 {.full-width}
 
@@ -88,7 +88,7 @@ The four templates differ significantly in key parameters:
 
 | Parameter                           | OLTP            | OLAP    | CRIT      | TINY      |
 |:------------------------------------|:----------------|:--------|:----------|:----------|
-| **max_worker_processes**            | cpu+8           | cpu+12  | cpu+8     | cpu+4     |
+| **max_worker_processes**            | max(cpu+16, 24) | max(cpu+20, 28) | max(cpu+16, 24) | max(cpu+12, 20) |
 | **max_parallel_workers**            | 50% cpu         | 80% cpu | 50% cpu   | 50% cpu   |
 | **max_parallel_workers_per_gather** | 20% cpu (max 8) | 50% cpu | 0 (off)   | 0 (off)   |
 | **parallel_setup_cost**             | 2000            | 1000    | 2000      | 1000      |
@@ -124,12 +124,12 @@ The four templates differ significantly in key parameters:
 {.full-width}
 
 
-### IO Config (PG18+)
+### IO Config (PG18)
 
 | Parameter           | OLTP           | OLAP           | CRIT          | TINY      |
 |:--------------------|:---------------|:---------------|:--------------|:----------|
 | **io_workers**      | 25% cpu (4-16) | 50% cpu (4-32) | 25% cpu (4-8) | 3         |
-| **temp_file_limit** | 1/20 disk      | 1/5 disk       | 1/20 disk     | 1/20 disk |
+| **temp_file_limit** | 1/20 disk, max 100GB | 1/5 disk, max 400GB | 1/20 disk, max 100GB | 1/20 disk, max 100GB |
 {.full-width}
 
 
@@ -204,7 +204,7 @@ For technical details on template parameter optimization, see [**Tuning Strategy
 - [**`pg_conf`**](/docs/pgsql/param#pg_conf): PostgreSQL config template
 - [**`node_tune`**](/docs/node/param#node_tune): OS tuning template, should match `pg_conf`
 - [**`pg_rto`**](/docs/pgsql/param#pg_rto): Recovery time objective, affects failover timeout
-- [**`pg_rpo`**](/docs/pgsql/param#pg_rpo): Recovery point objective, affects sync replication
+- [**`pg_rpo`**](/docs/pgsql/param#pg_rpo): Candidate-replica lag threshold; setting it to 0 enables synchronous replication in the general templates
 - [**`pg_max_conn`**](/docs/pgsql/param#pg_max_conn): Override template max connections
 - [**`pg_shared_buffer_ratio`**](/docs/pgsql/param#pg_shared_buffer_ratio): Shared buffer memory ratio
 - [**`pg_storage_type`**](/docs/pgsql/param#pg_storage_type): Storage type, affects IO params

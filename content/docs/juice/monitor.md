@@ -28,6 +28,8 @@ If [`INFRA`](/docs/infra) is deployed, `juice_register` writes scrape targets to
 /infra/targets/juice/<hostname>.yml
 ```
 
+The current source includes the [Node JuiceFS](https://demo.pigsty.io/d/node-juice) dashboard (UID: `node-juice`) for capacity, cache, object-storage, metadata-transaction, and client-resource metrics across JuiceFS mounts on a node.
+
 --------
 
 ## Target File Example

@@ -26,7 +26,7 @@ Use Pigsty's [**standard installation process**](/docs/setup/install) with the [
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
 ./configure -c pgtde     # Use percona postgres kernel
-./deploy.yml             # Set up everything with pigsty
+./deploy.yml             # Deploy the Pigsty core chain with Percona PostgreSQL
 ```
 
 

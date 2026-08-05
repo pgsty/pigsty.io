@@ -206,6 +206,9 @@ psql postgres://dbuser_odoo:DBUser.Odoo@10.10.10.10:5432/odoo
     infra_portal:                     # Domain names and upstream servers
       home         : { domain: i.pigsty }
       odoo         : { domain: odoo.pigsty, endpoint: "127.0.0.1:8069", websocket: true }  # <------ Add this line
+```
+
+```bash
 ./infra.yml -t nginx   # Setup nginx infra portal
 ```
 

@@ -16,8 +16,8 @@ The `mysql` configuration template uses OpenHalo database kernel instead of nati
 - Config Name: `mysql`
 - Node Count: Single node
 - Description: OpenHalo MySQL-compatible kernel configuration
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`
-- OS Arch: `x86_64`
+- OS Distro: EL 8/9/10, Debian 12/13, Ubuntu 22/24/26
+- OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/)
 
 Usage:
@@ -66,6 +66,4 @@ psql postgres://dbuser_meta:DBUser.Meta@10.10.10.10:5432/meta
 **Notes**:
 - OpenHalo is based on PostgreSQL 14, does not support higher version features
 - Some MySQL syntax may have compatibility differences
-- Only supports EL8/EL9 systems
-- ARM64 architecture not supported
-
+- The current `openhalo` package alias covers Pigsty's supported Linux platforms on both architectures; actual installation still depends on the target platform's repository index

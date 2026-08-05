@@ -48,7 +48,7 @@ all:
 - Code-Server default open directory
 - JupyterLab `root_dir`
 - Claude Code working dir
-- `CLAUDE.md` / `AGENTS.md` context files
+- Render the `AGENTS.md` context file and create a `CLAUDE.md` symlink to it
 
 The `vibe_dir` task creates the directory and context files, owned by `node_user`.
 

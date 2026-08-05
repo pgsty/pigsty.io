@@ -134,7 +134,7 @@ The alias form allows you to maintain HBA rules in a simpler, clearer, and more 
 
 ### 3. Definition Location
 
-Typically, global HBA is defined in `all.vars`. If you want to modify the global default HBA rules, you can copy one from the [`full.yml`](https://github.com/pgsty/pigsty/blob/main/conf/full.yml#L690) template to `all.vars` and modify it.
+Typically, global HBA is defined in `all.vars`. To modify the global default HBA rules, copy them from [`conf/ha/full.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/full.yml) into `all.vars` and edit them.
 
 - [`pg_default_hba_rules`](/docs/pgsql/param#pg_default_hba_rules): postgres global default HBA rules
 - [`pgb_default_hba_rules`](/docs/pgsql/param#pgb_default_hba_rules): pgbouncer global default HBA rules
@@ -367,7 +367,7 @@ host     all                all                192.168.0.0/16     scram-sha-256
 
 ## Security Hardening
 
-For scenarios requiring higher security, we provide a security hardening configuration template [security.yml](https://github.com/pgsty/pigsty/blob/main/conf/safe.yml), which uses the following default HBA rule set:
+For scenarios requiring higher security, use the hardened [`conf/ha/safe.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/safe.yml) configuration template, which uses the following default HBA rule set:
 
 ```yaml
 pg_default_hba_rules:             # postgres host-based auth rules by default

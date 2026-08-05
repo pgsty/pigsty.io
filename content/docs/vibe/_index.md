@@ -41,7 +41,7 @@ Notes:
 
 ```bash
 ./configure -c vibe
-./deploy.yml        # NODE + INFRA + PGSQL
+./deploy.yml        # deploy NODE, INFRA, ETCD, MINIO, and PGSQL defined in the inventory
 ./juice.yml         # optional shared storage
 ./vibe.yml          # VIBE
 ```

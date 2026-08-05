@@ -365,7 +365,7 @@ The script reads templates from `conf/`. The value of `-c` is a path relative to
 
 ```bash
 $ ./configure
-configure pigsty v4.4.0 begin
+configure pigsty v4.5.0 begin
 [ OK ] region = china
 [ OK ] kernel  = Linux
 [ OK ] machine = x86_64

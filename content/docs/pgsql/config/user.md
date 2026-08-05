@@ -68,7 +68,7 @@ Each user/role definition is a complex object. Only `name` is required:
     search_path: public
   pgbouncer: true                 # Optional, add to connection pool user list, default false
   pool_mode: transaction          # Optional, pgbouncer pool mode, default transaction
-  pool_connlimit: -1              # Optional, user-level max pool connections, default -1
+  pool_connlimit: 100             # Optional, user-level max pool connections; omitted inherits global default 100
 ```
 
 > User-level pool quota is consistently defined by `pool_connlimit` (mapped to Pgbouncer `max_user_connections`).
@@ -554,7 +554,7 @@ dbuser_monitor  = pool_mode=session max_user_connections=8
 
 ### `pool_connlimit`
 
-Integer, mutable. User-level max pool connections, default `-1` (unlimited).
+Integer, mutable. User-level maximum pool connections. If omitted, no user-level override is generated and Pigsty's global `pgbouncer.ini` default of `100` applies. PgBouncer uses `0` to mean unlimited.
 
 ```yaml
 - name: dbuser_app
@@ -606,7 +606,7 @@ To redesign your own ACL system, customize:
 
 - [**`pg_default_roles`**](/docs/pgsql/param#pg_default_roles): System-wide roles and global users
 - [**`pg_default_privileges`**](/docs/pgsql/param#pg_default_privileges): Default privileges for new objects
-- [**`pg-init-role.sql`**](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/pg-init-role.sql): Role creation SQL template
+- [**`pg-init-roles.sql`**](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/pg-init-roles.sql): Role creation SQL template
 - [**`pg-init-template.sql`**](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/pg-init-template.sql): Privilege SQL template
 
 

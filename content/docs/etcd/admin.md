@@ -325,18 +325,19 @@ Script auto-performs:
 
 Remove member instance from etcd cluster:
 
-1. **Remove from config inventory**: Comment out or delete instance, and [reload config](#reload-config)
-2. **Kick from cluster**: Use `etcdctl member remove` command
-3. **Clean up instance**: Use `etcd-rm.yml` playbook to clean up
+1. **Keep the member in the inventory**: The removal playbook needs its `etcd_seq`, cluster members, and connection endpoints
+2. **Clean up the instance**: Run `etcd-rm.yml` against the target; it first attempts `member remove`, then stops the service and cleans up according to the removal flags
+3. **Update the inventory**: Comment out or delete the member only after the playbook succeeds
+4. **Reload references**: Follow [Reload Config](#reload-config) for the remaining etcd members and the Patroni/VIP-Manager endpoints
 
 ```bash
-# Use dedicated removal playbook (recommended)
-./etcd-rm.yml -l <ip>
-
-# Or manual
-etcdctl member remove <server_id>      # kick from cluster
-./etcd-rm.yml -l <ip>                  # clean up instance
+# <ip> must still be in the etcd inventory group
+./etcd-rm.yml -l <ip>                  # Leave the cluster and clean up automatically
+# After success, remove the member from pigsty.yml and refresh the remaining members and clients
 ```
+
+Do not delete the target from the inventory before running the removal playbook. The `hosts: etcd` scope in `etcd-rm.yml` would no longer select it, and the playbook could not derive the instance identity or cluster endpoints from inventory.
+There is also no need to repeat `etcdctl member remove` before or after the playbook.
 
 <details><summary>Detailed: Remove member from etcd cluster</summary>
 
@@ -352,18 +353,7 @@ Script auto-completes all operations: remove from cluster, stop service, clean u
 
 **Method 2: Manual**
 
-First, refresh config by **commenting out** member to delete, then [reload config](#reload-config) so all clients stop using this instance.
-
-```yaml
-etcd:
-  hosts:
-    10.10.10.10: { etcd_seq: 1 }
-    10.10.10.11: { etcd_seq: 2 }
-    # 10.10.10.12: { etcd_seq: 3 }   # <---- comment out this member
-  vars: { etcd_cluster: etcd }
-```
-
-Then use removal playbook:
+First keep the member to be removed in the inventory, then run the removal playbook:
 
 ```bash
 $ ./etcd-rm.yml -l 10.10.10.12
@@ -375,7 +365,7 @@ Playbook auto-executes:
 3. Stop etcd service
 4. Clean up data and config files
 
-If manual:
+The playbook queries the member ID and runs `member remove` automatically. Do this manually only when troubleshooting:
 
 ```bash
 $ etcdctl member list
@@ -387,7 +377,9 @@ $ etcdctl member remove 93fcf23b220473fb # kick from cluster
 Member 93fcf23b220473fb removed from cluster 6646fbcf5debc68f
 ```
 
-After execution, permanently remove from config inventory. Member removal complete.
+After a manual member removal, run `./etcd-rm.yml -l 10.10.10.12` while the target remains in inventory to stop, deregister, and clean it up. Its leave step skips a member that has already been removed.
+
+Only after instance cleanup succeeds should you delete `10.10.10.12` from the inventory and follow [Reload Config](#reload-config) to refresh the remaining etcd members and all client references. Member removal is then complete.
 
 Repeat to remove more members. Combined with [Add Member](#add-member), perform rolling upgrades and migrations of etcd cluster.
 </details>

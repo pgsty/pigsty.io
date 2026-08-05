@@ -9,7 +9,7 @@ categories: [Concept]
 
 [PostgreSQL](https://www.postgresql.org/) is the world's most advanced and popular open-source database.
 
-Pigsty installs PostgreSQL 18 by default, supports PostgreSQL 14 ~ 18, and provides 562 PG extensions.
+Pigsty installs PostgreSQL 18 by default, supports PostgreSQL 14 ~ 18, and provides {{< param pgext_count >}} PG extensions.
 
 
 ------
@@ -20,7 +20,7 @@ Pigsty installs PostgreSQL 18 by default, supports PostgreSQL 14 ~ 18, and provi
 
 ```bash
 ./configure -c pgsql     # Use postgres kernel
-./deploy.yml             # Set up everything with pigsty
+./deploy.yml             # Deploy the Pigsty core chain with native PostgreSQL
 ```
 
 Most [configuration templates](/docs/conf/) use PostgreSQL kernel by default, for example:
@@ -28,7 +28,7 @@ Most [configuration templates](/docs/conf/) use PostgreSQL kernel by default, fo
 - [`meta`](https://github.com/pgsty/pigsty/blob/main/conf/meta.yml) : **Default**, postgres with core extensions (vector, postgis, timescale)
 - [`rich`](https://github.com/pgsty/pigsty/blob/main/conf/rich.yml) : postgres with all extensions installed
 - [`slim`](https://github.com/pgsty/pigsty/blob/main/conf/slim.yml) : postgres only, no monitoring infrastructure
-- [`full`](https://github.com/pgsty/pigsty/blob/main/conf/full.yml) : 4-node sandbox for HA demonstration
+- [`ha/full`](https://github.com/pgsty/pigsty/blob/main/conf/ha/full.yml) : 4-node sandbox for HA demonstration
 - [`pgsql`](https://github.com/pgsty/pigsty/blob/main/conf/pgsql.yml) : minimal postgres kernel configuration example
 
 

@@ -55,6 +55,8 @@ The INFRA module is responsible for deploying Pigsty's infrastructure components
 | [`infra_seq`](#infra_seq)       | `int`  |  `I`  | Infrastructure node sequence, REQUIRED             |
 | [`infra_portal`](#infra_portal) | `dict` |  `G`  | Infrastructure services exposed via Nginx portal   |
 | [`infra_data`](#infra_data)     | `path` |  `G`  | Infrastructure data directory, default /data/infra |
+| [`infra_services`](#infra_services) | `service[]` | `G` | Built-in home navigation entries |
+| [`infra_extra_services`](#infra_extra_services) | `service[]` | `G` | Additional home navigation entries, default `[]` |
 
 [`REPO`](#repo) parameters configure the local software repository, including repository enable switch, directory paths, upstream source definitions, and packages to download.
 
@@ -160,7 +162,7 @@ The INFRA module is responsible for deploying Pigsty's infrastructure components
 This section defines Pigsty deployment metadata: version string, admin node IP address, repository mirror [`region`](#region), default language, and HTTP(S) proxy for downloading packages.
 
 ```yaml
-version: v4.4.0                   # pigsty version string
+version: v4.5.0                   # pigsty version string
 admin_ip: 10.10.10.10             # admin node ip address
 region: default                   # upstream mirror region: default,china,europe
 language: en                      # default language: en or zh
@@ -178,11 +180,11 @@ proxy_env:                        # global proxy env when downloading packages
 
 name: `version`, type: `string`, level: `G`
 
-Pigsty version string, default value is the current version: `v4.4.0`.
+Pigsty version string. The current source default is `v4.5.0`.
 
 Pigsty uses this version string internally for feature control and content rendering. Do not modify this parameter arbitrarily.
 
-Pigsty uses semantic versioning, and the version string typically starts with the character `v`, e.g., `v4.4.0`.
+Pigsty uses semantic versioning, and the version string typically starts with the character `v`, e.g., `v4.5.0`.
 
 
 
@@ -351,6 +353,8 @@ Infrastructure identity and portal definition.
 infra_portal:                     # infrastructure services exposed via Nginx portal
   home : { domain: i.pigsty }     # default home server definition
 infra_data: /data/infra           # infrastructure default data directory
+infra_services: [...]             # built-in home navigation entries
+infra_extra_services: []          # additional home navigation entries
 ```
 
 
@@ -446,6 +450,27 @@ This directory is used to store data files for infrastructure components, includ
 It is recommended to place this directory on a separate data disk for easier management and expansion.
 
 
+
+### `infra_services`
+
+name: `infra_services`, type: `service[]`, level: `G`
+
+Built-in navigation entries on the Pigsty home page. Current defaults include Metrics, Logs, Traces, Monitor Targets, Alert Rules, Alert Manager, CA Certificate, Software Repo, and Explain Visualizer.
+
+Each item can use `name`, `url`, `desc`, and `icon`, plus the Chinese display fields `name_cn` and `desc_cn`. This parameter replaces the entire default list; use [`infra_extra_services`](#infra_extra_services) if you only want to append entries.
+
+
+
+### `infra_extra_services`
+
+name: `infra_extra_services`, type: `service[]`, level: `G`
+
+Navigation entries appended to [`infra_services`](#infra_services). The default is `[]`, and each item uses the same structure as `infra_services`. For example:
+
+```yaml
+infra_extra_services:
+  - { name: My Service, url: 'https://example.com', desc: 'External Service', icon: 'database' }
+```
 
 
 
@@ -619,7 +644,7 @@ Each element in this parameter will be translated according to the `package_map`
 
 ```yaml
 node-bootstrap:          "ansible python3 python3-pip python3-virtualenv python3-requests python3-jmespath python3-cryptography dnf-utils modulemd-tools createrepo_c sshpass"
-infra-package:           "nginx dnsmasq etcd haproxy vip-manager node_exporter keepalived_exporter pg_exporter pgbackrest_exporter redis_exporter redis minio mcli pig"
+infra-package:           "nginx dnsmasq etcd haproxy vip-manager node-exporter keepalived-exporter pg-exporter pgbackrest-exporter redis-exporter redis minio mcli pig"
 infra-addons:            "grafana grafana-plugins grafana-victoriametrics-ds grafana-victorialogs-ds victoria-metrics victoria-logs victoria-traces vlogscli vmutils vector alertmanager"
 ```
 
@@ -686,17 +711,17 @@ name: `infra_packages`, type: `string[]`, level: `G`
 
 String array type, where each line is a **space-separated** list of software packages, specifying packages to install on Infra nodes.
 
-This parameter has no default value, meaning its default state is undefined. If not explicitly specified by the user in the configuration file, Pigsty will load the default from the `infra_packages_default` variable defined in [`roles/node_id/vars`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/) based on the current node's OS family.
+This parameter has no single cross-platform default. If not explicitly specified, Pigsty loads `infra_packages_default` from the platform-specific file under [`roles/node_id/vars`](https://github.com/pgsty/pigsty/tree/main/roles/node_id/vars), based on the operating-system version and CPU architecture.
 
-v4.x default value (EL operating systems):
+For example, the current mapping for `EL 9 x86_64` is:
 
 ```yaml
 infra_packages_default:
   - grafana,grafana-plugins,grafana-victorialogs-ds,grafana-victoriametrics-ds,victoria-metrics,victoria-logs,victoria-traces,vmutils,vlogscli,alertmanager
-  - node_exporter,blackbox_exporter,nginx_exporter,pg_exporter,pev2,nginx,dnsmasq,ansible,etcd,python3-requests,redis,mcli,restic,certbot,python3-certbot-nginx
+  - node-exporter,blackbox-exporter,nginx-exporter,pg-exporter,pev2,nginx,dnsmasq,ansible,etcd,python3-requests,redis,mcli,restic,certbot,python3-certbot-nginx
 ```
 
-Default value (Debian/Ubuntu):
+The current mapping for `Debian 13 x86_64` is:
 
 ```yaml
 infra_packages_default:
@@ -1237,7 +1262,7 @@ VMAlert extra command line options, default value is an empty string.
 
 This section now primarily contains Blackbox Exporter and Alertmanager configuration.
 
-> Note: Pigsty v4.x uses VictoriaMetrics to replace Prometheus. The original `prometheus_*` and `pushgateway_*` parameters have been moved to the [`VICTORIA`](#victoria) section.
+> Note: Pigsty v4.x uses VictoriaMetrics instead of Prometheus. The legacy `prometheus_*` and `pushgateway_*` parameters are no longer part of the current interface; use the `vmetrics_*` and `vmalert_*` parameters under [`VICTORIA`](#victoria) for metric storage and rule evaluation.
 
 ```yaml
 blackbox_enabled: true            # enable blackbox_exporter?

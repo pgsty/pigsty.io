@@ -109,7 +109,7 @@ Use online installation on matching OS versions to build your own offline packag
 2. Download Pigsty source package, extract and enter directory (assume extracted to home: **`cd ~/pigsty`**)
 3. [**`./bootstrap`**](#bootstrap), it will extract the package and configure using local repo (and install [**`ansible`**](/docs/setup/playbook) from it offline)
 4. **`./configure -g -c rich`**, you can directly use the [**`rich`**](/docs/conf/rich) template configured for offline installation, or configure yourself
-5. Run **`./deploy.yml`** as usual—it will install everything from the local repo
+5. Run **`./deploy.yml`** as usual to install the core path from the local repository; other optional modules still require their own playbooks
 
 {{< asciinema file="demo/install-offline.cast" markers="0:Upload Package,55:Extract and Use,66:Configure,80:Deploy" theme="solarized-light" speed="1.3" autoplay="true" loop="true" >}}
 
@@ -147,9 +147,17 @@ Pigsty will download the required **increments** from upstream repos.
 If your OS isn't in the default list, you can make your own offline package with the built-in [**`cache.yml`**](https://github.com/pgsty/pigsty/blob/main/cache.yml) playbook:
 
 1. Find a node running the exact same OS version with Internet access
-2. Use [**`rich`**](/docs/conf/rich) config template to perform [**online installation**](/docs/setup/install/) (`configure -c rich`)
-3. `cd ~/pigsty; ./cache.yml`: make and fetch the offline package to `~/pigsty/dist/${version}/`
-4. Copy the offline package to the env without Internet access (ftp, scp, usb, etc.), extract and use via `bootstrap`
+2. Use the [**`rich`**](/docs/conf/rich) template for an [**online installation**](/docs/setup/install/) (`./configure -c rich`), and confirm that the target INFRA node has generated its local repository at `/www/pigsty`; if not, run `./infra.yml -t repo` against that node first
+3. Run `cd ~/pigsty; ./cache.yml -l <infra-host>` to select one INFRA node that already has a local repository, build the package there, and fetch it
+4. By default, the artifact is `~/pigsty/dist/${version}/pigsty-pkg-${version}.${os}.${arch}.tgz`; copy it to the offline environment (ftp, scp, USB, etc.), then unpack it with `bootstrap`
+
+Current `cache.yml` defaults can be overridden with extra variables:
+
+| Parameter | Default | Description |
+|:----------|:--------|:------------|
+| `cache_pkg_name` | `pigsty-pkg-${version}.${os}.${arch}.tgz` | Offline package filename template |
+| `cache_pkg_dir` | `dist/${version}` | Output directory on the admin node |
+| `cache_repo` | `pigsty` | Local repository to package on the target node; separate multiple repositories with commas |
 
 We offer [**paid services**](/docs/about/service/) providing tested, pre-made offline packages for specific Linux major.minor versions (¥200).
 

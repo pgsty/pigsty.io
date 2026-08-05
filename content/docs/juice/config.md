@@ -22,7 +22,7 @@ JUICE module core commands:
 juicefs format --no-update <data> "<meta>" "<name>"
 
 # Mount
-juicefs mount <mount> --cache-dir <juice_cache> --metrics 0.0.0.0:<port> <meta> <path>
+juicefs mount <mount_opts> --cache-dir <juice_cache> --metrics 0.0.0.0:<port> <meta> <path>
 ```
 
 Notes:

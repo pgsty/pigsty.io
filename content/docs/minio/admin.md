@@ -46,8 +46,8 @@ The removal playbook automatically performs the following:
 - Deregisters MinIO targets from VictoriaMetrics monitoring
 - Removes records from the DNS service on INFRA nodes
 - Stops and disables MinIO systemd service
-- Deletes MinIO data directory and configuration files (optional)
-- Uninstalls MinIO packages (optional)
+- Deletes MinIO data directories plus service, client, and Vector configuration (`minio_rm_data`, enabled by default)
+- Uninstalls the `minio` and `mcli` packages (`minio_rm_pkg`, disabled by default)
 
 
 

@@ -16,7 +16,7 @@ categories: [Reference]
 
 ## Value Propositions
 
-- [**Extensibility**](/img/pigsty/ecosystem.png): Powerful [**extensions**](/ext/list) out of the box: deep integration of **PostGIS**, **TimescaleDB**, **Citus**, **PGVector**, [**562**](/ext/list/) plugins, and [**12 PG kernels**](/docs/pgsql/kernel).
+- [**Extensibility**](/img/pigsty/ecosystem.png): Powerful [**extensions**](/ext/list) out of the box: deep integration of **PostGIS**, **TimescaleDB**, **Citus**, **PGVector**, [**{{< param pgext_count >}}**](/ext/list/) plugins, and [**12 PG kernels**](/docs/pgsql/kernel).
 - [**Reliability**](/img/pigsty/arch.png): Quickly create [**high-availability**](/docs/concept/ha/), self-healing [**PostgreSQL**](/docs/pgsql) clusters with built-in [**point-in-time recovery**](/docs/concept/pitr/), [**access control**](/docs/concept/sec/ac), a self-signed [**CA**](/docs/concept/sec/ca), and [**TLS**](/docs/concept/sec/ca).
 - [**Observability**](/img/pigsty/dashboard.jpg): Based on [**Prometheus**](/docs/infra#victoria-observability-suite) & [**Grafana**](/docs/infra#grafana) modern observability stack, providing stunning monitoring best practices. Modular design, can be used independently: [**Gallery**](https://github.com/pgsty/pigsty/wiki/Gallery) & [**Demo**](https://demo.pigsty.io).
 - [**Availability**](/img/pigsty/ha.png): Deliver stable, reliable, auto-routed, transaction-pooled, read-write separated high-performance database [**services**](/docs/pgsql/service#default-service), with flexible [**access**](/docs/pgsql/service#access-service) modes via HAProxy, Pgbouncer, and VIP.
@@ -33,7 +33,7 @@ categories: [Reference]
 Pigsty is a better local open-source RDS for PostgreSQL alternative:
 
 - [Battery-Included RDS](#battery-included-rds): From kernel to RDS distribution, providing production-grade PG database services for versions 14-18 on EL/Debian/Ubuntu.
-- [Rich Extensions](#rich-extensions): Providing unparalleled 562 extensions with out-of-the-box distributed, time-series, geospatial, graph, vector, multi-modal database capabilities.
+- [Rich Extensions](#rich-extensions): Providing unparalleled {{< param pgext_count >}} extensions with out-of-the-box distributed, time-series, geospatial, graph, vector, multi-modal database capabilities.
 - [Flexible Modular Architecture](#flexible-modular-architecture): Flexible composition, free extension: Redis/Etcd/MinIO/Mongo; can be used independently to monitor existing RDS/hosts/databases.
 - [Stunning Observability](#stunning-observability): Based on modern observability stack Prometheus/Grafana, providing stunning, unparalleled database observability capabilities.
 - [Battle-Tested Reliability](#battle-tested-reliability): Self-healing high-availability architecture: automatic failover on hardware failure, seamless traffic switching. With auto-configured PITR as safety net for accidental data deletion!
@@ -44,7 +44,7 @@ Pigsty is a better local open-source RDS for PostgreSQL alternative:
 
 PostgreSQL integrates ecosystem tools and best practices:
 
-- Out-of-the-box [PostgreSQL](https://www.postgresql.org/) distribution, deeply integrating 562 [extension plugins](/docs/ref/extension) for geospatial, time-series, distributed, graph, vector, search, and AI!
+- Out-of-the-box [PostgreSQL](https://www.postgresql.org/) distribution, deeply integrating {{< param pgext_count >}} [extension plugins](/docs/ref/extension) for geospatial, time-series, distributed, graph, vector, search, and AI!
 - Runs on bare operating systems without container support, supporting mainstream operating systems: EL 8/9/10, Ubuntu 22.04/24.04/26.04, and Debian 12/13.
 - Based on [patroni](https://patroni.readthedocs.io/en/latest/), [haproxy](http://www.haproxy.org/), and [etcd](https://etcd.io/), creating a self-healing high-availability architecture: automatic failover on hardware failure, seamless traffic switching.
 - Based on [pgBackRest](https://pgbackrest.org/) and optional [MinIO](https://min.io/) clusters providing out-of-the-box PITR point-in-time recovery, serving as a safety net for software defects and accidental data deletion.
@@ -80,7 +80,7 @@ Pigsty can bootstrap an entire environment from bare metal with one click, reach
 
 **Hyper-converged multi-modal, use PostgreSQL for everything, one PG to replace all databases!**
 
-PostgreSQL's soul lies in its rich [**extension ecosystem**](/blog/pg/pg-eat-db-world), and Pigsty uniquely deeply integrates [**562 extensions**](/ext/list) from the PostgreSQL ecosystem, providing you with an out-of-the-box hyper-converged multi-modal database!
+PostgreSQL's soul lies in its rich [**extension ecosystem**](/blog/pg/pg-eat-db-world), and Pigsty uniquely deeply integrates [**{{< param pgext_count >}} extensions**](/ext/list) from the PostgreSQL ecosystem, providing you with an out-of-the-box hyper-converged multi-modal database!
 
 Extensions can create [**synergistic effects**](https://pigsty.io/blog/pg/pg-eat-db-world#the-magic-of-ultimate-extensibility), producing 1+1 far greater than 2 results.
 You can use [**PostGIS**](https://postgis.net/) for geospatial data, [**TimescaleDB**](https://www.timescale.com/) for time-series/event stream data analysis, and [**Citus**](https://www.citusdata.com/) to upgrade it in-place to a distributed geospatial-temporal database;

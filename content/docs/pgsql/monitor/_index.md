@@ -25,16 +25,16 @@ Pigsty uses a modern observability stack for PostgreSQL monitoring:
 
 **Metrics**
 
-PostgreSQL monitoring metrics are fully defined by the pg_exporter configuration file: [`pg_exporter.yml`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/pg_exporter.yml)
-They are further processed by Prometheus recording rules and alert rules: [`files/prometheus/rules/pgsql.yml`](https://github.com/pgsty/pigsty/blob/main/files/prometheus/rules/pgsql.yml).
+PostgreSQL monitoring metrics are fully defined by the pg_exporter configuration file: [`roles/pg_monitor/templates/pg_exporter.yml`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml).
+They are further processed by VictoriaMetrics/vmalert-compatible recording and alerting rules: [`files/victoria/rules/pgsql.yml`](https://github.com/pgsty/pigsty/blob/main/files/victoria/rules/pgsql.yml).
 
 Pigsty uses three identity labels: `cls`, `ins`, `ip`, which are attached to all metrics and logs. Additionally, metrics from Pgbouncer, host nodes (NODE), and load balancers are also used by Pigsty, with the same labels used whenever possible for correlation analysis.
 
 ```yaml
-{ cls: pg-meta, ins: pg-meta-1, ip: 10.10.10.10 }
-{ cls: pg-meta, ins: pg-test-1, ip: 10.10.10.11 }
-{ cls: pg-meta, ins: pg-test-2, ip: 10.10.10.12 }
-{ cls: pg-meta, ins: pg-test-3, ip: 10.10.10.13 }
+- { cls: pg-meta, ins: pg-meta-1, ip: 10.10.10.10 }
+- { cls: pg-test, ins: pg-test-1, ip: 10.10.10.11 }
+- { cls: pg-test, ins: pg-test-2, ip: 10.10.10.12 }
+- { cls: pg-test, ins: pg-test-3, ip: 10.10.10.13 }
 ```
 
 **Logs**
@@ -49,26 +49,27 @@ PostgreSQL-related logs are collected by Vector and sent to the VictoriaLogs log
 
 **Target Management**
 
-Prometheus monitoring targets are defined in static files under `/etc/prometheus/targets/pgsql/`, with each instance having a corresponding file. Taking `pg-meta-1` as an example:
+VictoriaMetrics monitoring targets are defined in static files under `/infra/targets/pgsql/`, with each instance having a corresponding file. Taking `pg-meta-1` as an example:
 
 ```yaml
 # pg-meta-1 [primary] @ 10.10.10.10
 - labels: { cls: pg-meta, ins: pg-meta-1, ip: 10.10.10.10 }
   targets:
     - 10.10.10.10:9630    # <--- pg_exporter for PostgreSQL metrics
-    - 10.10.10.10:9631    # <--- pg_exporter for pgbouncer metrics
-    - 10.10.10.10:8008    # <--- patroni metrics (when API SSL is not enabled)
+    - 10.10.10.10:9631    # <--- pgbouncer_exporter for PgBouncer metrics
+    - 10.10.10.10:8008    # <--- Patroni metrics (when API SSL is not enabled)
+    - 10.10.10.10:9854    # <--- pgbackrest_exporter for backup metrics
 ```
 
-When the global flag [`patroni_ssl_enabled`](/docs/pgsql/param#patroni_ssl_enabled) is set, patroni targets will be moved to a separate file `/etc/prometheus/targets/patroni/<ins>.yml`, as it uses the https scrape endpoint. When [monitoring RDS](#monitor-rds) instances, monitoring targets are placed separately in the `/etc/prometheus/targets/pgrds/` directory and managed by **cluster**.
+When the global flag [`patroni_ssl_enabled`](/docs/pgsql/param#patroni_ssl_enabled) is set, Patroni targets are written separately to `/infra/targets/patroni/<ins>.yml`, because they use an HTTPS scrape endpoint. When [monitoring RDS](#monitor-rds) instances, monitoring targets are placed in `/infra/targets/pgrds/` and managed by **cluster**.
 
-When removing a cluster using `bin/pgsql-rm` or `pgsql-rm.yml`, the Prometheus monitoring targets will be removed. You can also remove them manually or use subtasks from the playbook:
+When removing a cluster using `bin/pgsql-rm` or `pgsql-rm.yml`, the corresponding monitoring targets are removed. You can also use:
 
 ```bash
-bin/pgmon-rm <cls|ins>    # Remove prometheus monitoring targets from all infra nodes
+bin/pgmon-rm <cls|ins>    # Remove monitoring targets from all infra nodes
 ```
 
-Remote RDS monitoring targets are placed in `/etc/prometheus/targets/pgrds/<cls>.yml`, created by the [`pgsql-monitor.yml`](/docs/pgsql/playbook#pgsql-monitor) playbook or `bin/pgmon-add` script.
+Remote RDS monitoring targets are placed in `/infra/targets/pgrds/<cls>.yml`, created by the [`pgsql-monitor.yml`](/docs/pgsql/playbook#pgsql-monitoryml) playbook or `bin/pgmon-add` script.
 
 
 
@@ -132,7 +133,7 @@ If you **can only access the target database via PGURL** (database connection st
 ```
 ------ infra ------
 |                 |
-|   prometheus    |            v---- pg-foo-1 ----v
+| victoria-metrics|            v---- pg-foo-1 ----v
 |       ^         |  metrics   |         ^        |
 |   pg_exporter <-|------------|----  postgres    |
 |   (port: 20001) |            | 10.10.10.10:5432 |
@@ -151,7 +152,7 @@ In this mode, the monitoring system will not have metrics from hosts, connection
 
 {{% alert title="Limitations when monitoring external Postgres instances" color="secondary" %}}
 
-- pgBouncer connection pool metrics are not available
+- PgBouncer connection pool metrics are not available
 - Patroni high availability component metrics are not available
 - Host node monitoring metrics are not available, including node HAProxy and Keepalived metrics
 - Log collection and log-derived metrics are not available
@@ -212,7 +213,7 @@ infra:            # Infra cluster for proxies, monitoring, alerts, etc.
         pg_seq: 1                             # RDS instance number (identity parameter, manually assigned name in monitoring system)
         pg_host: pc-2ze379wb1d4irc18x.polardbpg.rds.aliyuncs.com # RDS host address
         pg_port: 1921                         # RDS port (from console connection info)
-        pg_exporter_auto_discovery: true      # Disable new database auto-discovery feature
+        pg_exporter_auto_discovery: true      # Enable new database auto-discovery
         pg_exporter_include_database: 'test'  # Only monitor databases in this list (comma-separated)
         pg_monitor_username: dbuser_monitor   # Monitoring username, overrides global config
         pg_monitor_password: DBUser_Monitor   # Monitoring password, overrides global config
@@ -223,7 +224,7 @@ infra:            # Infra cluster for proxies, monitoring, alerts, etc.
         pg_seq: 2                             # RDS instance number (identity parameter, manually assigned name in monitoring system)
         pg_host: pe-2ze7tg620e317ufj4.polarpgmxs.rds.aliyuncs.com # RDS host address
         pg_port: 1521                         # RDS port (from console connection info)
-        pg_exporter_auto_discovery: true      # Disable new database auto-discovery feature
+        pg_exporter_auto_discovery: true      # Enable new database auto-discovery
         pg_exporter_include_database: 'test,postgres'  # Only monitor databases in this list (comma-separated)
         pg_monitor_username: dbuser_monitor   # Monitoring username
         pg_monitor_password: DBUser_Monitor   # Monitoring password
@@ -234,7 +235,7 @@ infra:            # Infra cluster for proxies, monitoring, alerts, etc.
         pg_seq: 1                             # RDS instance number (identity parameter, manually assigned name in monitoring system)
         pg_host: pgm-2zern3d323fe9ewk.pg.rds.aliyuncs.com  # RDS host address
         pg_port: 5432                         # RDS port (from console connection info)
-        pg_exporter_auto_discovery: true      # Disable new database auto-discovery feature
+        pg_exporter_auto_discovery: true      # Enable new database auto-discovery
         pg_exporter_include_database: 'rds'   # Only monitor databases in this list (comma-separated)
         pg_monitor_username: dbuser_monitor   # Monitoring username
         pg_monitor_password: DBUser_Monitor   # Monitoring password
@@ -347,6 +348,8 @@ ALTER USER dbuser_monitor SET search_path = monitor,public; -- Recommended to en
 Monitoring views provide several commonly used pre-processed results and encapsulate permissions for monitoring metrics that require high privileges (such as shared memory allocation), making them convenient for querying and use. Strongly recommended to create in all databases requiring monitoring.
 
 <details><summary>Monitoring schema and monitoring view definitions</summary>
+
+> The SQL below is provided to explain the monitored objects. The complete definitions rendered by current Pigsty are authoritative in [`roles/pgsql/templates/pg-init-template.sql`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/pg-init-template.sql), which also includes additional hardening for secure search paths and privilege boundaries.
 
 ```sql
 ----------------------------------------------------------------------
@@ -570,9 +573,11 @@ GRANT SELECT ON monitor.pg_seq_scan TO pg_monitor;
 ```sql
 DROP FUNCTION IF EXISTS monitor.pg_shmem() CASCADE;
 CREATE OR REPLACE FUNCTION monitor.pg_shmem() RETURNS SETOF
-    pg_shmem_allocations AS $$ SELECT * FROM pg_shmem_allocations;$$ LANGUAGE SQL SECURITY DEFINER;
+    pg_shmem_allocations SET search_path = '' AS $$ SELECT * FROM pg_shmem_allocations;$$ LANGUAGE SQL SECURITY DEFINER;
 COMMENT ON FUNCTION monitor.pg_shmem() IS 'security wrapper for system view pg_shmem';
 REVOKE ALL ON FUNCTION monitor.pg_shmem() FROM PUBLIC;
+REVOKE ALL ON FUNCTION monitor.pg_shmem() FROM dbrole_readonly;
+REVOKE ALL ON FUNCTION monitor.pg_shmem() FROM dbrole_offline;
 GRANT EXECUTE ON FUNCTION monitor.pg_shmem() TO pg_monitor;
 ```
 

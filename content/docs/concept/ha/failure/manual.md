@@ -89,7 +89,7 @@ Administrator executes the Failover command, Patroni receives and processes the 
 ```bash
 # Pigsty wrapped failover command
 pg failover pg-test              # Failover to best candidate
-pg failover pg-test pg-test-2    # Failover to specified replica
+pg failover pg-test --candidate pg-test-2  # Failover to specified replica
 ```
 
 ```

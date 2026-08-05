@@ -11,7 +11,7 @@ The [`PGSQL`](/docs/pgsql) module needs to be installed on nodes managed by Pigs
 
 Installing the `PGSQL` module on a single node will create a standalone PGSQL server/instance, i.e., a [primary](/docs/pgsql/config#primary) instance.
 Installing on additional nodes will create [read replicas](/docs/pgsql/config#replica), which can serve as standby instances and handle read-only requests.
-You can also create [offline](/docs/pgsql/config#offline) instances for ETL/OLAP/interactive queries, use [sync standby](/docs/pgsql/config#sync-standby) and [quorum commit](/docs/pgsql/config#quorum-commit) to improve data consistency,
+You can also create [offline](/docs/pgsql/config/cluster#offline) instances for ETL/OLAP/interactive queries, use [sync standby](/docs/pgsql/config/cluster#sync-standby) and [quorum commit](/docs/pgsql/config/cluster#quorum-commit) to improve data consistency,
 or even set up [standby clusters](/docs/pgsql/config#standby-cluster) and [delayed clusters](/docs/pgsql/config#delayed-cluster) to quickly respond to data loss caused by human errors and software defects.
 
 You can define multiple PGSQL clusters and further organize them into a horizontal sharding cluster: Pigsty natively supports [Citus cluster groups](/docs/pgsql/config#citus-cluster), allowing you to upgrade your standard PGSQL cluster in-place to a distributed database cluster.
@@ -42,14 +42,14 @@ You can define multiple PGSQL clusters and further organize them into a horizont
 
 | Parameter                               |   Type   | Level | Description                                                              |
 |:----------------------------------------|:--------:|:-----:|:-------------------------------------------------------------------------|
-| [`pg_mode`](#pg_mode)                   |  `enum`  |  `C`  | pgsql cluster mode: pgsql,citus,mssql,mysql,ivory,pgtde,polar,oracle,gpsql |
+| [`pg_mode`](#pg_mode)                   |  `enum`  |  `C`  | pgsql cluster mode: pgsql,citus,mssql,mysql,ivory,pgtde,polar,gpsql,agens,oriole,pgedge |
 | [`pg_cluster`](#pg_cluster)             | `string` |  `C`  | pgsql cluster name, REQUIRED identity parameter                          |
 | [`pg_seq`](#pg_seq)                     |  `int`   |  `I`  | pgsql instance seq number, REQUIRED identity parameter                   |
-| [`pg_role`](#pg_role)                   |  `enum`  |  `I`  | pgsql instance role, REQUIRED, could be primary, replica, offline        |
+| [`pg_role`](#pg_role)                   |  `enum`  |  `I`  | pgsql instance role: primary, replica, standby, offline, or delayed      |
 | [`pg_instances`](#pg_instances)         |  `dict`  |  `I`  | define multiple pg instances on node in `{port:ins_vars}` format         |
-| [`pg_upstream`](#pg_upstream)           |   `ip`   |  `I`  | repl upstream ip addr for standby cluster or cascade replica             |
-| [`pg_shard`](#pg_shard)                 | `string` |  `C`  | pgsql shard name, REQUIRED identity for sharding clusters like citus     |
-| [`pg_group`](#pg_group)                 |  `int`   |  `C`  | pgsql shard index, REQUIRED identity for sharding clusters like citus    |
+| [`pg_upstream`](#pg_upstream)           |   `ip`   |  `I`  | replication upstream IP for a standby cluster or cascade replica         |
+| [`pg_shard`](#pg_shard)                 | `string` |  `C`  | pgsql shard name; specify explicitly for horizontal sharding             |
+| [`pg_group`](#pg_group)                 |  `int`   |  `C`  | non-negative pgsql shard index; specify explicitly for horizontal sharding |
 | [`gp_role`](#gp_role)                   |  `enum`  |  `C`  | greenplum role of this cluster, could be master or segment               |
 | [`pg_exporters`](#pg_exporters)         |  `dict`  |  `C`  | additional pg_exporters to monitor remote postgres instances             |
 | [`pg_offline_query`](#pg_offline_query) |  `bool`  |  `I`  | set to true to mark this replica as offline instance for offline queries |
@@ -97,6 +97,7 @@ You can define multiple PGSQL clusters and further organize them into a horizont
 
 | Parameter                                           |    Type    | Level | Description                                                          |
 |:----------------------------------------------------|:----------:|:-----:|:---------------------------------------------------------------------|
+| [`pg_data`](#pg_data)                               |   `path`   | `C`   | PostgreSQL data directory, `/pg/data` by default                     |
 | [`pg_fs_main`](#pg_fs_main)                         |   `path`   | `C`   | mountpoint/path for pg main data, `/data/postgres` by default        |
 | [`pg_fs_backup`](#pg_fs_backup)                     |   `path`   | `C`   | mountpoint/path for pg backup data, `/data/backups` by default       |
 | [`pg_storage_type`](#pg_storage_type)               |   `enum`   | `C`   | storage type for pg main data, SSD,HDD. SSD by default               |
@@ -119,8 +120,9 @@ You can define multiple PGSQL clusters and further organize them into a horizont
 | [`pg_conf`](#pg_conf)                               |   `enum`   | `C`   | config template: oltp,olap,crit,tiny. `oltp.yml` by default          |
 | [`pg_max_conn`](#pg_max_conn)                       |   `int`    | `C`   | postgres max connections, `auto` will use recommended value          |
 | [`pg_shared_buffer_ratio`](#pg_shared_buffer_ratio) |  `float`   | `C`   | postgres shared buffer memory ratio, 0.25 by default, 0.1~0.4        |
-| [`pg_rto`](#pg_rto)                                 |   `int`    | `C`   | recovery time objective in seconds, `30s` by default                 |
-| [`pg_rpo`](#pg_rpo)                                 |   `int`    | `C`   | recovery point objective in bytes, `1MiB` by default                 |
+| [`pg_rto`](#pg_rto)                                 |   `enum`   | `C`   | RTO mode: `fast`, `norm`, `safe`, or `wide`; default `norm`          |
+| [`pg_rto_plan`](#pg_rto_plan)                       |   `dict`   | `G`   | RTO presets for Patroni HA and HAProxy health-check timeouts         |
+| [`pg_rpo`](#pg_rpo)                                 |   `int`    | `C`   | sampled lag threshold for Patroni failover candidates; default `1MiB` |
 | [`pg_libs`](#pg_libs)                               |  `string`  | `C`   | preloaded libraries, `pg_stat_statements,auto_explain` by default    |
 | [`pg_delay`](#pg_delay)                             | `interval` | `I`   | WAL replay apply delay for standby cluster, for delayed replica      |
 | [`pg_checksum`](#pg_checksum)                       |   `bool`   | `C`   | enable data checksum for postgres cluster?                           |
@@ -290,10 +292,12 @@ Available mode options include:
 - `ivory`: IvorySQL Oracle compatible kernel
 - `pgtde`: Percona PostgreSQL with pg_tde
 - `polar`: PolarDB for PostgreSQL kernel
-- `oracle`: PolarDB for Oracle kernel
 - `gpsql`: Greenplum parallel database cluster (monitoring)
+- `agens`: AgensGraph graph database kernel
+- `oriole`: OrioleDB storage-engine kernel
+- `pgedge`: pgEdge distributed-replication kernel
 
-If `pg_mode` is set to `citus` or `gpsql`, two additional required identity parameters [`pg_shard`](#pg_shard) and [`pg_group`](#pg_group) are needed to define the horizontal sharding cluster identity.
+`pg_shard` and `pg_group` default to `pg_cluster` and `0`, respectively. When `pg_mode` is `citus` or `gpsql` and the sharded system contains multiple physical clusters, set both explicitly to define the horizontal-sharding identity.
 
 In both cases, each PostgreSQL cluster is part of a larger business unit.
 
@@ -308,7 +312,7 @@ PostgreSQL cluster name, required identity parameter, no default value.
 
 The cluster name is used as the namespace for resources.
 
-Cluster naming must follow a specific pattern: `[a-z][a-z0-9-]*`, i.e., only numbers and lowercase letters, not starting with a number, to meet different identifier constraints.
+The current role validation accepts names matching `^[A-Za-z0-9-]+$` and rejects `root`. To keep DNS names, service names, and operation scripts consistent, lowercase names beginning with a letter and containing only lowercase letters, digits, and hyphens are still recommended.
 
 
 
@@ -328,14 +332,15 @@ The sequence number of this instance, uniquely assigned within its **cluster**, 
 
 Parameter Name: `pg_role`, Type: `enum`, Level: `I`
 
-PostgreSQL instance role, required identity parameter, no default value. Values can be: `primary`, `replica`, `offline`
+PostgreSQL instance role, required identity parameter with no default. Current validation accepts `primary`, `replica`, `standby`, `offline`, and `delayed`.
 
-The role of a PGSQL instance can be: `primary`, `replica`, `standby`, or `offline`.
+The commonly used service-membership labels are:
 
 - `primary`: Primary instance, there is one and only one in a cluster.
 - `replica`: Replica for serving online read-only traffic, may have slight replication delay under high load (10ms~100ms, 100KB).
 - `offline`: Offline replica for handling offline read-only traffic, such as analytics/ETL/personal queries.
 
+`standby` and `delayed` are also valid inventory role values, but these strings alone do not create a standby cluster or delayed replication. Configure the topology with [`pg_upstream`](#pg_upstream) and [`pg_delay`](#pg_delay). Role-filtered HBA rules use these inventory labels directly.
 
 
 
@@ -370,7 +375,7 @@ Setting `pg_upstream` on a non-`primary` instance specifies a specific instance 
 
 Parameter Name: `pg_shard`, Type: `string`, Level: `C`
 
-PostgreSQL horizontal shard name, required identity parameter for sharding clusters (e.g., citus clusters).
+PostgreSQL horizontal shard name, defaulting to `pg_cluster`. Specify it explicitly for horizontal-sharding systems made up of multiple physical clusters, such as Citus.
 
 When multiple standard PostgreSQL clusters serve the same business together in a horizontal sharding manner, Pigsty marks this group of clusters as a **horizontal sharding cluster**.
 
@@ -394,7 +399,7 @@ cls pg_group = 3:   pg-citus3
 
 Parameter Name: `pg_group`, Type: `int`, Level: `C`
 
-PostgreSQL horizontal sharding cluster shard index number, required identity parameter for sharding clusters (e.g., citus clusters).
+PostgreSQL horizontal-sharding cluster index, defaulting to `0`. Specify it explicitly for horizontal-sharding systems made up of multiple physical clusters, such as Citus.
 
 This parameter is used in conjunction with [pg_shard](#pg_shard), typically using non-negative integers as index numbers.
 
@@ -529,7 +534,7 @@ Each array element is a [user/role](/docs/pgsql/config/user) definition, for exa
   roles: [dbrole_admin]           # optional, default roles are: dbrole_{admin,readonly,readwrite,offline}
   parameters: {}                  # optional, use `ALTER ROLE SET` for this role, configure role-level database parameters
   pool_mode: transaction          # optional, pgbouncer pool mode at user level, default transaction
-  pool_connlimit: -1              # optional, user-level max database connections, default -1 disables limit
+  pool_connlimit: 100             # optional, user-level pool connection limit; omitted values inherit Pigsty's global default of 100
   search_path: public             # optional, key-value config parameter per postgresql docs (e.g., use pigsty as default search_path)
 ```
 
@@ -569,8 +574,8 @@ Each array element is a [business database](/docs/pgsql/config/db) definition, f
   connlimit: -1                   # optional, database connection limit, default -1 means no limit, positive integer limits connections
   pool_auth_user: dbuser_meta     # optional, all connections to this pgbouncer database will authenticate using this user (useful when pgbouncer_auth_query enabled)
   pool_mode: transaction          # optional, database-level pgbouncer pooling mode, default transaction
-  pool_size: 64                   # optional, database-level pgbouncer default pool size, default 64
-  pool_reserve: 32                # optional, database-level pgbouncer pool reserve, default 32, max additional burst connections when default pool insufficient
+  pool_size: 50                   # optional, database-level pgbouncer default pool size, default 50
+  pool_reserve: 30                # optional, database-level pgbouncer pool reserve, default 30, max additional burst connections when default pool insufficient
   pool_size_min: 0                # optional, database-level pgbouncer pool minimum size, default 0
   pool_connlimit: 100             # optional, database-level max database connections, default 100
 ```
@@ -1023,8 +1028,8 @@ pg_conf: oltp.yml                 # config template: oltp,olap,crit,tiny. `oltp.
 pg_max_conn: auto                 # postgres max connections, `auto` will use recommended value
 pg_shared_buffer_ratio: 0.25      # postgres shared buffers ratio, 0.25 by default, 0.1~0.4
 pg_io_method: worker              # io method for postgres, auto,sync,worker,io_uring, worker by default
-pg_rto: 30                        # recovery time objective in seconds,  `30s` by default
-pg_rpo: 1048576                   # recovery point objective in bytes, `1MiB` at most by default
+pg_rto: norm                      # shared RTO mode: fast,norm,safe,wide
+pg_rpo: 1048576                   # sampled failover-candidate lag threshold in bytes, `1MiB` by default
 pg_libs: 'pg_stat_statements, auto_explain'  # preloaded libraries, `pg_stat_statements,auto_explain` by default
 pg_delay: 0                       # replication apply delay for standby cluster leader
 pg_checksum: true                 # enable data checksum for postgres cluster?
@@ -1406,29 +1411,69 @@ Note that shared buffers are only part of PostgreSQL's shared memory. To calcula
 
 ### `pg_rto`
 
-Parameter Name: `pg_rto`, Type: `int`, Level: `C`
+Parameter Name: `pg_rto`, Type: `enum`, Level: `C`
 
-Recovery Time Objective (RTO) in seconds. This is used to calculate Patroni's TTL value, default is `30` seconds.
+Recovery Time Objective (RTO) mode controlling Patroni and HAProxy timeout parameters. The default is `norm`.
 
-If the primary instance is missing for this long, a new leader election will be triggered. This value is not the lower the better, it involves trade-offs:
+Pigsty provides four presets tuned for different network conditions and deployment scenarios:
 
-Reducing this value can reduce unavailable time (unable to write) during cluster failover, but makes the cluster more sensitive to short-term network jitter, thus increasing the chance of false positives triggering failover.
+| Mode   | Scenario               | Network conditions       | Source target RTO | Patroni TTL | False-failover risk |
+|:-------|:-----------------------|:-------------------------|:------------------|:------------|:--------------------|
+| `fast` | Same rack or switch    | < 1 ms, highly stable    | **< 30s**         | 20s         | Higher              |
+| `norm` | Same datacenter        | 1-5 ms, normal           | **< 45s**         | 30s         | Medium              |
+| `safe` | Cross-datacenter       | 10-50 ms                 | **< 90s**         | 60s         | Lower               |
+| `wide` | Cross-region/continent | 100-200 ms, public WAN   | **< 150s**        | 120s        | Lowest              |
 
-You need to configure this value based on network conditions and business constraints, making a **trade-off** between failure probability and failure impact. Default is `30s`, which affects the following Patroni parameters:
+A shorter RTO speeds recovery but increases the risk that network jitter is mistaken for failure. Choose a mode that matches your network conditions. See [RTO Trade-offs](/docs/concept/ha/rto/) for details.
+
+The current template recognizes only these four string keys. Other values, including numbers, fall back to `norm`; they are not interpreted as seconds. To define another timeout combination, extend [`pg_rto_plan`](#pg_rto_plan) with a new key and use that key as `pg_rto`.
 
 ```yaml
-# TTL for acquiring leader lease (in seconds). Think of it as the time before starting automatic failover. Default: 30
-ttl: {{ pg_rto }}
-
-# Seconds the loop will sleep. Default: 10, this is patroni check loop interval
-loop_wait: {{ (pg_rto / 3)|round(0, 'ceil')|int }}
-
-# Timeout for DCS and PostgreSQL operation retries (in seconds). DCS or network issues shorter than this won't cause Patroni to demote leader. Default: 10
-retry_timeout: {{ (pg_rto / 3)|round(0, 'ceil')|int }}
-
-# Time (in seconds) allowed for primary to recover from failure before triggering failover, max RTO: 2x loop_wait + primary_start_timeout
-primary_start_timeout: {{ (pg_rto / 3)|round(0, 'ceil')|int }}
+pg_rto: norm   # default, suitable for a single datacenter
+pg_rto: safe   # recommended for cross-datacenter deployments
+# pg_rto: 30   # invalid key; current templates fall back to norm
 ```
+
+
+
+
+### `pg_rto_plan`
+
+Parameter Name: `pg_rto_plan`, Type: `dict`, Level: `G`
+
+Dictionary of RTO presets defining Patroni HA and HAProxy health-check timeouts. The defaults contain four modes:
+
+```yaml
+pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, rise, fall]
+  fast: [ 20  ,5  ,5  ,15 ,5  ,'1s' ,'0.5s' ,'1s' ,3 ,3 ]  # rto < 30s
+  norm: [ 30  ,5  ,10 ,25 ,5  ,'2s' ,'1s'   ,'2s' ,3 ,3 ]  # rto < 45s
+  safe: [ 60  ,10 ,20 ,45 ,10 ,'3s' ,'1.5s' ,'3s' ,3 ,3 ]  # rto < 90s
+  wide: [ 120 ,20 ,30 ,95 ,15 ,'4s' ,'2s'   ,'4s' ,3 ,3 ]  # rto < 150s
+```
+
+Each mode is an array of ten values controlling Patroni and HAProxy together:
+
+| Index | Name                    | Component | Description                              |
+|:-----:|:------------------------|:----------|:-----------------------------------------|
+| 0     | `ttl`                   | Patroni   | Primary-lock TTL in seconds              |
+| 1     | `loop_wait`             | Patroni   | Main-loop sleep interval                 |
+| 2     | `retry_timeout`         | Patroni   | DCS/PostgreSQL retry timeout             |
+| 3     | `primary_start_timeout` | Patroni   | Time allowed for primary recovery        |
+| 4     | `safety_margin`         | Patroni   | Watchdog safety margin                   |
+| 5     | `inter`                 | HAProxy   | Health-check interval                    |
+| 6     | `fastinter`             | HAProxy   | Fast interval during state transitions   |
+| 7     | `downinter`             | HAProxy   | Check interval while a server is down    |
+| 8     | `rise`                  | HAProxy   | Consecutive successes required for UP    |
+| 9     | `fall`                  | HAProxy   | Consecutive failures required for DOWN   |
+
+Override this dictionary to customize an existing mode or add a new one:
+
+```yaml
+pg_rto_plan:
+  ultra: [ 10, 2, 3, 8, 2, '0.5s', '0.25s', '0.5s', 2, 2 ]  # aggressive; low-latency networks only
+```
+
+> **Caution**: inappropriate timeout combinations can make the cluster unstable or cause frequent false failovers.
 
 
 
@@ -1437,13 +1482,11 @@ primary_start_timeout: {{ (pg_rto / 3)|round(0, 'ceil')|int }}
 
 Parameter Name: `pg_rpo`, Type: `int`, Level: `C`
 
-Recovery Point Objective (RPO) in bytes, default: `1048576`.
-
-Default is 1MiB, meaning up to 1MiB of data loss can be tolerated during failover.
+Failover-candidate lag threshold in bytes, default: `1048576` (1 MiB). It is written to Patroni's `maximum_lag_on_failover` and determines whether a replica is eligible for failover; it is not a hard upper bound on actual data loss. With asynchronous replication, worst-case loss also depends on write rate and when Patroni sampled the primary's WAL position.
 
 When the primary goes down and all replicas are lagging, you must make a difficult choice, **trade-off between availability and consistency**:
 
-- Promote a replica to become new primary and restore service ASAP, but at the cost of acceptable data loss (e.g., less than 1MB).
+- Promote a lagging replica and restore service as soon as possible, accepting possible data loss.
 - Wait for primary to come back online (may never happen), or manual intervention to avoid any data loss.
 
 You can use the `crit.yml` [conf](#pg_conf) template to ensure no data loss during failover, but this sacrifices some performance.
@@ -1572,10 +1615,10 @@ PostgreSQL IO method, default is `worker`. Available options include:
 - `worker`: Use background worker processes to handle IO (default option)
 - `io_uring`: Use Linux's io_uring asynchronous IO interface
 
-This parameter only applies to PostgreSQL 17 and above, controlling PostgreSQL's data block layer IO strategy.
+Current tuning templates write this parameter only for PostgreSQL 18 and later, where it controls the asynchronous I/O execution method.
 
-- In PostgreSQL 17, `io_uring` can provide higher IO performance, but requires operating system kernel support (Linux 5.1+) and the `liburing` library installed.
-- In PostgreSQL 18, the default IO method changed from `sync` to `worker`, using background worker processes for asynchronous IO without additional dependencies.
+- PostgreSQL 18's actual GUC values are `worker`, `io_uring`, and `sync`; `auto` is Pigsty template-selection logic, not a PostgreSQL enum value.
+- PostgreSQL 18 defaults to `worker`, which uses background processes for asynchronous I/O.
 - If you're using Debian 12/Ubuntu 22+ or EL 10+ systems and want optimal IO performance, consider setting this to `io_uring`.
 
 Note that setting this value on systems that don't support `io_uring` may cause PostgreSQL startup to fail, so `auto` or `worker` are safer choices.
@@ -2368,7 +2411,9 @@ pgbouncer_exporter_url: ''             # if specified, will override auto-genera
 pgbouncer_exporter_options: ''         # extra options to override pgbouncer_exporter
 pgbackrest_exporter_enabled: true      # enable pgbackrest_exporter on pgsql host?
 pgbackrest_exporter_port: 9854         # pgbackrest_exporter listen port, default is 9854
-pgbackrest_exporter_options: ''        # extra options to override pgbackrest_exporter
+pgbackrest_exporter_options: >-        # extra options to override pgbackrest_exporter
+  --collect.interval=120
+  --log.level=info
 ```
 
 
@@ -2390,11 +2435,9 @@ PG Exporter is used to monitor PostgreSQL database instances. Set to `false` if 
 
 Parameter Name: `pg_exporter_config`, Type: `string`, Level: `C`
 
-pg_exporter configuration file name, both PG Exporter and PGBouncer Exporter will use this configuration file. Default value: `pg_exporter.yml`.
+pg_exporter's collector configuration template name. The default is `pg_exporter.yml`. Pgbouncer Exporter uses its own fixed `pgbouncer_exporter.yml` template and is not affected by this parameter.
 
-If you want to use a custom configuration file, you can define it here. Your custom configuration file should be placed in `files/<name>.yml`.
-
-For example, when you want to monitor a remote PolarDB database instance, you can use the sample configuration: `files/polar_exporter.yml`.
+The default template is `roles/pg_monitor/templates/pg_exporter.yml`. To use a custom file, put it on Ansible's template search path and specify its template name here.
 
 
 
@@ -2526,8 +2569,8 @@ Command line arguments passed to PG Exporter, default value is: `""` empty strin
 
 When using empty string, the default command arguments will be used:
 
-```bash
-{% if pg_exporter_port != '' %}
+```jinja2
+{% if pg_exporter_options != '' %}
 PG_EXPORTER_OPTS='--web.listen-address=:{{ pg_exporter_port }} {{ pg_exporter_options }}'
 {% else %}
 PG_EXPORTER_OPTS='--web.listen-address=:{{ pg_exporter_port }} --log.level=info'
@@ -2617,7 +2660,7 @@ Parameter Name: `pgbackrest_exporter_port`, Type: `port`, Level: `C`
 
 pgbackrest_exporter listen port, default value is: `9854`.
 
-This port needs to be referenced in the Prometheus service discovery configuration to scrape backup-related monitoring metrics.
+This port is registered in the VictoriaMetrics-compatible scrape targets for backup-related metrics.
 
 
 
@@ -2626,9 +2669,15 @@ This port needs to be referenced in the Prometheus service discovery configurati
 
 Parameter Name: `pgbackrest_exporter_options`, Type: `arg`, Level: `C`
 
-Command line arguments passed to pgbackrest_exporter, default value is: `""` empty string.
+Command-line arguments passed to pgbackrest_exporter. The default is:
 
-When using empty string, the default command argument configuration will be used. You can specify additional parameter options here to adjust the exporter's behavior.
+```yaml
+pgbackrest_exporter_options: >-
+  --collect.interval=120
+  --log.level=info
+```
+
+This collects every 120 seconds at `info` log level. Setting the parameter replaces the default argument set as a whole.
 
 
 

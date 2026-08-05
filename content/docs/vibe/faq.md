@@ -66,7 +66,8 @@ If using custom `infra_portal`, set `websocket: true`.
 ### Change JupyterLab token
 
 ```bash
-./vibe.yml -l <host> -e jupyter_password='NewToken' -t jupyter_config,jupyter_launch
+./vibe.yml -l <host> -e jupyter_password='NewToken' -t jupyter_config
+ssh <host> sudo systemctl restart jupyter
 ```
 
 --------

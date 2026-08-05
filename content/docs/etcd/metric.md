@@ -8,7 +8,7 @@ categories: [Reference]
 ---
 
 
-The [**`ETCD`**](/docs/etcd) module has 177 available metrics.
+This snapshot records 177 monitoring metric families for the [**`ETCD`**](/docs/etcd) module. The metrics present at runtime vary with package version, enabled collectors, and target state.
 
 | Metric Name                                                             | Type    | Labels                                                                                         | Description                                                                                          |
 |-------------------------------------------------------------------------|---------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|

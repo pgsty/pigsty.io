@@ -31,8 +31,8 @@ journalctl -u jupyter -f
 
 `vibe_dir` creates these under `vibe_data`:
 
-- `CLAUDE.md`
-- `AGENTS.md` (symlink to `CLAUDE.md`)
+- `AGENTS.md`: Context file rendered from the role template
+- `CLAUDE.md`: Symlink to `AGENTS.md`
 
 Default locations (adjustable via `vibe_data`):
 

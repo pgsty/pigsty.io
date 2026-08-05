@@ -29,8 +29,11 @@ Use the [`infra.yml`](/docs/infra/playbook/#infrayml) playbook to install the IN
 Use the [`infra-rm.yml`](/docs/infra/playbook/#infra-rmyml) playbook to uninstall the INFRA module from the `infra` group:
 
 ```bash
-./infra-rm.yml  # Uninstall INFRA module from infra group
+./infra-rm.yml  # Full removal: deregister, stop, delete config/environment/data, and uninstall packages
 ```
+
+This playbook has no deletion safeguard. Full execution removes `infra_data`, `nginx_data`, `nginx_home` (default: `/www`), and `/var/lib/grafana`.
+If you only need to stop services or deregister targets, use `-t service` or `-t deregister`. Read the [complete removal scope](/docs/infra/playbook/#infra-rmyml) and back up required data before running it.
 
 
 ----------------
@@ -115,9 +118,10 @@ Management commands for various infrastructure components:
 
 ```bash
 ./infra.yml -t infra           # Configure infrastructure
+./infra.yml -t infra_user      # Set up OS user
+./infra.yml -t infra_dir       # Create infrastructure directories
 ./infra.yml -t infra_env       # Configure environment variables
 ./infra.yml -t infra_pkg       # Install packages
-./infra.yml -t infra_user      # Set up OS user
 ./infra.yml -t infra_cert      # Issue certificates
 ./infra.yml -t dns             # Configure DNSMasq
 ./infra.yml -t nginx           # Configure Nginx

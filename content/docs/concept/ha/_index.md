@@ -17,7 +17,7 @@ Pigsty's PostgreSQL clusters come with out-of-the-box high availability, with co
 
 When your PostgreSQL cluster has two or more instances, you automatically have self-healing database high availability without any additional configuration — as long as any instance in the cluster survives, the cluster can provide complete service. Clients only need to connect to any node in the cluster to get full service without worrying about primary-replica topology changes.
 
-With default configuration, the primary failure Recovery Time Objective (RTO) ≈ 45s, and Recovery Point Objective (RPO) < 1MB; for replica failures, RPO = 0 and RTO ≈ 0 (brief interruption). In consistency-first mode, failover can guarantee zero data loss: RPO = 0. All these metrics can be [**configured as needed**](/docs/concept/ha/rto) based on your actual hardware conditions and reliability requirements.
+The default `norm` mode targets an RTO under 45 seconds. With asynchronous replication, `pg_rpo=1MiB` is Patroni's sampled lag threshold for failover candidates, not a hard upper bound on actual data loss. Strict synchronous mode with `crit.yml` keeps acknowledged transactions at RPO = 0 during failover. These behaviors can be [**configured**](/docs/concept/ha/rto) for your hardware and reliability requirements.
 
 Pigsty includes built-in HAProxy load balancers for automatic traffic switching, providing DNS/VIP/LVS and other access methods for clients. Failover and switchover are almost transparent to the business side except for brief interruptions - applications don't need to modify connection strings or restart.
 The minimal maintenance window requirements bring great flexibility and convenience: you can perform rolling maintenance and upgrades on the entire cluster without application coordination. The feature that hardware failures can wait until the next day to handle lets developers, operations, and DBAs sleep well during incidents.
@@ -79,7 +79,7 @@ The impact of primary failure is **brief write service unavailability**: write r
 When a replica fails, read-only traffic is routed to other replicas. Only when all replicas fail will read-only traffic ultimately be handled by the primary.
 The impact of replica failure is **partial read-only query interruption**: queries currently running on that replica will abort due to connection reset and be immediately taken over by other available replicas.
 
-Failure detection is performed jointly by Patroni and Etcd. The cluster leader holds a lease; if the cluster leader fails to renew the lease in time (10s) due to failure, the lease is released, triggering a **Failover** and new cluster election.
+Failure detection is performed jointly by Patroni and Etcd. The cluster leader holds a lease; if it fails to renew the lease within its TTL (30 seconds in the default `norm` mode), the lease expires, triggering a **Failover** and a new election.
 
 Even without any failures, you can proactively change the cluster primary through [**Switchover**](/docs/pgsql/admin#switchover).
 In this case, write queries on the primary will experience a brief interruption and be immediately routed to the new primary. This operation is typically used for rolling maintenance/upgrades of database servers.

@@ -61,7 +61,7 @@ Typical sequence:
 5. Verify archive mode and reset it only when required.
 6. Rebuild replicas if needed and resume cluster automation.
 
-With `pgsql-pitr.yml`, Pigsty v4.4 preserves archive settings by default. A manual `pgbackrest restore`, an older recovery script, or an explicit `archive: false` run may leave `archive_mode = off` in `postgresql.auto.conf`; in that case, reset it and restart PostgreSQL because `archive_mode` is a postmaster parameter:
+With `pgsql-pitr.yml`, Pigsty {{< param version_short >}} preserves archive settings by default. A manual `pgbackrest restore`, an older recovery script, or an explicit `archive: false` run may leave `archive_mode = off` in `postgresql.auto.conf`; in that case, reset it and restart PostgreSQL because `archive_mode` is a postmaster parameter:
 
 ```bash
 psql -c 'show archive_mode'

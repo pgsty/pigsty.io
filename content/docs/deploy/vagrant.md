@@ -38,7 +38,7 @@ On Linux, you can use VirtualBox or [**vagrant-libvirt**](https://vagrant-libvir
 Use the Pigsty-provided `make` shortcuts to create virtual machines:
 
 ```bash
-cd ~/pigsty
+cd ~/pigsty/vagrant
 
 make meta       # 1 node devbox for quick start, development, and testing
 make full       # 4 node sandbox for HA testing and feature demonstration
@@ -66,8 +66,8 @@ Available OS suffixes: `8` (EL8), `9` (EL9), `10` (EL10), `12` (Debian 12.14), `
 You can also use the following aliases to create Pigsty build environments. These templates won't replace the base image:
 
 ```bash
-make oss        # 4 node OSS build environment
-make pro        # 6 node PRO build environment
+make oss        # 7 node OSS build environment
+make pro        # 7 node PRO build environment
 make rpm        # 2 node EL9/10 build environment
 make deb        # 5 node Debian12/13 Ubuntu22/24/26 build environment
 make all        # 7 node full build environment
@@ -89,8 +89,9 @@ Pigsty provides multiple predefined VM specs in the [`vagrant/spec/`](https://gi
 |  [deci.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/deci.rb)  | 10 nodes |      Mixed      |      10-node environment      |         |
 |  [simu.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/simu.rb)  | 20 nodes |      Mixed      |  20-node production simubox   | Simubox |
 | [minio.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/minio.rb) | 4 nodes  | 1c2g x 4 + disk |    MinIO test environment     |         |
-|   [oss.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/oss.rb)   | 4 nodes  |    1c2g x 4     | 4-node OSS build environment  |         |
-|   [pro.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/pro.rb)   | 6 nodes  |    1c2g x 6     | 6-node PRO build environment  |         |
+| [citus.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/citus.rb) | 13 nodes |      Mixed      | Citus coordinator and six two-replica worker groups | |
+|   [oss.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/oss.rb)   | 7 nodes  |    2c2g x 7     | 7-platform OSS build environment |         |
+|   [pro.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/pro.rb)   | 7 nodes  |    2c2g x 7     | 7-platform PRO build environment |         |
 |   [rpm.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/rpm.rb)   | 2 nodes  |    1c2g x 2     |  2-node EL build environment  |         |
 |   [deb.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/deb.rb)   | 5 nodes  |    1c2g x 5     | 5-node Deb build environment  |         |
 |   [all.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/all.rb)   | 7 nodes  |    1c2g x 7     | 7-node full build environment |         |
@@ -126,7 +127,7 @@ Specs = [
 Use the [`vagrant/config`](https://github.com/pgsty/pigsty/blob/main/vagrant/config) script to generate the final `Vagrantfile` based on spec and options:
 
 ```bash
-cd ~/pigsty
+cd ~/pigsty/vagrant
 vagrant/config [spec] [image] [scale] [provider]
 
 # Examples
@@ -154,6 +155,10 @@ The config script supports various image aliases:
 | AlmaLinux 8    | `alma8`                                   | `cloud-image/almalinux-8`  |
 | AlmaLinux 9    | `alma9`                                   | `cloud-image/almalinux-9`  |
 | AlmaLinux 10   | `alma10`                                  | `cloud-image/almalinux-10` |
+| RHEL 8 / 9     | `rhel8`, `rhel9`                          | `generic/rhel8`, `generic/rhel9` |
+| Oracle Linux 8 / 9 | `oracle8`, `oracle9`                  | `generic/oracle8`, `generic/oracle9` |
+
+The historical `d11`/`debian11`/`deb11` and `u20`/`ubuntu20`/`ubuntu2004` aliases remain visible in the script mapping, but the current script explicitly rejects them; they are not supported images.
 
 ### Resource Scaling
 
@@ -171,8 +176,8 @@ Specs = [
 ]
 ```
 
-{{% alert title="simu spec doesn't support scaling" color="info" %}}
-The `simu` spec doesn't support resource scaling. The scale parameter will be automatically ignored because its resource configuration is already optimized for simulation scenarios.
+{{% alert title="simu and deci specs don't support scaling" color="info" %}}
+The `simu` and `deci` specs don't support resource scaling. The scale parameter is automatically reset to `1` because their resource configurations are already optimized for simulation scenarios.
 {{% /alert %}}
 
 
@@ -180,9 +185,10 @@ The `simu` spec doesn't support resource scaling. The scale parameter will be au
 
 ## VM Management
 
-Pigsty provides a set of Makefile shortcuts for managing virtual machines:
+The `vagrant/Makefile` provides shortcuts for managing virtual machines. Run the following commands from that directory:
 
 ```bash
+cd ~/pigsty/vagrant
 make           # Equivalent to make start
 make new       # Destroy existing VMs and create new ones
 make ssh       # Write VM SSH config to ~/.ssh/ (must run after creation)
@@ -216,40 +222,23 @@ ssh-keygen -t rsa -b 2048 -N '' -f ~/.ssh/id_rsa -q
 
 ## Supported Images
 
-Pigsty uses the `cloud-image/*` boxes from [**Vagrant Cloud**](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image). VirtualBox and libvirt both provide `amd64` / `arm64` architecture variants.
+The standard EL, Debian, Ubuntu, and AlmaLinux matrix uses `cloud-image/*` boxes from [**Vagrant Cloud**](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image). Explicit RHEL and Oracle Linux aliases use `generic/*` boxes. The current config script applies the same `cloud-image/*` mapping to VirtualBox, libvirt, `amd64`, and `arm64`; actual payload availability is still resolved by Vagrant Cloud at runtime.
 
-### VirtualBox
+VirtualBox and libvirt use the same mapping. Source pins versions for only four boxes; entries marked “floating” omit `box_version` and are resolved to the currently available Vagrant Cloud version:
 
-| OS             | Vagrant Box                                                                                                |  `amd64` Version  |  `arm64` Version  |
-|----------------|------------------------------------------------------------------------------------------------------------|:-----------------:|:-----------------:|
-| Rocky 8        | [`cloud-image/rocky-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-8)           | `8.10.20240528.0` | `8.10.20240528.0` |
-| Rocky 9        | [`cloud-image/rocky-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-9)           | `9.7.20251123.2`  | `9.7.20251123.2`  |
-| Rocky 10       | [`cloud-image/rocky-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-10)         | `10.1.20251116.0` | `10.1.20251116.0` |
-| Debian 12      | [`cloud-image/debian-12`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-12)       | `20260615.2510.0` | `20260615.2510.0` |
-| Debian 13      | [`cloud-image/debian-13`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-13)       | `20260623.2518.0` | `20260623.2518.0` |
-| Ubuntu 22.04.5 | [`cloud-image/ubuntu-22.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-22.04) |  `20260627.0.0`   |  `20260627.0.0`   |
-| Ubuntu 24.04.4 | [`cloud-image/ubuntu-24.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-24.04) |  `20260615.0.0`   |  `20260615.0.0`   |
-| Ubuntu 26.04.0 | [`cloud-image/ubuntu-26.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-26.04) |  `20260627.0.0`   |  `20260627.0.0`   |
-| AlmaLinux 8    | [`cloud-image/almalinux-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-8)   |  `8.10.20260518`  |  `8.10.20260518`  |
-| AlmaLinux 9    | [`cloud-image/almalinux-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-9)   |  `9.7.20260518`   |  `9.7.20260518`   |
-| AlmaLinux 10   | [`cloud-image/almalinux-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-10) | `10.1.20260518.0` | `10.1.20260518.0` |
-{.full-width}
-
-### libvirt
-
-| OS             | Vagrant Box                                                                                                |  `amd64` Version  |  `arm64` Version  |
-|----------------|------------------------------------------------------------------------------------------------------------|:-----------------:|:-----------------:|
-| Rocky 8        | [`cloud-image/rocky-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-8)           | `8.10.20240528.0` | `8.10.20240528.0` |
-| Rocky 9        | [`cloud-image/rocky-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-9)           | `9.7.20251123.2`  | `9.7.20251123.2`  |
-| Rocky 10       | [`cloud-image/rocky-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-10)         | `10.1.20251116.0` | `10.1.20251116.0` |
-| Debian 12      | [`cloud-image/debian-12`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-12)       | `20260615.2510.0` | `20260615.2510.0` |
-| Debian 13      | [`cloud-image/debian-13`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-13)       | `20260623.2518.0` | `20260623.2518.0` |
-| Ubuntu 22.04.5 | [`cloud-image/ubuntu-22.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-22.04) |  `20260627.0.0`   |  `20260627.0.0`   |
-| Ubuntu 24.04.4 | [`cloud-image/ubuntu-24.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-24.04) |  `20260615.0.0`   |  `20260615.0.0`   |
-| Ubuntu 26.04.0 | [`cloud-image/ubuntu-26.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-26.04) |  `20260627.0.0`   |  `20260627.0.0`   |
-| AlmaLinux 8    | [`cloud-image/almalinux-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-8)   |  `8.10.20260518`  |  `8.10.20260518`  |
-| AlmaLinux 9    | [`cloud-image/almalinux-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-9)   |  `9.7.20260518`   |  `9.7.20260518`   |
-| AlmaLinux 10   | [`cloud-image/almalinux-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-10) | `10.1.20260518.0` | `10.1.20260518.0` |
+| OS | Vagrant Box | Source Version Policy |
+|----|-------------|:---------------------:|
+| Rocky 8 | [`cloud-image/rocky-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-8) | Floating |
+| Rocky 9 | [`cloud-image/rocky-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-9) | `9.7.20251123.2` |
+| Rocky 10 | [`cloud-image/rocky-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-10) | `10.1.20251116.0` |
+| Debian 12 | [`cloud-image/debian-12`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-12) | Floating |
+| Debian 13 | [`cloud-image/debian-13`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-13) | Floating |
+| Ubuntu 22.04 | [`cloud-image/ubuntu-22.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-22.04) | Floating |
+| Ubuntu 24.04 | [`cloud-image/ubuntu-24.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-24.04) | Floating |
+| Ubuntu 26.04 | [`cloud-image/ubuntu-26.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-26.04) | Floating |
+| AlmaLinux 8 | [`cloud-image/almalinux-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-8) | Floating |
+| AlmaLinux 9 | [`cloud-image/almalinux-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-9) | `9.7.20260518` |
+| AlmaLinux 10 | [`cloud-image/almalinux-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-10) | `10.1.20260518.0` |
 {.full-width}
 
 

@@ -9,7 +9,7 @@ categories: [Task]
 
 Pigsty provides three playbooks related to the INFRA module:
 
-- [`deploy.yml`](#deployyml): Deploy all components on all nodes in one pass
+- [`deploy.yml`](#deployyml): Deploy the NODE, INFRA, ETCD, MINIO, and PGSQL core modules on all nodes in one pass
 - [`infra.yml`](#infrayml): Initialize Pigsty infrastructure on infra nodes
 - [`infra-rm.yml`](#infra-rmyml): Remove infrastructure components from infra nodes
 
@@ -18,29 +18,31 @@ Pigsty provides three playbooks related to the INFRA module:
 
 ## `deploy.yml`
 
-Deploy all components on all nodes in one pass, resolving INFRA/NODE circular dependency issues.
+Deploy the NODE, INFRA, ETCD, MINIO, and PGSQL core modules on all nodes in one pass, resolving INFRA/NODE circular dependency issues.
 
-This playbook interleaves subtasks from `infra.yml` and `node.yml`, completing deployment of all components in the following order:
+This playbook interleaves subtasks from `infra.yml` and `node.yml`, completing deployment of the core components in the following order:
 
 1. **id**: Generate node and PostgreSQL identities
 2. **ca**: Create self-signed CA on localhost
 3. **repo**: Create local software repository on infra nodes
-4. **node-init**: Initialize nodes, HAProxy, and Docker
+4. **node-init**: Initialize nodes and HAProxy
 5. **infra**: Initialize Nginx, DNS, VictoriaMetrics, Grafana, etc.
 6. **node-monitor**: Initialize node-exporter, vector
 7. **etcd**: Initialize etcd (required for PostgreSQL HA)
 8. **minio**: Initialize MinIO (optional)
-9. **pgsql**: Initialize PostgreSQL clusters
-10. **pgsql-monitor**: Initialize PostgreSQL monitoring
+9. **pgsql**: Initialize PostgreSQL clusters and configure PostgreSQL monitoring
 
-This playbook is equivalent to executing the following four playbooks sequentially:
+This playbook is equivalent to executing the following five playbooks sequentially:
 
 ```bash
 ./infra.yml -l infra    # Deploy infrastructure on infra group
 ./node.yml              # Initialize all nodes
 ./etcd.yml              # Initialize etcd cluster
+./minio.yml             # Initialize MinIO cluster (optional)
 ./pgsql.yml             # Initialize PostgreSQL clusters
 ```
+
+`deploy.yml` does not currently deploy the Docker module. If Docker is required, set `docker_enabled: true` and run `docker.yml` separately.
 
 
 ----------------
@@ -91,26 +93,26 @@ This playbook performs the following tasks:
 #     - repo_use         : add newly built repo into /etc/yum.repos.d
 #   - repo_nginx    : launch a nginx for repo if no nginx is serving
 #
-# node/haproxy/docker/monitor: setup infra node as a common node
+# node/haproxy/monitor: setup infra node as a common node
 #   - node_name, node_hosts, node_resolv, node_firewall, node_ca, node_repo, node_pkg
 #   - node_feature, node_kernel, node_tune, node_sysctl, node_profile, node_ulimit
 #   - node_data, node_admin, node_timezone, node_ntp, node_crontab, node_vip
 #   - haproxy_install, haproxy_config, haproxy_launch, haproxy_reload
-#   - docker_install, docker_admin, docker_config, docker_launch, docker_image
 #   - haproxy_register, node_exporter, node_register, vector
 #
 # infra: setup infra components
-#   - infra_env      : env_dir, env_pg, env_pgadmin, env_var
-#   - infra_pkg      : install infra packages
 #   - infra_user     : setup infra os user group
+#   - infra_dir      : create infra data/config/runtime directories
+#   - infra_env      : env_patroni, env_pg, env_pgadmin, env_etcd, env_pglog, env_var
+#   - infra_pkg      : install infra packages
 #   - infra_cert     : issue cert for infra components
 #   - dns            : dns_config, dns_record, dns_launch
-#   - nginx          : nginx_config, nginx_cert, nginx_static, nginx_launch, nginx_certbot, nginx_reload, nginx_exporter
-#   - victoria       : vmetrics_config, vmetrics_launch, vlogs_config, vlogs_launch, vtraces_config, vtraces_launch, vmalert_config, vmalert_launch
+#   - nginx          : nginx_dir, nginx_config, nginx_cert, nginx_static, nginx_launch, nginx_certbot, nginx_reload, nginx_exporter
+#   - victoria       : vmetrics/vlogs/vtraces clean, config & launch; vmalert_config, vmalert_launch
 #   - alertmanager   : alertmanager_config, alertmanager_launch
 #   - blackbox       : blackbox_config, blackbox_launch
-#   - grafana        : grafana_clean, grafana_config, grafana_launch, grafana_provision
-#   - infra_register : register infra components to victoria
+#   - grafana        : grafana_clean, grafana_dir, grafana_config, grafana_launch, grafana_provision
+#   - infra_register : add_metrics, add_logs, add_ds
 ```
 
 
@@ -123,8 +125,15 @@ Remove Pigsty infrastructure from Infra nodes defined in the `infra` group of yo
 Common subtasks include:
 
 ```bash
-./infra-rm.yml               # Remove the INFRA module
+./infra-rm.yml               # Run all phases: deregister, stop, remove config/environment/data, and uninstall packages
+./infra-rm.yml -t deregister # Only deregister monitoring targets, Grafana datasources, and Nginx log collection
 ./infra-rm.yml -t service    # Stop infrastructure services on INFRA
+./infra-rm.yml -t config     # Remove INFRA config and systemd units
+./infra-rm.yml -t env        # Remove the admin user's Pigsty/PostgreSQL environment files
 ./infra-rm.yml -t data       # Remove retained data on INFRA
 ./infra-rm.yml -t package    # Uninstall packages installed on INFRA
 ```
+
+{{% alert title="Full removal deletes data" color="danger" %}}
+`infra-rm.yml` has no deletion safeguard. Without tags, it runs every phase above. The `data` phase recursively removes `infra_data` (default: `/data/infra`), `nginx_data` (default: `/data/nginx`), `nginx_home` (default: `/www`), and `/var/lib/grafana`, including metrics, logs, traces, the software repository, and local Grafana data. Use the corresponding tag if you only want to stop services or deregister targets, and back up any data you need before a full run.
+{{% /alert %}}

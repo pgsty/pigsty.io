@@ -36,6 +36,8 @@ yum remove docker-ce docker-compose-plugin   # Uninstall Docker on EL systems
 apt remove docker-ce docker-compose-plugin   # Uninstall Docker on Debian systems
 ```
 
+Changing `docker_enabled` to `false` only makes `docker.yml` skip the entire Docker role. It does not stop or uninstall an existing Docker deployment, nor delete `/data/docker`.
+The manual commands above also leave the data directory in place. Docker's VictoriaMetrics file-discovery target can be deregistered together with the node through the `node_deregister` task in `node-rm.yml`.
 
 
 

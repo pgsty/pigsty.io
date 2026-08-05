@@ -9,7 +9,7 @@ categories: [Reference]
 
 > Choosing a "kernel" in Pigsty means determining the PostgreSQL major version, mode/distribution, packages to install, and tuning templates to load.
 
-Pigsty v4.4 currently supports PostgreSQL 14-18 and uses 18 by default. The following content shows how to make these choices through configuration files.
+The Pigsty v4.5 source currently supports PostgreSQL 14-18 and uses 18 by default. The following content shows how to make these choices through configuration files.
 
 
 ----------------
@@ -24,7 +24,7 @@ Pigsty v4.4 currently supports PostgreSQL 14-18 and uses 18 by default. The foll
 all:
   vars:
     pg_version: 18
-    pg_packages: [ pgsql-main pgsql-common ]
+    pg_packages: [ pgsql-main, pgsql-common ]
     pg_extensions: [ postgis, timescaledb, pgvector, pgml ]
 ```
 
@@ -52,26 +52,29 @@ Extension support varies across versions in Pigsty's offline repository: 14 has 
 | `oriole` | OrioleDB storage engine                                              |
 | `agens`  | AgensGraph graph database kernel                                     |
 | `pgedge` | pgEdge distributed replication kernel                                |
-| `oracle` | PostgreSQL + ora compatibility (`pg_mode: oracle`)                   |
 
-After selecting a mode, Pigsty will automatically load corresponding templates, dependency packages, and Patroni configurations. For example, deploying Citus:
+`pg_mode` determines binary paths, Patroni integration, and some kernel-specific logic; it does not automatically add every required package, extension, and business database. Use the matching `conf/*.yml` template in real deployments, or explicitly configure `pg_packages`, `pg_extensions`, `pg_libs`, and `pg_databases`. Here is a minimal Citus example:
 
 ```yaml
 all:
   children:
-    pg-citus0:
-      hosts: { 10.10.10.11: { pg_seq: 1, pg_role: primary } }
-      vars: { pg_cluster: pg-citus0, pg_group: 0 }
     pg-citus1:
+      hosts: { 10.10.10.11: { pg_seq: 1, pg_role: primary } }
+      vars: { pg_cluster: pg-citus1, pg_group: 0 }
+    pg-citus2:
       hosts: { 10.10.10.12: { pg_seq: 1, pg_role: primary } }
-      vars: { pg_cluster: pg-citus1, pg_group: 1 }
+      vars: { pg_cluster: pg-citus2, pg_group: 1 }
   vars:
     pg_mode: citus
     pg_shard: pg-citus
-    patroni_citus_db: meta
+    pg_primary_db: citus
+    pg_extensions: [ citus ]
+    pg_libs: 'citus, pg_stat_statements'
+    pg_databases:
+      - { name: citus, extensions: [ citus ] }
 ```
 
-> Effect: All members will install Citus-related packages, Patroni writes to etcd in shard mode, and automatically `CREATE EXTENSION citus` in the `meta` database.
+> `conf/ha/citus.yml` provides the current complete example. The minimal configuration above explicitly installs Citus packages and creates the extension in the `citus` database.
 
 
 ----------------
@@ -82,7 +85,7 @@ Besides system packages, you can control components automatically loaded after d
 
 - `pg_libs`: List to write to `shared_preload_libraries`. For example: `pg_libs: 'timescaledb, pg_stat_statements, auto_explain'`.
 - `pg_default_extensions` / `pg_default_schemas`: Control schemas and extensions pre-created in `template1` and `postgres` by initialization scripts.
-- `pg_parameters`: Append `ALTER SYSTEM SET` for all instances (written to `postgresql.auto.conf`).
+- `pg_parameters`: Rendered by Pigsty into `postgresql.auto.conf` during configuration. Do not also manage the same settings manually with `ALTER SYSTEM`.
 
 Example: Enable TimescaleDB, pgvector and customize some system parameters.
 
@@ -90,16 +93,15 @@ Example: Enable TimescaleDB, pgvector and customize some system parameters.
 pg-analytics:
   vars:
     pg_cluster: pg-analytics
-    pg_libs: 'timescaledb, pg_stat_statements, pgml'
+    pg_libs: 'timescaledb, pg_stat_statements, auto_explain'
     pg_default_extensions:
       - { name: timescaledb }
-      - { name: pgvector }
+      - { name: vector }
     pg_parameters:
       timescaledb.max_background_workers: 8
-      shared_preload_libraries: "'timescaledb,pg_stat_statements,pgml'"
 ```
 
-> Effect: During initialization, `template1` creates extensions, Patroni's `postgresql.conf` injects corresponding parameters, and all business databases inherit these settings.
+> Effect: During initialization, default extensions are created in `template1` and `postgres`; newly created databases based on `template1` inherit those objects. `pg_parameters` is written directly to `postgresql.auto.conf`.
 
 
 ----------------
@@ -146,16 +148,16 @@ pg-rag:
     pg_version: 18
     pg_mode: pgsql
     pg_conf: olap.yml
-    pg_packages: [ pgsql-main pgsql-common ]
+    pg_packages: [ pgsql-main, pgsql-common ]
     pg_extensions: [ pgvector, pgml, postgis ]
-    pg_libs: 'pg_stat_statements, pgvector, pgml'
+    pg_libs: 'pg_stat_statements, auto_explain'
     pg_parameters:
       max_parallel_workers: 8
       shared_buffers: '32GB'
 ```
 
 - First primary + one replica, using `olap.yml` tuning.
-- Install PG18 + RAG common extensions, automatically load `pgvector/pgml` at system level.
+- Install PG18 plus common RAG extensions; only libraries that actually require preloading belong in `pg_libs`.
 - Patroni/pgbouncer/pgbackrest generated by Pigsty, no manual intervention needed.
 
 Replace the above parameters according to business needs to complete all kernel-level customization.

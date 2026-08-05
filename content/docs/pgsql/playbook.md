@@ -35,7 +35,7 @@ When `pg_safeguard` is set to `true`, the [`pgsql-rm.yml`](#pgsql-rmyml) playboo
 
 ```bash
 # Will abort execution, protecting data
-./pgsql-rm.yml -l pg-test
+./pgsql-rm.yml -l pg-test -e pg_safeguard=true
 
 # Force override the safeguard via command line parameter
 ./pgsql-rm.yml -l pg-test -e pg_safeguard=false
@@ -53,7 +53,7 @@ In addition to `pg_safeguard`, [`pgsql-rm.yml`](#pgsql-rmyml) provides finer-gra
 These parameters allow precise control over removal behavior:
 
 ```bash
-# Remove cluster but keep data directory (only stop services)
+# Remove the instance services, monitoring, and DCS registration, but keep its data directory
 ./pgsql-rm.yml -l pg-test -e pg_rm_data=false
 
 # Remove cluster but keep backup data
@@ -243,7 +243,7 @@ This playbook contains the following subtasks:
 #
 # pg_monitor             : remove registration from monitoring system
 #   - pg_deregister      : remove pg monitoring targets from infra
-#     - rm_metrics       : remove monitoring targets from prometheus
+#     - rm_metrics       : remove targets from the VictoriaMetrics target directory
 #     - rm_ds            : remove datasource from grafana
 #     - rm_logs          : remove log targets from vector
 #   - pg_exporter        : remove pg_exporter
@@ -263,7 +263,7 @@ This playbook contains the following subtasks:
 #
 # pg_backup              : remove backup repo (disable with pg_rm_backup=false)
 # pg_data                : remove postgres data (disable with pg_rm_data=false)
-# pg_pkg                 : uninstall pg packages (enable with pg_rm_pkg=true)
+# pg_pkg                 : uninstall pg packages (enabled by default; disable with pg_rm_pkg=false)
 #   - pg_ext             : uninstall postgres extensions alone
 ```
 
@@ -329,7 +329,7 @@ pg_users:
     roles: [dbrole_admin]           # Optional, roles to grant
     parameters: {}                  # Optional, role-level parameters
     pool_mode: transaction          # Optional, pgbouncer user-level pool mode
-    pool_connlimit: -1              # Optional, user-level max connections (maps to max_user_connections)
+    pool_connlimit: 100             # Optional, user-level max connections; omitted values inherit global default 100
 ```
 
 For details, see: [Admin SOP: Create User](/docs/pgsql/admin#create-user)
@@ -387,8 +387,8 @@ pg_databases:
     connlimit: -1                   # Optional, connection limit
     pool_auth_user: dbuser_meta     # Optional, auth query user (with pgbouncer_auth_query)
     pool_mode: transaction          # Optional, pgbouncer pool mode
-    pool_size: 64                   # Optional, pgbouncer default pool size
-    pool_reserve: 32                # Optional, pgbouncer reserve pool size
+    pool_size: 50                   # Optional, pgbouncer default pool size
+    pool_reserve: 30                # Optional, pgbouncer reserve pool size
     pool_size_min: 0                # Optional, pgbouncer minimum pool size
     pool_connlimit: 100             # Optional, pgbouncer max database connections
 ```
@@ -433,7 +433,7 @@ infra:
 ```
      ------ infra ------
      |                 |
-     |   prometheus    |            v---- pg-foo-1 ----v
+     | victoria-metrics|            v---- pg-foo-1 ----v
      |       ^         |  metrics   |         ^        |
      |   pg_exporter <-|------------|----  postgres    |
      |   (port: 20001) |            | 10.10.10.10:5432 |

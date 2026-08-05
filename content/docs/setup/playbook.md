@@ -21,7 +21,7 @@ Understanding Ansible basics helps with better use of Pigsty, but this is **not 
 
 ## Deploy Playbook
 
-Pigsty provides a "one-stop" deploy playbook **`deploy.yml`**, installing all modules on the current env in one go (if defined in config):
+Pigsty provides a "one-stop" deploy playbook **`deploy.yml`** for the core path: CA/software repository, NODE, INFRA, ETCD, PGSQL, and MINIO when enabled in the inventory. Optional modules such as Redis, Kafka, and native MySQL require their own module playbooks even when defined in the inventory.
 
 | Playbook    | Command       | Group      | `infra` | `[nodes]` | `etcd` | `minio` | `[pgsql]` |
 |-------------|---------------|------------|:-------:|:---------:|:------:|:-------:|:---------:|
@@ -135,7 +135,7 @@ If specified, only tasks with the given tags will execute instead of the entire 
 ./infra.yml -t repo          # Create repo
 ./node.yml  -t node_pkg      # Install node packages
 ./pgsql.yml -t pg_install    # Install PG packages and extensions
-./etcd.yml  -t etcd_purge    # Destroy ETCD cluster
+./etcd.yml  -t etcd_config   # Render ETCD configuration again
 ./minio.yml -t minio_alias   # Write MinIO CLI config
 ```
 
@@ -249,4 +249,10 @@ Below are the [**built-in playbooks**](/docs/ref/playbook) in Pigsty. You can al
 | [**DOCKER**](/docs/docker/playbook/) | [**`docker.yml`**](https://github.com/pgsty/pigsty/blob/main/docker.yml)                   | Install Docker on nodes                             |
 | [**DOCKER**](/docs/docker/playbook/) | [**`app.yml`**](https://github.com/pgsty/pigsty/blob/main/app.yml)                         | Install applications using Docker Compose           |
 | [**FERRET**](/docs/ferret/playbook)  | [**`mongo.yml`**](https://github.com/pgsty/pigsty/blob/main/mongo.yml)                     | Install Mongo/FerretDB on nodes                     |
+|  [**JUICE**](/docs/juice/playbook/)  | [**`juice.yml`**](https://github.com/pgsty/pigsty/blob/main/juice.yml)                     | Install and configure JuiceFS                       |
+|   [**VIBE**](/docs/vibe/playbook/)   | [**`vibe.yml`**](https://github.com/pgsty/pigsty/blob/main/vibe.yml)                       | Install the Vibe coding environment                 |
+|  [**KAFKA**](/docs/kafka/playbook/)  | [**`kafka.yml`**](https://github.com/pgsty/pigsty/blob/main/kafka.yml)                     | Create or converge a Kafka dynamic KRaft cluster    |
+|  [**KAFKA**](/docs/kafka/playbook/)  | [**`kafka-rm.yml`**](https://github.com/pgsty/pigsty/blob/main/kafka-rm.yml)               | Remove a Kafka cluster or member                    |
+| **MYSQL (Pilot)** | [**`mysql.yml`**](https://github.com/pgsty/pigsty/blob/main/mysql.yml)                | Deploy native MySQL 8.4 standalone or three-node clusters |
+| **MYSQL (Pilot)** | [**`mysql-rm.yml`**](https://github.com/pgsty/pigsty/blob/main/mysql-rm.yml)          | Stop and retire native MySQL while retaining local state |
 {.full-width}

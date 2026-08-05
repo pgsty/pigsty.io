@@ -103,11 +103,11 @@ juice_instances:
 ```
 
 ```bash
-./juice.yml -l <host> -t juice_clean
-./juice.yml -l <host> -e fsname=jfs -t juice_clean
+./juice.yml -l <host> -t juice_clean,juice_register
+./juice.yml -l <host> -e fsname=jfs -t juice_clean,juice_register
 ```
 
-Removal includes: stop service, lazy unmount, remove systemd unit/env files, reload systemd.
+Removal includes stopping the service, lazy unmounting, removing systemd unit and environment files, and reloading systemd. `juice_register` then rewrites the node's target file and removes stale scrape endpoints. Running only `juice_clean` does not update monitoring targets.
 **PostgreSQL metadata and object storage data are not deleted.**
 
 --------

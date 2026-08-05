@@ -7,7 +7,7 @@ module: [DOCKER]
 categories: [Reference]
 ---
 
-The [**`DOCKER`**](/docs/docker) module contains 123 available monitoring metrics.
+This snapshot records 123 monitoring metric families for the [**`DOCKER`**](/docs/docker) module. The metrics present at runtime vary with package version, enabled collectors, and target state.
 
 | Metric Name                                                  | Type    | Labels                                                                                                                                          | Description                                                          |
 |--------------------------------------------------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|

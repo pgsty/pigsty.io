@@ -21,7 +21,6 @@ For cross-datacenter/cross-region deployments, RTO requirements are typically re
 
 The upper limit of unavailability during failover is controlled by the [**`pg_rto`**](/docs/pgsql/param#pg_rto) parameter. Pigsty provides four preset RTO modes:
 `fast`, `norm`, `safe`, `wide`, each optimized for different network conditions and deployment scenarios. The default is `norm` mode (~45 seconds).
-You can also specify the RTO upper limit directly in seconds, and the system will automatically map to the closest mode.
 
 When the primary fails, the entire recovery process involves multiple phases: Patroni detects the failure, DCS lock expires, new primary election, promote execution, HAProxy detects the new primary.
 Reducing RTO means shortening the timeout for each phase, which makes the cluster more sensitive to network jitter, thereby increasing false failover risk.
@@ -178,7 +177,7 @@ loop\_wait + 2 \times retry\_timeout \leq ttl
 Recommended only for same-rack or same-switch deployments, and should be thoroughly tested in production before enabling.
 
 **norm mode** (**default**) is Pigsty's default configuration, sufficient for the vast majority of same-datacenter deployments.
-An average recovery time of 21 seconds is within acceptable range while providing a reasonable tolerance window to avoid false failovers from network jitter.
+In the model used by this page, the passive and active paths average about 34 and 35 seconds, while still providing a reasonable tolerance window against false failovers caused by network jitter.
 
 **safe mode** is suitable for same-city cross-datacenter deployments with higher network latency or occasional jitter.
 The longer tolerance window effectively prevents false failovers from network jitter, making it the recommended configuration for cross-datacenter disaster recovery.
@@ -197,7 +196,7 @@ In such scenarios, stability is more important than recovery speed, so an extrem
 
 
 Typically you only need to set [**`pg_rto`**](/docs/pgsql/param#pg_rto) to the mode name, and Pigsty will automatically configure Patroni and HAProxy parameters.
-For backward compatibility, Pigsty still supports configuring RTO directly in seconds, but the effect is equivalent to specifying `norm` mode.
+The current template looks up `pg_rto` with `pg_rto in pg_rto_plan`; a numeric or unknown key falls back directly to `norm`. Do not treat that fallback as a supported “RTO in seconds” configuration.
 
 The mode configuration actually loads the corresponding parameter set from [**`pg_rto_plan`**](/docs/pgsql/param#pg_rto_plan). You can modify or override this configuration to implement custom RTO strategies.
 

@@ -188,7 +188,7 @@ By default, block inbound access from office/Internet networks except:
 - PostgreSQL port `5432` for database access
 
 If accessing PostgreSQL via other ports, allow them accordingly.
-See [**used ports**](/docs/node/) for the complete port list.
+See [**used ports**](/docs/ref/port/) for the complete port list.
 
 - `5432`: PostgreSQL database
 - `6432`: Pgbouncer connection pooler
@@ -196,5 +196,4 @@ See [**used ports**](/docs/node/) for the complete port list.
 - `5434`: PG replica service
 - `5436`: PG default service
 - `5438`: PG offline service
-
 

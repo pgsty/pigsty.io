@@ -1,12 +1,12 @@
 ---
 title: pgsql
 weight: 410
-description: Native PostgreSQL kernel, supports deployment of PostgreSQL versions 14 to 18
+description: Native PostgreSQL kernel with stable support for PostgreSQL 14 to 18 and a PG19 Beta evaluation option
 icon: fa-brands fa-linux
 categories: [Reference]
 ---
 
-The `pgsql` configuration template uses the native PostgreSQL kernel, which is Pigsty's default database kernel, supporting PostgreSQL versions 14 to 18.
+The `pgsql` configuration template uses the native PostgreSQL kernel, Pigsty's default database kernel, with stable support for PostgreSQL 14 to 18. The current `configure` also accepts version 19, but PG19 remains Beta; use the dedicated [`pg19`](/docs/conf/pg19/) template for evaluation.
 
 
 --------
@@ -51,6 +51,7 @@ The `pgsql` template is Pigsty's **standard kernel configuration**, using commun
 **Version Support**:
 - PostgreSQL 18 (default)
 - PostgreSQL 17, 16, 15, 14
+- PostgreSQL 19 Beta (evaluation; use `./configure -c pg19`)
 
 **Use Cases**:
 - Need to use the latest PostgreSQL features

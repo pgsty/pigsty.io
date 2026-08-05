@@ -208,8 +208,11 @@ Here are some administration tasks related to the INFRA module:
 
 ```bash
 ./infra.yml     # Install INFRA module on infra group
-./infra-rm.yml  # Uninstall INFRA module from infra group
+./infra-rm.yml  # Fully remove INFRA, including data and packages
 ```
+
+`infra-rm.yml` has no deletion safeguard. Without tags, it removes `infra_data`, `nginx_data`, `nginx_home` (default: `/www`), and `/var/lib/grafana`.
+If you only need to stop services or deregister targets, use tags. See [Playbooks](/docs/infra/playbook/#infra-rmyml) for the complete removal scope.
 
 ----------------
 
@@ -254,9 +257,10 @@ You can use the following playbook subtasks to manage various infrastructure com
 
 ```bash
 ./infra.yml -t infra           # Configure infrastructure
-./infra.yml -t infra_env       # Configure environment variables on admin node: env_dir, env_pg, env_var
-./infra.yml -t infra_pkg       # Install software packages required by INFRA: infra_pkg_yum, infra_pkg_pip
 ./infra.yml -t infra_user      # Setup infra OS user group
+./infra.yml -t infra_dir       # Create infrastructure data, config, and runtime directories
+./infra.yml -t infra_env       # Configure admin environment: env_patroni, env_pg, env_pgadmin, env_etcd, env_pglog, env_var
+./infra.yml -t infra_pkg       # Install software packages required by INFRA: infra_packages
 ./infra.yml -t infra_cert      # Issue certificates for infra components
 ./infra.yml -t dns             # Configure DNSMasq: dns_config, dns_record, dns_launch
 ./infra.yml -t nginx           # Configure Nginx: nginx_config, nginx_cert, nginx_static, nginx_launch, nginx_exporter
@@ -287,7 +291,7 @@ Pigsty provides three playbooks related to the INFRA module:
 
 - [`infra.yml`](#infrayml): Initialize pigsty infrastructure on infra nodes
 - [`infra-rm.yml`](#infra-rmyml): Remove infrastructure components from infra nodes
-- [`deploy.yml`](#deployyml): Complete one-time Pigsty installation on all nodes
+- [`deploy.yml`](#deployyml): Deploy the NODE, INFRA, ETCD, MINIO, and PGSQL core chain in one pass
 
 ----------------
 
@@ -328,18 +332,21 @@ The INFRA module playbook [`infra-rm.yml`](https://github.com/pgsty/pigsty/blob/
 Common subtasks include:
 
 ```bash
-./infra-rm.yml               # Remove INFRA module
+./infra-rm.yml               # Full removal: deregister, stop, delete config/environment/data, and uninstall packages
+./infra-rm.yml -t deregister # Only deregister monitoring targets, datasources, and log collection
 ./infra-rm.yml -t service    # Stop infrastructure services on INFRA
 ./infra-rm.yml -t data       # Remove remaining data on INFRA
 ./infra-rm.yml -t package    # Uninstall software packages installed on INFRA
 ```
+
+Full execution has no deletion safeguard and removes `infra_data`, `nginx_data`, `nginx_home` (default: `/www`), and `/var/lib/grafana`. Back up any data you need before running it.
 
 
 ----------------
 
 ### `deploy.yml`
 
-The INFRA module playbook [`deploy.yml`](https://github.com/pgsty/pigsty/blob/main/deploy.yml) performs a complete one-time Pigsty installation on **all nodes**
+The INFRA module playbook [`deploy.yml`](https://github.com/pgsty/pigsty/blob/main/deploy.yml) deploys the NODE, INFRA, ETCD, MINIO, and PGSQL core chain on **all nodes** in one pass. Optional modules such as Docker, Redis, Kafka, native MySQL, JUICE, and VIBE require their own playbooks.
 
 This playbook is described in more detail in [Playbook: One-Time Installation](/docs/setup/playbook#deployment-playbook).
 
@@ -407,11 +414,11 @@ This playbook is described in more detail in [Playbook: One-Time Installation](/
 </details>
 
 
-[CMDB Overview](https://demo.pigsty.io/d/cmdb-overview): CMDB visualization
+[CMDB Overview](https://demo.pigsty.io/d/inventory-cmdb): CMDB visualization
 
 <details><summary>CMDB Overview Dashboard</summary>
 
-[![cmdb-overview.jpg](/img/dashboard/cmdb-overview.jpg)](https://demo.pigsty.io/d/cmdb-overview)
+[![cmdb-overview.jpg](/img/dashboard/cmdb-overview.jpg)](https://demo.pigsty.io/d/inventory-cmdb)
 
 </details>
 

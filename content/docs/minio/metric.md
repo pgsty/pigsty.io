@@ -8,7 +8,7 @@ module: [MINIO]
 categories: [Reference]
 ---
 
-The [**`MINIO`**](/docs/minio) module contains 79 available monitoring metrics.
+This page is a snapshot of 79 monitoring metric categories for the [**`MINIO`**](/docs/minio) module. The actual runtime metric set varies with package version, enabled collectors, and target state.
 
 | Metric Name                                      | Type    | Labels                                                         | Description                                                                                                                                 |
 |--------------------------------------------------|---------|----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
@@ -91,4 +91,3 @@ The [**`MINIO`**](/docs/minio) module contains 79 available monitoring metrics.
 | scrape_samples_scraped                           | Unknown | `ip`, `job`, `cls`, `instance`, `ins`                          | N/A                                                                                                                                         |
 | scrape_series_added                              | Unknown | `ip`, `job`, `cls`, `instance`, `ins`                          | N/A                                                                                                                                         |
 | up                                               | Unknown | `ip`, `job`, `cls`, `instance`, `ins`                          | N/A                                                                                                                                         |
-

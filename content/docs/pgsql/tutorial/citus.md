@@ -23,9 +23,9 @@ Patroni v3.0+ provides native high-availability support for Citus, simplifying t
 
 ## Citus Cluster
 
-Pigsty natively supports Citus. See [`conf/citus.yml`](https://github.com/pgsty/pigsty/blob/main/conf/citus.yml) for reference.
+Pigsty natively supports Citus. The current complete configuration template is [`conf/ha/citus.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/citus.yml).
 
-Here we use the Pigsty 4-node sandbox to define a Citus cluster `pg-citus`, which includes a 2-node coordinator cluster `pg-citus0` and two Worker clusters `pg-citus1` and `pg-citus2`.
+The simplified four-node topology below illustrates the key parameters: a two-node coordinator cluster `pg-citus0` and two single-node Worker clusters, `pg-citus1` and `pg-citus2`. It is not a line-for-line excerpt from the current complete template.
 
 ```yaml
 pg-citus:
@@ -43,12 +43,12 @@ pg-citus:
     pg_vip_interface: auto                    # auto detect vip interface for every member
     pg_dbsu_password: DBUser.Postgres         # all dbsu password access for citus cluster
     pg_extensions: [ citus, postgis, pgvector, topn, pg_cron, hll ]  # install these extensions
-    pg_libs: 'citus, pg_cron, pg_stat_statements' # citus will be added by patroni automatically
+    pg_libs: 'citus, pg_cron, pg_stat_statements' # explicitly preload citus and keep it first
     pg_users: [{ name: dbuser_citus ,password: DBUser.Citus ,pgbouncer: true ,roles: [ dbrole_admin ]    }]
     pg_databases: [{ name: citus ,owner: dbuser_citus ,extensions: [ citus, vector, topn, pg_cron, hll ] }]
     pg_parameters:
       cron.database_name: citus
-      citus.node_conninfo: 'sslmode=require sslrootcert=/pg/cert/ca.crt sslmode=verify-full'
+      citus.node_conninfo: 'sslrootcert=/pg/cert/ca.crt sslmode=verify-full'
     pg_hba_rules:
       - { user: 'all' ,db: all  ,addr: 127.0.0.1/32  ,auth: ssl   ,title: 'all user ssl access from localhost' }
       - { user: 'all' ,db: all  ,addr: intra         ,auth: ssl   ,title: 'all user ssl access from intranet'  }
@@ -58,7 +58,7 @@ Compared to standard PostgreSQL clusters, Citus cluster configuration has some s
 
 - [`repo_packages`](/docs/infra/param#repo_packages): Must include the `citus` extension, or you need to use a PostgreSQL offline package that includes Citus.
 - [`pg_extensions`](/docs/pgsql/param#pg_extensions): Must include the `citus` extension, i.e., you must install the `citus` extension on each node.
-- [`pg_libs`](/docs/pgsql/param#pg_libs): Must include the `citus` extension at the first position, though Patroni now handles this automatically.
+- [`pg_libs`](/docs/pgsql/param#pg_libs): Must explicitly include `citus` in the first position; current Patroni templates use this parameter directly for `shared_preload_libraries`.
 - [`pg_databases`](/docs/pgsql/param#pg_databases): Define a primary database that must have the `citus` extension installed.
 
 Second, you need to ensure the Citus cluster is configured correctly:
@@ -67,7 +67,7 @@ Second, you need to ensure the Citus cluster is configured correctly:
 - [`pg_primary_db`](/docs/pgsql/param#pg_primary_db): Must specify the name of the primary database with `citus` extension, named `citus` here.
 - [`pg_shard`](/docs/pgsql/param#pg_shard): Must specify a unified name as the cluster name prefix for all horizontal shard PG clusters, `pg-citus` here.
 - [`pg_group`](/docs/pgsql/param#pg_group): Must specify a shard number, integers starting from zero. `0` represents the coordinator cluster, others are Worker clusters.
-- [`pg_cluster`](/docs/pgsql/param#pg_cluster): Must correspond to the combination of [`pg_shard`](/docs/pgsql/param#pg_shard) and [`pg_group`](/docs/pgsql/param#pg_group).
+- [`pg_cluster`](/docs/pgsql/param#pg_cluster): Must be unique among physical PostgreSQL clusters. Using `pg_shard` plus a sequence number is the usual naming convention, but the current role does not require it to equal a string concatenation of `pg_shard` and `pg_group`.
 - [`pg_dbsu_password`](/docs/pgsql/param#pg_dbsu_password): Must be set to a non-empty plaintext password, otherwise Citus will not work properly.
 - [`pg_parameters`](/docs/pgsql/param#pg_parameters): Recommended to set `citus.node_conninfo` to enforce SSL access and require node-to-node client certificate verification.
 
@@ -194,7 +194,7 @@ pgbench --select-only -nv -P1 -c10 -T500 postgres://dbuser_citus:DBUser.Citus@10
 
 For production use of Citus, you typically need to set up streaming replication physical replicas for the Coordinator and each Worker cluster.
 
-For example, [`simu.yml`](https://github.com/pgsty/pigsty/blob/main/conf/simu.yml) defines a 10-node Citus cluster:
+The current [`conf/ha/citus.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/citus.yml) defines one `pg-meta` instance plus 12 Citus instances across 13 hosts: six two-node physical clusters with `pg_group` values 0-5. The 10-node fragment below is a separate production-topology example, not the current template.
 
 ```yaml
 pg-citus: # citus group

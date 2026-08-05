@@ -8,7 +8,7 @@ module: [REDIS]
 categories: [Reference]
 ---
 
-The [**`REDIS`**](/docs/redis) module contains 275 available monitoring metrics.
+This page is a snapshot of 275 monitoring metric categories for the [**`REDIS`**](/docs/redis) module. The actual runtime metric set varies with package version, enabled collectors, and target state.
 
 | Metric Name                                           | Type    | Labels                                                                                                                                                       | Description                                                     | 
 |-------------------------------------------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------| 
@@ -287,4 +287,3 @@ The [**`REDIS`**](/docs/redis) module contains 275 available monitoring metrics.
 | scrape_samples_scraped                                | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
 | scrape_series_added                                   | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
 | up                                                    | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-

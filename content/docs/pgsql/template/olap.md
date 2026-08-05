@@ -109,7 +109,7 @@ OLAP queries may involve more tables (partitions, many JOINs), requiring more lo
 OLAP template aggressively enables parallel queries:
 
 ```yaml
-max_worker_processes: cpu + 12 (min 20)      # OLTP: cpu + 8
+max_worker_processes: max(cpu + 20, 28)      # OLTP: max(cpu + 16, 24)
 max_parallel_workers: 80% × cpu (min 2)      # OLTP: 50%
 max_parallel_workers_per_gather: 50% × cpu   # OLTP: 20% (max 8)
 max_parallel_maintenance_workers: 33% × cpu
@@ -129,7 +129,7 @@ enable_partitionwise_join: on       # smart partition JOIN
 enable_partitionwise_aggregate: on  # smart partition aggregation
 ```
 
-### IO Config (PG18+)
+### IO Config (PG18)
 
 ```yaml
 io_workers: 50% × cpu (4-32)    # OLTP: 25% (4-16)
@@ -140,10 +140,10 @@ More IO workers support parallel large table scans.
 ### WAL Config
 
 ```yaml
-min_wal_size: disk/20 (max 200GB)
-max_wal_size: disk/5 (max 2000GB)
-max_slot_wal_keep_size: disk×3/10 (max 3000GB)
-temp_file_limit: disk/5 (max 2000GB)   # OLTP: disk/20
+min_wal_size: disk/20 (effective max 100GB)
+max_wal_size: disk/5 (effective max 400GB)
+max_slot_wal_keep_size: disk×3/10 (effective max 600GB)
+temp_file_limit: disk/5 (effective max 400GB)   # OLTP: disk/20, effective max 100GB
 ```
 
 Larger `temp_file_limit` allows bigger intermediate results to spill to disk.

@@ -106,7 +106,7 @@ In many cases, database resources are limited, and using a separate server as an
 
 When Sync Standby is enabled, PostgreSQL will select one replica as the **sync standby**, with all other replicas as **candidates**. The primary database will wait for the standby instance to flush to disk before confirming commits. The standby instance always has the latest data with no replication lag, and primary-standby switchover to the sync standby will have no data loss.
 
-PostgreSQL uses asynchronous streaming replication by default, which may have small replication lag (on the order of 10KB/10ms). When the primary fails, there may be a small data loss window (which can be controlled using [`pg_rpo`](/docs/pgsql/param#pg_rpo)), but this is acceptable for most scenarios.
+PostgreSQL uses asynchronous streaming replication by default. If the primary fails, WAL that has not yet replicated may be lost. [`pg_rpo`](/docs/pgsql/param#pg_rpo) is Patroni's sampled lag threshold for failover candidates, not a hard upper bound on actual loss; the real window also depends on write rate, replication state, and Patroni sampling timing.
 
 However, in some critical scenarios (e.g., financial transactions), data loss is completely unacceptable, or read replication lag is unacceptable. In such cases, you can use synchronous commit to solve this problem. To enable sync standby mode, you can simply use the `crit.yml` template in [`pg_conf`](/docs/pgsql/param#pg_conf).
 
@@ -410,6 +410,5 @@ SELECT create_reference_table('pgbench_branches')         ; SELECT truncate_loca
 SELECT create_reference_table('pgbench_history')          ; SELECT truncate_local_data_after_distributing_table($$public.pgbench_history$$);
 SELECT create_reference_table('pgbench_tellers')          ; SELECT truncate_local_data_after_distributing_table($$public.pgbench_tellers$$);
 ```
-
 
 

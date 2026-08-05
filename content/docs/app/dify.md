@@ -19,7 +19,7 @@ Pigsty provides support for self-hosted Dify, allowing you to deploy Dify with a
 - [Domain and SSL](#domain-and-ssl)
 - [File Backup](#file-backup)
 
-> `app/dify` template latest verified Dify version: `v1.8.1` (2025-09-08)
+> `app/dify` template latest verified Dify version: `v1.15.0` (2026-07-09). The template includes a Dify migration compatibility patch for PostgreSQL 18's built-in `uuidv7()`.
 
 ------
 
@@ -48,9 +48,9 @@ Once Dify starts, you can install various extensions, configure system models, a
 
 There are many reasons to self-host Dify, but the primary motivation is data security. The Docker Compose template provided by Dify uses basic default database images, lacking enterprise features like high availability, disaster recovery, monitoring, IaC, and PITR capabilities.
 
-Pigsty elegantly solves these issues for Dify, deploying all components with a single command based on configuration files and using mirrors to address China region access challenges. This makes Dify deployment and delivery very smooth. It handles PostgreSQL primary database, PGVector vector database, MinIO object storage, Redis, VictoriaMetrics monitoring, Grafana visualization, Nginx reverse proxy, and free HTTPS certificates all at once.
+Pigsty elegantly solves these issues for Dify, deploying all components with a single command based on configuration files and using mirrors to address China region access challenges. This makes Dify deployment and delivery very smooth. It handles the PostgreSQL primary database, PGVector vector database, Redis, VictoriaMetrics monitoring, Grafana visualization, Nginx reverse proxy, and free HTTPS certificates all at once. Files are stored in `DIFY_DATA` (`/data/dify`) by default, with optional MinIO/S3 object storage support.
 
-Pigsty ensures all Dify state is stored in externally managed services, including metadata in PostgreSQL and other data in the file system. Dify instances launched via Docker Compose become stateless applications that can be destroyed and rebuilt at any time, greatly simplifying operations.
+The current template places PostgreSQL/pgvector in an externally managed Pigsty database and directs API files and plugin data to `DIFY_DATA` (`/data/dify` by default). However, the built-in Compose Redis data remains under `/opt/dify/volumes/redis/data`, while Sandbox dependencies and Certbot data are also stored under `/opt/dify/volumes/`. The complete application stack is therefore not fully stateless, and a backup cannot retain only the database.
 
 ------
 
@@ -171,7 +171,7 @@ Run the `app.yml` playbook to redeploy Dify service for the `NGINX_SERVER_NAME` 
 
 ## File Backup
 
-You can use `restic` to backup Dify's file storage (default location `/data/dify`):
+You can use `restic` to back up Dify's file state. The current template requires at least `/data/dify`, `/opt/dify/.env`, and `/opt/dify/volumes/`; the latter contains Compose Redis, Sandbox dependencies, and any Certbot data. Dify data in PostgreSQL should still be backed up separately with Pigsty/pgBackRest.
 
 ```bash
 export RESTIC_REPOSITORY=/data/backups/dify   # Specify dify backup directory
@@ -186,9 +186,9 @@ After creating the Restic backup repository, you can backup Dify with:
 export RESTIC_REPOSITORY=/data/backups/dify   # Specify dify backup directory
 export RESTIC_PASSWORD=some-strong-password   # Specify backup encryption password
 
-restic backup /data/dify                      # Backup /dify data directory to repository
+restic backup /data/dify /opt/dify/.env /opt/dify/volumes
 restic snapshots                              # View backup snapshot list
-restic restore -t /data/dify 0b11f778         # Restore snapshot xxxxxx to /data/dify
+restic restore 0b11f778 --target /tmp/dify-restore  # Restore to a temporary directory first, verify, then copy back
 restic check                                  # Periodically check repository integrity
 ```
 

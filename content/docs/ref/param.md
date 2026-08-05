@@ -9,7 +9,7 @@ categories: [Reference]
 This is the parameter navigation page for Pigsty v4.x, without repeating full explanations for each parameter.
 For parameter details, please read each module's `param` page.
 
-According to current documentation scope, official modules contain exactly **360** parameters across **10** modules.
+Cross-checked against the current source and parameter reference pages, the 11 official modules expose **380** public parameters. Native MySQL 8.4 remains a pilot module; its 11 public parameters are listed separately and are not included in the official-module total.
 
 --------
 
@@ -17,8 +17,8 @@ According to current documentation scope, official modules contain exactly **360
 
 |               Module               | Groups | Count | Description                                                |
 |:----------------------------------:|:------:|:-----:|:-----------------------------------------------------------|
-|  [**`PGSQL`**](/docs/pgsql/param)  |   9    |  125  | PostgreSQL HA cluster configuration                        |
-|  [**`INFRA`**](/docs/infra/param)  |   10   |  72   | Software repository and Victoria-based observability infra |
+|  [**`PGSQL`**](/docs/pgsql/param)  |   9    |  124  | PostgreSQL HA cluster configuration                        |
+|  [**`INFRA`**](/docs/infra/param)  |   10   |  73   | Software repository and Victoria-based observability infra |
 |   [**`NODE`**](/docs/node/param)   |   11   |  73   | Node initialization, system tuning, and ops baseline       |
 |   [**`ETCD`**](/docs/etcd/param)   |   2    |  13   | ETCD cluster and removal safeguard parameters              |
 |  [**`MINIO`**](/docs/minio/param)  |   2    |  21   | MinIO deployment and removal parameters                    |
@@ -26,9 +26,11 @@ According to current documentation scope, official modules contain exactly **360
 | [**`FERRET`**](/docs/ferret/param) |   1    |   9   | FerretDB (Mongo API) parameters                            |
 | [**`DOCKER`**](/docs/docker/param) |   1    |   8   | Docker engine parameters                                   |
 |  [**`JUICE`**](/docs/juice/param)  |   1    |   2   | JuiceFS instance and cache parameters                      |
-|   [**`VIBE`**](/docs/vibe/param)   |   1    |  16   | Code/Jupyter/Node.js/Claude configuration                  |
+|   [**`VIBE`**](/docs/vibe/param)   |   1    |  18   | Code/Jupyter/Node.js/Claude/Codex configuration            |
 |  [**`KAFKA`**](/docs/kafka/param)  |   2    |  18   | Kafka deployment and removal safeguard parameters          |
 {.stretch-last}
+
+Pilot module: [**native `MYSQL` 8.4**](/docs/pilot/mysql/param) currently exposes 11 public parameters. Fixed ports, paths, software versions, and timers are not public parameters.
 
 --------
 

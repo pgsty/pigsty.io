@@ -30,8 +30,8 @@ pg_databases:
   - name: mydb                # Added to connection pool by default
     pool_auth_user: dbuser_meta # Optional, auth query user (with pgbouncer_auth_query)
     pool_mode: transaction    # Database-level pool mode
-    pool_size: 64             # Default pool size
-    pool_reserve: 32          # Reserve pool size
+    pool_size: 50             # Default pool size
+    pool_reserve: 30          # Reserve pool size
     pool_size_min: 0          # Minimum pool size
     pool_connlimit: 100       # Max database connections
   - name: internal
@@ -446,31 +446,18 @@ $ kill -SIGUSR2 $(cat /run/postgresql/pgbouncer.pid)
 
 ## Traffic Switching
 
-Pigsty provides `pgb-route` utility function to quickly switch Pgbouncer traffic to other nodes for zero-downtime migration:
+Pigsty-managed database routes live in `/etc/pgbouncer/database.txt`. To move one database's Pgbouncer traffic to another node, edit that file, reload the configuration, then drain and rebuild existing server connections:
 
 ```bash
-# Definition (already in /etc/profile.d/pg-alias.sh)
-function pgb-route(){
-  local ip=${1-'\/var\/run\/postgresql'}
-  sed -ie "s/host=[^[:space:]]\+/host=${ip}/g" /etc/pgbouncer/pgbouncer.ini
-  cat /etc/pgbouncer/pgbouncer.ini
-}
-
-# Usage: Route traffic to 10.10.10.12
-$ pgb-route 10.10.10.12
-$ pgb -c "RECONNECT; WAIT_CLOSE;"
-```
-
-Complete zero-downtime switching flow:
-
-```bash
-# 1. Modify route target
-$ pgb-route 10.10.10.12
+# 1. Change only mydb's backend target to 10.10.10.12
+$ sed -i -E '/^mydb[[:space:]]*=/ s#host=[^[:space:]]+#host=10.10.10.12#' /etc/pgbouncer/database.txt
 
 # 2. Reload config
 $ pgb -c "RELOAD;"
 
-# 3. Rebuild connections and wait for old connections to release
-$ pgb -c "RECONNECT;"
-$ pgb -c "WAIT_CLOSE;"
+# 3. Rebuild this database's connections and wait for old connections to close
+$ pgb -c "RECONNECT mydb;"
+$ pgb -c "WAIT_CLOSE mydb;"
 ```
+
+> The `pgb-route` function currently shipped in the source only edits `/etc/pgbouncer/pgbouncer.ini`. That file merely includes `database.txt` and does not contain the generated per-database `host=` routes, so the function does not change managed database backends. Do not use it in place of the procedure above.

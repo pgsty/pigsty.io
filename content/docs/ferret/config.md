@@ -109,7 +109,7 @@ ferret:
 In this high-availability configuration:
 
 - **Multi-instance deployment**: Deploy FerretDB instances on three nodes, with all instances connecting to the same PostgreSQL backend
-- **VIP configuration**: Use Keepalived to bind the virtual IP `10.10.10.99`, enabling failover at the FerretDB layer
+- **VIP configuration**: The VIP belongs to the NODE role. After defining the parameters, run `./node.yml -l ferret -t node_vip` to bind virtual IP `10.10.10.99` with Keepalived
 - **Service address**: Use PostgreSQL's service address (port 5436 is typically the primary service), ensuring connections go to the correct primary
 
-With this configuration, clients can connect to FerretDB through the VIP address. Even if one FerretDB instance fails, the VIP will automatically float to another available instance.
+With this configuration, clients can connect to FerretDB through the VIP. The current NODE VIP configuration does not track the `ferretdb` process; it can float after a node, Keepalived, or network failure, but a FerretDB service failure alone does not trigger a VIP move. Configure a service health check separately or use a load balancer with active probing.

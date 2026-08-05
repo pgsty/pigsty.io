@@ -213,7 +213,6 @@ Use [**`failover`**](https://patroni.readthedocs.io/en/latest/patronictl.html#pa
 
 ```bash
 pg failover <cls>                     # Interactive failover
-pg failover <cls> --leader <old>      # Specify original primary (for verification, optional)
 pg failover <cls> --candidate <new>   # Specify replica to promote
 pg failover <cls> --force             # Skip confirmation
 ```
@@ -230,11 +229,11 @@ Successfully failed over to "pg-test-2"
 # Non-interactive failover (for emergencies)
 pg failover pg-test --candidate pg-test-2 --force
 
-# Specify original primary for verification (errors if name mismatch)
-pg failover pg-test --leader pg-test-1 --candidate pg-test-2 --force
 ```
 
 **Switchover vs Failover**: Switchover is for planned maintenance, requires original primary online, ensures full sync before switching, no data loss; Failover is for emergency recovery, original primary can be offline, directly promotes replica, may lose unsynced data. Use Switchover for daily maintenance/upgrades; use Failover only when primary is completely down and unrecoverable.
+
+> The built-in Patroni `failover` subcommand currently has no `--leader` option. Use planned `switchover --leader ...` when you need to validate or name the old primary; failover accepts only the candidate replica.
 
 
 
@@ -242,7 +241,7 @@ pg failover pg-test --leader pg-test-1 --candidate pg-test-2 --force
 
 ## Restart
 
-Use [**`restart`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-restart) to restart PostgreSQL instances, typically to apply restart-required param changes. Patroni coordinates restarts - for full cluster restart, it uses rolling restart: replicas first, then primary, minimizing downtime.
+Use [**`restart`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-restart) to restart PostgreSQL instances, typically to apply restart-required parameter changes. When run against the whole cluster, `patronictl` submits each selected member in turn but does not guarantee a replica-first, leader-last order. If that order matters, restart replicas by role and then restart the leader separately.
 
 ```bash
 pg restart <cls>                      # Restart all instances in cluster
@@ -270,14 +269,15 @@ $ pg list pg-test
 # Restart single replica
 pg restart pg-test pg-test-2
 
-# Restart entire cluster (rolling restart, replicas then primary)
+# Restart all cluster members (leader-last order is not guaranteed)
 pg restart pg-test --force
 
 # Restart only pending instances
 pg restart pg-test --pending --force
 
-# Restart all replicas only
+# Explicitly restart replicas first, then the leader
 pg restart pg-test --role replica --force
+pg restart pg-test --role leader --force
 
 # Scheduled restart (for maintenance window)
 pg restart pg-test --scheduled "2024-12-01T03:00"
@@ -321,7 +321,7 @@ pg reload pg-test --force
 
 ## Reinit Replica
 
-Use [**`reinit`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-reinit) to reinitialize a replica. This deletes all data on the replica and performs fresh `pg_basebackup` from primary. Use when replica data is corrupted, replica is too far behind (WAL already purged), or replica config needs reset.
+Use [**`reinit`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-reinit) to reinitialize a replica. This deletes all data on the replica and rebuilds it according to Patroni's `create_replica_methods` order. Pigsty tries `basebackup` (`pg_basebackup`) first by default; when a remote pgBackRest repository is enabled, `pgbackrest` is also configured as a fallback. Use this when replica data is corrupted, the replica is too far behind and required WAL has been removed, or replica configuration must be reset.
 
 ```bash
 pg reinit <cls> <member>              # Reinitialize specified replica

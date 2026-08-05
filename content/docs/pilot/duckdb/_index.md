@@ -16,7 +16,7 @@ DuckDB is embedded, so it does not require deployment or service management. Ins
 
 ## Installation
 
-[**Pigsty Infra repo**](/docs/repo/infra/list) provides latest DuckDB RPM/DEB packages, install directly:
+The current Pigsty node platform mapping includes the `duckdb` package, which can be installed directly from the Infra repository:
 
 ```bash
 ./node.yml -t node_install  -e '{"node_repo_modules":"infra","node_packages":["duckdb"]}'
@@ -35,7 +35,7 @@ pig install duckdb         # install DuckDB package
 
 Pigsty provides DuckDB-related PostgreSQL extensions:
 
-- [**`pg_duckdb`**](/ext/e/pg_analytics), an extension by DuckDB official MotherDuck and Hydra
+- [**`pg_duckdb`**](/ext/e/pg_duckdb), the official DuckDB PostgreSQL extension
 - [**`pg_mooncake`**](/ext/e/pg_mooncake), builds on `pg_duckdb` with columnar engine and sync
 - [**`pg_analytics`**](/ext/e/pg_analytics), OLAP on DuckDB, archived
-- [**`duckdb_fdw`**](/docs/pgsql/ext/), DuckDB FDW to read/write DuckDB files from PG, not updated yet
+- [**`duckdb_fdw`**](/ext/e/duckdb_fdw), a DuckDB foreign data wrapper for reading and writing DuckDB files from PostgreSQL

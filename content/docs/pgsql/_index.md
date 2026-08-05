@@ -46,7 +46,7 @@ sidebar_root_for: self
 - [Primary Instance](/docs/pgsql/config#primary-instance): Create single-instance "cluster" with one primary
 - [Replica Instance](/docs/pgsql/config#replica-instance): Create basic HA cluster with one primary and one replica
 - [Offline Instance](/docs/pgsql/config#offline-instance): Create special read-only instance for OLAP/ETL/interactive queries
-- [Sync Standby](/docs/pgsql/config#sync-standby): Enable sync commit to ensure zero data loss
+- [Sync Standby](/docs/pgsql/config/cluster#sync-standby): Enable sync commit to ensure zero data loss
 - [Quorum Commit](/docs/pgsql/config#quorum-commit): Use quorum sync commit for higher consistency level
 - [Standby Cluster](/docs/pgsql/config#standby-cluster): Clone existing cluster and keep in sync (DR cluster)
 - [Delayed Cluster](/docs/pgsql/config#delayed-cluster): Clone existing cluster with delayed replay for emergency recovery
@@ -110,7 +110,7 @@ sidebar_root_for: self
 
 > Check PostgreSQL status via Grafana [dashboards](/docs/pgsql/monitor/dashboard).
 
-Pigsty has 26 PostgreSQL-related dashboards:
+The current source contains 29 PostgreSQL / PGCAT dashboards under `files/grafana/pgsql`:
 
 |                           Overview                           |                              Cluster                               |                            Instance                            |                           Database                           |
 |:------------------------------------------------------------:|:------------------------------------------------------------------:|:--------------------------------------------------------------:|:------------------------------------------------------------:|

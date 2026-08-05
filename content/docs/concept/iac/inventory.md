@@ -87,7 +87,7 @@ Cluster-level `vars` (cluster parameters) override global parameters, and instan
 If your deployment is large or you want to better organize configuration files,
 you can [**split the inventory into multiple files**](https://docs.ansible.com/projects/ansible/latest/inventory_guide/intro_inventory.html#id18) for easier management and maintenance.
 
-```yaml
+```text
 inventory/
 ├── hosts.yml              # Host and cluster definitions
 ├── group_vars/
@@ -125,5 +125,4 @@ inventory = pigsty.yml
 ```
 
 Additionally, Pigsty supports using a [**CMDB metabase**](/docs/concept/iac/cmdb) to store the inventory, facilitating integration with existing systems.
-
 

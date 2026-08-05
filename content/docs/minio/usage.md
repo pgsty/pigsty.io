@@ -71,7 +71,7 @@ mcli alias set sss https://sss.pigsty:9002 minioadmin S3User.MinIO            # 
 mcli alias set pgbackrest https://sss.pigsty:9000 pgbackrest S3User.Backup    # use backup user
 ```
 
-On the admin user of the admin node, a MinIO alias named `sss` is pre-configured and can be used directly.
+After a full `minio.yml` run with `minio_provision` enabled, the role configures the default `sss` alias for the Ansible execution user on every Infra node and MinIO member. A host that belongs to both groups is configured only once.
 
 For the full functionality reference of the MinIO client tool `mcli`, please refer to the documentation: [MinIO Client](https://min.io/docs/minio/linux/reference/minio-mc.html).
 
@@ -85,13 +85,13 @@ The password `S3User.MinIO` in the above examples is the Pigsty default. If you 
 
 ## User Management
 
-You can manage business users in MinIO using `mcli`. For example, here we can create two business users using the command line:
+You can manage MinIO application users with `mcli`. Default provisioning already creates `pgbackrest`, `s3user_meta`, and `s3user_data`; the example below creates one additional user and attaches the generated policy for the default `data` bucket:
 
 ```bash
-mcli admin user list sss     # list all users on sss
-set +o history # hide password in history and create minio users
-mcli admin user add sss dba S3User.DBA
-mcli admin user add sss pgbackrest S3User.Backup
+mcli admin user list sss
+set +o history
+mcli admin user add sss appuser 'Replace.With.Strong.Password'
+mcli admin policy attach sss data --user=appuser
 set -o history
 ```
 
@@ -116,11 +116,11 @@ mcli rb --force sss/hello            # force delete the 'hello' bucket
 **You can also perform CRUD operations on objects within buckets**. For details, please refer to the official documentation: [Object Management](https://min.io/docs/minio/linux/administration/object-management.html)
 
 ```bash
-mcli cp /www/pigsty/* sss/infra/     # upload local repo content to MinIO infra bucket
-mcli cp sss/infra/plugins.tgz /tmp/  # download file from minio to local
-mcli ls sss/infra                    # list all files in the infra bucket
-mcli rm sss/infra/plugins.tgz        # delete specific file in infra bucket
-mcli cat sss/infra/repo_complete     # view file content in infra bucket
+mcli cp /www/pigsty/* sss/data/      # upload local repo content to the default data bucket
+mcli cp sss/data/plugins.tgz /tmp/   # download file from MinIO
+mcli ls sss/data                     # list all files in the data bucket
+mcli rm sss/data/plugins.tgz         # delete a specific file in the data bucket
+mcli cat sss/data/repo_complete      # view file content in the data bucket
 ```
 
 

@@ -36,6 +36,7 @@ node_kernel   : enable kernel modules
 node_tune     : setup tuned profile
 node_sysctl   : setup additional sysctl parameters
 node_profile  : write /etc/profile.d/node.sh
+node_alias    : write /etc/profile.d/node.alias.sh
 node_ulimit   : setup resource limits
 node_data     : setup data directory
 node_admin    : setup admin user and ssh key
@@ -66,6 +67,15 @@ vector         : remove log collection agent vector
 node_crontab   : restore default /etc/crontab (if node_crontab_overwrite=true)
 profile        : remove /etc/profile.d/node.sh
 ```
+
+`node-rm.yml` removes Pigsty management and stops NODE-related services; it is not an operating-system teardown or full uninstall:
+
+- It deregisters Node, Docker, Ping, VIP, and other monitoring targets, plus the HAProxy administration portal.
+- It stops and disables HAProxy, Node Exporter, Vector, and Keepalived/Exporter when enabled.
+- It removes HAProxy configuration and NODE Vector configuration, and deletes `vector_data` (default: `/data/vector`).
+- It does not uninstall packages, remove the admin user, delete `node_data`, stop Docker, or delete Docker data.
+
+The current removal role deletes `vector_data` directly and does not use the installation role's `vector_clean` switch. Confirm that no Vector buffer data must be retained before running it.
 
 
 ----------------
@@ -114,6 +124,7 @@ bin/node-rm 10.10.10.10                # Remove node '10.10.10.10'
 ./node.yml -t node_tune                # Setup tuned profile
 ./node.yml -t node_sysctl              # Setup additional sysctl parameters
 ./node.yml -t node_profile             # Setup node environment: /etc/profile.d/node.sh
+./node.yml -t node_alias               # Setup command aliases: /etc/profile.d/node.alias.sh
 ./node.yml -t node_ulimit              # Setup node resource limits
 ./node.yml -t node_data                # Setup node primary data directory
 ./node.yml -t node_admin               # Setup admin user and ssh key

@@ -37,7 +37,7 @@
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Linux",
     "url": "https://pigsty.io",
-    "softwareVersion": "{{ .Site.Params.version }}",
+    "softwareVersion": "{{ strings.TrimPrefix "v" .Site.Params.version }}",
     "license": "https://www.apache.org/licenses/LICENSE-2.0",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "description": "{{ .Site.Params.description }}"
@@ -99,7 +99,7 @@
                 <p class="dropdown-group-title silkscreen">Docs</p>
                 <div class="dropdown-cols">
                   <ul class="dropdown-col">
-                    <li><a href="/docs/"><i class="fas fa-book"></i>Pigsty v4.4</a></li>
+                    <li><a href="/docs/"><i class="fas fa-book"></i>Pigsty {{ .Site.Params.version_short }}</a></li>
                     <li><a href="https://doc.pgsty.com" target="_blank" rel="noopener"><i class="fas fa-book-open"></i>Pigsty v3.7</a></li>
                     <li><a href="/docs/about/release/"><i class="fas fa-clipboard-list"></i>Release Notes</a></li>
                     <li><a href="/docs/piglet/"><i class="fas fa-dharmachakra"></i>Piglet.Run</a></li>
@@ -210,7 +210,7 @@
           <a href="https://pigsty.cc" class="nav-util" title="中文站 / Chinese Site" aria-label="Switch to Chinese site"><i class="fas fa-language"></i></a>
           <a href="https://github.com/pgsty/pigsty" class="nav-github" target="_blank" rel="noopener" title="GitHub">
             <i class="fab fa-github"></i>
-            <span class="nav-star"><i class="fas fa-star"></i> 5.2k</span>
+            <span class="nav-star"><i class="fas fa-star"></i> 5.5k</span>
           </a>
         </div>
 
@@ -260,7 +260,7 @@
 
           <p class="hero-sub anim" style="--d:2">
             <span>Enterprise-Grade Open-Source PG Distribution</span>
-            <span>HA, PITR, IaC, Monitor, and <a href="/ext/" class="hero-sub-link">562 PG extensions</a></span>
+            <span>HA, PITR, IaC, Monitor, and <a href="/ext/" class="hero-sub-link">{{ .Site.Params.pgext_count }} PG extensions</a></span>
           </p>
 
           <div class="hero-ctas anim" style="--d:3">
@@ -281,9 +281,9 @@
           <figure class="board-stage" data-board>
             <img src="/img/pigsty/motherboard.gif" alt="Pigsty architecture board: PostgreSQL kernel, etcd, Grafana, extensions and backup components" class="board-img" fetchpriority="high">
 
-            <a class="board-pin" data-pin="ext" style="--x:20.2%; --y:52%; --i:0" href="/ext/" aria-label="562 Extensions · Plug and play">
+            <a class="board-pin" data-pin="ext" style="--x:20.2%; --y:52%; --i:0" href="/ext/" aria-label="{{ .Site.Params.pgext_count }} Extensions · Plug and play">
               <span class="pin-dot"></span>
-              <span class="pin-tip"><b>562 Extensions</b><i>Plug &amp; Play</i></span>
+              <span class="pin-tip"><b>{{ .Site.Params.pgext_count }} Extensions</b><i>Plug &amp; Play</i></span>
             </a>
             <a class="board-pin" data-pin="grafana" style="--x:31.9%; --y:33%; --i:1" href="https://demo.pigsty.io" target="_blank" rel="noopener" aria-label="Grafana Observability · 3000+ metrics">
               <span class="pin-dot"></span>
@@ -333,7 +333,7 @@
 
           <div class="board-legend">
             <a class="legend-chip" data-for="pg" href="/docs/pgsql/kernel/"><span class="legend-dot"></span>PG Kernel</a>
-            <a class="legend-chip" data-for="ext" href="/ext/"><span class="legend-dot"></span>562 Exts</a>
+            <a class="legend-chip" data-for="ext" href="/ext/"><span class="legend-dot"></span>{{ .Site.Params.pgext_count }} Exts</a>
             <a class="legend-chip" data-for="etcd" href="/docs/etcd/"><span class="legend-dot"></span>Etcd DCS</a>
             <a class="legend-chip" data-for="grafana" href="https://demo.pigsty.io" target="_blank" rel="noopener"><span class="legend-dot"></span>Grafana UI</a>
             <a class="legend-chip" data-for="minio" href="/docs/minio/"><span class="legend-dot"></span>MinIO Backup</a>
@@ -436,7 +436,7 @@
           <h3 class="module-title"><a href="/ext/">Batteries Included</a></h3>
           <p class="module-motto"><i class="fas fa-cubes"></i> Fully packed. Plug and play</p>
           <ul class="module-list">
-            <li><strong>562</strong> PG extensions across <strong>16</strong> Linux distros, ready to install</li>
+            <li><strong>{{ .Site.Params.pgext_count }}</strong> PG extensions across <strong>16</strong> Linux distros, ready to install</li>
             <li><strong>12 PG kernel forks</strong>, one meta-distribution to rule them all</li>
             <li>Modules: MinIO, Redis, Docker, JuiceFS, Supabase and more</li>
           </ul>
@@ -531,7 +531,7 @@
         </a>
       </div>
 
-      <div class="extbus-head silkscreen" data-reveal>EXTENSION BUS · 562 PIN</div>
+      <div class="extbus-head silkscreen" data-reveal>EXTENSION BUS · {{ .Site.Params.pgext_count }} PIN</div>
       <div class="extensions-marquee" data-reveal>
 
         <!-- Row 1: Scroll Left -->
@@ -1331,7 +1331,7 @@
         </div>
       </div>
       <div class="extbus-cta" data-reveal>
-        <a href="/ext/" class="btn btn-line">Browse All 562 Extensions <i class="fas fa-arrow-right"></i></a>
+        <a href="/ext/" class="btn btn-line">Browse All {{ .Site.Params.pgext_count }} Extensions <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
   </section>
@@ -1481,7 +1481,7 @@
 
       <div class="stats-grid" data-reveal>
         <a href="https://github.com/pgsty/pigsty/stargazers" target="_blank" rel="noopener" class="stat-item">
-          <span class="stat-value" data-count="5210">5210</span>
+          <span class="stat-value" data-count="5465">5465</span>
           <span class="stat-label">GitHub Stars</span>
         </a>
         <div class="stat-item">
@@ -2058,7 +2058,7 @@
           </a>
           <p class="footer-tagline">
             <b class="ini-p">P</b>ostgreSQL <b class="ini-i">I</b>n <b class="ini-g">G</b>reat <b class="ini-s">S</b><b class="ini-t">T</b><b class="ini-y">Y</b>le —<br>
-            The Batteries-Included PostgreSQL Distribution as an FLOSS PG RDS
+            Enterprise-Grade OSS PG Distribution</br>Local-First & Free RDS & AI Data Infra
           </p>
           <p class="footer-slogan">Self-Host <span class="hl-good">Postgres</span> like a <span class="hl-use">Pro</span></p>
         </div>

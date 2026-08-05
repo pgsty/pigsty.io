@@ -76,6 +76,8 @@ Purge operations include:
 - Remove configuration files and SSL certificates
 - Deregister from VictoriaMetrics monitoring targets
 
+This task does not uninstall the `ferretdb2` package, delete the `mongod` operating-system user, or remove data from the backend PostgreSQL database.
+
 ### `mongo_config`
 
 Configure FerretDB service:

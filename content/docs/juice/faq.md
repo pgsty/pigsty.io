@@ -51,10 +51,11 @@ To switch backend, migrate data and reformat manually.
 2. Run:
 
 ```bash
-./juice.yml -l <host> -t juice_clean
+./juice.yml -l <host> -t juice_clean,juice_register
 ```
 
 Removal does not delete PostgreSQL metadata or object storage data.
+`juice_register` refreshes the target file; running only `juice_clean` leaves a stale monitoring scrape endpoint.
 
 --------
 

@@ -168,7 +168,7 @@ Parameter: `minio_https`, Type: `bool`, Level: `G/C`
 
 Enable HTTPS for MinIO service? Default is `true`.
 
-Note that pgBackREST requires MinIO to use HTTPS to work properly. If you don't use MinIO for PostgreSQL backups and don't need HTTPS, you can set this to `false`.
+Pigsty's default pgBackRest `minio` repository configuration uses HTTPS and validates the certificate with `/etc/pki/ca.crt`, so keep this parameter `true` when using the defaults. pgBackRest itself does not require HTTPS; if you explicitly switch to HTTP, you must also update the storage TLS options in `pgbackrest_repo` rather than changing only this parameter.
 
 When HTTPS is enabled, Pigsty automatically issues SSL certificates for the MinIO server, containing the domain specified in [`minio_domain`](#minio_domain) and the IP addresses of each node.
 
@@ -238,9 +238,9 @@ Parameter: `minio_domain`, Type: `string`, Level: `G`
 
 MinIO service domain name, default is `sss.pigsty`.
 
-Clients can access the MinIO S3 service via this domain name. This name is registered in local DNSMASQ and included in SSL certificates' SAN (Subject Alternative Name) field.
+Clients can access the MinIO S3 service through this domain. The name is included in the SAN (Subject Alternative Name) of certificates issued by the role, but the MinIO role does not automatically create a DNS record for `minio_domain`.
 
-It's recommended to add a static DNS record in [`node_etc_hosts`](/docs/node/param#node_etc_hosts) pointing this domain to the MinIO server node's IP (single-node deployment) or load balancer VIP (multi-node deployment).
+Add an explicit record through [`node_etc_hosts`](/docs/node/param#node_etc_hosts) or [`dns_records`](/docs/infra/param#dns_records), pointing it to a MinIO node IP for a single-node deployment or to a load-balancer VIP for a multi-node deployment.
 
 
 
@@ -357,8 +357,7 @@ Parameter: `minio_alias`, Type: `string`, Level: `G`
 
 MinIO client alias for the local MinIO cluster, default value: `sss`.
 
-This alias is written to the MinIO client configuration file (`~/.mcli/config.json`) for the admin user on the admin node,
-allowing you to directly use `mcli <alias>` commands to access the MinIO cluster, e.g., `mcli ls sss/`.
+When [`minio_provision`](#minio_provision) is enabled, this alias is written to the MinIO client configuration file (`~/.mcli/config.json`) for the Ansible execution user on every Infra node and MinIO member. Hosts that belong to both groups are configured only once. You can then use `mcli <alias>` commands directly, for example `mcli ls sss/`.
 
 If deploying multiple MinIO clusters, specify different aliases for each cluster to avoid conflicts.
 
@@ -373,13 +372,13 @@ If deploying multiple MinIO clusters, specify different aliases for each cluster
 
 Parameter: `minio_endpoint`, Type: `string`, Level: `C`
 
-Endpoint for the client alias. If specified, this `minio_endpoint` (e.g., `https://sss.pigsty:9002`) will replace the default value as the target endpoint for the MinIO alias written on the admin node.
+Endpoint for the client alias. If specified, `minio_endpoint` (for example, `https://sss.pigsty:9002`) replaces the automatically assembled `<scheme>://<minio_domain>:<minio_port>` endpoint for aliases on Infra nodes and MinIO members.
 
 ```bash
-mcli alias set {{ minio_alias }} {% if minio_endpoint is defined and minio_endpoint != '' %}{{ minio_endpoint }}{% else %}https://{{ minio_domain }}:{{ minio_port }}{% endif %} {{ minio_access_key }} {{ minio_secret_key }}
+mcli alias set {{ minio_alias }} {% if minio_endpoint is defined and minio_endpoint != '' %}{{ minio_endpoint }}{% else %}{% if minio_https|bool %}https{% else %}http{% endif %}://{{ minio_domain }}:{{ minio_port }}{% endif %} {{ minio_access_key }} {{ minio_secret_key }}
 ```
 
-This MinIO alias is configured on the admin node as the default admin user.
+The role runs this command as the Ansible execution user on Infra nodes and MinIO members.
 
 
 
@@ -477,9 +476,9 @@ minio_safeguard: true   # When enabled, minio-rm.yml will refuse to execute
 
 Parameter: `minio_rm_data`, Type: `bool`, Level: `G/C/A`
 
-Remove MinIO data during removal? Default value is `true`.
+Remove MinIO data and configuration during removal? Default value is `true`.
 
-When enabled, the [`minio-rm.yml`](/docs/minio/playbook/#minio-rmyml) playbook will delete MinIO data directories and configuration files during cluster removal.
+When enabled, the [`minio-rm.yml`](/docs/minio/playbook/#minio-rmyml) playbook deletes MinIO data directories, `/etc/default/minio`, `.minio` under the MinIO user's home, systemd units, and Vector configuration. Setting it to `false` preserves this data and configuration, but does not prevent service deregistration, stopping, or disabling.
 
 
 
@@ -492,5 +491,4 @@ Parameter: `minio_rm_pkg`, Type: `bool`, Level: `G/C/A`
 
 Uninstall MinIO packages during removal? Default value is `false`.
 
-When enabled, the [`minio-rm.yml`](/docs/minio/playbook/#minio-rmyml) playbook will uninstall MinIO packages during cluster removal. This is disabled by default to preserve the MinIO installation for potential future use.
-
+When enabled, the [`minio-rm.yml`](/docs/minio/playbook/#minio-rmyml) playbook uninstalls both the `minio` and `mcli` packages during cluster removal. This is disabled by default to preserve the packages for potential future use.

@@ -53,7 +53,7 @@ mongo cluster name, a required identity parameter.
 
 No default value—you must explicitly define it for production environments.
 
-The cluster name must comply with the regex `[a-z][a-z0-9-]*`. Using descriptive names is recommended.
+The current role only checks that the cluster name is defined and non-empty. To stay consistent with identity naming in other Pigsty modules, use a descriptive name matching `[a-z][a-z0-9-]*`.
 
 
 ----------------
@@ -152,10 +152,12 @@ Parameter: `mongo_extra_vars`, Type: `string`, Level: `C`
 
 Extra environment variables for FerretDB server.
 
-Default is empty string `''`. You can specify additional environment variables to pass to the FerretDB process in `KEY=VALUE` format, with multiple variables separated by spaces.
+Default is the empty string `''`. This text is appended verbatim to `/etc/default/ferretdb`; put each `KEY=VALUE` on its own line and use a YAML multiline string for multiple variables.
 
 Example:
 
 ```yaml
-mongo_extra_vars: 'FERRETDB_LOG_LEVEL=debug FERRETDB_TELEMETRY=disable'
+mongo_extra_vars: |
+  FERRETDB_LOG_LEVEL=debug
+  FERRETDB_TELEMETRY=disable
 ```

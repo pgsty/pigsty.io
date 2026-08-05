@@ -54,7 +54,7 @@ Source: [`pigsty/conf/ha/citus.yml`](https://github.com/pgsty/pigsty/blob/main/c
 
 **Architecture**:
 
-- **pg-meta**: Infra node running Grafana, Prometheus, etcd, plus standalone CMDB
+- **pg-meta**: Infra node running Grafana, VictoriaMetrics, etcd, plus a standalone CMDB
 - **pg-citus1**: Coordinator (group 0), receives queries and routes to workers, 1 primary + 1 replica
 - **pg-citus2~6**: Workers (group 1~5), store sharded data, each with 1 primary + 1 replica via Patroni
 - **VIP**: Each group has L2 VIP managed by `vip-manager` for transparent failover

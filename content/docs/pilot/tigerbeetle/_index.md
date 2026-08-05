@@ -16,14 +16,14 @@ categories: [Reference]
 
 ## Overview
 
-The TigerBeetle module is currently available for **Beta** preview only in the Pigsty Professional Edition.
+The current open-source tree has no TigerBeetle role or dedicated playbook. It only provides the `tigerbeetle` installation alias in the node platform package map; initialize and manage the service according to the official TigerBeetle documentation.
 
 
 --------
 
 ## Installation
 
-Pigsty Infra Repo has the RPM / DEB packages for TigerBeetle, use the following command to install:
+Use the following command to install the mapped package from the Pigsty Infra repository:
 
 ```bash
 ./node.yml -t node_install -e '{"node_repo_modules":"infra","node_packages":["tigerbeetle"]}'

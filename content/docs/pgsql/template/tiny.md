@@ -97,7 +97,7 @@ Smaller `work_mem` limit (256MB vs OLTP's 1GB) prevents memory exhaustion.
 TINY template completely disables parallel queries:
 
 ```yaml
-max_worker_processes: cpu + 4 (min 12)      # OLTP: cpu + 8
+max_worker_processes: max(cpu + 12, 20)     # OLTP: max(cpu + 16, 24)
 max_parallel_workers: 50% × cpu (min 1)      # OLTP: 50% (min 2)
 max_parallel_workers_per_gather: 0           # parallel queries disabled
 max_parallel_maintenance_workers: 33% × cpu (min 1)
@@ -105,7 +105,7 @@ max_parallel_maintenance_workers: 33% × cpu (min 1)
 
 `max_parallel_workers_per_gather: 0` ensures queries won't spawn parallel workers, avoiding resource contention on low-core systems.
 
-### IO Config (PG18+)
+### IO Config (PG18)
 
 ```yaml
 io_workers: 3   # fixed value, OLTP: 25% cpu (4-16)
@@ -178,7 +178,7 @@ pg_stat_statements.track_planning: off
 |:----------|:-----------------|:-----------------|:-------|
 | max_connections | **250** | 500-1000 | Reduce connection overhead |
 | work_mem limit | **256MB** | 1GB | Prevent memory exhaustion |
-| max_worker_processes | cpu+4 | cpu+8 | Fewer background processes |
+| max_worker_processes | max(cpu+12, 20) | max(cpu+16, 24) | Fewer background processes |
 | max_parallel_workers_per_gather | **0** | 20% cpu | Disable parallel queries |
 | autovacuum_max_workers | **2** | 3 | Reduce background load |
 | default_statistics_target | **200** | 400 | Save space |
@@ -199,7 +199,7 @@ shared_buffers: ~256MB
 work_mem: ~16MB
 maintenance_work_mem: ~64MB
 max_connections: 250
-max_worker_processes: ~12
+max_worker_processes: 20
 ```
 
 **PostgreSQL process memory**: ~400-600MB
@@ -211,7 +211,7 @@ shared_buffers: ~1GB
 work_mem: ~32MB
 maintenance_work_mem: ~256MB
 max_connections: 250
-max_worker_processes: ~12
+max_worker_processes: 20
 ```
 
 **PostgreSQL process memory**: ~1.5-2GB

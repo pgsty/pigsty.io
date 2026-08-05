@@ -82,7 +82,7 @@ Pigsty provides an out-of-the-box Docker image on [**Docker Hub**](https://hub.d
 | `pgsty/pigsty` | ~500MB | 1.3GB | Debian 13 + systemd + SSH + pig + Ansible |
 
 - Supports both **amd64** (x86_64) and **arm64** (Apple Silicon, AWS Graviton)
-- Tags match Pigsty versions: `v4.4.0`, `latest`, etc.
+- Tags follow Pigsty versions. The Docker config on the current `main` branch defaults to the unreleased `v4.5.0`; that source default alone does not prove a matching remote image exists. The latest stable release and its confirmed usable version tag remain `{{< param version >}}`.
 - Pre-configured with docker template, ready to run `./deploy.yml`
 
 Built on **Debian 13 (Trixie)**, pre-installed with [**`pig`**](/docs/pig/) CLI and Ansible, Pigsty source already initialized.
@@ -127,7 +127,7 @@ make launch          # Start container + generate config + deploy
 Customize image version and port mappings via [**`.env`**](https://github.com/pgsty/pigsty/blob/main/docker/.env):
 
 ```bash
-PIGSTY_VERSION=<version>      # Image tag (example: v4.4.0 or latest)
+PIGSTY_VERSION=v4.5.0         # Current main source default; does not prove this remote tag is published
 PIGSTY_SSH_PORT=2222          # SSH port
 PIGSTY_HTTP_PORT=8080         # Nginx HTTP port
 PIGSTY_HTTPS_PORT=8443        # Nginx HTTPS port
@@ -138,7 +138,7 @@ PIGSTY_PG_PORT=5432           # PostgreSQL port
 
 | Env Var             | Default  | Container | Description       |
 |:--------------------|:---------|:----------|:------------------|
-| `PIGSTY_VERSION`    | `<version>` | -         | Image tag (e.g. `v4.4.0` / `latest`) |
+| `PIGSTY_VERSION`    | `v4.5.0`    | -         | Current `main` source default; verify the remote tag separately. Latest stable is `{{< param version >}}` |
 | `PIGSTY_SSH_PORT`   | `2222`   | 22        | SSH access port   |
 | `PIGSTY_HTTP_PORT`  | `8080`   | 80        | Nginx HTTP port   |
 | `PIGSTY_HTTPS_PORT` | `8443`   | 443       | Nginx HTTPS port  |
@@ -205,7 +205,7 @@ make rmi          # Remove current version's pigsty image
 
 ```bash
 make clean        # Stop and remove container
-make purge        # Remove container and wipe data (prompts)
+make purge        # Remove container and wipe data (2-second countdown; Ctrl+C cancels)
 ```
 
 
@@ -298,7 +298,7 @@ PIGSTY_HTTP_PORT=8888 PIGSTY_PG_PORT=5433 docker compose up -d
 Container data mounted to `./data`. To wipe and start fresh:
 
 ```bash
-make purge        # Remove container and wipe data (prompts)
+make purge        # Remove container and wipe data (2-second countdown; Ctrl+C cancels)
 ```
 
 ### macOS performance

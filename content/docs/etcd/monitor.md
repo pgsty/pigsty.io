@@ -40,6 +40,8 @@ Pigsty provides 5 preset alert rules for etcd, defined in [`files/prometheus/rul
 - `EtcdNetworkPeerRTSlow`: etcd network latency slow, INFO alert
 - `EtcdWalFsyncSlow`: etcd disk fsync slow, INFO alert
 
+The following excerpt mirrors the current rule source. Pigsty currently ships only the `etcd-overview` dashboard; the `/ui/d/etcd-instance` targets in the comments for the two latency alerts do not exist. Use `/ui/d/etcd-overview` to inspect cluster state. This is a known source-comment discrepancy and does not affect the alert expressions.
+
 ```yaml
 #==============================================================#
 #                         Aliveness                            #

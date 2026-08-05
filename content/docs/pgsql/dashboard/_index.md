@@ -9,7 +9,7 @@ categories: [Reference]
 
 > Pigsty provides numerous out-of-the-box Grafana monitoring dashboards for PostgreSQL: [Demo](https://demo.pigsty.io/ui/d/pgsql-overview) & [Gallery](https://github.com/pgsty/pigsty/wiki/Gallery).
 
-Pigsty has 26 PostgreSQL-related monitoring dashboards, organized by hierarchy into Overview, Cluster, Instance, and Database categories, and by data source into [PGSQL](#overview), [PGCAT](#pgcat), and [PGLOG](#pglog) categories.
+The current source provides 31 PostgreSQL-related dashboards: 29 PostgreSQL / PGCAT dashboards under `files/grafana/pgsql`, plus two PGLOG dashboards under `files/grafana/app`. They are organized by hierarchy into Overview, Cluster, Instance, and Database categories, and by data source into [PGSQL](#overview), [PGCAT](#pgcat), and [PGLOG](#pglog).
 
 ![pigsty-dashboard.jpg](/img/pigsty/dashboard.jpg)
 

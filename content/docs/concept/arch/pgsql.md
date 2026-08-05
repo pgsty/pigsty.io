@@ -22,7 +22,7 @@ The [**PGSQL module**](/docs/pgsql) includes the following components, working t
 | [**`patroni`**](#patroni)                                 | HA        | Manages PostgreSQL, coordinates failover, leader election, config changes |
 | [**`pgbouncer`**](#pgbouncer)                             | Pool      | Lightweight connection pooling middleware, reduces overhead, adds flexibility |
 | [**`pgbackrest`**](#pgbackrest)                           | Backup    | Full/incremental backup and WAL archiving, supports local and object storage |
-| [**`pg_exporter`**](#pg_exporter)                         | Metrics   | Exports PostgreSQL monitoring metrics for Prometheus scraping          |
+| [**`pg_exporter`**](#pg_exporter)                         | Metrics   | Exports PostgreSQL monitoring metrics in a Prometheus-compatible format |
 | [**`pgbouncer_exporter`**](#pgbouncer_exporter)           | Metrics   | Exports Pgbouncer connection pool metrics                               |
 | [**`pgbackrest_exporter`**](#pgbackrest_exporter)         | Metrics   | Exports backup status metrics                                           |
 | [**`vip-manager`**](#vip-manager)                         | VIP       | Binds L2 VIP to current primary node for transparent failover [Optional] |
@@ -157,7 +157,7 @@ The backup subsystem consists of [**pgBackRest**](#pgbackrest) (optionally with 
 **Key Interactions**:
 - **[pgBackRest](#pgbackrest) → [PostgreSQL](#postgresql)**: Executes backup commands, manages WAL archiving
 - **[pgBackRest](#pgbackrest) → [Patroni](#patroni)**: Recovery can bootstrap replicas as new primary or standby
-- **[pgbackrest_exporter](#pgbackrest_exporter) → Prometheus**: Exports backup status metrics, monitors backup health
+- **[pgbackrest_exporter](#pgbackrest_exporter) → VictoriaMetrics**: Exports backup status metrics through the Prometheus-compatible protocol to monitor backup health
 
 For more information, see: [**PITR**](/docs/concept/pitr/), [**Backup & Recovery**](/docs/pgsql/backup/), and [**Config: PGSQL - PG_BACKUP**](/docs/pgsql/param/#pg_backup)
 
@@ -192,7 +192,7 @@ For more information, see: [**Config: PGSQL - PG_MONITOR**](/docs/pgsql/param/#p
 
 Pigsty currently supports PostgreSQL 14-18 (lifecycle major versions), installed via binary packages from the [**PGDG official repo**](/docs/repo/pgdg/).
 Pigsty also allows you to use other [**PG kernel forks**](/docs/pgsql/kernel) to replace the default PostgreSQL kernel,
-and install up to [**562**](/docs/pgsql/ext) extension plugins on top of the PG kernel.
+and install up to [**{{< param pgext_count >}}**](/docs/pgsql/ext) extension plugins on top of the PG kernel.
 
 **PostgreSQL** processes are managed by default by the [**HA**](/docs/concept/ha) agent—[**Patroni**](#patroni).
 When a cluster has only one node, that instance is the primary; when the cluster has multiple nodes, other instances automatically join as replicas:

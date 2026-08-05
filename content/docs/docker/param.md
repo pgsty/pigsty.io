@@ -101,10 +101,11 @@ Docker registry mirror list, default: `[]` empty array.
 You can use Docker mirror sites to accelerate image pulls. Here are some examples:
 
 ```yaml
-["https://docker.m.daocloud.io"]                # DaoCloud mirror
-["https://docker.1ms.run"]                      # 1ms mirror
-["https://mirror.ccs.tencentyun.com"]           # Tencent Cloud internal mirror
-["https://registry.cn-hangzhou.aliyuncs.com"]   # Alibaba Cloud mirror (requires login)
+docker_registry_mirrors:                        # Choose one or more
+  - https://docker.m.daocloud.io                # DaoCloud mirror
+  - https://docker.1ms.run                      # 1ms mirror
+  - https://mirror.ccs.tencentyun.com           # Tencent Cloud internal mirror
+  - https://registry.cn-hangzhou.aliyuncs.com   # Alibaba Cloud mirror (requires login)
 ```
 
 You can also consider using a Cloudflare Worker to set up a [Docker Proxy](https://github.com/cmliu/CF-Workers-docker.io) for faster access.
@@ -150,5 +151,4 @@ You can use `docker save | gzip` to package images and automatically import them
 ```bash
 cat *.tgz | gzip -d -c - | docker load
 ```
-
 

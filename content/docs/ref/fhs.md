@@ -75,14 +75,16 @@ Pigsty's [**self-signed CA**](/docs/concept/sec/ca) is located in `files/pki/` u
 #  ^-----@infra                              # (local_user) 0755, infra client certs
 #  ^-----@pgsql                              # (local_user) 0755, PostgreSQL certs
 #  ^-----@mongo                              # (local_user) 0755, Mongo/FerretDB certs
-#  ^-----@mysql                              # (local_user) 0755, MySQL certs (placeholder)
+#  ^-----@kafka                              # (local_user) 0755, Kafka server certs
+#  ^-----@mysql                              # (local_user) 0755, MySQL server certs
 ```
 
 Nodes managed by Pigsty will have the following certificate files installed:
 
 ```
 /etc/pki/ca.crt                             # root:root 0644, root cert on all nodes
-/etc/pki/ca-trust/source/anchors/ca.crt     # Symlink to system trust anchors
+/etc/pki/ca-trust/source/anchors/ca.crt     # EL system trust anchor
+/usr/local/share/ca-certificates/ca.crt     # Debian/Ubuntu system trust anchor
 ```
 
 All infra nodes will have the following certificates:
@@ -165,7 +167,7 @@ This structure is created by: `roles/infra/tasks/dir.yml`, `roles/infra/tasks/vi
 
 The node data directory is specified by [`node_data`](/docs/node/param#node_data), defaulting to `/data`, owned by `root:root` with mode `0755`.
 
-Each component's default data directory is located under this data directory:
+Most core components place their default data directories here. Some pilot modules use fixed paths of their own; native MySQL 8.4 currently uses `/var/lib/mysql`.
 
 ```bash
 /data                                 # root:root 0755
@@ -176,6 +178,7 @@ Each component's default data directory is located under this data directory:
 #  ^-----@etcd                        # etcd:etcd 0700 (etcd_data)
 #  ^-----@infra                       # root:infra 0771 (infra module data directory)
 #  ^-----@docker                      # root:root 0755 (Docker data directory)
+#  ^-----@kafka                       # kafka:kafka 0700 (kafka_data)
 #  ^-----@...                         # Other component data directories
 ```
 

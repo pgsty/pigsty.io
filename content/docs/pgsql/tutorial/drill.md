@@ -198,7 +198,7 @@ If the surviving node doesn't have the INFRA module, configure and install a new
 Repair monitoring on the current node:
 
 ```bash
-./node.yml -t node_monitor
+./node.yml -t monitor
 ```
 
 

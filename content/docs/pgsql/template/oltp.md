@@ -98,7 +98,7 @@ Ensures each connection has sufficient sort/hash memory without over-allocation.
 OLTP template moderately limits parallel queries to prevent resource contention:
 
 ```yaml
-max_worker_processes: cpu + 8 (min 16)
+max_worker_processes: max(cpu + 16, 24)
 max_parallel_workers: 50% × cpu (min 2)
 max_parallel_workers_per_gather: 20% × cpu (2-8)
 max_parallel_maintenance_workers: 33% × cpu (min 2)
@@ -116,9 +116,9 @@ min_parallel_index_scan_size: 2MB    # 4x default (512kB), prefer non-parallel s
 ### WAL Config
 
 ```yaml
-min_wal_size: disk/20 (max 200GB)
-max_wal_size: disk/5 (max 2000GB)
-max_slot_wal_keep_size: disk×3/10 (max 3000GB)
+min_wal_size: disk/20 (effective max 100GB)
+max_wal_size: disk/5 (effective max 400GB)
+max_slot_wal_keep_size: disk×3/10 (effective max 600GB)
 wal_buffers: 16MB
 wal_writer_delay: 20ms
 wal_writer_flush_after: 1MB
@@ -273,4 +273,3 @@ Focus on these metrics:
 - [**TINY Template**](/docs/pgsql/template/tiny/): Micro instance template comparison
 - [Cluster Config](/docs/pgsql/config/cluster): PostgreSQL cluster type configuration
 - [High Availability](/docs/concept/ha): HA architecture design
-

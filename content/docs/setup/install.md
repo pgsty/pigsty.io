@@ -81,13 +81,13 @@ Use the following commands to auto-install Pigsty source to `~/pigsty` (recommen
 {{% tab header="pigsty.io (Global)" %}}
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash            # Install current default version
-curl -fsSL https://repo.pigsty.io/get | bash -s v4.4.0  # Install specific version
+curl -fsSL https://repo.pigsty.io/get | bash -s {{< param version >}}  # Install specific version
 ```
 {{% /tab %}}
 {{% tab header="pigsty.cc (Mirror)" %}}
 ```bash
 curl -fsSL https://repo.pigsty.cc/get | bash            # Install current default version
-curl -fsSL https://repo.pigsty.cc/get | bash -s v4.4.0  # Install specific version
+curl -fsSL https://repo.pigsty.cc/get | bash -s {{< param version >}}  # Install specific version
 ```
 {{% /tab %}}
 {{< /tabpane >}}
@@ -96,7 +96,7 @@ If you prefer not to run a remote script, you can manually [**download**](https:
 
 ```bash
 git clone https://github.com/pgsty/pigsty; cd pigsty;
-git checkout v4.4.0;  # Always checkout a specific version when using git
+git checkout {{< param version >}};  # Always checkout a specific version when using git
 ```
 
 For manual download/clone installations, run the [**`bootstrap`**](/docs/setup/offline#bootstrap) script to install Ansible and other dependencies. You can also [**install them yourself**](/docs/setup/playbook#install-ansible).
@@ -138,12 +138,14 @@ Many [**configuration templates**](/docs/concept/iac/template/) are available fo
 ./configure -c ha/full -s    # Use 4-node sandbox template, skip IP replacement/detection
 ```
 
-<details><summary>Example configure output</summary>
+The output below is from the current `main` branch (v4.5.0 development). If you install the {{< param version >}} stable release described above, the first line reports `{{< param version >}}`.
+
+<details><summary>Current main (v4.5.0 development) configure output</summary>
 
 ```bash
 $ ./configure
 
-configure pigsty v4.4.0 begin
+configure pigsty v4.5.0 begin
 [ OK ] region  = default
 [ OK ] kernel  = Linux
 [ OK ] machine = x86_64
@@ -173,7 +175,7 @@ proceed with ./deploy.yml
 |:------------------------|:-----------------------------------------------------------------------------------|
 | `-i\|--ip`              | Primary internal IP of current host, replaces placeholder `10.10.10.10`            |
 | `-c\|--conf`            | [**Config template**](/docs/conf/) name relative to `conf/`, without `.yml` suffix |
-| `-v\|--version`         | PostgreSQL major version: `14`, `15`, `16`, `17`, `18`                             |
+| `-v\|--version`         | PostgreSQL major version `14` through `19`; PG19 is Beta, so use the dedicated [`pg19`](/docs/conf/pg19/) template |
 | `-r\|--region`          | Upstream repo region for faster downloads: (`default\|china\|europe`)              |
 | `-n\|--non-interactive` | Use command-line args for primary IP, skip interactive wizard                      |
 | `-x\|--proxy`           | Use current env vars to configure [`proxy_env`](/docs/infra/param#proxy_env)       |
@@ -197,7 +199,7 @@ We strongly recommend modifying default passwords and credentials in the config 
 Pigsty's [**`deploy.yml`**](/docs/setup/playbook/) [**playbook**](/docs/setup/playbook/) applies the blueprint from [**Configure**](#configure) to target nodes.
 
 ```bash
-./deploy.yml     # Deploy all defined modules on current node at once
+./deploy.yml     # Deploy the defined modules in the core path at once
 ```
 
 

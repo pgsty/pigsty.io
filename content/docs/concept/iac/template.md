@@ -33,6 +33,7 @@ Use `./configure -c <conf>` to specify a configuration template, where `<conf>` 
 
 # Use different database kernels
 ./configure -c pgsql            # Native PostgreSQL kernel, basic features (14~18)
+./configure -c pg19             # PostgreSQL 19 Beta trial template
 ./configure -c mssql            # Babelfish kernel, SQL Server protocol compatible (17/18)
 ./configure -c polar            # PolarDB PG kernel, Aurora/RAC style (17)
 ./configure -c ivory            # IvorySQL kernel, Oracle syntax compatible (18)
@@ -74,6 +75,7 @@ Templates for various database management systems and kernels:
 | Template                                   | Description                                             |
 |--------------------------------------------|---------------------------------------------------------|
 | [**`pgsql.yml`**](/docs/conf/pgsql/)       | Native PostgreSQL kernel, basic features (14~18)        |
+| [**`pg19.yml`**](/docs/conf/pg19/)         | PostgreSQL 19 Beta trial template                       |
 | [**`mssql.yml`**](/docs/conf/mssql/)       | Babelfish kernel, SQL Server protocol compatible (17/18) |
 | [**`polar.yml`**](/docs/conf/polar/)       | PolarDB PG kernel, Aurora/RAC style (17)                |
 | [**`ivory.yml`**](/docs/conf/ivory/)       | IvorySQL kernel, Oracle syntax compatible (18)          |
@@ -135,7 +137,9 @@ Besides main templates, Pigsty provides a set of demo templates for different sc
 | [**`debian.yml`**](/docs/conf/debian/) | Full-parameter config file for Debian/Ubuntu systems                     |
 | **`remote.yml`**                       | Example config for monitoring remote PostgreSQL clusters or RDS          |
 | **`redis.yml`**                        | Redis cluster example configuration                                      |
-| [**`minio.yml`**](/docs/conf/minio/)   | 3-node MinIO cluster example configuration                               |
+| [**`minio.yml`**](/docs/conf/minio/)   | 4-node MinIO cluster example configuration                               |
+| [**`kafka.yml`**](/docs/conf/kafka/)   | Kafka dynamic KRaft example with a single-node dev cluster and a three-node secure cluster |
+| [**`mysql.yml`**](/docs/conf/mysql84/) | Native MySQL 8.4 single-node/three-node pilot example; distinct from OpenHalo `conf/mysql.yml` |
 | [**`demo.yml`**](/docs/conf/demo/)     | Configuration file for Pigsty [public demo site](https://demo.pigsty.io) |
 | [**`fat.yml`**](/docs/conf/fat/)       | Single-node config with local repo and full feature set                   |
 | [**`infra.yml`**](/docs/conf/infra/)   | Deploy only the infrastructure modules                                    |

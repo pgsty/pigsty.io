@@ -32,7 +32,7 @@ Playbook [`minio.yml`](https://github.com/pgsty/pigsty/blob/main/minio.yml) inst
 - `minio_launch`    : Launch minio service
 - `minio_register`  : Register minio to monitoring
 - `minio_provision` : Create minio aliases/buckets/users
-  - `minio_alias`   : Create minio client alias (on admin node)
+  - `minio_alias`   : Create minio client alias on all Infra nodes and MinIO members
   - `minio_bucket`  : Create minio buckets
   - `minio_user`    : Create minio business users
 
@@ -58,8 +58,8 @@ Playbook [`minio-rm.yml`](https://github.com/pgsty/pigsty/blob/main/minio-rm.yml
 - `minio_pause`       : Pause 3 seconds, allow user to abort (Ctrl+C to cancel)
 - `minio_deregister`  : Remove targets from VictoriaMetrics monitoring, clean up DNS records
 - `minio_svc`         : Stop and disable minio systemd service
-- `minio_data`        : Remove minio data directory (disable with `minio_rm_data=false`)
-- `minio_pkg`         : Uninstall minio packages (enable with `minio_rm_pkg=true`)
+- `minio_data`        : Remove MinIO data directories plus service, client, and Vector configuration (disable with `minio_rm_data=false`)
+- `minio_pkg`         : Uninstall the `minio` and `mcli` packages (enable with `minio_rm_pkg=true`)
 
 {{% alert title="Execution Condition & Safety Mechanisms" color="primary" %}}
 - The playbook automatically skips hosts without [`minio_seq`](/docs/minio/param#minio_seq) defined, preventing accidental operations on non-MinIO nodes
@@ -70,8 +70,8 @@ Playbook [`minio-rm.yml`](https://github.com/pgsty/pigsty/blob/main/minio-rm.yml
 The removal playbook uses the **minio_remove** role with the following [configurable parameters](/docs/minio/param):
 
 - [`minio_safeguard`](/docs/minio/param#minio_safeguard): Prevents accidental deletion when set to `true`
-- [`minio_rm_data`](/docs/minio/param#minio_rm_data): Controls whether MinIO data is deleted (default: `true`)
-- [`minio_rm_pkg`](/docs/minio/param#minio_rm_pkg): Controls whether MinIO packages are uninstalled (default: `false`)
+- [`minio_rm_data`](/docs/minio/param#minio_rm_data): Controls whether MinIO data and configuration are deleted (default: `true`)
+- [`minio_rm_pkg`](/docs/minio/param#minio_rm_pkg): Controls whether the `minio` and `mcli` packages are uninstalled (default: `false`)
 
 
 ----------------

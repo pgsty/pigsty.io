@@ -1,6 +1,6 @@
 ---
 title: Parameters
-description: NODE module provides 11 sections with 85 parameters
+description: NODE module provides 11 sections with 73 parameters
 weight: 3230
 icon: fa-solid fa-sliders
 categories: [Reference]
@@ -294,11 +294,11 @@ node_dns_options:                 # dns resolv options in `/etc/resolv.conf`
 
 
 
-### node_write_etc_hosts
+### `node_write_etc_hosts`
 
 name: `node_write_etc_hosts`, type: `bool`, level: `G|C|I`
 
-Modify `/etc/hosts` on target node? For example, in container environments, this file usually cannot be modified.
+Modify `/etc/hosts` on the target node? Default is `true`. Container environments often prohibit modifying this file; set this parameter to `false` to skip the change.
 
 
 
@@ -441,29 +441,29 @@ Packages specified in this parameter will be **upgraded to the latest available 
 
 name: `node_default_packages`, type: `string[]`, level: `G`
 
-Default packages to be installed on all nodes. Default value is a common RPM package list for EL 7/8/9. Array where each element is a **space-separated** package list string.
+Default packages to install on every node. This parameter has no single cross-platform default. If it is not set explicitly, the `node_id` role loads `node_packages_default` from the corresponding `<os>.<arch>.yml` file under [`roles/node_id/vars`](https://github.com/pgsty/pigsty/tree/main/roles/node_id/vars), according to operating-system version and CPU architecture.
+
+This is a string array in which each line is a **comma-separated** package list. Mappings differ across distributions, releases, and architectures; no single EL or Debian list should be treated as the universal default for that family.
 
 Packages specified in this variable only require **existence**, not **latest**. If you need to install the latest version, use the [`node_packages`](#node_packages) parameter.
 
-This parameter has no default value (undefined state). If users don't explicitly specify this parameter in the configuration file, Pigsty will load default values from the `node_packages_default` variable defined in [`roles/node_id/vars`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/) based on the current node's OS family.
-
-Default value (EL-based systems):
+For example, the current mapping for `EL 9 x86_64` is:
 
 ```yaml
-- lz4,unzip,bzip2,pv,jq,git,ncdu,make,patch,bash,lsof,wget,uuid,tuned,nvme-cli,numactl,sysstat,iotop,htop,rsync,tcpdump
-- python3,python3-pip,socat,lrzsz,net-tools,ipvsadm,telnet,ca-certificates,openssl,keepalived,etcd,haproxy,chrony,pig
-- zlib,yum,audit,bind-utils,readline,vim-minimal,node_exporter,grubby,openssh-server,openssh-clients,chkconfig,vector
+- bash,python3,sudo,acl,ca-certificates,openssl,curl,wget,lz4,zstd,unzip,bzip2,gzip,tar,tzdata,chrony,openssh-server,util-linux,rsync,psmisc,logrotate
+- pv,jq,git,make,patch,lsof,less,ncdu,htop,iotop,socat,net-tools,telnet,ipvsadm,tuned,numactl,nvme-cli,sysstat,keepalived,etcd,haproxy,vector,pig,uv
+- zlib,readline,xz,glibc-langpack-en,cronie,openssh-clients,node-exporter,bind-utils,iproute,iputils,nmap-ncat,procps-ng,vim-minimal,yum,audit,grubby,chkconfig
 ```
 
-Default value (Debian/Ubuntu):
+The current mapping for `Debian 13 x86_64` is:
 
 ```yaml
-- lz4,unzip,bzip2,pv,jq,git,ncdu,make,patch,bash,lsof,wget,uuid,tuned,nvme-cli,numactl,sysstat,iotop,htop,rsync
-- python3,python3-pip,socat,lrzsz,net-tools,ipvsadm,telnet,ca-certificates,openssl,keepalived,etcd,haproxy,chrony,pig
-- zlib1g,acl,dnsutils,libreadline-dev,vim-tiny,node-exporter,openssh-server,openssh-client,vector
+- bash,python3,sudo,acl,ca-certificates,openssl,curl,wget,lz4,zstd,unzip,bzip2,gzip,tar,tzdata,chrony,openssh-server,util-linux,rsync,psmisc,logrotate
+- pv,jq,git,make,patch,lsof,less,ncdu,htop,iotop,socat,net-tools,telnet,ipvsadm,tuned,numactl,nvme-cli,sysstat,keepalived,etcd,haproxy,vector,pig,uv
+- zlib1g,libreadline-dev,xz-utils,locales,cron,openssh-client,node-exporter,bind9-dnsutils,iproute2,iputils-ping,netcat-openbsd,procps,vim-tiny
 ```
 
-Same format as [`node_packages`](#node_packages), but this parameter is usually used to specify default packages that must be installed on all nodes at the global level.
+This parameter uses the same format as [`node_packages`](#node_packages), but is normally used as a global override of the platform mapping for packages required on every node.
 
 
 
@@ -942,7 +942,7 @@ This parameter allows you to configure convenient shell aliases for the host's s
 For example, the following declares an alias named `dp` for quickly executing `docker compose pull`:
 
 ```yaml
-node_alias:
+node_aliases:
   dp: 'docker compose pull'
 ```
 

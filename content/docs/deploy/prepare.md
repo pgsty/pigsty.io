@@ -48,8 +48,10 @@ To use a different data directory, configure these parameters:
 | [**`nginx_data`**](/docs/infra/param#nginx_data)       | Nginx data directory     | `/data/nginx`      |
 | [**`minio_data`**](/docs/minio/param#minio_data)       | MinIO data directory     | `/data/minio`      |
 | [**`redis_fs_main`**](/docs/redis/param#redis_fs_main) | Redis data directory     | `/data/redis`      |
+| [**`kafka_data`**](/docs/kafka/param#kafka_data)       | Kafka data directory     | `/data/kafka`      |
 {.full-width}
 
+The native MySQL 8.4 pilot module does not currently expose a data-directory parameter and always uses `/var/lib/mysql`.
 
 --------
 
@@ -136,7 +138,7 @@ For local-only access, add the following to `/etc/hosts` on machines accessing t
 
 ## Linux
 
-Pigsty runs on **Linux**. It supports **14** mainstream distributions: [**Compatible OS List**](/docs/ref/linux/)
+Pigsty runs on **Linux**. It supports **16** mainstream distributions: [**Compatible OS List**](/docs/ref/linux/)
 
 We recommend **RockyLinux 10.1**, **Debian 13.6**, or **Ubuntu 26.04.0 / 24.04.4** as default options.
 
@@ -194,8 +196,8 @@ curl -fsSL https://repo.pigsty.cc/get | bash;         # Backup Mirror
 To [**install**](/docs/deploy/install#install) a specific version, use the **`-s <version>`** parameter:
 
 ```bash
-curl -fsSL https://repo.pigsty.io/get | bash -s v4.4.0  # Install specific version (example: v4.4.0)
-curl -fsSL https://repo.pigsty.cc/get | bash -s v4.4.0  # Install specific version (example: v4.4.0)
+curl -fsSL https://repo.pigsty.io/get | bash -s {{< param version >}}  # Install specific version (example: {{< param version >}})
+curl -fsSL https://repo.pigsty.cc/get | bash -s {{< param version >}}  # Install specific version (example: {{< param version >}})
 ```
 
 To [**install**](/docs/deploy/install#install) the latest beta version:
@@ -209,12 +211,12 @@ For developers or the latest development version, clone the repository directly:
 
 ```bash
 git clone https://github.com/pgsty/pigsty.git;
-cd pigsty; git checkout v4.4.0
+cd pigsty; git checkout {{< param version >}}
 ```
 
 If your environment lacks Internet access, download the source tarball from [**GitHub Releases**](https://github.com/pgsty/pigsty/releases/) or the Pigsty repository:
 
 ```bash
-wget https://repo.pigsty.io/src/pigsty-v4.4.0.tgz
-wget https://repo.pigsty.cc/src/pigsty-v4.4.0.tgz
+wget https://repo.pigsty.io/src/pigsty-{{< param version >}}.tgz
+wget https://repo.pigsty.cc/src/pigsty-{{< param version >}}.tgz
 ```

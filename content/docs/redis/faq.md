@@ -12,7 +12,7 @@ categories: [Reference]
 
 ## ABORT due to redis_safeguard enabled
 
-This means the Redis instance you are trying to remove has the safeguard enabled: this happens when attempting to remove a Redis instance with [`redis_safeguard`](/docs/redis/param#redis_safeguard) set to `true`. The `redis-rm.yml` playbook refuses to execute to prevent accidental deletion of running Redis instances.
+This means the Redis instance you are trying to remove has the safeguard enabled. When [`redis_safeguard`](/docs/redis/param#redis_safeguard) is `true`, `redis-rm.yml` refuses to run unconditionally; the switch does not probe whether an instance is running.
 
 You can override this protection with the CLI argument `-e redis_safeguard=false` to force removal of the Redis instance. This is what `redis_safeguard` is designed for.
 

@@ -66,8 +66,8 @@ Each database definition is an object that may include the following fields, usi
   connlimit: -1                   # optional, database connection limit, default -1 disable limit, set to positive integer will limit connections
   pool_auth_user: dbuser_meta     # optional, all connections to this pgbouncer database will be authenticated using this user (only useful when pgbouncer_auth_query is enabled)
   pool_mode: transaction          # optional, pgbouncer pool mode at database level, default transaction
-  pool_size: 64                   # optional, pgbouncer pool size at database level, default 64
-  pool_reserve: 32                # optional, pgbouncer pool size reserve at database level, default 32, when default pool is insufficient, can request at most this many burst connections
+  pool_size: 50                   # optional, pgbouncer pool size at database level, default 50
+  pool_reserve: 30                # optional, pgbouncer reserve pool at database level, default 30
   pool_size_min: 0                # optional, pgbouncer pool size min at database level, default 0
   pool_connlimit: 100             # optional, max database connections at database level, default 100
 ```
@@ -92,8 +92,8 @@ The only required field is `name`, which should be a valid and unique database n
 - `comment`: Database comment information.
 - `pool_auth_user`: When [`pgbouncer_auth_query`](/docs/pgsql/param#pgbouncer_auth_query) is enabled, all connections to this pgbouncer database will use the user specified here to execute authentication queries. You need to use a user with access to the `pg_shadow` table.
 - `pool_mode`: Database level pgbouncer pool mode, default is transaction, i.e., transaction pooling. If left empty, will use [`pgbouncer_poolmode`](/docs/pgsql/param#pgbouncer_poolmode) parameter as default value.
-- `pool_size`: Database level pgbouncer default pool size, default is 64
-- `pool_reserve`: Database level pgbouncer pool size reserve, default is 32, when default pool is insufficient, can request at most this many burst connections.
+- `pool_size`: Database-level Pgbouncer default pool size, default `50`.
+- `pool_reserve`: Database-level Pgbouncer reserve pool, default `30`; when the regular pool is exhausted, at most this many burst connections can be added.
 - `pool_size_min`: Database level pgbouncer pool size min, default is 0
 - `pool_connlimit`: Database level pgbouncer connection pool max database connections, default is 100
 
@@ -155,13 +155,14 @@ When you [create databases](#create-database), the Pgbouncer database list defin
 
 Pgbouncer runs with the same `dbsu` as PostgreSQL, defaulting to the `postgres` os user. You can use the `pgb` alias to access pgbouncer management functions using dbsu.
 
-Pigsty also provides a utility function `pgb-route`, which can quickly switch pgbouncer database traffic to other nodes in the cluster for zero-downtime migration:
+To route a managed Pgbouncer database to another node, edit `/etc/pgbouncer/database.txt`, then reload the configuration and rebuild existing server connections:
 
 ```bash
-# route pgbouncer traffic to another cluster member
-function pgb-route(){
-  local ip=${1-'\/var\/run\/postgresql'}
-  sed -ie "s/host=[^[:space:]]\+/host=${ip}/g" /etc/pgbouncer/pgbouncer.ini
-  cat /etc/pgbouncer/pgbouncer.ini
-}
+# Change only mydb's backend target
+sed -i -E '/^mydb[[:space:]]*=/ s#host=[^[:space:]]+#host=10.10.10.12#' /etc/pgbouncer/database.txt
+pgb -c "RELOAD;"
+pgb -c "RECONNECT mydb;"
+pgb -c "WAIT_CLOSE mydb;"
 ```
+
+> The current `pgb-route` helper edits only `/etc/pgbouncer/pgbouncer.ini`, while Pigsty-managed database routes live in the included `database.txt`; it therefore does not change those managed routes.

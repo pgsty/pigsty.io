@@ -87,11 +87,12 @@ Config updates:
 
 ```bash
 ./vibe.yml -l <host> -t code_config,code_launch
-./vibe.yml -l <host> -t jupyter_config,jupyter_launch
+./vibe.yml -l <host> -t jupyter_config
+ssh <host> sudo systemctl restart jupyter
 ./vibe.yml -l <host> -t claude_config
 ```
 
-Disable components:
+Skip components for this run:
 
 ```bash
 ./vibe.yml -l <host> -e code_enabled=false
@@ -101,12 +102,16 @@ Disable components:
 ./vibe.yml -l <host> -e codex_enabled=false
 ```
 
+These switches are task conditions. Setting one to `false` only skips the corresponding installation and configuration tasks; it does not stop, disable, or uninstall a service or package deployed earlier. To retire Code-Server or JupyterLab, run `systemctl disable --now code-server` or `systemctl disable --now jupyter` separately. VIBE currently has no dedicated removal playbook.
+
+Node.js is a runtime dependency of Claude Code and Codex CLI. If `nodejs_enabled=false` but either `claude_enabled` or `codex_enabled` remains `true`, the `nodejs` phase still runs. It is skipped only when all three switches are `false`.
+
 --------
 
 ## Deployment Order
 
 ```bash
-./deploy.yml      # NODE + INFRA + PGSQL
+./deploy.yml      # deploy NODE, INFRA, ETCD, MINIO, and PGSQL defined in the inventory
 ./juice.yml       # optional shared storage
 ./vibe.yml        # VIBE
 ```

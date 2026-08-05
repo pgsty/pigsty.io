@@ -40,7 +40,7 @@ The [`ETCD_REMOVE`](#etcd_remove) parameter group controls etcd cluster removal 
 
 | Parameter                               |  Type  |  Level  | Description                                              |
 |:----------------------------------------|:------:|:-------:|:---------------------------------------------------------|
-| [`etcd_safeguard`](#etcd_safeguard)     | `bool` | `G/C/A` | safeguard to prevent purging running etcd instances?     |
+| [`etcd_safeguard`](#etcd_safeguard)     | `bool` | `G/C/A` | unconditionally refuse removal when `true`               |
 | [`etcd_rm_data`](#etcd_rm_data)         | `bool` | `G/C/A` | remove etcd data during removal? default is true         |
 | [`etcd_rm_pkg`](#etcd_rm_pkg)           | `bool` | `G/C/A` | uninstall etcd packages during removal? default is false |
 
@@ -263,7 +263,7 @@ which are action flags used by the [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmym
 Parameters are defined in [`roles/etcd_remove/defaults/main.yml`](https://github.com/pgsty/pigsty/blob/main/roles/etcd_remove/defaults/main.yml)
 
 ```yaml
-etcd_safeguard: false             # prevent purging running etcd instances?
+etcd_safeguard: false             # unconditionally refuse removal when true
 etcd_rm_data: true                # remove etcd data and config files during removal?
 etcd_rm_pkg: false                # uninstall etcd packages during removal?
 ```
@@ -274,9 +274,8 @@ etcd_rm_pkg: false                # uninstall etcd packages during removal?
 
 Parameter: `etcd_safeguard`, Type: `bool`, Level: `G/C/A`
 
-Safeguard to prevent purging running etcd instances? Default value is `false`.
-
-When enabled, the [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook will abort when detecting running etcd instances, preventing accidental deletion of active etcd clusters.
+Removal safeguard, default `false`. When set to `true`, [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) aborts before deregistration, leaving the cluster, stopping the service, or deleting data. It is a static boolean switch and does not probe whether the instance is running.
+Override it explicitly with `-e etcd_safeguard=false`.
 
 **Recommended Settings**:
 
@@ -347,4 +346,3 @@ When enabled, the [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook will 
 {{% alert title="Tip" color="info" %}}
 Usually there's no need to uninstall etcd packages. Keeping the packages speeds up subsequent redeployments since no re-download or installation is required.
 {{% /alert %}}
-

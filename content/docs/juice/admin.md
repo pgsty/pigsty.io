@@ -77,8 +77,8 @@ juice_instances:
 ```
 
 ```bash
-./juice.yml -l <host> -t juice_clean
-./juice.yml -l <host> -e fsname=jfs -t juice_clean
+./juice.yml -l <host> -t juice_clean,juice_register
+./juice.yml -l <host> -e fsname=jfs -t juice_clean,juice_register
 ```
 
 Removal actions:
@@ -87,8 +87,11 @@ Removal actions:
 - `umount -l` lazy unmount
 - Remove unit and env files
 - Reload systemd
+- Rewrite this node's VictoriaMetrics target file, removing instances with `state=absent`
 
 **PostgreSQL metadata and object storage data are not deleted.**
+
+Running only `-t juice_clean` does not update monitoring targets and temporarily leaves stale scrape endpoints for removed instances. The commands above therefore run `juice_register` as well.
 
 -------------
 

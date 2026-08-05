@@ -29,7 +29,7 @@ For example, Pigsty's default single-node `pg-meta`.`meta` database can be conne
 ```bash
 psql postgres://dbuser_dba:DBUser.DBA@10.10.10.10/meta     # Connect directly with DBA superuser
 psql postgres://dbuser_meta:DBUser.Meta@10.10.10.10/meta   # Connect with default business admin user
-psql postgres://dbuser_view:DBUser.View@pg-meta/meta       # Connect with default read-only user via instance domain name
+psql postgres://dbuser_view:DBUser.Viewer@pg-meta/meta     # Connect with default read-only user via instance domain name
 ```
 
 
@@ -58,7 +58,7 @@ Additionally, depending on specific business scenarios, there may be other servi
 
 - **Default direct service (default)**: Allows (admin) users to bypass the connection pool and directly access the database
 - **Offline replica service (offline)**: Dedicated replica not serving online read traffic, used for ETL and analytical queries
-- **Sync replica service (standby)**: Read-only service with no replication delay, handled by [synchronous standby](/docs/pgsql/config#sync-standby)/primary for read queries
+- **Sync replica service (standby)**: Read-only service with no replication delay, handled by [synchronous standby](/docs/pgsql/config/cluster#sync-standby)/primary for read queries
 - **Delayed replica service (delayed)**: Access data from the same cluster as it was some time ago, handled by [delayed replicas](/docs/pgsql/config#delayed-cluster)
 
 
@@ -79,8 +79,8 @@ You can use different host & port combinations, which provide PostgreSQL service
 
 | Type | Sample | Description |
 |------|-------|------------|
-| Cluster Domain Name | `pg-test` | Access via cluster domain name (resolved by dnsmasq @ infra nodes) |
-| Cluster VIP Address | `10.10.10.3` | Access via L2 VIP address managed by `vip-manager`, bound to primary node |
+| Cluster Domain Name | `pg-test` | Resolved by dnsmasq on INFRA nodes; with `pg_dns_target: auto`, points to the VIP when enabled, otherwise to the primary IP |
+| Cluster VIP Address | `10.10.10.3` | When `pg_vip_enabled` is enabled, an L2 VIP managed by `vip-manager` and bound to the primary node |
 | Instance Hostname | `pg-test-1` | Access via any instance hostname (resolved by dnsmasq @ infra nodes) |
 | Instance IP Address | `10.10.10.11` | Access any instance's IP address |
 
@@ -101,7 +101,7 @@ Pigsty uses different **ports** to distinguish [pg services](#service-overview)
 
 
 ```bash
-# Access via cluster domain
+# Access via cluster domain (this example assumes a cluster VIP; without one, DNS resolves to the primary IP by default)
 postgres://test@pg-test:5432/test # DNS -> L2 VIP -> primary direct connection
 postgres://test@pg-test:6432/test # DNS -> L2 VIP -> primary connection pool -> primary
 postgres://test@pg-test:5433/test # DNS -> L2 VIP -> HAProxy -> primary connection pool -> primary
@@ -115,7 +115,7 @@ postgres://test@10.10.10.3:6432/test # L2 VIP -> primary connection pool -> prim
 postgres://test@10.10.10.3:5433/test # L2 VIP -> HAProxy -> primary connection pool -> primary
 postgres://test@10.10.10.3:5434/test # L2 VIP -> HAProxy -> replica connection pool -> replica
 postgres://dbuser_dba@10.10.10.3:5436/test # L2 VIP -> HAProxy -> primary direct connection (for admin)
-postgres://dbuser_stats@10.10.10.3::5438/test # L2 VIP -> HAProxy -> offline direct connection (for ETL/personal queries)
+postgres://dbuser_stats@10.10.10.3:5438/test # L2 VIP -> HAProxy -> offline direct connection (for ETL/personal queries)
 
 # Directly specify any cluster instance name
 postgres://test@pg-test-1:5432/test # DNS -> database instance direct connection (singleton access)
@@ -137,5 +137,3 @@ postgres://dbuser_stats@10.10.10.11:5438/test # HAProxy -> database offline read
 postgres://test@10.10.10.11:6432,10.10.10.12:6432,10.10.10.13:6432/test?target_session_attrs=primary
 postgres://test@10.10.10.11:6432,10.10.10.12:6432,10.10.10.13:6432/test?target_session_attrs=prefer-standby
 ```
-
-

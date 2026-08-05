@@ -199,8 +199,8 @@ Dropping schemas or uninstalling extensions uses `CASCADE`, deleting all depende
 - name: myapp
   pgbouncer: true              # Add to pool (default true)
   pool_mode: transaction       # Pool mode: transaction/session/statement
-  pool_size: 64                # Default pool size
-  pool_reserve: 32             # Reserve pool size
+  pool_size: 50                # Default pool size
+  pool_reserve: 30             # Reserve pool size
   pool_size_min: 0             # Minimum pool size
   pool_connlimit: 100          # Max database connections
   pool_auth_user: dbuser_meta  # Auth query user (with pgbouncer_auth_query)

@@ -230,6 +230,7 @@ etcdctl member remove <etcd_server_id>       # kick from cluster
 ./etcd-rm.yml -l <ins_ip>                    # clean up instance
 ```
 
+`etcd-rm.yml` already includes the `etcdctl member remove` step.
 
 
 --------

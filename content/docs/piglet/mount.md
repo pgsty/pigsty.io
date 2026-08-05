@@ -20,7 +20,7 @@ psql postgres://dbuser_meta:DBUser.Meta@10.10.10.10:5432/meta
 If you are running Pigsty in a container (`cd docker/; make launch`), use `make pass` to print the `dbuser_meta` password:
 
 ```bash
-psql postgres://dbuser_meta:X3f8aVbTChqPppgzn0fbaDpy@127.0.01:5432/meta
+psql postgres://dbuser_meta:X3f8aVbTChqPppgzn0fbaDpy@127.0.0.1:5432/meta
 ```
 
 Just make sure you can connect successfully.

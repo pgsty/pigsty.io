@@ -47,7 +47,7 @@ minio: { hosts: { 10.10.10.10: { minio_seq: 1 } }, vars: { minio_cluster: minio 
 etcd: { hosts: { 10.10.10.10: { etcd_seq: 1 } }, vars: { etcd_cluster: etcd } }
 
 # PGSQL example cluster: pg-meta
-pg-meta: { hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary }, vars: { pg_cluster: pg-meta } }
+pg-meta: { hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary } }, vars: { pg_cluster: pg-meta } }
 ```
 
 To actually install these modules, execute the following playbooks:
@@ -86,7 +86,7 @@ bin/pgsql-add pg-test   # Create the pg-test cluster
 
 ![pigsty-iac.jpg](/img/pigsty/iac.jpg)
 
-You can use different instance roles such as [**primary**](/docs/pgsql/config#primary), [**replica**](/docs/pgsql/config#replica), [**offline**](/docs/pgsql/config#offline), [**delayed**](/docs/pgsql/config#delayed-cluster), [**sync standby**](/docs/pgsql/config#sync-standby);
+You can use different instance roles such as [**primary**](/docs/pgsql/config/cluster#primary), [**replica**](/docs/pgsql/config/cluster#replica), [**offline**](/docs/pgsql/config/cluster#offline), [**delayed**](/docs/pgsql/config/cluster#delayed-cluster), [**sync standby**](/docs/pgsql/config/cluster#sync-standby);
 as well as different clusters: such as [**standby clusters**](/docs/pgsql/config#standby-cluster), [**Citus clusters**](/docs/pgsql/config#citus-cluster), and even [**Redis**](/docs/redis) / [**MinIO**](/docs/minio) / [**Etcd**](/docs/etcd) clusters
 
 
@@ -375,4 +375,3 @@ minio:
           - { name: minio-2 ,ip: 10.10.10.11 , port: 9000 , options: 'check-ssl ca-file /etc/pki/ca.crt check port 9000' }
           - { name: minio-3 ,ip: 10.10.10.12 , port: 9000 , options: 'check-ssl ca-file /etc/pki/ca.crt check port 9000' }
 ```
-

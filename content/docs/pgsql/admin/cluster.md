@@ -44,7 +44,7 @@ bin/node-add  <cls>     # Add nodes in group <cls>
 {{% /tab %}}
 {{% tab header="Example" %}}
 ```bash
-bin/pgsql-add pg-test   # Add nodes in pg-test group, runs ./node.yml -l pg-test
+bin/node-add pg-test    # Add nodes in pg-test group, runs ./node.yml -l pg-test
 ```
 {{% /tab %}}
 {{< /tabpane >}}
@@ -300,7 +300,7 @@ By default, cluster backup repo is deleted with the cluster. To preserve backups
 ## Reload Service
 
 PostgreSQL clusters expose [**services**](/docs/pgsql/service/) via [**HAProxy**](/docs/concept/arch/pgsql#haproxy) on host nodes.
-When service definitions change, instance weights change, or cluster membership changes (e.g., [**scale out**](#expand-cluster)/[**scale in**](#shrink-cluster), switchover/failover), reload services to update load balancer config.
+When service definitions, instance weights, or cluster membership change (for example, [**scale out**](#expand-cluster) or [**scale in**](#shrink-cluster)), reload services to update HAProxy's static member configuration. The default Primary and Replica services detect the current role through Patroni REST API health checks, so ordinary switchover or failover reroutes automatically and does not require regenerating HAProxy configuration.
 
 To reload service config on entire cluster or specific instances (Execute `pg_service` subtask of [**`pgsql.yml`**](/docs/pgsql/playbook#pgsqlyml) on **`<cls>`** or **`<ip>`**):
 
@@ -346,7 +346,7 @@ bin/pgsql-svc pg-test 10.10.10.13     # Reload pg-test 10.10.10.13 instance serv
 ## Reload HBA
 
 When HBA configs change, reload HBA rules to apply. ([**`pg_hba_rules`**](/docs/pgsql/param#pg_hba_rules) / [**`pgb_hba_rules`**](/docs/pgsql/param#pgb_hba_rules))
-If you have role-specific HBA rules or IP ranges referencing cluster member aliases, reload HBA after switchover/scaling.
+If you have inventory-role-specific HBA rules or address ranges that reference cluster member aliases, reload HBA after changing `pg_role` labels or scaling the cluster. Role selectors use static inventory variables and do not change automatically after a Patroni switchover.
 
 To reload PG and Pgbouncer HBA rules on entire cluster or specific instances (Execute HBA subtasks of [**`pgsql.yml`**](/docs/pgsql/playbook#pgsqlyml) on **`<cls>`** or **`<ip>`**):
 
@@ -401,11 +401,11 @@ You can override Patroni-managed defaults at different levels: [**specify params
 ## Clone Cluster
 
 Two ways to clone a cluster: use [**Standby Cluster**](/docs/pgsql/config/cluster#standby-cluster), or use [**Point-in-Time Recovery**](/docs/pgsql/backup/restore#quick-start).
-The former is simple with no dependencies but only clones latest state; the latter requires centralized [**backup repository**](/docs/pgsql/backup/repository) (e.g., MinIO) but can clone to any point within retention period.
+The former is simple and requires no backup repository, but it does require a reachable replication upstream and can clone only the latest state. The latter requires a centralized [**backup repository**](/docs/pgsql/backup/repository) such as MinIO and can clone to any point within the retention period.
 
 | Method          | Pros                        | Cons                         | Use Cases                           |
 |:----------------|:----------------------------|:-----------------------------|:------------------------------------|
-| Standby Cluster | Simple, no dependencies     | Only clones latest state     | DR, read-write separation, migration|
+| Standby Cluster | No backup repository needed | Requires reachable upstream; latest state only | DR, read-write separation, migration|
 | PITR            | Recover to any point        | Requires centralized backup  | Undo mistakes, data audit           |
 
 
@@ -530,7 +530,7 @@ PITR supports multiple recovery target types:
 | Latest      | `pg_pitr: {}`                        | Recover to end of WAL archive  |
 
 {{% alert title="Post-PITR Processing" color="info" %}}
-Pigsty v4.4 PITR keeps archiving enabled by default (`archive: true`). If you explicitly set `archive: false` for exploratory recovery, reset `archive_mode`, restart the cluster, and perform a new full backup after confirming the recovered data is correct:
+Pigsty {{< param version_short >}} PITR keeps archiving enabled by default (`archive: true`). If you explicitly set `archive: false` for exploratory recovery, reset `archive_mode`, restart the cluster, and perform a new full backup after confirming the recovered data is correct:
 
 ```bash
 psql -c 'ALTER SYSTEM RESET archive_mode;'
