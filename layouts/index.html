@@ -67,6 +67,10 @@
   <!-- Landing Page CSS -->
   <link rel="stylesheet" href="/css/landing-v3.css">
 
+  <!-- ⌘K search dialog (reuse docs-site styles, bridged to landing theme tokens) -->
+  {{ $searchCss := resources.Get "scss/landing-search.scss" | toCSS | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $searchCss.RelPermalink }}" integrity="{{ $searchCss.Data.Integrity }}">
+
   <!-- Analytics -->
   {{ with .Site.Config.Services.GoogleAnalytics.ID }}
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
@@ -204,14 +208,22 @@
             </div>
           </div>
           <a href="/price/" class="nav-link">Service</a>
-          <button type="button" class="nav-util" data-theme-toggle title="Switch light / dark mode" aria-label="Switch light / dark mode">
-            <i class="fas fa-moon"></i>
-          </button>
-          <a href="https://pigsty.cc" class="nav-util" title="中文站 / Chinese Site" aria-label="Switch to Chinese site"><i class="fas fa-language"></i></a>
-          <a href="https://github.com/pgsty/pigsty" class="nav-github" target="_blank" rel="noopener" title="GitHub">
-            <i class="fab fa-github"></i>
-            <span class="nav-star"><i class="fas fa-star"></i> 5.5k</span>
-          </a>
+          <div class="nav-utils">
+            <button type="button" class="nav-util" data-silo-search-open title="Search (⌘K)" aria-label="Search">
+              {{- partialCached "silo/icon.html" "search" "search" -}}
+            </button>
+            <button type="button" class="nav-util" data-theme-toggle title="Switch light / dark mode" aria-label="Switch light / dark mode">
+              {{- partialCached "silo/icon.html" "moon" "moon" -}}
+              {{- partialCached "silo/icon.html" "sun" "sun" -}}
+            </button>
+            <a href="https://pigsty.cc" class="nav-util" title="中文站 / Chinese Site" aria-label="Switch to Chinese site">
+              {{- partialCached "silo/icon.html" "languages" "languages" -}}
+            </a>
+            <a href="https://github.com/pgsty/pigsty" class="nav-github" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+              {{- partialCached "silo/icon.html" "github" "github" -}}
+              <span class="nav-star">{{ .Site.Params.github_stars }}</span>
+            </a>
+          </div>
         </div>
 
         <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false">
@@ -227,6 +239,9 @@
     <a href="/ext/" class="mobile-menu-link">Extensions</a>
     <a href="/blog/" class="mobile-menu-link">Blog</a>
     <a href="/price/" class="mobile-menu-link">Pricing</a>
+    <button type="button" class="mobile-menu-link mobile-menu-link--btn" data-silo-search-open>
+      <i class="fas fa-search"></i> Search
+    </button>
     <a href="https://pigsty.cc" class="mobile-menu-link"><i class="fas fa-language"></i> 中文</a>
     <button type="button" class="mobile-menu-link mobile-menu-link--btn" data-theme-toggle>
       <i class="fas fa-moon"></i> Light / Dark
@@ -2115,6 +2130,11 @@
   </footer>
 
 <script src="/js/landing-v3.js"></script>
+
+{{ partial "silo/search-dialog.html" . }}
+{{ $searchJs := slice (resources.Get "js/vendor/lunr.min.js") (resources.Get "js/silo-search.js")
+      | resources.Concat "js/landing-search-bundle.js" | minify | fingerprint }}
+<script src="{{ $searchJs.RelPermalink }}" integrity="{{ $searchJs.Data.Integrity }}" defer></script>
 
 </body>
 </html>
