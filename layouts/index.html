@@ -64,8 +64,9 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
 
-  <!-- Landing Page CSS -->
-  <link rel="stylesheet" href="/css/landing-v3.css">
+  <!-- Landing Page CSS (fingerprinted: URL changes on edit, busts stale CDN / browser caches) -->
+  {{ $landingCss := resources.Get "css/landing-v3.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $landingCss.RelPermalink }}" integrity="{{ $landingCss.Data.Integrity }}">
 
   <!-- ⌘K search dialog (reuse docs-site styles, bridged to landing theme tokens) -->
   {{ $searchCss := resources.Get "scss/landing-search.scss" | toCSS | minify | fingerprint }}
@@ -2129,7 +2130,8 @@
     </div>
   </footer>
 
-<script src="/js/landing-v3.js"></script>
+{{ $landingJs := resources.Get "js/landing-v3.js" | minify | fingerprint }}
+<script src="{{ $landingJs.RelPermalink }}" integrity="{{ $landingJs.Data.Integrity }}"></script>
 
 {{ partial "silo/search-dialog.html" . }}
 {{ $searchJs := slice (resources.Get "js/vendor/lunr.min.js") (resources.Get "js/silo-search.js")
