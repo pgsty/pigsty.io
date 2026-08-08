@@ -39,7 +39,7 @@ VictoriaMetrics uses static service discovery through the `/infra/targets/<job>/
 ./redis.yml  -t redis_register   # Re-render Redis targets
 ```
 
-Other modules (like `pg_monitor.yml`, `mongo.yml`, `mysql.yml`) also provide corresponding `*_register` tags that can be executed as needed.
+Other modules (such as `pg_monitor.yml` and `mysql.yml`) also provide corresponding `*_register` tags that can be executed as needed.
 
 
 

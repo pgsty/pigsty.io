@@ -41,7 +41,6 @@ This template enhances the `meta` template with:
 - Deploys MinIO object storage
 - Pre-configures multiple business databases and users
 - Adds Redis primary-replica instance examples
-- Adds FerretDB MongoDB-compatible cluster
 - Adds Kafka sample cluster
 
 
@@ -63,7 +62,7 @@ The `demo/demo` template is Pigsty's **public demo configuration**, showcasing a
 **Key Features**:
 - HTTPS certificate and custom domain configuration
 - All available PostgreSQL extensions installed
-- Integration with Redis, FerretDB, Kafka, and other components
+- Integration with Redis, Kafka, and other components
 - Docker image acceleration configured
 
 **Use Cases**:
@@ -75,4 +74,3 @@ The `demo/demo` template is Pigsty's **public demo configuration**, showcasing a
 - SSL certificate files must be prepared
 - DNS resolution must be configured
 - Some extensions are not available on ARM64 architecture
-

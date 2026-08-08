@@ -5,7 +5,7 @@ description: "PostgreSQL packages containing multiple extensions"
 weight: 40
 ---
 
-The following **26** packages contain multiple extensions, totaling **128** extensions.
+The following **27** packages contain multiple extensions, totaling **132** extensions.
 
 When installing these packages, you will get all extensions in the package. The lead extension is shown in bold.
 
@@ -123,8 +123,8 @@ Package [`citus`](/ext/e/citus) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 2400 | [**`citus`**](/ext/e/citus) | `14.1.0` | `--sLd--` | `pg_catalog` | Distributed PostgreSQL as an extension |
-| 2401 | [`citus_columnar`](/ext/e/citus_columnar) | `14.1.0` | `--s-d--` | `pg_catalog` | Citus columnar storage engine |
+| 2400 | [**`citus`**](/ext/e/citus) | `14.2.0` | `--sLd--` | `pg_catalog` | Distributed PostgreSQL as an extension |
+| 2401 | [`citus_columnar`](/ext/e/citus_columnar) | `14.2.0` | `--s-d--` | `pg_catalog` | Citus columnar storage engine |
 {.ext-table}
 
 ### pg_lake
@@ -200,6 +200,18 @@ Package [`pllua`](/ext/e/pllua) contains **4** extensions:
 | 3031 | [`hstore_plluau`](/ext/e/hstore_plluau) | `2.0.12` | `--s-d-r` | `pg_catalog` | Hstore transform for untrusted Lua |
 {.ext-table}
 
+### plruby
+
+Package [`plruby`](/ext/e/plruby) contains **4** extensions:
+
+| **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
+|:------:|:-----------|:--------:|:--------:|:---------|:---------|
+| 3160 | [**`plruby`**](/ext/e/plruby) | `2.5` | `--s-d--` | `pg_catalog` | Embed MRI Ruby as an untrusted PostgreSQL procedural language |
+| 3161 | [`jsonb_plruby`](/ext/e/jsonb_plruby) | `1.0` | `--s-d-r` | - | Transform between jsonb and native Ruby data for PL/Ruby |
+| 3162 | [`hstore_plruby`](/ext/e/hstore_plruby) | `1.0` | `--s-d-r` | - | Transform between hstore and Ruby Hashes for PL/Ruby |
+| 3163 | [`ltree_plruby`](/ext/e/ltree_plruby) | `1.0` | `--s-d-r` | - | Transform between ltree and Ruby Arrays for PL/Ruby |
+{.ext-table}
+
 ### pltcl
 
 Package [`pltcl`](/ext/e/pltcl) contains **2** extensions:
@@ -262,8 +274,8 @@ Package [`pg_readme`](/ext/e/pg_readme) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 4300 | [**`pg_readme`**](/ext/e/pg_readme) | `0.7.0` | `----d-r` | - | Generate a README.md document for a database extension or schema |
-| 4301 | [`pg_readme_test_extension`](/ext/e/pg_readme_test_extension) | `0.7.0` | `----d-r` | - | Test generating a README.md document for extension or schema |
+| 4300 | [**`pg_readme`**](/ext/e/pg_readme) | `0.7.1` | `----d-r` | - | Generate a Markdown README from PostgreSQL COMMENT objects |
+| 4301 | [`pg_readme_test_extension`](/ext/e/pg_readme_test_extension) | `0.7.1` | `----d-r` | - | Fixture extension used to test pg_readme document generation |
 {.ext-table}
 
 ### pgpool

@@ -74,7 +74,6 @@ Pigsty's [**self-signed CA**](/docs/concept/sec/ca) is located in `files/pki/` u
 #  ^-----@nginx                              # (local_user) 0755, Nginx SSL certs
 #  ^-----@infra                              # (local_user) 0755, infra client certs
 #  ^-----@pgsql                              # (local_user) 0755, PostgreSQL certs
-#  ^-----@mongo                              # (local_user) 0755, Mongo/FerretDB certs
 #  ^-----@kafka                              # (local_user) 0755, Kafka server certs
 #  ^-----@mysql                              # (local_user) 0755, MySQL server certs
 ```
@@ -149,7 +148,6 @@ The `infra` role creates `infra_data` (default: `/data/infra`) and creates a sym
 #            ^-----@pgrds                  # pgrds targets (files 0640)
 #            ^-----@redis                  # redis targets (files 0640)
 #            ^-----@minio                  # minio targets (files 0640)
-#            ^-----@mongo                  # mongo targets (files 0640)
 #            ^-----@juice                  # juicefs targets (files 0640)
 #            ^-----@mysql                  # mysql targets (files 0640)
 #            ^-----@kafka                  # kafka targets (files 0640)
@@ -214,7 +212,6 @@ The main template is [`roles/infra/templates/victoria/prometheus.yml`](https://g
 #            ^-----@pgrds            # pgsql remote RDS targets
 #            ^-----@redis            # redis static targets
 #            ^-----@minio            # minio static targets
-#            ^-----@mongo            # mongo static targets
 #            ^-----@mysql            # mysql static targets
 #            ^-----@etcd             # etcd static targets
 #            ^-----@ping             # ping static targets

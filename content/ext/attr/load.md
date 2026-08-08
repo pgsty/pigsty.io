@@ -5,7 +5,7 @@ description: "PostgreSQL extensions that require dynamic loading"
 weight: 10
 ---
 
-The following **124** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
+The following **126** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
 
 You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) parameter in `postgresql.conf`, add the extension library, and restart the database.
 
@@ -49,7 +49,8 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pg_ivm`](/ext/e/pg_ivm) | `pg_ivm` | incremental view maintenance on PostgreSQL |
 | [`pg_trickle`](/ext/e/pg_trickle) | `pg_trickle` | Streaming tables and differential view maintenance for PostgreSQL 18 |
 | [`pg_durable`](/ext/e/pg_durable) | `pg_durable` | Durable SQL functions for PostgreSQL |
-| [`provsql`](/ext/e/provsql) | `provsql` | Semiring provenance and uncertainty management for PostgreSQL |
+| [`pg_disorder`](/ext/e/pg_disorder) | `pg_disorder` | Perturb unordered SELECT row order to expose order-dependent tests |
+| [`provsql`](/ext/e/provsql) | `provsql` | Semiring provenance and probability management for PostgreSQL |
 | [`orioledb`](/ext/e/orioledb) | `orioledb` | OrioleDB, the next generation transactional engine |
 | [`omni`](/ext/e/omni) | `omni--0.2.14.so` | Advanced adapter for Postgres extensions |
 | [`pg_tle`](/ext/e/pg_tle) | `pg_tle` | Trusted Language Extensions for PostgreSQL |
@@ -115,6 +116,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`block_copy_command`](/ext/e/block_copy_command) | `block_copy_command` | Block COPY commands via a configurable ProcessUtility hook |
 | [`pg_kpart`](/ext/e/pg_kpart) | `pg_kpart` | Reject full partition scans that omit the partition key |
 | [`pg_tde`](/ext/e/pg_tde) | `pg_tde` | Percona pg_tde access method |
+| [`pg_vault_tde`](/ext/e/pg_vault_tde) | `pg_vault_tde` | Transparent Data Encryption for PostgreSQL through custom table and index access methods |
 | [`sepgsql`](/ext/e/sepgsql) | `sepgsql` | label-based mandatory access control (MAC) based on SELinux security policy. |
 | [`auth_delay`](/ext/e/auth_delay) | `auth_delay` | pause briefly before reporting authentication failure |
 | [`passwordcheck`](/ext/e/passwordcheck) | `$libdir/passwordcheck` | checks user passwords and reject weak password |

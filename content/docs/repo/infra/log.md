@@ -6,6 +6,48 @@ icon: fa-solid fa-clipboard-list
 categories: [Reference]
 ---
 
+## 2026-08-08
+
+| Name        | Old      | New      | Comment                                                |
+|:------------|:---------|:---------|:-------------------------------------------------------|
+| `claude`    | 2.1.223  | 2.1.226  | Official manifest verified via proxy; dual-arch built  |
+| `codex`     | 0.146.1  | 0.147.0  | Stable tag `rust-v0.147.0`; dual-arch built            |
+| `crush`     | 0.88.0   | 0.88.1   | Official tarballs repacked as `1PGSTY` with license    |
+| `grafana`   | 13.1.2   | 13.1.3   | Official dual-architecture RPM/DEB artifacts           |
+| `opencode`  | 1.18.14  | 1.18.15  | Built as dual-architecture RPM/DEB                     |
+| `postgrest` | 14.16    | 16.0     | Static dual-architecture assets; requires PostgreSQL 14+ |
+| `rainfrog`  | 0.4.2    | 0.4.3    | Built as dual-architecture RPM/DEB                     |
+| `rustfs`    | 1.0.0-b12 | 1.0.0-rc1 | Upstream `rc.1-preview.1`; dual-arch RPM/DEB built   |
+| `uv`        | 0.12.2   | 0.12.3   | Built as dual-architecture RPM/DEB                     |
+{.stretch-last}
+
+-------
+
+## 2026-08-07
+
+| Name                       | Old            | New            | Comment                                                 |
+|:---------------------------|:---------------|:---------------|:--------------------------------------------------------|
+| `claude`                   | 2.1.222        | 2.1.223        | Official manifest verified via proxy; built             |
+| `codex`                    | 0.146.0        | 0.146.1        | Stable tag `rust-v0.146.1`; built                       |
+| `code`                     | 1.131.0        | 1.132.0        | Official dual-architecture RPM/DEB verified             |
+| `dblab`                    | 0.47.2         | 0.47.4         | Built as dual-architecture RPM/DEB                      |
+| `grafana-infinity-ds`      | 3.11.1         | 3.11.2         | Built as dual-architecture RPM/DEB                      |
+| `grafana-victorialogs-ds`  | 0.30.1         | 0.31.0         | Built as dual-architecture RPM/DEB                      |
+| `k3s`                      | 1.36.2         | 1.36.3         | Official stable channel `v1.36.3+k3s1`; built           |
+| `k3s-images`               | 1.36.2         | 1.36.3         | Exact-match dual-architecture airgap images; built      |
+| `mcli`                     | 20260804000000 | 20260806000000 | Official pgsty fork dual-architecture RPM/DEB verified  |
+| `opencode`                 | 1.18.13        | 1.18.14        | Built as dual-architecture RPM/DEB                      |
+| `pgschema`                 | 1.12.1         | 1.12.2         | Official dual-architecture RPM/DEB verified             |
+| `seaweedfs`                | 4.40           | 4.41           | Built as dual-architecture RPM/DEB                      |
+| `silo`                     | minio 20260804000000 | 20260806000000 | Official replacement; dual-architecture RPM/DEB verified |
+| `uv`                       | 0.12.1         | 0.12.2         | Built as dual-architecture RPM/DEB                      |
+| `victoria-metrics`         | 1.148.0        | 1.149.0        | Main, cluster, and vmutils packages built for both arches |
+{.stretch-last}
+
+`ferretdb2` was also rebuilt at the current `2.7.0` version for both architectures. `silo` now officially replaces `minio` and is included in the Infra repository together with `mcli`.
+
+-------
+
 ## 2026-08-05
 
 | Name                    | Old            | New            | Comment                                      |

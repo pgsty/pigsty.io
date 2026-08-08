@@ -36,7 +36,6 @@ Pigsty uses **idempotent** Ansible playbooks for management and control. Running
 | MINIO  | `minio-rm.yml`        | Remove MinIO cluster                                   |
 | DOCKER | `docker.yml`          | Install Docker on nodes                                |
 | DOCKER | `app.yml`             | Install applications using Docker Compose              |
-| FERRET | `mongo.yml`           | Install Mongo/FerretDB on nodes                        |
 
 
 ----------------

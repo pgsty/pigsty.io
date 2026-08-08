@@ -73,6 +73,25 @@ These docs currently correspond to [**v4.4.0**](#v440).
 
 ------
 
+## v4.5.0
+
+> WIP
+
+**Highlights**
+
+- The packaged extension catalog now includes 572 extensions, while the broader [PGEXT.CLOUD catalog](https://pgext.cloud) has expanded to 2,230 entries.
+
+**Applications and Compatibility**
+
+- The standalone FERRET module is replaced by [PostgreSQL Mongo mode](/docs/conf/mongo/) and the FerretDB Docker APP.
+
+**Upgrade Notes**
+
+- Existing FERRET deployments should remove the legacy `ferretdb` systemd service and redeploy the protocol layer with `docker.yml` and `app.yml`; the old `mongo.yml` playbook, `mongo_*` parameters, scrape job, and dedicated dashboard are no longer provided.
+
+
+------
+
 ## v4.4.0
 
 Pigsty v4.4.0 is a maintenance release centered on PostgreSQL 18.4, PostgreSQL 19 beta readiness, 531 extensions, refreshed kernel variants, and broader platform coverage.

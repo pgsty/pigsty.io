@@ -1,7 +1,7 @@
 ---
 title: "pg_readme"
 linkTitle: "pg_readme"
-description: "Generate a README.md document for a database extension or schema"
+description: "Generate a Markdown README from PostgreSQL COMMENT objects"
 weight: 4300
 ---
 
@@ -11,10 +11,10 @@ weight: 4300
     <div class="ext-card__title">bigsmoke/pg_readme</div>
     <div class="ext-card__desc">https://github.com/bigsmoke/pg_readme</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_readme-0.7.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_readme-0.7.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_readme-0.7.0.tar.gz</div>
-    <div class="ext-card__desc">pg_readme-0.7.0.tar.gz</div>
+    <div class="ext-card__title">pg_readme-0.7.1.tar.gz</div>
+    <div class="ext-card__desc">pg_readme-0.7.1.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 4300
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_readme`**](/ext/e/pg_readme) | `0.7.0` | <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_readme`**](/ext/e/pg_readme) | `0.7.1` | <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -39,13 +39,16 @@ weight: 4300
 {.ext-table .ext-table--rel}
 
 
+> Catalog release is 0.7.1; PGDG remains the RPM maintainer at 0.7.0, so the PIGSTY 0.7.1 RPM must not be published; PIGSTY maintains the 0.7.1 DEB package.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#util) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `0.7.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_readme` | `hstore` |
+| [**EXT**](/ext/list#util) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `0.7.1` | {{< pgvers "14,15,16,17,18" >}} | `pg_readme` | `hstore` |
 | [**RPM**](/ext/rpm#util) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `0.7.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_readme_$v` | - |
-| [**DEB**](/ext/deb#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.7.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-readme` | - |
+| [**DEB**](/ext/deb#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.7.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-readme` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -57,16 +60,16 @@ weight: 4300
 | el9.aarch64 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 |
 | el10.x86_64 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 |
 | el10.aarch64 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 |
-| d12.x86_64 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 |
-| d12.aarch64 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 |
-| d13.x86_64 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 |
-| d13.aarch64 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 |
-| u22.x86_64 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 |
-| u22.aarch64 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 |
-| u24.x86_64 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 |
-| u24.aarch64 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 |
-| u26.x86_64 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 |
-| u26.aarch64 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 | AVAIL PIGSTY 0.7.0 1 |
+| d12.x86_64 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 |
+| d12.aarch64 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 |
+| d13.x86_64 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 |
+| d13.aarch64 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 |
+| u22.x86_64 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 |
+| u22.aarch64 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 |
+| u24.x86_64 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 |
+| u24.aarch64 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 |
+| u26.x86_64 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 |
+| u26.aarch64 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 |
 @ el8.x86_64 18 pg_readme_18 pg_readme_18-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pg_readme_18-0.7.0-1PGDG.rhel8.noarch.rpm
 @ el8.aarch64 18 pg_readme_18 pg_readme_18-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pg_readme_18-0.7.0-1PGDG.rhel8.noarch.rpm
 @ el9.x86_64 18 pg_readme_18 pg_readme_18-0.7.0-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pg_readme_18-0.7.0-1PGDG.rhel9.8.noarch.rpm
@@ -77,16 +80,16 @@ weight: 4300
 @ el10.x86_64 18 pg_readme_18 pg_readme_18-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_readme_18-0.7.0-1PGDG.rhel10.noarch.rpm
 @ el10.aarch64 18 pg_readme_18 pg_readme_18-0.7.0-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.0 31.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_readme_18-0.7.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 18 pg_readme_18 pg_readme_18-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_readme_18-0.7.0-1PGDG.rhel10.noarch.rpm
-@ d12.x86_64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.0-1PIGSTY~bookworm_amd64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.0-1PIGSTY~bookworm_arm64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.0-1PIGSTY~trixie_amd64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.0-1PIGSTY~trixie_arm64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.0-1PIGSTY~jammy_amd64.deb pigsty 0.7.0 18.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.0-1PIGSTY~jammy_arm64.deb pigsty 0.7.0 18.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.0-1PIGSTY~noble_amd64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.0-1PIGSTY~noble_arm64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.0-1PIGSTY~resolute_amd64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.0-1PIGSTY~resolute_arm64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.0-1PIGSTY~resolute_arm64.deb
+@ d12.x86_64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb
+@ d12.aarch64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb
+@ d13.x86_64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.1-1PIGSTY~trixie_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.1-1PIGSTY~trixie_all.deb
+@ d13.aarch64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.1-1PIGSTY~trixie_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.1-1PIGSTY~trixie_all.deb
+@ u22.x86_64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.1-1PIGSTY~jammy_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.1-1PIGSTY~jammy_all.deb
+@ u22.aarch64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.1-1PIGSTY~jammy_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.1-1PIGSTY~jammy_all.deb
+@ u24.x86_64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.1-1PIGSTY~noble_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.1-1PIGSTY~noble_all.deb
+@ u24.aarch64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.1-1PIGSTY~noble_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.1-1PIGSTY~noble_all.deb
+@ u26.x86_64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.1-1PIGSTY~resolute_all.deb pigsty 0.7.1 20.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.1-1PIGSTY~resolute_all.deb
+@ u26.aarch64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.1-1PIGSTY~resolute_all.deb pigsty 0.7.1 20.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.1-1PIGSTY~resolute_all.deb
 @ el8.x86_64 17 pg_readme_17 pg_readme_17-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pg_readme_17-0.7.0-1PGDG.rhel8.noarch.rpm
 @ el8.aarch64 17 pg_readme_17 pg_readme_17-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/pg_readme_17-0.7.0-1PGDG.rhel8.noarch.rpm
 @ el9.x86_64 17 pg_readme_17 pg_readme_17-0.7.0-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pg_readme_17-0.7.0-1PGDG.rhel9.8.noarch.rpm
@@ -97,16 +100,16 @@ weight: 4300
 @ el10.x86_64 17 pg_readme_17 pg_readme_17-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_readme_17-0.7.0-1PGDG.rhel10.noarch.rpm
 @ el10.aarch64 17 pg_readme_17 pg_readme_17-0.7.0-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.0 31.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_readme_17-0.7.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 17 pg_readme_17 pg_readme_17-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_readme_17-0.7.0-1PGDG.rhel10.noarch.rpm
-@ d12.x86_64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.0-1PIGSTY~bookworm_amd64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.0-1PIGSTY~bookworm_arm64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.0-1PIGSTY~trixie_amd64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.0-1PIGSTY~trixie_arm64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.0-1PIGSTY~jammy_amd64.deb pigsty 0.7.0 18.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.0-1PIGSTY~jammy_arm64.deb pigsty 0.7.0 18.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.0-1PIGSTY~noble_amd64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.0-1PIGSTY~noble_arm64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.0-1PIGSTY~resolute_amd64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.0-1PIGSTY~resolute_arm64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.0-1PIGSTY~resolute_arm64.deb
+@ d12.x86_64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb
+@ d12.aarch64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb
+@ d13.x86_64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.1-1PIGSTY~trixie_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.1-1PIGSTY~trixie_all.deb
+@ d13.aarch64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.1-1PIGSTY~trixie_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.1-1PIGSTY~trixie_all.deb
+@ u22.x86_64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.1-1PIGSTY~jammy_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.1-1PIGSTY~jammy_all.deb
+@ u22.aarch64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.1-1PIGSTY~jammy_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.1-1PIGSTY~jammy_all.deb
+@ u24.x86_64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.1-1PIGSTY~noble_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.1-1PIGSTY~noble_all.deb
+@ u24.aarch64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.1-1PIGSTY~noble_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.1-1PIGSTY~noble_all.deb
+@ u26.x86_64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.1-1PIGSTY~resolute_all.deb pigsty 0.7.1 20.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.1-1PIGSTY~resolute_all.deb
+@ u26.aarch64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.1-1PIGSTY~resolute_all.deb pigsty 0.7.1 20.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.1-1PIGSTY~resolute_all.deb
 @ el8.x86_64 16 pg_readme_16 pg_readme_16-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_readme_16-0.7.0-1PGDG.rhel8.noarch.rpm
 @ el8.aarch64 16 pg_readme_16 pg_readme_16-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_readme_16-0.7.0-1PGDG.rhel8.noarch.rpm
 @ el9.x86_64 16 pg_readme_16 pg_readme_16-0.7.0-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_readme_16-0.7.0-1PGDG.rhel9.8.noarch.rpm
@@ -117,16 +120,16 @@ weight: 4300
 @ el10.x86_64 16 pg_readme_16 pg_readme_16-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_readme_16-0.7.0-1PGDG.rhel10.noarch.rpm
 @ el10.aarch64 16 pg_readme_16 pg_readme_16-0.7.0-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.0 31.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_readme_16-0.7.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 16 pg_readme_16 pg_readme_16-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_readme_16-0.7.0-1PGDG.rhel10.noarch.rpm
-@ d12.x86_64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.0-1PIGSTY~bookworm_amd64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.0-1PIGSTY~bookworm_arm64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.0-1PIGSTY~trixie_amd64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.0-1PIGSTY~trixie_arm64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.0-1PIGSTY~jammy_amd64.deb pigsty 0.7.0 18.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.0-1PIGSTY~jammy_arm64.deb pigsty 0.7.0 18.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.0-1PIGSTY~noble_amd64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.0-1PIGSTY~noble_arm64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.0-1PIGSTY~resolute_amd64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.0-1PIGSTY~resolute_arm64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.0-1PIGSTY~resolute_arm64.deb
+@ d12.x86_64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb
+@ d12.aarch64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb
+@ d13.x86_64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.1-1PIGSTY~trixie_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.1-1PIGSTY~trixie_all.deb
+@ d13.aarch64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.1-1PIGSTY~trixie_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.1-1PIGSTY~trixie_all.deb
+@ u22.x86_64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.1-1PIGSTY~jammy_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.1-1PIGSTY~jammy_all.deb
+@ u22.aarch64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.1-1PIGSTY~jammy_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.1-1PIGSTY~jammy_all.deb
+@ u24.x86_64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.1-1PIGSTY~noble_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.1-1PIGSTY~noble_all.deb
+@ u24.aarch64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.1-1PIGSTY~noble_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.1-1PIGSTY~noble_all.deb
+@ u26.x86_64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.1-1PIGSTY~resolute_all.deb pigsty 0.7.1 20.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.1-1PIGSTY~resolute_all.deb
+@ u26.aarch64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.1-1PIGSTY~resolute_all.deb pigsty 0.7.1 20.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.1-1PIGSTY~resolute_all.deb
 @ el8.x86_64 15 pg_readme_15 pg_readme_15-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_readme_15-0.7.0-1PGDG.rhel8.noarch.rpm
 @ el8.aarch64 15 pg_readme_15 pg_readme_15-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pg_readme_15-0.7.0-1PGDG.rhel8.noarch.rpm
 @ el9.x86_64 15 pg_readme_15 pg_readme_15-0.7.0-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_readme_15-0.7.0-1PGDG.rhel9.8.noarch.rpm
@@ -137,16 +140,16 @@ weight: 4300
 @ el10.x86_64 15 pg_readme_15 pg_readme_15-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_readme_15-0.7.0-1PGDG.rhel10.noarch.rpm
 @ el10.aarch64 15 pg_readme_15 pg_readme_15-0.7.0-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.0 31.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_readme_15-0.7.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 15 pg_readme_15 pg_readme_15-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_readme_15-0.7.0-1PGDG.rhel10.noarch.rpm
-@ d12.x86_64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.0-1PIGSTY~bookworm_amd64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.0-1PIGSTY~bookworm_arm64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.0-1PIGSTY~trixie_amd64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.0-1PIGSTY~trixie_arm64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.0-1PIGSTY~jammy_amd64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.0-1PIGSTY~jammy_arm64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.0-1PIGSTY~noble_amd64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.0-1PIGSTY~noble_arm64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.0-1PIGSTY~resolute_amd64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.0-1PIGSTY~resolute_arm64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.0-1PIGSTY~resolute_arm64.deb
+@ d12.x86_64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb
+@ d12.aarch64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb
+@ d13.x86_64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.1-1PIGSTY~trixie_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.1-1PIGSTY~trixie_all.deb
+@ d13.aarch64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.1-1PIGSTY~trixie_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.1-1PIGSTY~trixie_all.deb
+@ u22.x86_64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.1-1PIGSTY~jammy_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.1-1PIGSTY~jammy_all.deb
+@ u22.aarch64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.1-1PIGSTY~jammy_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.1-1PIGSTY~jammy_all.deb
+@ u24.x86_64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.1-1PIGSTY~noble_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.1-1PIGSTY~noble_all.deb
+@ u24.aarch64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.1-1PIGSTY~noble_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.1-1PIGSTY~noble_all.deb
+@ u26.x86_64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.1-1PIGSTY~resolute_all.deb pigsty 0.7.1 20.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.1-1PIGSTY~resolute_all.deb
+@ u26.aarch64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.1-1PIGSTY~resolute_all.deb pigsty 0.7.1 20.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.1-1PIGSTY~resolute_all.deb
 @ el8.x86_64 14 pg_readme_14 pg_readme_14-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_readme_14-0.7.0-1PGDG.rhel8.noarch.rpm
 @ el8.aarch64 14 pg_readme_14 pg_readme_14-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pg_readme_14-0.7.0-1PGDG.rhel8.noarch.rpm
 @ el9.x86_64 14 pg_readme_14 pg_readme_14-0.7.0-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_readme_14-0.7.0-1PGDG.rhel9.8.noarch.rpm
@@ -157,16 +160,16 @@ weight: 4300
 @ el10.x86_64 14 pg_readme_14 pg_readme_14-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_readme_14-0.7.0-1PGDG.rhel10.noarch.rpm
 @ el10.aarch64 14 pg_readme_14 pg_readme_14-0.7.0-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.0 31.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_readme_14-0.7.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 14 pg_readme_14 pg_readme_14-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_readme_14-0.7.0-1PGDG.rhel10.noarch.rpm
-@ d12.x86_64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.0-1PIGSTY~bookworm_amd64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.0-1PIGSTY~bookworm_arm64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.0-1PIGSTY~trixie_amd64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.0-1PIGSTY~trixie_arm64.deb pigsty 0.7.0 18.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.0-1PIGSTY~jammy_amd64.deb pigsty 0.7.0 18.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.0-1PIGSTY~jammy_arm64.deb pigsty 0.7.0 18.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.0-1PIGSTY~noble_amd64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.0-1PIGSTY~noble_arm64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.0-1PIGSTY~resolute_amd64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.0-1PIGSTY~resolute_arm64.deb pigsty 0.7.0 18.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.0-1PIGSTY~resolute_arm64.deb
+@ d12.x86_64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb
+@ d12.aarch64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb
+@ d13.x86_64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.1-1PIGSTY~trixie_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.1-1PIGSTY~trixie_all.deb
+@ d13.aarch64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.1-1PIGSTY~trixie_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.1-1PIGSTY~trixie_all.deb
+@ u22.x86_64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.1-1PIGSTY~jammy_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.1-1PIGSTY~jammy_all.deb
+@ u22.aarch64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.1-1PIGSTY~jammy_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.1-1PIGSTY~jammy_all.deb
+@ u24.x86_64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.1-1PIGSTY~noble_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.1-1PIGSTY~noble_all.deb
+@ u24.aarch64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.1-1PIGSTY~noble_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.1-1PIGSTY~noble_all.deb
+@ u26.x86_64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.1-1PIGSTY~resolute_all.deb pigsty 0.7.1 20.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.1-1PIGSTY~resolute_all.deb
+@ u26.aarch64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.1-1PIGSTY~resolute_all.deb pigsty 0.7.1 20.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.1-1PIGSTY~resolute_all.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -230,58 +233,63 @@ apt install -y postgresql-14-pg-readme   # PG 14
 CREATE EXTENSION pg_readme CASCADE;  -- requires: hstore
 ```
 
-
-
-
 ## Usage
 
-> [pg_readme: Auto-generate README documentation from PostgreSQL COMMENT objects](https://github.com/bigsmoke/pg_readme)
+Sources:
 
-Generates `README.md` documents for extensions or schemas based on `COMMENT` objects in the `pg_description` system catalog.
+- [pg_readme 0.7.1 README](https://api.pgxn.org/src/pg_readme/pg_readme-0.7.1/README.md)
+- [pg_readme 0.7.1 control file](https://api.pgxn.org/src/pg_readme/pg_readme-0.7.1/pg_readme.control)
+- [pg_readme 0.7.1 upgrade SQL](https://api.pgxn.org/src/pg_readme/pg_readme-0.7.1/sql/pg_readme--0.7.0--0.7.1.sql)
+- [Pigsty package matrix](https://pgext.cloud/ext/pg_readme)
 
-### Generate Extension README
+`pg_readme` generates Markdown documentation for a PostgreSQL extension or schema from `COMMENT` objects and live catalog metadata. Use it to keep an extension's README close to its SQL definitions and verify the generated output in source control.
+
+### Install and Generate Markdown
 
 ```sql
+CREATE EXTENSION pg_readme CASCADE;
+
 SELECT pg_extension_readme('my_extension'::name);
-```
-
-### Generate Schema README
-
-```sql
 SELECT pg_schema_readme('my_schema'::regnamespace);
 ```
 
-### Processing Instructions
+The control file requires `hstore`, is relocatable, and permits non-superuser installation when the caller can install its dependencies and create the objects.
 
-Include these XML processing instructions in your `COMMENT ON EXTENSION` or `COMMENT ON SCHEMA`:
+### Add Processing Instructions
 
-- `<?pg-readme-reference?>` -- replaced with a full object reference
-- `<?pg-readme-colophon?>` -- adds a colophon with pg_readme info
-
-### Typical Workflow
-
-Create a readme-generating function in your extension:
+Put Markdown and processing instructions in the extension or schema comment:
 
 ```sql
-CREATE FUNCTION my_ext_readme() RETURNS text
-    VOLATILE SET search_path FROM current
-    SET pg_readme.include_view_definitions TO 'true'
-    LANGUAGE plpgsql AS $$
-DECLARE _readme text;
-BEGIN
-    CREATE EXTENSION IF NOT EXISTS pg_readme WITH VERSION '0.1.0';
-    _readme := pg_extension_readme('my_extension'::name);
-    RAISE transaction_rollback;
-EXCEPTION WHEN transaction_rollback THEN RETURN _readme;
-END; $$;
+COMMENT ON EXTENSION my_extension IS $markdown$
+### `my_extension`
+
+What the extension does.
+
+### Reference
+
+<?pg-readme-reference?>
+
+### Colophon
+
+<?pg-readme-colophon?>
+$markdown$;
 ```
 
-Then generate with: `make README.md`
+`<?pg-readme-reference?>` expands to a catalog-derived object reference. `<?pg-readme-colophon?>` adds generation metadata. Optional instruction attributes can adjust the heading depth when embedding generated sections.
 
 ### Settings
 
-| Setting | Default |
-|---------|---------|
-| `pg_readme.include_view_definitions` | `true` |
-| `pg_readme.include_routine_definitions_like` | `'{test__%}'` |
-| `pg_readme.include_this_routine_definition` | `null` |
+- `pg_readme.include_view_definitions`: include view definitions; default `true`.
+- `pg_readme.include_routine_definitions_like`: array of routine-name patterns whose definitions are included; default `'{test__%}'`.
+- `pg_readme.include_this_routine_definition`: routine-local override for including the current definition.
+- `pg_readme.readme_url`: upstream README link used by generated material.
+
+Use `SET` options on a wrapper function or transaction when a project needs reproducible generation settings.
+
+### Version 0.7.1 and Caveats
+
+- Version 0.7.1 fixes PostgreSQL 18 reference generation that could duplicate array/composite table types and `NOT NULL` markers.
+- Upstream and the current Pigsty DEB package are 0.7.1, while the current Pigsty RPM package remains 0.7.0. Check `pg_available_extension_versions` before relying on the PostgreSQL 18 fix.
+- Generated output reflects the current database catalog, installed extension versions, comments, and generation time. Review diffs instead of assuming two environments produce identical text.
+- Catalog introspection does not replace hand-written operational guidance. Keep prerequisites, preload/restart behavior, upgrade notes, and unsafe operations in curated prose.
+- The singular setting `pg_readme.include_routine_definition_like` appears in an old README wrapper example, but the documented current GUC is the plural `pg_readme.include_routine_definitions_like`.

@@ -42,8 +42,7 @@ files/pki/
 │   ├── etcd/                     # ETCD certificates
 │   ├── pgsql/                    # PostgreSQL certificates
 │   ├── minio/                    # MinIO certificates
-│   ├── nginx/                    # Nginx certificates
-│   └── mongo/                    # FerretDB certificates
+│   └── nginx/                    # Nginx certificates
 └── infra/                    # Infrastructure certificates
 ```
 

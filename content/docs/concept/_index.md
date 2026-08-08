@@ -50,7 +50,7 @@ Pigsty provides:
 
 - **Modular Architecture Design**
 
-  A modular [**architecture**](/docs/concept/arch) design that can be freely combined to suit different scenarios. Beyond the core PostgreSQL module, it also provides optional modules for Redis, MinIO, Etcd, FerretDB, and support for various PG-compatible kernels.
+  A modular [**architecture**](/docs/concept/arch) design that can be freely combined to suit different scenarios. Beyond the core PostgreSQL module, it also provides optional modules for Redis, MinIO, Etcd, and support for various PG-compatible kernels and modes.
 
 - [**Solid Security Best Practices**](/docs/concept/sec/)
 

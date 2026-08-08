@@ -29,7 +29,7 @@ Pigsty uses a modular design with six main default modules: [`PGSQL`](/docs/pgsq
 
 You can declaratively compose them freely. If you only want host monitoring, installing the [`INFRA`](/docs/infra) module on infrastructure nodes and the [`NODE`](/docs/node) module on managed nodes is sufficient.
 The [`ETCD`](/docs/etcd) and [`PGSQL`](/docs/pgsql) modules are used to build HA PG clusters—installing these modules on multiple nodes automatically forms a high-availability database cluster.
-You can reuse Pigsty infrastructure and develop your own modules; [`REDIS`](/docs/redis) and [`MINIO`](/docs/minio) can serve as examples. More modules will be added—preliminary support for Mongo and MySQL is already on the roadmap.
+You can reuse Pigsty infrastructure and develop your own modules; [`REDIS`](/docs/redis) and [`MINIO`](/docs/minio) can serve as examples. Protocol compatibility layers such as [PostgreSQL Mongo mode](/docs/conf/mongo/) are composed from standard PGSQL and Docker APP workflows.
 
 Note that all modules depend strongly on the `NODE` module: in Pigsty, nodes must first have the `NODE` module installed to be managed before deploying other modules.
 When nodes (by default) use the local software repo for installation, the `NODE` module has a weak dependency on the `INFRA` module. Therefore, the admin/infrastructure nodes with the `INFRA` module complete the bootstrap process in the [`deploy.yml`](/docs/setup/playbook) playbook, resolving the circular dependency.

@@ -6,7 +6,7 @@ weight: 20
 slug: ddl
 ---
 
-The following **29** extensions can be used without running `CREATE EXTENSION`.
+The following **30** extensions can be used without running `CREATE EXTENSION`.
 
 These extensions typically exist as shared libraries (hooks) or standalone tools that take effect through configuration parameters.
 
@@ -14,6 +14,7 @@ These extensions typically exist as shared libraries (hooks) or standalone tools
 |:-----------|:-------------|:--------:|:--------:|:---------|
 | [`pg_task`](/ext/e/pg_task) | [`pg_task`](https://github.com/RekGRpth/pg_task) | `2.1.29` | `--sL---` | execute any sql command at any specific time at background |
 | [`plan_filter`](/ext/e/plan_filter) | [`pg_plan_filter`](https://github.com/pgexperts/pg_plan_filter) | `0.0.1` | `--sL---` | filter statements by their execution plans. |
+| [`pg_disorder`](/ext/e/pg_disorder) | [`pg_disorder`](https://github.com/viralpraxis/pg_disorder) | `0.1.0` | `--sL---` | Perturb unordered SELECT row order to expose order-dependent tests |
 | [`pg_checksums`](/ext/e/pg_checksums) | [`pg_checksums`](https://github.com/credativ/pg_checksums) | `1.3` | `--s---r` | Activate/deactivate/verify checksums in offline Postgres clusters |
 | [`pg_crash`](/ext/e/pg_crash) | [`pg_crash`](https://github.com/cybertec-postgresql/pg_crash) | `1.0` | `--sL---` | Send random signals to random processes |
 | [`pg_pathcheck`](/ext/e/pg_pathcheck) | [`pg_pathcheck`](https://github.com/danolivo/pg_pathcheck) | `0.9.1` | `--sL---` | Validate planner Path trees for freed or corrupt memory |

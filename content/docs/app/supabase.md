@@ -1,7 +1,7 @@
 ---
 title: "Enterprise Self-Hosted Supabase"
 weight: 555
-description: Self-host enterprise-grade Supabase with Pigsty, featuring monitoring, high availability, PITR, IaC, and 562 PostgreSQL extensions.
+description: Self-host enterprise-grade Supabase with Pigsty, featuring monitoring, high availability, PITR, IaC, and 572 PostgreSQL extensions.
 module: [SOFTWARE]
 categories: [Reference]
 ---

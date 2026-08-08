@@ -23,7 +23,7 @@ Pigsty monitoring covers these core targets:
 - PostgreSQL clusters and instances (SQL performance, connections, replication, transactions, checkpoints, WAL)
 - Infrastructure components (Grafana, VictoriaMetrics, Alertmanager, Nginx, etc.)
 - Host nodes (CPU, memory, disk, network, kernel)
-- Key middleware (ETCD, MINIO, REDIS, FERRET, JUICE, VIBE, etc.)
+- Key middleware (ETCD, MINIO, REDIS, JUICE, VIBE, etc.)
 
 
 --------

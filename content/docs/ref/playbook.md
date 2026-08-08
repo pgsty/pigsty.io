@@ -18,7 +18,6 @@ This page summarizes Pigsty v4.x playbook entries and usage guidance by module. 
 | [**`PGSQL`**](/docs/pgsql/playbook)   | 7  | `pgsql.yml` `pgsql-rm.yml` <br> `pgsql-user.yml` `pgsql-db.yml` <br> `pgsql-monitor.yml` `pgsql-migration.yml` `pgsql-pitr.yml` |
 | [**`REDIS`**](/docs/redis/playbook)   | 2  | `redis.yml` `redis-rm.yml`                                                                                                      |
 | [**`MINIO`**](/docs/minio/playbook)   | 2  | `minio.yml` `minio-rm.yml`                                                                                                      |
-| [**`FERRET`**](/docs/ferret/playbook) | 1  | `mongo.yml`                                                                                                                     |
 | [**`DOCKER`**](/docs/docker/playbook) | 1  | `docker.yml`                                                                                                                    |
 | [**`JUICE`**](/docs/juice/playbook)   | 1  | `juice.yml`                                                                                                                     |
 | [**`VIBE`**](/docs/vibe/playbook)     | 1  | `vibe.yml`                                                                                                                      |
@@ -50,7 +49,6 @@ This page summarizes Pigsty v4.x playbook entries and usage guidance by module. 
 | [**`redis-rm.yml`**](/docs/redis/playbook#redis-rmyml)               | `REDIS`  | Remove Redis |
 | [**`minio.yml`**](/docs/minio/playbook#minioyml)                     | `MINIO`  | Deploy MinIO |
 | [**`minio-rm.yml`**](/docs/minio/playbook#minio-rmyml)               | `MINIO`  | Remove MinIO |
-| [**`mongo.yml`**](/docs/ferret/playbook#mongoyml)                    | `FERRET` | Deploy FerretDB (Mongo API) |
 | [**`docker.yml`**](/docs/docker/playbook#dockeryml)                  | `DOCKER` | Deploy Docker engine |
 | [**`juice.yml`**](/docs/juice/playbook#juiceyml)                     | `JUICE`  | Deploy/remove JuiceFS instances |
 | [**`vibe.yml`**](/docs/vibe/playbook#vibeyml)                        |  `VIBE`  | Deploy VIBE dev environment |
@@ -200,12 +198,6 @@ bin/pgmon-add <cls>              # monitor remote cluster (wrapper)
 ```bash
 ./minio.yml -l <cls>             # initialize MinIO cluster
 ./minio-rm.yml -l <cls>          # remove MinIO cluster
-```
-
-### FERRET Module
-
-```bash
-./mongo.yml -l ferret            # install FerretDB
 ```
 
 ### DOCKER Module

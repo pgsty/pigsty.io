@@ -11,10 +11,10 @@ weight: 2401
     <div class="ext-card__title">citusdata/citus</div>
     <div class="ext-card__desc">https://github.com/citusdata/citus</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/citus-14.1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/citus-14.2.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">citus-14.1.0.tar.gz</div>
-    <div class="ext-card__desc">citus-14.1.0.tar.gz</div>
+    <div class="ext-card__title">citus-14.2.0.tar.gz</div>
+    <div class="ext-card__desc">citus-14.2.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2401
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`citus`**](/ext/e/citus) | `14.1.0` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`citus`**](/ext/e/citus) | `14.2.0` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -39,37 +39,37 @@ weight: 2401
 {.ext-table .ext-table--rel}
 
 
-> conflict with hydra columnar
+> Packaged with Citus 14.2.0; the control default_version is 14.2-1; citus_columnar itself does not require preload and conflicts with Hydra Columnar.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.1.0` | {{< pgvers "18,17,16" >}} | `citus` | - |
-| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.1.0` | {{< pgvers "18,17,16" >}} | `citus_$v` | - |
-| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.1.0` | {{< pgvers "18,17,16" >}} | `postgresql-$v-citus` | - |
+| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.2.0` | {{< pgvers "16,17,18" >}} | `citus` | - |
+| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.2.0` | {{< pgvers "18,17,16" >}} | `citus_$v` | - |
+| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.2.0` | {{< pgvers "18,17,16" >}} | `postgresql-$v-citus` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 14.1.0 3 | AVAIL PIGSTY 14.1.0 9 | AVAIL PIGSTY 14.1.0 16 | AVAIL PGDG 13.2.0 21 | AVAIL PGDG 13.0.0 28 |
-| el8.aarch64 | AVAIL PIGSTY 14.1.0 3 | AVAIL PIGSTY 14.1.0 9 | AVAIL PIGSTY 14.1.0 16 | AVAIL PGDG 13.2.0 20 | AVAIL PGDG 13.0.0 15 |
-| el9.x86_64 | AVAIL PIGSTY 14.1.0 5 | AVAIL PIGSTY 14.1.0 11 | AVAIL PIGSTY 14.1.0 18 | AVAIL PGDG 13.2.0 21 | AVAIL PGDG 13.0.0 25 |
-| el9.aarch64 | AVAIL PIGSTY 14.1.0 5 | AVAIL PIGSTY 14.1.0 11 | AVAIL PIGSTY 14.1.0 18 | AVAIL PGDG 13.2.0 21 | AVAIL PGDG 13.0.0 15 |
-| el10.x86_64 | AVAIL PIGSTY 14.1.0 5 | AVAIL PIGSTY 14.1.0 9 | AVAIL PIGSTY 14.1.0 9 | AVAIL PGDG 13.2.0 4 | AVAIL PIGSTY 13.0.0 1 |
-| el10.aarch64 | AVAIL PIGSTY 14.1.0 5 | AVAIL PIGSTY 14.1.0 9 | AVAIL PIGSTY 14.1.0 9 | AVAIL PGDG 13.2.0 4 | AVAIL PIGSTY 13.0.0 1 |
-| d12.x86_64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| d12.aarch64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| d13.x86_64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| d13.aarch64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| u22.x86_64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| u22.aarch64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| u24.x86_64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| u24.aarch64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| u26.x86_64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| u26.aarch64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| el8.x86_64 | AVAIL PIGSTY 14.2.0 3 | AVAIL PIGSTY 14.2.0 9 | AVAIL PIGSTY 14.2.0 16 | AVAIL PGDG 13.2.0 21 | AVAIL PGDG 13.0.0 28 |
+| el8.aarch64 | AVAIL PIGSTY 14.2.0 3 | AVAIL PIGSTY 14.2.0 9 | AVAIL PIGSTY 14.2.0 16 | AVAIL PGDG 13.2.0 20 | AVAIL PGDG 13.0.0 15 |
+| el9.x86_64 | AVAIL PIGSTY 14.2.0 5 | AVAIL PIGSTY 14.2.0 11 | AVAIL PIGSTY 14.2.0 18 | AVAIL PGDG 13.2.0 21 | AVAIL PGDG 13.0.0 25 |
+| el9.aarch64 | AVAIL PIGSTY 14.2.0 5 | AVAIL PIGSTY 14.2.0 11 | AVAIL PIGSTY 14.2.0 18 | AVAIL PGDG 13.2.0 21 | AVAIL PGDG 13.0.0 15 |
+| el10.x86_64 | AVAIL PIGSTY 14.2.0 5 | AVAIL PIGSTY 14.2.0 9 | AVAIL PIGSTY 14.2.0 9 | AVAIL PGDG 13.2.0 4 | AVAIL PIGSTY 13.0.0 1 |
+| el10.aarch64 | AVAIL PIGSTY 14.2.0 5 | AVAIL PIGSTY 14.2.0 9 | AVAIL PIGSTY 14.2.0 9 | AVAIL PGDG 13.2.0 4 | AVAIL PIGSTY 13.0.0 1 |
+| d12.x86_64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| d12.aarch64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| d13.x86_64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| d13.aarch64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| u22.x86_64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| u22.aarch64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| u24.x86_64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| u24.aarch64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| u26.x86_64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| u26.aarch64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
 {{< /pgext_matrix >}}
 
 ## Build
@@ -127,135 +127,80 @@ apt install -y postgresql-16-citus   # PG 16
 CREATE EXTENSION citus_columnar;
 ```
 
-
-
-
 ## Usage
 
-> [citus_columnar: Columnar storage access method for PostgreSQL](https://github.com/citusdata/citus)
+Sources:
 
-Citus Columnar provides a columnar storage engine for PostgreSQL. It stores data in a column-oriented format with automatic compression, making it ideal for analytical workloads on append-only data where queries typically read a subset of columns.
+- [Citus v14.2.0 columnar control file](https://github.com/citusdata/citus/blob/v14.2.0/src/backend/columnar/citus_columnar.control)
+- [Citus v14.2.0 columnar option helper](https://github.com/citusdata/citus/blob/v14.2.0/src/backend/columnar/sql/udfs/alter_columnar_table_set/latest.sql)
+- [Citus columnar-storage documentation](https://docs.citusdata.com/en/stable/admin_guide/table_management.html#columnar-storage)
+- [Citus v14.2.0 release](https://github.com/citusdata/citus/releases/tag/v14.2.0)
 
-**Key Documentation:**
+`citus_columnar` provides an append-oriented columnar table access method for PostgreSQL. It is shipped by the Citus 14.2 package but is a separate extension: the package release is `14.2.0`, while the extension control version is `14.2-1`. Use it for scan-heavy archival or analytical tables whose workload fits its write and feature restrictions.
 
-- [Columnar Storage](https://docs.citusdata.com/en/stable/admin_guide/table_management.html#columnar-storage)
-- [Columnar Compression](https://docs.citusdata.com/en/stable/admin_guide/table_management.html#compression)
-
-### Creating Columnar Tables
-
-Use the `USING columnar` clause when creating a table:
+### Create a Columnar Table
 
 ```sql
-CREATE TABLE events (
-    event_id    BIGINT,
-    event_time  TIMESTAMPTZ,
-    event_type  TEXT,
-    user_id     INT,
-    payload     JSONB
+CREATE EXTENSION citus_columnar;
+
+CREATE TABLE events_archive (
+  event_at timestamptz NOT NULL,
+  tenant_id bigint NOT NULL,
+  kind text,
+  payload jsonb
 ) USING columnar;
 ```
 
-### Compression Options
+`citus_columnar` itself does not require `shared_preload_libraries`. Preloading `citus` is still required when the database also uses the distributed `citus` extension.
 
-Configure compression per table. Supported methods: `zstd` (default), `lz4`, `pglz`, `none`.
+### Load and Query Data
 
-```sql
-ALTER TABLE events SET (
-    columnar.compression = zstd,
-    columnar.compression_level = 3
-);
-```
-
-### Chunk Group and Stripe Settings
-
-Columnar stores data in stripes, each containing chunk groups. Tuning these affects both compression ratio and query performance.
+Columnar storage groups rows into stripes and compresses columns in chunks. Bulk inserts in reasonably sized transactions produce better stripes than a stream of tiny transactions.
 
 ```sql
-ALTER TABLE events SET (
-    columnar.stripe_row_limit = 150000,    -- max rows per stripe (default 150000)
-    columnar.chunk_group_row_limit = 10000 -- rows per chunk group (default 10000)
-);
-```
-
-### When to Use Columnar
-
-Columnar storage works best for:
-
-- **Analytics and reporting** on wide tables where queries read few columns
-- **Append-only workloads** (e.g., logs, events, time-series archives)
-- **Large fact tables** scanned in bulk with aggregations
-- **Cold data archival** where high compression is valuable
-
-### Limitations
-
-- **No UPDATE or DELETE**: columnar tables are append-only
-- **No indexes**: sequential/columnar scans only
-- **No TOAST**: large values stored inline
-- **No logical replication** as a publisher
-- **No tid scans**
-
-### Column Projection and Chunk Group Skipping
-
-Columnar automatically reads only the columns referenced in a query (column projection) and skips chunk groups whose min/max metadata does not match the query predicates:
-
-```sql
--- Only reads event_type and event_time columns; skips irrelevant chunks
-SELECT event_type, count(*)
+INSERT INTO events_archive
+SELECT event_at, tenant_id, kind, payload
 FROM events
-WHERE event_time > '2025-01-01'
-GROUP BY event_type;
+WHERE event_at < now() - interval '90 days';
+
+SELECT tenant_id, count(*), min(event_at), max(event_at)
+FROM events_archive
+GROUP BY tenant_id;
 ```
 
-### Monitoring Columnar Storage
+### Convert with the Citus Extension
 
-Inspect stripe and chunk metadata:
+When the main `citus` extension is also preloaded and installed, use its helper to convert a local or distributed table:
 
 ```sql
--- View stripes for a columnar table
-SELECT * FROM columnar.stripe WHERE relation = 'events'::regclass;
-
--- View chunk group details
-SELECT * FROM columnar.chunk_group WHERE relation = 'events'::regclass;
-
--- Check storage size and compression ratio
-SELECT pg_size_pretty(pg_total_relation_size('events')) AS total_size;
+SELECT alter_table_set_access_method('events_archive', 'columnar');
+SELECT alter_table_set_access_method('events_archive', 'heap');
 ```
 
-### Converting Between Heap and Columnar
+Conversion rewrites the table. Converting to columnar drops existing indexes, so inventory dependent indexes and constraints before running it and schedule enough disk and lock time for the rewrite.
 
-Convert an existing heap table to columnar:
+`alter_table_set_access_method()` belongs to `citus`, not to standalone `citus_columnar`. Without the main extension, create a new `USING columnar` table and copy data into it instead of assuming this helper exists.
+
+### Tune Compression
+
+Inspect and change table-level columnar options with the documented helpers:
 
 ```sql
--- Create a columnar copy
-CREATE TABLE events_columnar (LIKE events) USING columnar;
-INSERT INTO events_columnar SELECT * FROM events;
-
--- Or use ALTER TABLE (Citus 11+)
-SELECT alter_table_set_access_method('events', 'columnar');
+SELECT alter_columnar_table_set(
+  'events_archive',
+  compression => 'zstd',
+  compression_level => 3,
+  stripe_row_limit => 150000,
+  chunk_group_row_limit => 10000
+);
 ```
 
-Convert columnar back to heap:
+New settings affect newly written stripes. Rewrite existing data when old stripes also need the new layout.
 
-```sql
-SELECT alter_table_set_access_method('events', 'heap');
-```
+### Operational Boundaries
 
-### Using with Partitioning
-
-Combine columnar with partitioning to keep recent data in heap (for updates/indexes) and archive older partitions as columnar:
-
-```sql
-CREATE TABLE events (
-    event_time TIMESTAMPTZ,
-    data       JSONB
-) PARTITION BY RANGE (event_time);
-
--- Recent data: heap (supports indexes and updates)
-CREATE TABLE events_current PARTITION OF events
-    FOR VALUES FROM ('2025-01-01') TO ('2026-01-01');
-
--- Archived data: columnar (compressed, read-optimized)
-CREATE TABLE events_archive PARTITION OF events
-    FOR VALUES FROM ('2024-01-01') TO ('2025-01-01')
-    USING columnar;
-```
+- Columnar tables are intended for append-heavy use. `UPDATE` and `DELETE` are not supported, and space left by rolled-back writes is not reclaimed through ordinary heap-style maintenance.
+- TOAST is not available; large values remain inline and can hit PostgreSQL's row-size limits.
+- Row locks, `AFTER ... FOR EACH ROW` triggers, serializable isolation, logical decoding, foreign keys, unlogged tables, and several scan types are unsupported. Check the current upstream limitation list before adopting the access method.
+- Ordinary heap assumptions about indexes, vacuum, replication, triggers, and constraints do not automatically apply. Validate every required database feature against a representative columnar table.
+- The extension installs in `pg_catalog`, is not relocatable, and has SQL version `14.2-1`; use that version when checking or updating `pg_extension`, not the package version `14.2.0`.

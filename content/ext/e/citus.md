@@ -11,10 +11,10 @@ weight: 2400
     <div class="ext-card__title">citusdata/citus</div>
     <div class="ext-card__desc">https://github.com/citusdata/citus</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/citus-14.1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/citus-14.2.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">citus-14.1.0.tar.gz</div>
-    <div class="ext-card__desc">citus-14.1.0.tar.gz</div>
+    <div class="ext-card__title">citus-14.2.0.tar.gz</div>
+    <div class="ext-card__desc">citus-14.2.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2400
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`citus`**](/ext/e/citus) | `14.1.0` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`citus`**](/ext/e/citus) | `14.2.0` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -36,78 +36,78 @@ weight: 2400
 
 | **Related** | [`plproxy`](/ext/e/plproxy) [`pgspider_ext`](/ext/e/pgspider_ext) [`postgres_fdw`](/ext/e/postgres_fdw) [`pg_partman`](/ext/e/pg_partman) [`timescaledb`](/ext/e/timescaledb) [`pg_ttl_index`](/ext/e/pg_ttl_index) [`pgactive`](/ext/e/pgactive) [`spock`](/ext/e/spock) [`pg_fkpart`](/ext/e/pg_fkpart) [`db_migrator`](/ext/e/db_migrator) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Depended By** | [`documentdb_distributed`](/ext/e/documentdb_distributed) |
+| **Depended By** | `cigration` [`documentdb_distributed`](/ext/e/documentdb_distributed) |
 {.ext-table .ext-table--rel}
 
 
-> conflict with hydra
+> PIGSTY is the designated RPM and DEB maintainer even though PGDG also packages Citus; requires shared_preload_libraries=citus; conflicts with Hydra.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.1.0` | {{< pgvers "18,17,16" >}} | `citus` | - |
-| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.1.0` | {{< pgvers "18,17,16" >}} | `citus_$v` | - |
-| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.1.0` | {{< pgvers "18,17,16" >}} | `postgresql-$v-citus` | - |
+| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.2.0` | {{< pgvers "16,17,18" >}} | `citus` | - |
+| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.2.0` | {{< pgvers "18,17,16" >}} | `citus_$v` | - |
+| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.2.0` | {{< pgvers "18,17,16" >}} | `postgresql-$v-citus` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 14.1.0 3 | AVAIL PIGSTY 14.1.0 9 | AVAIL PIGSTY 14.1.0 16 | AVAIL PGDG 13.2.0 21 | AVAIL PGDG 13.0.0 28 |
-| el8.aarch64 | AVAIL PIGSTY 14.1.0 3 | AVAIL PIGSTY 14.1.0 9 | AVAIL PIGSTY 14.1.0 16 | AVAIL PGDG 13.2.0 20 | AVAIL PGDG 13.0.0 15 |
-| el9.x86_64 | AVAIL PIGSTY 14.1.0 5 | AVAIL PIGSTY 14.1.0 11 | AVAIL PIGSTY 14.1.0 18 | AVAIL PGDG 13.2.0 21 | AVAIL PGDG 13.0.0 25 |
-| el9.aarch64 | AVAIL PIGSTY 14.1.0 5 | AVAIL PIGSTY 14.1.0 11 | AVAIL PIGSTY 14.1.0 18 | AVAIL PGDG 13.2.0 21 | AVAIL PGDG 13.0.0 15 |
-| el10.x86_64 | AVAIL PIGSTY 14.1.0 5 | AVAIL PIGSTY 14.1.0 9 | AVAIL PIGSTY 14.1.0 9 | AVAIL PGDG 13.2.0 4 | AVAIL PIGSTY 13.0.0 1 |
-| el10.aarch64 | AVAIL PIGSTY 14.1.0 5 | AVAIL PIGSTY 14.1.0 9 | AVAIL PIGSTY 14.1.0 9 | AVAIL PGDG 13.2.0 4 | AVAIL PIGSTY 13.0.0 1 |
-| d12.x86_64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| d12.aarch64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| d13.x86_64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| d13.aarch64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| u22.x86_64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| u22.aarch64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| u24.x86_64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| u24.aarch64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| u26.x86_64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| u26.aarch64 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 14.1.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-@ el8.x86_64 18 citus_18 citus_18-14.1.0-1PIGSTY.el8.x86_64.rpm pigsty 14.1.0 983.9KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/citus_18-14.1.0-1PIGSTY.el8.x86_64.rpm
+| el8.x86_64 | AVAIL PIGSTY 14.2.0 3 | AVAIL PIGSTY 14.2.0 9 | AVAIL PIGSTY 14.2.0 16 | AVAIL PGDG 13.2.0 21 | AVAIL PGDG 13.0.0 28 |
+| el8.aarch64 | AVAIL PIGSTY 14.2.0 3 | AVAIL PIGSTY 14.2.0 9 | AVAIL PIGSTY 14.2.0 16 | AVAIL PGDG 13.2.0 20 | AVAIL PGDG 13.0.0 15 |
+| el9.x86_64 | AVAIL PIGSTY 14.2.0 5 | AVAIL PIGSTY 14.2.0 11 | AVAIL PIGSTY 14.2.0 18 | AVAIL PGDG 13.2.0 21 | AVAIL PGDG 13.0.0 25 |
+| el9.aarch64 | AVAIL PIGSTY 14.2.0 5 | AVAIL PIGSTY 14.2.0 11 | AVAIL PIGSTY 14.2.0 18 | AVAIL PGDG 13.2.0 21 | AVAIL PGDG 13.0.0 15 |
+| el10.x86_64 | AVAIL PIGSTY 14.2.0 5 | AVAIL PIGSTY 14.2.0 9 | AVAIL PIGSTY 14.2.0 9 | AVAIL PGDG 13.2.0 4 | AVAIL PIGSTY 13.0.0 1 |
+| el10.aarch64 | AVAIL PIGSTY 14.2.0 5 | AVAIL PIGSTY 14.2.0 9 | AVAIL PIGSTY 14.2.0 9 | AVAIL PGDG 13.2.0 4 | AVAIL PIGSTY 13.0.0 1 |
+| d12.x86_64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| d12.aarch64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| d13.x86_64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| d13.aarch64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| u22.x86_64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| u22.aarch64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| u24.x86_64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| u24.aarch64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| u26.x86_64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| u26.aarch64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+@ el8.x86_64 18 citus_18 citus_18-14.2.0-1PIGSTY.el8.x86_64.rpm pigsty 14.2.0 991.2KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/citus_18-14.2.0-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 18 citus_18 citus_18-14.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 14.1.0 871.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/citus_18-14.1.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 citus_18 citus_18-14.0.0-1PGDG.rhel8.10.x86_64.rpm pgdg 14.0.0 859.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/citus_18-14.0.0-1PGDG.rhel8.10.x86_64.rpm
-@ el8.aarch64 18 citus_18 citus_18-14.1.0-1PIGSTY.el8.aarch64.rpm pigsty 14.1.0 943.8KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/citus_18-14.1.0-1PIGSTY.el8.aarch64.rpm
+@ el8.aarch64 18 citus_18 citus_18-14.2.0-1PIGSTY.el8.aarch64.rpm pigsty 14.2.0 951.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/citus_18-14.2.0-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 18 citus_18 citus_18-14.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 14.1.0 822.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/citus_18-14.1.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 citus_18 citus_18-14.0.0-1PGDG.rhel8.10.aarch64.rpm pgdg 14.0.0 810.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/citus_18-14.0.0-1PGDG.rhel8.10.aarch64.rpm
-@ el9.x86_64 18 citus_18 citus_18-14.1.0-1PIGSTY.el9.x86_64.rpm pigsty 14.1.0 881.8KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/citus_18-14.1.0-1PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 18 citus_18 citus_18-14.2.0-1PIGSTY.el9.x86_64.rpm pigsty 14.2.0 888.3KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/citus_18-14.2.0-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 18 citus_18 citus_18-14.1.0-1PGDG.rhel9.8.x86_64.rpm pgdg 14.1.0 837.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/citus_18-14.1.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 citus_18 citus_18-14.0.0-1PGDG.rhel9.8.x86_64.rpm pgdg 14.0.0 823.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/citus_18-14.0.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 citus_18 citus_18-14.0.0-1PGDG.rhel9.7.x86_64.rpm pgdg 14.0.0 823.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/citus_18-14.0.0-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 18 citus_18 citus_18-14.0.0-1PGDG.rhel9.6.x86_64.rpm pgdg 14.0.0 824.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/citus_18-14.0.0-1PGDG.rhel9.6.x86_64.rpm
-@ el9.aarch64 18 citus_18 citus_18-14.1.0-1PIGSTY.el9.aarch64.rpm pigsty 14.1.0 835.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/citus_18-14.1.0-1PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 18 citus_18 citus_18-14.2.0-1PIGSTY.el9.aarch64.rpm pigsty 14.2.0 842.9KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/citus_18-14.2.0-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 18 citus_18 citus_18-14.1.0-1PGDG.rhel9.8.aarch64.rpm pgdg 14.1.0 808.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/citus_18-14.1.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 citus_18 citus_18-14.0.0-1PGDG.rhel9.8.aarch64.rpm pgdg 14.0.0 797.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/citus_18-14.0.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 citus_18 citus_18-14.0.0-1PGDG.rhel9.7.aarch64.rpm pgdg 14.0.0 797.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/citus_18-14.0.0-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 18 citus_18 citus_18-14.0.0-1PGDG.rhel9.6.aarch64.rpm pgdg 14.0.0 797.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/citus_18-14.0.0-1PGDG.rhel9.6.aarch64.rpm
-@ el10.x86_64 18 citus_18 citus_18-14.1.0-1PIGSTY.el10.x86_64.rpm pigsty 14.1.0 875.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/citus_18-14.1.0-1PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 18 citus_18 citus_18-14.2.0-1PIGSTY.el10.x86_64.rpm pigsty 14.2.0 882.9KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/citus_18-14.2.0-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 18 citus_18 citus_18-14.1.0-1PGDG.rhel10.2.x86_64.rpm pgdg 14.1.0 849.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/citus_18-14.1.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 citus_18 citus_18-14.0.0-1PGDG.rhel10.2.x86_64.rpm pgdg 14.0.0 836.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/citus_18-14.0.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 citus_18 citus_18-14.0.0-1PGDG.rhel10.1.x86_64.rpm pgdg 14.0.0 835.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/citus_18-14.0.0-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 18 citus_18 citus_18-14.0.0-1PGDG.rhel10.0.x86_64.rpm pgdg 14.0.0 835.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/citus_18-14.0.0-1PGDG.rhel10.0.x86_64.rpm
-@ el10.aarch64 18 citus_18 citus_18-14.1.0-1PIGSTY.el10.aarch64.rpm pigsty 14.1.0 843.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/citus_18-14.1.0-1PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 18 citus_18 citus_18-14.2.0-1PIGSTY.el10.aarch64.rpm pigsty 14.2.0 850.5KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/citus_18-14.2.0-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 18 citus_18 citus_18-14.1.0-1PGDG.rhel10.2.aarch64.rpm pgdg 14.1.0 818.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/citus_18-14.1.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 citus_18 citus_18-14.0.0-1PGDG.rhel10.2.aarch64.rpm pgdg 14.0.0 805.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/citus_18-14.0.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 citus_18 citus_18-14.0.0-1PGDG.rhel10.1.aarch64.rpm pgdg 14.0.0 806.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/citus_18-14.0.0-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 18 citus_18 citus_18-14.0.0-1PGDG.rhel10.0.aarch64.rpm pgdg 14.0.0 806.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/citus_18-14.0.0-1PGDG.rhel10.0.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-citus postgresql-18-citus_14.1.0-1PIGSTY~bookworm_amd64.deb pigsty 14.1.0 2.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/c/citus/postgresql-18-citus_14.1.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-citus postgresql-18-citus_14.1.0-1PIGSTY~bookworm_arm64.deb pigsty 14.1.0 2.6MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/c/citus/postgresql-18-citus_14.1.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-citus postgresql-18-citus_14.1.0-1PIGSTY~trixie_amd64.deb pigsty 14.1.0 2.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/c/citus/postgresql-18-citus_14.1.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-citus postgresql-18-citus_14.1.0-1PIGSTY~trixie_arm64.deb pigsty 14.1.0 2.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/c/citus/postgresql-18-citus_14.1.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-citus postgresql-18-citus_14.1.0-1PIGSTY~jammy_amd64.deb pigsty 14.1.0 2.9MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/c/citus/postgresql-18-citus_14.1.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-citus postgresql-18-citus_14.1.0-1PIGSTY~jammy_arm64.deb pigsty 14.1.0 2.9MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/c/citus/postgresql-18-citus_14.1.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-citus postgresql-18-citus_14.1.0-1PIGSTY~noble_amd64.deb pigsty 14.1.0 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/c/citus/postgresql-18-citus_14.1.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-citus postgresql-18-citus_14.1.0-1PIGSTY~noble_arm64.deb pigsty 14.1.0 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/c/citus/postgresql-18-citus_14.1.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-citus postgresql-18-citus_14.1.0-1PIGSTY~resolute_amd64.deb pigsty 14.1.0 2.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/c/citus/postgresql-18-citus_14.1.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-citus postgresql-18-citus_14.1.0-1PIGSTY~resolute_arm64.deb pigsty 14.1.0 2.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/c/citus/postgresql-18-citus_14.1.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 17 citus_17 citus_17-14.1.0-1PIGSTY.el8.x86_64.rpm pigsty 14.1.0 981.6KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/citus_17-14.1.0-1PIGSTY.el8.x86_64.rpm
+@ d12.x86_64 18 postgresql-18-citus postgresql-18-citus_14.2.0-1PIGSTY~bookworm_amd64.deb pigsty 14.2.0 2.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/c/citus/postgresql-18-citus_14.2.0-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-citus postgresql-18-citus_14.2.0-1PIGSTY~bookworm_arm64.deb pigsty 14.2.0 2.6MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/c/citus/postgresql-18-citus_14.2.0-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-citus postgresql-18-citus_14.2.0-1PIGSTY~trixie_amd64.deb pigsty 14.2.0 2.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/c/citus/postgresql-18-citus_14.2.0-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-citus postgresql-18-citus_14.2.0-1PIGSTY~trixie_arm64.deb pigsty 14.2.0 2.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/c/citus/postgresql-18-citus_14.2.0-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-citus postgresql-18-citus_14.2.0-1PIGSTY~jammy_amd64.deb pigsty 14.2.0 2.9MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/c/citus/postgresql-18-citus_14.2.0-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-citus postgresql-18-citus_14.2.0-1PIGSTY~jammy_arm64.deb pigsty 14.2.0 2.9MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/c/citus/postgresql-18-citus_14.2.0-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-citus postgresql-18-citus_14.2.0-1PIGSTY~noble_amd64.deb pigsty 14.2.0 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/c/citus/postgresql-18-citus_14.2.0-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-citus postgresql-18-citus_14.2.0-1PIGSTY~noble_arm64.deb pigsty 14.2.0 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/c/citus/postgresql-18-citus_14.2.0-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-citus postgresql-18-citus_14.2.0-1PIGSTY~resolute_amd64.deb pigsty 14.2.0 2.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/c/citus/postgresql-18-citus_14.2.0-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-citus postgresql-18-citus_14.2.0-1PIGSTY~resolute_arm64.deb pigsty 14.2.0 2.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/c/citus/postgresql-18-citus_14.2.0-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 17 citus_17 citus_17-14.2.0-1PIGSTY.el8.x86_64.rpm pigsty 14.2.0 988.8KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/citus_17-14.2.0-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 17 citus_17 citus_17-14.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 14.1.0 869.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/citus_17-14.1.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 citus_17 citus_17-14.0.0-1PGDG.rhel8.10.x86_64.rpm pgdg 14.0.0 857.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/citus_17-14.0.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 citus_17 citus_17-13.2.0-1PGDG.rhel8.x86_64.rpm pgdg 13.2.0 850.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/citus_17-13.2.0-1PGDG.rhel8.x86_64.rpm
@@ -116,7 +116,7 @@ weight: 2400
 @ el8.x86_64 17 citus_17 citus_17-13.0.3-1PGDG.rhel8.x86_64.rpm pgdg 13.0.3 805.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/citus_17-13.0.3-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 17 citus_17 citus_17-13.0.2-1PGDG.rhel8.x86_64.rpm pgdg 13.0.2 805.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/citus_17-13.0.2-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 17 citus_17 citus_17-13.0.0-1PGDG.rhel8.x86_64.rpm pgdg 13.0.0 803.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/citus_17-13.0.0-1PGDG.rhel8.x86_64.rpm
-@ el8.aarch64 17 citus_17 citus_17-14.1.0-1PIGSTY.el8.aarch64.rpm pigsty 14.1.0 941.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/citus_17-14.1.0-1PIGSTY.el8.aarch64.rpm
+@ el8.aarch64 17 citus_17 citus_17-14.2.0-1PIGSTY.el8.aarch64.rpm pigsty 14.2.0 948.5KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/citus_17-14.2.0-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 17 citus_17 citus_17-14.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 14.1.0 819.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/citus_17-14.1.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 citus_17 citus_17-14.0.0-1PGDG.rhel8.10.aarch64.rpm pgdg 14.0.0 808.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/citus_17-14.0.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 citus_17 citus_17-13.2.0-1PGDG.rhel8.aarch64.rpm pgdg 13.2.0 802.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/citus_17-13.2.0-1PGDG.rhel8.aarch64.rpm
@@ -125,7 +125,7 @@ weight: 2400
 @ el8.aarch64 17 citus_17 citus_17-13.0.3-1PGDG.rhel8.aarch64.rpm pgdg 13.0.3 761.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/citus_17-13.0.3-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 17 citus_17 citus_17-13.0.2-1PGDG.rhel8.aarch64.rpm pgdg 13.0.2 761.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/citus_17-13.0.2-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 17 citus_17 citus_17-13.0.0-1PGDG.rhel8.aarch64.rpm pgdg 13.0.0 758.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/citus_17-13.0.0-1PGDG.rhel8.aarch64.rpm
-@ el9.x86_64 17 citus_17 citus_17-14.1.0-1PIGSTY.el9.x86_64.rpm pigsty 14.1.0 879.9KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/citus_17-14.1.0-1PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 17 citus_17 citus_17-14.2.0-1PIGSTY.el9.x86_64.rpm pigsty 14.2.0 887.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/citus_17-14.2.0-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 17 citus_17 citus_17-14.1.0-1PGDG.rhel9.8.x86_64.rpm pgdg 14.1.0 834.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/citus_17-14.1.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 citus_17 citus_17-14.0.0-1PGDG.rhel9.8.x86_64.rpm pgdg 14.0.0 821.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/citus_17-14.0.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 citus_17 citus_17-14.0.0-1PGDG.rhel9.7.x86_64.rpm pgdg 14.0.0 821.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/citus_17-14.0.0-1PGDG.rhel9.7.x86_64.rpm
@@ -136,7 +136,7 @@ weight: 2400
 @ el9.x86_64 17 citus_17 citus_17-13.0.3-1PGDG.rhel9.x86_64.rpm pgdg 13.0.3 774.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/citus_17-13.0.3-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 17 citus_17 citus_17-13.0.2-1PGDG.rhel9.x86_64.rpm pgdg 13.0.2 774.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/citus_17-13.0.2-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 17 citus_17 citus_17-13.0.0-1PGDG.rhel9.x86_64.rpm pgdg 13.0.0 772.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/citus_17-13.0.0-1PGDG.rhel9.x86_64.rpm
-@ el9.aarch64 17 citus_17 citus_17-14.1.0-1PIGSTY.el9.aarch64.rpm pigsty 14.1.0 833.6KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/citus_17-14.1.0-1PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 17 citus_17 citus_17-14.2.0-1PIGSTY.el9.aarch64.rpm pigsty 14.2.0 839.8KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/citus_17-14.2.0-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 17 citus_17 citus_17-14.1.0-1PGDG.rhel9.8.aarch64.rpm pgdg 14.1.0 807.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/citus_17-14.1.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 citus_17 citus_17-14.0.0-1PGDG.rhel9.8.aarch64.rpm pgdg 14.0.0 795.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/citus_17-14.0.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 citus_17 citus_17-14.0.0-1PGDG.rhel9.7.aarch64.rpm pgdg 14.0.0 795.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/citus_17-14.0.0-1PGDG.rhel9.7.aarch64.rpm
@@ -147,7 +147,7 @@ weight: 2400
 @ el9.aarch64 17 citus_17 citus_17-13.0.3-1PGDG.rhel9.aarch64.rpm pgdg 13.0.3 750.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/citus_17-13.0.3-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 17 citus_17 citus_17-13.0.2-1PGDG.rhel9.aarch64.rpm pgdg 13.0.2 749.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/citus_17-13.0.2-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 17 citus_17 citus_17-13.0.0-1PGDG.rhel9.aarch64.rpm pgdg 13.0.0 746.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/citus_17-13.0.0-1PGDG.rhel9.aarch64.rpm
-@ el10.x86_64 17 citus_17 citus_17-14.1.0-1PIGSTY.el10.x86_64.rpm pigsty 14.1.0 872.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/citus_17-14.1.0-1PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 17 citus_17 citus_17-14.2.0-1PIGSTY.el10.x86_64.rpm pigsty 14.2.0 879.9KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/citus_17-14.2.0-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 17 citus_17 citus_17-14.1.0-1PGDG.rhel10.2.x86_64.rpm pgdg 14.1.0 845.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/citus_17-14.1.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 citus_17 citus_17-14.0.0-1PGDG.rhel10.2.x86_64.rpm pgdg 14.0.0 833.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/citus_17-14.0.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 citus_17 citus_17-14.0.0-1PGDG.rhel10.1.x86_64.rpm pgdg 14.0.0 832.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/citus_17-14.0.0-1PGDG.rhel10.1.x86_64.rpm
@@ -156,7 +156,7 @@ weight: 2400
 @ el10.x86_64 17 citus_17 citus_17-13.1.0-1PGDG.rhel10.x86_64.rpm pgdg 13.1.0 804.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/citus_17-13.1.0-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 17 citus_17 citus_17-13.0.4-1PGDG.rhel10.x86_64.rpm pgdg 13.0.4 786.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/citus_17-13.0.4-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 17 citus_17 citus_17-13.0.3-1PGDG.rhel10.x86_64.rpm pgdg 13.0.3 786.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/citus_17-13.0.3-1PGDG.rhel10.x86_64.rpm
-@ el10.aarch64 17 citus_17 citus_17-14.1.0-1PIGSTY.el10.aarch64.rpm pigsty 14.1.0 841.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/citus_17-14.1.0-1PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 17 citus_17 citus_17-14.2.0-1PIGSTY.el10.aarch64.rpm pigsty 14.2.0 848.3KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/citus_17-14.2.0-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 17 citus_17 citus_17-14.1.0-1PGDG.rhel10.2.aarch64.rpm pgdg 14.1.0 816.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/citus_17-14.1.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 citus_17 citus_17-14.0.0-1PGDG.rhel10.2.aarch64.rpm pgdg 14.0.0 804.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/citus_17-14.0.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 citus_17 citus_17-14.0.0-1PGDG.rhel10.1.aarch64.rpm pgdg 14.0.0 803.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/citus_17-14.0.0-1PGDG.rhel10.1.aarch64.rpm
@@ -165,17 +165,17 @@ weight: 2400
 @ el10.aarch64 17 citus_17 citus_17-13.1.0-1PGDG.rhel10.aarch64.rpm pgdg 13.1.0 776.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/citus_17-13.1.0-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 17 citus_17 citus_17-13.0.4-1PGDG.rhel10.aarch64.rpm pgdg 13.0.4 758.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/citus_17-13.0.4-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 17 citus_17 citus_17-13.0.3-1PGDG.rhel10.aarch64.rpm pgdg 13.0.3 759.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/citus_17-13.0.3-1PGDG.rhel10.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-citus postgresql-17-citus_14.1.0-1PIGSTY~bookworm_amd64.deb pigsty 14.1.0 2.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/c/citus/postgresql-17-citus_14.1.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-citus postgresql-17-citus_14.1.0-1PIGSTY~bookworm_arm64.deb pigsty 14.1.0 2.6MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/c/citus/postgresql-17-citus_14.1.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-citus postgresql-17-citus_14.1.0-1PIGSTY~trixie_amd64.deb pigsty 14.1.0 2.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/c/citus/postgresql-17-citus_14.1.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-citus postgresql-17-citus_14.1.0-1PIGSTY~trixie_arm64.deb pigsty 14.1.0 2.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/c/citus/postgresql-17-citus_14.1.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-citus postgresql-17-citus_14.1.0-1PIGSTY~jammy_amd64.deb pigsty 14.1.0 3.4MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/c/citus/postgresql-17-citus_14.1.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-citus postgresql-17-citus_14.1.0-1PIGSTY~jammy_arm64.deb pigsty 14.1.0 3.4MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/c/citus/postgresql-17-citus_14.1.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-citus postgresql-17-citus_14.1.0-1PIGSTY~noble_amd64.deb pigsty 14.1.0 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/c/citus/postgresql-17-citus_14.1.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-citus postgresql-17-citus_14.1.0-1PIGSTY~noble_arm64.deb pigsty 14.1.0 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/c/citus/postgresql-17-citus_14.1.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-citus postgresql-17-citus_14.1.0-1PIGSTY~resolute_amd64.deb pigsty 14.1.0 2.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/c/citus/postgresql-17-citus_14.1.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-citus postgresql-17-citus_14.1.0-1PIGSTY~resolute_arm64.deb pigsty 14.1.0 2.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/c/citus/postgresql-17-citus_14.1.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 16 citus_16 citus_16-14.1.0-1PIGSTY.el8.x86_64.rpm pigsty 14.1.0 973.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/citus_16-14.1.0-1PIGSTY.el8.x86_64.rpm
+@ d12.x86_64 17 postgresql-17-citus postgresql-17-citus_14.2.0-1PIGSTY~bookworm_amd64.deb pigsty 14.2.0 2.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/c/citus/postgresql-17-citus_14.2.0-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-citus postgresql-17-citus_14.2.0-1PIGSTY~bookworm_arm64.deb pigsty 14.2.0 2.6MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/c/citus/postgresql-17-citus_14.2.0-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-citus postgresql-17-citus_14.2.0-1PIGSTY~trixie_amd64.deb pigsty 14.2.0 2.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/c/citus/postgresql-17-citus_14.2.0-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-citus postgresql-17-citus_14.2.0-1PIGSTY~trixie_arm64.deb pigsty 14.2.0 2.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/c/citus/postgresql-17-citus_14.2.0-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-citus postgresql-17-citus_14.2.0-1PIGSTY~jammy_amd64.deb pigsty 14.2.0 3.5MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/c/citus/postgresql-17-citus_14.2.0-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-citus postgresql-17-citus_14.2.0-1PIGSTY~jammy_arm64.deb pigsty 14.2.0 3.4MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/c/citus/postgresql-17-citus_14.2.0-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-citus postgresql-17-citus_14.2.0-1PIGSTY~noble_amd64.deb pigsty 14.2.0 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/c/citus/postgresql-17-citus_14.2.0-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-citus postgresql-17-citus_14.2.0-1PIGSTY~noble_arm64.deb pigsty 14.2.0 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/c/citus/postgresql-17-citus_14.2.0-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-citus postgresql-17-citus_14.2.0-1PIGSTY~resolute_amd64.deb pigsty 14.2.0 2.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/c/citus/postgresql-17-citus_14.2.0-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-citus postgresql-17-citus_14.2.0-1PIGSTY~resolute_arm64.deb pigsty 14.2.0 2.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/c/citus/postgresql-17-citus_14.2.0-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 16 citus_16 citus_16-14.2.0-1PIGSTY.el8.x86_64.rpm pigsty 14.2.0 981.1KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/citus_16-14.2.0-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 16 citus_16 citus_16-14.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 14.1.0 862.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/citus_16-14.1.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 citus_16 citus_16-14.0.0-1PGDG.rhel8.10.x86_64.rpm pgdg 14.0.0 849.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/citus_16-14.0.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 citus_16 citus_16-13.2.0-1PGDG.rhel8.x86_64.rpm pgdg 13.2.0 843.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/citus_16-13.2.0-1PGDG.rhel8.x86_64.rpm
@@ -191,7 +191,7 @@ weight: 2400
 @ el8.x86_64 16 citus_16 citus_16-12.1.2-1PGDG.rhel8.x86_64.rpm pgdg 12.1.2 795.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/citus_16-12.1.2-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 16 citus_16 citus_16-12.1.1-1PGDG.rhel8.x86_64.rpm pgdg 12.1.1 795.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/citus_16-12.1.1-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 16 citus_16 citus_16-12.1.0-2PGDG.rhel8.x86_64.rpm pgdg 12.1.0 794.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/citus_16-12.1.0-2PGDG.rhel8.x86_64.rpm
-@ el8.aarch64 16 citus_16 citus_16-14.1.0-1PIGSTY.el8.aarch64.rpm pigsty 14.1.0 934.9KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/citus_16-14.1.0-1PIGSTY.el8.aarch64.rpm
+@ el8.aarch64 16 citus_16 citus_16-14.2.0-1PIGSTY.el8.aarch64.rpm pigsty 14.2.0 942.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/citus_16-14.2.0-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 16 citus_16 citus_16-14.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 14.1.0 813.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/citus_16-14.1.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 citus_16 citus_16-14.0.0-1PGDG.rhel8.10.aarch64.rpm pgdg 14.0.0 801.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/citus_16-14.0.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 citus_16 citus_16-13.2.0-1PGDG.rhel8.aarch64.rpm pgdg 13.2.0 796.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/citus_16-13.2.0-1PGDG.rhel8.aarch64.rpm
@@ -207,7 +207,7 @@ weight: 2400
 @ el8.aarch64 16 citus_16 citus_16-12.1.2-1PGDG.rhel8.aarch64.rpm pgdg 12.1.2 750.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/citus_16-12.1.2-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 16 citus_16 citus_16-12.1.1-1PGDG.rhel8.aarch64.rpm pgdg 12.1.1 750.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/citus_16-12.1.1-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 16 citus_16 citus_16-12.1.0-2PGDG.rhel8.aarch64.rpm pgdg 12.1.0 750.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/citus_16-12.1.0-2PGDG.rhel8.aarch64.rpm
-@ el9.x86_64 16 citus_16 citus_16-14.1.0-1PIGSTY.el9.x86_64.rpm pigsty 14.1.0 874.2KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/citus_16-14.1.0-1PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 16 citus_16 citus_16-14.2.0-1PIGSTY.el9.x86_64.rpm pigsty 14.2.0 880.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/citus_16-14.2.0-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 16 citus_16 citus_16-14.1.0-1PGDG.rhel9.8.x86_64.rpm pgdg 14.1.0 828.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/citus_16-14.1.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 citus_16 citus_16-14.0.0-1PGDG.rhel9.8.x86_64.rpm pgdg 14.0.0 815.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/citus_16-14.0.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 citus_16 citus_16-14.0.0-1PGDG.rhel9.7.x86_64.rpm pgdg 14.0.0 815.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/citus_16-14.0.0-1PGDG.rhel9.7.x86_64.rpm
@@ -225,7 +225,7 @@ weight: 2400
 @ el9.x86_64 16 citus_16 citus_16-12.1.2-1PGDG.rhel9.x86_64.rpm pgdg 12.1.2 765.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/citus_16-12.1.2-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 16 citus_16 citus_16-12.1.1-1PGDG.rhel9.x86_64.rpm pgdg 12.1.1 765.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/citus_16-12.1.1-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 16 citus_16 citus_16-12.1.0-2PGDG.rhel9.x86_64.rpm pgdg 12.1.0 765.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/citus_16-12.1.0-2PGDG.rhel9.x86_64.rpm
-@ el9.aarch64 16 citus_16 citus_16-14.1.0-1PIGSTY.el9.aarch64.rpm pigsty 14.1.0 826.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/citus_16-14.1.0-1PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 16 citus_16 citus_16-14.2.0-1PIGSTY.el9.aarch64.rpm pigsty 14.2.0 833.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/citus_16-14.2.0-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 16 citus_16 citus_16-14.1.0-1PGDG.rhel9.8.aarch64.rpm pgdg 14.1.0 800.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/citus_16-14.1.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 citus_16 citus_16-14.0.0-1PGDG.rhel9.8.aarch64.rpm pgdg 14.0.0 788.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/citus_16-14.0.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 citus_16 citus_16-14.0.0-1PGDG.rhel9.7.aarch64.rpm pgdg 14.0.0 788.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/citus_16-14.0.0-1PGDG.rhel9.7.aarch64.rpm
@@ -243,7 +243,7 @@ weight: 2400
 @ el9.aarch64 16 citus_16 citus_16-12.1.2-1PGDG.rhel9.aarch64.rpm pgdg 12.1.2 739.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/citus_16-12.1.2-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 16 citus_16 citus_16-12.1.1-1PGDG.rhel9.aarch64.rpm pgdg 12.1.1 738.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/citus_16-12.1.1-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 16 citus_16 citus_16-12.1.0-2PGDG.rhel9.aarch64.rpm pgdg 12.1.0 738.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/citus_16-12.1.0-2PGDG.rhel9.aarch64.rpm
-@ el10.x86_64 16 citus_16 citus_16-14.1.0-1PIGSTY.el10.x86_64.rpm pigsty 14.1.0 865.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/citus_16-14.1.0-1PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 16 citus_16 citus_16-14.2.0-1PIGSTY.el10.x86_64.rpm pigsty 14.2.0 872.9KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/citus_16-14.2.0-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 16 citus_16 citus_16-14.1.0-1PGDG.rhel10.2.x86_64.rpm pgdg 14.1.0 838.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/citus_16-14.1.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 citus_16 citus_16-14.0.0-1PGDG.rhel10.2.x86_64.rpm pgdg 14.0.0 826.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/citus_16-14.0.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 citus_16 citus_16-14.0.0-1PGDG.rhel10.1.x86_64.rpm pgdg 14.0.0 826.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/citus_16-14.0.0-1PGDG.rhel10.1.x86_64.rpm
@@ -252,7 +252,7 @@ weight: 2400
 @ el10.x86_64 16 citus_16 citus_16-13.1.0-1PGDG.rhel10.x86_64.rpm pgdg 13.1.0 797.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/citus_16-13.1.0-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 16 citus_16 citus_16-13.0.4-1PGDG.rhel10.x86_64.rpm pgdg 13.0.4 779.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/citus_16-13.0.4-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 16 citus_16 citus_16-13.0.3-1PGDG.rhel10.x86_64.rpm pgdg 13.0.3 779.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/citus_16-13.0.3-1PGDG.rhel10.x86_64.rpm
-@ el10.aarch64 16 citus_16 citus_16-14.1.0-1PIGSTY.el10.aarch64.rpm pigsty 14.1.0 834.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/citus_16-14.1.0-1PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 16 citus_16 citus_16-14.2.0-1PIGSTY.el10.aarch64.rpm pigsty 14.2.0 841.9KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/citus_16-14.2.0-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 16 citus_16 citus_16-14.1.0-1PGDG.rhel10.2.aarch64.rpm pgdg 14.1.0 809.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/citus_16-14.1.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 citus_16 citus_16-14.0.0-1PGDG.rhel10.2.aarch64.rpm pgdg 14.0.0 797.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/citus_16-14.0.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 citus_16 citus_16-14.0.0-1PGDG.rhel10.1.aarch64.rpm pgdg 14.0.0 797.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/citus_16-14.0.0-1PGDG.rhel10.1.aarch64.rpm
@@ -261,16 +261,16 @@ weight: 2400
 @ el10.aarch64 16 citus_16 citus_16-13.1.0-1PGDG.rhel10.aarch64.rpm pgdg 13.1.0 770.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/citus_16-13.1.0-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 16 citus_16 citus_16-13.0.4-1PGDG.rhel10.aarch64.rpm pgdg 13.0.4 752.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/citus_16-13.0.4-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 16 citus_16 citus_16-13.0.3-1PGDG.rhel10.aarch64.rpm pgdg 13.0.3 752.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/citus_16-13.0.3-1PGDG.rhel10.aarch64.rpm
-@ d12.x86_64 16 postgresql-16-citus postgresql-16-citus_14.1.0-1PIGSTY~bookworm_amd64.deb pigsty 14.1.0 2.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/c/citus/postgresql-16-citus_14.1.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-citus postgresql-16-citus_14.1.0-1PIGSTY~bookworm_arm64.deb pigsty 14.1.0 2.6MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/c/citus/postgresql-16-citus_14.1.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-citus postgresql-16-citus_14.1.0-1PIGSTY~trixie_amd64.deb pigsty 14.1.0 2.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/c/citus/postgresql-16-citus_14.1.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-citus postgresql-16-citus_14.1.0-1PIGSTY~trixie_arm64.deb pigsty 14.1.0 2.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/c/citus/postgresql-16-citus_14.1.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-citus postgresql-16-citus_14.1.0-1PIGSTY~jammy_amd64.deb pigsty 14.1.0 3.4MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/c/citus/postgresql-16-citus_14.1.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-citus postgresql-16-citus_14.1.0-1PIGSTY~jammy_arm64.deb pigsty 14.1.0 3.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/c/citus/postgresql-16-citus_14.1.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-citus postgresql-16-citus_14.1.0-1PIGSTY~noble_amd64.deb pigsty 14.1.0 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/c/citus/postgresql-16-citus_14.1.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-citus postgresql-16-citus_14.1.0-1PIGSTY~noble_arm64.deb pigsty 14.1.0 2.7MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/c/citus/postgresql-16-citus_14.1.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-citus postgresql-16-citus_14.1.0-1PIGSTY~resolute_amd64.deb pigsty 14.1.0 2.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/c/citus/postgresql-16-citus_14.1.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-citus postgresql-16-citus_14.1.0-1PIGSTY~resolute_arm64.deb pigsty 14.1.0 2.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/c/citus/postgresql-16-citus_14.1.0-1PIGSTY~resolute_arm64.deb
+@ d12.x86_64 16 postgresql-16-citus postgresql-16-citus_14.2.0-1PIGSTY~bookworm_amd64.deb pigsty 14.2.0 2.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/c/citus/postgresql-16-citus_14.2.0-1PIGSTY~bookworm_amd64.deb
+@ d12.aarch64 16 postgresql-16-citus postgresql-16-citus_14.2.0-1PIGSTY~bookworm_arm64.deb pigsty 14.2.0 2.6MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/c/citus/postgresql-16-citus_14.2.0-1PIGSTY~bookworm_arm64.deb
+@ d13.x86_64 16 postgresql-16-citus postgresql-16-citus_14.2.0-1PIGSTY~trixie_amd64.deb pigsty 14.2.0 2.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/c/citus/postgresql-16-citus_14.2.0-1PIGSTY~trixie_amd64.deb
+@ d13.aarch64 16 postgresql-16-citus postgresql-16-citus_14.2.0-1PIGSTY~trixie_arm64.deb pigsty 14.2.0 2.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/c/citus/postgresql-16-citus_14.2.0-1PIGSTY~trixie_arm64.deb
+@ u22.x86_64 16 postgresql-16-citus postgresql-16-citus_14.2.0-1PIGSTY~jammy_amd64.deb pigsty 14.2.0 3.4MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/c/citus/postgresql-16-citus_14.2.0-1PIGSTY~jammy_amd64.deb
+@ u22.aarch64 16 postgresql-16-citus postgresql-16-citus_14.2.0-1PIGSTY~jammy_arm64.deb pigsty 14.2.0 3.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/c/citus/postgresql-16-citus_14.2.0-1PIGSTY~jammy_arm64.deb
+@ u24.x86_64 16 postgresql-16-citus postgresql-16-citus_14.2.0-1PIGSTY~noble_amd64.deb pigsty 14.2.0 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/c/citus/postgresql-16-citus_14.2.0-1PIGSTY~noble_amd64.deb
+@ u24.aarch64 16 postgresql-16-citus postgresql-16-citus_14.2.0-1PIGSTY~noble_arm64.deb pigsty 14.2.0 2.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/c/citus/postgresql-16-citus_14.2.0-1PIGSTY~noble_arm64.deb
+@ u26.x86_64 16 postgresql-16-citus postgresql-16-citus_14.2.0-1PIGSTY~resolute_amd64.deb pigsty 14.2.0 2.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/c/citus/postgresql-16-citus_14.2.0-1PIGSTY~resolute_amd64.deb
+@ u26.aarch64 16 postgresql-16-citus postgresql-16-citus_14.2.0-1PIGSTY~resolute_arm64.deb pigsty 14.2.0 2.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/c/citus/postgresql-16-citus_14.2.0-1PIGSTY~resolute_arm64.deb
 @ el8.x86_64 15 citus_15 citus_15-13.2.0-1PGDG.rhel8.x86_64.rpm pgdg 13.2.0 867.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/citus_15-13.2.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 15 citus_15 citus_15-13.1.0-1PGDG.rhel8.x86_64.rpm pgdg 13.1.0 844.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/citus_15-13.1.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 15 citus_15 citus_15-13.0.4-1PGDG.rhel8.x86_64.rpm pgdg 13.0.4 824.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/citus_15-13.0.4-1PGDG.rhel8.x86_64.rpm
@@ -531,15 +531,13 @@ shared_preload_libraries = 'citus';
 CREATE EXTENSION citus;
 ```
 
-
-
-
 ## Usage
 
 Sources:
 
-- [Citus v14.1.0 release](https://github.com/citusdata/citus/releases/tag/v14.1.0)
-- [Citus v14.1.0 CHANGELOG](https://github.com/citusdata/citus/blob/v14.1.0/CHANGELOG.md)
+- [Citus v14.2.0 release](https://github.com/citusdata/citus/releases/tag/v14.2.0)
+- [Citus v14.2.0 CHANGELOG](https://github.com/citusdata/citus/blob/v14.2.0/CHANGELOG.md)
+- [Citus v14.2.0 control file](https://github.com/citusdata/citus/blob/v14.2.0/src/backend/distributed/citus.control)
 - [What is Citus?](https://docs.citusdata.com/en/stable/get_started/what_is_citus.html)
 - [Citus Utility Functions](https://docs.citusdata.com/en/stable/develop/api_udf.html)
 
@@ -583,20 +581,20 @@ CREATE TABLE events (
   payload    jsonb,
   PRIMARY KEY (tenant_id, event_id)
 );
-
-SELECT create_distributed_table('events', 'tenant_id');
 ```
 
-You can tune the shard count and colocation explicitly:
+Distribute the table and tune the shard count and colocation explicitly:
 
 ```sql
 SELECT create_distributed_table(
   'events',
   'tenant_id',
   shard_count  := 64,
-  colocate_with := 'default'
+  colocate_with := 'none'
 );
 ```
+
+When choosing an explicit shard count, start a new colocation group with `colocate_with := 'none'`. To colocate with an existing distributed table, name that table and let its shard count determine the layout.
 
 Queries that filter on the distribution column can route to a single shard:
 
@@ -633,7 +631,7 @@ SELECT create_reference_table('countries');
 
 ### Schema-Based Sharding
 
-Schema-based sharding is useful when each tenant or service owns its own schema. In v14.1.0, Citus adds support for running several schema-sharding DDLs from any node, including `CREATE SCHEMA`, `DROP SCHEMA`, `ALTER SCHEMA RENAME`, `ALTER SCHEMA OWNER`, and table-level DDL on distributed schemas.
+Schema-based sharding is useful when each tenant or service owns its own schema. Citus supports running schema-sharding DDLs from any node, including `CREATE SCHEMA`, `DROP SCHEMA`, `ALTER SCHEMA RENAME`, `ALTER SCHEMA OWNER`, and table-level DDL on distributed schemas.
 
 ```sql
 CREATE SCHEMA tenant_42;
@@ -684,6 +682,12 @@ SELECT citus_cluster_changes_unblock();
 ```
 
 Pair these functions with regular PostgreSQL backup discipline: consistent checkpoints, WAL archiving, snapshot ordering across nodes, and a tested restore procedure.
+
+### Version 14.2 Operations
+
+Citus 14.2 adds the superuser-only `citus_internal.distribute_object()` repair helper for supported database objects whose metadata was not propagated correctly. Treat it as a targeted recovery operation, not as the normal distribution API.
+
+The release also adds `citus.allow_unsafe_insert_select_pushdown` for explicitly opting into batched `INSERT ... SELECT` pushdown on colocated tables, and improves single-shard stored-procedure execution. Keep the unsafe pushdown setting off unless the workload has been checked against the release-note restrictions.
 
 ### Caveats
 

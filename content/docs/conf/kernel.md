@@ -15,7 +15,7 @@ The `demo/kernel` configuration template demonstrates the major PostgreSQL kerne
 
 - Config Name: `demo/kernel`
 - Node Count: 10 nodes, with one node also hosting INFRA/ETCD and `pg-citus`
-- Description: PostgreSQL kernel matrix demo covering Citus, IvorySQL, Babelfish, PolarDB, Percona TDE, OrioleDB, OpenHalo, DocumentDB/FerretDB, AgensGraph, and pgEdge
+- Description: PostgreSQL kernel matrix demo covering Citus, IvorySQL, Babelfish, PolarDB, Percona TDE, OrioleDB, OpenHalo, DocumentDB, AgensGraph, and pgEdge
 - OS Distro: depends on actual package support for each kernel
 - OS Arch: depends on actual package support for each kernel
 - Related: [`pgsql`](/docs/conf/pgsql/), [`mssql`](/docs/conf/mssql/), [`mongo`](/docs/conf/mongo/)
@@ -51,7 +51,7 @@ This template uses single-node clusters to show the minimum viable configuration
 - `pg-tde`: Percona PostgreSQL 18 + `pg_tde`
 - `pg-oriole`: OrioleDB, supports PostgreSQL 16, 17, and 18; the current demo config defaults to PG18
 - `pg-mysql`: OpenHalo, compatible with PostgreSQL 14
-- `pg-mongo`: DocumentDB + FerretDB, default PostgreSQL 18
+- `pg-mongo`: DocumentDB backend for PostgreSQL Mongo mode, default PostgreSQL 18
 - `pg-agens`: AgensGraph, compatible with PostgreSQL 17
 - `pg-edge`: pgEdge, compatible with PostgreSQL 18
 

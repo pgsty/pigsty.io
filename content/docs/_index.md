@@ -82,7 +82,7 @@ There are also **optional** modules that work well alongside PostgreSQL, bringin
 {{< nav-card title="MINIO" link="/docs/minio/" icon="fa-solid fa-boxes-stacked" accent="gray" badge="OPTIONAL" desc="S3-compatible object storage, an optional centralized repository for database backups." />}}
 {{< nav-card title="REDIS" link="/docs/redis/" icon="fa-solid fa-layer-group" accent="gray" badge="OPTIONAL" desc="High-performance in-memory data structure server with standalone, cluster, and sentinel modes." />}}
 {{< nav-card title="DOCKER" link="/docs/docker/" icon="fa-brands fa-docker" accent="gray" badge="OPTIONAL" desc="Container runtime for launching containerized, stateless software and application templates." />}}
-{{< nav-card title="FERRET" link="/docs/ferret/" icon="fa-solid fa-leaf" accent="gray" badge="OPTIONAL" desc="MongoDB wire-protocol compatibility on PostgreSQL, powered by FerretDB and the DocumentDB extension." />}}
+{{< nav-card title="PG MONGO" link="/docs/conf/mongo/" icon="fa-solid fa-leaf" accent="gray" badge="MODE" desc="PostgreSQL Mongo mode, powered by DocumentDB and the FerretDB Docker APP." />}}
 {{< nav-card title="JUICE" link="/docs/juice/" icon="fa-solid fa-folder-tree" accent="gray" badge="OPTIONAL" desc="JuiceFS distributed file system with PostgreSQL as the metadata engine, providing shared POSIX storage." />}}
 {{< nav-card title="VIBE" link="/docs/vibe/" icon="fa-solid fa-laptop-code" accent="gray" badge="OPTIONAL" desc="AI coding sandbox: Code-Server, JupyterLab, Claude Code, and Codex CLI." />}}
 {{< nav-card title="KAFKA" link="/docs/kafka/" icon="fa-solid fa-share-nodes" accent="gray" badge="OPTIONAL" desc="Apache Kafka 4.x dynamic KRaft message queue clusters with security and monitoring included." />}}

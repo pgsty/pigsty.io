@@ -21,7 +21,7 @@ categories: [Reference]
 - [**Observability**](/img/pigsty/dashboard.jpg): Based on [**Prometheus**](/docs/infra#victoria-observability-suite) & [**Grafana**](/docs/infra#grafana) modern observability stack, providing stunning monitoring best practices. Modular design, can be used independently: [**Gallery**](https://github.com/pgsty/pigsty/wiki/Gallery) & [**Demo**](https://demo.pigsty.io).
 - [**Availability**](/img/pigsty/ha.png): Deliver stable, reliable, auto-routed, transaction-pooled, read-write separated high-performance database [**services**](/docs/pgsql/service#default-service), with flexible [**access**](/docs/pgsql/service#access-service) modes via HAProxy, Pgbouncer, and VIP.
 - [**Maintainability**](/img/pigsty/iac.jpg): [**Easy to use**](/docs/setup/install), [**Infrastructure as Code**](/docs/pgsql/config), [**Management SOPs**](/docs/pgsql/admin/), auto-tuning, local software repository, [**Vagrant**](/docs/deploy/vagrant) [**sandbox**](/docs/deploy/sandbox) and [**Terraform**](/docs/deploy/terraform) templates, zero-downtime [**migration**](/docs/pgsql/migration) solutions.
-- [**Composability**](/img/pigsty/sandbox.png): [**Modular**](/docs/concept/arch#modules) architecture design, reusable [**Infra**](/docs/infra), various optional [**modules**](/docs/ref/module/): [**Redis**](/docs/redis), [**MinIO**](/docs/minio), [**ETCD**](/docs/etcd), [**FerretDB**](/docs/ferret), [**DuckDB**](https://github.com/pgsty/pigsty/tree/master/app/duckdb), [**Docker**](/docs/docker/), [**Supabase**](https://github.com/pgsty/pigsty/tree/master/app/supabase).
+- [**Composability**](/img/pigsty/sandbox.png): [**Modular**](/docs/concept/arch#modules) architecture design, reusable [**Infra**](/docs/infra), various optional [**modules**](/docs/ref/module/): [**Redis**](/docs/redis), [**MinIO**](/docs/minio), [**ETCD**](/docs/etcd), [**DuckDB**](https://github.com/pgsty/pigsty/tree/master/app/duckdb), [**Docker**](/docs/docker/), [**Supabase**](https://github.com/pgsty/pigsty/tree/master/app/supabase).
 
 ![](/img/pigsty/banner.png)
 
@@ -34,7 +34,7 @@ Pigsty is a better local open-source RDS for PostgreSQL alternative:
 
 - [Battery-Included RDS](#battery-included-rds): From kernel to RDS distribution, providing production-grade PG database services for versions 14-18 on EL/Debian/Ubuntu.
 - [Rich Extensions](#rich-extensions): Providing unparalleled {{< param pgext_count >}} extensions with out-of-the-box distributed, time-series, geospatial, graph, vector, multi-modal database capabilities.
-- [Flexible Modular Architecture](#flexible-modular-architecture): Flexible composition, free extension: Redis/Etcd/MinIO/Mongo; can be used independently to monitor existing RDS/hosts/databases.
+- [Flexible Modular Architecture](#flexible-modular-architecture): Compose Redis/Etcd/MinIO modules with PostgreSQL modes such as Mongo; monitor existing RDS, hosts, and databases independently.
 - [Stunning Observability](#stunning-observability): Based on modern observability stack Prometheus/Grafana, providing stunning, unparalleled database observability capabilities.
 - [Battle-Tested Reliability](#battle-tested-reliability): Self-healing high-availability architecture: automatic failover on hardware failure, seamless traffic switching. With auto-configured PITR as safety net for accidental data deletion!
 - [Easy to Use and Maintain](#easy-to-use-and-maintain): Declarative API, GitOps ready, foolproof operation, Database/Infra-as-Code and management SOPs encapsulating management complexity!
@@ -51,7 +51,7 @@ PostgreSQL integrates ecosystem tools and best practices:
 - Based on [Ansible](https://www.ansible.com/) providing declarative APIs to abstract complexity, greatly simplifying daily operations management in a **Database-as-Code** manner.
 - Pigsty has broad applications, can be used as complete application runtime, develop demo data/visualization applications, and massive software using PG can be spun up with [Docker](https://www.docker.com/) templates.
 - Provides [Vagrant](https://www.vagrantup.com/)-based local development and testing sandbox environment, and [Terraform](https://www.terraform.io/)-based cloud auto-deployment solutions, keeping development, testing, and production environments consistent.
-- Deploy and monitor dedicated [Redis](https://redis.io/) (primary-replica, sentinel, cluster), MinIO, Etcd, Haproxy, MongoDB ([FerretDB](https://www.ferretdb.io/)) clusters
+- Run PostgreSQL in [Mongo-compatible mode](/docs/conf/mongo/) with DocumentDB and the FerretDB Docker APP
 
 
 ----------------
@@ -108,7 +108,7 @@ The [**`REDIS`**](/docs/redis/) module can provide auxiliary services for databa
 Additionally, Pigsty provides PG-compatible / derivative kernel support. You can use [**`Babelfish`**](/docs/pgsql/kernel/babelfish) for MS SQL Server compatibility, [**`IvorySQL`**](/docs/pgsql/kernel/ivorysql) for Oracle compatibility,
 [**`OpenHaloDB`**](/docs/pgsql/kernel/openhalo) for MySQL compatibility, and [**`OrioleDB`**](/docs/pgsql/kernel/orioledb) for ultimate OLTP performance.
 
-Furthermore, you can use [**`FerretDB`**](/docs/ferret/) for MongoDB compatibility, [**`Supabase`**](/docs/pgsql/kernel/supabase) for Firebase compatibility, and [**`PolarDB`**](/docs/pgsql/kernel/polardb) to meet domestic compliance requirements.
+Furthermore, you can use [**PostgreSQL Mongo mode**](/docs/conf/mongo/) for MongoDB compatibility, [**`Supabase`**](/docs/pgsql/kernel/supabase) for Firebase compatibility, and [**`PolarDB`**](/docs/pgsql/kernel/polardb) to meet domestic compliance requirements.
 Message queues are covered by the [**`KAFKA`**](/docs/kafka/) module, which deploys Kafka 4.x dynamic KRaft clusters.
 More professional/pilot modules will be continuously introduced to Pigsty, such as [**`GPSQL`**](/docs/pgsql/kernel/greenplum), [DUCKDB](/docs/pilot/duckdb/), [TIGERBEETLE](/docs/pilot/tigerbeetle/), [KUBERNETES](/docs/pilot/kube/), [CONSUL](/docs/pilot/consul/), [GREENPLUM](/docs/pgsql/kernel/greenplum/), [CLOUDBERRY](/docs/pgsql/kernel/cloudberry/), [MYSQL](/docs/pilot/mysql/), ...
 

@@ -14,7 +14,7 @@ In the **inventory**, you can use various parameters to fine-tune Pigsty customi
 
 ## Parameter List
 
-Pigsty provides **359** configuration parameters distributed across 10 modules for fine-grained control of various system aspects. See [**Reference - Parameter List**](/docs/ref/param) for the complete list.
+Pigsty provides **350** configuration parameters distributed across 9 modules for fine-grained control of various system aspects. See [**Reference - Parameter List**](/docs/ref/param) for the complete list.
 
 | Module                             | Groups | Params | Description                              |
 |:-----------------------------------|:------:|:------:|:-----------------------------------------|
@@ -24,7 +24,6 @@ Pigsty provides **359** configuration parameters distributed across 10 modules f
 | [**ETCD**](/docs/etcd/param)       |   2    |   13   | ETCD cluster and removal protection parameters |
 | [**MINIO**](/docs/minio/param)     |   2    |   21   | MinIO deployment and removal parameters |
 | [**REDIS**](/docs/redis/param)     |   2    |   21   | Redis deployment and removal parameters |
-| [**FERRET**](/docs/ferret/param)   |   1    |    9   | FerretDB Mongo API parameters            |
 | [**DOCKER**](/docs/docker/param)   |   1    |    8   | Docker engine parameters                 |
 | [**JUICE**](/docs/juice/param)     |   1    |    2   | JuiceFS instance and cache parameters    |
 | [**VIBE**](/docs/vibe/param)       |   1    |   16   | Code/Jupyter/Node.js/Claude configuration |
