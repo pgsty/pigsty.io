@@ -75,19 +75,101 @@ These docs currently correspond to [**v4.4.0**](#v440).
 
 ## v4.5.0
 
-> WIP
+> **WIP:** This draft is compiled from source code, package catalogs, and development records as of **2026-08-09**. Candidate package versions, platform coverage, and delivery status remain subject to the final repository indexes, signed artifacts, and release acceptance. The default Silo switch, multi-cluster MINIO work, SOW repository generation, and Grafana Dashboard API v2 import are still being finalized and must not be treated as released.
+
+Pigsty v4.5.0 is a feature release focused on new pilot modules, replaceable data services, cluster-identity-aware orchestration, and the software supply chain. It introduces Kafka KRaft and MySQL 8.4 modules, adds Valkey as a REDIS engine and RustFS as a MINIO backend, and expands the packaged extension catalog to 572 extensions.
 
 **Highlights**
 
-- The packaged extension catalog now includes 572 extensions, while the broader [PGEXT.CLOUD catalog](https://pgext.cloud) has expanded to 2,230 entries.
+- **572 extensions:** The packaged catalog grows from 531 to 572 extensions, while the broader [PGEXT.CLOUD catalog](https://pgext.cloud) expands to 2,238 entries.
+- **Kafka KRaft module:** Adds native Pigsty orchestration for Kafka, with multi-cluster support, dynamic member enrollment and retirement, SCRAM/TLS, secure credential rotation, monitoring metrics, and Grafana dashboards.
+- **MySQL 8.4 module:** Adds standalone and three-node InnoDB Cluster deployments, MySQL Router, XtraBackup, user and database provisioning, monitoring and alerting, and idempotent reconciliation.
+- **Valkey and RustFS:** The REDIS module adds `redis_type: valkey`; the MINIO module adds `minio_type: rustfs`, together with dedicated monitoring, alerts, and Grafana dashboards.
+- **Safer cluster-identity orchestration:** PGSQL, REDIS, MINIO, KAFKA, MYSQL, and their removal playbooks select hosts by explicit cluster identity and exit early on unrelated hosts. etcd delegation and DBSU key exchange now use actual cluster members as well.
+- **Kernel and toolchain updates:** Completes pgBackRest support for PostgreSQL 19 beta2, enables cluster mode for Percona PostgreSQL TDE, fixes IvorySQL initialization and WAL compression, and updates Pig for SOW repository generation and Grafana Dashboard API v2.
 
-**Applications and Compatibility**
+**New Modules and Data Services**
 
-- The standalone FERRET module is replaced by [PostgreSQL Mongo mode](/docs/conf/mongo/) and the FerretDB Docker APP.
+- The [Kafka module](/docs/kafka/) uses node state as the source of truth for dynamic KRaft orchestration. It can manage multiple clusters in one inventory and performs explicit checks for partial host limits, existing formatting state, member enrollment, controller retirement, and credential rotation.
+- The [MySQL pilot module](/docs/pilot/mysql/) targets MySQL 8.4 LTS and supports either a standalone instance or a three-node InnoDB Cluster. It includes MySQL Shell and Router, scheduled XtraBackup backups, TLS, account provisioning, primary-key policy checks, and complete monitoring dashboards.
+- The REDIS module retains `redis` as its default engine and can deploy Valkey with `redis_type: valkey`. Service units now use `Type=notify`, with stronger topology validation, password handling, and rebuild protection.
+- The MINIO module can deploy RustFS with `minio_type: rustfs`, reusing the existing cluster, user, bucket, and service-exposure interfaces while adding RustFS-specific metrics, alerts, and dashboards.
+- The Infra package line adds `silo` and `mcli`. Silo preserves the S3/Admin APIs, `/minio/*` routes, `MINIO_*` environment variables, and disk format. Switching the default backend in Pigsty roles and completing multi-cluster support remain release-freeze items.
+- The standalone FERRET module is replaced by [PostgreSQL Mongo mode](/docs/conf/mongo/) and the FerretDB Docker APP. PostgreSQL provides the DocumentDB data layer, while Docker Compose provides the FerretDB protocol layer.
 
-**Upgrade Notes**
+**Orchestration, Security, and Fixes**
 
-- Existing FERRET deployments should remove the legacy `ferretdb` systemd service and redeploy the protocol layer with `docker.yml` and `app.yml`; the old `mongo.yml` playbook, `mongo_*` parameters, scrape job, and dedicated dashboard are no longer provided.
+- `deploy.yml`, `slim.yml`, and the PGSQL, REDIS, MINIO, KAFKA, and MYSQL initialization and removal playbooks now skip unrelated hosts according to the corresponding `*_cluster` identity. Roles retain a second identity check internally.
+- PGSQL configuration, PITR, and removal workflows delegate only when actual etcd members exist; they no longer assume a fixed group name or silently fall back to localhost. DBSU SSH keys are exchanged through `pg_cluster_members`, correctly covering cross-inventory-group topologies such as Citus.
+- HAProxy uses the fixed `/etc/haproxy/haproxy.cfg` and `/etc/haproxy/conf.d` layout, upstream master-worker mode, a master socket, and `Type=notify`. dnsmasq can now process node addresses added after INFRA initialization.
+- Rendered systemd units managed by Pigsty are consistently placed under `/etc/systemd/system`; permissions on sensitive configuration and privileged files are tightened further. Removal workflows stop services before entering the data-cleanup phase.
+- Local YUM repositories no longer generate fake ModuleMD metadata, preventing DNF module streams from interfering with PostgreSQL package selection. Cluster-size type comparisons are also fixed for older Ansible versions.
+- Fixes duplicate time series produced by the `pg_subrel` query in `pg_exporter` 1.4.1 and improves the RustFS and MinIO dashboards.
+
+**PostgreSQL Kernels and Extension Packages**
+
+- PostgreSQL 19 beta2 templates now include pgBackRest packages and backup support.
+- Percona PostgreSQL 18 TDE now uses cluster mode and retains Pigsty-prefixed packages to avoid conflicts with native PostgreSQL packages.
+- IvorySQL now initializes its default database correctly and enables compatible WAL compression in workload templates.
+- Extension batches from 2026-07-31 through 2026-08-08 cover 18 package families and 23 extension names. See the [RPM changelog](/docs/repo/pgsql/rpm/#2026-08-08) and [DEB changelog](/docs/repo/pgsql/deb/#2026-08-08) for platform-specific differences.
+
+| Package Family    | Old Version | Candidate Version | Summary                                                         |
+|:------------------|:------------|:------------------|:----------------------------------------------------------------|
+| `cat_tools`       | -           | 0.3.0             | New pure-SQL extension, PG14-18                                  |
+| `citus`           | 14.1.0      | 14.2.0            | Includes `citus_columnar`, PG16-18                               |
+| `pg_describe`     | -           | 1.0.0             | New, PG17-18                                                     |
+| `pg_disorder`     | -           | 0.1.0             | New, PG14-18                                                     |
+| `pg_mentat`       | -           | 1.5.7             | Promoted from source-only catalog entry to package, PG14-18      |
+| `pg_rational`     | 0.0.2       | 0.0.3             | PIGSTY RPM updated; DEB still uses the PGDG package               |
+| `pg_readme`       | 0.7.0       | 0.7.1             | Includes `pg_readme_test_extension`; RPM ingestion still pending |
+| `pg_search`       | 0.25.0      | 0.25.1            | PG15-18, pgrx 0.19.1                                            |
+| `pg_squeeze`      | 1.9.2       | 1.9.4             | PGDG package, PG14-18                                            |
+| `pg_turbovec`     | -           | 1.28.3            | PG14-18; package version still differs from upstream 1.29.0 metadata |
+| `pg_vault_tde`    | -           | 1.7.0             | PG17-18, preload required; RPM limited to EL9/10                  |
+| `pgbson`          | 2.0.4       | 2.1.0             | Packaged as `postgresbson`, PG14-18                              |
+| `pgmnemo`         | 0.15.0      | 0.16.1            | PG17-18                                                          |
+| `plpgsql_check`   | 2.10.3      | 2.10.4            | PG14-18                                                          |
+| `plruby`          | -           | 2.5.0             | Includes three transform extensions, PG14-18                     |
+| `provsql`         | 1.11.0      | 1.12.0            | PG14-18                                                          |
+| `timescaledb`     | 2.29.0      | 2.29.1            | PG16-18                                                          |
+| `vector`          | 0.8.6       | 0.8.6             | Adds PGDG 0.8.6 packages, PG14-18                                |
+{.stretch-last}
+
+**Infrastructure Package Candidates**
+
+This cycle refreshes object storage, observability, database tools, and agent CLIs in the infrastructure repository. The versions below are draft candidates: a successful build does not establish repository indexing, signing, synchronization, or offline-package acceptance. See the [Infra changelog](/docs/repo/infra/log/) for the complete record.
+
+| Package                              | Candidate Version              | Notes                                                       |
+|:-------------------------------------|:-------------------------------|:------------------------------------------------------------|
+| `silo` / `mcli`                      | 20260806000000                 | Silo replaces the MinIO package name; dual-architecture artifacts verified |
+| `rustfs`                             | 1.0.0-rc1                      | Upstream `rc.1-preview.1`                                   |
+| `haproxy`                            | 3.4.3                          | Pigsty revision matching the new systemd unit               |
+| `redis` / `valkey`                   | 7.2.15 / 9.1.1                 | Dual-engine packages and cross-platform builds              |
+| `grafana`                            | 13.1.3                         | Official dual-architecture artifacts                        |
+| `victoria-metrics`                   | 1.149.0                        | Main, cluster, and vmutils packages                          |
+| `postgrest`                          | 16.0                           | Requires PostgreSQL 14 or later                              |
+| `k3s` / `k3s-images`                 | 1.36.3                         | Binary and dual-architecture offline images                 |
+| `seaweedfs` / `pgschema`             | 4.41 / 1.12.2                  | Storage and schema-management tool updates                  |
+| `codex` / `claude` / `opencode`      | 0.147.0 / 2.1.226 / 1.18.15   | Agent CLI refresh                                           |
+| `pig`                                | 1.6.1 (follow-up commit)       | Extension catalog refresh; later commit adds SOW and Dashboard v2 integration |
+{.stretch-last}
+
+**Compatibility Changes and Upgrade Notes**
+
+- Existing FERRET deployments should remove the legacy `ferretdb` systemd service and redeploy the protocol layer with `docker.yml` and `app.yml`. The old `mongo.yml` playbook, `mongo_*` parameters, scrape job, and dedicated dashboard are no longer provided.
+- Pigsty no longer renders `/etc/default/haproxy` for the HAProxy unit, although the unit can read it when present. Use only `EXTRAOPTS` for process arguments, not `OPTIONS`. Any `EXTRAOPTS` override must retain `-S /run/haproxy-master.sock` and must not include `-f`.
+- New module playbooks require target hosts to define the corresponding `pg_cluster`, `redis_cluster`, `minio_cluster`, `kafka_cluster`, or `mysql_cluster` explicitly. Custom inventories that relied on fixed group names without cluster identity variables must add those identities first.
+- Valkey and RustFS are explicit choices: set `redis_type: valkey` or `minio_type: rustfs`, respectively. Existing Redis and MinIO clusters are not migrated automatically when the new engines become available.
+- Silo and MinIO remain compatible at the protocol and disk-format layers, but their service, package, and binary names differ. Existing MinIO clusters should set `minio_type: minio` explicitly during upgrades and switch only after the migration and rollback procedures pass acceptance. Package replacement must not be treated as automatic data migration.
+- When SOW is available, `pig repo create` prefers `sow create --pigsty`. Linux temporarily retains the `createrepo_c` / `dpkg-scanpackages` fallback; creating a local repository on macOS requires SOW.
+
+**Release Freeze Checklist**
+
+- Complete the default Silo backend, multi-cluster MINIO support, deletion safety boundaries, and the Metrics V3 scrape and alert loop; verify compatibility of the `.minio` and `.silo` runtime directories.
+- Decide whether the core Pigsty REPO role will switch completely to SOW and define compatibility behavior for older offline packages that do not include SOW.
+- Complete end-to-end validation of the Grafana Dashboard API v2 importer and MinIO Metrics V3 dashboards.
+- Resolve the `pg_turbovec` version and metadata mismatch and finish `pg_readme` RPM ingestion; recheck RPM/DEB differences and complete candidate repository indexing, signing, synchronization, and public availability checks.
+- Run final lifecycle and offline-deployment acceptance for Kafka, MySQL, Valkey, RustFS/Silo, and the standard OS matrix. CLICK currently includes only ClickHouse repository integration and must not yet be listed as a delivered standalone deployment module.
 
 
 ------
@@ -916,7 +998,7 @@ curl https://pigsty.io/get | bash -s v4.1.0
 
 **Commit List (`v4.0.0..v4.1.0`, 72 commits, 2026-02-02 ~ 2026-02-13)**
 
-```
+```text
 7410de401 v4.1.0 release
 fa31213ce conf(node): default firewall to zone with single-node 5432 override
 bb8382c58 update default extension list to 451

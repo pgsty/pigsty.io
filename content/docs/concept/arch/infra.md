@@ -72,7 +72,7 @@ By default, it exposes Pigsty's admin homepage: `i.pigsty`. Different endpoints 
 | `/blackbox/` | [**Blackbox**](/docs/infra/)        | `9115`      | Blackbox probe                    |                                                                |
 {.full-width}
 
-[![](/img/pigsty/home.png)](https://demo.pigsty.io)
+[![Pigsty online demo homepage](/img/pigsty/home.png)](https://demo.pigsty.io)
 
 Pigsty allows rich customization of **Nginx** as a local file server or reverse proxy, with self-signed or real HTTPS certificates.
 
@@ -391,4 +391,4 @@ Therefore, each Grafana instance can see complete monitoring data.
 If you modify Grafana—such as adding new dashboards or changing datasource configs—these changes only affect the Grafana instance on that node.
 To keep Grafana consistent across all nodes, use a PostgreSQL database as shared storage. See [**Tutorial: Configure Grafana High Availability**](/docs/infra/admin/grafana) for details.
 
-[![](/img/dashboard/infra-overview.webp)](https://demo.pigsty.io/ui/d/infra-overview)
+[![INFRA overview dashboard](/img/dashboard/infra-overview.webp)](https://demo.pigsty.io/ui/d/infra-overview)

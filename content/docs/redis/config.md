@@ -219,4 +219,3 @@ redis-secure:
       DEBUG: ''                        # disable command
       CONFIG: 'ADMIN_CONFIG'
 ```
-

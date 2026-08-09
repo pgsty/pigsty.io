@@ -430,7 +430,7 @@ infra:
 
 **Architecture Diagram**
 
-```
+```text
      ------ infra ------
      |                 |
      | victoria-metrics|            v---- pg-foo-1 ----v

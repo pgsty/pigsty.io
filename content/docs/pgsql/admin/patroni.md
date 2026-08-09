@@ -137,7 +137,7 @@ pg list <cls> -W 5                    # Refresh every 5 seconds (--watch)
 
 Example output:
 
-```
+```text
 + Cluster: pg-test (7322261897169354773) -----+----+--------------+
 | Member    | Host        | Role    | State   | TL | Lag in MB    |
 +-----------+-------------+---------+---------+----+--------------+
@@ -151,7 +151,7 @@ Column descriptions: **Member** is instance name, composed of `pg_cluster`-`pg_s
 
 Instances requiring restart show `*` after the name:
 
-```
+```text
 + Cluster: pg-test (7322261897169354773) -------+----+--------------+
 | Member      | Host        | Role    | State   | TL | Lag in MB    |
 +-------------+-------------+---------+---------+----+--------------+
@@ -346,7 +346,7 @@ pg reinit pg-test pg-test-2 --force --wait
 
 During rebuild, use `pg list` to check progress. Replica state shows `creating replica`:
 
-```
+```text
 + Cluster: pg-test (7322261897169354773) --------------+----+------+
 | Member    | Host        | Role    | State            | TL | Lag  |
 +-----------+-------------+---------+------------------+----+------+

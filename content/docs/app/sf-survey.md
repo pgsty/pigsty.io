@@ -18,5 +18,4 @@ GitHub Repository: [https://github.com/pgsty/pigsty-app/tree/master/db](https://
 
 Online Demo: [https://demo.pigsty.io/d/sf-survey](https://demo.pigsty.io/d/sf-survey)
 
-[![](/img/docs/app/sf-survey.jpg)](https://demo.pigsty.io/d/sf-survey)
-
+[![Stack Overflow database survey dashboard](/img/docs/app/sf-survey.jpg)](https://demo.pigsty.io/d/sf-survey)

@@ -8,7 +8,7 @@ categories: [Concept]
 ---
 
 {{< infographic >}}
-```
+```text
 infographic list-row-simple-horizontal-arrow
 data
   title Network Partition Failover Flow
@@ -95,7 +95,7 @@ Patroni solves this through **active demotion**: when unable to refresh Leader K
 
 When primary Patroni is network-partitioned from DCS, it cannot refresh Leader Key and starts retrying.
 
-```
+```text
 Timeline:
   Partition      Detect partition      Retry timeout      Primary demotes
      |               |                    |                    |
@@ -121,7 +121,7 @@ loop + retry & \text{worst (partition right after refresh)}
 
 After primary demotion, Leader Key still exists in DCS, must wait for TTL to naturally expire.
 
-```
+```text
 Timeline:
   Primary demoted                   TTL expires
      |                                 |
@@ -141,7 +141,7 @@ T_{expire} = ttl - loop - retry \quad \text{(approximately constant)}
 
 Replica wakes up in `loop_wait` cycle and checks Leader Key status in DCS.
 
-```
+```text
 Timeline:
     Lease expired      Replica wakes
        |                  |
@@ -165,7 +165,7 @@ loop & \text{worst}
 
 After replica discovers Leader Key expired, it starts the election process.
 
-```
+```text
 Election flow:
   ReplicaA ──→ Query replication position ──→ Compare ──→ Try lock ──→ Success
   ReplicaB ──→ Query replication position ──→ Compare ──→ Try lock ──→ Fail
@@ -188,7 +188,7 @@ T_{elect} = \begin{cases}
 
 HAProxy detects new primary coming online, requires `rise` consecutive successful health checks.
 
-```
+```text
 Detection timeline:
   New primary    First check    Second check   Third check (UP)
      |              |               |               |
@@ -323,7 +323,7 @@ Can configure fencing scripts to forcibly isolate old primary (e.g., disable net
 
 This is the most common network partition scenario, the main focus of this article.
 
-```
+```text
 ┌─────────┐         ╳         ┌─────────┐
 │ Primary │ ←── Partition ──→ │   DCS   │
 │ Patroni │                   │  etcd   │
@@ -343,7 +343,7 @@ This is the most common network partition scenario, the main focus of this artic
 
 ### Scenario B: Primary normal, replica partitioned from DCS
 
-```
+```text
 ┌─────────┐                   ┌─────────┐
 │ Primary │ ←── Normal ──→    │   DCS   │
 │ Patroni │                   │  etcd   │
@@ -363,7 +363,7 @@ This is the most common network partition scenario, the main focus of this artic
 
 ### Scenario C: All nodes partitioned from DCS
 
-```
+```text
 ┌─────────┐         ╳         ┌─────────┐
 │ Primary │ ←── Partition ──→ │   DCS   │
 │ Patroni │                   │  etcd   │

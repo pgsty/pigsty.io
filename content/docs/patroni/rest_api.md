@@ -631,6 +631,7 @@ $ curl -s -XPUT -d \
 ## Switchover and failover endpoints
 
 <a id="switchover_api"></a>
+
 ### Switchover
 
 `/switchover` endpoint only works when the cluster is healthy (there is a leader). It also allows to schedule a switchover at a given time.
@@ -696,6 +697,7 @@ Successfully failed over to "postgresql1"
 Failover/Switchover comparison
 
 <a id="failover_healthcheck"></a>
+
 ### Healthy standby
 
 There are a couple of checks that a member of a cluster should pass to be able to participate in the leader race during a switchover or to become a leader as a failover/switchover candidate:

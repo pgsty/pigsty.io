@@ -112,4 +112,3 @@ PostgreSQL extensions typically don't support direct rollback. To rollback:
 
 1. Restore from backup
 2. Or: Uninstall new version extension, install old version package, recreate extension
-

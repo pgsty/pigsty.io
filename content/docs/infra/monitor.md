@@ -83,4 +83,3 @@ You can modify or add new infrastructure alert rules in [`files/victoria/rules/i
         description: |
           agent_up[ins={{ $labels.ins }}, instance={{ $labels.instance }}] = {{ $value  | printf "%.2f" }} < 1
 ```
-

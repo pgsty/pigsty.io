@@ -43,7 +43,7 @@ By analogy, the [PostgreSQL](#postgresql) database kernel is the CPU, while the 
 Various Exporters and [Vector](#vector) build the [observability subsystem](#observability-subsystem);
 finally, you can swap different [**kernel CPUs**](/docs/pgsql/kernel) and [**extension cards**](/docs/pgsql/ext).
 
-![](/img/pigsty/motherboard.gif)
+![Pigsty PostgreSQL cluster architecture](/img/pigsty/motherboard.gif)
 
 
 | Subsystem                             | Components                               | Function                              |

@@ -10,7 +10,7 @@ categories: [Reference]
 
 Public Demo: [http://wiki.pigsty.cc](http://wiki.pigsty.cc)
 
-![](/img/docs/app/wiki.jpg)
+![Wiki.js](/img/docs/app/wiki.jpg)
 
 
 ## TL; DR

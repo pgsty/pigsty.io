@@ -127,4 +127,3 @@ Currently, TimescaleDB's experimental storage engine Hypercore has been proven t
 Users using this feature should migrate to PostgreSQL native tables or TimescaleDB's default engine promptly.
 
 Detailed introduction: [PG New Storage Engine Failure Case](https://mp.weixin.qq.com/s/LdZVVyOj4BA9C892I25lQw) (Chinese)
-

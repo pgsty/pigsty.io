@@ -116,7 +116,7 @@ Removal includes stopping the service, lazy unmounting, removing systemd unit an
 
 `juice_register` writes target file on **infra node**:
 
-```
+```text
 /infra/targets/juice/<hostname>.yml
 ```
 

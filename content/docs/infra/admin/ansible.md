@@ -117,4 +117,3 @@ Use `-i|--inventory <path>` to specify a different config file:
 > [!NOTE]
 >
 > To permanently change the default config file path, modify the `inventory` parameter in `ansible.cfg`.
-

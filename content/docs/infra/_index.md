@@ -306,7 +306,7 @@ The INFRA module playbook [`infra.yml`](https://github.com/pgsty/pigsty/blob/mai
 * Add the current meta node as a regular node under Pigsty management
 * Deploy **infrastructure** components including VictoriaMetrics/Logs/Traces, VMAlert, Grafana, Alertmanager, Blackbox Exporter, etc.
 
-**This playbook executes on [**INFRA nodes**](/docs/concept/arch/node#infra-node) by default**
+**This playbook executes on [INFRA nodes](/docs/concept/arch/node#infra-node) by default**
 
 * Pigsty uses the **current node executing this playbook** as Pigsty's [**INFRA node**](/docs/concept/arch/node#infra-node) and [**ADMIN node**](/docs/concept/arch/node#admin-node) by default.
 * During [configuration](/docs/setup/install#configure), Pigsty marks the current node as Infra/Admin node and replaces the placeholder IP `10.10.10.10` in config templates with the **current node's primary IP address**.

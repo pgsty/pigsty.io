@@ -26,7 +26,7 @@ You can access this graphical interface by entering the deployment node's IP add
 {.full-width}
 
 
-[![](/img/pigsty/home.png)](https://demo.pigsty.io/zh)
+[![Pigsty online demo homepage](/img/pigsty/home.png)](https://demo.pigsty.io/zh)
 
 
 ------

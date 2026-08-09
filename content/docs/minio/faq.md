@@ -109,5 +109,3 @@ Pigsty provides out-of-the-box monitoring capabilities for MinIO:
 - **MinIO Built-in Console**: Access via `https://<minio-ip>:9001`
 
 For details, please refer to the [Monitoring](/docs/minio/monitor) documentation
-
-

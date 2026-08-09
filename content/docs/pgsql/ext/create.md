@@ -144,4 +144,3 @@ SELECT * FROM pg_extension_config_dump('vector');
 -- View extension version
 SELECT extversion FROM pg_extension WHERE extname = 'vector';
 ```
-

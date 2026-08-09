@@ -36,6 +36,7 @@ Note that in some cases, for instance, when running on OpenShift, there is no al
 Patroni Kubernetes [settings](/docs/patroni/config/yaml#kubernetes_settings) and [environment variables](/docs/patroni/config/env#kubernetes_environment) are described in the general chapters of the documentation.
 
 <a id="kubernetes_role_values"></a>
+
 ### Customize role label
 
 By default, Patroni will set corresponding labels on the pod it runs in based on node's role, such as `role=primary`. The key and value of label can be customized by `kubernetes.role_label`, `kubernetes.leader_label_value`, `kubernetes.follower_label_value` and `kubernetes.standby_leader_label_value`.

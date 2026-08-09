@@ -74,4 +74,3 @@ https://maybe.pigsty
 - Must change `SECRET_KEY_BASE`, generate with `openssl rand -hex 64`
 - First access requires registering an admin account
 - Optionally configure Synth API for stock price data
-

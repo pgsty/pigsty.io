@@ -22,7 +22,7 @@ and compared to Supabase cloud services, it provides up to [**{{< param pgext_co
 For the complete self-hosting tutorial, please refer to: [**Supabase Self-Hosting Guide**](/docs/app/supabase)
 
 
-![](/img/pigsty/supabase.webp)
+![Supabase](/img/pigsty/supabase.webp)
 
 -------
 

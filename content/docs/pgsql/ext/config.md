@@ -153,4 +153,3 @@ pg edit-config pg-meta --force -p 'pg_stat_statements.track=all'
 ```sql
 SHOW shared_preload_libraries;
 ```
-

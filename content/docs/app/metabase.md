@@ -63,7 +63,7 @@ Metabase can connect to PostgreSQL databases managed by Pigsty.
 
 During Metabase initialization or when adding a database, select "PostgreSQL" and enter the connection information:
 
-```
+```text
 Database Type: PostgreSQL
 Name: Custom name (e.g., "Production Database")
 Host: 10.10.10.10

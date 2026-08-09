@@ -48,8 +48,9 @@ Thumbs.db
 temp/
 play/
 
-# Utility scripts (managed separately); link checker tracked for make check
+# Utility scripts (managed separately); checkers tracked for make check
 bin/*
+!bin/check-markdown.py
 !bin/check_internal_links.py
 
 # ==============================================================================

@@ -49,7 +49,7 @@ function pb() {
 
 You can see the initial backup information, which is a full backup:
 
-```
+```text
 root@pg-meta-1:~# pb info
 stanza: pg-meta
     status: ok

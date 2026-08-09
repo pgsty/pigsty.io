@@ -17,7 +17,7 @@ All the RPM / DEB packages are signed with GPG key fingerprint (`B9BD8B20`) in P
 
 Full: `9592A7BC7A682E7333376E09E7935D8DB9BD8B20` Ruohang Feng (Pigsty) [rh@vonng.com](mailto:rh@vonng.com)
 
-```
+```text
 pub   rsa4096 2024-07-16 [SC]
       9592A7BC7A682E7333376E09E7935D8DB9BD8B20
 uid           [ultimate] Ruohang Feng (Pigsty) <rh@vonng.com>
@@ -68,7 +68,7 @@ curl -fsSL https://repo.pigsty.cc/key | sudo gpg --dearmor -o /etc/apt/keyrings/
 
 The corresponding public key block is:
 
-```
+```text
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQINBGaV5PwBEACbErI+7yOrsXTT3mR83O6Fw9WyHJqozhyNPF3dA1gAtWpfWqd4
@@ -222,4 +222,3 @@ Components: main
 Description: pigsty apt repository for infra components
 SignWith: 9592A7BC7A682E7333376E09E7935D8DB9BD8B20
 ```
-

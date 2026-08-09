@@ -181,4 +181,3 @@ minio_up{cls="minio", ins="minio-4", ip="10.10.10.13", job="minio"}
 For example, the `cls`, `ins`, `ip` labels correspond to cluster name, instance name, and node IP—the identifiers for these three core entities.
 They appear along with the `job` label in **all** MinIO monitoring metrics collected by [**VictoriaMetrics**](/docs/concept/arch/infra#victoriametrics).
 The `job` name for collecting MinIO metrics is fixed as `minio`.
-

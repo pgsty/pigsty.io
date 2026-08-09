@@ -31,7 +31,7 @@ vi pigsty.yml              # Edit domain, passwords, keys...
 
 After installation, access Supa Studio on port `8000` with username `supabase` and password `pigsty`.
 
-![](/img/pigsty/supabase.webp)
+![Supabase](/img/pigsty/supabase.webp)
 
 {{< asciinema file="demo/supabase.cast" markers="0:Check,11:Install,43:Config,307:Docker,321:Domain,340:App,350:Verify" theme="solarized-light" speed="1.3" autoplay="true" loop="true" >}}
 
@@ -141,7 +141,7 @@ For local development/testing, you can skip this and customize later.
 If configured correctly, after about ten minutes, you can access the Supabase Studio GUI at `http://<your_ip_address>:8000` on your local network.
 Default username and password are `supabase` and `pigsty`.
 
-![](/img/pigsty/supabase.webp)
+![Supabase](/img/pigsty/supabase.webp)
 
 **Notes:**
 

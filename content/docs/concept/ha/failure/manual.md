@@ -9,7 +9,7 @@ categories: [Concept]
 ---
 
 {{< infographic >}}
-```
+```text
 infographic list-row-simple-horizontal-arrow
 data
 
@@ -92,7 +92,7 @@ pg failover pg-test              # Failover to best candidate
 pg failover pg-test --candidate pg-test-2  # Failover to specified replica
 ```
 
-```
+```text
 Timeline:
   Execute cmd      API Response      Start Promote
      |               |               |
@@ -116,7 +116,7 @@ T_{command} = \begin{cases}
 
 Patroni acquires Leader Key and executes `pg_ctl promote` to promote the target replica to new primary.
 
-```
+```text
 Promotion flow:
   Patroni ──→ Acquire Leader Key ──→ pg_ctl promote ──→ New primary ready
 ```
@@ -138,7 +138,7 @@ T_{promote} = \begin{cases}
 
 HAProxy detects new primary coming online, requires `rise` consecutive successful health checks.
 
-```
+```text
 Detection timeline:
   New primary    First check    Second check   Third check (UP)
      |              |               |               |
@@ -227,7 +227,7 @@ pg switchover pg-test pg-test-2    # Switch to specified replica
 ```
 
 {{< infographic >}}
-```
+```text
 infographic list-row-simple-horizontal-arrow
 data
   title Switchover Planned Switchover Flow

@@ -27,7 +27,7 @@ Let's start with the ER diagram. In Pigsty's PGSQL module, there are four core e
 - **Instance**: A single PostgreSQL server consisting of a running process and database files on a single node.
 - **Node**: An abstraction of hardware resources, which can be bare metal, virtual machines, or even Kubernetes pods.
 
-![](/img/pigsty/er.jpg)
+![Pigsty data model ER diagram](/img/pigsty/er.jpg)
 
 **Naming Conventions**
 
@@ -84,5 +84,3 @@ pg_up{cls="pg-test", ins="pg-test-1", ip="10.10.10.11", job="pgsql"}
 pg_up{cls="pg-test", ins="pg-test-2", ip="10.10.10.12", job="pgsql"}
 pg_up{cls="pg-test", ins="pg-test-3", ip="10.10.10.13", job="pgsql"}
 ```
-
-

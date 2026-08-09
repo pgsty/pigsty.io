@@ -75,4 +75,3 @@ mcli ls sss/
 - Each node requires 4 independent disks mounted at `/data1` - `/data4`
 - Production environments recommend at least 4 nodes for erasure coding redundancy
 - VIP requires proper network interface configuration (`vip_interface`)
-

@@ -192,7 +192,7 @@ infra:
       - redis:latest      # Pull the latest Redis image
 ```
 
-Another way to preload images is to use locally `save`d `tgz` archives: if you've previously exported Docker images using `docker save xxx | gzip -c > /tmp/docker/xxx.tgz`.
+Another way to preload images is to use locally `save` d `tgz` archives: if you've previously exported Docker images using `docker save xxx | gzip -c > /tmp/docker/xxx.tgz`.
 These exported image files can be automatically loaded via the glob specified by the [`docker_image_cache`](/docs/docker/param#docker_image_cache) parameter. The default location is: `/tmp/docker/*.tgz`.
 
 This means you can place images in the `/tmp/docker` directory beforehand, and after running [`docker.yml`](/docs/docker/playbook#dockeryml) to install Docker, these image packages will be automatically loaded.

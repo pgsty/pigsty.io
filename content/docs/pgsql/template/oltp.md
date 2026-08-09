@@ -87,7 +87,7 @@ OLTP template memory allocation strategy:
 | `effective_cache_size` | total mem - shared_buffers | Estimated cache memory |
 
 **work_mem calculation**:
-```
+```text
 work_mem = min(max(shared_buffers / max_connections, 64MB), 1GB)
 ```
 

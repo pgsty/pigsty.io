@@ -125,4 +125,3 @@ inventory = pigsty.yml
 ```
 
 Additionally, Pigsty supports using a [**CMDB metabase**](/docs/concept/iac/cmdb) to store the inventory, facilitating integration with existing systems.
-

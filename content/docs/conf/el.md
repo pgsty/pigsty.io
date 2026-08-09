@@ -57,4 +57,3 @@ The `demo/el` template is optimized for Enterprise Linux family distributions.
 - Enterprise production environments (RHEL/Rocky/Alma recommended)
 - Long-term support and stability requirements
 - Environments using Red Hat ecosystem
-

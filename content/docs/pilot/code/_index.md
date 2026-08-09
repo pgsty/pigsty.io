@@ -28,7 +28,7 @@ Pigsty's CODE module provides automated Code-Server deployment with HTTPS access
 
 CODE module deploys Code-Server as a systemd service, exposed to web via Nginx reverse proxy.
 
-```
+```text
 User Browser
     ↓ HTTPS
 Nginx (https://i.pigsty/code/)
@@ -129,7 +129,7 @@ Common commands:
 
 ## Directory Structure
 
-```
+```text
 {{ code_home }}                 # Working directory (e.g., /fs/code)
 └── your-projects/              # Project files
 

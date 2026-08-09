@@ -626,4 +626,3 @@ PostgreSQL built-in contrib extension modules, 71 extensions total, shipped with
 | [`test_decoding`](/ext/e/test_decoding) | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | - | 18, 17, 16, 15, 14 | SQL-based test/example module for WAL logical decoding |
 | [`pgoutput`](/ext/e/pgoutput) | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | - | 18, 17, 16, 15, 14 | Logical Replication output plugin |
 {.ext-table}
-

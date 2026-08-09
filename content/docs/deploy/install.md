@@ -235,7 +235,7 @@ The [**`PGSQL`**](/docs/pgsql/) module provides a [**PostgreSQL database server*
 
 For production multi-node HA PostgreSQL clusters, use [**service access**](/docs/pgsql/misc/svc) for automatic traffic routing.
 
-[![](/img/pigsty/home.png)](https://demo.pigsty.io)
+[![Pigsty online demo homepage](/img/pigsty/home.png)](https://demo.pigsty.io)
 
 
 ----------------

@@ -16,7 +16,7 @@ Use domain names instead of IP addresses to access Pigsty's various web services
 
 Add the following static resolution records to `/etc/hosts`:
 
-```
+```text
 10.10.10.10 i.pigsty
 ```
 
@@ -76,7 +76,7 @@ notepad C:\Windows\System32\drivers\etc\hosts
 
 Add content:
 
-```
+```text
 10.10.10.10 i.pigsty m.pigsty
 ```
 
@@ -242,4 +242,3 @@ Using these domains requires configuring corresponding services in [`infra_porta
 ./pgsql.yml -t pg_dns_ins     # Register instance-level DNS only
 ./pgsql.yml -t pg_dns_cls     # Register cluster-level DNS only
 ```
-

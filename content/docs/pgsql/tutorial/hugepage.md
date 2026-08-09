@@ -23,4 +23,3 @@ sync; echo 3 > /proc/sys/vm/drop_caches   # Flush disk, release system cache (be
 sudo /pg/bin/pg-tune-hugepage             # Write nr_hugepages to /etc/sysctl.d/hugepage.conf
 pg restart <cls>                          # Restart postgres to use hugepage
 ```
-

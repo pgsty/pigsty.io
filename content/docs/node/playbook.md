@@ -21,7 +21,7 @@ Two wrapper scripts are also provided: `bin/node-add` and `bin/node-rm`, for qui
 
 The [`node.yml`](https://github.com/pgsty/pigsty/blob/main/node.yml) playbook for adding nodes to Pigsty contains the following subtasks:
 
-```
+```text
 node-id       : generate node identity
 node_name     : setup hostname
 node_hosts    : setup /etc/hosts records
@@ -55,7 +55,7 @@ monitor       : setup node monitoring: node_exporter & vector
 
 The [`node-rm.yml`](https://github.com/pgsty/pigsty/blob/main/node-rm.yml) playbook for removing nodes from Pigsty contains the following subtasks:
 
-```
+```text
 register       : remove registration from prometheus & nginx
   - prometheus : remove registered prometheus monitoring target
   - nginx      : remove nginx proxy record for haproxy admin

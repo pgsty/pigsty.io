@@ -130,7 +130,7 @@ Since the target database cluster already exists, you need to manually [create m
 
 If you **can only access the target database via PGURL** (database connection string), you can configure according to the instructions here. In this mode, Pigsty deploys corresponding PG Exporters on [**INFRA nodes**](/docs/concept/arch/node#infra-node) to scrape remote database metrics, as shown below:
 
-```
+```text
 ------ infra ------
 |                 |
 | victoria-metrics|            v---- pg-foo-1 ----v

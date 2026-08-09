@@ -37,7 +37,7 @@ For more questions, please refer to [FAQ: REDIS](/docs/redis/faq/).
 
 -------------
 
-### Initialize Redis
+## Initialize Redis
 
 You can use the [`redis.yml`](/docs/redis/playbook#redisyml) playbook to initialize Redis clusters, nodes, or instances:
 
@@ -62,7 +62,7 @@ bin/redis-add 10.10.10.10 6379  # create redis instance '10.10.10.10:6379'
 
 -------------
 
-### Remove Redis
+## Remove Redis
 
 You can use the [`redis-rm.yml`](/docs/redis/playbook#redis-rmyml) playbook to remove Redis clusters, nodes, or instances:
 
@@ -90,7 +90,7 @@ bin/redis-rm 10.10.10.10 6379  # remove redis instance '10.10.10.10:6379'
 
 -------------
 
-### Reconfigure Redis
+## Reconfigure Redis
 
 You can partially run the [`redis.yml`](/docs/redis/playbook#redisyml) playbook to reconfigure Redis clusters, nodes, or instances:
 
@@ -125,7 +125,7 @@ redis-benchmark -h 10.10.10.13 -p 6379
 
 -------------
 
-### Configure Redis Replica
+## Configure Redis Replica
 
 https://redis.io/commands/replicaof/
 
@@ -141,7 +141,7 @@ https://redis.io/commands/replicaof/
 
 -------------
 
-### Configure HA with Sentinel
+## Configure HA with Sentinel
 
 Redis standalone master-slave clusters can be configured for automatic high availability through Redis Sentinel. For detailed information, please refer to the [Sentinel official documentation](https://redis.io/docs/management/sentinel/).
 
@@ -176,7 +176,7 @@ Use the following command to refresh the managed master list on the Redis Sentin
 
 -------------
 
-### Initialize Redis Native Cluster
+## Initialize Redis Native Cluster
 
 When [`redis_mode`](/docs/redis/param#redis_mode) is set to `cluster`, `redis.yml` will additionally execute the `redis-join` stage: it uses `redis-cli --cluster create --cluster-yes ... --cluster-replicas {{ redis_cluster_replicas }}` in `/tmp/<cluster>-join.sh` to join all instances into a native cluster.
 
@@ -185,9 +185,9 @@ This step runs automatically during the first deployment. Subsequently re-runnin
 
 -------------
 
-### Scale Up Redis Nodes
+## Scale Up Redis Nodes
 
-#### Scale Up Standalone Cluster
+### Scale Up Standalone Cluster
 
 When adding new nodes/instances to an existing Redis master-slave cluster, first add the new definition in the inventory:
 
@@ -205,7 +205,7 @@ Then deploy only the new node:
 ./redis.yml -l 10.10.10.11   # deploy only the new node
 ```
 
-#### Scale Up Native Cluster
+### Scale Up Native Cluster
 
 Adding new nodes to a Redis native cluster requires additional steps:
 
@@ -221,7 +221,7 @@ redis-cli --cluster add-node 10.10.10.14:6379 10.10.10.12:6379
 redis-cli --cluster reshard 10.10.10.12:6379
 ```
 
-#### Scale Up Sentinel Cluster
+### Scale Up Sentinel Cluster
 
 After adding new instances to a Sentinel cluster, you should complete both instance deployment and target refresh:
 
@@ -236,9 +236,9 @@ After adding new instances to a Sentinel cluster, you should complete both insta
 
 -------------
 
-### Scale Down Redis Nodes
+## Scale Down Redis Nodes
 
-#### Scale Down Standalone Cluster
+### Scale Down Standalone Cluster
 
 ```bash
 # 1. If removing a replica, just remove it directly
@@ -254,7 +254,7 @@ redis-cli -h 10.10.10.10 -p 6379 REPLICAOF 10.10.10.10 6380  # demote original p
 # 4. Update the inventory to remove the definition
 ```
 
-#### Scale Down Native Cluster
+### Scale Down Native Cluster
 
 ```bash
 # 1. First migrate data slots
@@ -273,9 +273,9 @@ redis-cli --cluster del-node 10.10.10.12:6379 <node-id>
 
 -------------
 
-### Backup and Restore
+## Backup and Restore
 
-#### Manual Backup
+### Manual Backup
 
 ```bash
 # Trigger RDB snapshot
@@ -288,7 +288,7 @@ redis-cli -h 10.10.10.10 -p 6379 -a <password> LASTSAVE
 cp /data/redis/redis-ms-1-6379/dump.rdb /backup/redis-ms-$(date +%Y%m%d).rdb
 ```
 
-#### Data Restore
+### Data Restore
 
 ```bash
 # 1. Stop Redis instance
@@ -302,7 +302,7 @@ chown redis:redis /data/redis/redis-ms-1-6379/dump.rdb
 sudo systemctl start redis-ms-1-6379
 ```
 
-#### Using AOF Persistence
+### Using AOF Persistence
 
 If you need higher data safety, enable AOF:
 
@@ -322,9 +322,9 @@ Redeploy to apply AOF configuration:
 
 -------------
 
-### Common Issue Diagnosis
+## Common Issue Diagnosis
 
-#### Connection Troubleshooting
+### Connection Troubleshooting
 
 ```bash
 # Check Redis service status
@@ -340,7 +340,7 @@ sudo iptables -L -n | grep 6379
 redis-cli -h 10.10.10.10 -p 6379 PING
 ```
 
-#### Memory Troubleshooting
+### Memory Troubleshooting
 
 ```bash
 # Check memory usage
@@ -353,7 +353,7 @@ redis-cli -h 10.10.10.10 -p 6379 --bigkeys
 redis-cli -h 10.10.10.10 -p 6379 MEMORY DOCTOR
 ```
 
-#### Performance Troubleshooting
+### Performance Troubleshooting
 
 ```bash
 # Check slow query log
@@ -366,7 +366,7 @@ redis-cli -h 10.10.10.10 -p 6379 MONITOR
 redis-cli -h 10.10.10.10 -p 6379 CLIENT LIST
 ```
 
-#### Replication Troubleshooting
+### Replication Troubleshooting
 
 ```bash
 # Check replication status
@@ -379,9 +379,9 @@ redis-cli -h 10.10.10.10 -p 6380 INFO replication | grep lag
 
 -------------
 
-### Performance Tuning
+## Performance Tuning
 
-#### Memory Optimization
+### Memory Optimization
 
 ```yaml
 redis-cache:
@@ -391,7 +391,7 @@ redis-cache:
     redis_conf: redis.conf
 ```
 
-#### Persistence Optimization
+### Persistence Optimization
 
 ```yaml
 # Pure cache scenario: disable persistence
@@ -407,7 +407,7 @@ redis-data:
     redis_aof_enabled: true
 ```
 
-#### Connection Pool Recommendations
+### Connection Pool Recommendations
 
 When connecting to Redis from client applications:
 
@@ -416,7 +416,7 @@ When connecting to Redis from client applications:
 - Enable TCP keepalive
 - For high-concurrency scenarios, consider using Pipeline for batch operations
 
-#### Key Monitoring Metrics
+### Key Monitoring Metrics
 
 Monitor these metrics through Grafana dashboards:
 

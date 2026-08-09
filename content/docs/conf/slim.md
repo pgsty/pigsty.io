@@ -67,4 +67,3 @@ The `slim` template is Pigsty's **minimal installation configuration**, designed
 - After slim installation, cannot view database status through Grafana
 - If monitoring is needed, use [`meta`](/docs/conf/meta/) or [`rich`](/docs/conf/rich/) template
 - Can add replicas as needed for high availability
-

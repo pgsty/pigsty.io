@@ -85,12 +85,12 @@ By default `/fs` is the shared directory stored in PostgreSQL, also the default 
 You can ssh to the server then `cd /fs`, and normally start the corresponding CLI with `claude` or `codex`. The preconfigured `x` alias starts Codex YOLO mode, while `xx` starts Claude YOLO mode; use them carefully around real data.
 You can also start Claude Code from the Code Server or Jupyter terminal, or through VS Code / Jupyter Claude plugins.
 
-![](/img/pigsty/vscode.webp)
+![AI coding environment in VS Code](/img/pigsty/vscode.webp)
 
 Claude here has logs and monitoring metrics integrated with Grafana dashboards, so you can monitor Claude's running status through Grafana.
 Codex CLI is package-only in VIBE: the CLI package is installed by default, while login, provider setup, and config files are still managed by Codex itself.
 
-![](/img/pigsty/claude-monitor-1.webp)
+![Claude Code monitoring dashboard](/img/pigsty/claude-monitor-1.webp)
 
 -------
 
@@ -112,7 +112,7 @@ claude_env:
 
 Then re-run `./vibe.yml -t claude`. This only affects Claude Code; Codex CLI account and provider config are not managed by VIBE.
 
-![](/img/pigsty/claude-monitor-2.webp)
+![Claude Code observability data](/img/pigsty/claude-monitor-2.webp)
 
 
 ## Claude Code Observability

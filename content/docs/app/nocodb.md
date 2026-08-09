@@ -59,7 +59,7 @@ NocoDB can connect to PostgreSQL databases managed by Pigsty.
 
 When adding a new project in the NocoDB interface, select "External Database" and enter the PostgreSQL connection information:
 
-```
+```text
 Host: 10.10.10.10
 Port: 5432
 Database Name: your_database

@@ -197,11 +197,11 @@ Aliyun RDS for PostgreSQL 16 available extensions (excluding PG built-in extensi
 
 Pigsty provides nearly 3000 monitoring metrics and 50+ monitoring dashboards, covering database monitoring, host monitoring, connection pool monitoring, load balancer monitoring, and more, providing users with an unparalleled observability experience.
 
-![](/img/pigsty/dashboard.jpg)
+![Pigsty monitoring dashboard](/img/pigsty/dashboard.jpg)
 
 Pigsty provides 638 PostgreSQL-related monitoring metrics, while AWS RDS only has 99, and Aliyun RDS has only single-digit metrics:
 
-![](/img/docs/compare/aliyun.png)
+![Alibaba Cloud RDS for PostgreSQL metrics](/img/docs/compare/aliyun.png)
 
 Additionally, some projects provide PostgreSQL monitoring capabilities, but are relatively simple:
 

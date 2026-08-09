@@ -95,7 +95,7 @@ This decouples backup pipeline from HA topology and avoids interruptions on swit
 
 pgBackRest uses **stanza** to isolate cluster backups, mapped to `pg_cluster` in Pigsty:
 
-```
+```text
 backup-repo
 ├── pg-meta/
 │   ├── backup/

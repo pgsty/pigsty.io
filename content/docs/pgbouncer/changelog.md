@@ -542,7 +542,7 @@ This is a minor release that fixes a few recently introduced bugs:
   * Add `application_name` to `SHOW CLIENTS`/`SERVERS`/`SOCKETS`
     output ([#449](https://github.com/pgbouncer/pgbouncer/pull/449))
   * Add information about cancel requests to `SHOW
-    CLIENTS`/`SERVERS`/`POOLS` output
+    CLIENTS `/` SERVERS `/` POOLS` output
     ([#782](https://github.com/pgbouncer/pgbouncer/pull/782))
 
 - Fixes

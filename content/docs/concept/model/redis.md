@@ -200,5 +200,3 @@ redis_up{cls="redis-ms", ins="redis-ms-1-6380", ip="10.10.10.10", job="redis"}
 For example, the `cls`, `ins`, `ip` labels correspond to cluster name, instance name, and node IP—the identifiers for these three core entities.
 They appear along with the `job` label in **all** Redis monitoring metrics collected by [**VictoriaMetrics**](/docs/concept/arch/infra#victoriametrics).
 The `job` name for collecting Redis metrics is fixed as `redis`.
-
-

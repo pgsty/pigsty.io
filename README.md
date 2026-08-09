@@ -39,5 +39,3 @@ hugo
 ## License
 
 [CC-BY 4.0](LICENSE)
-
-

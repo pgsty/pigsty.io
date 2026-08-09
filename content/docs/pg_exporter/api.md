@@ -65,7 +65,7 @@ pg_exporter_build_info{version="v1.4.1",branch="main",revision="<git-sha>",build
 
 Metrics follow the Prometheus exposition format:
 
-```
+```text
 # HELP <metric_name> <description>
 # TYPE <metric_name> <type>
 <metric_name>{<label_name>="<label_value>",...} <value> <timestamp>

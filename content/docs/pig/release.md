@@ -984,7 +984,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.6.0
 
 **Checksums**
 
-```
+```text
 9ec6f3caf3edbe867caab5de0e0ccb33  pig_0.5.0-1_amd64.deb
 4fbb0a42cd8a88bce50b3c9d85745d77  pig_0.5.0-1_arm64.deb
 9cf8208396b068cab438f72c90d39efe  pig-0.5.0-1.aarch64.rpm

@@ -64,7 +64,7 @@ Minor version upgrades (e.g., 17.2 → 17.3) are the most common upgrade scenari
 
 **Strategy**: Recommended **rolling upgrade**: upgrade replicas first, then switchover to upgrade original primary - minimizes service interruption.
 
-```
+```text
 1. Update repo → 2. Upgrade replica packages → 3. Restart replicas
 4. Switchover → 5. Upgrade original primary packages → 6. Restart original primary
 ```
@@ -228,7 +228,7 @@ For production, we recommend **logical replication migration**: create new versi
 
 Logical replication is the recommended approach for production major version upgrades. Core steps:
 
-```
+```text
 1. Create new version target cluster → 2. Configure logical replication → 3. Verify data consistency
 4. Switch app traffic to new cluster → 5. Decommission old cluster
 ```
@@ -407,4 +407,3 @@ Before major version upgrade, confirm all extensions support target PostgreSQL v
 - [**Cluster Management**](/docs/pgsql/admin/cluster/): Cluster creation, scaling, destruction
 - [**Backup Recovery**](/docs/pgsql/backup/): PostgreSQL backup and recovery
 - [**Extension Management**](/docs/pgsql/admin/ext/): Extension installation and management
-

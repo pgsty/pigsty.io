@@ -993,8 +993,8 @@ The [**`INFRA`**](/docs/infra) module has 964 available metrics.
 **`PING`** job has 54 metrics, provided by `blackbox_exporter`.
 
 
-| Metric Name                           | Type    | Labels                                         | Description                                                                        | 
-|---------------------------------------|---------|------------------------------------------------|------------------------------------------------------------------------------------| 
+| Metric Name                           | Type    | Labels                                         | Description                                                                        |
+|---------------------------------------|---------|------------------------------------------------|------------------------------------------------------------------------------------|
 | agent_up                              | Unknown | `ins`, `ip`, `job`, `instance`, `cls`          | N/A                                                                                |
 | probe_dns_lookup_time_seconds         | gauge   | `ins`, `ip`, `job`, `instance`, `cls`          | Returns the time taken for probe dns lookup in seconds                             |
 | probe_duration_seconds                | gauge   | `ins`, `ip`, `job`, `instance`, `cls`          | Returns how long the probe took to complete in seconds                             |
@@ -1018,8 +1018,8 @@ The [**`INFRA`**](/docs/infra) module has 964 available metrics.
 PushGateway provides 44 metrics.
 
 
-| Metric Name                           | Type    | Labels                                                                                                        | Description                                                                                                                                                 | 
-|---------------------------------------|---------|---------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------| 
+| Metric Name                           | Type    | Labels                                                                                                        | Description                                                                                                                                                 |
+|---------------------------------------|---------|---------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | agent_up                              | Unknown | `job`, `cls`, `instance`, `ins`, `ip`                                                                         | N/A                                                                                                                                                         |
 | go_gc_duration_seconds                | summary | `job`, `cls`, `instance`, `ins`, `quantile`, `ip`                                                             | A summary of the pause duration of garbage collection cycles.                                                                                               |
 | go_gc_duration_seconds_count          | Unknown | `job`, `cls`, `instance`, `ins`, `ip`                                                                         | N/A                                                                                                                                                         |

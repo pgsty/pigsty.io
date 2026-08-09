@@ -124,4 +124,3 @@ etcd_up{cls="etcd", ins="etcd-3", ip="10.10.10.12", job="etcd"}
 For example, the `cls`, `ins`, `ip` labels correspond to cluster name, instance name, and node IP—the identifiers for these three core entities.
 They appear along with the `job` label in **all** ETCD monitoring metrics collected by [**VictoriaMetrics**](/docs/concept/arch/infra#victoriametrics).
 The `job` name for collecting ETCD metrics is fixed as `etcd`.
-

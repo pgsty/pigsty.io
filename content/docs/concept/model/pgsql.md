@@ -151,5 +151,3 @@ Additionally, some entity identity labels appear in specific entity-related moni
 - `funcname`: Function name, if a metric belongs to a specific function.
 - `seqname`: Sequence name, if a metric belongs to a specific sequence.
 - `query`: Query fingerprint, if a metric belongs to a specific query.
-
-

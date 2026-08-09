@@ -80,6 +80,7 @@ The parameters would be applied in the following order (run-time are given the h
 This allows configuration for all the nodes (2), configuration for a specific node using `ALTER SYSTEM` (3) and ensures that parameters essential to the running of Patroni are enforced (4), as well as leaves room for configuration tools that manage `postgresql.conf` directly without involving Patroni (1).
 
 <a id="shared_memory_gucs"></a>
+
 ### PostgreSQL parameters that touch shared memory
 
 PostgreSQL has some parameters that determine the size of the shared memory used by them:
@@ -144,9 +145,10 @@ Patroni provides command-line interfaces for a Patroni [local configuration](/do
 - Validate a given Patroni configuration file.
 
 <a id="generate_sample_config"></a>
+
 ### Sample Patroni configuration
 
-```
+```text
 patroni --generate-sample-config [configfile]
 ```
 
@@ -167,9 +169,10 @@ Some default values are defined based on the local setup:
 `configfile` - full path to the configuration file used to store the result. If not provided, the result is sent to `stdout`.
 
 <a id="generate_config"></a>
+
 ### Patroni configuration for a running instance
 
-```
+```text
 patroni --generate-config [--dsn DSN] [configfile]
 ```
 
@@ -210,7 +213,7 @@ Optional DSN string for the local PostgreSQL instance to get GUC values from.
 
 ### Validate Patroni configuration
 
-```
+```text
 patroni --validate-config [configfile] [--ignore-listen-port | -i]
 ```
 

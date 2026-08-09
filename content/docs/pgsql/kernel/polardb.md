@@ -20,7 +20,7 @@ PolarDB for PostgreSQL now uses PostgreSQL 17 as its base. The `polar` template,
 
 Pigsty's PGSQL repository provides PolarDB PG open-source installation packages, but they are not downloaded to the local software repository during Pigsty installation.
 
-![](/img/pigsty/polar.jpg)
+![PolarDB for PostgreSQL](/img/pigsty/polar.jpg)
 
 
 --------

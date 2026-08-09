@@ -46,4 +46,3 @@ flowchart LR
 One etcd cluster per Pigsty deployment serves multiple PG clusters.
 
 Pigsty enables RBAC by default. Each PG cluster uses independent credentials for multi-tenant isolation. Admins use etcd root user with full permissions over all PG clusters.
-

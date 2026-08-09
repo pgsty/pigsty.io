@@ -252,7 +252,7 @@ The [**`INFRA`**](/docs/infra) module provides a [**graphical management interfa
 
 The [**`PGSQL`**](/docs/pgsql/) module provides a [**PostgreSQL database server**](/docs/setup/pgsql), listening on **5432**, also accessible via Pgbouncer/HAProxy [**proxies**](/docs/pgsql/service).
 
-[![](/img/pigsty/home.png)](https://demo.pigsty.io/)
+[![Pigsty online demo homepage](/img/pigsty/home.png)](https://demo.pigsty.io/)
 
 
 ----------------

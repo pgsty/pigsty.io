@@ -300,7 +300,7 @@ CREATE EXTENSION plprofiler;
 
 Add to `postgresql.conf`:
 
-```
+```text
 shared_preload_libraries = 'plprofiler'
 ```
 

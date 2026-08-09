@@ -36,7 +36,7 @@ journalctl -u jupyter -f
 
 Default locations (adjustable via `vibe_data`):
 
-```
+```text
 /fs/CLAUDE.md
 /fs/AGENTS.md
 ```

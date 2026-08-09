@@ -196,4 +196,3 @@ See [**used ports**](/docs/ref/port/) for the complete port list.
 - `5434`: PG replica service
 - `5436`: PG default service
 - `5438`: PG offline service
-

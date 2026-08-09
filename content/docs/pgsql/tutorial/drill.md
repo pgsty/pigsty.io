@@ -139,7 +139,7 @@ After permanent failure, first recover the `~/pigsty` directory on the admin nod
 
 
 
-#### Configuration Repair
+### Configuration Repair
 
 You can use the surviving node as the new admin node, copy the `~/pigsty` directory to the new admin node, then start adjusting the configuration. For example, replace the original default admin node `10.10.10.10` with the surviving node `10.10.10.12`:
 

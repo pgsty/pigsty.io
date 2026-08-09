@@ -32,7 +32,7 @@ Pigsty automatically creates a self-signed CA during infrastructure initializati
 
 ### PKI Directory Structure
 
-```
+```text
 files/pki/
 ├── ca/
 │   ├── ca.key                # CA private key (keep secure!)

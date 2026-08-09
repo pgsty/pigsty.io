@@ -66,4 +66,3 @@ Additionally, you can use [multi-pool deployment](/docs/minio/config#multi-pool)
 - **Secure**: HTTPS encrypted transmission enabled by default, supports server-side encryption
 - **Monitoring**: Out-of-the-box Grafana dashboards and VMAlert alerting rules
 - **Easy to Use**: Pre-configured `mcli` client alias, one-click deployment and management
-

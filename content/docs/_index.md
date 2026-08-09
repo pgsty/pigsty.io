@@ -16,7 +16,7 @@ cascade:
     - print
 ---
 
-"**P**ostgreSQL **I**n **G**reat **STY**le": **P**ostgres, **I**nfras, **G**raphics, **S**ervice, **T**oolbox, it's all **Y**ours.
+"<strong>P</strong>ostgreSQL <strong>I</strong>n <strong>G</strong>reat <strong>STY</strong>le": <strong>P</strong>ostgres, <strong>I</strong>nfras, <strong>G</strong>raphics, <strong>S</strong>ervice, <strong>T</strong>oolbox, it's all <strong>Y</strong>ours.
 
 —— Battery-Included, Local-First **PostgreSQL** Distribution as a Free & Open-Source **RDS** Alternative
 

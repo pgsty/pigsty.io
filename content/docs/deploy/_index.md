@@ -21,4 +21,3 @@ Use [**Vagrant**](/docs/deploy/vagrant/) to create a local 4-node sandbox, or le
 
 For production, you typically need at least three [**nodes**](/docs/deploy/prepare) for high availability. You should understand Pigsty's core [**Concepts**](/docs/concept) and common administration procedures,
 including [**Configuration**](/docs/setup/config), [**Ansible Playbooks**](/docs/setup/playbook), and [**Security Hardening**](/docs/deploy/security) for enterprise compliance.
-

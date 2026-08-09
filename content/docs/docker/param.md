@@ -151,4 +151,3 @@ You can use `docker save | gzip` to package images and automatically import them
 ```bash
 cat *.tgz | gzip -d -c - | docker load
 ```
-

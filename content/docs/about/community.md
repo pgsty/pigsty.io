@@ -31,7 +31,7 @@ Chinese users are mainly active in WeChat groups. Currently, there are seven act
 
 To join the WeChat community, search for "Pigsty小助手" (WeChat ID: `pigsty-cc`), note or send "加群" (join group), and the assistant will invite you to the group.
 
-![](/img/pigsty/pigsty-cc.jpg)
+![Pigsty Chinese community](/img/pigsty/pigsty-cc.jpg)
 
 
 ---------------
@@ -61,7 +61,7 @@ Please refer to the [Community Help Guide](https://github.com/pgsty/pigsty/discu
 
 **Pigsty version and OS version** (**Required**)
 
-```
+```text
 $ grep version pigsty.yml
 
 $ cat /etc/os-release
@@ -77,7 +77,7 @@ If you have customized and modified the environment after installing the OS, or 
 
 > Please don't forget to redact any sensitive information: passwords, internal keys, sensitive configurations, etc.
 
-```
+```text
 cat ~/pigsty/pigsty.yml
 ```
 
@@ -128,4 +128,3 @@ You can also search for related issues from GitHub Issues and Discussions:
 **Is there any other information we need to know?**
 
 > The more information and context you provide, the more likely we can help you solve the problem.
-

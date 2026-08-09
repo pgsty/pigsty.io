@@ -19,7 +19,7 @@ The Pigsty PGSQL repository directly provides IvorySQL 5.4 packages compatible w
 Online installation uses Pigsty's `pgsql` repository; the Professional Edition also provides offline delivery for the corresponding platforms.
 
 
-![](/img/pigsty/ivory.jpg)
+![IvorySQL](/img/pigsty/ivory.jpg)
 
 Pigsty's `ivorysql` package alias points to IvorySQL 5, compatible with PostgreSQL 18. Real package names are mapped by platform variables under `roles/node_id/vars/`; for example, EL uses `ivorysql5`, while Debian/Ubuntu uses `ivorysql-5`.
 

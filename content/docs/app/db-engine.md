@@ -17,5 +17,4 @@ GitHub Repository: [https://github.com/pgsty/pigsty-app/tree/master/db](https://
 
 Online Demo: [https://demo.pigsty.io/d/db-engine](https://demo.pigsty.io/d/db-engine)
 
-[![](/img/docs/app/db-engine.jpg)](https://demo.pigsty.io/d/db-engine)
-
+[![Database engine monitoring dashboard](/img/docs/app/db-engine.jpg)](https://demo.pigsty.io/d/db-engine)

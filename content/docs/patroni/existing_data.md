@@ -70,7 +70,8 @@ You can find below an overview of steps for converting an existing Postgres clus
     ```
 
 <a id="major_upgrade"></a>
-# Major Upgrade of PostgreSQL Version
+
+## Major Upgrade of PostgreSQL Version
 
 The only possible way to do a major upgrade currently is:
 

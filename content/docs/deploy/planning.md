@@ -154,4 +154,3 @@ With proper virtualization infrastructure or abundant resources, you can [**use 
 | 15 |    `10.10.10.52`    |                       |                         |                           |      `pg-test-3`      |
 | 16 |       ......        |                       |                         |                           |                       |
 {.full-width}
-

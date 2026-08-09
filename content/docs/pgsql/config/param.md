@@ -55,7 +55,7 @@ Patroni stores cluster config in DCS (etcd by default), ensuring consistent conf
 
 **Storage Structure**:
 
-```
+```text
 /pigsty/                          # namespace (patroni_namespace)
   └── pg-meta/                    # cluster name (pg_cluster)
       ├── config                  # cluster config (shared)
@@ -85,7 +85,7 @@ Each Patroni instance caches DCS config locally at `/pg/conf/<instance>.yml`:
 
 Patroni renders DCS config to local PostgreSQL config files:
 
-```
+```text
 /pg/data/
 ├── postgresql.conf          # Main config (managed by Patroni)
 ├── postgresql.base.conf     # Base config (via include directive)
@@ -392,7 +392,7 @@ ALTER USER dbuser_app RESET ALL;
 
 When the same parameter is set at multiple levels, PostgreSQL applies this priority (low to high):
 
-```
+```text
 postgresql.conf           ← Cluster params (Patroni DCS)
        ↓
 postgresql.auto.conf      ← Instance params (pg_parameters / ALTER SYSTEM)

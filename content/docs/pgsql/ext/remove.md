@@ -121,4 +121,3 @@ pg restart pg-meta
 # 5. Optional: Uninstall package
 sudo yum remove pgvector_18*
 ```
-

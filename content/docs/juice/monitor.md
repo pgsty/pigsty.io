@@ -14,7 +14,7 @@ In JUICE, metrics listen on `0.0.0.0:<port>`, default port `9567`.
 
 ## Monitoring Architecture
 
-```
+```text
 JuiceFS Mount (metrics: 0.0.0.0:<port>)
     ↓
 VictoriaMetrics (scrape)
@@ -24,7 +24,7 @@ Grafana Dashboard
 
 If [`INFRA`](/docs/infra) is deployed, `juice_register` writes scrape targets to:
 
-```
+```text
 /infra/targets/juice/<hostname>.yml
 ```
 

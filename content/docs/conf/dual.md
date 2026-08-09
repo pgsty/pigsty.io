@@ -66,4 +66,3 @@ The `ha/dual` template is Pigsty's **two-node limited HA configuration**, design
 - True HA requires at least three nodes (DCS needs majority)
 - Recommend upgrading to three-node architecture as soon as possible
 - L2 VIP requires network environment support (same broadcast domain)
-

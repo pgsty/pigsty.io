@@ -90,7 +90,7 @@ OLAP template uses more aggressive memory allocation:
 | `effective_cache_size` | total mem - shared_buffers | Estimated cache memory |
 
 **work_mem calculation** (differs from OLTP):
-```
+```text
 work_mem = min(max(shared_buffers / max_connections, 64MB), 8GB)
 ```
 

@@ -10,7 +10,7 @@ categories: [Reference]
 ## Overview
 
 HBA (Host-Based Authentication) controls "who can connect to the database, from where, and how". See [**Authentication**](/docs/concept/sec/auth) for the authentication model and default rules.
-Pigsty manages HBA rules declaratively through [<span id="default-hba"></span>\n<span id="pg_default_hba_rules"></span>\n\n**`pg_default_hba_rules`**](#pg_default_hba_rules) and [<span id="pg_hba_rules"></span>\n\n**`pg_hba_rules`**](#pg_hba_rules).
+Pigsty manages HBA rules declaratively through [**`pg_default_hba_rules`**](#pg_default_hba_rules) and [**`pg_hba_rules`**](#pg_hba_rules).
 
 Pigsty renders the following config files during cluster init or HBA refresh:
 
@@ -66,7 +66,7 @@ All changes should be made in `pigsty.yml`, then execute `bin/pgsql-hba` to refr
 
 ## Parameter Details
 
-**`pg_default_hba_rules`**
+### `pg_default_hba_rules`
 
 PostgreSQL global default HBA rule list, usually defined in `all.vars`, provides base access control for all clusters.
 
@@ -88,7 +88,7 @@ pg_default_hba_rules:
   - {user: '+dbrole_offline' ,db: all    ,addr: intra     ,auth: pwd   ,title: 'allow etl offline tasks from intranet',order: 650}
 ```
 
-**`pg_hba_rules`**
+### `pg_hba_rules`
 
 PostgreSQL cluster/instance-level additional HBA rules, can override at cluster or instance level, merged with default rules and sorted by `order`.
 
@@ -99,7 +99,7 @@ pg_hba_rules:
   - {user: app_user, db: app_db, addr: intra, auth: pwd, title: 'app user access'}
 ```
 
-<span id="pgb_default_hba_rules"></span>\n\n**`pgb_default_hba_rules`**
+### `pgb_default_hba_rules`
 
 PgBouncer global default HBA rule list, usually defined in `all.vars`.
 
@@ -116,7 +116,7 @@ pgb_default_hba_rules:
   - {user: 'all'        ,db: all         ,addr: intra     ,auth: pwd   ,title: 'allow all user intra access with pwd' ,order: 400}
 ```
 
-<span id="pgb_hba_rules"></span>\n\n**`pgb_hba_rules`**
+### `pgb_hba_rules`
 
 PgBouncer cluster/instance-level additional HBA rules.
 
@@ -127,7 +127,9 @@ PgBouncer cluster/instance-level additional HBA rules.
 
 ----------------
 
-<span id="define-hba"></span>\n\n## Rule Fields
+<span id="define-hba"></span>
+
+## Rule Fields
 
 Each HBA rule is a YAML dict supporting these fields:
 

@@ -80,7 +80,7 @@ Pigsty's [**self-signed CA**](/docs/concept/sec/ca) is located in `files/pki/` u
 
 Nodes managed by Pigsty will have the following certificate files installed:
 
-```
+```text
 /etc/pki/ca.crt                             # root:root 0644, root cert on all nodes
 /etc/pki/ca-trust/source/anchors/ca.crt     # EL system trust anchor
 /usr/local/share/ca-certificates/ca.crt     # Debian/Ubuntu system trust anchor
@@ -88,7 +88,7 @@ Nodes managed by Pigsty will have the following certificate files installed:
 
 All infra nodes will have the following certificates:
 
-```
+```text
 /etc/pki/infra.crt                          # root:infra 0644, infra node cert
 /etc/pki/infra.key                          # root:infra 0640, infra node key
 ```

@@ -169,4 +169,3 @@ Detailed monitoring config instructions are provided in [PGSQL Monitor](/docs/pg
 ```bash
 bin/pgmon-rm <ins>     # Remove a single instance 'ins' monitoring object from Victoria, especially suitable for removing added external instances
 ```
-

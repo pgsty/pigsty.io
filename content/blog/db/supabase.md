@@ -53,7 +53,7 @@ It runs on [mainstream](/docs/ref/linux) Linux distributions with production-gra
 [**SIM**](/ext/cate/sim): [`orafce`](/ext/e/orafce) [`pgtt`](/ext/e/pgtt) [`session_variable`](/ext/e/session_variable) [`pg_statement_rollback`](/ext/e/pg_statement_rollback) [`pg_dbms_metadata`](/ext/e/pg_dbms_metadata) [`pg_dbms_lock`](/ext/e/pg_dbms_lock) [`pg_dbms_job`](/ext/e/pg_dbms_job) [`babelfishpg_common`](/ext/e/babelfishpg_common) [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) [`babelfishpg_tds`](/ext/e/babelfishpg_tds) [`babelfishpg_money`](/ext/e/babelfishpg_money) [`pgmemcache`](/ext/e/pgmemcache)
 [**ETL**](/ext/cate/etl): [`pglogical`](/ext/e/pglogical) [`pglogical_origin`](/ext/e/pglogical_origin) [`pglogical_ticker`](/ext/e/pglogical_ticker) [`pgl_ddl_deploy`](/ext/e/pgl_ddl_deploy) [`pg_failover_slots`](/ext/e/pg_failover_slots) [`wal2json`](/ext/e/wal2json) [`wal2mongo`](/ext/e/wal2mongo) [`decoderbufs`](/ext/e/decoderbufs) [`decoder_raw`](/ext/e/decoder_raw) [`test_decoding`](/ext/e/test_decoding) [`mimeo`](/ext/e/mimeo) [`repmgr`](/ext/e/repmgr) [`pg_fact_loader`](/ext/e/pg_fact_loader) [`pg_bulkload`](/ext/e/pg_bulkload)
 
-Since most of the supabase maintained extensions are not available in the official PGDG repo, 
+Since most of the supabase maintained extensions are not available in the official PGDG repo,
 we have compiled all the RPM/DEBs for these extensions and put them in the [Pigsty repo](/ext/):
 [pg_graphql](/ext/e/pg_graphql), [pg_jsonschema](/ext/e/pg_jsonschema), [wrappers](/ext/e/wrappers), [index_advisor](/ext/e/index_advisor), [pg_net](/ext/e/pg_net), [vault](/ext/e/supabase_vault), [pgjwt](/ext/e/pgjwt), [supautils](/ext/e/supautils), [pg_plan_filter](/ext/e/plan_filter),  
 
@@ -99,13 +99,13 @@ with configured DNS, or a local `/etc/hosts` entry, you can also use the default
 
 ## Architecture
 
-Pigsty's supabase is based on the [Supabase Docker Compose Template](https://supabase.com/docs/guides/self-hosting/docker), 
+Pigsty's supabase is based on the [Supabase Docker Compose Template](https://supabase.com/docs/guides/self-hosting/docker),
 with some slight modifications to fit-in Pigsty's default [ACL](/docs/pgsql/misc/acl) model.
 
 The stateful part of this template is replaced by Pigsty's managed PostgreSQL cluster and MinIO cluster.
 The container part are stateless, so you can launch / destroy / run multiple supabase containers on the same stateful PGSQL / MINIO cluster simultaneously to scale out.
 
-![](/img/pigsty/supa-arch.svg)
+![Supabase architecture](/img/pigsty/supa-arch.svg)
 
 The built-in [`supa.yml`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml) [config](/docs/conf/supabase) template will create a single-node supabase, with a [singleton PostgreSQL](/docs/pgsql) and SNSD [MinIO](/docs/minio) server.
 You can use [Multinode PostgreSQL Clusters](/docs/pgsql/config#replica) and [MNMD MinIO Clusters](/docs/minio/config#multi-node-multi-drive) / external S3 service instead in production, we will cover that later.
@@ -364,14 +364,14 @@ For security reasons, you should change the default passwords in the `pigsty.yml
 - [`minio_access_key`](/docs/minio/param#grafana_admin_password): `minioadmin`, MinIO root username
 - [`minio_secret_key`](/docs/minio/param#minio_secret_key): `minioadmin`, MinIO root password
 
-Supabase will use PostgreSQL & MinIO as its backend, so also change the following passwords for supabase business users: 
+Supabase will use PostgreSQL & MinIO as its backend, so also change the following passwords for supabase business users:
 
 - [`pg_users`](https://github.com/pgsty/pigsty/blob/main/conf/supa.yml#L49): password for supabase business users in postgres
 - [`minio_users`](/docs/minio/param#minio_secret_key): `minioadmin`, MinIO business user's password
 
 The pgbackrest will take backups and WALs to MinIO, so also change the following passwords reference
 
-- [`pgbackrest_repo`](/docs/minio/param#pgbackrest_repo): refer to the 
+- [`pgbackrest_repo`](/docs/minio/param#pgbackrest_repo): refer to the
 
 PLEASE check the [Supabase Self-Hosting: Generate API Keys](https://supabase.com/docs/guides/self-hosting/docker#generate-api-keys) to generate supabase credentials:
 
@@ -458,7 +458,7 @@ And reload the supabase service to apply the new configuration:
 
 ## Sending Mail with SMTP
 
-Some Supabase features require email. For production use, I'd recommend using an external SMTP service. 
+Some Supabase features require email. For production use, I'd recommend using an external SMTP service.
 Since self-hosted SMTP servers often result in rejected or spam-flagged emails.
 
 To do this, modify the Supabase configuration and add SMTP credentials:
@@ -495,7 +495,7 @@ For production use, you should consider using a HA [MNMD MinIO](/docs/minio/conf
 We recommend using an external S3 when:
 
 - you just have one single server available, then external s3 gives you a minimal disaster recovery guarantee, with RTO in hours and RPO in MBs.
-- you are operating in the cloud, then using S3 directly is recommended rather than wrap expensively EBS with MinIO 
+- you are operating in the cloud, then using S3 directly is recommended rather than wrap expensively EBS with MinIO
 
 > The [`terraform/spec/aliyun-meta-s3.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/spec/aliyun-meta-s3.tf) provides an example of how to provision a single node along with an S3 bucket.
 

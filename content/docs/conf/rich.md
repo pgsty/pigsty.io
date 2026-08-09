@@ -71,4 +71,3 @@ The `rich` template is Pigsty's **complete functionality showcase configuration*
 - Some extensions unavailable on ARM64 architecture, adjust as needed
 - Building local software repository requires longer time and larger disk space
 - Default passwords are sample passwords, must be changed for production
-

@@ -19,7 +19,7 @@ We collaborate with the Alibaba Cloud kernel team to provide a complete database
 
 The PolarDB for Oracle kernel is currently only available on EL7 (CentOS 7) systems.
 
-![](/img/pigsty/polar.jpg)
+![PolarDB for Oracle](/img/pigsty/polar.jpg)
 
 --------
 

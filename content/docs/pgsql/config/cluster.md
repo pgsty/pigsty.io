@@ -410,5 +410,3 @@ SELECT create_reference_table('pgbench_branches')         ; SELECT truncate_loca
 SELECT create_reference_table('pgbench_history')          ; SELECT truncate_local_data_after_distributing_table($$public.pgbench_history$$);
 SELECT create_reference_table('pgbench_tellers')          ; SELECT truncate_local_data_after_distributing_table($$public.pgbench_tellers$$);
 ```
-
-

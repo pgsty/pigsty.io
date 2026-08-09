@@ -13,7 +13,7 @@ Simple web-based and cross-platform PostgreSQL database explorer.
 
 Public Demo: [http://cli.pigsty.cc](http://cli.pigsty.cc)
 
-![](/img/docs/app/pgweb.jpeg)
+![PGWeb](/img/docs/app/pgweb.jpeg)
 
 
 ## TL; DR

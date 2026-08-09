@@ -87,7 +87,7 @@ pig build pkg citus              # get + dep + ext
 
 ### Directory Layout
 
-```
+```text
 ~/ext/                           # real working directory
 ├── pkg/                         # built package output
 ├── src/                         # source tarball downloads

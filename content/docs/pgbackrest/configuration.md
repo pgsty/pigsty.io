@@ -62,7 +62,7 @@ Enables asynchronous operation for the `archive-push` and `archive-get` commands
 
 Asynchronous operation is more efficient because it can reuse connections and take advantage of parallelism. See the `spool-path`, `archive-get-queue-max`, and `archive-push-queue-max` options for more information.
 
-```
+```text
 default: n
 example: archive-async=y
 ```
@@ -73,7 +73,7 @@ Maximum size of the pgBackRest archive-get queue.
 
 Specifies the maximum size of the `archive-get` queue when `archive-async` is enabled. The queue is stored in the `spool-path` and is used to speed providing WAL to PostgreSQL.
 
-```
+```text
 default: 128MiB
 allowed: [0B, 4PiB]
 example: archive-get-queue-max=1GiB
@@ -89,7 +89,7 @@ Disabling this option allows PostgreSQL to more reliably recognize when the end 
 
 When disabling this option it is important to ensure that the spool path for the stanza is empty. The `restore` command does this automatically if the spool path is configured at restore time. Otherwise, it is up to the user to ensure the spool path is empty.
 
-```
+```text
 default: y
 example: archive-missing-retry=n
 ```
@@ -102,7 +102,7 @@ In asynchronous mode the `archive-push` process pushes all the WAL segments that
 
 This option limits the amount of WAL processed per run so the process exits and is spawned again by the next `archive-push`, which rechecks the queue. Lower values recheck the queue more often at the cost of spawning the asynchronous process more frequently. The value is rounded down to a whole number of WAL segments but at least one segment is always processed.
 
-```
+```text
 default: 16GiB
 allowed: [1MiB, 4PiB]
 example: archive-push-batch-size=1GiB
@@ -125,7 +125,7 @@ In asynchronous mode this limit is only checked at the start of each `archive-pu
 
 The purpose of this feature is to prevent the log volume from filling up at which point PostgreSQL will stop completely. Better to lose the backup than have PostgreSQL go down.
 
-```
+```text
 allowed: [0B, 4PiB]
 example: archive-push-queue-max=1TiB
 ```
@@ -138,7 +138,7 @@ Archive timeout.
 
 Set maximum time, in seconds, to wait for each WAL segment to reach the pgBackRest archive repository. The timeout applies to the `check` and `backup` commands when waiting for WAL segments required for backup consistency to be archived.
 
-```
+```text
 default: 1m
 allowed: [100ms, 1d]
 example: archive-timeout=30
@@ -158,7 +158,7 @@ Users can attach informative key/value pairs to the backup. This option may be u
 
 Annotations are output by the `info` command text output when a backup is specified with `--set` and always appear in the JSON output.
 
-```
+```text
 example: annotation=source="Sunday backup for website database"
 ```
 
@@ -170,7 +170,7 @@ Checks that all WAL segments required to make the backup consistent are present 
 
 This option must be enabled if `archive-copy` is enabled.
 
-```
+```text
 default: y
 example: archive-check=n
 ```
@@ -187,7 +187,7 @@ On restore, the WAL segments will be present in `pg_xlog/pg_wal` and PostgreSQL 
 
 The `archive-check` option must be enabled if `archive-copy` is enabled.
 
-```
+```text
 default: n
 example: archive-copy=y
 ```
@@ -204,7 +204,7 @@ CAUTION:
 
 If this option is disabled then it is critical to ensure that only one archiver is writing to the repository via the `archive-push` command.
 
-```
+```text
 default: y
 example: archive-mode-check=n
 ```
@@ -221,7 +221,7 @@ The following modes are supported:
 - `prefer` - Backup from standby if available otherwise backup from primary.
 - `n` - Backup from primary only.
 
-```
+```text
 default: n
 example: backup-standby=y
 ```
@@ -234,7 +234,7 @@ Directs pgBackRest to validate all data page checksums while backing up a cluste
 
 Failures in checksum validation will not abort a backup. Rather, warnings will be emitted in the log (and to the console with default settings) and the list of invalid pages will be stored in the backup manifest.
 
-```
+```text
 example: checksum-page=n
 ```
 
@@ -256,7 +256,7 @@ This option should not be used to exclude PostgreSQL logs from a backup. Logs ca
 
 Multiple exclusions may be specified on the command-line or in a configuration file.
 
-```
+```text
 example: exclude=junk/
 ```
 
@@ -268,7 +268,7 @@ The setting is enabled by default. Use caution when disabling this option as doi
 
 When `expire` is run automatically after a successful backup it uses the configuration of the `backup` command, so options set only in an `expire` command section (e.g. `[global:expire]`) are not applied. To apply `expire`-specific configuration, disable this option and run the `expire` command separately.
 
-```
+```text
 default: y
 example: expire-auto=y
 ```
@@ -279,7 +279,7 @@ Manifest save threshold during backup.
 
 Defines how often the manifest will be saved during a backup. Saving the manifest is important because it stores the checksums and allows the resume function to work efficiently. The actual threshold used is 1% of the backup size or `manifest-save-threshold`, whichever is greater.
 
-```
+```text
 default: 1GiB
 allowed: [1B, 1TiB]
 example: manifest-save-threshold=8GiB
@@ -291,7 +291,7 @@ Allow resume of failed backup.
 
 Defines whether the resume feature is enabled. Resume can greatly reduce the amount of time required to run a backup after a previous backup of the same type has failed. It adds complexity, however, so it may be desirable to disable in environments that do not require the feature.
 
-```
+```text
 default: y
 example: resume=n
 ```
@@ -302,7 +302,7 @@ Force a checkpoint to start backup quickly.
 
 Forces a checkpoint (by passing `y` to the `fast` parameter of the backup start function) so the backup begins immediately. Otherwise the backup will start after the next regular checkpoint.
 
-```
+```text
 default: n
 example: start-fast=y
 ```
@@ -321,7 +321,7 @@ By default only the `restore` command may be run as the root user since it is de
 
 Enable this option to run a command as root anyway. However, it is far better to run pgBackRest as the user that owns the repository and PostgreSQL cluster.
 
-```
+```text
 default: n
 example: allow-root=y
 ```
@@ -334,7 +334,7 @@ Buffer size used for copy, compress, encrypt, and other operations. The number o
 
 Allowed values are `16KiB`, `32KiB`, `64KiB`, `128KiB`, `256KiB`, `512KiB`, `1MiB`, `2MiB`, `4MiB`, `8MiB`, and `16MiB`.
 
-```
+```text
 default: 1MiB
 example: buffer-size=2MiB
 ```
@@ -349,7 +349,7 @@ CAUTION:
 
 Wrapping the pgBackRest command may cause unpredictable behavior and is not recommended.
 
-```
+```text
 default: [path of executed pgbackrest binary]
 example: cmd=/var/lib/pgsql/bin/pgbackrest_wrapper.sh
 ```
@@ -360,7 +360,7 @@ SSH client command.
 
 Use a specific SSH client command when an alternate is desired or the `ssh` command is not in $PATH.
 
-```
+```text
 default: ssh
 example: cmd-ssh=/usr/bin/ssh
 ```
@@ -373,7 +373,7 @@ Backup files are compatible with command-line compression tools.
 
 This option is now deprecated. The `compress-type` option should be used instead.
 
-```
+```text
 default: y
 example: compress=n
 ```
@@ -384,7 +384,7 @@ File compression level.
 
 Sets the level to be used for file compression when `compress-type` does not equal `none` or `compress=y` (deprecated).
 
-```
+```text
 default (depending on compress-type):
     bz2 - 9
     gz - 6
@@ -406,7 +406,7 @@ Network compression level.
 
 Sets the network compression level when `compress-type=none` and the command is not run on the same host as the repository. Compression is used to reduce network traffic. When `compress-type` does not equal `none` the `compress-level-network` setting is ignored and `compress-level` is used instead so that the file is only compressed once.
 
-```
+```text
 default: 1
 allowed: [-5, 12]
 example: compress-level-network=1
@@ -424,7 +424,7 @@ The following compression types are supported:
 - `lz4` - lz4 compression format (not available on all platforms)
 - `zst` - Zstandard compression format (not available on all platforms)
 
-```
+```text
 default: gz
 example: compress-type=none
 ```
@@ -439,7 +439,7 @@ NOTE:
 
 The `db-timeout` option must be less than the `protocol-timeout` option.
 
-```
+```text
 default: 30m
 allowed: [100ms, 7d]
 example: db-timeout=600
@@ -453,7 +453,7 @@ During a restore, by default the PostgreSQL data and tablespace directories are 
 
 During a backup, this option will use checksums instead of the timestamps to determine if files will be copied.
 
-```
+```text
 default: n
 example: delta=y
 ```
@@ -466,7 +466,7 @@ Timeout, in seconds, used for connections and read/write operations.
 
 Note that the entire read/write operation does not need to complete within this timeout but *some* progress must be made, even if it is only a single byte.
 
-```
+```text
 default: 1m
 allowed: [100ms, 1h]
 example: io-timeout=120
@@ -478,7 +478,7 @@ Path where lock files are stored.
 
 The lock path provides a location for pgBackRest to create lock files to prevent conflicting operations from being run concurrently.
 
-```
+```text
 default: /tmp/pgbackrest
 example: lock-path=/backup/db/lock
 ```
@@ -491,7 +491,7 @@ Sets the umask to 0000 so modes in the repository are created in a sensible way.
 
 To use the executing user's umask instead specify `neutral-umask=n` in the config file or `--no-neutral-umask` on the command line.
 
-```
+```text
 default: y
 example: neutral-umask=n
 ```
@@ -502,7 +502,7 @@ Set process priority.
 
 Defines how much priority (i.e. niceness) will be given to the process by the kernel scheduler. Positive values decrease priority and negative values increase priority. In most case processes do not have permission to increase their priority.
 
-```
+```text
 allowed: [-20, 19]
 example: priority=19
 ```
@@ -513,7 +513,7 @@ Max processes to use for compress/transfer.
 
 Each process will perform compression and transfer to make the command run faster, but don't set `process-max` so high that it impacts database performance.
 
-```
+```text
 default: 1
 allowed: [1, 999]
 example: process-max=4
@@ -529,7 +529,7 @@ NOTE:
 
 The `protocol-timeout` option must be greater than the `db-timeout` option.
 
-```
+```text
 default: 31m
 allowed: [100ms, 7d]
 example: protocol-timeout=630
@@ -541,7 +541,7 @@ Keep-alive enable.
 
 Enables keep-alive messages on socket connections.
 
-```
+```text
 default: y
 example: sck-keep-alive=n
 ```
@@ -560,7 +560,7 @@ The data stored in the spool path is not strictly temporary since it can and sho
 
 The spool path is intended to be located on a local Posix-compatible filesystem, not a remote filesystem such as NFS or CIFS.
 
-```
+```text
 default: /var/spool/pgbackrest
 example: spool-path=/backup/db/spool
 ```
@@ -573,7 +573,7 @@ Specifies the number of TCP keep-alive messages that can be lost before the conn
 
 This option is available on systems that support the `TCP_KEEPCNT` socket option.
 
-```
+```text
 allowed: [1, 32]
 example: tcp-keep-alive-count=3
 ```
@@ -586,7 +586,7 @@ Specifies the amount of time (in seconds) with no network activity after which t
 
 This option is available on systems that support the `TCP_KEEPIDLE` socket option.
 
-```
+```text
 allowed: [1, 3600]
 example: tcp-keep-alive-idle=60
 ```
@@ -599,7 +599,7 @@ Specifies the amount of time (in seconds) after which a TCP keep-alive message t
 
 This option is available on systems that support the `TCP_KEEPINTVL` socket option.
 
-```
+```text
 allowed: [1, 900]
 example: tcp-keep-alive-interval=30
 ```
@@ -616,7 +616,7 @@ The absolute minimum security level for any transport connection is TLSv1.2.
 
 The accepted cipher suites can be adjusted if need arises. The example is reasonable choice unless you have specific security requirements. If unset (the default), the default of the underlying OpenSSL library applies.
 
-```
+```text
 example: tls-cipher-12=HIGH:MEDIUM:+3DES:!aNULL
 ```
 
@@ -632,7 +632,7 @@ The absolute minimum security level for any transport connection is TLSv1.2.
 
 The accepted cipher suites can be adjusted if need arises. If unset (the default), the default of the underlying OpenSSL library applies.
 
-```
+```text
 example: tls-cipher-13=TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
 ```
 
@@ -660,7 +660,7 @@ The following log levels are supported:
 - `debug` - Log debug, detail, info, warnings, and errors
 - `trace` - Log trace (very verbose debugging), debug, info, warnings, and errors
 
-```
+```text
 default: warn
 example: log-level-console=error
 ```
@@ -679,7 +679,7 @@ The following log levels are supported:
 - `debug` - Log debug, detail, info, warnings, and errors
 - `trace` - Log trace (very verbose debugging), debug, info, warnings, and errors
 
-```
+```text
 default: info
 example: log-level-file=debug
 ```
@@ -700,7 +700,7 @@ The following log levels are supported:
 - `debug` - Log debug, detail, info, warnings, and errors
 - `trace` - Log trace (very verbose debugging), debug, info, warnings, and errors
 
-```
+```text
 default: off
 example: log-level-stderr=error
 ```
@@ -711,7 +711,7 @@ Path where log files are stored.
 
 The log path provides a location for pgBackRest to store log files. Note that if `log-level-file=off` then no log path is required.
 
-```
+```text
 default: /var/log/pgbackrest
 example: log-path=/backup/db/log
 ```
@@ -722,7 +722,7 @@ Enable logging in subprocesses.
 
 Enable file logging for any subprocesses created by this process using the log level specified by `log-level-file`.
 
-```
+```text
 default: n
 example: log-subprocess=y
 ```
@@ -733,7 +733,7 @@ Enable timestamp in logging.
 
 Enables the timestamp in console and file logging. This option is disabled in special situations such as generating documentation.
 
-```
+```text
 default: y
 example: log-timestamp=n
 ```
@@ -758,7 +758,7 @@ Enabled by default, this option checks the WAL header against the PostgreSQL ver
 
 Therefore, disabling this check is fairly safe but should only be done when needed, e.g. if the WAL is encrypted.
 
-```
+```text
 default: y
 example: archive-header-check=n
 ```
@@ -771,7 +771,7 @@ Enabled by default, this option adds page header checks.
 
 Disabling this option should be avoided except when necessary, e.g. if pages are encrypted.
 
-```
+```text
 default: y
 example: page-header-check=n
 ```
@@ -786,7 +786,7 @@ WARNING:
 
 Be cautious when using this option because `pg_control` and WAL headers will still be read with the expected format for the specified version, i.e. the format from the official open-source version of PostgreSQL. If the fork or development version changes the format of the fields that pgBackRest depends on it will lead to unexpected behavior. In general, this option will only work as expected if the fork adds all custom struct members *after* the standard PostgreSQL members.
 
-```
+```text
 example: pg-version-force=15
 ```
 
@@ -806,7 +806,7 @@ Azure repository account.
 
 Azure account used to store the repository.
 
-```
+```text
 example: repo1-azure-account=pg-backup
 ```
 
@@ -818,7 +818,7 @@ Azure container used to store the repository.
 
 pgBackRest repositories can be stored in the container root by setting `repo-path=/` but it is usually best to specify a prefix, such as `/repo`, so logs and other Azure-generated content can also be stored in the container.
 
-```
+```text
 example: repo1-azure-container=pg-backup
 ```
 
@@ -830,7 +830,7 @@ Endpoint used to connect to the blob service. The default is generally correct u
 
 For custom/test configurations the `repo-storage-ca-file`, `repo-storage-ca-path`, `repo-storage-host`, `repo-storage-port`, and `repo-storage-verify-tls` options may be useful.
 
-```
+```text
 default: blob.core.windows.net
 example: repo1-azure-endpoint=blob.core.usgovcloudapi.net
 ```
@@ -841,7 +841,7 @@ Azure repository key.
 
 A shared key or shared access signature depending on the `repo-azure-key-type` option.
 
-```
+```text
 example: repo1-azure-key=T+9+aov82qNhrcXSNGZCzm9mjd4d75/oxxOr6r1JVpgTLA==
 ```
 
@@ -855,7 +855,7 @@ The following types are supported for authorization:
 - `sas` - Shared access signature
 - `auto` - Automatically authorize using Azure managed identities
 
-```
+```text
 default: shared
 example: repo1-azure-key-type=sas
 ```
@@ -869,7 +869,7 @@ The following URI styles are supported:
 - `host` - Connect to `account.endpoint` host.
 - `path` - Connect to `endpoint` host and prepend account to URIs.
 
-```
+```text
 default: host
 example: repo1-azure-uri-style=path
 ```
@@ -888,7 +888,7 @@ The block size for a file is determined based on the file size and age. Generall
 
 Block incremental is most efficient when enabled for all backup types, including full. This makes the full a bit larger but subsequent differential and incremental backups can make use of the block maps generated by the full backup to save space.
 
-```
+```text
 default: n
 example: repo1-block=y
 ```
@@ -899,7 +899,7 @@ Bundle files in repository.
 
 Bundle (combine) smaller files to reduce the total number of files written to the repository. Writing fewer files is generally more efficient, especially on object stores such as S3. In addition, zero-length files are not stored (except in the manifest), which saves time and space.
 
-```
+```text
 default: n
 example: repo1-bundle=y
 ```
@@ -912,7 +912,7 @@ Size limit for files that will be included in bundles. Files larger than this si
 
 Bundled files cannot be reused when a backup is resumed, so this option controls the files that can be resumed, i.e. higher values result in fewer resumable files.
 
-```
+```text
 default: 2MiB
 allowed: [8KiB, 1PiB]
 example: repo1-bundle-limit=10MiB
@@ -926,7 +926,7 @@ Defines the target size for files that will be added to a single bundle. The unc
 
 In general, it is not a good idea to set this option too high because retries will need to redo the entire bundle.
 
-```
+```text
 default: 20MiB
 allowed: [1MiB, 1PiB]
 example: repo1-bundle-size=10MiB
@@ -942,7 +942,7 @@ NOTE:
 
 When run without the `stanza` option the `info` command reads encryption settings only from the `global` section. If encryption settings are configured per stanza, run the `info` command with the `stanza` option to read an encrypted stanza.
 
-```
+```text
 example: repo1-cipher-pass=zWaf6XtpjIVZC5444yXB+cgFDFl7MxGlgkZSaoPvTGirhPygu4jOKOXf9LO4vjfO
 ```
 
@@ -957,7 +957,7 @@ The following cipher types are supported:
 
 Note that encryption is always performed client-side even if the repository type (e.g. S3) supports encryption.
 
-```
+```text
 default: none
 example: repo1-cipher-type=aes-256-cbc
 ```
@@ -970,7 +970,7 @@ GCS bucket used to store the repository.
 
 pgBackRest repositories can be stored in the bucket root by setting `repo-path=/` but it is usually best to specify a prefix, such as `/repo`, so logs and other GCS-generated content can also be stored in the bucket.
 
-```
+```text
 example: repo1-gcs-bucket=/pg-backup
 ```
 
@@ -980,7 +980,7 @@ GCS repository endpoint.
 
 Endpoint used to connect to the storage service. May be updated to use a local GCS server or alternate endpoint.
 
-```
+```text
 default: storage.googleapis.com
 example: repo1-gcs-endpoint=localhost
 ```
@@ -991,7 +991,7 @@ GCS repository key.
 
 A token or service key file depending on the `repo-gcs-key-type` option.
 
-```
+```text
 example: repo1-gcs-key=/etc/pgbackrest/gcs-key.json
 ```
 
@@ -1007,7 +1007,7 @@ The following types are supported for authorization:
 
 When `repo-gcs-key-type=service` the credentials will be reloaded when the authentication token is renewed.
 
-```
+```text
 default: service
 example: repo1-gcs-key-type=auto
 ```
@@ -1018,7 +1018,7 @@ GCS project ID.
 
 GCS project ID used to determine request billing.
 
-```
+```text
 example: repo1-gcs-user-project=my-project
 ```
 
@@ -1028,7 +1028,7 @@ Hardlink files between backups in the repository.
 
 Enable hard-linking of files in differential and incremental backups to their full backups. This gives the appearance that each backup is a full backup at the file-system level. Be careful, though, because modifying files that are hard-linked can affect all the backups in the set.
 
-```
+```text
 default: n
 example: repo1-hardlink=y
 ```
@@ -1041,7 +1041,7 @@ Repository host when operating remotely.
 
 When backing up and archiving to a locally mounted filesystem this setting is not required.
 
-```
+```text
 example: repo1-host=repo1.domain.com
 ```
 
@@ -1053,7 +1053,7 @@ Repository host certificate authority file.
 
 Use a CA file other than the system default for connecting to the repository host.
 
-```
+```text
 example: repo1-host-ca-file=/etc/pki/tls/certs/ca-bundle.crt
 ```
 
@@ -1063,7 +1063,7 @@ Repository host certificate authority path.
 
 Use a CA path other than the system default for connecting to the repository host.
 
-```
+```text
 example: repo1-host-ca-path=/etc/pki/tls/certs
 ```
 
@@ -1073,7 +1073,7 @@ Repository host certificate file.
 
 Sent to repository host to prove client identity.
 
-```
+```text
 example: repo1-host-cert-file=/path/to/client.crt
 ```
 
@@ -1083,7 +1083,7 @@ Repository host pgBackRest command.
 
 Required only if the path to the pgBackRest command is different on the local and repository hosts. If not defined, the repository host command will be set the same as the local command.
 
-```
+```text
 default: [path of executed pgbackrest binary]
 example: repo1-host-cmd=/usr/lib/backrest/bin/pgbackrest
 ```
@@ -1096,7 +1096,7 @@ pgBackRest repository host configuration file.
 
 Sets the location of the configuration file on the repository host. This is only required if the repository host configuration file is in a different location than the local configuration file.
 
-```
+```text
 default: CFGOPTDEF_CONFIG_PATH "/" PROJECT_CONFIG_FILE
 example: repo1-host-config=/conf/pgbackrest/pgbackrest.conf
 ```
@@ -1109,7 +1109,7 @@ pgBackRest repository host configuration include path.
 
 Sets the location of the configuration include path on the repository host. This is only required if the repository host configuration include path is in a different location than the local configuration include path.
 
-```
+```text
 default: CFGOPTDEF_CONFIG_PATH "/" PROJECT_CONFIG_INCLUDE_PATH
 example: repo1-host-config-include-path=/conf/pgbackrest/conf.d
 ```
@@ -1120,7 +1120,7 @@ pgBackRest repository host configuration path.
 
 Sets the location of the configuration path on the repository host. This is only required if the repository host configuration path is in a different location than the local configuration path.
 
-```
+```text
 default: CFGOPTDEF_CONFIG_PATH
 example: repo1-host-config-path=/conf/pgbackrest
 ```
@@ -1131,7 +1131,7 @@ Repository host key file.
 
 Proves client certificate was sent by owner.
 
-```
+```text
 example: repo1-host-key-file=/path/to/client.key
 ```
 
@@ -1145,7 +1145,7 @@ NOTE:
 
 When `repo-host-type=ssh` there is no default for `repo-host-port`. In this case the port will be whatever is configured for the command specified by `cmd-ssh`.
 
-```
+```text
 default (depending on repo-host-type):
     tls - 8432
 
@@ -1164,7 +1164,7 @@ The following protocol types are supported:
 - `ssh` - Secure Shell.
 - `tls` - pgBackRest TLS server.
 
-```
+```text
 default: ssh
 example: repo1-host-type=tls
 ```
@@ -1175,7 +1175,7 @@ Repository host user when `repo-host` is set.
 
 Defines the user that will be used for operations on the repository host. Preferably this is not the `postgres` user but rather some other user like `pgbackrest`. If PostgreSQL runs on the repository host the `postgres` user can be placed in the `pgbackrest` group so it has read permissions on the repository without being able to damage the contents accidentally.
 
-```
+```text
 default: pgbackrest
 example: repo1-host-user=repo-user
 ```
@@ -1190,7 +1190,7 @@ The repository is where pgBackRest stores backups and archives WAL segments.
 
 It may be difficult to estimate in advance how much space you'll need. The best thing to do is take some backups then record the size of different types of backups (full/incr/diff) and measure the amount of WAL generated per day. This will give you a general idea of how much space you'll need, though of course requirements will likely change over time as your database evolves.
 
-```
+```text
 default: /var/lib/pgbackrest
 example: repo1-path=/backup/db/backrest
 ```
@@ -1207,7 +1207,7 @@ If this value is not set and `repo-retention-full-type` is `count` (default), th
 
 This option must be set if `repo-retention-archive-type` is set to `incr`. If disk space is at a premium, then this setting, in conjunction with `repo-retention-archive-type`, can be used to aggressively expire WAL segments. However, doing so negates the ability to perform PITR from the backups with expired WAL and is therefore **not** recommended.
 
-```
+```text
 allowed: [1, 9999999]
 example: repo1-retention-archive=2
 ```
@@ -1220,7 +1220,7 @@ Backup type for WAL retention.
 
 If set to `full` pgBackRest will keep archive logs for the number of full backups defined by `repo-retention-archive`. If set to `diff` (differential) pgBackRest will keep archive logs for the number of full and differential backups defined by `repo-retention-archive`, meaning if the last backup taken was a full backup, it will be counted as a differential for the purpose of repo-retention. If set to `incr` (incremental) pgBackRest will keep archive logs for the number of full, differential, and incremental backups defined by `repo-retention-archive`. It is recommended that this setting not be changed from the default which will only expire WAL in conjunction with expiring full backups.
 
-```
+```text
 default: full
 example: repo1-retention-archive-type=diff
 ```
@@ -1235,7 +1235,7 @@ When a differential backup expires, all incremental backups associated with the 
 
 Note that full backups are included in the count of differential backups for the purpose of expiration. This slightly reduces the number of differential backups that need to be retained in most cases.
 
-```
+```text
 allowed: [1, 9999999]
 example: repo1-retention-diff=3
 ```
@@ -1248,7 +1248,7 @@ Full backup retention count/time.
 
 When a full backup expires, all differential and incremental backups associated with the full backup will also expire. When the option is not defined a warning will be issued. If indefinite retention is desired then set the option to the max value.
 
-```
+```text
 allowed: [1, 9999999]
 example: repo1-retention-full=2
 ```
@@ -1267,7 +1267,7 @@ If set to `count` then full backups that exceed `repo-retention-full` will be ex
 
 Note that a backup must be successfully completed before it will be considered for retention. For example, if `repo-retention-full-type` is `count` and `repo-retention-full` is `2`, then there must be 3 complete full backups before the oldest will be expired.
 
-```
+```text
 default: count
 example: repo1-retention-full-type=time
 ```
@@ -1282,7 +1282,7 @@ Set `repo-retention-history` to define the number of days of backup history mani
 
 When a full backup history manifest is expired, all differential and incremental backup history manifests associated with the full backup also expire.
 
-```
+```text
 allowed: [0, 9999999]
 example: repo1-retention-history=365
 ```
@@ -1295,7 +1295,7 @@ S3 bucket used to store the repository.
 
 pgBackRest repositories can be stored in the bucket root by setting `repo-path=/` but it is usually best to specify a prefix, such as `/repo`, so logs and other AWS generated content can also be stored in the bucket.
 
-```
+```text
 example: repo1-s3-bucket=pg-backup
 ```
 
@@ -1307,7 +1307,7 @@ The AWS endpoint should be valid for the selected region.
 
 For custom/test configurations the `repo-storage-ca-file`, `repo-storage-ca-path`, `repo-storage-host`, `repo-storage-port`, and `repo-storage-verify-tls` options may be useful.
 
-```
+```text
 example: repo1-s3-endpoint=s3.amazonaws.com
 ```
 
@@ -1317,7 +1317,7 @@ S3 repository access key.
 
 AWS key used to access this bucket.
 
-```
+```text
 example: repo1-s3-key=AKIAIOSFODNN7EXAMPLE
 ```
 
@@ -1327,7 +1327,7 @@ S3 repository secret access key.
 
 AWS secret key used to access this bucket.
 
-```
+```text
 example: repo1-s3-key-secret=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 ```
 
@@ -1343,7 +1343,7 @@ The following types are supported:
 - `pod-id` - Automatically retrieve EKS pod identity credentials
 - `process` - Retrieve credentials by executing a process
 
-```
+```text
 default: shared
 example: repo1-s3-key-type=auto
 ```
@@ -1354,7 +1354,7 @@ S3 repository KMS key.
 
 Enables S3 server-side encryption using the specified AWS key management service key.
 
-```
+```text
 example: repo1-s3-kms-key-id=bceb4f13-6939-4be3-910d-df54dee817b7
 ```
 
@@ -1366,7 +1366,7 @@ Command (and optional arguments) to execute for retrieving temporary S3 credenti
 
 The process must output JSON containing `AccessKeyId`, `SecretAccessKey`, `SessionToken`, and `Expiration` fields. Credentials will be automatically refreshed before the expiration time. See [Process Credential Provider](https://docs.aws.amazon.com/sdkref/latest/guide/feature-process-credentials.html#feature-process-credentials-output) for format details.
 
-```
+```text
 example: repo1-s3-process-cmd=/usr/local/bin/get-credentials
 example: repo1-s3-process-cmd=--role
 example: repo1-s3-process-cmd=my-role
@@ -1378,7 +1378,7 @@ S3 repository region.
 
 The AWS region where the bucket was created.
 
-```
+```text
 example: repo1-s3-region=us-east-1
 ```
 
@@ -1388,7 +1388,7 @@ S3 repository requester pays.
 
 Enables S3 requester pays.
 
-```
+```text
 default: n
 example: repo1-s3-requester-pays=n
 ```
@@ -1399,7 +1399,7 @@ S3 repository role.
 
 The AWS role name (not the full ARN) used to retrieve temporary credentials when `repo-s3-key-type=auto`.
 
-```
+```text
 example: repo1-s3-role=authrole
 ```
 
@@ -1409,7 +1409,7 @@ S3 signing service.
 
 The S3 signing service used in SigV4 authentication. Defaults to `s3` for standard S3 endpoints. Set to `s3-outposts` when using an S3 Outposts endpoint.
 
-```
+```text
 default: s3
 example: repo1-s3-service=s3-outposts
 ```
@@ -1420,7 +1420,7 @@ S3 repository SSE customer key.
 
 Enables S3 server-side encryption using the specified customer key.
 
-```
+```text
 example: repo1-s3-sse-customer-key=bceb4f13-6939-4be3-910d-df54dee817b7
 ```
 
@@ -1430,7 +1430,7 @@ S3 repository STS endpoint.
 
 The STS endpoint used to retrieve temporary credentials when `repo-s3-key-type=web-id` is configured. Set to a regional endpoint (e.g. `sts.us-east-1.amazonaws.com`) to use regional STS, which may be required for GovCloud, China regions, or to reduce latency.
 
-```
+```text
 default: sts.amazonaws.com
 example: repo1-s3-sts-host=sts.us-east-1.amazonaws.com
 ```
@@ -1441,7 +1441,7 @@ S3 repository security token.
 
 AWS security token used with temporary credentials.
 
-```
+```text
 example: repo1-s3-token=AQoDYXdzEPT//////////wEXAMPLEtc764bNrC9SAPBSM22 ...
 ```
 
@@ -1454,7 +1454,7 @@ The following URI styles are supported:
 - `host` - Connect to `bucket.endpoint` host.
 - `path` - Connect to `endpoint` host and prepend bucket to URIs.
 
-```
+```text
 default: host
 example: repo1-s3-uri-style=path
 ```
@@ -1465,7 +1465,7 @@ SFTP repository host.
 
 The SFTP host containing the repository.
 
-```
+```text
 example: repo1-sftp-host=sftprepo.domain
 ```
 
@@ -1475,7 +1475,7 @@ SFTP repository host fingerprint.
 
 SFTP repository host fingerprint generation should match the `repo-sftp-host-key-hash-type`. Generate the fingerprint via `awk '{print $2}' ssh_host_xxx_key.pub | base64 -d | (md5sum or sha1sum) -b`. The ssh host keys are normally found in the `/etc/ssh` directory.
 
-```
+```text
 example: repo1-sftp-host-fingerprint=f84e172dfead7aeeeae6c1fdfb5aa8cf
 ```
 
@@ -1490,7 +1490,7 @@ The following SFTP host key check types are supported:
 - `fingerprint` - pgBackRest will check the host key against the fingerprint specified by the `repo-sftp-host-fingerprint` option.
 - `none` - no host key checking will be performed.
 
-```
+```text
 default: strict
 example: repo1-sftp-host-key-check-type=accept-new
 ```
@@ -1501,7 +1501,7 @@ SFTP repository host key hash type.
 
 SFTP repository host key hash type. Declares the hash type to be used to compute the digest of the remote system's host key on SSH startup. Newer versions of `libssh2` support `sha256` in addition to md5 and sha1.
 
-```
+```text
 example: repo1-sftp-host-key-hash-type=sha256
 ```
 
@@ -1511,7 +1511,7 @@ SFTP repository host port.
 
 SFTP repository host port.
 
-```
+```text
 default: 22
 allowed: [1, 65535]
 example: repo1-sftp-host-port=22
@@ -1523,7 +1523,7 @@ SFTP repository host user.
 
 User on the host used to store the repository.
 
-```
+```text
 example: repo1-sftp-host-user=pg-backup
 ```
 
@@ -1533,7 +1533,7 @@ SFTP known hosts file.
 
 A known hosts file to search for an SFTP host match during authentication. When unspecified, pgBackRest will default to searching `~/.ssh/known_hosts`, `~/.ssh/known_hosts2`, `/etc/ssh/ssh_known_hosts`, and `/etc/ssh/ssh_known_hosts2`. If configured with one or more file paths, pgBackRest will search those for a match. File paths must be full or leading tilde paths. The `repo-sftp-known-host` option can be passed multiple times to specify more than one known hosts file to search. To utilize known hosts file checking `repo-sftp-host-fingerprint` must not be specified. See also `repo-sftp-host-check-type` option.
 
-```
+```text
 example: repo1-sftp-known-host=/home/postgres/.ssh/known_hosts
 ```
 
@@ -1543,7 +1543,7 @@ SFTP private key file.
 
 SFTP private key file used for authentication.
 
-```
+```text
 example: repo1-sftp-private-key-file=~/.ssh/id_ed25519
 ```
 
@@ -1553,7 +1553,7 @@ SFTP private key passphrase.
 
 Passphrase used to access the private key. This is an optional feature when creating an SSH public/private key pair.
 
-```
+```text
 example: repo1-sftp-private-key-passphrase=BeSureToGenerateAndUseASecurePassphrase
 ```
 
@@ -1563,7 +1563,7 @@ SFTP public key file.
 
 SFTP public key file used for authentication. Optional if compiled against OpenSSL, required if compiled against a different library.
 
-```
+```text
 example: repo1-sftp-public-key-file=~/.ssh/id_ed25519.pub
 ```
 
@@ -1573,7 +1573,7 @@ Repository storage CA file.
 
 Use a CA file other than the system default for storage (e.g. S3, Azure) certificates.
 
-```
+```text
 example: repo1-storage-ca-file=/etc/pki/tls/certs/ca-bundle.crt
 ```
 
@@ -1585,7 +1585,7 @@ Repository storage CA path.
 
 Use a CA path other than the system default for storage (e.g. S3, Azure) certificates.
 
-```
+```text
 example: repo1-storage-ca-path=/etc/pki/tls/certs
 ```
 
@@ -1597,7 +1597,7 @@ Repository storage host.
 
 Connect to a host other than the storage (e.g. S3, Azure) endpoint. This is typically used for testing.
 
-```
+```text
 example: repo1-storage-host=127.0.0.1
 ```
 
@@ -1609,7 +1609,7 @@ Repository storage port.
 
 Port to use when connecting to the storage (e.g. S3, Azure) endpoint (or host if specified).
 
-```
+```text
 default: 443
 allowed: [1, 65535]
 example: repo1-storage-port=9000
@@ -1625,7 +1625,7 @@ Specify tags that will be added to objects when the repository is an object stor
 
 There is no provision in pgBackRest to modify these tags so be sure to set them correctly before running `stanza-create` to ensure uniform tags across the entire repository.
 
-```
+```text
 example: repo1-storage-tag=key1=value1
 ```
 
@@ -1641,7 +1641,7 @@ Note that valid chunk sizes vary by storage type and by platform. For example, A
 
 If a file is larger than 1GiB (the maximum size PostgreSQL will create by default) then the chunk size will be increased incrementally up to the maximum allowed in order to complete the file upload.
 
-```
+```text
 default (depending on repo-type):
     azure - 4MiB
     gcs - 4MiB
@@ -1661,7 +1661,7 @@ Repository storage certificate verify.
 
 This option provides the ability to enable/disable verification of the storage (e.g. S3, Azure) server TLS certificate. Disabling should only be used for testing or other scenarios where a certificate has been self-signed.
 
-```
+```text
 default: y
 example: repo1-storage-verify-tls=n
 ```
@@ -1676,7 +1676,7 @@ Enable creation of the `latest` and tablespace symlinks. These symlinks are most
 
 While this feature is likely not useful for the vast majority of users it remains on by default for legacy purposes. However, it may be useful to disable symlinks for Posix-like storage that does not support them.
 
-```
+```text
 default: y
 example: repo1-symlink=n
 ```
@@ -1693,7 +1693,7 @@ When the `repo-target-time` option is specified then the `repo` option must also
 
 Note that comparisons to the storage timestamp are <= the timestamp provided and milliseconds are truncated from the timestamp when provided.
 
-```
+```text
 example: repo-target-time=2024-08-08 12:12:12+00
 ```
 
@@ -1712,7 +1712,7 @@ The following repository types are supported:
 
 When an NFS mount is used as a `posix` repository, the same rules apply to pgBackRest as described in the PostgreSQL documentation: [Creating a Database Cluster - File Systems](https://www.postgresql.org/docs/current/creating-cluster.html#CREATING-CLUSTER-FILESYSTEM).
 
-```
+```text
 default: posix
 example: repo1-type=cifs
 ```
@@ -1736,7 +1736,7 @@ The following modes are supported:
 
 **NOTE**: This option is not available on PostgreSQL < 12.
 
-```
+```text
 default: preserve
 example: archive-mode=off
 ```
@@ -1749,7 +1749,7 @@ Databases excluded will be restored as sparse, zeroed files to save space but st
 
 When used in combination with the `--db-include` option, `--db-exclude` will only apply to standard system databases (`template0`, `template1`, and `postgres`).
 
-```
+```text
 example: db-exclude=db_main
 ```
 
@@ -1767,7 +1767,7 @@ The `--db-include` option can be passed multiple times to specify more than one 
 
 See [Restore Selected Databases](/docs/pgbackrest/user-guide/#restore-selected-databases) for additional information and caveats.
 
-```
+```text
 example: db-include=db_main
 ```
 
@@ -1777,7 +1777,7 @@ Restore all symlinks.
 
 By default symlinked directories and files are restored as normal directories and files in $PGDATA. This is because it may not be safe to restore symlinks to their original destinations on a system other than where the original backup was performed. This option restores all the symlinks just as they were on the original system where the backup was performed.
 
-```
+```text
 default: n
 example: link-all=y
 ```
@@ -1788,7 +1788,7 @@ Modify the destination of a symlink.
 
 Allows the destination file or path of a symlink to be changed on restore. This is useful for restoring to systems that have a different storage layout than the original system where the backup was generated.
 
-```
+```text
 example: link-map=pg_xlog=/data/xlog
 ```
 
@@ -1806,7 +1806,7 @@ The `restore_command` option will be automatically generated but can be overridd
 
 Since pgBackRest does not start PostgreSQL after writing the `postgresql.auto.conf` or `recovery.conf` file, it is always possible to edit/check `postgresql.auto.conf` or `recovery.conf` before manually restarting.
 
-```
+```text
 example: recovery-option=primary_conninfo=db.mydomain.com
 ```
 
@@ -1818,7 +1818,7 @@ Moves a tablespace to a new location during the restore. This is useful when tab
 
 Tablespace locations are not stored in pg_tablespace so moving tablespaces can be done with impunity. However, moving a tablespace to the `data_directory` is not recommended and may cause problems. For more information on moving tablespaces http://www.databasesoup.com/2013/11/moving-tablespaces.html is a good resource.
 
-```
+```text
 example: tablespace-map=ts_01=/db/ts_01
 ```
 
@@ -1834,7 +1834,7 @@ CAUTION:
 
 Tablespaces created after the backup started will not be mapped. Make a new backup after a tablespace is created if tablespace mapping is required.
 
-```
+```text
 example: tablespace-map-all=/data/tablespace
 ```
 
@@ -1850,7 +1850,7 @@ TLS server address.
 
 IP address the server will listen on for client requests.
 
-```
+```text
 default: localhost
 example: tls-server-address=*
 ```
@@ -1863,7 +1863,7 @@ Clients are authorized on the server by verifying their certificate and checking
 
 A client CN can be authorized for as many stanzas as needed by providing a comma-separated list to the `tls-server-auth` option or for all stanzas by specifying `tls-server-auth=client-cn=*`. Wildcards may not be specified for the client CN.
 
-```
+```text
 example: tls-server-auth=client-cn=stanza1,stanza2
 ```
 
@@ -1873,7 +1873,7 @@ TLS server certificate authorities.
 
 Checks that client certificates are signed by a trusted certificate authority.
 
-```
+```text
 example: tls-server-ca-file=/path/to/server.ca
 ```
 
@@ -1883,7 +1883,7 @@ TLS server certificate file.
 
 Sent to the client to show the server identity.
 
-```
+```text
 example: tls-server-cert-file=/path/to/server.crt
 ```
 
@@ -1893,7 +1893,7 @@ TLS server key file.
 
 Proves server certificate was sent by the owner.
 
-```
+```text
 example: tls-server-key-file=/path/to/server.key
 ```
 
@@ -1903,7 +1903,7 @@ TLS server port.
 
 Port the server will listen on for client requests.
 
-```
+```text
 default: 8432
 allowed: [1, 65535]
 example: tls-server-port=8000
@@ -1925,7 +1925,7 @@ The database name used when connecting to PostgreSQL. The default is usually bes
 
 Note that for legacy reasons the setting of the `PGDATABASE` environment variable will be ignored.
 
-```
+```text
 default: postgres
 example: pg1-database=backupdb
 ```
@@ -1936,7 +1936,7 @@ PostgreSQL host for operating remotely.
 
 Used for backups where the PostgreSQL host is different from the repository host.
 
-```
+```text
 example: pg1-host=db.domain.com
 ```
 
@@ -1948,7 +1948,7 @@ PostgreSQL host certificate authority file.
 
 Use a CA file other than the system default for connecting to the PostgreSQL host.
 
-```
+```text
 example: pg1-host-ca-file=/etc/pki/tls/certs/ca-bundle.crt
 ```
 
@@ -1958,7 +1958,7 @@ PostgreSQL host certificate authority path.
 
 Use a CA path other than the system default for connecting to the PostgreSQL host.
 
-```
+```text
 example: pg1-host-ca-path=/etc/pki/tls/certs
 ```
 
@@ -1968,7 +1968,7 @@ PostgreSQL host certificate file.
 
 Sent to PostgreSQL host to prove client identity.
 
-```
+```text
 example: pg1-host-cert-file=/path/to/client.crt
 ```
 
@@ -1978,7 +1978,7 @@ PostgreSQL host pgBackRest command.
 
 Required only if the path to the pgBackRest command is different on the local and PostgreSQL hosts. If not defined, the PostgreSQL host command will be set the same as the local command.
 
-```
+```text
 default: [path of executed pgbackrest binary]
 example: pg1-host-cmd=/usr/lib/backrest/bin/pgbackrest
 ```
@@ -1991,7 +1991,7 @@ pgBackRest database host configuration file.
 
 Sets the location of the configuration file on the PostgreSQL host. This is only required if the PostgreSQL host configuration file is in a different location than the local configuration file.
 
-```
+```text
 default: CFGOPTDEF_CONFIG_PATH "/" PROJECT_CONFIG_FILE
 example: pg1-host-config=/conf/pgbackrest/pgbackrest.conf
 ```
@@ -2004,7 +2004,7 @@ pgBackRest database host configuration include path.
 
 Sets the location of the configuration include path on the PostgreSQL host. This is only required if the PostgreSQL host configuration include path is in a different location than the local configuration include path.
 
-```
+```text
 default: CFGOPTDEF_CONFIG_PATH "/" PROJECT_CONFIG_INCLUDE_PATH
 example: pg1-host-config-include-path=/conf/pgbackrest/conf.d
 ```
@@ -2015,7 +2015,7 @@ pgBackRest database host configuration path.
 
 Sets the location of the configuration path on the PostgreSQL host. This is only required if the PostgreSQL host configuration path is in a different location than the local configuration path.
 
-```
+```text
 default: CFGOPTDEF_CONFIG_PATH
 example: pg1-host-config-path=/conf/pgbackrest
 ```
@@ -2026,7 +2026,7 @@ PostgreSQL host key file.
 
 Proves client certificate was sent by owner.
 
-```
+```text
 example: pg1-host-key-file=/path/to/client.key
 ```
 
@@ -2040,7 +2040,7 @@ NOTE:
 
 When `pg-host-type=ssh` there is no default for `pg-host-port`. In this case the port will be whatever is configured for the command specified by `cmd-ssh`.
 
-```
+```text
 default (depending on pg-host-type):
     tls - 8432
 
@@ -2059,7 +2059,7 @@ The following protocol types are supported:
 - `ssh` - Secure Shell.
 - `tls` - pgBackRest TLS server.
 
-```
+```text
 default: ssh
 example: pg1-host-type=tls
 ```
@@ -2070,7 +2070,7 @@ PostgreSQL host logon user when `pg-host` is set.
 
 This user will also own the remote pgBackRest process and will initiate connections to PostgreSQL. For this to work correctly the user should be the PostgreSQL database cluster owner which is generally `postgres`, the default.
 
-```
+```text
 default: postgres
 example: pg1-host-user=db_owner
 ```
@@ -2085,7 +2085,7 @@ This should be the same as the `data_directory` reported by PostgreSQL. Even tho
 
 The `pg-path` option is tested against the value reported by PostgreSQL on every online backup so it should always be current.
 
-```
+```text
 example: pg1-path=/data/db
 ```
 
@@ -2097,7 +2097,7 @@ PostgreSQL port.
 
 Port that PostgreSQL is running on. This usually does not need to be specified as most PostgreSQL clusters run on the default port.
 
-```
+```text
 default: 5432
 allowed: [0, 65535]
 example: pg1-port=6543
@@ -2111,7 +2111,7 @@ PostgreSQL unix socket path.
 
 The unix socket directory that was specified when PostgreSQL was started. pgBackRest will automatically look in the standard location for your OS so there is usually no need to specify this setting unless the socket directory was explicitly modified with the `unix_socket_directories` setting in `postgresql.conf`.
 
-```
+```text
 example: pg1-socket-path=/var/run/postgresql
 ```
 
@@ -2123,6 +2123,6 @@ PostgreSQL database user.
 
 The database user name used when connecting to PostgreSQL. If not specified pgBackRest will connect with the local OS user or `PGUSER`.
 
-```
+```text
 example: pg1-user=backupuser
 ```

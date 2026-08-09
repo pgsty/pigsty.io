@@ -161,7 +161,7 @@ Three ways to resolve domains to Pigsty servers:
 
 For local development, add to `/etc/hosts`:
 
-```
+```text
 <your_public_ip_address> i.pigsty
 ```
 
@@ -279,4 +279,3 @@ infra_portal:
   odoo         : { domain: odoo.pigsty.io ,endpoint: "127.0.0.1:8069"   ,websocket: true }
   mm           : { domain: mm.pigsty.io   ,endpoint: "10.10.10.10:8065" ,websocket: true }
 ```
-

@@ -12,7 +12,7 @@ categories: [Concept]
 
 Pigsty natively supports Citus. This is a distributed horizontal scaling extension based on the native PostgreSQL kernel.
 
-![](/img/pigsty/citus.jpg)
+![Citus](/img/pigsty/citus.jpg)
 
 
 --------

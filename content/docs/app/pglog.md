@@ -29,11 +29,11 @@ Next, you can access the following links to view the sample log analysis interfa
 
 * [PGLOG Overview](https://demo.pigsty.io/d/pglog-overview):  Present the entire CSV log sample details, aggregated by multiple dimensions.
 
-[![](/img/dashboard/pglog-overview.jpg)](https://demo.pigsty.io/d/pglog-overview)
+[![PGLOG overview dashboard](/img/dashboard/pglog-overview.jpg)](https://demo.pigsty.io/d/pglog-overview)
 
 * [PGLOG Session](https://demo.pigsty.io/d/pglog-session):  Present detailed information about a specific connection in the log sample.
 
-[![](/img/dashboard/pglog-session.jpg)](https://demo.pigsty.io/d/pglog-session)
+[![PGLOG session dashboard](/img/dashboard/pglog-session.jpg)](https://demo.pigsty.io/d/pglog-session)
 
 The `catlog` command pulls CSV database logs from a specific node for a specific date and writes to `stdout`
 
@@ -45,4 +45,3 @@ Using `pglog` and `catlog` together, you can quickly pull database CSV logs for 
 catlog | pglog                       # Analyze current node's log for today
 catlog node-1 '2021-07-15' | pglog   # Analyze node-1's csvlog for 2021-07-15
 ```
-

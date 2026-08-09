@@ -26,7 +26,7 @@ Refer to the task definition file example: [`files/migration/pg-meta.yml`](https
 
 This migration task will online migrate `pg-meta.meta` to `pg-test.test`, where the former is called the **Source Cluster (SRC)** and the latter is called the **Destination Cluster (DST)**.
 
-```
+```text
 pg-meta-1	10.10.10.10  --> pg-test-1	10.10.10.11 (10.10.10.12,10.10.10.13)
 ```
 
@@ -128,4 +128,3 @@ You must implement your own `./re-routing` script to route your application traf
 You can implement a `./disable-src` script to restrict application access to the src cluster—this is optional: if you can ensure all application traffic is cleanly switched in `./re-routing`, you don't really need this step.
 
 But if you have various access from unknown sources that can't be cleanly sorted out, it's better to use more thorough methods: change HBA rules and reload to implement (recommended), or simply stop the postgres, pgbouncer, or haproxy processes on the source primary.
-

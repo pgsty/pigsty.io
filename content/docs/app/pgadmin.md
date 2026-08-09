@@ -27,7 +27,7 @@ Public Demo: http://adm.pigsty.cc
 
 Credentials: `admin@pigsty.cc` / `pigsty`
 
-![](/img/docs/app/pgadmin.jpeg)
+![pgAdmin](/img/docs/app/pgadmin.jpeg)
 
 
 

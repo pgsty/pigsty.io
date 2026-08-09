@@ -221,7 +221,7 @@ journalctl -u haproxy -f
 
 HAProxy provides a web admin interface, default port 9101:
 
-```
+```text
 http://<node_ip>:9101/haproxy
 ```
 
@@ -348,7 +348,7 @@ pg list <cls>          # Confirm primary location
 
 Recommended PGSQL module component startup order:
 
-```
+```text
 1. patroni          # Start Patroni first (auto-starts PostgreSQL)
 2. pgbouncer        # Then start connection pool
 3. haproxy          # Start load balancer

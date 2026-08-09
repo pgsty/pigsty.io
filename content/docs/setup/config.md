@@ -122,7 +122,7 @@ all:  # Simply changed group name from nodes -> infra and added infra_seq
 
 We also assigned an [**identity parameter**](/docs/concept/iac/parameter#identity-parameters): [**`infra_seq`**](/docs/infra/param/#infra_seq) to distinguish nodes in multi-node HA **INFRA** deployments.
 
-Run `infra.yml` to install [**INFRA`**](/docs/infra/) and [**NODE`**](/docs/node/) modules on `10.10.10.10`:
+Run `infra.yml` to install [**INFRA `**](/docs/infra/) and [**NODE`**](/docs/node/) modules on `10.10.10.10`:
 
 ```bash title="~/pigsty"
 ./infra.yml   # Install INFRA module on infra group (includes NODE module)

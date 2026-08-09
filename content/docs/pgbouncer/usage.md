@@ -133,8 +133,7 @@ Basic setup and usage is as follows.
     Note: Does not work on Windows; **pgbouncer** need to run as service there.
 
 `-R`, `--reboot`
-:   **DEPRECATED: Instead of this option use a rolling restart with multiple
-    pgbouncer processes listening on the same port using so_reuseport instead**
+:   **DEPRECATED: Instead of this option use a rolling restart with multiple pgbouncer processes listening on the same port using so_reuseport instead**
     Do an online restart. That means connecting to the running process,
     loading the open sockets from it, and then using them.  If there
     is no active process, boot normally.
@@ -142,7 +141,7 @@ Basic setup and usage is as follows.
     is not disabled in configuration.  Does not work on Windows.
     Does not work with TLS connections, they are dropped.
 
-`-u` _USERNAME_, `--user=`_USERNAME_
+`-u` _USERNAME_, `--user=` _USERNAME_
 :   Switch to the given user on startup.
 
 `-v`, `--verbose`
@@ -703,8 +702,7 @@ link
 #### SHOW SOCKETS, SHOW ACTIVE_SOCKETS
 
 Shows low-level information about sockets or only active sockets.
-This includes the information shown under **SHOW CLIENTS** and **SHOW
-SERVERS** as well as other more low-level information.
+This includes the information shown under **SHOW CLIENTS** and **SHOW SERVERS** as well as other more low-level information.
 
 #### SHOW CONFIG
 
@@ -900,8 +898,7 @@ parameters.
 #### WAIT_CLOSE [db]
 
 Wait until all server connections, either of the specified database or
-of all databases, have cleared the "close_needed" state (see **SHOW
-SERVERS**).  This can be called after a **RECONNECT** or **RELOAD** to
+of all databases, have cleared the "close_needed" state (see **SHOW SERVERS**). This can be called after a **RECONNECT** or **RELOAD** to
 wait until the respective configuration change has been fully
 activated, for example in switchover scripts.
 

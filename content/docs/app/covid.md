@@ -23,7 +23,7 @@ GitHub Repository: [https://github.com/pgsty/pigsty-app/tree/master/covid](https
 
 Online Demo: [https://demo.pigsty.io/d/covid](https://demo.pigsty.io/d/covid)
 
-[![](/img/docs/app/covid.jpg)](https://demo.pigsty.io/d/covid)
+[![COVID-19 analytics dashboard](/img/docs/app/covid.jpg)](https://demo.pigsty.io/d/covid)
 
 
 -----------
@@ -46,4 +46,3 @@ make download   # download latest data
 make load       # load downloaded data into database
 make reload     # download latest data and pour it into database
 ```
-

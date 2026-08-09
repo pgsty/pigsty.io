@@ -9,7 +9,7 @@ categories: [Concept]
 
 The largest entity concept in Pigsty is a **Deployment**. The main entities and relationships (E-R diagram) in a deployment are shown below:
 
-![](/img/pigsty/er-full.svg)
+![Pigsty full data model ER diagram](/img/pigsty/er-full.svg)
 
 A deployment can also be understood as an **Environment**. For example, Production (Prod), User Acceptance Testing (UAT), Staging, Testing, Development (Devbox), etc.
 Each environment corresponds to a Pigsty [**inventory**](/docs/concept/iac/inventory) that describes all entities and attributes in that environment.
@@ -25,4 +25,3 @@ For example, PostgreSQL HA database clusters, Redis, Etcd/MinIO all exist as clu
 - [**MinIO Cluster**](/docs/concept/model/minio)
 - [**Redis Cluster**](/docs/concept/model/redis)
 - [**INFRA Nodes**](/docs/concept/model/infra)
-

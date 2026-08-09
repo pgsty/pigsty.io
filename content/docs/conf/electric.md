@@ -74,4 +74,3 @@ http://elec.pigsty:8003/metrics
 - Electric user needs `replication` permission
 - PostgreSQL logical replication must be enabled
 - Production environments should use SSL connection (configured with `sslmode=require`)
-

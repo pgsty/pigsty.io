@@ -575,5 +575,3 @@ For details, refer to [pigsty/wiki/gallery](https://github.com/pgsty/pigsty/wiki
 [![pglog-session.jpg](/img/dashboard/pglog-session.jpg)](https://demo.pigsty.io/ui/d/pglog-session)
 
 </details>
-
-

@@ -9,7 +9,7 @@ categories: [Concept]
 ---
 
 {{< infographic >}}
-```
+```text
 infographic list-row-simple-horizontal-arrow
 data
 
@@ -83,7 +83,7 @@ The lease in DCS can only trigger cluster election after TTL naturally expires.
 
 The Patroni primary refreshes the Leader Key every `loop_wait` cycle, resetting TTL to the configured value.
 
-```
+```text
 Timeline:
      t-loop        t          t+ttl-loop    t+ttl
        |           |              |           |
@@ -109,7 +109,7 @@ ttl & \text{Worst}
 
 Replicas wake up on `loop_wait` cycles and check the Leader Key status in DCS.
 
-```
+```text
 Timeline:
     Lease Expired   Replica Wakes
        |            |
@@ -137,7 +137,7 @@ When replicas detect Leader Key expiration, they start the election process. The
 2. Compare WAL positions to determine the best candidate, replicas attempt to create Leader Key (CAS atomic operation)
 3. Execute `pg_ctl promote` to become primary (very fast, typically negligible)
 
-```
+```text
 Election Flow:
   ReplicaA ──→ Query replication position ──→ Compare ──→ Contest lock ──→ Success
   ReplicaB ──→ Query replication position ──→ Compare ──→ Contest lock ──→ Fail
@@ -160,7 +160,7 @@ T_{elect} = \begin{cases}
 
 HAProxy detects the new primary online, requiring `rise` consecutive successful health checks.
 
-```
+```text
 Detection Timeline:
   New Primary    First Check   Second Check  Third Check (UP)
      |          |           |           |

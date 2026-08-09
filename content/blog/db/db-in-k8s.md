@@ -147,4 +147,3 @@ Perhaps one day, when the reliability and performance of distributed network sto
 **[《PostgreSQL@K8s Performance Optimization》](https://mp.weixin.qq.com/s/0kbWa6AnkCr5jkN4WIgu5Q)**
 
 **[《Running Database on Kubernetes》](https://questdb.io/blog/databases-on-k8s/)**
-

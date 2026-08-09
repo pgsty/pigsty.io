@@ -25,4 +25,4 @@ pg-meta:
     pg_extensions: [ postgis, timescaledb, pgvector ]  # Install: Install extension packages
 ```
 
-![](/img/pigsty/ecosystem.png)
+![Pigsty PostgreSQL extension ecosystem](/img/pigsty/ecosystem.png)

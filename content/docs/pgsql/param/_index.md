@@ -383,7 +383,7 @@ When multiple standard PostgreSQL clusters serve the same business together in a
 
 For example, if we have a shard group `pg-citus` with 4 clusters, their identity parameters would be:
 
-```
+```text
 cls pg_shard: pg-citus
 cls pg_group = 0:   pg-citus0
 cls pg_group = 1:   pg-citus1
@@ -1505,7 +1505,7 @@ For existing clusters, you can directly [configure cluster](/docs/pgsql/admin#co
 
 If you want to use TimescaleDB or Citus extensions, you need to add `timescaledb` or `citus` to this list. `timescaledb` and `citus` should be placed at the front of this list, for example:
 
-```
+```text
 citus,timescaledb,pg_stat_statements,auto_explain
 ```
 
@@ -2498,7 +2498,7 @@ If specified, will override the auto-generated PostgreSQL DSN and use the specif
 
 If not specified, PG Exporter will use the following connection string to access PostgreSQL by default:
 
-```
+```text
 postgres://{{ pg_monitor_username }}:{{ pg_monitor_password }}@{{ pg_host }}:{{ pg_port }}/postgres{% if pg_exporter_params != '' %}?{{ pg_exporter_params }}{% endif %}
 ```
 
@@ -2611,7 +2611,7 @@ If specified, will override the auto-generated pgbouncer DSN and use the specifi
 
 If not specified, Pgbouncer Exporter will use the following connection string to access Pgbouncer by default:
 
-```
+```text
 postgres://{{ pg_monitor_username }}:{{ pg_monitor_password }}@:{{ pgbouncer_port }}/pgbouncer?host={{ pg_localhost }}&sslmode=disable
 ```
 

@@ -49,7 +49,7 @@ For a long time, best practice in data processing involved using MySQL/PostgreSQ
 
 Like many "specialized databases," the strength of dedicated OLAP systems often lies in **performance** — achieving 1-3 orders of magnitude improvement over native PG or MySQL. The **cost**, however, is redundant data, excessive data movement, lack of agreement on data values among distributed components, extra labor expense for specialized skills, extra licensing costs, limited query language power, programmability and extensibility, limited tool integration, poor data integrity and availability compared with a complete DMBS.
 
-However, as the saying goes, "What goes around comes around". With [hardware improving over thirty years following Moore's Law](/blog/cloud/bonus), performance has increased exponentially while costs have plummeted. In 2024, a single x86 machine can have hundreds of cores (512 vCPU [EPYC 9754](https://www.amd.com/zh-hans/products/cpu/amd-epyc-9754)x2), several TBs of RAM, a single NVMe SSD can hold up to 64TB, and a single all-flash rack can reach 2PB; object storage like S3 offers virtually unlimited storage.
+However, as the saying goes, "What goes around comes around". With [hardware improving over thirty years following Moore's Law](/blog/cloud/bonus), performance has increased exponentially while costs have plummeted. In 2024, a single x86 machine can have hundreds of cores (512 vCPU [EPYC 9754](https://www.amd.com/zh-hans/products/cpu/amd-epyc-9754) x2), several TBs of RAM, a single NVMe SSD can hold up to 64TB, and a single all-flash rack can reach 2PB; object storage like S3 offers virtually unlimited storage.
 
 [![io-bandwidth.jpg](/img/hero/eater/io-bandwidth.jpg)](/blog/cloud/bonus)
 
@@ -152,7 +152,7 @@ Accordingly, the main conflict is no longer the database kernel itself but two d
 
 Kernel remains lukewarm, with MariaDB, the fork of MySQL’s parent, nearing delisting, while AWS, profiting from offering services and extensions on top of the free kernel, thrives. Investment has flowed into numerous PG ecosystem extensions and service distributions: Citus, TimescaleDB, Hydra, PostgresML, ParadeDB, FerretDB, StackGres, Aiven, Neon, Supabase, Tembo, PostgresAI, and our own PG distro — — [Pigsty](https://pigsty.io/).
 
-![](/img/pigsty/players.png)
+![PostgreSQL ecosystem players](/img/pigsty/players.png)
 
 
 ------
@@ -204,15 +204,15 @@ Thus, I created [**Pigsty**](https://pigsty.io/), a battery-included, local-firs
 
 [![img](/img/pigsty/homepage.png)](https://pigsty.io)
 
-> Pigsty stands for **P**ostgreSQL **i**n **G**reat **STY**le, representing the zenith of PostgreSQL.
+> Pigsty stands for <strong>P</strong>ostgreSQL <strong>i</strong>n <strong>G</strong>reat <strong>STY</strong>le, representing the zenith of PostgreSQL.
 
-We’ve defined six core propositions addressing the central issues in PostgreSQL database services: 
+We’ve defined six core propositions addressing the central issues in PostgreSQL database services:
 
 **Extensible Postgres**, **Reliable Infras**, **Observable Graphics**, **Available Services**, **Maintainable Toolbox**, and **Composable Modules**.
 
 The initials of these value propositions offer another acronym for Pigsty:
 
-> **P**ostgres, **I**nfras, **G**raphics, **S**ervice, **T**oolbox, **Y**ours.
+> <strong>P</strong>ostgres, <strong>I</strong>nfras, <strong>G</strong>raphics, <strong>S</strong>ervice, <strong>T</strong>oolbox, <strong>Y</strong>ours.
 >
 > Your graphical Postgres infrastructure service toolbox.
 

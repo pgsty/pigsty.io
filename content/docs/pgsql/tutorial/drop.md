@@ -41,4 +41,3 @@ Unless you have set the [`pg_rm_backup`](/docs/pgsql/param#pg_rm_backup) paramet
 > **Warning**: In this situation, your data will be unrecoverable! **Please think three times before proceeding!**
 
 Recommendation: For production environments, you can globally configure this parameter to `false` in the configuration manifest to preserve backups when removing clusters.
-

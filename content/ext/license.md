@@ -782,4 +782,3 @@ Extensions using Unknown license (1)
 |:---------|:-------|:--------:|:--------:|:--------:|:---------|
 | [`oidc_validator`](/ext/e/oidc_validator) | [`pg_oidc_validator_rust`](https://github.com/UnAfraid/pg_oidc_validator_rust) | `0.1.0` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | PostgreSQL 18 OIDC bearer-token validator plugin written in Rust |
 {.ext-table}
-

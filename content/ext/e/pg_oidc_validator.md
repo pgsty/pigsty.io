@@ -185,4 +185,3 @@ Use oauth_client_secret only when the registered client requires one. The client
 - The validator supports common OIDC providers, but the README explicitly calls out Google as unsupported and describes provider-specific setup for Microsoft Entra ID.
 - Token validation is only one part of authorization. PostgreSQL role membership and object privileges still control database access.
 - Protect client secrets and provider credentials outside connection strings where possible, and validate TLS trust for the issuer.
-

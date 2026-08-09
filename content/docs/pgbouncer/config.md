@@ -90,13 +90,13 @@ Maximum number of client connections allowed.
 
 When this setting is increased, then the file descriptor limits in the operating system might also have to be increased. Note that the number of file descriptors potentially used is more than `max_client_conn`. If each user connects under its own user name to the server, the theoretical maximum used is:
 
-```
+```text
 max_client_conn + (max pool_size * total databases * total users)
 ```
 
 If a database user is specified in the connection string (all users connect under the same user name), the theoretical maximum is:
 
-```
+```text
 max_client_conn + (max pool_size * total databases)
 ```
 
@@ -265,7 +265,7 @@ So if you consider the following as an example scenario:
 
 Then, PgBouncer needs at most the following amount of memory to handle these prepared statements:
 
-```
+```text
 200 x 5kB + 1000 x 4 x 4kB = ~17MB of memory.
 ```
 
@@ -275,7 +275,7 @@ But of course there are also performance benefits to prepared statements. Just a
 
 The reuse of prepared statements has one downside. If the return or argument types of a prepared statement changes across executions then PostgreSQL currently throws an error such as:
 
-```
+```text
 ERROR:  cached plan must not change result type
 ```
 
@@ -886,7 +886,7 @@ A comma-separated list of host names or addresses can be specified. In that case
 
 Examples:
 
-```
+```text
 host=localhost
 host=127.0.0.1
 host=2001:0db8:85a3:0000:0000:8a2e:0370:7334
@@ -1077,7 +1077,7 @@ If the value begins with `/`, then a Unix socket in the file-system namespace is
 
 Examples:
 
-```
+```text
 host=localhost
 host=127.0.0.1
 host=2001:0db8:85a3:0000:0000:8a2e:0370:7334
@@ -1112,7 +1112,7 @@ If the file name is not an absolute path, it is taken as relative to the current
 
 This section describes the format of the file specified by the `auth_file` setting. It is a text file in the following format:
 
-```
+```text
 "username1" "password" ...
 "username2" "md5abcdef012342345" ...
 "username2" "SCRAM-SHA-256$<iterations>:<salt>$<storedkey>:<serverkey>"
@@ -1122,7 +1122,7 @@ There should be at least 2 fields, surrounded by double quotes. The first field 
 
 PostgreSQL MD5-hashed password format:
 
-```
+```text
 "md5" + md5(password + username)
 ```
 
@@ -1130,7 +1130,7 @@ So user `admin` with password `1234` will have MD5-hashed password `md545f260361
 
 PostgreSQL SCRAM secret format:
 
-```
+```text
 SCRAM-SHA-256$<iterations>:<salt>$<storedkey>:<serverkey>
 ```
 

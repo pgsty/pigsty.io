@@ -26,4 +26,3 @@ sidebar_expanded: true
 | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | 28 | 17 | Protocol Simulation & heterogeneous DBMS Compatibility: Oracle, MSSQL, DB2, MySQL, Memcached, and Babelfish! |
 | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | 22 | 21 | Logical Replication, Decoding, CDC in protobuf/JSON/Mongo format, Copy & Load & Compare Postgres Databases,... |
 {.ext-table}
-

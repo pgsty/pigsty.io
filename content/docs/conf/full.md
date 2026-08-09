@@ -73,4 +73,3 @@ The `ha/full` template is Pigsty's **complete feature demonstration configuratio
 **Notes**:
 - This template is mainly for demonstration and testing; for production, refer to [`ha/trio`](/docs/conf/trio/) or [`ha/safe`](/docs/conf/safe/)
 - MinIO backup enabled by default; comment out related config if not needed
-

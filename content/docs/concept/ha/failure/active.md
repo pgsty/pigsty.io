@@ -9,7 +9,7 @@ categories: [Concept]
 ---
 
 {{< infographic >}}
-```
+```text
 infographic list-row-simple-horizontal-arrow
 data
   desc When Patroni is healthy but PostgreSQL crashes
@@ -85,7 +85,7 @@ If restart succeeds, service self-heals; if timeout expires without recovery, Pa
 
 Patroni checks PostgreSQL status every `loop_wait` cycle (via `pg_isready` or process check).
 
-```
+```text
 Timeline:
     Last check      PG crash      Next check
        |              |              |
@@ -109,7 +109,7 @@ loop & \text{Worst}
 
 After Patroni detects PG crash, it attempts to restart PostgreSQL. This phase has two possible outcomes:
 
-```
+```text
 Timeline:
   Crash detected     Restart attempt     Success/Timeout
       |                  |                    |
@@ -141,7 +141,7 @@ start & \text{Worst}
 
 Standbys wake up on `loop_wait` cycle and check Leader Key status in DCS. When primary Patroni releases the Leader Key, standbys discover this and begin election.
 
-```
+```text
 Timeline:
     Lease released    Standby wakes
        |                  |
@@ -169,7 +169,7 @@ After standbys discover Leader Key vacancy, election begins. The standby that ac
 2. Compare WAL positions to determine best candidate, standbys attempt to create Leader Key (CAS atomic operation)
 3. Execute `pg_ctl promote` to become primary (very fast, typically negligible)
 
-```
+```text
 Election process:
   StandbyA ──→ Query replication position ──→ Compare ──→ Try lock ──→ Success
   StandbyB ──→ Query replication position ──→ Compare ──→ Try lock ──→ Fail
@@ -192,7 +192,7 @@ T_{elect} = \begin{cases}
 
 HAProxy detects new primary online, requires `rise` consecutive successful health checks.
 
-```
+```text
 Check timeline:
   New primary    First check    Second check   Third check (UP)
      |              |               |               |

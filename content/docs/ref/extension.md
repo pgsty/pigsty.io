@@ -12,7 +12,7 @@ Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` a
 
 [**PGEXT.CLOUD**](https://pgext.cloud/) catalogs **2,230** PostgreSQL extensions in total. Of these, **{{< param pgext_count >}}** are packaged and available through Pigsty repositories:
 
-### TIME
+## TIME
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
@@ -28,7 +28,7 @@ Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` a
 | [pg_later](/ext/e/pg_later/) | `0.4.0` | `TIME` | Run queries now and get results later |
 | [pg_background](/ext/e/pg_background/) | `1.8` | `TIME` | Run SQL queries in the background |
 
-### GIS
+## GIS
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
@@ -55,7 +55,7 @@ Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` a
 | [tzf](/ext/e/tzf/) | `0.2.3` | `GIS` | Fast lookup timezone name by GPS coordinates |
 | [earthdistance](/ext/e/earthdistance/) | `1.2` | `GIS` | calculate great-circle distances on the surface of the Earth |
 
-### RAG
+## RAG
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
@@ -70,7 +70,7 @@ Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` a
 | [pg4ml](/ext/e/pg4ml/) | `2.0` | `RAG` | Machine learning framework for PostgreSQL |
 | [pgml](/ext/e/pgml/) | `2.10.0` | `RAG` | Run AL/ML workloads with SQL interface |
 
-### FTS
+## FTS
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
@@ -98,7 +98,7 @@ Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` a
 | [fuzzystrmatch](/ext/e/fuzzystrmatch/) | `1.2` | `FTS` | determine similarities and distance between strings |
 | [pg_trgm](/ext/e/pg_trgm/) | `1.6` | `FTS` | text similarity measurement and index searching based on trigrams |
 
-### OLAP
+## OLAP
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
@@ -117,7 +117,7 @@ Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` a
 | [pg_strom](/ext/e/pg_strom/) | `6.1` | `OLAP` | PG-Strom - big-data processing acceleration using GPU and NVME |
 | [tablefunc](/ext/e/tablefunc/) | `1.0` | `OLAP` | functions that manipulate whole tables, including crosstab |
 
-### FEAT
+## FEAT
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
@@ -184,7 +184,7 @@ Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` a
 | [omni_yaml](/ext/e/omni_yaml/) | `0.1.0` | `FEAT` | YAML toolkit |
 | [bloom](/ext/e/bloom/) | `1.0` | `FEAT` | bloom access method - signature file based index |
 
-### LANG
+## LANG
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
@@ -222,7 +222,7 @@ Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` a
 | [ltree_plpython3u](/ext/e/ltree_plpython3u/) | `1.0` | `LANG` | transform between ltree and plpython3u |
 | [hstore_plpython3u](/ext/e/hstore_plpython3u/) | `1.0` | `LANG` | transform between hstore and plpython3u |
 
-### TYPE
+## TYPE
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
@@ -264,7 +264,7 @@ Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` a
 | [citext](/ext/e/citext/) | `1.6` | `TYPE` | data type for case-insensitive character strings |
 | [xml2](/ext/e/xml2/) | `1.1` | `TYPE` | XPath querying and XSLT |
 
-### UTIL
+## UTIL
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
@@ -301,7 +301,7 @@ Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` a
 | [pguecc](/ext/e/pguecc/) | `1.0` | `UTIL` | uECC bindings for Postgres |
 | [sparql](/ext/e/sparql/) | `1.0` | `UTIL` | Query SPARQL datasource with SQL |
 
-### FUNC
+## FUNC
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
@@ -353,7 +353,7 @@ Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` a
 | [dict_int](/ext/e/dict_int/) | `1.0` | `FUNC` | text search dictionary template for integers |
 | [unaccent](/ext/e/unaccent/) | `1.1` | `FUNC` | text search dictionary that removes accents |
 
-### ADMIN
+## ADMIN
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
@@ -398,7 +398,7 @@ Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` a
 | [amcheck](/ext/e/amcheck/) | `1.4` | `ADMIN` | functions for verifying relation integrity |
 | [pg_surgery](/ext/e/pg_surgery/) | `1.0` | `ADMIN` | extension to perform surgery on a damaged relation |
 
-### STAT
+## STAT
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
@@ -438,7 +438,7 @@ Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` a
 | [auto_explain](/ext/e/auto_explain/) | `-` | `STAT` | Provides a means for logging execution plans of slow statements automatically |
 | [pg_stat_statements](/ext/e/pg_stat_statements/) | `1.11` | `STAT` | track planning and execution statistics of all SQL statements executed |
 
-### SEC
+## SEC
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
@@ -471,7 +471,7 @@ Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` a
 | [pgcrypto](/ext/e/pgcrypto/) | `1.3` | `SEC` | cryptographic functions |
 | [passwordcheck](/ext/e/passwordcheck/) | `-` | `SEC` | checks user passwords and reject weak password |
 
-### FDW
+## FDW
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
@@ -501,7 +501,7 @@ Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` a
 | [file_fdw](/ext/e/file_fdw/) | `1.0` | `FDW` | foreign-data wrapper for flat file access |
 | [postgres_fdw](/ext/e/postgres_fdw/) | `1.1` | `FDW` | foreign-data wrapper for remote PostgreSQL servers |
 
-### SIM
+## SIM
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|
@@ -532,7 +532,7 @@ Pigsty extension data is synchronized from `~/pgsty/pgext/content/list/ext.md` a
 | [pgmemcache](/ext/e/pgmemcache/) | `2.3.0` | `SIM` | memcached interface |
 | [aux_mysql](/ext/e/aux_mysql/) | `1.5` | `SIM` | MySQL compatibility auxiliary extension module |
 
-### ETL
+## ETL
 
 | Extension | Version | Category | Description |
 |:---|:---|:---:|:---|

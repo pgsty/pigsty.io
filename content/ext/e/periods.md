@@ -294,7 +294,7 @@ Defining a period constrains the two columns such that the start column's value 
 
 ## Unique Constraints
 
-Periods may be part of `PRIMARY KEY`s and `UNIQUE` constraints.
+Periods may be part of `PRIMARY KEY` s and `UNIQUE` constraints.
 
 ```sql
 CREATE TABLE example (

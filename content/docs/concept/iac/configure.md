@@ -130,7 +130,7 @@ The **`configure`** script performs the following adjustments based on environme
 
 The `configure` script executes detection and configuration in the following order:
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                  configure Execution Flow                   │
 ├─────────────────────────────────────────────────────────────┤

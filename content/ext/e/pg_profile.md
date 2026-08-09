@@ -434,7 +434,7 @@ SELECT * FROM v_sample_timings;
 
 ### Recommended Settings
 
-```
+```text
 track_activities = on
 track_counts = on
 track_io_timing = on

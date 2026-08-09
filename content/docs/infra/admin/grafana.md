@@ -303,4 +303,3 @@ Then re-run the `grafana` task from [`infra.yml`](/docs/infra/playbook#infrayml)
 ```bash
 ./infra.yml -t grafana
 ```
-
