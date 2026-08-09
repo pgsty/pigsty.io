@@ -7,7 +7,6 @@ icon: fa-solid fa-database
 module: [PGSQL]
 categories: [Reference, Concept]
 aliases:
-  - /docs/ferret/
   - /docs/ferret/admin/
   - /docs/ferret/config/
   - /docs/ferret/faq/
