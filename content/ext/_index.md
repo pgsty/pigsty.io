@@ -27,7 +27,7 @@ pig install pg_duckdb -v 18                    # e.g., install pg_duckdb for PG 
 
 Everything can be solved with PostgreSQL! Check out our blog post: [**PostgreSQL is eating the database world!**](/blog/pg/pg-eat-db-world)
 
-![Pigsty PostgreSQL extension ecosystem](/img/pigsty/ecosystem.png)
+![](/img/pigsty/ecosystem.png)
 
 
 --------

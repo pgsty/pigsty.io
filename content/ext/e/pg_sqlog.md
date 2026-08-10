@@ -282,7 +282,7 @@ SELECT * FROM sqlog.autoanalyze() LIMIT 5;
 
 Required `postgresql.conf` settings:
 
-```text
+```
 log_destination = 'syslog,csvlog'
 log_filename = 'postgresql.%F'
 logging_collector = 'on'

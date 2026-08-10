@@ -277,3 +277,4 @@ Violations use SQLSTATE `FS001`, which applications can trap when `message_level
 - A predicate whose range still includes every partition is treated as a full scan and rejected, even if it mentions the partition key.
 - The hook also applies to `UPDATE`, `DELETE`, and `EXPLAIN` without `ANALYZE`. It relies on PostgreSQL's planned pruning result, not textual inspection of `WHERE` clauses.
 - Upstream v1.0 is tested on PostgreSQL 14 and newer.
+

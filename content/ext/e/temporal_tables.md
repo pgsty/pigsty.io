@@ -265,7 +265,7 @@ There is [a fantastic tutorial](http://clarkdave.net/2015/02/historical-records-
 
 The extension uses a general trigger function to maintain system-period temporal table behaviour:
 
-```text
+```
 versioning(<system_period_column_name>, <history_table_name>, <adjust>)
 ```
 

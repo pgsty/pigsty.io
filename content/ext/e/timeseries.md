@@ -295,7 +295,7 @@ The output of this query will differ from simply hitting the target table direct
 
 ### `make_view_incremental`
 
-This function accepts a view and converts it into a materialized view which is kept up-to-date after every modification. This removes the need for users to pick between always up-to-date `VIEW` s and having to call `REFRESH` on `MATERIALIZED VIEW` s.
+This function accepts a view and converts it into a materialized view which is kept up-to-date after every modification. This removes the need for users to pick between always up-to-date `VIEW`s and having to call `REFRESH` on `MATERIALIZED VIEW`s.
 
 The underlying functionality is provided by [a fork](https://github.com/ChuckHend/pg_ivm) of [`pg_ivm`](https://github.com/sraoss/pg_ivm). Enable the `pg_ivm` extension if you want to use this feature:
 

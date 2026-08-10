@@ -236,7 +236,7 @@ ACLs are stored as PostgreSQL arrays of ACE types (e.g., `ace[]`).
 
 ### ACE Format
 
-```text
+```
 [type]/[flags]/[who]=[mask]
 ```
 
