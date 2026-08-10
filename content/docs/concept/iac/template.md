@@ -101,6 +101,7 @@ You can configure Pigsty to run on multiple nodes, forming a high-availability (
 | [**`trio.yml`**](/docs/conf/trio/) | 3-node standard HA deployment                            |
 | [**`full.yml`**](/docs/conf/full/) | 4-node standard deployment                               |
 | [**`safe.yml`**](/docs/conf/safe/) | 4-node security-enhanced deployment with delayed replica |
+| [**`octo.yml`**](/docs/conf/octo/) | Compact 8-node HA simulation                             |
 | [**`simu.yml`**](/docs/conf/simu/) | 20-node production environment simulation                |
 | [**`ha/citus.yml`**](/docs/conf/citus/) | Citus distributed HA PostgreSQL (14~18)             |
 
@@ -137,7 +138,8 @@ Besides main templates, Pigsty provides a set of demo templates for different sc
 | [**`debian.yml`**](/docs/conf/debian/) | Full-parameter config file for Debian/Ubuntu systems                     |
 | **`remote.yml`**                       | Example config for monitoring remote PostgreSQL clusters or RDS          |
 | **`redis.yml`**                        | Redis cluster example configuration                                      |
-| [**`minio.yml`**](/docs/conf/minio/)   | 4-node MinIO cluster example configuration                               |
+| [**`minio.yml`**](/docs/conf/minio/)   | 4-node multi-drive Silo cluster example (source default)                  |
+| [**`rustfs.yml`**](/docs/conf/rustfs/) | 4-node distributed RustFS object-storage example                          |
 | [**`kafka.yml`**](/docs/conf/kafka/)   | Kafka dynamic KRaft example with a single-node dev cluster and a three-node secure cluster |
 | [**`mysql.yml`**](/docs/conf/mysql84/) | Native MySQL 8.4 single-node/three-node pilot example; distinct from OpenHalo `conf/mysql.yml` |
 | [**`demo.yml`**](/docs/conf/demo/)     | Configuration file for Pigsty [public demo site](https://demo.pigsty.io) |

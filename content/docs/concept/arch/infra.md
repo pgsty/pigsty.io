@@ -96,7 +96,8 @@ served by **Nginx** and mounted at the `/pigsty` path:
 {.full-width}
 
 Pigsty supports [**offline installation**](/docs/setup/offline), which essentially pre-copies a prepared local software repository to the target environment.
-When Pigsty performs production deployment and needs to create a local software repository, if it finds the **`/www/pigsty/repo_complete`** marker file already exists locally, it skips downloading packages from upstream and uses existing packages directly, avoiding internet downloads.
+When Pigsty finds **`/www/pigsty/repo_complete`** during deployment, it skips upstream downloads and uses the existing repository directly.
+The current source has [sow](https://sow.pgsty.com) generate this file as both a completion marker and a SHA-256 manifest of repository contents. To force a rebuild, run `./infra.yml -t repo_build -e repo_build=true`.
 
 [![repo](/img/pigsty/repo.webp)](https://demo.pigsty.io/pigsty/)
 

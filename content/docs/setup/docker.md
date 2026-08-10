@@ -205,8 +205,12 @@ make rmi          # Remove current version's pigsty image
 
 ```bash
 make clean        # Stop and remove container
-make purge        # Remove container and wipe data (2-second countdown; Ctrl+C cancels)
+make purge        # Stop and remove the container, then directly delete ./data in the current directory
 ```
+
+{{% alert title="Use make purge with care" color="warning" %}}
+The current Makefile no longer provides a countdown prompt. After removing the container, `make purge` runs `rm -rf -- ./data` directly. Verify the current directory and target data first, and back it up when necessary.
+{{% /alert %}}
 
 
 ----------------
@@ -232,7 +236,7 @@ Or use Makefile's `make run`:
 make run          # Start with docker run
 make exec         # Enter container
 make clean        # Stop and remove container
-make purge        # Remove container and wipe data
+make purge        # Remove container and directly delete ./data in the current directory
 ```
 
 
@@ -298,7 +302,7 @@ PIGSTY_HTTP_PORT=8888 PIGSTY_PG_PORT=5433 docker compose up -d
 Container data mounted to `./data`. To wipe and start fresh:
 
 ```bash
-make purge        # Remove container and wipe data (2-second countdown; Ctrl+C cancels)
+make purge        # Remove container and directly delete ./data in the current directory (no countdown)
 ```
 
 ### macOS performance

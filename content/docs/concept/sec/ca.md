@@ -28,8 +28,8 @@ During the first deployment, Pigsty checks for a CA on the [**admin node**](/doc
 | `files/pki/ca/ca.crt` | CA root certificate; safe to distribute | `0644` |
 {.full-width}
 
-- [`ca_create`](/docs/infra/param#ca_create) controls CA behavior. Existing files are reused unchanged for idempotency; otherwise a new CA is created.
-  If set to `false` and the CA files are missing, deployment fails instead of silently creating a new trust root.
+- [`ca_create`](/docs/infra/param#ca_create) controls CA behavior. An existing private key and certificate are reused unchanged; if the certificate is missing but the private key exists, that key is used to issue a replacement certificate.
+  `ca_create: false` only prevents creation of a missing CA private key. Deployment stops if `ca.key` is absent, preventing an unexpected trust root. Always back up and restore `ca.key` and `ca.crt` together.
 - [`ca_cn`](/docs/infra/param#ca_cn) sets the CA certificate CN, which defaults to `pigsty-ca`. The key is RSA 4096.
 - The root CA is valid for 100 years, while component certificates default to 20 years ([`cert_validity`](/docs/infra/param#cert_validity): `7300d`).
   The browser-facing Nginx certificate is an exception and currently defaults to 397 days.
@@ -79,7 +79,9 @@ The local CA issues certificates for the following components and places them un
 | [**PgBouncer**](/docs/concept/arch/pgsql#pgbouncer) | Reuses the PostgreSQL certificate | `/pg/cert/` | TLS disabled by default ([`pgbouncer_sslmode`](/docs/pgsql/param#pgbouncer_sslmode)) |
 | [**Patroni**](/docs/concept/arch/pgsql#patroni) | Reuses the PostgreSQL certificate | `/pg/cert/` | API HTTPS disabled by default ([`patroni_ssl_enabled`](/docs/pgsql/param#patroni_ssl_enabled)) |
 | [**etcd**](/docs/concept/arch/pgsql#etcd) | `<instance-name>` | `/etc/etcd/server.{crt,key}` | TLS for client and peer traffic |
-| [**MinIO**](/docs/concept/model/minio) | `<node-name>` | `~minio/.minio/certs/` | HTTPS enabled by default ([`minio_https`](/docs/minio/param#minio_https)) |
+| [**Object storage**](/docs/concept/model/minio) | `<node-name>` | Silo/MinIO: `~minio/.minio/certs/`; RustFS: `~minio/.rustfs/certs/` | HTTPS enabled by default ([`minio_https`](/docs/minio/param#minio_https)) |
+| [**Kafka**](/docs/kafka/) | `<cluster>-<sequence>` | `/etc/kafka/pki/kafka.pem` | SASL_SSL/SSL with `kafka_security: scram`; defaults to `plaintext` |
+| [**MySQL**](/docs/pilot/mysql/) | `<instance-name>` | `/etc/mysql/pki/server.{crt,key}` | Secure transport enforced; clients and group replication verify the certificate chain |
 | [**Nginx**](/docs/concept/arch/infra#nginx) | `pigsty`, with portal domains in SAN | `/etc/nginx/conf.d/cert/` | HTTPS enabled by default ([`nginx_sslmode`](/docs/infra/param#nginx_sslmode)) |
 | [**INFRA node**](/docs/concept/arch/node#infra-node) | `<node-name>` | `/etc/pki/infra.{crt,key}` | Available to infrastructure components |
 {.full-width}
@@ -87,7 +89,7 @@ The local CA issues certificates for the following components and places them un
 The encryption-state column reflects deliberate defaults:
 
 - **Enabled at deployment**: PostgreSQL accepts SSL connections; etcd uses TLS for client and peer traffic.
-- **Encrypted by default**: MinIO backup traffic and Nginx web traffic use HTTPS.
+- **Encrypted by default**: Object-storage backup traffic through the MINIO module and Nginx web traffic use HTTPS.
 - **Disabled by default, available on demand**: TLS for the Patroni REST API and PgBouncer is disabled by default, but certificates are already present. Enable it through the corresponding parameters; both are enabled in the [**`ha/safe` template**](/docs/conf/safe).
 
 Keep three states distinct: **server-side SSL support does not force clients to use SSL, and neither state proves that the client verifies the server identity**.
@@ -123,7 +125,7 @@ files/pki/ca/ca.key    # CA or intermediate CA private key
 files/pki/ca/ca.crt    # Corresponding CA certificate
 ```
 
-Also set `ca_create: false`. Deployment will then fail explicitly if the files are missing instead of creating an unexpected self-signed CA and breaking the existing trust chain.
+Also set `ca_create: false`. Deployment will then fail explicitly if the private key is missing instead of creating an unexpected trust root. This setting does not stop the role from reissuing the CA certificate when the private key exists but the certificate is missing, so verify and restore both files together.
 
 
 ---------------

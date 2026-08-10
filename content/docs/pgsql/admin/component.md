@@ -215,7 +215,7 @@ systemctl status haproxy
 journalctl -u haproxy -f
 ```
 
-**Config file**: `/etc/haproxy/haproxy.cfg`
+**Config files**: the main configuration is `/etc/haproxy/haproxy.cfg`; Pigsty-generated service fragments are stored under `/etc/haproxy/conf.d/`.
 
 **Admin Interface**
 
@@ -404,7 +404,7 @@ journalctl -u <service> --since "5 min ago"  # Last 5 minutes logs
 
 | Symptom | Possible Cause | Solution |
 |:--------|:---------------|:---------|
-| Config syntax error | haproxy.cfg format error | `haproxy -c -f /etc/haproxy/haproxy.cfg` |
+| Config syntax error | Invalid main configuration or service fragment | `haproxy -Ws -f /etc/haproxy/haproxy.cfg -f /etc/haproxy/conf.d -c -q` |
 | Port in use | Service port conflict | `lsof -i :5433` |
 
 

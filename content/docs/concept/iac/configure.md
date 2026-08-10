@@ -303,6 +303,7 @@ The script reads templates from `conf/`. The value of `-c` is a path relative to
 | `ha/trio`  | 3-node HA cluster                         |
 | `ha/full`  | 4-node complete sandbox environment       |
 | `ha/safe`  | Security-hardened HA configuration        |
+| `ha/octo`  | Compact 8-node HA simulation              |
 | `ha/simu`  | 20-node production simulation environment |
 | `ha/citus` | 13-node Citus distributed cluster         |
 
@@ -350,7 +351,10 @@ The script reads templates from `conf/`. The value of `-c` is a path relative to
 |  `demo/demo`   | Multi-module demo environment                     |
 | `demo/kernel`  | Ten-node database-kernel matrix                   |
 | `demo/redis`   | Redis replica, Sentinel, and native Cluster demo  |
-| `demo/minio`   | Multi-node, multi-drive MinIO demo                |
+| `demo/minio`   | Multi-node, multi-drive Silo demo (source default) |
+| `demo/rustfs`  | Four-node distributed RustFS cluster demo          |
+| `demo/kafka`   | Kafka KRaft development and secure-cluster demo    |
+| `demo/mysql`   | Native MySQL 8.4 pilot demo                        |
 | `demo/remote`  | Remote PostgreSQL/RDS monitoring example          |
 |  `demo/saas`   | Legacy single-node SaaS component bundle          |
 |  `demo/wool`   | Small cloud-instance example for China            |

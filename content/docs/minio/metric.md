@@ -1,93 +1,82 @@
 ---
 title: Metrics
 weight: 3670
-description: Complete list of monitoring metrics provided by the Pigsty MINIO module
-  with explanations
+description: Metrics V3 and native RustFS interfaces, key metrics, and stable labels currently used by the Pigsty MINIO module.
 icon: fa-solid fa-list-check
 module: [MINIO]
 categories: [Reference]
 ---
 
-This page is a snapshot of 79 monitoring metric categories for the [**`MINIO`**](/docs/minio) module. The actual runtime metric set varies with package version, enabled collectors, and target state.
 
-| Metric Name                                      | Type    | Labels                                                         | Description                                                                                                                                 |
-|--------------------------------------------------|---------|----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| minio_audit_failed_messages                      | counter | `ip`, `job`, `target_id`, `cls`, `instance`, `server`, `ins`   | Total number of messages that failed to send since start                                                                                    |
-| minio_audit_target_queue_length                  | gauge   | `ip`, `job`, `target_id`, `cls`, `instance`, `server`, `ins`   | Number of unsent messages in queue for target                                                                                               |
-| minio_audit_total_messages                       | counter | `ip`, `job`, `target_id`, `cls`, `instance`, `server`, `ins`   | Total number of messages sent since start                                                                                                   |
-| minio_cluster_bucket_total                       | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of buckets in the cluster                                                                                                      |
-| minio_cluster_capacity_raw_free_bytes            | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total free capacity online in the cluster                                                                                                   |
-| minio_cluster_capacity_raw_total_bytes           | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total capacity online in the cluster                                                                                                        |
-| minio_cluster_capacity_usable_free_bytes         | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total free usable capacity online in the cluster                                                                                            |
-| minio_cluster_capacity_usable_total_bytes        | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total usable capacity online in the cluster                                                                                                 |
-| minio_cluster_drive_offline_total                | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total drives offline in this cluster                                                                                                        |
-| minio_cluster_drive_online_total                 | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total drives online in this cluster                                                                                                         |
-| minio_cluster_drive_total                        | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total drives in this cluster                                                                                                                |
-| minio_cluster_health_erasure_set_healing_drives  | gauge   | `pool`, `ip`, `job`, `cls`, `set`, `instance`, `server`, `ins` | Get the count of healing drives of this erasure set                                                                                         |
-| minio_cluster_health_erasure_set_online_drives   | gauge   | `pool`, `ip`, `job`, `cls`, `set`, `instance`, `server`, `ins` | Get the count of the online drives in this erasure set                                                                                      |
-| minio_cluster_health_erasure_set_read_quorum     | gauge   | `pool`, `ip`, `job`, `cls`, `set`, `instance`, `server`, `ins` | Get the read quorum for this erasure set                                                                                                    |
-| minio_cluster_health_erasure_set_status          | gauge   | `pool`, `ip`, `job`, `cls`, `set`, `instance`, `server`, `ins` | Get current health status for this erasure set                                                                                              |
-| minio_cluster_health_erasure_set_write_quorum    | gauge   | `pool`, `ip`, `job`, `cls`, `set`, `instance`, `server`, `ins` | Get the write quorum for this erasure set                                                                                                   |
-| minio_cluster_health_status                      | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Get current cluster health status                                                                                                           |
-| minio_cluster_nodes_offline_total                | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of MinIO nodes offline                                                                                                         |
-| minio_cluster_nodes_online_total                 | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of MinIO nodes online                                                                                                          |
-| minio_cluster_objects_size_distribution          | gauge   | `ip`, `range`, `job`, `cls`, `instance`, `server`, `ins`       | Distribution of object sizes across a cluster                                                                                               |
-| minio_cluster_objects_version_distribution       | gauge   | `ip`, `range`, `job`, `cls`, `instance`, `server`, `ins`       | Distribution of object versions across a cluster                                                                                            |
-| minio_cluster_usage_deletemarker_total           | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of delete markers in a cluster                                                                                                 |
-| minio_cluster_usage_object_total                 | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of objects in a cluster                                                                                                        |
-| minio_cluster_usage_total_bytes                  | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total cluster usage in bytes                                                                                                                |
-| minio_cluster_usage_version_total                | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of versions (includes delete marker) in a cluster                                                                              |
-| minio_cluster_webhook_failed_messages            | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Number of messages that failed to send                                                                                                      |
-| minio_cluster_webhook_online                     | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Is the webhook online?                                                                                                                      |
-| minio_cluster_webhook_queue_length               | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Webhook queue length                                                                                                                        |
-| minio_cluster_webhook_total_messages             | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of messages sent to this target                                                                                                |
-| minio_cluster_write_quorum                       | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Maximum write quorum across all pools and sets                                                                                              |
-| minio_node_file_descriptor_limit_total           | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Limit on total number of open file descriptors for the MinIO Server process                                                                 |
-| minio_node_file_descriptor_open_total            | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of open file descriptors by the MinIO Server process                                                                           |
-| minio_node_go_routine_total                      | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of go routines running                                                                                                         |
-| minio_node_ilm_expiry_pending_tasks              | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Number of pending ILM expiry tasks in the queue                                                                                             |
-| minio_node_ilm_transition_active_tasks           | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Number of active ILM transition tasks                                                                                                       |
-| minio_node_ilm_transition_missed_immediate_tasks | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Number of missed immediate ILM transition tasks                                                                                             |
-| minio_node_ilm_transition_pending_tasks          | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Number of pending ILM transition tasks in the queue                                                                                         |
-| minio_node_ilm_versions_scanned                  | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of object versions checked for ilm actions since server start                                                                  |
-| minio_node_io_rchar_bytes                        | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total bytes read by the process from the underlying storage system including cache, /proc/[pid]/io rchar                                    |
-| minio_node_io_read_bytes                         | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total bytes read by the process from the underlying storage system, /proc/[pid]/io read_bytes                                               |
-| minio_node_io_wchar_bytes                        | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total bytes written by the process to the underlying storage system including page cache, /proc/[pid]/io wchar                              |
-| minio_node_io_write_bytes                        | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total bytes written by the process to the underlying storage system, /proc/[pid]/io write_bytes                                             |
-| minio_node_process_cpu_total_seconds             | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total user and system CPU time spent in seconds                                                                                             |
-| minio_node_process_resident_memory_bytes         | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Resident memory size in bytes                                                                                                               |
-| minio_node_process_starttime_seconds             | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Start time for MinIO process per node, time in seconds since Unix epoc                                                                      |
-| minio_node_process_uptime_seconds                | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Uptime for MinIO process per node in seconds                                                                                                |
-| minio_node_scanner_bucket_scans_finished         | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of bucket scans finished since server start                                                                                    |
-| minio_node_scanner_bucket_scans_started          | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of bucket scans started since server start                                                                                     |
-| minio_node_scanner_directories_scanned           | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of directories scanned since server start                                                                                      |
-| minio_node_scanner_objects_scanned               | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of unique objects scanned since server start                                                                                   |
-| minio_node_scanner_versions_scanned              | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of object versions scanned since server start                                                                                  |
-| minio_node_syscall_read_total                    | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total read SysCalls to the kernel. /proc/[pid]/io syscr                                                                                     |
-| minio_node_syscall_write_total                   | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total write SysCalls to the kernel. /proc/[pid]/io syscw                                                                                    |
-| minio_notify_current_send_in_progress            | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Number of concurrent async Send calls active to all targets (deprecated, please use 'minio_notify_target_current_send_in_progress' instead) |
-| minio_notify_events_errors_total                 | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Events that were failed to be sent to the targets (deprecated, please use 'minio_notify_target_failed_events' instead)                      |
-| minio_notify_events_sent_total                   | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of events sent to the targets (deprecated, please use 'minio_notify_target_total_events' instead)                              |
-| minio_notify_events_skipped_total                | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Events that were skipped to be sent to the targets due to the in-memory queue being full                                                    |
-| minio_s3_requests_4xx_errors_total               | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`, `api`         | Total number of S3 requests with (4xx) errors                                                                                               |
-| minio_s3_requests_errors_total                   | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`, `api`         | Total number of S3 requests with (4xx and 5xx) errors                                                                                       |
-| minio_s3_requests_incoming_total                 | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of incoming S3 requests                                                                                                        |
-| minio_s3_requests_inflight_total                 | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`, `api`         | Total number of S3 requests currently in flight                                                                                             |
-| minio_s3_requests_rejected_auth_total            | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of S3 requests rejected for auth failure                                                                                       |
-| minio_s3_requests_rejected_header_total          | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of S3 requests rejected for invalid header                                                                                     |
-| minio_s3_requests_rejected_invalid_total         | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of invalid S3 requests                                                                                                         |
-| minio_s3_requests_rejected_timestamp_total       | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of S3 requests rejected for invalid timestamp                                                                                  |
-| minio_s3_requests_total                          | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`, `api`         | Total number of S3 requests                                                                                                                 |
-| minio_s3_requests_ttfb_seconds_distribution      | gauge   | `ip`, `job`, `cls`, `le`, `instance`, `server`, `ins`, `api`   | Distribution of time to first byte across API calls                                                                                         |
-| minio_s3_requests_waiting_total                  | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of S3 requests in the waiting queue                                                                                            |
-| minio_s3_traffic_received_bytes                  | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of s3 bytes received                                                                                                           |
-| minio_s3_traffic_sent_bytes                      | counter | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Total number of s3 bytes sent                                                                                                               |
-| minio_software_commit_info                       | gauge   | `ip`, `job`, `cls`, `instance`, `commit`, `server`, `ins`      | Git commit hash for the MinIO release                                                                                                       |
-| minio_software_version_info                      | gauge   | `ip`, `job`, `cls`, `instance`, `version`, `server`, `ins`     | MinIO Release tag for the server                                                                                                            |
-| minio_up                                         | Unknown | `ip`, `job`, `cls`, `instance`, `ins`                          | N/A                                                                                                                                         |
-| minio_usage_last_activity_nano_seconds           | gauge   | `ip`, `job`, `cls`, `instance`, `server`, `ins`                | Time elapsed (in nano seconds) since last scan activity.                                                                                    |
-| scrape_duration_seconds                          | Unknown | `ip`, `job`, `cls`, `instance`, `ins`                          | N/A                                                                                                                                         |
-| scrape_samples_post_metric_relabeling            | Unknown | `ip`, `job`, `cls`, `instance`, `ins`                          | N/A                                                                                                                                         |
-| scrape_samples_scraped                           | Unknown | `ip`, `job`, `cls`, `instance`, `ins`                          | N/A                                                                                                                                         |
-| scrape_series_added                              | Unknown | `ip`, `job`, `cls`, `instance`, `ins`                          | N/A                                                                                                                                         |
-| up                                               | Unknown | `ip`, `job`, `cls`, `instance`, `ins`                          | N/A                                                                                                                                         |
+The MINIO module now has two metric paths: Silo/MinIO expose `/minio/metrics/v3`, while RustFS pushes native OTLP metrics and uses a separate HTTPS readiness probe. The metric set varies with server versions and enabled features, so this page documents the stable interfaces used by current dashboards and alerts rather than treating a complete scrape from one old version as a permanent contract.
+
+
+--------
+
+## Stable Identity Labels
+
+All object-storage targets use these Pigsty labels:
+
+| Label | Meaning | Example |
+|:---|:---|:---|
+| `job` | Fixed module namespace | `minio` |
+| `flavor` | Actual backend | `silo`, `minio`, `rustfs` |
+| `cls` | `minio_cluster` identity | `minio` |
+| `ins` | `<minio_cluster>-<minio_seq>` instance identity | `minio-1` |
+| `ip` | Inventory management address | `10.10.10.10` |
+| `instance` | Metric target address | `10.10.10.10:9000` |
+{.full-width}
+
+Queries and recording rules should prefer the stable `cls`, `ins`, and `ip` identities. RustFS also attaches OTEL resource attributes, but those can change after restarts, container changes, or network changes and should not replace Pigsty identity labels.
+
+
+--------
+
+## Silo / MinIO Metrics V3
+
+Each Silo or MinIO instance exposes only the V3 root endpoint, `/minio/metrics/v3`. Current key metrics are:
+
+| Category | Key Metrics | Meaning |
+|:---|:---|:---|
+| Liveness | `minio_up` | Pigsty scrape/health state for the instance |
+| Nodes | `minio_cluster_health_nodes_online_count`, `minio_cluster_health_nodes_offline_count` | Online and offline nodes |
+| Drives | `minio_cluster_health_drives_online_count`, `minio_cluster_health_drives_offline_count` | Online and offline drives |
+| Capacity | `minio_cluster_health_capacity_raw_total_bytes` | Raw total capacity |
+| Capacity | `minio_cluster_health_capacity_usable_total_bytes`, `minio_cluster_health_capacity_usable_free_bytes` | Usable total and free capacity |
+| Objects | `minio_cluster_usage_objects_count`, `minio_cluster_usage_objects_total_bytes` | Object count and used bytes |
+| Buckets | `minio_cluster_usage_objects_buckets_count` | Aggregated bucket count |
+| Erasure coding | `minio_cluster_erasure_set_overall_health`, `minio_cluster_erasure_set_overall_write_quorum` | Erasure-set health and write quorum |
+| API | `minio_api_requests_total`, `minio_api_requests_errors_total`, `minio_api_requests_4xx_errors_total` | API requests and errors |
+| API | `minio_api_requests_inflight_total`, `minio_api_requests_incoming_total` | In-flight and incoming requests |
+| Traffic | `minio_api_requests_traffic_received_bytes`, `minio_api_requests_traffic_sent_bytes` | Received and sent bytes |
+| Latency | `minio_api_requests_ttfb_seconds_distribution` | Time-to-first-byte distribution |
+| Process | `minio_system_process_cpu_total_seconds`, `minio_system_process_resident_memory_bytes` | Process CPU and resident memory |
+| System | `minio_system_drive_free_bytes`, `minio_system_drive_used_bytes`, `minio_system_drive_health` | Per-drive capacity and health |
+| Audit | `minio_audit_total_messages` | Audit-message count |
+{.full-width}
+
+Pigsty drops samples whose `bucket` label is non-empty at scrape time and does not register dedicated per-bucket or replication endpoints. This is an intentional cardinality-control policy. If per-bucket metrics are required, evaluate the time-series volume before adding a custom scrape job.
+
+
+--------
+
+## Native RustFS Metrics
+
+RustFS pushes native `rustfs_*` metrics to VictoriaMetrics through OTLP/HTTP. Common metrics include:
+
+| Category | Key Metrics |
+|:---|:---|
+| Readiness | `rustfs_up`, from the separate Blackbox HTTPS probe |
+| Telemetry freshness | `rustfs_start_total`, `rustfs_telemetry_age_seconds` |
+| Cluster capacity | `rustfs_cluster_capacity_raw_total_bytes`, `rustfs_cluster_capacity_usable_total_bytes`, `rustfs_cluster_capacity_free_bytes`, `rustfs_cluster_capacity_used_bytes` |
+| Members and drives | `rustfs_cluster_servers_offline_total`, `rustfs_cluster_health_drives_online_count`, `rustfs_cluster_health_drives_offline_count` |
+| Objects and buckets | `rustfs_cluster_objects_total`, `rustfs_cluster_buckets_total` |
+| S3 workload | `rustfs_s3_operations_total` |
+| HTTP | `rustfs_http_server_requests_total`, `rustfs_http_server_failures_total`, `rustfs_http_server_request_duration_seconds_sum`, `rustfs_http_server_request_duration_seconds_count` |
+| Process | `rustfs_system_process_cpu_total_seconds`, `rustfs_system_process_resident_memory_bytes`, `rustfs_system_process_file_descriptor_open_total` |
+| Erasure coding | `rustfs_cluster_erasure_set_read_health`, `rustfs_cluster_erasure_set_write_health`, `rustfs_cluster_erasure_set_read_quorum`, `rustfs_cluster_erasure_set_write_quorum` |
+{.full-width}
+
+Cluster capacity, bucket, drive, and erasure-code metrics are usually reported by every member. Deduplicate cluster values by object identity with `max` or `min`; do not sum them directly. Process and HTTP counters can be summed over `rate()` when a cluster-wide total is required.
+
+RustFS creates some metrics lazily as features and workloads activate, so an empty panel does not necessarily indicate failure. Check `rustfs_up` together with `rustfs_telemetry_age_seconds` first to distinguish an unavailable service from a healthy service whose telemetry path is interrupted.

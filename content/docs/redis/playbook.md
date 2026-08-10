@@ -61,7 +61,7 @@ Deploy an entire Redis cluster, including all instances on all nodes:
 ```
 
 Cluster-level operations will:
-- Install Redis packages on all nodes
+- Install Redis or Valkey according to `redis_type`, plus `redis-exporter`, on all nodes
 - Create redis user and directory structure on all nodes
 - Start redis_exporter on all nodes
 - Deploy and start all defined Redis instances
@@ -84,7 +84,7 @@ Node-level operations are useful for:
 - Redeploying all instances on a specific node
 - Reinitializing after node failure recovery
 
-> **Note**: Node-level commands still enter `redis-ha` / `redis-join` mode checks: in `sentinel` mode they refresh Sentinel managed targets, and in `cluster` mode they may trigger `--cluster create` again (this step uses `ignore_errors: true`, but is not idempotent). For native cluster scale-out, you should still run `redis-cli --cluster add-node` and `reshard` manually.
+> **Note**: Node-level commands still enter the `redis-ha` / `redis-join` mode checks. Sentinel mode refreshes managed targets. In cluster mode, the playbook first uses the selected CLI to check the seed instance for `cluster_state:ok`; it exits for a healthy cluster and otherwise runs `--cluster create`. This guard does not replace scale-out: use `redis-cli` / `valkey-cli --cluster add-node` and `reshard` manually for an existing native cluster.
 
 
 ### Instance-Level Operations
@@ -136,11 +136,11 @@ Use the `-t <tag>` parameter to selectively execute certain tasks:
 
 ### Idempotency
 
-Most tasks in `redis.yml` can be run repeatedly, but `redis-join` is an exception:
+Most tasks in `redis.yml` can be run repeatedly, but native-cluster initialization still requires attention to topology state:
 
 - Re-running `redis_node` / `redis_exporter` / `redis_instance` / `redis_register` overwrites config and restarts instances
 - Re-running `redis-ha` reapplies `SENTINEL REMOVE/MONITOR` based on `redis_sentinel_monitor`
-- `redis-join` uses `redis-cli --cluster create`, which is not idempotent; reruns on an existing cluster usually fail (the playbook currently sets `ignore_errors: true`)
+- `redis-join` first checks whether the seed instance has reached `cluster_state:ok` and exits for a healthy cluster. The check does not repair incomplete or damaged topologies or perform scale-out, so do not treat it as a general add-node/reshard operation.
 
 > **Tip**: If you only want to update configs without restarting all instances, use `-t redis_config` to render configs only, then manually restart the instances you need.
 
@@ -160,7 +160,7 @@ redis_deregister : Remove registration from monitoring system
 redis_exporter   : Stop and disable redis_exporter
 redis            : Stop and disable redis instances
 redis_data       : Delete data directories (when redis_rm_data=true)
-redis_pkg        : Uninstall packages (when redis_rm_pkg=true)
+redis_pkg        : Uninstall selected engine and redis-exporter (when redis_rm_pkg=true)
 ```
 
 
@@ -189,7 +189,7 @@ Cluster-level removal will:
 - Stop redis_exporter on all nodes
 - Stop and disable all Redis instances
 - Delete all data directories (if `redis_rm_data=true`)
-- Uninstall packages (if `redis_rm_pkg=true`)
+- Uninstall the engine selected by `redis_type` and `redis-exporter` (if `redis_rm_pkg=true`)
 
 
 ### Node-Level Removal
@@ -251,7 +251,7 @@ Behavioral differences when `redis_port` is specified:
 |:----------|:--------|:------------|
 | `redis_safeguard` | `false` | Safety guard; when `true`, refuses to execute removal |
 | `redis_rm_data` | `true` | Whether to delete data directories (RDB/AOF files) |
-| `redis_rm_pkg` | `false` | Whether to uninstall Redis packages |
+| `redis_rm_pkg` | `false` | Whether to uninstall the selected engine and redis-exporter |
 
 Usage examples:
 

@@ -57,7 +57,7 @@ Reasonable defaults reduce omissions. The following capabilities are enabled in 
 | Server-side TLS | PostgreSQL server certificates are installed and `ssl` is enabled, so TLS connections are accepted | — |
 | Local CA | A self-signed CA is created automatically for managed component certificates | [`ca_create`](/docs/infra/param#ca_create) |
 | [**etcd**](/docs/concept/model/etcd) encryption and authentication | TLS for client and peer traffic, plus RBAC password authentication | [`etcd_root_password`](/docs/etcd/param#etcd_root_password) |
-| [**MinIO**](/docs/concept/model/minio) HTTPS | Backup storage traffic uses HTTPS by default | [`minio_https`](/docs/minio/param#minio_https) |
+| [**MINIO object storage**](/docs/concept/model/minio) HTTPS | Backup traffic to Silo, MinIO, or RustFS uses HTTPS by default | [`minio_https`](/docs/minio/param#minio_https) |
 | [**Nginx**](/docs/concept/arch/infra#nginx) HTTPS | Web ingress listens on both ports 80 and 443 by default | [`nginx_sslmode`](/docs/infra/param#nginx_sslmode) |
 | HBA rules | Layered access: local ident, intranet password authentication, and SSL required for public administrator access | [`pg_default_hba_rules`](/docs/pgsql/param#pg_default_hba_rules) |
 | Roles and privileges | A four-tier role model and default privilege templates provide a least-privilege baseline | [`pg_default_roles`](/docs/pgsql/param#pg_default_roles) |

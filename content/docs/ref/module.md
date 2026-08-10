@@ -18,8 +18,8 @@ categories: [Reference]
 |  [**`INFRA`**](/docs/infra)  | **Core**  |   GA   | `/docs/infra`  | Local software repository + VictoriaMetrics/Logs/Traces + Grafana infrastructure stack.               |
 |   [**`NODE`**](/docs/node)   | **Core**  |   GA   |  `/docs/node`  | Node initialization and convergence: system tuning, admin, HAProxy, Vector, Keepalived, etc.           |
 |   [**`ETCD`**](/docs/etcd)   | **Core**  |   GA   |  `/docs/etcd`  | DCS for PostgreSQL HA (service discovery, config, leader-election metadata).                          |
-|  [**`MINIO`**](/docs/minio)  | Extension |   GA   | `/docs/minio`  | S3-compatible object storage, optionally used as PostgreSQL backup repository.                        |
-|  [**`REDIS`**](/docs/redis)  | Extension |   GA   | `/docs/redis`  | Redis standalone/sentinel/cluster deployment and monitoring.                                          |
+|  [**`MINIO`**](/docs/minio)  | Extension |   GA   | `/docs/minio`  | Unified S3-compatible object storage with Silo by default or RustFS, suitable for PostgreSQL backups. |
+|  [**`REDIS`**](/docs/redis)  | Extension |   GA   | `/docs/redis`  | Redis by default, or Valkey, in standalone, Sentinel, or native-cluster mode with monitoring.         |
 | [**`DOCKER`**](/docs/docker) | Extension |   GA   | `/docs/docker` | Docker daemon and the runtime capability for containerized apps.                                      |
 |  [**`JUICE`**](/docs/juice)  | Extension |  BETA  | `/docs/juice`  | JuiceFS distributed file system using PostgreSQL as metadata engine.                                  |
 |   [**`VIBE`**](/docs/vibe)   | Extension |  BETA  |  `/docs/vibe`  | Browser-based dev environment with Code-Server, JupyterLab, Node.js, Claude Code, and Codex CLI.      |
@@ -47,7 +47,7 @@ Although these four modules are usually installed together, separate use is stil
 
 Pigsty provides six <span class="text-secondary"><b>extension</b></span> modules. They are not mandatory for core functionality, but can enhance PostgreSQL capabilities:
 
-- [**`MINIO`**](/docs/minio): S3-compatible object storage, optional PostgreSQL backup repository, with production deployment and monitoring support.
+- [**`MINIO`**](/docs/minio): An S3-compatible object-storage module that deploys Silo or RustFS from one inventory and provides PostgreSQL backup integration and corresponding monitoring.
 - [**`REDIS`**](/docs/redis): Redis server with standalone/sentinel/cluster production deployment and full monitoring support.
 - [**`DOCKER`**](/docs/docker): Docker daemon service for one-click deployment of stateless software templates on Pigsty.
 - [**`JUICE`**](/docs/juice): JuiceFS distributed filesystem module using PostgreSQL as metadata engine, providing shared POSIX storage.

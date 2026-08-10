@@ -19,6 +19,8 @@ The core difference between the REDIS module and the PGSQL module is that Redis 
 
 In Redis managed by Pigsty, nodes are entirely subordinate to the cluster, which means that currently, it is not allowed to deploy Redis instances of two different clusters on one node. However, this does not affect deploying multiple independent Redis primary-replica instances on one node. Of course, there are some limitations; for example, in this case, you cannot specify different passwords for different instances on the same node.
 
+Choose the server implementation with [`redis_type`](/docs/redis/param#redis_type): `redis` by default, or `valkey`. Set it consistently at cluster level. The role switches packages and the `*-server` / `*-cli` binaries while retaining `/etc/redis`, `/data/redis`, instance systemd unit names, and the `redis` monitoring namespace. Validate data compatibility and rollback independently before changing an existing cluster's engine.
+
 
 -------
 
@@ -74,6 +76,8 @@ redis-test: # redis native cluster: 3m x 3s
     10.10.10.13: { redis_node: 2 ,redis_instances: { 6379: { } ,6380: { } ,6381: { } } }
   vars: { redis_cluster: redis-test ,redis_password: 'redis.test' ,redis_mode: cluster, redis_max_memory: 32MB }
 ```
+
+These examples omit `redis_type` and therefore use the default Redis engine. To deploy Valkey, add `redis_type: valkey` to the corresponding cluster's `vars`; do not mix engines within one logical cluster.
 
 
 --------

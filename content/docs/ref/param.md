@@ -9,7 +9,7 @@ categories: [Reference]
 This is the parameter navigation page for Pigsty v4.x, without repeating full explanations for each parameter.
 For parameter details, please read each module's `param` page.
 
-Cross-checked against the current source and parameter reference pages, the 10 official modules expose **371** public parameters. Native MySQL 8.4 remains a pilot module; its 11 public parameters are listed separately and are not included in the official-module total.
+Cross-checked against the current source and parameter reference pages, the 10 official modules expose **379** public parameters. Native MySQL 8.4 remains a pilot module; its 11 public parameters are listed separately and are not included in the official-module total.
 
 --------
 
@@ -21,8 +21,8 @@ Cross-checked against the current source and parameter reference pages, the 10 o
 |  [**`INFRA`**](/docs/infra/param)  |   10   |  73   | Software repository and Victoria-based observability infra |
 |   [**`NODE`**](/docs/node/param)   |   11   |  73   | Node initialization, system tuning, and ops baseline       |
 |   [**`ETCD`**](/docs/etcd/param)   |   2    |  13   | ETCD cluster and removal safeguard parameters              |
-|  [**`MINIO`**](/docs/minio/param)  |   2    |  21   | MinIO deployment and removal parameters                    |
-|  [**`REDIS`**](/docs/redis/param)  |   2    |  21   | Redis deployment and removal parameters                    |
+|  [**`MINIO`**](/docs/minio/param)  |   2    |  28   | Silo, MinIO, and RustFS deployment, observability, and removal parameters |
+|  [**`REDIS`**](/docs/redis/param)  |   2    |  22   | Redis/Valkey deployment and removal parameters             |
 | [**`DOCKER`**](/docs/docker/param) |   1    |   8   | Docker engine parameters                                   |
 |  [**`JUICE`**](/docs/juice/param)  |   1    |   2   | JuiceFS instance and cache parameters                      |
 |   [**`VIBE`**](/docs/vibe/param)   |   1    |  18   | Code/Jupyter/Node.js/Claude/Codex configuration            |

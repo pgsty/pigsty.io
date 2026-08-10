@@ -1,116 +1,105 @@
 ---
 title: Playbook
 weight: 3640
-description: Manage MinIO clusters with Ansible playbooks and quick command reference.
+description: Deploy or remove Silo, MinIO, and RustFS object-storage clusters with the built-in Ansible playbooks.
 icon: fa-solid fa-scroll
 module: [MINIO]
 categories: [Task]
 ---
 
 
-The MinIO module provides two built-in playbooks for cluster management:
+The MINIO module provides two built-in playbooks:
 
-- [`minio.yml`](#minioyml): Install MinIO cluster
-- [`minio-rm.yml`](#minio-rmyml): Remove MinIO cluster
+- [`minio.yml`](#minioyml): Install and configure the object-storage engine selected by `minio_type`
+- [`minio-rm.yml`](#minio-rmyml): Remove the selected engine, its configuration, and optionally its data
 
 
 --------
 
 ## `minio.yml`
 
-Playbook [`minio.yml`](https://github.com/pgsty/pigsty/blob/main/minio.yml) installs the MinIO module on nodes.
+[`minio.yml`](https://github.com/pgsty/pigsty/blob/main/minio.yml) runs with `hosts: all`, but its pre-tasks skip hosts where [`minio_cluster`](/docs/minio/param#minio_cluster) is undefined. The role then validates that:
 
-- `minio-id`        : Generate/validate minio identity parameters
-- `minio_install`   : Install minio
-  - `minio_os_user` : Create OS user minio
-  - `minio_pkg`     : Install minio/mcli packages
-  - `minio_dir`     : Create minio directories
-- `minio_config`    : Generate minio configuration
-  - `minio_conf`    : Minio main config file
-  - `minio_cert`    : Minio SSL certificate issuance
-  - `minio_dns`     : Minio DNS record insertion
-- `minio_launch`    : Launch minio service
-- `minio_register`  : Register minio to monitoring
-- `minio_provision` : Create minio aliases/buckets/users
-  - `minio_alias`   : Create minio client alias on all Infra nodes and MinIO members
-  - `minio_bucket`  : Create minio buckets
-  - `minio_user`    : Create minio business users
+- `minio_cluster` is defined and non-empty
+- `minio_seq` is defined and is a non-negative integer
+- `minio_type` is one of `silo`, `minio`, or `rustfs`
 
-Before running the playbook, complete the MinIO cluster [configuration](/docs/minio/config/) in the [config inventory](/docs/setup/config).
+Thus, `minio_cluster` is the module-membership gate, while invalid `minio_seq` or `minio_type` values fail identity validation explicitly. Do not define `minio_cluster` in `all.vars`.
 
-{{% alert title="Execution Condition" color="primary" %}}
-The playbook automatically skips hosts without [`minio_seq`](/docs/minio/param#minio_seq) defined. This means you can safely execute the playbook on mixed host groups - only actual MinIO nodes will be processed.
-{{% /alert %}}
+The main task tags are:
 
-{{% alert title="Architecture Change: Pigsty v3.6+" color="info" %}}
-Since Pigsty v3.6, the **minio.yml** playbook focuses on cluster installation. All removal operations have been moved to the dedicated **minio-rm.yml** playbook using the **minio_remove** role.
-{{% /alert %}}
+- `minio-id`: Validate identity and compute actual members, node names, and volume parameters from `minio_cluster` across the inventory
+- `minio_install`: Create the `minio` OS user, install the selected engine and `mcli`, and prepare data directories
+  - `minio_os_user`
+  - `minio_pkg`
+  - `minio_dir`
+- `minio_config`: Render `/etc/default/<minio_type>`, `/etc/systemd/system/<minio_type>.service`, certificates, and DNS
+  - `minio_conf`
+  - `minio_cert`
+  - `minio_dns`
+- `minio_launch`: Start or restart the selected systemd service
+- `minio_register`: Write VictoriaMetrics FileSD targets; RustFS also registers a readiness probe
+- `minio_provision`: Have the cluster's first member provision `mcli` aliases, buckets, and users once
+
+Re-running `minio.yml` may restart a running object-storage service, but it does not proactively rebuild data. Schedule production runs according to the cluster's failure budget.
 
 
 --------
 
 ## `minio-rm.yml`
 
-Playbook [`minio-rm.yml`](https://github.com/pgsty/pigsty/blob/main/minio-rm.yml) removes the MinIO cluster.
+[`minio-rm.yml`](https://github.com/pgsty/pigsty/blob/main/minio-rm.yml) uses the same `minio_cluster` membership gate and identity validation, then runs:
 
-- `minio-id`          : Generate minio identity parameters for removal (with `any_errors_fatal` - stops immediately on identity validation failure)
-- `minio_safeguard`   : Safety check, prevent accidental deletion (default: `false`)
-- `minio_pause`       : Pause 3 seconds, allow user to abort (Ctrl+C to cancel)
-- `minio_deregister`  : Remove targets from VictoriaMetrics monitoring, clean up DNS records
-- `minio_svc`         : Stop and disable minio systemd service
-- `minio_data`        : Remove MinIO data directories plus service, client, and Vector configuration (disable with `minio_rm_data=false`)
-- `minio_pkg`         : Uninstall the `minio` and `mcli` packages (enable with `minio_rm_pkg=true`)
+- `minio_safeguard`: Accidental-removal protection, default `false`
+- `minio_pause`: Pause for 3 seconds so you can abort with Ctrl+C
+- `minio_deregister`: Remove VictoriaMetrics targets and DNS records
+- `minio_svc`: Stop and disable the service selected by `minio_type`
+- `minio_data`: Delete data and configuration according to [`minio_rm_data`](/docs/minio/param#minio_rm_data)
+- `minio_pkg`: Uninstall the selected engine and `mcli` according to [`minio_rm_pkg`](/docs/minio/param#minio_rm_pkg)
 
-{{% alert title="Execution Condition & Safety Mechanisms" color="primary" %}}
-- The playbook automatically skips hosts without [`minio_seq`](/docs/minio/param#minio_seq) defined, preventing accidental operations on non-MinIO nodes
-- Identity validation uses `any_errors_fatal` - the playbook stops immediately upon detecting invalid MinIO identity
-- A 3-second pause before removal gives users a chance to abort the operation
+{{% alert title="Dangerous Operation" color="danger" %}}
+`minio_rm_data` defaults to `true`. A full removal run deletes every expanded `minio_data` directory. Before running it, verify `minio_cluster`, `minio_seq`, `minio_type`, and all disk mount paths. To retire only the service while retaining data, explicitly pass `-e minio_rm_data=false`.
 {{% /alert %}}
 
-The removal playbook uses the **minio_remove** role with the following [configurable parameters](/docs/minio/param):
-
-- [`minio_safeguard`](/docs/minio/param#minio_safeguard): Prevents accidental deletion when set to `true`
-- [`minio_rm_data`](/docs/minio/param#minio_rm_data): Controls whether MinIO data and configuration are deleted (default: `true`)
-- [`minio_rm_pkg`](/docs/minio/param#minio_rm_pkg): Controls whether the `minio` and `mcli` packages are uninstalled (default: `false`)
+The deployment role defaults to `minio_type: silo`, but the removal role deliberately has no engine default. If the inventory omits `minio_type`, pass `-e minio_type=silo`, `minio`, or `rustfs` when running the removal playbook. This explicit confirmation prevents cleaning up the wrong package, service, or certificate directory.
 
 
 ----------------
 
 ## Cheatsheet
 
-Common MINIO playbook commands:
-
 ```bash
-./minio.yml -l <cls>                      # Install MINIO module on group <cls>
-./minio.yml -l minio -t minio_install     # Install MinIO service, prepare data dirs, without configure & launch
-./minio.yml -l minio -t minio_config      # Reconfigure MinIO cluster
-./minio.yml -l minio -t minio_launch      # Restart MinIO cluster
-./minio.yml -l minio -t minio_provision   # Re-run provisioning (create buckets and users)
+./minio.yml -l <group>                         # Deploy members with a minio_cluster identity in this limit
+./minio.yml -l minio -t minio_install         # Install the selected engine and mcli; prepare directories
+./minio.yml -l minio -t minio_config          # Re-render configuration, certificates, and DNS
+./minio.yml -l minio -t minio_launch          # Restart the selected object-storage service
+./minio.yml -l minio -t minio_register        # Refresh monitoring targets
+./minio.yml -l minio -t minio_provision       # Re-provision aliases, buckets, and users
 
-./minio-rm.yml -l minio                   # Remove MinIO cluster (using dedicated removal playbook)
-./minio-rm.yml -l minio -e minio_rm_data=false  # Remove cluster but preserve data
-./minio-rm.yml -l minio -e minio_rm_pkg=true    # Remove cluster and uninstall packages
+./minio-rm.yml -l minio -e minio_type=silo                         # Remove Silo service, configuration, and data
+./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_data=false  # Remove service but preserve data and configuration
+./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_pkg=true    # Also uninstall Silo and mcli
 ```
 
+If the configuration group name differs from `minio_cluster`, note that `-l` takes an Ansible group or host pattern, not the logical cluster name. Use a limit expression that covers every intended member.
 
 
 --------
 
 ## Safeguard
 
-To prevent accidental deletion, Pigsty's MINIO module provides a safeguard mechanism controlled by the [`minio_safeguard`](/docs/minio/param#minio_safeguard) parameter.
-
-By default, `minio_safeguard` is `false`, allowing removal operations. If you want to protect the MinIO cluster from accidental deletion, enable this safeguard in the config inventory:
+For production clusters, enable accidental-removal protection in cluster variables:
 
 ```yaml
-minio_safeguard: true   # When enabled, minio-rm.yml will refuse to execute
+minio_safeguard: true
 ```
 
-If you need to remove a protected cluster, override with command-line parameters:
+After carefully verifying the target and backups, explicitly override it when destruction is required:
 
 ```bash
-./minio-rm.yml -l minio -e minio_safeguard=false
+./minio-rm.yml -l minio -e minio_type=silo -e minio_safeguard=false
 ```
+
 
 --------
 

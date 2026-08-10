@@ -1,14 +1,13 @@
 ---
 title: Usage
 weight: 3610
-description: 'Getting started: how to use MinIO? How to reliably access MinIO? How
-  to use mc / rclone client tools?'
+description: Quickly use Silo, MinIO, or RustFS deployed by the MINIO module through mcli, rclone, and pgBackRest.
 icon: fa-solid fa-bell-concierge
 module: [MINIO]
 categories: [Reference]
 ---
 
-After you [configure](/docs/minio/config/) and deploy the MinIO cluster with the [playbook](/docs/minio/playbook/), you can start using and accessing the MinIO cluster by following the instructions here.
+After you [configure](/docs/minio/config/) and deploy an object-storage cluster with the [playbook](/docs/minio/playbook/), use this page to access it through the common S3 and `mcli` interfaces. Unless noted otherwise, these commands apply to Silo, MinIO, and RustFS.
 
 
 
@@ -16,10 +15,10 @@ After you [configure](/docs/minio/config/) and deploy the MinIO cluster with the
 
 ## Deploy Cluster
 
-Deploying an out-of-the-box single-node single-disk MinIO instance in Pigsty is straightforward. First, define a MinIO cluster in the [config inventory](/docs/setup/config/):
+First, define a single-node, single-disk object-storage cluster in the [config inventory](/docs/setup/config/) and explicitly pin its engine:
 
 ```yaml
-minio: { hosts: { 10.10.10.10: { minio_seq: 1 } }, vars: { minio_cluster: minio } }
+minio: { hosts: { 10.10.10.10: { minio_seq: 1 } }, vars: { minio_cluster: minio, minio_type: silo } }
 ```
 
 Then, run the [`minio.yml`](/docs/minio/playbook/) playbook provided by Pigsty against the defined group (here `minio`):
@@ -30,7 +29,7 @@ Then, run the [`minio.yml`](/docs/minio/playbook/) playbook provided by Pigsty a
 
 Note that in [`deploy.yml`](/docs/setup/playbook#deploy-playbook), pre-defined MinIO clusters will be automatically created, so you don't need to manually run the `minio.yml` playbook again.
 
-If you plan to deploy a production-grade large-scale multi-node MinIO cluster, we strongly recommend reading the Pigsty MinIO [configuration documentation](/docs/minio/config/) and the MinIO [official documentation](https://min.io/docs/minio/linux/operations/concepts.html) before proceeding.
+For a production multi-node deployment, read Pigsty's [configuration documentation](/docs/minio/config/) and verify the upstream documentation for the exact engine version you selected. S3 API compatibility does not imply identical scaling behavior or on-disk formats.
 
 
 
@@ -38,7 +37,7 @@ If you plan to deploy a production-grade large-scale multi-node MinIO cluster, w
 
 ## Access Cluster
 
-Note: MinIO services must be accessed via domain name and HTTPS, so make sure the MinIO service domain (default `sss.pigsty`) correctly points to the MinIO server node.
+Production environments should access object storage through a domain name and HTTPS, which is also the default configuration. If you explicitly set [`minio_https`](/docs/minio/param#minio_https) to `false`, HTTP is available instead. In either case, ensure that the object-storage service domain (default `sss.pigsty`) points to the service node or load balancer.
 
 1. You can add static resolution records in [`node_etc_hosts`](/docs/node/param#node_etc_hosts), or manually modify the `/etc/hosts` file
 2. You can add a record on the internal DNS server if you already have an existing DNS service
@@ -47,7 +46,7 @@ Note: MinIO services must be accessed via domain name and HTTPS, so make sure th
 For production environment access to MinIO, we recommend using the first method: static DNS resolution records, to avoid MinIO's additional dependency on DNS.
 
 You should point the MinIO service domain to the IP address and service port of the MinIO server node, or the IP address and service port of the load balancer.
-Pigsty uses the default MinIO service domain `sss.pigsty`, which defaults to localhost for single-node deployment, serving on port `9000`.
+Pigsty uses `sss.pigsty` as the default S3 service domain and serves it on port `9000`. The role does not automatically create a global DNS record for `minio_domain`; configure resolution explicitly as described above.
 
 In some examples, HAProxy instances are also deployed on the MinIO cluster to expose services. In this case, `9002` is the service port used in the templates.
 
@@ -71,7 +70,7 @@ mcli alias set sss https://sss.pigsty:9002 minioadmin S3User.MinIO            # 
 mcli alias set pgbackrest https://sss.pigsty:9000 pgbackrest S3User.Backup    # use backup user
 ```
 
-After a full `minio.yml` run with `minio_provision` enabled, the role configures the default `sss` alias for the Ansible execution user on every Infra node and MinIO member. A host that belongs to both groups is configured only once.
+After a full `minio.yml` run with `minio_provision` enabled, the role configures the default alias for the Ansible execution user on every Infra node and every actual object-storage member discovered by `minio_cluster`. A host in both sets is configured only once.
 
 For the full functionality reference of the MinIO client tool `mcli`, please refer to the documentation: [MinIO Client](https://min.io/docs/minio/linux/reference/minio-mc.html).
 
@@ -155,7 +154,7 @@ If MinIO uses HTTPS (default configuration), you need to ensure the client trust
 
 ## Configure Backup Repository
 
-In Pigsty, the default use case for MinIO is as a backup storage repository for pgBackRest.
+In Pigsty, the MINIO module's primary use case is as an S3 backup repository for pgBackRest.
 When you modify [`pgbackrest_method`](/docs/pgsql/param#pgbackrest_method) to `minio`, the PGSQL module will automatically switch the backup repository to MinIO.
 
 ```yaml

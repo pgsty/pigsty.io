@@ -146,6 +146,9 @@ Pigsty will download the required **increments** from upstream repos.
 
 If your OS isn't in the default list, you can make your own offline package with the built-in [**`cache.yml`**](https://github.com/pgsty/pigsty/blob/main/cache.yml) playbook:
 
+> [!IMPORTANT]
+> In the current v4.5 development source, both `repo_create` and `cache_create` require SOW 0.2.0 and run `sow create --pigsty`. The v4.4.0 official offline package is an older release artifact; do not infer that it already contains SOW. Before rebuilding an older repository with current source, install SOW from the Pigsty INFRA repository or refresh the offline media to match the development version.
+
 1. Find a node running the exact same OS version with Internet access
 2. Use the [**`rich`**](/docs/conf/rich) template for an [**online installation**](/docs/setup/install/) (`./configure -c rich`), and confirm that the target INFRA node has generated its local repository at `/www/pigsty`; if not, run `./infra.yml -t repo` against that node first
 3. Run `cd ~/pigsty; ./cache.yml -l <infra-host>` to select one INFRA node that already has a local repository, build the package there, and fetch it

@@ -90,7 +90,7 @@ Pigsty creates a local software repository during installation to accelerate sub
 
 This repository is served by Nginx, located by default at `/www/pigsty`, accessible via `http://i.pigsty/pigsty`.
 
-Pigsty's offline package is the entire software repository directory (yum/apt) compressed. When Pigsty tries to build a local repo, if it finds the local repo directory `/www/pigsty` already exists with the `/www/pigsty/repo_complete` marker file, it considers the local repo already built and skips downloading software from upstream, eliminating internet dependency.
+A Pigsty offline bundle is a compressed prebuilt RPM/APT repository directory. The current source uses SOW to create repositories. If `/www/pigsty/repo_complete` exists, Pigsty treats the local repository as complete and skips upstream downloads. This file contains SHA-256 checksums; it is not merely an empty marker.
 
 The repo definition file is at `/www/pigsty.repo`, accessible by default via `http://${admin_ip}/pigsty.repo`
 
@@ -232,9 +232,9 @@ You can use the following playbook subtasks to manage the local yum repo on Infr
 ./infra.yml     -t repo_add          # Add upstream repo files to /etc/yum.repos.d (or /etc/apt/sources.list.d)
 ./infra.yml     -t repo_url_pkg      # Download packages from internet defined by repo_url_packages
 ./infra.yml     -t repo_cache        # Create upstream repo metadata cache with yum makecache / apt update
-./infra.yml     -t repo_boot_pkg     # Install bootstrap packages like createrepo_c, yum-utils... (or dpkg-)
+./infra.yml     -t repo_boot_pkg     # Install SOW and dnf/yum download utilities
 ./infra.yml     -t repo_pkg          # Download packages & dependencies from upstream repos
-./infra.yml     -t repo_create       # Create local repo with createrepo_c & modifyrepo_c
+./infra.yml     -t repo_create       # Atomically create RPM/APT metadata with sow create --pigsty
 ./infra.yml     -t repo_use          # Add newly built repo to /etc/yum.repos.d | /etc/apt/sources.list.d
 ./infra.yml -t repo_nginx        # If no nginx serving, start nginx as web server
 ```
@@ -244,7 +244,7 @@ The most commonly used commands are:
 ```bash
 ./infra.yml     -t repo_upstream     # Add upstream repos defined in repo_upstream to INFRA nodes
 ./infra.yml     -t repo_pkg          # Download packages and dependencies from upstream repos
-./infra.yml     -t repo_create       # Create/update local yum repo with createrepo_c & modifyrepo_c
+./infra.yml     -t repo_create       # Create/update local RPM/APT repository metadata with SOW
 ```
 
 

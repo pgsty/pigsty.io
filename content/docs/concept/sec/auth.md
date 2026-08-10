@@ -186,7 +186,7 @@ The **PgBouncer connection pool** uses an independent HBA policy and user list. 
 The [**Patroni REST API**](/docs/concept/arch/pgsql#patroni) carries high-availability control operations such as restart, switchover, and configuration reload. Write operations require HTTP Basic authentication ([`patroni_username`](/docs/pgsql/param#patroni_username) and [`patroni_password`](/docs/pgsql/param#patroni_password)) and are restricted by source-address allowlists.
 When [`patroni_ssl_enabled`](/docs/pgsql/param#patroni_ssl_enabled) is enabled, the API uses HTTPS throughout.
 
-Credentials for Grafana, the HAProxy administration interface, MinIO, etcd, and other components are also declared in the inventory. See the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) for the full list and update guidance.
+Credentials for Grafana, the HAProxy administration interface, the object-storage backend selected by the MINIO module, etcd, and other components are also declared in the inventory. See the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) for the full list and update guidance.
 
 
 ---------------------

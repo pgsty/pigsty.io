@@ -1,33 +1,32 @@
 ---
-title: E-R Model of MinIO Cluster
-linkTitle: MinIO Cluster 
+title: E-R Model of Object Storage Cluster
+linkTitle: Object Storage Cluster
 weight: 50
-description: Entity-Relationship model for MinIO clusters in Pigsty, including E-R diagram, entity definitions, and naming conventions.
+description: The cluster, instance, and node identity model shared by Silo, MinIO, and RustFS in Pigsty's object-storage module.
 icon: fa-solid fa-boxes-stacked
 module: [MINIO]
 categories: [Concept]
 ---
 
 
-The MinIO module organizes MinIO in production as **clusters**—**logical entities** composed of a group of distributed MinIO **instances**, collectively providing highly available object storage services.
+MINIO is the compatibility module name for object storage in Pigsty. The module deploys Silo, MinIO, or RustFS through [`minio_type`](/docs/minio/param#minio_type), and organizes a group of same-backend object-storage **instances** into a **cluster**.
 
-Each cluster is an **autonomous** S3-compatible object storage unit consisting of at least one **MinIO instance**, exposing service capabilities through the S3 API port.
+Each cluster is an **autonomous** S3-compatible object-storage unit consisting of at least one instance and exposing service through the S3 API port.
 
 There are three core entities in Pigsty's MinIO module:
 
-- **Cluster**: An autonomous MinIO service unit serving as the top-level namespace for other entities.
-- **Instance**: A single MinIO server process running on a node, managing local disk storage.
+- **Cluster**: An autonomous object-storage service unit serving as the top-level namespace for other entities.
+- **Instance**: A single Silo, MinIO, or RustFS server process running on a node and managing local disks.
 - **Node**: A hardware resource abstraction running Linux + Systemd environment, implicitly declared.
 
-Additionally, MinIO has the concept of [**Storage Pool**](/docs/minio/config#multi-pool-deployment), used for smooth cluster scaling.
-A cluster can contain multiple storage pools, each composed of a group of nodes and disks.
+MinIO and Silo also have the concept of a [**Storage Pool**](/docs/minio/config#multi-pool-deployment) for expansion. Verify whether the RustFS version you use provides the same online scaling semantics.
 
 
 ----------------
 
 ## Deployment Modes
 
-MinIO supports three main deployment modes for different scenarios:
+All three engines share Pigsty's three inventory deployment modes:
 
 |                   Mode                    |   Code   | Description                              | Use Case           |
 |:-----------------------------------------:|:--------:|:-----------------------------------------|:-------------------|
@@ -36,14 +35,14 @@ MinIO supports three main deployment modes for different scenarios:
 | [**Multi-Node Multi-Drive**](/docs/minio/config#multi-node-multi-drive)   | **MNMD** | Multiple nodes, multiple disks per node   | **Production recommended** |
 {.full-width}
 
-SNSD mode can use any directory as storage for quick experimentation; SNMD and MNMD modes require real disk mount points, otherwise startup is refused.
+SNSD mode can use a regular directory for quick experimentation. Multi-drive Silo and MinIO deployments should use real disk mount points or the service will refuse to start; verify the disk and directory constraints of the RustFS version in use separately.
 
 
 ----------------
 
 ## Examples
 
-Let's look at a concrete multi-node multi-drive example with a four-node MinIO cluster:
+The following example explicitly selects the current default Silo backend and defines a four-node multi-drive cluster:
 
 ```yaml
 minio:
@@ -54,20 +53,21 @@ minio:
     10.10.10.13: { minio_seq: 4 }
   vars:
     minio_cluster: minio
+    minio_type: silo
     minio_data: '/data{1...4}'
     minio_node: '${minio_cluster}-${minio_seq}.pigsty'
 ```
 
-The above config fragment defines a four-node MinIO cluster with four disks per node:
+This config fragment defines a four-node Silo cluster with four disks per node. Instance identifiers retain the MINIO module's compatibility naming:
 
 | <span class="text-secondary">**Cluster**</span> | <span class="text-secondary">**Description**</span> |
 |:-----------------------------------------------:|-----------------------------------------------------|
-|                  **`minio`**                    | MinIO 4-node HA cluster                             |
+|                  **`minio`**                    | Silo 4-node HA cluster                              |
 | <span class="text-success">**Instance**</span>  | <span class="text-success">**Description**</span>   |
-|                 **`minio-1`**                   | MinIO instance #1, managing 4 disks                 |
-|                 **`minio-2`**                   | MinIO instance #2, managing 4 disks                 |
-|                 **`minio-3`**                   | MinIO instance #3, managing 4 disks                 |
-|                 **`minio-4`**                   | MinIO instance #4, managing 4 disks                 |
+|                 **`minio-1`**                   | Object-storage instance #1, managing 4 disks        |
+|                 **`minio-2`**                   | Object-storage instance #2, managing 4 disks        |
+|                 **`minio-3`**                   | Object-storage instance #3, managing 4 disks        |
+|                 **`minio-4`**                   | Object-storage instance #4, managing 4 disks        |
 |  <span class="text-danger">**Node**</span>      | <span class="text-danger">**Description**</span>    |
 |               **`10.10.10.10`**                 | Node #1, hosts `minio-1` instance                   |
 |               **`10.10.10.11`**                 | Node #2, hosts `minio-2` instance                   |
@@ -84,7 +84,7 @@ Pigsty uses the [**`MINIO`**](/docs/minio/param#minio) parameter group to assign
 
 | Parameter                                                  |   Type   | Level | Description                     | Format                                           |
 |:-----------------------------------------------------------|:--------:|:-----:|:--------------------------------|:-------------------------------------------------|
-| [**`minio_cluster`**](/docs/minio/param#minio_cluster)     | `string` | Cluster | MinIO cluster name, required   | Valid DNS name, defaults to `minio`              |
+| [**`minio_cluster`**](/docs/minio/param#minio_cluster)     | `string` | Cluster | Object-storage cluster name, required | Valid non-empty name, no default                 |
 | [**`minio_seq`**](/docs/minio/param#minio_seq)             |  `int`   | Instance | MinIO instance number, required | Natural number, starting from 1, unique within cluster |
 {.full-width}
 
@@ -95,8 +95,10 @@ With cluster name defined at cluster level and instance number assigned at insta
 | **Instance** | `{{ minio_cluster }}-{{ minio_seq }}` | `minio-1`, `minio-2`, `minio-3`, `minio-4` |
 {.full-width}
 
-The MinIO module does not assign additional identity to host nodes; nodes are identified by their existing hostname or IP address.
+The MINIO module does not assign additional identity to host nodes; nodes are identified by their existing hostname or IP address.
 The [**`minio_node`**](/docs/minio/param#minio_node) parameter generates node names for MinIO cluster internal use (written to `/etc/hosts` for cluster discovery), not host node identity.
+
+Roles locate actual members across the entire inventory by `minio_cluster`; the Ansible group name does not need to match the cluster name. `minio_type` selects the engine and defaults to `silo`; every member of the same logical cluster must use the same value.
 
 
 ----------------
@@ -107,12 +109,13 @@ Beyond identity parameters, the following parameters are critical for MinIO clus
 
 | Parameter                                                |   Type   | Description                           |
 |:---------------------------------------------------------|:--------:|:--------------------------------------|
+| [**`minio_type`**](/docs/minio/param#minio_type)         |  `enum`  | Server engine, defaults to `silo`     |
 | [**`minio_data`**](/docs/minio/param#minio_data)         |  `path`  | Data directory, use `{x...y}` for multi-drive |
 | [**`minio_node`**](/docs/minio/param#minio_node)         | `string` | Node name pattern for multi-node deployment |
 | [**`minio_domain`**](/docs/minio/param#minio_domain)     | `string` | Service domain, defaults to `sss.pigsty` |
 {.full-width}
 
-These parameters together determine MinIO's core config `MINIO_VOLUMES`:
+These parameters determine the common `minio_volumes` value, which the role writes to `MINIO_VOLUMES` or `RUSTFS_VOLUMES`:
 
 - **SNSD**: Direct `minio_data` value, e.g., `/data/minio`
 - **SNMD**: Expanded `minio_data` directories, e.g., `/data{1...4}`
@@ -123,7 +126,7 @@ These parameters together determine MinIO's core config `MINIO_VOLUMES`:
 
 ## Ports & Services
 
-Each MinIO instance listens on the following ports:
+Each object-storage instance listens on the following ports:
 
 | Port  | Parameter                                                        | Purpose              |
 |:------|:-----------------------------------------------------------------|:---------------------|
@@ -131,7 +134,7 @@ Each MinIO instance listens on the following ports:
 | 9001  | [**`minio_admin_port`**](/docs/minio/param#minio_admin_port)     | Web admin console port |
 {.full-width}
 
-MinIO enables HTTPS encrypted communication by default (controlled by [**`minio_https`**](/docs/minio/param#minio_https)). This is required for backup tools like pgBackREST to access MinIO.
+The MINIO module enables HTTPS by default, controlled by [**`minio_https`**](/docs/minio/param#minio_https). Keep HTTPS enabled with the default pgBackRest S3 repository configuration and install the Pigsty CA correctly.
 
 Multi-node MinIO clusters can be accessed through **any node**. Best practice is to use a load balancer (e.g., HAProxy + VIP) for unified access point.
 
@@ -169,7 +172,7 @@ These passwords are publicly documented [**default credentials**](/docs/concept/
 
 ## Monitoring Label System
 
-Pigsty provides an out-of-box monitoring system that uses the above [**identity parameters**](#identity-parameters) to identify various MinIO entities.
+Pigsty uses the [**identity parameters**](#identity-parameters) above to identify object-storage entities. A Silo/MinIO availability series looks like this:
 
 ```text
 minio_up{cls="minio", ins="minio-1", ip="10.10.10.10", job="minio"}
@@ -178,6 +181,6 @@ minio_up{cls="minio", ins="minio-3", ip="10.10.10.12", job="minio"}
 minio_up{cls="minio", ins="minio-4", ip="10.10.10.13", job="minio"}
 ```
 
-For example, the `cls`, `ins`, `ip` labels correspond to cluster name, instance name, and node IP—the identifiers for these three core entities.
-They appear along with the `job` label in **all** MinIO monitoring metrics collected by [**VictoriaMetrics**](/docs/concept/arch/infra#victoriametrics).
-The `job` name for collecting MinIO metrics is fixed as `minio`.
+Here `cls`, `ins`, and `ip` identify the cluster name, instance name, and node IP. All three engines use the fixed `job="minio"` label and distinguish the actual backend with `flavor=silo|minio|rustfs`.
+
+RustFS application metrics retain their native `rustfs_*` names. A recording rule produces the separate `rustfs_up` readiness series instead of `minio_up`. See the [**metric list**](/docs/minio/metric) for details.

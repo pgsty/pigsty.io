@@ -40,8 +40,10 @@ files/pki/
 ├── csr/                      # Certificate signing requests
 │   ├── misc/                     # Miscellaneous certificates (cert.yml output)
 │   ├── etcd/                     # ETCD certificates
+│   ├── kafka/                    # Kafka node certificates
 │   ├── pgsql/                    # PostgreSQL certificates
-│   ├── minio/                    # MinIO certificates
+│   ├── minio/                    # MINIO module object-storage certificates
+│   ├── mysql/                    # MySQL node certificates
 │   └── nginx/                    # Nginx certificates
 └── infra/                    # Infrastructure certificates
 ```
@@ -50,7 +52,7 @@ files/pki/
 
 | Variable | Default | Description |
 |:---------|:--------|:------------|
-| `ca_create` | `true` | Create CA if it does not exist, otherwise abort |
+| `ca_create` | `true` | Allow creation when the CA private key is missing |
 | `ca_cn` | `pigsty-ca` | CA certificate common name |
 | `cert_validity` | `7300d` | Default validity for issued certificates |
 {.full-width}
@@ -85,6 +87,8 @@ cp /path/to/your/ca.crt files/pki/ca/ca.crt
 chmod 600 files/pki/ca/ca.key
 chmod 644 files/pki/ca/ca.crt
 ```
+
+`ca_create: false` only requires `ca.key` to exist. If only `ca.crt` is missing, the role still uses the existing private key to reissue the certificate. Always back up, verify, and restore the two files together.
 
 **3. Run `./infra.yml`**
 

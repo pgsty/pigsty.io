@@ -1343,7 +1343,7 @@ haproxy_services:                   # list of haproxy service
 
 ```
 
-Each service definition will be rendered to `/etc/haproxy/<service.name>.cfg` configuration file and take effect after HAProxy reload.
+Each service definition is rendered as `/etc/haproxy/conf.d/<service.name>.cfg` and takes effect after HAProxy reload. The main configuration remains `/etc/haproxy/haproxy.cfg`.
 
 
 

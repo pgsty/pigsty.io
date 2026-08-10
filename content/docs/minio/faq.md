@@ -10,7 +10,18 @@ categories: [Reference]
 
 ----------------
 
-## What version of MinIO does Pigsty use?
+## Which engine does the MINIO module deploy by default?
+
+The current source defaults to `minio_type: silo`; you can explicitly select `minio` or `rustfs` instead. MINIO is a compatibility module name and does not imply that the MinIO server is running.
+
+- Set `minio_type` explicitly on new clusters to lock upgrade semantics.
+- Set `minio_type: minio` before upgrading an existing MinIO cluster so a default change does not replace the package or service name.
+- RustFS uses a separate data format and cannot directly reuse a MinIO/Silo data directory.
+
+
+----------------
+
+## Which compatible MinIO version is provided?
 
 MinIO announced entering **maintenance mode** on 2025-12-03, no longer releasing new feature versions, only security patches and maintenance versions, and stopped releasing binary RPM/DEB on 2025-10-15.
 So Pigsty forked its own [MinIO](https://github.com/pgsty/minio) and used [`minio/pkger`](https://github.com/minio/pkger) to create the latest 2025-12-03 version.
@@ -21,20 +32,18 @@ You can find the RPM/DEB packages and build scripts in the Pigsty Infra reposito
 
 ----------------
 
-## Why does MinIO require HTTPS?
+## Why is HTTPS enabled for object storage by default?
 
-When pgBackRest uses object storage as a backup repository, HTTPS is mandatory to ensure data transmission security.
-If your MinIO is not used for pgBackRest backup, you can still choose to use HTTP protocol.
-You can disable HTTPS by modifying the parameter [`minio_https`](/docs/minio/param#minio_https).
+Pigsty's default pgBackRest `minio` repository configuration uses HTTPS and verifies the certificate through `/etc/pki/ca.crt` to protect backup traffic. pgBackRest does not categorically forbid HTTP. If you explicitly choose HTTP, you must update the TLS options in `pgbackrest_repo` as well as disable [`minio_https`](/docs/minio/param#minio_https); changing only the server-side switch is insufficient.
 
 
 ----------------
 
 ## Getting invalid certificate error when accessing MinIO from containers?
 
-Unless you use certificates issued by a real enterprise CA, MinIO uses self-signed certificates by default, which causes client tools inside containers (such as mc / rclone / awscli, etc.) to be unable to verify the identity of the MinIO server, resulting in invalid certificate errors.
+By default, the object-storage server certificate is issued by Pigsty's private CA. It is not a self-signed server certificate, but container images usually do not trust this private CA, so clients such as `mcli`, rclone, and AWS CLI report an invalid certificate chain.
 
-For example, for Node.js applications, you can mount the MinIO server's CA certificate into the container and specify the CA certificate path via the environment variable `NODE_EXTRA_CA_CERTS`:
+For example, for a Node.js application, mount the Pigsty CA certificate into the container and specify its path through `NODE_EXTRA_CA_CERTS`:
 
 ```yaml
     environment:
@@ -76,14 +85,16 @@ For detailed steps, please refer to the Pigsty documentation: [**Expand Cluster*
 Starting from Pigsty v3.6, removing a MinIO cluster requires using the dedicated `minio-rm.yml` playbook:
 
 ```bash
-./minio-rm.yml -l minio                   # Remove MinIO cluster
-./minio-rm.yml -l minio -e minio_rm_data=false  # Remove cluster but keep data
+./minio-rm.yml -l minio -e minio_type=silo                         # Remove a Silo cluster
+./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_data=false  # Remove cluster but keep data
 ```
+
+The removal role has no `minio_type` default. If it is not defined in the inventory, explicitly specify the actual `silo`, `minio`, or `rustfs` engine on the command line.
 
 If you have enabled [`minio_safeguard`](/docs/minio/param#minio_safeguard) protection, you need to explicitly override it to perform removal:
 
 ```bash
-./minio-rm.yml -l minio -e minio_safeguard=false
+./minio-rm.yml -l minio -e minio_type=silo -e minio_safeguard=false
 ```
 
 

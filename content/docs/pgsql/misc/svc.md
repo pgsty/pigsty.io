@@ -133,7 +133,7 @@ Pigsty allows you to define your own services:
 - [`haproxy_services`](/docs/node/param#haproxy_services): Directly customize HAProxy service content, can be used for accessing other components
 
 For PostgreSQL clusters, you typically only need to focus on the first two.
-Each service definition generates a new configuration file in the configuration directory of all related HAProxy instances: [`/etc/haproxy/<pg_cluster>-<service>.cfg`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/service.cfg)
+Each service definition generates a new configuration file in the configuration directory of all related HAProxy instances: [`/etc/haproxy/conf.d/<pg_cluster>-<service>.cfg`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/service.cfg)
 Here's a custom service example `standby`: when you want to provide a read-only service without replication lag, you can add this record to [`pg_services`](/docs/pgsql/param#pg_services):
 
 ```yaml
@@ -149,7 +149,7 @@ Here's a custom service example `standby`: when you want to provide a read-only 
   options: 'inter 3s fastinter 1s downinter 5s rise 3 fall 3 on-marked-down shutdown-sessions slowstart 30s maxconn 3000 maxqueue 128 weight 100'
 ```
 
-The above service definition will be converted to haproxy configuration file `/etc/haproxy/pg-test-standby.cfg` on the sample three-node `pg-test`:
+The above service definition is rendered as the HAProxy configuration file `/etc/haproxy/conf.d/pg-test-standby.cfg` on the sample three-node `pg-test` cluster:
 
 ```text
 #---------------------------------------------------------------------

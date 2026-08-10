@@ -27,7 +27,7 @@ First, assess the status of the other two servers. If they can be brought up qui
 
 If you access the cluster bypassing HAProxy, you can skip this step. If you access the database cluster through HAProxy, you need to adjust the load balancer configuration to manually direct read/write traffic to the primary.
 
-- Edit the `/etc/haproxy/<pg_cluster>-primary.cfg` configuration file, where `<pg_cluster>` is your PostgreSQL cluster name, e.g., `pg-meta`.
+- Edit `/etc/haproxy/conf.d/<pg_cluster>-primary.cfg`, where `<pg_cluster>` is your PostgreSQL cluster name, e.g., `pg-meta`.
 - Comment out the health check configuration options to stop health checks.
 - Comment out the other two failed machines in the server list, keeping only the current primary server.
 

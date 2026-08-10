@@ -64,7 +64,7 @@ Having a backup is not the same as being able to restore. Recovery exercises sho
 
 Protect data at rest at three layers:
 
-**Backup encryption.** The MinIO repository uses AES-256-CBC by default, but its default encryption passphrase (`pgBackRest`) is public and must be changed in production.
+**Backup encryption.** `pgbackrest_method: minio` denotes an S3-compatible object-storage repository, which may be provided by Silo, MinIO, RustFS, or external S3. It uses AES-256-CBC by default, but the default `pgBackRest` encryption passphrase is public and must be changed in production.
 The [**`ha/safe` template**](/docs/conf/safe) derives an example passphrase from the cluster name:
 
 ```yaml

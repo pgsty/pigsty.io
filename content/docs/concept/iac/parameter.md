@@ -14,19 +14,20 @@ In the **inventory**, you can use various parameters to fine-tune Pigsty customi
 
 ## Parameter List
 
-Pigsty provides **350** configuration parameters distributed across 9 modules for fine-grained control of various system aspects. See [**Reference - Parameter List**](/docs/ref/param) for the complete list.
+According to the current source and parameter reference pages, Pigsty's 10 official modules expose **379** public parameters for fine-grained control. See [**Reference - Parameter List**](/docs/ref/param) for the complete list. The native MySQL 8.4 pilot module exposes 10 additional public parameters that are listed separately and excluded from this total.
 
 | Module                             | Groups | Params | Description                              |
 |:-----------------------------------|:------:|:------:|:-----------------------------------------|
 | [**PGSQL**](/docs/pgsql/param)     |   9    |  124   | PostgreSQL high-availability cluster configuration |
-| [**INFRA**](/docs/infra/param)     |   10   |   72   | Software repositories and Victoria observability infrastructure |
+| [**INFRA**](/docs/infra/param)     |   10   |   73   | Software repositories and Victoria observability infrastructure |
 | [**NODE**](/docs/node/param)       |   11   |   73   | Node initialization, system tuning, and operations baseline |
 | [**ETCD**](/docs/etcd/param)       |   2    |   13   | ETCD cluster and removal protection parameters |
-| [**MINIO**](/docs/minio/param)     |   2    |   21   | MinIO deployment and removal parameters |
-| [**REDIS**](/docs/redis/param)     |   2    |   21   | Redis deployment and removal parameters |
+| [**MINIO**](/docs/minio/param)     |   2    |   28   | Silo, MinIO, and RustFS deployment, observability, and removal parameters |
+| [**REDIS**](/docs/redis/param)     |   2    |   22   | Redis/Valkey deployment and removal parameters |
 | [**DOCKER**](/docs/docker/param)   |   1    |    8   | Docker engine parameters                 |
 | [**JUICE**](/docs/juice/param)     |   1    |    2   | JuiceFS instance and cache parameters    |
-| [**VIBE**](/docs/vibe/param)       |   1    |   16   | Code/Jupyter/Node.js/Claude configuration |
+| [**VIBE**](/docs/vibe/param)       |   1    |   18   | Code/Jupyter/Node.js/Claude/Codex configuration |
+| [**KAFKA**](/docs/kafka/param)     |   2    |   18   | Kafka deployment and removal-protection parameters |
 {.stretch-last}
 
 
@@ -91,6 +92,6 @@ Identity parameters are special parameters that serve as entity ID identifiers, 
 | [**`REDIS`**](/docs/redis/param/)           | `redis_cluster`, `redis_node`, `redis_instances` |
 | [**`INFRA`**](/docs/infra/param#infra_id)   | `infra_seq`                                      |
 
-Exceptions are [**`etcd_cluster`**](/docs/etcd/param#etcd_cluster) and [**`minio_cluster`**](/docs/minio/param#minio_cluster) which have default values.
-This assumes each deployment has only one etcd cluster for DCS and one optional MinIO cluster for centralized backup storage, so they are assigned default cluster names `etcd` and `minio`.
-However, you can still deploy multiple etcd or MinIO clusters using different names.
+The exception is [**`etcd_cluster`**](/docs/etcd/param#etcd_cluster), which still defaults to `etcd`.
+Object storage [**`minio_cluster`**](/docs/minio/param#minio_cluster) no longer has a default and must be defined explicitly in each object-storage cluster's variables.
+Do not place it in `all.vars`, or every host will be marked as a MINIO module member.

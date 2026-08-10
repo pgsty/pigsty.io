@@ -157,7 +157,7 @@ Module creates these directories/files on target hosts:
 | `/etc/etcd/server.key`             | Server private key           | 0600, etcd:etcd |
 | `/var/lib/etcd/`                   | Backup data dir              | 0770, etcd:etcd |
 | `/data/etcd/`                      | Main data dir (configurable) | 0700, etcd:etcd |
-| `/etc/profile.d/etcdctl.sh`        | Client env vars              | 0755, root:root |
+| `/etc/profile.d/etcdctl.sh`        | Client env vars              | 0644, root:root |
 | `/etc/systemd/system/etcd.service` | Systemd service              | 0644, root:root |
 
 

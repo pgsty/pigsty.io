@@ -304,7 +304,7 @@ When enabled, the [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook will 
 - `/etc/etcd/` - Configuration directory (including certificates and password files)
 - `/var/lib/etcd/` - Alternate data directory
 - `{{ etcd_data }}` - Primary data directory (default `/data/etcd`)
-- `{{ systemd_dir }}/etcd.service` - Systemd service unit file
+- `/etc/systemd/system/etcd.service` - Systemd service unit file
 - `/etc/profile.d/etcdctl.sh` - Client environment script
 - `/etc/vector/etcd.yaml` - Vector log collection config
 

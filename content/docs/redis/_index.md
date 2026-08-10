@@ -1,13 +1,18 @@
 ---
 title: "Module: REDIS"
 weight: 3800
-description: Built-in support for Redis in standalone, cluster, or sentinel mode as a high-performance open-source cache companion to PostgreSQL.
+description: Deploy Redis or Valkey through one REDIS module, with standalone replication, native cluster, and Sentinel modes.
 icon: fas fa-layer-group
 module: [REDIS]
 categories: [Reference]
 ---
 
-Redis is a widely popular open-source high-performance in-memory data structure server, and a great companion to PostgreSQL.
-Redis in Pigsty is a production-ready complete solution supporting master-slave replication, sentinel high availability, and native cluster mode, with integrated monitoring and logging capabilities, along with automated installation, configuration, and operation playbooks.
+REDIS is Pigsty's Redis-compatible cache module. Choose **Redis** or **Valkey** with [`redis_type`](/docs/redis/param#redis_type); the default remains `redis`. Both engines support primary-replica replication, Sentinel, and native cluster mode while sharing configuration paths, instance service names, monitoring, and log entry points.
 
-Pigsty currently pins Redis to 7.2.7, the last Redis release under the BSD license.
+```yaml
+redis_type: redis   # default; valkey is also supported
+```
+
+The role installs the selected engine and `redis-exporter`. Instance processes use `redis-server` / `redis-cli` or `valkey-server` / `valkey-cli`, respectively. Changing `redis_type` changes packages and binaries; it does not automatically validate data formats, replication topology, or rollback. Rehearse any existing-cluster switch, and use one engine consistently across a logical cluster.
+
+The default Redis package remains on the 7.2 BSD branch. Patch versions can differ by operating-system repository; treat the target repository metadata as authoritative.

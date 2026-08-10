@@ -180,6 +180,19 @@ Most core components place their default data directories here. Some pilot modul
 #  ^-----@...                         # Other component data directories
 ```
 
+### HAProxy
+
+Pigsty starts HAProxy with its own systemd unit and manages the main configuration separately from service fragments:
+
+```bash
+/etc/systemd/system/haproxy.service   # systemd unit rendered by Pigsty
+/etc/haproxy/haproxy.cfg              # HAProxy main configuration
+/etc/haproxy/conf.d/*.cfg             # node and PostgreSQL service fragments
+/etc/default/haproxy                  # optional user environment file; Pigsty does not create it
+```
+
+To append startup arguments in `/etc/default/haproxy`, use `EXTRAOPTS` and retain the default `-S /run/haproxy-master.sock`. The systemd unit already loads configuration with explicit `-f` arguments, so do not add another `-f` to `EXTRAOPTS`.
+
 
 
 ----------------
@@ -228,6 +241,8 @@ The main template is [`roles/infra/templates/victoria/prometheus.yml`](https://g
 # /etc/blackbox.yml                  # blackbox main config (prometheus:infra 0644)
 # /etc/default/blackbox_exporter     # blackbox env (prometheus:infra 0644)
 ```
+
+Pigsty-rendered INFRA units are consistently stored in `/etc/systemd/system/`, including `vmetrics`, `vlogs`, `vtraces`, `vmalert`, `alertmanager`, `blackbox_exporter`, `nginx_exporter`, and `dnsmasq`. Distribution package unit directories are not write targets for these roles.
 
 
 
@@ -345,6 +360,8 @@ On Ubuntu/Debian, the default PostgreSQL Deb package installation location is:
 /usr/lib/postgresql/${pg_version}/bin
 ```
 
+Pigsty-rendered PostgreSQL runtime units are likewise stored in `/etc/systemd/system/`. They primarily include `patroni.service`, `postgres.service`, `pgbouncer.service`, `pg_exporter.service`, `pgbackrest_exporter.service`, `pgbouncer_exporter.service`, and `vip-manager.service` when VIP is enabled.
+
 
 
 ----------------
@@ -375,28 +392,41 @@ Pgbouncer runs under the same user as `{{ pg_dbsu }}` (default `postgres`), with
 
 ----------------
 
-## Redis FHS
+## Object Storage FHS
 
-Pigsty provides basic support for Redis deployment and monitoring.
-
-Redis binaries are usually installed by the system package manager (service paths use `/bin/*`, with `/usr/bin/*` compatibility symlinks on most distros):
+The MINIO module renders Silo, MinIO, or RustFS according to `minio_type`. Here, `<engine>` means `silo`, `minio`, or `rustfs`:
 
 ```bash
-redis-server
-redis-cli
-redis-sentinel
-redis-check-rdb
-redis-check-aof
-redis-benchmark
-/usr/libexec/redis-shutdown
+/etc/default/<engine>                         # root:minio 0640, service environment
+/etc/systemd/system/<engine>.service          # root:root 0644, rendered by Pigsty
+/data/minio/                                  # minio:minio 0750, default data directory
+/infra/targets/minio/<cluster>-<seq>.yml      # victoria:infra 0640, FileSD target
+/home/minio/.mcli/config.json                 # mcli alias; also written for the execution user
+```
+
+Silo/MinIO certificates are stored in `/home/minio/.minio/certs/`; RustFS certificates are stored in `/home/minio/.rustfs/certs/`. Role parameters retain the compatible `minio_*` prefix, while actual service files follow the selected engine.
+
+
+----------------
+
+## Redis FHS
+
+Pigsty manages Redis or Valkey with the same directory layout and instance naming.
+
+Service units call binaries according to `redis_type` (`/bin/*` is compatible with `/usr/bin/*` on most distributions):
+
+```bash
+/bin/redis-server  /bin/redis-cli    # redis_type: redis
+/bin/valkey-server /bin/valkey-cli   # redis_type: valkey
 ```
 
 For a Redis instance named `redis-test-1-6379`, the related resources are as follows:
 
 ```bash
-/usr/lib/systemd/system/redis-test-1-6379.service     # root:root 0644 (Debian: /lib/systemd/system)
+/etc/systemd/system/redis-test-1-6379.service         # root:root 0644, rendered by Pigsty
+/etc/systemd/system/redis_exporter.service            # root:root 0644, rendered by Pigsty
 /etc/redis/                                           # redis:redis 0700
-/etc/redis/redis-test-1-6379.conf                     # redis:redis 0700
+/etc/redis/redis-test-1-6379.conf                     # redis:redis 0600
 /data/redis/                                          # redis:redis 0700
 /data/redis/redis-test-1-6379                         # redis:redis 0700
 /data/redis/redis-test-1-6379/redis-test-1-6379.rdb   # RDB file
@@ -407,4 +437,4 @@ For a Redis instance named `redis-test-1-6379`, the related resources are as fol
 /var/run/redis/redis-test-1-6379.pid                  # PID
 ```
 
-For Ubuntu/Debian, the default systemd service directory is `/lib/systemd/system/` instead of `/usr/lib/systemd/system/`.
+Pigsty-rendered Redis/Valkey instance and exporter units are consistently stored in `/etc/systemd/system/`, and instance units use `Type=notify`. Package-provided units may still live in distribution directories, but those are not role write targets.

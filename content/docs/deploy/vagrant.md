@@ -98,6 +98,9 @@ Pigsty provides multiple predefined VM specs in the [`vagrant/spec/`](https://gi
 
 Each spec file contains a `Specs` variable describing the VM nodes. For example, `full.rb` contains the 4-node sandbox definition:
 
+Current Vagrant templates explicitly provision a **32 GB primary system disk** for every VM. Regular nodes also receive one data disk whose size comes from the spec's `disk` value, defaulting to 128 GB when omitted. Object-storage nodes whose names begin with `minio` instead receive four 32 GB data disks mounted at `/data1` through `/data4`.
+These disks depend on Vagrant's experimental disks feature. The repository Makefile exports `VAGRANT_EXPERIMENTAL=disks` automatically; set it yourself when invoking `vagrant` directly.
+
 ```ruby
 # full: pigsty full-featured 4-node sandbox for HA-testing & tutorial & practices
 
@@ -253,7 +256,7 @@ export VM_SPEC='meta'              # Spec name
 export VM_IMAGE='cloud-image/rocky-9' # Image name
 export VM_SCALE='1'                # Resource scaling multiplier
 export VM_PROVIDER='virtualbox'    # Virtualization provider
-export VAGRANT_EXPERIMENTAL=disks  # Enable experimental disk features
+export VAGRANT_EXPERIMENTAL=disks  # Enable disks for direct vagrant use; Makefile sets this automatically
 ```
 
 

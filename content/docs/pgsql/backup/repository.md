@@ -125,20 +125,23 @@ minio_buckets:
 ## Using Object Storage
 
 Object storage services provide almost unlimited storage capacity and provide remote disaster recovery capability for your system.
-If you don't have an object storage service, Pigsty has built-in [MinIO](/docs/minio) support.
+If you don't have an object-storage service, Pigsty's built-in [MINIO module](/docs/minio) can deploy Silo, MinIO, or RustFS.
 
-### MinIO
+### MINIO Module
 
-You can enable the MinIO backup repository by uncommenting the following settings.
-Note that pgbackrest only supports HTTPS / domain names, so you must run MinIO with domain names and HTTPS endpoints.
+As a centralized backup repository, the MINIO module provides a failure domain separate from database hosts. Deploy an object-storage cluster and switch the backup method to `minio`:
 
 ```yaml
 all:
   vars:
     pgbackrest_method: minio      # Use minio as default backup repository
   children:                       # Define a single-node minio SNSD cluster
-    minio: { hosts: { 10.10.10.10: { minio_seq: 1 }} ,vars: { minio_cluster: minio }}
+    minio: { hosts: { 10.10.10.10: { minio_seq: 1 }} ,vars: { minio_cluster: minio, minio_type: silo }}
 ```
+
+Pigsty's `minio` repository preset accesses object storage through a domain name (default `sss.pigsty`) and HTTPS, validating the chain with the private CA at `/etc/pki/ca.crt`. The default `pgsql` bucket and `pgbackrest` access user are created when the MINIO module is provisioned.
+
+For serious production deployments, use a validated multi-node object-storage cluster with erasure-code fault tolerance. See [MINIO Configuration](/docs/minio/config).
 
 ### S3
 

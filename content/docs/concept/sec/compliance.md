@@ -32,8 +32,8 @@ Pigsty default credentials are public in the documentation and source code. They
 | PostgreSQL administration, monitoring, and replication users | `DBUser.DBA`, `DBUser.Monitor`, `DBUser.Replicator` | Yes |
 | Patroni REST API | `Patroni.API` | Yes |
 | etcd root | `Etcd.Root` | Yes |
-| MinIO root | `S3User.MinIO` | Yes |
-| MinIO backup and example application users | `S3User.Backup`, `S3User.Meta`, `S3User.Data` | Yes |
+| MINIO module object-storage root | `S3User.MinIO` | Yes |
+| Object-storage backup and example application users | `S3User.Backup`, `S3User.Meta`, `S3User.Data` | Yes |
 | Example database users | `DBUser.Meta`, `DBUser.Supa`, `Vibe.Coding` | Yes |
 | pgBackRest encryption passphrase | `cipher_pass: pgBackRest` | **No** |
 | MinIO users and `pgBR.${pg_cluster}` in `ha/safe` | Template example values | **No** |
@@ -46,7 +46,7 @@ Use `-g` while generating configuration to randomize built-in parameters and exa
 ./configure -g     # Generate the inventory and randomize recognized default credentials
 ```
 
-The wizard prints generated passwords to the terminal, so protect terminal history and automation logs as sensitive data. After generation, inspect the configuration and replace pgBackRest `cipher_pass`, MinIO example values in `ha/safe` that were not covered, and all custom credentials.
+The wizard prints generated passwords to the terminal, so protect terminal history and automation logs as sensitive data. After generation, inspect the configuration and replace pgBackRest `cipher_pass`, MINIO module example values in `ha/safe` that were not covered, and all custom credentials.
 
 
 ---------------------
@@ -71,7 +71,7 @@ The wizard prints generated passwords to the terminal, so protect terminal histo
 
 **After deployment:**
 
-- [ ] Confirm that credentials covered by `configure -g` and uncovered backup, MinIO, and custom credentials have all been changed
+- [ ] Confirm that credentials covered by `configure -g` and uncovered backup, object-storage, and custom credentials have all been changed
 - [ ] Review the effective [**HBA rules**](/docs/concept/sec/auth) in `/pg/data/pg_hba.conf` against the declaration and intended boundary
 - [ ] Query effective users, roles, [**default privileges**](/docs/concept/sec/ac#default-privileges), and database `CONNECT` grants, and compare them with the inventory
 - [ ] Run one full backup and a [**recovery exercise**](/docs/concept/pitr/scenarios) to validate the backup path
@@ -126,7 +126,7 @@ The following maps database-related Pigsty capabilities to controls in the "secu
 | Communication confidentiality | Local CA and TLS; HBA-enforced `ssl` or `cert` | Enforce TLS, client `verify-full`, and certificate rotation |
 | Data integrity | Page checksums by default and strict synchronous replication with CRIT | Storage protection, defined failure model, and exercises |
 | Data confidentiality | AES-encrypted backup plus TDE and column-encryption options | Enable as required |
-| Backup and recovery | pgBackRest, PITR, and remote MinIO repository | Recovery exercise process |
+| Backup and recovery | pgBackRest, PITR, and a remote S3-compatible repository | Recovery exercise process |
 | Residual information protection | — | Media destruction and erasure process |
 {.full-width}
 

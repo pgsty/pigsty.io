@@ -38,7 +38,7 @@ pg-test:
     pg_cluster: pg-test
 ```
 
-This configuration is concise and self-describing, consisting only of [**identity parameters**](/docs/concept/model/pgsql#identity-parameters). Note that the Ansible Group name should match [`pg_cluster`](/docs/pgsql/param#pg_cluster).
+This configuration is concise and self-describing, consisting only of [**identity parameters**](/docs/concept/model/pgsql#identity-parameters). Matching the Ansible group name to [`pg_cluster`](/docs/pgsql/param#pg_cluster) remains convenient for `-l pg-test`, but it is not a hard membership constraint. Current code discovers actual members from each host's `pg_cluster` identity, so one PostgreSQL cluster may span multiple inventory groups.
 
 Use the following command to create this cluster:
 

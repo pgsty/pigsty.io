@@ -873,6 +873,8 @@ Whether to exchange OS dbsu ssh keys within the same PostgreSQL cluster?
 
 Default is `true`, meaning database superusers in the same cluster can ssh to each other.
 
+The exchange set comes from `pg_cluster_members`, which matches actual hosts with the same `pg_cluster` across the current inventory; it does not require an Ansible group named after the cluster. The execution-time `-l` limit still restricts playbook targets, so ensure it covers every member that needs configuration.
+
 
 
 

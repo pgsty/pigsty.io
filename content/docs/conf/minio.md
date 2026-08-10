@@ -1,12 +1,12 @@
 ---
 title: demo/minio
 weight: 1040
-description: Four-node x four-drive high-availability multi-node multi-disk MinIO cluster demo
+description: Four-node x four-drive HA S3 object-storage cluster demo; current source defaults to Silo.
 icon: fa-solid fa-box-archive
 categories: [Reference]
 ---
 
-The `demo/minio` configuration template demonstrates how to deploy a four-node x four-drive, 16-disk total high-availability MinIO cluster, providing S3-compatible object storage services.
+`demo/minio` demonstrates a highly available S3 object-storage cluster with four nodes and four drives per node, for 16 drives total. The template retains MINIO module compatibility naming but does not override `minio_type`, so the current source deploys the default **Silo** backend. To use legacy MinIO or RustFS, explicitly set `minio_type: minio` or `minio_type: rustfs`. The removal role has no engine default, so running `minio-rm.yml` with the template unchanged also requires `-e minio_type=silo`.
 
 For more tutorials, see the **[MINIO](/docs/minio/)** module documentation.
 
@@ -17,7 +17,7 @@ For more tutorials, see the **[MINIO](/docs/minio/)** module documentation.
 
 - Config Name: `demo/minio`
 - Node Count: Four nodes
-- Description: High-availability multi-node multi-disk MinIO cluster demo
+- Description: High-availability multi-node multi-drive S3 object-storage demo (currently defaults to Silo)
 - OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/)
@@ -44,7 +44,7 @@ Source: [`pigsty/conf/demo/minio.yml`](https://github.com/pgsty/pigsty/blob/main
 
 ## Explanation
 
-The `demo/minio` template is a production-grade reference configuration for MinIO, showcasing Multi-Node Multi-Drive (MNMD) architecture.
+`demo/minio` is a reference configuration for production object storage using the Multi-Node Multi-Drive (MNMD) architecture. Its volume layout, HAProxy health checks, and clients retain MinIO-compatible interfaces.
 
 **Key Features**:
 - **Multi-Node Multi-Drive Architecture**: 4 nodes × 4 drives = 16-drive erasure coding group
@@ -55,7 +55,7 @@ The `demo/minio` template is a production-grade reference configuration for MinI
 **Access**:
 
 ```bash
-# Configure MinIO alias with mcli (via HAProxy load balancing)
+# Configure the S3 alias with mcli (via HAProxy load balancing)
 mcli alias set sss https://sss.pigsty:9002 minioadmin S3User.MinIO
 
 # List buckets

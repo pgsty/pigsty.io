@@ -12,6 +12,8 @@ categories: [Task]
 
 Here are some common Redis administration task SOPs (Standard Operating Procedures):
 
+The REDIS module defaults to `redis_type: redis`. With `redis_type: valkey`, the server and client commands become `valkey-server` and `valkey-cli`. Examples on this page use the default `redis-cli`; substitute `valkey-cli` for Valkey clusters. Playbooks choose the correct CLI automatically.
+
 **Basic Operations**
 - [Initialize Redis](#initialize-redis)
 - [Remove Redis](#remove-redis)
@@ -70,7 +72,7 @@ You can use the [`redis-rm.yml`](/docs/redis/playbook#redis-rmyml) playbook to r
 # Remove Redis cluster `redis-test`
 ./redis-rm.yml -l redis-test
 
-# Remove Redis cluster `redis-test` and uninstall Redis packages
+# Remove Redis cluster `redis-test` and uninstall the selected engine and exporter
 ./redis-rm.yml -l redis-test -e redis_rm_pkg=true
 
 # Remove all instances on Redis node 10.10.10.13
@@ -105,7 +107,7 @@ Note that Redis cannot reload configuration online. You must restart Redis using
 
 ## Using Redis Client
 
-Access Redis instances with `redis-cli`:
+Use `redis-cli` with the default Redis engine. Valkey uses `valkey-cli` with the same arguments:
 
 ```bash
 $ redis-cli -h 10.10.10.10 -p 6379 # <--- connect with host and port
@@ -178,9 +180,9 @@ Use the following command to refresh the managed master list on the Redis Sentin
 
 ## Initialize Redis Native Cluster
 
-When [`redis_mode`](/docs/redis/param#redis_mode) is set to `cluster`, `redis.yml` will additionally execute the `redis-join` stage: it uses `redis-cli --cluster create --cluster-yes ... --cluster-replicas {{ redis_cluster_replicas }}` in `/tmp/<cluster>-join.sh` to join all instances into a native cluster.
+When [`redis_mode`](/docs/redis/param#redis_mode) is `cluster`, `redis.yml` also runs the `redis-join` stage. It uses the CLI selected by `redis_type` to execute `--cluster create --cluster-yes ... --cluster-replicas {{ redis_cluster_replicas }}` and assemble all inventory instances into a native cluster.
 
-This step runs automatically during the first deployment. Subsequently re-running `./redis.yml -l <cluster> -t redis-join` will regenerate and execute the same command. Since `--cluster create` is not idempotent, you should only trigger this stage separately when you are sure you need to rebuild the entire native cluster.
+This step runs automatically during initial deployment. A later `./redis.yml -l <cluster> -t redis-join` first checks the seed instance for `cluster_state:ok` and exits when the cluster is healthy. This guard does not perform add-node, resharding, or repair of a partially initialized topology; verify topology state before triggering the stage separately.
 
 
 -------------

@@ -30,9 +30,9 @@ This page lists default ports used by Pigsty module components. Adjust as needed
 |  [**`INFRA`**](/docs/infra)    |          **`dnsmasq`**             |  `53`   | [**`dns_port`**](/docs/infra/param#dns_port)                                 | Enabled  |
 |   [**`ETCD`**](/docs/etcd)     |            **`etcd`**              | `2379`  | [**`etcd_port`**](/docs/etcd/param#etcd_port)                                | Enabled  |
 |   [**`ETCD`**](/docs/etcd)     |            **`etcd`**              | `2380`  | [**`etcd_peer_port`**](/docs/etcd/param#etcd_peer_port)                      | Enabled  |
-|  [**`MINIO`**](/docs/minio)    |           **`minio`**              | `9000`  | [**`minio_port`**](/docs/minio/param#minio_port)                             | Enabled  |
-|  [**`MINIO`**](/docs/minio)    |           **`minio`**              | `9001`  | [**`minio_admin_port`**](/docs/minio/param#minio_admin_port)                 | Enabled  |
-|  [**`REDIS`**](/docs/redis)    |           **`redis`**              | `6379`  | [**`redis_instances`**](/docs/redis/param#redis_instances)                   | Optional |
+|  [**`MINIO`**](/docs/minio)    |     **Silo / RustFS S3 API**       | `9000`  | [**`minio_port`**](/docs/minio/param#minio_port)                             | Optional |
+|  [**`MINIO`**](/docs/minio)    |   **Silo / RustFS admin port**     | `9001`  | [**`minio_admin_port`**](/docs/minio/param#minio_admin_port)                 | Optional |
+|  [**`REDIS`**](/docs/redis)    |       **Redis / Valkey**           | `6379`  | [**`redis_instances`**](/docs/redis/param#redis_instances)                   | Optional |
 |  [**`REDIS`**](/docs/redis)    |       **`redis_exporter`**         | `9121`  | [**`redis_exporter_port`**](/docs/redis/param#redis_exporter_port)           | Optional |
 |   [**`VIBE`**](/docs/vibe)     |         **`code-server`**          | `8443`  | [**`code_port`**](/docs/vibe/param#code_port)                                | Optional |
 |   [**`VIBE`**](/docs/vibe)     |          **`jupyterlab`**          | `8888`  | [**`jupyter_port`**](/docs/vibe/param#jupyter_port)                          | Optional |
@@ -69,7 +69,7 @@ If you use firewall [**`zone`**](/docs/node/param#node_firewall_mode) mode, expo
 - Minimal management surface: `22, 80, 443` (recommended)
 - If public direct DB access is required: additionally expose `5432`
 
-Avoid exposing internal component ports directly to the public internet: `etcd` (`2379/2380`), `patroni` (`8008`), exporters (`9xxx`), `minio` (`9000/9001`), `redis` (`6379`), `ferretdb` (`27017/27018`), Kafka (`9092/9093`), MySQL Group Replication (`33061`), etc.
+Avoid exposing internal component ports directly to the public internet: `etcd` (`2379/2380`), `patroni` (`8008`), exporters (`9xxx`), object-storage S3/admin endpoints (`9000/9001`), `redis` (`6379`), `ferretdb` (`27017/27018`), Kafka (`9092/9093`), MySQL Group Replication (`33061`), etc.
 
 ```yaml
 node_firewall_mode: zone

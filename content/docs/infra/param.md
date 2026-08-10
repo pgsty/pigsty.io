@@ -44,7 +44,7 @@ The INFRA module is responsible for deploying Pigsty's infrastructure components
 
 | Parameter                         |    Type    | Level | Description                            |
 |:----------------------------------|:----------:|:-----:|:---------------------------------------|
-| [`ca_create`](#ca_create)         |   `bool`   |  `G`  | Create CA if not exists? Default true  |
+| [`ca_create`](#ca_create)         |   `bool`   |  `G`  | Allow creation if the CA private key is missing? Default true |
 | [`ca_cn`](#ca_cn)                 |  `string`  |  `G`  | CA CN name, fixed as pigsty-ca         |
 | [`cert_validity`](#cert_validity) | `interval` |  `G`  | Certificate validity, default 20 years |
 
@@ -276,7 +276,7 @@ Note that if the `-x` parameter is specified during `./configure`, the proxy con
 Pigsty uses self-signed CA certificates to support advanced security features such as HTTPS access, PostgreSQL SSL connections, etc.
 
 ```yaml
-ca_create: true                   # create CA if not exists? default true
+ca_create: true                   # allow creation if CA private key is missing? default true
 ca_cn: pigsty-ca                  # CA CN name, fixed as pigsty-ca
 cert_validity: 7300d              # certificate validity, default 20 years
 ```
@@ -286,16 +286,16 @@ cert_validity: 7300d              # certificate validity, default 20 years
 
 name: `ca_create`, type: `bool`, level: `G`
 
-Create CA if not exists? Default value is `true`.
+Allow CA creation when the private key is missing? The default is `true`.
 
-When set to `true`, if the CA public-private key pair does not exist in the `files/pki/ca` directory, Pigsty will automatically create a new CA.
+When set to `true`, Pigsty creates a new CA private key if `files/pki/ca/ca.key` is absent. If `ca.crt` is absent, it uses the existing or newly created private key to issue the CA certificate.
 
 If you already have a CA public-private key pair, you can copy them to the `files/pki/ca` directory:
 
 - `files/pki/ca/ca.crt`: CA public key certificate
 - `files/pki/ca/ca.key`: CA private key file
 
-Pigsty will use the existing CA key pair instead of creating a new one. If the CA does not exist and this parameter is set to `false`, an error will occur.
+Pigsty reuses an existing CA key pair. If the private key is absent and this parameter is `false`, deployment stops with an error. If only `ca.crt` is missing, Pigsty still reissues it with the existing private key. Always back up and restore the matching `ca.key` and `ca.crt` together to avoid a certificate/key mismatch.
 
 **Be sure to retain and backup the newly generated CA private key file during deployment, as it is crucial for issuing new certificates later.**
 
@@ -483,7 +483,9 @@ This section is about local software repository configuration. Pigsty enables a 
 
 During initialization, Pigsty downloads all packages and their dependencies (specified by [`repo_packages`](#repo_packages)) from the Internet upstream repository (specified by [`repo_upstream`](#repo_upstream)) to [`{{ nginx_home }}`](#nginx_home) / [`{{ repo_name }}`](#repo_name) (default `/www/pigsty`). The total size of all software and dependencies is approximately 1GB.
 
-When creating the local repository, if it already exists (determined by the presence of a marker file named `repo_complete` in the repository directory), Pigsty will consider the repository already built, skip the software download phase, and directly use the built repository.
+The current source uses SOW 0.2.0 to generate RPM/APT metadata. After a successful build, `repo_complete` is both a SHA-256 manifest and a completion marker. When it is present, Pigsty skips downloading and rebuilding by default and uses the existing repository. Force a rebuild with `./infra.yml -t repo_build -e repo_build=true`.
+
+Both `repo_create` and `cache_create` invoke `sow create --pigsty` directly, with no fallback to `createrepo_c` or `dpkg-scanpackages`. If an older offline bundle or local repository does not contain SOW, refresh the media or install SOW from the Pigsty INFRA repository first.
 
 If some packages download too slowly, you can set a download proxy using the [`proxy_env`](#proxy_env) configuration to complete the initial download, or directly download the pre-packaged [offline package](/docs/setup/offline), which is essentially a local software repository built on the same operating system.
 
@@ -522,7 +524,7 @@ name: `repo_home`, type: `path`, level: `G`
 
 Local software repository home directory, defaults to Nginx's root directory: `/www`.
 
-This directory is actually a symlink pointing to [`nginx_data`](#nginx_data). It's not recommended to modify this directory. If modified, it should be consistent with [`nginx_home`](#nginx_home).
+On a fresh installation, if this path does not exist, the role creates a symlink to [`nginx_data`](#nginx_data). Existing directories and symlinks are preserved unchanged. Modification is generally discouraged; if required, keep it consistent with [`nginx_home`](#nginx_home).
 
 
 
@@ -580,6 +582,8 @@ Which upstream repository modules will be added to the local software source, de
 
 When Pigsty attempts to add upstream repositories, it filters entries in [`repo_upstream`](#repo_upstream) based on this parameter's value. Only entries whose `module` field matches this parameter's value will be added to the local software source.
 
+During the build stage, `infra` is automatically added to the effective module list so SOW can be installed. This bootstrap dependency is restored even if a user overrides `repo_modules` without `infra`.
+
 Modules are comma-separated. Available module lists can be found in the `repo_upstream` definitions; common modules include:
 
 - `local`: Local Pigsty repository
@@ -621,7 +625,10 @@ Each upstream repository definition contains the following fields:
   baseurl:                        # repository URL, configured by region
     default: 'https://repo.pigsty.io/yum/pgsql/el$releasever.$basearch'
     china: 'https://repo.pigsty.cc/yum/pgsql/el$releasever.$basearch'
+  # meta: { module_hotfixes: 1 } # enable only when explicitly replacing an EL module stream
 ```
+
+RPM upstream repositories retain native DNF module filtering by default. Set `meta.module_hotfixes` only on a repository that must actually replace an EL module stream. Pigsty's aggregated local repository itself is consumed with `module_hotfixes=1`, but Pigsty no longer generates fake `modules.yaml` / ModuleMD metadata.
 
 Users typically don't need to modify this parameter unless they have special repository requirements. For detailed repository definitions, refer to the configuration files for corresponding operating systems in the [`roles/node_id/vars/`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/) directory.
 
@@ -637,14 +644,14 @@ String array type, where each line is a **space-separated** list of software pac
 This parameter has no default value, meaning its default state is undefined. If not explicitly defined, Pigsty will load the default from the `repo_packages_default` variable defined in [`roles/node_id/vars`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/):
 
 ```yaml
-[ node-bootstrap, infra-package, infra-addons, node-package1, node-package2, pgsql-utility, extra-modules ]
+[ node-bootstrap, infra-package, infra-addons, node-package1, node-package2, node-package3, pgsql-utility, extra-modules ]
 ```
 
 Each element in this parameter will be translated according to the `package_map` in the above files, based on the specific OS distro major version. For example, on EL systems it translates to:
 
 ```yaml
-node-bootstrap:          "ansible python3 python3-pip python3-virtualenv python3-requests python3-jmespath python3-cryptography dnf-utils modulemd-tools createrepo_c sshpass"
-infra-package:           "nginx dnsmasq etcd haproxy vip-manager node-exporter keepalived-exporter pg-exporter pgbackrest-exporter redis-exporter redis minio mcli pig"
+node-bootstrap:          "ansible python3 python3-requests python3-jmespath python3-cryptography dnf-utils sow sshpass"
+infra-package:           "nginx dnsmasq etcd haproxy vip-manager node-exporter keepalived-exporter pg-exporter pgbackrest-exporter redis-exporter redis valkey silo mcli sow pig"
 infra-addons:            "grafana grafana-plugins grafana-victoriametrics-ds grafana-victorialogs-ds victoria-metrics victoria-logs victoria-traces vlogscli vmutils vector alertmanager"
 ```
 

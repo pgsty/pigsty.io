@@ -1,16 +1,15 @@
 ---
 title: Parameters
-description: MinIO module provides 21 configuration parameters for customizing your
-  MinIO cluster.
+description: The MINIO module exposes 28 parameters for selecting and configuring Silo, MinIO, or RustFS object-storage clusters.
 weight: 3630
 icon: fa-solid fa-sliders
 categories: [Reference]
 ---
 
-The MinIO module parameter list contains **21** parameters in two groups:
+The MINIO module exposes **28** public parameters in two groups:
 
-- [**`MINIO`**](#minio): 18 parameters for MinIO cluster deployment and configuration
-- [**`MINIO_REMOVE`**](#minio_remove): 3 parameters for MinIO cluster removal
+- [**`MINIO`**](#minio): 25 parameters for engine selection and object-storage cluster deployment
+- [**`MINIO_REMOVE`**](#minio_remove): 3 parameters controlling object-storage cluster removal
 
 {{% alert title="Architecture Change: Pigsty v3.6+" color="info" %}}
 Since Pigsty v3.6, the `minio.yml` playbook no longer includes removal functionality. Removal-related parameters have been migrated to the dedicated `minio_remove` role and `minio-rm.yml` playbook.
@@ -21,14 +20,15 @@ Since Pigsty v3.6, the `minio.yml` playbook no longer includes removal functiona
 
 ## Parameter Overview
 
-The [`MINIO`](#minio) parameter group is used for MinIO cluster deployment and configuration, including identity, storage paths, ports, authentication credentials, and provisioning of buckets and users.
+The [`MINIO`](#minio) group selects and configures an object-storage cluster, including identity, storage paths, ports, credentials, RustFS observability, and bucket/user provisioning.
 
 | Parameter                               |    Type    | Level | Description                                          |
 |:----------------------------------------|:----------:|:-----:|:-----------------------------------------------------|
+| [`minio_type`](#minio_type)             |   `enum`   | `G/C` | Object-storage engine: `silo`, `minio`, or `rustfs` |
 | [`minio_seq`](#minio_seq)               |   `int`    |  `I`  | minio instance identifier, REQUIRED                  |
-| [`minio_cluster`](#minio_cluster)       |  `string`  |  `C`  | minio cluster name, minio by default                 |
+| [`minio_cluster`](#minio_cluster)       |  `string`  |  `C`  | Required object-storage cluster identity             |
 | [`minio_user`](#minio_user)             | `username` |  `C`  | minio os user, `minio` by default                    |
-| [`minio_https`](#minio_https)           |   `bool`   | `G/C` | enable HTTPS for MinIO? true by default              |
+| [`minio_https`](#minio_https)           |   `bool`   | `G/C` | Enable HTTPS for object storage? true by default     |
 | [`minio_node`](#minio_node)             |  `string`  |  `C`  | minio node name pattern                              |
 | [`minio_data`](#minio_data)             |   `path`   |  `C`  | minio data dir, use `{x...y}` for multiple disks     |
 | [`minio_volumes`](#minio_volumes)       |  `string`  |  `C`  | minio core parameter for nodes and disks, auto-gen   |
@@ -43,14 +43,20 @@ The [`MINIO`](#minio) parameter group is used for MinIO cluster deployment and c
 | [`minio_endpoint`](#minio_endpoint)     |  `string`  |  `C`  | endpoint for the minio client alias                  |
 | [`minio_buckets`](#minio_buckets)       | `bucket[]` |  `C`  | list of minio buckets to be created                  |
 | [`minio_users`](#minio_users)           |  `user[]`  |  `C`  | list of minio users to be created                    |
+| [`rustfs_metrics_enabled`](#rustfs_metrics_enabled) | `bool` | `G/C` | Export native RustFS metrics over OTLP/HTTP |
+| [`rustfs_metrics_endpoint`](#rustfs_metrics_endpoint) | `string` | `G/C` | RustFS OTLP metric receiver endpoint |
+| [`rustfs_metrics_interval`](#rustfs_metrics_interval) | `int` | `G/C` | RustFS metric export interval in seconds |
+| [`rustfs_metrics_environment`](#rustfs_metrics_environment) | `string` | `G/C` | OTEL deployment-environment resource attribute |
+| [`rustfs_log_enabled`](#rustfs_log_enabled) | `bool` | `G/C` | Write structured RustFS logs to journald |
+| [`rustfs_log_level`](#rustfs_log_level) | `string` | `G/C` | RustFS log level |
 
-The [`MINIO_REMOVE`](#minio_remove) parameter group controls MinIO cluster removal behavior, including safeguard protection, data cleanup, and package uninstallation.
+The [`MINIO_REMOVE`](#minio_remove) group controls object-storage cluster removal, including safeguards, data cleanup, and package removal.
 
 | Parameter                               |  Type  |  Level  | Description                                        |
 |:----------------------------------------|:------:|:-------:|:---------------------------------------------------|
 | [`minio_safeguard`](#minio_safeguard)   | `bool` | `G/C/A` | prevent accidental removal? false by default       |
 | [`minio_rm_data`](#minio_rm_data)       | `bool` | `G/C/A` | remove minio data during removal? true by default  |
-| [`minio_rm_pkg`](#minio_rm_pkg)         | `bool` | `G/C/A` | uninstall minio packages during removal? false by default |
+| [`minio_rm_pkg`](#minio_rm_pkg)         | `bool` | `G/C/A` | Uninstall the selected engine and mcli? false by default |
 
 The `minio_volumes` and `minio_endpoint` are auto-generated parameters, but you can explicitly override them.
 
@@ -60,14 +66,15 @@ The `minio_volumes` and `minio_endpoint` are auto-generated parameters, but you 
 
 ## Defaults
 
-`MINIO`: 18 parameters, defined in [`roles/minio/defaults/main.yml`](https://github.com/pgsty/pigsty/blob/main/roles/minio/defaults/main.yml)
+`MINIO`: 25 public parameters, defined in [`roles/minio/defaults/main.yml`](https://github.com/pgsty/pigsty/blob/main/roles/minio/defaults/main.yml)
 
 ```yaml
 #-----------------------------------------------------------------
-# MINIO
+# SILO / MINIO / RUSTFS
 #-----------------------------------------------------------------
+minio_type: silo                  # object-storage engine: silo, minio, or rustfs
 #minio_seq: 1                     # minio instance identifier, REQUIRED
-minio_cluster: minio              # minio cluster name, minio by default
+#minio_cluster: minio             # required minio cluster identity
 minio_user: minio                 # minio os user, `minio` by default
 minio_https: true                 # enable HTTPS for MinIO? true by default
 minio_node: '${minio_cluster}-${minio_seq}.pigsty' # minio node name pattern
@@ -81,6 +88,12 @@ minio_secret_key: S3User.MinIO    # root secret key, `S3User.MinIO` by default
 minio_extra_vars: ''              # extra environment variables for minio server
 minio_provision: true             # run minio provisioning tasks?
 minio_alias: sss                  # minio client alias for the deployment
+rustfs_metrics_enabled: true      # export native RustFS metrics to VictoriaMetrics over OTLP/HTTP?
+rustfs_metrics_endpoint: ''       # explicit OTLP endpoint; empty uses VictoriaMetrics on first infra node
+rustfs_metrics_interval: 15       # RustFS OTLP metric export interval in seconds
+rustfs_metrics_environment: production # OTEL deployment.environment.name resource attribute
+rustfs_log_enabled: true          # write structured RustFS logs to journald?
+rustfs_log_level: warn            # RustFS log level; info is very verbose
 #minio_endpoint: https://sss.pigsty:9000 # endpoint for alias, auto-generated if not specified
 minio_buckets:                    # list of minio buckets to be created
   - { name: pgsql }
@@ -114,6 +127,24 @@ This section contains parameters for the [`minio`](https://github.com/pgsty/pigs
 used by the [`minio.yml`](/docs/minio/playbook#minioyml) playbook.
 
 
+### `minio_type`
+
+Parameter: `minio_type`, Type: `enum`, Level: `G/C`
+
+Selects the object-storage server. Allowed values are `silo`, `minio`, and `rustfs`; the current source defaults to `silo`.
+
+- `silo`: Pigsty's current default backend, preserving MinIO S3/Admin APIs, `MINIO_*` environment variables, and disk format.
+- `minio`: Compatibility with existing MinIO deployments; set this explicitly when upgrading an older cluster.
+- `rustfs`: Uses the RustFS package, binary, systemd unit, certificate directory, and native OTLP metrics.
+
+Changing this parameter changes the installed package, service name, and configuration paths, but does not migrate data. In particular, a RustFS data directory is not an in-place replacement for a MinIO/Silo data directory.
+
+This default belongs to the deployment role. For deletion safety, the `minio_remove` role intentionally has no `minio_type` default. Before running `minio-rm.yml`, define the actual engine in inventory or pass `-e minio_type=<engine>`; otherwise identity validation stops the play.
+
+
+--------
+
+
 ### `minio_seq`
 
 Parameter: `minio_seq`, Type: `int`, Level: `I`
@@ -135,13 +166,14 @@ In multi-node deployments, sequence numbers are also used to generate node names
 
 Parameter: `minio_cluster`, Type: `string`, Level: `C`
 
-MinIO cluster name, default is `minio`. This is useful when deploying multiple MinIO clusters.
+Object-storage cluster name. This parameter is required and has no default. Use it to distinguish membership and monitoring identity when deploying multiple clusters.
 
 The cluster name, together with the sequence number [`minio_seq`](#minio_seq), uniquely identifies each MinIO instance.
 For example, with cluster name `minio` and sequence `1`, the instance name is `minio-1`.
 
-Note that Pigsty defaults to a single MinIO cluster per deployment. If you need multiple MinIO clusters,
-you must explicitly set [`minio_alias`](#minio_alias), [`minio_domain`](#minio_domain), [`minio_endpoint`](#minio_endpoint), and other parameters to avoid naming conflicts.
+The role finds members across the entire inventory by each host's `minio_cluster` value, so the Ansible group name may differ from the cluster identity. Define this parameter explicitly in the object-storage group's cluster variables; do not define it in `all.vars`, which would mark every host as a MINIO module member.
+
+For multiple clusters, also set distinct [`minio_alias`](#minio_alias), [`minio_domain`](#minio_domain), and [`minio_endpoint`](#minio_endpoint) values to avoid shared aliases and domain-name conflicts.
 
 
 
@@ -153,9 +185,9 @@ you must explicitly set [`minio_alias`](#minio_alias), [`minio_domain`](#minio_d
 
 Parameter: `minio_user`, Type: `username`, Level: `C`
 
-MinIO operating system user, default is `minio`.
+Object-storage operating system user, default is `minio`.
 
-The MinIO service runs under this user. SSL certificates used by MinIO are stored in this user's home directory (default `/home/minio`), under the `~/.minio/certs/` directory.
+The selected service runs as this user. Silo/MinIO certificates are stored under `~/.minio/certs/`; RustFS certificates are stored under `~/.rustfs/certs/`.
 
 
 
@@ -166,11 +198,11 @@ The MinIO service runs under this user. SSL certificates used by MinIO are store
 
 Parameter: `minio_https`, Type: `bool`, Level: `G/C`
 
-Enable HTTPS for MinIO service? Default is `true`.
+Enable HTTPS for the object-storage service? Default is `true`.
 
 Pigsty's default pgBackRest `minio` repository configuration uses HTTPS and validates the certificate with `/etc/pki/ca.crt`, so keep this parameter `true` when using the defaults. pgBackRest itself does not require HTTPS; if you explicitly switch to HTTP, you must also update the storage TLS options in `pgbackrest_repo` rather than changing only this parameter.
 
-When HTTPS is enabled, Pigsty automatically issues SSL certificates for the MinIO server, containing the domain specified in [`minio_domain`](#minio_domain) and the IP addresses of each node.
+When HTTPS is enabled, Pigsty automatically issues certificates for the selected server, containing the domain specified in [`minio_domain`](#minio_domain) and the IP addresses of each node.
 
 
 
@@ -321,7 +353,7 @@ Tip: `./configure -g` randomizes default passwords recognized by the configurati
 
 Parameter: `minio_extra_vars`, Type: `string`, Level: `C`
 
-Extra environment variables for MinIO server. See the [MinIO Server](https://min.io/docs/minio/linux/reference/minio-server/minio-server.html) documentation for the complete list.
+Extra environment variables for the selected object-storage server. Silo/MinIO use `MINIO_*` variables; RustFS-specific overrides must use `RUSTFS_*` variables.
 
 Default is an empty string. You can use multiline strings to pass multiple environment variables:
 
@@ -383,6 +415,62 @@ The role runs this command as the Ansible execution user on Infra nodes and MinI
 
 
 
+
+
+--------
+
+### `rustfs_metrics_enabled`
+
+Parameter: `rustfs_metrics_enabled`, Type: `bool`, Level: `G/C`
+
+Whether RustFS should actively export native metrics to VictoriaMetrics over OTLP/HTTP. Default is `true`. This parameter applies only when `minio_type: rustfs`; the separate HTTPS readiness probe is still registered by the MINIO monitoring tasks.
+
+
+--------
+
+### `rustfs_metrics_endpoint`
+
+Parameter: `rustfs_metrics_endpoint`, Type: `string`, Level: `G/C`
+
+Explicit OTLP/HTTP receiver endpoint for RustFS metrics. The default is empty; when omitted, the role uses `/opentelemetry/v1/metrics` on the first VictoriaMetrics instance in the inventory's `infra` group.
+
+Multiple independent single-node VictoriaMetrics instances do not replicate actively pushed samples. If the storage layer itself must have replicated monitoring, point this parameter at a VictoriaMetrics Cluster or VIP that already provides replication semantics, not an ordinary load balancer in front of independent instances.
+
+
+--------
+
+### `rustfs_metrics_interval`
+
+Parameter: `rustfs_metrics_interval`, Type: `int`, Level: `G/C`
+
+RustFS OTLP metric export interval in seconds. Default is `15`.
+
+
+--------
+
+### `rustfs_metrics_environment`
+
+Parameter: `rustfs_metrics_environment`, Type: `string`, Level: `G/C`
+
+Resource attribute written to OTEL `deployment.environment.name`. Default is `production`. Pigsty's `cls`, `ins`, and `ip` labels are the stable identity; do not replace them in queries with a resource attribute that may vary by runtime environment.
+
+
+--------
+
+### `rustfs_log_enabled`
+
+Parameter: `rustfs_log_enabled`, Type: `bool`, Level: `G/C`
+
+Whether RustFS should emit structured application logs to the systemd journal. Default is `true`. Pigsty's existing generic syslog path can collect these logs; the role does not add a dedicated RustFS Vector pipeline.
+
+
+--------
+
+### `rustfs_log_level`
+
+Parameter: `rustfs_log_level`, Type: `string`, Level: `G/C`
+
+RustFS log level. Default is `warn`. The `info` level produces a large volume of inter-node HTTP/RPC logs and is recommended only for short diagnostic sessions.
 
 
 --------
@@ -476,9 +564,9 @@ minio_safeguard: true   # When enabled, minio-rm.yml will refuse to execute
 
 Parameter: `minio_rm_data`, Type: `bool`, Level: `G/C/A`
 
-Remove MinIO data and configuration during removal? Default value is `true`.
+Remove object-storage data and configuration during removal? Default value is `true`.
 
-When enabled, the [`minio-rm.yml`](/docs/minio/playbook/#minio-rmyml) playbook deletes MinIO data directories, `/etc/default/minio`, `.minio` under the MinIO user's home, systemd units, and Vector configuration. Setting it to `false` preserves this data and configuration, but does not prevent service deregistration, stopping, or disabling.
+When enabled, the [`minio-rm.yml`](/docs/minio/playbook/#minio-rmyml) playbook deletes data directories, `/etc/default/<minio_type>`, the corresponding `.minio` or `.rustfs` user directory, and `/etc/systemd/system/<minio_type>.service`. The legacy MinIO backend also removes its Vector configuration. Setting this to `false` preserves data and configuration, but does not prevent service deregistration, stopping, or disabling.
 
 
 
@@ -489,6 +577,6 @@ When enabled, the [`minio-rm.yml`](/docs/minio/playbook/#minio-rmyml) playbook d
 
 Parameter: `minio_rm_pkg`, Type: `bool`, Level: `G/C/A`
 
-Uninstall MinIO packages during removal? Default value is `false`.
+Uninstall the selected object-storage packages during removal? Default value is `false`.
 
-When enabled, the [`minio-rm.yml`](/docs/minio/playbook/#minio-rmyml) playbook uninstalls both the `minio` and `mcli` packages during cluster removal. This is disabled by default to preserve the packages for potential future use.
+When enabled, the [`minio-rm.yml`](/docs/minio/playbook/#minio-rmyml) playbook uninstalls the `silo`, `minio`, or `rustfs` package selected by `minio_type`, together with `mcli`. This is disabled by default to preserve packages for potential future use.

@@ -70,7 +70,7 @@ The demo `pigsty.yml` inventory also exposes `5432` publicly. Remove that except
 - PostgreSQL enables server-side TLS by default, but default intranet HBA rules do not require it.
 - PgBouncer TLS is disabled by default and controlled by [**`pgbouncer_sslmode`**](/docs/pgsql/param#pgbouncer_sslmode).
 - HTTPS for the Patroni REST API is disabled by default and controlled by [**`patroni_ssl_enabled`**](/docs/pgsql/param#patroni_ssl_enabled).
-- Nginx and MinIO enable HTTPS by default; etcd uses TLS for client and peer traffic.
+- Nginx and the object-storage backend selected by the MINIO module enable HTTPS by default; etcd uses TLS for client and peer traffic.
 
 HBA `auth: ssl` requires an encrypted connection only. Clients should also use `sslmode=verify-full` with a trusted CA to verify the database server; see [**Encrypted Communication**](/docs/concept/sec/ca#server-identity-verification).
 
@@ -120,7 +120,7 @@ Replicas handle only some node failures; they do not replace backups.
 ## Backup and Recovery
 
 - The local pgBackRest repository is not encrypted by default and shares a failure domain with the database host.
-- The MinIO repository uses AES-256-CBC by default, but `cipher_pass: pgBackRest` is public and must be replaced.
+- The `pgbackrest_method: minio` object-storage repository uses AES-256-CBC by default, but `cipher_pass: pgBackRest` is public and must be replaced.
 - `pgBR.${pg_cluster}` in `ha/safe` is also an example and must not be used as the final key.
 - Store important backups in an independent failure domain, and evaluate object locking, versioning, or offline copies.
 - Exercise full restore and PITR regularly to validate WAL, keys, recovery time, and application consistency.
