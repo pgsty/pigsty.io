@@ -31,41 +31,43 @@ Script installation targets Linux x86_64 / aarch64 RPM or DEB distributions. On 
 
 ## Specify Version
 
-You can specify a particular version to install by passing the version number as an argument:
+You can request a particular version that is already published on the selected mirror by passing the version number as an argument:
 
 **Default Installation** (Cloudflare CDN):
 
 ```bash
-curl -fsSL https://repo.pigsty.io/pig | bash -s 1.6.0
+curl -fsSL https://repo.pigsty.io/pig | bash -s X.Y.Z
 ```
 
 **China Mirror**:
 
 ```bash
-curl -fsSL https://repo.pigsty.cc/pig | bash -s 1.6.0
+curl -fsSL https://repo.pigsty.cc/pig | bash -s X.Y.Z
 ```
+
+Mirror publication can lag the GitHub release. For the exact current release, use the GitHub artifacts below.
 
 
 ## Download Release Artifacts
 
-You can also download `pig` installation packages (`RPM`/`DEB`/tarball) directly from [GitHub Release](https://github.com/pgsty/pig/releases/tag/v1.6.0) or the Pigsty software repositories. Current `v1.6.0` artifacts use the following direct-link format:
+Current `v1.7.0` installation packages (`RPM`/`DEB`/tarball) are available from the [GitHub Release](https://github.com/pgsty/pig/releases/tag/v1.7.0), with published hashes in [checksums.txt](https://github.com/pgsty/pig/releases/download/v1.7.0/checksums.txt). Use the following direct URL pattern:
 
-- `https://repo.pigsty.io/pkg/pig/v1.6.0/<filename>`
-- `https://repo.pigsty.cc/pkg/pig/v1.6.0/<filename>`
+- `https://github.com/pgsty/pig/releases/download/v1.7.0/<filename>`
 
 ```text
-v1.6.0
-├── pig_1.6.0-1_amd64.deb
-├── pig_1.6.0-1_arm64.deb
-├── pig-1.6.0-1.aarch64.rpm
-├── pig-1.6.0-1.x86_64.rpm
-├── pig-v1.6.0.linux-amd64.tar.gz
-├── pig-v1.6.0.linux-arm64.tar.gz
-├── pig-v1.6.0.darwin-amd64.tar.gz
-└── pig-v1.6.0.darwin-arm64.tar.gz
+v1.7.0
+├── pig_1.7.0-1_amd64.deb
+├── pig_1.7.0-1_arm64.deb
+├── pig-1.7.0-1.aarch64.rpm
+├── pig-1.7.0-1.x86_64.rpm
+├── pig-v1.7.0.linux-amd64.tar.gz
+├── pig-v1.7.0.linux-arm64.tar.gz
+├── pig-v1.7.0.darwin-amd64.tar.gz
+└── pig-v1.7.0.darwin-arm64.tar.gz
 ```
 
 After extracting, place the binary file in your system PATH.
+The equivalent Pigsty mirror directory becomes available after repository synchronization; check the target URL before using a version-pinned installer command.
 
 
 ## Repository Installation
@@ -111,7 +113,7 @@ To upgrade an existing `pig` version to the latest available version, use the fo
 ```bash
 pig update            # upgrade pig itself to the latest version
 pig update -m         # upgrade using the pigsty.cc mirror
-pig update -v 1.6.0   # upgrade to a selected version
+pig update -v X.Y.Z   # upgrade to a version published by the configured repository
 ```
 
 To update the extension data of an existing `pig` to the latest available version, use the following command:

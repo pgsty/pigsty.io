@@ -1,23 +1,23 @@
 #!/bin/bash
-set -euo pipefail
+set -o pipefail
 #==============================================================#
 # File      :   pig
 # Desc      :   download & install pig cli
-# Mtime     :   2026-07-30
-# Path      :   https://repo.pigsty.io/pig (china region)
+# Mtime     :   2026-08-12
+# Path      :   https://repo.pigsty.io/pig (global, default)
 # Usage     :   curl -fsSL https://repo.pigsty.io/pig | bash
 # Deps      :   curl
 # License   :   Apache-2.0
 # Copyright :   2018-2025  Ruohang Feng / Vonng (rh@vonng.com)
 #==============================================================#
-readonly DEFAULT_VERSION=1.6.1
-readonly BASEURL="https://repo.pigsty.cc"
+readonly DEFAULT_VERSION=1.7.0
+BASEURL="https://repo.pigsty.io"
 
 # To install the latest version of pig
 # curl -fsSL https://repo.pigsty.io/pig | bash
 
 # To install a specific version of pig
-# curl -fsSL https://repo.pigsty.io/pig | bash -s 1.6.1
+# curl -fsSL https://repo.pigsty.io/pig | bash -s 1.7.0
 
 #--------------------------------------------------------------#
 # Log Util
@@ -187,7 +187,7 @@ main() {
     install_package
 
     log_info "pig v${VERSION} installed successfully"
-    log_hint "check /ext/ for details"
+    log_hint "check https://pgext.cloud for details"
     echo ""
 }
 

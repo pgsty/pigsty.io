@@ -28,7 +28,7 @@ Examples:
   pig repo add node pgdg pigsty    # essential repo to install postgres packages
   pig repo add all                 # all = node + pgdg + pigsty
   pig repo add all extra           # extra module has non-free and some 3rd repo for certain extensions
-  pig repo add all -m              # use mirror/proxy for postgres repos
+  pig repo add all -m              # prefer the bundled China-region mirrors
   pig repo update                  # update repo cache
   pig repo create                  # update local repo /www/pigsty meta
   pig repo boot                    # extract /tmp/pkg.tgz to /www/pigsty
@@ -65,7 +65,7 @@ pig repo add pgsql                    # add PGDG and Pigsty PGSQL repositories
 pig repo add pigsty --region=china    # add Pigsty repositories with China region
 pig repo add pgdg   --region=europe   # add PGDG repositories with Europe region
 pig repo add infra  --region=default  # add INFRA repositories with default region
-pig repo add all -m                   # mirror mode, prefer pigsty.cc and domestic proxy sources
+pig repo add all -m                   # explicitly select the bundled China-region mirrors
 
 # If the commands above did not use -u|--update, run this as an extra step
 pig repo update                       # update system package cache
@@ -116,7 +116,9 @@ pig repo set          # set clears/backups existing definitions and overwrites w
 
 The full repository definition bundled with Pigsty is in [`cli/repo/assets/repo.yml`](https://github.com/pgsty/pig/blob/main/cli/repo/assets/repo.yml).
 
-You can create `~/.pig/repo.yml` to explicitly modify and override pig's repository definitions. When editing repository definitions, you can add extra regional mirror URLs under `baseurl`, such as China or Europe mirrors. When `--region` is specified, pig first looks for the matching regional URL and falls back to the `default` URL if the region is unavailable. The common `-m|--mirror` shortcut is mirror-first mode, which quickly selects `pigsty.cc` and domestic PostgreSQL mirror/proxy sources.
+You can create `~/.pig/repo.yml` to explicitly modify and override pig's repository definitions. When editing repository definitions, you can add extra regional mirror URLs under `baseurl`, such as China or Europe mirrors. When `--region` is specified, pig first looks for the matching regional URL and falls back to the `default` URL if the region is unavailable. Since v1.7.0, `-m|--mirror` explicitly selects the bundled `china` definitions, including `pigsty.cc` and the maintained domestic mirrors; it no longer rewrites PGDG URLs through a runtime proxy.
+
+Ordinary EL repositories keep native DNF module filtering. Only definitions that explicitly declare `module_hotfixes=1`—notably Pigsty and PGDG repositories—override module streams, and the key is removed when rendering EL7 YUM configuration.
 
 
 ## repo list
@@ -161,14 +163,14 @@ pig repo add pigsty -u           # add and update cache
 pig repo add all -r              # remove existing repos before adding
 pig repo add all -ru             # remove, add, and update (full reset)
 pig repo add pgdg --region=china # use China mirror
-pig repo add pgsql -m            # mirror mode, prefer pigsty.cc and domestic proxy sources
+pig repo add pgsql -m            # explicitly select the China-region mirrors
 ```
 
 **Options:**
 
 - `-r|--remove`: remove existing repositories before adding new ones
 - `-u|--update`: run package cache update after adding repositories
-- `-m|--mirror`: use mirror/proxy mode, preferring `pigsty.cc` and domestic PostgreSQL mirrors
+- `-m|--mirror`: explicitly select the bundled `china` repository definitions
 - `--region <region>`: use regional mirror repositories (`default` / `china` / `europe`)
 
 | Platform | Module Location |
@@ -186,7 +188,7 @@ Equivalent to `repo add --remove --update`. It clears existing repositories, set
 pig repo set                     # replace with default repositories
 pig repo set pgdg pigsty         # replace with selected repositories and update
 pig repo set all --region=china  # use China mirror
-pig repo set -m                  # use mirror/proxy mode
+pig repo set -m                  # explicitly select the China-region mirrors
 ```
 
 `repo set` supports the same `--region` and `-m|--mirror` region selection as `repo add`; it always uses overwrite semantics, equivalent to `repo add all --remove --update`.
@@ -229,15 +231,25 @@ pig repo update                  # update package cache
 Create a local package repository for offline installation.
 
 ```bash
-pig repo create                  # create at default location (/www/pigsty)
+pig repo create                  # Linux: /www/pigsty; macOS: current directory
 pig repo create /srv/repo        # create at custom location
 ```
 
-| Platform | Dependency |
-|:---:|:---|
-| EL | `createrepo_c` |
-| Debian | `dpkg-dev` |
-{.full-width}
+The current implementation prefers [`sow`](https://sow.pgsty.com/docs/reference/cli/create/) when it is available in `PATH`. On Linux, the SOW backend runs the equivalent of the following with `sudo` for every target directory:
+
+```bash
+sow create --pigsty --timeout 10m -- /absolute/repository/path
+```
+
+On macOS, SOW is required, runs without `sudo`, and the default target is the current directory. On Linux, if `sow` is not installed, EL falls back to `createrepo_c` and Debian/Ubuntu falls back to `dpkg-scanpackages` from `dpkg-dev`. If neither the preferred backend nor the platform fallback is available, `pig repo create` fails. A SOW execution error is returned directly rather than retried through the legacy backend. The `10m` timeout limits the wait for SOW's directory lock; it does not cap repository indexing time.
+
+SOW's `--pigsty` transaction:
+
+1. Scans only top-level regular `.rpm` and `.deb` files—no recursion and no symlink following.
+2. Removes parsed 32-bit x86 packages (RPM `i386/i486/i586/i686`, DEB `i386`) and packages whose binary name is exactly `patroni` with upstream version exactly `3.0.4`.
+3. Builds the applicable RPM/DEB metadata atomically and writes `repo_complete` last. The marker contains SHA-256 hashes for remaining top-level packages, sorted by basename.
+
+Non-package files and directories are left untouched; malformed package candidates or conflicting package coordinates make the SOW transaction fail closed. The legacy fallback has different cleanup and metadata semantics and writes an MD5 package list to `repo_complete`. After either backend exits, PIG requires `repo_complete` to exist as a regular file, but it does not validate the marker contents or hashes. Consumers that use the marker as a delivery gate should perform that verification themselves.
 
 
 ## repo cache

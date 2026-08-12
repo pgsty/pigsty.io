@@ -7,10 +7,13 @@ module: [PIG]
 categories: [Reference]
 ---
 
-The latest stable version is [v1.6.0](https://github.com/pgsty/pig/releases/tag/v1.6.0).
+The latest stable version is [v1.7.0](https://github.com/pgsty/pig/releases/tag/v1.7.0).
 
 |     Version     |    Date    | Summary                                                            |                           GitHub                           |
 |:---------------:|:----------:|--------------------------------------------------------------------|:----------------------------------------------------------:|
+| [v1.7.0](#v170) | 2026-08-12 | EL module policy, China mirrors, EL7 compatibility, 575 extensions | [v1.7.0](https://github.com/pgsty/pig/releases/tag/v1.7.0) |
+| [v1.6.2](#v162) | 2026-08-11 | 572 extensions, Grafana schema v2, SOW-first repository generation | [v1.6.2](https://github.com/pgsty/pig/releases/tag/v1.6.2) |
+| [v1.6.1](#v161) | 2026-07-30 | Catalog refresh and embedded Pigsty 4.5.0                           | [v1.6.1](https://github.com/pgsty/pig/releases/tag/v1.6.1) |
 | [v1.6.0](#v160) | 2026-07-28 | 562 packaged extensions, patronictl passthrough, inventory & CMDB, Grafana | [v1.6.0](https://github.com/pgsty/pig/releases/tag/v1.6.0) |
 | [v1.5.1](#v151) | 2026-07-08 | PG kernel fork updates, mirror mode, bug fixes                    | [v1.5.1](https://github.com/pgsty/pig/releases/tag/v1.5.1) |
 | [v1.5.0](#v150) | 2026-07-04 | 531 extensions, pigsty v4.4, pg/pt/pb/pitr rework, clone & fork    | [v1.5.0](https://github.com/pgsty/pig/releases/tag/v1.5.0) |
@@ -52,6 +55,124 @@ The latest stable version is [v1.6.0](https://github.com/pgsty/pig/releases/tag/
 | [v0.1.1](#v011) | 2025-01-09 | Update Extension List                                              | [v0.1.1](https://github.com/pgsty/pig/releases/tag/v0.1.1) |
 | [v0.1.0](#v010) | 2024-12-29 | repo, ext, sty, and self-update                                    | [v0.1.0](https://github.com/pgsty/pig/releases/tag/v0.1.0) |
 | [v0.0.1](#v001) | 2024-12-23 | Genesis Release                                                    | [v0.0.1](https://github.com/pgsty/pig/releases/tag/v0.0.1) |
+
+
+--------
+
+## v1.7.0
+
+Pig `v1.7.0` is a repository compatibility and catalog release on top of `v1.6.2`. It makes China-mirror selection explicit, preserves native DNF module filtering by default, restores a streamlined EL7 repository catalog, and grows the bundled extension snapshot from 572 to 575. The embedded Pigsty version remains `4.5.0`.
+
+**Highlights**
+
+- `-m|--mirror` now selects the bundled `china` repository definitions directly. PGDG, Rocky Linux, Debian, Ubuntu, Docker, and other regional routes use the maintained mirror list instead of the former runtime PGDG proxy rewrite.
+- EL repository definitions no longer receive `module_hotfixes=1` globally. Pigsty and PGDG repositories that intentionally override module streams opt in explicitly; BaseOS, AppStream, EPEL, and other repositories retain native DNF module filtering.
+- EL7 keeps a deliberately limited compatibility catalog: archived CentOS 7 Base/Updates/Extras/SCLo and EPEL definitions for `x86_64`, plus shared Pigsty and supported PGDG entries. The DNF-only `module_hotfixes` key is stripped when rendering EL7 YUM configuration.
+- Repository setup now reports unsupported platforms when the catalog has no matching definitions, instead of continuing with an empty repository set.
+
+**Extension Catalog**
+
+- Packaged extensions: **572 -> 575**, with no removals.
+- Add `pg_local_cache 1.2.0`, `pg_statviz 0.1.0`, and `pg_policy 0.1.0`.
+- Refresh `biscuit 3.0.0`, `pg_clickhouse 0.10.0`, `pg_search 0.25.2`, `pg_turbovec` packages `1.29.0`, `pg_uuid_v8 1.1.0`, and the Debian `q3c 2.0.5` package.
+
+**Compatibility Notes**
+
+- No commands or global flags are removed in this release.
+- `-m|--mirror` is now an explicit China-region selection rather than a PGDG proxy rewrite. Use `--region=default|china|europe` when you need a specific route.
+- Custom EL repository definitions that require module-stream overrides must set `meta.module_hotfixes: 1` explicitly. This setting is intentionally omitted for ordinary OS repositories and removed on EL7.
+- EL7 is end-of-life and only has limited compatibility coverage; prefer EL8 or newer for current PostgreSQL and extension packages.
+
+**Checksums**
+
+Artifacts: [GitHub Release](https://github.com/pgsty/pig/releases/tag/v1.7.0) · [checksums.txt](https://github.com/pgsty/pig/releases/download/v1.7.0/checksums.txt)
+
+```bash
+e3a339fefdd2203825d15438b52f18e729547eb88dae014212a46006a9bd47d1  pig-1.7.0-1.aarch64.rpm
+34ce29d75ef9f669f3bf832cc812ae082abda7320ee2b2336ea61e701b9b67f8  pig-1.7.0-1.x86_64.rpm
+d26803c685ba29c01cb8e6dfe50c6c1b0f004173be82015618fa8cdf6a329ba7  pig-v1.7.0.darwin-amd64.tar.gz
+ea8120d48b93da936919f590ebbefeb72e73277e6bc133c1ef0bb1abc055d3ce  pig-v1.7.0.darwin-arm64.tar.gz
+40295b64a2423094fa6f4e6d31da8d8ad5b26698c397d8916c0289591522d0bf  pig-v1.7.0.linux-amd64.tar.gz
+7929091732957d85751ef3381285a1e5b0c3c7f82c0e00fc24ed085c496012d5  pig-v1.7.0.linux-arm64.tar.gz
+41523c15f36a6c1acaf4af5c851d2626472fc15c21d25f91fc1e991fe8411072  pig_1.7.0-1_amd64.deb
+adf7b2d9ce8fe42bad935428d16a9c998337df986b1065e0761dc167ce837ef5  pig_1.7.0-1_arm64.deb
+```
+
+Release: https://github.com/pgsty/pig/releases/tag/v1.7.0
+
+
+--------
+
+## v1.6.2
+
+Pig `v1.6.2` is a feature and catalog release on top of `v1.6.1`. It grows the packaged extension catalog from 562 to 572, adds native Grafana dashboard schema v2 support, and improves local repository generation. The embedded Pigsty version remains locked at `4.5.0`.
+
+**Highlights**
+
+- `pig sty grafana` now accepts both legacy dashboard JSON and native `dashboard.grafana.app/v2` Dashboard resources. Loading a v2 dashboard uses Grafana's resource API so tabs and section variables survive the round trip; dumping preserves an existing v2 destination while new dumps keep the legacy format by default.
+- `pig repo create` now prefers `sow create --pigsty --timeout 10m -- <dir>` when SOW is available, requires the resulting `repo_complete` marker to exist as a regular file, and falls back to `createrepo_c` / `dpkg-scanpackages` on Linux.
+- Local repository creation now works on macOS through SOW, defaults to the current directory there, and does not require `sudo`. The Linux default remains `/www/pigsty`.
+- Release metadata is bumped to `1.6.2`; the embedded Pigsty version stays at `4.5.0`.
+
+**Extension Catalog**
+
+- Packaged extensions: **562 -> 572**, with no removals.
+- 10 new extensions: `pg_turbovec`, `pg_disorder`, `pg_mentat`, `plruby`, `jsonb_plruby`, `hstore_plruby`, `ltree_plruby`, `pg_describe`, `cat_tools`, and `pg_vault_tde`.
+- 12 version refreshes: `timescaledb 2.29.1`, `q3c 2.0.5`, `pgmnemo 0.16.1`, `pg_search 0.25.1`, `citus 14.2.0`, `citus_columnar 14.2.0`, `provsql 1.12.0`, `plpgsql_check 2.10.4`, `pg_rational 0.0.3`, `pgbson 2.1.0`, `pg_readme 0.7.1`, and `pg_readme_test_extension 0.7.1`.
+- Package metadata and availability matrices are refreshed. Run `pig ext reload` to replace the embedded release snapshot with the latest online catalog.
+
+**Compatibility Notes**
+
+- No commands or global flags are removed in this release.
+- When SOW is installed, `pig repo create` now prefers it over the legacy Linux generators and checks that the completion marker exists before reporting success.
+- The catalog count is not a promise that every package is available on every PostgreSQL / OS / architecture combination; use `pig ext avail NAME` on the target host.
+
+**Checksums**
+
+Artifacts: [GitHub Release](https://github.com/pgsty/pig/releases/tag/v1.6.2) · [checksums.txt](https://github.com/pgsty/pig/releases/download/v1.6.2/checksums.txt)
+
+```bash
+6697a96bbf476e697a5c3da8b6c861719e4b7208e1e4fe927cf4b475ea1f162f  pig-1.6.2-1.aarch64.rpm
+ad0b311867bc6cd689dd73e9a96b84f1fe0f49f6c0f1184abf9eb3232a07a184  pig-1.6.2-1.x86_64.rpm
+bb167e04fceb6cebee5c8a2423279cefb4474f46301a5055c464ac98294dc9db  pig-v1.6.2.darwin-amd64.tar.gz
+3de74e33321884a0c36596c1e7df9370be594a315395538e9ba5b775bbc1a79d  pig-v1.6.2.darwin-arm64.tar.gz
+7b69214e115e6815e772b7e179aa4070bd8553e585b164ba3a0f69a1d53a0294  pig-v1.6.2.linux-amd64.tar.gz
+b511e727642987867be5921d72e8019e9c6186b82e63ddc34ad653773abed5a8  pig-v1.6.2.linux-arm64.tar.gz
+3d1a80b833c6179b84ac5cc590ad06695b187b2bb4a09f544b1a14f9684dc4bc  pig_1.6.2-1_amd64.deb
+00e4c84cd6b07a98401c73fb58dedaafe34bc794d7604edbcb76c5de39b0fb44  pig_1.6.2-1_arm64.deb
+```
+
+Release: https://github.com/pgsty/pig/releases/tag/v1.6.2
+
+
+--------
+
+## v1.6.1
+
+Pig `v1.6.1` is a maintenance release that refreshes the bundled extension catalog and aligns the embedded Pigsty version with `4.5.0`. It introduces no new commands or flag changes.
+
+**Highlights**
+
+- Regenerate the embedded `extension.csv` from the Pigsty package repositories so fresh installs resolve against current package metadata without first running `pig ext reload`.
+- Update the embedded Pigsty version reported by `pig sty` and `pig status` from `4.4.0` to `4.5.0`.
+- Keep 562 packaged extensions across PostgreSQL 14-18, EL 8/9/10, Debian 12/13, and Ubuntu 22/24/26 on `x86_64` and `aarch64`.
+
+**Checksums**
+
+Artifacts: [Pigsty Mirror](https://repo.pigsty.io/pkg/pig/v1.6.1/) · [checksums.txt](https://repo.pigsty.io/pkg/pig/v1.6.1/checksums.txt)
+
+```bash
+088e62bf7c64dbbe1d66cb54e6a6971e4d245e76ac0b9ab9de2280053b692e77  pig-1.6.1-1.aarch64.rpm
+11b81f43754bcd7691752025ff0a95aa39745883d1cc17183e81fd357f50f5d3  pig-1.6.1-1.x86_64.rpm
+f0512d26fd934a9ac7b0bf5aba22aba151991a4edcc8e995441f79f66fc6080a  pig-v1.6.1.darwin-amd64.tar.gz
+595f122c210b1e5a5211de5b397bfcf2a803179f52a97aa38e68e8c567381533  pig-v1.6.1.darwin-arm64.tar.gz
+d6c0ad7784c8df33539d60cb22259bb1b6f92a6fc26543f4384448dd630a83fd  pig-v1.6.1.linux-amd64.tar.gz
+017fbae1c32858b5438514685e45959ceaeb6bf29ae11ecf0496b52d00908627  pig-v1.6.1.linux-arm64.tar.gz
+571bc16bc8490190935ecb6d8dde9c5827e63eced0b7bbd05cfad1e4363e385b  pig_1.6.1-1_amd64.deb
+54010b414aaf3971c435db714d5e1c0e039f30a11adf95a902040e177f911fa6  pig_1.6.1-1_arm64.deb
+```
+
+Release: https://github.com/pgsty/pig/releases/tag/v1.6.1
 
 
 --------

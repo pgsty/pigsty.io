@@ -36,25 +36,24 @@ curl -fsSL https://repo.pigsty.cc/pig | bash
 ```
 
 
-PIG binary is about 5 MB. On Linux it uses `rpm` or `dpkg` to install the latest available version:
+PIG binary is about 5 MB. On Linux it uses `rpm` or `dpkg` to install the latest version available on the selected mirror. In the example output below, `X.Y.Z` is that mirrored version:
 
 ```bash
 $ curl -fsSL https://repo.pigsty.io/pig | bash
 [INFO] kernel = Linux
 [INFO] machine = x86_64
 [INFO] package = deb
-[INFO] pkg_url = https://repo.pigsty.io/pkg/pig/v1.6.0/pig_1.6.0-1_amd64.deb
-[INFO] download = /tmp/pig_1.6.0-1_amd64.deb
-[INFO] downloading pig v1.6.0
-curl -fSL https://repo.pigsty.io/pkg/pig/v1.6.0/pig_1.6.0-1_amd64.deb -o /tmp/pig_1.6.0-1_amd64.deb
+[INFO] pkg_url = https://repo.pigsty.io/pkg/pig/vX.Y.Z/pig_X.Y.Z-1_amd64.deb
+[INFO] download = /tmp/pig_X.Y.Z-1_amd64.deb
+[INFO] downloading pig vX.Y.Z
+curl -fSL https://repo.pigsty.io/pkg/pig/vX.Y.Z/pig_X.Y.Z-1_amd64.deb -o /tmp/pig_X.Y.Z-1_amd64.deb
 ######################################################################## 100.0%
-[INFO] md5sum = bbb9188284765db916a7539e13167289
-[INFO] installing: dpkg -i /tmp/pig_1.6.0-1_amd64.deb
+[INFO] installing: dpkg -i /tmp/pig_X.Y.Z-1_amd64.deb
 (Reading database ... 166001 files and directories currently installed.)
-Preparing to unpack /tmp/pig_1.6.0-1_amd64.deb ...
-Unpacking pig (1.6.0-1) ...
-Setting up pig (1.6.0-1) ...
-[INFO] pig v1.6.0 installed successfully
+Preparing to unpack /tmp/pig_X.Y.Z-1_amd64.deb ...
+Unpacking pig (X.Y.Z-1) ...
+Setting up pig (X.Y.Z-1) ...
+[INFO] pig vX.Y.Z installed successfully
 check https://pgext.cloud for details
 ```
 
@@ -66,7 +65,7 @@ PIG is a Go-written binary program, installed by default at `/usr/bin/pig`. `pig
 
 ```bash
 $ pig version
-pig version 1.6.0 linux/amd64
+pig version {{< param pig_version >}} linux/amd64
 ```
 
 Use `pig status` to print the current environment status, OS code, PG installation status, repository accessibility and latency.
@@ -75,7 +74,7 @@ Use `pig status` to print the current environment status, OS code, PG installati
 $ pig status
 
 # [Configuration] ================================
-Pig Version      : 1.6.0
+Pig Version      : {{< param pig_version >}}
 Pig Config       : /home/vagrant/.pig/config.yml
 Log Level        : info
 Log Path         : stderr
@@ -110,7 +109,7 @@ pigsty.io  ping ok: 1270 ms
 Internet Access   :  true
 Pigsty Repo       :  pigsty.io
 Inferred Region   :  china
-Latest Pigsty Ver :  {{< param version >}}
+Latest Pigsty Ver :  {{< param pigsty_version >}}
 ```
 
 ## Automation Tips
@@ -132,7 +131,7 @@ $ pig ext list
 ✓ Found {{< param pgext_count >}} extensions
 Name                Status     Version     Cate   Flags   License         Repo     PGVer  Package                               Description
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-timescaledb         available  2.28.3      TIME   -dslt-  Timescale       PIGSTY   15-18  postgresql-18-timescaledb-tsl         Enables scalable inserts and complex queries for time-series dat
+timescaledb         available  2.29.1      TIME   -dslt-  Timescale       PIGSTY   15-18  postgresql-18-timescaledb-tsl         Enables scalable inserts and complex queries for time-series dat
 timescaledb_toolkit available  1.23.0      TIME   -ds---  Timescale       PIGSTY   15-18  postgresql-18-timescaledb-toolkit     Library of analytical hyperfunctions, time-series pipelining, an
 timeseries          available  0.2.1       TIME   -d----  PostgreSQL      PIGSTY   14-18  postgresql-18-pg-timeseries           Convenience API for time series stack
 periods             available  1.2.3       TIME   -ds---  PostgreSQL      PGDG     14-18  postgresql-18-periods                 Provide Standard SQL functionality for PERIODs and SYSTEM VERSIO
@@ -173,12 +172,12 @@ pig repo update              # Update cache: apt update / yum makecache
 ```
 
 PIG detects your network environment and chooses Cloudflare global CDN or China cloud CDN, but you can force a specific region with `--region`.
-In China network environments, you can also use `-m|--mirror` as a shortcut mirror mode, which prefers `pigsty.cc` and domestic PostgreSQL mirror/proxy sources:
+In China network environments, `-m|--mirror` explicitly selects the bundled `china` repository definitions, including `pigsty.cc` and maintained domestic mirrors:
 
 ```bash
 pig repo set      --region=china              # use China mirror for faster downloads
 pig repo add pgdg --region=default --update   # force PGDG upstream repo
-pig repo set -m                                # overwrite repositories with mirror/proxy mode
+pig repo set -m                                # overwrite repositories with China-region mirrors
 ```
 
 PIG does not support offline installation. You can download RPM/DEB packages yourself and copy them to isolated servers for installation.

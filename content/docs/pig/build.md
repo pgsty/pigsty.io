@@ -141,7 +141,7 @@ Initialize package repositories required for building extensions.
 
 ```bash
 pig build repo                   # equivalent to: pig repo set -ru
-pig build repo -m                # use pigsty.cc mirror/proxy sources
+pig build repo -m                # select the built-in China-region sources
 pig build repo --beta            # also enable the PostgreSQL 19 beta repo module
 ```
 
@@ -150,7 +150,7 @@ pig build repo --beta            # also enable the PostgreSQL 19 beta repo modul
 **Options:**
 
 - `-b|--beta`: additionally enable PostgreSQL beta repository modules
-- `-m|--mirror`: prefer the `pigsty.cc` mirror/proxy sources
+- `-m|--mirror`: select the built-in `china` region sources
 
 
 ## build tool
