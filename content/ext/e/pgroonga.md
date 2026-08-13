@@ -169,7 +169,7 @@ You can install `pgroonga` directly. First, make sure the [**PGDG**](/docs/repo/
 pig repo add pgsql -u          # Add repo and update cache
 ```
 
-Install the extension using [**pig**](/docs/pig) or `apt/yum/dnf`:
+Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
 {{< tabpane text=true persist=header >}}
 {{% tab header="Install" %}}
@@ -274,4 +274,3 @@ SELECT * FROM memos WHERE content LIKE '%engine%';
 --   2 | Groonga is a fast full text search engine that supports all languages.
 -- (1 row)
 ```
-

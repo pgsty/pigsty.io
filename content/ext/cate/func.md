@@ -15,7 +15,7 @@ There are **54** extensions in **54** packages.
 | [`pg_idkit`](/ext/e/pg_idkit) | [`pg_idkit`](https://github.com/VADOSWARE/pg_idkit) | `0.4.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | multi-tool for generating new/niche universally unique identifiers (ex. UUIDv6, ULID, KSUID) |
 | [`pgx_ulid`](/ext/e/pgx_ulid) | [`pgx_ulid`](https://github.com/pksunkara/pgx_ulid) | `0.2.3` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | ulid type and methods |
 | [`pg_uuidv7`](/ext/e/pg_uuidv7) | [`pg_uuidv7`](https://github.com/fboulnois/pg_uuidv7) | `1.7.0` | <a class="ext-badge ext-badge--license mpl20" href="/ext/license#mpl20">MPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Create UUIDv7 values in postgres |
-| [`pg_uuid_v8`](/ext/e/pg_uuid_v8) | [`pg_uuid_v8`](https://github.com/ineron/pg_uuid_v8) | `1.0.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | UUID v8 generator with embedded timestamps for PostgreSQL |
+| [`pg_uuid_v8`](/ext/e/pg_uuid_v8) | [`pg_uuid_v8`](https://github.com/ineron/pg_uuid_v8) | `1.1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | UUID v8 generator with embedded timestamps for PostgreSQL |
 | [`permuteseq`](/ext/e/permuteseq) | [`permuteseq`](https://github.com/dverite/permuteseq) | `1.2.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Pseudo-randomly permute sequences with a format-preserving encryption on elements |
 | [`pg_hashids`](/ext/e/pg_hashids) | [`pg_hashids`](https://github.com/iCyberon/pg_hashids) | `1.3` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Short unique id generator for PostgreSQL, using hashids |
 | [`pg_slug_gen`](/ext/e/pg_slug_gen) | [`pg_slug_gen`](https://github.com/nandoolle/pg_slug_gen) | `1.0.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Generate cryptographically secure timestamp-based slugs |
@@ -130,7 +130,7 @@ There are **54** extensions in **54** packages.
 
 ## pg_uuid_v8 {#pg_uuid_v8}
 
-[**`pg_uuid_v8`**](/ext/e/pg_uuid_v8) - `1.0.0` : UUID v8 generator with embedded timestamps for PostgreSQL
+[**`pg_uuid_v8`**](/ext/e/pg_uuid_v8) - `1.1.0` : UUID v8 generator with embedded timestamps for PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -1093,4 +1093,3 @@ There are **54** extensions in **54** packages.
 | **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
-

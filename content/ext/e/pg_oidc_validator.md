@@ -102,7 +102,7 @@ You can install `pg_oidc_validator` directly. First, make sure the [**PGDG**](/d
 pig repo add pgsql -u          # Add repo and update cache
 ```
 
-Install the extension using [**pig**](/docs/pig) or `apt/yum/dnf`:
+Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
 {{< tabpane text=true persist=header >}}
 {{% tab header="Install" %}}
@@ -185,4 +185,3 @@ Use oauth_client_secret only when the registered client requires one. The client
 - The validator supports common OIDC providers, but the README explicitly calls out Google as unsupported and describes provider-specific setup for Microsoft Entra ID.
 - Token validation is only one part of authorization. PostgreSQL role membership and object privileges still control database access.
 - Protect client secrets and provider credentials outside connection strings where possible, and validate TLS trust for the issuer.
-

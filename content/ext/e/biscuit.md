@@ -11,10 +11,10 @@ weight: 2170
     <div class="ext-card__title">CrystallineCore/Biscuit</div>
     <div class="ext-card__desc">https://github.com/CrystallineCore/Biscuit</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/Biscuit-2.4.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/Biscuit-3.0.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">Biscuit-2.4.3.tar.gz</div>
-    <div class="ext-card__desc">Biscuit-2.4.3.tar.gz</div>
+    <div class="ext-card__title">Biscuit-3.0.0.tar.gz</div>
+    <div class="ext-card__desc">Biscuit-3.0.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2170
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_biscuit`**](/ext/e/biscuit) | `2.4.3` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_biscuit`**](/ext/e/biscuit) | `3.0.0` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,16 +38,16 @@ weight: 2170
 {.ext-table .ext-table--rel}
 
 
-> Latest stable PGXN distribution and package release is 2.4.3; 2.5.0 is testing; packaged control and SQL default version remain 2.4.1; package name is biscuit.
+> Latest stable PGXN distribution and packaged extension version are 3.0.0; upgrading from 2.x requires REINDEX; package name is biscuit.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.4.3` | {{< pgvers "18,17,16" >}} | `pg_biscuit` | `plpgsql` |
-| [**RPM**](/ext/rpm#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.4.3` | {{< pgvers "18,17,16" >}} | `biscuit_$v` | - |
-| [**DEB**](/ext/deb#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.4.3` | {{< pgvers "18,17,16" >}} | `postgresql-$v-biscuit` | - |
+| [**EXT**](/ext/list#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.0.0` | {{< pgvers "18,17,16" >}} | `pg_biscuit` | `plpgsql` |
+| [**RPM**](/ext/rpm#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.0.0` | {{< pgvers "18,17,16" >}} | `biscuit_$v` | - |
+| [**DEB**](/ext/deb#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.0.0` | {{< pgvers "18,17,16" >}} | `postgresql-$v-biscuit` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -196,7 +196,7 @@ You can install `pg_biscuit` directly. First, make sure the [**PGDG**](/docs/rep
 pig repo add pgsql -u          # Add repo and update cache
 ```
 
-Install the extension using [**pig**](/docs/pig) or `apt/yum/dnf`:
+Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
 {{< tabpane text=true persist=header >}}
 {{% tab header="Install" %}}
@@ -238,52 +238,70 @@ CREATE EXTENSION biscuit CASCADE;  -- requires: plpgsql
 
 Sources:
 
-- [PGXN biscuit 2.4.3 distribution](https://pgxn.org/dist/biscuit/2.4.3/)
-- [PGXN 2.4.3 metadata](https://api.pgxn.org/dist/biscuit/2.4.3/META.json)
-- [PGXN 2.4.3 control file](https://api.pgxn.org/src/biscuit/biscuit-2.4.3/biscuit.control)
-- [PGXN 2.4.3 changelog](https://api.pgxn.org/src/biscuit/biscuit-2.4.3/CHANGELOG.md)
-- [Official documentation](https://biscuit.readthedocs.io/)
+- [Biscuit 3.0.0 on PGXN](https://pgxn.org/dist/biscuit/3.0.0/)
+- [Biscuit 3.0.0 release](https://github.com/CrystallineCore/Biscuit/releases/tag/v3.0.0)
+- [Biscuit 3.0.0 README](https://github.com/CrystallineCore/Biscuit/blob/v3.0.0/README.md)
+- [Biscuit 3.0.0 changelog](https://github.com/CrystallineCore/Biscuit/blob/v3.0.0/CHANGELOG.md)
+- [Biscuit 3.0.0 metadata](https://api.pgxn.org/dist/biscuit/3.0.0/META.json)
+- [Biscuit 3.0.0 control file](https://github.com/CrystallineCore/Biscuit/blob/v3.0.0/biscuit.control)
+- [Biscuit 3.0.0 Makefile](https://github.com/CrystallineCore/Biscuit/blob/v3.0.0/Makefile)
+- [Biscuit 3.0.0 installation SQL](https://github.com/CrystallineCore/Biscuit/blob/v3.0.0/sql/biscuit.sql)
+- [Biscuit 2.5.0 to 3.0.0 upgrade SQL](https://github.com/CrystallineCore/Biscuit/blob/v3.0.0/sql/biscuit--2.5.0--3.0.0.sql)
 
-`biscuit` is an experimental PostgreSQL index access method optimized for pattern filters on text. It targets selective `LIKE`, `ILIKE`, `NOT LIKE`, and `NOT ILIKE` predicates, including multi-column and expression indexes, while trading additional memory and write work for faster filtering.
+`biscuit` 3.0.0 is a PostgreSQL 16+ positional-bitmap index access method for exact `LIKE` and `ILIKE` filtering. It is strongest for anchored patterns, `_` wildcards, length predicates, and multi-column conjunctions. Version 3.0.0 stores index state in WAL-logged relation pages, so crash recovery, point-in-time recovery, physical replication, and hot-standby reads use PostgreSQL's ordinary recovery path. It does not require `shared_preload_libraries` or a restart.
 
-### Core Workflow
+The project remains under active development and recommends representative staging tests. Its per-connection memory, write amplification, and cache-reload behavior make it best suited to read-mostly analytical workloads rather than continuously updated OLTP tables or very large connection pools.
+
+### Build and Query an Index
+
+Load the data first, then create the index. The default `biscuit_ops` supports both case-sensitive and case-insensitive predicates. Use `biscuit_like_ops` or `biscuit_ilike_ops` when only one mode is required, avoiding the unused structure set.
 
 ```sql
 CREATE EXTENSION biscuit;
 
 CREATE INDEX message_body_biscuit_idx
-ON message USING biscuit (body);
+ON message USING biscuit (body biscuit_like_ops);
 
+ANALYZE message;
+
+EXPLAIN (ANALYZE, BUFFERS)
 SELECT id, body
 FROM message
-WHERE body ILIKE '%timeout%';
+WHERE body LIKE 'timeout%';
 ```
 
-Expression indexes work when the query uses the same expression:
+Expression and multi-column indexes are supported. The query must use expressions and operators compatible with the chosen operator class. Check representative plans after loading statistics, especially for unanchored patterns.
+
+### Operator Classes and Query Boundaries
+
+- `biscuit_ops` is the default text operator class and indexes `LIKE`, `NOT LIKE`, `ILIKE`, and `NOT ILIKE`.
+- `biscuit_like_ops` indexes only `LIKE` and `NOT LIKE`.
+- `biscuit_ilike_ops` indexes only `ILIKE` and `NOT ILIKE`.
+
+Biscuit returns exact matches without a heap recheck, but it is a filtering index: it does not provide ordered, backward, index-only, or unique scans, cannot back `CLUSTER`, and does not support regular expressions, similarity search, fuzzy search, or locale-aware collation. A B-tree with `text_pattern_ops` is usually a better fit for selective prefix lookups, while `pg_trgm` is designed for unanchored substring, regular-expression, and similarity searches.
+
+### Diagnostics and Configuration
+
+Important inspection objects include `biscuit_indexes`, `biscuit_status`, `biscuit_index_stats(oid)`, `biscuit_index_memory_size()`, `biscuit_pending_list_stats(oid)`, and `biscuit_pending_list_usage`. The memory function reports the current backend's session-local copy. `total_pending_bytes` is refreshed during `VACUUM`, so pending-list figures can lag live writes by up to one vacuum cycle.
+
+- `biscuit.delta_compaction_slots` defaults to 20000 and controls how many pending rows are tolerated before compaction. It is a privileged setting because raising it can increase reload work for other sessions.
+- `biscuit.diag_scan_trace` defaults to off and emits verbose per-scan candidate accounting. Enable it only for a focused reproducer.
+
+Every backend lazily loads its own copy of an index and keeps it for the connection lifetime. A committed write invalidates other cached copies; their next access reloads the index rather than refreshing it incrementally. Size pools for this memory behavior and avoid interleaving frequent writes with latency-sensitive reads.
+
+Live-index `INSERT` and `UPDATE` generate substantial WAL; monitor `pg_wal`, replication lag, and replication-slot retention, and consider a bounded `max_slot_wal_keep_size`. Bulk loading before index creation is substantially cheaper. `VACUUM` drains pending work but does not shrink the index; use `REINDEX` to reclaim index space.
+
+### Upgrade to 3.0.0
+
+Version 3.0.0 is an incompatible on-disk format change. Updating the extension catalog does not convert existing index pages: every Biscuit index created under 2.x must be rebuilt. Plan enough maintenance time and WAL capacity for the rebuild.
 
 ```sql
-CREATE INDEX customer_email_biscuit_idx
-ON customer USING biscuit (lower(email));
+ALTER EXTENSION biscuit UPDATE TO '3.0.0';
 
-SELECT *
-FROM customer
-WHERE lower(email) LIKE '%@example.com';
+SELECT schema_name, index_name
+FROM biscuit_indexes;
+
+REINDEX INDEX CONCURRENTLY public.message_body_biscuit_idx;
 ```
 
-For predicates spanning several indexed text columns, use a multi-column index and confirm the chosen plan with `EXPLAIN (ANALYZE, BUFFERS)` on representative data.
-
-### Important Objects
-
-- `biscuit` is the index access method used in `CREATE INDEX ... USING biscuit`.
-- `biscuit_operators` reports the supported operators.
-- `biscuit_version` and `biscuit_build_info` expose build information; `biscuit_build_info_json` returns it as JSON.
-- `biscuit_status` reports the installed build and bitmap configuration.
-- `biscuit_index_stats` and `biscuit_index_memory_size` inspect an index and its memory footprint.
-- `biscuit_memory_usage` is a view of extension memory use.
-- `biscuit_has_roaring` and `biscuit_roaring_version` report optional Roaring bitmap support.
-
-### Limits and Operations
-
-`biscuit` is for filtering, not ordered index scans. It does not provide regular-expression or similarity search. Indexes can be larger and more expensive to maintain than a B-tree; benchmark read selectivity, ingest cost, memory use, and vacuum behavior before production use. Keep a conventional index where ordering, equality, uniqueness, or another access method is still required.
-
-The upstream project labels Biscuit as actively developed. PGXN publishes `2.4.3` as a stable distribution, but that archive's changelog stops at `2.4.2`, and its metadata and control file expose SQL extension version `2.4.1`. Treat `2.4.3` as a distribution/package refresh: no additional SQL API delta is claimed. The material `2.4.2` change fixes a use-after-free in the index cache plus compiler warnings.
+The unpatched upstream 3.0.0 archive ships and installs only the `2.5.0--3.0.0` step, while earlier stable packages exposed catalog versions `2.4.0` or `2.4.1`. Pigsty's 3.0.0 RPM and DEB packages restore that missing catalog path before applying the upstream step. For another source build or package, inspect `pg_extension_update_paths('biscuit')` before `ALTER EXTENSION`; regardless of the available SQL path, the mandatory `REINDEX` or `REINDEX CONCURRENTLY` remains a separate manual operation.

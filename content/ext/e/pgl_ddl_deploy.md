@@ -178,7 +178,7 @@ You can install `pgl_ddl_deploy` directly. First, make sure the [**PGDG**](/docs
 pig repo add pgdg -u          # Add PGDG repo and update cache
 ```
 
-Install the extension using [**pig**](/docs/pig) or `apt/yum/dnf`:
+Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
 {{< tabpane text=true persist=header >}}
 {{% tab header="Install" %}}

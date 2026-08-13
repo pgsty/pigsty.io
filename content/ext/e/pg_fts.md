@@ -120,7 +120,7 @@ You can install `pg_fts` directly. First, make sure the [**PGDG**](/docs/repo/pg
 pig repo add pgsql -u          # Add repo and update cache
 ```
 
-Install the extension using [**pig**](/docs/pig) or `apt/yum/dnf`:
+Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
 {{< tabpane text=true persist=header >}}
 {{% tab header="Install" %}}
@@ -220,4 +220,3 @@ SELECT fts_vacuum('docs_fts');
 - Version `0.2.0` renamed the access method from `bm25` to `fts`. Indexes created by `0.1.0` with `USING bm25` must be recreated.
 - If the library reports an on-disk format mismatch, follow its `REINDEX` hint rather than attempting to read the index with a different format version.
 - The access method is non-covering and does not provide parallel scans in this release. Provision the extension and index separately on logical-replication subscribers; indexes themselves are not logically replicated.
-

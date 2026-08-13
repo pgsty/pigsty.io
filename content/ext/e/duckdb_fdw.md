@@ -168,7 +168,7 @@ You can install `duckdb_fdw` directly. First, make sure the [**PGDG**](/docs/rep
 pig repo add pgsql -u          # Add repo and update cache
 ```
 
-Install the extension using [**pig**](/docs/pig) or `apt/yum/dnf`:
+Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
 {{< tabpane text=true persist=header >}}
 {{% tab header="Install" %}}
@@ -278,4 +278,3 @@ IMPORT FOREIGN SCHEMA public FROM SERVER duckdb_server INTO public;
 - [DuckDB Website](https://duckdb.org/)
 - [GitHub: duckdb_fdw](https://github.com/alitrack/duckdb_fdw/)
 - [Building libduckdb](https://github.com/digoal/blog/blob/master/202401/20240124_01.md)
-

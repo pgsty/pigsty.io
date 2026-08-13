@@ -168,7 +168,7 @@ You can install `pg_kpart` directly. First, make sure the [**PGDG**](/docs/repo/
 pig repo add pgsql -u          # Add repo and update cache
 ```
 
-Install the extension using [**pig**](/docs/pig) or `apt/yum/dnf`:
+Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
 {{< tabpane text=true persist=header >}}
 {{% tab header="Install" %}}
@@ -277,4 +277,3 @@ Violations use SQLSTATE `FS001`, which applications can trap when `message_level
 - A predicate whose range still includes every partition is treated as a full scan and rejected, even if it mentions the partition key.
 - The hook also applies to `UPDATE`, `DELETE`, and `EXPLAIN` without `ANALYZE`. It relies on PostgreSQL's planned pruning result, not textual inspection of `WHERE` clauses.
 - Upstream v1.0 is tested on PostgreSQL 14 and newer.
-

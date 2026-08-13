@@ -50,12 +50,12 @@ weight: 3720
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 |
-| el8.aarch64 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 |
-| el9.x86_64 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 |
-| el9.aarch64 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 |
-| el10.x86_64 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 |
-| el10.aarch64 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 | AVAIL PIGSTY 0.0.3 2 |
+| el8.x86_64 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 |
+| el8.aarch64 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 |
+| el9.x86_64 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 |
+| el9.aarch64 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 |
+| el10.x86_64 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 |
+| el10.aarch64 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 | AVAIL PIGSTY 0.0.3 1 |
 | d12.x86_64 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 |
 | d12.aarch64 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 |
 | d13.x86_64 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 |
@@ -67,17 +67,11 @@ weight: 3720
 | u26.x86_64 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 |
 | u26.aarch64 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 | AVAIL PGDG 0.0.3 2 |
 @ el8.x86_64 18 pg_rational_18 pg_rational_18-0.0.3-1PIGSTY.el8.x86_64.rpm pigsty 0.0.3 20.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_rational_18-0.0.3-1PIGSTY.el8.x86_64.rpm
-@ el8.x86_64 18 pg_rational_18 pg_rational_18-0.0.2-1PIGSTY.el8.x86_64.rpm pigsty 0.0.2 19.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_rational_18-0.0.2-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 18 pg_rational_18 pg_rational_18-0.0.3-1PIGSTY.el8.aarch64.rpm pigsty 0.0.3 20.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_rational_18-0.0.3-1PIGSTY.el8.aarch64.rpm
-@ el8.aarch64 18 pg_rational_18 pg_rational_18-0.0.2-1PIGSTY.el8.aarch64.rpm pigsty 0.0.2 18.9KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_rational_18-0.0.2-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 18 pg_rational_18 pg_rational_18-0.0.3-1PIGSTY.el9.x86_64.rpm pigsty 0.0.3 19.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_rational_18-0.0.3-1PIGSTY.el9.x86_64.rpm
-@ el9.x86_64 18 pg_rational_18 pg_rational_18-0.0.2-1PIGSTY.el9.x86_64.rpm pigsty 0.0.2 18.7KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_rational_18-0.0.2-1PIGSTY.el9.x86_64.rpm
 @ el9.aarch64 18 pg_rational_18 pg_rational_18-0.0.3-1PIGSTY.el9.aarch64.rpm pigsty 0.0.3 19.4KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_rational_18-0.0.3-1PIGSTY.el9.aarch64.rpm
-@ el9.aarch64 18 pg_rational_18 pg_rational_18-0.0.2-1PIGSTY.el9.aarch64.rpm pigsty 0.0.2 18.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_rational_18-0.0.2-1PIGSTY.el9.aarch64.rpm
 @ el10.x86_64 18 pg_rational_18 pg_rational_18-0.0.3-1PIGSTY.el10.x86_64.rpm pigsty 0.0.3 19.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_rational_18-0.0.3-1PIGSTY.el10.x86_64.rpm
-@ el10.x86_64 18 pg_rational_18 pg_rational_18-0.0.2-1PIGSTY.el10.x86_64.rpm pigsty 0.0.2 18.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_rational_18-0.0.2-1PIGSTY.el10.x86_64.rpm
 @ el10.aarch64 18 pg_rational_18 pg_rational_18-0.0.3-1PIGSTY.el10.aarch64.rpm pigsty 0.0.3 19.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_rational_18-0.0.3-1PIGSTY.el10.aarch64.rpm
-@ el10.aarch64 18 pg_rational_18 pg_rational_18-0.0.2-1PIGSTY.el10.aarch64.rpm pigsty 0.0.2 18.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_rational_18-0.0.2-1PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 18 postgresql-18-rational postgresql-18-rational_0.0.3-1.pgdg12+1_amd64.deb pgdg 0.0.3 24.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-18-rational_0.0.3-1.pgdg12+1_amd64.deb
 @ d12.x86_64 18 postgresql-18-rational postgresql-18-rational_0.0.2-8.pgdg12+1_amd64.deb pgdg 0.0.2 24.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-18-rational_0.0.2-8.pgdg12+1_amd64.deb
 @ d12.aarch64 18 postgresql-18-rational postgresql-18-rational_0.0.3-1.pgdg12+1_arm64.deb pgdg 0.0.3 24.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-18-rational_0.0.3-1.pgdg12+1_arm64.deb
@@ -99,17 +93,11 @@ weight: 3720
 @ u26.aarch64 18 postgresql-18-rational postgresql-18-rational_0.0.3-1.pgdg26.04+1_arm64.deb pgdg 0.0.3 24.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-18-rational_0.0.3-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 18 postgresql-18-rational postgresql-18-rational_0.0.2-8.pgdg26.04+1_arm64.deb pgdg 0.0.2 24.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-18-rational_0.0.2-8.pgdg26.04+1_arm64.deb
 @ el8.x86_64 17 pg_rational_17 pg_rational_17-0.0.3-1PIGSTY.el8.x86_64.rpm pigsty 0.0.3 20.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_rational_17-0.0.3-1PIGSTY.el8.x86_64.rpm
-@ el8.x86_64 17 pg_rational_17 pg_rational_17-0.0.2-1PIGSTY.el8.x86_64.rpm pigsty 0.0.2 19.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_rational_17-0.0.2-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 17 pg_rational_17 pg_rational_17-0.0.3-1PIGSTY.el8.aarch64.rpm pigsty 0.0.3 20.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_rational_17-0.0.3-1PIGSTY.el8.aarch64.rpm
-@ el8.aarch64 17 pg_rational_17 pg_rational_17-0.0.2-1PIGSTY.el8.aarch64.rpm pigsty 0.0.2 18.8KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_rational_17-0.0.2-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 17 pg_rational_17 pg_rational_17-0.0.3-1PIGSTY.el9.x86_64.rpm pigsty 0.0.3 19.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_rational_17-0.0.3-1PIGSTY.el9.x86_64.rpm
-@ el9.x86_64 17 pg_rational_17 pg_rational_17-0.0.2-1PIGSTY.el9.x86_64.rpm pigsty 0.0.2 18.7KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_rational_17-0.0.2-1PIGSTY.el9.x86_64.rpm
 @ el9.aarch64 17 pg_rational_17 pg_rational_17-0.0.3-1PIGSTY.el9.aarch64.rpm pigsty 0.0.3 19.4KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_rational_17-0.0.3-1PIGSTY.el9.aarch64.rpm
-@ el9.aarch64 17 pg_rational_17 pg_rational_17-0.0.2-1PIGSTY.el9.aarch64.rpm pigsty 0.0.2 18.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_rational_17-0.0.2-1PIGSTY.el9.aarch64.rpm
 @ el10.x86_64 17 pg_rational_17 pg_rational_17-0.0.3-1PIGSTY.el10.x86_64.rpm pigsty 0.0.3 19.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_rational_17-0.0.3-1PIGSTY.el10.x86_64.rpm
-@ el10.x86_64 17 pg_rational_17 pg_rational_17-0.0.2-1PIGSTY.el10.x86_64.rpm pigsty 0.0.2 18.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_rational_17-0.0.2-1PIGSTY.el10.x86_64.rpm
 @ el10.aarch64 17 pg_rational_17 pg_rational_17-0.0.3-1PIGSTY.el10.aarch64.rpm pigsty 0.0.3 19.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_rational_17-0.0.3-1PIGSTY.el10.aarch64.rpm
-@ el10.aarch64 17 pg_rational_17 pg_rational_17-0.0.2-1PIGSTY.el10.aarch64.rpm pigsty 0.0.2 18.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_rational_17-0.0.2-1PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 17 postgresql-17-rational postgresql-17-rational_0.0.3-1.pgdg12+1_amd64.deb pgdg 0.0.3 24.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-17-rational_0.0.3-1.pgdg12+1_amd64.deb
 @ d12.x86_64 17 postgresql-17-rational postgresql-17-rational_0.0.2-8.pgdg12+1_amd64.deb pgdg 0.0.2 24.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-17-rational_0.0.2-8.pgdg12+1_amd64.deb
 @ d12.aarch64 17 postgresql-17-rational postgresql-17-rational_0.0.3-1.pgdg12+1_arm64.deb pgdg 0.0.3 24.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-17-rational_0.0.3-1.pgdg12+1_arm64.deb
@@ -131,17 +119,11 @@ weight: 3720
 @ u26.aarch64 17 postgresql-17-rational postgresql-17-rational_0.0.3-1.pgdg26.04+1_arm64.deb pgdg 0.0.3 24.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-17-rational_0.0.3-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 17 postgresql-17-rational postgresql-17-rational_0.0.2-8.pgdg26.04+1_arm64.deb pgdg 0.0.2 24.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-17-rational_0.0.2-8.pgdg26.04+1_arm64.deb
 @ el8.x86_64 16 pg_rational_16 pg_rational_16-0.0.3-1PIGSTY.el8.x86_64.rpm pigsty 0.0.3 20.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_rational_16-0.0.3-1PIGSTY.el8.x86_64.rpm
-@ el8.x86_64 16 pg_rational_16 pg_rational_16-0.0.2-1PIGSTY.el8.x86_64.rpm pigsty 0.0.2 19.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_rational_16-0.0.2-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 16 pg_rational_16 pg_rational_16-0.0.3-1PIGSTY.el8.aarch64.rpm pigsty 0.0.3 20.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_rational_16-0.0.3-1PIGSTY.el8.aarch64.rpm
-@ el8.aarch64 16 pg_rational_16 pg_rational_16-0.0.2-1PIGSTY.el8.aarch64.rpm pigsty 0.0.2 18.9KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_rational_16-0.0.2-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 16 pg_rational_16 pg_rational_16-0.0.3-1PIGSTY.el9.x86_64.rpm pigsty 0.0.3 19.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_rational_16-0.0.3-1PIGSTY.el9.x86_64.rpm
-@ el9.x86_64 16 pg_rational_16 pg_rational_16-0.0.2-1PIGSTY.el9.x86_64.rpm pigsty 0.0.2 18.7KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_rational_16-0.0.2-1PIGSTY.el9.x86_64.rpm
 @ el9.aarch64 16 pg_rational_16 pg_rational_16-0.0.3-1PIGSTY.el9.aarch64.rpm pigsty 0.0.3 19.4KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_rational_16-0.0.3-1PIGSTY.el9.aarch64.rpm
-@ el9.aarch64 16 pg_rational_16 pg_rational_16-0.0.2-1PIGSTY.el9.aarch64.rpm pigsty 0.0.2 18.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_rational_16-0.0.2-1PIGSTY.el9.aarch64.rpm
 @ el10.x86_64 16 pg_rational_16 pg_rational_16-0.0.3-1PIGSTY.el10.x86_64.rpm pigsty 0.0.3 19.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_rational_16-0.0.3-1PIGSTY.el10.x86_64.rpm
-@ el10.x86_64 16 pg_rational_16 pg_rational_16-0.0.2-1PIGSTY.el10.x86_64.rpm pigsty 0.0.2 18.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_rational_16-0.0.2-1PIGSTY.el10.x86_64.rpm
 @ el10.aarch64 16 pg_rational_16 pg_rational_16-0.0.3-1PIGSTY.el10.aarch64.rpm pigsty 0.0.3 19.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_rational_16-0.0.3-1PIGSTY.el10.aarch64.rpm
-@ el10.aarch64 16 pg_rational_16 pg_rational_16-0.0.2-1PIGSTY.el10.aarch64.rpm pigsty 0.0.2 18.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_rational_16-0.0.2-1PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 16 postgresql-16-rational postgresql-16-rational_0.0.3-1.pgdg12+1_amd64.deb pgdg 0.0.3 24.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-16-rational_0.0.3-1.pgdg12+1_amd64.deb
 @ d12.x86_64 16 postgresql-16-rational postgresql-16-rational_0.0.2-8.pgdg12+1_amd64.deb pgdg 0.0.2 24.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-16-rational_0.0.2-8.pgdg12+1_amd64.deb
 @ d12.aarch64 16 postgresql-16-rational postgresql-16-rational_0.0.3-1.pgdg12+1_arm64.deb pgdg 0.0.3 24.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-16-rational_0.0.3-1.pgdg12+1_arm64.deb
@@ -163,17 +145,11 @@ weight: 3720
 @ u26.aarch64 16 postgresql-16-rational postgresql-16-rational_0.0.3-1.pgdg26.04+1_arm64.deb pgdg 0.0.3 24.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-16-rational_0.0.3-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 16 postgresql-16-rational postgresql-16-rational_0.0.2-8.pgdg26.04+1_arm64.deb pgdg 0.0.2 24.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-16-rational_0.0.2-8.pgdg26.04+1_arm64.deb
 @ el8.x86_64 15 pg_rational_15 pg_rational_15-0.0.3-1PIGSTY.el8.x86_64.rpm pigsty 0.0.3 20.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_rational_15-0.0.3-1PIGSTY.el8.x86_64.rpm
-@ el8.x86_64 15 pg_rational_15 pg_rational_15-0.0.2-1PIGSTY.el8.x86_64.rpm pigsty 0.0.2 19.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_rational_15-0.0.2-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 15 pg_rational_15 pg_rational_15-0.0.3-1PIGSTY.el8.aarch64.rpm pigsty 0.0.3 20.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_rational_15-0.0.3-1PIGSTY.el8.aarch64.rpm
-@ el8.aarch64 15 pg_rational_15 pg_rational_15-0.0.2-1PIGSTY.el8.aarch64.rpm pigsty 0.0.2 18.9KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_rational_15-0.0.2-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 15 pg_rational_15 pg_rational_15-0.0.3-1PIGSTY.el9.x86_64.rpm pigsty 0.0.3 19.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_rational_15-0.0.3-1PIGSTY.el9.x86_64.rpm
-@ el9.x86_64 15 pg_rational_15 pg_rational_15-0.0.2-1PIGSTY.el9.x86_64.rpm pigsty 0.0.2 18.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_rational_15-0.0.2-1PIGSTY.el9.x86_64.rpm
 @ el9.aarch64 15 pg_rational_15 pg_rational_15-0.0.3-1PIGSTY.el9.aarch64.rpm pigsty 0.0.3 19.4KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_rational_15-0.0.3-1PIGSTY.el9.aarch64.rpm
-@ el9.aarch64 15 pg_rational_15 pg_rational_15-0.0.2-1PIGSTY.el9.aarch64.rpm pigsty 0.0.2 18.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_rational_15-0.0.2-1PIGSTY.el9.aarch64.rpm
 @ el10.x86_64 15 pg_rational_15 pg_rational_15-0.0.3-1PIGSTY.el10.x86_64.rpm pigsty 0.0.3 19.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_rational_15-0.0.3-1PIGSTY.el10.x86_64.rpm
-@ el10.x86_64 15 pg_rational_15 pg_rational_15-0.0.2-1PIGSTY.el10.x86_64.rpm pigsty 0.0.2 18.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_rational_15-0.0.2-1PIGSTY.el10.x86_64.rpm
 @ el10.aarch64 15 pg_rational_15 pg_rational_15-0.0.3-1PIGSTY.el10.aarch64.rpm pigsty 0.0.3 19.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_rational_15-0.0.3-1PIGSTY.el10.aarch64.rpm
-@ el10.aarch64 15 pg_rational_15 pg_rational_15-0.0.2-1PIGSTY.el10.aarch64.rpm pigsty 0.0.2 18.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_rational_15-0.0.2-1PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 15 postgresql-15-rational postgresql-15-rational_0.0.3-1.pgdg12+1_amd64.deb pgdg 0.0.3 24.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-15-rational_0.0.3-1.pgdg12+1_amd64.deb
 @ d12.x86_64 15 postgresql-15-rational postgresql-15-rational_0.0.2-8.pgdg12+1_amd64.deb pgdg 0.0.2 24.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-15-rational_0.0.2-8.pgdg12+1_amd64.deb
 @ d12.aarch64 15 postgresql-15-rational postgresql-15-rational_0.0.3-1.pgdg12+1_arm64.deb pgdg 0.0.3 24.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-15-rational_0.0.3-1.pgdg12+1_arm64.deb
@@ -195,17 +171,11 @@ weight: 3720
 @ u26.aarch64 15 postgresql-15-rational postgresql-15-rational_0.0.3-1.pgdg26.04+1_arm64.deb pgdg 0.0.3 24.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-15-rational_0.0.3-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 15 postgresql-15-rational postgresql-15-rational_0.0.2-8.pgdg26.04+1_arm64.deb pgdg 0.0.2 24.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-15-rational_0.0.2-8.pgdg26.04+1_arm64.deb
 @ el8.x86_64 14 pg_rational_14 pg_rational_14-0.0.3-1PIGSTY.el8.x86_64.rpm pigsty 0.0.3 20.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_rational_14-0.0.3-1PIGSTY.el8.x86_64.rpm
-@ el8.x86_64 14 pg_rational_14 pg_rational_14-0.0.2-1PIGSTY.el8.x86_64.rpm pigsty 0.0.2 19.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_rational_14-0.0.2-1PIGSTY.el8.x86_64.rpm
 @ el8.aarch64 14 pg_rational_14 pg_rational_14-0.0.3-1PIGSTY.el8.aarch64.rpm pigsty 0.0.3 20.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_rational_14-0.0.3-1PIGSTY.el8.aarch64.rpm
-@ el8.aarch64 14 pg_rational_14 pg_rational_14-0.0.2-1PIGSTY.el8.aarch64.rpm pigsty 0.0.2 18.8KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_rational_14-0.0.2-1PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 14 pg_rational_14 pg_rational_14-0.0.3-1PIGSTY.el9.x86_64.rpm pigsty 0.0.3 19.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_rational_14-0.0.3-1PIGSTY.el9.x86_64.rpm
-@ el9.x86_64 14 pg_rational_14 pg_rational_14-0.0.2-1PIGSTY.el9.x86_64.rpm pigsty 0.0.2 18.7KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_rational_14-0.0.2-1PIGSTY.el9.x86_64.rpm
 @ el9.aarch64 14 pg_rational_14 pg_rational_14-0.0.3-1PIGSTY.el9.aarch64.rpm pigsty 0.0.3 19.4KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_rational_14-0.0.3-1PIGSTY.el9.aarch64.rpm
-@ el9.aarch64 14 pg_rational_14 pg_rational_14-0.0.2-1PIGSTY.el9.aarch64.rpm pigsty 0.0.2 18.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_rational_14-0.0.2-1PIGSTY.el9.aarch64.rpm
 @ el10.x86_64 14 pg_rational_14 pg_rational_14-0.0.3-1PIGSTY.el10.x86_64.rpm pigsty 0.0.3 19.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_rational_14-0.0.3-1PIGSTY.el10.x86_64.rpm
-@ el10.x86_64 14 pg_rational_14 pg_rational_14-0.0.2-1PIGSTY.el10.x86_64.rpm pigsty 0.0.2 18.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_rational_14-0.0.2-1PIGSTY.el10.x86_64.rpm
 @ el10.aarch64 14 pg_rational_14 pg_rational_14-0.0.3-1PIGSTY.el10.aarch64.rpm pigsty 0.0.3 19.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_rational_14-0.0.3-1PIGSTY.el10.aarch64.rpm
-@ el10.aarch64 14 pg_rational_14 pg_rational_14-0.0.2-1PIGSTY.el10.aarch64.rpm pigsty 0.0.2 18.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_rational_14-0.0.2-1PIGSTY.el10.aarch64.rpm
 @ d12.x86_64 14 postgresql-14-rational postgresql-14-rational_0.0.3-1.pgdg12+1_amd64.deb pgdg 0.0.3 24.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-14-rational_0.0.3-1.pgdg12+1_amd64.deb
 @ d12.x86_64 14 postgresql-14-rational postgresql-14-rational_0.0.2-8.pgdg12+1_amd64.deb pgdg 0.0.2 24.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-14-rational_0.0.2-8.pgdg12+1_amd64.deb
 @ d12.aarch64 14 postgresql-14-rational postgresql-14-rational_0.0.3-1.pgdg12+1_arm64.deb pgdg 0.0.3 24.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rational/postgresql-14-rational_0.0.3-1.pgdg12+1_arm64.deb
@@ -245,7 +215,7 @@ You can install `pg_rational` directly. First, make sure the [**PGDG**](/docs/re
 pig repo add pgsql -u          # Add repo and update cache
 ```
 
-Install the extension using [**pig**](/docs/pig) or `apt/yum/dnf`:
+Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
 {{< tabpane text=true persist=header >}}
 {{% tab header="Install" %}}

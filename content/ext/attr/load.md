@@ -29,7 +29,6 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pg_duckdb`](/ext/e/pg_duckdb) | `pg_duckdb` | DuckDB Embedded in Postgres |
 | [`pg_mooncake`](/ext/e/pg_mooncake) | `pg_mooncake` | Columnstore Table in Postgres |
 | [`storage_engine`](/ext/e/storage_engine) | `storage_engine` | colcompress and rowcompress Table Access Methods with vectorized execution |
-| [`pg_clickhouse`](/ext/e/pg_clickhouse) | `pg_clickhouse` | Interfaces to query ClickHouse databases from PostgreSQL |
 | [`pg_parquet`](/ext/e/pg_parquet) | `pg_parquet` | copy data between Postgres and Parquet |
 | [`pg_ducklake`](/ext/e/pg_ducklake) | `pg_ducklake` | DuckLake lakehouse extension for PostgreSQL, backed by DuckDB and Parquet |
 | [`pg_orca`](/ext/e/pg_orca) | `pg_orca` | ORCA query optimizer as a PostgreSQL extension |
@@ -50,6 +49,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pg_trickle`](/ext/e/pg_trickle) | `pg_trickle` | Streaming tables and differential view maintenance for PostgreSQL 18 |
 | [`pg_durable`](/ext/e/pg_durable) | `pg_durable` | Durable SQL functions for PostgreSQL |
 | [`pg_disorder`](/ext/e/pg_disorder) | `pg_disorder` | Perturb unordered SELECT row order to expose order-dependent tests |
+| [`pg_local_cache`](/ext/e/pg_local_cache) | `pg_local_cache` | Transaction-aware shared-memory cache for ordinary PostgreSQL primary-key reads |
 | [`provsql`](/ext/e/provsql) | `provsql` | Semiring provenance and probability management for PostgreSQL |
 | [`orioledb`](/ext/e/orioledb) | `orioledb` | OrioleDB, the next generation transactional engine |
 | [`omni`](/ext/e/omni) | `omni--0.2.14.so` | Advanced adapter for Postgres extensions |
@@ -138,4 +138,3 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`decoderbufs`](/ext/e/decoderbufs) | `decoderbufs` | Logical decoding plugin that delivers WAL stream changes using a Protocol Buffer format |
 | [`repmgr`](/ext/e/repmgr) | `repmgr` | Replication manager for PostgreSQL |
 {.ext-table}
-

@@ -9,7 +9,7 @@ The following **27** packages contain multiple extensions, totaling **132** exte
 
 When installing these packages, you will get all extensions in the package. The lead extension is shown in bold.
 
-### postgis
+## postgis
 
 Package [`postgis`](/ext/e/postgis) contains **7** extensions:
 
@@ -24,7 +24,7 @@ Package [`postgis`](/ext/e/postgis) contains **7** extensions:
 | 1506 | [`address_standardizer_data_us`](/ext/e/address_standardizer_data_us) | `3.6.4` | `--s-d-r` | - | Address Standardizer US dataset example |
 {.ext-table}
 
-### pointcloud
+## pointcloud
 
 Package [`pointcloud`](/ext/e/pointcloud) contains **2** extensions:
 
@@ -34,7 +34,7 @@ Package [`pointcloud`](/ext/e/pointcloud) contains **2** extensions:
 | 1521 | [`pointcloud_postgis`](/ext/e/pointcloud_postgis) | `1.2.5` | `--s-dt-` | - | integration for pointcloud LIDAR data and PostGIS geometry data |
 {.ext-table}
 
-### pg_h3
+## pg_h3
 
 Package [`pg_h3`](/ext/e/h3) contains **2** extensions:
 
@@ -44,7 +44,7 @@ Package [`pg_h3`](/ext/e/h3) contains **2** extensions:
 | 1531 | [`h3_postgis`](/ext/e/h3_postgis) | `4.2.3` | `--s-d-r` | - | H3 PostGIS integration |
 {.ext-table}
 
-### pghydro
+## pghydro
 
 Package [`pghydro`](/ext/e/pghydro) contains **7** extensions:
 
@@ -59,7 +59,7 @@ Package [`pghydro`](/ext/e/pghydro) contains **7** extensions:
 | 1606 | [`pgh_consistency`](/ext/e/pgh_consistency) | `6.6` | `----d--` | `pgh_consistency` | Pfafstetter consistency checks for PgHydro |
 {.ext-table}
 
-### mobilitydb
+## mobilitydb
 
 Package [`mobilitydb`](/ext/e/mobilitydb) contains **2** extensions:
 
@@ -69,7 +69,7 @@ Package [`mobilitydb`](/ext/e/mobilitydb) contains **2** extensions:
 | 1651 | [`mobilitydb_datagen`](/ext/e/mobilitydb_datagen) | `1.3.0` | `----d-r` | - | MobilityDB random data generator functions |
 {.ext-table}
 
-### qdgc
+## qdgc
 
 Package [`qdgc`](/ext/e/qdgc) contains **2** extensions:
 
@@ -79,7 +79,7 @@ Package [`qdgc`](/ext/e/qdgc) contains **2** extensions:
 | 1710 | [`qdgc_postgis`](/ext/e/qdgc_postgis) | `0.1.0` | `----d-r` | - | Add PostGIS geometry and geography bindings plus area-to-cell fills for QDGC. |
 {.ext-table}
 
-### pgcontext
+## pgcontext
 
 Package [`pgcontext`](/ext/e/pgcontext) contains **2** extensions:
 
@@ -89,7 +89,7 @@ Package [`pgcontext`](/ext/e/pgcontext) contains **2** extensions:
 | 1970 | [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) | `0.2.0` | `--s-d--` | - | Optional pgvector compatibility bridge for pgcontext HNSW indexes. |
 {.ext-table}
 
-### pgroonga
+## pgroonga
 
 Package [`pgroonga`](/ext/e/pgroonga) contains **2** extensions:
 
@@ -99,7 +99,7 @@ Package [`pgroonga`](/ext/e/pgroonga) contains **2** extensions:
 | 2111 | [`pgroonga_database`](/ext/e/pgroonga_database) | `4.0.4` | `--s-dtr` | - | PGroonga database management module |
 {.ext-table}
 
-### hunspell
+## hunspell
 
 Package [`hunspell`](/ext/e/hunspell_cs_cz) contains **10** extensions:
 
@@ -117,7 +117,7 @@ Package [`hunspell`](/ext/e/hunspell_cs_cz) contains **10** extensions:
 | 2279 | [`hunspell_ru_ru_aot`](/ext/e/hunspell_ru_ru_aot) | `1.0` | `----d-r` | - | Russian Hunspell Dictionary (from AOT.ru group) |
 {.ext-table}
 
-### citus
+## citus
 
 Package [`citus`](/ext/e/citus) contains **2** extensions:
 
@@ -127,7 +127,7 @@ Package [`citus`](/ext/e/citus) contains **2** extensions:
 | 2401 | [`citus_columnar`](/ext/e/citus_columnar) | `14.2.0` | `--s-d--` | `pg_catalog` | Citus columnar storage engine |
 {.ext-table}
 
-### pg_lake
+## pg_lake
 
 Package [`pg_lake`](/ext/e/pg_lake) contains **8** extensions:
 
@@ -143,7 +143,7 @@ Package [`pg_lake`](/ext/e/pg_lake) contains **8** extensions:
 | 2567 | [`pg_lake_copy`](/ext/e/pg_lake_copy) | `3.4` | `--sLd--` | `pg_catalog` | Copy to/from data lake files |
 {.ext-table}
 
-### omnigres
+## omnigres
 
 Package [`omnigres`](/ext/e/omni) contains **37** extensions:
 
@@ -188,7 +188,7 @@ Package [`omnigres`](/ext/e/omni) contains **37** extensions:
 | 2979 | [`omni_yaml`](/ext/e/omni_yaml) | `0.1.0` | `--s-d--` | `omni_yaml` | YAML toolkit |
 {.ext-table}
 
-### pllua
+## pllua
 
 Package [`pllua`](/ext/e/pllua) contains **4** extensions:
 
@@ -200,7 +200,7 @@ Package [`pllua`](/ext/e/pllua) contains **4** extensions:
 | 3031 | [`hstore_plluau`](/ext/e/hstore_plluau) | `2.0.12` | `--s-d-r` | `pg_catalog` | Hstore transform for untrusted Lua |
 {.ext-table}
 
-### plruby
+## plruby
 
 Package [`plruby`](/ext/e/plruby) contains **4** extensions:
 
@@ -212,7 +212,7 @@ Package [`plruby`](/ext/e/plruby) contains **4** extensions:
 | 3163 | [`ltree_plruby`](/ext/e/ltree_plruby) | `1.0` | `--s-d-r` | - | Transform between ltree and Ruby Arrays for PL/Ruby |
 {.ext-table}
 
-### pltcl
+## pltcl
 
 Package [`pltcl`](/ext/e/pltcl) contains **2** extensions:
 
@@ -222,7 +222,7 @@ Package [`pltcl`](/ext/e/pltcl) contains **2** extensions:
 | 3250 | [`pltclu`](/ext/e/pltclu) | `1.0` | `c---d--` | `pg_catalog` | PL/TclU untrusted procedural language |
 {.ext-table}
 
-### plperl
+## plperl
 
 Package [`plperl`](/ext/e/plperl) contains **4** extensions:
 
@@ -234,7 +234,7 @@ Package [`plperl`](/ext/e/plperl) contains **4** extensions:
 | 3263 | [`jsonb_plperl`](/ext/e/jsonb_plperl) | `1.0` | `c---dt-` | - | transform between jsonb and plperl |
 {.ext-table}
 
-### plperlu
+## plperlu
 
 Package [`plperlu`](/ext/e/plperlu) contains **4** extensions:
 
@@ -246,7 +246,7 @@ Package [`plperlu`](/ext/e/plperlu) contains **4** extensions:
 | 3273 | [`hstore_plperlu`](/ext/e/hstore_plperlu) | `1.0` | `c---d--` | - | transform between hstore and plperlu |
 {.ext-table}
 
-### plpython3u
+## plpython3u
 
 Package [`plpython3u`](/ext/e/plpython3u) contains **4** extensions:
 
@@ -258,7 +258,7 @@ Package [`plpython3u`](/ext/e/plpython3u) contains **4** extensions:
 | 3293 | [`hstore_plpython3u`](/ext/e/hstore_plpython3u) | `1.0` | `c---d-r` | - | transform between hstore and plpython3u |
 {.ext-table}
 
-### pg_xenophile
+## pg_xenophile
 
 Package [`pg_xenophile`](/ext/e/pg_xenophile) contains **2** extensions:
 
@@ -268,7 +268,7 @@ Package [`pg_xenophile`](/ext/e/pg_xenophile) contains **2** extensions:
 | 3671 | [`l10n_table_dependent_extension`](/ext/e/l10n_table_dependent_extension) | `0.8.3` | `----d-r` | - | PostgreSQL l10n toolbox |
 {.ext-table}
 
-### pg_readme
+## pg_readme
 
 Package [`pg_readme`](/ext/e/pg_readme) contains **2** extensions:
 
@@ -278,7 +278,7 @@ Package [`pg_readme`](/ext/e/pg_readme) contains **2** extensions:
 | 4301 | [`pg_readme_test_extension`](/ext/e/pg_readme_test_extension) | `0.7.1` | `----d-r` | - | Fixture extension used to test pg_readme document generation |
 {.ext-table}
 
-### pgpool
+## pgpool
 
 Package [`pgpool`](/ext/e/pgpool_adm) contains **3** extensions:
 
@@ -289,7 +289,7 @@ Package [`pgpool`](/ext/e/pgpool_adm) contains **3** extensions:
 | 5920 | [`pgpool_regclass`](/ext/e/pgpool_regclass) | `4.7.2` | `----d--` | - | replacement for regclass |
 {.ext-table}
 
-### pg_flight_recorder
+## pg_flight_recorder
 
 Package [`pg_flight_recorder`](/ext/e/pgfr_record) contains **2** extensions:
 
@@ -299,7 +299,7 @@ Package [`pg_flight_recorder`](/ext/e/pgfr_record) contains **2** extensions:
 | 6061 | [`pgfr_analyze`](/ext/e/pgfr_analyze) | `2.29.2` | `----d--` | `pgfr_analyze` | Reporting and analysis functions for pgfr_record |
 {.ext-table}
 
-### pgnodemx
+## pgnodemx
 
 Package [`pgnodemx`](/ext/e/pgnodemx) contains **2** extensions:
 
@@ -309,7 +309,7 @@ Package [`pgnodemx`](/ext/e/pgnodemx) contains **2** extensions:
 | 6450 | [`pg_proctab`](/ext/e/pg_proctab) | `2.0.1` | `--s-d-r` | - | PostgreSQL extension to access the OS process table |
 {.ext-table}
 
-### documentdb
+## documentdb
 
 Package [`documentdb`](/ext/e/documentdb) contains **4** extensions:
 
@@ -321,7 +321,7 @@ Package [`documentdb`](/ext/e/documentdb) contains **4** extensions:
 | 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `0.114` | `--sLd-r` | - | DocumentDB Extended RUM index access method |
 {.ext-table}
 
-### ivorysql
+## ivorysql
 
 Package [`ivorysql`](/ext/e/ivorysql_ora) contains **6** extensions:
 
@@ -335,7 +335,7 @@ Package [`ivorysql`](/ext/e/ivorysql_ora) contains **6** extensions:
 | 9190 | [`gb18030_2022`](/ext/e/gb18030_2022) | `1.0` | `--s-dt-` | `pg_catalog` | Support GB18030-2022 and UTF-8 conversion |
 {.ext-table}
 
-### babelfish
+## babelfish
 
 Package [`babelfish`](/ext/e/babelfishpg_common) contains **4** extensions:
 
@@ -347,7 +347,7 @@ Package [`babelfish`](/ext/e/babelfishpg_common) contains **4** extensions:
 | 9330 | [`babelfishpg_money`](/ext/e/babelfishpg_money) | `1.1.0` | `--s-dt-` | - | SQL Server Money Data Type |
 {.ext-table}
 
-### pglogical
+## pglogical
 
 Package [`pglogical`](/ext/e/pglogical) contains **2** extensions:
 
@@ -356,4 +356,3 @@ Package [`pglogical`](/ext/e/pglogical) contains **2** extensions:
 | 9500 | [**`pglogical`**](/ext/e/pglogical) | `2.4.8` | `--sLd--` | `pglogical` | PostgreSQL Logical Replication |
 | 9501 | [`pglogical_origin`](/ext/e/pglogical_origin) | `2.4.7` | `--s-d--` | `pglogical_origin` | Dummy extension for compatibility when upgrading from Postgres 9.4 |
 {.ext-table}
-

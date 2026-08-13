@@ -152,7 +152,7 @@ You can install `pgml` directly. First, make sure the [**PGDG**](/docs/repo/pgdg
 pig repo add pgsql -u          # Add repo and update cache
 ```
 
-Install the extension using [**pig**](/docs/pig) or `apt/yum/dnf`:
+Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
 {{< tabpane text=true persist=header >}}
 {{% tab header="Install" %}}
@@ -239,4 +239,3 @@ CREATE EXTENSION
 ```
 
 You are all set! Check PostgresML for more details: https://postgresml.org/docs/guides/use-cases/
-

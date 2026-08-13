@@ -180,7 +180,7 @@ You can install `pglogical_ticker` directly. First, make sure the [**PGDG**](/do
 pig repo add pgdg -u          # Add PGDG repo and update cache
 ```
 
-Install the extension using [**pig**](/docs/pig) or `apt/yum/dnf`:
+Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
 {{< tabpane text=true persist=header >}}
 {{% tab header="Install" %}}
