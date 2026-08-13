@@ -34,7 +34,7 @@ Pigsty provides:
 
 - **Complete Point-in-Time Recovery Capability**
 
-  Based on pgBackRest and optional MinIO cluster, providing out-of-the-box [**PITR point-in-time recovery**](/docs/concept/pitr) capability. Giving you the ability to quickly return to any point in time, protecting against software defects and accidental data deletion.
+  Based on pgBackRest and an optional Silo object-storage cluster, providing out-of-the-box [**PITR point-in-time recovery**](/docs/concept/pitr) capability. Giving you the ability to quickly return to any point in time, protecting against software defects and accidental data deletion.
 
 - **Flexible Service Access and Traffic Management**
 
@@ -50,7 +50,7 @@ Pigsty provides:
 
 - **Modular Architecture Design**
 
-  A modular [**architecture**](/docs/concept/arch) design that can be freely combined to suit different scenarios. Beyond the core PostgreSQL module, it also provides optional modules for Redis, MinIO, Etcd, and support for various PG-compatible kernels and modes.
+  A modular [**architecture**](/docs/concept/arch) design that can be freely combined to suit different scenarios. Beyond the core PostgreSQL module, it also provides optional modules for Redis, MINIO (Silo), Etcd, and support for various PG-compatible kernels and modes.
 
 - [**Solid Security Best Practices**](/docs/concept/sec/)
 
@@ -71,7 +71,7 @@ Pigsty is not a traditional, all-encompassing PaaS (Platform as a Service) syste
 
 - **Pigsty is not a container orchestration system**. It runs directly on the operating system, not requiring Kubernetes or Docker as infrastructure. Of course, it can coexist with these systems and provides a Docker module for running stateless applications.
 
-- **Pigsty is not a general database management tool**. It focuses on PostgreSQL and its ecosystem. While it also supports peripheral components like Redis, Etcd, and MinIO, the core is always built around PostgreSQL.
+- **Pigsty is not a general database management tool**. It focuses on PostgreSQL and its ecosystem. While it also supports peripheral components like Redis, Etcd, and Silo, the core is always built around PostgreSQL.
 
 - **Pigsty won't lock you in**. It's built on open-source components, doesn't modify the PostgreSQL kernel, and introduces no proprietary protocols. You can continue using your well-managed PostgreSQL clusters anytime without Pigsty.
 

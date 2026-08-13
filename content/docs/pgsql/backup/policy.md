@@ -144,7 +144,7 @@ series: [ { name: Recovery Window, type: line, smooth: false, symbol: none, show
 
 You can optimize backup space usage by adjusting these parameters.
 
-If using MinIO / S3 as a centralized backup repository, you can use storage space beyond local disk limitations.
+If using Silo / S3 as a centralized backup repository, storage is no longer limited by the local disk.
 In this case, consider using full + incremental backup with a 2-week retention policy:
 
 ```yaml
@@ -153,17 +153,17 @@ pg_crontab:  # Full backup at 1 AM on Monday, incremental backups on weekdays
   - '00 01 * * 2,3,4,5,6,7 /pg/bin/pg-backup'
 pgbackrest_method: minio
 pgbackrest_repo:                  # pgbackrest repository configuration: https://pgbackrest.org/configuration.html#section-repository
-  minio:                          # Optional minio repository
-    type: s3                      # minio is S3 compatible
-    s3_endpoint: sss.pigsty       # minio endpoint domain, defaults to `sss.pigsty`
-    s3_region: us-east-1          # minio region, defaults to us-east-1, meaningless for minio
-    s3_bucket: pgsql              # minio bucket name, defaults to `pgsql`
-    s3_key: pgbackrest            # minio user access key for pgbackrest
-    s3_key_secret: S3User.Backup  # minio user secret for pgbackrest
-    s3_uri_style: path            # minio uses path-style URIs instead of host-style
-    path: /pgbackrest             # minio backup path, defaults to `/pgbackrest`
-    storage_port: 9000            # minio port, defaults to 9000
-    storage_ca_file: /etc/pki/ca.crt  # minio CA certificate path, defaults to `/etc/pki/ca.crt`
+  minio:                          # Optional S3-compatible repository preset
+    type: s3                      # Silo uses the S3-compatible repository type
+    s3_endpoint: sss.pigsty       # object-storage endpoint, `sss.pigsty` by default
+    s3_region: us-east-1          # compatibility region, `us-east-1` by default
+    s3_bucket: pgsql              # backup bucket, `pgsql` by default
+    s3_key: pgbackrest            # pgBackRest access key
+    s3_key_secret: S3User.Backup  # object-storage user secret
+    s3_uri_style: path            # use path-style rather than host-style URIs
+    path: /pgbackrest             # backup path, `/pgbackrest` by default
+    storage_port: 9000            # Silo service port, 9000 by default
+    storage_ca_file: /etc/pki/ca.crt  # Pigsty CA path, `/etc/pki/ca.crt` by default
     block: y                      # Enable block-level incremental backup
     bundle: y                     # Bundle small files into a single file
     bundle_limit: 20MiB           # Bundle size limit, recommended 20MiB for object storage
@@ -174,7 +174,7 @@ pgbackrest_repo:                  # pgbackrest repository configuration: https:/
     retention_full: 14            # Keep full backups from the last 14 days
 ```
 
-When used with the built-in `minio` backup repository, this provides a guaranteed 1-week PITR recovery window.
+With weekly full backups and time-based retention of 14 days, the steady-state recovery window is roughly 14–21 days. The exact window still depends on successful backup and WAL archival runs.
 
 Assuming your database size is 100GB and writes 10GB of data per day, the backup size is as follows:
 

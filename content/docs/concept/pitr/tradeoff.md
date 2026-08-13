@@ -37,7 +37,7 @@ Store backups on primary local disk (`pgbackrest_method = local`):
 
 ### Remote Repository
 
-Store backups on MinIO / S3 (`pgbackrest_method = minio|s3`):
+Store backups on Silo / S3 (`pgbackrest_method = minio|s3`):
 
 **Pros**
 - Geo-DR, backups independent from DB host

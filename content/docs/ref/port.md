@@ -30,8 +30,8 @@ This page lists default ports used by Pigsty module components. Adjust as needed
 |  [**`INFRA`**](/docs/infra)    |          **`dnsmasq`**             |  `53`   | [**`dns_port`**](/docs/infra/param#dns_port)                                 | Enabled  |
 |   [**`ETCD`**](/docs/etcd)     |            **`etcd`**              | `2379`  | [**`etcd_port`**](/docs/etcd/param#etcd_port)                                | Enabled  |
 |   [**`ETCD`**](/docs/etcd)     |            **`etcd`**              | `2380`  | [**`etcd_peer_port`**](/docs/etcd/param#etcd_peer_port)                      | Enabled  |
-|  [**`MINIO`**](/docs/minio)    |     **Silo / RustFS S3 API**       | `9000`  | [**`minio_port`**](/docs/minio/param#minio_port)                             | Optional |
-|  [**`MINIO`**](/docs/minio)    |   **Silo / RustFS admin port**     | `9001`  | [**`minio_admin_port`**](/docs/minio/param#minio_admin_port)                 | Optional |
+|  [**`MINIO`**](/docs/minio)    |          **Silo S3 API**           | `9000`  | [**`minio_port`**](/docs/minio/param#minio_port)                             | Optional |
+|  [**`MINIO`**](/docs/minio)    |        **Silo admin port**         | `9001`  | [**`minio_admin_port`**](/docs/minio/param#minio_admin_port)                 | Optional |
 |  [**`REDIS`**](/docs/redis)    |       **Redis / Valkey**           | `6379`  | [**`redis_instances`**](/docs/redis/param#redis_instances)                   | Optional |
 |  [**`REDIS`**](/docs/redis)    |       **`redis_exporter`**         | `9121`  | [**`redis_exporter_port`**](/docs/redis/param#redis_exporter_port)           | Optional |
 |   [**`VIBE`**](/docs/vibe)     |         **`code-server`**          | `8443`  | [**`code_port`**](/docs/vibe/param#code_port)                                | Optional |

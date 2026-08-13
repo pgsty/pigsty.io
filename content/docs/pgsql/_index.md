@@ -287,7 +287,7 @@ The current source contains 29 PostgreSQL / PGCAT dashboards under `files/grafan
 - Create a delayed standby cluster of existing PostgreSQL cluster
 - Monitor an existing postgres instance
 - Migrate from external PostgreSQL to Pigsty-managed PostgreSQL using logical replication
-- Use MinIO as centralized pgBackRest backup repo
+- Use Silo as a centralized pgBackRest backup repository
 - Use dedicated etcd cluster as PostgreSQL / Patroni DCS
 - Use dedicated haproxy load balancer cluster to expose PostgreSQL services
 - Use pg-meta CMDB instead of pigsty.yml as inventory source

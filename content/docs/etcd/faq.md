@@ -17,7 +17,7 @@ etcd is a distributed, reliable key-value store for critical system data. Pigsty
 
 Patroni uses etcd for: cluster failure detection, auto failover, primary-replica switchover, and cluster config management.
 
-etcd is critical for PG HA. etcd's availability and DR ensured through multiple distributed nodes.
+etcd is critical for PostgreSQL HA, and its own availability depends on a reachable majority. Production deployments normally spread three or five voting members across independent failure domains.
 
 
 
@@ -55,11 +55,11 @@ All PG clusters demote: primaries → replicas, reject writes, etcd failure ampl
 
 ## What data does etcd store?
 
-In Pigsty, etcd is PG HA only—no other config/state data.
+By default, Pigsty uses etcd as Patroni's DCS, where it stores coordination data such as leader leases, member state, and dynamic configuration. Pigsty itself does not store application data there.
 
-PG HA component Patroni auto-generates and manages etcd data. If lost in etcd, Patroni auto-rebuilds.
+Patroni creates and manages this DCS data. During controlled maintenance, it can normally reconstruct coordination state from a healthy PostgreSQL cluster, but that does not make etcd stateless or make direct DCS deletion risk-free.
 
-Thus, by default, **etcd** in Pigsty = "stateless service"—destroyable and rebuildable, simplifies maintenance.
+Rebuilding etcd interrupts automatic failover and `patronictl` management and clears the current DCS state. Before doing so, inspect the Patroni topology, current primary, remaining quorum, and recent backups, and execute a documented recovery procedure during a maintenance window.
 
 If using etcd for other purposes (K8s metadata, custom storage), backup etcd data yourself and restore after cluster recovery.
 
@@ -69,7 +69,7 @@ If using etcd for other purposes (K8s metadata, custom storage), backup etcd dat
 
 ## Recover from etcd failure?
 
-Since etcd in Pigsty = PG HA only = "stateless service"—disposable, rebuildable. Failures? "restart" or "reset" to stop bleeding.
+By default, Pigsty uses etcd only as Patroni DCS. Restarting services and rebuilding the whole cluster have very different risk: a restart preserves DCS data, while a rebuild clears coordination state and leaves PostgreSQL HA without DCS quorum until recovery. Diagnose and recover existing members first; rebuild only after verifying the topology, backups, and recovery path.
 
 **Restart** etcd cluster:
 
@@ -77,10 +77,12 @@ Since etcd in Pigsty = PG HA only = "stateless service"—disposable, rebuildabl
 ./etcd.yml -t etcd_launch
 ```
 
-**Reset** etcd cluster:
+If a full **reset/rebuild** is genuinely required, do it in a maintenance window and then verify `etcdctl endpoint health`, `etcdctl member list`, and `patronictl list`:
 
 ```bash
-./etcd.yml
+./etcd-rm.yml -l etcd --check  # Rehearse the complete target; a real run deletes data by default
+./etcd-rm.yml -l etcd          # Clean the cluster after verifying target and backups
+./etcd.yml -l etcd             # Redeploy from inventory
 ```
 
 For custom etcd data: backup and restore after recovery.
@@ -225,12 +227,11 @@ bin/etcd-rm                   # remove entire etcd cluster
 **Manual method:**
 
 ```bash
-./etcd-rm.yml -l <ins_ip>                    # use dedicated removal playbook
-etcdctl member remove <etcd_server_id>       # kick from cluster
-./etcd-rm.yml -l <ins_ip>                    # clean up instance
+./etcd-rm.yml -l <ins_ip> --check            # Rehearse the exact target
+./etcd-rm.yml -l <ins_ip>                    # Leave, stop, and delete local data by default
 ```
 
-`etcd-rm.yml` already includes the `etcdctl member remove` step.
+`etcd-rm.yml` already includes the `etcdctl member remove` step; do not repeat it before or after the normal workflow. Use a manual `member remove` only for troubleshooting. You can still run the removal playbook once while the target remains in inventory to stop, deregister, and clean it locally, then verify the remaining quorum.
 
 
 --------

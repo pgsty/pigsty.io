@@ -254,7 +254,7 @@ When using the `-g` argument, the script generates 24-character random strings f
 | `pg_replication_password` | PostgreSQL replication user password |
 |    `patroni_password`     | Patroni API password                 |
 | `haproxy_admin_password`  | HAProxy admin password               |
-|    `minio_secret_key`     | MinIO Secret Key                     |
+|    `minio_secret_key`     | Silo Root Secret                     |
 |   `etcd_root_password`    | ETCD Root password                   |
 
 It also replaces the following placeholder passwords:
@@ -288,7 +288,7 @@ The script reads templates from `conf/`. The value of `-c` is a path relative to
 | Template | Description                                                                     |
 |:--------:|:--------------------------------------------------------------------------------|
 |  `meta`  | **Default template**: Single-node installation with INFRA + NODE + ETCD + PGSQL |
-|  `rich`  | Feature-rich version: Includes almost all extensions, MinIO, local repo         |
+|  `rich`  | Feature-rich version: Includes almost all extensions, Silo, local repo          |
 |  `slim`  | Minimal version: PostgreSQL + ETCD only, no monitoring infrastructure           |
 |  `fat`   | Complete version: rich base with more extensions installed                      |
 | `pgsql`  | Pure PostgreSQL template                                                        |
@@ -352,7 +352,6 @@ The script reads templates from `conf/`. The value of `-c` is a path relative to
 | `demo/kernel`  | Ten-node database-kernel matrix                   |
 | `demo/redis`   | Redis replica, Sentinel, and native Cluster demo  |
 | `demo/minio`   | Multi-node, multi-drive Silo demo (source default) |
-| `demo/rustfs`  | Four-node distributed RustFS cluster demo          |
 | `demo/kafka`   | Kafka KRaft development and secure-cluster demo    |
 | `demo/mysql`   | Native MySQL 8.4 pilot demo                        |
 | `demo/remote`  | Remote PostgreSQL/RDS monitoring example          |

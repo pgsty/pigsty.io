@@ -24,7 +24,7 @@ Pigsty automatically creates a self-signed CA during infrastructure initializati
 - PostgreSQL server/client SSL
 - Patroni REST API
 - etcd cluster communication
-- MinIO cluster communication
+- Silo cluster communication
 - Nginx HTTPS (fallback)
 - Infrastructure services
 

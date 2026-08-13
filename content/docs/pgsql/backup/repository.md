@@ -16,7 +16,7 @@ You can define multiple repositories here, and Pigsty will choose which one to u
 By default, Pigsty provides two default backup repository definitions: `local` and `minio` backup repositories.
 
 - `local`: **Default option**, uses local `/pg/backup` directory (symlink to [`pg_fs_backup`](/docs/pgsql/param/#pg_fs_backup): `/data/backups`)
-- `minio`: Uses SNSD single-node MinIO cluster (supported by Pigsty, but not enabled by default)
+- `minio`: Uses the compatible S3 preset with Silo or an external S3 service (supported by Pigsty, but not enabled by default)
 
 ```yaml
 pgbackrest_method: local          # Choose backup repository method: `local`, `minio`, or other custom repository
@@ -25,17 +25,17 @@ pgbackrest_repo:                  # pgbackrest repository configuration: https:/
     path: /pg/backup              # Local backup directory, defaults to `/pg/backup`
     retention_full_type: count    # Retain full backups by count
     retention_full: 2             # Keep 2, up to 3 full backups when using local filesystem repository
-  minio:                          # Optional minio repository
-    type: s3                      # minio is S3 compatible
-    s3_endpoint: sss.pigsty       # minio endpoint domain, defaults to `sss.pigsty`
-    s3_region: us-east-1          # minio region, defaults to us-east-1, meaningless for minio
-    s3_bucket: pgsql              # minio bucket name, defaults to `pgsql`
-    s3_key: pgbackrest            # minio user access key for pgbackrest
-    s3_key_secret: S3User.Backup  # minio user secret for pgbackrest
-    s3_uri_style: path            # minio uses path-style URIs instead of host-style
-    path: /pgbackrest             # minio backup path, defaults to `/pgbackrest`
-    storage_port: 9000            # minio port, defaults to 9000
-    storage_ca_file: /etc/pki/ca.crt  # minio CA certificate path, defaults to `/etc/pki/ca.crt`
+  minio:                          # Optional S3-compatible repository preset
+    type: s3                      # Silo uses the S3-compatible repository type
+    s3_endpoint: sss.pigsty       # object-storage endpoint, `sss.pigsty` by default
+    s3_region: us-east-1          # compatibility region, `us-east-1` by default
+    s3_bucket: pgsql              # backup bucket, `pgsql` by default
+    s3_key: pgbackrest            # pgBackRest access key
+    s3_key_secret: S3User.Backup  # pgBackRest secret key
+    s3_uri_style: path            # use path-style rather than host-style URIs
+    path: /pgbackrest             # backup path, `/pgbackrest` by default
+    storage_port: 9000            # Silo service port, 9000 by default
+    storage_ca_file: /etc/pki/ca.crt  # Pigsty CA path, `/etc/pki/ca.crt` by default
     block: y                      # Enable block-level incremental backup
     bundle: y                     # Bundle small files into a single file
     bundle_limit: 20MiB           # Bundle size limit, recommended 20MiB for object storage
@@ -91,7 +91,7 @@ You can also use other services as backup repositories, refer to the [pgbackrest
 
 You can even specify [repo target time](https://pgbackrest.org/user-guide.html#sftp-support#repo-target-time) to get snapshots of object storage.
 
-You can enable MinIO versioning by adding the `versioning` flag in [`minio_buckets`](/docs/minio/param#minio_buckets):
+You can enable Silo versioning by adding the `versioning` flag in [`minio_buckets`](/docs/minio/param#minio_buckets):
 
 ```yaml
 minio_buckets:
@@ -105,12 +105,12 @@ minio_buckets:
 
 ## Repository Locking
 
-Some object storage services (S3, MinIO, etc.) support **locking** functionality, which can prevent backups from being deleted, even by the DBA.
+Some object-storage services, including Silo, MinIO, and S3, support **Object Lock / WORM**. Once an object version has a retention mode and period, it cannot be modified or permanently deleted until that period expires. Ordinary deletion may still create a delete marker that hides the current version, so recovery also requires version-management access.
 
 - [MinIO Object Locking](https://min.io/docs/minio/linux/administration/object-management/object-retention.html)
 - [AWS S3: Locking Objects with Object Lock](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html)
 
-You can enable MinIO locking by adding the `lock` flag in [`minio_buckets`](/docs/minio/param#minio_buckets):
+Adding the `lock` flag to [`minio_buckets`](/docs/minio/param#minio_buckets) enables object-lock capability and versioning when the bucket is created:
 
 ```yaml
 minio_buckets:
@@ -119,13 +119,17 @@ minio_buckets:
   - { name: data }
 ```
 
+This does not set a WORM retention period for new objects. Configure a default `GOVERNANCE` or `COMPLIANCE` mode and duration in Silo / MinIO with `mcli retention set` or the administration UI, then verify it with `mcli retention info`. A principal with bypass permission can override `GOVERNANCE`; not even the root user can remove a `COMPLIANCE` lock before it expires.
+
+Object locking changes backup expiration and removal behavior. pgBackRest can mark backups as expired while locked historical versions continue to consume storage until their retention periods end. Test backup, expiration, delete-marker cleanup, and version recovery together before enabling it in production.
+
 
 --------
 
 ## Using Object Storage
 
 Object storage services provide almost unlimited storage capacity and provide remote disaster recovery capability for your system.
-If you don't have an object-storage service, Pigsty's built-in [MINIO module](/docs/minio) can deploy Silo, MinIO, or RustFS.
+If you don't have an object-storage service, Pigsty's built-in [MINIO module](/docs/minio) can deploy Silo.
 
 ### MINIO Module
 
@@ -142,6 +146,8 @@ all:
 Pigsty's `minio` repository preset accesses object storage through a domain name (default `sss.pigsty`) and HTTPS, validating the chain with the private CA at `/etc/pki/ca.crt`. The default `pgsql` bucket and `pgbackrest` access user are created when the MINIO module is provisioned.
 
 For serious production deployments, use a validated multi-node object-storage cluster with erasure-code fault tolerance. See [MINIO Configuration](/docs/minio/config).
+
+`pgbackrest_method: minio` is the name of Pigsty's S3-compatible repository preset; it does not require the server to be managed by the MINIO module. Independently deployed MinIO, RustFS, and other S3-compatible services can also use this preset, but their installation, upgrades, certificates, and data lifecycle are outside the current MINIO role's scope.
 
 ### S3
 
@@ -202,7 +208,7 @@ When removing the primary instance ([`pg_role`](/docs/pgsql/param/#pg_role) = `p
 
 Use the `pg_backup` subtask to remove backups only, and the [`pg_rm_backup`](/docs/pgsql/param/#pg_rm_backup) parameter (set to `false`) to preserve backups.
 
-If your backup repository is **locked** (e.g., S3 / MinIO has locking options), this operation will fail.
+If your backup repository uses Object Lock (for example, on Silo, MinIO, or S3), this operation can fail while retained versions remain protected.
 
 {{% alert color="warning" title="Backup Deletion" %}}
 Deleting backups may result in permanent data loss. This is a dangerous operation, please proceed with caution.

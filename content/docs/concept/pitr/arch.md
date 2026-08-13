@@ -117,7 +117,7 @@ Pigsty selects repo type via [`pgbackrest_method`](/docs/pgsql/param#pgbackrest_
 | **s3** | Cloud object storage | Cloud, cross-region DR |
 {.full-width}
 
-Production should use remote repo (MinIO/S3) to avoid **data and backups lost together** on host failure.
+Production should use a remote repository (Silo/S3) to avoid **data and backups being lost together** on host failure.
 See [**Backup Repository**](/docs/pgsql/backup/repository/).
 
 

@@ -1,13 +1,13 @@
 ---
 title: Parameters
 weight: 5032
-description: The 11 public parameters of the MYSQL module, and its fixed platform conventions.
+description: "The MYSQL module's 13 public parameters: 11 deployment parameters, 2 protected-removal parameters, and fixed platform conventions."
 icon: fa-solid fa-sliders
 module: [MYSQL]
 categories: [Reference]
 ---
 
-The MYSQL role deliberately exposes only 11 parameters. Software versions, ports, directories, charset, TLS paths, and timer schedules are fixed by the role; memory sizing is derived from node specs. To adjust server behavior, use [`mysql_parameters`](#mysql_parameters).
+The MYSQL deployment role deliberately exposes only 11 parameters; the removal role adds 2 protected operations parameters. Software versions, ports, directories, charset, TLS paths, and timer schedules are fixed by the role; memory sizing is derived from node specs. To adjust server behavior, use [`mysql_parameters`](#mysql_parameters).
 
 
 --------
@@ -27,6 +27,14 @@ The MYSQL role deliberately exposes only 11 parameters. Software versions, ports
 | [`mysql_backup_enabled`](#mysql_backup_enabled) | Cluster | `true` | Daily full-backup timer |
 | [`mysql_backup_repo`](#mysql_backup_repo) | Cluster | see below | Local backup path and retention |
 | [`mysql_exporter_enabled`](#mysql_exporter_enabled) | Cluster | `true` | Exporter and monitoring target |
+{.full-width}
+
+The removal parameters are used by `mysql-rm.yml`:
+
+| Parameter | Level | Default | Description |
+|:---|:---:|:---|:---|
+| [`mysql_safeguard`](#mysql_safeguard) | Global/Cluster/CLI | `true` | Refuse removal by default |
+| [`mysql_rm_confirm`](#mysql_rm_confirm) | CLI | `''` | Must exactly match the instance or cluster name |
 {.full-width}
 
 Variables that appeared on earlier versions of this page — `mysql_role`, `mysql_services`, `mysql_packages`, `mysql_data`, `mysql_port`, `mysql_replication_*`, `mysql_*_username` — are no longer part of the interface. Do not use them.
@@ -187,6 +195,23 @@ mysql_exporter_enabled: true
 ```
 
 Setting `false` stops the exporter and converges `/infra/targets/mysql/<instance>.yml` to an empty list (the file itself is only removed by `mysql-rm.yml`).
+
+
+--------
+
+## Removal Parameters
+
+### `mysql_safeguard`
+
+Protected-removal safety switch, defaulting to `true`. You must explicitly set it to `false` when running `mysql-rm.yml`, or the role refuses to continue:
+
+```bash
+./mysql-rm.yml -l my-test -e mysql_safeguard=false -e mysql_rm_confirm=my-test
+```
+
+### `mysql_rm_confirm`
+
+Target-name confirmation string, empty by default. When removing a single member, it must exactly equal the instance name, such as `my-test-3`; when removing a complete cluster or standalone instance, it must exactly equal `mysql_cluster`. Both this value and `mysql_safeguard=false` are required.
 
 
 --------

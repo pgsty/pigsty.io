@@ -115,12 +115,12 @@ The **`etcd`** group in the [**inventory**](/docs/concept/iac/inventory) defines
 
 The [**MINIO**](/docs/minio) module provides optional [**backup storage**](/docs/pgsql/backup/repository) for PostgreSQL.
 
-The **`minio`** group in the inventory defines MinIO nodes. These nodes run MinIO servers on:
+The **`minio`** inventory group defines MINIO module nodes. In v4.5.0, these nodes run Silo servers on:
 
 |  Component  |  Port  | Description                |
 |:-----------:|:------:|----------------------------|
-|  `minio`    | `9000` | MinIO S3 API endpoint      |
-|  `minio`    | `9001` | MinIO admin console        |
+|  `silo`     | `9000` | S3 API endpoint            |
+|  `silo`     | `9001` | Silo admin console         |
 {.full-width}
 
 

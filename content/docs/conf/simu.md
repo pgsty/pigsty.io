@@ -43,7 +43,7 @@ The `ha/simu` template is a **large-scale production environment simulation** fo
 
 **Architecture**:
 - 2-node HA INFRA (monitoring/alerting/Nginx/DNS)
-- 5-node HA ETCD and MinIO (multi-disk)
+- 5-node HA ETCD and MINIO (Silo, multi-disk)
 - 2-node Proxy (HAProxy + Keepalived VIP)
 - Multiple PostgreSQL clusters:
   - pg-meta: 2-node HA

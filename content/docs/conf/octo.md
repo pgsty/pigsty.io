@@ -47,6 +47,6 @@ Source: [`pigsty/conf/ha/octo.yml`](https://github.com/pgsty/pigsty/blob/main/co
 - Object storage spans all eight nodes and exposes `sss.pigsty` through Keepalived VIP `10.10.10.9` and HAProxy port `9002`. Silo is the current default engine, while the module and variables retain `minio_*` compatibility names.
 - `pg-meta` takes one full backup daily. `pg-test` takes a weekly full backup and incremental backups on the remaining days; both write to the encrypted S3 pgBackRest repository.
 - The two INFRA replicas with `repo_enabled: false` do not build local repositories. Every node still installs packages from the first node's `local` repository.
-- The database, Grafana, Patroni, HAProxy, MinIO, and etcd passwords at the end of the template are suitable only for a disposable simulation and must all be rotated in real environments.
+- The database, Grafana, Patroni, HAProxy, Silo, and etcd passwords at the end of the template are suitable only for a disposable simulation and must all be rotated in real environments.
 
 For a conventional minimal HA deployment, prefer [ha/trio](/docs/conf/trio/). For a larger full-scenario simulation, see [ha/simu](/docs/conf/simu/).

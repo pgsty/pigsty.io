@@ -58,7 +58,7 @@ all:                  # Top-level object: all
 
 ## Cluster Definition
 
-Each Ansible group may represent a cluster, which can be a node cluster, PostgreSQL cluster, Redis cluster, Etcd cluster, MinIO cluster, etc.
+Each Ansible group may represent a cluster, which can be a node cluster, PostgreSQL cluster, Redis cluster, Etcd cluster, Silo cluster, etc.
 
 A cluster definition consists of two parts: **cluster members** (**`hosts`**) and **cluster parameters** (**`vars`**).
 You can define cluster members in `<cls>.hosts` and describe the cluster using [**configuration parameters**](/docs/concept/iac/parameter) in `<cls>.vars`.

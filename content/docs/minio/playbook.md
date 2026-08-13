@@ -1,7 +1,7 @@
 ---
 title: Playbook
 weight: 3640
-description: Deploy or remove Silo, MinIO, and RustFS object-storage clusters with the built-in Ansible playbooks.
+description: Deploy or remove Silo object-storage clusters with the built-in Ansible playbooks.
 icon: fa-solid fa-scroll
 module: [MINIO]
 categories: [Task]
@@ -10,8 +10,8 @@ categories: [Task]
 
 The MINIO module provides two built-in playbooks:
 
-- [`minio.yml`](#minioyml): Install and configure the object-storage engine selected by `minio_type`
-- [`minio-rm.yml`](#minio-rmyml): Remove the selected engine, its configuration, and optionally its data
+- [`minio.yml`](#minioyml): Install and configure Silo
+- [`minio-rm.yml`](#minio-rmyml): Remove Silo, its configuration, and optionally its data
 
 
 --------
@@ -22,23 +22,23 @@ The MINIO module provides two built-in playbooks:
 
 - `minio_cluster` is defined and non-empty
 - `minio_seq` is defined and is a non-negative integer
-- `minio_type` is one of `silo`, `minio`, or `rustfs`
+- `minio_type` must equal `silo`
 
 Thus, `minio_cluster` is the module-membership gate, while invalid `minio_seq` or `minio_type` values fail identity validation explicitly. Do not define `minio_cluster` in `all.vars`.
 
 The main task tags are:
 
 - `minio-id`: Validate identity and compute actual members, node names, and volume parameters from `minio_cluster` across the inventory
-- `minio_install`: Create the `minio` OS user, install the selected engine and `mcli`, and prepare data directories
+- `minio_install`: Create the `minio` OS user, install Silo and `mcli`, and prepare data directories
   - `minio_os_user`
   - `minio_pkg`
   - `minio_dir`
-- `minio_config`: Render `/etc/default/<minio_type>`, `/etc/systemd/system/<minio_type>.service`, certificates, and DNS
+- `minio_config`: Render `/etc/default/silo`, `/etc/systemd/system/silo.service`, certificates, and DNS
   - `minio_conf`
   - `minio_cert`
   - `minio_dns`
-- `minio_launch`: Start or restart the selected systemd service
-- `minio_register`: Write VictoriaMetrics FileSD targets; RustFS also registers a readiness probe
+- `minio_launch`: Start or restart `silo.service`
+- `minio_register`: Write VictoriaMetrics FileSD targets
 - `minio_provision`: Have the cluster's first member provision `mcli` aliases, buckets, and users once
 
 Re-running `minio.yml` may restart a running object-storage service, but it does not proactively rebuild data. Schedule production runs according to the cluster's failure budget.
@@ -53,15 +53,15 @@ Re-running `minio.yml` may restart a running object-storage service, but it does
 - `minio_safeguard`: Accidental-removal protection, default `false`
 - `minio_pause`: Pause for 3 seconds so you can abort with Ctrl+C
 - `minio_deregister`: Remove VictoriaMetrics targets and DNS records
-- `minio_svc`: Stop and disable the service selected by `minio_type`
+- `minio_svc`: Stop and disable the Silo service
 - `minio_data`: Delete data and configuration according to [`minio_rm_data`](/docs/minio/param#minio_rm_data)
-- `minio_pkg`: Uninstall the selected engine and `mcli` according to [`minio_rm_pkg`](/docs/minio/param#minio_rm_pkg)
+- `minio_pkg`: Uninstall Silo and `mcli` according to [`minio_rm_pkg`](/docs/minio/param#minio_rm_pkg)
 
 {{% alert title="Dangerous Operation" color="danger" %}}
-`minio_rm_data` defaults to `true`. A full removal run deletes every expanded `minio_data` directory. Before running it, verify `minio_cluster`, `minio_seq`, `minio_type`, and all disk mount paths. To retire only the service while retaining data, explicitly pass `-e minio_rm_data=false`.
+`minio_rm_data` defaults to `true`. A full removal run deletes every expanded `minio_data` directory. Before running it, verify `minio_cluster`, `minio_seq`, `minio_type: silo`, and all disk mount paths. To retire only the service while retaining data, explicitly pass `-e minio_rm_data=false`.
 {{% /alert %}}
 
-The deployment role defaults to `minio_type: silo`, but the removal role deliberately has no engine default. If the inventory omits `minio_type`, pass `-e minio_type=silo`, `minio`, or `rustfs` when running the removal playbook. This explicit confirmation prevents cleaning up the wrong package, service, or certificate directory.
+The deployment role defaults to `minio_type: silo`, but the removal role deliberately has no backend default. If the inventory omits `minio_type`, pass `-e minio_type=silo` when running the removal playbook; other values are rejected. This explicit confirmation prevents cleaning up the wrong package, service, or certificate directory.
 
 
 ----------------
@@ -70,9 +70,9 @@ The deployment role defaults to `minio_type: silo`, but the removal role deliber
 
 ```bash
 ./minio.yml -l <group>                         # Deploy members with a minio_cluster identity in this limit
-./minio.yml -l minio -t minio_install         # Install the selected engine and mcli; prepare directories
+./minio.yml -l minio -t minio_install         # Install Silo and mcli; prepare directories
 ./minio.yml -l minio -t minio_config          # Re-render configuration, certificates, and DNS
-./minio.yml -l minio -t minio_launch          # Restart the selected object-storage service
+./minio.yml -l minio -t minio_launch          # Restart the Silo service
 ./minio.yml -l minio -t minio_register        # Refresh monitoring targets
 ./minio.yml -l minio -t minio_provision       # Re-provision aliases, buckets, and users
 

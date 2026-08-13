@@ -4,9 +4,10 @@ weight: 1040
 description: Four-node x four-drive HA S3 object-storage cluster demo; current source defaults to Silo.
 icon: fa-solid fa-box-archive
 categories: [Reference]
+aliases: [/docs/conf/rustfs/]
 ---
 
-`demo/minio` demonstrates a highly available S3 object-storage cluster with four nodes and four drives per node, for 16 drives total. The template retains MINIO module compatibility naming but does not override `minio_type`, so the current source deploys the default **Silo** backend. To use legacy MinIO or RustFS, explicitly set `minio_type: minio` or `minio_type: rustfs`. The removal role has no engine default, so running `minio-rm.yml` with the template unchanged also requires `-e minio_type=silo`.
+`demo/minio` demonstrates a highly available S3 object-storage cluster with four nodes and four drives per node, for 16 drives total. The template retains MINIO module compatibility naming and explicitly sets `minio_type: silo`; the current v4.5.0 source accepts only this value. The removal role has no engine default, so keep or explicitly pass `-e minio_type=silo` when running `minio-rm.yml`.
 
 For more tutorials, see the **[MINIO](/docs/minio/)** module documentation.
 

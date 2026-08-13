@@ -44,7 +44,7 @@ guaranteeing you can run it independently forever.
 
 ## Offline Packages
 
-We typically release offline packages for the following [**Linux distros**](/docs/ref/linux/), using the latest OS minor version.
+The following table records the historical `v4.4.0` offline artifacts and the OS minor versions used to build them; these are not the [**currently recommended operating systems**](/docs/ref/linux/).
 
 | Linux Distribution      | System Code    | Minor Version | Package                                                                                                                                     |
 |:------------------------|:---------------|:--------------|:--------------------------------------------------------------------------------------------------------------------------------------------|
@@ -64,8 +64,8 @@ We typically release offline packages for the following [**Linux distros**](/doc
 | Ubuntu 22.04 aarch64    | `u22.aarch64`  | `22.04.5`     | **`pigsty-pkg-v4.4.0.u22.aarch64.tgz`**                                                                                                  |
 {.full-width}
 
-If you use an OS from the list above (exact minor version match), we recommend using the corresponding offline package.
-The Community Edition publishes six dual-architecture artifacts for Debian 13, EL 10, and Ubuntu 24.04 on GitHub.
+If your OS exactly matches one of these historical artifact baselines, you can use the corresponding `v4.4.0` offline package.
+The `v4.4.0` Community Edition publishes six dual-architecture artifacts for Debian 13, EL 10, and Ubuntu 24.04 on GitHub.
 Artifact names and checksums for Debian 12, EL 9, Ubuntu 22.04, and Ubuntu 26.04 remain listed here; those offline packages are available with the Professional Edition.
 
 Download Community Edition artifacts from the [**GitHub release page**](https://github.com/pgsty/pigsty/releases/tag/v4.4.0). The MD5 checksums for all `v4.4.0` offline packages are:
@@ -91,7 +91,7 @@ d092c48ee55116ed5e2c99a3d909ccdd  pigsty-pkg-v4.4.0.u24.aarch64.tgz
 
 When OS minor versions don't match, it may work or may fail—we don't recommend taking the risk.
 
-Please note that Pigsty's EL9/EL10 packages are built on 9.7/10.1, Debian packages are built on 12.14/13.6, and Ubuntu packages are built on 22.04.5/24.04.4/26.04.0.
+Please note that the historical `v4.4.0` artifacts above were built on EL 9.7/10.1, Debian 12.14/13.6, and Ubuntu 22.04.5/24.04.4/26.04.0.
 Cross-minor installation may fail due to OpenSSL/system library differences.
 Use online installation on matching OS versions to build your own offline package, or contact us for custom packages.
 
@@ -132,7 +132,7 @@ If it only contains `local`, then it becomes the sole repo for all nodes. If you
 If your environment has Internet access, there's a hybrid approach that combines the advantages of offline and online installation.
 You can use the offline package as a base, and supplement missing packages online.
 
-For example, if you're using RockyLinux 9.6 but the official offline package is for RockyLinux 9.7.
+Using the historical `v4.4.0` artifacts as an example, suppose you run RockyLinux 9.6 while the package was built for RockyLinux 9.7.
 You can use the `el9` offline package (though made for 9.7), then execute `make repo-build` before formal installation to re-download missing packages for 9.6.
 Pigsty will download the required **increments** from upstream repos.
 
@@ -147,7 +147,7 @@ Pigsty will download the required **increments** from upstream repos.
 If your OS isn't in the default list, you can make your own offline package with the built-in [**`cache.yml`**](https://github.com/pgsty/pigsty/blob/main/cache.yml) playbook:
 
 > [!IMPORTANT]
-> In the current v4.5 development source, both `repo_create` and `cache_create` require SOW 0.2.0 and run `sow create --pigsty`. The v4.4.0 official offline package is an older release artifact; do not infer that it already contains SOW. Before rebuilding an older repository with current source, install SOW from the Pigsty INFRA repository or refresh the offline media to match the development version.
+> In the current v4.5 development source, both `repo_create` and `cache_create` require SOW and run `sow create --pigsty`; the current candidate package version is 0.3.0. The v4.4.0 official offline package is an older release artifact; do not infer that it already contains SOW. Before rebuilding an older repository with current source, install the matching SOW version from the Pigsty INFRA repository or refresh the offline media to match the development version.
 
 1. Find a node running the exact same OS version with Internet access
 2. Use the [**`rich`**](/docs/conf/rich) template for an [**online installation**](/docs/setup/install/) (`./configure -c rich`), and confirm that the target INFRA node has generated its local repository at `/www/pigsty`; if not, run `./infra.yml -t repo` against that node first

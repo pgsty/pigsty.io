@@ -112,14 +112,14 @@ This level suits development, testing, and evaluation on a trusted intranet. Pro
 ./configure -g    # --generate: randomize recognized default credentials
 ```
 
-This option does not replace the pgBackRest `cipher_pass`, every MinIO example credential in `ha/safe`, or user-defined values. See the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) for the complete scope.
+This option does not replace the pgBackRest `cipher_pass`, every Silo example credential in `ha/safe`, or user-defined values. See the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) for the complete scope.
 
 **Level 3: policy hardening with the `ha/safe` template.** [**`conf/ha/safe.yml`**](/docs/conf/safe) combines several controls into a starting point for further customization:
 
 - **TLS and certificate authentication:** the main TCP HBA rules use `ssl`, public administrator access uses a client certificate, PgBouncer uses `require`, and the Patroni API uses HTTPS. Local `ident` and selected localhost password rules remain.
 - **Password policy:** `passwordcheck` is preloaded explicitly, and built-in users declare `expire_in`. Example passwords in the template still require review and replacement.
 - **Reduced attack surface:** listen addresses are limited to `${ip},${vip},${lo}`, and public connection-pool access by monitoring and administration accounts is denied explicitly.
-- **Backup encryption:** pgBackRest uses a MinIO repository with AES-256-CBC. `pgBR.${pg_cluster}` is a predictable example value and must be replaced.
+- **Backup encryption:** pgBackRest uses the remote `minio` repository preset with AES-256-CBC. `pgBR.${pg_cluster}` is a predictable example value and must be replaced.
 - [**Security extensions**](/ext/cate/sec/): `passwordcheck`, `credcheck`, `pgaudit`, `pgsodium`, `anonymizer`, and related extensions are installed. Installation does not preload, create, or configure an extension.
 
 **Level 4: database hardening with the `crit.yml` parameter template.** The safe template selects the [**CRIT parameter template**](/docs/pgsql/template/crit) for consistency-first workloads. Compared with the general `oltp` template, it:

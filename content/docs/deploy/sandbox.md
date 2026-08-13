@@ -83,7 +83,7 @@ Two optional L2 VIPs are bound to the primary instances of `pg-meta` and `pg-tes
 The `meta` node also hosts:
 
 - **ETCD cluster**: Single-node `etcd` cluster providing DCS service for PostgreSQL HA
-- **MinIO cluster**: Single-node `minio` cluster providing S3-compatible object storage
+- **Silo cluster**: A single-node `minio` cluster managed by the MINIO module, providing S3-compatible object storage
 
 ```bash
 10.10.10.10 etcd-1
@@ -187,6 +187,6 @@ This environment includes:
 
 - 3 infrastructure nodes (`meta1`, `meta2`, `meta3`)
 - 2 HAProxy proxy nodes
-- 4 MinIO nodes
+- 4 MINIO (Silo) nodes
 - 5 ETCD nodes
 - 6 PostgreSQL nodes (2 clusters, 3 nodes each)

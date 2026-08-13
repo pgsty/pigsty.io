@@ -37,5 +37,5 @@ Pigsty provides DuckDB-related PostgreSQL extensions:
 
 - [**`pg_duckdb`**](/ext/e/pg_duckdb), the official DuckDB PostgreSQL extension
 - [**`pg_mooncake`**](/ext/e/pg_mooncake), builds on `pg_duckdb` with columnar engine and sync
-- [**`pg_analytics`**](/ext/e/pg_analytics), OLAP on DuckDB, archived
+- [`pg_analytics`](https://github.com/paradedb/pg_analytics), high-performance OLAP built on DuckDB; the project is archived and has been removed from the current Pigsty extension catalog
 - [**`duckdb_fdw`**](/ext/e/duckdb_fdw), a DuckDB foreign data wrapper for reading and writing DuckDB files from PostgreSQL

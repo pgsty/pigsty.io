@@ -401,7 +401,7 @@ You can override Patroni-managed defaults at different levels: [**specify params
 ## Clone Cluster
 
 Two ways to clone a cluster: use [**Standby Cluster**](/docs/pgsql/config/cluster#standby-cluster), or use [**Point-in-Time Recovery**](/docs/pgsql/backup/restore#quick-start).
-The former is simple and requires no backup repository, but it does require a reachable replication upstream and can clone only the latest state. The latter requires a centralized [**backup repository**](/docs/pgsql/backup/repository) such as MinIO and can clone to any point within the retention period.
+The former is simple and requires no backup repository, but it does require a reachable replication upstream and can clone only the latest state. The latter requires a centralized [**backup repository**](/docs/pgsql/backup/repository) such as Silo and can clone to any point within the retention period.
 
 | Method          | Pros                        | Cons                         | Use Cases                           |
 |:----------------|:----------------------------|:-----------------------------|:------------------------------------|
@@ -488,7 +488,7 @@ Apply these changes? [y/N]: y
 ### Clone via PITR
 
 [**Point-in-Time Recovery**](/docs/pgsql/backup/restore) (PITR) allows recovery to any point within backup retention.
-Requires centralized [**backup repository**](/docs/pgsql/backup/repository) (MinIO/S3), but more powerful.
+Requires a centralized [**backup repository**](/docs/pgsql/backup/repository) (Silo/S3), but is more powerful.
 
 To clone via PITR, add [**`pg_pitr`**](/docs/pgsql/backup/restore#pitr-parameter-definition) param specifying recovery target:
 

@@ -57,7 +57,7 @@ Reasonable defaults reduce omissions. The following capabilities are enabled in 
 | Server-side TLS | PostgreSQL server certificates are installed and `ssl` is enabled, so TLS connections are accepted | — |
 | Local CA | A self-signed CA is created automatically for managed component certificates | [`ca_create`](/docs/infra/param#ca_create) |
 | [**etcd**](/docs/concept/model/etcd) encryption and authentication | TLS for client and peer traffic, plus RBAC password authentication | [`etcd_root_password`](/docs/etcd/param#etcd_root_password) |
-| [**MINIO object storage**](/docs/concept/model/minio) HTTPS | Backup traffic to Silo, MinIO, or RustFS uses HTTPS by default | [`minio_https`](/docs/minio/param#minio_https) |
+| [**MINIO object storage**](/docs/concept/model/minio) HTTPS | Silo backup traffic uses HTTPS by default | [`minio_https`](/docs/minio/param#minio_https) |
 | [**Nginx**](/docs/concept/arch/infra#nginx) HTTPS | Web ingress listens on both ports 80 and 443 by default | [`nginx_sslmode`](/docs/infra/param#nginx_sslmode) |
 | HBA rules | Layered access: local ident, intranet password authentication, and SSL required for public administrator access | [`pg_default_hba_rules`](/docs/pgsql/param#pg_default_hba_rules) |
 | Roles and privileges | A four-tier role model and default privilege templates provide a least-privilege baseline | [`pg_default_roles`](/docs/pgsql/param#pg_default_roles) |
@@ -73,11 +73,11 @@ Reasonable defaults reduce omissions. The following capabilities are enabled in 
 
 The default configuration targets deployments on a trusted intranet. Some controls require explicit enablement because they impose performance or compatibility costs, or require decisions from the operator:
 
-- Default configurations and examples contain **publicly documented default passwords** for quick starts and local testing. Before production deployment, use `./configure -g` to randomize the credentials it recognizes, then check the pgBackRest encryption passphrase, MinIO users in `ha/safe`, and all custom values.
+- Default configurations and examples contain **publicly documented default passwords** for quick starts and local testing. Before production deployment, use `./configure -g` to randomize the credentials it recognizes, then check the pgBackRest encryption passphrase, Silo users in `ha/safe`, and all custom values.
 - TLS is disabled by default for the [**Patroni REST API**](/docs/concept/arch/pgsql#patroni) and [**PgBouncer**](/docs/concept/arch/pgsql#pgbouncer) ([`patroni_ssl_enabled`](/docs/pgsql/param#patroni_ssl_enabled), [`pgbouncer_sslmode`](/docs/pgsql/param#pgbouncer_sslmode)); enable it explicitly with the certificates already issued.
 - **Password strength checks** ([**`passwordcheck`**](/ext/e/passwordcheck/)) and the **audit extension** ([**`pgaudit`**](/ext/e/pgaudit/)) are disabled by default. Confirm package availability, then configure preloading and policy before use.
 - **SELinux** defaults to `permissive`. Demo configurations also expose port `5432` through the firewall; remove that exception in production.
-- The local backup repository is **not encrypted** by default. The MinIO backup repository uses AES-256 encryption by default, but its default encryption passphrase must be changed.
+- The local backup repository is **not encrypted** by default. The remote `minio` repository preset uses AES-256 encryption by default, but its default encryption passphrase must be changed.
 
 The [**`ha/safe` hardening template**](/docs/conf/safe) combines TLS, certificate authentication, password checks, and backup encryption.
 Together with the consistency-first [**CRIT parameter template**](/docs/pgsql/template/crit), it provides a practical starting point. Public credentials, audit extensions, and the failure model still require explicit review.

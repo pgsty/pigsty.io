@@ -2,7 +2,7 @@
 title: Applications
 weight: 550
 description: >
-  Pigsty application templates and data applets: run stateless apps with Docker Compose and host state in external PostgreSQL and MinIO.
+  Pigsty application templates and data applets: run stateless apps with Docker Compose and host state in external PostgreSQL and S3-compatible storage.
 icon: fa-solid fa-chart-line
 module: [APP]
 categories: [Reference]
@@ -53,7 +53,7 @@ These templates work out of the box and align with the `./configure -c ...` + `.
 
 For apps like `bytebase`, `gitea`, `jupyter`, `kong`, `metabase`, `minio`, `nocodb`, `pgadmin`, `pgweb`, `postgrest`, `pg_exporter`, and `wiki`, you can also use the per-app Compose templates directly.
 
-FerretDB is provided as the Docker APP layer of [PostgreSQL Mongo mode](/docs/conf/mongo/). Deploy it from the `mongo` configuration template with `docker.yml` and `app.yml`.
+[FerretDB](/docs/app/ferretdb/) is provided as the Docker APP layer of [PostgreSQL Mongo mode](/docs/conf/mongo/). Deploy it from the `mongo` configuration template with `docker.yml` and `app.yml`.
 
 ```bash
 cd ~/pigsty/app/<name>

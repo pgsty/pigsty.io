@@ -30,7 +30,7 @@ For the complete self-hosting tutorial, please refer to: [**Supabase Self-Hostin
 
 Pigsty's default [`supabase.yml`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml) configuration template defines a single-node Supabase.
 
-First, use Pigsty's [standard installation process](/docs/setup/install) to install the MinIO and PostgreSQL instances required for Supabase:
+First, use Pigsty's [standard installation process](/docs/setup/install) to install the Silo and PostgreSQL instances required for Supabase:
 
 ```bash
  curl -fsSL https://repo.pigsty.io/get | bash

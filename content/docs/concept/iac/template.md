@@ -28,7 +28,7 @@ Use `./configure -c <conf>` to specify a configuration template, where `<conf>` 
 ```bash
 ./configure                     # Default to meta.yml configuration template
 ./configure -c meta             # Explicitly specify meta.yml single-node template
-./configure -c rich             # Use feature-rich template with all extensions and MinIO
+./configure -c rich             # Use feature-rich template with all extensions and Silo
 ./configure -c slim             # Use minimal single-node template
 
 # Use different database kernels
@@ -65,7 +65,7 @@ The following are single-node configuration templates for installing Pigsty on a
 | Template                           | Description                                                             |
 |------------------------------------|-------------------------------------------------------------------------|
 | [**`meta.yml`**](/docs/conf/meta/) | **Default template**, single-node PostgreSQL online installation        |
-| [**`rich.yml`**](/docs/conf/rich/) | Feature-rich template with local repo, MinIO, and more examples         |
+| [**`rich.yml`**](/docs/conf/rich/) | Feature-rich template with local repo, Silo, and more examples          |
 | [**`slim.yml`**](/docs/conf/slim/) | Minimal template, PostgreSQL only without monitoring and infrastructure |
 
 ### Database Kernel Templates
@@ -139,7 +139,6 @@ Besides main templates, Pigsty provides a set of demo templates for different sc
 | **`remote.yml`**                       | Example config for monitoring remote PostgreSQL clusters or RDS          |
 | **`redis.yml`**                        | Redis cluster example configuration                                      |
 | [**`minio.yml`**](/docs/conf/minio/)   | 4-node multi-drive Silo cluster example (source default)                  |
-| [**`rustfs.yml`**](/docs/conf/rustfs/) | 4-node distributed RustFS object-storage example                          |
 | [**`kafka.yml`**](/docs/conf/kafka/)   | Kafka dynamic KRaft example with a single-node dev cluster and a three-node secure cluster |
 | [**`mysql.yml`**](/docs/conf/mysql84/) | Native MySQL 8.4 single-node/three-node pilot example; distinct from OpenHalo `conf/mysql.yml` |
 | [**`demo.yml`**](/docs/conf/demo/)     | Configuration file for Pigsty [public demo site](https://demo.pigsty.io) |

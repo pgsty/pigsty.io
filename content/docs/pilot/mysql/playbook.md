@@ -7,7 +7,7 @@ module: [MYSQL]
 categories: [Reference]
 ---
 
-The MYSQL module ships two playbooks: [`mysql.yml`](https://github.com/pgsty/pigsty/blob/main/mysql.yml) deploys and converges; [`mysql-rm.yml`](https://github.com/pgsty/pigsty/blob/main/mysql-rm.yml) retires members and clusters. Both are convergent: they describe the desired state and are safe to run repeatedly.
+The MYSQL module ships two playbooks: [`mysql.yml`](https://github.com/pgsty/pigsty/blob/main/mysql.yml) deploys and converges, while [`mysql-rm.yml`](https://github.com/pgsty/pigsty/blob/main/mysql-rm.yml) performs protected member retirement and cluster teardown. Re-running the former converges toward declared state; the latter is a separate lifecycle operation whose target, backups, and exact confirmation value must be checked again before every real run.
 
 
 --------
@@ -96,7 +96,7 @@ Standalone instances restart in place. `mysqld --validate-config` at render time
 | Complete outage | Quorum is never rebuilt automatically; the error prints the manual recovery steps |
 {.full-width}
 
-The net effect: **no single mistaken command should be able to destroy data.** Every bypass (deleting markers, wiping datadirs) is an explicit human decision.
+These guardrails significantly reduce operational risk, but they are not a guarantee that data can never be lost. Every bypass—such as deleting markers or wiping data directories—must be a deliberate decision made after verifying backups and the exact scope.
 
 
 --------

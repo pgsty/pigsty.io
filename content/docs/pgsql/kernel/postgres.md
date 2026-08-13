@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL
 weight: 2101
-description: Vanilla PostgreSQL kernel with 572 extensions
+description: Vanilla PostgreSQL kernel with 575 extensions
 icon: fa-solid fa-database
 module: [PGSQL]
 categories: [Concept]

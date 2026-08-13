@@ -47,8 +47,8 @@ We offer [**Architecture Consulting Services**](/price) to help plan your Pigsty
 ## Trade-offs
 
 - Pigsty monitoring requires at least **1** INFRA node. Production typically uses **2**; large-scale deployments use **3**.
-- PostgreSQL HA requires at least **1** ETCD node. Production typically uses **3**; large-scale uses **5**. Must be odd numbers.
-- Object storage (MinIO) requires at least **1** [**MINIO node**](/docs/minio/config#single-node-single-drive). Production typically uses 4+ nodes in [**MNMD**](/docs/minio/config#multi-node-multi-drive) clusters.
+- PostgreSQL HA requires at least **1** ETCD node. Production typically uses **3**; large-scale uses **5**. Even-member clusters work, but do not tolerate more failures than an odd cluster with one fewer member, so prefer odd sizes.
+- Silo object storage through the MINIO module requires at least **1** [**MINIO node**](/docs/minio/config#single-node-single-disk). Production typically uses 4+ nodes in [**MNMD**](/docs/minio/config#multi-node-multi-disk) clusters.
 - Production PG clusters typically use at least two-node primary-replica configuration; serious deployments use 3 nodes; high read loads can have dozens of replicas.
 - For PostgreSQL, you can also use advanced configurations: offline instances, sync instances, standby clusters, delayed clusters, etc.
 
@@ -69,7 +69,7 @@ With an external S3/MinIO [**backup repository**](/docs/pgsql/backup/) providing
 
 Single-node variants:
 
-- **Rich** ([**`rich`**](/docs/conf/rich)): Production single-node template with local MinIO object storage, local software repo, and all PG extensions.
+- **Rich** ([**`rich`**](/docs/conf/rich)): Production single-node template with local Silo object storage, local software repo, and all PG extensions.
 - **Slim** ([**`slim`**](/docs/conf/slim)): Installs only [**PGSQL**](/docs/pgsql/) and [**ETCD**](/docs/etcd/), no monitoring infra. [**Slim installation**](/docs/setup/slim) can expand to [**multi-node HA deployment**](/docs/setup/slim#ha-cluster).
 - **Infra-only** ([**`infra`**](/docs/conf/infra)): Opposite of slim—installs only [**INFRA**](/docs/infra/) monitoring infrastructure, no database services, for monitoring other instances.
 - **Alternative kernels**: Replace vanilla PG with derivatives: [**`pgsql`**](/docs/conf/pgsql/), [**`mssql`**](/docs/conf/mssql/), [**`polar`**](/docs/conf/polar/), [**`ivory`**](/docs/conf/ivory/), [**`mysql`**](/docs/conf/mysql/), [**`pgtde`**](/docs/conf/pgtde/), [**`oriole`**](/docs/conf/oriole/), [**`agens`**](/docs/conf/agens/), [**`pgedge`**](/docs/conf/pgedge/).

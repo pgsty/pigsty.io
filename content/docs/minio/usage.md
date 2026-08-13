@@ -1,13 +1,13 @@
 ---
 title: Usage
 weight: 3610
-description: Quickly use Silo, MinIO, or RustFS deployed by the MINIO module through mcli, rclone, and pgBackRest.
+description: Quickly use Silo deployed by the MINIO module through mcli, rclone, and pgBackRest.
 icon: fa-solid fa-bell-concierge
 module: [MINIO]
 categories: [Reference]
 ---
 
-After you [configure](/docs/minio/config/) and deploy an object-storage cluster with the [playbook](/docs/minio/playbook/), use this page to access it through the common S3 and `mcli` interfaces. Unless noted otherwise, these commands apply to Silo, MinIO, and RustFS.
+After you [configure](/docs/minio/config/) and deploy Silo with the [playbook](/docs/minio/playbook/), use this page to access it through the compatible S3 and `mcli` interfaces.
 
 
 
@@ -27,9 +27,9 @@ Then, run the [`minio.yml`](/docs/minio/playbook/) playbook provided by Pigsty a
 ./minio.yml -l minio
 ```
 
-Note that in [`deploy.yml`](/docs/setup/playbook#deploy-playbook), pre-defined MinIO clusters will be automatically created, so you don't need to manually run the `minio.yml` playbook again.
+Note that [`deploy.yml`](/docs/setup/playbook#deploy-playbook) automatically creates predefined Silo clusters, so you do not need to run the `minio.yml` playbook again manually.
 
-For a production multi-node deployment, read Pigsty's [configuration documentation](/docs/minio/config/) and verify the upstream documentation for the exact engine version you selected. S3 API compatibility does not imply identical scaling behavior or on-disk formats.
+For a production multi-node deployment, read Pigsty's [configuration documentation](/docs/minio/config/) and verify the operational constraints of the Silo version you deploy.
 
 
 
@@ -43,12 +43,12 @@ Production environments should access object storage through a domain name and H
 2. You can add a record on the internal DNS server if you already have an existing DNS service
 3. If you have enabled the DNS server on Infra nodes, you can add records in [`dns_records`](/docs/infra/param#dns_records)
 
-For production environment access to MinIO, we recommend using the first method: static DNS resolution records, to avoid MinIO's additional dependency on DNS.
+For production, we recommend the first method—static DNS records—so object storage does not depend on dynamic DNS.
 
-You should point the MinIO service domain to the IP address and service port of the MinIO server node, or the IP address and service port of the load balancer.
+Point the S3 service domain to the IP address and service port of a Silo node or load balancer.
 Pigsty uses `sss.pigsty` as the default S3 service domain and serves it on port `9000`. The role does not automatically create a global DNS record for `minio_domain`; configure resolution explicitly as described above.
 
-In some examples, HAProxy instances are also deployed on the MinIO cluster to expose services. In this case, `9002` is the service port used in the templates.
+Some examples deploy HAProxy on the Silo cluster to expose the service; those templates use port `9002` as the unified service port.
 
 
 
@@ -60,7 +60,7 @@ In some examples, HAProxy instances are also deployed on the MinIO cluster to ex
 
 ## Adding Alias
 
-To access the MinIO server cluster using the `mcli` client, you need to first configure the server alias:
+To access the Silo cluster with the `mcli` client, first configure a server alias:
 
 ```bash
 mcli alias ls  # list minio alias (default is sss)
@@ -72,7 +72,7 @@ mcli alias set pgbackrest https://sss.pigsty:9000 pgbackrest S3User.Backup    # 
 
 After a full `minio.yml` run with `minio_provision` enabled, the role configures the default alias for the Ansible execution user on every Infra node and every actual object-storage member discovered by `minio_cluster`. A host in both sets is configured only once.
 
-For the full functionality reference of the MinIO client tool `mcli`, please refer to the documentation: [MinIO Client](https://min.io/docs/minio/linux/reference/minio-mc.html).
+For the full `mcli` command reference, see the upstream [MinIO Client documentation](https://min.io/docs/minio/linux/reference/minio-mc.html).
 
 {{% alert title="Note: Use Your Actual Password" color="warning" %}}
 The password `S3User.MinIO` in the above examples is the Pigsty default. If you modified [`minio_secret_key`](/docs/minio/param#minio_secret_key) during deployment, please use your actual configured password.
@@ -84,7 +84,7 @@ The password `S3User.MinIO` in the above examples is the Pigsty default. If you 
 
 ## User Management
 
-You can manage MinIO application users with `mcli`. Default provisioning already creates `pgbackrest`, `s3user_meta`, and `s3user_data`; the example below creates one additional user and attaches the generated policy for the default `data` bucket:
+You can manage Silo application users with `mcli`. Default provisioning already creates `pgbackrest`, `s3user_meta`, and `s3user_data`; the example below creates one additional user and attaches the generated policy for the default `data` bucket:
 
 ```bash
 mcli admin user list sss
@@ -99,7 +99,7 @@ set -o history
 
 ## Bucket Management
 
-**You can perform CRUD operations on buckets in MinIO**:
+**You can perform CRUD operations on buckets in Silo**:
 
 ```bash
 mcli ls sss/                         # list all buckets on alias 'sss'
@@ -116,7 +116,7 @@ mcli rb --force sss/hello            # force delete the 'hello' bucket
 
 ```bash
 mcli cp /www/pigsty/* sss/data/      # upload local repo content to the default data bucket
-mcli cp sss/data/plugins.tgz /tmp/   # download file from MinIO
+mcli cp sss/data/plugins.tgz /tmp/   # download file from Silo
 mcli ls sss/data                     # list all files in the data bucket
 mcli rm sss/data/plugins.tgz         # delete a specific file in the data bucket
 mcli cat sss/data/repo_complete      # view file content in the data bucket
@@ -127,7 +127,7 @@ mcli cat sss/data/repo_complete      # view file content in the data bucket
 
 ## Using rclone
 
-Pigsty repository provides [rclone](https://rclone.org/), a convenient multi-cloud object storage client that you can use to access MinIO services.
+The Pigsty repository provides [rclone](https://rclone.org/), a convenient multi-cloud object-storage client that can access Silo.
 
 ```bash
 yum install rclone;  # EL-compatible systems
@@ -146,7 +146,7 @@ rclone ls sss:/
 ```
 
 {{% alert title="Note: HTTPS and Certificate Trust" color="warning" %}}
-If MinIO uses HTTPS (default configuration), you need to ensure the client trusts Pigsty's CA certificate (`/etc/pki/ca.crt`), or add `no_check_certificate = true` in the rclone configuration to skip certificate verification (not recommended for production).
+If Silo uses HTTPS (the default), ensure that the client trusts Pigsty's CA certificate (`/etc/pki/ca.crt`), or add `no_check_certificate = true` to the rclone configuration to skip certificate verification (not recommended for production).
 {{% /alert %}}
 
 
@@ -155,7 +155,7 @@ If MinIO uses HTTPS (default configuration), you need to ensure the client trust
 ## Configure Backup Repository
 
 In Pigsty, the MINIO module's primary use case is as an S3 backup repository for pgBackRest.
-When you modify [`pgbackrest_method`](/docs/pgsql/param#pgbackrest_method) to `minio`, the PGSQL module will automatically switch the backup repository to MinIO.
+When you set [`pgbackrest_method`](/docs/pgsql/param#pgbackrest_method) to `minio`, the PGSQL module uses the S3-compatible repository preset with that name. Silo deployed by the MINIO module works directly with this preset.
 
 ```yaml
 pgbackrest_method: local          # pgbackrest repo method: local,minio,[user-defined...]
@@ -165,24 +165,24 @@ pgbackrest_repo:                  # pgbackrest repo: https://pgbackrest.org/conf
     retention_full_type: count    # retention full backups by count
     retention_full: 2             # keep 2, at most 3 full backup when using local fs repo
   minio:                          # optional minio repo for pgbackrest
-    type: s3                      # minio is s3-compatible, so s3 is used
-    s3_endpoint: sss.pigsty       # minio endpoint domain name, `sss.pigsty` by default
-    s3_region: us-east-1          # minio region, us-east-1 by default, useless for minio
-    s3_bucket: pgsql              # minio bucket name, `pgsql` by default
-    s3_key: pgbackrest            # minio user access key for pgbackrest
-    s3_key_secret: S3User.Backup  # minio user secret key for pgbackrest
-    s3_uri_style: path            # use path style uri for minio rather than host style
-    path: /pgbackrest             # minio backup path, default is `/pgbackrest`
-    storage_port: 9000            # minio port, 9000 by default
-    storage_ca_file: /pg/cert/ca.crt  # minio ca file path, `/pg/cert/ca.crt` by default
+    type: s3                      # Silo uses the S3-compatible repository type
+    s3_endpoint: sss.pigsty       # Silo endpoint domain, `sss.pigsty` by default
+    s3_region: us-east-1          # compatibility region, `us-east-1` by default
+    s3_bucket: pgsql              # backup bucket, `pgsql` by default
+    s3_key: pgbackrest            # pgBackRest access key
+    s3_key_secret: S3User.Backup  # pgBackRest secret key
+    s3_uri_style: path            # use path-style rather than host-style URIs
+    path: /pgbackrest             # backup path, `/pgbackrest` by default
+    storage_port: 9000            # Silo service port, 9000 by default
+    storage_ca_file: /pg/cert/ca.crt  # CA path, `/pg/cert/ca.crt` by default
     bundle: y                     # bundle small files into a single file
     cipher_type: aes-256-cbc      # enable AES encryption for remote backup repo
     cipher_pass: pgBackRest       # AES encryption password, default is 'pgBackRest'
-    retention_full_type: time     # retention full backup by time on minio repo
+    retention_full_type: time     # retain full backups by time on the remote repository
     retention_full: 14            # keep full backup for last 14 days
 ```
 
-Note that if you are using a multi-node MinIO cluster and exposing services through a load balancer, you need to modify the `s3_endpoint` and `storage_port` parameters accordingly.
+If you use a multi-node Silo cluster behind a load balancer, adjust `s3_endpoint` and `storage_port` accordingly.
 
 <br>
 

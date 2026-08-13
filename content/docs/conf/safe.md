@@ -25,7 +25,7 @@ Generate the configuration:
 ./configure -c ha/safe -g [-i <primary_ip>]
 ```
 
-`-g` randomizes only credentials recognized by the configuration wizard. You must still replace MinIO users, the pgBackRest `cipher_pass`, and other template example values.
+`-g` randomizes only credentials recognized by the configuration wizard. You must still replace Silo users, the pgBackRest `cipher_pass`, and other template example values.
 
 
 --------
@@ -40,7 +40,7 @@ Generate the configuration:
 | Password check | `passwordcheck` is preloaded through `pg_libs` | Affects only newly set or changed passwords |
 | Account lifetime | Built-in and example application users set `expire_in: 7300` | Twenty years is not a rotation policy; shorten it to organizational requirements |
 | Listen addresses | PostgreSQL is limited to `${ip},${vip},${lo}` | Firewalls and HBA are still required |
-| Backup | Uses MinIO with AES-256-CBC | `pgBR.${pg_cluster}` is a predictable example and must be replaced |
+| Backup | Uses Silo with AES-256-CBC | `pgBR.${pg_cluster}` is a predictable example and must be replaced |
 | PostgreSQL parameters | `pg-meta` uses `crit.yml` | Strict synchronous mode can block writes without a synchronous replica |
 | Logging | CRIT logs connection and disconnection events | Fine-grained SQL auditing requires explicit `pgaudit` configuration |
 | Security extensions | Installs `passwordcheck`, `credcheck`, `pgaudit`, and related packages | Installation does not preload, create, or configure an extension |

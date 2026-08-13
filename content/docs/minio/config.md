@@ -1,13 +1,13 @@
 ---
 title: Configuration
 weight: 3620
-description: Select Silo, MinIO, or RustFS and configure reliable S3 object-storage access in single-node, multi-drive, or multi-node modes.
+description: Deploy Silo with the MINIO module and configure reliable S3 access in single-node, multi-drive, or multi-node modes.
 icon: fa-solid fa-code
 module: [MINIO]
 categories: [Reference]
 ---
 
-Before deploying the MINIO module, define an object-storage cluster in the [config inventory](/docs/setup/config) and select the server with [`minio_type`](/docs/minio/param#minio_type). All three engines share these inventory deployment modes:
+Before deploying the MINIO module, define a Silo object-storage cluster in the [config inventory](/docs/setup/config). In v4.5.0, the current source requires [`minio_type: silo`](/docs/minio/param#minio_type) and supports these inventory deployment modes:
 
 - [Single-Node Single-Disk: SNSD](#single-node-single-disk): Single-node single-disk mode, can use any directory as a data disk, for development, testing, and demo only.
 - [Single-Node Multi-Disk: SNMD](#single-node-multi-disk): Compromise mode, using multiple disks (>=2) on a single server, only when resources are extremely limited.
@@ -15,29 +15,22 @@ Before deploying the MINIO module, define an object-storage cluster in the [conf
 
 We recommend using SNSD and MNMD modes - the former for development and testing, the latter for production deployment. SNMD should only be used when resources are limited (only one server).
 
-MinIO and Silo can also use [multi-pool deployment](#multi-pool) for expansion, or you can deploy [multiple clusters](#multiple-clusters). For RustFS storage-pool changes, use the upstream documentation and migration tests for the exact version in use.
+Silo can also use [multi-pool deployment](#multi-pool) for expansion, or you can deploy [multiple clusters](#multiple-clusters).
 
 With a multi-node cluster, any member can serve the S3 API, so the best practice is to place load balancing and [high-availability service access](#expose-service) in front of it.
 
 
 ----------------
 
-## Engine Selection
+## Backend Selection
 
 ```yaml
-minio_type: silo   # silo (current source default), minio, or rustfs
+minio_type: silo   # the only valid value in v4.5.0
 ```
 
-| Value | Package and Service | Configuration and Certificates |
-|:---|:---|:---|
-| `silo` | `silo` / `silo.service` | `/etc/default/silo`, `~/.minio/certs/` |
-| `minio` | `minio` / `minio.service` | `/etc/default/minio`, `~/.minio/certs/` |
-| `rustfs` | `rustfs` / `rustfs.service` | `/etc/default/rustfs`, `~/.rustfs/certs/` |
-{.full-width}
+`minio_type` is retained as a selector for future expansion, but the current deployment and removal roles accept only `silo`. It maps to the `silo` package, `silo.service`, `/etc/default/silo`, and `~/.minio/certs/`. To support in-place migration, `silo.service` first reads legacy `/etc/default/minio` and then the higher-priority `/etc/default/silo`; it also conflicts with the old `minio.service`. New deployments should maintain only the Silo configuration file.
 
-`minio_type` selects role behavior; it does not migrate data. Explicitly retain `minio_type: minio` when upgrading an existing MinIO cluster. Validate data, upgrade, and rollback paths independently before switching to Silo or RustFS.
-
-For brevity, some topology snippets below omit `minio_type`; with the current source they deploy the default Silo backend. References to MinIO topology terms and upstream links describe Silo/MinIO-compatible behavior and do not mean the role still installs the `minio` package by default.
+Legacy inventories with `minio_type: minio` or `minio_type: rustfs` fail identity validation. Before upgrading an existing MinIO deployment, validate MinIO-to-Silo data compatibility, backups, and rollback. References below to MinIO topology terms and upstream links describe interfaces retained by Silo; they do not mean that the current role still installs the `minio` package.
 
 
 
@@ -45,38 +38,38 @@ For brevity, some topology snippets below omit `minio_type`; with the current so
 
 ## Core Parameters
 
-Pigsty uses [`minio_volumes`](/docs/minio/param#minio_volumes) as the common description of members and disks. It renders this as `MINIO_VOLUMES` for Silo/MinIO or `RUSTFS_VOLUMES` for RustFS. The role derives the value from inventory by default, and also allows an explicit override.
+Pigsty uses [`minio_volumes`](/docs/minio/param#minio_volumes) to describe members and disks and renders it as Silo's `MINIO_VOLUMES`. The role derives this value from inventory by default and also allows an explicit override.
 
 - Single-Node Single-Disk: `minio_volumes` points to a regular local directory derived from [`minio_data`](/docs/minio/param#minio_data), defaulting to `/data/minio`.
 - Single-Node Multi-Disk: `minio_volumes` points to a sequence of local mount points derived from `minio_data`, for example `/data{1...4}`.
 - Multi-Node Multi-Disk: `minio_volumes` points to mount points across multiple servers, automatically generated from two parts:
   - First, use [`minio_data`](/docs/minio/param#minio_data) to specify the disk mount point sequence for each cluster member `/data{1...4}`
   - Also use [`minio_node`](/docs/minio/param#minio_node) to specify the node naming pattern `${minio_cluster}-${minio_seq}.pigsty`
-- Multi-Pool: For MinIO/Silo, explicitly set `minio_volumes` to assign nodes to each storage pool. For RustFS, follow the capabilities of the version in use.
+- Multi-Pool: Explicitly set `minio_volumes` to assign nodes to each storage pool.
 
 
 ----------------
 
 ## Single-Node Single-Disk
 
-SNSD mode, deployment reference: [MinIO Single-Node Single-Drive](https://min.io/docs/minio/linux/operations/install-deploy-manage/deploy-minio-single-node-single-drive.html)
+SNSD mode, compatible topology reference: [MinIO Single-Node Single-Drive](https://min.io/docs/minio/linux/operations/install-deploy-manage/deploy-minio-single-node-single-drive.html)
 
-In Pigsty, defining a singleton MinIO instance is straightforward:
+In Pigsty, defining a singleton Silo instance is straightforward:
 
 ```yaml
 # 1 node, 1 data directory
 minio: { hosts: { 10.10.10.10: { minio_seq: 1 } }, vars: { minio_cluster: minio, minio_type: silo } }
 ```
 
-In single-node mode, the only required parameters are [`minio_seq`](/docs/minio/param#minio_seq) and [`minio_cluster`](/docs/minio/param#minio_cluster), which uniquely identify each MinIO instance.
+In single-node mode, the required identity parameters are [`minio_seq`](/docs/minio/param#minio_seq) and [`minio_cluster`](/docs/minio/param#minio_cluster), which uniquely identify each object-storage instance.
 
 Single-node single-disk mode is for development purposes only, so you can use a regular directory as the data directory, specified by [`minio_data`](/docs/minio/param#minio_data), defaulting to `/data/minio`.
 
-When using MinIO, we strongly recommend accessing it via a statically resolved domain name. For example, if [`minio_domain`](/docs/minio/param#minio_domain) uses the default `sss.pigsty`,
+When using Silo, we strongly recommend accessing it through a statically resolved domain name. For example, if [`minio_domain`](/docs/minio/param#minio_domain) uses the default `sss.pigsty`,
 you can add a static resolution on all nodes to facilitate access to this service.
 
 ```yaml
-node_etc_hosts: ["10.10.10.10 sss.pigsty"] # domain name to access minio from all nodes (required)
+node_etc_hosts: ["10.10.10.10 sss.pigsty"] # domain name for accessing Silo from all nodes (required)
 ```
 
 
@@ -90,7 +83,7 @@ Single-node single-disk mode should only be used for development, testing, and d
 
 ## Single-Node Multi-Disk
 
-SNMD mode, deployment reference: [MinIO Single-Node Multi-Drive](https://min.io/docs/minio/linux/operations/install-deploy-manage/deploy-minio-single-node-multi-drive.html)
+SNMD mode, compatible topology reference: [MinIO Single-Node Multi-Drive](https://min.io/docs/minio/linux/operations/install-deploy-manage/deploy-minio-single-node-multi-drive.html)
 
 To use multiple disks on a single node, the operation is similar to [Single-Node Single-Disk](#single-node-single-disk), but you need to specify [`minio_data`](/docs/minio/param#minio_data) in the format `{{ prefix }}{x...y}`, which defines a series of disk mount points.
 
@@ -103,12 +96,12 @@ minio:
 ```
 
 {{% alert title="Use Real Disk Mount Points" color="warning" %}}
-Note that SNMD mode does not support using regular directories as data directories. If you start MinIO in SNMD mode but the data directory is not a valid disk mount point, MinIO will refuse to start. Ensure you use real disks formatted with XFS.
+SNMD mode does not support regular directories as data directories. If a data directory is not a valid disk mount point, Silo refuses to start. Use real disks formatted with XFS.
 {{% /alert %}}
 
 
 
-For example, the Vagrant MinIO [sandbox](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/minio.rb) defines a single-node MinIO cluster with 4 disks: `/data1`, `/data2`, `/data3`, and `/data4`. Before starting MinIO, you need to mount them properly (be sure to format disks with `xfs`):
+For example, the Vagrant object-storage [sandbox](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/minio.rb) defines a single-node Silo cluster with four disks: `/data1`, `/data2`, `/data3`, and `/data4`. Before starting Silo, mount them correctly and format them with `xfs`:
 
 ```bash
 mkfs.xfs /dev/vdb; mkdir /data1; mount -t xfs /dev/sdb /data1;   # mount disk 1...
@@ -138,11 +131,11 @@ However, single-node mode cannot tolerate entire node failure, and you cannot ad
 
 ## Multi-Node Multi-Disk
 
-MNMD mode, deployment reference: [MinIO Multi-Node Multi-Drive](https://min.io/docs/minio/linux/operations/install-deploy-manage/deploy-minio-multi-node-multi-drive.html)
+MNMD mode, compatible topology reference: [MinIO Multi-Node Multi-Drive](https://min.io/docs/minio/linux/operations/install-deploy-manage/deploy-minio-multi-node-multi-drive.html)
 
-In addition to [`minio_data`](/docs/minio/param#minio_data) for specifying disk drives as in [Single-Node Multi-Disk](#single-node-multi-disk) mode, multi-node MinIO deployment requires an additional [`minio_node`](/docs/minio/param#minio_node) parameter.
+In addition to using [`minio_data`](/docs/minio/param#minio_data) to specify disks as in [Single-Node Multi-Disk](#single-node-multi-disk) mode, use [`minio_node`](/docs/minio/param#minio_node) to specify the multi-node naming pattern.
 
-For example, the following configuration defines a MinIO cluster with four nodes, each with four disks:
+For example, the following configuration defines a four-node Silo cluster with four disks per node:
 
 ```yaml
 minio:
@@ -157,12 +150,12 @@ minio:
     minio_node: '${minio_cluster}-${minio_seq}.pigsty' # minio node name pattern
 ```
 
-The [`minio_node`](/docs/minio/param#minio_node) parameter specifies the MinIO node name pattern, used to generate a unique name for each node.
+The [`minio_node`](/docs/minio/param#minio_node) parameter specifies the MINIO module's internal node-name pattern, used to generate a unique name for each node.
 By default, the node name is `${minio_cluster}-${minio_seq}.pigsty`, where `${minio_cluster}` is the cluster name and `${minio_seq}` is the node sequence number.
-The MinIO instance name is crucial and will be automatically written to `/etc/hosts` on MinIO nodes for static resolution. MinIO relies on these names to identify and access other nodes in the cluster.
+Instance names are automatically written to `/etc/hosts` on each Silo node so cluster members can identify and reach one another.
 
-In this case, the derived `minio_volumes` is `https://minio-{1...4}.pigsty:9000/data{1...4}`, identifying four drives on four nodes; the role then writes the engine-specific environment variable.
-You can directly specify the [`minio_volumes`](/docs/minio/param#minio_volumes) parameter in the MinIO cluster to override the automatically generated value.
+In this case, the derived `minio_volumes` is `https://minio-{1...4}.pigsty:9000/data{1...4}`, identifying four drives on four nodes; the role writes it to Silo's compatible environment variable.
+You can set [`minio_volumes`](/docs/minio/param#minio_volumes) directly on the object-storage cluster to override the automatically generated value.
 However, this is usually not necessary as Pigsty will automatically generate it based on the config inventory.
 
 
@@ -173,9 +166,9 @@ However, this is usually not necessary as Pigsty will automatically generate it 
 
 ## Multi-Pool
 
-MinIO's architecture allows scaling by adding new storage pools. In Pigsty, you can achieve cluster scaling by explicitly specifying the [`minio_volumes`](/docs/minio/param#minio_volumes) parameter to allocate nodes for each storage pool.
+Silo retains the compatible ability to scale by adding new storage pools. In Pigsty, explicitly set [`minio_volumes`](/docs/minio/param#minio_volumes) to assign nodes to each pool.
 
-For example, suppose you have already created the MinIO cluster defined in the [Multi-Node Multi-Disk](#multi-node-multi-disk) example, and now you want to add a new storage pool with four more nodes.
+For example, suppose you created the Silo cluster from the [Multi-Node Multi-Disk](#multi-node-multi-disk) example and now want to add another four-node storage pool.
 
 You need to directly override the [`minio_volumes`](/docs/minio/param#minio_volumes) parameter:
 
@@ -198,7 +191,7 @@ minio:
     minio_volumes: 'https://minio-{1...4}.pigsty:9000/data{1...4} https://minio-{5...8}.pigsty:9000/data{1...4}'
 ```
 
-Here, the two space-separated parameters represent two storage pools, each with four nodes and four disks per node. For more information on storage pools, refer to [Administration: MinIO Cluster Expansion](/docs/minio/admin/)
+Here, the two space-separated values represent two storage pools, each with four nodes and four disks per node. For details, see [Administration: Cluster Expansion](/docs/minio/admin/).
 
 
 
@@ -206,7 +199,7 @@ Here, the two space-separated parameters represent two storage pools, each with 
 
 ## Multiple Clusters
 
-You can deploy new MinIO nodes as a completely new MinIO cluster by defining a new group with a different cluster name. The following configuration declares two independent MinIO clusters:
+You can deploy new nodes as an independent Silo cluster. The following configuration declares two object-storage clusters with different identities:
 
 ```yaml
 minio1:
@@ -242,7 +235,7 @@ minio2:
 
 ## Expose Service
 
-The selected object-storage engine serves the S3 API on port `9000` by default. A multi-node cluster can be accessed through **any member**.
+Silo serves the S3 API on port `9000` by default. A multi-node cluster can be accessed through **any member**.
 
 Service access falls under the scope of the [NODE](/docs/node) module, and we'll provide only a basic introduction here.
 
@@ -288,14 +281,14 @@ minio:
           - { name: minio-4 ,ip: 10.10.10.13 ,port: 9000 ,options: 'check-ssl ca-file /etc/pki/ca.crt check port 9000' }
 ```
 
-For example, the configuration above enables HAProxy on all nodes of the MinIO cluster, exposing MinIO services on port `9002`, and binds a Layer 2 VIP to the cluster.
-When in use, users should point the `sss.pigsty` domain name to the VIP address `10.10.10.9` and access MinIO services using port `9002`. This ensures high availability, as the VIP will automatically switch to another node if any node fails.
+For example, the configuration above enables HAProxy on every Silo node, exposes the S3 service on port `9002`, and binds a Layer 2 VIP to the cluster.
+Resolve `sss.pigsty` to VIP `10.10.10.9` and access port `9002`; if a node fails, the VIP moves to another node.
 
-In this scenario, you may also need to globally modify the domain name resolution destination and the [`minio_endpoint`](/docs/minio/param#minio_endpoint) parameter to change the endpoint address for the MinIO alias on the admin node:
+In this case, also update global domain resolution and [`minio_endpoint`](/docs/minio/param#minio_endpoint) so the `mcli` alias written to management nodes uses the new endpoint:
 
 ```yaml
 minio_endpoint: https://sss.pigsty:9002   # Override the default: https://sss.pigsty:9000
-node_etc_hosts: ["10.10.10.9 sss.pigsty"] # Other nodes will use sss.pigsty domain to access MinIO
+node_etc_hosts: ["10.10.10.9 sss.pigsty"] # Other nodes will use the sss.pigsty domain to access Silo
 ```
 
 
@@ -328,11 +321,11 @@ proxy:
           - { name: minio-5 ,ip: 10.10.10.25 ,port: 9000 ,options: 'check-ssl ca-file /etc/pki/ca.crt check port 9000' }
 ```
 
-In this case, you typically need to globally modify the MinIO domain resolution to point `sss.pigsty` to the load balancer address, and modify the [`minio_endpoint`](/docs/minio/param#minio_endpoint) parameter to change the endpoint address for the MinIO alias on the admin node:
+In this case, point `sss.pigsty` to the load balancer and update [`minio_endpoint`](/docs/minio/param#minio_endpoint) so the `mcli` alias on management nodes uses that endpoint:
 
 ```yaml
 minio_endpoint: https://sss.pigsty:9002    # overwrite the defaults: https://sss.pigsty:9000
-node_etc_hosts: ["10.10.10.20 sss.pigsty"] # domain name to access minio from all nodes (required)
+node_etc_hosts: ["10.10.10.20 sss.pigsty"] # domain name for accessing Silo from all nodes (required)
 ```
 
 
@@ -342,16 +335,16 @@ node_etc_hosts: ["10.10.10.20 sss.pigsty"] # domain name to access minio from al
 
 ## Access Service
 
-To access MinIO exposed via HAProxy, taking PGSQL backup configuration as an example, you can modify the configuration in [`pgbackrest_repo`](/docs/pgsql/param#pgbackrest_repo) to add a new backup repository definition:
+To access the Silo service exposed through HAProxy from PGSQL, add a repository definition to [`pgbackrest_repo`](/docs/pgsql/param#pgbackrest_repo):
 
 ```yaml
-# This is the newly added HA MinIO Repo definition, USE THIS INSTEAD!
+# New HA S3 repository definition, replacing the previous single-node configuration
 minio_ha:
   type: s3
-  s3_endpoint: minio-1.pigsty   # s3_endpoint can be any load balancer: 10.10.10.1{0,1,2}, or domain names pointing to any of the nodes
+  s3_endpoint: minio-1.pigsty   # endpoint can be any load balancer or a domain pointing to one of the nodes
   s3_region: us-east-1          # you can use external domain name: sss.pigsty, which resolves to any member (`minio_domain`)
-  s3_bucket: pgsql              # instance & nodename can be used: minio-1.pigsty minio-1.pigsty minio-1.pigsty minio-1 minio-2 minio-3
-  s3_key: pgbackrest            # Better using a dedicated password for MinIO pgbackrest user
+  s3_bucket: pgsql              # backup bucket name
+  s3_key: pgbackrest            # use a dedicated password for Silo's pgbackrest user
   s3_key_secret: S3User.SomeNewPassWord
   s3_uri_style: path
   path: /pgbackrest
@@ -370,9 +363,9 @@ minio_ha:
 
 ## Expose Console
 
-The selected object-storage engine provides an administration UI on port `9001` by default, controlled by [`minio_admin_port`](/docs/minio/param#minio_admin_port). The RustFS console is available at `/rustfs/console/` on that port.
+Silo provides an administration UI on port `9001` by default, controlled by [`minio_admin_port`](/docs/minio/param#minio_admin_port).
 
-Exposing the admin interface to external networks may pose security risks. If you want to do this, add MinIO to [`infra_portal`](/docs/infra/param#infra_portal) and refresh the Nginx configuration.
+Exposing the administration interface externally may pose security risks. If required, add Silo to [`infra_portal`](/docs/infra/param#infra_portal) and refresh the Nginx configuration.
 
 ```yaml
 # ./infra.yml -t nginx
@@ -388,7 +381,7 @@ infra_portal:
 
 **DO NOT** expose an unencrypted object-storage administration UI in production.
 
-This means you typically need to add a resolution record for `m.pigsty` in your DNS server or local `/etc/hosts` file to access the MinIO console.
+You will usually need an `m.pigsty` record in DNS or local `/etc/hosts` to access the Silo administration page.
 
 Meanwhile, if you are using Pigsty's self-signed CA rather than a proper public CA, you usually need to manually trust the CA or certificate to skip the "insecure" warning in the browser.
 

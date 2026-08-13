@@ -46,7 +46,7 @@ To use a different data directory, configure these parameters:
 | [**`etcd_data`**](/docs/etcd/param#etcd_data)          | ETCD data directory      | `/data/etcd`       |
 | [**`infra_data`**](/docs/infra/param#infra_data)       | Infra data directory     | `/data/infra`      |
 | [**`nginx_data`**](/docs/infra/param#nginx_data)       | Nginx data directory     | `/data/nginx`      |
-| [**`minio_data`**](/docs/minio/param#minio_data)       | MinIO data directory     | `/data/minio`      |
+| [**`minio_data`**](/docs/minio/param#minio_data)       | Silo data directory      | `/data/minio`      |
 | [**`redis_fs_main`**](/docs/redis/param#redis_fs_main) | Redis data directory     | `/data/redis`      |
 | [**`kafka_data`**](/docs/kafka/param#kafka_data)       | Kafka data directory     | `/data/kafka`      |
 {.full-width}
@@ -59,7 +59,7 @@ The native MySQL 8.4 pilot module does not currently expose a data-directory par
 
 You can use any supported Linux filesystem for data disks. For production, we recommend **`xfs`**.
 
-`xfs` is a Linux standard with excellent performance and CoW capabilities for instant large database cluster cloning. MinIO requires `xfs`.
+`xfs` is a Linux standard with excellent performance and CoW capabilities for instant large database cluster cloning. Multi-drive Silo deployments require `xfs`.
 `ext4` is another viable option with a richer data recovery tool ecosystem, but lacks CoW.
 `zfs` provides RAID and snapshot features but with significant performance overhead and requires separate installation.
 
@@ -138,9 +138,9 @@ For local-only access, add the following to `/etc/hosts` on machines accessing t
 
 ## Linux
 
-Pigsty runs on **Linux**. It supports **16** mainstream distributions: [**Compatible OS List**](/docs/ref/linux/)
+Pigsty runs on **Linux**. It currently targets **16** platform combinations: eight distribution major versions across two architectures. See the [**Compatible OS List**](/docs/ref/linux/).
 
-We recommend **RockyLinux 10.1**, **Debian 13.6**, or **Ubuntu 26.04.0 / 24.04.4** as default options.
+We recommend **Rocky Linux 9.8 / 10.2**, **Debian 12.15 / 13.6**, or **Ubuntu 22.04.5 / 24.04.4 / 26.04.0** as default options.
 
 On macOS and Windows, use VM software or Docker systemd images to run Pigsty.
 

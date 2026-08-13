@@ -106,7 +106,7 @@ As a distributed coordination service, ETCD cluster size directly affects availa
 |   5 nodes    |   3    |        2        | Large-scale production |
 {.full-width}
 
-Therefore, even-numbered ETCD clusters are meaningless, and clusters over five nodes are uncommon. Typical sizes are single-node, three-node, and five-node.
+Even-member ETCD clusters are technically valid, but they do not tolerate more failures than an odd cluster with one fewer member and add deployment and quorum cost. Production clusters therefore usually have one, three, or five members; clusters larger than five are uncommon.
 
 
 ----------------

@@ -7,13 +7,13 @@ categories: [Task, Reference]
 ---
 
 Pigsty uses [pgBackRest](https://pgbackrest.org/) to manage PostgreSQL backups, arguably the most powerful open-source backup tool in the ecosystem.
-It supports incremental/parallel backup and restore, encryption, [MinIO](/docs/minio)/S3, and many other features. Pigsty configures backup functionality by default for each [PGSQL](/docs/pgsql) cluster.
+It supports incremental/parallel backup and restore, encryption, [Silo](/docs/minio)/S3, and many other features. Pigsty configures backup functionality by default for each [PGSQL](/docs/pgsql) cluster.
 
 | Section                                                      | Content                                                          |
 |--------------------------------------------------------------|------------------------------------------------------------------|
 | [Mechanism](/docs/pgsql/backup/mechanism)                    | Backup scripts, cron jobs, pgbackrest, repository and management |
 | [Policy](/docs/pgsql/backup/policy)                          | Backup strategy, disk planning, recovery window tradeoffs        |
-| [Repository](/docs/pgsql/backup/repository)                  | Configuring backup repositories: local, MinIO, S3                |
+| [Repository](/docs/pgsql/backup/repository)                  | Configuring backup repositories: local, Silo, S3                 |
 | [Admin](/docs/pgsql/backup/admin)                            | Common backup management commands                                |
 | [Restore](/docs/pgsql/backup/restore)                        | Restore to a specific point in time using playbooks              |
 | [Example](/docs/pgsql/backup/restore#step-by-step-execution) | Sandbox example: performing restore operations manually          |

@@ -394,17 +394,17 @@ Pgbouncer runs under the same user as `{{ pg_dbsu }}` (default `postgres`), with
 
 ## Object Storage FHS
 
-The MINIO module renders Silo, MinIO, or RustFS according to `minio_type`. Here, `<engine>` means `silo`, `minio`, or `rustfs`:
+The MINIO module currently deploys only Silo, while retaining `minio_*` parameter and directory names for compatibility:
 
 ```bash
-/etc/default/<engine>                         # root:minio 0640, service environment
-/etc/systemd/system/<engine>.service          # root:root 0644, rendered by Pigsty
+/etc/default/silo                             # root:minio 0640, service environment
+/etc/systemd/system/silo.service              # root:root 0644, rendered by Pigsty
 /data/minio/                                  # minio:minio 0750, default data directory
 /infra/targets/minio/<cluster>-<seq>.yml      # victoria:infra 0640, FileSD target
 /home/minio/.mcli/config.json                 # mcli alias; also written for the execution user
 ```
 
-Silo/MinIO certificates are stored in `/home/minio/.minio/certs/`; RustFS certificates are stored in `/home/minio/.rustfs/certs/`. Role parameters retain the compatible `minio_*` prefix, while actual service files follow the selected engine.
+Silo certificates are stored in `/home/minio/.minio/certs/`. The module name, role parameters, data directory, and FileSD path retain the compatible `MINIO` / `minio_*` naming.
 
 
 ----------------

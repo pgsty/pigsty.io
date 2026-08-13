@@ -1,7 +1,7 @@
 ---
 title: ha/full
 weight: 620
-description: Four-node complete feature demonstration environment with two PostgreSQL clusters, MinIO, Redis, etc.
+description: Four-node complete feature demonstration environment with two PostgreSQL clusters, Silo, Redis, etc.
 icon: fa-solid fa-dice-four
 categories: [Reference]
 ---
@@ -17,7 +17,7 @@ Most Pigsty tutorials and examples are based on this template's sandbox environm
 
 - Config Name: `ha/full`
 - Node Count: Four nodes
-- Description: Four-node complete feature demonstration environment with two PostgreSQL clusters, MinIO, Redis, etc.
+- Description: Four-node complete feature demonstration environment with two PostgreSQL clusters, Silo, Redis, etc.
 - OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`ha/trio`](/docs/conf/trio/), [`ha/safe`](/docs/conf/safe/), [`demo/demo`](/docs/conf/demo/)
@@ -52,7 +52,7 @@ The `ha/full` template is Pigsty's **complete feature demonstration configuratio
 |:--|:--|:--|
 | INFRA | Node 1 | Monitoring/Alerting/Nginx/DNS |
 | ETCD | Node 1 | DCS Service |
-| MinIO | Node 1 | S3-compatible Storage |
+| Silo | Node 1 | S3-compatible Storage |
 | pg-meta | Node 1 | Single-node PostgreSQL |
 | pg-test | Nodes 2-4 | Three-node HA PostgreSQL |
 | redis-ms | Node 1 | Redis Primary-Replica Mode |

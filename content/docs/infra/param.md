@@ -253,7 +253,7 @@ Global proxy environment variables used when downloading packages, default value
 
 ```yaml
 proxy_env:
-  no_proxy: "localhost,127.0.0.1,10.0.0.0/8,192.168.0.0/16,*.pigsty,*.aliyun.com,mirrors.aliyuncs.com,mirrors.tuna.tsinghua.edu.cn,mirrors.zju.edu.cn"
+  no_proxy: "localhost,127.0.0.1,10.0.0.0/8,192.168.0.0/16,*.pigsty,*.aliyun.com,mirrors.*,*.myqcloud.com,*.tsinghua.edu.cn"
   #http_proxy: 'http://username:password@proxy.address.com'
   #https_proxy: 'http://username:password@proxy.address.com'
   #all_proxy: 'http://username:password@proxy.address.com'
@@ -483,7 +483,7 @@ This section is about local software repository configuration. Pigsty enables a 
 
 During initialization, Pigsty downloads all packages and their dependencies (specified by [`repo_packages`](#repo_packages)) from the Internet upstream repository (specified by [`repo_upstream`](#repo_upstream)) to [`{{ nginx_home }}`](#nginx_home) / [`{{ repo_name }}`](#repo_name) (default `/www/pigsty`). The total size of all software and dependencies is approximately 1GB.
 
-The current source uses SOW 0.2.0 to generate RPM/APT metadata. After a successful build, `repo_complete` is both a SHA-256 manifest and a completion marker. When it is present, Pigsty skips downloading and rebuilding by default and uses the existing repository. Force a rebuild with `./infra.yml -t repo_build -e repo_build=true`.
+The current package candidate is SOW 0.3.0, and the source uses SOW to generate RPM/APT metadata. After a successful build, `repo_complete` is both a SHA-256 manifest and a completion marker. When it is present, Pigsty skips downloading and rebuilding by default and uses the existing repository. Force a rebuild with `./infra.yml -t repo_build -e repo_build=true`.
 
 Both `repo_create` and `cache_create` invoke `sow create --pigsty` directly, with no fallback to `createrepo_c` or `dpkg-scanpackages`. If an older offline bundle or local repository does not contain SOW, refresh the media or install SOW from the Pigsty INFRA repository first.
 
@@ -976,7 +976,7 @@ You can pass additional command-line options to certbot through this parameter, 
 
 ## `DNS`
 
-Pigsty enables DNSMASQ service on Infra nodes by default to resolve auxiliary domain names such as `i.pigsty`, `m.pigsty`, `api.pigsty`, etc., and optionally `sss.pigsty` for MinIO.
+Pigsty enables DNSMASQ on Infra nodes by default to resolve auxiliary names such as `i.pigsty`, `m.pigsty`, and `api.pigsty`; `sss.pigsty` can optionally provide the Silo endpoint.
 
 Resolution records are stored in the `/etc/dnsmasq.d/pigsty/default` file on Infra nodes. To use this DNS server, you must add `nameserver <ip>` to `/etc/resolv.conf`. The [`node_dns_servers`](/docs/node/param#node_dns_servers) parameter handles this.
 
@@ -1030,7 +1030,8 @@ The `${admin_ip}` placeholder is used here and will be replaced with the actual 
 Common domain name purposes:
 
 - `i.pigsty`: Pigsty home page
-- `m.pigsty`: VictoriaMetrics Web UI
+- `m.pigsty`: Commonly used for the Silo console (optional)
+- `p.pigsty`: Commonly used for the VictoriaMetrics Web UI when explicitly configured in `infra_portal`
 - `api.pigsty`: API service
 - `adm.pigsty`: Admin service
 - Others customized based on actual deployment needs

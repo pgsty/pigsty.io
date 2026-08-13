@@ -29,7 +29,7 @@ This playbook interleaves subtasks from `infra.yml` and `node.yml`, completing d
 5. **infra**: Initialize Nginx, DNS, VictoriaMetrics, Grafana, etc.
 6. **node-monitor**: Initialize node-exporter, vector
 7. **etcd**: Initialize etcd (required for PostgreSQL HA)
-8. **minio**: Initialize MinIO (optional)
+8. **minio**: Initialize Silo (optional)
 9. **pgsql**: Initialize PostgreSQL clusters and configure PostgreSQL monitoring
 
 This playbook is equivalent to executing the following five playbooks sequentially:
@@ -38,7 +38,7 @@ This playbook is equivalent to executing the following five playbooks sequential
 ./infra.yml -l infra    # Deploy infrastructure on infra group
 ./node.yml              # Initialize all nodes
 ./etcd.yml              # Initialize etcd cluster
-./minio.yml             # Initialize MinIO cluster (optional)
+./minio.yml             # Initialize MINIO (Silo) cluster (optional)
 ./pgsql.yml             # Initialize PostgreSQL clusters
 ```
 

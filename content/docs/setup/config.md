@@ -329,15 +329,15 @@ Redis HA requires cluster mode or sentinel mode. See [**Redis Configuration**](/
 
 --------
 
-## Deploy MinIO Cluster
+## Deploy Silo Object Storage
 
-Pigsty provides optional open-source object storage, S3 alternative—[**MinIO**](/docs/minio) support, as [**backup repository**](/docs/pgsql/backup/repository) for PostgreSQL.
+Pigsty's [**MINIO module**](/docs/minio) currently deploys Silo S3-compatible object storage, which can serve as a PostgreSQL [**backup repository**](/docs/pgsql/backup/repository). The module, inventory group, and playbooks retain the compatible `minio` name.
 
 ```bash
 ./minio.yml -l minio
 ```
 
-Serious prod MinIO deployments typically require at least 4 nodes with 4 disks each (4N/16D).
+Serious production Silo deployments typically require at least 4 nodes with 4 disks each (4N/16D).
 
 
 --------

@@ -7,7 +7,7 @@ categories: [Task]
 ---
 
 
-Pigsty's REPO role downloads required packages and creates a local YUM/APT repository under `/www/pigsty` that Nginx can serve. The current source uses **SOW 0.2.0** to generate metadata for both repository types instead of calling `createrepo_c`, `modifyrepo_c`, or `dpkg-scanpackages` separately.
+Pigsty's REPO role downloads required packages and creates a local YUM/APT repository under `/www/pigsty` that Nginx can serve. The current package candidate is **SOW 0.3.0**; the source uses SOW to generate metadata for both repository types instead of calling `createrepo_c`, `modifyrepo_c`, or `dpkg-scanpackages` separately.
 
 
 ----------------
@@ -40,7 +40,7 @@ To rebuild metadata for packages already present without downloading new ones:
 
 Both `repo_create` and `cache_create` require `sow` on the target node. A fresh online build automatically adds `infra` to the effective [`repo_modules`](/docs/infra/param#repo_modules) list and installs SOW from the Pigsty INFRA upstream repository.
 
-Offline bundles and local repositories created before this change may not contain SOW. Before rebuilding from old media, refresh the bundle/local repository or install SOW 0.2.0 from the Pigsty INFRA repository. Do not assume that older environments can still fall back to `createrepo_c`.
+Offline bundles and local repositories created before this change may not contain SOW. Before rebuilding from old media, refresh the bundle/local repository or install the current SOW 0.3.0 candidate from the Pigsty INFRA repository. Do not assume that older environments can still fall back to `createrepo_c`.
 
 On a fresh installation, if `/www` does not exist, the role creates `/data/nginx` and makes `/www` point to it. Existing directories and symlinks are preserved rather than forcibly replaced.
 

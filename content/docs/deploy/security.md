@@ -36,7 +36,7 @@ Replace every public default credential before production. Start with:
 ./configure -g
 ```
 
-This option does not replace the pgBackRest `cipher_pass`, every MinIO example credential in `ha/safe`, or user-defined values. Review the result against the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist).
+This option does not replace the pgBackRest `cipher_pass`, every Silo example credential in `ha/safe`, or user-defined values. Review the result against the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist).
 
 PostgreSQL stores newly set or updated passwords with SCRAM-SHA-256 by default. To enforce complexity, preload `passwordcheck` through [**`pg_libs`**](/docs/pgsql/param#pg_libs), or configure `credcheck`. Declare account lifetime with `expire_in` or `expire_at`.
 

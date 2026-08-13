@@ -53,7 +53,7 @@ Pigsty predefines the following default domains:
 | Domain     | Service | Port   | Purpose                                     |
 |------------|---------|--------|---------------------------------------------|
 | `i.pigsty` | Nginx   | 80/443 | Default homepage, local repo, unified entry |
-| `m.pigsty` | MinIO   | 9001   | Object storage console                      |
+| `m.pigsty` | Silo    | 9001   | Object storage console                      |
 
 Grafana, VictoriaMetrics, and Alertmanager are accessed by default through the `/ui/`, `/vmetrics/`, and `/alertmgr/` subpaths under `i.pigsty`. To use dedicated domains such as `g.pigsty`, `p.pigsty`, and `a.pigsty`, configure them explicitly in [`infra_portal`](/docs/infra/param#infra_portal) and [`dns_records`](/docs/infra/param#dns_records).
 
@@ -160,7 +160,8 @@ Configure static `/etc/hosts` records via [`node_etc_hosts`](/docs/node/param#no
 
 ```yaml
 node_etc_hosts:
-  - "${admin_ip} i.pigsty sss.pigsty"
+  - "${admin_ip} i.pigsty"
+  - "${admin_ip} sss.pigsty"      # Optional: Silo S3 endpoint domain
   - "10.10.10.20 db.example.com"
 ```
 

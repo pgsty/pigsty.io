@@ -38,7 +38,7 @@ The [**`vip-manager`**](#vip-manager) is an on-demand component. Additionally, P
 {.full-width}
 
 By analogy, the [PostgreSQL](#postgresql) database kernel is the CPU, while the PGSQL module packages it as a complete computer.
-[Patroni](#patroni) and [Etcd](#etcd) form the [HA subsystem](#ha-subsystem), [pgBackRest](#pgbackrest) and MinIO form the [backup subsystem](#backup-subsystem).
+[Patroni](#patroni) and [Etcd](#etcd) form the [HA subsystem](#ha-subsystem), while [pgBackRest](#pgbackrest) and optional Silo form the [backup subsystem](#backup-subsystem).
 [HAProxy](#haproxy), [Pgbouncer](#pgbouncer), and [vip-manager](#vip-manager) form the [access subsystem](#access-subsystem).
 Various Exporters and [Vector](#vector) build the [observability subsystem](#observability-subsystem);
 finally, you can swap different [**kernel CPUs**](/docs/pgsql/kernel) and [**extension cards**](/docs/pgsql/ext).
@@ -50,7 +50,7 @@ finally, you can swap different [**kernel CPUs**](/docs/pgsql/kernel) and [**ext
 |:--------------------------------------|:-----------------------------------------|:--------------------------------------|
 | [**HA Subsystem**](#ha-subsystem)     | [Patroni](#patroni) + [etcd](#etcd)      | Failure detection, auto-failover, config management |
 | [**Access Subsystem**](#access-subsystem) | [HAProxy](#haproxy) + [Pgbouncer](#pgbouncer) + [vip-manager](#vip-manager)    | Service exposure, load balancing, pooling, VIP |
-| [**Backup Subsystem**](#backup-subsystem) | [pgBackRest](#pgbackrest) (+ MinIO)  | Full/incremental backup, WAL archiving, PITR |
+| [**Backup Subsystem**](#backup-subsystem) | [pgBackRest](#pgbackrest) (+ Silo)   | Full/incremental backup, WAL archiving, PITR |
 | [**Observability Subsystem**](#observability-subsystem) | [pg_exporter](#pg_exporter) / [pgbouncer_exporter](#pgbouncer_exporter) / [pgbackrest_exporter](#pgbackrest_exporter) + [Vector](#vector) | Metrics collection, log aggregation |
 {.full-width}
 
@@ -86,7 +86,7 @@ finally, you can swap different [**kernel CPUs**](/docs/pgsql/kernel) and [**ext
 - [**pgbouncer_exporter**](#pgbouncer_exporter) exposes [pgbouncer](#pgbouncer) metrics on port 9631
 - [**pgBackRest**](#pgbackrest) uses local backup repository by default (`pgbackrest_method` = `local`)
     - If using `local` (default), [pgBackRest](#pgbackrest) creates local repository under [`pg_fs_bkup`](/docs/pgsql/param#pg_fs_bkup) on primary node
-    - If using `minio`, [pgBackRest](#pgbackrest) creates backup repository on dedicated MinIO cluster
+    - If using `minio`, [pgBackRest](#pgbackrest) creates the backup repository on dedicated Silo or an external S3 service
 - [**Vector**](#vector) collects Postgres-related logs (postgres, pgbouncer, patroni, pgbackrest)
     - [vector](#vector) listens on port 9598, also exposes its own metrics to VictoriaMetrics on infra nodes
     - [vector](#vector) sends logs to VictoriaLogs on infra nodes
@@ -143,7 +143,7 @@ For more information, see: [**Service Access**](/docs/pgsql/service/) and [**Con
 
 ## Backup Subsystem
 
-The backup subsystem consists of [**pgBackRest**](#pgbackrest) (optionally with **MinIO** as remote repository), responsible for data backup and point-in-time recovery ([**PITR**](/docs/concept/pitr)).
+The backup subsystem consists of [**pgBackRest**](#pgbackrest) (optionally with **Silo** or external S3 as a remote repository), responsible for data backup and point-in-time recovery ([**PITR**](/docs/concept/pitr)).
 
 **Backup Types**:
 - **Full backup**: Complete database copy
@@ -253,7 +253,7 @@ allowing you to roll back clusters to any point within the backup retention wind
 
 **pgBackRest** works with [**PostgreSQL**](#postgresql) to create backup repositories on the primary, executing backup and archive tasks.
 By default, it uses local backup repository ([**`pgbackrest_method`**](/docs/pgsql/param#pgbackrest_method) = `local`),
-but can be configured for MinIO or other object storage for centralized backup management.
+but can be configured for Silo or external S3 object storage for centralized backup management.
 
 After initialization, [**`pgbackrest_init_backup`**](/docs/pgsql/param#pgbackrest_init_backup) can automatically trigger the first full backup.
 Recovery integrates with [**Patroni**](#patroni), supporting bootstrapping replicas as new primaries or standbys.

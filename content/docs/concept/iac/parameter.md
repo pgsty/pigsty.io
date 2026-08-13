@@ -14,7 +14,7 @@ In the **inventory**, you can use various parameters to fine-tune Pigsty customi
 
 ## Parameter List
 
-According to the current source and parameter reference pages, Pigsty's 10 official modules expose **379** public parameters for fine-grained control. See [**Reference - Parameter List**](/docs/ref/param) for the complete list. The native MySQL 8.4 pilot module exposes 10 additional public parameters that are listed separately and excluded from this total.
+According to the current source and parameter reference pages, Pigsty's 10 official modules expose **373** public parameters for fine-grained control. See [**Reference - Parameter List**](/docs/ref/param) for the complete list. The native MySQL 8.4 pilot module exposes 13 additional public parameters that are listed separately and excluded from this total.
 
 | Module                             | Groups | Params | Description                              |
 |:-----------------------------------|:------:|:------:|:-----------------------------------------|
@@ -22,7 +22,7 @@ According to the current source and parameter reference pages, Pigsty's 10 offic
 | [**INFRA**](/docs/infra/param)     |   10   |   73   | Software repositories and Victoria observability infrastructure |
 | [**NODE**](/docs/node/param)       |   11   |   73   | Node initialization, system tuning, and operations baseline |
 | [**ETCD**](/docs/etcd/param)       |   2    |   13   | ETCD cluster and removal protection parameters |
-| [**MINIO**](/docs/minio/param)     |   2    |   28   | Silo, MinIO, and RustFS deployment, observability, and removal parameters |
+| [**MINIO**](/docs/minio/param)     |   2    |   22   | Silo deployment, observability, and removal parameters                    |
 | [**REDIS**](/docs/redis/param)     |   2    |   22   | Redis/Valkey deployment and removal parameters |
 | [**DOCKER**](/docs/docker/param)   |   1    |    8   | Docker engine parameters                 |
 | [**JUICE**](/docs/juice/param)     |   1    |    2   | JuiceFS instance and cache parameters    |

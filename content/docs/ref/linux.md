@@ -13,7 +13,7 @@ Pigsty runs bare-metal without containers. Supports actively maintained mainstre
 
 ## Overview
 
-**Recommended OS versions:** RockyLinux 10.1 / 9.7, Ubuntu 26.04.0 / 24.04.4 / 22.04.5, Debian 13.6 / 12.14.
+**Recommended OS versions:** Rocky Linux 9.8 / 10.2, Debian 12.15 / 13.6, Ubuntu 22.04.5 / 24.04.4 / 26.04.0.
 
 | Distro                    |                Arch                |                                             OS Code                                             |                       PG18                       |                       PG17                       |                       PG16                       |                       PG15                       |                       PG14                       |
 |:--------------------------|:----------------------------------:|:-----------------------------------------------------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|
@@ -52,8 +52,8 @@ Pigsty supports RHEL / Rocky / Alma / Anolis / CentOS 8, 9, 10.
 | RHEL7 / CentOS7           | <b class="text-sky-600">x86_64</b> |   [`el7.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/el7.x86_64.yml)   |                                                    |                                                    |                                                    | <i class="fas fa-triangle-exclamation text-danger"></i> | <i class="fas fa-triangle-exclamation text-danger"></i> |
 | RHEL7 / CentOS7           | <b class="text-danger">aarch64</b> |                                                -                                                |                                                    |                                                    |                                                    |                                                         |                                                         |
 
-{{% alert title="RockyLinux 10.1 / 9.7 Recommended" color="success" %}}
-RockyLinux 10.1 / 9.7 balances stability and fresh software. Recommended for EL users.
+{{% alert title="Rocky Linux 9.8 / 10.2 Recommended" color="success" %}}
+Rocky Linux 9.8 / 10.2 balances stability and fresh software. Recommended for EL users.
 {{% /alert %}}
 
 {{% alert title="EL8 EOL Soon" color="warning" %}}
@@ -81,7 +81,7 @@ Pigsty supports Ubuntu 26.04 / 24.04 / 22.04:
 | Ubuntu 22.04 (`jammy`)    | <b class="text-sky-600">x86_64</b> |  [`u22.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u22.x86_64.yml)  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |
 | Ubuntu 22.04 (`jammy`)    | <b class="text-danger">aarch64</b> | [`u22.aarch64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u22.aarch64.yml) | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |
 
-{{% alert title="Ubuntu 26.04.0 / 24.04.4 / 22.04.5 LTS Recommended" color="success" %}}
+{{% alert title="Ubuntu 22.04.5 / 24.04.4 / 26.04.0 LTS Recommended" color="success" %}}
 Ubuntu 26.04 provides the newest LTS baseline, while Ubuntu 24.04 remains the conservative default for Ubuntu users.
 {{% /alert %}}
 
@@ -101,7 +101,7 @@ Pigsty supports Debian 12 / 13, latest Debian 13.6 recommended:
 | Debian 11 (`bullseye`) | <b class="text-sky-600">x86_64</b> |                                    `d11.x86_64` (historical)                                    |                                                  |                                                  | <i class="fas fa-triangle-exclamation text-danger"></i> | <i class="fas fa-triangle-exclamation text-danger"></i> | <i class="fas fa-triangle-exclamation text-danger"></i> |
 | Debian 11 (`bullseye`) | <b class="text-danger">aarch64</b> |                                               -                                               |                                                  |                                                  |                                                         |                                                         |                                                         |
 
-{{% alert title="Debian 12.14 / 13.6 Recommended" color="success" %}}
+{{% alert title="Debian 12.15 / 13.6 Recommended" color="success" %}}
 {{% /alert %}}
 
 {{% alert title="Debian 11 EOL @ 2024-07" color="danger" %}}
@@ -115,10 +115,10 @@ Debian 11 EOL since Jul 2024. For extended support on legacy OS, consider [Enter
 
 For local VM deployment, use these Vagrant base images (same as used in Pigsty dev):
 
-- [`cloud-image/almalinux-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-8): AlmaLinux 8.10
-- [`cloud-image/rocky-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-9): RockyLinux 9.7
-- [`cloud-image/almalinux-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-10): AlmaLinux 10.1
-- [`cloud-image/debian-12`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-12): Debian 12.14
+- [`cloud-image/rocky-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-8): Rocky 8.10
+- [`cloud-image/rocky-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-9): Rocky 9.8
+- [`cloud-image/rocky-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-10): Rocky 10.2
+- [`cloud-image/debian-12`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-12): Debian 12.15
 - [`cloud-image/debian-13`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-13): Debian 13.6
 - [`cloud-image/ubuntu-22.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-22.04): Ubuntu 22.04.5
 - [`cloud-image/ubuntu-24.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-24.04): Ubuntu 24.04.4
@@ -134,24 +134,24 @@ For cloud deployment, use these Terraform base image prefixes (Aliyun example):
 | **x86_64**     | Aliyun Image Prefix       |
 |:---------------|:--------------------------|
 | Rocky 8.10     | `rockylinux_8_10_x64`     |
-| Rocky 9.7      | `rockylinux_9_7_x64`      |
-| Rocky 10.1     | `rockylinux_10_1_x64`     |
+| Rocky 9.8      | `rockylinux_9_8_x64`      |
+| Rocky 10.2     | `rockylinux_10_2_x64`     |
 | Ubuntu 22.04.5 | `ubuntu_22_04_x64_20G`    |
 | Ubuntu 24.04.4 | `ubuntu_24_04_x64_20G`    |
 | Ubuntu 26.04.0 | `ubuntu_26_04_x64_20G`    |
-| Debian 12.14   | `debian_12_14_x64`        |
-| Debian 13.5    | `debian_13_5_x64`         |
+| Debian 12.15   | `debian_12_15_x64`        |
+| Debian 13.6    | `debian_13_6_x64`         |
 {.full-width}
 
 
 | **aarch64**    | Aliyun Image Prefix         |
 |:---------------|:----------------------------|
 | Rocky 8.10     | `rockylinux_8_10_arm64`     |
-| Rocky 9.7      | `rockylinux_9_7_arm64`      |
-| Rocky 10.1     | `rockylinux_10_1_arm64`     |
+| Rocky 9.8      | `rockylinux_9_8_arm64`      |
+| Rocky 10.2     | `rockylinux_10_2_arm64`     |
 | Ubuntu 22.04.5 | `ubuntu_22_04_arm64_20G`    |
 | Ubuntu 24.04.4 | `ubuntu_24_04_arm64_20G`    |
 | Ubuntu 26.04.0 | `ubuntu_26_04_arm64_20G`    |
-| Debian 12.14   | `debian_12_14_arm64`        |
-| Debian 13.5    | `debian_13_5_arm64`         |
+| Debian 12.15   | `debian_12_15_arm64`        |
+| Debian 13.6    | `debian_13_6_arm64`         |
 {.full-width}

@@ -31,10 +31,10 @@ Strictly following the current source, the `infra` role directly manages:
 VictoriaMetrics uses static service discovery through the `/infra/targets/<job>/*.yml` directory. If target files are accidentally deleted, use the following commands to re-register:
 
 ```bash
-./infra.yml  -t infra_register   # Re-render infra self-monitoring targets
+./infra.yml  -t infra_register   # Re-render Infra self-monitoring targets
 ./node.yml   -t node_register    # Re-render node / HAProxy / Vector targets
-./etcd.yml   -t etcd_register    # Re-render etcd targets
-./minio.yml  -t minio_register   # Re-render MinIO targets
+./etcd.yml   -t etcd_register    # Re-render Etcd targets
+./minio.yml  -t minio_register   # Re-render Silo module targets
 ./pgsql.yml  -t pg_register      # Re-render PGSQL/Patroni targets
 ./redis.yml  -t redis_register   # Re-render Redis targets
 ```

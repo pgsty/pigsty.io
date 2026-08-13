@@ -476,7 +476,7 @@ uv virtual environment path, default is `/data/venv`. Set to empty string `''` t
 
 When non-empty, Pigsty creates a Python virtual environment on the node using `uv venv` and installs pip packages specified in [`node_pip_packages`](#node_pip_packages).
 
-In China region (`region: china`), `/etc/uv/uv.toml` is automatically configured to use Aliyun PyPI mirror for faster downloads.
+In the China region (`region: china`), `/etc/uv/uv.toml` is automatically configured to use the Tencent Cloud PyPI mirror at `https://mirrors.cloud.tencent.com/pypi/simple/`.
 
 
 
@@ -1344,6 +1344,8 @@ haproxy_services:                   # list of haproxy service
 ```
 
 Each service definition is rendered as `/etc/haproxy/conf.d/<service.name>.cfg` and takes effect after HAProxy reload. The main configuration remains `/etc/haproxy/haproxy.cfg`.
+
+Pigsty writes the HAProxy unit to `/etc/systemd/system/haproxy.service`. The optional environment file is `/etc/default/haproxy`, where only `EXTRAOPTS` is recognized. Do not repeat `-f` there because it conflicts with the main configuration and configuration directory fixed in the unit. If you override `EXTRAOPTS`, keep the default `-S /run/haproxy-master.sock` so seamless reload continues to work; restart the service after changing it.
 
 
 

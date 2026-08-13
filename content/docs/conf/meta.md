@@ -61,7 +61,7 @@ The `meta` template is Pigsty's **default getting-started configuration**, desig
 - Default installs PostgreSQL 18 with `postgis` and `pgvector` extensions
 - Includes complete observability infrastructure (Grafana, VictoriaMetrics, VictoriaLogs, etc.)
 - Preconfigured Docker and pgAdmin application examples
-- MinIO backup storage disabled by default, can be enabled as needed
+- Silo backup storage disabled by default, can be enabled as needed
 
 **Notes**:
 - Default passwords are sample passwords; **must be changed** for production environments

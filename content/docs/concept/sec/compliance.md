@@ -36,7 +36,7 @@ Pigsty default credentials are public in the documentation and source code. They
 | Object-storage backup and example application users | `S3User.Backup`, `S3User.Meta`, `S3User.Data` | Yes |
 | Example database users | `DBUser.Meta`, `DBUser.Supa`, `Vibe.Coding` | Yes |
 | pgBackRest encryption passphrase | `cipher_pass: pgBackRest` | **No** |
-| MinIO users and `pgBR.${pg_cluster}` in `ha/safe` | Template example values | **No** |
+| Silo users and `pgBR.${pg_cluster}` in `ha/safe` | Template example values | **No** |
 | User-defined credentials | Custom values | **No** |
 {.full-width}
 

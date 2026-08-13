@@ -48,7 +48,7 @@ The `ha/trio` template is Pigsty's **standard HA configuration**, providing true
 - Three-node INFRA: Distributed deployment of VictoriaMetrics/Grafana/Nginx
 - Three-node ETCD: DCS majority election, tolerates single-point failure
 - Three-node PostgreSQL: One primary, two replicas, automatic failover
-- Single-node MinIO: Can be expanded to multi-node as needed
+- Single-node Silo: Can be expanded to multi-node as needed
 
 **HA Guarantees**:
 - Three-node ETCD tolerates one node failure, maintains majority

@@ -290,10 +290,11 @@ The replication policy does not scale up with the broker count either. In partic
 Selecting a **strict subset** of a cluster with `kafka-rm.yml` retires members (selecting the whole cluster is a [**teardown**](/docs/kafka/playbook#cluster-teardown)). Retirement removes the leaving node from live metadata through a surviving member:
 
 ```bash
+./kafka-rm.yml -l 10.10.10.13 --check  # Rehearse the exact same member target first
 ./kafka-rm.yml -l 10.10.10.13     # retire one member: remove voter entry, unregister broker, clean the host
 ```
 
-The execution order is: deregister monitoring targets → stop services → `remove-controller` to remove the KRaft voter entry (if the member is a voter; strictly serialized when retiring several members) → `kafka-cluster.sh unregister` to drop the broker registration → clean local config and data (controlled by `kafka_rm_data`). Afterwards, delete the member's entry from `pigsty.yml`.
+The execution order is: deregister monitoring targets → stop services → `remove-controller` to remove the KRaft voter entry (if the member is a voter; strictly serialized when retiring several members) → `kafka-cluster.sh unregister` to drop the broker registration → clean local config and data (controlled by `kafka_rm_data`). Broker unregistration tolerates failure so the workflow is re-entrant and can handle an unreachable member. Delete the member from `pigsty.yml` only after checking the live quorum, broker registrations, replica health, and the target's local state.
 
 Before retiring, confirm yourself that: the remaining controllers still form a majority, the controller count stays odd, and the remaining broker count is not below the highest topic RF. If the retiring broker still hosts partition replicas, the role prints a warning: those partitions stay under-replicated until a replacement with the same `kafka_seq` rejoins (it re-inherits the assignment and resyncs automatically), or until you reassign them explicitly. **A planned shrink should drain with a reassignment first, then retire.**
 

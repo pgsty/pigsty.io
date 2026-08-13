@@ -31,7 +31,7 @@ This page summarizes Pigsty v4.x playbook entries and usage guidance by module. 
 
 | Playbook                                                                   |  Module  | Purpose |
 |:---------------------------------------------------------------------|:--------:|:---------------------------------------------|
-| [**`deploy.yml`**](/docs/infra/playbook#deployyml)                   | `INFRA`  | One-pass deployment for the core chain (Infra/Node/Etcd/PGSQL, enabling MinIO by config) |
+| [**`deploy.yml`**](/docs/infra/playbook#deployyml)                   | `INFRA`  | One-pass deployment for the core chain (Infra/Node/Etcd/PGSQL, enabling MINIO by config) |
 | [**`infra.yml`**](/docs/infra/playbook#infrayml)                     | `INFRA`  | Initialize infrastructure nodes |
 | [**`infra-rm.yml`**](/docs/infra/playbook#infra-rmyml)               | `INFRA`  | Remove infrastructure components |
 | [**`node.yml`**](/docs/node/playbook#nodeyml)                        |  `NODE`  | Node onboarding and baseline convergence |
@@ -47,8 +47,8 @@ This page summarizes Pigsty v4.x playbook entries and usage guidance by module. 
 | [**`pgsql-pitr.yml`**](/docs/pgsql/playbook#pgsql-pitryml)           | `PGSQL`  | Point-in-time recovery (PITR) |
 | [**`redis.yml`**](/docs/redis/playbook#redisyml)                     | `REDIS`  | Deploy Redis |
 | [**`redis-rm.yml`**](/docs/redis/playbook#redis-rmyml)               | `REDIS`  | Remove Redis |
-| [**`minio.yml`**](/docs/minio/playbook#minioyml)                     | `MINIO`  | Deploy MinIO |
-| [**`minio-rm.yml`**](/docs/minio/playbook#minio-rmyml)               | `MINIO`  | Remove the selected Silo, MinIO, or RustFS backend |
+| [**`minio.yml`**](/docs/minio/playbook#minioyml)                     | `MINIO`  | Deploy Silo |
+| [**`minio-rm.yml`**](/docs/minio/playbook#minio-rmyml)               | `MINIO`  | Remove Silo, its configuration, and optional data |
 | [**`docker.yml`**](/docs/docker/playbook#dockeryml)                  | `DOCKER` | Deploy Docker engine |
 | [**`juice.yml`**](/docs/juice/playbook#juiceyml)                     | `JUICE`  | Deploy/remove JuiceFS instances |
 | [**`vibe.yml`**](/docs/vibe/playbook#vibeyml)                        |  `VIBE`  | Deploy VIBE dev environment |
@@ -93,7 +93,8 @@ When safeguard is `true`, corresponding `*-rm.yml` playbooks abort immediately. 
 
 ```bash
 ./pgsql-rm.yml -l pg-test -e pg_safeguard=false
-./etcd-rm.yml  -l etcd    -e etcd_safeguard=false
+./etcd-rm.yml  -l etcd --check                       # Preview the complete target first
+./etcd-rm.yml  -l etcd -e etcd_safeguard=false      # Execute after verifying target and backups
 ./minio-rm.yml -l minio   -e minio_type=silo -e minio_safeguard=false
 ./redis-rm.yml -l redis-test -e redis_safeguard=false
 ./kafka-rm.yml -l kf-main -e kafka_safeguard=false
@@ -161,7 +162,8 @@ bin/node-rm <cls|ip>             # remove node (wrapper)
 
 ```bash
 ./etcd.yml                       # initialize etcd cluster
-./etcd-rm.yml                    # remove etcd cluster
+./etcd-rm.yml -l etcd --check    # preview the exact complete target before destruction
+./etcd-rm.yml -l etcd            # removes local data and config by default
 bin/etcd-add <ip>                # add etcd member (wrapper)
 bin/etcd-rm <ip>                 # remove etcd member (wrapper)
 ```
@@ -196,8 +198,8 @@ bin/pgmon-add <cls>              # monitor remote cluster (wrapper)
 ### MINIO Module
 
 ```bash
-./minio.yml -l <cls>                       # initialize the object-storage backend selected by the MINIO module
-./minio-rm.yml -l <cls> -e minio_type=silo # remove backend; use minio or rustfs for the actual engine
+./minio.yml -l <cls>                       # initialize the MINIO module's Silo cluster
+./minio-rm.yml -l <cls> -e minio_type=silo # remove Silo; this value must be confirmed explicitly
 ```
 
 ### DOCKER Module

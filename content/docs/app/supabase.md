@@ -1,7 +1,7 @@
 ---
 title: "Enterprise Self-Hosted Supabase"
 weight: 555
-description: Self-host enterprise-grade Supabase with Pigsty, featuring monitoring, high availability, PITR, IaC, and 572 PostgreSQL extensions.
+description: Self-host enterprise-grade Supabase with Pigsty, featuring monitoring, high availability, PITR, IaC, and 575 PostgreSQL extensions.
 module: [SOFTWARE]
 categories: [Reference]
 ---
@@ -112,9 +112,9 @@ We package all 10 missing Supabase extensions into ready-to-use RPM/DEB packages
 We also [install](/docs/pgsql/ext/install) most extensions by default in Supabase deployments. You can [enable](/docs/pgsql/ext/create) them as needed.
 Newer templates install the `pg_graphql` package but no longer create the `pg_graphql` extension object by default. If you need GraphQL APIs, run `CREATE EXTENSION IF NOT EXISTS pg_graphql;` in the target database; the event trigger in the template will rebuild the `graphql_public.graphql` entry point and permissions.
 
-Pigsty also handles the underlying [highly available](/docs/concept/ha/) [PostgreSQL](/docs/pgsql/) cluster, highly available [MinIO](/docs/minio/) object storage cluster, and even [Docker](/docs/docker/) deployment, [Nginx](/docs/infra/admin/portal) reverse proxy, [domain configuration](/docs/infra/admin/domain), and [HTTPS certificate issuance](/docs/infra/admin/cert). You can spin up any number of stateless Supabase container clusters using Docker Compose and store state in external Pigsty-managed database services.
+Pigsty also handles the underlying [highly available](/docs/concept/ha/) [PostgreSQL](/docs/pgsql/) cluster, highly available [Silo](/docs/minio/) object storage cluster, and even [Docker](/docs/docker/) deployment, [Nginx](/docs/infra/admin/portal) reverse proxy, [domain configuration](/docs/infra/admin/domain), and [HTTPS certificate issuance](/docs/infra/admin/cert). You can spin up any number of stateless Supabase container clusters using Docker Compose and store state in external Pigsty-managed database services.
 
-With this self-hosted architecture, you gain the freedom to use different PostgreSQL kernels (PostgreSQL 14-18, default 18), install [**{{< param pgext_count >}}**](/ext/list/) extensions, scale Supabase/Postgres/MinIO, freedom from database operations, and freedom from vendor lock-in — running locally forever. Compared to cloud service costs, you only need to prepare servers and run a few commands.
+With this self-hosted architecture, you gain the freedom to use different PostgreSQL kernels (PostgreSQL 14-18, default 18), install [**{{< param pgext_count >}}**](/ext/list/) extensions, scale Supabase/Postgres/Silo, freedom from database operations, and freedom from vendor lock-in — running locally forever. Compared to cloud service costs, you only need to prepare servers and run a few commands.
 
 
 ------
@@ -159,7 +159,7 @@ Default username and password are `supabase` and `pigsty`.
 
 Here are some key technical decisions for self-hosting Supabase:
 
-**Single-node deployment** doesn't provide PostgreSQL/MinIO high availability.
+**Single-node deployment** doesn't provide PostgreSQL/Silo high availability.
 However, single-node deployment still has significant advantages over the official pure Docker Compose approach: out-of-the-box monitoring, freedom to install extensions, component scaling capabilities, and point-in-time recovery as a safety net.
 
 Pigsty's Supabase template does not start the upstream Compose `db` or `supavisor` containers, and does not use Supabase's bundled connection pooler.
@@ -171,10 +171,10 @@ This prevents internal scheduling tables such as `oban_jobs` and `oban_peers` fr
 The Query Performance page in Supabase Studio accesses `pg_stat_statements` with a `public, extensions` search path.
 Pigsty keeps the `pg_stat_statements` extension objects in the `monitor` schema for compatibility with `pg_exporter` and existing monitoring dashboards. The template creates a compatibility view and functions in the `extensions` schema for Studio.
 
-If you only have one server or choose to self-host on cloud servers, Pigsty recommends using external S3 instead of local MinIO for object storage to hold PostgreSQL backups and Supabase Storage.
+If you only have one server or choose to self-host on cloud servers, Pigsty recommends using external S3 instead of local Silo for object storage to hold PostgreSQL backups and Supabase Storage.
 This deployment provides a minimum safety net RTO (hour-level recovery time) / RPO (MB-level data loss) disaster recovery in single-node conditions.
 
-For serious production deployments, Pigsty recommends at least 3-4 nodes, ensuring both MinIO and PostgreSQL use enterprise-grade multi-node high availability deployments.
+For serious production deployments, Pigsty recommends at least 3-4 nodes, ensuring both Silo and PostgreSQL use enterprise-grade multi-node high availability deployments.
 You'll need more nodes and disks, adjusting cluster configuration in `pigsty.yml` and Supabase cluster configuration to use high availability endpoints.
 
 Some Supabase features require sending emails, so SMTP service is needed. Unless purely for internal use, production deployments should use SMTP cloud services. Self-hosted mail servers' emails are often marked as spam.
@@ -198,7 +198,7 @@ For serious production deployments, we strongly recommend changing Pigsty compon
 - [`pg_replication_password`](/docs/pgsql/param/#pg_replication_password): `DBUser.Replicator`, PostgreSQL replication user password
 - [`patroni_password`](/docs/pgsql/param/#patroni_password): `Patroni.API`, Patroni HA component password
 - [`haproxy_admin_password`](/docs/node/param/#haproxy_admin_password): `pigsty`, Load balancer admin password
-- [`minio_secret_key`](/docs/minio/param/#minio_secret_key): `S3User.MinIO`, MinIO root user secret
+- [`minio_secret_key`](/docs/minio/param/#minio_secret_key): `S3User.MinIO`, Silo root user secret
 - [`etcd_root_password`](/docs/etcd/param/#etcd_root_password): `Etcd.Root`, ETCD root user password
 - Additionally, strongly recommend changing the [PostgreSQL business user](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L72) password for Supabase, default is `DBUser.Supa`
 
@@ -406,6 +406,6 @@ For RTO < 30s with zero data loss on failover, use [multi-node](/docs/deploy/ins
 - [INFRA](/docs/infra/): Monitoring infrastructure failure has less impact; production recommends dual replicas.
 - Supabase stateless containers can also be multi-node replicas for high availability.
 
-In this case, you also need to modify PostgreSQL and MinIO endpoints to use DNS / L2 VIP / HAProxy [high availability endpoints](/docs/pgsql/service#access).
+In this case, you also need to modify PostgreSQL and Silo endpoints to use DNS / L2 VIP / HAProxy [high availability endpoints](/docs/pgsql/service#access-service).
 For these parts, follow the documentation for each Pigsty module.
 Reference [`conf/ha/trio.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/trio.yml) and [`conf/ha/safe.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/trio.yml) for upgrading to three or more nodes.

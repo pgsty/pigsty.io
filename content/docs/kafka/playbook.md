@@ -228,6 +228,7 @@ The safeguard switch is `kafka_safeguard`: when set to `true` (on the command li
 ### Cluster Teardown
 
 ```bash
+./kafka-rm.yml -l kf-main --check                  # Rehearse the exact same full-cluster target first
 ./kafka-rm.yml -l kf-main                          # Remove the cluster: deregister monitoring and stop services; deletes data and /etc/kafka recovery state by default
 ./kafka-rm.yml -l kf-main -e kafka_rm_data=false   # Keep data and /etc/kafka recovery state; remove only service integration
 ./kafka-rm.yml -l kf-main -e kafka_rm_pkg=true     # Also uninstall the kafka-stack packages (the shared Java runtime is not removed)
@@ -241,10 +242,11 @@ The safeguard switch is `kafka_safeguard`: when set to `true` (on the command li
 ### Member Retirement
 
 ```bash
+./kafka-rm.yml -l 10.10.10.13 --check              # Rehearse the exact same member target first
 ./kafka-rm.yml -l 10.10.10.13                      # Retire one member: drop its voter entry and broker registration, then clean the node
 ```
 
-The playbook removes the leaving node's KRaft voter entry through a surviving member (`remove-controller`, strictly serialized for several members) and drops its broker registration (`unregister`) before the local cleanup. Every metadata action is delegated to the survivor, so this also works for nodes that are already dead and unreachable — this is step one of [Replace Failed Node](/docs/kafka/admin#replace-failed-node).
+The playbook attempts to remove the leaving node's KRaft voter entry through a surviving member (`remove-controller`, strictly serialized for several members) and drops its broker registration (`unregister`) before local cleanup. Metadata actions are delegated to the survivor, so this also works for nodes that are already dead and unreachable—step one of [Replace Failed Node](/docs/kafka/admin#replace-failed-node). Broker unregistration is deliberately re-entrant and tolerates failure; after a real run, inspect the live quorum, broker registrations, and replica health instead of treating the playbook status alone as proof of retirement.
 
 Automated retirement does not remove the need for planning: after the shrink, the remaining controllers should stay odd-numbered and keep a live majority, and the remaining broker count must not fall below the highest topic RF; when the retiring broker still hosts partition replicas, the playbook prints a warning — a planned shrink should drain with a reassignment first.
 

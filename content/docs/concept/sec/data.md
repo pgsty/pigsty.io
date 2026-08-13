@@ -45,7 +45,7 @@ Select the backup repository with [`pgbackrest_method`](/docs/pgsql/param#pgback
 | Repository | Location | Default Retention | Encryption |
 |:---|:---|:---|:---|
 | `local` (default) | Local `/pg/backup` directory | Latest 2 full backups | None |
-| `minio` | [**MinIO**](/docs/concept/model/minio) or S3-compatible object storage | 14 days | AES-256-CBC |
+| `minio` | [**Silo**](/docs/concept/model/minio) or external S3-compatible object storage | 14 days | AES-256-CBC |
 {.full-width}
 
 Two additional controls reduce damage from accidental deletion:
@@ -64,7 +64,7 @@ Having a backup is not the same as being able to restore. Recovery exercises sho
 
 Protect data at rest at three layers:
 
-**Backup encryption.** `pgbackrest_method: minio` denotes an S3-compatible object-storage repository, which may be provided by Silo, MinIO, RustFS, or external S3. It uses AES-256-CBC by default, but the default `pgBackRest` encryption passphrase is public and must be changed in production.
+**Backup encryption.** `pgbackrest_method: minio` denotes an S3-compatible repository. It can be provided by Silo deployed through the MINIO module, or independently managed MinIO, RustFS, and external S3 services. The preset uses AES-256-CBC by default, but the public `pgBackRest` passphrase must be changed in production.
 The [**`ha/safe` template**](/docs/conf/safe) derives an example passphrase from the cluster name:
 
 ```yaml
@@ -78,7 +78,7 @@ pgbackrest_repo:
 
 The local backup repository is not encrypted by default. Encryption reduces disclosure if backup files or media are copied separately, but offers limited protection when the key and backup remain on the same host.
 
-**Transport encryption.** Backup uploads to MinIO use HTTPS. PostgreSQL client and replication traffic can require SSL through HBA. Clients should also verify the server certificate; see [**Encrypted Communication**](/docs/concept/sec/ca#server-identity-verification).
+**Transport encryption.** Backup uploads to Silo or external S3 services use HTTPS. PostgreSQL client and replication traffic can require SSL through HBA. Clients should also verify the server certificate; see [**Encrypted Communication**](/docs/concept/sec/ca#server-identity-verification).
 
 **Encryption at rest.** Upstream PostgreSQL currently has no general built-in transparent data encryption (TDE). Pigsty provides two practical options:
 use the `pg_tde` extension with Percona Distribution for PostgreSQL for table-level transparent encryption (see the [**pgtde configuration template**](/docs/conf/pgtde));

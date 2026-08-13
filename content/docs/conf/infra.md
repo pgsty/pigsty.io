@@ -62,7 +62,7 @@ The `infra` template is Pigsty's **pure monitoring stack configuration**, design
 **Not Included**:
 - PostgreSQL database cluster
 - etcd distributed coordination service
-- MinIO object storage
+- Silo object storage
 
 **Monitoring External Instances**:
 After configuration, add monitoring for external PostgreSQL instances via the `pgsql-monitor.yml` playbook:

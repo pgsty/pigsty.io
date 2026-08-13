@@ -17,13 +17,13 @@ categories: [Concept]
 
 ## Overview
 
-Pigsty's PostgreSQL clusters come with auto-configured Point-in-Time Recovery (PITR) capability, powered by the backup component [**pgBackRest**](https://pgbackrest.org/) and optional object storage repository [**MinIO**](https://min.io/).
+Pigsty's PostgreSQL clusters come with auto-configured Point-in-Time Recovery (PITR) capability, powered by [**pgBackRest**](https://pgbackrest.org/) and optional [**Silo**](/docs/minio/) object storage.
 
 [**High availability solutions**](/docs/concept/ha) can address hardware failures but are powerless against data deletion/overwriting/database drops caused by software defects and human errors.
 For such situations, Pigsty provides out-of-the-box **Point-in-Time Recovery** (PITR) capability, enabled by default without additional configuration.
 
-Pigsty provides default configurations for base backups and WAL archiving. You can use local directories and disks, or dedicated MinIO clusters or S3 object storage services to store backups and achieve geo-redundant disaster recovery.
-When using local disks, the default capability to recover to any point within the past day is retained. When using MinIO or S3, the default capability to recover to any point within the past week is retained.
+Pigsty provides default configurations for base backups and WAL archiving. You can use local directories and disks, a dedicated Silo cluster, or external S3 object storage to store backups and achieve geo-redundant disaster recovery.
+When using local disks, the default capability to recover to any point within the past day is retained. When using Silo or S3, the default capability to recover to any point within the past week is retained.
 As long as storage space permits, you can retain any arbitrarily long recoverable time window, as your budget allows.
 
 ------
@@ -93,9 +93,9 @@ If you don't need PITR functionality, you can disable WAL archiving by [**config
 
 ## Implementation
 
-By default, Pigsty provides two preset [backup strategies](/docs/pgsql/backup/policy): The default uses local filesystem backup repository, performing one full backup daily to ensure users can roll back to any point within the past day. The alternative strategy uses dedicated MinIO clusters or S3 storage for backups, with weekly full backups, daily incremental backups, and two weeks of backup and WAL archive retention by default.
+By default, Pigsty provides two preset [backup strategies](/docs/pgsql/backup/policy): the default uses a local filesystem repository and one full backup daily; the alternative uses dedicated Silo or external S3 storage, with weekly full backups, daily incremental backups, and two weeks of backup and WAL archive retention.
 
-Pigsty uses pgBackRest to manage backups, receive WAL archives, and perform PITR. Backup repositories can be flexibly configured ([`pgbackrest_repo`](/docs/pgsql/param#pgbackrest_repo)): defaults to primary's local filesystem (`local`), but can also use other disk paths, or the included optional [MinIO](/docs/minio) service (`minio`) and cloud S3 services.
+Pigsty uses pgBackRest to manage backups, receive WAL archives, and perform PITR. Backup repositories can be flexibly configured ([`pgbackrest_repo`](/docs/pgsql/param#pgbackrest_repo)): the primary's local filesystem (`local`) by default, another disk path, the optional [Silo](/docs/minio) service through the compatible `minio` preset, or an external S3 service.
 
 ```yaml
 pgbackrest_enabled: true          # enable pgBackRest on pgsql host?
@@ -107,7 +107,7 @@ pgbackrest_repo:                  # pgbackrest repo: https://pgbackrest.org/conf
     path: /pg/backup              # local backup directory, `/pg/backup` by default
     retention_full_type: count    # retention full backup by count
     retention_full: 2             # keep at most 3 full backup, at least 2, when using local fs repo
-  minio:                          # optional minio repo for pgbackrest
+  minio:                          # optional Silo / S3-compatible repo for pgBackRest
     type: s3                      # minio is s3-compatible, so use s3
     s3_endpoint: sss.pigsty       # minio endpoint domain name, `sss.pigsty` by default
     s3_region: us-east-1          # minio region, us-east-1 by default, not used for minio

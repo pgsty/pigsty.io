@@ -256,15 +256,22 @@ Behavioral differences when `redis_port` is specified:
 Usage examples:
 
 ```bash
+# Preview the exact same target first; a real run deletes RDB/AOF directories by default
+./redis-rm.yml -l redis-ms --check
+
 # Remove cluster but keep data directories
 ./redis-rm.yml -l redis-ms -e redis_rm_data=false
 
 # Remove cluster and uninstall packages
 ./redis-rm.yml -l redis-ms -e redis_rm_pkg=true
 
-# Bypass safeguard to force removal
+# Override only after verifying the target and backups when the inventory enables the safeguard
 ./redis-rm.yml -l redis-ms -e redis_safeguard=false
 ```
+
+{{% alert title="Destructive Operation" color="danger" %}}
+`redis_safeguard` defaults to `false`, while `redis_rm_data` defaults to `true`. The removal playbook also tolerates several service-stop, deregistration, data-deletion, and package-removal errors. After a real run, inspect the target processes, data directories, and monitoring registration; do not treat the playbook return status alone as proof of completion.
+{{% /alert %}}
 
 
 ### Safeguard Mechanism

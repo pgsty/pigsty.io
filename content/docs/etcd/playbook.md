@@ -60,6 +60,10 @@ The removal playbook uses the [`etcd_remove`](https://github.com/pgsty/pigsty/bl
 - [`etcd_rm_data`](/docs/etcd/param#etcd_rm_data): Controls whether ETCD data is deleted (default: `true`)
 - [`etcd_rm_pkg`](/docs/etcd/param#etcd_rm_pkg): Controls whether ETCD packages are uninstalled (default: `false`)
 
+{{% alert title="Dangerous Operation" color="danger" %}}
+`etcd_safeguard` defaults to `false`, while `etcd_rm_data` defaults to `true`. A full `etcd-rm.yml` run therefore attempts to remove the target from the cluster, deregister and stop it, then delete local Etcd data, configuration, unit files, and the client environment file. The playbook ignores some leave and cleanup errors and does not prove that the remaining members retain quorum. Always use an exact `-l`, run `--check` against the same target first, and verify a recent backup, the member list, and remaining quorum.
+{{% /alert %}}
+
 
 
 --------
@@ -87,11 +91,12 @@ The removal playbook uses the [`etcd_remove`](https://github.com/pgsty/pigsty/bl
 **Etcd Removal & Cleanup:**
 
 ```bash
-./etcd-rm.yml                                   # Remove entire etcd cluster
-./etcd-rm.yml -l 10.10.10.12                    # Remove single etcd member
-./etcd-rm.yml -e etcd_safeguard=false           # Override safeguard to force removal
-./etcd-rm.yml -e etcd_rm_data=false             # Stop service only, preserve data
-./etcd-rm.yml -e etcd_rm_pkg=true               # Also uninstall etcd packages
+./etcd-rm.yml -l 10.10.10.12 --check               # Rehearse the same exact member first
+./etcd-rm.yml -l 10.10.10.12                       # Leave, deregister, stop, and delete local data by default
+./etcd-rm.yml -l 10.10.10.12 -e etcd_rm_data=false # Leave, deregister, and stop, preserving local data/config
+./etcd-rm.yml -l 10.10.10.12 -e etcd_rm_pkg=true   # Also uninstall Etcd packages
+./etcd-rm.yml -l etcd --check                      # Rehearse the full target before destroying the cluster
+./etcd-rm.yml -l etcd                              # Destroy the entire cluster and its local data
 ```
 
 **Convenience Scripts:**
@@ -126,7 +131,7 @@ etcd:
 When `etcd_safeguard` is set to `true`, `etcd-rm.yml` aborts before any deregistration, cluster-leave, service-stop, or deletion action. It is a boolean guard and does not probe whether the instance is alive. Override it with a command-line parameter:
 
 ```bash
-./etcd-rm.yml -e etcd_safeguard=false  # Force override safeguard
+./etcd-rm.yml -l <exact-target> -e etcd_safeguard=false  # Override only after verifying target and backups
 ```
 
-Unless you clearly understand what you're doing, we do not recommend arbitrarily removing etcd clusters.
+Regardless of the safeguard value, inspect `etcdctl member list`, endpoint health, and remaining quorum after a real run; a successful task status is not runtime acceptance.

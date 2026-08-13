@@ -48,7 +48,7 @@ categories: [Tutorial, Reference]
 | Perform PITR | [**Point-in-Time Recovery**](/docs/concept/pitr/) | [**Restore Operations**](/docs/pgsql/backup/restore/) |
 | Recover dropped data, tables, or databases | [**Drop Recovery**](/docs/pgsql/tutorial/drop/) | [**Manual Recovery**](/docs/pgsql/tutorial/pitr/) |
 | Clone or fork a cluster | [**Clone Database Cluster**](/docs/pgsql/backup/cluster/) | [**Fork Instance**](/docs/pgsql/tutorial/pg-fork/) |
-| Use MinIO for backups | [**MINIO Module**](/docs/minio/) | [**MinIO Config**](/docs/minio/config/), [**Backup Repository**](/docs/pgsql/backup/repository/) |
+| Use Silo for backups | [**MINIO Module**](/docs/minio/) | [**Silo Config**](/docs/minio/config/), [**Backup Repository**](/docs/pgsql/backup/repository/) |
 | View monitoring and alerts | [**Monitoring System**](/docs/concept/monitor/) | [**PGSQL Monitoring**](/docs/pgsql/monitor/), [**PGSQL Dashboards**](/docs/pgsql/dashboard/) |
 | Troubleshoot database failures | [**PGSQL FAQ**](/docs/pgsql/faq/) | [**Troubleshooting**](/docs/pgsql/tutorial/failure/), [**Component Management**](/docs/pgsql/admin/component/) |
 | Scale PostgreSQL clusters | [**Cluster Instance Config**](/docs/pgsql/config/cluster/) | [**Cluster Management**](/docs/pgsql/admin/cluster/) |

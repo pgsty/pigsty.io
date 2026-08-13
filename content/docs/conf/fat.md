@@ -53,7 +53,7 @@ The `fat` template is Pigsty's **full-featured test configuration**, designed fo
 **Key Features**:
 - **All Extensions**: Installs all categorized extension packages for PostgreSQL 18
 - **Multi-version Repository**: Local repo contains all five major versions of PostgreSQL 14-18
-- **Complete Component Stack**: Includes MinIO backup, Docker applications, VIP, etc.
+- **Complete Component Stack**: Includes Silo backup, Docker applications, VIP, etc.
 - **Enterprise Components**: Includes Kafka, PolarDB, IvorySQL, TigerBeetle, etc.
 
 **Repository Contents**:

@@ -38,7 +38,7 @@ This template enhances the `meta` template with:
 - SSL certificate and custom domain configuration (e.g., `pigsty.cc`)
 - Downloads and installs all available PostgreSQL 18 extensions
 - Enables Docker with image acceleration
-- Deploys MinIO object storage
+- Deploys Silo object storage
 - Pre-configures multiple business databases and users
 - Adds Redis primary-replica instance examples
 - Adds Kafka sample cluster

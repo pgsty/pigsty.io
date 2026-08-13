@@ -113,7 +113,7 @@ The largest deployment is 25K vCPU, 4.5 million QPS, 6+ years; the smallest depl
 
 Pigsty focuses on integrating the PostgreSQL ecosystem and providing PostgreSQL best practices, but also supports a series of open-source software that works well with PostgreSQL. For example:
 
-- Etcd, Redis, MinIO, DuckDB, Prometheus
+- Etcd, Redis, Silo, DuckDB, Prometheus
 - FerretDB, Babelfish, IvorySQL, PolarDB, OrioleDB
 - OpenHalo, Supabase, Greenplum, Dify, Odoo, ...
 

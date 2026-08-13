@@ -129,7 +129,7 @@ The **recovery window** is defined by two boundaries:
 Window length depends on backup frequency, backup retention, and WAL retention:
 
 - `local` repo keeps **2 full backups** by default, window is **24–48 hours**.
-- `minio` repo keeps **14 days** by time, window is **1–2 weeks**.
+- The remote `minio` / S3 repository keeps at least **14 days** by time; with weekly full backups, the steady-state window is roughly **14–21 days**.
 
 See [**Backup Policy**](/docs/pgsql/backup/policy/) and [**Backup Repository**](/docs/pgsql/backup/repository/).
 

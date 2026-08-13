@@ -85,7 +85,7 @@ Use the following command to create a new standard admin user defined by [`node_
 
 You can use [`haproxy_services`](/docs/node/param#haproxy_services) in the configuration to expose services, and use `node.yml -t haproxy_config,haproxy_reload` to update the configuration.
 
-Here's an example of exposing a MinIO service: [Expose MinIO Service](/docs/minio#expose-service)
+Here's an example of exposing Silo: [Silo Service Access](/docs/minio/config#expose-service)
 
 
 

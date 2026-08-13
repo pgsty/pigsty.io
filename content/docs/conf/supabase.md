@@ -53,7 +53,7 @@ The `supabase` template provides a complete self-hosted Supabase solution, allow
 **Architecture**:
 - **PostgreSQL**: Production-grade Pigsty-managed PostgreSQL (with HA support)
 - **Docker Containers**: Supabase stateless services (Auth, Storage, Realtime, Edge Functions, etc.)
-- **MinIO**: S3-compatible object storage for file storage and PostgreSQL backup
+- **Silo**: S3-compatible object storage deployed by the MINIO module for file storage and PostgreSQL backup
 - **Nginx**: Reverse proxy and HTTPS termination
 
 **Key Features**:
@@ -61,7 +61,7 @@ The `supabase` template provides a complete self-hosted Supabase solution, allow
 - Supports PostgreSQL high availability (can be expanded to three-node cluster)
 - Installs all Supabase-required extensions (pg_net, pgjwt, pg_graphql, vector, etc.)
 - Stores internal analytics data in the dedicated `_supabase` database and advances processing with the scheduled `supa-kick` task
-- Integrated MinIO object storage for file uploads and backups
+- Integrated Silo object storage for file uploads and backups
 - HTTPS support with Let's Encrypt automatic certificates
 
 **Deployment Steps**:
@@ -69,7 +69,7 @@ The `supabase` template provides a complete self-hosted Supabase solution, allow
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
 ./configure -c supabase                   # Use supabase config template
-./deploy.yml                              # Install Pigsty, PostgreSQL, MinIO
+./deploy.yml                              # Install Pigsty, PostgreSQL, Silo
 ./docker.yml                              # Install Docker
 ./app.yml                                 # Start Supabase containers
 ```

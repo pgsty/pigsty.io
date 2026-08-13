@@ -87,7 +87,7 @@ bin/pgsql-add pg-test   # Create the pg-test cluster
 ![pigsty-iac.jpg](/img/pigsty/iac.jpg)
 
 You can use different instance roles such as [**primary**](/docs/pgsql/config/cluster#primary), [**replica**](/docs/pgsql/config/cluster#replica), [**offline**](/docs/pgsql/config/cluster#offline), [**delayed**](/docs/pgsql/config/cluster#delayed-cluster), [**sync standby**](/docs/pgsql/config/cluster#sync-standby);
-as well as different clusters: such as [**standby clusters**](/docs/pgsql/config#standby-cluster), [**Citus clusters**](/docs/pgsql/config#citus-cluster), and even [**Redis**](/docs/redis) / [**MinIO**](/docs/minio) / [**Etcd**](/docs/etcd) clusters
+as well as different clusters: such as [**standby clusters**](/docs/pgsql/config/cluster#standby-cluster), [**Citus clusters**](/docs/pgsql/config/cluster#citus-cluster), and even [**Redis**](/docs/redis) / [**MINIO (Silo)**](/docs/minio) / [**Etcd**](/docs/etcd) clusters
 
 
 -----------------
@@ -338,7 +338,7 @@ etcd: # dcs service for postgres/patroni ha consensus
   hosts:  # 1 node for testing, 3 or 5 for production
     10.10.10.10: { etcd_seq: 1 }  # etcd_seq required
     10.10.10.11: { etcd_seq: 2 }  # assign from 1 ~ n
-    10.10.10.12: { etcd_seq: 3 }  # odd number please
+    10.10.10.12: { etcd_seq: 3 }  # three-member cluster keeps an odd voter count
   vars: # cluster level parameter override roles/etcd
     etcd_cluster: etcd  # mark etcd cluster name etcd
     etcd_safeguard: false # safeguard against purging
@@ -348,9 +348,9 @@ etcd: # dcs service for postgres/patroni ha consensus
 
 ----------------
 
-## MinIO Cluster
+## MINIO (Silo) Cluster
 
-Below is a declarative configuration example for a three-node MinIO cluster:
+Below is a declarative configuration example for a three-node Silo cluster. The inventory group and parameters retain the MINIO module's compatibility names:
 
 ```yaml
 minio:
@@ -360,6 +360,7 @@ minio:
     10.10.10.12: { minio_seq: 3 }
   vars:
     minio_cluster: minio
+    minio_type: silo
     minio_data: '/data{1...2}'          # use two disks per node
     minio_node: '${minio_cluster}-${minio_seq}.pigsty' # node name pattern
     haproxy_services:

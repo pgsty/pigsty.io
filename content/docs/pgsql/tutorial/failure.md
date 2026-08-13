@@ -37,7 +37,7 @@ For database nodes, focus on checking the following directories and their sizes 
 If the issue occurs on the Pigsty admin node or monitoring node, also consider:
 
 - **Monitoring data**: VictoriaMetrics time-series metrics and VictoriaLogs log storage both consume disk space; check retention policies.
-- **Object storage data**: Pigsty's integrated MinIO object storage may be used for PG backup storage.
+- **Object storage data**: Pigsty's integrated Silo object storage may be used for PG backup storage.
 
 After identifying the directory consuming the most space, you can further use `du -sh <directory>` to drill down and find specific large files or subdirectories.
 

@@ -54,11 +54,12 @@ For prod etcd clusters, enable safeguard [`etcd_safeguard`](/docs/etcd/param#etc
 
 ## Destroy Cluster
 
-Use dedicated [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook to destroy etcd cluster. Use caution!
+Use the dedicated [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook to destroy an Etcd cluster. The default `etcd_rm_data: true` deletes local data and configuration. First confirm that no PostgreSQL cluster still uses it as DCS, verify a recent backup, and check the exact target name.
 
 ```bash
-./etcd-rm.yml                         # remove entire etcd cluster
-./etcd-rm.yml -e etcd_safeguard=false # override safeguard
+./etcd-rm.yml -l etcd --check                    # Rehearse the full, exact target first
+./etcd-rm.yml -l etcd                            # Destroy the entire Etcd cluster after confirmation
+./etcd-rm.yml -l etcd -e etcd_safeguard=false   # Override only when the inventory enables the safeguard
 ```
 
 Or use utility script:
@@ -67,7 +68,7 @@ Or use utility script:
 bin/etcd-rm                           # remove entire etcd cluster
 ```
 
-Removal playbook respects [`etcd_safeguard`](/docs/etcd/param#etcd_safeguard). If `true`, playbook aborts to prevent accidental deletion.
+The removal playbook respects [`etcd_safeguard`](/docs/etcd/param#etcd_safeguard). If `true`, it aborts before leaving the cluster, deregistering, stopping the service, or deleting files. Its default is `false`, so the absence of an explicit override is not itself a confirmation.
 
 {{% alert title="Warning" color="warning" %}}
 Before removing etcd cluster, ensure no PG clusters use it as DCS. PG HA will break otherwise.
@@ -209,7 +210,7 @@ bin/etcd-add <ip>              # add single new member
 bin/etcd-add <ip1> <ip2> ...   # add multiple new members
 ```
 
-Script auto-performs:
+The script attempts these operations in order:
 - Validates IP address validity
 - Executes `etcd.yml` playbook (auto-sets `etcd_init=existing`)
 - Provides safety warnings and countdown
@@ -321,17 +322,20 @@ Script auto-performs:
 - Cleans up data and config files
 - Deregisters from monitoring system
 
+The underlying removal role tolerates some leave and cleanup errors. After the script finishes, inspect `etcdctl member list`, endpoint health, remaining quorum, and the actual service and data-directory state on the target.
+
 ### Manual: Step-by-Step
 
 Remove member instance from etcd cluster:
 
 1. **Keep the member in the inventory**: The removal playbook needs its `etcd_seq`, cluster members, and connection endpoints
-2. **Clean up the instance**: Run `etcd-rm.yml` against the target; it first attempts `member remove`, then stops the service and cleans up according to the removal flags
+2. **Clean up the instance**: First run `--check` against the same target, then run `etcd-rm.yml`; it attempts `member remove`, stops the service, and cleans up according to the removal flags
 3. **Update the inventory**: Comment out or delete the member only after the playbook succeeds
 4. **Reload references**: Follow [Reload Config](#reload-config) for the remaining etcd members and the Patroni/VIP-Manager endpoints
 
 ```bash
 # <ip> must still be in the etcd inventory group
+./etcd-rm.yml -l <ip> --check          # Rehearse the exact same target first
 ./etcd-rm.yml -l <ip>                  # Leave the cluster and clean up automatically
 # After success, remove the member from pigsty.yml and refresh the remaining members and clients
 ```
@@ -349,7 +353,7 @@ Example: 3-node etcd cluster, remove instance 3.
 $ bin/etcd-rm 10.10.10.12
 ```
 
-Script auto-completes all operations: remove from cluster, stop service, clean up data.
+The script attempts to remove the member, stop the service, and clean up data. Afterwards, still inspect the member list, quorum, and target files as described above.
 
 **Method 2: Manual**
 
@@ -359,7 +363,7 @@ First keep the member to be removed in the inventory, then run the removal playb
 $ ./etcd-rm.yml -l 10.10.10.12
 ```
 
-Playbook auto-executes:
+The playbook attempts these operations in order:
 1. Get member list, find corresponding member ID
 2. Execute `etcdctl member remove` to kick from cluster
 3. Stop etcd service
@@ -379,7 +383,7 @@ Member 93fcf23b220473fb removed from cluster 6646fbcf5debc68f
 
 After a manual member removal, run `./etcd-rm.yml -l 10.10.10.12` while the target remains in inventory to stop, deregister, and clean it up. Its leave step skips a member that has already been removed.
 
-Only after instance cleanup succeeds should you delete `10.10.10.12` from the inventory and follow [Reload Config](#reload-config) to refresh the remaining etcd members and all client references. Member removal is then complete.
+Only after confirming that the member has left the live cluster, the remaining members retain quorum, and the target service and files match expectations should you delete `10.10.10.12` from the inventory. Then follow [Reload Config](#reload-config) to refresh the remaining Etcd members and all client references.
 
 Repeat to remove more members. Combined with [Add Member](#add-member), perform rolling upgrades and migrations of etcd cluster.
 </details>

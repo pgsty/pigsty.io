@@ -1,7 +1,7 @@
 ---
 title: Administration
 weight: 3650
-description: Create, remove, upgrade, and recover Silo, MinIO, and RustFS object-storage clusters while distinguishing engine upgrades from data migration.
+description: Create, remove, upgrade, expand, shrink, and recover Silo object-storage clusters.
 icon: fa-solid fa-building-columns
 module: [MINIO]
 categories: [Task]
@@ -18,10 +18,10 @@ To create a cluster, define it in the config inventory and run the [`minio.yml`]
 minio: { hosts: { 10.10.10.10: { minio_seq: 1 } }, vars: { minio_cluster: minio, minio_type: silo } }
 ```
 
-The configuration above defines an SNSD [Single-Node Single-Disk](/docs/minio/config#single-node-single-disk) Silo cluster. Use this command to create the selected object-storage cluster:
+The configuration above defines an SNSD [Single-Node Single-Disk](/docs/minio/config#single-node-single-disk) Silo cluster. Create it with:
 
 ```bash
-./minio.yml -l minio  # Install the engine selected by the MINIO module on the minio group
+./minio.yml -l minio  # Install Silo on the minio group
 ```
 
 
@@ -32,23 +32,26 @@ The configuration above defines an SNSD [Single-Node Single-Disk](/docs/minio/co
 To destroy a cluster, run the dedicated [`minio-rm.yml`](/docs/minio/playbook#minio-rmyml) playbook:
 
 ```bash
+./minio-rm.yml -l minio --check -e minio_type=silo                 # Rehearse the exact same target first
 ./minio-rm.yml -l minio -e minio_type=silo                         # Remove a Silo cluster
-./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_data=false  # Remove cluster but keep data
+./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_data=false  # Remove cluster but keep data and configuration
 ./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_pkg=true    # Remove cluster and uninstall packages
 ```
 
-The removal role has no default for `minio_type`. If the inventory does not explicitly define the engine, pass `-e minio_type=silo|minio|rustfs` as above. The value must match the backend actually used by the target cluster.
+The removal role has no default for `minio_type`. If the inventory does not define it explicitly, pass `-e minio_type=silo` as shown above; other values are rejected.
 
 {{% alert title="Architecture Change: Pigsty v3.6+" color="info" %}}
 Starting from Pigsty v3.6, cluster removal has been migrated from `minio.yml` playbook to the dedicated `minio-rm.yml` playbook. The old `minio_clean` task has been deprecated.
 {{% /alert %}}
 
-The removal playbook automatically performs the following:
+The removal playbook attempts these operations in order:
 - Deregisters object-storage targets from VictoriaMetrics monitoring
 - Removes records from the DNS service on INFRA nodes
-- Stops and disables the systemd service selected by `minio_type`
-- Deletes data directories and configuration for the selected engine (`minio_rm_data`, enabled by default)
-- Uninstalls the selected engine and `mcli` packages (`minio_rm_pkg`, disabled by default)
+- Stops and disables `silo.service`
+- Deletes data directories and Silo configuration (`minio_rm_data`, enabled by default)
+- Uninstalls Silo and `mcli` packages (`minio_rm_pkg`, disabled by default)
+
+The playbook tolerates errors. Its return status alone does not prove that the service, data, DNS records, and monitoring targets were all handled as intended; inspect each item after a real run.
 
 
 
@@ -56,13 +59,13 @@ The removal playbook automatically performs the following:
 
 ## Expand Cluster
 
-The storage-pool expansion, shrink, and failed-drive recovery commands in this section describe MinIO/Silo-compatible behavior. RustFS is a separate implementation with its own data format; verify the upstream documentation for the exact version and rehearse the operation before applying an equivalent change.
+This section uses the MinIO-compatible administration interfaces retained by Silo. Before a production operation, verify the constraints of the exact Silo version and complete a dedicated rehearsal.
 
 - [Expand Cluster Tutorial](https://min.io/docs/minio/linux/operations/install-deploy-manage/expand-minio-deployment.html)
 
-MinIO cannot scale at the node/disk level, but can scale at the storage pool (multiple nodes) level.
+Silo cannot directly change the node or disk count of an existing storage pool, but it can expand by adding a new pool.
 
-Assume you have a [four-node](/docs/minio/config#multi-node-multi-disk) MinIO cluster and want to double the capacity by adding a new four-node storage pool.
+Assume you have a [four-node](/docs/minio/config#multi-node-multi-disk) Silo cluster and want to double capacity by adding a new four-node storage pool.
 
 ```yaml
 minio:
@@ -104,7 +107,7 @@ minio:
           - { name: minio-4 ,ip: 10.10.10.13 ,port: 9000 ,options: 'check-ssl ca-file /etc/pki/ca.crt check port 9000' }
 ```
 
-First, modify the MinIO cluster definition to add four new nodes, assigning sequence numbers 5 to 8.
+First, modify the Silo cluster definition to add four new nodes, assigning sequence numbers 5 to 8.
 The key step is to modify the [`minio_volumes`](/docs/minio/param#minio_volumes) parameter to designate the new four nodes as a new **storage pool**.
 
 ```yaml
@@ -134,13 +137,13 @@ Step 2: Add these nodes to Pigsty:
 ./node.yml -l 10.10.10.14,10.10.10.15,10.10.10.16,10.10.10.17
 ```
 
-Step 3: On the new nodes, use the Ansible [playbook](/docs/minio/playbook/) to install and prepare MinIO software:
+Step 3: On the new nodes, use the Ansible [playbook](/docs/minio/playbook/) to install and prepare Silo:
 
 ```bash
 ./minio.yml -l 10.10.10.14,10.10.10.15,10.10.10.16,10.10.10.17 -t minio_install
 ```
 
-Step 4: On the **entire cluster**, use the Ansible [playbook](/docs/minio/playbook/) to reconfigure the MinIO cluster:
+Step 4: On the **entire cluster**, use the Ansible [playbook](/docs/minio/playbook/) to reconfigure Silo:
 
 ```bash
 ./minio.yml -l minio -t minio_config
@@ -148,10 +151,10 @@ Step 4: On the **entire cluster**, use the Ansible [playbook](/docs/minio/playbo
 
 > This step updates the `MINIO_VOLUMES` configuration on the existing four nodes
 
-Step 5: Restart the entire MinIO cluster at once (be careful, do not rolling restart!):
+Step 5: Restart the entire Silo cluster at once (do not use a rolling restart):
 
 ```bash
-./minio.yml -l minio -t minio_launch -f 10   # 8 parallel, ensure simultaneous restart
+./minio.yml -l minio -t minio_launch -f 10   # Up to 10 forks; restart all 8 nodes together
 ```
 
 Step 6 (optional): If you are using a load balancer, make sure the load balancer configuration is updated. For example, add the new four nodes to the load balancer configuration:
@@ -196,7 +199,7 @@ If you use L2 VIP for reliable load balancer access, you also need to add new no
 
 ## Shrink Cluster
 
-MinIO cannot shrink at the node/disk level, but can retire at the storage pool (multiple nodes) level — add a new storage pool, drain the old storage pool to the new one, then retire the old storage pool.
+Silo cannot directly reduce the node or disk count of an existing storage pool. To shrink at the pool level, add a new pool, drain the old pool into it, and then retire the old pool.
 
 - [Shrink Cluster Tutorial](https://min.io/docs/minio/linux/operations/install-deploy-manage/decommission-server-pool.html)
 
@@ -210,28 +213,26 @@ MinIO cannot shrink at the node/disk level, but can retire at the storage pool (
 
 - [Upgrade Cluster Tutorial](https://min.io/docs/minio/linux/operations/install-deploy-manage/upgrade-minio-deployment.html)
 
-First, download the new package for the selected engine to the local repository on the INFRA node, then rebuild repository metadata with SOW. Silo, MinIO, RustFS, and `mcli` are all available from the Pigsty INFRA repository.
+First, download the new `silo` and `mcli` packages to the local repository on the INFRA node, then rebuild repository metadata with SOW:
 
 ```bash
 ./infra.yml -t repo_create
 ```
 
-Next, upgrade only the package actually selected in the inventory and `mcli`. Choose exactly one of the first three server commands:
+Next, upgrade the Silo server and compatible `mcli` client:
 
 ```bash
-ansible minio -m package -b -a 'name=silo state=latest'    # minio_type: silo
-ansible minio -m package -b -a 'name=minio state=latest'   # minio_type: minio
-ansible minio -m package -b -a 'name=rustfs state=latest'  # minio_type: rustfs
-ansible minio -m package -b -a 'name=mcli state=latest'    # Shared client
+ansible minio -m package -b -a 'name=silo state=latest'  # Server
+ansible minio -m package -b -a 'name=mcli state=latest'  # Compatible client
 ```
 
-Finally, have the role restart the complete cluster according to the selected engine:
+Finally, have the role restart the complete Silo cluster:
 
 ```bash
 ./minio.yml -l minio -t minio_config,minio_launch
 ```
 
-A package upgrade and an engine migration are different operations. Do not change `minio_type` as part of an upgrade. Any MinIO-to-Silo or MinIO/Silo-to-RustFS switch needs separate data validation, a maintenance window, and a rollback plan.
+A package upgrade and migration from legacy MinIO to Silo are different operations. The former applies to a cluster already running Silo; the latter requires separate data-compatibility validation, backups, a maintenance window, and a rehearsed rollback plan. Do not reuse this upgrade procedure for migration.
 
 
 
@@ -245,13 +246,13 @@ A package upgrade and an engine migration are different operations. Do not chang
 # 1. Remove the failed node from the cluster
 bin/node-rm <your_old_node_ip>
 
-# 2. Replace the failed node with the same node name (if IP changes, modify the MinIO cluster definition)
+# 2. Replace the failed node and keep its original name (if the IP changes, update the Silo cluster definition)
 bin/node-add <your_new_node_ip>
 
-# 3. Install and configure MinIO on the new node
+# 3. Install and configure Silo on the new node
 ./minio.yml -l <your_new_node_ip>
 
-# 4. Instruct MinIO to perform heal action
+# 4. Instruct Silo to heal
 mcli admin heal
 ```
 
@@ -277,16 +278,16 @@ vi /etc/fstab
 # 4. Remount
 mount -a
 
-# 5. Instruct MinIO to perform heal action
+# 5. Instruct Silo to heal
 mcli admin heal
 ```
 
 
 --------
 
-## Manage Object-Storage Passwords
+## Manage Silo Passwords
 
-[**`minio_secret_key`**](/docs/minio/param#minio_secret_key), which defaults to `S3User.MinIO`, is the object-storage root password. It is rendered to `/etc/default/<minio_type>`, for example `/etc/default/silo`.
+[**`minio_secret_key`**](/docs/minio/param#minio_secret_key), which defaults to `S3User.MinIO`, is the Silo root password. It is rendered to `/etc/default/silo`.
 
 After changing it, refresh configuration and restart the entire cluster:
 
@@ -294,7 +295,7 @@ After changing it, refresh configuration and restart the entire cluster:
 ./minio.yml -l minio -t minio_config,minio_launch,minio_alias -f 30
 ```
 
-To change a regular user password, such as `pgbackrest`, run this on a node that can access the object-storage service:
+To change a regular Silo user password, such as `pgbackrest`, run this on a node that can access Silo:
 
 ```bash
 set +o history
@@ -302,7 +303,7 @@ mcli admin user passwd sss pgbackrest <YOUR_NEW_PASSWORD>
 set -o history
 ```
 
-Then update every consumer of that password. If pgBackRest uses the MINIO S3 repository, refresh its configuration with:
+Then update every consumer of that password. For example, if pgBackRest uses the `minio` S3-compatible repository preset, refresh its configuration with:
 
 ```bash
 ./pgsql.yml -t pgbackrest_config

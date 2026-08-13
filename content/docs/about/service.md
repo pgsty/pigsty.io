@@ -25,7 +25,7 @@ We deeply understand the importance of professional commercial support for enter
 - Need to migrate from other databases to PostgreSQL, or migrate and transform legacy instances.
 - Building an observability system, data dashboards, and visualization applications based on the Victoria/Grafana technology stack.
 - Migrating off cloud and seeking open-source alternatives to RDS for PostgreSQL - cloud-neutral, vendor lock-in-free solutions.
-- Want professional support for Redis/ETCD/MinIO, as well as extensions like TimescaleDB/Citus.
+- Want professional support for Redis/ETCD/Silo, as well as extensions like TimescaleDB/Citus.
 - Want to perform secondary development and OEM branding with explicit commercial authorization.
 - Want to sell Pigsty as SaaS/PaaS/DBaaS, or provide technical services/consulting/cloud services based on this distribution.
 
@@ -47,9 +47,9 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 <p><b>Architecture Support: x86_64, Arm64</b></p>
 <p><b>OS Support: Latest minor versions of three families</b><p>
 <ul>
-<li>EL 9.7 / 10.1</li>
-<li>Debian 12.14 / 13.6</li>
-<li>Ubuntu 26.04.0 / 24.04.4 / 22.04.5</li>
+<li>EL 9.8 / 10.2</li>
+<li>Debian 12.15 / 13.6</li>
+<li>Ubuntu 22.04.5 / 24.04.4 / 26.04.0</li>
 </ul>
 <p><b>Features: <a href="/docs/ref/module#core-modules">Core Modules</a></b></p>
 <p><b>SLA: No SLA commitment</b></p>
@@ -140,8 +140,8 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 
 Pigsty Open Source Edition uses the [**Apache-2.0**](/docs/about/license) license, provides complete core functionality, requires no fees, but does not guarantee any warranty service. If you find defects in Pigsty, we welcome you to submit an [Issue](https://github.com/pgsty/pigsty/issues/) on Github.
 
-Pigsty Open Source supports seven currently validated baselines: EL 9.7 / 10.1, Debian 12.14 / 13.6, and Ubuntu 26.04.0 / 24.04.4 / 22.04.5, across both `x86_64` and `aarch64`.
-The Community Edition publishes six dual-architecture offline artifacts for EL 10.1, Debian 13.6, and Ubuntu 24.04.4 on GitHub. Prebuilt packages for the remaining baselines are available with the Professional Edition; see the [offline installation guide](/docs/setup/offline/).
+Pigsty Open Source supports seven currently validated baselines: EL 9.8 / 10.2, Debian 12.15 / 13.6, and Ubuntu 22.04.5 / 24.04.4 / 26.04.0, across both `x86_64` and `aarch64`.
+The historical `v4.4.0` Community Edition artifacts comprise six dual-architecture offline bundles built on EL 10.1, Debian 13.6, and Ubuntu 24.04.4. Those build baselines are not the same as the currently recommended operating systems; see the [offline installation guide](/docs/setup/offline/).
 
 Using the Pigsty open source version allows junior development/operations engineers to have **70%+** of the capabilities of professional DBAs. Even without database experts, they can easily set up a highly available, high-performance, easy-to-maintain, secure and reliable PostgreSQL database cluster.
 
@@ -247,7 +247,7 @@ Pigsty Professional/Enterprise Edition includes the following additional feature
 - **Extension Support Capability**: Provides out-of-the-box installation for {{< param pgext_count >}} available PG extensions for PG 14-18 on mainstream operating systems.
 - **Complete Functional Modules**: Provides all functional modules:
     - [**Supabase**](/docs/pgsql/kernel/supabase): Reliably self-host production-grade open-source Firebase
-    - [**MinIO**](/docs/minio): Enterprise PB-level object storage planning and self-hosting
+    - [**Silo**](/docs/minio): Enterprise PB-level object storage planning and self-hosting
     - [**DuckDB**](/docs/pilot/duckdb): Provides comprehensive DuckDB support, and PostgreSQL + DuckDB OLAP extension plugin support
     - [**Kafka**](/docs/kafka): Provides high-availability Kafka cluster deployment and monitoring
     - Kubernetes, VictoriaMetrics & VictoriaLogs

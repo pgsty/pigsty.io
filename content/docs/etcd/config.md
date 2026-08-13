@@ -14,7 +14,7 @@ Before deployment, define etcd cluster in [config inventory](/docs/setup/config)
 - [Three Nodes](#three-nodes): Basic HA, tolerates 1 node failure, suitable for small-medium prod
 - [Five Nodes](#five-nodes): Better HA, tolerates 2 node failures, suitable for large prod
 
-Even-numbered clusters don't make sense; 5+ node clusters uncommon. Typical configs: single, 3-node, 5-node.
+An even-member Etcd cluster is technically valid, but it does not tolerate more failures than an odd-member cluster with one fewer member, while increasing deployment and quorum cost. Production therefore usually uses one, three, or five members; clusters larger than five are uncommon.
 
 | Cluster Size | Quorum | Fault Tolerance | Use Case                |
 |:-------------|:-------|:----------------|:------------------------|

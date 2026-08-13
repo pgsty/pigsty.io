@@ -18,7 +18,7 @@ Typically, an environment includes shared infrastructure ([**`INFRA`**](/docs/in
 serving multiple PostgreSQL database clusters (and other database module components). (Exception: there are also [**deployments without infrastructure**](/docs/setup/slim))
 
 In Pigsty, almost all database modules are organized as "**Clusters**". Each cluster is an Ansible group containing several node resources.
-For example, PostgreSQL HA database clusters, Redis, Etcd/MinIO all exist as clusters. An environment can contain multiple clusters.
+For example, PostgreSQL HA database clusters, Redis, Etcd, and Silo all exist as clusters. An environment can contain multiple clusters.
 
 - [**PostgreSQL Cluster**](/docs/concept/model/pgsql)
 - [**ETCD Cluster**](/docs/concept/model/etcd)

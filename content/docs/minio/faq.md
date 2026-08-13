@@ -10,24 +10,25 @@ categories: [Reference]
 
 ----------------
 
-## Which engine does the MINIO module deploy by default?
+## Which backend does the MINIO module deploy by default?
 
-The current source defaults to `minio_type: silo`; you can explicitly select `minio` or `rustfs` instead. MINIO is a compatibility module name and does not imply that the MinIO server is running.
+In v4.5.0, the current source deploys Silo—and only Silo. The only valid value for `minio_type` is `silo`. MINIO remains the compatibility module name; it does not mean the MinIO server is running.
 
-- Set `minio_type` explicitly on new clusters to lock upgrade semantics.
-- Set `minio_type: minio` before upgrading an existing MinIO cluster so a default change does not replace the package or service name.
-- RustFS uses a separate data format and cannot directly reuse a MinIO/Silo data directory.
+- Explicitly set `minio_type: silo` for new clusters.
+- Both `minio_type: minio` and `minio_type: rustfs` fail during identity validation.
+- External MinIO, RustFS, or other S3 services can still serve as pgBackRest repositories, but the current MINIO role does not manage them.
+- Before upgrading a MinIO cluster managed by an older release, validate the MinIO-to-Silo data compatibility, backup, and rollback procedure.
 
 
 ----------------
 
-## Which compatible MinIO version is provided?
+## Why does the Pigsty repository still carry MinIO or RustFS packages?
 
-MinIO announced entering **maintenance mode** on 2025-12-03, no longer releasing new feature versions, only security patches and maintenance versions, and stopped releasing binary RPM/DEB on 2025-10-15.
-So Pigsty forked its own [MinIO](https://github.com/pgsty/minio) and used [`minio/pkger`](https://github.com/minio/pkger) to create the latest 2025-12-03 version.
+Upstream MinIO [switched to source-only distribution on 2025-10-15](https://github.com/minio/minio/commit/9e49d5e), [marked the repository as maintenance mode on 2025-12-03](https://github.com/minio/minio/commit/27742d4), and [archived it on 2026-04-25](https://github.com/minio/minio). Here, “source-only distribution” means that new prebuilt community binaries stopped being published—not merely RPM and DEB packages.
 
-This version fixes the MinIO [**CVE-2025-62506**](https://nvd.nist.gov/vuln/detail/CVE-2025-62506) security vulnerability, ensuring Pigsty users' MinIO deployments are safe and reliable.
-You can find the RPM/DEB packages and build scripts in the Pigsty Infra repository.
+Pigsty therefore previously maintained its own [MinIO fork](https://github.com/pgsty/minio) and packages. MinIO [**CVE-2025-62506**](https://nvd.nist.gov/vuln/detail/CVE-2025-62506) affects releases before `RELEASE.2025-10-15T17-29-55Z` and is fixed in that release; both Pigsty's later MinIO fork and the current Silo code include the fix.
+
+The Pigsty Infra repository still carries MinIO/RustFS RPM and DEB packages plus their build scripts, but repository availability does not mean that the v4.5 MINIO module supports those backends. The current role accepts only Silo; other services must be deployed and maintained separately.
 
 
 ----------------
@@ -39,7 +40,7 @@ Pigsty's default pgBackRest `minio` repository configuration uses HTTPS and veri
 
 ----------------
 
-## Getting invalid certificate error when accessing MinIO from containers?
+## Getting an invalid certificate error when accessing Silo from containers?
 
 By default, the object-storage server certificate is issued by Pigsty's private CA. It is not a self-signed server certificate, but container images usually do not trust this private CA, so clients such as `mcli`, rclone, and AWS CLI report an invalid certificate chain.
 
@@ -52,44 +53,47 @@ For example, for a Node.js application, mount the Pigsty CA certificate into the
       - /etc/pki/ca.crt:/etc/pki/ca.crt:ro
 ```
 
-Of course, if your MinIO is not used as a pgBackRest backup repository, you can also choose to disable MinIO's HTTPS support and use HTTP protocol instead.
+If Silo is not used as a pgBackRest backup repository, you can disable HTTPS and use HTTP instead, but you should also assess the risk of cleartext transport.
 
 
 ----------------
 
-## What if multi-node/multi-disk MinIO cluster fails to start?
+## What if a multi-node/multi-disk Silo cluster fails to start?
 
-In [**Single-Node Multi-Disk**](/docs/minio/config#single-node-multi-disk) or [**Multi-Node Multi-Disk**](/docs/minio/config#multi-node-multi-disk) mode, if the data directory is not a valid disk mount point, MinIO will refuse to start.
-Please use mounted disks as MinIO's data directory instead of regular directories. You can only use regular directories as MinIO's data directory in [**Single-Node Single-Disk**](/docs/minio/config#single-node-single-disk) mode, which is only suitable for development testing or non-critical scenarios.
-
-
-
-----------------
-
-## How to add new members to an existing MinIO cluster?
-
-> Before deployment, you should plan MinIO cluster capacity, as adding new members requires a global restart.
-
-You can scale MinIO by adding new server nodes to the existing cluster to create a new storage pool.
-
-Note that once MinIO is deployed, you cannot modify the number of nodes and disks in the existing cluster! You can only scale by adding new storage pools.
-
-For detailed steps, please refer to the Pigsty documentation: [**Expand Cluster**](/docs/minio/admin#expand-cluster), and the MinIO official documentation: [**Expand MinIO Deployment**](https://min.io/docs/minio/linux/operations/install-deploy-manage/expand-minio-deployment.html)
+In [**Single-Node Multi-Disk**](/docs/minio/config#single-node-multi-disk) or [**Multi-Node Multi-Disk**](/docs/minio/config#multi-node-multi-disk) mode, Silo refuses to start if a data directory is not a valid disk mount point.
+Use mounted disks rather than regular directories for data. Regular directories are allowed only in [**Single-Node Single-Disk**](/docs/minio/config#single-node-single-disk) mode, which is suitable only for development, testing, or non-critical use.
 
 
 
 ----------------
 
-## How to remove a MinIO cluster?
+## How do I add new members to an existing Silo cluster?
 
-Starting from Pigsty v3.6, removing a MinIO cluster requires using the dedicated `minio-rm.yml` playbook:
+> Plan Silo cluster capacity before deployment because adding a storage pool requires a global restart.
+
+Scale the cluster by adding a group of server nodes as a new storage pool.
+
+You cannot directly change the node or disk count of an existing storage pool; expansion requires adding a new pool.
+
+For the procedure, see Pigsty's [**Expand Cluster**](/docs/minio/admin#expand-cluster) guide and the upstream [**Expand MinIO Deployment**](https://min.io/docs/minio/linux/operations/install-deploy-manage/expand-minio-deployment.html) reference for the compatible interface retained by Silo.
+
+
+
+----------------
+
+## How do I remove a Silo cluster?
+
+Starting with Pigsty v3.6, cluster removal uses the dedicated `minio-rm.yml` playbook:
 
 ```bash
+./minio-rm.yml -l minio --check -e minio_type=silo                 # Rehearse the exact same target first
 ./minio-rm.yml -l minio -e minio_type=silo                         # Remove a Silo cluster
-./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_data=false  # Remove cluster but keep data
+./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_data=false  # Remove cluster but keep data and configuration
 ```
 
-The removal role has no `minio_type` default. If it is not defined in the inventory, explicitly specify the actual `silo`, `minio`, or `rustfs` engine on the command line.
+The removal role has no `minio_type` default. If it is absent from the inventory, explicitly specify `silo` on the command line. Other values are rejected.
+
+`minio_rm_data` defaults to `true`, and the removal role tolerates some cleanup errors. Before a real run, verify the exact `-l` target and a recent backup. Afterwards, inspect the service, data directories, DNS records, and monitoring targets; the playbook's return status alone does not prove that cleanup completed.
 
 If you have enabled [`minio_safeguard`](/docs/minio/param#minio_safeguard) protection, you need to explicitly override it to perform removal:
 
@@ -103,20 +107,20 @@ If you have enabled [`minio_safeguard`](/docs/minio/param#minio_safeguard) prote
 
 ## What's the difference between mcli and mc commands?
 
-`mcli` is a renamed version of the official MinIO client `mc`. In Pigsty, we use `mcli` instead of `mc` to avoid conflicts with Midnight Commander (a common file manager that also uses the `mc` command).
+Pigsty ships the compatible MinIO client under the `mcli` command and package name instead of upstream's `mc`, avoiding a name collision with the Midnight Commander file manager.
 
-Both have identical functionality, just with different command names. You can find the complete command reference in the [MinIO Client documentation](https://min.io/docs/minio/linux/reference/minio-mc.html).
+`mcli` is Pigsty's delivery name for the compatible client and retains the `mc` CLI, although the exact version may change with Pigsty packaging. See the [MinIO Client documentation](https://min.io/docs/minio/linux/reference/minio-mc.html) for the command reference.
 
 
 
 ----------------
 
-## How to monitor MinIO cluster status?
+## How do I monitor Silo cluster status?
 
-Pigsty provides out-of-the-box monitoring capabilities for MinIO:
+Pigsty provides out-of-the-box monitoring for Silo. Dashboard and metric names retain MinIO-compatible naming:
 
 - **Grafana Dashboards**: [MinIO Overview](https://demo.pigsty.io/d/minio-overview) and [MinIO Instance](https://demo.pigsty.io/d/minio-instance)
-- **Alerting Rules**: Including MinIO down, node offline, disk offline alerts
-- **MinIO Built-in Console**: Access via `https://<minio-ip>:9001`
+- **Alerting Rules**: MinIO-compatible server-down, node-offline, and disk-offline alerts
+- **Silo Built-in Console**: Access via `https://<minio-ip>:9001`
 
-For details, please refer to the [Monitoring](/docs/minio/monitor) documentation
+For details, see [Monitoring](/docs/minio/monitor).

@@ -95,4 +95,4 @@ Hardware failures are covered by the self-healing HA architecture provided by pa
 Clients don't need to modify config or restart applications: Haproxy uses patroni health checks for traffic distribution, and read-write requests are automatically routed to the new cluster primary, avoiding split-brain issues.
 This process is seamless—for example, in case of replica failure or planned switchover, clients experience only a momentary flash of the current query.
 
-Software failures, human errors, and datacenter-level disasters are covered by pgbackrest and the optional [MinIO](/docs/minio) cluster. This provides local/cloud PITR capabilities and, in case of datacenter failure, offers cross-region replication and disaster recovery.
+Software failures, human errors, and datacenter-level disasters are covered by pgBackRest and the optional [Silo](/docs/minio) cluster. This provides local/cloud PITR capabilities and, in case of datacenter failure, offers cross-region replication and disaster recovery.

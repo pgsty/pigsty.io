@@ -136,7 +136,7 @@ If specified, only tasks with the given tags will execute instead of the entire 
 ./node.yml  -t node_pkg      # Install node packages
 ./pgsql.yml -t pg_install    # Install PG packages and extensions
 ./etcd.yml  -t etcd_config   # Render ETCD configuration again
-./minio.yml -t minio_alias   # Write MinIO CLI config
+./minio.yml -t minio_alias   # Write the mcli client alias
 ```
 
 To run multiple tasks, specify multiple tags separated by commas `-t tag1,tag2`:
@@ -244,8 +244,8 @@ Below are the [**built-in playbooks**](/docs/ref/playbook) in Pigsty. You can al
 |  [**REDIS**](/docs/redis/playbook/)  | [**`redis-rm.yml`**](https://github.com/pgsty/pigsty/blob/main/redis-rm.yml)               | Remove Redis cluster/node/instance                  |
 |   [**ETCD**](/docs/etcd/playbook/)   | [**`etcd.yml`**](https://github.com/pgsty/pigsty/blob/main/etcd.yml)                       | Initialize ETCD cluster or add new member           |
 |   [**ETCD**](/docs/etcd/playbook/)   | [**`etcd-rm.yml`**](https://github.com/pgsty/pigsty/blob/main/etcd-rm.yml)                 | Remove ETCD cluster/data or shrink member           |
-|  [**MINIO**](/docs/minio/playbook/)  | [**`minio.yml`**](https://github.com/pgsty/pigsty/blob/main/minio.yml)                     | Initialize a Silo, MinIO, or RustFS object-storage backend |
-|  [**MINIO**](/docs/minio/playbook/)  | [**`minio-rm.yml`**](https://github.com/pgsty/pigsty/blob/main/minio-rm.yml)               | Remove the selected backend, configuration, and optional data |
+|  [**MINIO**](/docs/minio/playbook/)  | [**`minio.yml`**](https://github.com/pgsty/pigsty/blob/main/minio.yml)                     | Initialize a Silo object-storage cluster |
+|  [**MINIO**](/docs/minio/playbook/)  | [**`minio-rm.yml`**](https://github.com/pgsty/pigsty/blob/main/minio-rm.yml)               | Remove Silo, its configuration, and optional data |
 | [**DOCKER**](/docs/docker/playbook/) | [**`docker.yml`**](https://github.com/pgsty/pigsty/blob/main/docker.yml)                   | Install Docker on nodes                             |
 | [**DOCKER**](/docs/docker/playbook/) | [**`app.yml`**](https://github.com/pgsty/pigsty/blob/main/app.yml)                         | Install applications using Docker Compose           |
 |  [**JUICE**](/docs/juice/playbook/)  | [**`juice.yml`**](https://github.com/pgsty/pigsty/blob/main/juice.yml)                     | Install and configure JuiceFS                       |

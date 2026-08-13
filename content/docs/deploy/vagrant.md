@@ -11,6 +11,8 @@ categories: [Tutorial]
 
 Pigsty requires a Linux environment to run. You can use Vagrant to easily create Linux virtual machines locally for testing.
 
+The currently recommended and validated baselines are Rocky Linux 9.8 / 10.2, Debian 12.15 / 13.6, and Ubuntu 22.04.5 / 24.04.4 / 26.04.0. Major-version Vagrant aliases map to pinned box versions.
+
 
 ----------------
 
@@ -53,13 +55,13 @@ make deci       # 10 node environment
 You can use variant aliases to specify different operating system images:
 
 ```bash
-make meta9      # Create single node with RockyLinux 9.7
-make full12     # Create 4-node sandbox with Debian 12.14
+make meta9      # Create single node with Rocky Linux 9.8
+make full12     # Create 4-node sandbox with Debian 12.15
 make simu24     # Create 20-node simubox with Ubuntu 24.04.4
 make full26     # Create 4-node sandbox with Ubuntu 26.04.0
 ```
 
-Available OS suffixes: `8` (EL8), `9` (EL9), `10` (EL10), `12` (Debian 12.14), `13` (Debian 13.6), `22` (Ubuntu 22.04.5), `24` (Ubuntu 24.04.4), `26` (Ubuntu 26.04.0)
+Available OS suffixes: `8` (EL8), `9` (EL9), `10` (EL10), `12` (Debian 12.15), `13` (Debian 13.6), `22` (Ubuntu 22.04.5), `24` (Ubuntu 24.04.4), `26` (Ubuntu 26.04.0)
 
 ### Build Environment
 
@@ -227,22 +229,24 @@ ssh-keygen -t rsa -b 2048 -N '' -f ~/.ssh/id_rsa -q
 
 The standard EL, Debian, Ubuntu, and AlmaLinux matrix uses `cloud-image/*` boxes from [**Vagrant Cloud**](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image). Explicit RHEL and Oracle Linux aliases use `generic/*` boxes. The current config script applies the same `cloud-image/*` mapping to VirtualBox, libvirt, `amd64`, and `arm64`; actual payload availability is still resolved by Vagrant Cloud at runtime.
 
-VirtualBox and libvirt use the same mapping. Source pins versions for only four boxes; entries marked “floating” omit `box_version` and are resolved to the currently available Vagrant Cloud version:
+VirtualBox and libvirt use the same mapping. `vagrant/config` writes the validated versions below for every supported `cloud-image/*` image, making amd64 and arm64 environments reproducible:
 
 | OS | Vagrant Box | Source Version Policy |
 |----|-------------|:---------------------:|
-| Rocky 8 | [`cloud-image/rocky-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-8) | Floating |
-| Rocky 9 | [`cloud-image/rocky-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-9) | `9.7.20251123.2` |
-| Rocky 10 | [`cloud-image/rocky-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-10) | `10.1.20251116.0` |
-| Debian 12 | [`cloud-image/debian-12`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-12) | Floating |
-| Debian 13 | [`cloud-image/debian-13`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-13) | Floating |
-| Ubuntu 22.04 | [`cloud-image/ubuntu-22.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-22.04) | Floating |
-| Ubuntu 24.04 | [`cloud-image/ubuntu-24.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-24.04) | Floating |
-| Ubuntu 26.04 | [`cloud-image/ubuntu-26.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-26.04) | Floating |
-| AlmaLinux 8 | [`cloud-image/almalinux-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-8) | Floating |
-| AlmaLinux 9 | [`cloud-image/almalinux-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-9) | `9.7.20260518` |
-| AlmaLinux 10 | [`cloud-image/almalinux-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-10) | `10.1.20260518.0` |
+| Rocky 8 | [`cloud-image/rocky-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-8) | `8.10.20240528.0` |
+| Rocky 9 | [`cloud-image/rocky-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-9) | `9.8.20260525.0` |
+| Rocky 10 | [`cloud-image/rocky-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-10) | `10.2.20260525.0` |
+| Debian 12 | [`cloud-image/debian-12`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-12) | `20260806.2562.0` |
+| Debian 13 | [`cloud-image/debian-13`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-13) | `20260810.2566.0` |
+| Ubuntu 22.04 | [`cloud-image/ubuntu-22.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-22.04) | `20260810.0.0` |
+| Ubuntu 24.04 | [`cloud-image/ubuntu-24.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-24.04) | `20260801.0.0` |
+| Ubuntu 26.04 | [`cloud-image/ubuntu-26.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-26.04) | `20260731.0.0` |
+| AlmaLinux 8 | [`cloud-image/almalinux-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-8) | `8.10.20260803` |
+| AlmaLinux 9 | [`cloud-image/almalinux-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-9) | `9.8.20260810` |
+| AlmaLinux 10 | [`cloud-image/almalinux-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-10) | `10.2.20260526.0` |
 {.full-width}
+
+The retained but unsupported Debian 11 and Ubuntu 20.04 aliases are pinned to `20260618.2513.0` and `20250624.0.0`; experimental `generic/*` RHEL, Oracle Linux, and CentOS 7 images are pinned to their final `4.3.12` release. These legacy images are outside the current support matrix.
 
 
 ----------------

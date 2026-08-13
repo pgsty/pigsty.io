@@ -27,7 +27,7 @@ The configuration wizard can randomize built-in parameters and example credentia
 `configure -g` does not replace:
 
 - the pgBackRest `cipher_pass`;
-- MinIO users and selected example passwords in `ha/safe`;
+- Silo users and selected example passwords in `ha/safe`;
 - database, object-storage, or application credentials added by the user.
 
 After generation, inspect `pigsty.yml` and replace every uncovered credential. The wizard prints generated passwords to the terminal, so protect terminal history and automation logs as sensitive data.
