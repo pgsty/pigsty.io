@@ -3,7 +3,7 @@ title: "Module: PGSQL"
 weight: 1000
 description: >
   Deploy and manage world's most advanced open-source relational database — PostgreSQL, customizable and production-ready!
-icon: fas fa-database fa-bounce
+icon: fas fa-database
 module: [PGSQL]
 categories: [Reference]
 sidebar_root_for: self
