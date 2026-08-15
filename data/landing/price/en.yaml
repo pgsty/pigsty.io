@@ -1,0 +1,153 @@
+sections:
+  - hero
+  - pricing
+  - pricing-compare
+  - type: cards
+    key: services
+  - faq
+  - cta
+
+hero:
+  eyebrow: Open Source · Commercial Support · On-Demand Services
+  title: Choose the Right Pigsty Plan
+  title_size: 4.25rem
+  lead: From the forever-free, fully featured open-source edition to enterprise subscriptions with SLAs, expert support, and custom delivery.
+  note: Commercial editions use the same core features as the open-source edition; you pay for licensing, assurance, support scope, and response commitments.
+  actions:
+    - { label: Use the OSS Edition, url: /docs/setup/install/, icon: fa-solid fa-download, style: primary }
+    - { label: Contact Us, url: "mailto:rh@vonng.com", icon: fa-solid fa-envelope, style: ghost }
+
+pricing:
+  eyebrow: Annual Subscription
+  title: Four Service Tiers
+  desc: A node means one distinct IP address managed by Pigsty.
+  tiers:
+    - name: OSS · Open Source
+      price: Free
+      period: Forever
+      desc: For self-sufficient open-source users
+      features:
+        - Apache 2.0 license
+        - Unlimited nodes
+        - Full functionality with no feature restrictions
+        - Community forum support
+        - Open-source software provided without warranty
+      cta: { label: Download Now, url: /docs/setup/install/ }
+    - name: Standard
+      price: $8K
+      period: /year
+      desc: Ideal for small and medium businesses
+      features:
+        - Commercial license
+        - Up to 5 database nodes
+        - PostgreSQL 17 / 18
+        - Email support on business days
+        - Response within one business day
+        - Annual health-check report
+      cta: { label: Contact Sales, url: "mailto:rh@vonng.com?subject=Pigsty%20Standard" }
+    - name: Professional
+      featured: true
+      price: $24K
+      period: /year
+      desc: The best fit for professional teams
+      features:
+        - Commercial license
+        - Up to 15 database nodes
+        - PostgreSQL 16–18
+        - Offline package support
+        - 5 DBA hours per month
+        - Response within 4 hours
+        - Quarterly health-check report
+      cta: { label: Subscribe Now, url: "mailto:rh@vonng.com?subject=Pigsty%20Professional" }
+    - name: Enterprise
+      price: $60K
+      period: /year
+      desc: Built for large enterprises
+      features:
+        - Commercial license
+        - Reference scale of 50 database nodes
+        - PostgreSQL 13–18
+        - 10 DBA hours per month
+        - RDS / DBaaS OEM
+        - 24×7 SLA with 30-minute response
+        - Monthly health-check report
+      cta: { label: Contact Sales, url: "mailto:rh@vonng.com?subject=Pigsty%20Enterprise" }
+
+pricing_compare:
+  eyebrow: Datasheet
+  title: Features and Service Scope
+  desc: Compare licensing, supported versions, response times, and value-added services.
+  feature_label: Feature
+  tiers: [OSS, Standard, Professional, Enterprise]
+  groups:
+    - name: Licensing
+      rows:
+        - { name: License Type, cells: [Apache 2.0, Commercial, Commercial, Commercial] }
+        - { name: Redistribution Rights, cells: [Y, N, N, Y] }
+    - name: Scale Limits
+      rows:
+        - { name: Database Nodes, cells: [Unlimited, ≤5, ≤15, "Reference: 50 nodes"] }
+        - { name: PostgreSQL Versions, cells: ["18", "16, 17, 18", 14–18, 12–18] }
+        - { name: Offline Packages, cells: [el10 / d13 / u24, +el9 / d12 / u22, +arm64, Custom] }
+    - name: Technical Support
+      rows:
+        - { name: Support Channel, cells: [Community Forum, Email, Email / Slack, Dedicated Channel] }
+        - { name: Response Time, cells: [—, Same business day, "< 4 hours", "< 30 minutes"] }
+        - { name: Service Hours, cells: [—, Business days, Business days, 24×7] }
+        - { name: Database Expert Consulting, cells: [—, —, 5 hours/month, 10 hours/month] }
+    - name: Value-Added Services
+      rows:
+        - { name: Health-Check Report, cells: [N, Annual, Quarterly, Monthly] }
+        - { name: Architecture Consulting, cells: [N, N, Y, Y] }
+        - { name: Emergency Support, cells: [N, N, Paid, Y] }
+        - { name: Custom Development, cells: [N, N, Paid option, Paid option] }
+        - { name: Annual Price, price_row: true, cells: [Free, $8K, $24K, $60K] }
+
+services:
+  eyebrow: On Demand
+  title: Expert Help Without a Subscription
+  desc: One-off services for focused questions, specialist consulting, emergency response, and custom delivery.
+  columns: 4
+  items:
+    - title: Quick Consultation
+      icon: fa-solid fa-user-doctor
+      meta: $30 / issue
+      desc: Get a fast diagnosis for one database issue or a custom Pigsty offline package.
+    - title: Expert Session
+      icon: fa-solid fa-comments
+      meta: $400 / session
+      desc: Explore one topic in depth and get database architecture and engineering guidance.
+    - title: Emergency Response
+      icon: fa-solid fa-truck-medical
+      meta: $4,000 / person-day
+      desc: Architecture upgrades, data migration, emergency incident response, and data recovery.
+    - title: Expert Retainer
+      icon: fa-solid fa-code-branch
+      meta: Contact Us
+      desc: Custom development, private deployment, and large-scale RDS / DBaaS implementation.
+
+faq:
+  eyebrow: FAQ
+  title: About Commercial Services
+  items:
+    - question: What does the commercial edition include?
+      answer: Commercial editions include a commercial license, a dedicated DBA agent, custom offline packages, expert support for complex issues, response-time SLAs, and broader Linux and PostgreSQL version coverage.
+      open: true
+    - question: How are nodes counted?
+      answer: Node count means the number of distinct IP addresses managed by Pigsty.
+    - question: Can I try before I buy?
+      answer: Yes. The open-source edition has the same core functionality, so you can evaluate it fully before deciding. Enterprise evaluations can also request a 30-day trial.
+    - question: How do I get invoices and contracts?
+      answer: Standard invoices and business contracts are available. Email `rh@vonng.com` for details.
+    - question: Which payment methods are supported?
+      answer: Subscriptions support wire transfers; one-off consulting can also use PayPal and major credit cards.
+    - question: What if I need more nodes?
+      answer: Additional nodes beyond a plan can be purchased as needed, and enterprise plans can be tailored to actual scale.
+
+cta:
+  title: Still Have Questions? Let's Talk.
+  desc: We can help you choose the right plan based on scale, versions, response time, and delivery requirements.
+  actions:
+    - { label: Send Email, url: "mailto:rh@vonng.com", icon: fa-solid fa-envelope, style: primary }
+    - { label: Join Discord, url: "https://discord.gg/wDzt5VyWEz", icon: fa-brands fa-discord, style: ghost }
+    - { label: Learn More, url: /docs/about/service/, icon: fa-solid fa-book-open, style: ghost }

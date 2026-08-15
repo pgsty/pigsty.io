@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.Language.Lang }}" class="no-js">
+{{- $mysqlDocsURL := "/docs/pilot/mysql/" -}}
+{{- with .Site.GetPage "/docs/mysql" }}{{ $mysqlDocsURL = .RelPermalink }}{{ end -}}
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -68,9 +70,11 @@
   {{ $landingCss := resources.Get "css/landing-v3.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $landingCss.RelPermalink }}" integrity="{{ $landingCss.Data.Integrity }}">
 
-  <!-- ⌘K search dialog (reuse docs-site styles, bridged to landing theme tokens) -->
+  {{ $localSearch := partial "shell/search-enabled.html" . }}
+  {{ if $localSearch }}
   {{ $searchCss := resources.Get "scss/landing-search.scss" | toCSS | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $searchCss.RelPermalink }}" integrity="{{ $searchCss.Data.Integrity }}">
+  {{ end }}
 
   <!-- Analytics -->
   {{ with .Site.Config.Services.GoogleAnalytics.ID }}
@@ -138,6 +142,7 @@
                     <li><a href="/docs/juice/"><i class="fas fa-folder-tree"></i>JUICE</a></li>
                     <li><a href="/docs/vibe/"><i class="fas fa-laptop-code"></i>VIBE</a></li>
                     <li><a href="/docs/kafka/"><i class="fas fa-share-nodes"></i>KAFKA</a></li>
+                    <li><a href="{{ $mysqlDocsURL }}"><i class="fas fa-fish"></i>MYSQL</a></li>
                     <li><a href="/docs/pilot/"><i class="fas fa-flask-vial"></i>PILOT</a></li>
                   </ul>
                 </div>
@@ -209,9 +214,12 @@
           </div>
           <a href="/price/" class="nav-link">Service</a>
           <div class="nav-utils">
-            <button type="button" class="nav-util" data-silo-search-open title="Search (⌘K)" aria-label="Search">
-              {{- partialCached "silo/icon.html" "search" "search" -}}
+            {{- if $localSearch }}
+            <button type="button" class="nav-util" data-td-shell-search-open title="Search (⌘K)" aria-label="Search"
+                    aria-controls="td-shell-search" aria-expanded="false">
+              {{- partialCached "silo/icon.html" "search" "landing-search" -}}
             </button>
+            {{- end }}
             <button type="button" class="nav-util" data-theme-toggle title="Switch light / dark mode" aria-label="Switch light / dark mode">
               {{- partialCached "silo/icon.html" "moon" "moon" -}}
               {{- partialCached "silo/icon.html" "sun" "sun" -}}
@@ -239,9 +247,12 @@
     <a href="/ext/" class="mobile-menu-link">Extensions</a>
     <a href="/blog/" class="mobile-menu-link">Blog</a>
     <a href="/price/" class="mobile-menu-link">Pricing</a>
-    <button type="button" class="mobile-menu-link mobile-menu-link--btn" data-silo-search-open>
-      <i class="fas fa-search"></i> Search
+    {{- if $localSearch }}
+    <button type="button" class="mobile-menu-link mobile-menu-link--btn" data-td-shell-search-open
+            aria-controls="td-shell-search" aria-expanded="false">
+      <i class="fas fa-search" aria-hidden="true"></i> Search
     </button>
+    {{- end }}
     <a href="https://pigsty.cc" class="mobile-menu-link"><i class="fas fa-language"></i> 中文</a>
     <button type="button" class="mobile-menu-link mobile-menu-link--btn" data-theme-toggle>
       <i class="fas fa-moon"></i> Light / Dark
@@ -610,7 +621,6 @@
             <a href="/ext/e/pg_trgm" class="ext-pill">pg_trgm</a>
             <a href="/ext/e/citus" class="ext-pill">citus</a>
             <a href="/ext/e/columnar" class="ext-pill">hydra</a>
-            <a href="/ext/e/pg_analytics" class="ext-pill">pg_analytics</a>
             <a href="/ext/e/pg_duckdb" class="ext-pill">pg_duckdb</a>
             <a href="/ext/e/pg_mooncake" class="ext-pill">pg_mooncake</a>
             <a href="/ext/e/pg_clickhouse" class="ext-pill">pg_clickhouse</a>
@@ -709,7 +719,6 @@
             <a href="/ext/e/pg_trgm" class="ext-pill">pg_trgm</a>
             <a href="/ext/e/citus" class="ext-pill">citus</a>
             <a href="/ext/e/columnar" class="ext-pill">hydra</a>
-            <a href="/ext/e/pg_analytics" class="ext-pill">pg_analytics</a>
             <a href="/ext/e/pg_duckdb" class="ext-pill">pg_duckdb</a>
             <a href="/ext/e/pg_mooncake" class="ext-pill">pg_mooncake</a>
             <a href="/ext/e/pg_clickhouse" class="ext-pill">pg_clickhouse</a>
@@ -1234,7 +1243,6 @@
             <a href="/ext/e/pg_dbms_errlog" class="ext-pill">pg_dbms_errlog</a>
             <a href="/ext/e/pg_utl_smtp" class="ext-pill">pg_utl_smtp</a>
             <a href="/ext/e/babelfishpg_common" class="ext-pill">babelfish</a>
-            <a href="/ext/e/spat" class="ext-pill">spat</a>
             <a href="/ext/e/pgmemcache" class="ext-pill">pgmemcache</a>
             <a href="/ext/e/aux_mysql" class="ext-pill">openhalo</a>
             <a href="/ext/e/pglogical" class="ext-pill">pglogical</a>
@@ -1321,7 +1329,6 @@
             <a href="/ext/e/pg_dbms_errlog" class="ext-pill">pg_dbms_errlog</a>
             <a href="/ext/e/pg_utl_smtp" class="ext-pill">pg_utl_smtp</a>
             <a href="/ext/e/babelfishpg_common" class="ext-pill">babelfish</a>
-            <a href="/ext/e/spat" class="ext-pill">spat</a>
             <a href="/ext/e/pgmemcache" class="ext-pill">pgmemcache</a>
             <a href="/ext/e/aux_mysql" class="ext-pill">openhalo</a>
             <a href="/ext/e/pglogical" class="ext-pill">pglogical</a>
@@ -1496,7 +1503,7 @@
 
       <div class="stats-grid" data-reveal>
         <a href="https://github.com/pgsty/pigsty/stargazers" target="_blank" rel="noopener" class="stat-item">
-          <span class="stat-value" data-count="5465">5465</span>
+          <span class="stat-value" data-count="5521">5521</span>
           <span class="stat-label">GitHub Stars</span>
         </a>
         <div class="stat-item">
@@ -2132,10 +2139,18 @@
 {{ $landingJs := resources.Get "js/landing-v3.js" | minify | fingerprint }}
 <script src="{{ $landingJs.RelPermalink }}" integrity="{{ $landingJs.Data.Integrity }}"></script>
 
-{{ partial "silo/search-dialog.html" . }}
-{{ $searchJs := slice (resources.Get "js/vendor/lunr.min.js") (resources.Get "js/silo-search.js")
-      | resources.Concat "js/landing-search-bundle.js" | minify | fingerprint }}
-<script src="{{ $searchJs.RelPermalink }}" integrity="{{ $searchJs.Data.Integrity }}" defer></script>
+{{ if $localSearch }}
+{{ partialCached "shell/search-dialog.html" . .Site.Language.Lang "landing" }}
+<script type="application/json" id="oink-action-manifest">{"version":1,"actions":[],"commands":[],"quickLinks":[],"rootOrder":[]}</script>
+{{ $searchJs := slice
+  (resources.Get "js/third_party/lunr.min.js")
+  (resources.Get "js/action-registry.js")
+  (resources.Get "js/search-engine.js")
+  (resources.Get "js/palette-model.js")
+  (resources.Get "js/command-palette.js")
+  | resources.Concat "js/landing-oink-search.js" | minify | fingerprint }}
+<script src="{{ $searchJs.RelPermalink }}" integrity="{{ $searchJs.Data.Integrity }}" crossorigin="anonymous"></script>
+{{ end }}
 
 </body>
 </html>

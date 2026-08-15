@@ -119,21 +119,6 @@ other = "Toggle theme"
 [silo_lang_label]
 other = "Language"
 
-[silo_search_nav]
-other = "to navigate"
-
-[silo_search_open]
-other = "to select"
-
-[silo_search_close]
-other = "to close"
-
-[silo_search_empty]
-other = "No results found"
-
-[silo_search_loading]
-other = "Loading search index…"
-
 [silo_root_menu_label]
 other = "Switch section"
 

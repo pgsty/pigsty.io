@@ -1,0 +1,29 @@
+brand:
+  name: PIGSTY
+  tagline: PostgreSQL In Great STYle
+  slogan: A free, open-source, battery-included, local-first enterprise PostgreSQL distribution.
+columns:
+  - title: Product
+    links:
+      - { label: Features, url: /docs/about/feature/ }
+      - { label: Quick Start, url: /docs/setup/install/ }
+      - { label: Production, url: /docs/deploy/ }
+      - { label: Pricing, url: /price/ }
+  - title: Docs
+    links:
+      - { label: PostgreSQL, url: /docs/pgsql/ }
+      - { label: Extensions, url: /ext/ }
+      - { label: Config Templates, url: /docs/conf/ }
+      - { label: Components, url: /docs/pig/ }
+  - title: Community
+    links:
+      - { label: GitHub, url: "https://github.com/pgsty/pigsty", external: true }
+      - { label: Discussions, url: "https://github.com/orgs/pgsty/discussions", external: true }
+      - { label: Discord, url: "https://discord.gg/wDzt5VyWEz", external: true }
+      - { label: Blog, url: /blog/ }
+  - title: About
+    links:
+      - { label: About Pigsty, url: /docs/about/ }
+      - { label: Releases, url: /docs/about/release/ }
+      - { label: License, url: /docs/about/license/ }
+      - { label: Privacy, url: /docs/about/privacy/ }

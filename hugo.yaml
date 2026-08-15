@@ -12,33 +12,116 @@ rssLimit: 200
 capitalizeListTitles: false
 
 #=======================================#
-# Hugo Module (replaces theme: docsy)
+# Hugo Module (OINK, pinned for reproducible production builds)
 #=======================================#
 module:
   proxy: direct
   hugoVersion:
     extended: true
-    min: "0.155.0"
+    min: "0.160.1"
   imports:
-    - path: github.com/google/docsy
+    - path: github.com/pgsty/oink
       disable: false
+  # Keep the site's own component data authoritative alongside the theme.
+  mounts:
+    - source: content
+      target: content
+    - source: data
+      target: data
+    - source: layouts
+      target: layouts
+    - source: i18n
+      target: i18n
+    - source: archetypes
+      target: archetypes
+    - source: assets
+      target: assets
+    - source: static
+      target: static
 
 #=======================================#
 # Menu Customization
 #=======================================#
-menu:
+menus:
   main:
-    # Documentation dropdown menu
     - identifier: docs
       name: Docs
       weight: 10
-      url: /docs/
-      pre: <i class='fa-solid fa-book'></i>
+      pageRef: /docs
+      params:
+        columns: 2
+    - identifier: docs-setup
+      parent: docs
+      name: Quick Start
+      pageRef: /docs/setup
+      weight: 10
+      params:
+        icon: fa-solid fa-rocket
+        description: Install Pigsty starting from a single Linux host
+    - identifier: docs-deploy
+      parent: docs
+      name: Production Deployment
+      pageRef: /docs/deploy
+      weight: 20
+      params:
+        icon: fa-solid fa-server
+        description: Plan and deliver multi-node high-availability database services
+    - identifier: docs-pgsql
+      parent: docs
+      name: PostgreSQL
+      pageRef: /docs/pgsql
+      weight: 30
+      params:
+        icon: fa-solid fa-database
+        description: Clusters, services, backup, monitoring, and daily operations
+    - identifier: docs-components
+      parent: docs
+      name: Component Manuals
+      pageRef: /docs/pig
+      weight: 40
+      params:
+        icon: fa-solid fa-toolbox
+        description: Pig, Patroni, PgBouncer, pgBackRest, and related tools
+
     - identifier: ext
-      name: Exts
-      weight: 15
-      url: /ext/
-      pre: <i class='fa-solid fa-puzzle-piece'></i>
+      name: Extensions
+      weight: 20
+      pageRef: /ext
+      params:
+        columns: 2
+    - identifier: ext-list
+      parent: ext
+      name: Extension Catalog
+      pageRef: /ext/list
+      weight: 10
+      params:
+        icon: fa-solid fa-puzzle-piece
+        description: Browse 575 packaged PostgreSQL extensions
+    - identifier: ext-os
+      parent: ext
+      name: System Support
+      pageRef: /ext/os
+      weight: 20
+      params:
+        icon: fa-brands fa-linux
+        description: Check operating-system and PostgreSQL compatibility
+    - identifier: ext-repo
+      parent: ext
+      name: Software Repository
+      pageRef: /docs/repo
+      weight: 30
+      params:
+        icon: fa-solid fa-box-archive
+        description: Configure Pigsty repositories and install extension packages
+
+    - identifier: blog
+      name: Blog
+      pageRef: /blog
+      weight: 30
+    - identifier: price
+      name: Services
+      pageRef: /price
+      weight: 40
 
 #=======================================#
 # Taxonomies Support
@@ -86,8 +169,7 @@ markup:
           block: [['\[', '\]'], ['$$', '$$']]
           inline: [['\(', '\)']]
   highlight:
-    # Use class-based Chroma output so Docsy can swap light/dark palettes
-    # via CSS instead of baking light-theme colors into the generated HTML.
+    # OINK enhanced code blocks use class-based Chroma palettes.
     style: tango
     codeFences: true
     noClasses: false
@@ -102,10 +184,17 @@ outputs:
   home:
     - HTML
     - RSS
-    - JSON
+    #- JSON
+    - markdown
+    - LLMS
+  page:
+    - HTML
+    - markdown
   section:
     - HTML
     - RSS
+    - print
+    - markdown
 
 # Keep ext HTML-only; large catalog outputs can exceed hosting limits.
 cascade:
@@ -156,60 +245,73 @@ params:
     - version: "Pigsty v1.5 Doc"
       url: 'https://v15.pigsty.cc/docs'
 
-
   # Taxonomy display settings
   taxonomy:
     taxonomyCloud: [module, categories, tags]
     taxonomyCloudTitle: [Module, Category, Tags]
     taxonomyPageHeader: [Module, Category, Tags]
 
-  # Article column width: normal (1050px, default) | wide (1300px) | full.
-  # Override per page via front matter (page_width: wide) or per section via cascade.
+  # OINK documentation shell and book-content widths.
   page_width: normal
-  # ICP filing number (centered in the one-line footer; empty = hidden).
-  footer_icp: ""
+  content_width: norm
+  footer_center_info: ''
 
-  # Site search is provided by our own ⌘K dialog (self-hosted lunr + /index.json).
-  # Docsy offlineSearch MUST stay off: its offline-search.js fires $.ajax(undefined)
-  # and throws when it cannot find a .td-search input on the page.
-  offlineSearch: false
+  # OINK local search and enhanced code blocks do not depend on remote runtimes.
+  offlineSearch: true
+  offlineSearchOnServe: false
+  offlineSearchIndex: summary
+  offlineSearchSummaryLength: 100
+  offlineSearchMaxResults: 12
+  highlight_classes: true
   prism_syntax_highlighting: false
 
   # UI settings
   ui:
     breadcrumb_disable: false
     navbar_logo: true
-    navbar_translucent_over_cover_disable: false
-    navbar_theme: "dark"
+    navbar_enabled: true
+    footer_style: fat
+    landing_search: true
+    section_index: cards
+    lastmod_commit: subject
+    github_stars: '5.52k'
+    alt_site:
+      label: 中文
+      url: https://pigsty.cc
+    typography:
+      preset: technical
+    shell_types: [docs, blog, swagger]
+    docs_section: docs
+    blog_section: blog
+    pager:
+      types: [docs, blog]
+    quick_links: [docs, ext, blog]
+    sidebar_icon_policy: all
     sidebar_menu_compact: true
-    sidebar_search_disable: false
     sidebar_menu_foldable: true
-    sidebar_menu_truncate: 2000
-    sidebar_cache_limit: 1000
     sidebar_root_enabled: true
-    ul_show: 3
-    showLightDarkModeMenu: true
-    # TOC highlighting is done by silo-docs.js (IntersectionObserver); Docsy's
-    # Bootstrap ScrollSpy injection has an attribute-escaping bug and never worked.
-    scrollSpy:
-      disable: true
-    # ---- Fumadocs-style sidebar chrome ----
-    # Root dropdown below the search box: lists every sidebar_root_for: self section.
+    sidebar_menu_truncate: 2000
+    sidebar_cache_limit: 500
     sidebar_root_menu: true
-    # Sidebar width (px): defaults 268/286 by breakpoint, drag-resizable & persisted;
-    # min/max clamp the drag range, overridable per section via cascade.
     sidebar_width_min: 220
     sidebar_width_max: 480
-    # Sidebar item overflow: ellipsis (default) | wrap.
     sidebar_item_overflow: ellipsis
+    ul_show: 2
+    showLightDarkModeMenu: true
+    scrollSpy:
+      disable: true
+    image_zoom:
+      enable: true
+    page_context_menu:
+      enable: true
+      assistant_links: false
+    keyboard_nav:
+      enable: true
 
-    # Feedback section (requires Google Analytics)
+    # One-click structured feedback; emits gtag events when analytics exists.
     feedback:
       enable: true
-      "yes": >-
-        Thanks for the feedback! Please <a href="https://github.com/pgsty/pigsty/issues/new">let us know how we can improve</a>.
-      "no": >-
-        Sorry to hear that. Please <a href="https://github.com/pgsty/pigsty/issues/new">let us know how we can improve</a>.
+      reasons: true
 
     # Reading time
     readingtime:

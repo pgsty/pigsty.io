@@ -1,0 +1,9 @@
+items:
+  - github: Vonng
+    name: Ruohang Feng
+    role: Pigsty founder and maintainer
+    avatar: /img/avatar/vonng.jpg
+  - github: pgsty
+    name: PGSTY
+    role: Pigsty open-source organization
+    avatar: /icons/logo.svg
