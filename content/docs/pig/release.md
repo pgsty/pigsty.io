@@ -193,6 +193,8 @@ a24a08c1b8d54adcdef5a99ed7b91caeedef1552a1440b1258eb4eb07fb20353  pig-v1.8.0.lin
 
 Release: https://github.com/pgsty/pig/releases/tag/v1.8.0
 
+--------
+
 ## v1.7.0
 
 Pig `v1.7.0` is a repository compatibility and catalog release on top of `v1.6.2`. It makes China-mirror selection explicit, preserves native DNF module filtering by default, restores a streamlined EL7 repository catalog, and grows the bundled extension snapshot from 572 to 575. The embedded Pigsty version remains `4.5.0`.
