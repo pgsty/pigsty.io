@@ -1,0 +1,21 @@
+{{- /*
+  Landing page "Kernels & Extensions" metric cards
+  Data: data/pgext/stats.yaml (label / value or param / href)
+  value is a literal number; param references a hugo.yaml params entry (e.g. pgext_count) — use one of the two.
+  hrefs starting with http are external and open in a new tab; numbers reuse the .stat-value[data-count] counter animation.
+*/ -}}
+{{- $stats := hugo.Data.pgext.stats -}}
+{{- if $stats }}
+<div class="stats-grid stats-grid--6 pgext-stats" data-reveal>
+  {{- range $stats }}
+  {{- $v := .value }}
+  {{- with .param }}{{ $v = index site.Params . }}{{ end }}
+  {{- $v = int $v }}
+  {{- $ext := hasPrefix .href "http" }}
+  <a class="stat-item" href="{{ .href }}"{{ if $ext }} target="_blank" rel="noopener"{{ end }}>
+    <span class="stat-value" data-count="{{ $v }}">{{ lang.FormatNumberCustom 0 $v }}</span>
+    <span class="stat-label">{{ .label }}{{ if $ext }} <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>{{ end }}</span>
+  </a>
+  {{- end }}
+</div>
+{{- end }}

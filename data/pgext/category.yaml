@@ -1,0 +1,19 @@
+# Category config for the landing-page extension index: code, name, light/dark colors
+# Order defines the mosaic layout (same as pgext.cloud); colors come from the 16-hue category palette in pgext.cloud style.css
+# Fields: code · name · light theme color · dark theme color · href for the legend chip
+- {code: TIME,  name: "Time-series",      light: "#b97e0c", dark: "#bd861a", href: "https://pgext.cloud/cate/TIME"}
+- {code: GIS,   name: "Geospatial",       light: "#2f9e4f", dark: "#33a856", href: "https://pgext.cloud/cate/GIS"}
+- {code: RAG,   name: "Vector & AI",      light: "#7c3aed", dark: "#8f6ff0", href: "https://pgext.cloud/cate/RAG"}
+- {code: FTS,   name: "Full-text Search", light: "#e8590c", dark: "#db5a18", href: "https://pgext.cloud/cate/FTS"}
+- {code: OLAP,  name: "Analytics",        light: "#2456b8", dark: "#2e63c6", href: "https://pgext.cloud/cate/OLAP"}
+- {code: FEAT,  name: "Features",         light: "#d13ad6", dark: "#c337d7", href: "https://pgext.cloud/cate/FEAT"}
+- {code: LANG,  name: "Languages",        light: "#0f9e99", dark: "#14ab9c", href: "https://pgext.cloud/cate/LANG"}
+- {code: TYPE,  name: "Data Types",       light: "#5b5bd6", dark: "#7379f0", href: "https://pgext.cloud/cate/TYPE"}
+- {code: UTIL,  name: "Utilities",        light: "#9d5c00", dark: "#b0742f", href: "https://pgext.cloud/cate/UTIL"}
+- {code: FUNC,  name: "Functions",        light: "#0e8fb3", dark: "#1e9fc9", href: "https://pgext.cloud/cate/FUNC"}
+- {code: ADMIN, name: "Administration",   light: "#a61e4d", dark: "#c93d6e", href: "https://pgext.cloud/cate/ADMIN"}
+- {code: STAT,  name: "Monitoring",       light: "#6a9a0a", dark: "#769c1c", href: "https://pgext.cloud/cate/STAT"}
+- {code: SEC,   name: "Security",         light: "#d21f3c", dark: "#e04b41", href: "https://pgext.cloud/cate/SEC"}
+- {code: FDW,   name: "Foreign Data",     light: "#e04e8f", dark: "#e2609f", href: "https://pgext.cloud/cate/FDW"}
+- {code: SIM,   name: "Compatibility",    light: "#9741c9", dark: "#a05fd6", href: "https://pgext.cloud/cate/SIM"}
+- {code: ETL,   name: "Data Integration", light: "#b8540f", dark: "#c45f1e", href: "https://pgext.cloud/cate/ETL"}

@@ -1,0 +1,36 @@
+{{- /*
+  Landing page extension index mosaic (a port of the universe field on the pgext.cloud home page)
+  Data: data/pgext/extension.yaml (name / category / packaged / description) + data/pgext/category.yaml (order, names, light/dark colors)
+  Cells are colored by category, packaged = solid, unpacked = faded; hover shows name + description, click opens {{ pgext_url }}/ext/<name>.
+  The payload is emitted as a fingerprinted JSON resource, lazily fetched and drawn onto a canvas by initExtIndex in landing-v3.js.
+*/ -}}
+{{- $cats := hugo.Data.pgext.category -}}
+{{- $exts := hugo.Data.pgext.extension -}}
+{{- $base := site.Params.pgext_url | default "https://pgext.cloud" -}}
+{{- $total := len $exts -}}
+{{- $packaged := len (where $exts "pkg" true) -}}
+{{- $cs := slice -}}
+{{- range $cats }}{{ $cs = $cs | append (dict "c" .code "n" .name "l" .light "d" .dark) }}{{ end -}}
+{{- /* each extension is encoded as a compact array [name, cat, pkg, desc]; Hugo append flattens slices, so jsonify each row to a string and join */ -}}
+{{- $es := slice -}}
+{{- range $exts }}{{ $es = $es | append (jsonify (slice .name .cat (cond .pkg 1 0) .desc)) }}{{ end -}}
+{{- $json := printf `{"cats":%s,"ext":[%s]}` (jsonify $cs) (delimit $es ",") -}}
+{{- $res := resources.FromString "pgext/index.json" $json | fingerprint -}}
+<div class="extidx" id="extidx" data-reveal
+     data-src="{{ $res.RelPermalink }}"
+     data-base="{{ $base }}/ext/"
+     data-l-pkg="packaged" data-l-nopkg="unpacked">
+  <div class="extidx-head">
+    <span class="silkscreen">EXTENSION INDEX · {{ lang.FormatNumberCustom 0 $total }} EXT · {{ lang.FormatNumberCustom 0 $packaged }} PACKAGED</span>
+    <div class="extidx-legend" aria-label="Extension category legend">
+      {{- range $cats }}
+      {{- $n := len (where $exts "cat" .code) }}
+      <a class="extidx-chip" href="{{ .href }}" target="_blank" rel="noopener" style="--cl:{{ .light }};--cd:{{ .dark }}" title="{{ .name }} · {{ $n }} extensions"><i aria-hidden="true"></i>{{ .code }}</a>
+      {{- end }}
+    </div>
+  </div>
+  <canvas class="extidx-canvas" role="img" aria-label="Extension index: {{ $total }} PostgreSQL extensions colored by category, {{ $packaged }} packaged ones shown solid; click a cell to open its pgext.cloud page"></canvas>
+  <div class="extbus-cta">
+    <a href="{{ $base }}/" class="btn btn-line" target="_blank" rel="noopener">Browse all {{ lang.FormatNumberCustom 0 $total }} extensions on pgext.cloud <i class="fas fa-arrow-up-right-from-square"></i></a>
+  </div>
+</div>

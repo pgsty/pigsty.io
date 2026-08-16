@@ -1,0 +1,21 @@
+# Metric cards for the landing-page "Kernels & Extensions" section, rendered in order; each card links to href
+# Fields: label · value (or param: name of a hugo.yaml params entry, use one of the two) · href
+#         hrefs starting with http open in a new tab; figures come from the pgext.cloud home page, re-check after refreshing the catalog
+- label: Kernel Forks
+  value: 12
+  href: /docs/pgsql/kernel/
+- label: Extensions Catalogued
+  value: 2241
+  href: https://pgext.cloud/
+- label: Packaged Extensions
+  param: pgext_count
+  href: https://pgext.cloud/?scope=packaged
+- label: Extension Packages
+  value: 407
+  href: https://pgext.cloud/?scope=packaged&entity=pkg
+- label: OS/PG Combos
+  value: 60
+  href: https://pgext.cloud/list/os
+- label: Build Slots
+  value: 32560
+  href: https://pgext.cloud/matrix

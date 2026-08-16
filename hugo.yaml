@@ -209,13 +209,16 @@ cascade:
 params:
   # metadata
   description: 'Pigsty is a free and open-source PostgreSQL distribution, a local-first RDS with battery-included monitoring, HA, PITR, IaC, and 575 PG extensions and 12 kernels'
-  version: v4.4.0           # Latest Pigsty release, .Site.Params.version in templates, {{< param version >}} in content
-  version_short: v4.4       # Short form (major.minor) for display, e.g. navbar dropdown
+  version: v4.5.0           # Current source/docs baseline; not the public stable release until v4.5.0 ships
+  version_short: v4.5       # Short form (major.minor) of the current source/docs baseline
+  stable_version: v4.4.0    # Current public stable release; use for install and Git tag examples
+  stable_version_short: v4.4
   pg_version: '18.6'        # Latest PostgreSQL minor release, {{< param pg_version >}} in content
   pig_version: 1.8.0        # Latest PIG release, {{< param pig_version >}} in PIG docs
   pigsty_version: 4.5.0     # Pigsty version embedded in PIG, {{< param pigsty_version >}} in PIG docs
-  pgext_count: 575          # Number of packaged PG extensions, {{< param pgext_count >}} in content
-  github_stars: 5.5k        # Approximate GitHub star count shown in home / price page navbar
+  pgext_count: 576          # Number of packaged PG extensions, {{< param pgext_count >}} in content
+  pgext_url: https://pgext.cloud  # PG extension catalog site; link prefix for the landing-page extension index and metric cards
+  github_stars: '5.52k'     # Approximate GitHub star count shown in the custom navbar
   copyright:
     authors: Ruohang Feng
     from_year: 2018
@@ -335,11 +338,11 @@ params:
       - name: X - Pigsty
         url: 'https://x.com/PlGSTY'
         icon: fab fa-twitter
-        desc: Follow on Twitter for updates
+        desc: Follow Pigsty on X for updates
       - name: LinkedIn - Vonng
         url: 'https://www.linkedin.com/in/vonng/'
         icon: fab fa-linkedin
-        desc: Vonng on LinkedIn
+        desc: Follow Vonng on LinkedIn
     developer:
       - name: Discord
         url: 'https://discord.gg/wDzt5VyWEz'
@@ -352,12 +355,12 @@ params:
       - name: WeChat
         url: /img/pigsty/pigsty-cc.jpg
         icon: fab fa-weixin
-        desc: WeChat group & official account
+        desc: WeChat group and official account
       - name: Discussion
         url: 'https://github.com/orgs/pgsty/discussions'
         icon: fab fa-discourse
-        desc: Pigsty Discussion Forum
-      - name: Repo
+        desc: Pigsty discussion forum
+      - name: GitHub
         url: 'https://github.com/pgsty/pigsty'
         icon: fab fa-github
-        desc: Pigsty Discussion Forum
+        desc: Pigsty code repository
