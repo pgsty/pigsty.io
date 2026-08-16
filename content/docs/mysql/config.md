@@ -1,13 +1,14 @@
 ---
 title: Configuration
-weight: 5031
+weight: 5011
 description: Plan MySQL topology and identity; declare databases, users, parameter overrides, and backup policy.
 icon: fa-solid fa-code
 module: [MYSQL]
 categories: [Reference]
+aliases: [/docs/pilot/mysql/config]
 ---
 
-The MYSQL module is driven by the inventory: you declare the desired cluster, and `mysql.yml` converges the live state to match. This page covers topology planning and every configuration block; see [Parameters](/docs/pilot/mysql/param) for the full reference.
+The MYSQL module is driven by the inventory: you declare the desired cluster, and `mysql.yml` converges the live state to match. This page covers topology planning and every configuration block; see [Parameters](/docs/mysql/param) for the full reference.
 
 
 --------
@@ -100,8 +101,9 @@ mysql_databases:
 | `name` | required | Database name, `[A-Za-z0-9_$-]`; system schema names are rejected |
 | `encoding` | `utf8mb4` | Character set |
 | `collate` | `utf8mb4_0900_ai_ci` | Collation |
-| `encrypt` | `false` | Schema-level `DEFAULT ENCRYPTION`; requires an InnoDB keyring component the platform does not provision — without one, table creation in the schema fails |
 {.full-width}
+
+Each entry accepts only these three fields; preflight validation rejects additional keys.
 
 Convergence is **additive**: reruns create missing databases, but removing an entry never drops one. Deleting data is a manual operation by design.
 
@@ -157,8 +159,8 @@ Rules and safety:
 
 - Keys must be plain option names (letter first; `._-` allowed); values must be single-line scalars;
 - The rendered config still passes `mysqld --validate-config`, so a bad option fails at deploy time without touching the running service;
-- **Platform-reserved options cannot be overridden**: identity (`server_id`, `datadir`, `port`, `socket`, `bind_address`, `report_host`, …), replication (`gtid_mode`, `log_bin`, `group_replication_*`), and TLS (`require_secure_transport`, `ssl_*`) are managed by the role and rejected if declared;
-- Parameter changes trigger an [orchestrated rolling restart](/docs/pilot/mysql/admin#change-cluster-parameters): secondaries first, primary last.
+- **Platform-reserved options cannot be overridden**: identity and protocol (`user`, `pid_file`, `server_id`, `datadir`, `socket`, `port`, `bind_address`, `mysqlx_bind_address`, `report_host`, `mysqlx`, …), replication and plugins (`gtid_mode`, `enforce_gtid_consistency`, `log_bin`, `relay_log`, `plugin_load*`, `clone`, `plugin_clone`, `plugin_mysqlx`, `group_replication_*`, …), and TLS (`require_secure_transport`, `ssl_*`) are role-managed and rejected if declared;
+- Parameter changes trigger an [orchestrated rolling restart](/docs/mysql/admin#change-cluster-parameters): secondaries first, primary last.
 
 Memory needs no configuration: the buffer pool is 25% of node memory (256MB floor), redo capacity is half the buffer pool (128MB–4GB), and replica parallelism follows CPU count. For precise control, override `innodb_buffer_pool_size` and friends via `mysql_parameters`.
 
@@ -175,7 +177,7 @@ mysql_backup_repo:
     retention: 7                      # keep the last 7 fulls
 ```
 
-The backup contract (details in [Administration](/docs/pilot/mysql/admin#manage-backups)):
+The backup contract (details in [Administration](/docs/mysql/admin#manage-backups)):
 
 - One XtraBackup **full physical backup** per day, prepared immediately after — the output directory is directly restorable;
 - Standalone backs up locally; in HA every member's timer fires, but **only the current PRIMARY actually runs** — other members skip cleanly;

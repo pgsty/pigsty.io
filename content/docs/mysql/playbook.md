@@ -1,10 +1,11 @@
 ---
 title: Playbook
-weight: 5034
+weight: 5014
 description: Deploy, converge, tune, and retire MySQL clusters with mysql.yml and mysql-rm.yml.
 icon: fa-solid fa-scroll
 module: [MYSQL]
 categories: [Reference]
+aliases: [/docs/pilot/mysql/playbook]
 ---
 
 The MYSQL module ships two playbooks: [`mysql.yml`](https://github.com/pgsty/pigsty/blob/main/mysql.yml) deploys and converges, while [`mysql-rm.yml`](https://github.com/pgsty/pigsty/blob/main/mysql-rm.yml) performs protected member retirement and cluster teardown. Re-running the former converges toward declared state; the latter is a separate lifecycle operation whose target, backups, and exact confirmation value must be checked again before every real run.
@@ -119,7 +120,7 @@ The retirement playbook accepts three scopes, each requiring double confirmation
 
 What it does — and does not do:
 
-- Single-member retirement removes an `ONLINE SECONDARY` via AdminAPI (`force: false`), or verifies an already-detached member, then stops local services. The removal script runs on the target itself, so **the target must be reachable** — for a dead machine, use manual force removal instead ([Replace a Failed Member](/docs/pilot/mysql/admin#replace-a-failed-member)). **Retiring the primary directly is refused** (switch it away first with [`setPrimaryInstance`](/docs/pilot/mysql/admin#switchover)); so is retiring 2 of 3 members at once;
+- Single-member retirement removes an `ONLINE SECONDARY` via AdminAPI (`force: false`), or verifies an already-detached member, then stops local services. The removal script runs on the target itself, so **the target must be reachable** — for a dead machine, use manual force removal instead ([Replace a Failed Member](/docs/mysql/admin#replace-a-failed-member)). **Retiring the primary directly is refused** (switch it away first with [`setPrimaryInstance`](/docs/mysql/admin#switchover)); so is retiring 2 of 3 members at once;
 - Whole-cluster retirement stops the Router and backup timer, stops secondaries before the primary, and deregisters exporters and monitoring targets;
 - Every datadir gets the retirement marker `.pigsty-mysql-retired`, blocking ordinary `mysql.yml` reruns;
 - **All data is preserved**: datadirs, backups, config, certificates, packages, metadata, and Router identities stay untouched. Actual destruction is a separate, manual, backup-verified decision.
@@ -131,7 +132,7 @@ What it does — and does not do:
 
 ## Playbook Boundaries
 
-The following are **out of playbook scope** by design; manual procedures live in [Administration](/docs/pilot/mysql/admin):
+The following are **out of playbook scope** by design; manual procedures live in [Administration](/docs/mysql/admin):
 
 - Planned switchover (`setPrimaryInstance`);
 - Force removal of dead, unreachable members (`removeInstance` with `force: true`);

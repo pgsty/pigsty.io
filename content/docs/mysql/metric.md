@@ -1,10 +1,11 @@
 ---
 title: Metrics
-weight: 5036
+weight: 5016
 description: Label model, derived-metric dictionary, and raw metric families of the MYSQL module.
 icon: fa-solid fa-gauge-high
 module: [MYSQL]
 categories: [Reference]
+aliases: [/docs/pilot/mysql/metric]
 ---
 
 MYSQL metrics come from `mysqld_exporter` (raw metrics, `mysql_` prefix) and vmalert recording rules (`mysql:ins:*` / `mysql:cls:*`). Dashboards and alerts are built on the derived metrics; this page is their dictionary.

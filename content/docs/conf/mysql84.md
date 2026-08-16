@@ -48,4 +48,4 @@ Source: [`pigsty/conf/demo/mysql.yml`](https://github.com/pgsty/pigsty/blob/main
 - A daily local full XtraBackup and `mysqld_exporter` are enabled by default. The current pilot does not provide continuous binlog archiving, PITR, or automatic recovery.
 - `node.yml` installs the shared trust anchor at `/etc/pki/ca.crt`; the MySQL role only issues and installs leaf certificates.
 
-See the [native MySQL pilot documentation](/docs/pilot/mysql/) for complete constraints and the confirmed removal workflow.
+See the [native MySQL pilot documentation](/docs/mysql/) for complete constraints and the confirmed removal workflow.

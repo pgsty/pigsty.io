@@ -1,10 +1,11 @@
 ---
 title: Monitoring
-weight: 5035
+weight: 5015
 description: MySQL metric collection, Grafana dashboards, alert rules, and log queries.
 icon: fa-solid fa-chart-line
 module: [MYSQL]
 categories: [Reference]
+aliases: [/docs/pilot/mysql/monitor]
 ---
 
 The MYSQL module plugs into Pigsty's observability stack: metrics flow through mysqld_exporter into VictoriaMetrics, error logs flow through Journald/Vector into VictoriaLogs, Grafana ships 5 dashboards, and vmalert loads 68 recording rules plus 27 alert rules.
@@ -40,7 +41,7 @@ All MySQL metrics carry a consistent label set:
 | `topology` | Topology type | `innodb_cluster` / `standalone` |
 {.full-width}
 
-Derived rules are named `mysql:ins:*` (instance level) and `mysql:cls:*` (cluster level); the full dictionary is in [Metrics](/docs/pilot/mysql/metric).
+Derived rules are named `mysql:ins:*` (instance level) and `mysql:cls:*` (cluster level); the full dictionary is in [Metrics](/docs/mysql/metric).
 
 
 --------

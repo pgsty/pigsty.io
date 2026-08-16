@@ -1,10 +1,11 @@
 ---
 title: Parameters
-weight: 5032
+weight: 5012
 description: "The MYSQL module's 13 public parameters: 11 deployment parameters, 2 protected-removal parameters, and fixed platform conventions."
 icon: fa-solid fa-sliders
 module: [MYSQL]
 categories: [Reference]
+aliases: [/docs/pilot/mysql/param]
 ---
 
 The MYSQL deployment role deliberately exposes only 11 parameters; the removal role adds 2 protected operations parameters. Software versions, ports, directories, charset, TLS paths, and timer schedules are fixed by the role; memory sizing is derived from node specs. To adjust server behavior, use [`mysql_parameters`](#mysql_parameters).
@@ -73,8 +74,10 @@ Required instance sequence. `1` for standalone; a consecutive `1, 2, 3` for HA. 
 
 Password for `root@'localhost'`, usable only locally (socket or loopback). Single-line, and must not keep the `CHANGE_ME` prefix:
 
+The default is `DBUser.Root`:
+
 ```yaml
-mysql_root_password: MySQL.Root
+mysql_root_password: DBUser.Root
 ```
 
 Set at first launch. Afterwards, if the live password differs from the declaration, the run fails explicitly rather than resetting it — rotate manually with `ALTER USER`, then update the inventory.
@@ -83,16 +86,20 @@ Set at first launch. Afterwards, if the live password differs from the declarati
 
 Password for `dbuser_monitor@'127.0.0.1'`, used by mysqld_exporter: loopback-only, capped at 3 connections, read-only privileges:
 
+The default is `DBUser.Monitor`:
+
 ```yaml
-mysql_monitor_password: MySQL.Monitor
+mysql_monitor_password: DBUser.Monitor
 ```
 
 ### `mysql_cluster_password`
 
 Shared password for `dbuser_cluster@'%'` (TLS-required) and `dbuser_backup@'localhost'`, covering AdminAPI cluster management, Router bootstrap, and XtraBackup:
 
+The default is `DBUser.Cluster`:
+
 ```yaml
-mysql_cluster_password: MySQL.Cluster
+mysql_cluster_password: DBUser.Cluster
 ```
 
 On HA clusters this password is embedded in cluster metadata and Router keyrings, so **it cannot be rotated by an ordinary rerun**: a mismatch between the live value and the declaration is rejected at preflight. Standalone instances have no such binding — update the inventory and rerun.
@@ -104,15 +111,15 @@ On HA clusters this password is embedded in cluster metadata and Router keyrings
 
 ### `mysql_databases`
 
-Additive database list with fields `name / encoding / collate / encrypt`:
+Additive database list accepting only `name / encoding / collate`:
 
 ```yaml
 mysql_databases:
   - { name: app }
-  - { name: app2, encoding: utf8mb4, collate: utf8mb4_general_ci, encrypt: false }
+  - { name: app2, encoding: utf8mb4, collate: utf8mb4_general_ci }
 ```
 
-Creates and updates only; removing an entry never drops a database. Syntax and validation rules: [Configuration](/docs/pilot/mysql/config#databases).
+Creates and updates only; removing an entry never drops a database. Syntax and validation rules: [Configuration](/docs/mysql/config#databases).
 
 ### `mysql_users`
 
@@ -127,7 +134,7 @@ mysql_users:
     priv: { 'app.*': 'ALL PRIVILEGES' }
 ```
 
-Grants are applied but never revoked implicitly; platform identities cannot be declared. Syntax and validation rules: [Configuration](/docs/pilot/mysql/config#users).
+Grants are applied but never revoked implicitly; platform identities cannot be declared. Syntax and validation rules: [Configuration](/docs/mysql/config#users).
 
 
 --------
@@ -147,7 +154,7 @@ mysql_parameters:
 Constraints and behavior:
 
 - Keys match `[A-Za-z][A-Za-z0-9_.-]{0,63}`; values are single-line scalars. The rendered config still passes `mysqld --validate-config`, so typos fail at deploy time without touching the running instance;
-- **Reserved options are rejected** (`-` and `_` spellings are treated alike): `user`, `pid_file`, `server_id`, `datadir`, `socket`, `port`, `bind_address`, `mysqlx_bind_address`, `report_host`, `gtid_mode`, `enforce_gtid_consistency`, `log_bin`, `relay_log`, `plugin_load_add`, plus the entire `group_replication_*` and TLS families (`require_secure_transport`, `ssl_*`);
+- **Reserved options are rejected** (`-` and `_` spellings are treated alike): `user`, `pid_file`, `server_id`, `datadir`, `socket`, `port`, `bind_address`, `mysqlx_bind_address`, `report_host`, `gtid_mode`, `enforce_gtid_consistency`, `log_bin`, `relay_log`, `require_secure_transport`, `ssl_ca`, `ssl_cert`, `ssl_key`, `plugin_load`, `plugin_load_add`, `clone`, `plugin_clone`, `mysqlx`, and `plugin_mysqlx`, plus all `group_replication_*`, `plugin_group_replication*`, `plugin_mysqlx_bind_address`, and `ssl_*` options;
 - Applying a change reruns `mysql.yml`, which orchestrates a rolling restart (secondaries first, primary last) — expect one brief write interruption when the primary restarts;
 - Commonly overridden defaults: `sql_require_primary_key` (default `ON`), `long_query_time` (default `1`), `binlog_expire_logs_seconds` (default 7 days), and the memory settings.
 
@@ -179,7 +186,7 @@ mysql_backup_repo:
     retention: 7                  # keep the last N committed fulls (1-9999)
 ```
 
-Layout and restore procedure: [Administration](/docs/pilot/mysql/admin#manage-backups).
+Layout and restore procedure: [Administration](/docs/mysql/admin#manage-backups).
 
 
 --------
@@ -223,7 +230,7 @@ The following are fixed or derived by the role — **not** inventory parameters 
 | Item | Value |
 |:---|:---|
 | Versions | MySQL Server/Client/Shell/Router 8.4 LTS, Percona XtraBackup 8.4 |
-| Ports | `3306` (classic), `33060` (X Protocol; loopback-only on standalone), `33061` (MGR), `6446/6447` (Router RW/RO), `9104` (exporter) |
+| Ports | `3306` (classic), `33060` (X Protocol; loopback-only on standalone), `33061` (MGR), `6446/6447` (Router RW/RO), `9104` (exporter); INFRA carries the read-only reference constant `mysql_exporter_port: 9104` for monitoring config, not as a public MYSQL parameter |
 | Data directory | `/var/lib/mysql` (binlogs under `binlog/`, 7-day expiry) |
 | Config file | EL: `/etc/my.cnf.d/pigsty.cnf`; Debian/Ubuntu: `/etc/mysql/mysql.conf.d/pigsty.cnf` |
 | Service units | MySQL: `mysqld` on EL, `mysql` on Debian/Ubuntu; Router: `mysqlrouter`; Exporter: `mysqld_exporter` |

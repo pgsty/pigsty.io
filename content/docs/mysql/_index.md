@@ -1,10 +1,11 @@
 ---
-title: 'Module: MySQL'
-weight: 5030
+title: 'Module: MYSQL'
+weight: 4950
 description: Deploy native MySQL 8.4 LTS as a standalone instance or a three-node InnoDB Cluster, with TLS, daily backups, and full observability.
 icon: fas fa-fish
 module: [MYSQL]
 categories: [Reference]
+aliases: [/docs/pilot/mysql]
 ---
 
 [MySQL](https://www.mysql.com/) is one of the world's most popular open-source relational databases. Pigsty's **MYSQL** module deploys a fixed, **native MySQL 8.4 LTS platform** on managed nodes: either a standalone instance or a three-node single-primary InnoDB Cluster built on Group Replication, with TLS, backups, monitoring, and lifecycle handled for you.
@@ -12,7 +13,7 @@ categories: [Reference]
 {{% alert title="Current status: Pilot module" color="info" %}}
 MYSQL is a supplementary pilot module. It aims to be a simple, inexpensive, good-enough MySQL cluster — not a peer of the PGSQL module.
 The core capabilities (deployment and convergence, HA failover, daily backups, monitoring and alerting) have been tested systematically;
-destructive procedures such as complete-outage recovery and physical restore are deliberately kept manual, with runbooks provided in [Administration](/docs/pilot/mysql/admin).
+destructive procedures such as complete-outage recovery and physical restore are deliberately kept manual, with runbooks provided in [Administration](/docs/mysql/admin).
 {{% /alert %}}
 
 
@@ -105,9 +106,9 @@ Debian/Ubuntu ARM64 is rejected at preflight: Oracle's APT repository publishes 
 
 MYSQL is a fixed platform, not a general-purpose MySQL installer. The following are **deliberate non-goals** — confirm they are acceptable before adopting:
 
-- **Topology is fixed at 1 or 3 nodes**: no in-place 1→3 upgrade, no 3→5 scale-out, no persistent two-node operation. Capacity upgrades go through logical migration; hardware refresh goes through [same-address replacement](/docs/pilot/mysql/admin#replace-a-failed-member)
-- **Versions, ports, directories, and charset are fixed**: no parameters expose them. Memory sizing is derived from node specs and can be overridden per key via [`mysql_parameters`](/docs/pilot/mysql/param#mysql_parameters)
-- **Backups are daily local fulls**: no incremental chain, no continuous binlog archiving, no PITR. Physical restore is a manual procedure with a [runbook](/docs/pilot/mysql/admin#restore-from-physical-backup)
+- **Topology is fixed at 1 or 3 nodes**: no in-place 1→3 upgrade, no 3→5 scale-out, no persistent two-node operation. Capacity upgrades go through logical migration; hardware refresh goes through [same-address replacement](/docs/mysql/admin#replace-a-failed-member)
+- **Versions, ports, directories, and charset are fixed**: no parameters expose them. Memory sizing is derived from node specs and can be overridden per key via [`mysql_parameters`](/docs/mysql/param#mysql_parameters)
+- **Backups are daily local fulls**: no incremental chain, no continuous binlog archiving, no PITR. Physical restore is a manual procedure with a [runbook](/docs/mysql/admin#restore-from-physical-backup)
 - **Complete-outage recovery stays manual** to rule out split-brain from automated guessing; playbook failures print the recovery instructions
 - **No VIP / DNS / HAProxy access layer**: clients connect through any member's Router ports, preferably with a multi-host DSN
 
@@ -118,13 +119,13 @@ MYSQL is a fixed platform, not a general-purpose MySQL installer. The following 
 
 | Page | Content |
 |:---|:---|
-| [Configuration](/docs/pilot/mysql/config) | Topology planning, identity, databases, users, parameter overrides, backup settings |
-| [Parameters](/docs/pilot/mysql/param) | The 11 public parameters and fixed platform conventions |
-| [Administration](/docs/pilot/mysql/admin) | Status checks, client access, config changes, failure handling, and three recovery runbooks |
-| [Playbook](/docs/pilot/mysql/playbook) | `mysql.yml` and `mysql-rm.yml` usage, tags, and guardrails |
-| [Monitoring](/docs/pilot/mysql/monitor) | Dashboards, recording rules, alert rules, log queries |
-| [Metrics](/docs/pilot/mysql/metric) | Label model and the derived-metric dictionary |
-| [FAQ](/docs/pilot/mysql/faq) | Platform limits, primary-key policy, recovery, troubleshooting |
+| [Configuration](/docs/mysql/config) | Topology planning, identity, databases, users, parameter overrides, backup settings |
+| [Parameters](/docs/mysql/param) | The 11 public parameters and fixed platform conventions |
+| [Administration](/docs/mysql/admin) | Status checks, client access, config changes, failure handling, and three recovery runbooks |
+| [Playbook](/docs/mysql/playbook) | `mysql.yml` and `mysql-rm.yml` usage, tags, and guardrails |
+| [Monitoring](/docs/mysql/monitor) | Dashboards, recording rules, alert rules, log queries |
+| [Metrics](/docs/mysql/metric) | Label model and the derived-metric dictionary |
+| [FAQ](/docs/mysql/faq) | Platform limits, primary-key policy, recovery, troubleshooting |
 {.full-width}
 
 

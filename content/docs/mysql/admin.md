@@ -1,10 +1,11 @@
 ---
 title: Administration
-weight: 5033
+weight: 5013
 description: Status checks, client access, configuration changes, failure handling, and the three recovery runbooks for MySQL clusters.
 icon: fa-solid fa-wrench
 module: [MYSQL]
 categories: [Reference]
+aliases: [/docs/pilot/mysql/admin]
 ---
 
 This page covers day-to-day operations for the MYSQL module. The governing principle: **declare state in the inventory, converge with the playbook.** Most anomalies — a dropped member, drifted AdminAPI state — heal with a single `./mysql.yml -l <cluster>` rerun. Only three destructive scenarios (member replacement, physical restore, complete-outage recovery) require the manual runbooks below.
@@ -99,7 +100,7 @@ In HA, object changes execute on the current primary and replicate out. Declarat
 
 ## Change Cluster Parameters
 
-All tuning goes through [`mysql_parameters`](/docs/pilot/mysql/param#mysql_parameters):
+All tuning goes through [`mysql_parameters`](/docs/mysql/param#mysql_parameters):
 
 ```yaml
 mysql_parameters:
@@ -332,7 +333,7 @@ Notes:
 
 ## Platform Password Boundaries
 
-Operational boundaries for the three platform passwords (details: [Parameters](/docs/pilot/mysql/param#credentials)):
+Operational boundaries for the three platform passwords (details: [Parameters](/docs/mysql/param#credentials)):
 
 - `mysql_monitor_password`: update the inventory and rerun — rotates cleanly;
 - `mysql_root_password`: implicit resets are refused. Rotate manually — `ALTER USER 'root'@'localhost' IDENTIFIED BY '...';` on the primary — then update the inventory and rerun to refresh credential files;

@@ -40,12 +40,12 @@ This page lists default ports used by Pigsty module components. Adjust as needed
 |  [**`KAFKA`**](/docs/kafka)    |       **`KRaft controller`**       | `9093`  | [**`kafka_controller_port`**](/docs/kafka/param#kafka_controller_port)       | 🧪 BETA  |
 |  [**`KAFKA`**](/docs/kafka)    |        **`kafka_exporter`**        | `9308`  | [**`kafka_exporter_port`**](/docs/kafka/param#kafka_exporter_port)           | 🧪 BETA  |
 |  [**`KAFKA`**](/docs/kafka)    |         **`JMX exporter`**         | `9404`  | [**`kafka_jmx_exporter_port`**](/docs/kafka/param#kafka_jmx_exporter_port)   | 🧪 BETA  |
-| [**`MYSQL`**](/docs/pilot/mysql/) |          **`mysqld`**            | `3306`  | Fixed value (the current pilot exposes no port parameter)                    | 🧪 PILOT |
-| [**`MYSQL`**](/docs/pilot/mysql/) |     **`MySQL X Protocol`**       | `33060` | Fixed value; loopback-only on a single node, member-facing in a 3-node topology | 🧪 PILOT |
-| [**`MYSQL`**](/docs/pilot/mysql/) |    **`Group Replication`**       | `33061` | Fixed value; three-node InnoDB Cluster only                                  | 🧪 PILOT |
-| [**`MYSQL`**](/docs/pilot/mysql/) |     **`MySQL Router RW`**        | `6446`  | Fixed value; three-node InnoDB Cluster only                                  | 🧪 PILOT |
-| [**`MYSQL`**](/docs/pilot/mysql/) |     **`MySQL Router RO`**        | `6447`  | Fixed value; three-node InnoDB Cluster only                                  | 🧪 PILOT |
-| [**`MYSQL`**](/docs/pilot/mysql/) |     **`mysqld_exporter`**        | `9104`  | Fixed value; controlled by `mysql_exporter_enabled`                          | 🧪 PILOT |
+| [**`MYSQL`**](/docs/mysql/) |          **`mysqld`**            | `3306`  | Fixed value (the current pilot exposes no port parameter)                    | 🧪 PILOT |
+| [**`MYSQL`**](/docs/mysql/) |     **`MySQL X Protocol`**       | `33060` | Fixed value; loopback-only on a single node, member-facing in a 3-node topology | 🧪 PILOT |
+| [**`MYSQL`**](/docs/mysql/) |    **`Group Replication`**       | `33061` | Fixed value; three-node InnoDB Cluster only                                  | 🧪 PILOT |
+| [**`MYSQL`**](/docs/mysql/) |     **`MySQL Router RW`**        | `6446`  | Fixed value; three-node InnoDB Cluster only                                  | 🧪 PILOT |
+| [**`MYSQL`**](/docs/mysql/) |     **`MySQL Router RO`**        | `6447`  | Fixed value; three-node InnoDB Cluster only                                  | 🧪 PILOT |
+| [**`MYSQL`**](/docs/mysql/) |     **`mysqld_exporter`**        | `9104`  | Fixed value; controlled by `mysql_exporter_enabled`                          | 🧪 PILOT |
 |  [**`PGSQL`**](/docs/pgsql)    |          **`postgres`**            | `5432`  | [**`pg_port`**](/docs/pgsql/param#pg_port)                                   | Enabled  |
 |  [**`PGSQL`**](/docs/pgsql)    |         **`pgbouncer`**            | `6432`  | [**`pgbouncer_port`**](/docs/pgsql/param#pgbouncer_port)                     | Enabled  |
 |  [**`PGSQL`**](/docs/pgsql)    |          **`patroni`**             | `8008`  | [**`patroni_port`**](/docs/pgsql/param#patroni_port)                         | Enabled  |
