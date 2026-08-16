@@ -63,8 +63,8 @@ Removal does not delete PostgreSQL metadata or object storage data.
 
 Depends on `data`:
 
-- `--storage postgres`: data in PostgreSQL `pg_largeobject`
-- `--storage minio/s3`: data in object storage bucket
+- `--storage postgres`: JuiceFS creates a `jfs_blob` table in the PostgreSQL database selected by `--bucket`
+- `--storage minio/s3`: data is stored in a Silo/S3-compatible object-storage bucket
 
 Metadata is stored in the metadata engine defined by `meta` (in Pigsty production scenarios, this is usually PostgreSQL).
 

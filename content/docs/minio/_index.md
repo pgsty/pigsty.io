@@ -8,7 +8,7 @@ categories: [Reference]
 ---
 
 
-`MINIO` is Pigsty's compatibility module name for S3-compatible object storage. The current v4.5.0 source deploys [**Silo**](https://github.com/pgsty/silo), and [`minio_type`](/docs/minio/param#minio_type) accepts only `silo`.
+`MINIO` is Pigsty's compatibility module name for S3-compatible object storage. The current role deploys [**Silo**](https://github.com/pgsty/silo), and [`minio_type`](/docs/minio/param#minio_type) accepts only `silo`.
 
 Silo preserves the MinIO S3/Admin APIs, `MINIO_*` environment variables, disk format, and `mcli` client interface, and can serve as a PostgreSQL [**pgBackRest backup repository**](/docs/pgsql/backup/repository/). The module name, parameter prefix, and monitoring `job` retain the `MINIO` / `minio_*` namespace for compatibility with existing inventories and operational entry points.
 
@@ -58,8 +58,11 @@ Silo uses the following Pigsty inventory deployment modes:
 |:---|:---|:---|
 | [**Single-Node Single-Disk**](/docs/minio/config#single-node-single-disk) (SNSD) | Single node, one data directory | Development, testing, demos |
 | [**Single-Node Multi-Disk**](/docs/minio/config#single-node-multi-disk) (SNMD) | Single node, multiple disks | Resource-constrained small deployments |
+| [**Multi-Node Single-Disk**](/docs/minio/config#multi-node-single-disk) (MNSD) | Multiple nodes, one data drive per node | Compact HA deployments |
 | [**Multi-Node Multi-Disk**](/docs/minio/config#multi-node-multi-disk) (MNMD) | Multiple nodes with multiple disks per node | **Recommended for production** |
 {.full-width}
+
+`minio_data` is always a directory path. Distributed and multi-drive deployments require these paths to reside on non-root, persistent filesystems. For example, `/data/minio` may be a subdirectory of a separately mounted `/data` filesystem, but not merely a directory on the root filesystem.
 
 The multi-pool expansion semantics of `minio_volumes` come from the MinIO-compatible interface retained by Silo. Validate operations and rollback against the actual Silo version before production scaling.
 
@@ -69,7 +72,7 @@ The multi-pool expansion semantics of `minio_volumes` come from the MinIO-compat
 ## Core Capabilities
 
 - **Compatible interface**: Silo retains `minio_*` parameters, the S3 port, TLS, and the `mcli` provisioning flow
-- **HA topologies**: Supports single-node and multi-node multi-drive deployments, with multiple independent clusters in one inventory
+- **HA topologies**: Supports single-node, multi-node single-drive, and multi-node multi-drive deployments, with multiple independent clusters in one inventory
 - **Backup repository**: Can serve as a remote pgBackRest S3 repository
 - **Security baseline**: Enables HTTPS by default and uses the Pigsty CA to issue a certificate for every instance
 - **Observability**: Scrapes Silo metrics through `/minio/metrics/v3` and provides Grafana dashboards and alerts

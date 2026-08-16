@@ -68,6 +68,8 @@ bin/redis-add 10.10.10.10 6379  # create redis instance '10.10.10.10:6379'
 
 You can use the [`redis-rm.yml`](/docs/redis/playbook#redis-rmyml) playbook to remove Redis clusters, nodes, or instances:
 
+`redis_rm_data` defaults to `true`. Verify RDB/AOF backups and the current primary/replica, Sentinel, or cluster topology, then have the operator confirm the exact target. The commands below perform the corresponding removal directly.
+
 ```bash
 # Remove Redis cluster `redis-test`
 ./redis-rm.yml -l redis-test

@@ -10,7 +10,7 @@ categories: [Reference]
 [JuiceFS](https://juicefs.com/) is a high-performance POSIX-compatible distributed filesystem that can mount object storage or databases as a local filesystem.
 
 The `JUICE` module depends on [`NODE`](/docs/node) for infrastructure and package repo, and typically uses [`PGSQL`](/docs/pgsql) as the metadata engine.
-Data storage can be PostgreSQL or [`MINIO`](/docs/minio) / S3 object storage. Monitoring relies on [`INFRA`](/docs/infra) VictoriaMetrics.
+Data storage can be PostgreSQL (in a `jfs_blob` table) or Silo / S3-compatible object storage provided by the [`MINIO`](/docs/minio) module. Monitoring relies on [`INFRA`](/docs/infra) VictoriaMetrics.
 
 ```mermaid
 flowchart LR
@@ -24,10 +24,11 @@ flowchart LR
 
     subgraph PGSQL["PGSQL"]
         meta["Metadata DB"]
+        blob["Data DB / jfs_blob (optional)"]
     end
 
     subgraph Object["Object Storage (optional)"]
-        s3["S3 / MinIO"]
+        s3["Silo / S3"]
     end
 
     subgraph INFRA["INFRA (optional)"]
@@ -36,7 +37,8 @@ flowchart LR
 
     app --> jfs
     jfs --> meta
-    jfs -.-> s3
+    jfs -.->|alternative data backend| blob
+    jfs -.->|alternative data backend| s3
     jfs -->|/metrics| vm
 
     style JUICE fill:#5B9CD5,stroke:#4178a8,color:#fff
@@ -51,7 +53,7 @@ flowchart LR
 
 - **PostgreSQL metadata**: Metadata stored in PostgreSQL for easy management and backup
 - **Multi-instance**: One node can mount multiple independent filesystem instances
-- **Multiple data backends**: PostgreSQL, MinIO, S3, and more
+- **Multiple data backends**: PostgreSQL, Silo/MinIO, S3, and more; metadata and file data remain separate roles
 - **Monitoring integration**: Each instance exposes Prometheus / Victoria-format metrics port
 - **Simple config**: Describe instances with the [**`juice_instances`**](/docs/juice/param#juice_instances) dict
 

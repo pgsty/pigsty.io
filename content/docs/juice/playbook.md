@@ -108,7 +108,7 @@ juice_instances:
 ```
 
 Removal includes stopping the service, lazy unmounting, removing systemd unit and environment files, and reloading systemd. `juice_register` then rewrites the node's target file and removes stale scrape endpoints. Running only `juice_clean` does not update monitoring targets.
-**PostgreSQL metadata and object storage data are not deleted.**
+**PostgreSQL metadata, PostgreSQL `jfs_blob` data tables, and object-storage data are not deleted.**
 
 --------
 

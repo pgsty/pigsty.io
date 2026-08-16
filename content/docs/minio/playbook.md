@@ -61,7 +61,7 @@ Re-running `minio.yml` may restart a running object-storage service, but it does
 `minio_rm_data` defaults to `true`. A full removal run deletes every expanded `minio_data` directory. Before running it, verify `minio_cluster`, `minio_seq`, `minio_type: silo`, and all disk mount paths. To retire only the service while retaining data, explicitly pass `-e minio_rm_data=false`.
 {{% /alert %}}
 
-The deployment role defaults to `minio_type: silo`, but the removal role deliberately has no backend default. If the inventory omits `minio_type`, pass `-e minio_type=silo` when running the removal playbook; other values are rejected. This explicit confirmation prevents cleaning up the wrong package, service, or certificate directory.
+Both deployment and removal roles default `minio_type` to `silo`; other values are rejected. The removal examples still pass it explicitly as part of reviewing the package, service, certificate directory, and data paths; it is not an additional interactive confirmation gate.
 
 
 ----------------
@@ -76,8 +76,8 @@ The deployment role defaults to `minio_type: silo`, but the removal role deliber
 ./minio.yml -l minio -t minio_register        # Refresh monitoring targets
 ./minio.yml -l minio -t minio_provision       # Re-provision aliases, buckets, and users
 
-./minio-rm.yml -l minio -e minio_type=silo                         # Remove Silo service, configuration, and data
-./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_data=false  # Remove service but preserve data and configuration
+./minio-rm.yml -l minio -e minio_type=silo                         # Remove Silo services, configuration, and data
+./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_data=false  # Remove services while preserving data and configuration
 ./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_pkg=true    # Also uninstall Silo and mcli
 ```
 

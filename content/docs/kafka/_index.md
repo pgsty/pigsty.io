@@ -1,5 +1,5 @@
 ---
-title: 'Module: Kafka'
+title: 'Module: KAFKA'
 weight: 4900
 description: Deploy, secure, and monitor Apache Kafka 4.1+ dynamic KRaft clusters with Pigsty.
 icon: fas fa-share-nodes

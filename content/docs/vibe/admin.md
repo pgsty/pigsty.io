@@ -57,7 +57,9 @@ systemctl restart code-server
 Or via Ansible:
 
 ```bash
-./vibe.yml -l <host> -e code_password='NewPassword' -t code_config,code_launch
+# Persist the new password in inventory first so it does not enter shell history
+./vibe.yml -l <host> -t code_config,code_launch --check
+./vibe.yml -l <host> -t code_config,code_launch
 ```
 
 ### JupyterLab
@@ -66,9 +68,12 @@ Config file: `/data/jupyter/jupyter_config.py`
 
 Field: `c.IdentityProvider.token`
 
+The current v4.5 template also allows any Origin and disables XSRF checks, so the token is its primary authentication barrier. Use a strong random token, restrict TCP/8888, and access it through a trusted TLS reverse proxy. Persist a new token in inventory, then preview and apply it:
+
 ```bash
-vi /data/jupyter/jupyter_config.py
-systemctl restart jupyter
+./vibe.yml -l <host> -t jupyter_config --check
+./vibe.yml -l <host> -t jupyter_config
+ssh <host> sudo systemctl restart jupyter
 ```
 
 --------

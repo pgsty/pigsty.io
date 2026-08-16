@@ -70,7 +70,8 @@ Notes:
 Full deploy:
 
 ```bash
-./vibe.yml -l <host>
+./vibe.yml -l <host> --check   # Preview first
+./vibe.yml -l <host>           # Apply after confirming the target
 ```
 
 Component-level:
@@ -111,9 +112,12 @@ Node.js is a runtime dependency of Claude Code and Codex CLI. If `nodejs_enabled
 ## Deployment Order
 
 ```bash
-./deploy.yml      # deploy NODE, INFRA, ETCD, MINIO, and PGSQL defined in the inventory
-./juice.yml       # optional shared storage
-./vibe.yml        # VIBE
+./deploy.yml --check          # Preview inventory-defined base components
+./deploy.yml                  # Deploy after review
+./juice.yml -l <host> --check # Optional shared-storage preview
+./juice.yml -l <host>
+./vibe.yml -l <host> --check  # VIBE preview
+./vibe.yml -l <host>
 ```
 
 --------

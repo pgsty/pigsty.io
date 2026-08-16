@@ -144,6 +144,8 @@ Most tasks in `redis.yml` can be run repeatedly, but native-cluster initializati
 
 > **Tip**: If you only want to update configs without restarting all instances, use `-t redis_config` to render configs only, then manually restart the instances you need.
 
+Redis/Valkey units use `Type=notify`. During startup, systemd waits up to `1800s` for readiness so large RDB/AOF loads and recovery can finish. A timeout is not a reason to broaden data deletion or use a forced stop; inspect instance logs, data size, disk I/O, and memory first.
+
 
 
 --------
@@ -163,6 +165,8 @@ redis_data       : Delete data directories (when redis_rm_data=true)
 redis_pkg        : Uninstall selected engine and redis-exporter (when redis_rm_pkg=true)
 ```
 
+Tag-scoped execution follows the data/package switches. `-t redis` always enters the instance-stop phase; `-t redis_data` stops instances only when `redis_rm_data=true`, and `-t redis_pkg` stops them only when `redis_rm_pkg=true`. Thus `-t redis_data -e redis_rm_data=false` and `-t redis_pkg -e redis_rm_pkg=false` do not stop Redis merely because the tag was selected. Before any real removal, verify the exact same `-l`, tags, and extra variables.
+
 
 ### Operation Levels
 
@@ -180,8 +184,8 @@ redis_pkg        : Uninstall selected engine and redis-exporter (when redis_rm_p
 Remove an entire Redis cluster:
 
 ```bash
-./redis-rm.yml -l redis-ms        # remove entire redis-ms cluster
-./redis-rm.yml -l redis-test      # remove entire redis-test cluster
+./redis-rm.yml -l redis-ms        # remove the entire redis-ms cluster
+./redis-rm.yml -l redis-test      # remove the entire redis-test cluster
 ```
 
 Cluster-level removal will:
@@ -256,9 +260,6 @@ Behavioral differences when `redis_port` is specified:
 Usage examples:
 
 ```bash
-# Preview the exact same target first; a real run deletes RDB/AOF directories by default
-./redis-rm.yml -l redis-ms --check
-
 # Remove cluster but keep data directories
 ./redis-rm.yml -l redis-ms -e redis_rm_data=false
 

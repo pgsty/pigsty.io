@@ -218,17 +218,16 @@ The role discards the node certificates already issued in the shared PKI tree, r
 
 ## `kafka-rm.yml`
 
-Removal is not in `kafka.yml`; it uses the separate [`kafka-rm.yml`](https://github.com/pgsty/pigsty/blob/main/kafka-rm.yml) playbook. Selecting **all members** of a cluster with `-l` is a teardown, selecting a **strict subset** is member retirement; both share the same execution order:
+Removal is not in `kafka.yml`; it uses the separate [`kafka-rm.yml`](https://github.com/pgsty/pigsty/blob/main/kafka-rm.yml) playbook. It **requires a non-empty `-l/--limit`** and fails before entering any role when run without one. Selecting **all members** of a cluster with `-l` is a teardown, selecting a **strict subset** is member retirement; both share the same execution order:
 
 Deregister the VictoriaMetrics targets (`kafka_deregister`) → stop and disable the `kafka`/`kafka_exporter` services (`kafka`) → remove the KRaft voter entry and broker registration through a surviving member (`kafka_retire`, which only has a surviving member to work through when a strict subset is selected) → delete exporter config, Systemd environment/units, and helper scripts (`kafka_config`) → delete the data directories and node-local `/etc/kafka` recovery state (`kafka_data`, controlled by `kafka_rm_data`) → optionally uninstall the packages (`kafka_pkg`, controlled by `kafka_rm_pkg`).
 
-The safeguard switch is `kafka_safeguard`: when set to `true` (on the command line or in the inventory), the playbook aborts immediately and deletes nothing. An identity conflict, an exporter anomaly, or an ordinary startup failure is not a reason to delete data — converge with [`kafka.yml`](#kafkayml) first and read the failure reason.
+Before deregistration or service stop, the role also checks that `kafka_data` is a dedicated safe absolute path: it must contain no `.`/`..` path segment and cannot be `/`, `/data`, `/var`, `/etc`, `/opt`, `/usr`, `/home`, `/root`, or `/pg`. The safeguard switch is `kafka_safeguard`: when set to `true` (on the command line or in the inventory), the playbook aborts immediately and deletes nothing. An identity conflict, an exporter anomaly, or an ordinary startup failure is not a reason to delete data — converge with [`kafka.yml`](#kafkayml) first and read the failure reason.
 
 
 ### Cluster Teardown
 
 ```bash
-./kafka-rm.yml -l kf-main --check                  # Rehearse the exact same full-cluster target first
 ./kafka-rm.yml -l kf-main                          # Remove the cluster: deregister monitoring and stop services; deletes data and /etc/kafka recovery state by default
 ./kafka-rm.yml -l kf-main -e kafka_rm_data=false   # Keep data and /etc/kafka recovery state; remove only service integration
 ./kafka-rm.yml -l kf-main -e kafka_rm_pkg=true     # Also uninstall the kafka-stack packages (the shared Java runtime is not removed)
@@ -242,11 +241,10 @@ The safeguard switch is `kafka_safeguard`: when set to `true` (on the command li
 ### Member Retirement
 
 ```bash
-./kafka-rm.yml -l 10.10.10.13 --check              # Rehearse the exact same member target first
 ./kafka-rm.yml -l 10.10.10.13                      # Retire one member: drop its voter entry and broker registration, then clean the node
 ```
 
-The playbook attempts to remove the leaving node's KRaft voter entry through a surviving member (`remove-controller`, strictly serialized for several members) and drops its broker registration (`unregister`) before local cleanup. Metadata actions are delegated to the survivor, so this also works for nodes that are already dead and unreachable—step one of [Replace Failed Node](/docs/kafka/admin#replace-failed-node). Broker unregistration is deliberately re-entrant and tolerates failure; after a real run, inspect the live quorum, broker registrations, and replica health instead of treating the playbook status alone as proof of retirement.
+Partial retirement requires at least one broker-capable (`combined`/`broker`) survivor and one controller-capable (`combined`/`controller`) survivor outside `-l`; one combined node can satisfy both roles. If either anchor is missing, the playbook fails before deregistration or service stop. It then uses those survivors to remove each target's KRaft voter entry (`remove-controller`, strictly serialized for several members) and broker registration (`unregister`) before local cleanup. Metadata actions are delegated to survivors, so this also works for nodes that are already dead and unreachable—step one of [Replace Failed Node](/docs/kafka/admin#replace-failed-node). Broker unregistration is deliberately re-entrant and tolerates failure; after a real run, inspect the live quorum, broker registrations, and replica health instead of treating the playbook status alone as proof of retirement.
 
 Automated retirement does not remove the need for planning: after the shrink, the remaining controllers should stay odd-numbered and keep a live majority, and the remaining broker count must not fall below the highest topic RF; when the retiring broker still hosts partition replicas, the playbook prints a warning — a planned shrink should drain with a reassignment first.
 

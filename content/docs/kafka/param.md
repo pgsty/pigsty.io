@@ -223,7 +223,7 @@ Node certificate validity follows Pigsty's shared CA parameter [`cert_validity`]
 
 ### `kafka_users`
 
-Defaults to `[]`, and may only be declared in `scram` mode. Each object accepts only `name`, `password`, `acls`, and `quota`:
+Defaults to `[]`, and may only be declared in `scram` mode. The collection must be a list of mappings, and each mapping accepts only `name`, `password`, `acls`, and `quota`; a non-mapping item or unknown top-level key fails before resource convergence:
 
 ```yaml
 kafka_users:
@@ -260,7 +260,7 @@ The role converges the SCRAM password, the complete ACL set, and the explicitly 
 
 ### `kafka_topics`
 
-Defaults to `[]`. Each object accepts only `name`, `partitions`, `replication_factor`, and `config`:
+Defaults to `[]`. The collection must be a list of mappings, and each mapping accepts only `name`, `partitions`, `replication_factor`, and `config`; a non-mapping item or unknown top-level key fails before resource convergence:
 
 ```yaml
 kafka_topics:
@@ -292,7 +292,7 @@ The following variables are used only via the command-line `-e` for one-off oper
 |:-------|:---------------|:------------------------------------------------------------------------------------|:-------------------------------|
 | Rotate internal credentials | `kafka.yml`    | `kafka_rotate_credentials=true`, `kafka_rotate_confirm=<cluster>`                    | A healthy, fully-formatted `scram` cluster |
 | Rotate certificates | `kafka.yml`    | `kafka_rotate_certificates=true`, `kafka_rotate_confirm=<cluster>`                   | A healthy, fully-formatted `scram` cluster |
-| Tear down the cluster | `kafka-rm.yml` | `kafka_rm_data` (default `true`), `kafka_rm_pkg` (default `false`), `kafka_safeguard` (default `false`) | `kafka_safeguard=true` aborts all deletion |
+| Tear down the cluster | `kafka-rm.yml` | `kafka_rm_data` (default `true`), `kafka_rm_pkg` (default `false`), `kafka_safeguard` (default `false`) | Explicit `-l` required; `kafka_safeguard=true` aborts all deletion |
 {.full-width}
 
 The two rotation actions are mutually exclusive, and must target a precise, complete cluster. `kafka-rm.yml` deletes the data directory and node-local `/etc/kafka` recovery state by default; `kafka_rm_data=false` retains both. Before running it, explicitly confirm the target cluster and your backup/rebuild intent. For the commands and full semantics, see [Playbooks](/docs/kafka/playbook).

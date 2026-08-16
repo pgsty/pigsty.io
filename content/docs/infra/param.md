@@ -73,12 +73,11 @@ The INFRA module is responsible for deploying Pigsty's infrastructure components
 | [`repo_extra_packages`](#repo_extra_packages) |  `string[]`  | `G/C/I` | Extra packages to download                     |
 | [`repo_url_packages`](#repo_url_packages)     |  `string[]`  |   `G`   | Extra packages downloaded via URL              |
 
-[`INFRA_PACKAGE`](#infra_package) parameters define packages to install on infrastructure nodes, including RPM/DEB packages and PIP packages.
+[`INFRA_PACKAGE`](#infra_package) parameters define RPM/DEB packages to install on infrastructure nodes.
 
-| Parameter                                   |    Type    | Level | Description                            |
-|:--------------------------------------------|:----------:|:-----:|:---------------------------------------|
-| [`infra_packages`](#infra_packages)         | `string[]` |  `G`  | Packages to install on infra nodes     |
-| [`infra_packages_pip`](#infra_packages_pip) |  `string`  |  `G`  | Pip packages to install on infra nodes |
+| Parameter                           |    Type    | Level | Description                        |
+|:------------------------------------|:----------:|:-----:|:-----------------------------------|
+| [`infra_packages`](#infra_packages) | `string[]` |  `G`  | Packages to install on infra nodes |
 
 [`NGINX`](#nginx) parameters configure Nginx web server and reverse proxy, including enable switch, ports, SSL mode, certificates, and basic authentication.
 
@@ -708,7 +707,7 @@ Note that this parameter is affected by the [`region`](#region) variable. If you
 
 ## `INFRA_PACKAGE`
 
-These packages are installed only on INFRA nodes, including regular RPM/DEB packages and PIP packages.
+These RPM/DEB packages are installed only on INFRA nodes.
 
 
 
@@ -737,27 +736,6 @@ infra_packages_default:
 ```
 
 > Note: v4.x uses the VictoriaMetrics suite to replace Prometheus and Loki, so the package list differs significantly from v3.x.
-
-
-
-
-### `infra_packages_pip`
-
-name: `infra_packages_pip`, type: `string`, level: `G`
-
-Additional packages to install using `pip` on Infra nodes, package names separated by commas. Default value is an empty string, meaning no additional python packages are installed.
-
-Example:
-
-```yaml
-infra_packages_pip: 'requests,boto3,awscli'
-```
-
-
-
-
-
-
 
 ------------------------------
 

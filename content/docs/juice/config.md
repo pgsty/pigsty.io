@@ -88,7 +88,7 @@ juice_instances:
 
 `data` is appended to `juicefs format`, any supported backend works. Common examples:
 
-### PostgreSQL Large Objects
+### PostgreSQL Data Backend
 
 ```yaml
 juice_instances:
@@ -98,14 +98,16 @@ juice_instances:
     data: --storage postgres --bucket 10.10.10.10:5432/meta --access-key dbuser_meta --secret-key DBUser.Meta
 ```
 
-### MinIO Object Storage
+JuiceFS creates a `jfs_blob` table in the database selected by `--bucket` for file data. This PostgreSQL data backend and the `meta` metadata engine are separate roles; they may use one database or be deployed separately. The database and a user with read/write privileges must already exist.
+
+### Silo / MinIO-Compatible Object Storage
 
 ```yaml
 juice_instances:
   jfs:
     path: /fs
     meta: postgres://dbuser_meta:DBUser.Meta@10.10.10.10:5432/meta
-    data: --storage minio --bucket http://10.10.10.10:9000/juice --access-key minioadmin --secret-key minioadmin
+    data: --storage minio --bucket https://sss.pigsty:9000/juice --access-key <s3_access_key> --secret-key <s3_secret_key>
 ```
 
 ### S3-Compatible Storage
@@ -134,7 +136,7 @@ juice_instances:
   shared:
     path: /shared
     meta: postgres://dbuser_meta:DBUser.Meta@10.10.10.10:5432/shared
-    data: --storage minio --bucket http://10.10.10.10:9000/shared
+    data: --storage minio --bucket https://sss.pigsty:9000/shared --access-key <s3_access_key> --secret-key <s3_secret_key>
     port: 9568
     owner: postgres
     group: postgres
@@ -159,3 +161,4 @@ Only one node needs to format the filesystem; others will skip via `--no-update`
 
 - `port` is exposed on `0.0.0.0`. Use firewall or security group to restrict access.
 - Changing `data` will not update an existing filesystem; handle migration manually.
+- `meta` and `data` may contain database or object-storage credentials. Restrict access to `pigsty.yml`, use dedicated least-privilege accounts, and never keep example passwords in production.

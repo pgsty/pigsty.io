@@ -32,13 +32,12 @@ The configuration above defines an SNSD [Single-Node Single-Disk](/docs/minio/co
 To destroy a cluster, run the dedicated [`minio-rm.yml`](/docs/minio/playbook#minio-rmyml) playbook:
 
 ```bash
-./minio-rm.yml -l minio --check -e minio_type=silo                 # Rehearse the exact same target first
-./minio-rm.yml -l minio -e minio_type=silo                         # Remove a Silo cluster
-./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_data=false  # Remove cluster but keep data and configuration
-./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_pkg=true    # Remove cluster and uninstall packages
+./minio-rm.yml -l minio -e minio_type=silo
+./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_data=false
+./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_pkg=true
 ```
 
-The removal role has no default for `minio_type`. If the inventory does not define it explicitly, pass `-e minio_type=silo` as shown above; other values are rejected.
+The removal role also defaults `minio_type` to `silo`; other values are rejected. The examples still spell it out so the backend, cluster identity, and paths are visible during review.
 
 {{% alert title="Architecture Change: Pigsty v3.6+" color="info" %}}
 Starting from Pigsty v3.6, cluster removal has been migrated from `minio.yml` playbook to the dedicated `minio-rm.yml` playbook. The old `minio_clean` task has been deprecated.

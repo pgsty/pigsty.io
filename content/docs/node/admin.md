@@ -45,8 +45,11 @@ bin/node-add 10.10.10.10              # init node '10.10.10.10'
 
 To remove a node from Pigsty, you can use the following commands:
 
+First confirm that every business module on the node has been removed through its own workflow and check whether any `vector_data` buffer must be retained.
+After confirming the exact target, call the wrapper:
+
 ```bash
-# ./node-rm.yml -l <cls|ip|group>    # actual playbook to remove node from Pigsty
+# ./node-rm.yml -l <cls|ip|group>    # actual playbook that removes a node from Pigsty
 # bin/node-rm <cls|ip|selector> ...  # remove node from Pigsty
 bin/node-rm node-test                # remove node cluster 'node-test'
 bin/node-rm 10.10.10.10              # remove node '10.10.10.10'
@@ -120,7 +123,7 @@ If you want to add or reconfigure monitoring on existing nodes, use the followin
 ./node.yml -t node_vip                        # install, configure, enable L2 VIP for clusters without VIP
 ./node.yml -t vip_config,vip_reload           # refresh node L2 VIP configuration
 ./node.yml -t haproxy_config,haproxy_reload   # refresh service definitions on node
-./node.yml -t register_prometheus             # re-register node with Prometheus
+./node.yml -t node_register             # re-register node with VictoriaMetrics
 ./node.yml -t register_nginx                  # re-register node haproxy admin page with Nginx
 
 # Task

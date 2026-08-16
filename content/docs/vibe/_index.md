@@ -6,6 +6,7 @@ description: >
 icon: fas fa-laptop-code
 module: [VIBE]
 categories: [Reference]
+aliases: [/docs/pilot/code/]
 ---
 
 The VIBE module provides a **browser-based dev environment** with Code-Server, JupyterLab, Node.js, Claude Code, and Codex CLI,
@@ -32,8 +33,12 @@ VIBE depends on [`NODE`](/docs/node) and [`INFRA`](/docs/infra):
 Notes:
 
 - Code-Server listens on `127.0.0.1:8443`, exposed via Nginx
-- JupyterLab listens on `0.0.0.0:8888`, base path `/jupyter/`
+- JupyterLab listens on `0.0.0.0:8888`, base path `/jupyter/`; the current template allows any Origin and disables XSRF checks, so it is for trusted development networks only
 - Module default is `jupyter_enabled: false`, while `conf/vibe.yml` template explicitly enables Jupyter
+
+{{% alert title="Development sandbox, not a production security baseline" color="warning" %}}
+The VIBE Jupyter template relies on its token as the default authentication barrier, and `conf/vibe.yml` does not enable additional Basic Auth on `infra_portal.home`. Set a strong random token, restrict port 8888 and portal sources, and use a trusted TLS endpoint before deployment. Never expose the default template directly to the Internet.
+{{% /alert %}}
 
 --------
 
@@ -41,9 +46,12 @@ Notes:
 
 ```bash
 ./configure -c vibe
-./deploy.yml        # deploy NODE, INFRA, ETCD, MINIO, and PGSQL defined in the inventory
-./juice.yml         # optional shared storage
-./vibe.yml          # VIBE
+./deploy.yml --check          # preview NODE, INFRA, ETCD, MINIO, and PGSQL targets
+./deploy.yml                  # deploy after confirming the target set
+./juice.yml -l <host> --check # optional shared storage preview
+./juice.yml -l <host>         # deploy shared storage after review
+./vibe.yml -l <host> --check  # preview VIBE changes
+./vibe.yml -l <host>          # deploy VIBE after review
 ```
 
 Default entry points (via `infra_portal.home`):

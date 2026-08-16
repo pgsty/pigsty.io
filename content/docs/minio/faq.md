@@ -58,10 +58,23 @@ If Silo is not used as a pgBackRest backup repository, you can disable HTTPS and
 
 ----------------
 
-## What if a multi-node/multi-disk Silo cluster fails to start?
+## Can a Silo data path be a regular directory?
 
-In [**Single-Node Multi-Disk**](/docs/minio/config#single-node-multi-disk) or [**Multi-Node Multi-Disk**](/docs/minio/config#multi-node-multi-disk) mode, Silo refuses to start if a data directory is not a valid disk mount point.
-Use mounted disks rather than regular directories for data. Regular directories are allowed only in [**Single-Node Single-Disk**](/docs/minio/config#single-node-single-disk) mode, which is suitable only for development, testing, or non-critical use.
+`minio_data` takes a directory path, not a raw disk device. `/data/minio` may be a regular subdirectory, but in multi-node or multi-drive deployments its backing storage must be an independent, persistent, non-root filesystem.
+
+- If `/data` is mounted from a separate local disk, cloud volume, partition, or LVM logical volume, `/data/minio` is valid.
+- If `/data/minio` is only a directory created under the root filesystem, distributed Silo marks it as a root drive and rejects it with `drive is part of root drive, will not be used`.
+- Every path in a single-node multi-drive deployment should map to a separate filesystem. Multiple directories on one drive do not emulate multiple drives.
+- Only [single-node single-disk](/docs/minio/config#single-node-single-disk) may use a regular directory directly on the root filesystem, and only for development, testing, or non-critical use.
+
+Inspect the backing mounts with:
+
+```bash
+findmnt -T /
+findmnt -T /data/minio
+```
+
+See [Configuration: Storage Paths and Mounts](/docs/minio/config#storage-paths-and-mounts) for details and [Multi-Node Single-Disk](/docs/minio/config#multi-node-single-disk) for the three-node topology.
 
 
 
@@ -86,12 +99,11 @@ For the procedure, see Pigsty's [**Expand Cluster**](/docs/minio/admin#expand-cl
 Starting with Pigsty v3.6, cluster removal uses the dedicated `minio-rm.yml` playbook:
 
 ```bash
-./minio-rm.yml -l minio --check -e minio_type=silo                 # Rehearse the exact same target first
-./minio-rm.yml -l minio -e minio_type=silo                         # Remove a Silo cluster
-./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_data=false  # Remove cluster but keep data and configuration
+./minio-rm.yml -l minio -e minio_type=silo
+./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_data=false
 ```
 
-The removal role has no `minio_type` default. If it is absent from the inventory, explicitly specify `silo` on the command line. Other values are rejected.
+The removal role also defaults `minio_type` to `silo`; other values are rejected. The examples still spell it out so the operator can review it together with cluster identity and paths before deletion.
 
 `minio_rm_data` defaults to `true`, and the removal role tolerates some cleanup errors. Before a real run, verify the exact `-l` target and a recent backup. Afterwards, inspect the service, data directories, DNS records, and monitoring targets; the playbook's return status alone does not prove that cleanup completed.
 

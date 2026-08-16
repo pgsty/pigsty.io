@@ -80,7 +80,6 @@ By default, Pigsty uses etcd only as Patroni DCS. Restarting services and rebuil
 If a full **reset/rebuild** is genuinely required, do it in a maintenance window and then verify `etcdctl endpoint health`, `etcdctl member list`, and `patronictl list`:
 
 ```bash
-./etcd-rm.yml -l etcd --check  # Rehearse the complete target; a real run deletes data by default
 ./etcd-rm.yml -l etcd          # Clean the cluster after verifying target and backups
 ./etcd.yml -l etcd             # Redeploy from inventory
 ```
@@ -125,7 +124,7 @@ Before Pigsty v2.6? Manually enable etcd auto GC.
 
 Earlier Pigsty (v2.0 - v2.5)? Enable etcd auto-compaction in prod to avoid quota-based unavailability.
 
-Edit etcd config template: [`roles/etcd/templates/etcd.conf.j2`](https://github.com/pgsty/pigsty/blob/main/roles/etcd/templates/etcd.conf.j2#L30):
+Edit the etcd configuration template: [`roles/etcd/templates/etcd.conf`](https://github.com/pgsty/pigsty/blob/main/roles/etcd/templates/etcd.conf#L29):
 
 ```yaml
 auto-compaction-mode: periodic
@@ -227,7 +226,6 @@ bin/etcd-rm                   # remove entire etcd cluster
 **Manual method:**
 
 ```bash
-./etcd-rm.yml -l <ins_ip> --check            # Rehearse the exact target
 ./etcd-rm.yml -l <ins_ip>                    # Leave, stop, and delete local data by default
 ```
 

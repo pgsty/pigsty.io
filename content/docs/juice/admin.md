@@ -89,7 +89,7 @@ Removal actions:
 - Reload systemd
 - Rewrite this node's VictoriaMetrics target file, removing instances with `state=absent`
 
-**PostgreSQL metadata and object storage data are not deleted.**
+**PostgreSQL metadata, PostgreSQL `jfs_blob` data tables, and object-storage data are not deleted.**
 
 Running only `-t juice_clean` does not update monitoring targets and temporarily leaves stale scrape endpoints for removed instances. The commands above therefore run `juice_register` as well.
 
@@ -104,7 +104,7 @@ juice_instances:
   newfs:
     path: /newfs
     meta: postgres://...
-    data: --storage minio --bucket http://minio:9000/newfs
+    data: --storage minio --bucket https://sss.pigsty:9000/newfs --access-key <s3_access_key> --secret-key <s3_secret_key>
     port: 9568
 ```
 
@@ -133,23 +133,24 @@ Only one node needs to format the filesystem; others will skip via `--no-update`
 
 ## PITR Recovery
 
-When **data is also stored in PostgreSQL** (`--storage postgres`), filesystem PITR can be done via PG PITR:
+JuiceFS metadata and data must be restored to a mutually consistent state. Before any restore, stop every writer and unmount/stop the corresponding JuiceFS service on every client, identify the exact PostgreSQL cluster and target time, and confirm an available backup:
 
 ```bash
-# Stop services on all nodes
-systemctl stop juicefs-jfs
+# Inspect Patroni members; inspect the target stanza's backup on a database node
+pig pt list <cluster>
+pig pb info -s <stanza>
 
-# Restore metadata DB with pgBackRest
-pb restore --stanza=meta --type=time --target="2024-01-15 10:30:00"
-
-# Start PostgreSQL
-systemctl start postgresql
-
-# Start JuiceFS service
-systemctl start juicefs-jfs
+# On the target database node, run the restore command as postgres
+sudo -iu postgres pg-pitr -s <stanza> -t "2026-08-14 10:30:00+08"
 ```
 
-If data is stored in MinIO/S3, only metadata is rolled back; objects will not.
+{{% alert color="danger" title="PITR overwrites the PostgreSQL data directory" %}}
+Only after confirming the exact cluster name, a recent backup, the recovery target, and a rollback plan should you follow the [PostgreSQL PITR tutorial](/docs/pgsql/tutorial/pitr/) to stop Patroni/PostgreSQL and perform the restore. `pg-pitr` does not stop services, repair Patroni/DCS, validate data, or rebuild replicas; the command above is not a complete recovery procedure.
+{{% /alert %}}
+
+If metadata and the `--storage postgres` `jfs_blob` table are in the same restored PostgreSQL database, database PITR can return both to one point in time. If they reside in different databases or clusters, design a coordinated recovery point for both.
+
+If file data is in Silo/S3, PostgreSQL PITR **rolls back metadata only**, not objects. Newer objects may remain, while old objects that were deleted or collected may be unavailable. Recoverability depends on object versioning, trash, and lifecycle policies; do not run garbage collection until validation is complete.
 
 -------------
 

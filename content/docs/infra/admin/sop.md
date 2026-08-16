@@ -29,7 +29,7 @@ Use the [`infra.yml`](/docs/infra/playbook/#infrayml) playbook to install the IN
 Use the [`infra-rm.yml`](/docs/infra/playbook/#infra-rmyml) playbook to uninstall the INFRA module from the `infra` group:
 
 ```bash
-./infra-rm.yml  # Full removal: deregister, stop, delete config/environment/data, and uninstall packages
+./infra-rm.yml -l infra # Full removal: deregister, stop, remove config/environment/data, and uninstall packages
 ```
 
 This playbook has no deletion safeguard. Full execution removes `infra_data`, `nginx_data`, `nginx_home` (default: `/www`), and `/var/lib/grafana`.
@@ -139,5 +139,26 @@ Common maintenance commands:
 ./infra.yml -t nginx_config,nginx_reload          # Reconfigure and reload
 ./infra.yml -t vmetrics_config,vmetrics_launch    # Regenerate VictoriaMetrics config and restart
 ./infra.yml -t vlogs_config,vlogs_launch          # Update VictoriaLogs config
-./infra.yml -t grafana_plugin                     # Download Grafana plugins
+./infra.yml -t grafana_provision                  # Reload Grafana dashboards and data-source definitions
 ```
+
+
+----------------
+
+## Manage Grafana Passwords
+
+Grafana uses two password parameters: [**`grafana_admin_password`**](/docs/infra/param/#grafana_admin_password), whose public default is `pigsty`, and [**`grafana_view_password`**](/docs/infra/param/#grafana_view_password), whose default is `DBUser.Viewer`.
+
+| Parameter | Rendered configuration |
+|:----------|:-----------------------|
+| `grafana_admin_password` | `/etc/grafana/grafana.ini` and `/infra/env/pigsty` |
+| `grafana_view_password` | `/etc/grafana/provisioning/datasources/pigsty.yml` |
+{.full-width}
+
+Change the public defaults before production. After Grafana initializes, changing `grafana_admin_password` in inventory does not by itself reset the live Grafana account password; change it through Grafana (or its supported administration interface), keep the inventory consistent, and rerender the environment when needed:
+
+```bash
+./infra.yml -t env_var            # Re-render environment variables
+```
+
+`grafana_view_password` is the password used by the default PostgreSQL metadb data source as `dbuser_view`. If that database role password changes, update both the declared value and the Grafana data source; changing only one side breaks the dashboard connection.

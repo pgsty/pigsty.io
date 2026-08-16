@@ -290,7 +290,6 @@ The replication policy does not scale up with the broker count either. In partic
 Selecting a **strict subset** of a cluster with `kafka-rm.yml` retires members (selecting the whole cluster is a [**teardown**](/docs/kafka/playbook#cluster-teardown)). Retirement removes the leaving node from live metadata through a surviving member:
 
 ```bash
-./kafka-rm.yml -l 10.10.10.13 --check  # Rehearse the exact same member target first
 ./kafka-rm.yml -l 10.10.10.13     # retire one member: remove voter entry, unregister broker, clean the host
 ```
 

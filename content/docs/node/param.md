@@ -1,6 +1,6 @@
 ---
 title: Parameters
-description: NODE module provides 11 sections with 73 parameters
+description: NODE module provides 11 sections with 74 parameters
 weight: 3230
 icon: fa-solid fa-sliders
 categories: [Reference]
@@ -73,6 +73,7 @@ The [NODE](/docs/node) module tunes target nodes into the desired state and inte
 | [`node_hugepage_ratio`](#node_hugepage_ratio)           |   `float`   |   `C`   | node mem hugepage ratio, 0 disable it by default         |
 | [`node_overcommit_ratio`](#node_overcommit_ratio)       |   `float`   |   `C`   | node mem overcommit ratio (50-100), 0 disable it         |
 | [`node_tune`](#node_tune)                               |   `enum`    |   `C`   | node tuned profile: none,oltp,olap,crit,tiny             |
+| [`node_tuned_profile_dir`](#node_tuned_profile_dir)     |   `path`    |   `C`   | tuned profile directory selected by platform mapping     |
 | [`node_sysctl_params`](#node_sysctl_params)             |   `dict`    |   `C`   | extra sysctl parameters in k:v format                    |
 
 [`NODE_SEC`](#node_sec) section configures node security options, including SELinux and firewall.
@@ -511,6 +512,7 @@ node_hugepage_count: 0            # number of 2MB hugepage, take precedence over
 node_hugepage_ratio: 0            # node mem hugepage ratio, 0 disable it by default
 node_overcommit_ratio: 0          # node mem overcommit ratio, 0 disable it by default
 node_tune: oltp                   # node tuned profile: none,oltp,olap,crit,tiny
+node_tuned_profile_dir: /etc/tuned # node tuned profile directory
 node_sysctl_params:               # sysctl parameters in k:v format in addition to tuned
   fs.nr_open: 8388608
 ```
@@ -653,6 +655,16 @@ Typically, the database tuning template [`pg_conf`](/docs/pgsql/param#pg_conf) s
 
 
 
+
+
+
+### `node_tuned_profile_dir`
+
+name: `node_tuned_profile_dir`, type: `path`, level: `C`
+
+Directory where Pigsty writes the `tiny`, `oltp`, `olap`, and `crit` tuned profiles. The role default is `/etc/tuned`, then platform variables adapt it to the distribution layout: EL 10, Debian 13, and Ubuntu 26 use `/etc/tuned/profiles`; EL 8/9, Debian 12, and Ubuntu 22/24 use `/etc/tuned`.
+
+Normally leave this unchanged. Override it only when the target system's tuned profile directory differs from Pigsty's known platform mapping.
 
 
 

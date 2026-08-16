@@ -96,7 +96,10 @@ Notes:
 - Service listens on `0.0.0.0:<jupyter_port>` (default 8888), base path `/jupyter/`
 - Config file: `jupyter_data/jupyter_config.py` (default `/data/jupyter/jupyter_config.py`)
 - Login token: `c.IdentityProvider.token`
+- The v4.5 template also sets `allow_origin = '*'`, `disable_check_xsrf = True`, and `trust_xheaders = True`; these relax the security boundary for a reverse-proxied development sandbox
 - **Venv is not created automatically**, use `node_uv_env` in `NODE` module beforehand
+
+Use a high-entropy random token and restrict TCP/8888 to trusted networks or the reverse proxy. `infra_portal.home` does not enable Basic Auth by default. For a second authentication layer, configure `nginx_users` and set `auth: true` on the portal. If you tighten the Jupyter settings, validate WebSockets, origin handling, and login before rollout.
 
 Create venv example:
 
@@ -163,6 +166,8 @@ For dedicated domains:
 
 ```yaml
 infra_portal:
-  code: { domain: code.pigsty, endpoint: "127.0.0.1:8443", websocket: true }
-  jupyter: { domain: jupyter.pigsty, endpoint: "127.0.0.1:8888", websocket: true }
+  code: { domain: code.pigsty, endpoint: "127.0.0.1:8443", websocket: true, auth: true }
+  jupyter: { domain: jupyter.pigsty, endpoint: "127.0.0.1:8888", websocket: true, auth: true }
+nginx_users:
+  devadmin: '<strong-password>'
 ```

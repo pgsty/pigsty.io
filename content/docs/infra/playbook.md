@@ -5,6 +5,7 @@ description: How to use built-in Ansible playbooks to manage the INFRA module, w
 weight: 3040
 icon: fa-solid fa-scroll
 categories: [Task]
+aliases: [/docs/infra/admin/playbook/]
 ---
 
 Pigsty provides three playbooks related to the INFRA module:
@@ -128,12 +129,12 @@ Common subtasks include:
 ./infra-rm.yml               # Run all phases: deregister, stop, remove config/environment/data, and uninstall packages
 ./infra-rm.yml -t deregister # Only deregister monitoring targets, Grafana datasources, and Nginx log collection
 ./infra-rm.yml -t service    # Stop infrastructure services on INFRA
-./infra-rm.yml -t config     # Remove INFRA config and systemd units
-./infra-rm.yml -t env        # Remove the admin user's Pigsty/PostgreSQL environment files
-./infra-rm.yml -t data       # Remove retained data on INFRA
-./infra-rm.yml -t package    # Uninstall packages installed on INFRA
+./infra-rm.yml -t config     # Remove INFRA configuration and systemd units
+./infra-rm.yml -t env        # Remove admin environment files
+./infra-rm.yml -t data       # Remove INFRA data
+./infra-rm.yml -t package    # Uninstall INFRA packages
 ```
 
 {{% alert title="Full removal deletes data" color="danger" %}}
-`infra-rm.yml` has no deletion safeguard. Without tags, it runs every phase above. The `data` phase recursively removes `infra_data` (default: `/data/infra`), `nginx_data` (default: `/data/nginx`), `nginx_home` (default: `/www`), and `/var/lib/grafana`, including metrics, logs, traces, the software repository, and local Grafana data. Use the corresponding tag if you only want to stop services or deregister targets, and back up any data you need before a full run.
+`infra-rm.yml` has no deletion safeguard. Without tags, it runs every phase above. The `data` phase recursively removes `infra_data` (default: `/data/infra`), `nginx_data` (default: `/data/nginx`), `nginx_home` (default: `/www`), and `/var/lib/grafana`, including metrics, logs, traces, the software repository, and local Grafana data. Use the corresponding tag if you only want to stop services or deregister targets. Before a full run, back up everything that must survive and verify the exact `infra` target.
 {{% /alert %}}

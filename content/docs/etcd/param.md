@@ -287,7 +287,7 @@ Override it explicitly with `-e etcd_safeguard=false`.
 In emergencies, you can override the configuration with command-line parameters:
 
 ```bash
-./etcd-rm.yml -e etcd_safeguard=false
+./etcd-rm.yml -l etcd -e etcd_safeguard=false # Override the guard and remove the target Etcd cluster
 ```
 
 
@@ -317,7 +317,7 @@ When enabled, the [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook will 
 
 ```bash
 # Stop service only, preserve data
-./etcd-rm.yml -e etcd_rm_data=false
+./etcd-rm.yml -l etcd -e etcd_rm_data=false
 ```
 
 
@@ -340,7 +340,7 @@ When enabled, the [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook will 
 
 ```bash
 # Uninstall packages during removal
-./etcd-rm.yml -e etcd_rm_pkg=true
+./etcd-rm.yml -l etcd -e etcd_rm_pkg=true
 ```
 
 {{% alert title="Tip" color="info" %}}

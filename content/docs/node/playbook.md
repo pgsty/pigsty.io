@@ -85,13 +85,13 @@ The current removal role deletes `vector_data` directly and does not use the ins
 ```bash
 # Basic node management
 ./node.yml -l <cls|ip|group>          # Add node to Pigsty
-./node-rm.yml -l <cls|ip|group>       # Remove node from Pigsty
+./node-rm.yml -l <cls|ip|group> --check # Preflight; execute after exact-target confirmation
 
 # Node management shortcuts
 bin/node-add node-test                 # Initialize node cluster 'node-test'
 bin/node-add 10.10.10.10               # Initialize node '10.10.10.10'
-bin/node-rm node-test                  # Remove node cluster 'node-test'
-bin/node-rm 10.10.10.10                # Remove node '10.10.10.10'
+./node-rm.yml -l node-test --check     # Preflight before bin/node-rm node-test
+./node-rm.yml -l 10.10.10.10 --check   # Preflight before bin/node-rm 10.10.10.10
 
 # Node main initialization
 ./node.yml -t node                     # Complete node main init (excludes haproxy, monitor)
@@ -106,7 +106,7 @@ bin/node-rm 10.10.10.10                # Remove node '10.10.10.10'
 ./node.yml -t haproxy_config,haproxy_reload   # Refresh service definitions on node
 
 # Registration management
-./node.yml -t register_prometheus      # Re-register node to Prometheus
+./node.yml -t node_register      # Re-register node to VictoriaMetrics
 ./node.yml -t register_nginx           # Re-register node haproxy admin to Nginx
 
 # Specific tasks

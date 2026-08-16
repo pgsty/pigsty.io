@@ -7,13 +7,14 @@ module: [MINIO]
 categories: [Reference]
 ---
 
-Before deploying the MINIO module, define a Silo object-storage cluster in the [config inventory](/docs/setup/config). In v4.5.0, the current source requires [`minio_type: silo`](/docs/minio/param#minio_type) and supports these inventory deployment modes:
+Before deploying the MINIO module, define a Silo object-storage cluster in the [config inventory](/docs/setup/config). The current role requires [`minio_type: silo`](/docs/minio/param#minio_type) and supports these inventory deployment modes:
 
 - [Single-Node Single-Disk: SNSD](#single-node-single-disk): Single-node single-disk mode, can use any directory as a data disk, for development, testing, and demo only.
 - [Single-Node Multi-Disk: SNMD](#single-node-multi-disk): Compromise mode, using multiple disks (>=2) on a single server, only when resources are extremely limited.
+- [Multi-Node Single-Disk: MNSD](#multi-node-single-disk): Multiple servers with one independent data drive each, providing compact node-level high availability.
 - [Multi-Node Multi-Disk: MNMD](#multi-node-multi-disk): Multi-node multi-disk mode, standard production deployment with the best reliability, but requires multiple servers.
 
-We recommend using SNSD and MNMD modes - the former for development and testing, the latter for production deployment. SNMD should only be used when resources are limited (only one server).
+SNSD is suitable for development and testing, three-node MNSD for resource-constrained compact HA, and MNMD for production environments with higher capacity, throughput, and drive-redundancy requirements. SNMD handles drive failures within one server but cannot tolerate losing the server.
 
 Silo can also use [multi-pool deployment](#multi-pool) for expansion, or you can deploy [multiple clusters](#multiple-clusters).
 
@@ -25,7 +26,7 @@ With a multi-node cluster, any member can serve the S3 API, so the best practice
 ## Backend Selection
 
 ```yaml
-minio_type: silo   # the only valid value in v4.5.0
+minio_type: silo   # the only valid value
 ```
 
 `minio_type` is retained as a selector for future expansion, but the current deployment and removal roles accept only `silo`. It maps to the `silo` package, `silo.service`, `/etc/default/silo`, and `~/.minio/certs/`. To support in-place migration, `silo.service` first reads legacy `/etc/default/minio` and then the higher-priority `/etc/default/silo`; it also conflicts with the old `minio.service`. New deployments should maintain only the Silo configuration file.
@@ -42,10 +43,35 @@ Pigsty uses [`minio_volumes`](/docs/minio/param#minio_volumes) to describe membe
 
 - Single-Node Single-Disk: `minio_volumes` points to a regular local directory derived from [`minio_data`](/docs/minio/param#minio_data), defaulting to `/data/minio`.
 - Single-Node Multi-Disk: `minio_volumes` points to a sequence of local mount points derived from `minio_data`, for example `/data{1...4}`.
+- Multi-Node Single-Disk: `minio_volumes` points to one data path on each server, for example `https://minio-{1...3}.pigsty:9000/data/minio`.
 - Multi-Node Multi-Disk: `minio_volumes` points to mount points across multiple servers, automatically generated from two parts:
   - First, use [`minio_data`](/docs/minio/param#minio_data) to specify the disk mount point sequence for each cluster member `/data{1...4}`
   - Also use [`minio_node`](/docs/minio/param#minio_node) to specify the node naming pattern `${minio_cluster}-${minio_seq}.pigsty`
 - Multi-Pool: Explicitly set `minio_volumes` to assign nodes to each storage pool.
+
+
+----------------
+
+## Storage Paths and Mounts
+
+[`minio_data`](/docs/minio/param#minio_data) is a filesystem directory, not a raw block device. Format and mount a local disk, cloud volume, separate partition, or LVM logical volume first, then give Silo the mount point or a directory beneath it. Do not put `/dev/sdb` in `minio_data`.
+
+The MINIO role creates data directories and sets ownership and permissions, but it does not format or persistently mount production storage. Topologies impose different requirements on the backing filesystem:
+
+- Single-node single-disk may use a regular directory on the root filesystem, but only for development, testing, and demos.
+- Every path in a single-node multi-disk deployment should map to a separate filesystem. Multiple directories on one drive do not create multiple drive failure domains.
+- Multi-node distributed Silo detects and rejects data paths on the root filesystem with `drive is part of root drive, will not be used`.
+
+Therefore, `/data/minio` may be a regular subdirectory when `/data` is a separately mounted persistent filesystem. If `/data` is merely a directory under `/`, it does not satisfy the distributed-storage requirement. A bind mount backed by the root filesystem does not create a new drive failure domain either.
+
+Inspect the actual mounts before deployment:
+
+```bash
+findmnt -T /
+findmnt -T /data/minio
+```
+
+The second command should report a separate `/data` or `/data/minio` mount rather than `/`. Production mounts should also be persisted in `/etc/fstab` or an equivalent mechanism, and drives in one storage pool should have similar capacities.
 
 
 ----------------
@@ -96,7 +122,7 @@ minio:
 ```
 
 {{% alert title="Use Real Disk Mount Points" color="warning" %}}
-SNMD mode does not support regular directories as data directories. If a data directory is not a valid disk mount point, Silo refuses to start. Use real disks formatted with XFS.
+Every SNMD data path must reside on a separate filesystem. If multiple paths resolve to the same filesystem, Silo refuses to treat them as separate drives. XFS is recommended for production; the Vagrant test setup can also prepare ext4 data drives when XFS tools are unavailable.
 {{% /alert %}}
 
 
@@ -104,10 +130,10 @@ SNMD mode does not support regular directories as data directories. If a data di
 For example, the Vagrant object-storage [sandbox](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/minio.rb) defines a single-node Silo cluster with four disks: `/data1`, `/data2`, `/data3`, and `/data4`. Before starting Silo, mount them correctly and format them with `xfs`:
 
 ```bash
-mkfs.xfs /dev/vdb; mkdir /data1; mount -t xfs /dev/sdb /data1;   # mount disk 1...
-mkfs.xfs /dev/vdc; mkdir /data2; mount -t xfs /dev/sdb /data2;   # mount disk 2...
-mkfs.xfs /dev/vdd; mkdir /data3; mount -t xfs /dev/sdb /data3;   # mount disk 3...
-mkfs.xfs /dev/vde; mkdir /data4; mount -t xfs /dev/sdb /data4;   # mount disk 4...
+mkfs.xfs /dev/vdb; mkdir /data1; mount -t xfs /dev/vdb /data1;   # mount disk 1...
+mkfs.xfs /dev/vdc; mkdir /data2; mount -t xfs /dev/vdc /data2;   # mount disk 2...
+mkfs.xfs /dev/vdd; mkdir /data3; mount -t xfs /dev/vdd /data3;   # mount disk 3...
+mkfs.xfs /dev/vde; mkdir /data4; mount -t xfs /dev/vde /data4;   # mount disk 4...
 ```
 
 Disk mounting is part of server provisioning and beyond Pigsty's scope. Mounted disks should be written to `/etc/fstab` for auto-mounting after server restart.
@@ -125,6 +151,33 @@ However, single-node mode cannot tolerate entire node failure, and you cannot ad
 
 
 
+
+
+----------------
+
+## Multi-Node Single-Disk
+
+MNSD uses one data drive on each of several servers. The following inventory defines a three-node, single-drive Silo cluster, which is also the storage topology used by [`ha/trio`](/docs/conf/trio/):
+
+```yaml
+minio:
+  hosts:
+    10.10.10.10: { minio_seq: 1 }
+    10.10.10.11: { minio_seq: 2 }
+    10.10.10.12: { minio_seq: 3 }
+  vars:
+    minio_cluster: minio
+    minio_type: silo
+    minio_data: /data/minio
+```
+
+The role generates `https://minio-{1...3}.pigsty:9000/data/minio`. The three paths reside on three different servers, and `/data/minio` on every server must be backed by a non-root, persistent filesystem.
+
+A three-drive set uses `EC:1` by default: each object is split into two data shards and one parity shard. Read and write quorum are both two, so one node or one data drive may be unavailable. With equal-size drives, usable capacity is about two-thirds of raw capacity before filesystem and metadata overhead, and is limited by the smallest drive.
+
+This is a resource-efficient compact HA topology that removes the single object-storage node as a failure point, but each node still has only one data drive. Use [Multi-Node Multi-Disk](#multi-node-multi-disk) when capacity, throughput, or per-node drive redundancy requirements are higher.
+
+An existing single-node storage pool cannot be converted in place by adding two members. Create a new three-node cluster, migrate the objects, and switch client endpoints.
 
 
 ----------------

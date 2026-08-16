@@ -102,6 +102,8 @@ minio_users:                      # list of minio users to be created
 minio_safeguard: false            # prevent accidental removal? false by default
 minio_rm_data: true               # remove minio data during removal? true by default
 minio_rm_pkg: false               # uninstall minio packages during removal? false by default
+# MINIO (reference)
+minio_type: silo                  # object-storage engine; currently must be silo
 ```
 
 
@@ -123,7 +125,7 @@ This reserved object-storage backend selector defaults to—and currently accept
 
 `minio` and `rustfs` are no longer valid values and fail during role identity validation. Before upgrading a legacy MinIO cluster to v4.5, independently validate backups, MinIO-to-Silo data compatibility, and rollback; changing this parameter does not migrate data.
 
-This default belongs to the deployment role. For deletion safety, the `minio_remove` role intentionally has no `minio_type` default. Before running `minio-rm.yml`, set `silo` in the inventory or pass `-e minio_type=silo`; otherwise identity validation stops the play.
+Both the deployment and removal roles default `minio_type` to `silo`. A `minio-rm.yml` run still requires the `minio_cluster` and `minio_seq` identity parameters and remains subject to `minio_safeguard` and the data/package cleanup switches; the engine default does not bypass these removal guards.
 
 
 --------
@@ -197,7 +199,7 @@ When HTTPS is enabled, Pigsty automatically issues certificates for the selected
 
 Parameter: `minio_node`, Type: `string`, Level: `C`
 
-Object-storage node-name pattern used for [multi-node](/docs/minio/config#multi-node-multi-disk) deployments.
+Object-storage node-name pattern used for [multi-node single-disk](/docs/minio/config#multi-node-single-disk) and [multi-node multi-disk](/docs/minio/config#multi-node-multi-disk) deployments.
 
 Default value: `${minio_cluster}-${minio_seq}.pigsty`, which uses the instance name plus `.pigsty` suffix as the default node name.
 
@@ -213,9 +215,13 @@ The domain pattern specified here generates node names, which are written to `/e
 
 Parameter: `minio_data`, Type: `path`, Level: `C`
 
-Silo data directory, default value: `/data/minio`, a common directory for [single-node](/docs/minio/config#single-node-single-disk) deployments.
+Silo data directory, default value: `/data/minio`. Set this parameter to a filesystem directory, not a raw block device such as `/dev/sdb`. The MINIO role creates the directory and sets its permissions, but does not format or mount production data drives.
 
-For [multi-node multi-disk](/docs/minio/config#multi-node-multi-disk) and [single-node multi-disk](/docs/minio/config#single-node-multi-disk) deployments, use the `{x...y}` notation to specify multiple disks.
+[Single-node single-disk](/docs/minio/config#single-node-single-disk) may use a regular directory on the root filesystem for development. [Multi-node single-disk](/docs/minio/config#multi-node-single-disk), [multi-node multi-disk](/docs/minio/config#multi-node-multi-disk), and [single-node multi-disk](/docs/minio/config#single-node-multi-disk) deployments should use independent, persistent, non-root filesystems. Distributed Silo rejects data paths on the root filesystem.
+
+`/data/minio` may be a subdirectory of a separately mounted `/data` filesystem. If `/data` is only a directory under `/`, it is still on the root drive. For multi-drive deployments, use `{x...y}` notation for multiple mount points, such as `/data{1...4}/minio`; every expanded path should map to a separate filesystem.
+
+See [Configuration: Storage Paths and Mounts](/docs/minio/config#storage-paths-and-mounts) for the complete requirements and verification commands.
 
 
 

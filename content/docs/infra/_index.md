@@ -170,6 +170,12 @@ NTP service synchronizes time across all nodes in the environment (optional)
 
 NTP configuration parameters are at: [Configuration: NODES - NTP](/docs/node/param#node_time)
 
+### PostgreSQL
+
+Pigsty's metadata database (CMDB) usually runs on PostgreSQL, listening on port `5432` by default. It stores Pigsty metadata and backs several built-in applications.
+
+For details, see the [PGSQL](/docs/pgsql) module and [Configuration: INFRA - META](/docs/infra/param#meta).
+
 
 
 
@@ -208,7 +214,7 @@ Here are some administration tasks related to the INFRA module:
 
 ```bash
 ./infra.yml     # Install INFRA module on infra group
-./infra-rm.yml  # Fully remove INFRA, including data and packages
+./infra-rm.yml  # Full removal, including data and packages
 ```
 
 `infra-rm.yml` has no deletion safeguard. Without tags, it removes `infra_data`, `nginx_data`, `nginx_home` (default: `/www`), and `/var/lib/grafana`.
@@ -263,11 +269,11 @@ You can use the following playbook subtasks to manage various infrastructure com
 ./infra.yml -t infra_pkg       # Install software packages required by INFRA: infra_packages
 ./infra.yml -t infra_cert      # Issue certificates for infra components
 ./infra.yml -t dns             # Configure DNSMasq: dns_config, dns_record, dns_launch
-./infra.yml -t nginx           # Configure Nginx: nginx_config, nginx_cert, nginx_static, nginx_launch, nginx_exporter
+./infra.yml -t nginx           # Configure Nginx: nginx_config, nginx_cert, nginx_static, nginx_launch, nginx_certbot, nginx_reload, nginx_exporter
 ./infra.yml -t victoria        # Configure VictoriaMetrics/Logs/Traces: vmetrics|vlogs|vtraces|vmalert
 ./infra.yml -t alertmanager    # Configure AlertManager: alertmanager_config, alertmanager_launch
-./infra.yml -t blackbox        # Configure Blackbox Exporter: blackbox_launch
-./infra.yml -t grafana         # Configure Grafana: grafana_clean, grafana_config, grafana_plugin, grafana_launch, grafana_provision
+./infra.yml -t blackbox        # Configure Blackbox Exporter: blackbox_config, blackbox_launch
+./infra.yml -t grafana         # Configure Grafana: grafana_clean, grafana_config, grafana_launch, grafana_provision
 ./infra.yml -t infra_register  # Register infra components to VictoriaMetrics / Grafana
 ```
 
@@ -279,7 +285,7 @@ Other commonly used tasks include:
 ./infra.yml -t vmetrics_config,vmetrics_launch    # Regenerate VictoriaMetrics main config and restart service
 ./infra.yml -t vlogs_config,vlogs_launch          # Re-render VictoriaLogs config
 ./infra.yml -t vmetrics_clean                     # Clean VictoriaMetrics storage data directory
-./infra.yml -t grafana_plugin                     # Download Grafana plugins from internet
+./infra.yml -t grafana_provision                     # Reload Grafana dashboards and data sources
 ```
 
 
@@ -332,11 +338,11 @@ The INFRA module playbook [`infra-rm.yml`](https://github.com/pgsty/pigsty/blob/
 Common subtasks include:
 
 ```bash
-./infra-rm.yml               # Full removal: deregister, stop, delete config/environment/data, and uninstall packages
+./infra-rm.yml               # Full removal: deregister, stop, remove config/environment/data, and uninstall packages
 ./infra-rm.yml -t deregister # Only deregister monitoring targets, datasources, and log collection
 ./infra-rm.yml -t service    # Stop infrastructure services on INFRA
-./infra-rm.yml -t data       # Remove remaining data on INFRA
-./infra-rm.yml -t package    # Uninstall software packages installed on INFRA
+./infra-rm.yml -t data       # Remove INFRA data
+./infra-rm.yml -t package    # Uninstall packages
 ```
 
 Full execution has no deletion safeguard and removes `infra_data`, `nginx_data`, `nginx_home` (default: `/www`), and `/var/lib/grafana`. Back up any data you need before running it.

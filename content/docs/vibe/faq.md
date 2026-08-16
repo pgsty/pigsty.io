@@ -17,8 +17,8 @@ Ensure [`NODE`](/docs/node) and repo config are in place:
 
 ```bash
 yum repolist    # EL
-apt update      # Debian/Ubuntu
-./infra.yml -t repo
+apt-cache policy   # Debian/Ubuntu, read-only inspection
+./infra.yml -l infra -t repo --check
 ```
 
 ### JupyterLab installation failed
@@ -27,6 +27,7 @@ apt update      # Debian/Ubuntu
 
 ```bash
 uv venv /data/venv
+./vibe.yml -l <host> -t jupyter --check
 ./vibe.yml -l <host> -t jupyter
 ```
 
@@ -59,14 +60,20 @@ If using custom `infra_portal`, set `websocket: true`.
 
 ### Change Code-Server password
 
+Persist the new password in inventory first so it does not enter shell history:
+
 ```bash
-./vibe.yml -l <host> -e code_password='NewPass' -t code_config,code_launch
+./vibe.yml -l <host> -t code_config,code_launch --check
+./vibe.yml -l <host> -t code_config,code_launch
 ```
 
 ### Change JupyterLab token
 
+Persist a high-entropy random token in inventory first. The current template allows any Origin and disables XSRF checks, so never use an example token or expose TCP/8888 directly:
+
 ```bash
-./vibe.yml -l <host> -e jupyter_password='NewToken' -t jupyter_config
+./vibe.yml -l <host> -t jupyter_config --check
+./vibe.yml -l <host> -t jupyter_config
 ssh <host> sudo systemctl restart jupyter
 ```
 

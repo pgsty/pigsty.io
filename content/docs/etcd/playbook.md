@@ -61,7 +61,8 @@ The removal playbook uses the [`etcd_remove`](https://github.com/pgsty/pigsty/bl
 - [`etcd_rm_pkg`](/docs/etcd/param#etcd_rm_pkg): Controls whether ETCD packages are uninstalled (default: `false`)
 
 {{% alert title="Dangerous Operation" color="danger" %}}
-`etcd_safeguard` defaults to `false`, while `etcd_rm_data` defaults to `true`. A full `etcd-rm.yml` run therefore attempts to remove the target from the cluster, deregister and stop it, then delete local Etcd data, configuration, unit files, and the client environment file. The playbook ignores some leave and cleanup errors and does not prove that the remaining members retain quorum. Always use an exact `-l`, run `--check` against the same target first, and verify a recent backup, the member list, and remaining quorum.
+`etcd_safeguard` defaults to `false`, while `etcd_rm_data` defaults to `true`. A full `etcd-rm.yml` run therefore attempts to remove the target from the cluster, deregister and stop it, then delete local Etcd data, configuration, unit files, and the client environment file.
+The playbook ignores some leave and cleanup errors and does not prove that the remaining members retain quorum. Always use an exact `-l`, and verify a recent backup, the member list, and remaining quorum.
 {{% /alert %}}
 
 
@@ -91,11 +92,9 @@ The removal playbook uses the [`etcd_remove`](https://github.com/pgsty/pigsty/bl
 **Etcd Removal & Cleanup:**
 
 ```bash
-./etcd-rm.yml -l 10.10.10.12 --check               # Rehearse the same exact member first
 ./etcd-rm.yml -l 10.10.10.12                       # Leave, deregister, stop, and delete local data by default
 ./etcd-rm.yml -l 10.10.10.12 -e etcd_rm_data=false # Leave, deregister, and stop, preserving local data/config
 ./etcd-rm.yml -l 10.10.10.12 -e etcd_rm_pkg=true   # Also uninstall Etcd packages
-./etcd-rm.yml -l etcd --check                      # Rehearse the full target before destroying the cluster
 ./etcd-rm.yml -l etcd                              # Destroy the entire cluster and its local data
 ```
 

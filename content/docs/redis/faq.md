@@ -14,7 +14,7 @@ categories: [Reference]
 
 This means the Redis instance you are trying to remove has the safeguard enabled. When [`redis_safeguard`](/docs/redis/param#redis_safeguard) is `true`, `redis-rm.yml` refuses to run unconditionally; the switch does not probe whether an instance is running.
 
-After confirming the exact `-l`/`redis_port` target, a recent backup, and the `redis_rm_data` setting, first run `--check` against that same target. Only then, if removal is required, override the protection with `-e redis_safeguard=false`. This switch only releases the guard; it does not verify the target or recoverability for you.
+After confirming the exact `-l`/`redis_port` target, a recent backup, and the `redis_rm_data` setting, override the protection with `-e redis_safeguard=false` and run the removal. This switch only releases the guard; it does not verify the target or recoverability for you.
 
 
 

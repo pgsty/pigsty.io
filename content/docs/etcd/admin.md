@@ -57,7 +57,6 @@ For prod etcd clusters, enable safeguard [`etcd_safeguard`](/docs/etcd/param#etc
 Use the dedicated [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook to destroy an Etcd cluster. The default `etcd_rm_data: true` deletes local data and configuration. First confirm that no PostgreSQL cluster still uses it as DCS, verify a recent backup, and check the exact target name.
 
 ```bash
-./etcd-rm.yml -l etcd --check                    # Rehearse the full, exact target first
 ./etcd-rm.yml -l etcd                            # Destroy the entire Etcd cluster after confirmation
 ./etcd-rm.yml -l etcd -e etcd_safeguard=false   # Override only when the inventory enables the safeguard
 ```
@@ -329,13 +328,12 @@ The underlying removal role tolerates some leave and cleanup errors. After the s
 Remove member instance from etcd cluster:
 
 1. **Keep the member in the inventory**: The removal playbook needs its `etcd_seq`, cluster members, and connection endpoints
-2. **Clean up the instance**: First run `--check` against the same target, then run `etcd-rm.yml`; it attempts `member remove`, stops the service, and cleans up according to the removal flags
+2. **Clean up the instance**: Run `etcd-rm.yml` against the target; it attempts `member remove`, stops the service, and cleans up according to the removal flags
 3. **Update the inventory**: Comment out or delete the member only after the playbook succeeds
 4. **Reload references**: Follow [Reload Config](#reload-config) for the remaining etcd members and the Patroni/VIP-Manager endpoints
 
 ```bash
 # <ip> must still be in the etcd inventory group
-./etcd-rm.yml -l <ip> --check          # Rehearse the exact same target first
 ./etcd-rm.yml -l <ip>                  # Leave the cluster and clean up automatically
 # After success, remove the member from pigsty.yml and refresh the remaining members and clients
 ```
@@ -426,3 +424,25 @@ Script features:
 - Auto-executes `etcd-rm.yml` playbook
 - Gracefully removes members from cluster
 - Cleans up data and config files
+
+
+
+
+----
+
+## Manage Etcd Password
+
+The [`etcd_root_password`](/docs/etcd/param#etcd_root_password) parameter defines the password of the etcd `root` user.
+
+To change it, reach an etcd endpoint and run the following as the [admin user](/docs/deploy/admin) on an [INFRA node](/docs/concept/arch/node#infra-node) or [ETCD node](/docs/concept/arch/node#etcd-node):
+
+```bash
+e user passwd root  # change the etcd root user password
+```
+
+Then refresh every reference to the etcd root password, including the Patroni client configuration on INFRA nodes and the etcdctl client environment:
+
+```bash
+./infra.yml -t env_patroni    # refresh the etcd root password in /infra/conf/patronictl.yml
+./etcd.yml  -t etcd_conf      # refresh /etc/etcd/etcd.pass and /etc/profile.d/etcdctl.sh
+```
