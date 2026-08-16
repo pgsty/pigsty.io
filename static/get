@@ -4,7 +4,7 @@
 # File      :   get
 # Desc      :   download & install pigsty src
 # Ctime     :   2022-10-30
-# Mtime     :   2026-07-10
+# Mtime     :   2026-08-14
 # Path      :   https://repo.pigsty.io/get (global, default)
 # Usage     :   curl -fsSL https://repo.pigsty.io/get | bash
 # Docs      :   https://pgsty.com/docs/install/start
@@ -14,7 +14,7 @@
 #==============================================================#
 DEFAULT_VERSION=v4.4.0
 
-# To install the latest version of pigsty (v4.4.0):
+# To install the latest stable version of pigsty (v4.4.0):
 # curl -fsSL https://repo.pigsty.io/get | bash
 
 # To install a specific version of pigsty (e.g. v4.4.0)
@@ -156,4 +156,3 @@ log_line "TodoList"
 log_hint "cd ${INSTALL_TO}"
 log_hint './configure      # [OPTIONAL] preflight-check and config generation'
 log_hint './deploy.yml     # deployment everything described by your config'
-
