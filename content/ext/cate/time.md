@@ -24,7 +24,7 @@ There are **15** extensions in **15** packages.
 | [`pg_later`](/ext/e/pg_later) | [`pg_later`](https://github.com/ChuckHend/pg_later) | `0.4.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Run queries now and get results later |
 | [`pg_dispatch`](/ext/e/pg_dispatch) | [`pg_dispatch`](https://github.com/Snehil-Shah/pg_dispatch) | `0.1.5` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Asynchronous SQL dispatcher built on pg_cron |
 | [`pg_background`](/ext/e/pg_background) | [`pg_background`](https://github.com/vibhorkum/pg_background) | `2.0.2` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Run SQL queries in the background |
-| [`pg_when`](/ext/e/pg_when) | [`pg_when`](https://github.com/frectonz/pg-when) | `0.1.9` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Natural language time parsing for PostgreSQL |
+| [`pg_when`](/ext/e/pg_when) | [`pg_when`](https://github.com/frectonz/pg-when) | `0.1.10` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Natural language time parsing for PostgreSQL |
 | [`pg_stl`](/ext/e/pg_stl) | [`pg_stl`](https://github.com/nadyaloseva/pg_ts_analysis) | `1.0.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Time series analysis functions for PostgreSQL |
 | [`cron_utils`](/ext/e/cron_utils) | [`cron_utils`](https://github.com/Myshkouski/pg-cron-utils) | `0.1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Parse cron expressions and compute previous or next trigger times |
 {.ext-table}
@@ -262,7 +262,7 @@ There are **15** extensions in **15** packages.
 
 ## pg_when {#pg_when}
 
-[**`pg_when`**](/ext/e/pg_when) - `0.1.9` : Natural language time parsing for PostgreSQL
+[**`pg_when`**](/ext/e/pg_when) - `0.1.10` : Natural language time parsing for PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

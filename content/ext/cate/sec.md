@@ -29,7 +29,7 @@ There are **39** extensions in **39** packages.
 | [`logerrors`](/ext/e/logerrors) | [`logerrors`](https://github.com/munakoiso/logerrors) | `2.1.5` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Function for collecting statistics about messages in logfile |
 | [`pg_auth_mon`](/ext/e/pg_auth_mon) | [`pg_auth_mon`](https://github.com/RafiaSabih/pg_auth_mon) | `3.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | monitor connection attempts per user |
 | [`pg_jobmon`](/ext/e/pg_jobmon) | [`pg_jobmon`](https://github.com/omniti-labs/pg_jobmon) | `1.4.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Extension for logging and monitoring functions in PostgreSQL |
-| [`pg_oidc_validator`](/ext/e/pg_oidc_validator) | [`pg_oidc_validator`](https://github.com/percona/pg_oidc_validator) | `0.2` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | OAuth and OIDC token validator for PostgreSQL 18 |
+| [`pg_oidc_validator`](/ext/e/pg_oidc_validator) | [`pg_oidc_validator`](https://github.com/percona/pg_oidc_validator) | `1.1.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | OAuth and OIDC token validator for PostgreSQL 18 |
 | [`oidc_validator`](/ext/e/oidc_validator) | [`pg_oidc_validator_rust`](https://github.com/UnAfraid/pg_oidc_validator_rust) | `0.1.0` | <a class="ext-badge ext-badge--license unknown" href="/ext/license#unknown">Unknown</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | PostgreSQL 18 OIDC bearer-token validator plugin written in Rust |
 | [`pgmemento`](/ext/e/pgmemento) | [`pgmemento`](https://github.com/pgMemento/pgMemento) | `0.7.4` | <a class="ext-badge ext-badge--license lgpl30" href="/ext/license#lgpl30">LGPL-3.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Transaction-based audit trail with schema versioning |
 | [`credcheck`](/ext/e/credcheck) | [`credcheck`](https://github.com/MigOpsRepos/credcheck) | `5.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | credcheck - postgresql plain text credential checker |
@@ -381,7 +381,7 @@ There are **39** extensions in **39** packages.
 
 ## pg_oidc_validator {#pg_oidc_validator}
 
-[**`pg_oidc_validator`**](/ext/e/pg_oidc_validator) - `0.2` : OAuth and OIDC token validator for PostgreSQL 18
+[**`pg_oidc_validator`**](/ext/e/pg_oidc_validator) - `1.1.0` : OAuth and OIDC token validator for PostgreSQL 18
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

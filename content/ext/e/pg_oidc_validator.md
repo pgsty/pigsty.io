@@ -11,10 +11,10 @@ weight: 7170
     <div class="ext-card__title">percona/pg_oidc_validator</div>
     <div class="ext-card__desc">https://github.com/percona/pg_oidc_validator</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_oidc_validator-0.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_oidc_validator-1.1.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_oidc_validator-0.2.tar.gz</div>
-    <div class="ext-card__desc">pg_oidc_validator-0.2.tar.gz</div>
+    <div class="ext-card__title">pg_oidc_validator-1.1.0.tar.gz</div>
+    <div class="ext-card__desc">pg_oidc_validator-1.1.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 7170
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_oidc_validator`**](/ext/e/pg_oidc_validator) | `0.2` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> |
+| [**`pg_oidc_validator`**](/ext/e/pg_oidc_validator) | `1.1.0` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,16 +38,16 @@ weight: 7170
 {.ext-table .ext-table--rel}
 
 
-> Configure oauth_validator_libraries='pg_oidc_validator'. RPM is available on EL10 only; EL8/EL9 RPMs were excluded after libstdc++ ABI smoke failures. DEB covers all supported Debian/Ubuntu targets.
+> Configure oauth_validator_libraries=pg_oidc_validator; 1.1.0 adds discovery_url_override; RPM is available on EL10 only while DEB covers all supported Debian and Ubuntu targets.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2` | {{< pgvers "18" >}} | `pg_oidc_validator` | - |
-| [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2` | {{< pgvers "18" >}} | `pg_oidc_validator_$v` | - |
-| [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2` | {{< pgvers "18" >}} | `postgresql-$v-pg-oidc-validator` | - |
+| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.1.0` | {{< pgvers "18" >}} | `pg_oidc_validator` | - |
+| [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.1.0` | {{< pgvers "18" >}} | `pg_oidc_validator_$v` | - |
+| [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.1.0` | {{< pgvers "18" >}} | `postgresql-$v-pg-oidc-validator` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -57,32 +57,34 @@ weight: 7170
 | el8.aarch64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 | el9.x86_64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 | el9.aarch64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.x86_64 | AVAIL PIGSTY 0.2 2 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.aarch64 | AVAIL PIGSTY 0.2 2 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d12.x86_64 | AVAIL PIGSTY 0.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d12.aarch64 | AVAIL PIGSTY 0.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d13.x86_64 | AVAIL PIGSTY 0.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d13.aarch64 | AVAIL PIGSTY 0.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u22.x86_64 | AVAIL PIGSTY 0.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u22.aarch64 | AVAIL PIGSTY 0.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u24.x86_64 | AVAIL PIGSTY 0.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u24.aarch64 | AVAIL PIGSTY 0.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u26.x86_64 | AVAIL PIGSTY 0.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u26.aarch64 | AVAIL PIGSTY 0.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-@ el10.x86_64 18 pg_oidc_validator_18 pg_oidc_validator_18-0.2-1PIGSTY.el10.x86_64.rpm pigsty 0.2 141.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_oidc_validator_18-0.2-1PIGSTY.el10.x86_64.rpm
+| el10.x86_64 | AVAIL PIGSTY 1.1.0 3 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.aarch64 | AVAIL PIGSTY 1.1.0 3 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d12.x86_64 | AVAIL PIGSTY 1.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d12.aarch64 | AVAIL PIGSTY 1.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d13.x86_64 | AVAIL PIGSTY 1.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d13.aarch64 | AVAIL PIGSTY 1.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u22.x86_64 | AVAIL PIGSTY 1.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u22.aarch64 | AVAIL PIGSTY 1.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u24.x86_64 | AVAIL PIGSTY 1.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u24.aarch64 | AVAIL PIGSTY 1.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u26.x86_64 | AVAIL PIGSTY 1.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 1.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+@ el10.x86_64 18 pg_oidc_validator_18 pg_oidc_validator_18-1.1.0-1PGSTY.el10.x86_64.rpm pigsty 1.1.0 142.6KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_oidc_validator_18-1.1.0-1PGSTY.el10.x86_64.rpm
+@ el10.x86_64 18 pg_oidc_validator_18 pg_oidc_validator_18-1.0.0-1PGDG.rhel10.2.x86_64.rpm pgdg 1.0.0 173.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_oidc_validator_18-1.0.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 pg_oidc_validator_18 pg_oidc_validator_18-0.2-1PGDG.rhel10.2.x86_64.rpm pgdg 0.2 173.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_oidc_validator_18-0.2-1PGDG.rhel10.2.x86_64.rpm
-@ el10.aarch64 18 pg_oidc_validator_18 pg_oidc_validator_18-0.2-1PIGSTY.el10.aarch64.rpm pigsty 0.2 127.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_oidc_validator_18-0.2-1PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 18 pg_oidc_validator_18 pg_oidc_validator_18-1.1.0-1PGSTY.el10.aarch64.rpm pigsty 1.1.0 129.5KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_oidc_validator_18-1.1.0-1PGSTY.el10.aarch64.rpm
+@ el10.aarch64 18 pg_oidc_validator_18 pg_oidc_validator_18-1.0.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.0.0 155.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_oidc_validator_18-1.0.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 pg_oidc_validator_18 pg_oidc_validator_18-0.2-1PGDG.rhel10.2.aarch64.rpm pgdg 0.2 154.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_oidc_validator_18-0.2-1PGDG.rhel10.2.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_0.2-1PIGSTY~bookworm_amd64.deb pigsty 0.2 107.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_0.2-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_0.2-1PIGSTY~bookworm_arm64.deb pigsty 0.2 94.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_0.2-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_0.2-1PIGSTY~trixie_amd64.deb pigsty 0.2 115.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_0.2-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_0.2-1PIGSTY~trixie_arm64.deb pigsty 0.2 100.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_0.2-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_0.2-1PIGSTY~jammy_amd64.deb pigsty 0.2 105.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_0.2-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_0.2-1PIGSTY~jammy_arm64.deb pigsty 0.2 96.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_0.2-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_0.2-1PIGSTY~noble_amd64.deb pigsty 0.2 107.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_0.2-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_0.2-1PIGSTY~noble_arm64.deb pigsty 0.2 98.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_0.2-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_0.2-1PIGSTY~resolute_amd64.deb pigsty 0.2 119.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_0.2-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_0.2-1PIGSTY~resolute_arm64.deb pigsty 0.2 104.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_0.2-1PIGSTY~resolute_arm64.deb
+@ d12.x86_64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~bookworm_amd64.deb pigsty 1.1.0 108.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~bookworm_arm64.deb pigsty 1.1.0 94.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~trixie_amd64.deb pigsty 1.1.0 116.6KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~trixie_arm64.deb pigsty 1.1.0 101.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~jammy_amd64.deb pigsty 1.1.0 106.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~jammy_arm64.deb pigsty 1.1.0 98.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~noble_amd64.deb pigsty 1.1.0 107.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~noble_arm64.deb pigsty 1.1.0 99.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~resolute_amd64.deb pigsty 1.1.0 120.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-pg-oidc-validator postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~resolute_arm64.deb pigsty 1.1.0 105.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-oidc-validator/postgresql-18-pg-oidc-validator_1.1.0-1PGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -139,49 +141,56 @@ shared_preload_libraries = 'pg_oidc_validator';
 
 Sources:
 
-- [pg_oidc_validator 0.2 README](https://github.com/percona/pg_oidc_validator/blob/0.2/README.md)
-- [Keycloak example for 0.2](https://github.com/percona/pg_oidc_validator/tree/0.2/examples/keycloak)
+- [pg_oidc_validator 1.1.0 README](https://github.com/percona/pg_oidc_validator/blob/1.1.0/README.md)
+- [pg_oidc_validator 1.1.0 Keycloak example](https://github.com/percona/pg_oidc_validator/tree/1.1.0/examples/keycloak)
+- [pg_oidc_validator 1.1.0 validator source](https://github.com/percona/pg_oidc_validator/blob/1.1.0/src/pg_oidc_validator.cpp)
+- [PostgreSQL 18 OAuth authentication](https://www.postgresql.org/docs/18/auth-oauth.html)
+- [PostgreSQL 18 libpq OAuth support](https://www.postgresql.org/docs/18/libpq-oauth.html)
 
-pg_oidc_validator is an OAuth validator module for PostgreSQL 18 that validates libpq OAuth bearer tokens against an OpenID Connect issuer. Use it when PostgreSQL clients authenticate through an OIDC provider; it is loaded by the server and does not define a SQL extension, so do not run CREATE EXTENSION.
-
-The project describes the module as experimental and not ready for production. Test the exact identity provider, client, and PostgreSQL build before relying on it.
+`pg_oidc_validator` 1.1.0 is a PostgreSQL 18 OAuth validator module that validates JWT access tokens against an OpenID Connect provider. It is a server library with no control file or SQL extension, so do not run `CREATE EXTENSION`.
 
 ### Configure the Server
 
-Load the validator and restart PostgreSQL:
+Load the module in `postgresql.conf`, then restart PostgreSQL:
 
-    oauth_validator_libraries = 'pg_oidc_validator'
+```ini
+oauth_validator_libraries = 'pg_oidc_validator'
+```
 
-Add an oauth rule to pg_hba.conf. The issuer and scope must match the provider:
+Add an OAuth rule to `pg_hba.conf`; the issuer and required scope must match the provider. Use `hostssl` outside a strictly local test:
 
-    host  all  all  127.0.0.1/32  oauth  issuer=https://id.example.com/realms/postgres scope="openid postgres"
+```text
+hostssl  all  all  127.0.0.1/32  oauth  issuer=https://id.example.com/realms/postgres scope="openid postgres" validator=pg_oidc_validator
+```
 
-Reload pg_hba.conf after editing it. The validator checks the token issuer, audience, scope, signature, and expiry according to the provider metadata discovered from the issuer.
+Reload PostgreSQL after HBA or validator-setting changes; adding the module to `oauth_validator_libraries` itself requires a restart.
 
-By default the PostgreSQL role is matched against the JWT sub claim. To authenticate by another claim, such as email, set:
+The default authenticated identity claim is `sub`. To return another stable string claim for role matching, configure:
 
-    pg_oidc_validator.authn_field = 'email'
+```ini
+pg_oidc_validator.authn_field = 'email'
+```
 
-This setting changes the identity claim used for role matching; it does not create or provision database roles.
+Version 1.1.0 also provides `pg_oidc_validator.discovery_url_override`. It changes where discovery metadata and JWKS are fetched without changing the issuer used to validate the JWT `iss` claim; this is useful when an OIDC provider has different internal and external URLs. Both validator settings are reloadable with `SIGHUP`.
+
+Without `map=` in the HBA rule, the selected claim must exactly equal the requested PostgreSQL role. Use a named `pg_ident.conf` mapping when provider identities and database roles differ; the validator does not create roles.
 
 ### Connect with libpq
 
-A libpq client that supports OAuth can initiate the device-authorization flow:
+An OAuth-capable libpq client can start the provider's device authorization flow:
 
-    psql "host=127.0.0.1 dbname=app user=alice +      oauth_issuer=https://id.example.com/realms/postgres +      oauth_client_id=postgres-client"
+```bash
+psql 'host=127.0.0.1 dbname=app user=alice oauth_issuer=https://id.example.com/realms/postgres oauth_client_id=postgres-client'
+```
 
-Use oauth_client_secret only when the registered client requires one. The client identifier, redirect/device-flow settings, audience, and requested scopes must agree with the identity-provider configuration.
-
-### Configuration Index
-
-- oauth_validator_libraries: server-level list of OAuth validator modules; adding pg_oidc_validator requires a restart.
-- pg_oidc_validator.authn_field: JWT claim compared with the requested PostgreSQL role; defaults to sub.
-- pg_hba.conf oauth method: selects OAuth authentication and supplies the accepted issuer and scope.
-- oauth_issuer, oauth_client_id, oauth_client_secret: libpq connection parameters used to obtain a token.
+Use `oauth_client_secret` only when the registered client requires it. The client identifier, requested scope, issuer, and provider configuration must agree.
 
 ### Provider and Security Boundaries
 
-- The upstream 0.2 documentation targets PostgreSQL 18 and requires an OAuth-capable libpq client.
-- The validator supports common OIDC providers, but the README explicitly calls out Google as unsupported and describes provider-specific setup for Microsoft Entra ID.
-- Token validation is only one part of authorization. PostgreSQL role membership and object privileges still control database access.
-- Protect client secrets and provider credentials outside connection strings where possible, and validate TLS trust for the issuer.
+- Keycloak must enable the OAuth 2 device flow for command-line clients.
+- Microsoft Entra ID requires a tenant-specific v2 issuer and custom scopes; use the full scope name in `pg_hba.conf`.
+- Google is not usable through libpq's built-in device flow, though custom clients may work.
+- Dex does not emit OAuth scopes; an explicitly empty `scope=""` disables scope validation, which weakens the normal check.
+- The client `oauth_issuer` must exactly match the HBA issuer and the discovery document. Treat the issuer and any `pg_oidc_validator.discovery_url_override` endpoint as trusted security boundaries, and require verified TLS for database and provider connections.
+- Token validation does not replace PostgreSQL grants, role membership, or row-level security.
+- Pigsty RPM packages are limited to EL10; DEB packages cover the supported Debian and Ubuntu targets. PostgreSQL 18 is required.

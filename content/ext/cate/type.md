@@ -37,7 +37,7 @@ There are **42** extensions in **41** packages.
 | [`postbis`](/ext/e/postbis) | [`postbis`](https://github.com/no0p/postbis) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Adds compressed DNA, RNA, amino-acid, and aligned sequence types with casts, operators, indexes, and bioinformatics functions. |
 | [`ip4r`](/ext/e/ip4r) | [`ip4r`](https://github.com/RhodiumToad/ip4r) | `2.4.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | IPv4/v6 and IPv4/v6 range index type for PostgreSQL |
 | [`uri`](/ext/e/uri) | [`pg_uri`](https://github.com/petere/pguri) | `1.20251029` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | URI Data type for PostgreSQL |
-| [`emailaddr`](/ext/e/emailaddr) | [`pg_emailaddr`](https://github.com/petere/pgemailaddr) | `0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Email address type for PostgreSQL |
+| [`emailaddr`](/ext/e/emailaddr) | [`pg_emailaddr`](https://github.com/petere/pgemailaddr) | `0` | <a class="ext-badge ext-badge--license unknown" href="/ext/license#unknown">Unknown</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Email address type for PostgreSQL |
 | [`acl`](/ext/e/acl) | [`pg_acl`](https://github.com/arkhipov/acl) | `1.0.4` | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | ACL Data type |
 | [`debversion`](/ext/e/debversion) | [`debversion`](https://github.com/ATIX-AG/postgresql-debversion-evr) | `1.2.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Debian version number data type |
 | [`pg_duration`](/ext/e/pg_duration) | [`pg_duration`](https://github.com/jkosh44/pg_duration) | `1.0.2` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | data type for representing durations |
@@ -546,7 +546,7 @@ There are **42** extensions in **41** packages.
 | **DEB** | `postgresql-$v-pg-emailaddr` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license unknown" href="/ext/license#unknown">Unknown</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 

@@ -40,7 +40,7 @@ There are **44** extensions in **42** packages.
 | [`bgw_replstatus`](/ext/e/bgw_replstatus) | [`bgw_replstatus`](https://github.com/mhagander/bgw_replstatus) | `1.0.8` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Small PostgreSQL background worker to report whether a node is a replication master or standby |
 | [`pgmeminfo`](/ext/e/pgmeminfo) | [`pgmeminfo`](https://github.com/okbob/pgmeminfo) | `1.0.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | show memory usage |
 | [`toastinfo`](/ext/e/toastinfo) | [`toastinfo`](https://github.com/df7cb/toastinfo) | `1.7` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | show details on toasted datums |
-| [`explain_ui`](/ext/e/explain_ui) | [`pg_explain_ui`](https://github.com/davidgomes/pg-explain-ui) | `0.0.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | easily jump into a visual plan UI for any SQL query |
+| [`explain_ui`](/ext/e/explain_ui) | [`pg_explain_ui`](https://github.com/davidgomes/pg-explain-ui) | `0.0.2` | <a class="ext-badge ext-badge--license unknown" href="/ext/license#unknown">Unknown</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | easily jump into a visual plan UI for any SQL query |
 | [`pg_relusage`](/ext/e/pg_relusage) | [`pg_relusage`](https://github.com/adept/pg_relusage) | `0.0.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Log all the queries that reference a particular column |
 | [`pagevis`](/ext/e/pagevis) | [`pagevis`](https://github.com/hollobon/pagevis) | `0.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Visualise database pages in ascii code |
 | [`powa`](/ext/e/powa) | [`powa`](https://github.com/powa-team/powa) | `5.2.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang python" href="/ext/language#python">Python</a> | PostgreSQL Workload Analyser-core |
@@ -367,8 +367,7 @@ There are **44** extensions in **42** packages.
 
 ## pg_track_optimizer {#pg_track_optimizer}
 
-[**`pg_track_optimizer`**](/ext/e/pg_track_optimizer) - `0.9.2` : Track planning decisions in comparison with
-  execution reality
+[**`pg_track_optimizer`**](/ext/e/pg_track_optimizer) - `0.9.2` : Track planning decisions in comparison with  execution reality
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -606,7 +605,7 @@ There are **44** extensions in **42** packages.
 | **DEB** | `postgresql-$v-pg-explain-ui` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license unknown" href="/ext/license#unknown">Unknown</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 

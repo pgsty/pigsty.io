@@ -6,7 +6,7 @@ weight: 20
 slug: ddl
 ---
 
-The following **30** extensions can be used without running `CREATE EXTENSION`.
+The following **31** extensions can be used without running `CREATE EXTENSION`.
 
 These extensions typically exist as shared libraries (hooks) or standalone tools that take effect through configuration parameters.
 
@@ -15,6 +15,7 @@ These extensions typically exist as shared libraries (hooks) or standalone tools
 | [`pg_task`](/ext/e/pg_task) | [`pg_task`](https://github.com/RekGRpth/pg_task) | `2.1.29` | `--sL---` | execute any sql command at any specific time at background |
 | [`plan_filter`](/ext/e/plan_filter) | [`pg_plan_filter`](https://github.com/pgexperts/pg_plan_filter) | `0.0.1` | `--sL---` | filter statements by their execution plans. |
 | [`pg_disorder`](/ext/e/pg_disorder) | [`pg_disorder`](https://github.com/viralpraxis/pg_disorder) | `0.1.0` | `--sL---` | Perturb unordered SELECT row order to expose order-dependent tests |
+| [`pg_relation_sql`](/ext/e/pg_relation_sql) | [`pg_relation_sql`](https://github.com/asmgit/pg_relation_sql) | `0.2.2` | `-------` | Generate inlinable SQL functions for navigating PostgreSQL foreign-key relations |
 | [`pg_checksums`](/ext/e/pg_checksums) | [`pg_checksums`](https://github.com/credativ/pg_checksums) | `1.3` | `--s---r` | Activate/deactivate/verify checksums in offline Postgres clusters |
 | [`pg_crash`](/ext/e/pg_crash) | [`pg_crash`](https://github.com/cybertec-postgresql/pg_crash) | `1.0` | `--sL---` | Send random signals to random processes |
 | [`pg_pathcheck`](/ext/e/pg_pathcheck) | [`pg_pathcheck`](https://github.com/danolivo/pg_pathcheck) | `0.9.1` | `--sL---` | Validate planner Path trees for freed or corrupt memory |
@@ -27,7 +28,7 @@ These extensions typically exist as shared libraries (hooks) or standalone tools
 | [`auto_explain`](/ext/e/auto_explain) | [`auto_explain`](https://www.postgresql.org/docs/current/auto-explain.html) | `-` | `c-sL---` | Provides a means for logging execution plans of slow statements automatically |
 | [`passwordcheck_cracklib`](/ext/e/passwordcheck_cracklib) | [`passwordcheck_cracklib`](https://github.com/devrimgunduz/passwordcheck_cracklib) | `3.1.0` | `--sL---` | Strengthen PostgreSQL user password checks with cracklib |
 | [`supautils`](/ext/e/supautils) | [`supautils`](https://github.com/supabase/supautils) | `3.2.1` | `--sL---` | Extension that secures a cluster on a cloud environment |
-| [`pg_oidc_validator`](/ext/e/pg_oidc_validator) | [`pg_oidc_validator`](https://github.com/percona/pg_oidc_validator) | `0.2` | `--sL---` | OAuth and OIDC token validator for PostgreSQL 18 |
+| [`pg_oidc_validator`](/ext/e/pg_oidc_validator) | [`pg_oidc_validator`](https://github.com/percona/pg_oidc_validator) | `1.1.0` | `--sL---` | OAuth and OIDC token validator for PostgreSQL 18 |
 | [`oidc_validator`](/ext/e/oidc_validator) | [`pg_oidc_validator_rust`](https://github.com/UnAfraid/pg_oidc_validator_rust) | `0.1.0` | `--sL---` | PostgreSQL 18 OIDC bearer-token validator plugin written in Rust |
 | [`pgextwlist`](/ext/e/pgextwlist) | [`pgextwlist`](https://github.com/dimitri/pgextwlist) | `1.20` | `--sL---` | PostgreSQL Extension Whitelisting |
 | [`pg_kpart`](/ext/e/pg_kpart) | [`pg_kpart`](https://github.com/hexacluster/pg_kpart) | `1.0` | `--sL--r` | Reject full partition scans that omit the partition key |

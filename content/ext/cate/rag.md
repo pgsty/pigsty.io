@@ -18,8 +18,8 @@ There are **16** extensions in **15** packages.
 | [`vectorize`](/ext/e/vectorize) | [`pg_vectorize`](https://github.com/ChuckHend/pg_vectorize) | `0.26.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | The simplest way to do vector search on Postgres |
 | [`pg_similarity`](/ext/e/pg_similarity) | [`pg_similarity`](https://github.com/eulerto/pg_similarity) | `1.0` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | support similarity queries |
 | [`pg_rrf`](/ext/e/pg_rrf) | [`pg_rrf`](https://github.com/yuiseki/pg_rrf) | `0.0.3` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Reciprocal rank fusion functions for hybrid search |
-| [`smlar`](/ext/e/smlar) | [`smlar`](https://github.com/jirutka/smlar) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Effective similarity search |
-| [`pg_summarize`](/ext/e/pg_summarize) | [`pg_summarize`](https://github.com/HexaCluster/pg_summarize) | `0.0.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Text Summarization using LLMs. Built using pgrx |
+| [`smlar`](/ext/e/smlar) | [`smlar`](https://github.com/jirutka/smlar) | `1.0` | <a class="ext-badge ext-badge--license unknown" href="/ext/license#unknown">Unknown</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Effective similarity search |
+| [`pg_summarize`](/ext/e/pg_summarize) | [`pg_summarize`](https://github.com/HexaCluster/pg_summarize) | `0.0.1` | <a class="ext-badge ext-badge--license unknown" href="/ext/license#unknown">Unknown</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Text Summarization using LLMs. Built using pgrx |
 | [`pg_tiktoken`](/ext/e/pg_tiktoken) | [`pg_tiktoken`](https://github.com/kelvich/pg_tiktoken) | `0.0.1` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | tiktoken tokenizer for use with OpenAI models in postgres |
 | [`pg_tiktoken_c`](/ext/e/pg_tiktoken_c) | [`pg_tiktoken_c`](https://github.com/relytcloud/pg_tiktoken_c) | `1.1` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Fast tiktoken BPE tokenizer for PostgreSQL implemented in C |
 | [`pg4ml`](/ext/e/pg4ml) | [`pg4ml`](https://gitee.com/guotiecheng/plpgsql_pg4ml) | `2.0` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Machine learning framework for PostgreSQL |
@@ -159,7 +159,7 @@ There are **16** extensions in **15** packages.
 | **DEB** | `postgresql-$v-smlar` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license unknown" href="/ext/license#unknown">Unknown</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
@@ -178,7 +178,7 @@ There are **16** extensions in **15** packages.
 | **DEB** | `postgresql-$v-pg-summarize` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license unknown" href="/ext/license#unknown">Unknown</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 

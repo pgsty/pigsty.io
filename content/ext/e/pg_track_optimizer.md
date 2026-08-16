@@ -1,8 +1,7 @@
 ---
 title: "pg_track_optimizer"
 linkTitle: "pg_track_optimizer"
-description: "Track planning decisions in comparison with
-  execution reality"
+description: "Track planning decisions in comparison with  execution reality"
 weight: 6270
 ---
 
