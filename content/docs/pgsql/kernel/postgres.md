@@ -51,7 +51,7 @@ pg-meta:
       - { name: meta, baseline: cmdb.sql ,comment: pigsty meta database ,schemas: [pigsty] ,extensions: [ vector ]}
     pg_hba_rules:
       - { user: dbuser_view , db: all ,addr: infra ,auth: pwd ,title: 'allow grafana dashboard access cmdb from infra nodes' }
-    node_crontab: [ '00 01 * * * postgres /pg/bin/pg-backup full' ] # Full backup at 1 AM daily
+    pg_crontab: [ '00 01 * * * /pg/bin/pg-backup full' ] # Full backup at 1 AM daily
     pg_packages: [ pgsql-main, pgsql-common ]   # pg kernel and common utilities
     #pg_extensions: [ pg18-time ,pg18-gis ,pg18-rag ,pg18-fts ,pg18-olap ,pg18-feat ,pg18-lang ,pg18-type ,pg18-util ,pg18-func ,pg18-admin ,pg18-stat ,pg18-sec ,pg18-fdw ,pg18-sim ,pg18-etl]
 ```
@@ -75,7 +75,7 @@ To use a different PostgreSQL major version, you can configure it using the `-v`
 If a PostgreSQL cluster is already installed, you need to uninstall it before installing a new version:
 
 ```bash
-./pgsql-rm.yml # -l pg-meta
+./pgsql-rm.yml -l pg-meta # Uninstall cluster pg-meta
 ```
 
 
@@ -83,23 +83,4 @@ If a PostgreSQL cluster is already installed, you need to uninstall it before in
 
 ## Extension Ecosystem
 
-Pigsty provides a rich extension ecosystem for PostgreSQL, including:
-
-- **Time-series**: timescaledb, pg_cron, periods
-- **Geospatial**: postgis, h3, pgrouting
-- **Vector**: pgvector, pgml, vchord
-- **Search**: pg_trgm, zhparser, pgroonga
-- **Analytics**: citus, pg_duckdb, pg_mooncake
-- **Features**: age, pg_graphql, rum
-- **Languages**: plpython3u, pljava, plv8
-- **Types**: hstore, ltree, citext
-- **Utilities**: http, pg_net, pgjwt
-- **Functions**: pgcrypto, uuid-ossp, pg_uuidv7
-- **Administration**: pg_repack, pgagent, pg_squeeze
-- **Statistics**: pg_stat_statements, pg_qualstats, auto_explain
-- **Security**: pgaudit, pgcrypto, pgsodium
-- **Foreign**: postgres_fdw, mysql_fdw, oracle_fdw
-- **Compatibility**: orafce, babelfishpg_tds
-- **Data**: pglogical, wal2json, decoderbufs
-
-For details, please refer to [Extension Catalog](/ext/list).
+Pigsty provides a rich extension ecosystem for PostgreSQL. See the [Extension Catalog](/ext/list/) for details.

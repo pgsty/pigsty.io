@@ -29,6 +29,7 @@ Be **extra cautious** when using [`PGSQL`](/docs/pgsql) playbooks. Misuse of [`p
 
 * Always add the `-l` parameter to limit the execution scope, and ensure you're executing the right tasks on the right targets.
 * Limiting scope to a single cluster is recommended. Running `pgsql.yml` without parameters in production is a high-risk operation—think twice before proceeding.
+* Before removal, inspect `pig pg list <cluster>` and `pig pb info`, verify a recent backup, and have the operator enter the exact target.
 
 To prevent accidental deletion, Pigsty's PGSQL module provides a safeguard mechanism controlled by the [`pg_safeguard`](/docs/pgsql/param#pg_safeguard) parameter.
 When `pg_safeguard` is set to `true`, the [`pgsql-rm.yml`](#pgsql-rmyml) playbook will abort immediately, protecting your database cluster.
@@ -37,7 +38,7 @@ When `pg_safeguard` is set to `true`, the [`pgsql-rm.yml`](#pgsql-rmyml) playboo
 # Will abort execution, protecting data
 ./pgsql-rm.yml -l pg-test -e pg_safeguard=true
 
-# Force override the safeguard via command line parameter
+# Override the safeguard switch from the command line
 ./pgsql-rm.yml -l pg-test -e pg_safeguard=false
 ```
 

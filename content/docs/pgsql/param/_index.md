@@ -964,30 +964,18 @@ pg_extensions:
   - pgsql-fdw     # use alias to install common FDWs at once
 ```
 
-`pg_package_map` provides many aliases to shield package name differences between distributions. Here are available extension combinations for EL9 platform for reference (pick as needed):
+`pg_package_map` provides aliases that hide package-name differences between distributions. The following examples use single-extension aliases and category groups from the current v4.5 EL9 map; availability can differ by platform and PostgreSQL major version:
 
 ```bash
 pg_extensions: # extensions to be installed on this cluster
-  - timescaledb periods temporal_tables emaj table_version pg_cron pg_later pg_background pg_timetable
-  - postgis pgrouting pointcloud pg_h3 q3c ogr_fdw geoip #pg_geohash #mobilitydb
-  - pgvector pgvectorscale pg_vectorize pg_similarity pg_tiktoken pgml #smlar
-  - pg_search pg_bigm zhparser hunspell
-  - hydra pg_analytics pg_lakehouse pg_duckdb duckdb_fdw pg_fkpart pg_partman plproxy #pg_strom citus
-  - pg_hint_plan age hll rum pg_graphql pg_jsonschema jsquery index_advisor hypopg imgsmlr pg_ivm pgmq pgq #rdkit
-  - pg_tle plv8 pllua plprql pldebugger plpgsql_check plprofiler plsh #pljava plr pgtap faker dbt2
-  - prefix semver pgunit md5hash asn1oid roaringbitmap pgfaceting pgsphere pg_country pg_currency pgmp numeral pg_rational pguint ip4r timestamp9 chkpass #pg_uri #pgemailaddr #acl #debversion #pg_rrule
-  - topn pg_gzip pg_http pg_net pg_html5_email_address pgsql_tweaks pg_extra_time pg_timeit count_distinct extra_window_functions first_last_agg tdigest aggs_for_arrays pg_arraymath pg_idkit pg_uuidv7 permuteseq pg_hashids
-  - sequential_uuids pg_math pg_random pg_base36 pg_base62 floatvec pg_financial pgjwt pg_hashlib shacrypt cryptint pg_ecdsa pgpcre icu_ext envvar url_encode #pg_zstd #aggs_for_vecs #quantile #lower_quantile #pgqr #pg_protobuf
-  - pg_repack pg_squeeze pg_dirtyread pgfincore pgdd ddlx pg_prioritize pg_checksums pg_readonly safeupdate pg_permissions pgautofailover pg_catcheck preprepare pgcozy pg_orphaned pg_crash pg_cheat_funcs pg_savior table_log pg_fio #pgpool pgagent
-  - pg_profile pg_show_plans pg_stat_kcache pg_stat_monitor pg_qualstats pg_store_plans pg_track_settings pg_wait_sampling system_stats pg_meta pgnodemx pg_sqlog bgw_replstatus pgmeminfo toastinfo pagevis powa pg_top #pg_statviz #pgexporter_ext #pg_mon
-  - passwordcheck supautils pgsodium pg_vault anonymizer pg_tde pgsmcrypto pgaudit pgauditlogtofile pg_auth_mon credcheck pgcryptokey pg_jobmon logerrors login_hook set_user pg_snakeoil pgextwlist pg_auditor noset #sslutils
-  - wrappers multicorn odbc_fdw mysql_fdw tds_fdw sqlite_fdw pgbouncer_fdw mongo_fdw redis_fdw pg_redis_pubsub kafka_fdw hdfs_fdw firebird_fdw aws_s3 log_fdw #oracle_fdw #db2_fdw #jdbc_fdw
-  - orafce pgtt session_variable pg_statement_rollback pg_dbms_metadata pg_dbms_lock pgmemcache #pg_dbms_job #babelfish
-  - pglogical pgl_ddl_deploy pg_failover_slots wal2json wal2mongo decoderbufs decoder_raw mimeo pgcopydb pgloader pg_fact_loader pg_bulkload pg_comparator pgimportdoc pgexportdoc #repmgr #slony
-  - gis-stack rag-stack fdw-stack fts-stack etl-stack feat-stack olap-stack supa-stack stat-stack json-stack
+  - timescaledb postgis pgvector pg_search pg_duckdb pg_repack wal2json
+  # You can also select current category groups; install only the groups you need
+  # - pgsql-time pgsql-gis pgsql-rag pgsql-fts pgsql-olap
+  # - pgsql-feat pgsql-lang pgsql-type pgsql-util pgsql-func
+  # - pgsql-admin pgsql-stat pgsql-sec pgsql-fdw pgsql-sim pgsql-etl
 ```
 
-For complete list, see: [`roles/node_id/vars`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/)
+For the exact mapping, consult [`roles/node_id/vars/<os>.<arch>.yml`](https://github.com/pgsty/pigsty/tree/main/roles/node_id/vars) for the target platform and the current [**extension catalog**](/ext/list/). `pg_analytics` and `spat` were removed from the v4.5 catalog and current mainstream-platform maps; do not copy them from older examples.
 
 
 
@@ -2010,7 +1998,8 @@ Parameter Name: `pgbackrest_enabled`, Type: `bool`, Level: `C`
 
 Enable pgBackRest on PGSQL nodes? Default value is: `true`
 
-When using local filesystem backup repository (`local`), only the cluster primary will actually enable `pgbackrest`. Other instances will only initialize an empty repository.
+When enabled, every node receives pgBackRest configuration. With the local filesystem repository (`local`), each member creates its own local stanza.
+Initial and scheduled backups run only on the current primary; `pg-backup` exits after its role check on a replica. A non-local shared stanza is initialized only on a primary without [`pg_upstream`](#pg_upstream).
 
 
 
@@ -2047,7 +2036,9 @@ Parameter Name: `pgbackrest_init_backup`, Type: `bool`, Level: `C`
 
 Perform a full backup immediately after pgBackRest initialization completes? Default is `true`.
 
-This operation is only executed on cluster primary and non-cascading replicas (no [`pg_upstream`](#pg_upstream) defined). Enabling this parameter ensures you have a base backup immediately after cluster initialization for recovery when needed.
+The task attempts this only on the cluster primary when [`pg_upstream`](#pg_upstream) is not defined. It uses `ignore_errors` for backup failures,
+so enabling the parameter does not guarantee that a base backup exists. `/etc/pgbackrest/initial.done` is written only after the command succeeds.
+Verify the repository afterward with `pig pb info` (or `pb info`).
 
 
 
@@ -2058,7 +2049,8 @@ Parameter Name: `pgbackrest_repo`, Type: `dict`, Level: `G/C`
 
 pgBackRest repository documentation: https://pgbackrest.org/configuration.html#section-repository
 
-Default value includes two repository methods: `local` and `minio`, defined as follows:
+The default value contains `local` and `minio` as candidate definitions. `pgbackrest_method` selects one of them,
+and the v4.5.0 template renders only that selected entry as pgBackRest `repo1`; listing both keys is not a dual-repository backup configuration:
 
 ```yaml
 pgbackrest_repo:                  # pgbackrest repo: https://pgbackrest.org/configuration.html#section-repository

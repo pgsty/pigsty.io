@@ -6,6 +6,7 @@ description: Database management - create, modify, delete, rebuild, and clone da
 icon: fa-solid fa-coins
 module: [PGSQL]
 categories: [Task]
+aliases: [/docs/pgsql/backup/database/]
 ---
 
 ## Quick Start

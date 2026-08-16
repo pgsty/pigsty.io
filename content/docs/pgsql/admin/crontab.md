@@ -354,7 +354,7 @@ When using the [**`pgsql-rm.yml`**](/docs/pgsql/playbook#pgsql-rmyml) playbook t
 
 ```bash
 ./pgsql-rm.yml -l <cls> -t pg_crontab    # Remove cron jobs only
-./pgsql-rm.yml -l <cls>                  # Remove entire cluster (including cron jobs)
+./pgsql-rm.yml -l <cls> --check          # Preflight full removal; execute only after backup and target confirmation
 ```
 
 

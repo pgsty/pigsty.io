@@ -81,7 +81,7 @@ The local CA issues certificates for the following components and places them un
 | [**etcd**](/docs/concept/arch/pgsql#etcd) | `<instance-name>` | `/etc/etcd/server.{crt,key}` | TLS for client and peer traffic |
 | [**Silo**](/docs/concept/model/minio) | `<node-name>` | `~minio/.minio/certs/` | Silo HTTPS is enabled by default ([`minio_https`](/docs/minio/param#minio_https)) |
 | [**Kafka**](/docs/kafka/) | `<cluster>-<sequence>` | `/etc/kafka/pki/kafka.pem` | SASL_SSL/SSL with `kafka_security: scram`; defaults to `plaintext` |
-| [**MySQL**](/docs/pilot/mysql/) | `<instance-name>` | `/etc/mysql/pki/server.{crt,key}` | Secure transport enforced; clients and group replication verify the certificate chain |
+| [**MySQL**](/docs/mysql/) | `<instance-name>` | `/etc/mysql/pki/server.{crt,key}` | Secure transport enforced; clients and group replication verify the certificate chain |
 | [**Nginx**](/docs/concept/arch/infra#nginx) | `pigsty`, with portal domains in SAN | `/etc/nginx/conf.d/cert/` | HTTPS enabled by default ([`nginx_sslmode`](/docs/infra/param#nginx_sslmode)) |
 | [**INFRA node**](/docs/concept/arch/node#infra-node) | `<node-name>` | `/etc/pki/infra.{crt,key}` | Available to infrastructure components |
 {.full-width}

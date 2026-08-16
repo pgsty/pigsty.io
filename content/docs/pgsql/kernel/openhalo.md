@@ -48,7 +48,7 @@ pg-meta:
       - {name: meta ,baseline: cmdb.sql ,comment: pigsty meta database ,schemas: [pigsty]}
     pg_hba_rules:
       - {user: dbuser_view , db: all ,addr: infra ,auth: pwd ,title: 'allow grafana dashboard access cmdb from infra nodes'}
-    node_crontab: [ '00 01 * * * postgres /pg/bin/pg-backup full' ] # full backup at 1 AM daily
+    pg_crontab: [ '00 01 * * * /pg/bin/pg-backup full' ] # full backup at 1 AM daily
 
     # OpenHalo specific settings
     pg_mode: mysql

@@ -22,6 +22,8 @@ Use [**`pg_conf`**](/docs/pgsql/param#pg_conf) to select a template; default is 
 
 > The database tuning template [**`pg_conf`**](/docs/pgsql/param#pg_conf) should be paired with the OS tuning template [**`node_tune`**](/docs/node/param#node_tune).
 
+All four standard templates set `wal_level` to `logical`. PostgreSQL 18.6 adds the `output_plugin_libraries` security allowlist; Pigsty permits the built-in `pgoutput` and `test_decoding` plugins plus `wal2json`, which is installed by the default `pgsql-main` package set. To use another logical-decoding output plugin, review its code and privilege boundary, then add its exact library name through [`pg_parameters`](/docs/pgsql/param#pg_parameters). Patroni filters the template setting on older PostgreSQL versions that do not support it.
+
 
 ----------------
 

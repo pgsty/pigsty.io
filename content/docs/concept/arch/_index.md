@@ -62,7 +62,7 @@ Pigsty's monitoring system can be used independently. If you want to install the
 It offers rich dashboards for [host nodes](https://demo.pigsty.io/d/node-overview) and [PostgreSQL databases](https://demo.pigsty.io/d/pgsql-overview).
 Whether or not these nodes or PostgreSQL servers are managed by Pigsty, with simple configuration, you immediately have a production-grade monitoring and alerting system, bringing existing hosts and PostgreSQL under management.
 
-[![pigsty-dashboard.jpg](/img/pigsty/dashboard.jpg)](/docs/pgsql/monitor/dashboard)
+[![pigsty-dashboard.jpg](/img/pigsty/dashboard.jpg)](/docs/pgsql/monitor/)
 
 
 

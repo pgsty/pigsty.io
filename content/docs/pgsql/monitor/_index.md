@@ -6,6 +6,7 @@ description: Overview of Pigsty's monitoring system architecture and how to moni
 icon: fa-solid fa-binoculars
 module: [PGSQL]
 categories: [Reference]
+aliases: [/docs/pgsql/monitor/dashboard/]
 ---
 
 
@@ -21,7 +22,7 @@ Pigsty uses a modern observability stack for PostgreSQL monitoring:
 - Grafana for metrics visualization and PostgreSQL datasource
 - VictoriaMetrics for collecting metrics from PostgreSQL / Pgbouncer / Patroni / HAProxy / Node
 - VictoriaLogs for logging PostgreSQL / Pgbouncer / Patroni / pgBackRest and host component logs
-- Battery-included Grafana [dashboards](/docs/pgsql/monitor/dashboard) showcasing all aspects of PostgreSQL
+- Battery-included Grafana dashboards showcasing all aspects of PostgreSQL; use the live [demo](https://demo.pigsty.io/ui/) and the dashboard links in this page because the set evolves with each release
 
 **Metrics**
 

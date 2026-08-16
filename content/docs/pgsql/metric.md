@@ -5,6 +5,7 @@ description: Complete monitoring metrics reference for the Pigsty PGSQL module
 icon: fa-solid fa-list-check
 module: [PGSQL]
 categories: [Reference]
+aliases: [/docs/pgsql/monitor/metric/]
 ---
 
 The [**`PGSQL`**](/docs/pgsql) module provides 638 available monitoring metrics.

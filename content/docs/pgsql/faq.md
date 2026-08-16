@@ -29,7 +29,7 @@ There are multiple possible causes for this error. You need to [check](https://g
 
 - Possibility 1: Cluster config error - find and fix the incorrect config items.
 - Possibility 2: A cluster with the same name exists, or the previous same-named cluster primary was improperly removed.
-- Possibility 3: Residual garbage metadata from a same-named cluster in DCS - decommissioning wasn't completed properly. Use `etcdctl del --prefix /pg/<cls>` to manually delete residual data (be careful).
+- Possibility 3: Residual metadata from a same-named cluster remains in DCS. First inspect the exact keyspace with `etcdctl get --prefix /pg/<cls>/`; only after confirming the backup and full cluster name should you use `etcdctl del --prefix /pg/<cls>/`. The trailing `/` is the namespace boundary and must not be omitted, or a cluster whose name merely starts with the same text can also match. This is destructive; prefer the controlled decommissioning workflow.
 - Possibility 4: Your PostgreSQL or node-related RPM pkgs were not successfully installed.
 - Possibility 5: Your Watchdog kernel module was not properly enabled/loaded.
 - Possibility 6: The locale you specified during database init doesn't exist (e.g., used `en_US.UTF8` but English language pack or Locale support wasn't installed).
@@ -70,7 +70,7 @@ If the deletion safeguard [`pg_safeguard`](/docs/pgsql/param#pg_safeguard) is en
 To disable `pg_safeguard`, you can set `pg_safeguard` to `false` in the config inventory, or use the command param `-e pg_safeguard=false` when executing the playbook.
 
 ```bash
-./pgsql-rm.yml -e pg_safeguard=false -l <cls_to_remove>    # Force override pg_safeguard
+./pgsql-rm.yml -e pg_safeguard=false -l <cls_to_remove>
 ```
 
 

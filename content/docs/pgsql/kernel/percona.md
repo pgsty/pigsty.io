@@ -9,7 +9,7 @@ categories: [Concept]
 
 [Percona Postgres](https://www.percona.com/postgresql/software/postgresql-distribution) is a patched Postgres kernel with [`pg_tde`](https://docs.percona.com/pg-tde/index.html) (Transparent Data Encryption) extension.
 
-Pigsty v4.4.0 packages Percona PostgreSQL under the private `/usr/pgtde-$v`
+Starting with v4.4.0, Pigsty packages Percona PostgreSQL under the private `/usr/pgtde-$v`; v4.5.0 keeps this layout
 prefix (`/usr/pgtde-18` for PostgreSQL 18). The `pgtde` package alias installs
 both the kernel package and its contrib package, including `pg_tde`, PostGIS,
 pgvector, wal2json, pg_repack, pgaudit, and pg_stat_monitor.
@@ -55,7 +55,7 @@ pg-meta:
         extensions: [ vector, postgis, pg_tde ,pgaudit, { name: pg_stat_monitor, schema: monitor } ]
     pg_hba_rules:
       - { user: dbuser_view , db: all ,addr: infra ,auth: pwd ,title: 'allow grafana dashboard access cmdb from infra nodes' }
-    node_crontab: [ '00 01 * * * postgres /pg/bin/pg-backup full' ] # Full backup at 1 AM daily
+    pg_crontab: [ '00 01 * * * /pg/bin/pg-backup full' ] # Full backup at 1 AM daily
 
     # Percona PostgreSQL TDE kernel settings
     pg_packages: [ pgtde, pgsql-common ]

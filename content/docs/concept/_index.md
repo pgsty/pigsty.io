@@ -1,6 +1,6 @@
 ---
 title: Concepts
-weight: 150
+weight: 300
 description: Understand Pigsty's core concepts, architecture design, learn how high availability, backup recovery, iac, security works
 icon: fa-solid fa-compass
 module: [PIGSTY]

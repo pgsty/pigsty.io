@@ -157,22 +157,25 @@ After scaling, you should [**Reload Service**](/docs/pgsql/admin/cluster#reload-
 
 To remove a replica from an **existing PostgreSQL cluster**, remove the [**instance definition**](/docs/pgsql/config/cluster) from [**inventory**](/docs/concept/iac/inventory) `all.children.<cls>.hosts`.
 
+Scale-in stops the instance and deletes its data directory by default. First run `pig pg list <cls>` and `pig pb info`, verify that the target is not the primary and that a recent restorable backup exists,
+then have the operator enter the exact `<ip>` and execute only after confirmation.
+
 First uninstall PGSQL module from target node (Execute [**`pgsql-rm.yml`**](/docs/pgsql/playbook#pgsql-rmyml) on **`<ip>`**):
 
 {{< tabpane text=true persist=header >}}
 {{% tab header="Script" %}}
 ```bash
-bin/pgsql-rm <cls> <ip>   # Remove PostgreSQL instance on <ip> from cluster <cls>
+bin/pgsql-rm <cls> <ip>   # Remove the PostgreSQL instance on <ip> from cluster <cls>
 ```
 {{% /tab %}}
 {{% tab header="Playbook" %}}
 ```bash
-./pgsql-rm.yml -l <ip>    # Use Ansible playbook to remove PostgreSQL instance on <ip>
+./pgsql-rm.yml -l <ip>    # Directly remove the PostgreSQL instance on <ip> with the Ansible playbook
 ```
 {{% /tab %}}
 {{% tab header="Example" %}}
 ```bash
-bin/pgsql-rm pg-test 10.10.10.13  # Remove 10.10.10.13 from pg-test cluster
+bin/pgsql-rm pg-test 10.10.10.13  # Remove node 10.10.10.13 from pg-test
 ```
 {{% /tab %}}
 {{< /tabpane >}}
@@ -182,17 +185,17 @@ After removing PGSQL module, optionally remove the node from Pigsty: [**Remove N
 {{< tabpane text=true persist=header >}}
 {{% tab header="Script" %}}
 ```bash
-bin/node-rm <ip>          # Remove node <ip> from Pigsty management
+bin/node-rm <ip>          # Remove <ip> from Pigsty management
 ```
 {{% /tab %}}
 {{% tab header="Playbook" %}}
 ```bash
-./node-rm.yml -l <ip>     # Use Ansible playbook to remove node <ip>
+./node-rm.yml -l <ip>     # Directly remove <ip> from Pigsty management with the Ansible playbook
 ```
 {{% /tab %}}
 {{% tab header="Example" %}}
 ```bash
-bin/node-rm 10.10.10.13   # Remove node 10.10.10.13 from Pigsty
+bin/node-rm 10.10.10.13   # Remove 10.10.10.13 from Pigsty management
 ```
 {{% /tab %}}
 {{< /tabpane >}}
@@ -224,20 +227,23 @@ pg-test:
 
 To destroy a cluster, uninstall PGSQL module from all nodes (Execute [**`pgsql-rm.yml`**](/docs/pgsql/playbook#pgsql-rmyml) on **`<cls>`**):
 
+This is irreversible data deletion. Inspect `pig pg list <cls>` and `pig pb info`, verify a recent backup and any independent copy to retain,
+and have the operator enter the exact cluster name. The commands below perform the corresponding destruction directly.
+
 {{< tabpane text=true persist=header >}}
 {{% tab header="Script" %}}
 ```bash
-bin/pgsql-rm <cls>        # Destroy entire PostgreSQL cluster <cls>
+bin/pgsql-rm <cls>        # Destroy the entire PostgreSQL cluster <cls>
 ```
 {{% /tab %}}
 {{% tab header="Playbook" %}}
 ```bash
-./pgsql-rm.yml -l <cls>   # Use Ansible playbook to destroy cluster <cls>
+./pgsql-rm.yml -l <cls>   # Directly destroy the entire PostgreSQL cluster <cls> with the Ansible playbook
 ```
 {{% /tab %}}
 {{% tab header="Example" %}}
 ```bash
-bin/pgsql-rm pg-test      # Destroy pg-test cluster
+bin/pgsql-rm pg-test      # Destroy cluster pg-test
 ```
 {{% /tab %}}
 {{< /tabpane >}}
@@ -247,17 +253,17 @@ After destroying PGSQL, optionally remove all nodes from Pigsty: [**Remove Node*
 {{< tabpane text=true persist=header >}}
 {{% tab header="Script" %}}
 ```bash
-bin/node-rm <cls>         # Remove all nodes in group <cls> from Pigsty
+bin/node-rm <cls>         # Remove every node in group <cls> from Pigsty management
 ```
 {{% /tab %}}
 {{% tab header="Playbook" %}}
 ```bash
-./node-rm.yml -l <cls>    # Use Ansible playbook to remove nodes in group <cls>
+./node-rm.yml -l <cls>    # Directly remove the nodes in group <cls> from Pigsty management with the Ansible playbook
 ```
 {{% /tab %}}
 {{% tab header="Example" %}}
 ```bash
-bin/node-rm pg-test       # Remove all pg-test nodes from Pigsty
+bin/node-rm pg-test       # Remove every node in group pg-test from Pigsty management
 ```
 {{% /tab %}}
 {{< /tabpane >}}
@@ -284,8 +290,8 @@ By default, cluster backup repo is deleted with the cluster. To preserve backups
 
 
 ```bash
-./pgsql-rm.yml -l pg-meta -e pg_safeguard=false    # force remove protected cluster pg-meta
-./pgsql-rm.yml -l pg-meta -e pg_rm_backup=false    # preserve backup repo during removal
+./pgsql-rm.yml -l pg-meta -e pg_safeguard=false    # Force removal of protected pg-meta
+./pgsql-rm.yml -l pg-meta -e pg_rm_backup=false    # Preserve its backup repository while removing the cluster
 ```
 
 
@@ -501,6 +507,8 @@ pg-meta2:
     pg_pitr:
       cluster: pg-meta                    # Recover from pg-meta backup
       time: '2025-01-10 10:00:00+00'      # Recover to specific time
+      archive: false                       # Disable archiving during the independent restore
+      action: promote                      # Promote after replay in this one-shot example
 ```
 
 Execute clone with `pgsql-pitr.yml` playbook:
@@ -508,13 +516,13 @@ Execute clone with `pgsql-pitr.yml` playbook:
 {{< tabpane text=true persist=header >}}
 {{% tab header="Playbook" %}}
 ```bash
-./pgsql-pitr.yml -l pg-meta2    # Clone pg-meta2 from pg-meta backup
+./pgsql-pitr.yml -l pg-meta2    # Use the explicitly declared action: promote above
 ```
 {{% /tab %}}
 {{% tab header="CLI" %}}
 ```bash
 # Specify PITR options via command line
-./pgsql-pitr.yml -l pg-meta2 -e '{"pg_pitr": {"cluster": "pg-meta", "time": "2025-01-10 10:00:00+00"}}'
+./pgsql-pitr.yml -l pg-meta2 -e '{"pg_pitr": {"cluster": "pg-meta", "time": "2025-01-10 10:00:00+00", "archive": false, "action": "promote"}}'
 ```
 {{% /tab %}}
 {{< /tabpane >}}
