@@ -82,7 +82,7 @@ Pigsty provides an out-of-the-box Docker image on [**Docker Hub**](https://hub.d
 | `pgsty/pigsty` | ~500MB | 1.3GB | Debian 13 + systemd + SSH + pig + Ansible |
 
 - Supports both **amd64** (x86_64) and **arm64** (Apple Silicon, AWS Graviton)
-- Image tags follow Pigsty versions. The Docker configuration on the current `main` branch and the site baseline both use `{{< param version >}}`; verify that the matching remote image exists before pulling or deploying.
+- Image tags follow Pigsty versions. `latest` and `{{< param stable_version >}}` both point at the current release; pin the version tag for reproducible builds.
 - Pre-configured with docker template, ready to run `./deploy.yml`
 
 Built on **Debian 13 (Trixie)**, pre-installed with [**`pig`**](/docs/pig/) CLI and Ansible, Pigsty source already initialized.

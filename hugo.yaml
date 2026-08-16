@@ -209,10 +209,10 @@ cascade:
 params:
   # metadata
   description: 'Pigsty is a free and open-source PostgreSQL distribution, a local-first RDS with battery-included monitoring, HA, PITR, IaC, and 575 PG extensions and 12 kernels'
-  version: v4.5.0           # Current source/docs baseline; not the public stable release until v4.5.0 ships
+  version: v4.5.0           # Current source/docs baseline, {{< param version >}} in content
   version_short: v4.5       # Short form (major.minor) of the current source/docs baseline
-  stable_version: v4.4.0    # Current public stable release; use for install and Git tag examples
-  stable_version_short: v4.4
+  stable_version: v4.5.0    # Current public stable release; use for install and Git tag examples
+  stable_version_short: v4.5
   pg_version: '18.6'        # Latest PostgreSQL minor release, {{< param pg_version >}} in content
   pig_version: 1.8.0        # Latest PIG release, {{< param pig_version >}} in PIG docs
   pigsty_version: 4.5.0     # Pigsty version embedded in PIG, {{< param pigsty_version >}} in PIG docs

@@ -150,11 +150,11 @@ Many [**configuration templates**](/docs/concept/iac/template/) are available fo
 ./configure -c ha/full -s    # Use 4-node sandbox template, skip IP replacement/detection
 ```
 
-The output below is from the current `main` branch ({{< param version >}}). If you install another version, the first line reports that version.
+The output below is from {{< param version >}}. If you install another version, the first line reports that version.
 
-{{< example num="1" id="configure-output" caption="Example configure output from the current main branch" />}}
+{{< example num="1" id="configure-output" caption="Example configure output from the current release" />}}
 
-{{% details title="Current main branch configure output" %}}
+{{% details title="Current configure output" %}}
 
 ```console {filename="configure output" copy="command" collapse=12 label="configure Example Output"}
 vagrant@meta:~/pigsty$ ./configure
