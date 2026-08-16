@@ -233,7 +233,7 @@ bin/pgsql-db   pg-meta meta             # Ensure database meta exists in pg-meta
 You can install [**different major versions**](/docs/pgsql/config/kernel) of PostgreSQL, and up to [**{{< param pgext_count >}}**](/ext/list) [**extensions**](/docs/pgsql/ext). Let's remove the current default PG 18 and install PG 16:
 
 ```bash
-./pgsql-rm.yml -l pg-meta   # Remove old pg-meta cluster (it's PG 18)
+./pgsql-rm.yml -l pg-meta --check # Preflight old pg-meta removal; execute only after backup and target confirmation
 ```
 
 We can customize parameters to install and enable common extensions by default: `timescaledb`, `postgis`, and `pgvector`:

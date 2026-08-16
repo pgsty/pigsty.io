@@ -17,7 +17,7 @@ categories: [Reference]
 - Node addresses: `10.10.10.10` through `10.10.10.17`
 - INFRA: 3 nodes; only the first builds and serves the local repository, while Docker can be installed separately on all three as noted in comments
 - ETCD: 5 nodes on the last five hosts
-- Object storage: one eight-node, single-drive cluster; the template does not override `minio_type`, so the deployment role defaults to Silo; the removal playbook requires explicit `-e minio_type=silo`
+- Object storage: one eight-node, single-drive cluster; the template does not override `minio_type`, so both deployment and removal roles default to Silo; verify that value, the exact target, and data paths before removal
 - `pg-meta`: 3-node PostgreSQL cluster with VIP `10.10.10.2/24`
 - `pg-test`: 5-node PostgreSQL cluster whose final instance has the `offline` role, with VIP `10.10.10.3/24`
 - Backup: uses the object-storage repository through `sss.pigsty:9002` and also retains a local repository

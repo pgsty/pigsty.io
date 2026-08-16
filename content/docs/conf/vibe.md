@@ -151,16 +151,16 @@ curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
 
 # 3. Modify passwords (important!)
 vi pigsty.yml
-# Change code_password, jupyter_password, etc.
+# Change code_password, jupyter_password, database, and infrastructure defaults
 
 # 4. Deploy infrastructure and PostgreSQL
 ./deploy.yml
 
-# 5. Deploy JuiceFS filesystem
-./juice.yml
+# 5. Optional: deploy the JuiceFS filesystem
+./juice.yml -l 10.10.10.10
 
-# 6. Deploy VIBE module (Code-Server, JupyterLab, Claude Code, Codex CLI)
-./vibe.yml
+# 6. Deploy VIBE (Code-Server, JupyterLab, Claude Code, Codex CLI)
+./vibe.yml -l 10.10.10.10
 ```
 
 
@@ -172,19 +172,19 @@ After deployment, access via browser:
 
 ```bash
 # Code-Server (VS Code Web)
-http://<ip>/code
-# Password: DBUser.Meta (please change)
+https://<domain>/code/
+# Use the rotated code_password
 
 # JupyterLab
-http://<ip>/jupyter
-# Password: DBUser.Meta (please change)
+https://<domain>/jupyter/
+# Use the rotated jupyter_password token
 
 # Claude Code Dashboard
-http://<ip>/ui/d/claude-code
-# Grafana default: admin / pigsty
+https://<domain>/ui/d/claude-code
+# Use the rotated Grafana administrator credentials
 
 # PostgreSQL
-psql postgres://dbuser_meta:DBUser.Meta@<ip>:5432/meta
+psql 'host=<ip> port=5432 dbname=meta user=dbuser_meta sslmode=require'
 ```
 
 
@@ -205,7 +205,8 @@ psql postgres://dbuser_meta:DBUser.Meta@<ip>:5432/meta
 ## Notes
 
 - **Must change passwords**: `code_password` and `jupyter_password` defaults are for testing only
-- **Network security**: This template exposes `5432` (`node_firewall_public_port`) and includes `addr: world` HBA by default; tighten for production
+- **Jupyter boundary**: The template listens on `0.0.0.0:8888`, allows any Origin, disables XSRF checks, and relies on the token by default; restrict the port and portal sources and never expose it directly to the Internet
+- **Network security**: This template exposes `5432` (`node_firewall_public_port`) and includes `addr: world` HBA by default; remove those public paths for production and add portal Basic Auth when appropriate
 - **Resource requirements**: Recommend at least 2 cores 4GB memory, SSD disk
 - **Simplified architecture**: This template disables Patroni, PgBouncer etc HA components, suitable for single-node dev env
 - **Claude API**: Using Claude Code requires configuring API key in `claude_env`

@@ -1,7 +1,7 @@
 ---
 title: Get Started
 linkTitle: Get Started
-weight: 250
+weight: 100
 description: Deploy Pigsty single-node version on your laptop/cloud server, access DB and Web UI
 icon: fas fa-rocket
 module: [PIGSTY]

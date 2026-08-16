@@ -71,17 +71,26 @@ Production Pigsty deployment involves [**preparation work**](/docs/deploy/prepar
 
 Use the following to automatically install the [**Pigsty source package**](/docs/deploy/prepare#pigsty) to `~/pigsty` (recommended). Deployment dependencies (Ansible) are auto-installed.
 
+{{< tabpane text=true persist=header >}}
+{{% tab header="pigsty.io (Global)" %}}
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash            # Install current default version
-curl -fsSL https://repo.pigsty.cc/get | bash            # Backup mirror
-curl -fsSL https://repo.pigsty.io/get | bash -s {{< param version >}}  # Install specific version
+curl -fsSL https://repo.pigsty.io/get | bash -s {{< param stable_version >}}  # Explicitly install the current public stable release
 ```
+{{% /tab %}}
+{{% tab header="pigsty.cc (China)" %}}
+```bash
+curl -fsSL https://repo.pigsty.cc/get | bash            # Install current default version
+curl -fsSL https://repo.pigsty.cc/get | bash -s {{< param stable_version >}}  # Explicitly install the current public stable release
+```
+{{% /tab %}}
+{{< /tabpane >}}
 
 If you prefer not to run remote scripts, manually [**download**](https://github.com/pgsty/pigsty/releases) or clone the source. When using `git`, always checkout a specific version before use:
 
 ```bash
 git clone https://github.com/pgsty/pigsty; cd pigsty;
-git checkout {{< param version >}};  # Always checkout a specific version when using git
+git checkout {{< param stable_version >}};  # Always checkout a released tag when using git
 ```
 
 For manual download/clone, additionally run [**`bootstrap`**](/docs/setup/offline#bootstrap) to manually install Ansible and other dependencies, or [**install them yourself**](/docs/setup/playbook#install-ansible):

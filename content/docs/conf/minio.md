@@ -7,7 +7,7 @@ categories: [Reference]
 aliases: [/docs/conf/rustfs/]
 ---
 
-`demo/minio` demonstrates a highly available S3 object-storage cluster with four nodes and four drives per node, for 16 drives total. The template retains MINIO module compatibility naming and explicitly sets `minio_type: silo`; the current v4.5.0 source accepts only this value. The removal role has no engine default, so keep or explicitly pass `-e minio_type=silo` when running `minio-rm.yml`.
+`demo/minio` demonstrates a highly available S3 object-storage cluster with four nodes and four drives per node, for 16 drives total. The template retains MINIO module compatibility naming and explicitly sets `minio_type: silo`; the current v4.5.0 source accepts only this value, and both deployment and removal roles default to `silo`. Still verify it together with the exact target, cluster identity, and data paths before removal.
 
 For more tutorials, see the **[MINIO](/docs/minio/)** module documentation.
 

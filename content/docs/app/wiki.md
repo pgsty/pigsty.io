@@ -16,7 +16,7 @@ Public Demo: [http://wiki.pigsty.cc](http://wiki.pigsty.cc)
 ## TL; DR
 
 ```bash
-cd app/wiki ; docker-compose up -d
+cd ~/pigsty/app/wiki && docker compose up -d
 ```
 
 ## Postgres Preparation
@@ -64,6 +64,5 @@ services:
 ```
 
 ```bash
-./infra.yml -t nginx_config
-ansible all -b -a 'nginx -s reload'
+./infra.yml -t nginx_config,nginx_reload -l infra
 ```

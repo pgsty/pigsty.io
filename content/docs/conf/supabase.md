@@ -18,8 +18,9 @@ For more details, see **[Supabase Self-Hosting Tutorial](/docs/app/supabase/)**
 - Config Name: `supabase`
 - Node Count: Single node
 - Description: Self-host Supabase using Pigsty-managed PostgreSQL
-- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
+- OS Distro: `el8`, `el9`, `d12`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
+- PostgreSQL: `15`, `16`, `17`, `18` (template default: `18`)
 - Related: [`meta`](/docs/conf/meta/), [`rich`](/docs/conf/rich/)
 
 Usage:
@@ -70,8 +71,8 @@ The `supabase` template provides a complete self-hosted Supabase solution, allow
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
 ./configure -c supabase                   # Use supabase config template
 ./deploy.yml                              # Install Pigsty, PostgreSQL, Silo
-./docker.yml                              # Install Docker
-./app.yml                                 # Start Supabase containers
+./docker.yml -l supabase                  # Install Docker on the supabase group
+./app.yml -l supabase                     # Start containers on the supabase group
 ```
 
 **Access**:

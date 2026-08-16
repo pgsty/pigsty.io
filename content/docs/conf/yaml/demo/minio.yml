@@ -92,6 +92,7 @@ all:
     repo_modules: infra,node
     repo_packages: "{{ repo_packages_default | reject('equalto', 'pgsql-utility') | list }}"
     repo_extra_packages: []
+
     infra_portal:                     # infra services exposed via portal
       home : { domain: i.pigsty }     # default domain name
 

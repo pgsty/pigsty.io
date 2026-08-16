@@ -1,6 +1,6 @@
 ---
 title: Deployment
-weight: 350
+weight: 200
 description: Multi-node, high-availability Pigsty deployment for production environments.
 icon: fas fa-download
 module: [PIGSTY]

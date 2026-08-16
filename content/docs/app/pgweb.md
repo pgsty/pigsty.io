@@ -1,46 +1,51 @@
 ---
-title: 'PGWeb: Browser-based PG Client'
+title: 'PGWeb: Browser-based PostgreSQL Client'
 date: 2022-03-18
-weight: 645
-description: Launch pgweb to access PostgreSQL via web browser
+weight: 635
+description: Run the bundled pgweb Docker application for small, interactive PostgreSQL queries from a browser.
 module: [SOFTWARE]
 categories: [Reference]
 ---
 
-PGWEB: https://github.com/sosedoff/pgweb
+## PGWeb Client
 
-Simple web-based and cross-platform PostgreSQL database explorer.
-
-Public Demo: [http://cli.pigsty.cc](http://cli.pigsty.cc)
-
-![PGWeb](/img/docs/app/pgweb.jpeg)
-
-
-## TL; DR
+[PGWeb](https://github.com/sosedoff/pgweb) is a browser-based PostgreSQL client. Pigsty includes a small Docker Compose template under `app/pgweb`; it publishes container port `8081` on host port `8886`.
 
 ```bash
-cd ~/pigsty/app/pgweb ; make up
+cd ~/pigsty/app/pgweb
+make up                    # docker compose up -d
 ```
 
-Visit [http://cli.pigsty](http://cli.pigsty) or http://10.10.10.10:8886
+Open [http://cli.pigsty](http://cli.pigsty) when that portal entry resolves to the Infra node, or browse directly to `http://10.10.10.10:8886`. The public demo is [http://cli.pigsty.cc](http://cli.pigsty.cc).
 
-Try connecting with example URLs:
+PGWeb asks for a PostgreSQL connection URL. For example:
 
-```bash
+```text
 postgres://dbuser_meta:DBUser.Meta@10.10.10.10:5432/meta?sslmode=disable
 postgres://test:test@10.10.10.11:5432/test?sslmode=disable
 ```
 
+These strings contain public demonstration defaults and disable TLS. Use a least-privilege account, a non-default secret, and an appropriate `sslmode` for real deployments; do not expose an unauthenticated PGWeb container or database credentials to untrusted networks.
+
+![PGWeb](/img/docs/app/pgweb.jpeg)
+
+
+## Shortcuts
+
+The bundled `Makefile` provides:
+
 ```bash
-make up         # pull up pgweb with docker compose
-make run        # launch pgweb with docker
-make view       # print pgweb access point
-make log        # tail -f pgweb logs
-make info       # introspect pgweb with jq
-make stop       # stop pgweb container
-make clean      # remove pgweb container
-make pull       # pull latest pgweb image
-make rmi        # remove pgweb image
-make save       # save pgweb image to /tmp/docker/pgweb.tgz
-make load       # load pgweb image from /tmp/docker/pgweb.tgz
+make up         # launch with docker compose
+make run        # launch with docker run
+make view       # print the local access point and example URL
+make log        # follow container logs
+make info       # inspect the container with jq
+make stop       # stop the container
+make clean      # stop and remove the container
+make pull       # pull the current unpinned sosedoff/pgweb image
+make rmi        # remove the local image
+make save       # save the image to /tmp/docker/pgweb.tgz
+make load       # load it from /tmp/docker/pgweb.tgz
 ```
+
+The template currently uses the unpinned `sosedoff/pgweb` image. Pin an image digest or version in `app/pgweb/docker-compose.yml` when reproducible production deployment matters.

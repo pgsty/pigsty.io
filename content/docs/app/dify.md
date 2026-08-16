@@ -48,7 +48,7 @@ Once Dify starts, you can install various extensions, configure system models, a
 
 There are many reasons to self-host Dify, but the primary motivation is data security. The Docker Compose template provided by Dify uses basic default database images, lacking enterprise features like high availability, disaster recovery, monitoring, IaC, and PITR capabilities.
 
-Pigsty elegantly solves these issues for Dify, deploying all components with a single command based on configuration files and using mirrors to address China region access challenges. This makes Dify deployment and delivery very smooth. It handles the PostgreSQL primary database, PGVector vector database, Redis, VictoriaMetrics monitoring, Grafana visualization, Nginx reverse proxy, and free HTTPS certificates all at once. Files are stored in `DIFY_DATA` (`/data/dify`) by default, with optional MinIO/S3 object storage support.
+Pigsty provides declarative Dify deployment and can use mirrors to address image access in China. The template puts PostgreSQL and pgvector under Pigsty management and deploys Compose Redis, VictoriaMetrics/Grafana monitoring, and an Nginx reverse proxy. It can request a Let's Encrypt certificate after public DNS, ports, and Certbot are configured. Files are stored in `DIFY_DATA` (`/data/dify`) by default, with optional Silo/S3 object storage.
 
 The current template places PostgreSQL/pgvector in an externally managed Pigsty database and directs API files and plugin data to `DIFY_DATA` (`/data/dify` by default). However, the built-in Compose Redis data remains under `/opt/dify/volumes/redis/data`, while Sandbox dependencies and Certbot data are also stored under `/opt/dify/volumes/`. The complete application stack is therefore not fully stateless, and a backup cannot retain only the database.
 
@@ -74,8 +74,8 @@ You should modify passwords, domains, and other relevant parameters in the gener
 Next, run [`docker.yml`](https://github.com/pgsty/pigsty/blob/main/docker.yml) to install Docker and Docker Compose, then use [`app.yml`](https://github.com/pgsty/pigsty/blob/main/app.yml) to complete Dify deployment:
 
 ```bash
-./docker.yml              # Install Docker and Docker Compose
-./app.yml                 # Deploy Dify stateless components with Docker
+./docker.yml -l dify      # Install Docker and Docker Compose on Dify nodes
+./app.yml -l dify         # Deploy Dify application components with Docker
 ```
 
 You can access the Dify Web admin interface at `http://<your_ip_address>:5001` on your local network.
@@ -88,7 +88,7 @@ You can also use the locally resolved placeholder domain `dify.pigsty`, or follo
 
 ## Configuration
 
-When you use the `./configure -c app/dify` command for configuration, Pigsty automatically generates a configuration file based on the [`conf/app/dify.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/dify.yml) template and your current environment. Here's a detailed explanation of the default configuration:
+When you run `./configure -c app/dify`, Pigsty generates a configuration file from the [`conf/app/dify.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/dify.yml) template and the current environment. The snapshot below matches the v4.5.0 source template:
 
 {{< readfile file="/docs/conf/yaml/app/dify.yml" code="true" lang="yaml" >}}
 
@@ -104,7 +104,7 @@ Here's a checklist of configuration items you need to pay attention to:
 - If accessing via public network, ensure you have a domain pointing to the node's **public IP address**
 - Ensure you use the `app/dify` configuration template and modify parameters as needed
   - `configure -c app/dify`, enter the node's internal primary IP address, or specify via `-i <primary_ip>` command line parameter
-- Have you changed all password-related configuration parameters? [Optional]
+- In production, have you changed every example password, application secret, and database credential? [Required]
   - [`grafana_admin_password`](/docs/infra/param/#grafana_admin_password): `pigsty`, Grafana admin password
   - [`pg_admin_password`](/docs/pgsql/param/#pg_admin_password): `DBUser.DBA`, PG superuser password
   - [`pg_monitor_password`](/docs/pgsql/param/#pg_monitor_password): `DBUser.Monitor`, PG monitoring user password
@@ -117,8 +117,8 @@ Here's a checklist of configuration items you need to pay attention to:
 - Have you changed Dify's default encryption key?
   - You can randomly generate a password string with `openssl rand -base64 42` and fill in the `SECRET_KEY` parameter
 - Have you changed the domain used by Dify?
-  - Replace placeholder domain `dify.pigsty` with your actual domain, e.g., `dify.pigsty.cc`
-  - You can use `sed -ie 's/dify.pigsty/dify.pigsty.cc/g' pigsty.yml` to modify Dify's domain
+  - Replace placeholder domain `dify.pigsty` with your actual domain, e.g., `dify.pigsty.io`
+  - You can use `sed -ie 's/dify.pigsty/dify.pigsty.io/g' pigsty.yml` to modify Dify's domain
 
 ------
 
@@ -154,17 +154,14 @@ all:
 Use the following commands to request Nginx certificates:
 
 ```bash
-# Request certificate, can also manually run /etc/nginx/sign-cert script
-make cert
-
-# The above Makefile shortcut actually runs the following playbook task:
-./infra.yml -t nginx_certbot,nginx_reload -e certbot_sign=true
+# Request and load the certificate on the explicitly limited infra group
+./infra.yml -l infra -t nginx_certbot,nginx_reload -e certbot_sign=true
 ```
 
 Run the `app.yml` playbook to redeploy Dify service for the `NGINX_SERVER_NAME` configuration to take effect:
 
 ```bash
-./app.yml
+./app.yml -l dify -t app_config,app_launch
 ```
 
 ------
@@ -192,27 +189,32 @@ restic restore 0b11f778 --target /tmp/dify-restore  # Restore to a temporary dir
 restic check                                  # Periodically check repository integrity
 ```
 
-Another more reliable method is using JuiceFS to mount MinIO object storage to the `/data/dify` directory, allowing you to use MinIO/S3 for file state storage.
+Another option is to place `/data/dify` on a shared filesystem managed by the [`JUICE`](/docs/juice/) module. File data can live in Silo/S3 or in a PostgreSQL `jfs_blob` table; the latter is not PostgreSQL large-object storage.
 
-If you want to store all data in PostgreSQL, consider "storing file system data in PostgreSQL using JuiceFS".
+To use PostgreSQL for both JuiceFS metadata and file data, first declare a dedicated database and least-privilege user in `pg_databases`, then declare the instance on the Dify node. Passwords below are placeholders and must not be used in production:
 
-For example, you can create another `dify_fs` database and use it as JuiceFS metadata storage:
+```yaml
+pg_databases:
+  - { name: dify_fs, owner: dify, comment: JuiceFS metadata and data for Dify }
+
+juice_instances:
+  dify:
+    path: /data/dify
+    meta: postgres://dify:<password>@10.10.10.10:5432/dify_fs
+    data: --storage postgres --bucket 10.10.10.10:5432/dify_fs --access-key dify --secret-key <password>
+    owner: 1001
+    group: 1001
+    port: 9567
+```
+
+Handle database creation and JUICE deployment separately. After confirming the exact targets, run the playbooks:
 
 ```bash
-METAURL=postgres://dify:difyai123456@:5432/dify_fs
-OPTIONS=(
-  --storage postgres
-  --bucket :5432/dify_fs
-  --access-key dify
-  --secret-key difyai123456
-  ${METAURL}
-  jfs
-)
-juicefs format "${OPTIONS[@]}"         # Create PG file system
-juicefs mount ${METAURL} /data/dify -d # Mount to /data/dify directory in background
-juicefs bench /data/dify               # Test performance
-juicefs umount /data/dify              # Unmount
+./pgsql-db.yml -l pg-meta -e dbname=dify_fs
+./juice.yml -l dify -e fsname=dify
 ```
+
+Database creation, initial filesystem formatting, and mounting all change the target environment. Confirm the backup, database name, and host group before executing them. Start Dify only after the mount is ready; see [JUICE configuration](/docs/juice/config/) and its [PITR consistency boundary](/docs/juice/admin/#pitr-recovery). Before mounting over a nonempty `/data/dify`, stop Dify and plan migration of the existing files.
 
 ------
 

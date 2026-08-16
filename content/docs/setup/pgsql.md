@@ -24,11 +24,11 @@ In the default [**single-node installation**](/docs/setup/install) template, you
 PostgreSQL listens on port `5432`, and the cluster has a preset database `meta` available for use.
 
 After installation, exit the current admin user ssh session and re-login to refresh environment variables.
-Then simply type `p` and press Enter to access the database cluster via the `psql` CLI tool:
+Then simply type `pp` and press Enter to access the database cluster via the `psql` CLI tool (`p` is the shortcut for the `pig` CLI):
 
 ```bash
-vagrant@pg-meta-1:~$ p
-psql (18.2 (Ubuntu 18.2-1.pgdg24.04+2))
+vagrant@pg-meta-1:~$ pp
+psql ({{< param pg_version >}} (Ubuntu {{< param pg_version >}}-1.pgdg24.04+1))
 Type "help" for help.
 
 postgres=#
@@ -116,7 +116,7 @@ psql -h 10.10.10.10 -p 5432 -U dbuser_dba -d meta
 After successful connection, you'll see a prompt like this:
 
 ```bash
-psql (18.2)
+psql ({{< param pg_version >}})
 Type "help" for help.
 
 meta=#
@@ -195,7 +195,7 @@ Pigsty provides a configuration template for one-click pgAdmin service deploymen
 
 ## Viewing Monitoring Dashboards
 
-Pigsty provides many PostgreSQL [**monitoring dashboards**](/docs/pgsql/monitor/dashboard), covering everything from cluster overview to single-table analysis.
+Pigsty provides many PostgreSQL [**monitoring dashboards**](/docs/pgsql/monitor/), covering everything from cluster overview to single-table analysis.
 
 We recommend starting with **PGSQL Overview**. Many elements in the dashboards are clickable, allowing you to drill down layer by layer to view details of each cluster, instance, database, and even internal database objects like tables, indexes, and functions.
 

@@ -9,8 +9,6 @@ categories: [Reference]
 main_menu: True
 ---
 
-The current `main` branch (v4.5.0 development) provides 51 distinct YAML templates under `conf/` for deployment, testing, and package-build scenarios. The latest stable release, v4.4.0, provides 48; the additions are `demo/kafka`, `demo/mysql`, and `ha/octo`. The `app/supa.yml` compatibility symlink to `supabase.yml` is not counted twice.
-
 Use `-c` with [**`configure`**](/docs/concept/iac/configure) to select a template. Its value is a path relative to `conf/` without the `.yml` suffix. If omitted, Pigsty uses the default [**`meta`**](/docs/conf/meta/) template.
 
 | Category         | Templates                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |

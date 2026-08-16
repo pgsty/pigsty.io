@@ -6,6 +6,7 @@ description: Use Ansible playbooks to deploy and manage Pigsty clusters
 icon: fa-solid fa-scroll
 module: [PIGSTY]
 categories: [Tutorial]
+aliases: [/docs/infra/admin/ansible/]
 ---
 
 
@@ -94,7 +95,7 @@ You can use some parameters to fine-tune playbook execution. The following **4 p
 ./node.yml                         # Run node playbook on all hosts
 ./pgsql.yml -l pg-test             # Run pgsql playbook on pg-test cluster
 ./infra.yml -t repo_build          # Run infra.yml subtask repo_build
-./pgsql-rm.yml -e pg_rm_pkg=false  # Remove pgsql, but keep packages (don't uninstall software)
+./pgsql-rm.yml -l pg-test -e pg_rm_pkg=false --check # Preflight removal while keeping packages
 ./infra.yml -i conf/mynginx.yml    # Use another location's config file
 ```
 
@@ -113,7 +114,7 @@ Here are some host limit examples:
 ./pgsql.yml -l 10.10.10.10               # Run on single host 10.10.10.10
 ./pgsql.yml -l pg-*                      # Run on hosts/groups matching glob `pg-*`
 ./pgsql.yml -l '10.10.10.11,&pg-test'    # Run on 10.10.10.11 in pg-test group
-./pgsql-rm.yml -l 'pg-test,!10.10.10.11' # Run on pg-test, except 10.10.10.11
+./pgsql-rm.yml -l 'pg-test,!10.10.10.11' --check # Preflight removal; verify target and backups before execution
 ```
 
 See all details in Ansible documentation: [Patterns: targeting hosts and groups](https://docs.ansible.com/ansible/latest/inventory_guide/intro_patterns.html)
@@ -164,7 +165,7 @@ Extra command-line parameters are passed via `-e|--extra-vars KEY=VALUE`, usable
 ./redis.yml -l 10.10.10.10 -e redis_port=6379 -t redis
 
 # Remove PostgreSQL but keep packages and data
-./pgsql-rm.yml -e pg_rm_pkg=false -e pg_rm_data=false
+./pgsql-rm.yml -l pg-test -e pg_rm_pkg=false -e pg_rm_data=false --check
 ```
 
 For complex parameters, use JSON strings to pass multiple complex parameters at once:

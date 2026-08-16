@@ -1,88 +1,137 @@
 ---
-title: 'Jupyter: AI Notebook & IDE'
-weight: 660
-description: Run Jupyter Lab in container, and access PostgreSQL database
+title: 'Jupyter: Notebooks and Data Analysis'
+weight: 650
+lastmod: 2026-08-13
+description: Run JupyterLab with Pigsty's standalone Docker Compose template and access PostgreSQL safely.
 module: [SOFTWARE]
 categories: [Reference]
 ---
 
+[JupyterLab](https://jupyter.org/) is an interactive notebook, terminal, and data-analysis environment. Pigsty v4.5.0 has two distinct deployment paths:
 
-Run jupyter notebook with docker, you have to:
+- The [`VIBE`](/docs/vibe/) module, managed by Ansible and systemd, for the complete v4.5.0 development sandbox.
+- The lightweight standalone `app/jupyter` Docker Compose template documented here.
 
-- 1. change the default password in `.env`: `JUPYTER_TOKEN`
-- 2. create data dir with proper permission: `make dir`, owned by `1000:100`
-- 3. `make up` to pull up jupyter with docker compose
+`app/jupyter` is not a default `apps` inventory entry, and data-directory preparation is a separate step. Do not assume that `app.yml -e app=jupyter` handles its directory ownership.
 
+![JupyterLab](/img/docs/app/jupyter.jpeg)
 
-```bash
-cd ~/pigsty/app/jupyter ; make dir up
-```
+--------
 
-Visit [http://lab.pigsty](http://lab.pigsty) or http://10.10.10.10:8888, the default password is `pigsty`
-
-- [`http://lab.pigsty?token=pigsty`](http://lab.pigsty?token=pigsty)
-
-
-
-## Prepare
-
-Create a data directory `/data/jupyter`, with the default uid & gid `1000:100`:
+## Quick Start
 
 ```bash
-make dir   # mkdir -p /data/jupyter; chown -R 1000:100 /data/jupyter
+cd ~/pigsty/app/jupyter
+vi .env                    # change JUPYTER_TOKEN and optionally pin JUPYTER_IMAGE
+chmod 600 .env
+make dir                   # create /data/jupyter, owned by 1000:100
+make up                    # docker compose up -d
 ```
 
+Generate a strong token with `openssl rand -hex 32`. The default port is `8888`; open `http://<host_ip>:8888`.
 
-## Connect to Postgres
+`lab.pigsty` works only when that name is configured in `infra_portal`, Nginx, and DNS. The template default `JUPYTER_TOKEN=pigsty` is for local demonstrations only and must be replaced in production.
 
-Use the jupyter terminal to install `psycopg2-binary` & `psycopg2` package.
+--------
+
+## Current Template
+
+The v4.5.0 `.env` defaults are:
 
 ```bash
-pip install psycopg2-binary psycopg2
-
-# install with a mirror
-pip install -i https://pypi.tuna.tsinghua.edu.cn/simple psycopg2-binary psycopg2
-
-pip install --upgrade pip
-pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+JUPYTER_IMAGE=quay.io/jupyter/minimal-notebook:latest
+JUPYTER_PORT=8888
+JUPYTER_TOKEN=pigsty
 ```
 
-Or installation with `conda`:
+Compose mounts host `/data/jupyter` at `/home/jovyan/work` and passes the token into the container. The `latest` tag changes upstream; production deployments should use a tested, explicit image tag or digest.
+
+For SciPy, R, Julia, TensorFlow, PyTorch, or Spark, select another [Jupyter Docker Stacks](https://jupyter-docker-stacks.readthedocs.io/) image listed in `.env`, while still pinning its version and validating architecture support.
+
+--------
+
+## Access PostgreSQL
+
+Install the modern Psycopg driver and optional analysis libraries from a Jupyter terminal:
 
 ```bash
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+pip install "psycopg[binary]" pandas sqlalchemy
 ```
 
-then use the driver in your notebook
+Do not store real passwords in notebooks. This example obtains the connection string through hidden input and reads system information only:
 
 ```python
-import psycopg2
+from getpass import getpass
+import psycopg
 
-conn = psycopg2.connect('postgres://dbuser_dba:DBUser.DBA@10.10.10.10:5432/meta')
-cursor = conn.cursor()
-cursor.execute('SELECT * FROM pg_stat_activity')
-for i in cursor.fetchall():
-    print(i)
+pgurl = getpass("PostgreSQL URL: ")
+with psycopg.connect(pgurl) as conn:
+    with conn.cursor() as cur:
+        cur.execute("SELECT current_database(), current_user, version()")
+        print(cur.fetchone())
 ```
 
+Use Pandas and SQLAlchemy with a system statistics view:
 
+```python
+import pandas as pd
+from sqlalchemy import create_engine
 
+engine = create_engine(pgurl)
+df = pd.read_sql(
+    "SELECT datname, numbackends, xact_commit, xact_rollback "
+    "FROM pg_stat_database ORDER BY datname",
+    engine,
+)
+df
+```
 
-## Alias
+These examples access system views only. Obtain authorization from the data owner before reading application tables, and limit columns, predicates, and result size.
+
+--------
+
+## Persistence and Dependencies
+
+Only `/home/jovyan/work` is mapped to `/data/jupyter`. The following are not persistent across container recreation by default:
+
+- Python or Conda packages installed temporarily inside the container
+- notebooks, configuration, and caches outside `work`
+- the container's own user state
+
+For production, install dependencies through a pinned image, custom Dockerfile, or reproducible dependency file, and back up `/data/jupyter` separately. A persistent mount is not a backup.
+
+--------
+
+## Management Commands
+
+From `~/pigsty/app/jupyter`:
 
 ```bash
-make up         # pull up jupyter with docker compose
-make dir        # create required /data/jupyter and set owner
-make run        # launch jupyter with docker
-make view       # print jupyter access point
-make log        # tail -f jupyter logs
-make info       # introspect jupyter with jq
-make stop       # stop jupyter container
-make clean      # remove jupyter container
-make pull       # pull latest jupyter image
-make rmi        # remove jupyter image
-make save       # save jupyter image to /tmp/docker/jupyter.tgz
-make load       # load jupyter image from /tmp/docker/jupyter.tgz
+make up      # start JupyterLab
+make dir     # create the data directory with 1000:100 ownership
+make view    # show access endpoints
+make log     # follow logs
+make info    # inspect the container
+make stop    # stop the container
+make pull    # pull the image selected in .env
 ```
+
+`make clean` removes the container but retains `/data/jupyter`. `make purge` recursively deletes `/data/jupyter`; it is an unrecoverable data-deletion operation and requires confirmation of the exact directory and a recent backup.
+
+--------
+
+## Security Checklist
+
+- Use a strong random token, protect `.env`, and do not disable authentication.
+- The default port mapping listens on the host network. Restrict sources with a firewall and prefer Nginx with valid HTTPS.
+- A notebook can execute arbitrary code and access mounted files and databases. Grant only least-privilege database accounts and host directories.
+- Pin and scan the image, and validate dependency upgrades reproducibly.
+- Back up `/data/jupyter` regularly and test restoration to a temporary directory.
+
+--------
+
+## Related Links
+
+- [Jupyter documentation](https://jupyter.org/documentation)
+- [Jupyter Docker Stacks](https://jupyter-docker-stacks.readthedocs.io/)
+- [Pigsty VIBE module](/docs/vibe/)

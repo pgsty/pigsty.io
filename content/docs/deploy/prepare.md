@@ -188,35 +188,59 @@ For [**single-node deployment**](/docs/setup/install), the installation node ser
 
 You can [**install**](/docs/deploy/install#install) the current default Pigsty source with:
 
+{{< tabpane text=true persist=header >}}
+{{% tab header="pigsty.io (Global)" %}}
 ```bash
-curl -fsSL https://repo.pigsty.io/get | bash;         # International
-curl -fsSL https://repo.pigsty.cc/get | bash;         # Backup Mirror
+curl -fsSL https://repo.pigsty.io/get | bash;
 ```
+{{% /tab %}}
+{{% tab header="pigsty.cc (China)" %}}
+```bash
+curl -fsSL https://repo.pigsty.cc/get | bash;
+```
+{{% /tab %}}
+{{< /tabpane >}}
 
 To [**install**](/docs/deploy/install#install) a specific version, use the **`-s <version>`** parameter:
 
+{{< tabpane text=true persist=header >}}
+{{% tab header="pigsty.io (Global)" %}}
 ```bash
-curl -fsSL https://repo.pigsty.io/get | bash -s {{< param version >}}  # Install specific version (example: {{< param version >}})
-curl -fsSL https://repo.pigsty.cc/get | bash -s {{< param version >}}  # Install specific version (example: {{< param version >}})
+curl -fsSL https://repo.pigsty.io/get | bash -s <version>  # Install a specific version (current stable: {{< param stable_version >}})
 ```
+{{% /tab %}}
+{{% tab header="pigsty.cc (China)" %}}
+```bash
+curl -fsSL https://repo.pigsty.cc/get | bash -s <version>  # Install a specific version (current stable: {{< param stable_version >}})
+```
+{{% /tab %}}
+{{< /tabpane >}}
 
 To [**install**](/docs/deploy/install#install) the latest beta version:
 
+{{< tabpane text=true persist=header >}}
+{{% tab header="pigsty.io (Global)" %}}
 ```bash
 curl -fsSL https://repo.pigsty.io/beta | bash;
+```
+{{% /tab %}}
+{{% tab header="pigsty.cc (China)" %}}
+```bash
 curl -fsSL https://repo.pigsty.cc/beta | bash;
 ```
+{{% /tab %}}
+{{< /tabpane >}}
 
 For developers or the latest development version, clone the repository directly:
 
 ```bash
 git clone https://github.com/pgsty/pigsty.git;
-cd pigsty; git checkout {{< param version >}}
+cd pigsty; git checkout <tag>  # Use a released version (current stable tag: {{< param stable_version >}})
 ```
 
 If your environment lacks Internet access, download the source tarball from [**GitHub Releases**](https://github.com/pgsty/pigsty/releases/) or the Pigsty repository:
 
 ```bash
-wget https://repo.pigsty.io/src/pigsty-{{< param version >}}.tgz
-wget https://repo.pigsty.cc/src/pigsty-{{< param version >}}.tgz
+wget https://repo.pigsty.io/src/pigsty-v<version>.tgz
+wget https://repo.pigsty.cc/src/pigsty-v<version>.tgz
 ```
