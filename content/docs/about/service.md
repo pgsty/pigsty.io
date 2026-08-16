@@ -141,7 +141,7 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 Pigsty Open Source Edition uses the [**Apache-2.0**](/docs/about/license) license, provides complete core functionality, requires no fees, but does not guarantee any warranty service. If you find defects in Pigsty, we welcome you to submit an [Issue](https://github.com/pgsty/pigsty/issues/) on Github.
 
 Pigsty Open Source supports seven currently validated baselines: EL 9.8 / 10.2, Debian 12.15 / 13.6, and Ubuntu 22.04.5 / 24.04.4 / 26.04.0, across both `x86_64` and `aarch64`.
-The historical `v4.4.0` Community Edition artifacts comprise six dual-architecture offline bundles built on EL 10.1, Debian 13.6, and Ubuntu 24.04.4. Those build baselines are not the same as the currently recommended operating systems; see the [offline installation guide](/docs/setup/offline/).
+`v4.5.0` publishes a dual-architecture offline bundle for each of those seven baselines, fourteen artifacts in total, all freely downloadable; see the [offline installation guide](/docs/setup/offline/).
 
 Using the Pigsty open source version allows junior development/operations engineers to have **70%+** of the capabilities of professional DBAs. Even without database experts, they can easily set up a highly available, high-performance, easy-to-maintain, secure and reliable PostgreSQL database cluster.
 
