@@ -76,7 +76,7 @@ The latest Pigsty release is [**v4.5.0**](#v450).
 
 ## v4.5.0
 
-Pigsty v4.5.0 is a feature release focused on new pilot modules, replaceable data services, cluster-identity-aware orchestration, observability, and the software supply chain. It introduces Kafka KRaft and MySQL 8.4 modules, adds Valkey to REDIS, converges the MINIO module on Silo, and expands the packaged extension catalog from 531 to 575 extensions. See the complete source comparison at [`v4.4.0...61f62e6e`](https://github.com/pgsty/pigsty/compare/v4.4.0...61f62e6e48129b88d0529bf6ebcffc039656415f).
+Pigsty v4.5.0 is a feature release focused on new pilot modules, replaceable data services, cluster-identity-aware orchestration, observability, and the software supply chain. It introduces Kafka KRaft and MySQL 8.4 modules, adds Valkey to REDIS, converges the MINIO module on Silo, and expands the packaged extension catalog from 531 to 575 extensions. Released on **2026-08-15**. See the [GitHub release](https://github.com/pgsty/pigsty/releases/tag/v4.5.0) and the complete source comparison at [`v4.4.0...v4.5.0`](https://github.com/pgsty/pigsty/compare/v4.4.0...v4.5.0).
 
 **Highlights**
 
@@ -543,6 +543,28 @@ Build, download, and verification status follows the wording of the original log
 - Custom RPM repositories and external automation that still reference underscore names such as `node_exporter` or `redis_exporter` must move to the hyphenated `node-exporter` and `redis-exporter` package names.
 - `docker/Makefile` no longer accepts `DATA` to redirect the cleanup target. `make purge` deletes repository-local `./data` immediately without a countdown; preserve any required data first.
 - KAFKA and MYSQL remain pilot modules. Kafka clients must resolve and reach each broker directly rather than putting the data plane behind HAProxy, a VIP, or an L4 load balancer. MySQL currently accepts exactly one or three members.
+
+All 14 validated offline artifacts are published on GitHub for this release, one per [**recommended OS version**](/docs/ref/linux/) and architecture, alongside a `checksums` manifest and a detached PGP signature (`.asc`) for every file.
+
+**Checksums**
+
+```bash
+e042059379bdfae8f774022b89e8d1e3  pigsty-pkg-v4.5.0.el9.aarch64.tgz
+997e812a433a6b969b976fad2c023a1f  pigsty-pkg-v4.5.0.el9.x86_64.tgz
+1e1045db965282d564680534bd7d72e2  pigsty-pkg-v4.5.0.el10.aarch64.tgz
+9a53f1e85cbb2d4f85969a6112ae4b05  pigsty-pkg-v4.5.0.el10.x86_64.tgz
+b7501783c90311176f21bdd35390c746  pigsty-pkg-v4.5.0.d12.aarch64.tgz
+f3ecaa449a0bf8e0f01907f83831e74a  pigsty-pkg-v4.5.0.d12.x86_64.tgz
+863165dba76b044ed8615d6743710005  pigsty-pkg-v4.5.0.d13.aarch64.tgz
+d86655361ccad7aa95a345a82bb37d10  pigsty-pkg-v4.5.0.d13.x86_64.tgz
+017f2d7931eb644d2d0fa2f71930134e  pigsty-pkg-v4.5.0.u26.aarch64.tgz
+61451ee610134423ff08f1a69dfced33  pigsty-pkg-v4.5.0.u26.x86_64.tgz
+5d9cfc52a25545b56e73e94ab5b5e175  pigsty-pkg-v4.5.0.u24.aarch64.tgz
+dba0eef49899509d1524b3a1c37d0ddc  pigsty-pkg-v4.5.0.u24.x86_64.tgz
+5564841c7c099489708cd1fe49ffa1b9  pigsty-pkg-v4.5.0.u22.aarch64.tgz
+dc52b6cee50cf6226e23b065e5aa8395  pigsty-pkg-v4.5.0.u22.x86_64.tgz
+afb5cd77903613cb945bd519e4059c76  pigsty-v4.5.0.tgz
+```
 
 
 ------

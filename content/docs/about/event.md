@@ -13,6 +13,11 @@ categories: [Reference]
 
 ## Recent News
 
+- **2026-08-15**: **Pigsty v4.5.0 officially released: Kafka, MySQL, Valkey, Silo, and 575 extensions**
+  - Release Blog: [Pigsty v4.5 Release Article](/blog/pigsty/v4.5)
+  - Release Notes: [v4.5.0](/docs/about/release#v450)
+  - Highlights: Kafka KRaft and MySQL 8.4 pilot modules, Valkey in REDIS, Silo as the MINIO backend, 575 total extensions, cluster-identity-aware orchestration, and offline packages for all seven recommended OS versions.
+
 - **2026-07-10**: **Pigsty v4.4.0 officially released: PG19 beta support and 531 extensions**
   - Release Notes: [v4.4.0](/docs/about/release#v440)
   - Highlights: PostgreSQL 18.4 / 19 beta support, 531 total extensions, kernel and package updates, and Pig CLI improvements.
