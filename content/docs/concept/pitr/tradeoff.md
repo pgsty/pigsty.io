@@ -2,182 +2,102 @@
 title: PITR Tradeoffs
 linkTitle: Tradeoffs
 weight: 213
-description: >
-  PITR strategy tradeoffs: repository choice, space planning, and recommendations
+description: Repository location determines the failure domain, retention determines the recovery window, and backup frequency shapes restore time. Together they define a backup policy.
 icon: fa-solid fa-scale-balanced
 module: [PGSQL]
 categories: [Concept]
 ---
 
-When designing a PITR strategy, the core tradeoffs are:
-**backup repository location**, **recovery window length**, and **restore speed vs storage cost**.
+A backup is an insurance policy. Its premium is storage, network traffic, and operational work; its benefit is how much data can be recovered and how quickly service can return. There is no universal free policy: more history normally needs more capacity, while a shorter RTO normally needs newer backups and tested procedures.
 
-This page helps you make practical choices across these dimensions.
+Designing a policy means answering three questions: **where is the repository, how long is history retained, and how often are backups taken?**
 
 
---------
+----------------
 
-## Local vs Remote
+## Where: Choose the Failure Domain
 
-Repository location is the first decision in PITR strategy.
+Repository location is the most important decision because it defines which disasters the backup survives.
 
-### Local Repository
+A **local repository** (`pgbackrest_method: local`) stores backups on the primary's local filesystem. It is simple, fast, and has no remote service dependency. But data and backup normally share one host failure domain: loss of the machine, disk, or filesystem can destroy both. Local backup protects well against logical errors, but not total host loss unless `/pg/backup` is deliberately placed on independent storage.
 
-Store backups on primary local disk (`pgbackrest_method = local`):
+An **object-storage repository** (`pgbackrest_method: minio` or a custom S3 definition) sends backups to Silo or S3. It becomes an independent disaster-recovery copy only when deployed outside the database host or site failure domain. Pigsty's `minio` preset also enables AES-256-CBC repository encryption, bundling, and block incremental backup. Recovery throughput then depends on the network and storage service, and that service adds operational responsibility.
 
-**Pros**
-- Simple, out-of-the-box
-- Fast restore (local I/O)
-- No external dependency
-
-**Cons**
-- No geo-DR; backups may be lost with host
-- Limited by local disk capacity
-- Same failure domain as production data
-
-### Remote Repository
-
-Store backups on Silo / S3 (`pgbackrest_method = minio|s3`):
-
-**Pros**
-- Geo-DR, backups independent from DB host
-- Near-unlimited capacity, shared by multiple clusters
-- Works with encryption, versioning, and other safety controls
-
-**Cons**
-- Restore speed depends on network bandwidth
-- Depends on object storage availability
-- Higher deployment and ops cost
-
-### How to Choose
-
-| Scenario | Recommended Repo | Reason |
-|:-------------|:--------------------|:-----------------------------|
-| Dev/Test | local | Simple and sufficient |
-| Single-node prod | minio / s3 | Recover even if host fails |
-| Cluster prod | local + minio | Balance speed and DR |
-| Critical business | multiple remote repos | Multi-site DR, maximum protection |
+| Scenario | Recommended repository | Reason |
+|:---------|:-----------------------|:-------|
+| Development, test, demo | `local` | Minimal dependencies; rebuild is acceptable |
+| Production | Dedicated Silo or compatible S3 storage | Independent failure domain and encrypted repository |
+| Cloud deployment | Managed S3-compatible or cloud object storage supported by pgBackRest | Independent storage and lower operational burden |
+| Ransomware/compliance | Versioned storage plus correctly configured object lock/retention | Prevent privileged database-host access from deleting protected versions |
 {.full-width}
 
-See [**Backup Repository**](/docs/pgsql/backup/repository/) for details.
+The backup repository is itself sensitive business data. Change the default access keys and `cipher_pass`, restrict access, protect credentials separately from the database hosts, and verify any object-lock policy. See [**Backup Repository**](/docs/pgsql/backup/repository/).
 
 
---------
+----------------
 
-## Space vs Window
+## How Long: Capacity and Recovery Window
 
-Longer recovery window means more storage. Window length is defined by **backup retention + WAL retention**.
+Longer retained history generally consumes more storage, but compression, deduplication, block incremental backup, database change rate, and the mix of full/differential/incremental backups determine the actual amount. Measure real backup and WAL growth instead of relying on a fixed multiplier.
 
-### Factors
+For an illustrative 100 GB database changing by 10 GB per day, before compression:
 
-| Factor | Impact |
-|:-----------------|:-----------------------------------------------|
-| **Database size** | Baseline for full backup size |
-| **Change rate** | Affects incremental backups and WAL size |
-| **Backup frequency** | Higher frequency = faster restore but more storage |
-| **Retention** | Longer retention = longer window, more storage |
-{.full-width}
+* **Daily full, retain two** (`local` preset policy): about 200 GB of full backups plus WAL, commonly giving roughly a one-to-two-day window when every job succeeds.
+* **Weekly full, daily incremental, retain full history by 14 days** (`minio` preset policy): the oldest surviving weekly chain commonly produces roughly 14–21 days of coverage. Capacity must include multiple full backups, their incrementals, archived WAL, and transient retention-plus-one behavior during expiration.
 
-### Intuitive Examples
+The precise window is not the configuration number alone. It runs from the oldest usable backup chain to the newest WAL present in the surviving repository. pgBackRest's time retention removes an old full only when another qualifying full can satisfy the period, and related incrementals and WAL follow the retained full chains. Check `pig pb info`, monitor archive health, and prove coverage with a restore.
 
-Assume DB is 100GB, daily change 10GB:
-
-**Daily full backups (keep 2)**
-
-- Full backups: 100GB × 2 ≈ 200GB
-- WAL archive: 10GB × 2 ≈ 20GB
-- Total: ~2–3x DB size
-
-**Weekly full + daily incremental (keep 14 days)**
-
-- Full backups: 100GB × 2 ≈ 200GB
-- Incremental: ~10GB × 12 ≈ 120GB
-- WAL archive: 10GB × 14 ≈ 140GB
-- Total: ~4–5x DB size
-
-Space vs window is a hard constraint: you cannot get a longer window with less storage.
+Choose a window long enough to cover **the delay between an error occurring and being detected**. A dropped table may be noticed in minutes; slow corruption or a month-end reconciliation failure can take weeks to surface.
 
 
---------
+----------------
 
-## Strategy Choices
+## How Often: Backup Frequency and RTO
 
-### Daily Full Backup
+Restore time has two main components: restore a backup chain, then replay WAL to the target. Backup size and storage throughput shape the first; the distance between the chosen backup and target shapes the second.
 
-**Simplest and most reliable**, also the default for local repo:
+WAL replay is largely serial. On a write-heavy database, restoring from a weekly full immediately before the next full can require nearly a week of replay. Daily incremental backups reduce that replay distance while transferring only changes since the previous backup. They still depend on a valid chain, so monitor and test the entire chain rather than only the newest file.
 
-- Full backup once per day
-- Keep 2 full backups
-- Recovery window about 24–48 hours
-
-Suitable when:
-- DB size is small to medium (< 500GB)
-- Backup window is sufficient
-- Storage cost is not a concern
-
-### Full + Incremental
-
-**Space-optimized strategy**, for large DBs or longer windows:
-
-- Weekly full backup
-- Incremental on other days
-- Keep 14 days
-
-Suitable when:
-- Large DB size
-- Using object storage
-- Need 1–2 week recovery window
-
-```mermaid
-flowchart TD
-    A{"DB size<br/>< 100GB?"} -->|Yes| B["Daily full backup"]
-    A -->|No| C{"DB size<br/>< 500GB?"}
-    C -->|No| D["Full + incremental"]
-    C -->|Yes| E{"Backup window<br/>sufficient?"}
-    E -->|Yes| F["Daily full backup"]
-    E -->|No| G["Full + incremental"]
-```
+A useful rule is: within the available backup window and production load budget, take backups often enough that measured restore time meets the RTO.
 
 
---------
+----------------
 
-## Recommended Configs
+## Pigsty Presets
 
-### Dev/Test
+Pigsty provides two candidate repository definitions, but [`pgbackrest_method`](/docs/pgsql/param/#pgbackrest_method) selects **one** for the generated `repo1` configuration.
+
+**Standard policy: local repository and daily full backup.** It is simple and restores through local I/O, making it suitable for development or environments where host-level disaster recovery is provided separately:
 
 ```yaml
-pg_crontab:
-  - '00 01 * * * /pg/bin/pg-backup full'
 pgbackrest_method: local
+pg_crontab: [ '00 01 * * * /pg/bin/pg-backup full' ]
+# Local preset retains two full backups; actual coverage depends on successful jobs and WAL continuity.
 ```
 
-- Window: 24–48 hours
-- Characteristics: simplest and lowest cost
-
-### Production Clusters
+**Production policy: remote Silo/S3 repository, weekly full, daily incremental.** It separates the repository failure domain and uses the encrypted `minio` preset:
 
 ```yaml
+pgbackrest_method: minio
 pg_crontab:
   - '00 01 * * 1 /pg/bin/pg-backup full'
   - '00 01 * * 2,3,4,5,6,7 /pg/bin/pg-backup'
-pgbackrest_method: minio
+# The preset retains full history by 14 days; weekly fulls commonly yield about 14–21 days.
 ```
 
-- Window: 7–14 days
-- Characteristics: remote DR, production-ready
+Keeping both `local` and `minio` in `pgbackrest_repo` is not a dual-repository setup. They are alternative definitions, and the template renders only `pgbackrest_repo[pgbackrest_method]` as `repo1`. A genuine multi-repository pgBackRest design requires explicit advanced configuration plus an independently tested backup, expiration, and restore workflow; the two presets alone do not provide it.
 
-### Critical Business
+Use [**Backup Policy**](/docs/pgsql/backup/policy/) for capacity modelling and schedule details.
 
-**Dual-repo strategy** (local + remote):
 
-```yaml
-pgbackrest_method: local
-pgbackrest_repo:
-  local: { path: /pg/backup, retention_full: 2 }
-  minio: { type: s3, retention_full_type: time, retention_full: 14 }
-```
+----------------
 
-- Local repo for fast restore
-- Remote repo for DR
+## A Backup Is Proven by Restore
 
-See [**Backup Policy**](/docs/pgsql/backup/policy/) and [**Backup Repository**](/docs/pgsql/backup/repository/) for details.
+Monitoring a successful backup job is necessary but insufficient. Add clone restore drills to routine operations so you can answer:
+
+1. **Is the chain usable?** Restore it end to end and validate data.
+2. **What is the measured RTO?** Database size and WAL volume change over time.
+3. **Can the on-call operator execute the runbook?** The first full exercise should not happen during an incident.
+
+A [**clone recovery**](/docs/pgsql/backup/cluster/) leaves the source cluster online but overwrites the designated destination cluster, so verify the exact target and use disposable infrastructure. See [**Declarative Recovery**](/docs/concept/pitr/restore/) for the recovery interface.

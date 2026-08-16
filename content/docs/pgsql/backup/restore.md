@@ -1,76 +1,79 @@
 ---
 title: Restore Operations
-description: Restore PostgreSQL from backups
+description: Perform PITR with pgsql-pitr.yml, pig pitr, or pig pb restore; select targets, run stages, and verify the result.
 icon: fa-solid fa-rotate-left
-weight: 1505
+weight: 1705
 categories: [Task]
 ---
 
+Pigsty provides three restore entry points. They share the [same parameter semantics](/docs/pgsql/backup/mechanism/#parameter-mapping), but serve different scopes:
 
-You can perform Point-in-Time Recovery (PITR) in Pigsty using pre-configured pgbackrest.
+| Entry point | Use case | What it controls |
+|:------------|:---------|:-----------------|
+| [`pgsql-pitr.yml`](#quick-start) | Production cluster recovery | HA pause, multiple nodes, etcd cleanup, restore, and restart |
+| [`pig pitr`](#single-instance-pig-pitr) | A local database node | Single-instance orchestration without the admin node |
+| [`pig pb restore`](#primitive-pig-pb-restore) | An instance not managed by Patroni | A direct pgBackRest restore wrapper |
+{.full-width}
 
-- [**Manual Approach**](#manual-approach): Manually execute PITR using `pg-pitr` prompt scripts, more flexible but more complex.
-- [**Playbook Approach**](#playbook-approach): Automatically execute PITR using `pgsql-pitr.yml` playbook, highly automated but less flexible and error-prone.
+For a hands-on sandbox drill, see [Manual Recovery](/docs/pgsql/tutorial/pitr). To recover into another cluster without changing production, see [Clone a PG Cluster](/docs/pgsql/backup/cluster/).
 
-If you are very familiar with the configuration, you can use the fully automated playbook, otherwise manual step-by-step operation is recommended.
+{{% alert color="danger" title="PITR overwrites the target cluster" %}}
+`pgsql-pitr.yml` pauses HA, stops Patroni/PostgreSQL, overwrites the target data directory with `pgbackrest --force restore`,
+then deletes the target cluster's etcd prefix and rebuilds HA. It prints a plan but **does not wait for confirmation**.
+Before any real restore, inspect the topology with `pig pg list <target-cluster>`, verify a recent usable backup and recovery window with `pig pb info`,
+and have the operator state and confirm the exact target cluster and recovery point. Schedule a maintenance window and retain an independently verified backup for production recovery.
+{{% /alert %}}
 
 
 --------
 
 ## Quick Start
 
-If you want to roll back the `pg-meta` cluster to a previous point in time, add the `pg_pitr` parameter:
+To roll `pg-meta` back to an earlier time, declare [`pg_pitr`](#pitr-parameter-definition):
 
 ```yaml
 pg-meta:
   hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary } }
   vars:
     pg_cluster: pg-meta
-    pg_pitr: { time: '2025-07-13 10:00:00+00' }  # Recover from latest backup
+    pg_pitr: { time: '2025-07-13 10:00:00+00', action: promote }
 ```
 
-Then run the `pgsql-pitr.yml` playbook, which will roll back the `pg-meta` cluster to the specified point in time.
+Run the same target through the safety gate before executing it:
 
 ```bash
+pig pg list pg-meta
+pig pb info
 ./pgsql-pitr.yml -l pg-meta
 ```
 
+You can pass the same object temporarily on the command line:
 
---------
-
-## Post-Recovery
-
-Pigsty {{< param version_short >}} `pgsql-pitr.yml` keeps archiving settings by default (`archive: true`). If you are doing exploratory recovery and explicitly set `archive: false`, re-enable archiving and perform a full backup after recovery.
-
-```bash title="postgres @ pg-meta $"
-psql -c 'ALTER SYSTEM RESET archive_mode;'
-pg restart pg-meta  # archive_mode is a postmaster parameter and requires restart
-pg-backup full    # Perform a new full backup
+```bash
+./pgsql-pitr.yml -l pg-meta -e '{"pg_pitr": { "time": "2025-07-13 10:00:00+00", "action": "promote" }}'
 ```
 
+{{% alert color="info" title="Use valid JSON for command-line variables" %}}
+The `-e` value must be valid JSON: quote keys and string values, for example `{"pg_pitr": {"time": "...", "archive": true}}`.
+Booleans are not quoted. Invalid quoting can fail parsing or silently produce the wrong value.
+{{% /alert %}}
+
+The playbook pauses Patroni HA, stops the cluster, performs a delta pgBackRest restore, starts PostgreSQL and waits for a consistent recovery state,
+prints control data, removes old etcd metadata, and starts the cluster under Patroni again.
+It prints the source, target, and restore command first, but has no interactive approval gate. A one-shot targeted recovery should therefore declare `action: promote` explicitly.
+To inspect data at the target, use [step-by-step execution](#step-by-step-execution) with `action: pause`.
+
 
 --------
 
-## Recovery Target
+## Recovery Targets
 
-You can specify different types of recovery targets in `pg_pitr`, but they are mutually exclusive:
-
-- [`time`](https://www.postgresql.org/docs/current/runtime-config-wal.html#RECOVERY-TARGET-TIME): To which point in time to recover?
-- [`name`](https://www.postgresql.org/docs/current/runtime-config-wal.html#RECOVERY-TARGET-NAME): Recover to a named restore point (created by `pg_create_restore_point`)
-- [`xid`](https://www.postgresql.org/docs/current/runtime-config-wal.html#RECOVERY-TARGET-XID): Recover to a specific transaction ID (TXID/XID)
-- [`lsn`](https://www.postgresql.org/docs/current/runtime-config-wal.html#RECOVERY-TARGET-LSN): Recover to a specific LSN (Log Sequence Number) point
-
-If any of the above parameters are specified, the recovery [`type`](https://www.postgresql.org/docs/current/runtime-config-wal.html#RECOVERY-TARGET-TYPE) will be set accordingly,
-otherwise `--type/--target` is not passed and recovery goes to the end of the WAL archive stream (Pigsty internal type: `default`).
-The special `immediate` type can be used to instruct pgbackrest to minimize recovery time by stopping at the first consistent point.
-
-
-### Target Types
+`pg_pitr` supports [six recovery target forms](/docs/concept/pitr/mechanism/#targets-where-replay-stops). The four target values are mutually exclusive.
 
 {{< tabpane persist="disabled" >}}
-{{% tab header="Recovery Target Types" disabled=true /%}}
+{{% tab header="Recovery target types" disabled=true /%}}
 {{< tab header="default/latest" lang="yaml" >}}
-pg_pitr: { }  # Recover to latest state (end of WAL archive stream)
+pg_pitr: { }  # Replay to the end of the WAL archive stream
 {{< /tab >}}
 {{< tab header="time" lang="yaml" >}}
 pg_pitr: { time: "2025-07-13 10:00:00+00" }
@@ -89,93 +92,67 @@ pg_pitr: { type: "immediate" }
 {{< /tab >}}
 {{< /tabpane >}}
 
+With no target, recovery replays all archived WAL to the latest available state (Pigsty's internal type is `default`).
+`immediate` stops at the first consistent point, which is useful for obtaining a usable instance as quickly as possible or testing a backup.
 
 ### Recover by Time
 
-The most commonly used target is a point in time; you can specify the time point to recover to:
+Use a valid PostgreSQL [`TIMESTAMP`](https://www.postgresql.org/docs/current/datatype-datetime.html#DATATYPE-DATETIME-INPUT-TIME-STAMPS); an explicit time zone is strongly recommended:
 
-```bash title="Recover to specified point in time"
-./pgsql-pitr.yml -e '{"pg_pitr": { "time": "2025-07-13 10:00:00+00" }}'
+```bash
+./pgsql-pitr.yml -l pg-meta -e '{"pg_pitr": { "time": "2025-07-13 10:00:00+00", "action": "promote" }}'
 ```
-
-Time should be in valid PostgreSQL [`TIMESTAMP`](https://www.postgresql.org/docs/17/datatype-datetime.html#DATATYPE-DATETIME-INPUT-TIME-STAMPS) format, `YYYY-MM-DD HH:MM:SS+TZ` is recommended.
-
 
 ### Recover by Name
 
-You can create named restore points using [`pg_create_restore_point`](https://www.postgresql.org/docs/current/functions-admin.html#id-1.5.8.34.5.5.2.2.1.1.1.1):
+Create an unambiguous marker before a risky change with [`pg_create_restore_point`](https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-RECOVERY-CONTROL):
 
 ```sql
-SELECT pg_create_restore_point('shit_incoming');
+SELECT pg_create_restore_point('before_migration');
 ```
-
-Then use that named restore point in PITR:
 
 ```bash
-./pgsql-pitr.yml -e '{"pg_pitr": { "name": "shit_incoming" }}'
+./pgsql-pitr.yml -l pg-meta -e '{"pg_pitr": { "name": "before_migration", "action": "promote" }}'
 ```
 
+### Recover by Transaction ID
 
-### Recover by XID
+If the offending transaction ID is known from monitoring or CSVLOG's `TXID` field, use `exclusive` to stop before that transaction:
 
-If you have a transaction that accidentally deleted some data, the best way to recover is to restore the database to the state before that transaction.
-
-```bash title="Recover to before a transaction"
-./pgsql-pitr.yml -e '{"pg_pitr": { "xid": "250000", "exclusive": true }}'
+```bash
+./pgsql-pitr.yml -l pg-meta -e '{"pg_pitr": { "xid": "250000", "exclusive": true, "action": "promote" }}'
 ```
-
-You can find the exact transaction ID from monitoring dashboards or from the `TXID` field in CSVLOG.
-
-{{% alert color="info" title="Inclusive vs Exclusive" %}}
-Target parameters are "inclusive" by default, meaning recovery will include the target point.
-The `exclusive` flag will exclude that exact target, e.g., xid 24999 will be the last transaction replayed.
-
-This only applies to `time`, `xid`, `lsn` recovery targets, see [`recovery_target_inclusive`](https://www.postgresql.org/docs/current/runtime-config-wal.html#RECOVERY-TARGET-INCLUSIVE) for details.
-{{% /alert %}}
-
 
 ### Recover by LSN
 
-PostgreSQL uses [LSN](https://www.postgresql.org/docs/current/datatype-pg-lsn.html) (Log Sequence Number) to identify the location of WAL records.
-You can find it in many places, such as the PG LSN panel in Pigsty dashboards.
+An [LSN](https://www.postgresql.org/docs/current/datatype-pg-lsn.html) identifies a position in the WAL stream. It is also visible in Pigsty's PG LSN dashboard panel.
+Set `timeline` when the desired position is on a particular timeline; the default is `latest`.
 
-```bash title="Recover to specified LSN"
-./pgsql-pitr.yml -e '{"pg_pitr": { "lsn": "0/4001C80", "timeline": "1" }}'
+```bash
+./pgsql-pitr.yml -l pg-meta -e '{"pg_pitr": { "lsn": "0/4001C80", "timeline": "1", "action": "promote" }}'
 ```
 
-To recover to an exact position in the WAL stream, you can also specify the [`timeline`](https://www.postgresql.org/docs/current/runtime-config-wal.html#RECOVERY-TARGET-TIMELINE) parameter (defaults to `latest`)
+{{% alert color="info" title="Inclusive and exclusive targets" %}}
+Targets are inclusive by default, so the target transaction is replayed. `exclusive: true` excludes the exact target.
+It applies only to `time`, `xid`, and `lsn`, and maps to PostgreSQL's [`recovery_target_inclusive`](https://www.postgresql.org/docs/current/runtime-config-wal.html#RECOVERY-TARGET-INCLUSIVE).
+{{% /alert %}}
 
 
 --------
 
 ## Recovery Source
 
-- `cluster`: From which cluster to recover? Defaults to current `pg_cluster`, you can use any other cluster in the same pgbackrest repository
-- `repo`: Override backup repository, uses same format as `pgbackrest_repo`
-- `set`: Defaults to `latest` backup set, but you can specify a specific pgbackrest backup by label
+Recovery uses the target cluster's own backup by default. Three fields can select another source:
 
-Pigsty will recover from the pgbackrest backup repository. If you use a centralized backup repository (like MinIO/S3),
-you can specify another "stanza" (another cluster's backup directory) as the recovery source.
+- `cluster`: the source stanza, including another cluster in a shared repository
+- `repo`: a temporary repository definition in the same format as a [`pgbackrest_repo`](/docs/pgsql/param#pgbackrest_repo) entry
+- `set`: a specific [backup label](/docs/pgsql/backup/mechanism/#backup-chains-and-labels); otherwise pgBackRest selects a suitable set
 
-```yaml
-pg-meta2:
-  hosts: { 10.10.10.11: { pg_seq: 1, pg_role: primary } }
-  vars:
-    pg_cluster: pg-meta
-    pg_pitr: { cluster: pg-meta }  # Recover from pg-meta cluster backup
-```
-
-The above configuration will mark the PITR process to use the `pg-meta` stanza.
-You can also pass the `pg_pitr` parameter via CLI arguments:
-
-```bash title="Recover pg-meta2 using pg-meta backup"
-./pgsql-pitr.yml -l pg-meta2 -e '{"pg_pitr": { "cluster": "pg-meta" }}'
-```
-
-You can also use these targets when PITR from another cluster:
+For example, recover `pg-meta2` from `pg-meta`:
 
 ```bash
-./pgsql-pitr.yml -l pg-meta2 -e '{"pg_pitr": { "cluster": "pg-meta", "time": "2025-07-14 08:00:00+00" }}'
+./pgsql-pitr.yml -l pg-meta2 -e '{"pg_pitr": { "cluster": "pg-meta", "archive": false, "action": "promote" }}'
+./pgsql-pitr.yml -l pg-meta2 -e '{"pg_pitr": { "cluster": "pg-meta", "time": "2025-07-14 08:00:00+00", "archive": false, "action": "promote" }}'
 ```
 
 
@@ -183,71 +160,143 @@ You can also use these targets when PITR from another cluster:
 
 ## Step-by-Step Execution
 
-This approach is semi-automatic, you will participate in the PITR process to make critical decisions.
-
-For example, this configuration will restore the `pg-meta` cluster itself to the specified point in time:
-
-```yaml
-pg-meta:
-  hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary } }
-  vars:
-    pg_cluster: pg-meta2
-    pg_pitr: { time: '2025-07-13 10:00:00+00' }  # Recover from latest backup
-```
-
-Let's execute step by step:
+In an incident, use tags to retain an explicit human gate between stages. After confirming the backup, recovery point, and exact target, run the stages in order:
 
 ```bash
-./pgsql-pitr.yml -l pg-meta -t down     # Pause patroni high availability
-./pgsql-pitr.yml -l pg-meta -t pitr     # Run pitr process
-./pgsql-pitr.yml -l pg-meta -t up       # Clean DCS, start postgres/patroni, and restore HA
+./pgsql-pitr.yml -l pg-meta -t down  # Pause HA; stop Patroni and PostgreSQL
+./pgsql-pitr.yml -l pg-meta -t pitr  # Restore, replay WAL, and print control information
+./pgsql-pitr.yml -l pg-meta -t up    # Remove etcd metadata; start the cluster and resume HA
 ```
 
 ```yaml
-# down                 : # Stop high availability and shutdown patroni and postgres
-#   - pause            : # Pause patroni auto-failover
-#   - stop             : # Stop patroni and postgres services
-#     - stop_patroni   : # Stop patroni service
-#     - stop_postgres  : # Stop postgres service
-# pitr                 : # Perform PITR process
-#   - config           : # Generate pgbackrest config and recovery script
-#   - restore          : # Run pgbackrest restore command
-#   - recovery         : # Start postgres and complete recovery
-#   - verify           : # Verify recovered cluster control data
-# up:                  : # Start postgres / patroni and restore high availability
-#   - etcd             : # Clean etcd metadata before starting
-#   - start            : # Start patroni and postgres services
-#     - start_postgres : # Start postgres service
-#     - start_patroni  : # Start patroni service
-#   - resume           : # Resume patroni auto-failover
+# down                 : # stop HA and PostgreSQL
+#   - pause            : # pause Patroni automatic failover
+#   - stop             : # stop Patroni and PostgreSQL
+# pitr                 : # perform PITR
+#   - config           : # render pgBackRest config and restore script
+#   - backup           : # optionally move PGDATA to /pg/data-backup
+#   - restore          : # run pgBackRest restore
+#   - recovery         : # start PostgreSQL and replay WAL
+#   - verify           : # print recovered control data
+# up                   : # rebuild HA
+#   - etcd             : # remove old cluster metadata
+#   - start            : # start Patroni/PostgreSQL
+#   - resume           : # resume Patroni automatic failover
 ```
+
+After `down`, confirm the processes are stopped. After `pitr`, inspect `/pg/tmp/recovery.log` and query the recovery state before checking narrowly authorized business data.
+`pg_controldata /pg/data` reports checkpoint and timeline metadata; it does not by itself prove that a time, XID, or LSN target was reached.
+
+```sql
+SELECT pg_is_in_recovery(), pg_is_wal_replay_paused(),
+       pg_last_wal_replay_lsn(), pg_last_xact_replay_timestamp();
+```
+
+With `action: pause`, promote only after validation, then run `up`. If the target is wrong, adjust `pg_pitr` and repeat `pitr` before `up`.
+`pause` or `shutdown` creates a meaningful human gate only in this staged workflow; use `action: promote` explicitly for one-shot targeted recovery.
+
+```bash
+pg_ctl -D /pg/data promote            # only after validating an action: pause recovery
+./pgsql-pitr.yml -l pg-meta -t up     # rebuild Patroni HA
+```
+
+{{% alert color="warning" title="Repeating the pitr stage" %}}
+With `backup: true`, the playbook moves the current data directory to `/pg/data-backup`, but deletes any existing `/pg/data-backup` before doing so.
+The staged workflow is supported; a restore using `backup: true` is not generally idempotent.
+{{% /alert %}}
 
 
 --------
 
 ## PITR Parameter Definition
 
-The `pg_pitr` parameter has more options available:
+Declare the target, action, and treatment of existing data explicitly:
 
 ```yaml
-pg_pitr:                           # Define PITR task
-    cluster: "some_pg_cls_name"    # Source cluster name
-    type: default                  # Recovery target type: default, time, xid, name, lsn, immediate
-    time: "2025-01-01 10:00:00+00" # Recovery target: time, mutually exclusive with xid, name, lsn
-    name: "some_restore_point"     # Recovery target: named restore point, mutually exclusive with time, xid, lsn
-    xid:  "100000"                 # Recovery target: transaction ID, mutually exclusive with time, name, lsn
-    lsn:  "0/3000000"              # Recovery target: log sequence number, mutually exclusive with time, name, xid
-    timeline: latest               # Target timeline, can be integer, defaults to latest
-    exclusive: false               # Whether to exclude target point, defaults to false
-    action: pause                  # Post-recovery action: pause, promote, shutdown
-    archive: true                  # Whether to keep archive settings? Defaults to true
-    db_exclude: [ template0, template1 ]
-    db_include: []
-    link_map:
-      pg_wal: '/data/wal'
-      pg_xact: '/data/pg_xact'
-    process: 4                     # Number of parallel recovery processes, defaults to node_cpu
-    repo: {}                       # Recovery source repository
-    data: /pg/data                 # Data recovery location
-    port: 5432                     # Listening port for recovered instance
+pg_pitr:
+  cluster: pg-meta                 # source cluster/stanza; defaults to pg_cluster
+  type: default                    # default | time | xid | name | lsn | immediate
+  time: "2025-07-13 10:00:00+00"  # mutually exclusive with xid, name, and lsn
+  name: "some_restore_point"       # mutually exclusive with time, xid, and lsn
+  xid: "250000"                    # mutually exclusive with time, name, and lsn
+  lsn: "0/4001C80"                 # mutually exclusive with time, xid, and name
+  exclusive: false                 # exclude the exact target; time/xid/lsn only
+  timeline: latest                 # target timeline; integer or latest
+  set: latest                      # backup label; auto-select by default
+  action: pause                    # pause | promote | shutdown
+                                   # a specified target defaults to pause
+  archive: true                    # preserve archiving; false sets archive-mode=off
+  backup: false                    # move old PGDATA to /pg/data-backup before restore
+  db_exclude: []                   # databases to exclude
+  db_include: []                   # databases to include
+  link_map:                        # tablespace/WAL link remapping
+    pg_wal: '/data/wal'
+    pg_xact: '/data/pg_xact'
+  process: 4                       # restore workers; defaults to node_cpu
+  repo: {}                        # temporary source repository definition
+  data: /pg/data                  # target data directory
+  port: 5432                      # recovery instance port
 ```
+
+See [Parameter Mapping](/docs/pgsql/backup/mechanism/#parameter-mapping) for the corresponding pgBackRest options.
+
+
+--------
+
+## Single Instance: `pig pitr`
+
+[`pig pitr`](/docs/pig/pitr) performs a local-node workflow without Ansible: validate the target, stanza, and backup; stop Patroni/PostgreSQL; restore; optionally start PostgreSQL; and print follow-up guidance.
+
+```bash
+pig pitr -t "2025-07-13 10:00:00+00"    # Recover to a point in time
+pig pitr --xid 250000 -X                # Recover to before transaction 250000
+pig pitr --name before_migration        # Recover to a named restore point
+pig pitr -d                             # Recover to the end of the WAL archive stream
+pig pitr -I --no-restart                # Restore for immediate recovery and leave PostgreSQL stopped
+pig pitr -t "..." --plan                # Print the execution plan without making changes
+```
+
+Use `-b/--set` for a backup set, `-T/--target-timeline` for a timeline, `--target-action` for the post-target action,
+and `-D/--data` with `--no-restart` for a side restore. The command normally attempts a fast stop and aborts if that fails;
+only explicit `--force-stop` permits immediate shutdown and a kill fallback.
+For managed PGDATA it leaves Patroni stopped. Validate the instance before `pig pt start`.
+It does not remove etcd metadata, rebuild replicas, or rejoin the instance to an HA cluster.
+
+
+--------
+
+## Primitive: `pig pb restore`
+
+For an instance not managed by Patroni (or one deliberately taken out of management), [`pig pb restore`](/docs/pig/pb) directly wraps `pgbackrest restore`.
+It validates the environment, requires PostgreSQL to be stopped, displays the plan, and asks for confirmation.
+
+```bash
+pig pb restore --time "2025-07-13 10:00"
+pig pb restore --set 20250715-013657F
+pig pb restore -d
+```
+
+It rejects a live Patroni-managed target because Patroni could restart a half-restored instance, and it rejects any running PostgreSQL target.
+Arguments after `--`, such as `--tablespace-map` or `--link-all`, pass through to pgBackRest, but wrapped options such as target, stanza, and repository cannot be overridden there.
+
+
+--------
+
+## Post-Recovery
+
+After restore:
+
+1. Verify the recovery state and the smallest authorized set of application checks.
+2. After a cross-cluster clone, complete [stanza cleanup](/docs/pgsql/backup/cluster/#post-clone-cleanup). Create a full backup on the new timeline as soon as practical:
+
+   ```bash
+   pg-backup full
+   ```
+
+3. If exploratory recovery used `archive: false`, restore archiving. Because `archive_mode` is a postmaster setting, first confirm the maintenance window, current primary, and replication state, then obtain explicit approval for the restart:
+
+   ```bash
+   psql -c 'ALTER SYSTEM RESET archive_mode;'
+   pg restart pg-meta
+   pg-backup full
+   ```

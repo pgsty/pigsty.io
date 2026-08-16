@@ -1,179 +1,110 @@
 ---
-title: Point-in-Time Recovery
+title: Point-in-Time Recovery — A Time Machine for PostgreSQL
 linkTitle: PITR
 weight: 210
-description: Pigsty uses pgBackRest to implement PostgreSQL point-in-time recovery,
-  allowing users to roll back to any point in time within the backup policy window.
+description: High availability handles machine failure; point-in-time recovery handles incorrect data. Pigsty uses pgBackRest to provide PITR out of the box, allowing a cluster to return to any recoverable point covered by its backup and WAL history.
 icon: fa-solid fa-clock-rotate-left
 module: [PGSQL]
 categories: [Concept]
 ---
 
-> When you accidentally delete data, tables, or even the entire database, PITR lets you return to any point in time and avoid data loss from software defects and human error.
+
+> If data, a table, or even a database is deleted accidentally, Point-in-Time Recovery (PITR) can return the cluster to an earlier state.
 >
-> — This "magic" once reserved for senior DBAs is now available out of the box to everyone.
-
-------
-
-## Overview
-
-Pigsty's PostgreSQL clusters come with auto-configured Point-in-Time Recovery (PITR) capability, powered by [**pgBackRest**](https://pgbackrest.org/) and optional [**Silo**](/docs/minio/) object storage.
-
-[**High availability solutions**](/docs/concept/ha) can address hardware failures but are powerless against data deletion/overwriting/database drops caused by software defects and human errors.
-For such situations, Pigsty provides out-of-the-box **Point-in-Time Recovery** (PITR) capability, enabled by default without additional configuration.
-
-Pigsty provides default configurations for base backups and WAL archiving. You can use local directories and disks, a dedicated Silo cluster, or external S3 object storage to store backups and achieve geo-redundant disaster recovery.
-When using local disks, the default capability to recover to any point within the past day is retained. When using Silo or S3, the default capability to recover to any point within the past week is retained.
-As long as storage space permits, you can retain any arbitrarily long recoverable time window, as your budget allows.
-
-------
-
-### What Problems Does PITR Solve?
-
-* Enhanced disaster recovery: **RPO** drops from ∞ to tens of MB, **RTO** drops from ∞ to hours/minutes.
-* Ensures data security: **Data integrity** in C/I/A: avoids data consistency issues caused by accidental deletion.
-* Ensures data security: **Data availability** in C/I/A: provides fallback for "permanently unavailable" disaster scenarios
-
-| Standalone Configuration Strategy | Event | RTO | RPO |
-|------|:--:|-----------------|:-----|
-| <i class="fa-solid fa-music text-danger"></i> Nothing | Crash | <i class="fas fa-circle-xmark text-danger"></i> **Permanently lost** | <i class="fas fa-circle-xmark text-danger"></i> **All lost** |
-| <i class="fa-solid fa-copy text-secondary"></i> Base Backup | Crash | <i class="fa-solid fa-triangle-exclamation text-secondary"></i> Depends on backup size and bandwidth (hours) | <i class="fa-solid fa-triangle-exclamation text-secondary"></i> Lose data since last backup (hours to days) |
-| <i class="fa-solid fa-copy text-primary"></i> Base Backup + <i class="fa-solid fa-clock-rotate-left text-primary"></i> WAL Archive | Crash | <i class="fa-solid fa-triangle-exclamation text-primary"></i> Depends on backup size and bandwidth (hours) | <i class="fa-solid fa-triangle-exclamation text-primary"></i> Lose unarchived data (tens of MB) |
-
-
-### What Are the Costs of PITR?
-
-* Reduces C in data security: **Confidentiality**, creates additional leak points, requires additional backup protection.
-* Extra resource consumption: Local storage or network traffic/bandwidth overhead, usually not a concern.
-* Increased complexity: Users need to pay backup management costs.
-
-### Limitations of PITR
-
-If only PITR is used for failure recovery, RTO and RPO metrics are inferior compared to [**high availability solutions**](/docs/concept/ha/), and typically both should be used together.
-
-* **RTO**: With only standalone + PITR, recovery time depends on backup size and network/disk bandwidth, ranging from tens of minutes to hours or days.
-* **RPO**: With only standalone + PITR, some data may be lost during crashes - one or several WAL segment files may not yet be archived, losing 16 MB to tens of MB of data.
-
-Besides [**PITR**](/docs/concept/pitr), you can also use [**delayed clusters**](/docs/pgsql/config#delayed-cluster) in Pigsty to address data deletion/modification caused by human errors or software defects.
-
-
+> This capability, once treated as specialist DBA work, is enabled by Pigsty's standard PostgreSQL configuration.
 
 
 ----------------
 
-## How It Works
+## Replication Is Not Backup
 
-Point-in-time recovery allows you to restore and roll back your cluster to "any point" in the past, avoiding data loss caused by software defects and human errors. To achieve this, two preparations are needed: [**Base Backup**](#base-backup) and [**WAL Archiving**](#wal-archiving).
-Having a **base backup** allows users to restore the database to its state at backup time, while having **WAL archives** starting from a base backup allows users to restore the database to any point after the base backup time.
+[**High availability**](/docs/concept/ha/) can fail over to another instance when hardware fails. It has a natural blind spot, however: **replication is not backup**.
 
-For detailed mechanisms, see [**Base Backup and Point-in-Time Recovery**](/blog/pg/backup-overview/); for specific operations, refer to [**PGSQL Admin: Backup and Recovery**](/docs/pgsql/backup/).
+Streaming replication faithfully sends every primary change to every replica within milliseconds, including a `DELETE` without a `WHERE` clause or a `DROP TABLE` issued against the wrong database. Failover handles a broken machine; when the data itself is wrong, every replica can contain the same error.
 
-### Base Backup
+Database disasters therefore fall into two broad classes. Redundancy handles physical service failure through multiple copies and automatic failover. Logical errors require **history**: a base backup plus continuous WAL archives from which PostgreSQL can reconstruct a state before the mistake.
 
-Pigsty uses pgBackRest to manage PostgreSQL backups. pgBackRest initializes empty repositories on all cluster instances but only actually uses the repository on the cluster primary.
+| Threat | [**High Availability**](/docs/concept/ha/) | [**Delayed Cluster**](/docs/pgsql/config/cluster/#delayed-cluster) | **PITR** |
+|:-------|:-----------------:|:-----------------:|:--------:|
+| Hardware or instance failure | ✔ Automatic failover | ✘ | ✔, with a longer RTO |
+| Accidental DML, table drop, or database drop | ✘ The error is replicated | ✔ Within the delay | ✔ At any recoverable point |
+| Defective software corrupts data over time | ✘ The error is replicated | ✔ Within the delay | ✔ Try different recovery targets |
+| Entire cluster or site is lost | ✘ | ✘ | ✔ Only if the repository survives that failure domain |
+{.full-width}
 
-pgBackRest supports three backup modes: **full backup**, **incremental backup**, and differential backup, with the first two being most commonly used.
-Full backup takes a complete physical snapshot of the database cluster at the current moment; incremental backup records the differences between the current database cluster and the previous full backup.
-
-Pigsty provides a wrapper command for backups: `/pg/bin/pg-backup [full|incr]`. You can schedule regular base backups as needed through Crontab or any other task scheduling system.
-
-
-### WAL Archiving
-
-Pigsty enables WAL archiving on the cluster primary by default and uses the `pgbackrest` command-line tool to continuously push WAL segment files to the backup repository.
-
-pgBackRest automatically manages required WAL files and timely cleans up expired backups and their corresponding WAL archive files based on the backup retention policy.
-
-If you don't need PITR functionality, you can disable WAL archiving by [**configuring the cluster**](/docs/pgsql/admin#configure-cluster): `archive_mode: off` and remove [`node_crontab`](/docs/node/param#node_crontab) to stop scheduled backup tasks.
-
-
+These mechanisms complement one another: HA restores service quickly, a delayed cluster provides a short undo window, and PITR is the final historical recovery path.
 
 
 ----------------
 
-## Implementation
+## How the Time Machine Works
 
-By default, Pigsty provides two preset [backup strategies](/docs/pgsql/backup/policy): the default uses a local filesystem repository and one full backup daily; the alternative uses dedicated Silo or external S3 storage, with weekly full backups, daily incremental backups, and two weeks of backup and WAL archive retention.
+A database can be viewed as a state machine. A **base backup** is a complete physical snapshot at one point, while **WAL** (Write-Ahead Log) records every subsequent state change. With a snapshot and an unbroken WAL history starting from it, PostgreSQL can replay the database to any target covered by that history. The backup determines how far back recovery can start; the latest archived WAL determines how close to the present it can reach.
 
-Pigsty uses pgBackRest to manage backups, receive WAL archives, and perform PITR. Backup repositories can be flexibly configured ([`pgbackrest_repo`](/docs/pgsql/param#pgbackrest_repo)): the primary's local filesystem (`local`) by default, another disk path, the optional [Silo](/docs/minio) service through the compatible `minio` preset, or an external S3 service.
+<p style="text-align: center; font-size: 1.2em;"><strong>Base backup + WAL archive = point-in-time recovery</strong></p>
+
+Pigsty orchestrates both inputs. Cluster initialization attempts an initial full backup by default, and the primary continuously sends completed WAL segments to the selected repository. See [**How PITR Works**](/docs/concept/pitr/mechanism/) for the complete model of backups, archives, targets, and timelines.
+
+
+----------------
+
+## Available Out of the Box
+
+PITR is enabled in Pigsty's standard PostgreSQL configuration. Each cluster is prepared with a backup repository, WAL archiving, and recovery tooling powered by [**pgBackRest**](https://pgbackrest.org/). The policy remains declarative and can be customized with a few parameters:
 
 ```yaml
-pgbackrest_enabled: true          # enable pgBackRest on pgsql host?
-pgbackrest_clean: true            # remove pg backup data during init?
-pgbackrest_log_dir: /pg/log/pgbackrest # pgbackrest log dir, `/pg/log/pgbackrest` by default
-pgbackrest_method: local          # pgbackrest repo method: local, minio, [user-defined...]
-pgbackrest_repo:                  # pgbackrest repo: https://pgbackrest.org/configuration.html#section-repository
-  local:                          # default pgbackrest repo with local posix fs
-    path: /pg/backup              # local backup directory, `/pg/backup` by default
-    retention_full_type: count    # retention full backup by count
-    retention_full: 2             # keep at most 3 full backup, at least 2, when using local fs repo
-  minio:                          # optional Silo / S3-compatible repo for pgBackRest
-    type: s3                      # minio is s3-compatible, so use s3
-    s3_endpoint: sss.pigsty       # minio endpoint domain name, `sss.pigsty` by default
-    s3_region: us-east-1          # minio region, us-east-1 by default, not used for minio
-    s3_bucket: pgsql              # minio bucket name, `pgsql` by default
-    s3_key: pgbackrest            # minio user access key for pgbackrest
-    s3_key_secret: S3User.Backup  # minio user secret key for pgbackrest
-    s3_uri_style: path            # use path style uri for minio rather than host style
-    path: /pgbackrest             # minio backup path, `/pgbackrest` by default
-    storage_port: 9000            # minio port, 9000 by default
-    storage_ca_file: /etc/pki/ca.crt  # minio ca file path, `/etc/pki/ca.crt` by default
-    bundle: y                     # bundle small files into a single file
-    cipher_type: aes-256-cbc      # enable AES encryption for remote backup repo
-    cipher_pass: pgBackRest       # AES encryption password, default is 'pgBackRest'
-    retention_full_type: time     # retention full backup by time on minio repo
-    retention_full: 14            # keep full backup for last 14 days
-  # You can also add other optional backup repos, such as S3, for geo-redundant disaster recovery
+pg-meta:
+  hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary } }
+  vars:
+    pg_cluster: pg-meta
+    pgbackrest_method: minio       # Silo / S3-compatible storage; local is the default
+    pg_crontab: [ '00 01 * * * /pg/bin/pg-backup full' ]  # daily full backup at 01:00
 ```
 
-Pigsty parameter [`pgbackrest_repo`](/docs/pgsql/param#pgbackrest_repo) target repositories are converted to repository definitions in the `/etc/pgbackrest/pgbackrest.conf` configuration file.
-For example, if you define a US West S3 repository for storing cold backups, you can use the following reference configuration.
+The default `local` method stores backups under `/pg/backup` and retains two full backups. With one successful full backup per day, the resulting window is roughly 24–48 hours. Selecting the remote `minio` preset places the repository in Silo or compatible S3 storage, enables AES-256-CBC repository encryption, and uses time-based retention. With a 14-day retention setting and weekly full backups, the steady-state recovery window is roughly 14–21 days. Treat both ranges as policy estimates: actual coverage starts at the oldest usable backup and ends at the latest WAL that reached the repository.
 
-```yaml
-s3:    # ------> /etc/pgbackrest/pgbackrest.conf
-  repo1-type: s3                                   # ----> repo1-type=s3
-  repo1-s3-region: us-west-1                       # ----> repo1-s3-region=us-west-1
-  repo1-s3-endpoint: s3-us-west-1.amazonaws.com    # ----> repo1-s3-endpoint=s3-us-west-1.amazonaws.com
-  repo1-s3-key: '<your_access_key>'                # ----> repo1-s3-key=<your_access_key>
-  repo1-s3-key-secret: '<your_secret_key>'         # ----> repo1-s3-key-secret=<your_secret_key>
-  repo1-s3-bucket: pgsql                           # ----> repo1-s3-bucket=pgsql
-  repo1-s3-uri-style: host                         # ----> repo1-s3-uri-style=host
-  repo1-path: /pgbackrest                          # ----> repo1-path=/pgbackrest
-  repo1-bundle: y                                  # ----> repo1-bundle=y
-  repo1-cipher-type: aes-256-cbc                   # ----> repo1-cipher-type=aes-256-cbc
-  repo1-cipher-pass: pgBackRest                    # ----> repo1-cipher-pass=pgBackRest
-  repo1-retention-full-type: time                  # ----> repo1-retention-full-type=time
-  repo1-retention-full: 90                         # ----> repo1-retention-full=90
-```
-
-
-----------------
-
-## Recovery
-
-You can directly use the following wrapper commands for PostgreSQL database cluster [point-in-time recovery](https://pgbackrest.org/command.html#command-restore).
-
-Pigsty uses incremental differential parallel recovery by default, allowing you to recover to a specified point in time at maximum speed.
+Recovery is declarative too: specify a target, then let the playbook stop the cluster, restore files, replay WAL, and rebuild HA. An operator must still verify the recovered business state.
 
 ```bash
-pg-pitr                                 # Restore to the end of WAL archive stream (e.g., for entire datacenter failure)
-pg-pitr -i                              # Restore to the most recent backup completion time (rarely used)
-pg-pitr --time="2022-12-30 14:44:44+08" # Restore to a specified point in time (for database or table drops)
-pg-pitr --name="my-restore-point"       # Restore to a named restore point created with pg_create_restore_point
-pg-pitr --lsn="0/7C82CB8" -X            # Restore to immediately before the LSN
-pg-pitr --xid="1234567" -X -P           # Restore to immediately before the specified transaction ID, then promote cluster to primary
-pg-pitr --backup=latest                 # Restore to the latest backup set
-pg-pitr --backup=20221108-105325        # Restore to a specific backup set, backup sets can be listed with pgbackrest info
-
-pg-pitr                                 # pgbackrest --stanza=pg-meta restore
-pg-pitr -i                              # pgbackrest --stanza=pg-meta --type=immediate restore
-pg-pitr -t "2022-12-30 14:44:44+08"     # pgbackrest --stanza=pg-meta --type=time --target="2022-12-30 14:44:44+08" restore
-pg-pitr -n "my-restore-point"           # pgbackrest --stanza=pg-meta --type=name --target=my-restore-point restore
-pg-pitr -b 20221108-105325F             # pgbackrest --stanza=pg-meta --type=name --set=20221230-120101F restore
-pg-pitr -l "0/7C82CB8" -X               # pgbackrest --stanza=pg-meta --type=lsn --target="0/7C82CB8" --target-exclusive restore
-pg-pitr -x 1234567 -X -P                # pgbackrest --stanza=pg-meta --type=xid --target="0/7C82CB8" --target-exclusive --target-action=promote restore
+./pgsql-pitr.yml -l pg-meta -e '{"pg_pitr": { "time": "2026-07-11 10:00:00+08", "action": "promote" }}'
 ```
 
-When performing PITR, you can use Pigsty's monitoring system to observe the cluster LSN position status and determine whether recovery to the specified point in time, transaction point, LSN position, or other point was successful.
+This follows Pigsty's [**declarative configuration**](/docs/concept/iac/) model: backup policy is part of the cluster definition, and a recovery target is another declared [**parameter**](/docs/concept/iac/parameter/).
 
-![pitr](/img/docs/concept/pitr.png)
+
+----------------
+
+## Benefits and Costs
+
+PITR materially improves data integrity and availability:
+
+* **RPO** (maximum data loss) is usually reduced to minutes, bounded by WAL that had not reached a surviving repository.
+* **RTO** (time to restore service) becomes tens of minutes to hours rather than permanent loss, depending on backup size, WAL replay distance, and disk or network throughput.
+
+| Standalone strategy | Event | RTO | RPO |
+|:--------------------|:------|:----|:----|
+| No backup | Host and local data are lost | **Permanent loss** | **All data** |
+| Base backups only | Host and local data are lost | Backup size and bandwidth, often hours | Changes since the latest backup |
+| Base backups + WAL archives | Host and local data are lost | Backup size, replay distance, and bandwidth | WAL not yet present in the surviving repository |
+{.full-width}
+
+The costs fall mainly into three areas:
+
+* **Confidentiality:** backups are another copy of business data and need encryption and access control. Pigsty's remote preset enables repository encryption, but its default password must be changed.
+* **Resources:** backups consume storage and archiving consumes bandwidth. Compression, bundling, and block incremental backup reduce this cost but do not eliminate capacity planning.
+* **Operations:** backup status must be monitored and recovery must be rehearsed. A green backup job alone is not proof that the data can be restored within the required RTO.
+
+PITR by itself does not replace HA. A production design normally combines HA for physical failures with PITR for logical errors and site-level recovery.
+
+
+----------------
+
+## Next Steps
+
+* [**How PITR Works**](/docs/concept/pitr/mechanism/): snapshots, WAL history, recovery windows, targets, and timelines
+* [**PITR Architecture**](/docs/concept/pitr/arch/): pgBackRest, repository selection, archive flow, scheduling, and failover behavior
+* [**PITR Tradeoffs**](/docs/concept/pitr/tradeoff/): failure domains, capacity, retention, and backup frequency
+* [**Declarative Recovery**](/docs/concept/pitr/restore/): the `pg_pitr` parameter, `pgsql-pitr.yml`, and `pig pitr`
+* [**PITR Scenarios**](/docs/concept/pitr/scenarios/): accidental deletion, bad releases, investigation, and site loss
+
+For the operational runbooks, see [**PGSQL Backup and Recovery**](/docs/pgsql/backup/).

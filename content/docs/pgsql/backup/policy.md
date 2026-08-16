@@ -2,7 +2,7 @@
 title: Backup Policy
 description: Design backup policies according to your needs
 icon: fa-solid fa-clipboard-list
-weight: 1501
+weight: 1702
 categories: [Task]
 ---
 

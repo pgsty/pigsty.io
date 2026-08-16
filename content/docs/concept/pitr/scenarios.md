@@ -1,205 +1,116 @@
 ---
 title: PITR Scenarios
 linkTitle: Scenarios
-weight: 214
-description: >
-  Typical PITR scenarios: data deletion, DDL drops, batch errors, branch restore, and site disasters
+weight: 215
+description: How to choose a recovery target and workflow for accidental DML, dropped objects, defective releases, investigations, and site loss — and why recovery drills must be routine.
 icon: fa-solid fa-life-ring
 module: [PGSQL]
 categories: [Concept]
 ---
 
-The value of PITR is not just “rolling back a database”, but **turning irreversible human/software mistakes into recoverable problems**.
-It covers cases from “drop one table” to “entire site down”, addressing **logical errors and disaster recovery**.
+During an incident, the most expensive resource is often **decision time**. Pigsty can orchestrate the mechanical recovery steps, but an operator must still answer three questions: **what is the target, should recovery be in place or into a clone, and how will the result be validated?**
+
+Read and rehearse this framework before an incident.
 
 
---------
+----------------
 
-## Overview
+## Decision Framework
 
-PITR addresses these scenarios:
-
-| Scenario Type | Typical Problem | Recommended Strategy | Recovery Target |
-|:----------------------------|:-------------------------------------------------|:---------------------|:------------------|
-| Accidental DML | `DELETE/UPDATE` without `WHERE`, script mistake | Branch restore first | `time` / `xid` |
-| DDL drops | `DROP TABLE/DATABASE`, bad migration | Branch restore | `time` / `name` |
-| Batch errors / bad release | Buggy release pollutes data | Branch restore + verify | `time` / `xid` |
-| Audit / investigation | Need to inspect historical state | Branch restore (read-only) | `time` / `lsn` |
-| Site disaster / total loss | Hardware failure, ransomware, power outage | In-place or rebuild | `latest` / `time` |
+| Scenario | Typical problem | Recommended workflow | Target |
+|:---------|:----------------|:---------------------|:-------|
+| Accidental DML | `DELETE` or `UPDATE` affects the wrong rows | Clone, validate, then copy back data | `time` / `xid` |
+| Dropped table, schema, or database | `DROP` or an incorrect migration | Clone, validate, then copy back objects | `time` / `name` |
+| Defective release or batch corruption | Software writes incorrect data for a period | Clone and compare before choosing repair or cutover | `time` / `xid` |
+| Audit, investigation, or forensics | Inspect historical state | Clone and hold at the target for inspection | `time` / `lsn` |
+| Whole-cluster or site loss | Hosts or storage are gone or encrypted | Recover in place on replacement infrastructure | `default` / `time` |
 {.full-width}
 
-### A Simple Rule of Thumb
+Two principles apply throughout:
 
-- **If writes already caused business errors, consider PITR.**
-- **Need online verification or partial recovery → branch restore.**
-- **Need service restored ASAP → in-place restore** (accept downtime).
+* **Stop the damage first.** Pause the defective application or remove its write access before choosing a target. The window is moving, but a rushed restore to the wrong cluster can cause a second incident.
+* **Prefer a clone while production is usable.** It leaves the source untouched, supports repeated target selection, and allows validation before export or cutover. It does overwrite the designated destination cluster. In-place recovery is appropriate when the whole cluster is unusable or the business has explicitly accepted rolling every database back.
 
 ```mermaid
 flowchart TD
-    A["Issue discovered"] --> B{"Downtime allowed?"}
-    B -->|Yes| C["In-place restore<br/>shortest path"]
-    B -->|No| D["Branch restore<br/>verify then switch"]
-    C --> E["Rebuild backups after restore"]
-    D --> F["Verify / export / cut traffic"]
+    A["Data error detected"] --> B["Contain the source of bad writes"]
+    B --> C{"Can production still serve?"}
+    C -->|Yes| D["Clone recovery<br/>validate and copy back or cut over"]
+    C -->|No| E["In-place recovery<br/>or rebuild on new infrastructure"]
+    D --> F["Validate, take a new backup, review the incident"]
+    E --> F
 ```
 
 
---------
+----------------
 
-## Scenario Details
+## Accidental DML
 
-### Accidental DML (Delete/Update)
+A `DELETE` without `WHERE`, an incorrect `UPDATE`, or a defective batch job is the most common PITR use case.
 
-**Typical issues**:
-
-- `DELETE` without `WHERE`
-- Bad `UPDATE` overwrites key fields
-- Batch script bugs spread bad data
-
-**Approach**:
-
-1. **Stop the bleeding**: pause related apps or writes.
-2. **Locate time point**: use logs/metrics/business feedback.
-3. **Choose strategy**:
-   - Downtime allowed: in-place restore before error
-   - No downtime: branch restore, export correct data back
-
-**Recommended targets**:
-
-- Known transaction: `xid` + `exclusive: true`
-- Time-based only: `time` + `exclusive: true`
-
-```yaml
-pg_pitr: { xid: "250000", exclusive: true }
-# or
-pg_pitr: { time: "2025-01-15 14:30:00+08", exclusive: true }
-```
-
-
---------
-
-### DDL Drops (Table/DB)
-
-**Typical issues**:
-
-- `DROP TABLE` / `DROP DATABASE`
-- Wrong migration scripts
-- Cleanup scripts deleted production objects
-
-**Why branch restore**:
-
-DDL is irreversible; **in-place restore rolls back the whole cluster**.
-Branch restore lets you export only the dropped objects back, minimizing impact.
-
-**Recommended flow**:
-
-1. Create branch cluster and PITR to before drop
-2. Validate schema/data
-3. `pg_dump` target objects
-4. Import back to production
-
-```mermaid
-sequenceDiagram
-    participant O as Original Cluster
-    participant B as Branch Cluster
-    O->>B: Create branch cluster
-    Note over B: PITR to before drop
-    B->>O: Dump and import objects
-    Note over B: Destroy branch after verification
-```
-
-
---------
-
-### Batch Errors / Bad Releases
-
-**Typical issues**:
-
-- Release writes incorrect data
-- ETL/batch jobs pollute large datasets
-- Fix scripts fail or scope unclear
-
-**Principles**:
-
-- **Prefer branch restore**: verify before cutover
-- Compare data diff between original and branch
-
-**Suggested flow**:
-
-1. Determine error window
-2. Branch restore to **before** error
-3. Validate key tables
-4. Export partial data or cut traffic
-
-This scenario often needs business review, so branch restore is safer and controllable.
-
-
---------
-
-### Audit / Investigation
-
-**Typical issues**:
-
-- Need to inspect historical data state
-- Compare “correct history” with current data
-
-**Recommended**: branch restore (read-only)
-
-**Benefits**:
-
-- No production impact
-- Try multiple time points
-- Fits audit, verification, forensics
-
-```yaml
-pg_pitr: { time: "2025-01-15 10:00:00+08" }  # create read-only branch
-```
-
-
---------
-
-### Site Disaster / Total Loss
-
-This is the **ultimate PITR fallback**. When HA cannot help (primary + replicas down, power outage, ransomware), PITR is the last line of defense.
-
-**Key prerequisite**:
-
-> **Remote repo (MinIO/S3) is required.**
-
-Local repo is lost together with the host, so recovery is impossible.
-
-**Recovery flow**:
-
-1. Prepare new hosts or new site
-2. Restore cluster config and point to remote repo
-3. Run PITR restore (usually `latest`)
-4. Validate data and restore service
+First locate the error using application logs, PostgreSQL logs, metrics, or audit records. A timestamp is usually sufficient. If the exact transaction ID is known, `xid` plus `exclusive: true` can stop immediately before that transaction.
 
 ```bash
-./pgsql-pitr.yml -l pg-meta   # with no recovery target, replay to the end of the WAL archive and promote explicitly
+# If the deletion occurred around 10:15, clone the state from 10:14
+./pgsql-pitr.yml -l pg-test -e '{"pg_pitr": { "cluster": "pg-meta", "time": "2026-07-11 10:14:00+08", "archive": false, "action": "promote" }}'
+
+# If the deleting transaction was 250000, stop immediately before it
+./pgsql-pitr.yml -l pg-test -e '{"pg_pitr": { "cluster": "pg-meta", "xid": "250000", "exclusive": true, "archive": false, "action": "promote" }}'
 ```
 
-
---------
-
-## In-place vs Branch Restore
-
-| Dimension | In-place Restore | Branch Restore |
-|:---------------|:-----------------------------|:-----------------------------------|
-| Downtime | Required | Not required |
-| Risk | High (directly impacts prod) | Low (verify before action) |
-| Complexity | Low | Medium (new cluster + export) |
-| Recommended | Disaster recovery, fast restore | Mis-ops, audit, complex cases |
-{.full-width}
-
-For most production scenarios, **branch restore is the default recommendation**.
-Only choose in-place restore when **service must be restored ASAP**.
+Validate the recovered rows, then copy only the required data back with `pg_dump`, `COPY`, or an application-specific reconciliation procedure. If a configured [**delayed cluster**](/docs/pgsql/config/cluster/#delayed-cluster) is still inside its delay window, reading from it may be faster than PITR.
 
 
---------
+----------------
 
-## Related Docs
+## Dropped Objects
 
-- [**Restore Operations**](/docs/pgsql/backup/restore/)
-- [**Backup Mechanism**](/docs/pgsql/backup/mechanism/)
-- [**Backup Policy**](/docs/pgsql/backup/policy/)
+The same approach applies to `DROP TABLE`, `DROP DATABASE`, or a migration executed in the wrong environment, with an even stronger preference for a clone. Rolling the entire production cluster back to recover one object also discards every legitimate write after the target.
+
+Restore a separate destination to before the DDL, validate the object, export it with `pg_dump`, and import it into production. For planned high-risk changes, create a named restore point with `pg_create_restore_point()` beforehand; a `name` target then removes timestamp ambiguity.
+
+
+----------------
+
+## Defective Release or Batch Corruption
+
+When a faulty release corrupts data for hours, the challenge is usually identifying the last clean state and the full impact. A clone provides a clean comparison set. Restore repeatedly to candidate times, compare it with production, and decide whether to copy back corrected rows or cut over to a recovered cluster.
+
+This decision needs application-owner validation: a successful PostgreSQL restore proves consistency at a target, not that the target represents correct business state.
+
+
+----------------
+
+## Audit and Investigation
+
+Questions such as “what was this balance at month end?” require historical state. Restore into a separate destination, stop at a time, LSN, XID, or named restore point, and inspect without altering the source.
+
+`action: pause` is the targeted-restore default and holds recovery at the target for inspection; it does **not** itself configure read-only access or create a separate cluster. The inventory limit and `cluster` source field determine the destination workflow. Run `-t down`, `-t pitr`, and `-t up` separately when you need an operator gate before promotion, and enforce read-only access explicitly if the investigation requires it. `immediate` means “stop at the first consistent point,” not “choose a historical timestamp.”
+
+
+----------------
+
+## Site Loss
+
+If every database host is destroyed or encrypted, HA cannot help. Recovery requires a repository and the other control-plane assets to have survived **outside that failure domain**. That survivor can be Silo/S3, another protected host or filesystem, or another tested pgBackRest backend; a remote object store is recommended but the essential property is independent failure-domain survival.
+
+Rebuild hosts, restore the declarative inventory, credentials, and PKI, point the cluster at the surviving repository, then restore through the end of archived WAL:
+
+```bash
+./pgsql-pitr.yml -l pg-meta -e '{"pg_pitr": {"action": "promote"}}'
+```
+
+Inventory and backup data are necessary but not sufficient. Preserve installation media or package repositories, repository credentials and encryption passwords, CA material, custom files, DNS dependencies, and an independently accessible runbook. Keep secrets encrypted and separate from both the database hosts and ordinary source control.
+
+
+----------------
+
+## Make Recovery a Routine Drill
+
+The first end-to-end execution of any of these workflows should not occur during a production incident. Use a disposable destination to rehearse clone recovery regularly and after material architecture changes. Measure three outcomes:
+
+1. **Usability:** can the backup and complete WAL chain be restored and validated?
+2. **RTO:** how long does the actual restore and replay take now?
+3. **Operator readiness:** can the on-call engineer identify source and destination, select a target, and follow the safety gates?
+
+See [**Restore Operations**](/docs/pgsql/backup/restore/) and [**Clone a Database Cluster**](/docs/pgsql/backup/cluster/) for the task-level runbooks.

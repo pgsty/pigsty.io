@@ -1,165 +1,101 @@
 ---
 title: Backup Repository
-description: PostgreSQL backup storage repository configuration
+weight: 1703
+description: Configure local, Silo, and external S3 backup repositories, including retention, encryption, versioning, and Object Lock.
 icon: fa-solid fa-box-archive
-weight: 1503
 categories: [Task]
 ---
 
+Two parameters decide where backups are stored: [**`pgbackrest_repo`**](/docs/pgsql/param/#pgbackrest_repo) defines candidate repositories, while [**`pgbackrest_method`**](/docs/pgsql/param/#pgbackrest_method) selects one. Repository keys are [**rendered deterministically**](/docs/pgsql/backup/mechanism/#how-configuration-is-rendered) as pgBackRest `repo1-*` options, so any supported [**pgBackRest repository option**](/docs/pgbackrest/configuration) can be used directly.
+Pigsty v4.5.0 renders only the entry selected by `pgbackrest_method` as `repo1`; keeping several candidate keys does not enable multi-repository backup.
 
-You can configure the backup **storage location** by specifying the [`pgbackrest_repo`](/docs/pgsql/param/#pgbackrest_repo) parameter.
-You can define multiple repositories here, and Pigsty will choose which one to use based on the value of [`pgbackrest_method`](/docs/pgsql/param/#pgbackrest_method).
 
+--------
 
 ## Default Repositories
 
-By default, Pigsty provides two default backup repository definitions: `local` and `minio` backup repositories.
+Pigsty supplies two definitions: `local` and `minio`.
 
-- `local`: **Default option**, uses local `/pg/backup` directory (symlink to [`pg_fs_backup`](/docs/pgsql/param/#pg_fs_backup): `/data/backups`)
-- `minio`: Uses the compatible S3 preset with Silo or an external S3 service (supported by Pigsty, but not enabled by default)
-
-```yaml
-pgbackrest_method: local          # Choose backup repository method: `local`, `minio`, or other custom repository
-pgbackrest_repo:                  # pgbackrest repository configuration: https://pgbackrest.org/configuration.html#section-repository
-  local:                          # Default pgbackrest repository using local POSIX filesystem
-    path: /pg/backup              # Local backup directory, defaults to `/pg/backup`
-    retention_full_type: count    # Retain full backups by count
-    retention_full: 2             # Keep 2, up to 3 full backups when using local filesystem repository
-  minio:                          # Optional S3-compatible repository preset
-    type: s3                      # Silo uses the S3-compatible repository type
-    s3_endpoint: sss.pigsty       # object-storage endpoint, `sss.pigsty` by default
-    s3_region: us-east-1          # compatibility region, `us-east-1` by default
-    s3_bucket: pgsql              # backup bucket, `pgsql` by default
-    s3_key: pgbackrest            # pgBackRest access key
-    s3_key_secret: S3User.Backup  # pgBackRest secret key
-    s3_uri_style: path            # use path-style rather than host-style URIs
-    path: /pgbackrest             # backup path, `/pgbackrest` by default
-    storage_port: 9000            # Silo service port, 9000 by default
-    storage_ca_file: /etc/pki/ca.crt  # Pigsty CA path, `/etc/pki/ca.crt` by default
-    block: y                      # Enable block-level incremental backup
-    bundle: y                     # Bundle small files into a single file
-    bundle_limit: 20MiB           # Bundle size limit, recommended 20MiB for object storage
-    bundle_size: 128MiB           # Bundle target size, recommended 128MiB for object storage
-    cipher_type: aes-256-cbc      # Enable AES encryption for remote backup repository
-    cipher_pass: pgBackRest       # AES encryption password, defaults to 'pgBackRest'
-    retention_full_type: time     # Retain full backups by time
-    retention_full: 14            # Keep full backups from the last 14 days
-```
-
-
---------
-
-## Repository Retention Policy
-
-If you backup daily but don't delete old backups, the backup repository will grow indefinitely and exhaust disk space.
-You need to define a retention policy to keep only a limited number of backups.
-
-The default backup policy is defined in the [`pgbackrest_repo`](/docs/pgsql/param/#pgbackrest_repo) parameter and can be adjusted as needed.
-
-- `local`: Keep the latest **2** full backups, allowing up to 3 during backup
-- `minio`: Keep all full backups from the last **14** days
-
-
---------
-
-## Space Planning
-
-Object storage provides almost unlimited storage capacity, so there's no need to worry about disk space.
-You can use a hybrid full + differential backup strategy to optimize space usage.
-
-For local disk backup repositories, Pigsty recommends using a policy that keeps the latest **2** full backups,
-meaning the disk will retain the two most recent full backups (there may be a third copy while running a new backup).
-
-This guarantees at least a 24-hour recovery window. See [Backup Policy](/docs/pgsql/backup/policy/) for details.
-
-
---------
-
-## Other Repository Options
-
-You can also use other services as backup repositories, refer to the [pgbackrest documentation](https://pgbackrest.org/user-guide.html) for details:
-
-- [S3 Compatible Object Storage](https://pgbackrest.org/user-guide.html#s3-support)
-- [Azure Compatible Object Storage](https://pgbackrest.org/user-guide.html#azure-support)
-- [GCS Compatible Object Storage](https://pgbackrest.org/user-guide.html#gcs-support)
-- [SFTP Support](https://pgbackrest.org/user-guide.html#sftp-support)
-
-
---------
-
-## Repository Versioning
-
-You can even specify [repo target time](https://pgbackrest.org/user-guide.html#sftp-support#repo-target-time) to get snapshots of object storage.
-
-You can enable Silo versioning by adding the `versioning` flag in [`minio_buckets`](/docs/minio/param#minio_buckets):
+- `local` is the default. `/pg/backup` points at [**`pg_fs_backup`**](/docs/pgsql/param/#pg_fs_backup), `/data/backups` by default.
+- `minio` uses Silo from the MINIO module or another compatible S3 service. It is supported but not selected by default.
 
 ```yaml
-minio_buckets:
-  - { name: pgsql ,versioning: true }
-  - { name: meta  ,versioning: true }
-  - { name: data }
+pgbackrest_method: local
+pgbackrest_repo:
+  local:
+    path: /pg/backup
+    retention_full_type: count
+    retention_full: 2
+  minio:
+    type: s3
+    s3_endpoint: sss.pigsty
+    s3_region: us-east-1
+    s3_bucket: pgsql
+    s3_key: pgbackrest
+    s3_key_secret: S3User.Backup
+    s3_uri_style: path
+    path: /pgbackrest
+    storage_port: 9000
+    storage_ca_file: /etc/pki/ca.crt
+    block: y
+    bundle: y
+    bundle_limit: 20MiB
+    bundle_size: 128MiB
+    cipher_type: aes-256-cbc
+    cipher_pass: pgBackRest
+    retention_full_type: time
+    retention_full: 14
 ```
+
+The presets deliberately differ. `local` favors simple, fast restores with count-based retention and no encryption or bundling. `minio` enables AES-256-CBC encryption, bundles small files, uses block incremental backup, and retains full backups by time.
+
+{{% alert color="warning" title="Replace public defaults in production" %}}
+For a remote repository, replace both `cipher_pass` and `s3_key_secret`. `pgBackRest` and `S3User.Backup` are public example defaults. Losing the encryption passphrase makes the repository unrecoverable, so store it separately from the backups under controlled recovery procedures; see [**Deployment Security**](/docs/deploy/security/#backup-and-recovery).
+{{% /alert %}}
 
 
 --------
 
-## Repository Locking
+## Retention Policy
 
-Some object-storage services, including Silo, MinIO, and S3, support **Object Lock / WORM**. Once an object version has a retention mode and period, it cannot be modified or permanently deleted until that period expires. Ordinary deletion may still create a delete marker that hides the current version, so recovery also requires version-management access.
+pgBackRest applies retention after each backup (`expire-auto`). When a full backup expires, dependent differential/incremental backups and the WAL needed only by that chain expire with it.
 
-- [MinIO Object Locking](https://min.io/docs/minio/linux/administration/object-management/object-retention.html)
-- [AWS S3: Locking Objects with Object Lock](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html)
+- `retention_full_type: count` plus `retention_full: 2` keeps the two newest full chains; a third can exist briefly while a new full completes.
+- `retention_full_type: time` plus `retention_full: 14` establishes a minimum time window. An old full does not expire until another full is at least 14 days old; with weekly full backups this usually leaves three chains and roughly 14–21 days of recovery history.
 
-Adding the `lock` flag to [`minio_buckets`](/docs/minio/param#minio_buckets) enables object-lock capability and versioning when the bucket is created:
-
-```yaml
-minio_buckets:
-  - { name: pgsql , lock: true }
-  - { name: meta ,versioning: true  }
-  - { name: data }
-```
-
-This does not set a WORM retention period for new objects. Configure a default `GOVERNANCE` or `COMPLIANCE` mode and duration in Silo / MinIO with `mcli retention set` or the administration UI, then verify it with `mcli retention info`. A principal with bypass permission can override `GOVERNANCE`; not even the root user can remove a `COMPLIANCE` lock before it expires.
-
-Object locking changes backup expiration and removal behavior. pgBackRest can mark backups as expired while locked historical versions continue to consume storage until their retention periods end. Test backup, expiration, delete-marker cleanup, and version recovery together before enabling it in production.
+See [**Backup Policy**](/docs/pgsql/backup/policy/) for recovery-window and space calculations, and [**Admin Commands**](/docs/pgsql/backup/admin/#expire-old-backups) for a safe expiration preview.
 
 
 --------
 
-## Using Object Storage
+## Use a Silo Repository
 
-Object storage services provide almost unlimited storage capacity and provide remote disaster recovery capability for your system.
-If you don't have an object-storage service, Pigsty's built-in [MINIO module](/docs/minio) can deploy Silo.
-
-### MINIO Module
-
-As a centralized backup repository, the MINIO module provides a failure domain separate from database hosts. Deploy an object-storage cluster and switch the backup method to `minio`:
+The [**MINIO module**](/docs/minio) currently deploys Silo, an S3-compatible object store. It provides an independent disaster-recovery copy only when deployed outside the database host or site failure domain. Deploy it, then select the `minio` preset:
 
 ```yaml
 all:
   vars:
-    pgbackrest_method: minio      # Use minio as default backup repository
-  children:                       # Define a single-node minio SNSD cluster
+    pgbackrest_method: minio
+  children:
     minio: { hosts: { 10.10.10.10: { minio_seq: 1 }} ,vars: { minio_cluster: minio, minio_type: silo }}
 ```
 
-Pigsty's `minio` repository preset accesses object storage through a domain name (default `sss.pigsty`) and HTTPS, validating the chain with the private CA at `/etc/pki/ca.crt`. The default `pgsql` bucket and `pgbackrest` access user are created when the MINIO module is provisioned.
+The preset uses the HTTPS endpoint `sss.pigsty` by default and validates it with `/etc/pki/ca.crt`. MINIO initialization creates the default `pgsql` bucket and `pgbackrest` user.
 
-For serious production deployments, use a validated multi-node object-storage cluster with erasure-code fault tolerance. See [MINIO Configuration](/docs/minio/config).
+For serious production use, deploy and test a fault-tolerant multi-node/multi-drive object store; see [**MINIO Configuration**](/docs/minio/config). The preset name `minio` does not require the server to be managed by Pigsty: independently operated MinIO, RustFS, or another compatible implementation can use it, but that service's installation, upgrades, certificates, and lifecycle remain outside the MINIO role's support boundary.
 
-`pgbackrest_method: minio` is the name of Pigsty's S3-compatible repository preset; it does not require the server to be managed by the MINIO module. Independently deployed MinIO, RustFS, and other S3-compatible services can also use this preset, but their installation, upgrades, certificates, and data lifecycle are outside the current MINIO role's scope.
 
-### S3
+--------
 
-If you only have **one** node, a meaningful backup strategy would be to use cloud provider object storage services like AWS S3, Alibaba Cloud OSS, or Google Cloud, etc.
-To do this, you can define a new repository:
+## Use S3 or Cloud Object Storage
+
+For a single database node, an off-host cloud object store is often the most valuable repository. Define a new entry and select it:
 
 ```yaml
-pgbackrest_method: s3             # Use 'pgbackrest_repo.s3' as backup repository
-pgbackrest_repo:                  # pgbackrest repository configuration: https://pgbackrest.org/configuration.html#section-repository
-
-  s3:                             # Alibaba Cloud OSS (S3 compatible) object storage service
-    type: s3                      # oss is S3 compatible
+pgbackrest_method: s3
+pgbackrest_repo:
+  s3:
+    type: s3
     s3_endpoint: oss-cn-beijing-internal.aliyuncs.com
     s3_region: oss-cn-beijing
     s3_bucket: <your_bucket_name>
@@ -167,136 +103,79 @@ pgbackrest_repo:                  # pgbackrest repository configuration: https:/
     s3_key_secret: <your_secret_key>
     s3_uri_style: host
     path: /pgbackrest
-    bundle: y                     # Bundle small files into a single file
-    bundle_limit: 20MiB           # Bundle size limit, recommended 20MiB for object storage
-    bundle_size: 128MiB           # Bundle target size, recommended 128MiB for object storage
-    cipher_type: aes-256-cbc      # Enable AES encryption for remote backup repository
-    cipher_pass: pgBackRest       # AES encryption password, defaults to 'pgBackRest'
-    retention_full_type: time     # Retain full backups by time
-    retention_full: 14            # Keep full backups from the last 14 days
-
-  local:                          # Default pgbackrest repository using local POSIX filesystem
-    path: /pg/backup              # Local backup directory, defaults to `/pg/backup`
-    retention_full_type: count    # Retain full backups by count
-    retention_full: 2             # Keep 2, up to 3 full backups when using local filesystem repository
+    bundle: y
+    bundle_limit: 20MiB
+    bundle_size: 128MiB
+    cipher_type: aes-256-cbc
+    cipher_pass: <separate-strong-passphrase>
+    retention_full_type: time
+    retention_full: 14
+  local:
+    path: /pg/backup
+    retention_full_type: count
+    retention_full: 2
 ```
+
+pgBackRest also supports [Azure](https://pgbackrest.org/user-guide.html#azure-support), [GCS](https://pgbackrest.org/user-guide.html#gcs-support), and [SFTP](https://pgbackrest.org/user-guide.html#sftp-support) repositories.
 
 
 --------
 
-## Managing Backups
+## Share a Repository Across Clusters
 
-### Enable Backup
+A centralized repository can serve several PostgreSQL clusters. Each [**stanza**](/docs/pgsql/backup/mechanism/#stanza-the-clusters-backup-identity), mapped from [**`pg_cluster`**](/docs/pgsql/param#pg_cluster), isolates one cluster's backup and archive history. This also enables [**cross-cluster restore**](/docs/pgsql/backup/cluster/).
 
-If [`pgbackrest_enabled`](/docs/pgsql/param/#pgbackrest_enabled) is set to `true` when the database cluster is created, backups will be automatically enabled.
+Cluster names must therefore be globally unique within a shared repository, even across otherwise separate deployment environments.
 
-If this value was `false` at creation time, you can enable the pgbackrest component with the following command:
 
-```bash
-./pgsql.yml -t pg_backup    # Run pgbackrest subtask
+--------
+
+## Repository Versioning
+
+Object-store versioning can preserve earlier versions after an overwrite or deletion. It still shares the same storage system and control plane, so it does not replace an independent off-site or offline copy. Enable it for a bucket when it is created:
+
+```yaml
+minio_buckets:
+  - { name: pgsql, versioning: true }
+  - { name: meta, versioning: true }
+  - { name: data }
 ```
 
-### Remove Backup
+pgBackRest's [**`repo-target-time`**](https://pgbackrest.org/user-guide.html#repo-target-time) option can read the repository as it existed at an earlier time when the backend retains those versions.
 
-When removing the primary instance ([`pg_role`](/docs/pgsql/param/#pg_role) = `primary`), Pigsty will delete the pgbackrest backup stanza.
 
-```bash
-./pgsql-rm.yml
-./pgsql-rm.yml -e pg_rm_backup=false   # Keep backups
-./pgsql-rm.yml -t pg_backup            # Remove backups only
+--------
+
+## Repository Locking
+
+Some S3-compatible services support Object Lock/WORM. A retained object version cannot be changed or permanently deleted until its retention period ends. A normal delete can still create a delete marker that hides the current object while historical versions remain and continue consuming capacity.
+
+- [MinIO Object Lock](https://min.io/docs/minio/linux/administration/object-management/object-retention.html)
+- [AWS S3 Object Lock](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html)
+
+The `lock` flag enables versioning and lock capability only when Pigsty creates the bucket:
+
+```yaml
+minio_buckets:
+  - { name: pgsql, lock: true }
+  - { name: meta, versioning: true }
+  - { name: data }
 ```
 
-Use the `pg_backup` subtask to remove backups only, and the [`pg_rm_backup`](/docs/pgsql/param/#pg_rm_backup) parameter (set to `false`) to preserve backups.
+It does not set a default retention period. Configure `GOVERNANCE` or `COMPLIANCE` retention with `mcli retention set` or the storage console, then verify with `mcli retention info`. A sufficiently privileged principal can bypass `GOVERNANCE`; even root cannot shorten `COMPLIANCE` retention.
 
-If your backup repository uses Object Lock (for example, on Silo, MinIO, or S3), this operation can fail while retained versions remain protected.
-
-{{% alert color="warning" title="Backup Deletion" %}}
-Deleting backups may result in permanent data loss. This is a dangerous operation, please proceed with caution.
-{{% /alert %}}
+Locking changes [**expiration**](/docs/pgsql/backup/admin/#expire-old-backups) and [**stanza deletion**](/docs/pgsql/backup/admin/#remove-backup): pgBackRest may expire objects logically while retained historical versions remain until their deadline. Test backup, expiration, delete-marker cleanup, and version recovery on a non-production bucket before enabling it.
 
 
-### List Backups
+--------
 
-This command will list all backups in the pgbackrest repository (shared across all clusters)
+## Switch Repositories
+
+After changing a repository definition or `pgbackrest_method`, rerender configuration, initialize the stanza, and create a recovery point in the new repository promptly:
 
 ```bash
-pgbackrest info
-````
-
-### Manual Backup
-
-Pigsty provides a built-in script `/pg/bin/pg-backup` that wraps the `pgbackrest` backup command.
-
-```bash
-pg-backup        # Perform incremental backup
-pg-backup full   # Perform full backup
-pg-backup incr   # Perform incremental backup
-pg-backup diff   # Perform differential backup
+./pgsql.yml -t pg_backup -l pg-meta           # Apply the repository definition and create the stanza
+sudo -iu postgres pg-backup full              # Run on the current primary to establish the first recovery point
 ```
 
-### Base Backup
-
-Pigsty provides an alternative backup script `/pg/bin/pg-basebackup` that does not depend on `pgbackrest` and directly provides a physical copy of the database cluster.
-The default backup directory is `/pg/backup`.
-
-{{< tabpane persist="disabled" >}}
-{{% tab header="pg-basebackup" disabled=true /%}}
-{{< tab header="help" lang="bash" >}}
-NAME
-  pg-basebackup  -- make base backup from PostgreSQL instance
-
-SYNOPSIS
-  pg-basebackup -sdfeukr
-  pg-basebackup --src postgres:/// --dst . --file backup.tar.lz4
-
-DESCRIPTION
--s, --src, --url     Backup source URL, optional, defaults to "postgres:///", password should be provided in url, ENV, or .pgpass if required
--d, --dst, --dir     Location to store backup file, defaults to "/pg/backup"
--f, --file           Override default backup filename, "backup_${tag}_${date}.tar.lz4"
--r, --remove         Remove .lz4 files older than n minutes, defaults to 1200 (20 hours)
--t, --tag            Backup file tag, uses target cluster name or local IP address if not set, also used for default filename
--k, --key            Encryption key when --encrypt is specified, defaults to ${tag}
--u, --upload         Upload backup file to cloud storage (needs to be implemented by yourself)
--e, --encryption     Use OpenSSL RC4 encryption, uses tag as key if not specified
--h, --help           Print this help information
-{{< /tab >}}
-{{< tab header="backup" lang="bash" >}}
-postgres@pg-meta-1:~$ pg-basebackup
-[2025-07-13 06:16:05][INFO] ================================================================
-[2025-07-13 06:16:05][INFO] [INIT] pg-basebackup begin, checking parameters
-[2025-07-13 06:16:05][DEBUG] [INIT] filename  (-f)    :   backup_pg-meta_20250713.tar.lz4
-[2025-07-13 06:16:05][DEBUG] [INIT] src       (-s)    :   postgres:///
-[2025-07-13 06:16:05][DEBUG] [INIT] dst       (-d)    :   /pg/backup
-[2025-07-13 06:16:05][INFO] [LOCK] lock acquired success on /tmp/backup.lock, pid=107417
-[2025-07-13 06:16:05][INFO] [BKUP] backup begin, from postgres:/// to /pg/backup/backup_pg-meta_20250713.tar.lz4
-pg_basebackup: initiating base backup, waiting for checkpoint to complete
-pg_basebackup: checkpoint completed
-pg_basebackup: write-ahead log start point: 0/7000028 on timeline 1
-pg_basebackup: write-ahead log end point: 0/7000FD8
-pg_basebackup: syncing data to disk ...
-pg_basebackup: base backup completed
-[2025-07-13 06:16:06][INFO] [BKUP] backup complete!
-[2025-07-13 06:16:06][INFO] [DONE] backup procedure complete!
-[2025-07-13 06:16:06][INFO] ================================================================
-{{< /tab >}}
-{{< /tabpane >}}
-
-The backup uses `lz4` compression. You can decompress and extract the tarball with the following command:
-
-```bash
-mkdir -p /tmp/data   # Extract backup to this directory
-cat /pg/backup/backup_pg-meta_20250713.tar.lz4 | unlz4 -d -c | tar -xC /tmp/data
-```
-
-### Logical Backup
-
-You can also perform logical backups using the `pg_dump` command.
-
-Logical backups cannot be used for PITR (Point-in-Time Recovery), but are very useful for migrating data between different major versions or implementing flexible data export logic.
-
-
-### Bootstrap from Repository
-
-Suppose you have an existing cluster `pg-meta` and want to **clone** it as `pg-meta2`:
-
-You need to create a new `pg-meta2` cluster branch and then run `pitr` on it.
+Existing backups are not migrated automatically. While retained, the old repository can still be selected as a restore source through [**`pg_pitr.repo`**](/docs/pgsql/backup/restore/#pitr-parameter-definition).

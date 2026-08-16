@@ -1,87 +1,134 @@
 ---
-title: Clone PG Cluster
-weight: 1507
-description: How to use PITR to create a new PostgreSQL cluster and restore to a specified point in time?
-icon: fa-solid fa-rotate-left
+title: Clone a PG Cluster
+weight: 1706
+description: Restore one cluster's historical state into another for data recovery, restore drills, and forensic inspection.
+icon: fa-solid fa-clone
 categories: [Task]
 ---
 
+Cloning is one of the safest and most useful applications of recovery: leave production untouched and restore its historical state into another cluster.
+You can recover accidentally deleted data from the clone, validate backups in a drill, inspect a historical state, or reset a test environment to a production snapshot.
 
-## Quick Start
+The target must be able to access the source backup repository, may be overwritten, and must use a compatible PostgreSQL major version.
+With a shared [Silo/S3 repository](/docs/pgsql/backup/repository/), each cluster's backups are isolated by a [stanza](/docs/pgsql/backup/mechanism/#stanza-the-clusters-backup-identity) and visible to targets holding the required credentials.
 
-- Create an online replica of an existing cluster using Standby Cluster
-- Create a point-in-time snapshot of an existing cluster using PITR
-- Perform post-PITR cleanup to ensure the new cluster's backup process works properly
-
-You can use the PG PITR mechanism to clone an entire database cluster.
-
-
-## Reset a Cluster's State
-
-You can also consider creating a brand new empty cluster, then use PITR to reset it to a specific state of the `pg-meta` cluster.
-
-Using this technique, you can clone any point-in-time (within backup retention period) state of the existing cluster `pg-meta` to a new cluster.
-
-Using the Pigsty 4-node sandbox environment as an example, use the following command to reset the `pg-test` cluster to the latest state of the `pg-meta` cluster:
-
-```bash
-./pgsql-pitr.yml -l pg-test -e '{"pg_pitr": { "cluster": "pg-meta" }}'
-```
+{{% alert color="danger" title="A clone overwrites the target cluster" %}}
+Inspect the target topology with `pig pg list <target-cluster>`, verify the source stanza's recent backups and recovery window with `pig pb info`,
+and have the operator confirm the exact source cluster, target cluster, and recovery point before performing the restore.
+Existing data on the target is overwritten; production work still requires a maintenance window and an independently verified backup.
+{{% /alert %}}
 
 
-## Post-PITR Cleanup
+--------
 
-When you restore a new cluster from another cluster using PITR, the backup repository stanza may still record the source cluster's system-id. If you back up the new cluster directly, pgBackRest will reject the write to avoid contaminating the source cluster's backup history.
+## Clone an Existing Cluster
 
-Therefore, after confirming that the state of this PITR-restored new cluster meets expectations, you need to perform the following cleanup:
-
-- Upgrade the backup repository stanza to accept the new cluster's system-id (only when restoring from another cluster)
-- If `archive: false` was explicitly set during PITR, reset `archive_mode` and restart the cluster
-- Perform a new full backup to ensure the new cluster's data is included (optional, can also wait for crontab scheduled execution)
+Assume the four-node sandbox contains `pg-meta` and `pg-test`, sharing a Silo repository.
+To reset `pg-test` to the latest state of `pg-meta`, point [`pg_pitr`](/docs/pgsql/backup/restore/#pitr-parameter-definition) to the `pg-meta` stanza:
 
 ```bash
-pb stanza-upgrade
-psql -c 'ALTER SYSTEM RESET archive_mode;'
-pg restart <cls>       # Only required if archive_mode was disabled
-pg-backup full
+pig pg list pg-test
+pig pb info
+./pgsql-pitr.yml -l pg-test -e '{"pg_pitr": { "cluster": "pg-meta", "archive": false, "action": "promote" }}'
 ```
 
-Through these operations, your new cluster will have its own backup history starting from the first full backup. If you skip these steps, the new cluster's backups may fail to write to the target repository; if archiving was disabled during PITR, no new WAL archives will be generated.
+Add a recovery target to clone any state inside the recovery window. For example, reset to 15:30 on December 26, 2025:
+
+```bash
+./pgsql-pitr.yml -l pg-test -e '{"pg_pitr": { "cluster": "pg-meta", "time": "2025-12-26 15:30:00+08", "archive": false, "action": "promote" }}'
+```
+
+These cross-cluster examples set `archive: false` to keep the exploratory recovery from archiving under the target stanza.
+After Patroni takes control, complete the stanza and archive cleanup below.
+
+The target may also be a newly initialized empty cluster, such as `pg-meta2`. Create it through the normal [cluster creation](/docs/pgsql/admin/cluster/) workflow, then perform cross-cluster PITR.
+
+pgBackRest restore uses delta mode and rewrites only files that differ from the backup.
+Repeated drills, or a target already synchronized through a [standby cluster](/docs/pgsql/config/cluster#standby-cluster), can therefore restore much faster than a first full restore.
+
+For accidental deletion, validate the clone and use `pg_dump` to export only the affected tables or database back into production.
+An in-place rollback of the entire production cluster should be the last resort, not the first response.
 
 
-## Consequences of Not Cleaning Up
+--------
 
-Suppose you performed PITR recovery on the `pg-test` cluster using data from another cluster `pg-meta`, but did not perform cleanup.
+## Post-Clone Cleanup
 
-Then at the next routine backup, you will see the following error:
+The clone contains the source cluster's data, while the target stanza may still record the target's old PostgreSQL system identifier.
+pgBackRest refuses a backup when the identifiers do not match, preventing the new cluster from contaminating the source history.
+
+After validating the clone, complete these steps. Restarting the cluster is a service change: first inspect the primary and replication state, schedule the maintenance window, and obtain explicit approval.
+
+```bash
+pb stanza-upgrade                           # accept the new system-id; cross-cluster clone only
+psql -c 'ALTER SYSTEM RESET archive_mode;' # undo archive: false
+pg restart pg-test                         # archive_mode requires a restart
+pg-backup full                             # establish a recovery point on the new timeline
+```
+
+Until this is complete, scheduled backups can fail the identity check, and a clone restored with `archive: false` produces no new WAL archive:
 
 ```bash
 postgres@pg-test-1:~$ pb backup
-2025-12-27 10:20:29.336 P00   INFO: backup command begin...
-2025-12-27 10:20:29.357 P00  ERROR: [051]: PostgreSQL version 18, system-id 7588470953413201282 do not match stanza version 18, system-id 7588470974940466058
-                                    HINT: is this the correct stanza?
+INFO: backup command begin 2.57.0: --annotation=pg_cluster=pg-test ... --stanza=pg-test --start-fast
+ERROR: [051]: PostgreSQL version 18, system-id 7588470953413201282 do not match stanza version 18, system-id 7588470974940466058
+       HINT: is this the correct stanza?
+INFO: backup command end: aborted with exception [051]
 ```
 
 
-## Clone a New Cluster
+--------
 
-For example, suppose you have a cluster `pg-meta`, and now you want to clone a new cluster `pg-meta2` from `pg-meta`.
+## Rebuild Backup Identity
 
-You can consider using the [**Standby Cluster**](/docs/pgsql/config/cluster#standby_cluster) method to create a new cluster `pg-meta2`.
+`stanza-upgrade` lets the new cluster continue writing under its existing stanza. If the clone should start a completely independent backup history, rebuild that stanza instead.
 
-pgBackrest supports incremental backup/restore, so if you have already pulled `pg-meta`'s data through physical replication, the incremental PITR restore is usually very fast.
+Declarative workflow:
 
 ```bash
-pb stop --force
-pb stanza-delete --force
-pb start
-pb stanza-create
+pig pb info -s pg-test
+pig pb delete -s pg-test                 # type the exact stanza when prompted
+./pgsql.yml -t pg_backup -l pg-test      # create a fresh stanza
+pg-backup full
 ```
 
-If you want to reset the `pg-test` cluster to the state of `pg-meta` cluster at 15:30 on December 26, 2025, you can use the following command:
+Equivalent low-level workflow:
 
 ```bash
-./pgsql-pitr.yml -l pg-test -e '{"pg_pitr": { "cluster": "pg-meta", "time": "2025-12-27 17:50:00+08" ,archive: true }}'
+pig pb stop
+pig pb delete -s pg-test                 # confirm the exact stanza
+pig pb start
+pig pb create -s pg-test
+pig pb backup full -s pg-test
 ```
 
-Using this technique, you can not only clone the latest state of the `pg-meta` cluster, but also clone to any point in time.
+{{% alert color="warning" title="Rebuilding permanently discards old recovery history" %}}
+Delete only after checking recent backups, retaining any required independent recovery copy, and having the operator confirm the exact `pg-test` stanza.
+Object-locked versions can remain and continue consuming storage; a successful deletion command does not prove that every underlying version has been physically erased.
+{{% /alert %}}
+
+
+--------
+
+## Online Copies: Standby Clusters
+
+A PITR clone is a static snapshot. Use a streaming-replication [standby cluster](/docs/pgsql/config/cluster#standby-cluster) for a continuously following online copy,
+or a [delayed cluster](/docs/pgsql/config/cluster#delayed-cluster) for a fixed rollback window such as one hour.
+
+The three methods complement each other: standby clusters provide a live copy, delayed clusters preserve a fixed delay, and PITR clones expose any historical state inside the recovery window without requiring a pre-existing online replica.
+
+
+--------
+
+## Restore Drills
+
+A clone is an end-to-end restore drill that does not touch production, although it does overwrite the designated drill target.
+Run one quarterly and after major backup changes:
+
+1. Select a point inside the production recovery window.
+2. Restore it into the drill cluster and record elapsed time as the measured PITR RTO.
+3. Validate integrity with authorized row-count checks, critical-table checks, and application connectivity.
+4. Complete [post-clone cleanup](#post-clone-cleanup) and verify that the drill cluster can create a new backup.
+5. Record timing, failures, and any difference between the runbook and reality.
+
+See [Manual Recovery](/docs/pgsql/tutorial/pitr) for a sandbox exercise using pgBackRest primitives, or [Fork an Instance](/docs/pgsql/tutorial/pg-fork) for an XFS snapshot-based local test copy.

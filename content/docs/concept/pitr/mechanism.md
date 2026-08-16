@@ -2,164 +2,112 @@
 title: How PITR Works
 linkTitle: Mechanism
 weight: 211
-description: >
-  PITR mechanism: base backup, WAL archive, recovery window, and transaction boundaries
+description: "Snapshots, WAL history, recovery windows, recovery targets, and timelines: the five concepts needed to reason accurately about PostgreSQL PITR."
 icon: fa-solid fa-gears
 module: [PGSQL]
 categories: [Concept]
 ---
 
-The core principle of PITR is: **base backup + WAL archiving = recover to any point in time**.
-In Pigsty, this is implemented by **pgBackRest**, running **scheduled backups + WAL archiving** automatically.
+If a database is a state machine, **WAL** (Write-Ahead Log) is its ordered change history. PostgreSQL records each modification in WAL before applying it to data files. Save a physical snapshot at one point, preserve all later WAL, and PostgreSQL can replay that history to a selected consistent state.
+
+PITR is therefore the combination of three simple elements: a **snapshot** (base backup), **history** (WAL archive), and a **target** (where replay should stop).
 
 
---------
+----------------
 
-## Three Elements
+## Snapshot: Base Backup
 
-| Element | Purpose | Pigsty Implementation |
-|:------------|:---------------------------|:----------------------------------------------------------|
-| **Base Backup** | Provides a consistent physical snapshot, recovery starting point | `pg-backup` + `pgbackrest` + [`pg_crontab`](/docs/pgsql/param#pg_crontab) |
-| **WAL Archiving** | Records all changes after backup, defines recovery path | `archive_mode=on` + `archive_command=pgbackrest ... archive-push` |
-| **Recovery Target** | Specifies where to stop recovery | `pg_pitr` params / `pg-pitr` script / `pgbackrest restore` |
+A **base backup** is a physical snapshot of the whole PostgreSQL cluster and supplies a starting point for recovery. Pigsty uses [**pgBackRest**](https://pgbackrest.org/) to create and manage three backup types:
+
+| Type | Contents | Recovery characteristics |
+|:-----|:---------|:-------------------------|
+| **Full** | All database-cluster files | Self-contained, shortest chain, largest backup |
+| **Differential** | Changes since the latest **full** backup | Restore uses the full plus the differential |
+| **Incremental** | Changes since the latest **backup of any type** | Smallest backup, restore depends on its complete chain |
 {.full-width}
 
+The wrapper `pg-backup [full|diff|incr]` triggers a backup. With no argument it requests `incr`; pgBackRest creates a full backup instead when no valid full exists. [`pg_crontab`](/docs/pgsql/param/#pg_crontab) declares recurring jobs and installs them in the `postgres` user's crontab.
 
---------
-
-## Base Backup
-
-**Base backup** is a physical snapshot at a point in time, the starting point of PITR. Pigsty uses `pgBackRest` and provides `pg-backup` wrapper for common ops.
-
-### Backup Types
-
-| Type | Description | Restore Cost |
-|:--------------------------|:-------------------------|:-------------------------|
-| **Full** | Copies all data files | Fastest restore, largest space |
-| **Differential** | Changes since latest full | Restore needs full + diff |
-| **Incremental** | Changes since latest any backup | Smallest space, restore needs full chain |
-{.full-width}
-
-### Pigsty Defaults
-
-- `pg-backup` **defaults to incremental**, and auto-runs a full if none exists.
-- Backup jobs are configured via [`pg_crontab`](/docs/pgsql/param#pg_crontab) and written to `postgres` crontab.
-- Script detects role; **only primary runs**, replicas exit.
-
-Higher backup frequency means less WAL to replay and faster recovery.
-See [**Backup Mechanism**](/docs/pgsql/backup/mechanism/) and [**Backup Policy**](/docs/pgsql/backup/policy/).
+Backup frequency affects recovery time: the newer the usable backup, the less WAL must be replayed to reach a given target. See [**PITR Tradeoffs**](/docs/concept/pitr/tradeoff/).
 
 
---------
+----------------
 
-## WAL Archiving
+## WAL History
 
-**WAL** (Write-Ahead Log) records every database change. PITR relies on continuous WAL archiving to replay to the target time.
+A snapshot reaches only its own state. **WAL archiving** preserves every later change needed to advance beyond it. Pigsty's standard Patroni templates enable archiving and ask PostgreSQL to hand each completed WAL segment to pgBackRest:
 
-### Pigsty Archiving Pipeline
-
-Pigsty enables WAL archiving by default, using pgBackRest:
-
-- `archive_mode = on`
-- `archive_command = pgbackrest --stanza=<cluster> archive-push %p`
-
-pgBackRest continuously receives WAL segments and cleans expired archives per retention policy.
-During recovery, pgBackRest uses `archive-get` to pull needed WAL.
-
-### Key Impacts
-
-- **Archive delay** shortens the right boundary of recovery window.
-- **Repo unavailability** interrupts archiving, directly impacting PITR.
-
-See [**Backup Mechanism**](/docs/pgsql/backup/mechanism/) and [**Backup Repository**](/docs/pgsql/backup/repository/).
-
-
---------
-
-## Recovery Targets and Transaction Boundaries
-
-PITR targets are defined by PostgreSQL `recovery_target_*` parameters, wrapped by `pg_pitr` / `pg-pitr` in Pigsty.
-
-### Target Types
-
-| Target | Param | Description | Typical Scenario |
-|:--------------|:------------------|:--------------|:-----------|
-| **latest** | N/A | Recover to end of WAL stream | Disaster, latest restore |
-| **time** | `time` | Recover to specific timestamp | Accidental deletion |
-| **xid** | `xid` | Recover to specific transaction ID | Bad transaction rollback |
-| **lsn** | `lsn` | Recover to specific LSN | Precise rollback |
-| **name** | `name` | Recover to named restore point | Planned checkpoint |
-| **immediate** | `type: immediate` | Stop at first consistent point | Fastest restore |
-{.full-width}
-
-### Inclusive vs Exclusive
-
-Recovery targets are **inclusive** by default.
-To roll back **before** the target, set `exclusive: true` in `pg_pitr`, mapping to `recovery_target_inclusive = false`.
-
-### Transaction Boundaries
-
-PITR keeps **committed** transactions before the target, and rolls back uncommitted ones.
-
-```mermaid
-gantt
-    title Transaction Boundaries and Recovery Target
-    dateFormat X
-    axisFormat %s
-    section Transaction A
-    BEGIN → COMMIT (committed) :done, a1, 0, 2
-    section Transaction B
-    BEGIN → uncommitted :active, b1, 1, 4
-    section Recovery
-    Recovery target :milestone, m1, 2, 0
+```yaml
+archive_mode: 'on'
+archive_command: 'pgbackrest --stanza=pg-meta archive-push %p'
+archive_timeout: 300
 ```
 
-See [**Restore Operations**](/docs/pgsql/backup/restore/).
+Two implementation details matter:
+
+* **`archive_timeout: 300`:** on a low-write cluster, PostgreSQL can force a segment switch after five minutes so a partially filled segment does not wait indefinitely. This normally keeps the right edge of the recovery window within minutes when WAL is being generated; it is not a promise that every commit is already remote.
+* **Asynchronous archive:** pgBackRest uses `/pg/spool` with `archive-async=y` to batch transfers. Pigsty sets `archive-push-queue-max=4GiB`; if repository failure lets the queue cross that bound, pgBackRest can drop the queued WAL to protect local disk. That creates an archive gap, so a new full backup is required to establish a fresh recoverable chain.
+
+Expiration is automatic. When old backups expire under the repository policy, pgBackRest also expires archived WAL that no remaining backup needs, unless archive retention is overridden explicitly.
 
 
---------
+----------------
 
 ## Recovery Window
 
-The **recovery window** is defined by two boundaries:
+The backup and its continuous WAL history form a **recovery window**:
 
-- **Left boundary**: earliest available base backup
-- **Right boundary**: latest archived WAL
+* **Left boundary:** the start of the oldest usable remaining backup chain. In practical time-based descriptions, this is usually summarized by the oldest retained full backup's time.
+* **Right boundary:** the latest WAL successfully archived to a repository that survives the incident.
 
-Window length depends on backup frequency, backup retention, and WAL retention:
+The window moves forward as new backups arrive and old chains expire. Pigsty's `local` preset keeps two full backups; with one successful full per day, coverage is roughly one to two days. The `minio` preset uses `retention_full_type: time` with `retention_full: 14`; with weekly full backups, the oldest retained chain normally yields roughly 14–21 days of steady-state coverage. These are estimates, not SLAs: missed backups, archive gaps, explicit archive-retention overrides, or repository loss change the actual window. Verify it with `pig pb info` and restore drills.
 
-- `local` repo keeps **2 full backups** by default, window is **24–48 hours**.
-- The remote `minio` / S3 repository keeps at least **14 days** by time; with weekly full backups, the steady-state window is roughly **14–21 days**.
-
-See [**Backup Policy**](/docs/pgsql/backup/policy/) and [**Backup Repository**](/docs/pgsql/backup/repository/).
+See [**PITR Tradeoffs**](/docs/concept/pitr/tradeoff/) and [**Backup Policy**](/docs/pgsql/backup/policy/).
 
 
---------
+----------------
 
-## Timeline
+## Targets: Where Replay Stops
 
-**Timeline** distinguishes historical branches. New timelines are created by:
+PostgreSQL supports several ways to locate a state inside the recovery window. Pigsty exposes six target types through [`pg_pitr`](/docs/concept/pitr/restore/):
 
-1. PITR restore
-2. Replica promote
-3. Failover
+| `pg_pitr` type | Meaning | Typical use |
+|:---------------|:--------|:------------|
+| `default` | Replay through all WAL available from the repository | Restore the newest archived state after total loss |
+| `time` | Stop at a timestamp | Recover from accidental DML or DDL |
+| `xid` | Stop at a transaction ID | Exclude a precisely identified bad transaction |
+| `lsn` | Stop at a WAL location | Low-level exact targeting |
+| `name` | Stop at a restore point created with `pg_create_restore_point()` | Planned change checkpoint |
+| `immediate` | Stop as soon as the selected backup becomes consistent | Validate or expose the selected backup state quickly |
+{.full-width}
+
+The `set` field is different: it chooses which backup set pgBackRest restores as the **starting snapshot**; it is not itself a replay stop target.
+
+### Boundary Semantics
+
+Targets are **inclusive** by default: the transaction at the target is retained. To stop immediately **before** a known bad target, set `exclusive: true`, which maps to `recovery_target_inclusive = false`.
+
+Transactions remain atomic. Committed transactions before the effective target survive; transactions not committed at that point are rolled back. Recovery produces a consistent database state rather than half of a transaction.
+
+
+----------------
+
+## Timelines
+
+Restoring to the past and accepting new writes creates a fork in history. PostgreSQL uses a **timeline** to distinguish each branch. PITR promotion, replica promotion, and failover can all create a new timeline; new WAL does not overwrite the old timeline's files.
 
 ```mermaid
 gitGraph
-    commit id: "Initial"
-    commit id: "Write data"
+    commit id: "Full backup"
+    commit id: "Normal writes"
+    commit id: "Bad change"
     commit id: "More writes"
     branch Timeline-2
     checkout Timeline-2
-    commit id: "PITR point 1"
+    commit id: "PITR before bad change"
     commit id: "New writes"
-    branch Timeline-3
-    checkout Timeline-3
-    commit id: "PITR point 2"
-    commit id: "Continue"
-    checkout main
-    commit id: "Original continues"
 ```
 
-When multiple timelines exist, you can specify `timeline`; Pigsty defaults to `latest`.
-See [**Restore Operations**](/docs/pgsql/backup/restore/).
+Keeping the old history allows another attempt if the first target was wrong. The `timeline` field can select a timeline; Pigsty's recovery declaration defaults to `latest`.
+
+Continue with [**PITR Architecture**](/docs/concept/pitr/arch/) to see how these concepts map to Pigsty components and configuration.

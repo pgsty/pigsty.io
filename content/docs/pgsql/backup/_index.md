@@ -1,28 +1,46 @@
 ---
 title: Backup & Restore
-description: Point-in-Time Recovery (PITR) Backup and Restore
+description: Configure repositories and policies, manage pgBackRest backups, and perform point-in-time recovery safely.
 icon: fa-solid fa-clock-rotate-left
 weight: 1600
 categories: [Task, Reference]
 ---
 
-Pigsty uses [pgBackRest](https://pgbackrest.org/) to manage PostgreSQL backups, arguably the most powerful open-source backup tool in the ecosystem.
-It supports incremental/parallel backup and restore, encryption, [Silo](/docs/minio)/S3, and many other features. Pigsty configures backup functionality by default for each [PGSQL](/docs/pgsql) cluster.
+Pigsty uses [pgBackRest](/docs/pgbackrest/) for PostgreSQL backups. It supports full, differential, and incremental backups, parallel processing, encryption, and [Silo](/docs/minio/)/S3 object storage.
+Every [PGSQL](/docs/pgsql/) cluster is configured for backup and WAL archiving by default.
 
-| Section                                                      | Content                                                          |
-|--------------------------------------------------------------|------------------------------------------------------------------|
-| [Mechanism](/docs/pgsql/backup/mechanism)                    | Backup scripts, cron jobs, pgbackrest, repository and management |
-| [Policy](/docs/pgsql/backup/policy)                          | Backup strategy, disk planning, recovery window tradeoffs        |
-| [Repository](/docs/pgsql/backup/repository)                  | Configuring backup repositories: local, Silo, S3                 |
-| [Admin](/docs/pgsql/backup/admin)                            | Common backup management commands                                |
-| [Restore](/docs/pgsql/backup/restore)                        | Restore to a specific point in time using playbooks              |
-| [Example](/docs/pgsql/backup/restore#step-by-step-execution) | Sandbox example: performing restore operations manually          |
+This chapter is the operational manual for backup configuration, management, recovery, and drills.
+For design concepts and tradeoffs, see [Point-in-Time Recovery](/docs/concept/pitr/).
 
+All backup and recovery operations ultimately invoke pgBackRest. Pigsty provides several wrapper layers:
+
+| Layer | Interface | Form | Scope |
+|:------|:----------|:-----|:------|
+| Cluster orchestration | [`pg_pitr`](/docs/pgsql/backup/restore/#pitr-parameter-definition) + `pgsql-pitr.yml` | Ansible playbook | HA, etcd, and multi-node recovery |
+| Instance orchestration | [`pig pitr`](/docs/pig/pitr) | CLI | Local-node recovery without the admin node |
+| Command primitives | [`pig pb`](/docs/pig/pb), `pb`, and `pg-backup` | pgBackRest wrappers | Backup, inspection, expiry, and unmanaged restore |
+| Engine | [`pgbackrest`](/docs/pgbackrest/) | Native CLI | Underlying backup, archive, and restore engine |
+{.full-width}
+
+| Section | Content |
+|:--------|:--------|
+| [Mechanism](/docs/pgsql/backup/mechanism) | Stanzas, repositories, retention, timelines, and Pigsty wrapper mapping |
+| [Policy](/docs/pgsql/backup/policy) | Scheduling, recovery windows, and storage planning |
+| [Repository](/docs/pgsql/backup/repository) | Local, Silo, and external S3 repositories; encryption, versioning, and locking |
+| [Administration](/docs/pgsql/backup/admin) | Backup commands, inspection, expiration, and stanza management |
+| [Restore](/docs/pgsql/backup/restore) | Recovery targets, staged PITR, and complete parameter reference |
+| [Clone](/docs/pgsql/backup/cluster) | Restore production history into another cluster and perform drills |
+| [Tutorial](/docs/pgsql/tutorial/pitr) | A sandbox restore using pgBackRest primitives |
+{.full-width}
 
 {{% alert color="warning" title="Disclaimer" %}}
+Pigsty makes every effort to provide a reliable PITR solution, but accepts no liability for data loss caused by restore operations. If you need assistance, consider [professional services](/docs/about/service).
+{{% /alert %}}
 
-> Pigsty makes every effort to provide a reliable PITR solution, but we accept no responsibility for data loss resulting from PITR operations. Use at your own risk. If you need professional support, please consider our [professional services](/docs/about/service).
-
+{{% alert color="danger" title="Recovery overwrites target data" %}}
+Before PITR, inspect `pig pg list <target-cluster>` and `pig pb info`, verify a recent usable backup and recovery window,
+have the operator state the exact target cluster and recovery point, then run the target-scoped `./pgsql-pitr.yml -l <target-cluster> ...` command.
+`pgsql-pitr.yml` prints a plan but does not pause for approval. Production recovery also requires a maintenance window and an independently verified backup.
 {{% /alert %}}
 
 
@@ -30,14 +48,14 @@ It supports incremental/parallel backup and restore, encryption, [Silo](/docs/mi
 
 ## Quick Start
 
-1. [Backup Policy](/docs/pgsql/backup/mechanism): Schedule base backups using Crontab
-2. [WAL Archiving](/docs/pgsql/backup/policy): Continuously record write activity
-3. [Restore & Recovery](/docs/pgsql/backup/restore): Recover from backups and WAL archives
+1. [Design a backup policy](/docs/pgsql/backup/policy): declare scheduled backups in `pg_crontab` and select a repository with `pgbackrest_repo`.
+2. [Manage backups](/docs/pgsql/backup/admin): run `pg-backup` and inspect recovery coverage with `pb info`.
+3. [Perform recovery](/docs/pgsql/backup/restore): declare `pg_pitr`, then run `pgsql-pitr.yml`.
 
-```yaml title="Full backup at 1 AM daily"
+```yaml title="Full backup every day at 01:00"
 pg_crontab: [ '00 01 * * * /pg/bin/pg-backup full' ]
 ```
 
-```bash title="Restore to a specific point in time"
-./pgsql-pitr.yml -e '{"pg_pitr": { "time": "2025-07-13 10:00:00+00" }}'
+```bash title="Recover to a point in time"
+./pgsql-pitr.yml -l pg-meta -e '{"pg_pitr": { "time": "2025-07-13 10:00:00+00", "action": "promote" }}'
 ```
