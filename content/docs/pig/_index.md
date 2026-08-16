@@ -1,5 +1,5 @@
 ---
-title: "PIG 1.7 Documentation"
+title: "PIG 1.8 Documentation"
 linkTitle: "pig"
 weight: 5200
 description: "PostgreSQL Extension Ecosystem Package Manager"

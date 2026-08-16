@@ -10,9 +10,6 @@ The `pigsty-pgsql` repo contains packages that are ad hoc to specific PostgreSQL
 
 You can check the [**Release - RPM Changelog**](/docs/repo/pgsql/rpm/) / [**Release - DEB Changelog**](/docs/repo/pgsql/deb/) for the latest updates.
 
-The latest 2026-08-08 batch records changes from 2026-07-31 through 2026-08-08. It covers 18 package families and 23 extension names, excluding the 2026-07-30 batch.
-
-
 ---------
 
 ## Compatibility

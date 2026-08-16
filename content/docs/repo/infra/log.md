@@ -6,7 +6,7 @@ icon: fa-solid fa-clipboard-list
 categories: [Reference]
 ---
 
-## 2026-08-11
+## 2026-08-12
 
 | Name                    | Old      | New      | Comment                                                       |
 |:------------------------|:---------|:---------|:--------------------------------------------------------------|
@@ -16,7 +16,7 @@ categories: [Reference]
 | `mtail`                 | 3.4.6    | 3.4.7    | Built as dual-architecture RPM/DEB                            |
 | `opencode`              | 1.18.15  | 1.18.16  | Built as dual-architecture RPM/DEB                            |
 | `pg-hardstorage`        | 1.1.1    | 1.2.1    | Official dual-architecture RPM/DEB downloaded and verified    |
-| `pig`                   | 1.6.1    | 1.6.2    | Official dual-architecture RPM/DEB downloaded and verified    |
+| `pig`                   | 1.6.1    | 1.7.0    | Official dual-architecture RPM/DEB downloaded and verified    |
 | `postgrest`             | 16.0     | 16.1     | Static dual-architecture RPM/DEB; requires PostgreSQL 14+     |
 | `redis-exporter`        | 1.88.0   | 1.89.0   | Built as dual-architecture RPM/DEB                            |
 | `sow`                   | 0.2.0    | 0.3.0    | Official dual-architecture RPM/DEB downloaded and verified    |
@@ -92,28 +92,11 @@ categories: [Reference]
 | `uv`                    | 0.12.0         | 0.12.1         | Built as dual-architecture RPM/DEB           |
 | `vray`                  | 5.51.2         | 5.52.0         | Latest stable; built as dual-architecture RPM/DEB |
 | `xray`                  | 26.3.27        | 26.7.28        | Latest dated release; built as dual-architecture RPM/DEB |
+| `prometheus`            | 3.13.1         | 3.13.2         | Security and stability release                         |
+| `pig`                   | 1.6.0          | 1.6.1          | Refreshed extension catalog                            |
 {.stretch-last}
 
 -------
-
-## 2026-08-02
-
-| Name  | Old   | New   | Comment                     |
-|:------|:------|:------|:----------------------------|
-| `pig` | 1.6.0 | 1.6.1 | Refreshed extension catalog |
-{.stretch-last}
-
--------
-
-## 2026-08-01
-
-| Name         | Old    | New    | Comment                        |
-|:-------------|:-------|:-------|:-------------------------------|
-| `prometheus` | 3.13.1 | 3.13.2 | Security and stability release |
-{.stretch-last}
-
--------
-
 
 ## 2026-07-30
 

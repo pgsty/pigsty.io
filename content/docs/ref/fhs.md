@@ -15,39 +15,60 @@ categories: [Reference]
 
 Pigsty's home directory is located at `~/pigsty` by default. The file structure within this directory is as follows:
 
-```bash
-#------------------------------------------------------------------------------
-# pigsty
-#  ^-----@app                    # Extra application resources and examples
-#  ^-----@bin                    # Utility scripts
-#  ^-----@docs                   # Documentation (docsify-compatible)
-#  ^-----@files                  # Ansible file resources
-#            ^-----@victoria     # Victoria rules and ops scripts (bin/rules)
-#            ^-----@grafana      # Grafana dashboards
-#            ^-----@postgres     # /pg/bin/ scripts
-#            ^-----@migration    # PGSQL migration task definitions
-#            ^-----@pki          # Self-signed CA and certificates
-#  ^-----@roles                  # Ansible role implementations
-#  ^-----@templates              # Ansible template files
-#  ^-----@vagrant                # Vagrant sandbox VM templates
-#  ^-----@terraform              # Terraform cloud VM provisioning templates
-#  ^-----configure               # Configuration wizard script
-#  ^-----ansible.cfg             # Ansible default configuration
-#  ^-----pigsty.yml              # Pigsty default configuration file
-#  ^-----*.yml                   # Ansible playbooks
-#------------------------------------------------------------------------------
-# /infra -> /data/infra          # infra runtime symlink
-# /data/infra                    # root:infra 0771
-#  ^-----@metrics                # VictoriaMetrics TSDB data
-#  ^-----@logs                   # VictoriaLogs data
-#  ^-----@traces                 # VictoriaTraces data
-#  ^-----@alertmgr               # AlertManager data
-#  ^-----@rules                  # rule definitions (including agent.yml)
-#  ^-----@targets                # FileSD monitoring targets
-#  ^-----@dashboards             # Grafana dashboard definitions
-#  ^-----@datasources            # Grafana datasource definitions
-#  ^-----prometheus.yml          # Victoria Prometheus-compatible config
-#------------------------------------------------------------------------------
+{{< filetree label="~/pigsty Source Tree" >}}
+  {{< filetree/folder name="app" >}}
+    {{< filetree/file name="Application template resources" >}}
+  {{< /filetree/folder >}}
+  {{< filetree/folder name="bin" >}}
+    {{< filetree/file name="Management and operations scripts" >}}
+  {{< /filetree/folder >}}
+  {{< filetree/folder name="files" open=true >}}
+    {{< filetree/folder name="victoria" >}}
+      {{< filetree/file name="Rules and operations scripts" >}}
+    {{< /filetree/folder >}}
+    {{< filetree/folder name="grafana" >}}
+      {{< filetree/file name="Grafana dashboards" >}}
+    {{< /filetree/folder >}}
+    {{< filetree/folder name="postgres" >}}
+      {{< filetree/file name="PostgreSQL management scripts" >}}
+    {{< /filetree/folder >}}
+    {{< filetree/folder name="migration" >}}
+      {{< filetree/file name="Data-migration task definitions" >}}
+    {{< /filetree/folder >}}
+    {{< filetree/folder name="pki" >}}
+      {{< filetree/file name="Self-signed CA and certificates" >}}
+    {{< /filetree/folder >}}
+  {{< /filetree/folder >}}
+  {{< filetree/folder name="roles" >}}
+    {{< filetree/file name="Ansible role implementations" >}}
+  {{< /filetree/folder >}}
+  {{< filetree/folder name="templates" >}}
+    {{< filetree/file name="Ansible templates" >}}
+  {{< /filetree/folder >}}
+  {{< filetree/folder name="vagrant" >}}
+    {{< filetree/file name="Vagrant sandbox definitions" >}}
+  {{< /filetree/folder >}}
+  {{< filetree/folder name="terraform" >}}
+    {{< filetree/file name="Terraform cloud-resource templates" >}}
+  {{< /filetree/folder >}}
+  {{< filetree/file name="configure" >}}
+  {{< filetree/file name="ansible.cfg" >}}
+  {{< filetree/file name="pigsty.yml" >}}
+  {{< filetree/file name="*.yml" >}}
+{{< /filetree >}}
+
+`/infra` is a runtime symlink to `/data/infra`, which keeps observability data and generated configuration together:
+
+```text {filename="/data/infra" collapse=8 wrap=true label="INFRA Runtime Directory"}
+metrics/           # VictoriaMetrics TSDB data
+logs/              # VictoriaLogs data
+traces/             # VictoriaTraces data
+alertmgr/           # AlertManager data
+rules/              # Rule definitions, including agent.yml
+targets/            # FileSD monitoring targets
+dashboards/         # Grafana dashboard definitions
+datasources/        # Grafana datasource definitions
+prometheus.yml      # Victoria Prometheus-compatible configuration
 ```
 
 

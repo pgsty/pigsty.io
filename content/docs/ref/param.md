@@ -29,7 +29,7 @@ Cross-checked against the current source and parameter reference pages, the 10 o
 |  [**`KAFKA`**](/docs/kafka/param)  |   2    |  18   | Kafka deployment and removal safeguard parameters          |
 {.stretch-last}
 
-Pilot module: [**native `MYSQL` 8.4**](/docs/pilot/mysql/param/#quick-reference) currently exposes 13 public parameters: 11 for deployment and 2 for protected removal. Fixed ports, paths, software versions, and timers are not public parameters.
+Pilot module: [**native `MYSQL` 8.4**](/docs/mysql/param/#quick-reference) currently exposes 13 public parameters: 11 for deployment and 2 for protected removal. Fixed ports, paths, software versions, and timers are not public parameters.
 
 --------
 
