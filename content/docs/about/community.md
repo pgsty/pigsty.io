@@ -22,6 +22,17 @@ We welcome anyone to [submit new Issues](https://github.com/pgsty/pigsty/issues/
 
 Please note that for issues related to Pigsty documentation, please submit [Issues](https://github.com/pgsty/pigsty.cc/issues) in the [github.com/pgsty/pigsty.cc](https://github.com/pgsty/pigsty.cc) repository.
 
+Press {{< kbd "⌘" "K" >}} on macOS, or {{< kbd "Ctrl" "K" >}}, to search the documentation, extension catalog, and blog directly.
+
+
+---------------
+
+## Maintainers
+
+Pigsty is built by its maintainers and community.
+
+{{< contributors >}}
+
 
 ---------------
 

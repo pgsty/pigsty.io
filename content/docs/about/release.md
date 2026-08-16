@@ -6,11 +6,11 @@ icon: fa-solid fa-scroll
 categories: [Reference]
 ---
 
-The current stable Pigsty release is [**v4.4.0**](#v440), while the documentation mainline also tracks source changes for the [**v4.5.0 development version**](#v450). Content marked v4.5.0 WIP describes current source state only; it does not mean candidate packages, offline bundles, repository indexes, or a public release are complete.
+The latest Pigsty release is [**v4.5.0**](#v450).
 
 |     Version     | Release Date | Summary                                                                         |                                       Release Page                                        |
 |:---------------:|:------------:|---------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------:|
-| [v4.5.0](#v450) |     WIP      | Kafka, MySQL, Valkey, Silo, 575 extensions, and safer orchestration               |                                         Unreleased                                         |
+| [v4.5.0](#v450) |  2026-08-15  | Silo, Kafka, MySQL, Valkey, 575 extensions, and safer orchestration |               [v4.5.0](https://github.com/pgsty/pigsty/releases/tag/v4.5.0)               |
 | [v4.4.0](#v440) |  2026-07-10  | PG 19 beta support, 531 extensions, kernel updates, pig CLI improvements        |               [v4.4.0](https://github.com/pgsty/pigsty/releases/tag/v4.4.0)               |
 | [v4.3.0](#v430) |  2026-05-01  | 510 extensions, batch Infra / PGSQL / kernel package updates, Ubuntu 26 support |               [v4.3.0](https://github.com/pgsty/pigsty/releases/tag/v4.3.0)               |
 | [v4.2.2](#v422) |  2026-03-23  | Insforge template, pdu, pgdog, tigerfs, ivorysql 5.3                            |               [v4.2.2](https://github.com/pgsty/pigsty/releases/tag/v4.2.2)               |
@@ -76,9 +76,7 @@ The current stable Pigsty release is [**v4.4.0**](#v440), while the documentatio
 
 ## v4.5.0
 
-> **WIP:** This draft uses Pigsty source `v4.4.0..d19dbb7a` as of **2026-08-12** (**71 committed changes**), together with the extension-package alias updates and local package/documentation catalogs in the current worktree. Candidate platform coverage, repository indexing and signing, offline bundles, upgrade and rollback matrices, and the public release still require separate acceptance. Source code and local artifacts do not establish release availability.
-
-Pigsty v4.5.0 is a feature release focused on new pilot modules, replaceable data services, cluster-identity-aware orchestration, observability, and the software supply chain. It introduces Kafka KRaft and MySQL 8.4 modules, adds Valkey to REDIS, converges the MINIO module on Silo, and expands the packaged extension catalog from 531 to 575 extensions. See the complete source comparison at [`v4.4.0...d19dbb7a`](https://github.com/pgsty/pigsty/compare/v4.4.0...d19dbb7a386b6d9cb8ccb484df1893c7614cdc2e).
+Pigsty v4.5.0 is a feature release focused on new pilot modules, replaceable data services, cluster-identity-aware orchestration, observability, and the software supply chain. It introduces Kafka KRaft and MySQL 8.4 modules, adds Valkey to REDIS, converges the MINIO module on Silo, and expands the packaged extension catalog from 531 to 575 extensions. See the complete source comparison at [`v4.4.0...61f62e6e`](https://github.com/pgsty/pigsty/compare/v4.4.0...61f62e6e48129b88d0529bf6ebcffc039656415f).
 
 **Highlights**
 
@@ -93,10 +91,10 @@ Pigsty v4.5.0 is a feature release focused on new pilot modules, replaceable dat
 
 **New Modules and Data Services**
 
-- The [Kafka module](/docs/kafka/) uses node state as the source of truth for dynamic KRaft orchestration. It manages one or more clusters in one inventory and also supports an unbounded `kafka.yml` run; partial `--limit` selections are rejected. Nodes retain authoritative manifests and secrets, with dynamic controller joins, broker admission, member retirement, three-step dead-node replacement, SCRAM-SHA-512/TLS, credential and certificate rotation, and self-tested partition health gates.
-- The [MySQL pilot module](/docs/pilot/mysql/) targets a fixed MySQL 8.4 LTS platform and accepts either a standalone node or a three-node InnoDB Cluster. It includes MySQL Shell and Router, scheduled full XtraBackup backups, TLS, account and database provisioning, primary-key policy checks, conservative member removal, and idempotent reconciliation.
-- The REDIS module retains `redis` as its default engine and can deploy Valkey with `redis_type: valkey`. Service units now use `Type=notify`, with stronger topology validation, password handling, and rebuild protection.
-- The MINIO module now deploys Silo and only Silo. `minio_type` remains an extension point, but `silo` is the sole accepted value in this release. The Infra package line adds `silo` and `mcli` while preserving the S3/Admin APIs, `/minio/*` routes, `MINIO_*` environment variables, and disk format.
+- The [Kafka module](/docs/kafka/) uses node state as the source of truth for dynamic KRaft orchestration. It manages one or more clusters in one inventory and also supports an unbounded `kafka.yml` run; partial `--limit` selections are rejected. The destructive `kafka-rm.yml` instead requires a non-empty `-l/--limit` and validates a safe absolute data path plus surviving broker/controller anchors before any partial retirement can stop services. Nodes retain authoritative manifests and secrets, with dynamic controller joins, broker admission, member retirement, three-step dead-node replacement, SCRAM-SHA-512/TLS, credential and certificate rotation, and self-tested partition health gates.
+- The [MySQL pilot module](/docs/mysql/) targets a fixed MySQL 8.4 LTS platform and accepts either a standalone node or a three-node InnoDB Cluster. It includes MySQL Shell and Router, scheduled full XtraBackup backups, TLS, account and database provisioning, primary-key policy checks, conservative member removal, and idempotent reconciliation.
+- The REDIS module retains `redis` as its default engine and can deploy Valkey with `redis_type: valkey`. Service units now use `Type=notify` with a 1,800-second startup timeout, plus stronger topology validation, password handling, tag-scoped removal semantics, and rebuild protection.
+- The MINIO module now deploys Silo and only Silo. `minio_type` remains an extension point, but `silo` is the sole accepted value in this release. Startup checks the systemd Invocation ID and `ActiveState=active` for the current restart, waits about 600 seconds by default, and then runs Silo's cluster health check. The Infra package line adds `silo` and `mcli` while preserving the S3/Admin APIs, `/minio/*` routes, `MINIO_*` environment variables, and disk format.
 - Object-storage topology is grouped by `minio_cluster`; its inventory group name may differ, and one inventory may declare multiple object-storage clusters. Use distinct `minio_alias`, `minio_domain`, and `minio_endpoint` values for each to avoid overwriting shared client aliases on INFRA nodes. `demo/minio` now selects Silo explicitly and trims its local repository to the `infra,node` modules.
 - The standalone FERRET module is replaced by [PostgreSQL Mongo mode](/docs/conf/mongo/) and the [FerretDB Docker APP](/docs/app/ferretdb/). PostgreSQL provides the DocumentDB data layer, while Docker Compose provides the FerretDB protocol layer.
 
@@ -104,13 +102,16 @@ Pigsty v4.5.0 is a feature release focused on new pilot modules, replaceable dat
 
 - `deploy.yml`, `slim.yml`, and the PGSQL, REDIS, MINIO, KAFKA, and MYSQL initialization playbooks now skip unrelated hosts according to the corresponding `*_cluster` identity. The PGSQL, REDIS, MINIO, and KAFKA removal playbooks do the same. MySQL removal is intentionally different: `mysql-rm.yml` does not skip hosts without identity and instead fails closed in `mysql_rm_check`. Every host that enters a role still receives an internal identity check.
 - PGSQL configuration, PITR, and removal workflows delegate only when the canonical `etcd` group exists and has at least one member; they no longer silently fall back to localhost when no etcd target exists. DBSU SSH keys are exchanged through the actual `pg_cluster_members`, correctly covering cross-inventory-group topologies such as Citus.
+- PGSQL PITR and removal now delete only the etcd subtree bounded by `/<cluster>/`, avoiding adjacent clusters whose names share a prefix. The initial pgBackRest marker `/etc/pgbackrest/initial.done` is written only after the backup command succeeds.
 - HAProxy uses the fixed `/etc/haproxy/haproxy.cfg` and `/etc/haproxy/conf.d` layout, upstream master-worker mode, a master socket, and `Type=notify`. dnsmasq now binds dynamically, answers private reverse lookups locally, and handles node addresses added after INFRA initialization.
 - Rendered systemd units managed by Pigsty are consistently placed under `/etc/systemd/system`; permissions on sensitive configuration and privileged files are tightened further. Removal workflows stop services before entering the data-cleanup phase.
 - The REPO and CACHE roles now use `sow create --pigsty` to atomically generate RPM/APT metadata and the SHA-256 `repo_complete` marker, and no longer generate synthetic ModuleMD metadata. `pg_id` also compares cluster size as an explicit integer for older Ansible releases.
 - RPM exporter package names move from underscores to hyphens, for example `node_exporter` → `node-exporter`. Debian repository naming and PGDG YUM extension package mappings are corrected as well.
+- Tuned profiles now use the OS-specific directory: `/etc/tuned/profiles` on EL 10, Debian 13, and Ubuntu 26, and `/etc/tuned` on EL 8/9, Debian 12, and Ubuntu 22/24. Debian/Ubuntu package installation also suppresses premature starts of Silo, Redis/Valkey, and legacy log services.
 - China-region repository routing receives a systematic refresh. OS, Docker, Grafana, Percona, supported MongoDB APT, and uv/PyPI paths prefer Tencent Cloud; EL and Docker entries retain Huawei Cloud and Aliyun fallbacks where appropriate. MySQL and Kubernetes use USTC mirrors, and ClickHouse uses Huawei Cloud. MongoDB RPM no longer advertises an unavailable China-region alternative. The final per-platform choices remain defined in `roles/node_id/vars/<os>.<arch>.yml`.
 - The Docker image moves to Debian 13.6 and Pigsty v4.5.0. Vagrant enforces a 32 GiB root disk, accepts pinned box versions, and adds the eight-node `ha/octo` lab. `docker/Makefile` fixes its data directory at `./data`, and `make purge` deletes that directory directly.
 - GitHub Actions for checkout, CodeQL, Docker build/login, and Cosign are upgraded in one batch. Release, bootstrap, install, and validation scripts also tighten file and argument handling. Release archives now derive top-level `pigsty.yml` from `conf/meta.yml`, include the Kafka/MySQL playbooks, and drop the legacy Mongo playbook.
+- The release-signing workflow must be dispatched from `main` and signs only the `pigsty-<tag>.tgz` source archive; multi-gigabyte offline bundles are outside that workflow. The package-build bootstrap matrix now matches `conf/build/oss.yml`: EL 9/10, Debian 12/13, and Ubuntu 22/24/26.
 
 **Observability**
 
@@ -120,7 +121,8 @@ Pigsty v4.5.0 is a feature release focused on new pilot modules, replaceable dat
 
 **PostgreSQL Kernels and Extension Packages**
 
-- PostgreSQL 19 beta2 templates now include pgBackRest packages and backup support.
+- PostgreSQL 19 beta3 templates now include pgBackRest packages and backup support.
+- All four standard Patroni templates add the PostgreSQL 18.6 logical-decoding allowlist `output_plugin_libraries: 'pgoutput, test_decoding, wal2json'`; Patroni filters it on older PostgreSQL versions that do not support the setting.
 - Percona PostgreSQL 18 TDE now uses cluster mode and retains Pigsty-prefixed packages to avoid conflicts with native PostgreSQL packages.
 - IvorySQL now initializes its default database correctly and enables compatible WAL compression in workload templates.
 - The PostgreSQL fact loader, per-platform `package_map`, and default extension groups are refreshed to fill package gaps and correct PGDG/YUM naming. Comparing names between the v4.4.0 PIG v1.5.1 catalog and the current catalog yields 46 additions and 2 removals:
@@ -131,51 +133,402 @@ Pigsty v4.5.0 is a feature release focused on new pilot modules, replaceable dat
   - Two catalog removals: `pg_analytics` and `spat`. The total therefore rises from 531 to 575, a net gain of 44.
 
 - Cumulative notable upgrades include `citus` 14.2.0, `pg_search` 0.25.2, `timescaledb` 2.29.1, `vector` 0.8.6, `documentdb` 0.114, `pg_partman` 5.5.0, `pgmnemo` 0.16.1, `plpgsql_check` 2.10.4, `provsql` 1.12.0, and `pgbson` 2.1.0, plus a broad pgrx 0.19.1 rebuild.
-- See the [RPM 2026-07-24](/docs/repo/pgsql/rpm/#2026-07-24), [RPM 2026-07-30](/docs/repo/pgsql/rpm/#2026-07-30), and [RPM 2026-08-12](/docs/repo/pgsql/rpm/#2026-08-12) entries and the matching [DEB changelog](/docs/repo/pgsql/deb/#2026-08-12) for full platform differences. The current worktree additions are also available at [`pg_local_cache`](/ext/e/pg_local_cache/) and [`pg_policy`](/ext/e/pg_policy/). Changelog dates identify package batches and should not be equated one-for-one with the current CSV `mtime`.
+- Full build records and platform differences appear in the merged table below and the original [RPM changelog](/docs/repo/pgsql/rpm/) and [DEB changelog](/docs/repo/pgsql/deb/). New catalog entries include [`pg_local_cache`](/ext/e/pg_local_cache/) and [`pg_policy`](/ext/e/pg_policy/). Changelog dates identify package batches and should not be equated one-for-one with the current CSV `mtime`.
 - `pg_statviz` is excluded only from the default install group in [`db/reload.sql`](https://github.com/pgsty/pgext/blob/main/db/reload.sql); its detail page, platform coverage, and package-name differences remain in the online catalog.
 
-The following table excerpts the final 2026-08-12 batch. “Previous” means the value before that batch, not a common v4.4.0 baseline:
+**Extension Package Update Log**
 
-| Package Family    | Previous | Candidate Version | Summary                                                         |
-|:------------------|:------------|:------------------|:----------------------------------------------------------------|
-| `cat_tools`       | -           | 0.3.0             | New pure-SQL extension, PG14-18                                  |
-| `citus`           | 14.1.0      | 14.2.0            | Includes `citus_columnar`, PG16-18                               |
-| `pg_describe`     | -           | 1.0.0             | New, PG17-18                                                     |
-| `pg_disorder`     | -           | 0.1.0             | New, PG14-18                                                     |
-| `pg_mentat`       | -           | 1.5.7             | Promoted from source-only catalog entry to package, PG14-18      |
-| `pg_rational`     | 0.0.2       | 0.0.3             | PIGSTY RPM updated; DEB still uses the PGDG package               |
-| `pg_readme`       | 0.7.0       | 0.7.1             | RPM retains PGDG 0.7.0; PIGSTY DEB is 0.7.1                    |
-| `pg_search`       | 0.25.0      | 0.25.2            | PG15-18, pgrx 0.19.1                                            |
-| `pg_squeeze`      | 1.9.2       | 1.9.4             | PGDG package, PG14-18                                            |
-| `pg_turbovec`     | -           | 1.29.0            | PG14-18; RPM, DEB, and source metadata are aligned               |
-| `pg_vault_tde`    | -           | 1.7.0             | PG17-18, preload required; RPM limited to EL9/10                  |
-| `pgbson`          | 2.0.4       | 2.1.0             | Packaged as `postgresbson`, PG14-18                              |
-| `pgmnemo`         | 0.15.0      | 0.16.1            | PG17-18                                                          |
-| `plpgsql_check`   | 2.10.3      | 2.10.4            | PG14-18                                                          |
-| `plruby`          | -           | 2.5.0             | Includes three transform extensions, PG14-18                     |
-| `provsql`         | 1.11.0      | 1.12.0            | PG14-18                                                          |
-| `timescaledb`     | 2.29.0      | 2.29.1            | PG16-18                                                          |
-| `vector`          | 0.8.6       | 0.8.6             | Adds PGDG 0.8.6 packages, PG14-18                                |
+The table below merges the [RPM changelog](/docs/repo/pgsql/rpm/) and [DEB changelog](/docs/repo/pgsql/deb/) after v4.4.0, with 231 rows aligned by batch and extension name. Records that are identical in RPM and DEB are merged; version or note differences are shown separately. An unchanged version still indicates a rebuild, package-name change, license-metadata change, or platform-coverage change.
+
+The first extension batch after July 10 is July 24. That original batch covers July 7–24 without per-item dates, so it is included in full to avoid omitting post-release pgrx rebuilds and package-matrix fixes. “RPM only” or “DEB only” means only that the other changelog has no same-batch row for that extension.
+
+| Batch | Extension | Version Change | Notes |
+|:------|:----------|:---------------|:------|
+| 2026-08-14 | `asn1oid` | RPM only: `1.6` → `1.6` | License metadata: `GPL-3.0-or-later`; r2; PG14-18 |
+| 2026-08-14 | `emailaddr` | `0` → `0` | License metadata: `LicenseRef-Upstream-No-License`; r3; PG14-18 |
+| 2026-08-14 | `explain_ui` | `0.0.2` → `0.0.2` | License metadata: `LicenseRef-Upstream-No-License`; r4; PG14-18 |
+| 2026-08-14 | `numeral` | RPM only: `1.3` → `1.3` | License metadata: `GPL-2.0-or-later`; r6; PG14-18 |
+| 2026-08-14 | `oidc_validator` | `0.1.0` → `0.1.0` | Rust module; `LicenseRef-Upstream-No-License`; r2; PG18 |
+| 2026-08-14 | `pg_failover_slots` | `1.2.1` → `1.2.1` | License metadata: `PostgreSQL`; r2; preload; PG14-18 |
+| 2026-08-14 | `pg_geohash` | `1.0` → `1.0` | License metadata: `MIT`; r4; fix SQL filename and target-PG ABI; PG14-18 |
+| 2026-08-14 | `pg_oidc_validator` | `0.2` → `1.1.0` | RPM: PG18 OAuth validator module; add `discovery_url_override`; EL10 only<br>DEB: PG18 OAuth validator module; add `discovery_url_override` and GSSAPI build dependency |
+| 2026-08-14 | `pg_relation_sql` | `-` → `0.2.2` | RPM: Standalone SQL; no `CREATE EXTENSION`; noarch; PG14-18<br>DEB: Standalone SQL; no `CREATE EXTENSION`; Architecture: all; PG14-18 |
+| 2026-08-14 | `pg_summarize` | `0.0.1` → `0.0.1` | License metadata: `LicenseRef-Upstream-No-License`; r6; PG14-18 |
+| 2026-08-14 | `pg_when` | `0.1.9` → `0.1.10` | GitHub/PGXN release; upstream pgrx 0.18.1, packaged with 0.19.1; PG14-18 |
+| 2026-08-14 | `pre_prepare` | RPM only: `0.9` → `0.9` | License metadata: `PostgreSQL`; r2; PG14-18 |
+| 2026-08-14 | `smlar` | `1.0` → `1.0` | License metadata: `LicenseRef-Upstream-No-License`; r2; PG14-18 |
+| 2026-08-14 | `unit` | `7.10` → `7.10` | License metadata: `GPL-3.0-or-later`; r7; PG14-18 |
+| 2026-08-12 | `biscuit` | `2.4.3` → `3.0.0` | PG16-18; 2.x indexes require REINDEX |
+| 2026-08-12 | `cat_tools` | `-` → `0.3.0` | SQL-only; PG14-18 |
+| 2026-08-12 | `citus` | `14.1.0` → `14.2.0` | Includes citus_columnar; PG16-18 |
+| 2026-08-12 | `pg_clickhouse` | `0.3.2` → `0.10.0` | PG14-18 |
+| 2026-08-12 | `pg_describe` | `-` → `1.0.0` | PG17-18 |
+| 2026-08-12 | `pg_disorder` | `-` → `0.1.0` | PG14-18 |
+| 2026-08-12 | `pg_local_cache` | `-` → `1.3.0` | PG14-18; preload; single-primary |
+| 2026-08-12 | `pg_mentat` | `-` → `1.5.7` | PG14-18 |
+| 2026-08-12 | `pg_policy` | `-` → `0.1.0` | SQL-only; PG14-18 |
+| 2026-08-12 | `pg_rational` | `0.0.2` → `0.0.3` | RPM: PIGSTY; PG14-18<br>DEB: PGDG; PG14-18 |
+| 2026-08-12 | `pg_readme` | `0.7.0` → `0.7.1` | RPM: Catalog 0.7.1; RPM remains PGDG 0.7.0<br>DEB: Includes pg_readme_test_extension; PG14-18 |
+| 2026-08-12 | `pg_search` | `0.25.0` → `0.25.2` | PG15-18; pgrx 0.19.1; preload |
+| 2026-08-12 | `pg_squeeze` | `1.9.2` → `1.9.4` | PGDG; PG14-18 |
+| 2026-08-12 | `pg_statviz` | RPM: `-` → `0.9`<br>DEB: `-` → `1.1` | RPM: PGDG; PG14-16 and EL10 PG18; no PG17; not in default groups<br>DEB: PGDG; PG14-18 except Ubuntu 22.04; not in default groups |
+| 2026-08-12 | `pg_turbovec` | `-` → `1.29.0` | PG14-18; pgrx 0.19.1 |
+| 2026-08-12 | `pg_uuid_v8` | `1.0.0` → `1.1.0` | PG14-18; includes 1.0-to-1.1 upgrade script |
+| 2026-08-12 | `pg_vault_tde` | `-` → `1.7.0` | RPM: PG17-18; EL9/10; preload<br>DEB: PG17-18; preload |
+| 2026-08-12 | `pgbson` | `2.0.4` → `2.1.0` | RPM: RPM package postgresbson; PG14-18<br>DEB: Source package postgresbson; PG14-18 |
+| 2026-08-12 | `pgmnemo` | `0.15.0` → `0.16.1` | PG17-18 |
+| 2026-08-12 | `plpgsql_check` | `2.10.3` → `2.10.4` | PG14-18 |
+| 2026-08-12 | `plruby` | `-` → `2.5.0` | Includes jsonb_plruby, hstore_plruby, ltree_plruby; PG14-18 |
+| 2026-08-12 | `polardb-17` | `17.10.1.0-1PIGSTY` → `17.10.1.0-2PGSTY` | Rebuild; PG17 |
+| 2026-08-12 | `polarstore` | `1.2.42-1PIGSTY` → `1.2.42-2PGSTY` | Rebuild |
+| 2026-08-12 | `provsql` | `1.11.0` → `1.12.0` | PG14-18 |
+| 2026-08-12 | `q3c` | RPM: `2.0.2` → `2.0.5`<br>DEB: `2.0.4` → `2.0.5` | RPM: PGDG; PIGSTY remains 2.0.2; PG14-18<br>DEB: PGDG; PG14-18 |
+| 2026-08-12 | `timescaledb` | `2.29.0` → `2.29.1` | PG16-18 |
+| 2026-08-12 | `vector` | `0.8.6` → `0.8.6` | PGDG repository refresh; PG14-18 |
+| 2026-08-12 | `zlog` | `1.2.18-1PIGSTY` → `1.2.18-2PGSTY` | Rebuild |
+| 2026-07-30 | `emaj` | RPM: `-` → `5.0.0`<br>DEB: `4.7.1` → `5.0.0` | RPM: Renamed to `e-maj`; Provides/Obsoletes `emaj`; r2<br>DEB: PG14-18 |
+| 2026-07-30 | `graph` | `0.1.8` → `1.0.0` | pggraph; PG14-18; pgrx 0.19.1 |
+| 2026-07-30 | `nominatim_fdw` | `2.0.0` → `2.1.0` | PG14-18 |
+| 2026-07-30 | `numeral` | RPM only: `1.3` → `1.3` | Renamed to `postgresql-numeral`; Provides/Obsoletes `numeral`; r3 |
+| 2026-07-30 | `pg_ai_query` | RPM only: `0.1.1` → `0.1.1` | EL9/10 only (GCC 13/OpenSSL 3); r2 not indexed |
+| 2026-07-30 | `pg_column_tetris` | `-` → `0.1.0` | SQL-only; PG14-18 |
+| 2026-07-30 | `pg_net` | `0.20.5` → `0.20.5` | RPM: EL8/9: 0.9.2; EL10: 0.20.5; r3 not indexed<br>DEB: D12/D13/U24/U26: 0.20.5; U22: 0.9.2; r2 not indexed |
+| 2026-07-30 | `pg_partman` | RPM: `5.4.0` → `5.5.0`<br>DEB: `5.4.2` → `5.5.0` | RPM: PG14-18<br>DEB: Use `postgresql-PGVERSION-partman` package name |
+| 2026-07-30 | `pg_search` | `0.24.3` → `0.25.0` | PG15-18; pgrx 0.19.1; add pgvector/OpenBLAS dependencies |
+| 2026-07-30 | `pgcontext` | `-` → `0.2.0` | PG17-18; pgrx 0.19.1; optional pgvector bridge |
+| 2026-07-30 | `pgedge` | RPM only: `18.4` → `18.4` | PG15-18 ABI fix; r2 not indexed |
+| 2026-07-30 | `pgmnemo` | `0.13.0` → `0.15.0` | PG17-18; requires pgvector >= 0.7.0 |
+| 2026-07-30 | `pgmp` | `-` → `1.0.6` | PG14-18; GMP dependency |
+| 2026-07-30 | `pgpcre` | RPM only: `0.20190509` → `0.20190509` | EL8/9 only; r2 not indexed |
+| 2026-07-30 | `pgwasm` | `-` → `0.1.0` | PG14-18 |
+| 2026-07-30 | `plpgsql_check` | `2.10.1` → `2.10.3` | PG14-18; optional preload |
+| 2026-07-30 | `postbis` | `-` → `1.0` | PG14-18 compatibility patch; r2 |
+| 2026-07-30 | `qdgc` | `-` → `0.1.0` | PG14-18; includes qdgc_postgis |
+| 2026-07-30 | `rdf_fdw` | `2.6.0` → `2.7.0` | PG14-18 |
+| 2026-07-30 | `timescaledb` | `2.28.3` → `2.29.0` | PG16-18 |
+| 2026-07-30 | `uri` | RPM only: `1.20251029` → `1.20251029` | Renamed to `pguri`; Provides/Obsoletes `pg_uri`; r2 |
+| 2026-07-30 | `vector` | `0.8.5` → `0.8.6` | PG14-18; 0.8.6 not indexed |
+| 2026-07-30 | `pg_rewrite` | DEB only: `2.0.0` → `2.2` | Renamed to `postgresql-PGVERSION-pg-rewrite`; PG14-18 |
+| 2026-07-30 | `pgactive` | DEB only: `2.1.7` → `2.1.7` | PG14-18 build fix; r2 not indexed |
+| 2026-07-30 | `pgzint` | DEB only: `-` → `0.2.0` | D13/U26 only; requires Zint >= 2.14; not indexed |
+| 2026-07-30 | `timeseries` | DEB only: `0.2.1` → `0.2.1` | Fix partman/cron Recommends and docs; r3 |
+| 2026-07-24 | `argm` | `-` → `1.1.1` | PG14-18 |
+| 2026-07-24 | `cron_utils` | `-` → `0.1.0` | SQL-only; PG14-18 |
+| 2026-07-24 | `fbsql` | `-` → `0.1.0` | PL/R; PG16-18 |
+| 2026-07-24 | `oidc_validator` | `-` → `0.1.0` | Rust OIDC; PG18 |
+| 2026-07-24 | `online_advisor` | `-` → `1.0` | PG14-18 |
+| 2026-07-24 | `pg_cjk_parser` | `-` → `0.1.0` | PG14-18 |
+| 2026-07-24 | `pg_extension_base` | `-` → `3.4` | pg_lake 3.4; PG16-18; RPM EL9/10 |
+| 2026-07-24 | `pg_extension_updater` | `-` → `3.4` | pg_lake 3.4; PG16-18; RPM EL9/10 |
+| 2026-07-24 | `pg_fts` | `-` → `0.2.0` | PG17-18 |
+| 2026-07-24 | `pg_jieba` | `-` → `1.1.0` | pkg 2.0.1; SQL 1.1.0; PG14-18 |
+| 2026-07-24 | `pg_kpart` | `-` → `1.0` | PG14-18 |
+| 2026-07-24 | `pg_lake` | `-` → `3.4` | pg_lake 3.4; PG16-18; RPM EL9/10 |
+| 2026-07-24 | `pg_lake_copy` | `-` → `3.4` | pg_lake 3.4; PG16-18; RPM EL9/10 |
+| 2026-07-24 | `pg_lake_engine` | `-` → `3.4` | pg_lake 3.4; PG16-18; RPM EL9/10 |
+| 2026-07-24 | `pg_lake_iceberg` | `-` → `3.4` | pg_lake 3.4; PG16-18; RPM EL9/10 |
+| 2026-07-24 | `pg_lake_table` | `-` → `3.4` | pg_lake 3.4; PG16-18; RPM EL9/10 |
+| 2026-07-24 | `pg_map` | `-` → `3.4` | pg_lake 3.4; PG16-18; RPM EL9/10 |
+| 2026-07-24 | `pg_oidc_validator` | `-` → `0.2` | Percona OIDC; PG18; DEB all, RPM EL10 |
+| 2026-07-24 | `pg_roast` | `-` → `1.0` | PG14-18 |
+| 2026-07-24 | `pg_tiktoken_c` | `-` → `1.1` | PG14-18 |
+| 2026-07-24 | `pgfr_analyze` | `-` → `2.29.2` | pg_flight_recorder; PG15-18 |
+| 2026-07-24 | `pgfr_record` | `-` → `2.29.2` | pg_flight_recorder; PG15-18 |
+| 2026-07-24 | `pgmemento` | `-` → `0.7.4` | SQL-only; PG14-18 |
+| 2026-07-24 | `pgmonitor` | `-` → `2.2.0` | PG14-18 |
+| 2026-07-24 | `pgsqlmock` | `-` → `1.0.1` | PG14-18 |
+| 2026-07-24 | `plx` | `-` → `1.3.1` | PG14-18 |
+| 2026-07-24 | `anon` | `3.1.1` → `3.1.3` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `block_copy_command` | `0.1.5` → `0.1.5` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `convert` | `0.1.0` → `0.1.0` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `etcd_fdw` | `0.0.1` → `0.0.1` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `explain_ui` | `0.0.2` → `0.0.2` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `graph` | `0.1.7` → `0.1.8` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `jsonschema` | `0.1.9` → `0.1.9` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_base58` | `0.0.1` → `0.0.1` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_bestmatch` | `0.0.2` → `0.0.2` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_cardano` | `1.2.0` → `1.2.0` | pgrx 0.19.1; PG15-18 |
+| 2026-07-24 | `pg_command_fw` | `0.1.0` → `0.1.0` | pgrx 0.19.1; PG15-18 |
+| 2026-07-24 | `pg_durable` | `0.2.2` → `0.2.3` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_enigma` | `0.5.0` → `0.5.0` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_eviltransform` | `0.0.2` → `0.0.4` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_graphql` | `1.6.1` → `1.6.1` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_idkit` | `0.4.0` → `0.4.0` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_jsonschema` | `0.3.4` → `0.3.4` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_kazsearch` | `2.2.0` → `2.3.0` | pgrx 0.19.1; PG16-18 |
+| 2026-07-24 | `pg_later` | `0.4.0` → `0.4.0` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_mooncake` | `0.2.0` → `0.2.0` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_parquet` | `0.5.1` → `0.5.1` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_pinyin` | `0.0.4` → `0.0.5` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_polyline` | `0.0.1` → `0.0.1` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_render` | `0.1.3` → `0.1.3` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_rrf` | `0.0.3` → `0.0.3` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_search` | `0.24.0` → `0.24.3` | pgrx 0.19.1; PG15-18 |
+| 2026-07-24 | `pg_session_jwt` | `0.5.0` → `0.5.0` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_smtp_client` | `0.2.1` → `0.2.1` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_strict` | `1.0.5` → `1.0.5` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_summarize` | `0.0.1` → `0.0.1` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_tiktoken` | `0.0.1` → `0.0.1` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_tokenizer` | `0.1.1` → `0.1.1` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pg_trickle` | `0.81.0` → `0.81.0` | pgrx 0.19.1; PG18 |
+| 2026-07-24 | `pg_when` | `0.1.9` → `0.1.9` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pgdd` | `0.6.1` → `0.6.1` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pglinter` | `2.0.0` → `2.0.0` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pglite_fusion` | `0.0.6` → `0.0.6` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pgmqtt` | `0.3.0` → `0.4.1` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pgrdf` | `0.6.4` → `0.6.20` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pgsmcrypto` | `0.1.1` → `0.1.1` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `pgx_ulid` | `0.2.3` → `0.2.3` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `plprql` | `18.0.1` → `18.0.1` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `timescaledb_toolkit` | `1.23.0` → `1.23.0` | pgrx 0.19.1; PG15-18 |
+| 2026-07-24 | `typeid` | `0.3.0` → `0.3.0` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `tzf` | `0.3.0` → `0.3.0` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `vchord` | `1.1.1` → `1.1.1` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `vchord_bm25` | `0.3.0` → `0.3.0` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `vectorize` | `0.26.2` → `0.26.2` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `vectorscale` | `0.9.0` → `0.9.0` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `wrappers` | `0.6.1` → `0.6.2` | pgrx 0.19.1; PG14-18 |
+| 2026-07-24 | `age` | RPM only: `1.7.0` → `1.8.0` | PG18: 1.8.0-rc0; PG17: 1.7.0 |
+| 2026-07-24 | `babelfishpg_tsql` | `5.5.0` → `5.4.0` | Catalog fix: 5.4.0; PG17-18 |
+| 2026-07-24 | `biscuit` | `2.4.1` → `2.4.3` | pkg 2.4.3; SQL 2.4.1; PG16-18 |
+| 2026-07-24 | `decoderbufs` | `3.5.0` → `3.6.0` | DEB 3.6.0; RPM 3.5.0; PG14-18 |
+| 2026-07-24 | `documentdb` | `0.113` → `0.114` | PG15-18; 16 targets |
+| 2026-07-24 | `documentdb_core` | `0.113` → `0.114` | PG15-18; 16 targets |
+| 2026-07-24 | `documentdb_distributed` | `0.113` → `0.114` | PG15-18; 16 targets |
+| 2026-07-24 | `documentdb_extended_rum` | `0.113` → `0.114` | PG15-18; 16 targets |
+| 2026-07-24 | `http` | `1.7.1` → `1.7.2` | PG14-18 |
+| 2026-07-24 | `jdbc_fdw` | `0.4.0` → `0.5.0` | pkg 0.5.0; SQL 1.2; PG14-18; 16 targets |
+| 2026-07-24 | `nominatim_fdw` | `1.3` → `2.0.0` | PG14-18; 16 targets |
+| 2026-07-24 | `odbc_fdw` | `0.5.1` → `0.6.1` | pkg 0.6.1; SQL 0.5.2; PG14-18 |
+| 2026-07-24 | `ogr_fdw` | `1.1.8` → `1.1.9` | PG14-18 |
+| 2026-07-24 | `pg_csv` | RPM only: `1.0.1` → `1.0.2` | +RPM; pkg 1.0.2; SQL 1.0.1; PG14-18 |
+| 2026-07-24 | `pg_dbms_errlog` | `2.2` → `2.4` | PG14-18 |
+| 2026-07-24 | `pg_ivm` | `1.14` → `1.15` | PG14-18 |
+| 2026-07-24 | `pg_net` | `0.20.3` → `0.20.5` | RPM: pkg 0.20.5; SQL 0.20.4; PG14-18; RPM EL10<br>DEB: D12/D13/U24/U26: 0.20.5; U22: 0.9.2 (libcurl); PG14-18 |
+| 2026-07-24 | `pg_rewrite` | RPM only: `2.0.0` → `2.2` | PG14-18 |
+| 2026-07-24 | `pg_statement_rollback` | `1.5` → `1.6` | PG14-18 |
+| 2026-07-24 | `pg_tde` | `2.1` → `2.2` | Percona; PG17-18 |
+| 2026-07-24 | `pgnodemx` | RPM only: `1.7` → `2.0.1` | pkg 2.0.1; SQL 2.0; PG14-18; cgroup-safe |
+| 2026-07-24 | `pgauditlogtofile` | `1.8.4` → `1.8.5` | PG14-18 |
+| 2026-07-24 | `pgbson` | `2.0.2` → `2.0.4` | pkg 2.0.4; SQL 2.0; PG14-18 |
+| 2026-07-24 | `pgclone` | `4.3.2` → `4.4.2` | PG14-18 |
+| 2026-07-24 | `pgextwlist` | `1.19` → `1.20` | PG14-18 |
+| 2026-07-24 | `pgmnemo` | `0.12.1` → `0.13.0` | PG17-18 |
+| 2026-07-24 | `pgmq` | `1.11.1` → `1.12.0` | PG14-18 |
+| 2026-07-24 | `pgsentinel` | `1.4.1` → `1.4.2` | RPM 1.4.2; DEB 1.4.0; U26 1.4.1; PG14-18 |
+| 2026-07-24 | `plpgsql_check` | `2.9.2` → `2.10.1` | PG14-18 |
+| 2026-07-24 | `plproxy` | `2.11.0` → `2.12.0` | PG14-18 |
+| 2026-07-24 | `powa` | `5.1.2` → `5.2.0` | DEB 5.2.0; RPM 5.1.0; PG14-18 |
+| 2026-07-24 | `provsql` | `1.10.0` → `1.11.0` | PG14-18 |
+| 2026-07-24 | `re2` | `0.3.0` → `0.4.1` | PG16-18 |
+| 2026-07-24 | `snowflake` | `2.4` → `2.5.0` | pgEdge; PG15-18 |
+| 2026-07-24 | `spock` | `5.0.6` → `5.0.10` | pgEdge; PG15-18 |
+| 2026-07-24 | `tdigest` | `1.4.3` → `1.4.4` | PG14-18 |
+| 2026-07-24 | `timescaledb` | `2.28.2` → `2.28.3` | PG15-18: 2.28.3; PG14: 2.19.3; 6 EL |
+| 2026-07-24 | `vector` | `0.8.4` → `0.8.5` | PG14-18 |
+| 2026-07-24 | `babelfishpg_money` | `1.1.0` → `1.1.0` | Babelfish: +PG18 |
+| 2026-07-24 | `babelfishpg_tds` | `1.0.0` → `1.0.0` | Babelfish: +PG18 |
+| 2026-07-24 | `citus` | `14.1.0` → `14.1.0` | Citus 13.0.0; EL10 RPM PG14, 2 arch |
+| 2026-07-24 | `dbt2` | `0.61.7` → `0.61.7` | +DEB PG14-18; +EL8 RPM PG17-18, 2 arch |
+| 2026-07-24 | `decoder_raw` | `1.0` → `1.0` | EL10/D13; PG14-16; 2 arch |
+| 2026-07-24 | `faker` | `0.5.3` → `0.5.3` | RPM: +DEB PG14-18<br>DEB: +DEB PG14-18; D12/U22: python3-fake-factory 22.0.0 |
+| 2026-07-24 | `gb18030_2022` | `1.0` → `1.0` | IvorySQL 5.4; PG18; 16 targets |
+| 2026-07-24 | `h3` | `4.2.3` → `4.2.3` | EL8 x86_64 RPM PG17-18 |
+| 2026-07-24 | `hdfs_fdw` | `2.3.3` → `2.3.3` | +DEB PG14-18 |
+| 2026-07-24 | `hstore_pllua` | `2.0.12` → `2.0.12` | +RPM 6 EL PG14-18 |
+| 2026-07-24 | `hstore_plluau` | `2.0.12` → `2.0.12` | +RPM 6 EL PG14-18 |
+| 2026-07-24 | `hunspell_cs_cz` | `1.0` → `1.0` | hunspell bundle; 10 dictionaries; 16 targets; PG14-18 |
+| 2026-07-24 | `hunspell_de_de` | `1.0` → `1.0` | hunspell bundle; 10 dictionaries; 16 targets; PG14-18 |
+| 2026-07-24 | `hunspell_en_us` | `1.0` → `1.0` | hunspell bundle; 10 dictionaries; 16 targets; PG14-18 |
+| 2026-07-24 | `hunspell_fr` | `1.0` → `1.0` | hunspell bundle; 10 dictionaries; 16 targets; PG14-18 |
+| 2026-07-24 | `hunspell_ne_np` | `1.0` → `1.0` | hunspell bundle; 10 dictionaries; 16 targets; PG14-18 |
+| 2026-07-24 | `hunspell_nl_nl` | `1.0` → `1.0` | hunspell bundle; 10 dictionaries; 16 targets; PG14-18 |
+| 2026-07-24 | `hunspell_nn_no` | `1.0` → `1.0` | hunspell bundle; 10 dictionaries; 16 targets; PG14-18 |
+| 2026-07-24 | `hunspell_pt_pt` | `1.0` → `1.0` | 16 targets; pt_pt.stop avoids core conflict |
+| 2026-07-24 | `hunspell_ru_ru` | `1.0` → `1.0` | hunspell bundle; 10 dictionaries; 16 targets; PG14-18 |
+| 2026-07-24 | `hunspell_ru_ru_aot` | `1.0` → `1.0` | hunspell bundle; 10 dictionaries; 16 targets; PG14-18 |
+| 2026-07-24 | `imgsmlr` | `1.0` → `1.0` | EL10/D13; PG14-18; 2 arch |
+| 2026-07-24 | `ivorysql_ora` | `1.0` → `1.0` | IvorySQL 5.4; PG18; 16 targets |
+| 2026-07-24 | `mobilitydb` | `1.3.0` → `1.3.0` | +RPM 6 EL PG14-18; +U22 DEB PG18 |
+| 2026-07-24 | `mobilitydb_datagen` | `1.3.0` → `1.3.0` | mobilitydb bundle; +RPM 6 EL; +U22 DEB PG18 |
+| 2026-07-24 | `omni` | `0.2.14` → `0.2.14` | omnigres 20251108; EL10 PG14-18; EL8/9,D12/U22 PG18 |
+| 2026-07-24 | `ora_btree_gin` | `1.0` → `1.0` | IvorySQL 5.4; PG18; 16 targets |
+| 2026-07-24 | `ora_btree_gist` | `1.0` → `1.0` | IvorySQL 5.4; PG18; 16 targets |
+| 2026-07-24 | `pg_dbms_job` | `2.0` → `2.0` | +DEB PG14-18 |
+| 2026-07-24 | `pg_dbms_lock` | `2.0` → `2.0` | +DEB PG14-18 |
+| 2026-07-24 | `pg_dbms_metadata` | `1.0.0` → `1.0.0` | +DEB PG14-18; +EL8 aarch64 RPM PG15 |
+| 2026-07-24 | `pg_fact_loader` | `2.0.1` → `2.0.1` | U26 DEB PG14-18 |
+| 2026-07-24 | `pg_get_functiondef` | `1.0` → `1.0` | IvorySQL 5.4; PG18; 16 targets |
+| 2026-07-24 | `pg_strom` | `6.1` → `6.1` | pg_strom 3.5; EL10 x86_64 PG14 |
+| 2026-07-24 | `pgautofailover` | `2.2` → `2.2` | 6 EL RPM: +PG18 |
+| 2026-07-24 | `pgbouncer_fdw` | `1.4.0` → `1.4.0` | +DEB PG14-18 |
+| 2026-07-24 | `pg_wait_sampling` | RPM only: `1.1.11` → `1.1.11` | +RPM PG14-18; SQL 1.1 |
+| 2026-07-24 | `pgl_ddl_deploy` | `2.2.1` → `2.2.1` | RPM: +RPM PG14-18; +U26 DEB PG14-17<br>DEB: 10 DEB: +PG18; U26 PG14-17 |
+| 2026-07-24 | `pglogical_ticker` | `1.4.1` → `1.4.1` | 6 EL RPM PG14-17 |
+| 2026-07-24 | `pgmemcache` | `2.3.0` → `2.3.0` | EL8 aarch64 RPM PG14-15 |
+| 2026-07-24 | `pgml` | `2.10.0` → `2.10.0` | EL10/D13/U26; PG14-17; 2 arch |
+| 2026-07-24 | `pgspider_ext` | `1.3.0` → `1.3.0` | RPM: +RPM PG14-18; PG18 compatible<br>DEB: 10 DEB: +PG18; PG15-18 |
+| 2026-07-24 | `plisql` | `1.0` → `1.0` | IvorySQL 5.4; PG18; 16 targets |
+| 2026-07-24 | `pllua` | `2.0.12` → `2.0.12` | 6 EL: +PG18; EL8 aarch64: +PG14-15 |
+| 2026-07-24 | `rdkit` | `202503.6` → `202503.6` | RPM: 202303.3; EL8/9, D12/U22; PG14-18<br>DEB: D12/U22 PG17-18: 202303.3; U26 PG14-17: 202503.6; runtimes unchanged |
+| 2026-07-24 | `sqlite_fdw` | `2.5.0` → `2.5.0` | RPM: RPM r3: +PG18, EL8 SQLite; PG14-18<br>DEB: 10 DEB: +PG18; PG14-18 |
+| 2026-07-24 | `sslutils` | `1.4` → `1.4` | EL8 RPM PG18, 2 arch |
+| 2026-07-24 | `wal2mongo` | `1.0.7` → `1.0.7` | RPM: +RPM PG14-18; PG17-18 compatible<br>DEB: 10 DEB: +PG17-18; PG14-18 |
+| 2026-07-24 | `system_stats` | DEB only: `4.0` → `4.1` | PG14-18; 10 DEB targets |
 {.stretch-last}
 
-**Infrastructure Package Candidates**
+**Infrastructure Package Update Log**
 
-This cycle refreshes object storage, observability, database tools, and agent CLIs in the infrastructure repository. The versions below are draft candidates: a successful build does not establish repository indexing, signing, synchronization, or offline-package acceptance. See the [Infra changelog](/docs/repo/infra/log/) for the complete record.
+The following table contains all 144 Infra log records after v4.4.0, from 2026-07-16 through the latest 2026-08-12 batch. It also includes the `ferretdb2` rebuild and RPM exporter package-name migration recorded in the changelog prose. Consecutive upgrades of the same package are retained as separate batch entries.
 
-| Package                                      | Candidate Version                | Notes                                                        |
-|:---------------------------------------------|:---------------------------------|:-------------------------------------------------------------|
-| `silo` / `mcli`                              | 20260806000000                   | Silo replaces the MinIO package name; local dual-arch artifacts verified |
-| `rustfs`                                     | 1.0.0-rc1                        | Remains in the Infra catalog, but the v4.5 core integration is withdrawn and unsupported |
-| `haproxy`                                    | 3.4.3                            | Pigsty revision aligned with the new systemd unit             |
-| `redis` / `valkey`                           | 7.2.15 / 9.1.1                   | Dual-engine packages and cross-platform builds                |
-| `kafka` / `jmx-exporter` / `kafka-exporter`  | 4.3.1 / 1.6.0 / 1.9.0            | Kafka runtime plus both exporters                             |
-| `grafana` / `victoria-metrics`               | 13.1.3 / 1.149.0                 | Victoria includes main, cluster, and vmutils packages          |
-| `pg-exporter` / `redis-exporter`             | 1.4.1 / 1.89.0                   | Query fix and exporter refresh                                 |
-| `postgrest`                                  | 16.1                             | PostgreSQL 14 is the minimum supported version                 |
-| `k3s` / `k3s-images`                         | 1.36.3                           | Binary plus matching dual-architecture air-gap images          |
-| `seaweedfs` / `pgschema`                     | 4.41 / 1.12.2                    | Storage and schema-management updates                          |
-| `pig` / `sow`                                | 1.6.2 / 0.3.0                    | Extension catalog and local-repository tooling                 |
-| `codex` / `claude` / `opencode`              | 0.147.0 / 2.1.227 / 1.18.16      | Agent CLI refresh                                              |
+Build, download, and verification status follows the wording of the original log; it does not establish repository indexing, signing, synchronization, or offline-bundle acceptance. See the [Infra changelog](/docs/repo/infra/log/) for full context.
+
+| Batch | Package | Old Version | New Version | Notes |
+|:------|:--------|:------------|:------------|:------|
+| 2026-08-12 | `claude` | `2.1.226` | `2.1.227` | Official manifest verified via proxy; dual-arch RPM/DEB built |
+| 2026-08-12 | `code-server` | `4.131.0` | `4.132.0` | Official dual-architecture RPM/DEB downloaded and verified |
+| 2026-08-12 | `grafana-infinity-ds` | `3.11.2` | `3.11.3` | Built as dual-architecture RPM/DEB |
+| 2026-08-12 | `mtail` | `3.4.6` | `3.4.7` | Built as dual-architecture RPM/DEB |
+| 2026-08-12 | `opencode` | `1.18.15` | `1.18.16` | Built as dual-architecture RPM/DEB |
+| 2026-08-12 | `pg-hardstorage` | `1.1.1` | `1.2.1` | Official dual-architecture RPM/DEB downloaded and verified |
+| 2026-08-12 | `pig` | `1.6.1` | `1.8.0` | Official dual-architecture RPM/DEB downloaded and verified |
+| 2026-08-12 | `postgrest` | `16.0` | `16.1` | Static dual-architecture RPM/DEB; requires PostgreSQL 14+ |
+| 2026-08-12 | `redis-exporter` | `1.88.0` | `1.89.0` | Built as dual-architecture RPM/DEB |
+| 2026-08-12 | `sow` | `0.2.0` | `0.3.0` | Official dual-architecture RPM/DEB downloaded and verified |
+| 2026-08-12 | `stalwart` | `0.16.16` | `0.16.17` | Built as dual-architecture RPM/DEB |
+| 2026-08-08 | `claude` | `2.1.223` | `2.1.226` | Official manifest verified via proxy; dual-arch built |
+| 2026-08-08 | `codex` | `0.146.1` | `0.147.0` | Stable tag `rust-v0.147.0`; dual-arch built |
+| 2026-08-08 | `crush` | `0.88.0` | `0.88.1` | Official tarballs repacked as `1PGSTY` with license |
+| 2026-08-08 | `grafana` | `13.1.2` | `13.1.3` | Official dual-architecture RPM/DEB artifacts |
+| 2026-08-08 | `opencode` | `1.18.14` | `1.18.15` | Built as dual-architecture RPM/DEB |
+| 2026-08-08 | `postgrest` | `14.16` | `16.0` | Static dual-architecture assets; requires PostgreSQL 14+ |
+| 2026-08-08 | `rainfrog` | `0.4.2` | `0.4.3` | Built as dual-architecture RPM/DEB |
+| 2026-08-08 | `rustfs` | `1.0.0-b12` | `1.0.0-rc1` | Upstream `rc.1-preview.1`; dual-arch RPM/DEB built |
+| 2026-08-08 | `uv` | `0.12.2` | `0.12.3` | Built as dual-architecture RPM/DEB |
+| 2026-08-07 | `claude` | `2.1.222` | `2.1.223` | Official manifest verified via proxy; built |
+| 2026-08-07 | `codex` | `0.146.0` | `0.146.1` | Stable tag `rust-v0.146.1`; built |
+| 2026-08-07 | `code` | `1.131.0` | `1.132.0` | Official dual-architecture RPM/DEB verified |
+| 2026-08-07 | `dblab` | `0.47.2` | `0.47.4` | Built as dual-architecture RPM/DEB |
+| 2026-08-07 | `grafana-infinity-ds` | `3.11.1` | `3.11.2` | Built as dual-architecture RPM/DEB |
+| 2026-08-07 | `grafana-victorialogs-ds` | `0.30.1` | `0.31.0` | Built as dual-architecture RPM/DEB |
+| 2026-08-07 | `k3s` | `1.36.2` | `1.36.3` | Official stable channel `v1.36.3+k3s1`; built |
+| 2026-08-07 | `k3s-images` | `1.36.2` | `1.36.3` | Exact-match dual-architecture airgap images; built |
+| 2026-08-07 | `mcli` | `20260804000000` | `20260806000000` | Official pgsty fork dual-architecture RPM/DEB verified |
+| 2026-08-07 | `opencode` | `1.18.13` | `1.18.14` | Built as dual-architecture RPM/DEB |
+| 2026-08-07 | `pgschema` | `1.12.1` | `1.12.2` | Official dual-architecture RPM/DEB verified |
+| 2026-08-07 | `seaweedfs` | `4.40` | `4.41` | Built as dual-architecture RPM/DEB |
+| 2026-08-07 | `silo` | `minio 20260804000000` | `20260806000000` | Official replacement; dual-architecture RPM/DEB verified |
+| 2026-08-07 | `uv` | `0.12.1` | `0.12.2` | Built as dual-architecture RPM/DEB |
+| 2026-08-07 | `victoria-metrics` | `1.148.0` | `1.149.0` | Main, cluster, and vmutils packages built for both arches |
+| 2026-08-07 | `ferretdb2` | `2.7.0` | `2.7.0` | Rebuilt at the current version for dual-architecture RPM/DEB |
+| 2026-08-05 | `agentsview` | `0.39.0` | `0.40.1` | Built as dual-architecture RPM/DEB |
+| 2026-08-05 | `claude` | `2.1.220` | `2.1.222` | Official manifest verified via proxy; built |
+| 2026-08-05 | `code-server` | `4.130.0` | `4.131.0` | Official artifacts downloaded and verified |
+| 2026-08-05 | `crush` | `0.87.0` | `0.88.0` | Official links only; redistribution blocked |
+| 2026-08-05 | `grafana` | `13.1.1` | `13.1.2` | Official artifacts verified; security fix |
+| 2026-08-05 | `juicefs` | `1.4.0` | `1.4.1` | Built as dual-architecture RPM/DEB |
+| 2026-08-05 | `mcli` | `20260417000000` | `20260804000000` | pgsty fork artifacts downloaded and verified |
+| 2026-08-05 | `minio` | `20260618000000` | `20260804000000` | pgsty fork artifacts downloaded and verified |
+| 2026-08-05 | `mongodb-exporter` | `0.51.0` | `0.52.0` | Built as dual-architecture RPM/DEB |
+| 2026-08-05 | `mtail` | `3.0.8` | `3.4.6` | Built as dual-architecture RPM/DEB |
+| 2026-08-05 | `nodejs` | `24.18.1` | `24.19.0` | Node.js 24.x LTS; built |
+| 2026-08-05 | `opencode` | `1.18.9` | `1.18.13` | Built as dual-architecture RPM/DEB |
+| 2026-08-05 | `pg-hardstorage` | `1.0.17` | `1.1.1` | Official artifacts downloaded and verified |
+| 2026-08-05 | `pgbackrest-exporter` | `0.23.0` | `0.24.0` | Built as dual-architecture RPM/DEB |
+| 2026-08-05 | `pgstream` | `1.2.5` | `1.3.1` | Built as dual-architecture RPM/DEB |
+| 2026-08-05 | `rclone` | `1.74.4` | `1.75.0` | Official artifacts downloaded and verified |
+| 2026-08-05 | `rustfs` | `1.0.0-b11` | `1.0.0-b12` | Beta line; built as dual-architecture RPM/DEB |
+| 2026-08-05 | `stalwart` | `0.16.15` | `0.16.16` | Built as dual-architecture RPM/DEB |
+| 2026-08-05 | `uv` | `0.12.0` | `0.12.1` | Built as dual-architecture RPM/DEB |
+| 2026-08-05 | `vray` | `5.51.2` | `5.52.0` | Latest stable; built as dual-architecture RPM/DEB |
+| 2026-08-05 | `xray` | `26.3.27` | `26.7.28` | Latest dated release; built as dual-architecture RPM/DEB |
+| 2026-08-05 | `prometheus` | `3.13.1` | `3.13.2` | Security and stability release |
+| 2026-08-05 | `pig` | `1.6.0` | `1.6.1` | Refreshed extension catalog |
+| 2026-07-30 | `agentsview` | `0.38.1` | `0.39.0` |  |
+| 2026-07-30 | `claude` | `2.1.218` | `2.1.220` |  |
+| 2026-07-30 | `cloudflared` | `2026.7.2` | `2026.7.3` |  |
+| 2026-07-30 | `code` | `1.130.0` | `1.131.0` |  |
+| 2026-07-30 | `code-server` | `4.129.0` | `4.130.0` |  |
+| 2026-07-30 | `codex` | `0.145.0` | `0.146.0` | Release tag `rust-v0.146.0` |
+| 2026-07-30 | `crush` | `0.86.0` | `0.87.0` |  |
+| 2026-07-30 | `dblab` | `0.46.0` | `0.47.2` |  |
+| 2026-07-30 | `etcd` | `3.7.0` | `3.7.1` |  |
+| 2026-07-30 | `genai-toolbox` | `1.7.0` | `1.8.0` | Source build; Rocky 8/9 and Debian 12 verified |
+| 2026-07-30 | `headscale` | `0.29.2` | `0.29.3` |  |
+| 2026-07-30 | `nodejs` | `24.18.0` | `24.18.1` | Security release |
+| 2026-07-30 | `opencode` | `1.18.4` | `1.18.9` |  |
+| 2026-07-30 | `pg-exporter` | `1.4.0` | `1.4.1` | Official release artifacts |
+| 2026-07-30 | `pg-hardstorage` | `1.0.13` | `1.0.17` |  |
+| 2026-07-30 | `pgschema` | `1.12.0` | `1.12.1` |  |
+| 2026-07-30 | `pgstream` | `1.2.2` | `1.2.5` |  |
+| 2026-07-30 | `pig` | `1.5.1` | `1.6.0` |  |
+| 2026-07-30 | `postgrest` | `14.15` | `14.16` |  |
+| 2026-07-30 | `rainfrog` | `0.3.20` | `0.4.2` |  |
+| 2026-07-30 | `redis-exporter` | `1.87.0` | `1.88.0` |  |
+| 2026-07-30 | `rustfs` | `1.0.0-beta.10` | `1.0.0-beta.11` | Preview releases excluded |
+| 2026-07-30 | `stalwart` | `0.16.14` | `0.16.15` |  |
+| 2026-07-30 | `uv` | `0.11.31` | `0.12.0` |  |
+| 2026-07-30 | `victoria-traces` | `0.9.4` | `0.10.0` |  |
+| 2026-07-23 | `claude` | `2.1.215` | `2.1.218` | Verified against the official manifest via proxy |
+| 2026-07-23 | `codex` | `0.144.6` | `0.145.0` | Release tag `rust-v0.145.0` |
+| 2026-07-23 | `dblab` | `0.44.1` | `0.46.0` |  |
+| 2026-07-23 | `duckdb` | `1.5.4` | `1.5.5` |  |
+| 2026-07-23 | `grafana-infinity-ds` | `3.8.0` | `3.11.1` |  |
+| 2026-07-23 | `grafana-victorialogs-ds` | `0.30.0` | `0.30.1` |  |
+| 2026-07-23 | `opencode` | `1.18.3` | `1.18.4` |  |
+| 2026-07-23 | `pg-timetable` | `6.3.0` | `7.0.0` | Major release |
+| 2026-07-23 | `pgstream` | `1.2.0` | `1.2.2` |  |
+| 2026-07-23 | `stalwart` | `0.16.13` | `0.16.14` |  |
+| 2026-07-23 | `uv` | `0.11.29` | `0.11.31` |  |
+| 2026-07-23 | `grafana` | `13.1.0` | `13.1.1` | Direct-download artifacts |
+| 2026-07-23 | `pg-hardstorage` | `1.0.12` | `1.0.13` | Direct-download artifacts |
+| 2026-07-23 | `crush` | `0.85.0` | `0.86.0` | Direct-download artifacts |
+| 2026-07-23 | `code` | `1.129.1` | `1.130.0` | Direct-download artifacts |
+| 2026-07-20 | RPM exporter package names | `xxx_exporter` | `xxx-exporter` | Renamed underscore-style RPM packages to hyphenated names to match DEB naming |
+| 2026-07-20 | `pg-exporter` | `1.3.0` | `1.4.0` | Repackaged from the upstream Linux tarball |
+| 2026-07-20 | `victoria-metrics` | `1.147.0` | `1.148.0` | VictoriaMetrics main package |
+| 2026-07-20 | `victoria-metrics-cluster` | `1.147.0` | `1.148.0` | VictoriaMetrics companion package |
+| 2026-07-20 | `vmutils` | `1.147.0` | `1.148.0` | VictoriaMetrics companion package |
+| 2026-07-20 | `victoria-logs` | `1.51.0` | `1.52.0` | VictoriaLogs main package |
+| 2026-07-20 | `vlogscli` | `1.51.0` | `1.52.0` | VictoriaLogs companion package |
+| 2026-07-20 | `vlagent` | `1.51.0` | `1.52.0` | VictoriaLogs companion package |
+| 2026-07-20 | `grafana-victorialogs-ds` | `0.29.0` | `0.30.0` |  |
+| 2026-07-20 | `seaweedfs` | `4.39` | `4.40` |  |
+| 2026-07-20 | `rustfs` | `1.0.0-b9` | `1.0.0-b10` | Prerelease line; preview releases excluded |
+| 2026-07-20 | `sabiql` | `1.14.0` | `1.15.1` |  |
+| 2026-07-20 | `timescaledb-tools` | `0.19.0-1` | `0.19.0-2` | Bundles timescaledb-parallel-copy 0.13.0 |
+| 2026-07-20 | `claude` | `2.1.211` | `2.1.215` | Downloaded through the 8118 proxy and verified |
+| 2026-07-20 | `codex` | `0.144.4` | `0.144.6` | Release tag `rust-v0.144.6` |
+| 2026-07-20 | `genai-toolbox` | `1.6.0` | `1.7.0` | External build from official GCS binary and arm64 container artifact |
+| 2026-07-20 | `opencode` | `1.18.2` | `1.18.3` |  |
+| 2026-07-20 | `pg-hardstorage` | `1.0.10` | `1.0.12` | Direct-download artifacts |
+| 2026-07-20 | `code` | `1.129.0` | `1.129.1` | Direct-download artifacts |
+| 2026-07-20 | `code-server` | `4.128.0` | `4.129.0` | Direct-download artifacts |
+| 2026-07-20 | `pev2` | `1.22.0` | `1.23.0` | Noarch package |
+| 2026-07-20 | `k3s` | `-` | `1.36.2` | Upstream `v1.36.2+k3s1`; amd64 and arm64 |
+| 2026-07-20 | `k3s-images` | `-` | `1.36.2` | Exact-match system image package for both architectures |
+| 2026-07-16 | `jmx-exporter` | `-` | `1.6.0` | New noarch package |
+| 2026-07-16 | `node_exporter` | `1.11.1` | `1.12.1` |  |
+| 2026-07-16 | `redis_exporter` | `1.86.0` | `1.87.0` |  |
+| 2026-07-16 | `etcd` | `3.6.13` | `3.7.0` |  |
+| 2026-07-16 | `dblab` | `0.43.0` | `0.44.1` |  |
+| 2026-07-16 | `pgstream` | `1.1.1` | `1.2.0` |  |
+| 2026-07-16 | `rainfrog` | `0.3.19` | `0.3.20` |  |
+| 2026-07-16 | `rustfs` | `1.0.0-b8` | `1.0.0-b9` | Prerelease line |
+| 2026-07-16 | `agentsview` | `0.37.5` | `0.38.1` |  |
+| 2026-07-16 | `claude` | `2.1.206` | `2.1.211` | Downloaded through the 8118 proxy and verified |
+| 2026-07-16 | `codex` | `0.144.1` | `0.144.4` | Release tag `rust-v0.144.4` |
+| 2026-07-16 | `stalwart` | `0.16.12` | `0.16.13` |  |
+| 2026-07-16 | `npgsqlrest` | `3.20.0` | `3.21.0` |  |
+| 2026-07-16 | `postgrest` | `14.14` | `14.15` |  |
+| 2026-07-16 | `opencode` | `1.17.18` | `1.18.2` |  |
+| 2026-07-16 | `uv` | `0.11.28` | `0.11.29` |  |
+| 2026-07-16 | `vector` | `0.56.0` | `0.57.0` | Direct-download artifacts |
+| 2026-07-16 | `pg-hardstorage` | `1.0.8` | `1.0.10` | Direct-download artifacts |
+| 2026-07-16 | `crush` | `0.84.0` | `0.85.0` | Direct-download artifacts |
+| 2026-07-16 | `code` | `1.128.0` | `1.129.0` | Direct-download artifacts |
+| 2026-07-16 | `code-server` | `4.127.0` | `4.128.0` | Direct-download artifacts |
+| 2026-07-16 | `cloudflared` | `2026.7.1` | `2026.7.2` | Direct-download artifacts |
 {.stretch-last}
 
 **Compatibility Changes and Upgrade Notes**
@@ -185,18 +538,11 @@ This cycle refreshes object storage, observability, database tools, and agent CL
 - New module playbooks require target hosts to define the corresponding `pg_cluster`, `redis_cluster`, `minio_cluster`, `kafka_cluster`, or `mysql_cluster` explicitly. Custom inventories that relied on fixed group names without cluster identity variables must add those identities first.
 - The MINIO role now accepts only `minio_type: silo`; `minio` and `rustfs` fail during identity validation. Silo retains MinIO protocol and on-disk compatibility, but the package, binary, and systemd service names change. Back up existing object storage and validate in-place compatibility and rollback before upgrading; do not treat package replacement as a migration that has already passed acceptance.
 - Valkey remains opt-in. `redis_type: valkey` installs `valkey-server` and `valkey-cli`, while configuration paths, service names, monitoring jobs, and other module-facing interfaces remain under `redis` for compatibility.
-- Pigsty's core REPO/CACHE roles require SOW and use `sow create --pigsty` to generate local repositories. Older offline bundles or local repositories without the current candidate SOW 0.3.0 must first install or refresh it from the Pigsty INFRA repository. `pig repo create` is a separate CLI path whose fallback behavior depends on its own version.
+- Pigsty's core REPO/CACHE roles require SOW and use `sow create --pigsty` to generate local repositories. Older offline bundles or local repositories without SOW 0.3.0 must first install or refresh it from the Pigsty INFRA repository. `pig repo create` is a separate CLI path whose fallback behavior depends on its own version.
+- MySQL `mysql_databases` entries accept only `name`, `encoding`, and `collate`, and databases are created with `DEFAULT ENCRYPTION='N'`. `mysql_parameters` cannot use `loose_`, `skip_`, `disable_`, or `enable_` prefixes to bypass platform-owned, replication, or TLS option protection.
 - Custom RPM repositories and external automation that still reference underscore names such as `node_exporter` or `redis_exporter` must move to the hyphenated `node-exporter` and `redis-exporter` package names.
 - `docker/Makefile` no longer accepts `DATA` to redirect the cleanup target. `make purge` deletes repository-local `./data` immediately without a countdown; preserve any required data first.
 - KAFKA and MYSQL remain pilot modules. Kafka clients must resolve and reach each broker directly rather than putting the data plane behind HAProxy, a VIP, or an L4 load balancer. MySQL currently accepts exactly one or three members.
-
-**Release Freeze Checklist**
-
-- Validate Silo as the sole backend, multiple MINIO clusters, deletion safety boundaries, and the Metrics V3 scrape/alert loop, and complete the MinIO-to-Silo upgrade and rollback matrix.
-- Validate the bootstrap and refresh path for older offline bundles and local repositories that do not include SOW, plus the RPM exporter package-name migration.
-- Complete end-to-end validation of the Grafana Dashboard API v2 importer, MinIO Metrics V3, and the Kafka and MySQL dashboards and alerts.
-- Freeze the site-wide count at 575 packaged extensions, recheck RPM/DEB platform differences such as `pg_readme` and `pg_statviz`, and complete candidate repository indexing, signing, synchronization, and public availability checks.
-- Run final lifecycle, failed-member replacement, and offline-deployment acceptance for Kafka, MySQL, Valkey, and Silo across the standard OS and dual-architecture matrix. RustFS is outside the v4.5 core acceptance scope. CLICK currently includes only ClickHouse repository integration and must not yet be listed as a delivered standalone deployment module.
 
 
 ------

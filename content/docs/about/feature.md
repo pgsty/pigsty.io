@@ -44,7 +44,7 @@ Pigsty is a better local open-source RDS for PostgreSQL alternative:
 
 PostgreSQL integrates ecosystem tools and best practices:
 
-- Out-of-the-box [PostgreSQL](https://www.postgresql.org/) distribution, deeply integrating {{< param pgext_count >}} [extension plugins](/docs/ref/extension) for geospatial, time-series, distributed, graph, vector, search, and AI!
+- Out-of-the-box [PostgreSQL](https://www.postgresql.org/) distribution, deeply integrating {{< param pgext_count >}} [packaged extensions](/ext/list/) for geospatial, time-series, distributed, graph, vector, search, and AI!
 - Runs on bare operating systems without container support, supporting mainstream operating systems: EL 8/9/10, Ubuntu 22.04/24.04/26.04, and Debian 12/13.
 - Based on [patroni](https://patroni.readthedocs.io/en/latest/), [haproxy](http://www.haproxy.org/), and [etcd](https://etcd.io/), creating a self-healing high-availability architecture: automatic failover on hardware failure, seamless traffic switching.
 - Combines [pgBackRest](https://pgbackrest.org/) with optional [Silo object storage](/docs/minio/) to provide out-of-the-box point-in-time recovery (PITR), protecting against software defects and accidental data deletion.
@@ -89,7 +89,7 @@ You can also achieve dedicated OLAP database/data lakehouse analytical performan
 
 Using PostgreSQL as a single component to replace MySQL, Kafka, ElasticSearch, MongoDB, and big data analytics stacks has become a best practice — a single database choice can significantly reduce system complexity, greatly improve development efficiency and agility, achieving remarkable software/hardware and development/operations cost reduction and efficiency improvement.
 
-[![pigsty-ecosystem.jpg](/img/pigsty/ecosystem.jpg)](/docs/ref/extension/)
+[![pigsty-ecosystem.jpg](/img/pigsty/ecosystem.jpg)](/ext/list/)
 
 
 
@@ -110,7 +110,7 @@ Additionally, Pigsty provides PG-compatible / derivative kernel support. You can
 
 Furthermore, you can use [**PostgreSQL Mongo mode**](/docs/conf/mongo/) for MongoDB compatibility, [**`Supabase`**](/docs/pgsql/kernel/supabase) for Firebase compatibility, and [**`PolarDB`**](/docs/pgsql/kernel/polardb) to meet domestic compliance requirements.
 Message queues are covered by the [**`KAFKA`**](/docs/kafka/) module, which deploys Kafka 4.x dynamic KRaft clusters.
-More professional/pilot modules will be continuously introduced to Pigsty, such as [**`GPSQL`**](/docs/pgsql/kernel/greenplum), [DUCKDB](/docs/pilot/duckdb/), [TIGERBEETLE](/docs/pilot/tigerbeetle/), [KUBERNETES](/docs/pilot/kube/), [CONSUL](/docs/pilot/consul/), [GREENPLUM](/docs/pgsql/kernel/greenplum/), [CLOUDBERRY](/docs/pgsql/kernel/cloudberry/), [MYSQL](/docs/pilot/mysql/), ...
+More professional/pilot modules will be continuously introduced to Pigsty, such as [**`GPSQL`**](/docs/pgsql/kernel/greenplum), [DUCKDB](/docs/pilot/duckdb/), [TIGERBEETLE](/docs/pilot/tigerbeetle/), [KUBERNETES](/docs/pilot/kube/), [CONSUL](/docs/pilot/consul/), [GREENPLUM](/docs/pgsql/kernel/greenplum/), [CLOUDBERRY](/docs/pgsql/kernel/cloudberry/), [MYSQL](/docs/mysql/), ...
 
 [![pigsty-sandbox.jpg](/img/pigsty/sandbox.png)](/docs/ref/module/)
 
