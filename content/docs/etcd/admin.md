@@ -42,9 +42,8 @@ Run [`etcd.yml`](/docs/etcd/playbook#etcdyml) playbook:
 ./etcd.yml  # initialize etcd cluster
 ```
 
-{{% alert title="Architecture Change: Pigsty v3.6+" color="info" %}}
-Since v3.6, `etcd.yml` focuses on cluster install and member addition—no longer includes removal. Use dedicated `etcd-rm.yml` for all removals.
-{{% /alert %}}
+> [!NOTE] Architecture Change: Pigsty v3.6+
+> Since v3.6, `etcd.yml` focuses on cluster install and member addition—no longer includes removal. Use dedicated `etcd-rm.yml` for all removals.
 
 For prod etcd clusters, enable safeguard [`etcd_safeguard`](/docs/etcd/param#etcd_safeguard) to prevent accidental deletion.
 
@@ -69,9 +68,8 @@ bin/etcd-rm                           # remove entire etcd cluster
 
 The removal playbook respects [`etcd_safeguard`](/docs/etcd/param#etcd_safeguard). If `true`, it aborts before leaving the cluster, deregistering, stopping the service, or deleting files. Its default is `false`, so the absence of an explicit override is not itself a confirmation.
 
-{{% alert title="Warning" color="warning" %}}
-Before removing etcd cluster, ensure no PG clusters use it as DCS. PG HA will break otherwise.
-{{% /alert %}}
+> [!WARNING] Warning
+> Before removing etcd cluster, ensure no PG clusters use it as DCS. PG HA will break otherwise.
 
 
 
@@ -187,9 +185,8 @@ ansible all -f 1 -b -a 'systemctl reload patroni' # reload patroni config
 ansible all -f 1 -b -a 'systemctl restart vip-manager' # restart vip-manager
 ```
 
-{{% alert title="Tip" color="info" %}}
-Using `bin/etcd-add` / `bin/etcd-rm` utility scripts? Scripts prompt config refresh commands after completion.
-{{% /alert %}}
+> [!NOTE] Tip
+> Using `bin/etcd-add` / `bin/etcd-rm` utility scripts? Scripts prompt config refresh commands after completion.
 
 
 
@@ -233,71 +230,68 @@ Add new member to existing etcd cluster:
 etcdctl member promote <new_ins_server_id>
 ```
 
-{{% alert title="Important" color="warning" %}}
-When adding new members, must use `etcd_init=existing` parameter. New instance will create new cluster instead of joining existing one otherwise.
-{{% /alert %}}
+> [!WARNING] Important
+> When adding new members, must use `etcd_init=existing` parameter. New instance will create new cluster instead of joining existing one otherwise.
 
-<details><summary>Detailed: Add member to etcd cluster</summary>
-
-Detailed steps. Start from single-instance etcd cluster:
-
-```yaml
-etcd:
-  hosts:
-    10.10.10.10: { etcd_seq: 1 } # <--- only existing instance in cluster
-    10.10.10.11: { etcd_seq: 2 } # <--- add this new member to inventory
-  vars: { etcd_cluster: etcd }
-```
-
-Add new member using utility script (recommended):
-
-```bash
-$ bin/etcd-add 10.10.10.11
-```
-
-Or manual. First use `etcdctl member add` to announce new learner instance `etcd-2` to existing etcd cluster:
-
-```bash
-$ etcdctl member add etcd-2 --learner=true --peer-urls=https://10.10.10.11:2380
-Member 33631ba6ced84cf8 added to cluster 6646fbcf5debc68f
-
-ETCD_NAME="etcd-2"
-ETCD_INITIAL_CLUSTER="etcd-2=https://10.10.10.11:2380,etcd-1=https://10.10.10.10:2380"
-ETCD_INITIAL_ADVERTISE_PEER_URLS="https://10.10.10.11:2380"
-ETCD_INITIAL_CLUSTER_STATE="existing"
-```
-
-Check member list with `etcdctl member list` (or `em list`), see `unstarted` new member:
-
-```bash
-33631ba6ced84cf8, unstarted, , https://10.10.10.11:2380, , true       # unstarted new member here
-429ee12c7fbab5c1, started, etcd-1, https://10.10.10.10:2380, https://10.10.10.10:2379, false
-```
-
-Next, use `etcd.yml` playbook to initialize new etcd instance `etcd-2`. After completion, new member has started:
-
-```bash
-$ ./etcd.yml -l 10.10.10.11 -e etcd_init=existing    # must add existing parameter
-...
-33631ba6ced84cf8, started, etcd-2, https://10.10.10.11:2380, https://10.10.10.11:2379, true
-429ee12c7fbab5c1, started, etcd-1, https://10.10.10.10:2380, https://10.10.10.10:2379, false
-```
-
-After new member initialized and running stably, promote from learner to follower:
-
-```bash
-$ etcdctl member promote 33631ba6ced84cf8   # promote learner to follower
-Member 33631ba6ced84cf8 promoted in cluster 6646fbcf5debc68f
-
-$ em list                # check again, new member promoted to full member
-33631ba6ced84cf8, started, etcd-2, https://10.10.10.11:2380, https://10.10.10.11:2379, false
-429ee12c7fbab5c1, started, etcd-1, https://10.10.10.10:2380, https://10.10.10.10:2379, false
-```
-
-New member added. Don't forget to [reload config](#reload-config) so all clients know new member.
-
-Repeat steps to add more members. Prod environments need at least 3 members.
-</details>
+> [!DETAILS]- Detailed: Add member to etcd cluster
+> Detailed steps. Start from single-instance etcd cluster:
+>
+> ```yaml
+> etcd:
+>   hosts:
+>     10.10.10.10: { etcd_seq: 1 } # <--- only existing instance in cluster
+>     10.10.10.11: { etcd_seq: 2 } # <--- add this new member to inventory
+>   vars: { etcd_cluster: etcd }
+> ```
+>
+> Add new member using utility script (recommended):
+>
+> ```bash
+> $ bin/etcd-add 10.10.10.11
+> ```
+>
+> Or manual. First use `etcdctl member add` to announce new learner instance `etcd-2` to existing etcd cluster:
+>
+> ```bash
+> $ etcdctl member add etcd-2 --learner=true --peer-urls=https://10.10.10.11:2380
+> Member 33631ba6ced84cf8 added to cluster 6646fbcf5debc68f
+>
+> ETCD_NAME="etcd-2"
+> ETCD_INITIAL_CLUSTER="etcd-2=https://10.10.10.11:2380,etcd-1=https://10.10.10.10:2380"
+> ETCD_INITIAL_ADVERTISE_PEER_URLS="https://10.10.10.11:2380"
+> ETCD_INITIAL_CLUSTER_STATE="existing"
+> ```
+>
+> Check member list with `etcdctl member list` (or `em list`), see `unstarted` new member:
+>
+> ```bash
+> 33631ba6ced84cf8, unstarted, , https://10.10.10.11:2380, , true       # unstarted new member here
+> 429ee12c7fbab5c1, started, etcd-1, https://10.10.10.10:2380, https://10.10.10.10:2379, false
+> ```
+>
+> Next, use `etcd.yml` playbook to initialize new etcd instance `etcd-2`. After completion, new member has started:
+>
+> ```bash
+> $ ./etcd.yml -l 10.10.10.11 -e etcd_init=existing    # must add existing parameter
+> ...
+> 33631ba6ced84cf8, started, etcd-2, https://10.10.10.11:2380, https://10.10.10.11:2379, true
+> 429ee12c7fbab5c1, started, etcd-1, https://10.10.10.10:2380, https://10.10.10.10:2379, false
+> ```
+>
+> After new member initialized and running stably, promote from learner to follower:
+>
+> ```bash
+> $ etcdctl member promote 33631ba6ced84cf8   # promote learner to follower
+> Member 33631ba6ced84cf8 promoted in cluster 6646fbcf5debc68f
+>
+> $ em list                # check again, new member promoted to full member
+> 33631ba6ced84cf8, started, etcd-2, https://10.10.10.11:2380, https://10.10.10.11:2379, false
+> 429ee12c7fbab5c1, started, etcd-1, https://10.10.10.10:2380, https://10.10.10.10:2379, false
+> ```
+>
+> New member added. Don't forget to [reload config](#reload-config) so all clients know new member.
+>
+> Repeat steps to add more members. Prod environments need at least 3 members.
 
 
 
@@ -341,50 +335,48 @@ Remove member instance from etcd cluster:
 Do not delete the target from the inventory before running the removal playbook. The `hosts: etcd` scope in `etcd-rm.yml` would no longer select it, and the playbook could not derive the instance identity or cluster endpoints from inventory.
 There is also no need to repeat `etcdctl member remove` before or after the playbook.
 
-<details><summary>Detailed: Remove member from etcd cluster</summary>
-
-Example: 3-node etcd cluster, remove instance 3.
-
-**Method 1: Utility script (recommended)**
-
-```bash
-$ bin/etcd-rm 10.10.10.12
-```
-
-The script attempts to remove the member, stop the service, and clean up data. Afterwards, still inspect the member list, quorum, and target files as described above.
-
-**Method 2: Manual**
-
-First keep the member to be removed in the inventory, then run the removal playbook:
-
-```bash
-$ ./etcd-rm.yml -l 10.10.10.12
-```
-
-The playbook attempts these operations in order:
-1. Get member list, find corresponding member ID
-2. Execute `etcdctl member remove` to kick from cluster
-3. Stop etcd service
-4. Clean up data and config files
-
-The playbook queries the member ID and runs `member remove` automatically. Do this manually only when troubleshooting:
-
-```bash
-$ etcdctl member list
-429ee12c7fbab5c1, started, etcd-1, https://10.10.10.10:2380, https://10.10.10.10:2379, false
-33631ba6ced84cf8, started, etcd-2, https://10.10.10.11:2380, https://10.10.10.11:2379, false
-93fcf23b220473fb, started, etcd-3, https://10.10.10.12:2380, https://10.10.10.12:2379, false  # <--- remove this
-
-$ etcdctl member remove 93fcf23b220473fb # kick from cluster
-Member 93fcf23b220473fb removed from cluster 6646fbcf5debc68f
-```
-
-After a manual member removal, run `./etcd-rm.yml -l 10.10.10.12` while the target remains in inventory to stop, deregister, and clean it up. Its leave step skips a member that has already been removed.
-
-Only after confirming that the member has left the live cluster, the remaining members retain quorum, and the target service and files match expectations should you delete `10.10.10.12` from the inventory. Then follow [Reload Config](#reload-config) to refresh the remaining Etcd members and all client references.
-
-Repeat to remove more members. Combined with [Add Member](#add-member), perform rolling upgrades and migrations of etcd cluster.
-</details>
+> [!DETAILS]- Detailed: Remove member from etcd cluster
+> Example: 3-node etcd cluster, remove instance 3.
+>
+> **Method 1: Utility script (recommended)**
+>
+> ```bash
+> $ bin/etcd-rm 10.10.10.12
+> ```
+>
+> The script attempts to remove the member, stop the service, and clean up data. Afterwards, still inspect the member list, quorum, and target files as described above.
+>
+> **Method 2: Manual**
+>
+> First keep the member to be removed in the inventory, then run the removal playbook:
+>
+> ```bash
+> $ ./etcd-rm.yml -l 10.10.10.12
+> ```
+>
+> The playbook attempts these operations in order:
+> 1. Get member list, find corresponding member ID
+> 2. Execute `etcdctl member remove` to kick from cluster
+> 3. Stop etcd service
+> 4. Clean up data and config files
+>
+> The playbook queries the member ID and runs `member remove` automatically. Do this manually only when troubleshooting:
+>
+> ```bash
+> $ etcdctl member list
+> 429ee12c7fbab5c1, started, etcd-1, https://10.10.10.10:2380, https://10.10.10.10:2379, false
+> 33631ba6ced84cf8, started, etcd-2, https://10.10.10.11:2380, https://10.10.10.11:2379, false
+> 93fcf23b220473fb, started, etcd-3, https://10.10.10.12:2380, https://10.10.10.12:2379, false  # <--- remove this
+>
+> $ etcdctl member remove 93fcf23b220473fb # kick from cluster
+> Member 93fcf23b220473fb removed from cluster 6646fbcf5debc68f
+> ```
+>
+> After a manual member removal, run `./etcd-rm.yml -l 10.10.10.12` while the target remains in inventory to stop, deregister, and clean it up. Its leave step skips a member that has already been removed.
+>
+> Only after confirming that the member has left the live cluster, the remaining members retain quorum, and the target service and files match expectations should you delete `10.10.10.12` from the inventory. Then follow [Reload Config](#reload-config) to refresh the remaining Etcd members and all client references.
+>
+> Repeat to remove more members. Combined with [Add Member](#add-member), perform rolling upgrades and migrations of etcd cluster.
 
 
 

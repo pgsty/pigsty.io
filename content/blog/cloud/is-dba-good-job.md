@@ -1,7 +1,7 @@
 ---
 title: Is DBA Still a Good Job?
 date: 2022-05-10
-manualLink: "https://vonng.com/en/cloud/is-dba-good-job/"
+manual_link: "https://vonng.com/en/cloud/is-dba-good-job/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat Official Account](https://mp.weixin.qq.com/s/Py3o31w3db5E9FsviAZeCA) | [Zhihu](https://zhuanlan.zhihu.com/p/519075926)
 

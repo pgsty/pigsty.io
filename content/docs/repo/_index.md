@@ -40,20 +40,15 @@ Together, they can provide [{{< param pgext_count >}} packaged PostgreSQL extens
 
 You can enable the pigsty [infra](/docs/repo/infra/) & [pgsql](/docs/repo/pgsql/) repo with the [pig](/docs/pig/) CLI tool:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Default" %}}
-```bash
+```bash {tab="Default" group="default-mirror" value="default"}
 curl https://repo.pigsty.io/pig | bash      # download and install the pig CLI tool
 pig repo add all -u                         # add linux, pgdg, pigsty repo and update cache
 ```
-{{% /tab %}}
-{{% tab header="Mirror" %}}
-```bash
+
+```bash {tab="Mirror" value="mirror"}
 curl https://repo.pigsty.cc/pig | bash      # download from mirror site
 pig repo add -u                             # add linux, pgdg, pigsty repo and update cache
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 ---------
@@ -62,9 +57,7 @@ pig repo add -u                             # add linux, pgdg, pigsty repo and u
 
 You can also add these repos to your system [manually](#manual-install) with the default `apt`, `dnf`, `yum` approach.
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="APT" %}}
-```bash
+```bash {tab="APT" group="apt-yum" value="apt"}
 # Add Pigsty's GPG public key to your system keychain to verify package signatures
 curl -fsSL https://repo.pigsty.io/key | sudo gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg
 
@@ -78,9 +71,8 @@ EOF
 # Refresh APT repository cache
 sudo apt update
 ```
-{{% /tab %}}
-{{% tab header="YUM" %}}
-```bash
+
+```bash {tab="YUM" value="yum"}
 # Add Pigsty's GPG public key to your system keychain to verify package signatures
 curl -fsSL https://repo.pigsty.io/key | sudo tee /etc/pki/rpm-gpg/RPM-GPG-KEY-pigsty >/dev/null
 
@@ -110,8 +102,6 @@ EOF
 # Refresh YUM/DNF repository cache
 sudo yum makecache;
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 All the RPM / DEB packages are signed with [GPG Key](/docs/repo/gpg/) fingerprint (`B9BD8B20`) in Pigsty repository.
 

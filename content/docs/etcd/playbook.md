@@ -10,9 +10,8 @@ categories: [Task]
 
 The ETCD module provides two core playbooks: [`etcd.yml`](#etcdyml) for installing and configuring etcd clusters, and [`etcd-rm.yml`](#etcd-rmyml) for removing etcd clusters or members.
 
-{{% alert title="Architecture Change: Pigsty v3.6+" color="info" %}}
-Since Pigsty v3.6, the `etcd.yml` playbook focuses on cluster installation and member addition. All removal operations have been moved to the dedicated `etcd-rm.yml` playbook using the `etcd_remove` role.
-{{% /alert %}}
+> [!NOTE] Architecture Change: Pigsty v3.6+
+> Since Pigsty v3.6, the `etcd.yml` playbook focuses on cluster installation and member addition. All removal operations have been moved to the dedicated `etcd-rm.yml` playbook using the `etcd_remove` role.
 
 
 --------
@@ -60,10 +59,9 @@ The removal playbook uses the [`etcd_remove`](https://github.com/pgsty/pigsty/bl
 - [`etcd_rm_data`](/docs/etcd/param#etcd_rm_data): Controls whether ETCD data is deleted (default: `true`)
 - [`etcd_rm_pkg`](/docs/etcd/param#etcd_rm_pkg): Controls whether ETCD packages are uninstalled (default: `false`)
 
-{{% alert title="Dangerous Operation" color="danger" %}}
-`etcd_safeguard` defaults to `false`, while `etcd_rm_data` defaults to `true`. A full `etcd-rm.yml` run therefore attempts to remove the target from the cluster, deregister and stop it, then delete local Etcd data, configuration, unit files, and the client environment file.
-The playbook ignores some leave and cleanup errors and does not prove that the remaining members retain quorum. Always use an exact `-l`, and verify a recent backup, the member list, and remaining quorum.
-{{% /alert %}}
+> [!CAUTION] Dangerous Operation
+> `etcd_safeguard` defaults to `false`, while `etcd_rm_data` defaults to `true`. A full `etcd-rm.yml` run therefore attempts to remove the target from the cluster, deregister and stop it, then delete local Etcd data, configuration, unit files, and the client environment file.
+> The playbook ignores some leave and cleanup errors and does not prove that the remaining members retain quorum. Always use an exact `-l`, and verify a recent backup, the member list, and remaining quorum.
 
 
 

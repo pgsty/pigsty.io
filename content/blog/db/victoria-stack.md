@@ -2,7 +2,7 @@
 title: "Victoria: The Observability Stack That Slaps the Industry"
 linkTitle: "Victoria: Observability Stack Arrives"
 date: 2025-12-17
-manualLink: "https://vonng.com/en/db/victoria-stack/"
+manual_link: "https://vonng.com/en/db/victoria-stack/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/RLN0DMzfvSibkGgq2VRcoQ)
 

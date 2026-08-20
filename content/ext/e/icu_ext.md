@@ -347,40 +347,33 @@ pig repo add pgdg -u          # Add PGDG repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Install" %}}
-```bash
+```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
 pig install icu_ext;          # Install for current active PG version
 ```
-{{% /tab %}}
-{{% tab header="pig" %}}
-```bash
+
+```bash {tab="pig" value="pig"}
 pig ext install -y icu_ext -v 18  # PG 18
 pig ext install -y icu_ext -v 17  # PG 17
 pig ext install -y icu_ext -v 16  # PG 16
 pig ext install -y icu_ext -v 15  # PG 15
 pig ext install -y icu_ext -v 14  # PG 14
 ```
-{{% /tab %}}
-{{% tab header="dnf" %}}
-```bash
+
+```bash {tab="dnf" value="dnf"}
 dnf install -y icu_ext_18       # PG 18
 dnf install -y icu_ext_17       # PG 17
 dnf install -y icu_ext_16       # PG 16
 dnf install -y icu_ext_15       # PG 15
 dnf install -y icu_ext_14       # PG 14
 ```
-{{% /tab %}}
-{{% tab header="apt" %}}
-```bash
+
+```bash {tab="apt" value="apt"}
 apt install -y postgresql-18-icu-ext   # PG 18
 apt install -y postgresql-17-icu-ext   # PG 17
 apt install -y postgresql-16-icu-ext   # PG 16
 apt install -y postgresql-15-icu-ext   # PG 15
 apt install -y postgresql-14-icu-ext   # PG 14
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Create Extension**:

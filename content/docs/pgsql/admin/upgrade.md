@@ -19,31 +19,25 @@ PostgreSQL version upgrades fall into two types: **minor version upgrade** and *
 {.full-width}
 
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Minor" %}}
-```bash
+```bash {tab="Minor" group="minor-major-extension" value="minor"}
 # Rolling upgrade: replicas first, then primary
 ansible <cls> -b -a 'yum upgrade -y postgresql17*'
 pg restart --role replica --force <cls>
 pg switchover <cls>
 pg restart <cls> <old-primary> --force
 ```
-{{% /tab %}}
-{{% tab header="Major" %}}
-```bash
+
+```bash {tab="Major" value="major"}
 # Recommended: Logical replication migration
 bin/pgsql-add pg-new              # Create new version cluster
 # Configure logical replication to sync data...
 # Switch traffic to new cluster
 ```
-{{% /tab %}}
-{{% tab header="Extension" %}}
-```bash
+
+```bash {tab="Extension" value="extension"}
 ansible <cls> -b -a 'yum upgrade -y postgis36_17*'
 psql -c 'ALTER EXTENSION postgis UPDATE;'
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 For detailed online migration process, see [**Online Migration**](/docs/pgsql/migration) documentation.
 
@@ -73,46 +67,35 @@ Minor version upgrades (e.g., 17.2 → 17.3) are the most common upgrade scenari
 
 Ensure local repo has latest PostgreSQL packages and refresh node cache:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Repo" %}}
-```bash
+```bash {tab="Repo" group="repo-el-debian" value="repo"}
 cd ~/pigsty
 ./infra.yml -t repo_upstream      # Add upstream repos (needs internet)
 ./infra.yml -t repo_build         # Rebuild local repo
 ```
-{{% /tab %}}
-{{% tab header="EL" %}}
-```bash
+
+```bash {tab="EL" value="el"}
 ansible <cls> -b -a 'yum clean all'
 ansible <cls> -b -a 'yum makecache'
 ```
-{{% /tab %}}
-{{% tab header="Debian" %}}
-```bash
+
+```bash {tab="Debian" value="debian"}
 ansible <cls> -b -a 'apt clean'
 ansible <cls> -b -a 'apt update'
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 **Step 2: Upgrade replicas**
 
 Upgrade packages on all replicas and verify version:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="EL" %}}
-```bash
+```bash {tab="EL" group="el-debian" value="el"}
 ansible <cls> -b -a 'yum upgrade -y postgresql17*'
 ansible <cls> -b -a '/usr/pgsql/bin/pg_ctl --version'
 ```
-{{% /tab %}}
-{{% tab header="Debian" %}}
-```bash
+
+```bash {tab="Debian" value="debian"}
 ansible <cls> -b -a 'apt install -y postgresql-17'
 ansible <cls> -b -a '/usr/lib/postgresql/17/bin/pg_ctl --version'
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 Restart all replicas to apply new version:
 
@@ -134,18 +117,13 @@ pg switchover --leader <old-primary> --candidate <new-primary> --scheduled=now -
 
 Original primary is now replica - upgrade packages and restart:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="EL" %}}
-```bash
+```bash {tab="EL" group="el-debian" value="el"}
 ansible <old-primary-ip> -b -a 'yum upgrade -y postgresql17*'
 ```
-{{% /tab %}}
-{{% tab header="Debian" %}}
-```bash
+
+```bash {tab="Debian" value="debian"}
 ansible <old-primary-ip> -b -a 'apt install -y postgresql-17'
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 ```bash
 pg restart <cls> <old-primary-name> --force
@@ -169,36 +147,26 @@ In rare cases (e.g., new version introduces bugs), may need to downgrade Postgre
 
 **Step 1: Get old version packages**
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="EL" %}}
-```bash
+```bash {tab="EL" group="el-refresh-cache" value="el"}
 cd ~/pigsty; ./infra.yml -t repo_upstream     # Add upstream repos
 cd /www/pigsty; repotrack postgresql17-*-17.1 # Download specific version packages
 cd ~/pigsty; ./infra.yml -t repo_create       # Rebuild repo metadata
 ```
-{{% /tab %}}
-{{% tab header="Refresh Cache" %}}
-```bash
+
+```bash {tab="Refresh Cache" value="refresh-cache"}
 ansible <cls> -b -a 'yum clean all'
 ansible <cls> -b -a 'yum makecache'
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 **Step 2: Execute downgrade**
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="EL" %}}
-```bash
+```bash {tab="EL" group="el-debian" value="el"}
 ansible <cls> -b -a 'yum downgrade -y postgresql17*'
 ```
-{{% /tab %}}
-{{% tab header="Debian" %}}
-```bash
+
+```bash {tab="Debian" value="debian"}
 ansible <cls> -b -a 'apt install -y postgresql-17=17.1*'
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 **Step 3: Restart cluster**
 
@@ -219,9 +187,8 @@ Major version upgrades (e.g., 17 → 18) involve data format changes, requiring 
 | [**pg_upgrade In-Place Upgrade**](#pg_upgrade-in-place-upgrade) | Minutes~Hours | Medium     | Test env, smaller data        |
 {.full-width}
 
-{{% alert title="Recommended Approach" color="success" %}}
-For production, we recommend **logical replication migration**: create new version cluster, sync data via logical replication, then blue-green switch. Shortest downtime and rollback-ready. See [**Online Migration**](/docs/pgsql/migration).
-{{% /alert %}}
+> [!TIP] Recommended Approach
+> For production, we recommend **logical replication migration**: create new version cluster, sync data via logical replication, then blue-green switch. Shortest downtime and rollback-ready. See [**Online Migration**](/docs/pgsql/migration).
 
 
 ### Logical Replication Migration
@@ -286,9 +253,8 @@ For detailed migration process, see [**Online Migration**](/docs/pgsql/migration
 
 `pg_upgrade` is PostgreSQL's official major version upgrade tool, suitable for test environments or scenarios accepting longer downtime.
 
-{{% alert title="Important Warning" color="warning" %}}
-In-place upgrade causes longer downtime and is difficult to rollback. For production, prefer logical replication migration.
-{{% /alert %}}
+> [!WARNING] Important Warning
+> In-place upgrade causes longer downtime and is difficult to rollback. For production, prefer logical replication migration.
 
 **Step 1: Install new version packages**
 
@@ -350,18 +316,13 @@ When upgrading PostgreSQL version, typically also need to upgrade related extens
 
 **Upgrade extension packages**
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="EL" %}}
-```bash
+```bash {tab="EL" group="el-debian" value="el"}
 ansible <cls> -b -a 'yum upgrade -y postgis36_17 timescaledb-2-postgresql-17* pgvector_17*'
 ```
-{{% /tab %}}
-{{% tab header="Debian" %}}
-```bash
+
+```bash {tab="Debian" value="debian"}
 ansible <cls> -b -a 'apt install -y postgresql-17-postgis-3 postgresql-17-pgvector'
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 **Upgrade extension objects**
 
@@ -381,9 +342,8 @@ ALTER EXTENSION vector UPDATE;
 SELECT extname, extversion FROM pg_extension;
 ```
 
-{{% alert title="Extension Compatibility" color="warning" %}}
-Before major version upgrade, confirm all extensions support target PostgreSQL version. Some extensions may require uninstall/reinstall - check extension documentation.
-{{% /alert %}}
+> [!WARNING] Extension Compatibility
+> Before major version upgrade, confirm all extensions support target PostgreSQL version. Some extensions may require uninstall/reinstall - check extension documentation.
 
 
 ----------------

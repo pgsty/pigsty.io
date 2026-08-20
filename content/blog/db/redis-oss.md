@@ -2,7 +2,7 @@
 title: "Redis Going Non-Open-Source is a Disgrace to \"Open-Source\" and Public Cloud"
 linkTitle: Redis Non-Open-Source is a Disgrace
 date: 2024-03-25
-manualLink: "https://vonng.com/en/db/redis-oss/"
+manual_link: "https://vonng.com/en/db/redis-oss/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/W5kOLxeJCIHjnWbIHc1Pzw)
 

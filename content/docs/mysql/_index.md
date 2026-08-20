@@ -10,11 +10,10 @@ aliases: [/docs/pilot/mysql]
 
 [MySQL](https://www.mysql.com/) is one of the world's most popular open-source relational databases. Pigsty's **MYSQL** module deploys a fixed, **native MySQL 8.4 LTS platform** on managed nodes: either a standalone instance or a three-node single-primary InnoDB Cluster built on Group Replication, with TLS, backups, monitoring, and lifecycle handled for you.
 
-{{% alert title="Current status: Pilot module" color="info" %}}
-MYSQL is a supplementary pilot module. It aims to be a simple, inexpensive, good-enough MySQL cluster — not a peer of the PGSQL module.
-The core capabilities (deployment and convergence, HA failover, daily backups, monitoring and alerting) have been tested systematically;
-destructive procedures such as complete-outage recovery and physical restore are deliberately kept manual, with runbooks provided in [Administration](/docs/mysql/admin).
-{{% /alert %}}
+> [!NOTE] Current status: Pilot module
+> MYSQL is a supplementary pilot module. It aims to be a simple, inexpensive, good-enough MySQL cluster — not a peer of the PGSQL module.
+> The core capabilities (deployment and convergence, HA failover, daily backups, monitoring and alerting) have been tested systematically;
+> destructive procedures such as complete-outage recovery and physical restore are deliberately kept manual, with runbooks provided in [Administration](/docs/mysql/admin).
 
 
 --------

@@ -17,12 +17,11 @@ Pigsty provides three restore entry points. They share the [same parameter seman
 
 For a hands-on sandbox drill, see [Manual Recovery](/docs/pgsql/tutorial/pitr). To recover into another cluster without changing production, see [Clone a PG Cluster](/docs/pgsql/backup/cluster/).
 
-{{% alert color="danger" title="PITR overwrites the target cluster" %}}
-`pgsql-pitr.yml` pauses HA, stops Patroni/PostgreSQL, overwrites the target data directory with `pgbackrest --force restore`,
-then deletes the target cluster's etcd prefix and rebuilds HA. It prints a plan but **does not wait for confirmation**.
-Before any real restore, inspect the topology with `pig pg list <target-cluster>`, verify a recent usable backup and recovery window with `pig pb info`,
-and have the operator state and confirm the exact target cluster and recovery point. Schedule a maintenance window and retain an independently verified backup for production recovery.
-{{% /alert %}}
+> [!CAUTION] PITR overwrites the target cluster
+> `pgsql-pitr.yml` pauses HA, stops Patroni/PostgreSQL, overwrites the target data directory with `pgbackrest --force restore`,
+> then deletes the target cluster's etcd prefix and rebuilds HA. It prints a plan but **does not wait for confirmation**.
+> Before any real restore, inspect the topology with `pig pg list <target-cluster>`, verify a recent usable backup and recovery window with `pig pb info`,
+> and have the operator state and confirm the exact target cluster and recovery point. Schedule a maintenance window and retain an independently verified backup for production recovery.
 
 
 --------
@@ -53,10 +52,9 @@ You can pass the same object temporarily on the command line:
 ./pgsql-pitr.yml -l pg-meta -e '{"pg_pitr": { "time": "2025-07-13 10:00:00+00", "action": "promote" }}'
 ```
 
-{{% alert color="info" title="Use valid JSON for command-line variables" %}}
-The `-e` value must be valid JSON: quote keys and string values, for example `{"pg_pitr": {"time": "...", "archive": true}}`.
-Booleans are not quoted. Invalid quoting can fail parsing or silently produce the wrong value.
-{{% /alert %}}
+> [!NOTE] Use valid JSON for command-line variables
+> The `-e` value must be valid JSON: quote keys and string values, for example `{"pg_pitr": {"time": "...", "archive": true}}`.
+> Booleans are not quoted. Invalid quoting can fail parsing or silently produce the wrong value.
 
 The playbook pauses Patroni HA, stops the cluster, performs a delta pgBackRest restore, starts PostgreSQL and waits for a consistent recovery state,
 prints control data, removes old etcd metadata, and starts the cluster under Patroni again.
@@ -70,27 +68,29 @@ To inspect data at the target, use [step-by-step execution](#step-by-step-execut
 
 `pg_pitr` supports [six recovery target forms](/docs/concept/pitr/mechanism/#targets-where-replay-stops). The four target values are mutually exclusive.
 
-{{< tabpane persist="disabled" >}}
-{{% tab header="Recovery target types" disabled=true /%}}
-{{< tab header="default/latest" lang="yaml" >}}
+```yaml {tab="default/latest"}
 pg_pitr: { }  # Replay to the end of the WAL archive stream
-{{< /tab >}}
-{{< tab header="time" lang="yaml" >}}
+```
+
+```yaml {tab="time"}
 pg_pitr: { time: "2025-07-13 10:00:00+00" }
-{{< /tab >}}
-{{< tab header="lsn" lang="yaml" >}}
+```
+
+```yaml {tab="lsn"}
 pg_pitr: { lsn: "0/4001C80" }
-{{< /tab >}}
-{{< tab header="xid" lang="yaml" >}}
+```
+
+```yaml {tab="xid"}
 pg_pitr: { xid: "250000" }
-{{< /tab >}}
-{{< tab header="name" lang="yaml" >}}
+```
+
+```yaml {tab="name"}
 pg_pitr: { name: "some_restore_point" }
-{{< /tab >}}
-{{< tab header="immediate" lang="yaml" >}}
+```
+
+```yaml {tab="immediate"}
 pg_pitr: { type: "immediate" }
-{{< /tab >}}
-{{< /tabpane >}}
+```
 
 With no target, recovery replays all archived WAL to the latest available state (Pigsty's internal type is `default`).
 `immediate` stops at the first consistent point, which is useful for obtaining a usable instance as quickly as possible or testing a backup.
@@ -132,10 +132,9 @@ Set `timeline` when the desired position is on a particular timeline; the defaul
 ./pgsql-pitr.yml -l pg-meta -e '{"pg_pitr": { "lsn": "0/4001C80", "timeline": "1", "action": "promote" }}'
 ```
 
-{{% alert color="info" title="Inclusive and exclusive targets" %}}
-Targets are inclusive by default, so the target transaction is replayed. `exclusive: true` excludes the exact target.
-It applies only to `time`, `xid`, and `lsn`, and maps to PostgreSQL's [`recovery_target_inclusive`](https://www.postgresql.org/docs/current/runtime-config-wal.html#RECOVERY-TARGET-INCLUSIVE).
-{{% /alert %}}
+> [!NOTE] Inclusive and exclusive targets
+> Targets are inclusive by default, so the target transaction is replayed. `exclusive: true` excludes the exact target.
+> It applies only to `time`, `xid`, and `lsn`, and maps to PostgreSQL's [`recovery_target_inclusive`](https://www.postgresql.org/docs/current/runtime-config-wal.html#RECOVERY-TARGET-INCLUSIVE).
 
 
 --------
@@ -200,10 +199,9 @@ pg_ctl -D /pg/data promote            # only after validating an action: pause r
 ./pgsql-pitr.yml -l pg-meta -t up     # rebuild Patroni HA
 ```
 
-{{% alert color="warning" title="Repeating the pitr stage" %}}
-With `backup: true`, the playbook moves the current data directory to `/pg/data-backup`, but deletes any existing `/pg/data-backup` before doing so.
-The staged workflow is supported; a restore using `backup: true` is not generally idempotent.
-{{% /alert %}}
+> [!WARNING] Repeating the pitr stage
+> With `backup: true`, the playbook moves the current data directory to `/pg/data-backup`, but deletes any existing `/pg/data-backup` before doing so.
+> The staged workflow is supported; a restore using `backup: true` is not generally idempotent.
 
 
 --------

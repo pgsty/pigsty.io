@@ -1,7 +1,7 @@
 ---
 title: The ideal way to deliver PostgreSQL Extensions
 date: 2024-11-02
-manualLink: "https://vonng.com/en/pg/pg-ext-repo/"
+manual_link: "https://vonng.com/en/pg/pg-ext-repo/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

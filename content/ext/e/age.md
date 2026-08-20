@@ -274,31 +274,24 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Install" %}}
-```bash
+```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
 pig install age;          # Install for current active PG version
 ```
-{{% /tab %}}
-{{% tab header="pig" %}}
-```bash
+
+```bash {tab="pig" value="pig"}
 pig ext install -y age -v 18  # PG 18
 pig ext install -y age -v 17  # PG 17
 ```
-{{% /tab %}}
-{{% tab header="dnf" %}}
-```bash
+
+```bash {tab="dnf" value="dnf"}
 dnf install -y age_18       # PG 18
 dnf install -y age_17       # PG 17
 ```
-{{% /tab %}}
-{{% tab header="apt" %}}
-```bash
+
+```bash {tab="apt" value="apt"}
 apt install -y postgresql-18-age   # PG 18
 apt install -y postgresql-17-age   # PG 17
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Preload**:

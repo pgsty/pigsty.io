@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL Common Replication Topology Plans
 date: 2019-03-29
-manualLink: "https://vonng.com/en/pg/replication-plan/"
+manual_link: "https://vonng.com/en/pg/replication-plan/"
 author: vonng
 description: |
   Replication is one of the core issues in system architecture.

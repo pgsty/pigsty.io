@@ -1,7 +1,7 @@
 ---
 title: What Can We Learn from Tencent Cloud's Major Outage?
 date: 2024-04-14
-manualLink: "https://vonng.com/en/cloud/qcloud/"
+manual_link: "https://vonng.com/en/cloud/qcloud/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

@@ -2,7 +2,7 @@
 title: Will PostgreSQL Change Its License?
 linkTitle: Will PostgreSQL Change Its License?
 date: 2024-03-20
-manualLink: "https://vonng.com/cn/pg/pg-license/"
+manual_link: "https://vonng.com/cn/pg/pg-license/"
 author: Jonathan Katz
 description: |
   PostgreSQL will not change its license. This article is a response from PostgreSQL core team members on this question.

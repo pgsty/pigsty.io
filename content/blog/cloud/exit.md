@@ -2,7 +2,7 @@
 title: "Column: Cloud-Exit"
 linkTitle: "Column: Cloud-Exit"
 date: 2025-08-08
-manualLink: "https://vonng.com/en/cloud/exit/"
+manual_link: "https://vonng.com/en/cloud/exit/"
 author: vonng
 description: |
   A whole generation of developers has been told "cloud-first." This column collects data, case studies, and analysis on the cloud exit movement.

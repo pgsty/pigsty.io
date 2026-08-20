@@ -270,9 +270,8 @@ Usage examples:
 ./redis-rm.yml -l redis-ms -e redis_safeguard=false
 ```
 
-{{% alert title="Destructive Operation" color="danger" %}}
-`redis_safeguard` defaults to `false`, while `redis_rm_data` defaults to `true`. The removal playbook also tolerates several service-stop, deregistration, data-deletion, and package-removal errors. After a real run, inspect the target processes, data directories, and monitoring registration; do not treat the playbook return status alone as proof of completion.
-{{% /alert %}}
+> [!CAUTION] Destructive Operation
+> `redis_safeguard` defaults to `false`, while `redis_rm_data` defaults to `true`. The removal playbook also tolerates several service-stop, deregistration, data-deletion, and package-removal errors. After a real run, inspect the target processes, data directories, and monitoring registration; do not treat the playbook return status alone as proof of completion.
 
 
 ### Safeguard Mechanism

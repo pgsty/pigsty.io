@@ -1,7 +1,7 @@
 ---
 title: "Incident-Report: Patroni Failure Due to Time Travel"
 date: 2021-02-22
-manualLink: "https://vonng.com/en/pg/time-travel/"
+manual_link: "https://vonng.com/en/pg/time-travel/"
 author: vonng
 description: |
   Machine restarted due to failure, NTP service corrected PG time after PG startup, causing Patroni to fail to start.

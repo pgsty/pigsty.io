@@ -2,7 +2,7 @@
 title: "Open Data Standards: Postgres, OTel, and Iceberg"
 linkTitle: "Open Data Standards: Postgres, OTel, and Iceberg"
 date: 2025-05-27
-manualLink: "https://vonng.com/cn/db/open-data-standard/"
+manual_link: "https://vonng.com/cn/db/open-data-standard/"
 author: Paul Copplestone
 description: |
   Three emerging standards in the data world: Postgres, OpenTelemetry, and Iceberg. Postgres is already the de facto standard.

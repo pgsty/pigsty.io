@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL Trigger Usage Considerations
 date: 2018-07-07
-manualLink: "https://vonng.com/en/pg/sql-trigger/"
+manual_link: "https://vonng.com/en/pg/sql-trigger/"
 author: vonng
 description: |
   Detailed understanding of trigger management and usage in PostgreSQL

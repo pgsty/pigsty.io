@@ -1,7 +1,7 @@
 ---
 title: Database Demand Hierarchy Pyramid
 date: 2023-05-10
-manualLink: "https://vonng.com/en/db/demand-pyramid/"
+manual_link: "https://vonng.com/en/db/demand-pyramid/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/1xR92Z67kvvj2_NpUMie1Q)
 

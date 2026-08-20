@@ -2,7 +2,7 @@
 title: "MongoDB: Now Powered by PostgreSQL?"
 linkTitle: "MongoDB: Now Powered by PostgreSQL"
 date: 2024-09-03
-manualLink: "https://vonng.com/en/db/mongo-powered-by-pg/"
+manual_link: "https://vonng.com/en/db/mongo-powered-by-pg/"
 author: |
   [John De Goes](https://www.linkedin.com/in/jdegoes) [Original Article](https://www.linkedin.com/pulse/mongodb-32-now-powered-postgresql-john-de-goes)
 

@@ -1,7 +1,7 @@
 ---
 title: "Don't Run AI Assistant on Cloud"
 date: 2026-01-30
-manualLink: "https://vonng.com/en/cloud/cloud-agent/"
+manual_link: "https://vonng.com/en/cloud/cloud-agent/"
 author: Ruohang Feng
 description: >
   When launch clawdbot on the cloud, you're handing over cognitive data to the vendor. There's a reason why people buy Mac mini rather than running clawdbot on the cloud.

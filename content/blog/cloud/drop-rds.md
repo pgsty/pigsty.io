@@ -1,7 +1,7 @@
 ---
 title: "Cloud RDS: From Database Drop to Exit"
 date: 2022-05-10
-manualLink: "https://vonng.com/en/cloud/drop-rds/"
+manual_link: "https://vonng.com/en/cloud/drop-rds/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/AGEW1iHQkQy4NQyYC2GonQ)
 

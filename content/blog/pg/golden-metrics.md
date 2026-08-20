@@ -1,7 +1,7 @@
 ---
 title: "Golden Monitoring Metrics: Errors, Latency, Throughput, Saturation"
 date: 2020-11-06
-manualLink: "https://vonng.com/en/pg/golden-metrics/"
+manual_link: "https://vonng.com/en/pg/golden-metrics/"
 author: vonng
 description: |
   Understanding the golden monitoring metrics in PostgreSQL

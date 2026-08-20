@@ -18,11 +18,8 @@ PostgresML officially supports Ubuntu 22.04, but we also maintain RPM versions f
 You need internet access on database nodes to download Python dependencies from PyPI and models from HuggingFace.
 
 
-{{% alert title="PostgresML is Deprecated" color="warning" %}}
-
-Because the company behind it has ceased operations.
-
-{{% /alert %}}
+> [!WARNING] PostgresML is Deprecated
+> Because the company behind it has ceased operations.
 
 -----------------------
 
@@ -92,16 +89,13 @@ sudo yum install -y python3.11 python3.11-pip       # install latest python3.11
 python3.11 -m pip install --upgrade pip virtualenv  # use python3.11 on EL8 / EL9
 ```
 
-<details><summary>Using PyPI Mirrors</summary>
-
-For users in mainland China, we recommend using Tsinghua University's PyPI [mirror](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/).
-
-```bash
-pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple    # set global mirror (recommended)
-pip install -i https://pypi.tuna.tsinghua.edu.cn/simple some-package        # use for single installation
-```
-
-</details>
+> [!DETAILS]- Using PyPI Mirrors
+> For users in mainland China, we recommend using Tsinghua University's PyPI [mirror](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/).
+>
+> ```bash
+> pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple    # set global mirror (recommended)
+> pip install -i https://pypi.tuna.tsinghua.edu.cn/simple some-package        # use for single installation
+> ```
 
 
 

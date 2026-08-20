@@ -56,10 +56,9 @@ Script executes the following playbook:
 
 **PgBouncer only**: `./pgsql.yml -l <cls> -t pgbouncer_hba,pgbouncer_reload`
 
-{{% alert title="Don't edit config files directly" color="warning" %}}
-Don't directly edit `/pg/data/pg_hba.conf` or `/etc/pgbouncer/pgb_hba.conf` - they'll be overwritten on next playbook run.
-All changes should be made in `pigsty.yml`, then execute `bin/pgsql-hba` to refresh.
-{{% /alert %}}
+> [!WARNING] Don't edit config files directly
+> Don't directly edit `/pg/data/pg_hba.conf` or `/etc/pgbouncer/pgb_hba.conf` - they'll be overwritten on next playbook run.
+> All changes should be made in `pigsty.yml`, then execute `bin/pgsql-hba` to refresh.
 
 
 ----------------

@@ -2,7 +2,7 @@
 title: Online Primary Key Column Type Change
 linkTitle: Online Primary Key Column Type Change
 date: 2021-01-15
-manualLink: "https://vonng.com/en/pg/alter-type/"
+manual_link: "https://vonng.com/en/pg/alter-type/"
 author: vonng
 description: |
   How to change column types online, such as upgrading from INT to BIGINT?

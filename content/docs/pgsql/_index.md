@@ -5,7 +5,7 @@ description: Declare, deploy, expose, observe, back up, and manage PostgreSQL cl
 icon: fab fa-postgresql
 module: [PGSQL]
 categories: [Reference]
-hide_feedback: true
+feedback: false
 ---
 
 PGSQL is Pigsty's core module. Ansible inventory declares PostgreSQL clusters; Patroni and etcd provide HA orchestration; pgBackRest provides backup and PITR; HAProxy, VIP, DNS, PgBouncer, and the observability stack expose and monitor database services.

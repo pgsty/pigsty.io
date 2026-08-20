@@ -37,9 +37,8 @@ Currently, Pigsty, Yandex, and Xtom are providing regular synced mirror service.
 
 The Pigsty PGDG mirror is a subset of the official PGDG repo, covering EL 7-10, Debian 11-13, and Ubuntu 22.04 - 26.04 on x86_64 and arm64. The stable repository covers supported PostgreSQL 14 - 18 releases, while the `beta` module additionally provides PostgreSQL 19 Beta.
 
-{{% alert title="2025-11 Update Notice: Aliyun/Tsinghua TUNA Resumed" color="info" %}}
-Currently, the Aliyun/Tsinghua TUNA mirror sites have resumed PGDG repository synchronization.
-{{% /alert %}}
+> [!NOTE] 2025-11 Update Notice: Aliyun/Tsinghua TUNA Resumed
+> Currently, the Aliyun/Tsinghua TUNA mirror sites have resumed PGDG repository synchronization.
 
 
 ---------
@@ -107,22 +106,17 @@ PGDG APT repo is signed with the following GPG key: `B97B0AFCAA1A47F044F244A07FC
 
 MD5 checksum is `f54c5c1aa1329dc26e33b29762faaec4`, see https://www.postgresql.org/download/linux/debian/ for details.
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Official" %}}
-```bash
+```bash {tab="Official" group="official-mirror" value="official"}
 sudo curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc
 . /etc/os-release
 sudo sh -c "echo 'deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $VERSION_CODENAME-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
 ```
-{{% /tab %}}
-{{% tab header="Mirror" %}}
-```bash
+
+```bash {tab="Mirror" value="mirror"}
 sudo curl -fsSL https://repo.pigsty.cc/apt/pgdg/ACCC4CF8.key -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc
 . /etc/os-release
 sudo sh -c "echo 'deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://repo.pigsty.cc/apt/pgdg/ $VERSION_CODENAME-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 ---------

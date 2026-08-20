@@ -167,40 +167,33 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Install" %}}
-```bash
+```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
 pig install pglite_fusion;          # Install for current active PG version
 ```
-{{% /tab %}}
-{{% tab header="pig" %}}
-```bash
+
+```bash {tab="pig" value="pig"}
 pig ext install -y pglite_fusion -v 18  # PG 18
 pig ext install -y pglite_fusion -v 17  # PG 17
 pig ext install -y pglite_fusion -v 16  # PG 16
 pig ext install -y pglite_fusion -v 15  # PG 15
 pig ext install -y pglite_fusion -v 14  # PG 14
 ```
-{{% /tab %}}
-{{% tab header="dnf" %}}
-```bash
+
+```bash {tab="dnf" value="dnf"}
 dnf install -y pglite_fusion_18       # PG 18
 dnf install -y pglite_fusion_17       # PG 17
 dnf install -y pglite_fusion_16       # PG 16
 dnf install -y pglite_fusion_15       # PG 15
 dnf install -y pglite_fusion_14       # PG 14
 ```
-{{% /tab %}}
-{{% tab header="apt" %}}
-```bash
+
+```bash {tab="apt" value="apt"}
 apt install -y postgresql-18-pglite-fusion   # PG 18
 apt install -y postgresql-17-pglite-fusion   # PG 17
 apt install -y postgresql-16-pglite-fusion   # PG 16
 apt install -y postgresql-15-pglite-fusion   # PG 15
 apt install -y postgresql-14-pglite-fusion   # PG 14
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Preload**:
@@ -352,6 +345,7 @@ CREATE TABLE people (
 -----
 
 ### `get_sqlite_text`
+
 Extracts a text value from a specific column in a row returned by `query_sqlite`. Use this function to retrieve text values from query results.
 
 #### Parameters:

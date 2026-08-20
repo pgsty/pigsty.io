@@ -1,7 +1,7 @@
 ---
 title: Using sysbench to Test PostgreSQL Performance
 date: 2018-02-06
-manualLink: "https://vonng.com/en/pg/sysbench/"
+manual_link: "https://vonng.com/en/pg/sysbench/"
 author: vonng
 description: |
   Although PostgreSQL provides pgbench, sometimes you need sysbench to outperform MySQL.

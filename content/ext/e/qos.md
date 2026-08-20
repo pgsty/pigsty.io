@@ -154,37 +154,30 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Install" %}}
-```bash
+```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
 pig install pg_qos;          # Install for current active PG version
 ```
-{{% /tab %}}
-{{% tab header="pig" %}}
-```bash
+
+```bash {tab="pig" value="pig"}
 pig ext install -y pg_qos -v 18  # PG 18
 pig ext install -y pg_qos -v 17  # PG 17
 pig ext install -y pg_qos -v 16  # PG 16
 pig ext install -y pg_qos -v 15  # PG 15
 ```
-{{% /tab %}}
-{{% tab header="dnf" %}}
-```bash
+
+```bash {tab="dnf" value="dnf"}
 dnf install -y pg_qos_18       # PG 18
 dnf install -y pg_qos_17       # PG 17
 dnf install -y pg_qos_16       # PG 16
 dnf install -y pg_qos_15       # PG 15
 ```
-{{% /tab %}}
-{{% tab header="apt" %}}
-```bash
+
+```bash {tab="apt" value="apt"}
 apt install -y postgresql-18-qos   # PG 18
 apt install -y postgresql-17-qos   # PG 17
 apt install -y postgresql-16-qos   # PG 16
 apt install -y postgresql-15-qos   # PG 15
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Preload**:

@@ -81,29 +81,20 @@ The current source provides 31 PostgreSQL-related dashboards: 29 PostgreSQL / PG
 
 [PGSQL Overview](https://demo.pigsty.io/ui/d/pgsql-overview): Main dashboard for the PGSQL module
 
-<details><summary>PGSQL Overview</summary>
-
-[![pgsql-overview.jpg](/img/dashboard/pgsql-overview.jpg)](https://demo.pigsty.io/ui/d/pgsql-overview)
-
-</details>
+> [!DETAILS]- PGSQL Overview
+> [![pgsql-overview.jpg](/img/dashboard/pgsql-overview.jpg)](https://demo.pigsty.io/ui/d/pgsql-overview)
 
 
 [PGSQL Alert](https://demo.pigsty.io/ui/d/pgsql-alert): Global core metrics overview and alert events
 
-<details><summary>PGSQL Alert</summary>
-
-[![pgsql-alert.jpg](/img/dashboard/pgsql-alert.jpg)](https://demo.pigsty.io/ui/d/pgsql-alert)
-
-</details>
+> [!DETAILS]- PGSQL Alert
+> [![pgsql-alert.jpg](/img/dashboard/pgsql-alert.jpg)](https://demo.pigsty.io/ui/d/pgsql-alert)
 
 
 [PGSQL Shard](https://demo.pigsty.io/ui/d/pgsql-shard): Cross-shard metric comparison for horizontally sharded PGSQL clusters (e.g., CITUS/GPSQL)
 
-<details><summary>PGSQL Shard</summary>
-
-[![pgsql-shard.jpg](/img/dashboard/pgsql-shard.jpg)](https://demo.pigsty.io/ui/d/pgsql-shard)
-
-</details>
+> [!DETAILS]- PGSQL Shard
+> [![pgsql-shard.jpg](/img/dashboard/pgsql-shard.jpg)](https://demo.pigsty.io/ui/d/pgsql-shard)
 
 
 
@@ -113,72 +104,48 @@ The current source provides 31 PostgreSQL-related dashboards: 29 PostgreSQL / PG
 
 [PGSQL Cluster](https://demo.pigsty.io/ui/d/pgsql-cluster): Main dashboard for a PGSQL cluster
 
-<details><summary>PGSQL Cluster</summary>
-
-[![pgsql-cluster.jpg](/img/dashboard/pgsql-cluster.jpg)](https://demo.pigsty.io/ui/d/pgsql-cluster)
-
-</details>
+> [!DETAILS]- PGSQL Cluster
+> [![pgsql-cluster.jpg](/img/dashboard/pgsql-cluster.jpg)](https://demo.pigsty.io/ui/d/pgsql-cluster)
 
 
 [PGRDS Cluster](https://demo.pigsty.io/ui/d/pgrds-cluster): RDS version of PGSQL Cluster, focusing on PostgreSQL-native metrics
 
-<details><summary>PGRDS Cluster</summary>
-
-[![pgrds-cluster.jpg](/img/dashboard/pgrds-cluster.jpg)](https://demo.pigsty.io/ui/d/pgrds-cluster)
-
-</details>
+> [!DETAILS]- PGRDS Cluster
+> [![pgrds-cluster.jpg](/img/dashboard/pgrds-cluster.jpg)](https://demo.pigsty.io/ui/d/pgrds-cluster)
 
 
 [PGSQL Service](https://demo.pigsty.io/ui/d/pgsql-service): Service, proxy, routing, and load balancing for PGSQL cluster
 
-<details><summary>PGSQL Service</summary>
-
-[![pgsql-service.jpg](/img/dashboard/pgsql-service.jpg)](https://demo.pigsty.io/ui/d/pgsql-service)
-
-</details>
+> [!DETAILS]- PGSQL Service
+> [![pgsql-service.jpg](/img/dashboard/pgsql-service.jpg)](https://demo.pigsty.io/ui/d/pgsql-service)
 
 [PGSQL Activity](https://demo.pigsty.io/ui/d/pgsql-activity): Session/load/QPS/TPS/locks for PGSQL cluster
 
-<details><summary>PGSQL Activity</summary>
-
-[![pgsql-activity.jpg](/img/dashboard/pgsql-activity.jpg)](https://demo.pigsty.io/ui/d/pgsql-activity)
-
-</details>
+> [!DETAILS]- PGSQL Activity
+> [![pgsql-activity.jpg](/img/dashboard/pgsql-activity.jpg)](https://demo.pigsty.io/ui/d/pgsql-activity)
 
 [PGSQL Replication](https://demo.pigsty.io/ui/d/pgsql-replication): Replication, slots, and pub/sub for PGSQL cluster
 
-<details><summary>PGSQL Replication</summary>
-
-[![pgsql-replication.jpg](/img/dashboard/pgsql-replication.jpg)](https://demo.pigsty.io/ui/d/pgsql-replication)
-
-</details>
+> [!DETAILS]- PGSQL Replication
+> [![pgsql-replication.jpg](/img/dashboard/pgsql-replication.jpg)](https://demo.pigsty.io/ui/d/pgsql-replication)
 
 
 [PGSQL Databases](https://demo.pigsty.io/ui/d/pgsql-databases): Database CRUD, slow queries, and table statistics across all instances
 
-<details><summary>PGSQL Databases</summary>
-
-[![pgsql-databases.jpg](/img/dashboard/pgsql-databases.jpg)](https://demo.pigsty.io/ui/d/pgsql-databases)
-
-</details>
+> [!DETAILS]- PGSQL Databases
+> [![pgsql-databases.jpg](/img/dashboard/pgsql-databases.jpg)](https://demo.pigsty.io/ui/d/pgsql-databases)
 
 
 [PGSQL Patroni](https://demo.pigsty.io/ui/d/pgsql-patroni): HA status and Patroni component status for cluster
 
-<details><summary>PGSQL Patroni</summary>
-
-[![pgsql-patroni.jpg](/img/dashboard/pgsql-patroni.jpg)](https://demo.pigsty.io/ui/d/pgsql-patroni)
-
-</details>
+> [!DETAILS]- PGSQL Patroni
+> [![pgsql-patroni.jpg](/img/dashboard/pgsql-patroni.jpg)](https://demo.pigsty.io/ui/d/pgsql-patroni)
 
 
 [PGSQL PITR](https://demo.pigsty.io/ui/d/pgsql-pitr): PITR context for point-in-time recovery assistance
 
-<details><summary>PGSQL PITR</summary>
-
-[![pgsql-patroni.jpg](/img/dashboard/pgsql-pitr.jpg)](https://demo.pigsty.io/ui/d/pgsql-pitr)
-
-</details>
+> [!DETAILS]- PGSQL PITR
+> [![pgsql-patroni.jpg](/img/dashboard/pgsql-pitr.jpg)](https://demo.pigsty.io/ui/d/pgsql-pitr)
 
 
 
@@ -188,74 +155,50 @@ The current source provides 31 PostgreSQL-related dashboards: 29 PostgreSQL / PG
 
 [PGSQL Instance](https://demo.pigsty.io/ui/d/pgsql-instance): Main dashboard for a single PGSQL instance
 
-<details><summary>PGSQL Instance</summary>
-
-[![pgsql-instance.jpg](/img/dashboard/pgsql-instance.jpg)](https://demo.pigsty.io/ui/d/pgsql-instance)
-
-</details>
+> [!DETAILS]- PGSQL Instance
+> [![pgsql-instance.jpg](/img/dashboard/pgsql-instance.jpg)](https://demo.pigsty.io/ui/d/pgsql-instance)
 
 
 [PGRDS Instance](https://demo.pigsty.io/ui/d/pgrds-instance): RDS version of PGSQL Instance, focusing on PostgreSQL-native metrics
 
-<details><summary>PGRDS Instance</summary>
-
-[![pgrds-instance.jpg](/img/dashboard/pgrds-instance.jpg)](https://demo.pigsty.io/ui/d/pgrds-instance)
-
-</details>
+> [!DETAILS]- PGRDS Instance
+> [![pgrds-instance.jpg](/img/dashboard/pgrds-instance.jpg)](https://demo.pigsty.io/ui/d/pgrds-instance)
 
 
 [PGSQL Proxy](https://demo.pigsty.io/ui/d/pgsql-proxy): Detailed metrics for a single HAProxy load balancer
 
-<details><summary>PGSQL Proxy</summary>
-
-[![pgsql-proxy.jpg](/img/dashboard/pgsql-proxy.jpg)](https://demo.pigsty.io/ui/d/pgsql-proxy)
-
-</details>
+> [!DETAILS]- PGSQL Proxy
+> [![pgsql-proxy.jpg](/img/dashboard/pgsql-proxy.jpg)](https://demo.pigsty.io/ui/d/pgsql-proxy)
 
 
 [PGSQL Pgbouncer](https://demo.pigsty.io/ui/d/pgsql-pgbouncer): Metrics overview for a single Pgbouncer connection pooler
 
-<details><summary>PGSQL Pgbouncer</summary>
-
-[![pgsql-pgbouncer.jpg](/img/dashboard/pgsql-pgbouncer.jpg)](https://demo.pigsty.io/ui/d/pgsql-pgbouncer)
-
-</details>
+> [!DETAILS]- PGSQL Pgbouncer
+> [![pgsql-pgbouncer.jpg](/img/dashboard/pgsql-pgbouncer.jpg)](https://demo.pigsty.io/ui/d/pgsql-pgbouncer)
 
 
 [PGSQL Persist](https://demo.pigsty.io/ui/d/pgsql-persist): Persistence metrics: WAL, XID, checkpoint, archive, IO
 
-<details><summary>PGSQL Persist</summary>
-
-[![pgsql-persist.jpg](/img/dashboard/pgsql-persist.jpg)](https://demo.pigsty.io/ui/d/pgsql-persist)
-
-</details>
+> [!DETAILS]- PGSQL Persist
+> [![pgsql-persist.jpg](/img/dashboard/pgsql-persist.jpg)](https://demo.pigsty.io/ui/d/pgsql-persist)
 
 
 [PGSQL Xacts](https://demo.pigsty.io/ui/d/pgsql-xacts): Transaction, lock, TPS/QPS related metrics
 
-<details><summary>PGSQL Xacts</summary>
-
-[![pgsql-xacts.jpg](/img/dashboard/pgsql-xacts.jpg)](https://demo.pigsty.io/ui/d/pgsql-xacts)
-
-</details>
+> [!DETAILS]- PGSQL Xacts
+> [![pgsql-xacts.jpg](/img/dashboard/pgsql-xacts.jpg)](https://demo.pigsty.io/ui/d/pgsql-xacts)
 
 
 [PGSQL Session](https://demo.pigsty.io/ui/d/pgsql-session): Session and active/idle time metrics for a single instance
 
-<details><summary>PGSQL Session</summary>
-
-[![pgsql-session.jpg](/img/dashboard/pgsql-session.jpg)](https://demo.pigsty.io/ui/d/pgsql-session)
-
-</details>
+> [!DETAILS]- PGSQL Session
+> [![pgsql-session.jpg](/img/dashboard/pgsql-session.jpg)](https://demo.pigsty.io/ui/d/pgsql-session)
 
 
 [PGSQL Exporter](https://demo.pigsty.io/ui/d/pgsql-exporter): Self-monitoring metrics for Postgres/Pgbouncer exporters
 
-<details><summary>PGSQL Exporter</summary>
-
-[![pgsql-exporter.jpg](/img/dashboard/pgsql-exporter.jpg)](https://demo.pigsty.io/ui/d/pgsql-exporter)
-
-</details>
+> [!DETAILS]- PGSQL Exporter
+> [![pgsql-exporter.jpg](/img/dashboard/pgsql-exporter.jpg)](https://demo.pigsty.io/ui/d/pgsql-exporter)
 
 
 
@@ -267,38 +210,26 @@ The current source provides 31 PostgreSQL-related dashboards: 29 PostgreSQL / PG
 
 [PGSQL Database](https://demo.pigsty.io/ui/d/pgsql-database): Main dashboard for a single PGSQL database
 
-<details><summary>PGSQL Database</summary>
-
-[![pgsql-database.jpg](/img/dashboard/pgsql-database.jpg)](https://demo.pigsty.io/ui/d/pgsql-database)
-
-</details>
+> [!DETAILS]- PGSQL Database
+> [![pgsql-database.jpg](/img/dashboard/pgsql-database.jpg)](https://demo.pigsty.io/ui/d/pgsql-database)
 
 
 [PGSQL Tables](https://demo.pigsty.io/ui/d/pgsql-tables): Table/index access metrics within a single database
 
-<details><summary>PGSQL Tables</summary>
-
-[![pgsql-tables.jpg](/img/dashboard/pgsql-tables.jpg)](https://demo.pigsty.io/ui/d/pgsql-tables)
-
-</details>
+> [!DETAILS]- PGSQL Tables
+> [![pgsql-tables.jpg](/img/dashboard/pgsql-tables.jpg)](https://demo.pigsty.io/ui/d/pgsql-tables)
 
 
 [PGSQL Table](https://demo.pigsty.io/ui/d/pgsql-table): Detailed info for a single table (QPS/RT/index/sequence...)
 
-<details><summary>PGSQL Table</summary>
-
-[![pgsql-table.jpg](/img/dashboard/pgsql-table.jpg)](https://demo.pigsty.io/ui/d/pgsql-table)
-
-</details>
+> [!DETAILS]- PGSQL Table
+> [![pgsql-table.jpg](/img/dashboard/pgsql-table.jpg)](https://demo.pigsty.io/ui/d/pgsql-table)
 
 
 [PGSQL Query](https://demo.pigsty.io/ui/d/pgsql-query): Detailed info for a query type (QPS/RT)
 
-<details><summary>PGSQL Query</summary>
-
-[![pgsql-query.jpg](/img/dashboard/pgsql-query.jpg)](https://demo.pigsty.io/ui/d/pgsql-query)
-
-</details>
+> [!DETAILS]- PGSQL Query
+> [![pgsql-query.jpg](/img/dashboard/pgsql-query.jpg)](https://demo.pigsty.io/ui/d/pgsql-query)
 
 
 
@@ -309,61 +240,43 @@ The current source provides 31 PostgreSQL-related dashboards: 29 PostgreSQL / PG
 
 [PGCAT Instance](https://demo.pigsty.io/ui/d/pgcat-instance): Instance info retrieved directly from database catalog
 
-<details><summary>PGCAT Instance</summary>
-
-[![pgcat-instance.jpg](/img/dashboard/pgcat-instance.jpg)](https://demo.pigsty.io/ui/d/pgcat-instance)
-
-</details>
+> [!DETAILS]- PGCAT Instance
+> [![pgcat-instance.jpg](/img/dashboard/pgcat-instance.jpg)](https://demo.pigsty.io/ui/d/pgcat-instance)
 
 
 [PGCAT Database](https://demo.pigsty.io/ui/d/pgcat-database): Database info retrieved directly from database catalog
 
-<details><summary>PGCAT Database</summary>
-
-[![pgcat-database.jpg](/img/dashboard/pgcat-database.jpg)](https://demo.pigsty.io/ui/d/pgcat-database)
-
-</details>
+> [!DETAILS]- PGCAT Database
+> [![pgcat-database.jpg](/img/dashboard/pgcat-database.jpg)](https://demo.pigsty.io/ui/d/pgcat-database)
 
 
 
 [PGCAT Schema](https://demo.pigsty.io/ui/d/pgcat-schema): Schema info from database catalog (tables/indexes/sequences...)
 
-<details><summary>PGCAT Schema</summary>
-
-[![pgcat-schema.jpg](/img/dashboard/pgcat-schema.jpg)](https://demo.pigsty.io/ui/d/pgcat-schema)
-
-</details>
+> [!DETAILS]- PGCAT Schema
+> [![pgcat-schema.jpg](/img/dashboard/pgcat-schema.jpg)](https://demo.pigsty.io/ui/d/pgcat-schema)
 
 
 
 
 [PGCAT Table](https://demo.pigsty.io/ui/d/pgcat-table): Detailed table info from database catalog (stats/bloat...)
 
-<details><summary>PGCAT Table</summary>
-
-[![pgcat-table.jpg](/img/dashboard/pgcat-table.jpg)](https://demo.pigsty.io/ui/d/pgcat-table)
-
-</details>
+> [!DETAILS]- PGCAT Table
+> [![pgcat-table.jpg](/img/dashboard/pgcat-table.jpg)](https://demo.pigsty.io/ui/d/pgcat-table)
 
 
 
 [PGCAT Query](https://demo.pigsty.io/ui/d/pgcat-query): Query details from database catalog (SQL/stats)
 
-<details><summary>PGCAT Query</summary>
-
-[![pgcat-query.jpg](/img/dashboard/pgcat-query.jpg)](https://demo.pigsty.io/ui/d/pgcat-query)
-
-</details>
+> [!DETAILS]- PGCAT Query
+> [![pgcat-query.jpg](/img/dashboard/pgcat-query.jpg)](https://demo.pigsty.io/ui/d/pgcat-query)
 
 
 
 [PGCAT Locks](https://demo.pigsty.io/ui/d/pgcat-locks): Activity and lock wait info from database catalog
 
-<details><summary>PGCAT Locks</summary>
-
-[![pgcat-locks.jpg](/img/dashboard/pgcat-locks.jpg)](https://demo.pigsty.io/ui/d/pgcat-locks)
-
-</details>
+> [!DETAILS]- PGCAT Locks
+> [![pgcat-locks.jpg](/img/dashboard/pgcat-locks.jpg)](https://demo.pigsty.io/ui/d/pgcat-locks)
 
 
 
@@ -373,21 +286,15 @@ The current source provides 31 PostgreSQL-related dashboards: 29 PostgreSQL / PG
 
 [PGLOG Overview](https://demo.pigsty.io/ui/d/pglog-overview): Overview of CSV log samples in Pigsty CMDB
 
-<details><summary>PGLOG Overview</summary>
-
-[![pglog-overview.jpg](/img/dashboard/pglog-overview.jpg)](https://demo.pigsty.io/ui/d/pglog-overview)
-
-</details>
+> [!DETAILS]- PGLOG Overview
+> [![pglog-overview.jpg](/img/dashboard/pglog-overview.jpg)](https://demo.pigsty.io/ui/d/pglog-overview)
 
 
 
 [PGLOG Session](https://demo.pigsty.io/ui/d/pglog-session): Log details for a single session in CSV log samples
 
-<details><summary>PGLOG Session</summary>
-
-[![pglog-session.jpg](/img/dashboard/pglog-session.jpg)](https://demo.pigsty.io/ui/d/pglog-session)
-
-</details>
+> [!DETAILS]- PGLOG Session
+> [![pglog-session.jpg](/img/dashboard/pglog-session.jpg)](https://demo.pigsty.io/ui/d/pglog-session)
 
 
 
@@ -399,179 +306,102 @@ The current source provides 31 PostgreSQL-related dashboards: 29 PostgreSQL / PG
 
 See [pigsty/wiki/gallery](https://github.com/pgsty/pigsty/wiki/Gallery) for details.
 
-<details><summary>PGSQL Overview</summary>
+> [!DETAILS]- PGSQL Overview
+> [![pgsql-overview.jpg](/img/dashboard/pgsql-overview.jpg)](https://demo.pigsty.io/ui/d/pgsql-overview)
 
-[![pgsql-overview.jpg](/img/dashboard/pgsql-overview.jpg)](https://demo.pigsty.io/ui/d/pgsql-overview)
 
-</details>
+> [!DETAILS]- PGSQL Shard
+> [![pgsql-shard.jpg](/img/dashboard/pgsql-shard.jpg)](https://demo.pigsty.io/ui/d/pgsql-shard)
 
 
-<details><summary>PGSQL Shard</summary>
+> [!DETAILS]- PGSQL Cluster
+> [![pgsql-cluster.jpg](/img/dashboard/pgsql-cluster.jpg)](https://demo.pigsty.io/ui/d/pgsql-cluster)
 
-[![pgsql-shard.jpg](/img/dashboard/pgsql-shard.jpg)](https://demo.pigsty.io/ui/d/pgsql-shard)
 
-</details>
+> [!DETAILS]- PGSQL Service
+> [![pgsql-service.jpg](/img/dashboard/pgsql-service.jpg)](https://demo.pigsty.io/ui/d/pgsql-service)
 
 
-<details><summary>PGSQL Cluster</summary>
+> [!DETAILS]- PGSQL Activity
+> [![pgsql-activity.jpg](/img/dashboard/pgsql-activity.jpg)](https://demo.pigsty.io/ui/d/pgsql-activity)
 
-[![pgsql-cluster.jpg](/img/dashboard/pgsql-cluster.jpg)](https://demo.pigsty.io/ui/d/pgsql-cluster)
 
-</details>
+> [!DETAILS]- PGSQL Replication
+> [![pgsql-replication.jpg](/img/dashboard/pgsql-replication.jpg)](https://demo.pigsty.io/ui/d/pgsql-replication)
 
 
-<details><summary>PGSQL Service</summary>
+> [!DETAILS]- PGSQL Databases
+> [![pgsql-databases.jpg](/img/dashboard/pgsql-databases.jpg)](https://demo.pigsty.io/ui/d/pgsql-databases)
 
-[![pgsql-service.jpg](/img/dashboard/pgsql-service.jpg)](https://demo.pigsty.io/ui/d/pgsql-service)
 
-</details>
+> [!DETAILS]- PGSQL Instance
+> [![pgsql-instance.jpg](/img/dashboard/pgsql-instance.jpg)](https://demo.pigsty.io/ui/d/pgsql-instance)
 
 
-<details><summary>PGSQL Activity</summary>
+> [!DETAILS]- PGSQL Proxy
+> [![pgsql-proxy.jpg](/img/dashboard/pgsql-proxy.jpg)](https://demo.pigsty.io/ui/d/pgsql-proxy)
 
-[![pgsql-activity.jpg](/img/dashboard/pgsql-activity.jpg)](https://demo.pigsty.io/ui/d/pgsql-activity)
 
-</details>
+> [!DETAILS]- PGSQL Pgbouncer
+> [![pgsql-pgbouncer.jpg](/img/dashboard/pgsql-pgbouncer.jpg)](https://demo.pigsty.io/ui/d/pgsql-pgbouncer)
 
 
-<details><summary>PGSQL Replication</summary>
+> [!DETAILS]- PGSQL Session
+> [![pgsql-session.jpg](/img/dashboard/pgsql-session.jpg)](https://demo.pigsty.io/ui/d/pgsql-session)
 
-[![pgsql-replication.jpg](/img/dashboard/pgsql-replication.jpg)](https://demo.pigsty.io/ui/d/pgsql-replication)
 
-</details>
+> [!DETAILS]- PGSQL Xacts
+> [![pgsql-xacts.jpg](/img/dashboard/pgsql-xacts.jpg)](https://demo.pigsty.io/ui/d/pgsql-xacts)
 
 
-<details><summary>PGSQL Databases</summary>
+> [!DETAILS]- PGSQL Persist
+> [![pgsql-persist.jpg](/img/dashboard/pgsql-persist.jpg)](https://demo.pigsty.io/ui/d/pgsql-persist)
 
-[![pgsql-databases.jpg](/img/dashboard/pgsql-databases.jpg)](https://demo.pigsty.io/ui/d/pgsql-databases)
 
-</details>
+> [!DETAILS]- PGSQL Database
+> [![pgsql-database.jpg](/img/dashboard/pgsql-database.jpg)](https://demo.pigsty.io/ui/d/pgsql-database)
 
 
-<details><summary>PGSQL Instance</summary>
+> [!DETAILS]- PGSQL Tables
+> [![pgsql-tables.jpg](/img/dashboard/pgsql-tables.jpg)](https://demo.pigsty.io/ui/d/pgsql-tables)
 
-[![pgsql-instance.jpg](/img/dashboard/pgsql-instance.jpg)](https://demo.pigsty.io/ui/d/pgsql-instance)
 
-</details>
+> [!DETAILS]- PGSQL Table
+> [![pgsql-table.jpg](/img/dashboard/pgsql-table.jpg)](https://demo.pigsty.io/ui/d/pgsql-table)
 
 
-<details><summary>PGSQL Proxy</summary>
+> [!DETAILS]- PGSQL Query
+> [![pgsql-query.jpg](/img/dashboard/pgsql-query.jpg)](https://demo.pigsty.io/ui/d/pgsql-query)
 
-[![pgsql-proxy.jpg](/img/dashboard/pgsql-proxy.jpg)](https://demo.pigsty.io/ui/d/pgsql-proxy)
 
-</details>
+> [!DETAILS]- PGCAT Instance
+> [![pgcat-instance.jpg](/img/dashboard/pgcat-instance.jpg)](https://demo.pigsty.io/ui/d/pgcat-instance)
 
 
-<details><summary>PGSQL Pgbouncer</summary>
+> [!DETAILS]- PGCAT Database
+> [![pgcat-database.jpg](/img/dashboard/pgcat-database.jpg)](https://demo.pigsty.io/ui/d/pgcat-database)
 
-[![pgsql-pgbouncer.jpg](/img/dashboard/pgsql-pgbouncer.jpg)](https://demo.pigsty.io/ui/d/pgsql-pgbouncer)
 
-</details>
+> [!DETAILS]- PGCAT Schema
+> [![pgcat-schema.jpg](/img/dashboard/pgcat-schema.jpg)](https://demo.pigsty.io/ui/d/pgcat-schema)
 
 
-<details><summary>PGSQL Session</summary>
+> [!DETAILS]- PGCAT Table
+> [![pgcat-table.jpg](/img/dashboard/pgcat-table.jpg)](https://demo.pigsty.io/ui/d/pgcat-table)
 
-[![pgsql-session.jpg](/img/dashboard/pgsql-session.jpg)](https://demo.pigsty.io/ui/d/pgsql-session)
 
-</details>
+> [!DETAILS]- PGCAT Lock
+> [![pgcat-locks.jpg](/img/dashboard/pgcat-locks.jpg)](https://demo.pigsty.io/ui/d/pgcat-locks)
 
 
-<details><summary>PGSQL Xacts</summary>
+> [!DETAILS]- PGCAT Query
+> [![pgcat-query.jpg](/img/dashboard/pgcat-query.jpg)](https://demo.pigsty.io/ui/d/pgcat-query)
 
-[![pgsql-xacts.jpg](/img/dashboard/pgsql-xacts.jpg)](https://demo.pigsty.io/ui/d/pgsql-xacts)
 
-</details>
 
+> [!DETAILS]- PGLOG Overview
+> [![pglog-overview.jpg](/img/dashboard/pglog-overview.jpg)](https://demo.pigsty.io/ui/d/pglog-overview)
 
-<details><summary>PGSQL Persist</summary>
 
-[![pgsql-persist.jpg](/img/dashboard/pgsql-persist.jpg)](https://demo.pigsty.io/ui/d/pgsql-persist)
-
-</details>
-
-
-<details><summary>PGSQL Database</summary>
-
-[![pgsql-database.jpg](/img/dashboard/pgsql-database.jpg)](https://demo.pigsty.io/ui/d/pgsql-database)
-
-</details>
-
-
-<details><summary>PGSQL Tables</summary>
-
-[![pgsql-tables.jpg](/img/dashboard/pgsql-tables.jpg)](https://demo.pigsty.io/ui/d/pgsql-tables)
-
-</details>
-
-
-<details><summary>PGSQL Table</summary>
-
-[![pgsql-table.jpg](/img/dashboard/pgsql-table.jpg)](https://demo.pigsty.io/ui/d/pgsql-table)
-
-
-</details>
-
-
-<details><summary>PGSQL Query</summary>
-
-[![pgsql-query.jpg](/img/dashboard/pgsql-query.jpg)](https://demo.pigsty.io/ui/d/pgsql-query)
-
-</details>
-
-
-<details><summary>PGCAT Instance</summary>
-
-[![pgcat-instance.jpg](/img/dashboard/pgcat-instance.jpg)](https://demo.pigsty.io/ui/d/pgcat-instance)
-
-</details>
-
-
-<details><summary>PGCAT Database</summary>
-
-[![pgcat-database.jpg](/img/dashboard/pgcat-database.jpg)](https://demo.pigsty.io/ui/d/pgcat-database)
-
-</details>
-
-
-<details><summary>PGCAT Schema</summary>
-
-[![pgcat-schema.jpg](/img/dashboard/pgcat-schema.jpg)](https://demo.pigsty.io/ui/d/pgcat-schema)
-
-</details>
-
-
-<details><summary>PGCAT Table</summary>
-
-[![pgcat-table.jpg](/img/dashboard/pgcat-table.jpg)](https://demo.pigsty.io/ui/d/pgcat-table)
-
-</details>
-
-
-<details><summary>PGCAT Lock</summary>
-
-[![pgcat-locks.jpg](/img/dashboard/pgcat-locks.jpg)](https://demo.pigsty.io/ui/d/pgcat-locks)
-
-</details>
-
-
-<details><summary>PGCAT Query</summary>
-
-[![pgcat-query.jpg](/img/dashboard/pgcat-query.jpg)](https://demo.pigsty.io/ui/d/pgcat-query)
-
-</details>
-
-
-
-<details><summary>PGLOG Overview</summary>
-
-[![pglog-overview.jpg](/img/dashboard/pglog-overview.jpg)](https://demo.pigsty.io/ui/d/pglog-overview)
-
-
-</details>
-
-
-<details><summary>PGLOG Session</summary>
-
-[![pglog-session.jpg](/img/dashboard/pglog-session.jpg)](https://demo.pigsty.io/ui/d/pglog-session)
-
-</details>
+> [!DETAILS]- PGLOG Session
+> [![pglog-session.jpg](/img/dashboard/pglog-session.jpg)](https://demo.pigsty.io/ui/d/pglog-session)

@@ -1,7 +1,7 @@
 ---
 title: "Blue Screen Friday: Amateur Hour on Both Sides"
 date: 2024-07-23
-manualLink: "https://vonng.com/en/cloud/bsod-friday/"
+manual_link: "https://vonng.com/en/cloud/bsod-friday/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/s7i7bSYzNY8mrcpfkHPjOg)
 

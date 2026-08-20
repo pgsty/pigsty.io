@@ -33,15 +33,13 @@ All backup and recovery operations ultimately invoke pgBackRest. Pigsty provides
 | [Tutorial](/docs/pgsql/tutorial/pitr) | A sandbox restore using pgBackRest primitives |
 {.full-width}
 
-{{% alert color="warning" title="Disclaimer" %}}
-Pigsty makes every effort to provide a reliable PITR solution, but accepts no liability for data loss caused by restore operations. If you need assistance, consider [professional services](/docs/about/service).
-{{% /alert %}}
+> [!WARNING] Disclaimer
+> Pigsty makes every effort to provide a reliable PITR solution, but accepts no liability for data loss caused by restore operations. If you need assistance, consider [professional services](/docs/about/service).
 
-{{% alert color="danger" title="Recovery overwrites target data" %}}
-Before PITR, inspect `pig pg list <target-cluster>` and `pig pb info`, verify a recent usable backup and recovery window,
-have the operator state the exact target cluster and recovery point, then run the target-scoped `./pgsql-pitr.yml -l <target-cluster> ...` command.
-`pgsql-pitr.yml` prints a plan but does not pause for approval. Production recovery also requires a maintenance window and an independently verified backup.
-{{% /alert %}}
+> [!CAUTION] Recovery overwrites target data
+> Before PITR, inspect `pig pg list <target-cluster>` and `pig pb info`, verify a recent usable backup and recovery window,
+> have the operator state the exact target cluster and recovery point, then run the target-scoped `./pgsql-pitr.yml -l <target-cluster> ...` command.
+> `pgsql-pitr.yml` prints a plan but does not pause for approval. Production recovery also requires a maintenance window and an independently verified backup.
 
 
 --------

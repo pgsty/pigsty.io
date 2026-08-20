@@ -167,40 +167,33 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Install" %}}
-```bash
+```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
 pig install pg_smtp_client;          # Install for current active PG version
 ```
-{{% /tab %}}
-{{% tab header="pig" %}}
-```bash
+
+```bash {tab="pig" value="pig"}
 pig ext install -y pg_smtp_client -v 18  # PG 18
 pig ext install -y pg_smtp_client -v 17  # PG 17
 pig ext install -y pg_smtp_client -v 16  # PG 16
 pig ext install -y pg_smtp_client -v 15  # PG 15
 pig ext install -y pg_smtp_client -v 14  # PG 14
 ```
-{{% /tab %}}
-{{% tab header="dnf" %}}
-```bash
+
+```bash {tab="dnf" value="dnf"}
 dnf install -y pg_smtp_client_18       # PG 18
 dnf install -y pg_smtp_client_17       # PG 17
 dnf install -y pg_smtp_client_16       # PG 16
 dnf install -y pg_smtp_client_15       # PG 15
 dnf install -y pg_smtp_client_14       # PG 14
 ```
-{{% /tab %}}
-{{% tab header="apt" %}}
-```bash
+
+```bash {tab="apt" value="apt"}
 apt install -y postgresql-18-pg-smtp-client   # PG 18
 apt install -y postgresql-17-pg-smtp-client   # PG 17
 apt install -y postgresql-16-pg-smtp-client   # PG 16
 apt install -y postgresql-15-pg-smtp-client   # PG 15
 apt install -y postgresql-14-pg-smtp-client   # PG 14
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Create Extension**:
@@ -245,7 +238,7 @@ Use the `smtp_client.send_email()` function to send an email.
 
 You can configure the following system-wide default values for some of the parameters (as indiciated in the table above) like this:
 
-```
+```text
 ALTER SYSTEM SET smtp_client.server TO 'smtp.example.com';
 ALTER SYSTEM SET smtp_client.port TO 587;
 ALTER SYSTEM SET smtp_client.tls TO true;

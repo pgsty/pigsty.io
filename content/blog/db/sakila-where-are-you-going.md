@@ -2,7 +2,7 @@
 title: "MySQL Performance Declining: Where is Sakila Going?"
 linkTitle: "MySQL Performance Declining: Where is Sakila Going?"
 date: 2024-06-19
-manualLink: "https://vonng.com/cn/db/sakila-where-are-you-going/"
+manual_link: "https://vonng.com/cn/db/sakila-where-are-you-going/"
 author: Marco Tusa
 description: |
   Higher MySQL versions mean worse performance? Percona monitoring shows slow migration from 5.7 to 8.x. PostgreSQL is pulling ahead.

@@ -434,40 +434,33 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Install" %}}
-```bash
+```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
 pig install pgsql_tweaks;          # Install for current active PG version
 ```
-{{% /tab %}}
-{{% tab header="pig" %}}
-```bash
+
+```bash {tab="pig" value="pig"}
 pig ext install -y pgsql_tweaks -v 18  # PG 18
 pig ext install -y pgsql_tweaks -v 17  # PG 17
 pig ext install -y pgsql_tweaks -v 16  # PG 16
 pig ext install -y pgsql_tweaks -v 15  # PG 15
 pig ext install -y pgsql_tweaks -v 14  # PG 14
 ```
-{{% /tab %}}
-{{% tab header="dnf" %}}
-```bash
+
+```bash {tab="dnf" value="dnf"}
 dnf install -y pgsql_tweaks_18       # PG 18
 dnf install -y pgsql_tweaks_17       # PG 17
 dnf install -y pgsql_tweaks_16       # PG 16
 dnf install -y pgsql_tweaks_15       # PG 15
 dnf install -y pgsql_tweaks_14       # PG 14
 ```
-{{% /tab %}}
-{{% tab header="apt" %}}
-```bash
+
+```bash {tab="apt" value="apt"}
 apt install -y postgresql-18-pgsql-tweaks   # PG 18
 apt install -y postgresql-17-pgsql-tweaks   # PG 17
 apt install -y postgresql-16-pgsql-tweaks   # PG 16
 apt install -y postgresql-15-pgsql-tweaks   # PG 15
 apt install -y postgresql-14-pgsql-tweaks   # PG 14
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Create Extension**:

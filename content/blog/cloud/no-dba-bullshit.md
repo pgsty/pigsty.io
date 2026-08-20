@@ -1,7 +1,7 @@
 ---
 title: "Refuting \"Why You Still Shouldn't Hire a DBA\""
 date: 2023-03-01
-manualLink: "https://vonng.com/en/cloud/no-dba-bullshit/"
+manual_link: "https://vonng.com/en/cloud/no-dba-bullshit/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat Official Account](https://mp.weixin.qq.com/s/CMRrqI2yBWlNbACHpNgL1g)
 

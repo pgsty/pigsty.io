@@ -69,9 +69,8 @@ pg_crontab:
 | `pg-repack` | Weekly/Monthly | Off-peak hours       | Reorganize bloated tables/indexes, reclaim space        |
 {.full-width}
 
-{{% alert title="Primary Only Execution" color="secondary" %}}
-The `pg-backup`, `pg-vacuum`, and `pg-repack` scripts automatically detect the current node role. Only the primary will actually execute; replicas will exit directly. Therefore, you can safely configure the same cron jobs on all nodes, and after failover, the new primary will automatically continue executing maintenance tasks.
-{{% /alert %}}
+> [!NOTE] Primary Only Execution
+> The `pg-backup`, `pg-vacuum`, and `pg-repack` scripts automatically detect the current node role. Only the primary will actually execute; replicas will exit directly. Therefore, you can safely configure the same cron jobs on all nodes, and after failover, the new primary will automatically continue executing maintenance tasks.
 
 
 ----------------
@@ -83,15 +82,12 @@ Cron jobs are automatically written to the default location for the correspondin
 - EL (RHEL/Rocky/Alma): `/var/spool/cron/postgres`
 - Debian/Ubuntu: `/var/spool/cron/crontabs/postgres`
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Playbook" %}}
-```bash
+```bash {tab="Playbook" group="playbook-manual" value="playbook"}
 ./pgsql.yml -l pg-meta -t pg_crontab     # Apply pg_crontab config to specified cluster
 ./pgsql.yml -l 10.10.10.10 -t pg_crontab # Target specific host only
 ```
-{{% /tab %}}
-{{% tab header="Manual" %}}
-```bash
+
+```bash {tab="Manual" value="manual"}
 # Edit cron jobs as postgres user
 sudo -u postgres crontab -e
 
@@ -99,8 +95,6 @@ sudo -u postgres crontab -e
 sudo vi /var/spool/cron/postgres           # EL series
 sudo vi /var/spool/cron/crontabs/postgres  # Debian/Ubuntu
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 Each playbook execution will **fully overwrite** the cron job configuration.
 
@@ -156,28 +150,22 @@ pg-backup incr           # Execute incremental backup (based on most recent any 
 
 **Common Cron Configurations**
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Daily Full" %}}
-```yaml
+```yaml {tab="Daily Full" group="tabs-43c6c15f" value="daily-full"}
 pg_crontab:
   - '00 01 * * * /pg/bin/pg-backup full'    # Daily full backup at 1:00 AM
 ```
-{{% /tab %}}
-{{% tab header="Weekly Full + Daily Incr" %}}
-```yaml
+
+```yaml {tab="Weekly Full + Daily Incr" value="weekly-full-daily-incr"}
 pg_crontab:
   - '00 01 * * 1            /pg/bin/pg-backup full'  # Monday full backup
   - '00 01 * * 2,3,4,5,6,7  /pg/bin/pg-backup'       # Other days incremental
 ```
-{{% /tab %}}
-{{% tab header="Weekly Full + Daily Diff" %}}
-```yaml
+
+```yaml {tab="Weekly Full + Daily Diff" value="weekly-full-daily-diff"}
 pg_crontab:
   - '00 01 * * 1            /pg/bin/pg-backup full'  # Monday full backup
   - '00 01 * * 2,3,4,5,6,7  /pg/bin/pg-backup diff'  # Other days differential
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 For more backup and recovery operations, see the [**Backup Management**](/docs/pgsql/backup/) section.
 
@@ -190,31 +178,25 @@ For more backup and recovery operations, see the [**Backup Management**](/docs/p
 
 **Basic Usage**
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Basic" %}}
-```bash
+```bash {tab="Basic" group="basic-options-manual-sql" value="basic"}
 pg-vacuum                    # Freeze aging tables in all databases
 pg-vacuum mydb               # Process specified database only
 pg-vacuum mydb1 mydb2        # Process multiple databases
 ```
-{{% /tab %}}
-{{% tab header="Options" %}}
-```bash
+
+```bash {tab="Options" value="options"}
 pg-vacuum -n mydb            # Dry run mode, display only without executing
 pg-vacuum -a 80000000 mydb   # Use custom age threshold (default 100M)
 pg-vacuum -r 50 mydb         # Use custom aging ratio threshold (default 40%)
 ```
-{{% /tab %}}
-{{% tab header="Manual SQL" %}}
-```sql
+
+```sql {tab="Manual SQL" value="manual-sql"}
 -- Execute VACUUM FREEZE on entire database
 VACUUM FREEZE;
 
 -- Execute VACUUM FREEZE on specific table
 VACUUM FREEZE schema.table_name;
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 **Command Options**
 
@@ -257,32 +239,26 @@ pg_crontab:
 
 **Basic Usage**
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Basic" %}}
-```bash
+```bash {tab="Basic" group="basic-options-manual" value="basic"}
 pg-repack                    # Reorganize bloated tables and indexes in all databases
 pg-repack mydb               # Reorganize specified database only
 pg-repack mydb1 mydb2        # Reorganize multiple databases
 ```
-{{% /tab %}}
-{{% tab header="Options" %}}
-```bash
+
+```bash {tab="Options" value="options"}
 pg-repack -n mydb            # Dry run mode, display only without executing
 pg-repack -t mydb            # Reorganize tables only
 pg-repack -i mydb            # Reorganize indexes only
 pg-repack -T 30 -j 4 mydb    # Custom lock timeout (seconds) and parallelism
 ```
-{{% /tab %}}
-{{% tab header="Manual" %}}
-```bash
+
+```bash {tab="Manual" value="manual"}
 # Use pg_repack command directly to reorganize specific table
 pg_repack dbname -t schema.table
 
 # Use pg_repack command directly to reorganize specific index
 pg_repack dbname -i schema.index
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 **Command Options**
 
@@ -330,9 +306,8 @@ Tables/indexes over 64GB are skipped with a warning and require manual handling.
 - Uses file lock `/tmp/pg-repack.lock` to prevent concurrent execution
 - Auto-skips `template0`, `template1`, `postgres` system databases
 
-{{% alert title="Lock Waiting" color="info" %}}
-Normal reads/writes are not affected during reorganization, but the **final switch moment** requires acquiring AccessExclusive lock on the table, blocking all access. For high-throughput workloads, recommend running during off-peak hours or maintenance windows.
-{{% /alert %}}
+> [!NOTE] Lock Waiting
+> Normal reads/writes are not affected during reorganization, but the **final switch moment** requires acquiring AccessExclusive lock on the table, blocking all access. For high-throughput workloads, recommend running during off-peak hours or maintenance windows.
 
 **Common Cron Configuration**
 

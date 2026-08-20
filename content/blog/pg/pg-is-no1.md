@@ -2,7 +2,7 @@
 title: PostgreSQL, The most successful database
 linkTitle: PG, The most successful database
 date: 2023-06-28
-manualLink: "https://vonng.com/en/pg/pg-is-no1/"
+manual_link: "https://vonng.com/en/pg/pg-is-no1/"
 author: |
   [RuohangFeng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/xewE87WEaZHp-K5hjuk65A) | [Zhihu](https://zhuanlan.zhihu.com/p/542019272)
 

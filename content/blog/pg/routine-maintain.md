@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL Routine Maintenance
 date: 2018-02-10
-manualLink: "https://vonng.com/en/pg/routine-maintain/"
+manual_link: "https://vonng.com/en/pg/routine-maintain/"
 author: vonng
 description: |
   Cars need oil changes, databases need maintenance. For PG, three important maintenance tasks: backup, repack, vacuum

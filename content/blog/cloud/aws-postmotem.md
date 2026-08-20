@@ -2,7 +2,7 @@
 title: AWS’s Official DynamoDB Outage Postmortem
 linkTitle: AWS’s Official DynamoDB Outage Postmortem
 date: 2025-10-24
-manualLink: "https://vonng.com/en/cloud/aws-postmotem/"
+manual_link: "https://vonng.com/en/cloud/aws-postmotem/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/csopt3H5ZSh60vvcO-28hQ)
 

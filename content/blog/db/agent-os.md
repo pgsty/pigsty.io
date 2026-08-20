@@ -1,7 +1,7 @@
 ---
 title: "Agent OS: We're Building DOS Again"
 date: 2026-01-26
-manualLink: "https://vonng.com/en/db/agent-os/"
+manual_link: "https://vonng.com/en/db/agent-os/"
 author: Ruohang Feng
 description: >
   LLM = CPU. Context = RAM. Database = Disk. Agent = App. The mapping is surprisingly clean.

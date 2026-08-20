@@ -167,40 +167,33 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Install" %}}
-```bash
+```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
 pig install plprql;          # Install for current active PG version
 ```
-{{% /tab %}}
-{{% tab header="pig" %}}
-```bash
+
+```bash {tab="pig" value="pig"}
 pig ext install -y plprql -v 18  # PG 18
 pig ext install -y plprql -v 17  # PG 17
 pig ext install -y plprql -v 16  # PG 16
 pig ext install -y plprql -v 15  # PG 15
 pig ext install -y plprql -v 14  # PG 14
 ```
-{{% /tab %}}
-{{% tab header="dnf" %}}
-```bash
+
+```bash {tab="dnf" value="dnf"}
 dnf install -y plprql_18       # PG 18
 dnf install -y plprql_17       # PG 17
 dnf install -y plprql_16       # PG 16
 dnf install -y plprql_15       # PG 15
 dnf install -y plprql_14       # PG 14
 ```
-{{% /tab %}}
-{{% tab header="apt" %}}
-```bash
+
+```bash {tab="apt" value="apt"}
 apt install -y postgresql-18-plprql   # PG 18
 apt install -y postgresql-17-plprql   # PG 17
 apt install -y postgresql-16-plprql   # PG 16
 apt install -y postgresql-15-plprql   # PG 15
 apt install -y postgresql-14-plprql   # PG 14
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Create Extension**:
@@ -268,7 +261,7 @@ SELECT prql_to_sql('from matches | filter player == "Player1"');
 
 PRQL uses pipeline transformations:
 
-```
+```text
 from employees                    # data source
 filter department == "Engineering" # row filtering
 derive monthly_salary = salary / 12 # computed columns

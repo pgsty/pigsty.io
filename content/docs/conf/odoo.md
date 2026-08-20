@@ -35,7 +35,7 @@ Usage:
 
 Source: [`pigsty/conf/app/odoo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/odoo.yml)
 
-{{< readfile file="yaml/app/odoo.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/app/odoo.yml" code=true lang="yaml" >}}
 
 
 --------

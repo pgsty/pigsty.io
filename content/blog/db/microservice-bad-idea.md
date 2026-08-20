@@ -2,7 +2,7 @@
 title: Are Microservices a Bad Idea?
 linkTitle: Are Microservices a Bad Idea?
 date: 2023-05-07
-manualLink: "https://vonng.com/cn/db/microservice-bad-idea/"
+manual_link: "https://vonng.com/cn/db/microservice-bad-idea/"
 author: DHH
 description: |
   Even Amazon's SOA team admits that microservices and serverless have problems. The Prime Video team switched to a monolith, saving 90% in operational costs.

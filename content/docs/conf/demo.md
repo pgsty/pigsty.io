@@ -50,7 +50,7 @@ This template enhances the `meta` template with:
 
 Source: [`pigsty/conf/demo/demo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/demo.yml)
 
-{{< readfile file="yaml/demo/demo.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/demo/demo.yml" code=true lang="yaml" >}}
 
 
 --------

@@ -2,7 +2,7 @@
 title: Switzerland Mandates Open-Source for Government Software
 linkTitle: Switzerland Mandates Government Open-Source
 date: 2024-07-24
-manualLink: "https://vonng.com/en/db/oss-gov/"
+manual_link: "https://vonng.com/en/db/oss-gov/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

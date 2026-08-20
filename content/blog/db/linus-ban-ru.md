@@ -2,7 +2,7 @@
 title: "Open-Source \"Tyrant\" Linus's Purge"
 linkTitle: Open-Source Tyrant Linus Purges His Court
 date: 2024-10-25
-manualLink: "https://vonng.com/en/db/linus-ban-ru/"
+manual_link: "https://vonng.com/en/db/linus-ban-ru/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat Original](https://mp.weixin.qq.com/s/IcmXCMyflqGlAPA8vFzyyA)
 

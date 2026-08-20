@@ -1,7 +1,7 @@
 ---
 title: Will DBAs Be Eliminated by Cloud?
 date: 2024-02-02
-manualLink: "https://vonng.com/en/cloud/dba-vs-rds/"
+manual_link: "https://vonng.com/en/cloud/dba-vs-rds/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/W1hwbl3qmjC4Dcmadc8uSg)
 

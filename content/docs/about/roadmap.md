@@ -19,11 +19,10 @@ Major version updates signify incompatible foundational changes and major new fe
 Pigsty plans to release one major version update per year. Minor version updates usually follow PostgreSQL's minor version update rhythm, catching up within a month at the latest after a new PostgreSQL version is released.
 Pigsty typically plans 4-6 minor versions per year. For complete release history, please refer to [**Release Notes**](/docs/about/release).
 
-{{% alert title="Deploy with Specific Version Numbers" color="primary" %}}
-Pigsty develops using the **main** trunk branch. Please always use [**Releases**](https://github.com/pgsty/pigsty/releases) with version numbers.
-
-Unless you know what you're doing, do not use GitHub's **main** branch. Always check out and use a specific version.
-{{% /alert %}}
+> [!IMPORTANT] Deploy with Specific Version Numbers
+> Pigsty develops using the **main** trunk branch. Please always use [**Releases**](https://github.com/pgsty/pigsty/releases) with version numbers.
+>
+> Unless you know what you're doing, do not use GitHub's **main** branch. Always check out and use a specific version.
 
 
 

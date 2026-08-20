@@ -32,7 +32,7 @@ Usage:
 
 Source: [`pigsty/conf/ha/simu.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/simu.yml)
 
-{{< readfile file="yaml/ha/simu.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/ha/simu.yml" code=true lang="yaml" >}}
 
 
 --------

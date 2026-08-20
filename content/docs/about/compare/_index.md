@@ -72,108 +72,100 @@ This is a historical PostgreSQL 16 extension-support snapshot based on informati
 | CDC Extraction    | <i class="fas fa-circle-check text-success"></i> wal2json 2.5.3                 |              <i class="fas fa-circle-xmark text-danger"></i>               |  <i class="fas fa-circle-check text-success"></i> wal2json 2.5   |
 | Bloat Management     | <i class="fas fa-circle-check text-success"></i> pg_repack 1.5.0                |      <i class="fas fa-circle-check text-success"></i> pg_repack 1.4.8      | <i class="fas fa-circle-check text-success"></i> pg_repack 1.5.0 |
 
-<details><summary>AWS RDS PG Available Extensions</summary>
-
-AWS RDS for PostgreSQL 16 available extensions (excluding PG built-in extensions)
-
-| name                 | pg16 | pg15 | pg14 | pg13 | pg12 | pg11 | pg10 |
-|:---------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
-| amcheck              | 1.3  | 1.3  | 1.3  | 1.2  | 1.2  | yes  | 1    |
-| auto\_explain        | yes  | yes  | yes  | yes  | yes  | yes  | yes  |
-| autoinc              | 1    | 1    | 1    | 1    | null | null | null |
-| bloom                | 1    | 1    | 1    | 1    | 1    | 1    | 1    |
-| bool\_plperl         | 1    | 1    | 1    | 1    | null | null | null |
-| btree\_gin           | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.2  |
-| btree\_gist          | 1.7  | 1.7  | 1.6  | 1.5  | 1.5  | 1.5  | 1.5  |
-| citext               | 1.6  | 1.6  | 1.6  | 1.6  | 1.6  | 1.5  | 1.4  |
-| cube                 | 1.5  | 1.5  | 1.5  | 1.4  | 1.4  | 1.4  | 1.2  |
-| dblink               | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  |
-| dict\_int            | 1    | 1    | 1    | 1    | 1    | 1    | 1    |
-| dict\_xsyn           | 1    | 1    | 1    | 1    | 1    | 1    | 1    |
-| earthdistance        | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  |
-| fuzzystrmatch        | 1.2  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  |
-| hstore               | 1.8  | 1.8  | 1.8  | 1.7  | 1.6  | 1.5  | 1.4  |
-| hstore\_plperl       | 1    | 1    | 1    | 1    | 1    | 1    | 1    |
-| insert\_username     | 1    | 1    | 1    | 1    | null | null | null |
-| intagg               | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  |
-| intarray             | 1.5  | 1.5  | 1.5  | 1.3  | 1.2  | 1.2  | 1.2  |
-| isn                  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.1  |
-| jsonb\_plperl        | 1    | 1    | 1    | 1    | 1    | null | null |
-| lo                   | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  |
-| ltree                | 1.2  | 1.2  | 1.2  | 1.2  | 1.1  | 1.1  | 1.1  |
-| moddatetime          | 1    | 1    | 1    | 1    | null | null | null |
-| old\_snapshot        | 1    | 1    | 1    | null | null | null | null |
-| pageinspect          | 1.12 | 1.11 | 1.9  | 1.8  | 1.7  | 1.7  | 1.6  |
-| pg\_buffercache      | 1.4  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  |
-| pg\_freespacemap     | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  |
-| pg\_prewarm          | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.1  |
-| pg\_stat\_statements | 1.1  | 1.1  | 1.9  | 1.8  | 1.7  | 1.6  | 1.6  |
-| pg\_trgm             | 1.6  | 1.6  | 1.6  | 1.5  | 1.4  | 1.4  | 1.3  |
-| pg\_visibility       | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  |
-| pg\_walinspect       | 1.1  | 1    | null | null | null | null | null |
-| pgcrypto             | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  |
-| pgrowlocks           | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  |
-| pgstattuple          | 1.5  | 1.5  | 1.5  | 1.5  | 1.5  | 1.5  | 1.5  |
-| plperl               | 1    | 1    | 1    | 1    | 1    | 1    | 1    |
-| plpgsql              | 1    | 1    | 1    | 1    | 1    | 1    | 1    |
-| pltcl                | 1    | 1    | 1    | 1    | 1    | 1    | 1    |
-| postgres\_fdw        | 1.1  | 1.1  | 1.1  | 1    | 1    | 1    | 1    |
-| refint               | 1    | 1    | 1    | 1    | null | null | null |
-| seg                  | 1.4  | 1.4  | 1.4  | 1.3  | 1.3  | 1.3  | 1.1  |
-| sslinfo              | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  |
-| tablefunc            | 1    | 1    | 1    | 1    | 1    | 1    | 1    |
-| tcn                  | 1    | 1    | 1    | 1    | 1    | 1    | 1    |
-| tsm\_system\_rows    | 1    | 1    | 1    | 1    | 1    | 1    | 1.1  |
-| tsm\_system\_time    | 1    | 1    | 1    | 1    | 1    | 1    | 1.1  |
-| unaccent             | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  |
-| uuid-ossp            | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  |
-
-
-</details>
+> [!DETAILS]- AWS RDS PG Available Extensions
+> AWS RDS for PostgreSQL 16 available extensions (excluding PG built-in extensions)
+>
+> | name                 | pg16 | pg15 | pg14 | pg13 | pg12 | pg11 | pg10 |
+> |:---------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
+> | amcheck              | 1.3  | 1.3  | 1.3  | 1.2  | 1.2  | yes  | 1    |
+> | auto\_explain        | yes  | yes  | yes  | yes  | yes  | yes  | yes  |
+> | autoinc              | 1    | 1    | 1    | 1    | null | null | null |
+> | bloom                | 1    | 1    | 1    | 1    | 1    | 1    | 1    |
+> | bool\_plperl         | 1    | 1    | 1    | 1    | null | null | null |
+> | btree\_gin           | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.2  |
+> | btree\_gist          | 1.7  | 1.7  | 1.6  | 1.5  | 1.5  | 1.5  | 1.5  |
+> | citext               | 1.6  | 1.6  | 1.6  | 1.6  | 1.6  | 1.5  | 1.4  |
+> | cube                 | 1.5  | 1.5  | 1.5  | 1.4  | 1.4  | 1.4  | 1.2  |
+> | dblink               | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  |
+> | dict\_int            | 1    | 1    | 1    | 1    | 1    | 1    | 1    |
+> | dict\_xsyn           | 1    | 1    | 1    | 1    | 1    | 1    | 1    |
+> | earthdistance        | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  |
+> | fuzzystrmatch        | 1.2  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  |
+> | hstore               | 1.8  | 1.8  | 1.8  | 1.7  | 1.6  | 1.5  | 1.4  |
+> | hstore\_plperl       | 1    | 1    | 1    | 1    | 1    | 1    | 1    |
+> | insert\_username     | 1    | 1    | 1    | 1    | null | null | null |
+> | intagg               | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  |
+> | intarray             | 1.5  | 1.5  | 1.5  | 1.3  | 1.2  | 1.2  | 1.2  |
+> | isn                  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.1  |
+> | jsonb\_plperl        | 1    | 1    | 1    | 1    | 1    | null | null |
+> | lo                   | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  |
+> | ltree                | 1.2  | 1.2  | 1.2  | 1.2  | 1.1  | 1.1  | 1.1  |
+> | moddatetime          | 1    | 1    | 1    | 1    | null | null | null |
+> | old\_snapshot        | 1    | 1    | 1    | null | null | null | null |
+> | pageinspect          | 1.12 | 1.11 | 1.9  | 1.8  | 1.7  | 1.7  | 1.6  |
+> | pg\_buffercache      | 1.4  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  |
+> | pg\_freespacemap     | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  |
+> | pg\_prewarm          | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.1  |
+> | pg\_stat\_statements | 1.1  | 1.1  | 1.9  | 1.8  | 1.7  | 1.6  | 1.6  |
+> | pg\_trgm             | 1.6  | 1.6  | 1.6  | 1.5  | 1.4  | 1.4  | 1.3  |
+> | pg\_visibility       | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  |
+> | pg\_walinspect       | 1.1  | 1    | null | null | null | null | null |
+> | pgcrypto             | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  |
+> | pgrowlocks           | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  |
+> | pgstattuple          | 1.5  | 1.5  | 1.5  | 1.5  | 1.5  | 1.5  | 1.5  |
+> | plperl               | 1    | 1    | 1    | 1    | 1    | 1    | 1    |
+> | plpgsql              | 1    | 1    | 1    | 1    | 1    | 1    | 1    |
+> | pltcl                | 1    | 1    | 1    | 1    | 1    | 1    | 1    |
+> | postgres\_fdw        | 1.1  | 1.1  | 1.1  | 1    | 1    | 1    | 1    |
+> | refint               | 1    | 1    | 1    | 1    | null | null | null |
+> | seg                  | 1.4  | 1.4  | 1.4  | 1.3  | 1.3  | 1.3  | 1.1  |
+> | sslinfo              | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  |
+> | tablefunc            | 1    | 1    | 1    | 1    | 1    | 1    | 1    |
+> | tcn                  | 1    | 1    | 1    | 1    | 1    | 1    | 1    |
+> | tsm\_system\_rows    | 1    | 1    | 1    | 1    | 1    | 1    | 1.1  |
+> | tsm\_system\_time    | 1    | 1    | 1    | 1    | 1    | 1    | 1.1  |
+> | unaccent             | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  |
+> | uuid-ossp            | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  |
 
 
-<details><summary>Aliyun RDS PG Available Extensions</summary>
-
-Aliyun RDS for PostgreSQL 16 available extensions (excluding PG built-in extensions)
-
-| name                 | pg16 | pg15 | pg14 | pg13 | pg12 | pg11 | pg10 | description                                |
-|:---------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-------------------------------------------|
-| bloom                | 1    | 1    | 1    | 1    | 1    | 1    | 1    | Provides a bloom filter-based index access method.                     |
-| btree\_gin           | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.2  | Provides GIN operator class examples that implement B-tree equivalent behavior for multiple data types and all enum types.  |
-| btree\_gist          | 1.7  | 1.7  | 1.6  | 1.5  | 1.5  | 1.5  | 1.5  | Provides GiST operator class examples that implement B-tree equivalent behavior for multiple data types and all enum types. |
-| citext               | 1.6  | 1.6  | 1.6  | 1.6  | 1.6  | 1.5  | 1.4  | Provides a case-insensitive string type.                        |
-| cube                 | 1.5  | 1.5  | 1.5  | 1.4  | 1.4  | 1.4  | 1.2  | Provides a data type for representing multi-dimensional cubes.                        |
-| dblink               | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | Cross-database table operations.                                   |
-| dict\_int            | 1    | 1    | 1    | 1    | 1    | 1    | 1    | Additional full-text search dictionary template example.                           |
-| earthdistance        | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | Provides two different methods to calculate great circle distances on the Earth's surface.                   |
-| fuzzystrmatch        | 1.2  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | Determines similarities and distances between strings.                          |
-| hstore               | 1.8  | 1.8  | 1.8  | 1.7  | 1.6  | 1.5  | 1.4  | Stores key-value pairs in a single PostgreSQL value.                    |
-| intagg               | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | Provides an integer aggregator and an enumerator.                         |
-| intarray             | 1.5  | 1.5  | 1.5  | 1.3  | 1.2  | 1.2  | 1.2  | Provides some useful functions and operators for manipulating null-free integer arrays.               |
-| isn                  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.1  | Validates input according to a hard-coded prefix list, also used for concatenating numbers during output.        |
-| ltree                | 1.2  | 1.2  | 1.2  | 1.2  | 1.1  | 1.1  | 1.1  | For representing labels of data stored in a hierarchical tree structure.                  |
-| pg\_buffercache      | 1.4  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | Provides a way to examine the shared buffer cache in real time.                         |
-| pg\_freespacemap     | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | Examines the free space map (FSM).                           |
-| pg\_prewarm          | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.1  | Provides a convenient way to load data into the OS buffer or PostgreSQL buffer.   |
-| pg\_stat\_statements | 1.1  | 1.1  | 1.9  | 1.8  | 1.7  | 1.6  | 1.6  | Provides a means of tracking execution statistics of all SQL statements executed by a server.            |
-| pg\_trgm             | 1.6  | 1.6  | 1.6  | 1.5  | 1.4  | 1.4  | 1.3  | Provides functions and operators for alphanumeric text similarity, and index operator classes that support fast searching of similar strings. |
-| pgcrypto             | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | Provides cryptographic functions for PostgreSQL.                      |
-| pgrowlocks           | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | Provides a function to show row locking information for a specified table.                    |
-| pgstattuple          | 1.5  | 1.5  | 1.5  | 1.5  | 1.5  | 1.5  | 1.5  | Provides multiple functions to obtain tuple-level statistics.                       |
-| plperl               | 1    | 1    | 1    | 1    | 1    | 1    | 1    | Provides Perl procedural language.                              |
-| plpgsql              | 1    | 1    | 1    | 1    | 1    | 1    | 1    | Provides SQL procedural language.                               |
-| pltcl                | 1    | 1    | 1    | 1    | 1    | 1    | 1    | Provides Tcl procedural language.                               |
-| postgres\_fdw        | 1.1  | 1.1  | 1.1  | 1    | 1    | 1    | 1    | Cross-database table operations.                                   |
-| sslinfo              | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | Provides information about the SSL certificate provided by the current client.                  |
-| tablefunc            | 1    | 1    | 1    | 1    | 1    | 1    | 1    | Contains multiple table-returning functions.                              |
-| tsm\_system\_rows    | 1    | 1    | 1    | 1    | 1    | 1    | 1    | Provides the table sampling method SYSTEM\_ROWS.                     |
-| tsm\_system\_time    | 1    | 1    | 1    | 1    | 1    | 1    | 1    | Provides the table sampling method SYSTEM\_TIME.                     |
-| unaccent             | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | A text search dictionary that can remove accents (diacritics) from lexemes.                 |
-| uuid-ossp            | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | Provides functions to generate universally unique identifiers (UUIDs) using several standard algorithms.           |
-| xml2                 | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | Provides XPath queries and XSLT functionality.                        |
-
-
-</details>
+> [!DETAILS]- Aliyun RDS PG Available Extensions
+> Aliyun RDS for PostgreSQL 16 available extensions (excluding PG built-in extensions)
+>
+> | name                 | pg16 | pg15 | pg14 | pg13 | pg12 | pg11 | pg10 | description                                |
+> |:---------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-------------------------------------------|
+> | bloom                | 1    | 1    | 1    | 1    | 1    | 1    | 1    | Provides a bloom filter-based index access method.                     |
+> | btree\_gin           | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.2  | Provides GIN operator class examples that implement B-tree equivalent behavior for multiple data types and all enum types.  |
+> | btree\_gist          | 1.7  | 1.7  | 1.6  | 1.5  | 1.5  | 1.5  | 1.5  | Provides GiST operator class examples that implement B-tree equivalent behavior for multiple data types and all enum types. |
+> | citext               | 1.6  | 1.6  | 1.6  | 1.6  | 1.6  | 1.5  | 1.4  | Provides a case-insensitive string type.                        |
+> | cube                 | 1.5  | 1.5  | 1.5  | 1.4  | 1.4  | 1.4  | 1.2  | Provides a data type for representing multi-dimensional cubes.                        |
+> | dblink               | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | Cross-database table operations.                                   |
+> | dict\_int            | 1    | 1    | 1    | 1    | 1    | 1    | 1    | Additional full-text search dictionary template example.                           |
+> | earthdistance        | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | Provides two different methods to calculate great circle distances on the Earth's surface.                   |
+> | fuzzystrmatch        | 1.2  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | Determines similarities and distances between strings.                          |
+> | hstore               | 1.8  | 1.8  | 1.8  | 1.7  | 1.6  | 1.5  | 1.4  | Stores key-value pairs in a single PostgreSQL value.                    |
+> | intagg               | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | Provides an integer aggregator and an enumerator.                         |
+> | intarray             | 1.5  | 1.5  | 1.5  | 1.3  | 1.2  | 1.2  | 1.2  | Provides some useful functions and operators for manipulating null-free integer arrays.               |
+> | isn                  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.1  | Validates input according to a hard-coded prefix list, also used for concatenating numbers during output.        |
+> | ltree                | 1.2  | 1.2  | 1.2  | 1.2  | 1.1  | 1.1  | 1.1  | For representing labels of data stored in a hierarchical tree structure.                  |
+> | pg\_buffercache      | 1.4  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | Provides a way to examine the shared buffer cache in real time.                         |
+> | pg\_freespacemap     | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | Examines the free space map (FSM).                           |
+> | pg\_prewarm          | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.1  | Provides a convenient way to load data into the OS buffer or PostgreSQL buffer.   |
+> | pg\_stat\_statements | 1.1  | 1.1  | 1.9  | 1.8  | 1.7  | 1.6  | 1.6  | Provides a means of tracking execution statistics of all SQL statements executed by a server.            |
+> | pg\_trgm             | 1.6  | 1.6  | 1.6  | 1.5  | 1.4  | 1.4  | 1.3  | Provides functions and operators for alphanumeric text similarity, and index operator classes that support fast searching of similar strings. |
+> | pgcrypto             | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | 1.3  | Provides cryptographic functions for PostgreSQL.                      |
+> | pgrowlocks           | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | Provides a function to show row locking information for a specified table.                    |
+> | pgstattuple          | 1.5  | 1.5  | 1.5  | 1.5  | 1.5  | 1.5  | 1.5  | Provides multiple functions to obtain tuple-level statistics.                       |
+> | plperl               | 1    | 1    | 1    | 1    | 1    | 1    | 1    | Provides Perl procedural language.                              |
+> | plpgsql              | 1    | 1    | 1    | 1    | 1    | 1    | 1    | Provides SQL procedural language.                               |
+> | pltcl                | 1    | 1    | 1    | 1    | 1    | 1    | 1    | Provides Tcl procedural language.                               |
+> | postgres\_fdw        | 1.1  | 1.1  | 1.1  | 1    | 1    | 1    | 1    | Cross-database table operations.                                   |
+> | sslinfo              | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | 1.2  | Provides information about the SSL certificate provided by the current client.                  |
+> | tablefunc            | 1    | 1    | 1    | 1    | 1    | 1    | 1    | Contains multiple table-returning functions.                              |
+> | tsm\_system\_rows    | 1    | 1    | 1    | 1    | 1    | 1    | 1    | Provides the table sampling method SYSTEM\_ROWS.                     |
+> | tsm\_system\_time    | 1    | 1    | 1    | 1    | 1    | 1    | 1    | Provides the table sampling method SYSTEM\_TIME.                     |
+> | unaccent             | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | A text search dictionary that can remove accents (diacritics) from lexemes.                 |
+> | uuid-ossp            | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | Provides functions to generate universally unique identifiers (UUIDs) using several standard algorithms.           |
+> | xml2                 | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | 1.1  | Provides XPath queries and XSLT functionality.                        |
 
 
 

@@ -36,7 +36,7 @@ Usage:
 
 Source: [`pigsty/conf/infra.yml`](https://github.com/pgsty/pigsty/blob/main/conf/infra.yml)
 
-{{< readfile file="yaml/infra.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/infra.yml" code=true lang="yaml" >}}
 
 
 --------

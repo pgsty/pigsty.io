@@ -1,7 +1,7 @@
 ---
 title: How Many Shops Has etcd Torched?
 date: 2025-05-07
-manualLink: "https://vonng.com/en/db/bad-etcd/"
+manual_link: "https://vonng.com/en/db/bad-etcd/"
 author: Ruohang Feng
 description: Plenty. If you’re rolling your own Kubernetes, odds are you’ll crash because etcd ships with a 2 GB time bomb.
 images: [/img/hero/db/bad-etcd.jpg]

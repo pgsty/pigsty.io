@@ -33,7 +33,7 @@ Usage:
 
 Source: [`pigsty/conf/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/mysql.yml)
 
-{{< readfile file="yaml/mysql.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/mysql.yml" code=true lang="yaml" >}}
 
 
 --------

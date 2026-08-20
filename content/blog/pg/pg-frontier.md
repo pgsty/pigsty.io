@@ -2,7 +2,7 @@
 title: PostgreSQL Ecosystem Frontier Developments
 linkTitle: PostgreSQL Ecosystem Frontier Developments
 date: 2025-01-24
-manualLink: "https://vonng.com/en/pg/pg-frontier/"
+manual_link: "https://vonng.com/en/pg/pg-frontier/"
 author: vonng
 description: Sharing some interesting recent developments in the PG ecosystem.
 images: [/img/hero/pg/pg-frontier.jpg]

@@ -1,7 +1,7 @@
 ---
 title: How to Use pg_filedump for Data Recovery?
 date: 2023-09-27
-manualLink: "https://vonng.com/en/pg/pg-filedump/"
+manual_link: "https://vonng.com/en/pg/pg-filedump/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [Original WeChat Article](https://mp.weixin.qq.com/s/jmlzhktasg06MiA7b4huew)
 

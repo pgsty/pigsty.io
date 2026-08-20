@@ -1,7 +1,7 @@
 ---
 title: Localization and Collation Rules in PostgreSQL
 date: 2021-03-05
-manualLink: "https://vonng.com/en/pg/collate/"
+manual_link: "https://vonng.com/en/pg/collate/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

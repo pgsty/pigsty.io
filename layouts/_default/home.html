@@ -1342,7 +1342,7 @@
 
 {{ if $localSearch }}
 {{ partialCached "shell/search-dialog.html" . .Site.Language.Lang "landing" }}
-<script type="application/json" id="oink-action-manifest">{"version":1,"actions":[],"commands":[],"quickLinks":[],"rootOrder":[]}</script>
+<script type="application/json" id="td-action-manifest">{"version":1,"actions":[],"commands":[],"quickLinks":[],"rootOrder":[]}</script>
 {{ $searchJs := slice
   (resources.Get "js/third_party/lunr.min.js")
   (resources.Get "js/action-registry.js")

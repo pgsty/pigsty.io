@@ -12,9 +12,8 @@ The ETCD module has **13** parameters, divided into two sections:
 - [**`ETCD`**](#etcd): 10 parameters for etcd cluster deployment and configuration
 - [**`ETCD_REMOVE`**](#etcd_remove): 3 parameters for controlling etcd cluster removal
 
-{{% alert title="Architecture Change: Pigsty v3.6+" color="info" %}}
-Since Pigsty v3.6, the `etcd.yml` playbook no longer includes removal functionality—removal parameters have been migrated to a standalone `etcd_remove` role. Starting from v4.0, RBAC authentication is enabled by default, with a new `etcd_root_password` parameter.
-{{% /alert %}}
+> [!NOTE] Architecture Change: Pigsty v3.6+
+> Since Pigsty v3.6, the `etcd.yml` playbook no longer includes removal functionality—removal parameters have been migrated to a standalone `etcd_remove` role. Starting from v4.0, RBAC authentication is enabled by default, with a new `etcd_root_password` parameter.
 
 
 ----------------
@@ -121,9 +120,8 @@ When set to `true`, the etcd instance will be initialized as a learner, meaning 
 2. Wait for data synchronization to complete (check with `etcdctl endpoint status`)
 3. Use `etcdctl member promote <member_id>` to promote it to a full member
 
-{{% alert title="Note" color="info" %}}
-Learner instances do not count toward cluster quorum. For example, in a 3-node cluster with 1 learner, the actual voting members are 2, which cannot tolerate any node failure.
-{{% /alert %}}
+> [!NOTE] Note
+> Learner instances do not count toward cluster quorum. For example, in a 3-node cluster with 1 learner, the actual voting members are 2, which cannot tolerate any node failure.
 
 
 
@@ -176,9 +174,8 @@ etcd initial cluster state, can be `new` or `existing`, default value: `new`.
 
 **Important Notes**:
 
-{{% alert title="Must use existing when expanding" color="warning" %}}
-When adding new members to an existing etcd cluster, you **must** set `etcd_init=existing`. Otherwise, the new instance will attempt to create an independent new cluster, causing split-brain or initialization failure.
-{{% /alert %}}
+> [!WARNING] Must use existing when expanding
+> When adding new members to an existing etcd cluster, you **must** set `etcd_init=existing`. Otherwise, the new instance will attempt to create an independent new cluster, causing split-brain or initialization failure.
 
 **Usage Examples**:
 
@@ -238,16 +235,14 @@ Since v4.0, Pigsty has enabled etcd RBAC (Role-Based Access Control) authenticat
 
 **Security Recommendations**:
 
-{{% alert title="Production Security" color="warning" %}}
-In production environments, it is **strongly recommended to change the default password** `Etcd.Root`. Set it in global or cluster configuration:
-
-```yaml
-etcd_root_password: 'YourSecurePassword'
-```
-
-Using `configure -g` will automatically generate and replace `etcd_root_password`
-
-{{% /alert %}}
+> [!WARNING] Production Security
+> In production environments, it is **strongly recommended to change the default password** `Etcd.Root`. Set it in global or cluster configuration:
+>
+> ```yaml
+> etcd_root_password: 'YourSecurePassword'
+> ```
+>
+> Using `configure -g` will automatically generate and replace `etcd_root_password`
 
 
 
@@ -343,6 +338,5 @@ When enabled, the [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook will 
 ./etcd-rm.yml -l etcd -e etcd_rm_pkg=true
 ```
 
-{{% alert title="Tip" color="info" %}}
-Usually there's no need to uninstall etcd packages. Keeping the packages speeds up subsequent redeployments since no re-download or installation is required.
-{{% /alert %}}
+> [!NOTE] Tip
+> Usually there's no need to uninstall etcd packages. Keeping the packages speeds up subsequent redeployments since no re-download or installation is required.

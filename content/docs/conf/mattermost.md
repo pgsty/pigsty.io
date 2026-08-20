@@ -38,7 +38,7 @@ Usage:
 
 Source: [`pigsty/conf/app/mattermost.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/mattermost.yml)
 
-{{< readfile file="yaml/app/mattermost.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/app/mattermost.yml" code=true lang="yaml" >}}
 
 
 --------

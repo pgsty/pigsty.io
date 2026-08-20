@@ -23,28 +23,22 @@ pg-meta:
 ```
 
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-hba <cls>              # Refresh PostgreSQL and Pgbouncer HBA rules for cluster
 bin/pgsql-hba <cls> <ip>...      # Refresh HBA rules for specific instances
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql.yml -l <cls> -t pg_hba,pg_reload                 # Refresh PostgreSQL HBA only
 ./pgsql.yml -l <cls> -t pgbouncer_hba,pgbouncer_reload   # Refresh Pgbouncer HBA only
 ./pgsql.yml -l <cls> -t pg_hba,pg_reload,pgbouncer_hba,pgbouncer_reload  # Refresh both
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-hba pg-meta                      # Refresh pg-meta cluster HBA rules
 bin/pgsql-hba pg-meta 10.10.10.10          # Refresh specific instance only
 bin/pgsql-hba pg-meta 10.10.10.11 10.10.10.12  # Refresh multiple instances
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 For rule syntax, see [**HBA Configuration**](/docs/pgsql/config/hba). For authentication methods, default boundaries, and credential management, see [**Authentication**](/docs/concept/sec/auth).
 
@@ -67,27 +61,21 @@ For rule syntax, see [**HBA Configuration**](/docs/pgsql/config/hba). For authen
 
 After modifying HBA rules in `pigsty.yml`, re-render config files and reload services.
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-hba <cls>              # Refresh entire cluster HBA (PostgreSQL + Pgbouncer)
 bin/pgsql-hba <cls> <ip>...      # Refresh specific instances (multiple IPs space-separated)
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql.yml -l <cls> -t pg_hba,pg_reload                 # Refresh PostgreSQL HBA only
 ./pgsql.yml -l <cls> -t pgbouncer_hba,pgbouncer_reload   # Refresh Pgbouncer HBA only
 ./pgsql.yml -l <cls> -t pg_hba,pg_reload,pgbouncer_hba,pgbouncer_reload  # Refresh both
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-hba pg-meta                      # Refresh pg-meta cluster
 bin/pgsql-hba pg-meta 10.10.10.10          # Refresh 10.10.10.10 instance only
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 **Result**: Renders PostgreSQL and Pgbouncer HBA config files based on inventory definitions, then reloads services to apply.
 
@@ -99,9 +87,8 @@ bin/pgsql-hba pg-meta 10.10.10.10          # Refresh 10.10.10.10 instance only
 | Pgbouncer  | `/etc/pgbouncer/pgb_hba.conf`     | `roles/pgsql/templates/pgbouncer.hba`     |
 {.full-width}
 
-{{% alert title="Don't edit config files directly" color="warning" %}}
-Directly editing `/pg/data/pg_hba.conf` or `/etc/pgbouncer/pgb_hba.conf` works temporarily, but will be overwritten next time Ansible playbook runs. All HBA rule changes should be in `pigsty.yml`, then execute `bin/pgsql-hba` to refresh.
-{{% /alert %}}
+> [!WARNING] Don't edit config files directly
+> Directly editing `/pg/data/pg_hba.conf` or `/etc/pgbouncer/pgb_hba.conf` works temporarily, but will be overwritten next time Ansible playbook runs. All HBA rule changes should be in `pigsty.yml`, then execute `bin/pgsql-hba` to refresh.
 
 **Related Tags**
 
@@ -122,18 +109,15 @@ After refreshing HBA rules, verify config is correctly applied.
 
 **View current HBA rules**
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="SQL" %}}
-```sql
+```sql {tab="SQL" group="sql-bash-test-connection" value="sql"}
 -- View PostgreSQL HBA rules (recommended)
 TABLE pg_hba_file_rules;
 
 -- View matching rules for specific database
 SELECT * FROM pg_hba_file_rules WHERE database @> ARRAY['mydb']::text[];
 ```
-{{% /tab %}}
-{{% tab header="Bash" %}}
-```bash
+
+```bash {tab="Bash" value="bash"}
 # View PostgreSQL HBA config file
 cat /pg/data/pg_hba.conf
 
@@ -143,17 +127,14 @@ cat /etc/pgbouncer/pgb_hba.conf
 # View config file header (confirm if updated)
 head -20 /pg/data/pg_hba.conf
 ```
-{{% /tab %}}
-{{% tab header="Test Connection" %}}
-```bash
+
+```bash {tab="Test Connection" value="test-connection"}
 # Test connection for specific user from specific address
 psql -h <host> -p 5432 -U <user> -d <database> -c "SELECT 1"
 
 # Test connection through Pgbouncer
 psql -h <host> -p 6432 -U <user> -d <database> -c "SELECT 1"
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 **Check HBA config syntax**
 
@@ -317,23 +298,17 @@ Pgbouncer HBA management is similar to PostgreSQL, with some differences.
 
 **Refresh Pgbouncer HBA**
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-view" value="script"}
 bin/pgsql-hba <cls>    # Refresh both PostgreSQL and Pgbouncer
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql.yml -l <cls> -t pgbouncer_hba,pgbouncer_reload   # Refresh Pgbouncer HBA only
 ```
-{{% /tab %}}
-{{% tab header="View" %}}
-```bash
+
+```bash {tab="View" value="view"}
 cat /etc/pgbouncer/pgb_hba.conf    # View Pgbouncer HBA rules
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 ----------------

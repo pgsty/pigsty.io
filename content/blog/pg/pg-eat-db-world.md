@@ -43,7 +43,8 @@ The distinction between OLTP and OLAP didn’t exist at the inception of databas
 
 For a long time, best practice in data processing involved using MySQL/PostgreSQL for OLTP workloads and syncing data to specialized OLAP systems like Greenplum, ClickHouse, Doris, Snowflake, etc., through ETL processes.
 
-{{% imgproc ddia Fit "768x512" %}}{{% /imgproc %}}
+![Diagram contrasting transactional and analytical data systems](ddia.png)
+{command="Fit" options="768x512"}
 
 > DDIA, Martin Kleppmann, ch3, The republic of OLTP & Kingdom of OLAP
 

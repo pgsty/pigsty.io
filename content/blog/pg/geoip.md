@@ -1,7 +1,7 @@
 ---
 title: GeoIP Geographic Reverse Lookup Optimization
 date: 2018-07-07
-manualLink: "https://vonng.com/en/pg/geoip/"
+manual_link: "https://vonng.com/en/pg/geoip/"
 author: vonng
 description: |
   A common requirement in application development is GeoIP conversion - converting source IP addresses to geographic coordinates or administrative divisions (country-state-city-county-town-village)

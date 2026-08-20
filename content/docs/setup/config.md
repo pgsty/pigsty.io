@@ -23,19 +23,14 @@ This doc breaks down all modules and playbooks, showing how to incrementally bui
 
 The simplest valid config only defines the [**`admin_ip`**](/docs/infra/param#admin_ip) variable—the IP address of the node where Pigsty is installed (**admin node**):
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Minimal" %}}
-```yaml
+```yaml {tab="Minimal" group="minimal-mirror" value="minimal"}
 all: { vars: { admin_ip: 10.10.10.10 } }
 ```
-{{% /tab %}}
-{{% tab header="Mirror" %}}
-```yaml
+
+```yaml {tab="Mirror" value="mirror"}
 # Set region: china to use mirrors
 all: { vars: { admin_ip: 10.10.10.10, region: china } }
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 This config deploys nothing, but running `./deploy.yml` generates a self-signed **CA** in `files/pki/ca` for issuing certificates.
@@ -49,9 +44,7 @@ For convenience, you can also set [**`region`**](/docs/infra/param/#region) to s
 
 Pigsty's [**`NODE`**](/docs/node/) module manages cluster nodes. Any IP address in the inventory will be managed by Pigsty with the NODE module installed.
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Minimal" %}}
-```yaml
+```yaml {tab="Minimal" group="minimal-mirror" value="minimal"}
 all:  # Remember to replace 10.10.10.10 with your actual IP
   children: { nodes: { hosts: { 10.10.10.10: {} } } }
   vars:
@@ -59,9 +52,8 @@ all:  # Remember to replace 10.10.10.10 with your actual IP
     region: default                         # Default repos
     node_repo_modules: node,pgsql,infra     # Add node, pgsql, infra repos
 ```
-{{% /tab %}}
-{{% tab header="Mirror" %}}
-```yaml
+
+```yaml {tab="Mirror" value="mirror"}
 all:  # Remember to replace 10.10.10.10 with your actual IP
   children: { nodes: { hosts: { 10.10.10.10: {} } } }
   vars:
@@ -69,8 +61,6 @@ all:  # Remember to replace 10.10.10.10 with your actual IP
     region: china                         # Use mirrors
     node_repo_modules: node,pgsql,infra   # Add node, pgsql, infra repos
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 We added two [**global parameters**](/docs/concept/iac/parameter):
 [**`node_repo_modules`**](/docs/node/param/#node_repo_modules) specifies repos to add;
@@ -96,9 +86,7 @@ A full-featured RDS cloud database service needs infrastructure support: monitor
 
 Define a special group `infra` to deploy the [**`INFRA`**](/docs/infra/) module:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Minimal" %}}
-```yaml
+```yaml {tab="Minimal" group="minimal-mirror" value="minimal"}
 all:  # Simply changed group name from nodes -> infra and added infra_seq
   children: { infra: { hosts: { 10.10.10.10: { infra_seq: 1 } } } }
   vars:
@@ -106,9 +94,8 @@ all:  # Simply changed group name from nodes -> infra and added infra_seq
     region: default
     node_repo_modules: node,pgsql,infra
 ```
-{{% /tab %}}
-{{% tab header="Mirror" %}}
-```yaml
+
+```yaml {tab="Mirror" value="mirror"}
 all:  # Simply changed group name from nodes -> infra and added infra_seq
   children: { infra: { hosts: { 10.10.10.10: { infra_seq: 1 } } } }
   vars:
@@ -116,8 +103,6 @@ all:  # Simply changed group name from nodes -> infra and added infra_seq
     region: china
     node_repo_modules: node,pgsql,infra
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 We also assigned an [**identity parameter**](/docs/concept/iac/parameter#identity-parameters): [**`infra_seq`**](/docs/infra/param/#infra_seq) to distinguish nodes in multi-node HA **INFRA** deployments.
@@ -149,9 +134,7 @@ or vice versa—run HA PostgreSQL clusters without infra—[**Slim Install**](/d
 
 To provide PostgreSQL service, install the [**PGSQL`**](/docs/pgsql/) module and its dependency [**ETCD**](/docs/etcd/)—just two lines of config:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Minimal" %}}
-```yaml
+```yaml {tab="Minimal" group="minimal-mirror" value="minimal"}
 all:
   children:
     infra:   { hosts: { 10.10.10.10: { infra_seq: 1 } } }
@@ -159,9 +142,8 @@ all:
     pg-meta: { hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary } }, vars: { pg_cluster: pg-meta } } # Add pg cluster
   vars: { admin_ip: 10.10.10.10, region: default, node_repo_modules: node,pgsql,infra }
 ```
-{{% /tab %}}
-{{% tab header="Mirror" %}}
-```yaml
+
+```yaml {tab="Mirror" value="mirror"}
 all:
   children:
     infra:   { hosts: { 10.10.10.10: { infra_seq: 1 } } }
@@ -169,8 +151,6 @@ all:
     pg-meta: { hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary } }, vars: { pg_cluster: pg-meta } } # Add pg cluster
   vars: { admin_ip: 10.10.10.10, region: china, node_repo_modules: node,pgsql,infra }
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 We added two new groups: `etcd` and `pg-meta`, defining a single-node etcd cluster and a single-node PostgreSQL cluster.

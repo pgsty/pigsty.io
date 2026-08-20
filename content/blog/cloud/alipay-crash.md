@@ -1,7 +1,7 @@
 ---
 title: Alipay, Taobao, Xianyu Went Dark. Smells Like a Message Queue Meltdown.
 date: 2025-12-05
-manualLink: "https://vonng.com/en/cloud/alipay-crash/"
+manual_link: "https://vonng.com/en/cloud/alipay-crash/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

@@ -2,7 +2,7 @@
 title: How One AWS DNS Failure Cascaded Across Half the Internet
 linkTitle: How One AWS DNS Failure Cascaded Across Half the Internet
 date: 2025-10-21
-manualLink: "https://vonng.com/en/cloud/aws-dns-failure/"
+manual_link: "https://vonng.com/en/cloud/aws-dns-failure/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/sCAOwNva__0L_iMP1QHngQ)
 

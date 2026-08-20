@@ -36,7 +36,7 @@ This template depends on fixed eight-node addresses and VIPs. For any other envi
 
 Source: [`pigsty/conf/ha/octo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/octo.yml)
 
-{{< readfile file="yaml/ha/octo.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/ha/octo.yml" code=true lang="yaml" >}}
 
 
 --------

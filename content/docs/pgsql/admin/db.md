@@ -22,23 +22,17 @@ pg-meta:
 ```
 
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-db <cls> <dbname>    # Create/modify <dbname> database on <cls> cluster
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql-db.yml -l pg-meta -e dbname=some_db    # Use playbook to create/modify database
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-db pg-meta some_db    # Create/modify some_db database on pg-meta cluster
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 For the complete database definition reference, see [**Database Configuration**](/docs/pgsql/config/db). For database access permissions, see [**Access Control: Database Isolation**](/docs/concept/sec/ac#database-isolation).
 
@@ -65,23 +59,17 @@ Databases defined in [**`pg_databases`**](/docs/pgsql/param#pg_databases) are au
 
 To create a new database on an existing cluster, add [**database definition**](/docs/pgsql/config/db) to `all.children.<cls>.pg_databases`, then execute:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-db <cls> <dbname>   # Create database <dbname>
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql-db.yml -l <cls> -e dbname=<dbname>   # Use Ansible playbook
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-db pg-meta myapp    # Create myapp database in pg-meta cluster
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 **Example: Create business database `myapp`**
 
@@ -98,9 +86,8 @@ bin/pgsql-db pg-meta myapp    # Create myapp database in pg-meta cluster
 
 **Result**: Creates `myapp` database on primary, sets owner to `dbuser_myapp`, creates `app` schema, enables `pg_trgm` and `btree_gin` extensions. Database is auto-added to Pgbouncer pool and registered as Grafana datasource.
 
-{{% alert title="Recommendation: Use playbook" color="secondary" %}}
-For manual database creation, you must ensure Pgbouncer pool and Grafana datasource sync yourself.
-{{% /alert %}}
+> [!NOTE] Recommendation: Use playbook
+> For manual database creation, you must ensure Pgbouncer pool and Grafana datasource sync yourself.
 
 
 ----------------
@@ -111,23 +98,17 @@ Same command as create - playbook is idempotent when no `baseline` SQL is define
 
 When target database exists, Pigsty modifies properties to match config. However, some properties can only be set at creation.
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-db <cls> <db>   # Modify database <db> properties
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql-db.yml -l <cls> -e dbname=<db>   # Idempotent, can repeat
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-db pg-meta myapp    # Modify myapp database to match config
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Immutable properties**: These can't be modified after creation, require `state: recreate`:
@@ -190,9 +171,8 @@ All other properties can be modified. Common examples:
     - { name: pg_trgm, state: absent }        # Uninstall extension
 ```
 
-{{% alert title="CASCADE Warning" color="warning" %}}
-Dropping schemas or uninstalling extensions uses `CASCADE`, deleting all dependent objects. Understand impact before executing.
-{{% /alert %}}
+> [!WARNING] CASCADE Warning
+> Dropping schemas or uninstalling extensions uses `CASCADE`, deleting all dependent objects. Understand impact before executing.
 
 **Connection pool config**: By default all databases are added to Pgbouncer. Configure `pgbouncer`, `pool_mode`, `pool_size`, `pool_reserve`, `pool_size_min`, `pool_connlimit`, and `pool_auth_user`.
 
@@ -216,23 +196,17 @@ Dropping schemas or uninstalling extensions uses `CASCADE`, deleting all depende
 
 To delete a database, set `state` to `absent` and execute:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-db <cls> <db>   # Delete <db> (config must have state: absent)
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql-db.yml -l <cls> -e dbname=<db>   # Use Ansible playbook
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-db pg-meta olddb    # Delete olddb (config has state: absent)
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 **Config example**:
 
@@ -246,10 +220,9 @@ pg_databases:
 
 **Protection**: System databases `postgres`, `template0`, `template1` cannot be deleted. Deletion only runs on primary - streaming replication syncs to replicas.
 
-{{% alert title="Danger Warning" color="danger" %}}
-Database deletion is **irreversible** - permanently deletes all data. Before executing: ensure recent backup exists, confirm no business uses the database, notify stakeholders.
-Pigsty is not responsible for any data loss from database deletion. Use at your own risk.
-{{% /alert %}}
+> [!CAUTION] Danger Warning
+> Database deletion is **irreversible** - permanently deletes all data. Before executing: ensure recent backup exists, confirm no business uses the database, notify stakeholders.
+> Pigsty is not responsible for any data loss from database deletion. Use at your own risk.
 
 
 ----------------
@@ -258,23 +231,17 @@ Pigsty is not responsible for any data loss from database deletion. Use at your 
 
 `recreate` state rebuilds database (drop then create):
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-db <cls> <db>   # Rebuild <db> (config must have state: recreate)
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql-db.yml -l <cls> -e dbname=<db>   # Use Ansible playbook
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-db pg-meta testdb    # Rebuild testdb (config has state: recreate)
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 **Config example**:
 
@@ -297,23 +264,17 @@ pg_databases:
 
 Clone PostgreSQL databases using PG template mechanism. During cloning, no active connections to template database are allowed.
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-db <cls> <db>   # Clone <db> (config must specify template)
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql-db.yml -l <cls> -e dbname=<db>   # Use Ansible playbook
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-db pg-meta meta_dev    # Clone meta_dev (config has template: meta)
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 **Config example**:
 

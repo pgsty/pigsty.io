@@ -144,9 +144,8 @@ pig pb info -s <stanza>
 sudo -iu postgres pg-pitr -s <stanza> -t "2026-08-14 10:30:00+08"
 ```
 
-{{% alert color="danger" title="PITR overwrites the PostgreSQL data directory" %}}
-Only after confirming the exact cluster name, a recent backup, the recovery target, and a rollback plan should you follow the [PostgreSQL PITR tutorial](/docs/pgsql/tutorial/pitr/) to stop Patroni/PostgreSQL and perform the restore. `pg-pitr` does not stop services, repair Patroni/DCS, validate data, or rebuild replicas; the command above is not a complete recovery procedure.
-{{% /alert %}}
+> [!CAUTION] PITR overwrites the PostgreSQL data directory
+> Only after confirming the exact cluster name, a recent backup, the recovery target, and a rollback plan should you follow the [PostgreSQL PITR tutorial](/docs/pgsql/tutorial/pitr/) to stop Patroni/PostgreSQL and perform the restore. `pg-pitr` does not stop services, repair Patroni/DCS, validate data, or rebuild replicas; the command above is not a complete recovery procedure.
 
 If metadata and the `--storage postgres` `jfs_blob` table are in the same restored PostgreSQL database, database PITR can return both to one point in time. If they reside in different databases or clusters, design a coordinated recovery point for both.
 

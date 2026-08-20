@@ -1,7 +1,7 @@
 ---
 title: Harvesting Alibaba-Cloud Wool, Building Your Digital Homestead
 date: 2023-11-08
-manualLink: "https://vonng.com/en/cloud/cheap-ecs/"
+manual_link: "https://vonng.com/en/cloud/cheap-ecs/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/Nh28VahZkQMdR8fDoi0_rQ)
 

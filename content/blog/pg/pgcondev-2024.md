@@ -1,7 +1,7 @@
 ---
 title: PGCon.Dev 2024, The conf that shutdown PG for a week
 date: 2024-06-17
-manualLink: "https://vonng.com/en/pg/pgcondev-2024/"
+manual_link: "https://vonng.com/en/pg/pgcondev-2024/"
 author: |
   [Ruohang Feng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat Column](https://mp.weixin.qq.com/s/dW3byoQkEIR0_EzWxobrWg)
 

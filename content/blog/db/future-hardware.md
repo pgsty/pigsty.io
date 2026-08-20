@@ -2,7 +2,7 @@
 title: Modern Hardware for Future Databases
 linkTitle: Modern Hardware for Future Databases
 date: 2024-11-20
-manualLink: "https://vonng.com/cn/db/future-hardware/"
+manual_link: "https://vonng.com/cn/db/future-hardware/"
 author: Alex Miller
 description: |
   A survey on how hardware developments affect database design, covering key advancements in networking, storage, and computing.

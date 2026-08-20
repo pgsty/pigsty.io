@@ -1,7 +1,7 @@
 ---
 title: Why Isn't Cloud Computing More Profitable Than Sand Mining?
 date: 2023-06-14
-manualLink: "https://vonng.com/en/cloud/profit/"
+manual_link: "https://vonng.com/en/cloud/profit/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

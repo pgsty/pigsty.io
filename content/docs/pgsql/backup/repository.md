@@ -49,9 +49,8 @@ pgbackrest_repo:
 
 The presets deliberately differ. `local` favors simple, fast restores with count-based retention and no encryption or bundling. `minio` enables AES-256-CBC encryption, bundles small files, uses block incremental backup, and retains full backups by time.
 
-{{% alert color="warning" title="Replace public defaults in production" %}}
-For a remote repository, replace both `cipher_pass` and `s3_key_secret`. `pgBackRest` and `S3User.Backup` are public example defaults. Losing the encryption passphrase makes the repository unrecoverable, so store it separately from the backups under controlled recovery procedures; see [**Deployment Security**](/docs/deploy/security/#backup-and-recovery).
-{{% /alert %}}
+> [!WARNING] Replace public defaults in production
+> For a remote repository, replace both `cipher_pass` and `s3_key_secret`. `pgBackRest` and `S3User.Backup` are public example defaults. Losing the encryption passphrase makes the repository unrecoverable, so store it separately from the backups under controlled recovery procedures; see [**Deployment Security**](/docs/deploy/security/#backup-and-recovery).
 
 
 --------

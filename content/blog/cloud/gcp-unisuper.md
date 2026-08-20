@@ -2,7 +2,7 @@
 title: Database Deletion Supreme - Google Cloud Nuked a Major Fund's Entire Cloud Account
 linkTitle: Google Cloud Database Deletion - UniSuper
 date: 2024-05-11
-manualLink: "https://vonng.com/en/cloud/gcp-unisuper/"
+manual_link: "https://vonng.com/en/cloud/gcp-unisuper/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat Official Account](https://mp.weixin.qq.com/s/eH5HBbL7cQhjQY8rm1gFLQ)
 

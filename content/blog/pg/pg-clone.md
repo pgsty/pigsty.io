@@ -2,7 +2,7 @@
 title: "Git for Data: Instant PostgreSQL Database Cloning"
 linkTitle: "Git for Data: Instant PostgreSQL Database Cloning"
 date: 2025-12-27
-manualLink: "https://vonng.com/en/pg/pg-clone/"
+manual_link: "https://vonng.com/en/pg/pg-clone/"
 author: Ruohang Feng
 description: >
   How to instantly clone a massive PostgreSQL database without consuming extra storage? PostgreSQL 18 and XFS can spark some serious magic.

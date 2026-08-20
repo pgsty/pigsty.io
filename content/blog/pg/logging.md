@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL Server Log Regular Configuration
 date: 2018-02-06
-manualLink: "https://vonng.com/en/pg/logging/"
+manual_link: "https://vonng.com/en/pg/logging/"
 author: vonng
 description: |
   It's recommended to configure PostgreSQL's log format as CSV for easy analysis, and it can be directly imported into PostgreSQL data tables.

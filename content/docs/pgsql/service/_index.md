@@ -194,26 +194,23 @@ The Primary service is probably the most critical service in production environm
 
 If the value of `pg_default_service_dest` is `postgres`, then the primary service destination will bypass the connection pool and directly use the PostgreSQL database port ([`pg_port`](/docs/pgsql/param#pg_port), default value 5432), which is very useful for scenarios where you don't want to use a connection pool.
 
-<details><summary>Example: pg-test-primary haproxy configuration</summary>
-
-```text
-listen pg-test-primary
-    bind *:5433         # <--- primary service defaults to port 5433
-    mode tcp
-    maxconn 5000
-    balance roundrobin
-    option httpchk
-    option http-keep-alive
-    http-check send meth OPTIONS uri /primary # <--- primary service defaults to using Patroni RestAPI /primary health check
-    http-check expect status 200
-    default-server inter 3s fastinter 1s downinter 5s rise 3 fall 3 on-marked-down shutdown-sessions slowstart 30s maxconn 3000 maxqueue 128 weight 100
-    # servers
-    server pg-test-1 10.10.10.11:6432 check port 8008 weight 100
-    server pg-test-3 10.10.10.13:6432 check port 8008 weight 100
-    server pg-test-2 10.10.10.12:6432 check port 8008 weight 100
-```
-
-</details>
+> [!DETAILS]- Example: pg-test-primary haproxy configuration
+> ```text
+> listen pg-test-primary
+>     bind *:5433         # <--- primary service defaults to port 5433
+>     mode tcp
+>     maxconn 5000
+>     balance roundrobin
+>     option httpchk
+>     option http-keep-alive
+>     http-check send meth OPTIONS uri /primary # <--- primary service defaults to using Patroni RestAPI /primary health check
+>     http-check expect status 200
+>     default-server inter 3s fastinter 1s downinter 5s rise 3 fall 3 on-marked-down shutdown-sessions slowstart 30s maxconn 3000 maxqueue 128 weight 100
+>     # servers
+>     server pg-test-1 10.10.10.11:6432 check port 8008 weight 100
+>     server pg-test-3 10.10.10.13:6432 check port 8008 weight 100
+>     server pg-test-2 10.10.10.12:6432 check port 8008 weight 100
+> ```
 
 Patroni's [high availability](/docs/concept/ha) mechanism ensures that at most one instance's `/primary` health check is true at any time, so the Primary service will always route traffic to the primary instance.
 
@@ -240,26 +237,23 @@ The Replica service is second only to the Primary service in importance in produ
 - The default value of `dest` is `default` which will be replaced with the value of `pg_default_service_dest`, defaulting to `pgbouncer`, same as the [Primary service](#primary-service)
 - By default, the Replica service destination is the connection pool on replicas, i.e., the port specified by [`pgbouncer_port`](/docs/pgsql/param#pgbouncer_port), defaulting to 6432
 
-<details><summary>Example: pg-test-replica haproxy configuration</summary>
-
-```ini
-listen pg-test-replica
-    bind *:5434
-    mode tcp
-    maxconn 5000
-    balance roundrobin
-    option httpchk
-    option http-keep-alive
-    http-check send meth OPTIONS uri /read-only
-    http-check expect status 200
-    default-server inter 3s fastinter 1s downinter 5s rise 3 fall 3 on-marked-down shutdown-sessions slowstart 30s maxconn 3000 maxqueue 128 weight 100
-    # servers
-    server pg-test-1 10.10.10.11:6432 check port 8008 weight 100 backup
-    server pg-test-3 10.10.10.13:6432 check port 8008 weight 100
-    server pg-test-2 10.10.10.12:6432 check port 8008 weight 100
-```
-
-</details>
+> [!DETAILS]- Example: pg-test-replica haproxy configuration
+> ```ini
+> listen pg-test-replica
+>     bind *:5434
+>     mode tcp
+>     maxconn 5000
+>     balance roundrobin
+>     option httpchk
+>     option http-keep-alive
+>     http-check send meth OPTIONS uri /read-only
+>     http-check expect status 200
+>     default-server inter 3s fastinter 1s downinter 5s rise 3 fall 3 on-marked-down shutdown-sessions slowstart 30s maxconn 3000 maxqueue 128 weight 100
+>     # servers
+>     server pg-test-1 10.10.10.11:6432 check port 8008 weight 100 backup
+>     server pg-test-3 10.10.10.13:6432 check port 8008 weight 100
+>     server pg-test-2 10.10.10.12:6432 check port 8008 weight 100
+> ```
 
 The Replica service is very flexible: If there are living dedicated Replica instances, it will prioritize using these instances to serve read-only requests. Only when all replica instances are down will the primary serve as a fallback for read-only requests. For the common one-primary-one-replica two-node cluster: use the replica as long as it's alive, use the primary only when the replica is down.
 
@@ -281,26 +275,23 @@ The Default service always bypasses the connection pool and directly connects to
 
 If `pg_default_service_dest` is changed to `postgres`, then the Default service is completely equivalent to the Primary service except for port and name. In this case, you can consider removing Default from default services.
 
-<details><summary>Example: pg-test-default haproxy configuration</summary>
-
-```ini
-listen pg-test-default
-    bind *:5436         # <--- Except for listening port/target port and service name, other configurations are the same as primary service
-    mode tcp
-    maxconn 5000
-    balance roundrobin
-    option httpchk
-    option http-keep-alive
-    http-check send meth OPTIONS uri /primary
-    http-check expect status 200
-    default-server inter 3s fastinter 1s downinter 5s rise 3 fall 3 on-marked-down shutdown-sessions slowstart 30s maxconn 3000 maxqueue 128 weight 100
-    # servers
-    server pg-test-1 10.10.10.11:5432 check port 8008 weight 100
-    server pg-test-3 10.10.10.13:5432 check port 8008 weight 100
-    server pg-test-2 10.10.10.12:5432 check port 8008 weight 100
-```
-
-</details>
+> [!DETAILS]- Example: pg-test-default haproxy configuration
+> ```ini
+> listen pg-test-default
+>     bind *:5436         # <--- Except for listening port/target port and service name, other configurations are the same as primary service
+>     mode tcp
+>     maxconn 5000
+>     balance roundrobin
+>     option httpchk
+>     option http-keep-alive
+>     http-check send meth OPTIONS uri /primary
+>     http-check expect status 200
+>     default-server inter 3s fastinter 1s downinter 5s rise 3 fall 3 on-marked-down shutdown-sessions slowstart 30s maxconn 3000 maxqueue 128 weight 100
+>     # servers
+>     server pg-test-1 10.10.10.11:5432 check port 8008 weight 100
+>     server pg-test-3 10.10.10.13:5432 check port 8008 weight 100
+>     server pg-test-2 10.10.10.12:5432 check port 8008 weight 100
+> ```
 
 
 
@@ -323,25 +314,22 @@ The Offline service routes traffic directly to dedicated [offline replicas](/doc
 - Health check `/replica` only returns 200 for replicas, primary returns error, so Offline service will never distribute traffic to the primary instance, even if only the primary remains in the cluster.
 - At the same time, the primary instance is neither selected by the selector nor by the backup selector, so it will never serve Offline service. Therefore, Offline service can always avoid users accessing the primary, thus avoiding impact on the primary.
 
-<details><summary>Example: pg-test-offline haproxy configuration</summary>
-
-```ini
-listen pg-test-offline
-    bind *:5438
-    mode tcp
-    maxconn 5000
-    balance roundrobin
-    option httpchk
-    option http-keep-alive
-    http-check send meth OPTIONS uri /replica
-    http-check expect status 200
-    default-server inter 3s fastinter 1s downinter 5s rise 3 fall 3 on-marked-down shutdown-sessions slowstart 30s maxconn 3000 maxqueue 128 weight 100
-    # servers
-    server pg-test-3 10.10.10.13:5432 check port 8008 weight 100
-    server pg-test-2 10.10.10.12:5432 check port 8008 weight 100 backup
-```
-
-</details>
+> [!DETAILS]- Example: pg-test-offline haproxy configuration
+> ```ini
+> listen pg-test-offline
+>     bind *:5438
+>     mode tcp
+>     maxconn 5000
+>     balance roundrobin
+>     option httpchk
+>     option http-keep-alive
+>     http-check send meth OPTIONS uri /replica
+>     http-check expect status 200
+>     default-server inter 3s fastinter 1s downinter 5s rise 3 fall 3 on-marked-down shutdown-sessions slowstart 30s maxconn 3000 maxqueue 128 weight 100
+>     # servers
+>     server pg-test-3 10.10.10.13:5432 check port 8008 weight 100
+>     server pg-test-2 10.10.10.12:5432 check port 8008 weight 100 backup
+> ```
 
 The Offline service provides restricted read-only service, typically used for two types of queries: interactive queries (personal users), slow queries and long transactions (analytics/ETL).
 

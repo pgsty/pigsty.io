@@ -2,7 +2,7 @@
 title: "MongoDB Has No Future: Good Marketing Can't Save a Rotten Mango"
 linkTitle: Mongo Has No Future
 date: 2024-09-04
-manualLink: "https://vonng.com/en/db/bad-mongo/"
+manual_link: "https://vonng.com/en/db/bad-mongo/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [Chinese Original](https://mp.weixin.qq.com/s/I3ug7Qv9jz3-uD3x_N1jKw)
 

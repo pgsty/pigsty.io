@@ -38,8 +38,9 @@ Sorted by GitHub stars in descending order. Last updated: 2026-08-13 (Beijing ti
 | [`pgsty/pgext`](https://github.com/pgsty/pgext)                                                         |               [**31**](https://github.com/pgsty/pgext/stargazers)               | Ruohang Feng @ **PGSTY** |     Tool     | PostgreSQL extension catalog and metadata tool        |
 {.full-width}
 
-{{< echarts height="820px" >}}
-```js
+<script>
+window.OinkEchartsFunctions = window.OinkEchartsFunctions || {};
+(function (registry) {
 var fnum = function(n) {
   n = Number(n);
   return Number.isFinite(n) ? n.toLocaleString("en-US") : '';
@@ -61,8 +62,14 @@ var barclr = function(params) {
   }
   return '#7aa6c2';
 };
-```
-```yaml
+registry["fnum"] = fnum;
+registry["labfmt"] = labfmt;
+registry["tipfmt"] = tipfmt;
+registry["barclr"] = barclr;
+})(window.OinkEchartsFunctions);
+</script>
+
+```echarts {height="820px"}
 tooltip:
   trigger: axis
   axisPointer: { type: shadow }
@@ -126,7 +133,6 @@ series:
       fontWeight: 600
     data: [5521, 3191, 2181, 1770, 1439, 1315, 1051, 995, 869, 784, 437, 417, 409, 375, 359, 286, 199, 101, 101, 45, 41, 31]
 ```
-{{< /echarts >}}
 
 
 

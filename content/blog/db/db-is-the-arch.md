@@ -1,7 +1,7 @@
 ---
 title: Database as Business Architecture
 date: 2025-01-22
-manualLink: "https://vonng.com/en/db/db-is-the-arch/"
+manual_link: "https://vonng.com/en/db/db-is-the-arch/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

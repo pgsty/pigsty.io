@@ -71,20 +71,15 @@ Production Pigsty deployment involves [**preparation work**](/docs/deploy/prepar
 
 Use the following to automatically install the [**Pigsty source package**](/docs/deploy/prepare#pigsty) to `~/pigsty` (recommended). Deployment dependencies (Ansible) are auto-installed.
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="pigsty.io (Global)" %}}
-```bash
+```bash {tab="pigsty.io (Global)" group="pigstyio-global-pigstycc-china" value="pigstyio-global"}
 curl -fsSL https://repo.pigsty.io/get | bash            # Install current default version
 curl -fsSL https://repo.pigsty.io/get | bash -s {{< param stable_version >}}  # Explicitly install the current public stable release
 ```
-{{% /tab %}}
-{{% tab header="pigsty.cc (China)" %}}
-```bash
+
+```bash {tab="pigsty.cc (China)" value="pigstycc-china"}
 curl -fsSL https://repo.pigsty.cc/get | bash            # Install current default version
 curl -fsSL https://repo.pigsty.cc/get | bash -s {{< param stable_version >}}  # Explicitly install the current public stable release
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 If you prefer not to run remote scripts, manually [**download**](https://github.com/pgsty/pigsty/releases) or clone the source. When using `git`, always checkout a specific version before use:
 
@@ -126,33 +121,30 @@ Many [**configuration templates**](/docs/concept/iac/template/) are available fo
 ```
 
 
-<details><summary>Example configure output</summary>
-
-```bash
-vagrant@meta:~/pigsty$ ./configure
-configure pigsty v4.5.0 begin
-[ OK ] region = china
-[ OK ] kernel  = Linux
-[ OK ] machine = x86_64
-[ OK ] package = deb,apt
-[ OK ] vendor  = ubuntu (Ubuntu)
-[ OK ] version = 22 (22.04)
-[ OK ] sudo = vagrant ok
-[ OK ] ssh = vagrant@127.0.0.1 ok
-[WARN] Multiple IP address candidates found:
-    (1) 192.168.121.38	    inet 192.168.121.38/24 metric 100 brd 192.168.121.255 scope global dynamic eth0
-    (2) 10.10.10.10	    inet 10.10.10.10/24 brd 10.10.10.255 scope global eth1
-[ OK ] primary_ip = 10.10.10.10 (from demo)
-[ OK ] admin = vagrant@10.10.10.10 ok
-[ OK ] mode = meta (ubuntu22.04)
-[ OK ] locale  = C.UTF-8
-[ OK ] ansible = ready
-[ OK ] pigsty configured
-[WARN] don't forget to check it and change passwords!
-proceed with ./deploy.yml
-```
-
-</details><br>
+> [!DETAILS]- Example configure output
+> ```bash
+> vagrant@meta:~/pigsty$ ./configure
+> configure pigsty v4.5.0 begin
+> [ OK ] region = china
+> [ OK ] kernel  = Linux
+> [ OK ] machine = x86_64
+> [ OK ] package = deb,apt
+> [ OK ] vendor  = ubuntu (Ubuntu)
+> [ OK ] version = 22 (22.04)
+> [ OK ] sudo = vagrant ok
+> [ OK ] ssh = vagrant@127.0.0.1 ok
+> [WARN] Multiple IP address candidates found:
+>     (1) 192.168.121.38	    inet 192.168.121.38/24 metric 100 brd 192.168.121.255 scope global dynamic eth0
+>     (2) 10.10.10.10	    inet 10.10.10.10/24 brd 10.10.10.255 scope global eth1
+> [ OK ] primary_ip = 10.10.10.10 (from demo)
+> [ OK ] admin = vagrant@10.10.10.10 ok
+> [ OK ] mode = meta (ubuntu22.04)
+> [ OK ] locale  = C.UTF-8
+> [ OK ] ansible = ready
+> [ OK ] pigsty configured
+> [WARN] don't forget to check it and change passwords!
+> proceed with ./deploy.yml
+> ```
 
 The wizard only replaces the **current node's** IP (use `-s` to skip replacement). For multi-node deployments, replace other node IPs manually.
 Also customize the config as needed—modify default passwords, add nodes, etc.
@@ -174,9 +166,8 @@ The script replaces IP placeholder `10.10.10.10` with the current node's primary
 
 Generated config is at `~/pigsty/pigsty.yml`. Review and modify before installation.
 
-{{% alert title="Change default passwords!" color="danger" %}}
-Change default passwords and credentials before installation. See [**Security Recommendations**](/docs/setup/security#passwords).
-{{% /alert %}}
+> [!CAUTION] Change default passwords!
+> Change default passwords and credentials before installation. See [**Security Recommendations**](/docs/setup/security#passwords).
 
 
 
@@ -191,37 +182,32 @@ Pigsty's [**`deploy.yml`**](/docs/setup/playbook/) [**playbook**](/docs/setup/pl
 ./deploy.yml     # Deploy core modules on all target nodes at once
 ```
 
-<details><summary>Example deployment output</summary>
+> [!DETAILS]- Example deployment output
+> ```bash
+> ......
+>
+> TASK [pgsql : pgsql init done] *************************************************
+> ok: [10.10.10.11] => {
+>     "msg": "postgres://10.10.10.11/postgres | meta  | dbuser_meta dbuser_view "
+> }
+> ......
+>
+> TASK [pg_monitor : load grafana datasource meta] *******************************
+> changed: [10.10.10.11]
+>
+> PLAY RECAP *********************************************************************
+> 10.10.10.11                : ok=302  changed=232  unreachable=0    failed=0    skipped=65   rescued=0    ignored=1
+> localhost                  : ok=6    changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+> ```
+>
+> When output ends with `pgsql init done`, `PLAY RECAP`, etc., installation is complete!
 
-```bash
-......
+> [!WARNING] Upstream repo changes may cause online installation failures!
+> Upstream repos (Linux/PGDG) may break due to improper updates, causing deployment failures (quite common)!
+> For serious production deployments, we strongly recommend using verified [**offline packages**](/docs/setup/offline#offline-package) for [**offline installation**](/docs/setup/offline).
 
-TASK [pgsql : pgsql init done] *************************************************
-ok: [10.10.10.11] => {
-    "msg": "postgres://10.10.10.11/postgres | meta  | dbuser_meta dbuser_view "
-}
-......
-
-TASK [pg_monitor : load grafana datasource meta] *******************************
-changed: [10.10.10.11]
-
-PLAY RECAP *********************************************************************
-10.10.10.11                : ok=302  changed=232  unreachable=0    failed=0    skipped=65   rescued=0    ignored=1
-localhost                  : ok=6    changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
-```
-
-When output ends with `pgsql init done`, `PLAY RECAP`, etc., installation is complete!
-
-</details><br>
-
-{{% alert title="Upstream repo changes may cause online installation failures!" color="warning" %}}
-Upstream repos (Linux/PGDG) may break due to improper updates, causing deployment failures (quite common)!
-For serious production deployments, we strongly recommend using verified [**offline packages**](/docs/setup/offline#offline-package) for [**offline installation**](/docs/setup/offline).
-{{% /alert %}}
-
-{{% alert title="Avoid running deploy playbook repeatedly!" color="warning" %}}
-Warning: Running [**`deploy.yml`**](https://github.com/pgsty/pigsty/blob/main/deploy.yml) again on an initialized environment may restart services and overwrite configs. Be careful!
-{{% /alert %}}
+> [!WARNING] Avoid running deploy playbook repeatedly!
+> Warning: Running [**`deploy.yml`**](https://github.com/pgsty/pigsty/blob/main/deploy.yml) again on an initialized environment may restart services and overwrite configs. Be careful!
 
 
 --------

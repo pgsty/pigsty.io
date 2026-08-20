@@ -1,7 +1,7 @@
 ---
 title: Blockchain and Distributed Databases
 date: 2018-06-09
-manualLink: "https://vonng.com/en/db/blockchian/"
+manual_link: "https://vonng.com/en/db/blockchian/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [Original Zhihu Article](https://www.zhihu.com/question/275845393/answer/386816571)
 

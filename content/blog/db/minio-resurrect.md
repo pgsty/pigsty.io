@@ -1,7 +1,7 @@
 ---
 title: "MinIO Is Dead, Long Live MinIO"
 date: 2026-02-14
-manualLink: "https://vonng.com/en/db/minio-resurrect/"
+manual_link: "https://vonng.com/en/db/minio-resurrect/"
 author: Ruohang Feng
 description: >
   MinIO's repo is officially archived and abandoned. And how AI Agents helped bring MinIO back from the dead.

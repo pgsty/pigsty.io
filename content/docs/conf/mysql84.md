@@ -36,7 +36,7 @@ After explicitly approving an active-inventory update, run `./configure -c demo/
 
 Source: [`pigsty/conf/demo/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/mysql.yml)
 
-{{< readfile file="yaml/demo/mysql.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/demo/mysql.yml" code=true lang="yaml" >}}
 
 
 --------

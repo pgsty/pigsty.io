@@ -1,7 +1,7 @@
 ---
 title: "Claude Code Observability"
 date: 2026-01-25
-manualLink: "https://vonng.com/en/db/claude-observability/"
+manual_link: "https://vonng.com/en/db/claude-observability/"
 author: Ruohang Feng
 description: >
   Export Claude Code's OTEL logs and metrics to Victoria stack, visualize with Grafana dashboards.

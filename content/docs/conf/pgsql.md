@@ -39,7 +39,7 @@ To specify a non-default PostgreSQL version (e.g., 16):
 
 Source: [`pigsty/conf/pgsql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/pgsql.yml)
 
-{{< readfile file="yaml/pgsql.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/pgsql.yml" code=true lang="yaml" >}}
 
 
 --------

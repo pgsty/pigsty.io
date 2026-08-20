@@ -26,10 +26,9 @@ Understanding these components and their management is essential for maintaining
 | vip-manager        | -          | `vip-manager`          | Optional, manages L2 VIP address floating      |
 {.full-width}
 
-{{% alert title="Important" color="warning" %}}
-**Do NOT use systemctl directly to manage PostgreSQL service**. PostgreSQL is managed by Patroni - use [**`patronictl`**](/docs/pgsql/admin/patroni) commands instead.
-Direct PostgreSQL operations may cause Patroni state inconsistency and trigger unexpected failover. The `postgres` service is an emergency escape hatch when Patroni fails.
-{{% /alert %}}
+> [!WARNING] Important
+> **Do NOT use systemctl directly to manage PostgreSQL service**. PostgreSQL is managed by Patroni - use [**`patronictl`**](/docs/pgsql/admin/patroni) commands instead.
+> Direct PostgreSQL operations may cause Patroni state inconsistency and trigger unexpected failover. The `postgres` service is an emergency escape hatch when Patroni fails.
 
 
 ----------------

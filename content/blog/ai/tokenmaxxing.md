@@ -1,7 +1,7 @@
 ---
 title: "Burning Hundreds of Millions of Tokens a Day. Then What?"
 date: 2026-04-13
-manualLink: "https://vonng.com/en/ai/tokenmaxxing/"
+manual_link: "https://vonng.com/en/ai/tokenmaxxing/"
 author: Ruohang Feng
 description: >
   Once token burn turns from usage exhaust into a KPI and leaderboard, it quickly mutates into theater. Don't post fuel burn. Post where you got to.

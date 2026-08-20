@@ -1,7 +1,7 @@
 ---
 title: MinIO is Dead
 date: 2025-12-04
-manualLink: "https://vonng.com/en/db/minio-is-dead/"
+manual_link: "https://vonng.com/en/db/minio-is-dead/"
 author: |
   [Ruohang Feng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/aBUwEMxZ_xKmHisaaT4uWw)
 

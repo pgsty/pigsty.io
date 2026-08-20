@@ -64,23 +64,20 @@ flowchart LR
 
 Pigsty provides three protection modes to help users make trade-offs under different RPO requirements, similar to [**Oracle Data Guard**](https://docs.oracle.com/en/database/oracle/oracle-database/21/sbydb/oracle-data-guard-protection-modes.html) protection modes.
 
-{{% alert title="Maximum Performance" color="primary" %}}
-- **Default mode**, asynchronous replication, transactions commit with only local WAL persistence, no waiting for replicas, replica failures are completely transparent to the primary
-- Primary failure may lose unsent/unreceived WAL. The default sampled candidate-lag threshold is 1MiB, but this is not a hard upper bound on actual loss
-- Optimized for performance, suitable for typical business scenarios that tolerate minor data loss during failures
-{{% /alert %}}
+> [!IMPORTANT] Maximum Performance
+> - **Default mode**, asynchronous replication, transactions commit with only local WAL persistence, no waiting for replicas, replica failures are completely transparent to the primary
+> - Primary failure may lose unsent/unreceived WAL. The default sampled candidate-lag threshold is 1MiB, but this is not a hard upper bound on actual loss
+> - Optimized for performance, suitable for typical business scenarios that tolerate minor data loss during failures
 
-{{% alert title="Maximum Availability" color="success" %}}
-- Configured with [**`pg_rpo = 0`**](/docs/pgsql/param#pg_rpo), enables Patroni synchronous commit mode: `synchronous_mode: true`
-- Under normal conditions, waits for at least one replica confirmation, achieving zero data loss. When **all** sync replicas fail, **automatically degrades to async mode to continue service**
-- Balances data safety and service availability, recommended configuration for production **critical business**
-{{% /alert %}}
+> [!TIP] Maximum Availability
+> - Configured with [**`pg_rpo = 0`**](/docs/pgsql/param#pg_rpo), enables Patroni synchronous commit mode: `synchronous_mode: true`
+> - Under normal conditions, waits for at least one replica confirmation, achieving zero data loss. When **all** sync replicas fail, **automatically degrades to async mode to continue service**
+> - Balances data safety and service availability, recommended configuration for production **critical business**
 
-{{% alert title="Maximum Protection" color="secondary" %}}
-- Uses `crit.yml` template, enables Patroni strict synchronous mode: `synchronous_mode: true` / `synchronous_mode_strict: true`
-- When all sync replicas fail, **primary refuses writes** to prevent data loss, transactions must be persisted on at least one replica before returning success
-- Suitable for financial transactions, medical records, and other scenarios with extremely high data integrity requirements
-{{% /alert %}}
+> [!NOTE] Maximum Protection
+> - Uses `crit.yml` template, enables Patroni strict synchronous mode: `synchronous_mode: true` / `synchronous_mode_strict: true`
+> - When all sync replicas fail, **primary refuses writes** to prevent data loss, transactions must be persisted on at least one replica before returning success
+> - Suitable for financial transactions, medical records, and other scenarios with extremely high data integrity requirements
 
 | **Name**                   |                     **Maximum Performance**                     |                         **Maximum Availability**                         |                    **Maximum Protection**                     |
 |:---------------------------|:---------------------------------------------------------------:|:------------------------------------------------------------------------:|:-------------------------------------------------------------:|

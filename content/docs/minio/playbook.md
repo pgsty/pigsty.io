@@ -57,9 +57,8 @@ Re-running `minio.yml` may restart a running object-storage service, but it does
 - `minio_data`: Delete data and configuration according to [`minio_rm_data`](/docs/minio/param#minio_rm_data)
 - `minio_pkg`: Uninstall Silo and `mcli` according to [`minio_rm_pkg`](/docs/minio/param#minio_rm_pkg)
 
-{{% alert title="Dangerous Operation" color="danger" %}}
-`minio_rm_data` defaults to `true`. A full removal run deletes every expanded `minio_data` directory. Before running it, verify `minio_cluster`, `minio_seq`, `minio_type: silo`, and all disk mount paths. To retire only the service while retaining data, explicitly pass `-e minio_rm_data=false`.
-{{% /alert %}}
+> [!CAUTION] Dangerous Operation
+> `minio_rm_data` defaults to `true`. A full removal run deletes every expanded `minio_data` directory. Before running it, verify `minio_cluster`, `minio_seq`, `minio_type: silo`, and all disk mount paths. To retire only the service while retaining data, explicitly pass `-e minio_rm_data=false`.
 
 Both deployment and removal roles default `minio_type` to `silo`; other values are rejected. The removal examples still pass it explicitly as part of reviewing the package, service, certificate directory, and data paths; it is not an additional interactive confirmation gate.
 

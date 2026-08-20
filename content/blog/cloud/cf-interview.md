@@ -1,7 +1,7 @@
 ---
 title: Cloudflare Roundtable Interview and Q&A Record
 date: 2024-04-23
-manualLink: "https://vonng.com/en/cloud/cf-interview/"
+manual_link: "https://vonng.com/en/cloud/cf-interview/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/jU418HAlObe1nWgzEsLrJQ)
 

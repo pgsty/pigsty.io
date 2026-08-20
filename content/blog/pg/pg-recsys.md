@@ -1,7 +1,7 @@
 ---
 title: Building an ItemCF Recommender in Pure SQL
 date: 2017-04-05
-manualLink: "https://vonng.com/en/pg/pg-recsys/"
+manual_link: "https://vonng.com/en/pg/pg-recsys/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

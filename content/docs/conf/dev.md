@@ -37,7 +37,7 @@ cp conf/build/dev.yml pigsty.yml
 
 Source: [`pigsty/conf/build/dev.yml`](https://github.com/pgsty/pigsty/blob/main/conf/build/dev.yml)
 
-{{< readfile file="yaml/build/dev.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/build/dev.yml" code=true lang="yaml" >}}
 
 
 --------

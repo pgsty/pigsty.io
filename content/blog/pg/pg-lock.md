@@ -1,7 +1,7 @@
 ---
 title: Locks in PostgreSQL
 date: 2019-06-11
-manualLink: "https://vonng.com/en/pg/pg-lock/"
+manual_link: "https://vonng.com/en/pg/pg-lock/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

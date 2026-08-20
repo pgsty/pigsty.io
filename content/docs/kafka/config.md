@@ -11,9 +11,8 @@ aliases: [/docs/pilot/kafka/config]
 
 The KAFKA module expresses cluster intent through 15 persistent public parameters; everything else — topology, listeners, storage subdirectories, replication safety, authorization, and Exporter placement — is derived by the role in a single, consistent way. For a first deployment, start with the [Quickstart](/docs/kafka/start); for the full field reference, see [Parameters](/docs/kafka/param).
 
-{{% alert title="Plan First, Then Format" color="warning" %}}
-`kafka_seq` becomes the KRaft `node.id`. For a new cluster, the randomly generated Cluster ID, the initial controller identities, the security profile, and the initial replication policy are all written into the bootstrap manifest. Once storage has been formatted, do not casually change identities, the security profile, or the controller set. The role validates the live state against the manifest and fails closed on any conflict; it never silently overwrites or reformats data.
-{{% /alert %}}
+> [!WARNING] Plan First, Then Format
+> `kafka_seq` becomes the KRaft `node.id`. For a new cluster, the randomly generated Cluster ID, the initial controller identities, the security profile, and the initial replication policy are all written into the bootstrap manifest. Once storage has been formatted, do not casually change identities, the security profile, or the controller set. The role validates the live state against the manifest and fails closed on any conflict; it never silently overwrites or reformats data.
 
 
 --------

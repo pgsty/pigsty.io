@@ -1,7 +1,7 @@
 ---
 title: Alicloud “Borrowed” Supabase. This Is What Happens When Giants Strip-Mine Open-Source.
 date: 2025-11-06
-manualLink: "https://vonng.com/en/cloud/aliyun-supabase/"
+manual_link: "https://vonng.com/en/cloud/aliyun-supabase/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

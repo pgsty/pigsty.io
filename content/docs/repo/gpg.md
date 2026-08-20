@@ -33,33 +33,23 @@ You can find the public GPG key at: https://repo.pigsty.io/key or https://repo.p
 
 On RHEL compatible Linux distributions, you can import this key with the following command:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Default" %}}
-```bash
+```bash {tab="Default" group="default-mirror" value="default"}
 curl -fsSL https://repo.pigsty.io/key | sudo tee /etc/pki/rpm-gpg/RPM-GPG-KEY-pigsty >/dev/null
 ```
-{{% /tab %}}
-{{% tab header="Mirror" %}}
-```bash
+
+```bash {tab="Mirror" value="mirror"}
 curl -fsSL https://repo.pigsty.cc/key | sudo tee /etc/pki/rpm-gpg/RPM-GPG-KEY-pigsty >/dev/null
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 On Debian / Ubuntu compatible Linux distributions, you can import this key with the following command:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Default" %}}
-```bash
+```bash {tab="Default" group="default-mirror" value="default"}
 curl -fsSL https://repo.pigsty.io/key | sudo gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg
 ```
-{{% /tab %}}
-{{% tab header="Mirror" %}}
-```bash
+
+```bash {tab="Mirror" value="mirror"}
 curl -fsSL https://repo.pigsty.cc/key | sudo gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 ---------
@@ -133,23 +123,17 @@ If you wish to distribute your own Repo with your own GPG key, here's a tutorial
 
 ### Install GPG
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="brew" %}}
-```bash
+```bash {tab="brew" group="brew-apt-dnf" value="brew"}
 brew install gnupg pinentry-mac
 ```
-{{% /tab %}}
-{{% tab header="apt" %}}
-```bash
+
+```bash {tab="apt" value="apt"}
 sudo apt install gnupg2 pinentry-curses
 ```
-{{% /tab %}}
-{{% tab header="dnf" %}}
-```bash
+
+```bash {tab="dnf" value="dnf"}
 sudo dnf install gnupg2 pinentry-curses
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 ### Generate GPG Key

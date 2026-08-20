@@ -2,7 +2,7 @@
 title: "KNN Ultimate Optimization: From RDS to PostGIS"
 linkTitle: "KNN Ultimate Optimization: GIS Selection"
 date: 2018-06-06
-manualLink: "https://vonng.com/en/pg/knn-optimize/"
+manual_link: "https://vonng.com/en/pg/knn-optimize/"
 author: vonng
 description: |
   Ultimate optimization of KNN problems, from traditional relational design to PostGIS

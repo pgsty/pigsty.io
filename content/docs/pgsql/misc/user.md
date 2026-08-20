@@ -108,12 +108,9 @@ bin/pgsql-user <cls> <username>    # pgsql-user.yml -l <cls> -e username=<userna
 Unlike databases, the user creation playbook is always idempotent. When the target user already exists, Pigsty will modify the target user's attributes to match the configuration. So running it repeatedly on existing clusters is usually not a problem.
 
 
-{{% alert title="Please Use Playbooks to Create Users" color="secondary" %}}
-
-We don't recommend manually creating new business users, especially when you want the user to use the default pgbouncer connection pool: unless you're willing to manually maintain the user list in Pgbouncer and keep it consistent with PostgreSQL.
-When creating new users with **`bin/pgsql-user`** tool or [**`pgsql-user.yml`**](/docs/pgsql/playbook#pgsql-useryml) playbook, the user will also be added to the [Pgbouncer Users](#pgbouncer-users) list.
-
-{{% /alert %}}
+> [!NOTE] Please Use Playbooks to Create Users
+> We don't recommend manually creating new business users, especially when you want the user to use the default pgbouncer connection pool: unless you're willing to manually maintain the user list in Pgbouncer and keep it consistent with PostgreSQL.
+> When creating new users with **`bin/pgsql-user`** tool or [**`pgsql-user.yml`**](/docs/pgsql/playbook#pgsql-useryml) playbook, the user will also be added to the [Pgbouncer Users](#pgbouncer-users) list.
 
 
 

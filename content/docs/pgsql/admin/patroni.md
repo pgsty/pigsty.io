@@ -19,24 +19,21 @@ To use Patroni for management, you need one of the following identities:
 
 Patroni provides [**`patronictl`**](https://patroni.readthedocs.io/en/latest/patronictl.html) CLI for management. Pigsty provides a wrapper alias `pg` to simplify operations.
 
-<details><summary>Using patronictl via pg alias</summary>
-
-```bash
-pg ()
-{
-    local patroni_conf="/infra/conf/patronictl.yml";
-    if [ ! -r ${patroni_conf} ]; then
-        patroni_conf="/etc/patroni/patroni.yml";
-        if [ ! -r ${patroni_conf} ]; then
-            echo "error: patronictl config not found";
-            return 1;
-        fi;
-    fi;
-    patronictl -c ${patroni_conf} "$@"
-}
-```
-
-</details>
+> [!DETAILS]- Using patronictl via pg alias
+> ```bash
+> pg ()
+> {
+>     local patroni_conf="/infra/conf/patronictl.yml";
+>     if [ ! -r ${patroni_conf} ]; then
+>         patroni_conf="/etc/patroni/patroni.yml";
+>         if [ ! -r ${patroni_conf} ]; then
+>             echo "error: patronictl config not found";
+>             return 1;
+>         fi;
+>     fi;
+>     patronictl -c ${patroni_conf} "$@"
+> }
+> ```
 
 
 ----------------

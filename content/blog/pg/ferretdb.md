@@ -1,7 +1,7 @@
 ---
 title: "FerretDB: PostgreSQL Disguised as MongoDB"
 date: 2023-10-08
-manualLink: "https://vonng.com/en/pg/ferretdb/"
+manual_link: "https://vonng.com/en/pg/ferretdb/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat Official Account](https://mp.weixin.qq.com/s/gfs8pBJuYjE_wfAvjcak8Q)
 

@@ -29,7 +29,7 @@ categories: [Reference]
 
 Source: [`pigsty/conf/demo/redis.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/redis.yml)
 
-{{< readfile file="yaml/demo/redis.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/demo/redis.yml" code=true lang="yaml" >}}
 
 
 --------

@@ -33,7 +33,7 @@ Usage:
 
 Source: [`pigsty/conf/pgtde.yml`](https://github.com/pgsty/pigsty/blob/main/conf/pgtde.yml)
 
-{{< readfile file="yaml/pgtde.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/pgtde.yml" code=true lang="yaml" >}}
 
 
 --------

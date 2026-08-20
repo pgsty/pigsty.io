@@ -1,7 +1,7 @@
 ---
 title: "LLMs Have Emotions: Claude's Internals Reveal Steerable Emotion Vectors"
 date: 2026-04-04
-manualLink: "https://vonng.com/en/ai/ai-emotion/"
+manual_link: "https://vonng.com/en/ai/ai-emotion/"
 author: Ruohang Feng
 description: >
   Anthropic's new research gives us the first direct look at causally steerable emotion vectors inside a large language model. That should change how we think about AI.

@@ -1,7 +1,7 @@
 ---
 title: Are Specialized Vector Databases Dead?
 date: 2023-11-21
-manualLink: "https://vonng.com/en/db/svdb-is-dead/"
+manual_link: "https://vonng.com/en/db/svdb-is-dead/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/0eBZ4zyX6XjBQO0GqlANnw)
 

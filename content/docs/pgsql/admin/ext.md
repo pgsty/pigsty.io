@@ -25,25 +25,19 @@ pg-meta:
 ```
 
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-ext <cls>           # Install extensions defined in config on <cls> cluster
 bin/pgsql-ext <cls> [ext...]  # Install extensions specified on command line
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql.yml -l pg-meta -t pg_ext    # Use playbook to install extensions
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-ext pg-meta                         # Install defined extensions on pg-meta cluster
 bin/pgsql-ext pg-meta pg_duckdb pg_mooncake   # Install specified extensions
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 For complete extension reference, see [**Extensions**](/docs/pgsql/ext/). For available extensions, see [**Extension Catalog**](/ext/list).
 
@@ -71,23 +65,17 @@ Extensions defined in [**`pg_extensions`**](/docs/pgsql/param#pg_extensions) are
 
 To install extensions on an existing cluster, add extensions to `all.children.<cls>.pg_extensions`, then execute:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-ext <cls>   # Install extensions on <cls> cluster
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql.yml -l <cls> -t pg_extension   # Use Ansible playbook
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-ext pg-meta    # Install extensions defined in config on pg-meta
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 **Example: Install PostGIS, TimescaleDB and PGVector on cluster**
 
@@ -99,9 +87,8 @@ pg_extensions: [ postgis, timescaledb, pgvector ]
 **Result**: Installs extension packages on all cluster nodes. Pigsty auto-translates [**package aliases**](/docs/pgsql/config/alias) to actual package names for OS and PG version.
 
 
-{{% alert title="Ensure repos available before install" color="secondary" %}}
-Before installing, ensure nodes have correct repos configured - extensions [**downloaded**](#download-extensions) to local repo, or [**upstream repos configured**](#configure-repos).
-{{% /alert %}}
+> [!NOTE] Ensure repos available before install
+> Before installing, ensure nodes have correct repos configured - extensions [**downloaded**](#download-extensions) to local repo, or [**upstream repos configured**](#configure-repos).
 
 
 ----------------
@@ -110,19 +97,13 @@ Before installing, ensure nodes have correct repos configured - extensions [**do
 
 If you don't want to use Pigsty config to manage extensions, pass extension list directly on command line:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook" value="script"}
 bin/pgsql-ext pg-meta pg_duckdb pg_mooncake   # Install specified extensions on pg-meta
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql.yml -l pg-meta -t pg_ext -e '{"pg_extensions": ["pg_duckdb", "pg_mooncake"]}'
 ```
-{{% /tab %}}
-
-{{< /tabpane >}}
 
 You can also use [**pig**](/docs/pig) package manager CLI to install extensions on single node, with auto [**package alias**](/docs/pgsql/config/alias) resolution.
 
@@ -160,22 +141,17 @@ Pigsty's default config auto-downloads mainstream extensions during installation
 repo_extra_packages: [ pgvector, postgis, timescaledb ]
 ```
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook" value="script"}
 make repo         # Shortcut = repo-build + node-repo
 make repo-build   # Rebuild Infra repo (download packages and deps)
 make node-repo    # Refresh node repo cache, update Infra repo reference
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./deploy.yml -t repo_build,node_repo  # Execute both tasks at once
 ./infra.yml -t repo_build     # Re-download packages to local repo
 ./node.yml  -t node_repo      # Refresh node repo cache
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 ----------------
@@ -239,28 +215,22 @@ pg_databases:
 
 **Manual enable**
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="SQL" %}}
-```sql
+```sql {tab="SQL" group="sql-psql-playbook" value="sql"}
 CREATE EXTENSION vector;                      -- Create extension
 CREATE EXTENSION postgis SCHEMA public;       -- Specify schema
 CREATE EXTENSION IF NOT EXISTS vector;        -- Idempotent creation
 CREATE EXTENSION postgis_topology CASCADE;    -- Auto-install dependencies
 ```
-{{% /tab %}}
-{{% tab header="psql" %}}
-```bash
+
+```bash {tab="psql" value="psql"}
 psql -d meta -c 'CREATE EXTENSION vector;'                  # Create extension in meta database
 psql -d meta -c 'CREATE EXTENSION postgis SCHEMA public;'   # Specify schema
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 # After modifying database definition, use playbook to enable extensions
 bin/pgsql-db pg-meta meta    # Creating/modifying database auto-enables defined extensions
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 **Result**: Creates extension objects (functions, types, operators, index methods, etc.) in database, enabling use of extension features.
 
@@ -273,23 +243,17 @@ Extension updates involve two layers: **package update** and **extension object 
 
 **Update packages**
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="pig" %}}
-```bash
+```bash {tab="pig" group="pig-yum-apt" value="pig"}
 pig update pgvector                           # Update extension with pig
 ```
-{{% /tab %}}
-{{% tab header="yum" %}}
-```bash
+
+```bash {tab="yum" value="yum"}
 sudo yum update pgvector_18 # EL
 ```
-{{% /tab %}}
-{{% tab header="apt" %}}
-```bash
+
+```bash {tab="apt" value="apt"}
 sudo apt upgrade postgresql-18-pgvector  # Debian/Ubuntu
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 **Update extension objects**
 
@@ -305,9 +269,8 @@ ALTER EXTENSION vector UPDATE;
 ALTER EXTENSION vector UPDATE TO '0.8.1';
 ```
 
-{{% alert title="Update Notes" color="info" %}}
-Backup database before updating extensions. Preloaded extensions may require PostgreSQL restart after update. Some extension version upgrades may be incompatible - check extension docs.
-{{% /alert %}}
+> [!NOTE] Update Notes
+> Backup database before updating extensions. Preloaded extensions may require PostgreSQL restart after update. Some extension version upgrades may be incompatible - check extension docs.
 
 
 ----------------
@@ -334,27 +297,20 @@ pg restart pg-meta   # Restart to apply config
 
 **Uninstall packages (optional)**
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="pig" %}}
-```bash
+```bash {tab="pig" group="pig-yum-apt" value="pig"}
 pig remove pgvector                           # Uninstall with pig
 ```
-{{% /tab %}}
-{{% tab header="yum" %}}
-```bash
+
+```bash {tab="yum" value="yum"}
 sudo yum remove pgvector_18*                  # EL systems
 ```
-{{% /tab %}}
-{{% tab header="apt" %}}
-```bash
+
+```bash {tab="apt" value="apt"}
 sudo apt remove postgresql-18-pgvector        # Debian/Ubuntu
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
-{{% alert title="CASCADE Warning" color="warning" %}}
-Using `CASCADE` to drop extensions also drops all objects depending on that extension (tables, indexes, views, etc.). Check dependencies before executing.
-{{% /alert %}}
+> [!WARNING] CASCADE Warning
+> Using `CASCADE` to drop extensions also drops all objects depending on that extension (tables, indexes, views, etc.). Check dependencies before executing.
 
 
 ----------------

@@ -1,7 +1,7 @@
 ---
 title: "Incident-Report: PostgreSQL Transaction ID Wraparound"
 date: 2018-07-20
-manualLink: "https://vonng.com/en/pg/xid-wrap-around/"
+manual_link: "https://vonng.com/en/pg/xid-wrap-around/"
 author: vonng
 description: |
   XID WrapAround is perhaps a unique type of failure specific to PostgreSQL

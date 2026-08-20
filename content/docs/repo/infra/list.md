@@ -38,15 +38,14 @@ weight: 5441
 | [`grafana-victoriametrics-ds`](https://github.com/VictoriaMetrics/victoriametrics-datasource/releases/) | `0.25.2`  | [Apache-2.0](https://github.com/VictoriaMetrics/victoriametrics-datasource/blob/main/LICENSE) | VictoriaMetrics Grafana datasource            |
 {.stretch-last}
 
-{{% alert title="Note on Victoria Grafana Datasource Plugins" color="info" %}}
-Pigsty splits the Victoria datasource extensions into architecture-specific sub-packages.
-If you choose to install these plugins to your own Grafana instance,
-please configure the following parameter in `/etc/grafana/grafana.ini` to allow loading unsigned plugins.
-
-```ini
-allow_loading_unsigned_plugins = victoriametrics-logs-datasource,victoriametrics-metrics-datasource
-```
-{{% /alert %}}
+> [!NOTE] Note on Victoria Grafana Datasource Plugins
+> Pigsty splits the Victoria datasource extensions into architecture-specific sub-packages.
+> If you choose to install these plugins to your own Grafana instance,
+> please configure the following parameter in `/etc/grafana/grafana.ini` to allow loading unsigned plugins.
+>
+> ```ini
+> allow_loading_unsigned_plugins = victoriametrics-logs-datasource,victoriametrics-metrics-datasource
+> ```
 
 
 
@@ -101,10 +100,8 @@ allow_loading_unsigned_plugins = victoriametrics-logs-datasource,victoriametrics
 | [`juicefs`](https://github.com/juicedata/juicefs)       | `1.4.1`          | [Apache-2.0](https://github.com/juicedata/juicefs/blob/main/LICENSE)            | Filesystem over S3                 |
 {.stretch-last}
 
-{{% alert title="SILO has replaced MinIO" color="info" %}}
-[`silo`](https://github.com/pgsty/silo) and [`mcli`](https://github.com/pgsty/mc) are the Pigsty-maintained server and client. Since 2026-08-06, the package, binary, and systemd service use the `silo` name while S3/Admin APIs, `/minio/*` routes, `MINIO_*` variables, and the on-disk format remain compatible.
-
-{{% /alert %}}
+> [!NOTE] SILO has replaced MinIO
+> [`silo`](https://github.com/pgsty/silo) and [`mcli`](https://github.com/pgsty/mc) are the Pigsty-maintained server and client. Since 2026-08-06, the package, binary, and systemd service use the `silo` name while S3/Admin APIs, `/minio/*` routes, `MINIO_*` variables, and the on-disk format remain compatible.
 
 
 --------

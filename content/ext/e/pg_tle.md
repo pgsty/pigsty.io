@@ -252,40 +252,33 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Install" %}}
-```bash
+```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
 pig install pg_tle;          # Install for current active PG version
 ```
-{{% /tab %}}
-{{% tab header="pig" %}}
-```bash
+
+```bash {tab="pig" value="pig"}
 pig ext install -y pg_tle -v 18  # PG 18
 pig ext install -y pg_tle -v 17  # PG 17
 pig ext install -y pg_tle -v 16  # PG 16
 pig ext install -y pg_tle -v 15  # PG 15
 pig ext install -y pg_tle -v 14  # PG 14
 ```
-{{% /tab %}}
-{{% tab header="dnf" %}}
-```bash
+
+```bash {tab="dnf" value="dnf"}
 dnf install -y pg_tle_18       # PG 18
 dnf install -y pg_tle_17       # PG 17
 dnf install -y pg_tle_16       # PG 16
 dnf install -y pg_tle_15       # PG 15
 dnf install -y pg_tle_14       # PG 14
 ```
-{{% /tab %}}
-{{% tab header="apt" %}}
-```bash
+
+```bash {tab="apt" value="apt"}
 apt install -y postgresql-18-pg-tle   # PG 18
 apt install -y postgresql-17-pg-tle   # PG 17
 apt install -y postgresql-16-pg-tle   # PG 16
 apt install -y postgresql-15-pg-tle   # PG 15
 apt install -y postgresql-14-pg-tle   # PG 14
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Preload**:
@@ -312,7 +305,7 @@ CREATE EXTENSION pg_tle;
 
 Add `pg_tle` to `shared_preload_libraries` in `postgresql.conf`:
 
-```
+```text
 shared_preload_libraries = 'pg_tle'
 ```
 

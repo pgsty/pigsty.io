@@ -11,9 +11,8 @@ This tutorial drills PostgreSQL point-in-time recovery in Pigsty v4.5.0's four-n
 
 For one current node, use [`pig pitr`](/docs/pig/pitr/). For direct pgBackRest control, see the low-level [`pg-pitr` utility](/docs/pgsql/tutorial/pg-fork/#pg-pitr).
 
-{{% alert color="danger" title="Follow this literally only in a disposable sandbox" %}}
-Recovery stops Patroni/PostgreSQL and overwrites the target PGDATA with `pgbackrest --force restore`; the `up` stage also deletes the target cluster's etcd prefix and rebuilds Patroni state. The playbook prints a plan but has **no interactive confirmation**. Before production use, the operator must state and confirm the exact cluster and recovery point, verify a recent usable backup that has been independently tested, run `--check` with exactly the same `-l`, variables, and tags, and schedule a maintenance window. This tutorial does not authorize running these commands in any production environment.
-{{% /alert %}}
+> [!CAUTION] Follow this literally only in a disposable sandbox
+> Recovery stops Patroni/PostgreSQL and overwrites the target PGDATA with `pgbackrest --force restore`; the `up` stage also deletes the target cluster's etcd prefix and rebuilds Patroni state. The playbook prints a plan but has **no interactive confirmation**. Before production use, the operator must state and confirm the exact cluster and recovery point, verify a recent usable backup that has been independently tested, run `--check` with exactly the same `-l`, variables, and tags, and schedule a maintenance window. This tutorial does not authorize running these commands in any production environment.
 
 
 --------

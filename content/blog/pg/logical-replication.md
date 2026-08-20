@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL Logical Replication Deep Dive
 date: 2021-03-03
-manualLink: "https://vonng.com/en/pg/logical-replication/"
+manual_link: "https://vonng.com/en/pg/logical-replication/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

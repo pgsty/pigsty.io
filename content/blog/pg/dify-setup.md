@@ -1,7 +1,7 @@
 ---
 title: Self-Hosting Dify with PG, PGVector, and Pigsty
 date: 2024-06-22
-manualLink: "https://vonng.com/en/pg/dify-setup/"
+manual_link: "https://vonng.com/en/pg/dify-setup/"
 author: |
   [Ruohang Feng](https://vonng.com/en/) ([@Vonng](https://vonng.com/en/)) | [WeChat Column](https://mp.weixin.qq.com)
 

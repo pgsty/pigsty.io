@@ -1,7 +1,7 @@
 ---
 title: "FinOps: Endgame Cloud-Exit"
 date: 2023-07-06
-manualLink: "https://vonng.com/en/cloud/finops/"
+manual_link: "https://vonng.com/en/cloud/finops/"
 author: |
   [Ruohang Feng](https://vonng.com/en/) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/Yp_PU8nmyK-NVq0clD98RQ)
 

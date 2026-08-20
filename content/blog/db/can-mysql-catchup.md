@@ -2,7 +2,7 @@
 title: Can MySQL Still Catch Up with PostgreSQL?
 linkTitle: Can MySQL Still Catch Up with PostgreSQL?
 date: 2024-11-05
-manualLink: "https://vonng.com/cn/db/can-mysql-catchup/"
+manual_link: "https://vonng.com/cn/db/can-mysql-catchup/"
 author: Peter Zaitsev
 description: |
   Percona founder Peter Zaitsev discusses whether MySQL can still keep up with PostgreSQL. His views largely represent the MySQL communitys perspective.

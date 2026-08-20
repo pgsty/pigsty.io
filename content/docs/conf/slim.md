@@ -36,7 +36,7 @@ Usage:
 
 Source: [`pigsty/conf/slim.yml`](https://github.com/pgsty/pigsty/blob/main/conf/slim.yml)
 
-{{< readfile file="yaml/slim.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/slim.yml" code=true lang="yaml" >}}
 
 
 --------

@@ -1,7 +1,7 @@
 ---
 title: Monitoring Table Size in PostgreSQL
 date: 2018-05-14
-manualLink: "https://vonng.com/en/pg/mon-table-size/"
+manual_link: "https://vonng.com/en/pg/mon-table-size/"
 author: vonng
 description: Tables in PostgreSQL correspond to many physical files. This article explains how to calculate the actual size of a table in PostgreSQL.
 images: [/img/hero/pg/mon-table-size.jpg]

@@ -2,7 +2,7 @@
 title: What Can We Learn from Alibaba-Cloud's Global Outage?
 linkTitle: Unofficial Post-mortem of Alibaba-Cloud's Epic Failure
 date: 2023-11-13
-manualLink: "https://vonng.com/en/cloud/aliyun/"
+manual_link: "https://vonng.com/en/cloud/aliyun/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/OIlR0rolEQff9YfCpj3wIQ)
 

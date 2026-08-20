@@ -171,40 +171,33 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Install" %}}
-```bash
+```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
 pig install pg_duckdb;          # Install for current active PG version
 ```
-{{% /tab %}}
-{{% tab header="pig" %}}
-```bash
+
+```bash {tab="pig" value="pig"}
 pig ext install -y pg_duckdb -v 18  # PG 18
 pig ext install -y pg_duckdb -v 17  # PG 17
 pig ext install -y pg_duckdb -v 16  # PG 16
 pig ext install -y pg_duckdb -v 15  # PG 15
 pig ext install -y pg_duckdb -v 14  # PG 14
 ```
-{{% /tab %}}
-{{% tab header="dnf" %}}
-```bash
+
+```bash {tab="dnf" value="dnf"}
 dnf install -y pg_duckdb_18       # PG 18
 dnf install -y pg_duckdb_17       # PG 17
 dnf install -y pg_duckdb_16       # PG 16
 dnf install -y pg_duckdb_15       # PG 15
 dnf install -y pg_duckdb_14       # PG 14
 ```
-{{% /tab %}}
-{{% tab header="apt" %}}
-```bash
+
+```bash {tab="apt" value="apt"}
 apt install -y postgresql-18-pg-duckdb   # PG 18
 apt install -y postgresql-17-pg-duckdb   # PG 17
 apt install -y postgresql-16-pg-duckdb   # PG 16
 apt install -y postgresql-15-pg-duckdb   # PG 15
 apt install -y postgresql-14-pg-duckdb   # PG 14
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Preload**:
@@ -274,7 +267,7 @@ EXPLAIN ANALYZE SELECT count(*) FROM pgbench_accounts;
 
 The result would be 8s -> 4s on 4c VM on local laptop) :
 
-```
+```text
 postgres@el9:5432/postgres=# SET duckdb.force_execution = true;
 EXPLAIN ANALYZE SELECT count(*) FROM pgbench_accounts;
 SET

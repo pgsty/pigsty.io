@@ -2,7 +2,7 @@
 title: Pig, The Postgres Extension Wizard
 linkTitle: Pig - The Postgres Extension Wizard
 date: 2024-12-23
-manualLink: "https://vonng.com/en/pg/pig/"
+manual_link: "https://vonng.com/en/pg/pig/"
 author: |
   [RuohangFeng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/8zxeDQ7p5tPNGYED_1Bugg)
 

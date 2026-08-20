@@ -2,7 +2,7 @@
 title: Why PostgreSQL is the Most Successful Database?
 linkTitle: Why PostgreSQL is Most Successful?
 date: 2022-07-12
-manualLink: "https://vonng.com/en/pg/pg-is-best/"
+manual_link: "https://vonng.com/en/pg/pg-is-best/"
 author: |
   [Ruohang Feng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/UeNibtbN8JlA1QIlio1mkw)
 

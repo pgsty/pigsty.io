@@ -13,9 +13,8 @@ The KAFKA module installs Kafka under `/opt/kafka`, manages the service with Sys
 
 All of the Kafka CLI examples below use the role-generated `/etc/kafka/admin.properties`. Even when the current profile is `plaintext`, keep `--command-config` on every command: that way the command structure stays the same when you switch the admin channel to `scram`. Replace `<broker>:9092` with a reachable `inventory_hostname` and port.
 
-{{% alert title="--command-config on the console tools requires a Kafka 4.2+ CLI" color="info" %}}
-[KIP-1147](https://cwiki.apache.org/confluence/display/KAFKA/KIP-1147:+Improve+consistency+of+command-line+arguments) standardized the config-file argument as `--command-config` and the key-value argument as `--command-property` across every CLI, starting with Kafka 4.2. The CLI under `/opt/kafka/bin` comes from the Pigsty repository (currently a 4.3.x payload) and works as shown; if you run these from an external 4.1 or older CLI, the console producer/consumer still need the old names `--producer.config` / `--consumer.config`. The admin tools (`kafka-topics.sh`, `kafka-configs.sh`, `kafka-acls.sh`, `kafka-consumer-groups.sh`, `kafka-metadata-quorum.sh`, and friends) have always used `--command-config` and are unaffected.
-{{% /alert %}}
+> [!NOTE] --command-config on the console tools requires a Kafka 4.2+ CLI
+> [KIP-1147](https://cwiki.apache.org/confluence/display/KAFKA/KIP-1147:+Improve+consistency+of+command-line+arguments) standardized the config-file argument as `--command-config` and the key-value argument as `--command-property` across every CLI, starting with Kafka 4.2. The CLI under `/opt/kafka/bin` comes from the Pigsty repository (currently a 4.3.x payload) and works as shown; if you run these from an external 4.1 or older CLI, the console producer/consumer still need the old names `--producer.config` / `--consumer.config`. The admin tools (`kafka-topics.sh`, `kafka-configs.sh`, `kafka-acls.sh`, `kafka-consumer-groups.sh`, `kafka-metadata-quorum.sh`, and friends) have always used `--command-config` and are unaffected.
 
 
 --------

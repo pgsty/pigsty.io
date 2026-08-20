@@ -36,9 +36,8 @@ Notes:
 - JupyterLab listens on `0.0.0.0:8888`, base path `/jupyter/`; the current template allows any Origin and disables XSRF checks, so it is for trusted development networks only
 - Module default is `jupyter_enabled: false`, while `conf/vibe.yml` template explicitly enables Jupyter
 
-{{% alert title="Development sandbox, not a production security baseline" color="warning" %}}
-The VIBE Jupyter template relies on its token as the default authentication barrier, and `conf/vibe.yml` does not enable additional Basic Auth on `infra_portal.home`. Set a strong random token, restrict port 8888 and portal sources, and use a trusted TLS endpoint before deployment. Never expose the default template directly to the Internet.
-{{% /alert %}}
+> [!WARNING] Development sandbox, not a production security baseline
+> The VIBE Jupyter template relies on its token as the default authentication barrier, and `conf/vibe.yml` does not enable additional Basic Auth on `infra_portal.home`. Set a strong random token, restrict port 8888 and portal sources, and use a trusted TLS endpoint before deployment. Never expose the default template directly to the Internet.
 
 --------
 

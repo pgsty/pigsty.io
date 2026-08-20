@@ -15,51 +15,39 @@ categories: [Reference]
 
 Pigsty's home directory is located at `~/pigsty` by default. The file structure within this directory is as follows:
 
-{{< filetree label="~/pigsty Source Tree" >}}
-  {{< filetree/folder name="app" >}}
-    {{< filetree/file name="Application template resources" >}}
-  {{< /filetree/folder >}}
-  {{< filetree/folder name="bin" >}}
-    {{< filetree/file name="Management and operations scripts" >}}
-  {{< /filetree/folder >}}
-  {{< filetree/folder name="files" open=true >}}
-    {{< filetree/folder name="victoria" >}}
-      {{< filetree/file name="Rules and operations scripts" >}}
-    {{< /filetree/folder >}}
-    {{< filetree/folder name="grafana" >}}
-      {{< filetree/file name="Grafana dashboards" >}}
-    {{< /filetree/folder >}}
-    {{< filetree/folder name="postgres" >}}
-      {{< filetree/file name="PostgreSQL management scripts" >}}
-    {{< /filetree/folder >}}
-    {{< filetree/folder name="migration" >}}
-      {{< filetree/file name="Data-migration task definitions" >}}
-    {{< /filetree/folder >}}
-    {{< filetree/folder name="pki" >}}
-      {{< filetree/file name="Self-signed CA and certificates" >}}
-    {{< /filetree/folder >}}
-  {{< /filetree/folder >}}
-  {{< filetree/folder name="roles" >}}
-    {{< filetree/file name="Ansible role implementations" >}}
-  {{< /filetree/folder >}}
-  {{< filetree/folder name="templates" >}}
-    {{< filetree/file name="Ansible templates" >}}
-  {{< /filetree/folder >}}
-  {{< filetree/folder name="vagrant" >}}
-    {{< filetree/file name="Vagrant sandbox definitions" >}}
-  {{< /filetree/folder >}}
-  {{< filetree/folder name="terraform" >}}
-    {{< filetree/file name="Terraform cloud-resource templates" >}}
-  {{< /filetree/folder >}}
-  {{< filetree/file name="configure" >}}
-  {{< filetree/file name="ansible.cfg" >}}
-  {{< filetree/file name="pigsty.yml" >}}
-  {{< filetree/file name="*.yml" >}}
-{{< /filetree >}}
+```filetree {title="~/pigsty Source Tree"}
+- app/   {open=false}
+  - Application template resources
+- bin/   {open=false}
+  - Management and operations scripts
+- files/
+  - victoria/   {open=false}
+    - Rules and operations scripts
+  - grafana/   {open=false}
+    - Grafana dashboards
+  - postgres/   {open=false}
+    - PostgreSQL management scripts
+  - migration/   {open=false}
+    - Data-migration task definitions
+  - pki/   {open=false}
+    - Self-signed CA and certificates
+- roles/   {open=false}
+  - Ansible role implementations
+- templates/   {open=false}
+  - Ansible templates
+- vagrant/   {open=false}
+  - Vagrant sandbox definitions
+- terraform/   {open=false}
+  - Terraform cloud-resource templates
+- configure
+- ansible.cfg
+- pigsty.yml
+- *.yml
+```
 
 `/infra` is a runtime symlink to `/data/infra`, which keeps observability data and generated configuration together:
 
-```text {filename="/data/infra" collapse=8 wrap=true label="INFRA Runtime Directory"}
+```text {title="/data/infra" collapse=8 wrap=true label="INFRA Runtime Directory"}
 metrics/           # VictoriaMetrics TSDB data
 logs/              # VictoriaLogs data
 traces/             # VictoriaTraces data

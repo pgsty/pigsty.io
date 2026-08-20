@@ -1,7 +1,7 @@
 ---
 title: MinIO Is Dead. Who Picks Up the Pieces?
 date: 2025-12-08
-manualLink: "https://vonng.com/en/db/minio-alternative/"
+manual_link: "https://vonng.com/en/db/minio-alternative/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/A7bAFSAk3dte7QfXu5qHQw)
 

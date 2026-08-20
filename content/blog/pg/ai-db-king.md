@@ -2,7 +2,7 @@
 title: Why PostgreSQL Will Dominate the AI Era
 linkTitle: Why PostgreSQL Will Dominate the AI Era
 date: 2025-12-01
-manualLink: "https://vonng.com/en/pg/ai-db-king/"
+manual_link: "https://vonng.com/en/pg/ai-db-king/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/))
 

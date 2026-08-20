@@ -1,7 +1,7 @@
 ---
 title: Forging a China-Rooted, Global PostgreSQL Distro
 date: 2025-11-27
-manualLink: "https://vonng.com/en/pg/forge-a-pg-distro/"
+manual_link: "https://vonng.com/en/pg/forge-a-pg-distro/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

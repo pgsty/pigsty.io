@@ -1,7 +1,7 @@
 ---
 title: "The Great Software Meltdown: When Translation Layers Get Squashed"
 date: 2026-01-31
-manualLink: "https://vonng.com/en/db/neo-software/"
+manual_link: "https://vonng.com/en/db/neo-software/"
 author: Ruohang Feng
 description: >
   SaaS and workflow software are dead. From APPs & GUIs to Agents, Databases, and CLI.

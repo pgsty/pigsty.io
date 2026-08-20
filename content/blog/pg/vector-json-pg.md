@@ -2,7 +2,7 @@
 title: Vector is the New JSON
 linkTitle: Vector is the New JSON
 date: 2023-08-06
-manualLink: "https://vonng.com/cn/pg/vector-json-pg/"
+manual_link: "https://vonng.com/cn/pg/vector-json-pg/"
 author: Jonathan Katz
 description: |
   Vectors will become a key element in building applications, just like JSON historically. PostgreSQL leads the AI era with vector extensions.

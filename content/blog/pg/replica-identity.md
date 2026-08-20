@@ -2,7 +2,7 @@
 title: PG Replica Identity Explained
 linkTitle: PG Replica Identity Explained
 date: 2021-03-03
-manualLink: "https://vonng.com/en/pg/replica-identity/"
+manual_link: "https://vonng.com/en/pg/replica-identity/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

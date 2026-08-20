@@ -1,7 +1,7 @@
 ---
 title: What Can We Learn from NetEase Cloud Music's Outage?
 date: 2024-08-18
-manualLink: "https://vonng.com/en/cloud/netease/"
+manual_link: "https://vonng.com/en/cloud/netease/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

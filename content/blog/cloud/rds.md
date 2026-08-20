@@ -1,7 +1,7 @@
 ---
 title: Are Cloud Databases an IQ Tax?
 date: 2023-01-30
-manualLink: "https://vonng.com/en/cloud/rds/"
+manual_link: "https://vonng.com/en/cloud/rds/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat Original](https://mp.weixin.qq.com/s/LefEAXTcBH-KBJNhXNoc7A) | [Vonng Blog](https://vonng.com/cn/cloud//rds/)
 

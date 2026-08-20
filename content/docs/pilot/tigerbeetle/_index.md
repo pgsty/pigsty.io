@@ -32,10 +32,7 @@ Use the following command to install the mapped package from the Pigsty Infra re
 After installation, please refer to the official documentation for configuration: https://github.com/tigerbeetle/tigerbeetle
 
 
-{{% alert title="TigerBeetle Requires Linux Kernel Version 5.5 or Higher!" color="danger" %}}
-
-Please note that TigerBeetle supports only Linux kernel version 5.5 or higher, making it incompatible by default with EL7 (3.10) and EL8 (4.18) systems.
-
-To install TigerBeetle, please use EL 9/10, Ubuntu 22/24/26, Debian 12/13, or another system whose kernel version meets TigerBeetle's requirements.
-
-{{% /alert %}}
+> [!CAUTION] TigerBeetle Requires Linux Kernel Version 5.5 or Higher!
+> Please note that TigerBeetle supports only Linux kernel version 5.5 or higher, making it incompatible by default with EL7 (3.10) and EL8 (4.18) systems.
+>
+> To install TigerBeetle, please use EL 9/10, Ubuntu 22/24/26, Debian 12/13, or another system whose kernel version meets TigerBeetle's requirements.

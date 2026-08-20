@@ -66,10 +66,9 @@ Each entry in `juice_instances` represents a JuiceFS instance:
 | `state` |    No    | `create`         | `create` / `absent`                          |
 {.full-width}
 
-{{% alert title="Important" color="warning" %}}
-- It's recommended to explicitly set `data` on **first format** to make the storage backend clear.
-- Multiple instances on the same node must use different `port` values.
-{{% /alert %}}
+> [!WARNING] Important
+> - It's recommended to explicitly set `data` on **first format** to make the storage backend clear.
+> - Multiple instances on the same node must use different `port` values.
 
 Example:
 

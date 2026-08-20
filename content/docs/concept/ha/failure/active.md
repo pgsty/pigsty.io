@@ -8,8 +8,7 @@ module: [PGSQL]
 categories: [Concept]
 ---
 
-{{< infographic >}}
-```text
+```infographic
 infographic list-row-simple-horizontal-arrow
 data
   desc When Patroni is healthy but PostgreSQL crashes
@@ -22,18 +21,21 @@ data
 theme light
   palette antv
 ```
-{{< /infographic >}}
 
 
 --------
 
 ## RTO Timeline
 
-{{< echarts height="520px" >}}
-```js
+<script>
+window.OinkEchartsFunctions = window.OinkEchartsFunctions || {};
+(function (registry) {
 var fmt = function(params) { if (!params || !params.length || params[0].name === '') return ''; return '<b>' + params[0].name + '</b><br/>' + params.filter(p => p.value !== '-' && p.value != null).map(p => p.marker + ' ' + p.seriesName + ': ' + p.value + 's').join('<br/>'); };
-```
-```yaml
+registry["fmt"] = fmt;
+})(window.OinkEchartsFunctions);
+</script>
+
+```echarts {height="520px"}
 tooltip: { trigger: axis, axisPointer: { type: shadow }, formatter: $fn:fmt }
 legend: { top: 0, itemGap: 12, data: [ Crash Found, Restart Timeout, Replica Detection, Elect Promote, HAProxy Check] }
 grid: { left: 64, right: 24, bottom: 32, top: 40 }
@@ -48,7 +50,6 @@ series:
   - { name: RTO Total, type: bar, barGap: "-100%", barWidth: 20, z: 1, itemStyle: { color: "#888", opacity: 0 }, emphasis: { itemStyle: { opacity: 0 } }, data: [145, 122, 4, "-", 73, 61, 3, "-", 41, 35, 2, "-", 29, 24, 1] }
   - { name: RTO Budget, type: bar, barGap: "-100%", barWidth: 20, z: 0, itemStyle: { color: "rgba(0,0,0,0.08)" }, emphasis: { itemStyle: { color: "rgba(0,0,0,0.12)" } }, data: [150, 150, 150, "-", 90, 90, 90, "-", 45, 45, 45, "-", 30, 30, 30] }
 ```
-{{< /echarts >}}
 
 
 --------

@@ -167,40 +167,33 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Install" %}}
-```bash
+```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
 pig install pagevis;          # Install for current active PG version
 ```
-{{% /tab %}}
-{{% tab header="pig" %}}
-```bash
+
+```bash {tab="pig" value="pig"}
 pig ext install -y pagevis -v 18  # PG 18
 pig ext install -y pagevis -v 17  # PG 17
 pig ext install -y pagevis -v 16  # PG 16
 pig ext install -y pagevis -v 15  # PG 15
 pig ext install -y pagevis -v 14  # PG 14
 ```
-{{% /tab %}}
-{{% tab header="dnf" %}}
-```bash
+
+```bash {tab="dnf" value="dnf"}
 dnf install -y pagevis_18       # PG 18
 dnf install -y pagevis_17       # PG 17
 dnf install -y pagevis_16       # PG 16
 dnf install -y pagevis_15       # PG 15
 dnf install -y pagevis_14       # PG 14
 ```
-{{% /tab %}}
-{{% tab header="apt" %}}
-```bash
+
+```bash {tab="apt" value="apt"}
 apt install -y postgresql-18-pagevis   # PG 18
 apt install -y postgresql-17-pagevis   # PG 17
 apt install -y postgresql-16-pagevis   # PG 16
 apt install -y postgresql-15-pagevis   # PG 15
 apt install -y postgresql-14-pagevis   # PG 14
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Create Extension**:

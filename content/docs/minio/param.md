@@ -11,9 +11,8 @@ The MINIO module exposes **22** public parameters in two groups:
 - [**`MINIO`**](#minio): 19 parameters for deploying Silo object-storage clusters
 - [**`MINIO_REMOVE`**](#minio_remove): 3 parameters controlling object-storage cluster removal
 
-{{% alert title="Architecture Change: Pigsty v3.6+" color="info" %}}
-Since Pigsty v3.6, the `minio.yml` playbook no longer includes removal functionality. Removal-related parameters have been migrated to the dedicated `minio_remove` role and `minio-rm.yml` playbook.
-{{% /alert %}}
+> [!NOTE] Architecture Change: Pigsty v3.6+
+> Since Pigsty v3.6, the `minio.yml` playbook no longer includes removal functionality. Removal-related parameters have been migrated to the dedicated `minio_remove` role and `minio-rm.yml` playbook.
 
 
 ----------------
@@ -324,11 +323,10 @@ Root secret key (password), default is `S3User.MinIO`.
 
 This is the Silo super-administrator password, used together with [`minio_access_key`](#minio_access_key).
 
-{{% alert title="Security Warning: Change the default password!" color="danger" %}}
-Using default passwords is a high-risk behavior! Make sure to change this password in your production deployment.
-
-Tip: `./configure -g` randomizes default passwords recognized by the configuration wizard. See the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) for the complete scope.
-{{% /alert %}}
+> [!CAUTION] Security Warning: Change the default password!
+> Using default passwords is a high-risk behavior! Make sure to change this password in your production deployment.
+>
+> Tip: `./configure -g` randomizes default passwords recognized by the configuration wizard. See the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) for the complete scope.
 
 
 
@@ -456,11 +454,8 @@ The default configuration creates three users corresponding to three default buc
 - `s3user_meta`: For accessing the `meta` bucket.
 - `s3user_data`: For accessing the `data` bucket.
 
-{{% alert title="Using default passwords is dangerous! Make sure to change these credentials in your deployment!" color="danger" %}}
-
-Tip: `./configure -g` will automatically replace these passwords in the configuration template if they appear as defaults.
-
-{{% /alert %}}
+> [!CAUTION] Using default passwords is dangerous! Make sure to change these credentials in your deployment!
+> Tip: `./configure -g` will automatically replace these passwords in the configuration template if they appear as defaults.
 
 
 

@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL 17 Beta1 Released!
 date: 2024-05-24
-manualLink: "https://vonng.com/en/pg/pg-17-beta1/"
+manual_link: "https://vonng.com/en/pg/pg-17-beta1/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/3EBoAHWEI6zZ-T0nNQsk4Q)
 

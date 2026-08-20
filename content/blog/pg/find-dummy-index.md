@@ -1,7 +1,7 @@
 ---
 title: Finding Unused Indexes
 date: 2018-02-04
-manualLink: "https://vonng.com/en/pg/find-dummy-index/"
+manual_link: "https://vonng.com/en/pg/find-dummy-index/"
 author: vonng
 description: |
   Indexes are useful, but they're not free. Unused indexes are a waste. Use these methods to identify unused indexes.

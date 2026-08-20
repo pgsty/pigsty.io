@@ -15,9 +15,8 @@ Pigsty v4.5.0 provides two local shell utilities:
 
 They are useful for sandbox drills, side-channel investigation, and temporary testing. They are not complete Patroni-cluster recovery orchestrators. Prefer [`pig pitr`](/docs/pig/pitr/) for a managed instance and staged [`pgsql-pitr.yml`](/docs/pgsql/backup/restore/) for a multi-node cluster.
 
-{{% alert color="danger" title="Verify paths, backups, and stopped state first" %}}
-`pg-fork` recursively removes an existing destination directory; `pg-pitr` overwrites the destination with backup data. Both can execute without a prompt in a non-interactive environment. Before a real run, verify source and destination absolute paths, ports, tablespaces, exact cluster/instance identity, and an independent recent backup that has been tested. A newly created CoW clone is not an independent backup.
-{{% /alert %}}
+> [!CAUTION] Verify paths, backups, and stopped state first
+> `pg-fork` recursively removes an existing destination directory; `pg-pitr` overwrites the destination with backup data. Both can execute without a prompt in a non-interactive environment. Before a real run, verify source and destination absolute paths, ports, tablespaces, exact cluster/instance identity, and an independent recent backup that has been tested. A newly created CoW clone is not an independent backup.
 
 
 --------
@@ -82,9 +81,8 @@ postgres -D /pg/data1 -C shared_buffers
 pg_ctl -D /pg/data1 status
 ```
 
-{{% alert color="warning" title="External tablespaces are not isolated" %}}
-`cp -a` preserves symlinks under `pg_tblspc`; `pg-fork` does not copy or remap tablespaces outside PGDATA. Starting such a clone can access or modify the source instance's tablespaces. If external tablespaces exist, independently copy and remap every one of them, or do not use this script to create a writable clone.
-{{% /alert %}}
+> [!WARNING] External tablespaces are not isolated
+> `cp -a` preserves symlinks under `pg_tblspc`; `pg-fork` does not copy or remap tablespaces outside PGDATA. Starting such a clone can access or modify the source instance's tablespaces. If external tablespaces exist, independently copy and remap every one of them, or do not use this script to create a writable clone.
 
 ### Interaction Boundary
 

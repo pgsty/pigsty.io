@@ -2,7 +2,7 @@
 title: Whoever Integrates DuckDB Best Wins the OLAP World
 linkTitle: DuckDB Integration = OLAP Victory
 date: 2024-08-13
-manualLink: "https://vonng.com/en/pg/pg-duckdb/"
+manual_link: "https://vonng.com/en/pg/pg-duckdb/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/TJk9TUW7xsEglhEK_qYi-w)
 

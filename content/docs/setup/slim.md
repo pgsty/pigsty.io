@@ -13,17 +13,15 @@ If you only want HA PostgreSQL database cluster itself without monitoring, infra
 
 Slim installation has no [**`INFRA`**](/docs/infra/) module, no monitoring, no [**local repo**](/docs/setup/offline/)—just [**`ETCD`**](/docs/etcd/) and [**`PGSQL`**](/docs/pgsql/) and partial [**`NODE`**](/docs/node/) functionality.
 
-{{% alert title="Slim installation is suitable for:" color="success" %}}
-- Only needing PostgreSQL database itself, no observability infra required.
-- Extremely resource-constrained envs unwilling to bear infra overhead (~0.2 vCPU / 500MB on single node).
-- Already having external monitoring system, wanting to use your own unified monitoring framework.
-- Not needing the Grafana visualization dashboard component.
-  {{% /alert %}}
+> [!TIP] Slim installation is suitable for:
+> - Only needing PostgreSQL database itself, no observability infra required.
+> - Extremely resource-constrained envs unwilling to bear infra overhead (~0.2 vCPU / 500MB on single node).
+> - Already having external monitoring system, wanting to use your own unified monitoring framework.
+> - Not needing the Grafana visualization dashboard component.
 
-{{% alert title="Limitations of slim installation:" color="warning" %}}
-- No [**INFRA**](/docs/infra) module, cannot use WebUI and local software repo features.
-- [**Offline Install**](/docs/setup/offline) is limited to single-node mode; multi-node slim install can only be done online.
-  {{% /alert %}}
+> [!WARNING] Limitations of slim installation:
+> - No [**INFRA**](/docs/infra) module, cannot use WebUI and local software repo features.
+> - [**Offline Install**](/docs/setup/offline) is limited to single-node mode; multi-node slim install can only be done online.
 
 
 --------
@@ -78,7 +76,7 @@ Slim installation config file example: [**`conf/slim.yml`**](https://github.com/
 {.full-width}
 
 
-{{< readfile file="/docs/conf/yaml/slim.yml" code="true" lang="yaml" >}}
+{{< include file="/docs/conf/yaml/slim.yml" code=true lang="yaml" >}}
 
 
 --------

@@ -1,7 +1,7 @@
 ---
 title: Batch Configure SSH Passwordless Login
 date: 2018-01-07
-manualLink: "https://vonng.com/en/pg/ssh-add-key/"
+manual_link: "https://vonng.com/en/pg/ssh-add-key/"
 author: vonng
 description: |
   Quick configuration for passwordless login to all machines

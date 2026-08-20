@@ -35,7 +35,7 @@ Usage:
 
 Source: [`pigsty/conf/app/hindsight.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/hindsight.yml)
 
-{{< readfile file="yaml/app/hindsight.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/app/hindsight.yml" code=true lang="yaml" >}}
 
 
 --------

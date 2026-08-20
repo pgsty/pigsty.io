@@ -84,9 +84,8 @@ The IP address serves as the node's **unique identifier**—the primary IP bound
 
 For [**single-node deployment**](/docs/setup/install) without a fixed IP, use the loopback address `127.0.0.1` as a workaround.
 
-{{% alert title="Never use Public IP as identifier" color="danger" %}}
-Using public IP addresses as node identifiers can cause security and connectivity issues. Always use internal IP addresses.
-{{% /alert %}}
+> [!CAUTION] Never use Public IP as identifier
+> Using public IP addresses as node identifiers can cause security and connectivity issues. Always use internal IP addresses.
 
 
 
@@ -99,9 +98,8 @@ Pigsty supports optional L2 VIP for NODE clusters (`keepalived`) and PGSQL clust
 To use L2 VIP, you must explicitly assign an L2 VIP address for each node/database cluster.
 This is straightforward on your own hardware but may be challenging in public cloud environments.
 
-{{% alert title="L2 VIP requires L2 Networking" color="warning" %}}
-To use optional Node VIP and PG VIP features, ensure all nodes are on the same L2 network.
-{{% /alert %}}
+> [!WARNING] L2 VIP requires L2 Networking
+> To use optional Node VIP and PG VIP features, ensure all nodes are on the same L2 network.
 
 
 ----------------
@@ -146,9 +144,8 @@ On macOS and Windows, use VM software or Docker systemd images to run Pigsty.
 
 We **strongly recommend** a fresh OS installation. If your server already runs Nginx, PostgreSQL, or similar services, consider deploying on new nodes.
 
-{{% alert title="Use the same OS version on all nodes" color="warning" %}}
-For multi-node deployments, ensure all nodes use the same Linux distribution, architecture, and version. Heterogeneous deployments may work but are unsupported and may cause unpredictable issues.
-{{% /alert %}}
+> [!WARNING] Use the same OS version on all nodes
+> For multi-node deployments, ensure all nodes use the same Linux distribution, architecture, and version. Heterogeneous deployments may work but are unsupported and may cause unpredictable issues.
 
 --------
 
@@ -188,48 +185,33 @@ For [**single-node deployment**](/docs/setup/install), the installation node ser
 
 You can [**install**](/docs/deploy/install#install) the current default Pigsty source with:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="pigsty.io (Global)" %}}
-```bash
+```bash {tab="pigsty.io (Global)" group="pigstyio-global-pigstycc-china" value="pigstyio-global"}
 curl -fsSL https://repo.pigsty.io/get | bash;
 ```
-{{% /tab %}}
-{{% tab header="pigsty.cc (China)" %}}
-```bash
+
+```bash {tab="pigsty.cc (China)" value="pigstycc-china"}
 curl -fsSL https://repo.pigsty.cc/get | bash;
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 To [**install**](/docs/deploy/install#install) a specific version, use the **`-s <version>`** parameter:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="pigsty.io (Global)" %}}
-```bash
+```bash {tab="pigsty.io (Global)" group="pigstyio-global-pigstycc-china" value="pigstyio-global"}
 curl -fsSL https://repo.pigsty.io/get | bash -s <version>  # Install a specific version (current stable: {{< param stable_version >}})
 ```
-{{% /tab %}}
-{{% tab header="pigsty.cc (China)" %}}
-```bash
+
+```bash {tab="pigsty.cc (China)" value="pigstycc-china"}
 curl -fsSL https://repo.pigsty.cc/get | bash -s <version>  # Install a specific version (current stable: {{< param stable_version >}})
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 To [**install**](/docs/deploy/install#install) the latest beta version:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="pigsty.io (Global)" %}}
-```bash
+```bash {tab="pigsty.io (Global)" group="pigstyio-global-pigstycc-china" value="pigstyio-global"}
 curl -fsSL https://repo.pigsty.io/beta | bash;
 ```
-{{% /tab %}}
-{{% tab header="pigsty.cc (China)" %}}
-```bash
+
+```bash {tab="pigsty.cc (China)" value="pigstycc-china"}
 curl -fsSL https://repo.pigsty.cc/beta | bash;
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 For developers or the latest development version, clone the repository directly:
 

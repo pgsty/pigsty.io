@@ -35,7 +35,7 @@ Enable with:
 
 Source: [`pigsty/conf/pgedge.yml`](https://github.com/pgsty/pigsty/blob/main/conf/pgedge.yml)
 
-{{< readfile file="yaml/pgedge.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/pgedge.yml" code=true lang="yaml" >}}
 
 
 --------

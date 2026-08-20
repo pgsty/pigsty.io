@@ -1,7 +1,7 @@
 ---
 title: TimescaleDB Quick Start
 date: 2018-09-07
-manualLink: "https://vonng.com/en/pg/timescale-install/"
+manual_link: "https://vonng.com/en/pg/timescale-install/"
 author: vonng
 description: |
   TimescaleDB is a PostgreSQL extension plugin that provides time-series database functionality.

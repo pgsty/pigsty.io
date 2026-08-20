@@ -37,7 +37,7 @@ After configuration, modify the IP addresses of the other three nodes.
 
 Source: [`pigsty/conf/ha/full.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/full.yml)
 
-{{< readfile file="yaml/ha/full.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/ha/full.yml" code=true lang="yaml" >}}
 
 
 --------

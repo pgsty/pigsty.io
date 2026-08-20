@@ -12,9 +12,8 @@ aliases: [/docs/pilot/kafka/playbook]
 The KAFKA module ships two playbooks: [`kafka.yml`](https://github.com/pgsty/pigsty/blob/main/kafka.yml) deploys an Apache Kafka 4.1+ dynamic KRaft cluster and converges its security,
 resource, and monitoring state; [`kafka-rm.yml`](https://github.com/pgsty/pigsty/blob/main/kafka-rm.yml) tears down a cluster or removes a member.
 
-{{% alert title="Cluster Completeness Constraint" color="warning" %}}
-Every selected `kafka_cluster` must include all of its members: a partial selection fails before anything is written, while one cluster, several complete clusters, or a bare run over the whole inventory are all allowed. Run `--check` first against the exact same target; before the real run, still verify the backup/rebuild intent, capacity, business window, rollback plan, and change approval by hand.
-{{% /alert %}}
+> [!WARNING] Cluster Completeness Constraint
+> Every selected `kafka_cluster` must include all of its members: a partial selection fails before anything is written, while one cluster, several complete clusters, or a bare run over the whole inventory are all allowed. Run `--check` first against the exact same target; before the real run, still verify the backup/rebuild intent, capacity, business window, rollback plan, and change approval by hand.
 
 
 --------
@@ -233,9 +232,8 @@ Before deregistration or service stop, the role also checks that `kafka_data` is
 ./kafka-rm.yml -l kf-main -e kafka_rm_pkg=true     # Also uninstall the kafka-stack packages (the shared Java runtime is not removed)
 ```
 
-{{% alert title="Permanent Deletion" color="danger" %}}
-`kafka_rm_data` defaults to `true`: a single default-parameter run of `kafka-rm.yml` deletes the selected nodes' data/KRaft metadata and `/etc/kafka` recovery state. The playbook has no extra gate such as a confirmation string, so before running it you must verify the `-l` target, the backup or an explicit rebuild intent, and the impact on producers/consumers by hand.
-{{% /alert %}}
+> [!CAUTION] Permanent Deletion
+> `kafka_rm_data` defaults to `true`: a single default-parameter run of `kafka-rm.yml` deletes the selected nodes' data/KRaft metadata and `/etc/kafka` recovery state. The playbook has no extra gate such as a confirmation string, so before running it you must verify the `-l` target, the backup or an explicit rebuild intent, and the impact on producers/consumers by hand.
 
 
 ### Member Retirement

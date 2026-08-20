@@ -74,9 +74,8 @@ After a full `minio.yml` run with `minio_provision` enabled, the role configures
 
 For the full `mcli` command reference, see the upstream [MinIO Client documentation](https://min.io/docs/minio/linux/reference/minio-mc.html).
 
-{{% alert title="Note: Use Your Actual Password" color="warning" %}}
-The password `S3User.MinIO` in the above examples is the Pigsty default. If you modified [`minio_secret_key`](/docs/minio/param#minio_secret_key) during deployment, please use your actual configured password.
-{{% /alert %}}
+> [!WARNING] Note: Use Your Actual Password
+> The password `S3User.MinIO` in the above examples is the Pigsty default. If you modified [`minio_secret_key`](/docs/minio/param#minio_secret_key) during deployment, please use your actual configured password.
 
 
 
@@ -145,9 +144,8 @@ EOF
 rclone ls sss:/
 ```
 
-{{% alert title="Note: HTTPS and Certificate Trust" color="warning" %}}
-If Silo uses HTTPS (the default), ensure that the client trusts Pigsty's CA certificate (`/etc/pki/ca.crt`), or add `no_check_certificate = true` to the rclone configuration to skip certificate verification (not recommended for production).
-{{% /alert %}}
+> [!WARNING] Note: HTTPS and Certificate Trust
+> If Silo uses HTTPS (the default), ensure that the client trusts Pigsty's CA certificate (`/etc/pki/ca.crt`), or add `no_check_certificate = true` to the rclone configuration to skip certificate verification (not recommended for production).
 
 
 ----------------

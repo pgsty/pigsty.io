@@ -1,7 +1,7 @@
 ---
 title: From Cost-Reduction Jokes to Real Cost Reduction and Efficiency
 date: 2023-11-29
-manualLink: "https://vonng.com/en/cloud/smile/"
+manual_link: "https://vonng.com/en/cloud/smile/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat Official Account](https://mp.weixin.qq.com/s/FIOB_Oqefx1oez1iu7AGGg)
 

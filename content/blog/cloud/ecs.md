@@ -1,7 +1,7 @@
 ---
 title: Analyzing Alibaba-Cloud Server Computing Cost
 date: 2024-03-10
-manualLink: "https://vonng.com/en/cloud/ecs/"
+manual_link: "https://vonng.com/en/cloud/ecs/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat Official Account](https://mp.weixin.qq.com/s/rp8Dtvyo9cItBJSsvfrKjw)
 

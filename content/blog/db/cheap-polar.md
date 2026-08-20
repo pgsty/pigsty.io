@@ -1,7 +1,7 @@
 ---
 title: "The $20 Brother PolarDB: What Should Databases Actually Cost?"
 date: 2024-04-25
-manualLink: "https://vonng.com/en/db/cheap-polar/"
+manual_link: "https://vonng.com/en/db/cheap-polar/"
 author: vonng
 description: |
   Today we discuss the fair pricing of commercial databases, open-source databases, cloud databases, and domestic Chinese databases.

@@ -1,7 +1,7 @@
 ---
 title: Testing Disk Performance with FIO
 date: 2018-02-06
-manualLink: "https://vonng.com/en/pg/fio/"
+manual_link: "https://vonng.com/en/pg/fio/"
 author: vonng
 description: |
   FIO is a convenient tool for testing disk I/O performance

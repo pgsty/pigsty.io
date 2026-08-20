@@ -2,7 +2,7 @@
 title: "Cloud Exit FAQ: DHH Saves Millions"
 linkTitle: "Cloud Exit FAQ: DHH Saves Millions"
 date: 2023-12-21
-manualLink: "https://vonng.com/cn/cloud/cloud-exit-faq/"
+manual_link: "https://vonng.com/cn/cloud/cloud-exit-faq/"
 author: DHH
 description: |
   DHHs cloud exit journey has reached a new stage, saving nearly a million dollars so far with potential savings of nearly ten million over the next five years.

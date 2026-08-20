@@ -66,29 +66,25 @@ Pigsty provides four RTO modes to help users make trade-offs under different net
 {.full-width}
 
 
-{{% alert title="fast: Same Rack/Switch" color="primary" %}}
-- Suitable for scenarios with extremely low network latency (< 1ms) and very stable networks, such as same-rack or same-switch deployments
-- Average RTO: **14s**, worst case: **29s**, TTL only 20s, check interval 5s
-- Highest network quality requirements, any jitter may trigger failover, **higher false failover risk**
-{{% /alert %}}
+> [!IMPORTANT] fast: Same Rack/Switch
+> - Suitable for scenarios with extremely low network latency (< 1ms) and very stable networks, such as same-rack or same-switch deployments
+> - Average RTO: **14s**, worst case: **29s**, TTL only 20s, check interval 5s
+> - Highest network quality requirements, any jitter may trigger failover, **higher false failover risk**
 
-{{% alert title="norm: Same Datacenter (Default)" color="success" %}}
-- **Default mode**, suitable for same-datacenter deployment, network latency 1-5ms, normal quality, reasonable packet loss rate
-- Average RTO: **21s**, worst case: **43s**, TTL is 30s, provides reasonable tolerance window
-- Balances recovery speed and stability, suitable for most production environments
-{{% /alert %}}
+> [!TIP] norm: Same Datacenter (Default)
+> - **Default mode**, suitable for same-datacenter deployment, network latency 1-5ms, normal quality, reasonable packet loss rate
+> - Average RTO: **21s**, worst case: **43s**, TTL is 30s, provides reasonable tolerance window
+> - Balances recovery speed and stability, suitable for most production environments
 
-{{% alert title="safe: Same Region, Cross-Datacenter" color="secondary" %}}
-- Suitable for same-region/same-area cross-datacenter deployment, network latency 10-50ms, occasional jitter possible
-- Average RTO: **43s**, worst case: **91s**, TTL is 60s, longer tolerance window
-- Primary restart wait time is longer (60s), gives more local recovery opportunities, **lower false failover risk**
-{{% /alert %}}
+> [!NOTE] safe: Same Region, Cross-Datacenter
+> - Suitable for same-region/same-area cross-datacenter deployment, network latency 10-50ms, occasional jitter possible
+> - Average RTO: **43s**, worst case: **91s**, TTL is 60s, longer tolerance window
+> - Primary restart wait time is longer (60s), gives more local recovery opportunities, **lower false failover risk**
 
-{{% alert title="wide: Cross-Region/Continent" color="danger" %}}
-- Suitable for cross-region or even cross-continent deployment, network latency 100-200ms, possible public-network-level packet loss
-- Average RTO: **92s**, worst case: **207s**, TTL is 120s, very wide tolerance window
-- Sacrifices recovery speed for extremely low false failover rate, suitable for geo-disaster recovery scenarios
-{{% /alert %}}
+> [!CAUTION] wide: Cross-Region/Continent
+> - Suitable for cross-region or even cross-continent deployment, network latency 100-200ms, possible public-network-level packet loss
+> - Average RTO: **92s**, worst case: **207s**, TTL is 120s, very wide tolerance window
+> - Sacrifices recovery speed for extremely low false failover rate, suitable for geo-disaster recovery scenarios
 
 --------
 
@@ -96,11 +92,15 @@ Pigsty provides four RTO modes to help users make trade-offs under different net
 
 Patroni / PG HA has two key failure paths: **active failure detection** (Patroni detects a PG crash and attempts restart) and **passive lease expiration** (node down waits for TTL expiration to trigger election).
 
-{{< echarts height="820px" >}}
-```js
+<script>
+window.OinkEchartsFunctions = window.OinkEchartsFunctions || {};
+(function (registry) {
 var fmt = function(params) { if (!params || !params.length || params[0].name === '') return ''; return '<b>' + params[0].name + '</b><br/>' + params.filter(p => p.value !== '-' && p.value != null).map(p => p.marker + ' ' + p.seriesName + ': ' + p.value + 's').join('<br/>'); };
-```
-```yaml
+registry["fmt"] = fmt;
+})(window.OinkEchartsFunctions);
+</script>
+
+```echarts {height="820px"}
 tooltip: { trigger: axis, axisPointer: { type: shadow }, formatter: $fn:fmt }
 legend: { top: 0, itemGap: 10, data: [Lease Expiration, Failure Detection, Restart Timeout, Replica Detection, Lock & Promote, Health Check] }
 grid: { left: 110, right: 24, bottom: 32, top: 40 }
@@ -116,7 +116,6 @@ series:
   - { name: RTO Total, type: bar, barGap: "-100%", barWidth: 16, z: 1, itemStyle: { color: "#888", opacity: 0 }, emphasis: { itemStyle: { opacity: 0 } }, data: [150, 127, 104, 145, 122, 4, "-", 78, 66, 53, 73, 61, 3, "-", 41, 34, 27, 41, 35, 2, "-", 29, 23, 16, 29, 24, 1] }
   - { name: RTO Budget, type: bar, barGap: "-100%", barWidth: 16, z: 0, itemStyle: { color: "rgba(0,0,0,0.08)" }, emphasis: { itemStyle: { color: "rgba(0,0,0,0.12)" } }, data: [150, 150, 150, 150, 150, 150, "-", 90, 90, 90, 90, 90, 90, "-", 45, 45, 45, 45, 45, 45, "-", 30, 30, 30, 30, 30, 30] }
 ```
-{{< /echarts >}}
 
 
 

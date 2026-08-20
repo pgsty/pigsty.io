@@ -2,7 +2,7 @@
 title: Is running postgres in docker a good idea?
 linkTitle: "PG in Docker: Good or Bad?"
 date: 2019-01-13
-manualLink: "https://vonng.com/en/db/pg-in-docker/"
+manual_link: "https://vonng.com/en/db/pg-in-docker/"
 author: |
   [Ruohang Feng](https://vonng.com/en/) ([@Vonng](https://vonng.com/en/))
 

@@ -2,7 +2,7 @@
 title: Can PostgreSQL Replace Microsoft SQL Server?
 linkTitle: Can PG Replace MSSQL?
 date: 2024-09-02
-manualLink: "https://vonng.com/en/pg/pg-replace-mssql/"
+manual_link: "https://vonng.com/en/pg/pg-replace-mssql/"
 author: |
   [Ruohang Feng](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

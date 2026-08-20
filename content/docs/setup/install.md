@@ -20,15 +20,13 @@ Pigsty single-node installation consists of three steps: [**Install**](#install)
 
 [**Prepare**](/docs/deploy/prepare) a [**node**](/docs/deploy/prepare#node) with [**compatible OS**](/docs/ref/linux/), and run as an [**admin user**](/docs/deploy/admin) with nopass [**`ssh`**](/docs/deploy/admin#ssh) and [**`sudo`**](/docs/deploy/admin#sudo):
 
-{{< code-group id="quick-install-mirror" sync="download-mirror" persist=true label="Choose a Pigsty download mirror" copy="all" >}}
-  {{< code-tab title="pigsty.io (Global)" value="global" lang="bash" selected=true >}}
+```bash {tab="pigsty.io (Global)" group="download-mirror" value="global" copy="all"}
 curl -fsSL https://repo.pigsty.io/get | bash
-  {{< /code-tab >}}
+```
 
-  {{< code-tab title="pigsty.cc (China)" value="china" lang="bash" >}}
+```bash {tab="pigsty.cc (China)" value="china" copy="all"}
 curl -fsSL https://repo.pigsty.cc/get | bash
-  {{< /code-tab >}}
-{{< /code-group >}}
+```
 
 This command runs the [**install**](#install) script, downloads and extracts Pigsty source to your home directory and installs dependencies. Then complete [**Configure**](#configure) and [**Deploy**](#deploy):
 
@@ -36,13 +34,13 @@ This command runs the [**install**](#install) script, downloads and extracts Pig
 
 ### Enter the Source Directory
 
-```bash {filename="Terminal" copy="all"}
+```bash {title="Terminal" copy="all"}
 cd ~/pigsty
 ```
 
 ### Generate the Inventory
 
-```bash {filename="Terminal" copy="all"}
+```bash {title="Terminal" copy="all"}
 ./configure -g
 ```
 
@@ -50,7 +48,7 @@ Skip this step if you already have a prepared `pigsty.yml`.
 
 ### Run the Deployment Playbook
 
-```bash {filename="Terminal" copy="all"}
+```bash {title="Terminal" copy="all"}
 ./deploy.yml
 ```
 
@@ -92,28 +90,26 @@ Typically, you only need to focus on your **local IP address**—as an exception
 
 Use the following commands to auto-install Pigsty source to `~/pigsty` (recommended). Deployment dependencies (Ansible) are installed automatically.
 
-{{< code-group id="versioned-install-mirror" sync="download-mirror" persist=true label="Choose a Pigsty download mirror" copy="all" >}}
-  {{< code-tab title="pigsty.io (Global)" value="global" lang="bash" selected=true >}}
+```bash {tab="pigsty.io (Global)" group="download-mirror" value="global" copy="all"}
 curl -fsSL https://repo.pigsty.io/get | bash            # Install current default version
 curl -fsSL https://repo.pigsty.io/get | bash -s {{< param stable_version >}}  # Pin current public stable release
-  {{< /code-tab >}}
+```
 
-  {{< code-tab title="pigsty.cc (China)" value="china" lang="bash" >}}
+```bash {tab="pigsty.cc (China)" value="china" copy="all"}
 curl -fsSL https://repo.pigsty.cc/get | bash            # Install current default version
 curl -fsSL https://repo.pigsty.cc/get | bash -s {{< param stable_version >}}  # Pin current public stable release
-  {{< /code-tab >}}
-{{< /code-group >}}
+```
 
 If you prefer not to run a remote script, you can manually [**download**](https://github.com/pgsty/pigsty/releases) or clone the source. When using `git`, always checkout a specific version before use.
 
-```bash {filename="Terminal" copy="all" label="Install Pigsty from Git"}
+```bash {title="Terminal" copy="all" label="Install Pigsty from Git"}
 git clone https://github.com/pgsty/pigsty; cd pigsty;
 git checkout {{< param stable_version >}};  # Always checkout a released tag when using git
 ```
 
 For manual download/clone installations, run the [**`bootstrap`**](/docs/setup/offline#bootstrap) script to install Ansible and other dependencies. You can also [**install them yourself**](/docs/setup/playbook#install-ansible).
 
-```bash {filename="Terminal" copy="all"}
+```bash {title="Terminal" copy="all"}
 ./bootstrap           # Install ansible for subsequent deployment
 ```
 
@@ -128,7 +124,7 @@ In Pigsty, deployment blueprints are defined by the [**inventory**](/docs/setup/
 Pigsty provides the [**`configure`**](https://github.com/pgsty/pigsty/blob/main/configure) script as an optional [**configuration wizard**](/docs/concept/iac/configure),
 which generates an [**inventory**](/docs/concept/iac/inventory/) with good defaults based on your environment and input:
 
-```bash {filename="Terminal" copy="all" label="Run the Pigsty Configuration Wizard"}
+```bash {title="Terminal" copy="all" label="Run the Pigsty Configuration Wizard"}
 ./configure -g                # Use config wizard to generate config with random passwords
 ```
 
@@ -138,7 +134,7 @@ The generated config file is at `~/pigsty/pigsty.yml` by default. Review and cus
 
 Many [**configuration templates**](/docs/concept/iac/template/) are available for reference. You can skip the wizard and directly edit `pigsty.yml`:
 
-```bash {filename="Terminal" copy="all" collapse=6 label="Common configure Commands"}
+```bash {title="Terminal" copy="all" collapse=6 label="Common configure Commands"}
 ./configure                  # Default template, install PG 18 with essential extensions
 ./configure -v 16            # Use PG 16 instead of default PG 18
 ./configure -c rich          # Create local repo, download all extensions, install major ones
@@ -152,36 +148,35 @@ Many [**configuration templates**](/docs/concept/iac/template/) are available fo
 
 The output below is from {{< param version >}}. If you install another version, the first line reports that version.
 
-{{< example num="1" id="configure-output" caption="Example configure output from the current release" />}}
+{{< eg num="1" id="configure-output" caption="Example configure output from the current release" >}}
 
-{{% details title="Current configure output" %}}
+> [!DETAILS]- Current configure output
+> ```console {title="configure output" copy="command" collapse=12 label="configure Example Output"}
+> vagrant@meta:~/pigsty$ ./configure
+>
+> configure pigsty v4.5.0 begin
+> [ OK ] region  = default
+> [ OK ] kernel  = Linux
+> [ OK ] machine = x86_64
+> [ OK ] package = rpm,dnf
+> [ OK ] vendor  = rocky (Rocky Linux)
+> [ OK ] version = 9 (9.6)
+> [ OK ] sudo = vagrant ok
+> [ OK ] ssh = vagrant@127.0.0.1 ok
+> [WARN] Multiple IP address candidates found:
+>     (1) 192.168.121.24	inet 192.168.121.24/24 brd 192.168.121.255 scope global dynamic noprefixroute eth0
+>     (2) 10.10.10.12	    inet 10.10.10.12/24 brd 10.10.10.255 scope global noprefixroute eth1
+> [ IN ] INPUT primary_ip address (of current meta node, e.g 10.10.10.10):
+> => 10.10.10.12    # <------- INPUT YOUR PRIMARY IPV4 ADDRESS HERE!
+> [ OK ] primary_ip = 10.10.10.12 (from input)
+> [ OK ] admin = vagrant@10.10.10.12 ok
+> [ OK ] mode = meta (el9)
+> [ OK ] locale  = C.UTF-8
+> [ OK ] configure pigsty done
+> proceed with ./deploy.yml
+> ```
 
-```console {filename="configure output" copy="command" collapse=12 label="configure Example Output"}
-vagrant@meta:~/pigsty$ ./configure
-
-configure pigsty v4.5.0 begin
-[ OK ] region  = default
-[ OK ] kernel  = Linux
-[ OK ] machine = x86_64
-[ OK ] package = rpm,dnf
-[ OK ] vendor  = rocky (Rocky Linux)
-[ OK ] version = 9 (9.6)
-[ OK ] sudo = vagrant ok
-[ OK ] ssh = vagrant@127.0.0.1 ok
-[WARN] Multiple IP address candidates found:
-    (1) 192.168.121.24	inet 192.168.121.24/24 brd 192.168.121.255 scope global dynamic noprefixroute eth0
-    (2) 10.10.10.12	    inet 10.10.10.12/24 brd 10.10.10.255 scope global noprefixroute eth1
-[ IN ] INPUT primary_ip address (of current meta node, e.g 10.10.10.10):
-=> 10.10.10.12    # <------- INPUT YOUR PRIMARY IPV4 ADDRESS HERE!
-[ OK ] primary_ip = 10.10.10.12 (from input)
-[ OK ] admin = vagrant@10.10.10.12 ok
-[ OK ] mode = meta (el9)
-[ OK ] locale  = C.UTF-8
-[ OK ] configure pigsty done
-proceed with ./deploy.yml
-```
-
-{{% /details %}}
+{{< /eg >}}
 
 {{< fields label="Common configure Arguments" >}}
   {{< field name="-i | --ip" type="IPv4" >}}
@@ -213,9 +208,8 @@ If your machine has multiple IPs bound, use `-i|--ip <ipaddr>` to explicitly spe
 The script replaces the placeholder `10.10.10.10` with your node's primary IPv4 address. Choose a static IP; do not use public IPs.
 
 
-{{% alert title="Change default passwords!" color="warning" %}}
-We strongly recommend modifying default passwords and credentials in the config file before installation. See [**Security Recommendations**](/docs/setup/security/) for details.
-{{% /alert %}}
+> [!WARNING] Change default passwords!
+> We strongly recommend modifying default passwords and credentials in the config file before installation. See [**Security Recommendations**](/docs/setup/security/) for details.
 
 
 
@@ -226,42 +220,37 @@ We strongly recommend modifying default passwords and credentials in the config 
 
 Pigsty's [**`deploy.yml`**](/docs/setup/playbook/) [**playbook**](/docs/setup/playbook/) applies the blueprint from [**Configure**](#configure) to target nodes.
 
-```bash {filename="Terminal" copy="all" label="Run the Pigsty Deployment Playbook"}
+```bash {title="Terminal" copy="all" label="Run the Pigsty Deployment Playbook"}
 ./deploy.yml     # Deploy the defined modules in the core path at once
 ```
 
 
-{{% details title="Example deployment output" %}}
+> [!DETAILS]- Example deployment output
+> ```console {title="deploy output" copy=false collapse=10 label="Pigsty Deployment Output"}
+> ......
+>
+> TASK [pgsql : pgsql init done] *************************************************
+> ok: [10.10.10.11] => {
+>     "msg": "postgres://10.10.10.11/postgres | meta  | dbuser_meta dbuser_view "
+> }
+> ......
+>
+> TASK [pg_monitor : load grafana datasource meta] *******************************
+> changed: [10.10.10.11]
+>
+> PLAY RECAP *********************************************************************
+> 10.10.10.11                : ok=302  changed=232  unreachable=0    failed=0    skipped=65   rescued=0    ignored=1
+> localhost                  : ok=6    changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+> ```
+>
+> When you see `pgsql init done`, `PLAY RECAP` and similar output at the end, installation is complete!
 
-```console {filename="deploy output" copy=false collapse=10 label="Pigsty Deployment Output"}
-......
+> [!WARNING] Upstream repo changes may cause online installation failures!
+> Upstream repos used by Pigsty (like Linux/PGDG repos) can sometimes enter a broken state due to improper updates, causing deployment failures (this has happened multiple times)!
+> You can wait for upstream fixes or use pre-made [**offline packages**](/docs/setup/offline#offline-packages) to solve this.
 
-TASK [pgsql : pgsql init done] *************************************************
-ok: [10.10.10.11] => {
-    "msg": "postgres://10.10.10.11/postgres | meta  | dbuser_meta dbuser_view "
-}
-......
-
-TASK [pg_monitor : load grafana datasource meta] *******************************
-changed: [10.10.10.11]
-
-PLAY RECAP *********************************************************************
-10.10.10.11                : ok=302  changed=232  unreachable=0    failed=0    skipped=65   rescued=0    ignored=1
-localhost                  : ok=6    changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
-```
-
-When you see `pgsql init done`, `PLAY RECAP` and similar output at the end, installation is complete!
-
-{{% /details %}}
-
-{{% alert title="Upstream repo changes may cause online installation failures!" color="warning" %}}
-Upstream repos used by Pigsty (like Linux/PGDG repos) can sometimes enter a broken state due to improper updates, causing deployment failures (this has happened multiple times)!
-You can wait for upstream fixes or use pre-made [**offline packages**](/docs/setup/offline#offline-packages) to solve this.
-{{% /alert %}}
-
-{{% alert title="Avoid re-running the deployment playbook!" color="warning" %}}
-Warning: Running [**`deploy.yml`**](https://github.com/pgsty/pigsty/blob/main/deploy.yml) again on an existing deployment may restart services and overwrite configurations!
-{{% /alert %}}
+> [!WARNING] Avoid re-running the deployment playbook!
+> Warning: Running [**`deploy.yml`**](https://github.com/pgsty/pigsty/blob/main/deploy.yml) again on an existing deployment may restart services and overwrite configurations!
 
 
 --------

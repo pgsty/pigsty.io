@@ -1,7 +1,7 @@
 ---
 title: Don't Run Docker Postgres for Production!
 date: 2025-11-20
-manualLink: "https://vonng.com/en/db/no-docker-pg/"
+manual_link: "https://vonng.com/en/db/no-docker-pg/"
 author: |
   [Vonng](https://vonng.com/en/) ([@Vonng](https://github.com/Vonng))
 

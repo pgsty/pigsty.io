@@ -1,7 +1,7 @@
 ---
 title: Can Luo Yonghao Save Toothpaste Cloud?
 date: 2024-04-01
-manualLink: "https://vonng.com/en/cloud/luo-live/"
+manual_link: "https://vonng.com/en/cloud/luo-live/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat Official Account](https://mp.weixin.qq.com/s/s_MCdaCByDBuocXkY1tvKw)
 

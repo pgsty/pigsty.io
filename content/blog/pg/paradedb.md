@@ -1,7 +1,7 @@
 ---
 title: "New PostgreSQL Ecosystem Player: ParadeDB"
 date: 2024-02-18
-manualLink: "https://vonng.com/en/pg/paradedb/"
+manual_link: "https://vonng.com/en/pg/paradedb/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

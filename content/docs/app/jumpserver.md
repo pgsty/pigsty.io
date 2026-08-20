@@ -118,13 +118,11 @@ openssl rand -base64 36 | tr -dc A-Za-z0-9 | head -c 48; echo
 openssl rand -base64 24 | tr -dc A-Za-z0-9 | head -c 24; echo
 ```
 
-{{% alert title="Production keys must remain stable" color="warning" %}}
-Do not change `SECRET_KEY` or `BOOTSTRAP_TOKEN` after production data exists. Store them together with database backups, `/data/jumpserver`, and `/opt/jumpserver/.env`. Losing the original `SECRET_KEY` may make encrypted account credentials in the database unrecoverable.
-{{% /alert %}}
+> [!WARNING] Production keys must remain stable
+> Do not change `SECRET_KEY` or `BOOTSTRAP_TOKEN` after production data exists. Store them together with database backups, `/data/jumpserver`, and `/opt/jumpserver/.env`. Losing the original `SECRET_KEY` may make encrypted account credentials in the database unrecoverable.
 
-{{% alert title="Password character restrictions" color="warning" %}}
-Do not use single or double quotes in `DB_PASSWORD` or `REDIS_PASSWORD`. This matches the behavior of the official JumpServer installer.
-{{% /alert %}}
+> [!WARNING] Password character restrictions
+> Do not use single or double quotes in `DB_PASSWORD` or `REDIS_PASSWORD`. This matches the behavior of the official JumpServer installer.
 
 ------
 
@@ -226,9 +224,8 @@ pg_databases:
 
 The template's `pg_version` can be pinned to 16, 17, or a later major version for your environment; JumpServer requires at least PostgreSQL 16. For a high-availability database deployment, follow the commented `pg_vip_enabled` example in the template and point the application's `DB_HOST` to the primary-database VIP.
 
-{{% alert title="Do not use PgBouncer transaction pooling" color="warning" %}}
-JumpServer's Django migrations and Celery Beat are unsuitable for PgBouncer transaction pooling. The default is a direct PostgreSQL connection on port `5432`. If you use PgBouncer, configure session pooling for the `jumpserver` user.
-{{% /alert %}}
+> [!WARNING] Do not use PgBouncer transaction pooling
+> JumpServer's Django migrations and Celery Beat are unsuitable for PgBouncer transaction pooling. The default is a direct PostgreSQL connection on port `5432`. If you use PgBouncer, configure session pooling for the `jumpserver` user.
 
 ------
 

@@ -1,7 +1,7 @@
 ---
 title: Cloudflare’s Nov 18 Outage, Translated and Dissected
 date: 2025-11-19
-manualLink: "https://vonng.com/en/cloud/cf-ck-down/"
+manual_link: "https://vonng.com/en/cloud/cf-ck-down/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/mss2hRqAxCF7N3kPLQ8_7g)
 

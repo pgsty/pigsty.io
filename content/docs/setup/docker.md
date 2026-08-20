@@ -40,9 +40,8 @@ cd ~/pigsty/docker
 make pass | grep -E 'grafana_admin_password|pg_admin_password'
 ```
 
-{{% alert title="Web Portal & PostgreSQL" color="info" %}}
-Web Portal and PostgreSQL are only available after **Deployment** (`./deploy.yml`) completes.
-{{% /alert %}}
+> [!NOTE] Web Portal & PostgreSQL
+> Web Portal and PostgreSQL are only available after **Deployment** (`./deploy.yml`) completes.
 
 
 ----------------
@@ -58,17 +57,15 @@ Docker deployment requires:
 
 Ensure default host ports (2222/8080/8443/5432) are available, or edit [**`.env`**](#config) first.
 
-{{% alert title="Good Use Cases" color="success" %}}
-- Quick Pigsty experience on macOS/Windows without native Linux
-- Learning and testing Pigsty features, dev and debug
-- Quick local PostgreSQL dev environment
-{{% /alert %}}
+> [!TIP] Good Use Cases
+> - Quick Pigsty experience on macOS/Windows without native Linux
+> - Learning and testing Pigsty features, dev and debug
+> - Quick local PostgreSQL dev environment
 
-{{% alert title="Not Recommended For" color="warning" %}}
-- **Production**: Container perf and stability inferior to native Linux
-- **HA Clusters**: Docker single-node mode can't achieve multi-node HA
-- **Large Scale**: Use native Linux VMs or physical machines
-{{% /alert %}}
+> [!WARNING] Not Recommended For
+> - **Production**: Container perf and stability inferior to native Linux
+> - **HA Clusters**: Docker single-node mode can't achieve multi-node HA
+> - **Large Scale**: Use native Linux VMs or physical machines
 
 
 ----------------
@@ -208,9 +205,8 @@ make clean        # Stop and remove container
 make purge        # Stop and remove the container, then directly delete ./data in the current directory
 ```
 
-{{% alert title="Use make purge with care" color="warning" %}}
-The current Makefile no longer provides a countdown prompt. After removing the container, `make purge` runs `rm -rf -- ./data` directly. Verify the current directory and target data first, and back it up when necessary.
-{{% /alert %}}
+> [!WARNING] Use make purge with care
+> The current Makefile no longer provides a countdown prompt. After removing the container, `make purge` runs `rm -rf -- ./data` directly. Verify the current directory and target data first, and back it up when necessary.
 
 
 ----------------

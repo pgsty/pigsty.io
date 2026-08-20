@@ -110,9 +110,8 @@ quota-backend-bytes: 8589934592     # 8 GiB quota
 
 More details: [etcd official maintenance guide](https://etcd.io/docs/v3.5/op-guide/maintenance/).
 
-{{% alert title="Note" color="info" %}}
-Before Pigsty v2.6? Manually enable etcd auto GC.
-{{% /alert %}}
+> [!NOTE] Note
+> Before Pigsty v2.6? Manually enable etcd auto GC.
 
 
 

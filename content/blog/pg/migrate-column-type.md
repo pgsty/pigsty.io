@@ -1,7 +1,7 @@
 ---
 title: Online PostgreSQL Column Type Migration
 date: 2020-01-30
-manualLink: "https://vonng.com/en/pg/migrate-column-type/"
+manual_link: "https://vonng.com/en/pg/migrate-column-type/"
 author: vonng
 description: How to modify PostgreSQL column types online? A general approach
 images: [/img/hero/pg/migrate-column-type.jpg]

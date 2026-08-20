@@ -1,7 +1,7 @@
 ---
 title: Function Volatility Classification Levels
 date: 2018-04-06
-manualLink: "https://vonng.com/en/pg/sql-func-volatility/"
+manual_link: "https://vonng.com/en/pg/sql-func-volatility/"
 author: vonng
 description: |
   PostgreSQL functions have three volatility levels by default. Proper use can significantly improve performance.

@@ -63,14 +63,11 @@ See [Release Notes](/docs/pg_exporter/release) for the full history.
 
 PG Exporter provides multiple [installation](/docs/pg_exporter/install/) methods to fit your infrastructure:
 
-{{< tabpane persist="disabled" >}}
-{{% tab header="Installation" disabled=true /%}}
-
-{{< tab header="Docker" lang="bash" >}}
+```bash {tab="Docker"}
 docker run -d --name pg_exporter -p 9630:9630 -e PG_EXPORTER_URL="postgres://user:pass@host:5432/postgres" pgsty/pg_exporter:latest
-{{< /tab >}}
+```
 
-{{< tab header="YUM" lang="bash" >}}
+```bash {tab="YUM"}
 # RPM-based systems
 sudo tee /etc/yum.repos.d/pigsty-infra.repo > /dev/null <<-'EOF'
 [pigsty-infra]
@@ -83,34 +80,32 @@ EOF
 
 sudo yum makecache;
 sudo yum install -y pg_exporter
-{{< /tab >}}
+```
 
-{{< tab header="APT" lang="bash" >}}
+```bash {tab="APT"}
 sudo tee /etc/apt/sources.list.d/pigsty-infra.list > /dev/null <<EOF
 deb [trusted=yes] https://repo.pigsty.io/apt/infra generic main
 EOF
 
 sudo apt update;
 sudo apt install -y pg-exporter
-{{< /tab >}}
+```
 
-{{< tab header="Binary" lang="bash" >}}
+```bash {tab="Binary"}
 VERSION=$(curl -fsSL https://api.github.com/repos/pgsty/pg_exporter/releases/latest | sed -n 's/.*"tag_name": "v\([^"]*\)".*/\1/p')
 wget "https://github.com/pgsty/pg_exporter/releases/download/v${VERSION}/pg_exporter-${VERSION}.linux-amd64.tar.gz"
 mkdir -p "pg_exporter-${VERSION}.linux-amd64"
 tar -xf "pg_exporter-${VERSION}.linux-amd64.tar.gz" -C "pg_exporter-${VERSION}.linux-amd64"
 sudo install "pg_exporter-${VERSION}.linux-amd64/pg_exporter" /usr/bin/
 sudo install "pg_exporter-${VERSION}.linux-amd64/pg_exporter.yml" /etc/pg_exporter.yml
-{{< /tab >}}
+```
 
-{{< tab header="Source" lang="bash" >}}
+```bash {tab="Source"}
 # Build from source
 git clone https://github.com/pgsty/pg_exporter.git
 cd pg_exporter
 make build
-{{< /tab >}}
-
-{{< /tabpane >}}
+```
 
 
 --------

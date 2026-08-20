@@ -168,34 +168,27 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Install" %}}
-```bash
+```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
 pig install pg_incremental;          # Install for current active PG version
 ```
-{{% /tab %}}
-{{% tab header="pig" %}}
-```bash
+
+```bash {tab="pig" value="pig"}
 pig ext install -y pg_incremental -v 18  # PG 18
 pig ext install -y pg_incremental -v 17  # PG 17
 pig ext install -y pg_incremental -v 16  # PG 16
 ```
-{{% /tab %}}
-{{% tab header="dnf" %}}
-```bash
+
+```bash {tab="dnf" value="dnf"}
 dnf install -y pg_incremental_18       # PG 18
 dnf install -y pg_incremental_17       # PG 17
 dnf install -y pg_incremental_16       # PG 16
 ```
-{{% /tab %}}
-{{% tab header="apt" %}}
-```bash
+
+```bash {tab="apt" value="apt"}
 apt install -y postgresql-18-pg-incremental   # PG 18
 apt install -y postgresql-17-pg-incremental   # PG 17
 apt install -y postgresql-16-pg-incremental   # PG 16
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Create Extension**:

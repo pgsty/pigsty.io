@@ -167,40 +167,33 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Install" %}}
-```bash
+```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
 pig install pg_parquet;          # Install for current active PG version
 ```
-{{% /tab %}}
-{{% tab header="pig" %}}
-```bash
+
+```bash {tab="pig" value="pig"}
 pig ext install -y pg_parquet -v 18  # PG 18
 pig ext install -y pg_parquet -v 17  # PG 17
 pig ext install -y pg_parquet -v 16  # PG 16
 pig ext install -y pg_parquet -v 15  # PG 15
 pig ext install -y pg_parquet -v 14  # PG 14
 ```
-{{% /tab %}}
-{{% tab header="dnf" %}}
-```bash
+
+```bash {tab="dnf" value="dnf"}
 dnf install -y pg_parquet_18       # PG 18
 dnf install -y pg_parquet_17       # PG 17
 dnf install -y pg_parquet_16       # PG 16
 dnf install -y pg_parquet_15       # PG 15
 dnf install -y pg_parquet_14       # PG 14
 ```
-{{% /tab %}}
-{{% tab header="apt" %}}
-```bash
+
+```bash {tab="apt" value="apt"}
 apt install -y postgresql-18-pg-parquet   # PG 18
 apt install -y postgresql-17-pg-parquet   # PG 17
 apt install -y postgresql-16-pg-parquet   # PG 16
 apt install -y postgresql-15-pg-parquet   # PG 15
 apt install -y postgresql-14-pg-parquet   # PG 14
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Preload**:
@@ -310,7 +303,7 @@ SELECT * FROM parquet.schema('/tmp/product_example.parquet') LIMIT 10;
 
 You can call `SELECT * FROM parquet.metadata(<uri>)` to discover the detailed metadata of the Parquet file, such as column statistics, at given uri.
 
-```
+```text
 SELECT uri, row_group_id, row_group_num_rows, row_group_num_columns, row_group_bytes, column_id, file_offset, num_values, path_in_schema, type_name FROM parquet.metadata('/tmp/product_example.parquet') LIMIT 1;
              uri              | row_group_id | row_group_num_rows | row_group_num_columns | row_group_bytes | column_id | file_offset | num_values | path_in_schema | type_name 
 ------------------------------+--------------+--------------------+-----------------------+-----------------+-----------+-------------+------------+----------------+-----------
@@ -320,7 +313,7 @@ SELECT uri, row_group_id, row_group_num_rows, row_group_num_columns, row_group_b
 
 
 
-```
+```text
 SELECT stats_null_count, stats_distinct_count, stats_min, stats_max, compression, encodings, index_page_offset, dictionary_page_offset, data_page_offset, total_compressed_size, total_uncompressed_size FROM parquet.metadata('/tmp/product_example.parquet') LIMIT 1;
  stats_null_count | stats_distinct_count | stats_min | stats_max |    compression     |        encodings         | index_page_offset | dictionary_page_offset | data_page_offset | total_compressed_size | total_uncompressed_size 
 ------------------+----------------------+-----------+-----------+--------------------+--------------------------+-------------------+------------------------+------------------+-----------------------+-------------------------
@@ -332,7 +325,7 @@ SELECT stats_null_count, stats_distinct_count, stats_min, stats_max, compression
 
 You can call `SELECT * FROM parquet.file_metadata(<uri>)` to discover file level metadata of the Parquet file, such as format version, at given uri.
 
-```
+```text
 SELECT * FROM parquet.file_metadata('/tmp/product_example.parquet')
              uri              | created_by | num_rows | num_row_groups | format_version 
 ------------------------------+------------+----------+----------------+----------------
@@ -344,7 +337,7 @@ SELECT * FROM parquet.file_metadata('/tmp/product_example.parquet')
 
 You can call `SELECT * FROM parquet.kv_metadata(<uri>)` to query custom key-value metadata of the Parquet file at given uri.
 
-```
+```text
 SELECT uri, encode(key, 'escape') as key, encode(value, 'escape') as value FROM parquet.kv_metadata('/tmp/product_example.parquet');
              uri              |     key      |    value
 ------------------------------+--------------+---------------------
@@ -358,7 +351,7 @@ SELECT uri, encode(key, 'escape') as key, encode(value, 'escape') as value FROM 
 
 You can call `SELECT * FROM parquet.column_stats(<uri>)` to discover the column statistics of the Parquet file, such as min and max value for the column, at given uri.
 
-```
+```text
 SELECT * FROM parquet.column_stats('/tmp/product_example.parquet')
  column_id | field_id |         stats_min          |         stats_max          | stats_null_count | stats_distinct_count 
 -----------+----------+----------------------------+----------------------------+------------------+----------------------

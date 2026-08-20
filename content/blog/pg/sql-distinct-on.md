@@ -1,7 +1,7 @@
 ---
 title: "Distinct On: Remove Duplicate Data"
 date: 2018-04-06
-manualLink: "https://vonng.com/en/pg/sql-distinct-on/"
+manual_link: "https://vonng.com/en/pg/sql-distinct-on/"
 author: vonng
 description: |
   Use Distinct On extension clause to quickly find records with maximum/minimum values within groups

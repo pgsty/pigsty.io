@@ -10,9 +10,8 @@ categories: [Task]
 
 [pgAdmin](https://www.pgadmin.org/) is an open-source PostgreSQL administration and development GUI. Pigsty v4.5.0 provides the `app/pgadmin` Docker Compose template and can generate a server list and password file from the current inventory.
 
-{{% alert color="warning" title="Change the defaults first" %}}
-The template login is `admin@pigsty.cc` with password `pigsty`. It is suitable only for a local demo. Before deployment on a shared network or the Internet, change the credentials, restrict port access, and configure HTTPS.
-{{% /alert %}}
+> [!WARNING] Change the defaults first
+> The template login is `admin@pigsty.cc` with password `pigsty`. It is suitable only for a local demo. Before deployment on a shared network or the Internet, change the credentials, restrict port access, and configure HTTPS.
 
 --------
 

@@ -1,7 +1,7 @@
 ---
 title: "Warm Standby: Using pg_receivewal"
 date: 2019-03-02
-manualLink: "https://vonng.com/en/pg/backup-plan/"
+manual_link: "https://vonng.com/en/pg/backup-plan/"
 author: vonng
 description: |
   There are various backup strategies. Physical backups can usually be divided into four types.

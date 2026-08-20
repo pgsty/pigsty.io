@@ -64,13 +64,12 @@ When using a compatible template:
 ssh meta    # Login using hostname instead of IP
 ```
 
-{{% alert title="Using SSH Config File" color="info" %}}
-If you want to use the configuration in `~/.ssh/pigsty_config`, ensure your `~/.ssh/config` includes:
-
-```bash
-Include ~/.ssh/pigsty_config
-```
-{{% /alert %}}
+> [!NOTE] Using SSH Config File
+> If you want to use the configuration in `~/.ssh/pigsty_config`, ensure your `~/.ssh/config` includes:
+>
+> ```bash
+> Include ~/.ssh/pigsty_config
+> ```
 
 ### Destroy Resources
 
@@ -226,9 +225,8 @@ aws_secret_access_key = <AWS_ACCESS_SECRET>
 ~/.aws/pigsty-key.pub
 ```
 
-{{% alert title="AWS templates may need adjustments" color="warning" %}}
-`aws.tf` uses a rolling lookup for official Debian AMIs. `aws-cn.tf` uses a hard-coded China-region AMI and `~/.aws/pigsty-key.pub`; verify the target region, AMI, and key before deployment.
-{{% /alert %}}
+> [!WARNING] AWS templates may need adjustments
+> `aws.tf` uses a rolling lookup for official Debian AMIs. `aws-cn.tf` uses a hard-coded China-region AMI and `~/.aws/pigsty-key.pub`; verify the target region, AMI, and key before deployment.
 
 
 ----------------
@@ -245,9 +243,8 @@ export TENCENTCLOUD_SECRET_KEY="<your_secret_key>"
 export TENCENTCLOUD_REGION="ap-beijing"
 ```
 
-{{% alert title="Tencent Cloud templates may need adjustments" color="warning" %}}
-Tencent Cloud templates are community-contributed examples and may need adjustments based on your specific requirements.
-{{% /alert %}}
+> [!WARNING] Tencent Cloud templates may need adjustments
+> Tencent Cloud templates are community-contributed examples and may need adjustments based on your specific requirements.
 
 ### Other Cloud Credentials
 
@@ -295,28 +292,24 @@ For modern templates with `ssh_command`, private-IP, or other non-IP outputs, ru
 
 ## Notes
 
-{{% alert title="Cloud Resource Costs" color="warning" %}}
-Cloud resources created with Terraform incur costs. After testing, promptly use `terraform destroy` to destroy resources to avoid unnecessary expenses.
+> [!WARNING] Cloud Resource Costs
+> Cloud resources created with Terraform incur costs. After testing, promptly use `terraform destroy` to destroy resources to avoid unnecessary expenses.
+>
+> It's recommended to use pay-as-you-go instance types for testing. Templates default to using Spot Instances to reduce costs.
 
-It's recommended to use pay-as-you-go instance types for testing. Templates default to using Spot Instances to reduce costs.
-{{% /alert %}}
+> [!NOTE] Default Password
+> Alibaba Cloud and Tencent Cloud templates set the default root password to `PigstyDemo4`; Linode uses `PigstyDemo4!` to satisfy its password-complexity rules.
+> Current AWS, Azure, GCP, Hetzner, Vultr, and DigitalOcean templates primarily use SSH public-key authentication and do not share a default root password. Example passwords are for temporary tests only; change them or disable password login in production.
 
-{{% alert title="Default Password" color="info" %}}
-Alibaba Cloud and Tencent Cloud templates set the default root password to `PigstyDemo4`; Linode uses `PigstyDemo4!` to satisfy its password-complexity rules.
-Current AWS, Azure, GCP, Hetzner, Vultr, and DigitalOcean templates primarily use SSH public-key authentication and do not share a default root password. Example passwords are for temporary tests only; change them or disable password login in production.
-{{% /alert %}}
+> [!NOTE] Security Group Configuration
+> These templates target demonstration and development. Their current security groups or cloud firewalls allow all or nearly all inbound traffic from `0.0.0.0/0` (some also include `::/0`), not just the ports Pigsty requires.
+> Restrict source networks and ports before deployment; do not use these defaults unchanged in production.
 
-{{% alert title="Security Group Configuration" color="info" %}}
-These templates target demonstration and development. Their current security groups or cloud firewalls allow all or nearly all inbound traffic from `0.0.0.0/0` (some also include `::/0`), not just the ports Pigsty requires.
-Restrict source networks and ports before deployment; do not use these defaults unchanged in production.
-{{% /alert %}}
-
-{{% alert title="SSH Access" color="info" %}}
-After creation, SSH login to the admin node using:
-
-```bash
-ssh root@<public_ip>
-```
-
-Alibaba Cloud templates that retain the legacy output and password conventions can also use `./ssh` or `make ssh` to write SSH aliases. For other templates, use their `ssh_command` output.
-{{% /alert %}}
+> [!NOTE] SSH Access
+> After creation, SSH login to the admin node using:
+>
+> ```bash
+> ssh root@<public_ip>
+> ```
+>
+> Alibaba Cloud templates that retain the legacy output and password conventions can also use `./ssh` or `make ssh` to write SSH aliases. For other templates, use their `ssh_command` output.

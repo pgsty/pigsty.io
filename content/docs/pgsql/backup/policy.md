@@ -44,8 +44,9 @@ Assume your database size is 100GB, daily writes are 10GB, and each full backup 
 The recovery window cycles between 25-49 hours, and storage usage is roughly `2` full backups plus around 2 days of WAL archives.
 In practice, prepare at least `3~5` times the base database size as backup disk capacity for the default policy.
 
-{{< echarts height="640px" >}}
-```js
+<script>
+window.OinkEchartsFunctions = window.OinkEchartsFunctions || {};
+(function (registry) {
 var int1 = function(v) { return Math.round(Number(v)); };
 var fmtHour = function(v) { return int1(v) === 0 ? '0' : int1(v) + 'h'; };
 var fmtWin = function(v) { return int1(v) + 'h'; };
@@ -70,8 +71,16 @@ var tipMerged = function(params) {
       (item.seriesName === 'Transient Backup' ? { win: acc.win, p: acc.p, s: acc.s, w: acc.w, t: Number(item.value) } : acc))));
   }, { win: null, p: 0, s: 0, w: 0, t: 0 }));
 };
-```
-```yaml
+registry["int1"] = int1;
+registry["fmtHour"] = fmtHour;
+registry["fmtWin"] = fmtWin;
+registry["fmtGb"] = fmtGb;
+registry["fmtGbTick"] = fmtGbTick;
+registry["tipMerged"] = tipMerged;
+})(window.OinkEchartsFunctions);
+</script>
+
+```echarts {height="640px"}
 tooltip: { trigger: axis, formatter: $fn:tipMerged, axisPointer: { type: line, snap: true, label: { show: false } } }
 axisPointer: { link: [ { xAxisIndex: [0, 1] } ] }
 legend: { show: false, bottom: 10, itemGap: 18, data: ["Primary Backup", "Secondary Backup", "WAL Archive", "Transient Backup"] }
@@ -137,7 +146,6 @@ yAxis:
     splitLine: { show: true, lineStyle: { type: dashed, width: 1, opacity: 0.32, color: "#9ca3af" } }
 series: [ { name: Recovery Window, type: line, smooth: false, symbol: none, showSymbol: false, xAxisIndex: 0, yAxisIndex: 0, lineStyle: { width: 3, color: "#f2a000" }, itemStyle: { color: "#f2a000" }, data: [[0,0],[1,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10],[11,11],[12,12],[13,13],[14,14],[15,15],[16,16],[17,17],[18,18],[19,19],[20,20],[21,21],[22,22],[23,23],[24,24],[25,25],[26,26],[27,27],[28,28],[29,29],[30,30],[31,31],[32,32],[33,33],[34,34],[35,35],[36,36],[37,37],[38,38],[39,39],[40,40],[41,41],[42,42],[43,43],[44,44],[45,45],[46,46],[47,47],[48,48],[49,49],[49,25],[50,26],[51,27],[52,28],[53,29],[54,30],[55,31],[56,32],[57,33],[58,34],[59,35],[60,36],[61,37],[62,38],[63,39],[64,40],[65,41],[66,42],[67,43],[68,44],[69,45],[70,46],[71,47],[72,48],[73,49],[73,25],[74,26],[75,27],[76,28],[77,29],[78,30],[79,31],[80,32],[81,33],[82,34],[83,35],[84,36],[85,37],[86,38],[87,39],[88,40],[89,41],[90,42],[91,43],[92,44],[93,45],[94,46],[95,47],[96,48],[97,49],[97,25],[98,26],[99,27],[100,28],[101,29],[102,30],[103,31],[104,32],[105,33],[106,34],[107,35],[108,36]], markLine: { symbol: none, label: { show: false }, data: [ { xAxis: 0, lineStyle: { color: "#59a14f", type: "solid", width: 1.4, opacity: 0.75 } }, { xAxis: 24, lineStyle: { color: "#59a14f", type: "solid", width: 1.4, opacity: 0.75 } }, { xAxis: 48, lineStyle: { color: "#59a14f", type: "solid", width: 1.4, opacity: 0.75 } }, { xAxis: 72, lineStyle: { color: "#59a14f", type: "solid", width: 1.4, opacity: 0.75 } }, { xAxis: 96, lineStyle: { color: "#59a14f", type: "solid", width: 1.4, opacity: 0.75 } }, { xAxis: 1, lineStyle: { color: "#336791", type: "solid", width: 1.4, opacity: 0.8 } }, { xAxis: 25, lineStyle: { color: "#336791", type: "solid", width: 1.4, opacity: 0.8 } }, { xAxis: 49, lineStyle: { color: "#336791", type: "solid", width: 1.4, opacity: 0.8 } }, { xAxis: 73, lineStyle: { color: "#336791", type: "solid", width: 1.4, opacity: 0.8 } }, { xAxis: 97, lineStyle: { color: "#336791", type: "solid", width: 1.4, opacity: 0.8 } }, { yAxis: 25, label: { show: true, formatter: "lower 25h", position: "end", distance: 12, color: "#2563eb" }, lineStyle: { color: "#2563eb", type: "dashdot", width: 1.4, opacity: 0.75 } }, { yAxis: 49, label: { show: true, formatter: "upper 49h", position: "end", distance: 12, color: "#7c3aed" }, lineStyle: { color: "#7c3aed", type: "dashdot", width: 1.4, opacity: 0.75 } } ] } }, { name: Primary Backup, type: bar, stack: used, xAxisIndex: 1, yAxisIndex: 1, barWidth: 5, itemStyle: { color: "#59a14f" }, data: [0,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100] }, { name: Secondary Backup, type: bar, stack: used, xAxisIndex: 1, yAxisIndex: 1, barWidth: 5, itemStyle: { color: "#4e79a7" }, data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100] }, { name: WAL Archive, type: bar, stack: used, xAxisIndex: 1, yAxisIndex: 1, barWidth: 5, itemStyle: { color: "#edc949" }, data: [0,0,0.42,0.83,1.25,1.67,2.08,2.5,2.92,3.33,3.75,4.17,4.58,5,5.42,5.83,6.25,6.67,7.08,7.5,7.92,8.33,8.75,9.17,9.58,10,10.42,10.83,11.25,11.67,12.08,12.5,12.92,13.33,13.75,14.17,14.58,15,15.42,15.83,16.25,16.67,17.08,17.5,17.92,18.33,18.75,19.17,19.58,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20] }, { name: Transient Backup, type: bar, stack: used, xAxisIndex: 1, yAxisIndex: 1, barWidth: 5, itemStyle: { color: "#9ca3af", opacity: 0.75 }, data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100,0,0,0,0,0,0,0,0,0,0,0,0] } ]
 ```
-{{< /echarts >}}
 
 
 ### Full + Incremental Backup
@@ -179,8 +187,9 @@ With weekly full backups and time-based retention of 14 days, the steady-state r
 Assuming your database size is 100GB and writes 10GB of data per day, the backup size is as follows:
 
 
-{{< echarts height="640px" >}}
-```js
+<script>
+window.OinkEchartsFunctions = window.OinkEchartsFunctions || {};
+(function (registry) {
 var int30d = function(v) { return Math.round(Number(v)); };
 var fmtDay30 = function(v) { return (int30d(v) < 1 || int30d(v) > 30) ? '' : ('' + int30d(v)); };
 var fmtWin30 = function(v) { return int30d(v) + 'h'; };
@@ -205,8 +214,17 @@ var tipMerged30 = function(params) {
       (item.seriesName === 'Transient Backup' ? { win: acc.win, p: acc.p, s: acc.s, i: acc.i, w: acc.w, t: valY30(item.value) } : acc)))));
   }, { win: null, p: 0, s: 0, i: 0, w: 0, t: 0 }));
 };
-```
-```yaml
+registry["int30d"] = int30d;
+registry["fmtDay30"] = fmtDay30;
+registry["fmtWin30"] = fmtWin30;
+registry["fmtGb30"] = fmtGb30;
+registry["fmtGbTick30"] = fmtGbTick30;
+registry["valY30"] = valY30;
+registry["tipMerged30"] = tipMerged30;
+})(window.OinkEchartsFunctions);
+</script>
+
+```echarts {height="640px"}
 tooltip: { trigger: axis, formatter: $fn:tipMerged30, axisPointer: { type: line, snap: true, label: { show: false } } }
 axisPointer: { link: [ { xAxisIndex: [0, 1] } ] }
 legend: { show: false, bottom: 10, itemGap: 18, data: ["Primary Backup", "Secondary Backup", "Incremental Backup", "WAL Archive", "Transient Backup"] }
@@ -282,7 +300,6 @@ series:
   - { name: WAL Archive, type: bar, stack: used, xAxisIndex: 1, yAxisIndex: 1, barWidth: 16, itemStyle: { color: "#edc949" }, data: [10,20,30,40,50,60,70,80,90,100,110,120,130,140,80,90,100,110,120,130,140,80,90,100,110,120,130,140,80,90] }
   - { name: Transient Backup, type: bar, stack: used, xAxisIndex: 1, yAxisIndex: 1, barWidth: 16, itemStyle: { color: "#9ca3af", opacity: 0.75 }, data: [0,0,0,0,0,0,0,0,0,0,0,0,0,110,0,0,0,0,0,0,110,0,0,0,0,0,0,110,0,0] }
 ```
-{{< /echarts >}}
 
 
 --------

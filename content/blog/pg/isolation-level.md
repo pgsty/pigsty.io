@@ -1,7 +1,7 @@
 ---
 title: Transaction Isolation Level Considerations
 date: 2019-11-12
-manualLink: "https://vonng.com/en/pg/isolation-level/"
+manual_link: "https://vonng.com/en/pg/isolation-level/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

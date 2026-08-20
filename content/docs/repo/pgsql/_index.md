@@ -50,9 +50,7 @@ pig repo add -u                             # all = node + pgsql (pgdg + pigsty)
 
 You can also enable this repo with `apt` directly on Debian / Ubuntu:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Default" %}}
-```bash
+```bash {tab="Default" group="default-mirror" value="default"}
 # Add Pigsty's GPG public key to your system keychain to verify package signatures
 curl -fsSL https://repo.pigsty.io/key | sudo gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg
 
@@ -65,9 +63,8 @@ EOF
 # Refresh APT repository cache
 sudo apt update
 ```
-{{% /tab %}}
-{{% tab header="Mirror" %}}
-```bash
+
+```bash {tab="Mirror" value="mirror"}
 # Use when in mainland China or Cloudflare is unavailable
 # Add Pigsty's GPG public key to your system keychain to verify package signatures
 curl -fsSL https://repo.pigsty.cc/key | sudo gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg
@@ -81,17 +78,13 @@ EOF
 # Refresh APT repository cache
 sudo apt update
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 ### DNF
 
 You can also enable this repo with `dnf`/`yum` directly on EL-compatible systems:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Default" %}}
-```bash
+```bash {tab="Default" group="default-mirror" value="default"}
 # Add Pigsty's GPG public key to your system keychain to verify package signatures
 curl -fsSL https://repo.pigsty.io/key | sudo tee /etc/pki/rpm-gpg/RPM-GPG-KEY-pigsty >/dev/null
 
@@ -111,9 +104,8 @@ EOF
 # Refresh YUM/DNF repository cache
 sudo dnf makecache;
 ```
-{{% /tab %}}
-{{% tab header="Mirror" %}}
-```bash
+
+```bash {tab="Mirror" value="mirror"}
 # Use when in mainland China or Cloudflare is unavailable
 # Add Pigsty's GPG public key to your system keychain to verify package signatures
 curl -fsSL https://repo.pigsty.cc/key | sudo tee /etc/pki/rpm-gpg/RPM-GPG-KEY-pigsty >/dev/null
@@ -134,8 +126,6 @@ EOF
 # Refresh YUM/DNF repository cache
 sudo dnf makecache;
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 ---------

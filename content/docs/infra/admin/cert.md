@@ -8,9 +8,8 @@ categories: [Task]
 
 Pigsty maintains a self-signed Certificate Authority (CA) on the admin node by default. It signs certificates for PostgreSQL, Patroni, etcd, Silo, Nginx, and other internal services. Public Nginx entries can use Certbot/Let's Encrypt certificates configured through `infra_portal`.
 
-{{% alert color="danger" title="Protect the CA private key" %}}
-`files/pki/ca/ca.key` is the trust-root private key for the entire deployment. Never print, commit, upload, or transmit it over an unprotected channel. Back it up together with `ca.crt`, encrypted, with tightly restricted read access.
-{{% /alert %}}
+> [!CAUTION] Protect the CA private key
+> `files/pki/ca/ca.key` is the trust-root private key for the entire deployment. Never print, commit, upload, or transmit it over an unprotected channel. Back it up together with `ca.crt`, encrypted, with tightly restricted read access.
 
 --------
 
@@ -225,9 +224,8 @@ dig +short example.com
 ./infra.yml -l infra -t nginx_certbot,nginx_reload -e certbot_sign=true
 ```
 
-{{% alert color="warning" title="Verify issuance separately" %}}
-In v4.5.0, the `nginx_certbot` task has `ignore_errors: true`. A playbook that continues or reports overall success does not prove certificate issuance. Inspect Certbot state, certificate files, Nginx configuration, and a real TLS handshake.
-{{% /alert %}}
+> [!WARNING] Verify issuance separately
+> In v4.5.0, the `nginx_certbot` task has `ignore_errors: true`. A playbook that continues or reports overall success does not prove certificate issuance. Inspect Certbot state, certificate files, Nginx configuration, and a real TLS handshake.
 
 ```bash
 certbot certificates

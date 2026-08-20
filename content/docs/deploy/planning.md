@@ -37,9 +37,8 @@ Your architecture choice depends on reliability requirements and available resou
 Serious production deployments require at least **3** nodes for [**HA configuration**](#three-node-setup).
 With only **2** nodes, use [**Semi-HA configuration**](#two-node-setup).
 
-{{% alert title="Expert Consulting: Architecture Planning" color="info" %}}
-We offer [**Architecture Consulting Services**](/price) to help plan your Pigsty configuration.
-{{% /alert %}}
+> [!NOTE] Expert Consulting: Architecture Planning
+> We offer [**Architecture Consulting Services**](/price) to help plan your Pigsty configuration.
 
 
 --------

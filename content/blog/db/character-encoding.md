@@ -1,7 +1,7 @@
 ---
 title: Understanding Character Encoding Principles
 date: 2018-07-01
-manualLink: "https://vonng.com/en/db/character-encoding/"
+manual_link: "https://vonng.com/en/db/character-encoding/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

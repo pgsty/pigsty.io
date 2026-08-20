@@ -1,7 +1,7 @@
 ---
 title: Understanding Time - Leap Years, Leap Seconds, Time and Time Zones
 date: 2018-12-11
-manualLink: "https://vonng.com/en/db/reason-about-time/"
+manual_link: "https://vonng.com/en/db/reason-about-time/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/JNLMAzpLnk6y9lCSpClPlQ)
 

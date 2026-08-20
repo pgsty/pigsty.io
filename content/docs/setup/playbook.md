@@ -43,31 +43,24 @@ When using the [**Pigsty installation script**](/docs/setup/install#install) or 
 
 If you want to manually install Ansible, refer to the following instructions. The minimum supported Ansible version is 2.9.
 
-{{< tabpane text=true persist=disabled >}}
-{{% tab header="Debian / Ubuntu" %}}
-```bash
+```bash {tab="Debian / Ubuntu"}
 sudo apt install -y ansible python3-jmespath
 ```
-{{% /tab %}}
-{{% tab header="EL" %}}
-```bash
+
+```bash {tab="EL"}
 sudo dnf install -y ansible python3.12-jmespath python3-cryptography  # EL 8
 sudo dnf install -y ansible python3-jmespath                           # EL 9
 sudo dnf install -y ansible                                            # EL 10
 ```
-{{% /tab %}}
-{{% tab header="MacOS" %}}
-```bash
+
+```bash {tab="MacOS"}
 brew install ansible
 pip3 install jmespath
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
-{{% alert title="Change default passwords!" color="warning" %}}
-Please note that EL10 EPEL repo doesn't yet provide a complete Ansible package. [**Pigsty PGSQL**](/docs/repo/pgsql) EL10 repo supplements this.
-{{% /alert %}}
+> [!WARNING] Change default passwords!
+> Please note that EL10 EPEL repo doesn't yet provide a complete Ansible package. [**Pigsty PGSQL**](/docs/repo/pgsql) EL10 repo supplements this.
 
 
 Ansible is also available on macOS. You can use [**Homebrew**](https://brew.sh/) to install Ansible on Mac,
@@ -119,9 +112,8 @@ Here are some host limit examples:
 
 See all details in Ansible documentation: [Patterns: targeting hosts and groups](https://docs.ansible.com/ansible/latest/inventory_guide/intro_patterns.html)
 
-{{% alert title="Use caution when running playbooks without host limits!" color="warning" %}}
-Missing this value can be dangerous—most playbooks execute on `all` hosts. **Use with caution**.
-{{% /alert %}}
+> [!WARNING] Use caution when running playbooks without host limits!
+> Missing this value can be dangerous—most playbooks execute on `all` hosts. **Use with caution**.
 
 
 
@@ -191,9 +183,8 @@ You can use `-i <path>` to specify a different [**inventory**](/docs/concept/iac
 ./pgsql.yml -i conf/app/supa.yml        # Initialize 1-node Supabase deployment per supa.yml
 ```
 
-{{% alert title="Changing the default inventory file" color="info" %}}
-To permanently change the **default** config file, modify the `inventory` parameter in [`ansible.cfg`](https://github.com/pgsty/pigsty/blob/main/ansible.cfg#L6).
-{{% /alert %}}
+> [!NOTE] Changing the default inventory file
+> To permanently change the **default** config file, modify the `inventory` parameter in [`ansible.cfg`](https://github.com/pgsty/pigsty/blob/main/ansible.cfg#L6).
 
 
 

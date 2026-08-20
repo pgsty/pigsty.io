@@ -135,6 +135,5 @@ Common subtasks include:
 ./infra-rm.yml -t package    # Uninstall INFRA packages
 ```
 
-{{% alert title="Full removal deletes data" color="danger" %}}
-`infra-rm.yml` has no deletion safeguard. Without tags, it runs every phase above. The `data` phase recursively removes `infra_data` (default: `/data/infra`), `nginx_data` (default: `/data/nginx`), `nginx_home` (default: `/www`), and `/var/lib/grafana`, including metrics, logs, traces, the software repository, and local Grafana data. Use the corresponding tag if you only want to stop services or deregister targets. Before a full run, back up everything that must survive and verify the exact `infra` target.
-{{% /alert %}}
+> [!CAUTION] Full removal deletes data
+> `infra-rm.yml` has no deletion safeguard. Without tags, it runs every phase above. The `data` phase recursively removes `infra_data` (default: `/data/infra`), `nginx_data` (default: `/data/nginx`), `nginx_home` (default: `/www`), and `/var/lib/grafana`, including metrics, logs, traces, the software repository, and local Grafana data. Use the corresponding tag if you only want to stop services or deregister targets. Before a full run, back up everything that must survive and verify the exact `infra` target.

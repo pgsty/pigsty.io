@@ -1,7 +1,7 @@
 ---
 title: "Garbage QCloud CDN: From Getting Started to Giving Up?"
 date: 2023-03-08
-manualLink: "https://vonng.com/en/cloud/cdn/"
+manual_link: "https://vonng.com/en/cloud/cdn/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/ANFnbDXwuhKI99fgYRZ9ug)
 

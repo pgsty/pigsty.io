@@ -1,7 +1,7 @@
 ---
 title: "Escaping Cloud Computing Scam Mills: The Big Fool Paying for Pain"
 date: 2025-01-13
-manualLink: "https://vonng.com/en/cloud/patsy/"
+manual_link: "https://vonng.com/en/cloud/patsy/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

@@ -79,9 +79,8 @@ my-test:
 
 This yields a single-primary MGR cluster: one writable PRIMARY, two read-only SECONDARY members, tolerating one node failure. Every member runs a Router, so port `6446` on any member reaches the current primary.
 
-{{% alert title="Always select the complete cluster" color="warning" %}}
-Every `mysql.yml` run must select **all members** of the cluster with `-l` (or omit `-l` to converge every MySQL cluster). Partial member selection is rejected at preflight — a deliberate guard against topology divergence.
-{{% /alert %}}
+> [!WARNING] Always select the complete cluster
+> Every `mysql.yml` run must select **all members** of the cluster with `-l` (or omit `-l` to converge every MySQL cluster). Partial member selection is rejected at preflight — a deliberate guard against topology divergence.
 
 
 --------
@@ -107,9 +106,8 @@ Each entry accepts only these three fields; preflight validation rejects additio
 
 Convergence is **additive**: reruns create missing databases, but removing an entry never drops one. Deleting data is a manual operation by design.
 
-{{% alert title="Every table needs a primary key" color="info" %}}
-The platform enables `sql_require_primary_key=ON` by default, so creating a PK-less table fails with `ERROR 3750`. This is not pedantry: PK-less tables are read-only under MGR and block AdminAPI cluster rebuilds during disaster recovery. Define a primary key on every table (invisible-column PKs work too); override via `mysql_parameters` only if you truly must.
-{{% /alert %}}
+> [!NOTE] Every table needs a primary key
+> The platform enables `sql_require_primary_key=ON` by default, so creating a PK-less table fails with `ERROR 3750`. This is not pedantry: PK-less tables are read-only under MGR and block AdminAPI cluster rebuilds during disaster recovery. Define a primary key on every table (invisible-column PKs work too); override via `mysql_parameters` only if you truly must.
 
 
 --------
@@ -184,9 +182,8 @@ The backup contract (details in [Administration](/docs/mysql/admin#manage-backup
 - Layout is `<path>/<cluster>/<UTC timestamp>/`, with an atomic `latest` symlink and retention-based pruning;
 - No incremental chain, no binlog archiving, no PITR: for a standalone the recovery point is the most recent backup.
 
-{{% alert title="Backups follow the primary" color="warning" %}}
-After a failover, new backups land on the new primary's local disk. Before restoring, check the `latest` timestamp on **all members** and take the newest. For off-site protection, sync the backup directory yourself (e.g. a scheduled rclone/rsync job).
-{{% /alert %}}
+> [!WARNING] Backups follow the primary
+> After a failover, new backups land on the new primary's local disk. Before restoring, check the `latest` timestamp on **all members** and take the newest. For off-site protection, sync the backup directory yourself (e.g. a scheduled rclone/rsync job).
 
 
 --------

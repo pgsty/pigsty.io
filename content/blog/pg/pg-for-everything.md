@@ -2,7 +2,7 @@
 title: Why PostgreSQL is the Future Standard?
 linkTitle: Why PostgreSQL is the Future Standard?
 date: 2024-05-16
-manualLink: "https://vonng.com/cn/pg/pg-for-everything/"
+manual_link: "https://vonng.com/cn/pg/pg-for-everything/"
 author: Ajay Kulkarni
 description: |
   One of the biggest trends in software development today is PostgreSQL becoming the de facto database standard. This article explains why.

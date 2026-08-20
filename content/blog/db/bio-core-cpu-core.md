@@ -2,7 +2,7 @@
 title: Optimize Bio Cores First, CPU Cores Second
 linkTitle: Optimize Bio Cores First, CPU Cores Second
 date: 2024-09-07
-manualLink: "https://vonng.com/en/db/bio-core-cpu-core/"
+manual_link: "https://vonng.com/en/db/bio-core-cpu-core/"
 author: |
   [DHH](https://world.hey.com/dhh/optimize-for-bio-cores-first-silicon-cores-second-112a6c3f) | [Translator: Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat Official Account]()
 

@@ -8,8 +8,7 @@ module: [PGSQL]
 categories: [Concept]
 ---
 
-{{< infographic >}}
-```text
+```infographic
 infographic list-row-simple-horizontal-arrow
 data
 
@@ -26,7 +25,6 @@ data
 theme light
   palette antv
 ```
-{{< /infographic >}}
 
 
 --------
@@ -35,11 +33,15 @@ theme light
 
 The following analysis focuses on **Failover** (manual failover) since it involves actual service interruption time.
 
-{{< echarts height="520px" >}}
-```js
+<script>
+window.OinkEchartsFunctions = window.OinkEchartsFunctions || {};
+(function (registry) {
 var fmt = function(params) { if (!params || !params.length || params[0].name === '') return ''; return '<b>' + params[0].name + '</b><br/>' + params.filter(p => p.value !== '-' && p.value != null).map(p => p.marker + ' ' + p.seriesName + ': ' + p.value + 's').join('<br/>'); };
-```
-```yaml
+registry["fmt"] = fmt;
+})(window.OinkEchartsFunctions);
+</script>
+
+```echarts {height="520px"}
 tooltip: { trigger: axis, axisPointer: { type: shadow }, formatter: $fn:fmt }
 legend: { top: 0, itemGap: 12, data: [Command, Promote, Health Check] }
 grid: { left: 64, right: 24, bottom: 32, top: 40 }
@@ -51,7 +53,6 @@ series:
   - { name: Health Check, type: bar, stack: main, z: 2, emphasis: { focus: series }, itemStyle: { color: "#4e79a7" }, data: [8, 6, 4, "-", 6, 5, 3, "-", 4, 3, 2, "-", 2, 2, 1] }
   - { name: RTO Total, type: bar, barGap: "-100%", barWidth: 20, z: 1, itemStyle: { color: "#888", opacity: 0 }, emphasis: { itemStyle: { opacity: 0 } }, data: [11, 7, 4, "-", 9, 6, 3, "-", 7, 4, 2, "-", 5, 3, 1] }
 ```
-{{< /echarts >}}
 
 
 --------
@@ -226,8 +227,7 @@ pg switchover pg-test              # Switch to best candidate
 pg switchover pg-test pg-test-2    # Switch to specified replica
 ```
 
-{{< infographic >}}
-```text
+```infographic
 infographic list-row-simple-horizontal-arrow
 data
   title Switchover Planned Switchover Flow
@@ -248,7 +248,6 @@ data
 theme light
   palette antv
 ```
-{{< /infographic >}}
 
 **WAL catch-up time not counted in RTO**: During catch-up, primary can still handle read-only requests, service not completely interrupted.
 

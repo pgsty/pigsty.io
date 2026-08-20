@@ -32,7 +32,7 @@ Usage:
 
 Source: [`pigsty/conf/app/jumpserver.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/jumpserver.yml)
 
-{{< readfile file="yaml/app/jumpserver.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/app/jumpserver.yml" code=true lang="yaml" >}}
 
 
 --------

@@ -1,7 +1,7 @@
 ---
 title: Implementing Advanced Fuzzy Search
 date: 2021-03-05
-manualLink: "https://vonng.com/en/pg/fuzzymatch/"
+manual_link: "https://vonng.com/en/pg/fuzzymatch/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

@@ -2,7 +2,7 @@
 title: Time to Say Goodbye to GPL
 linkTitle: Time to Say Goodbye to GPL
 date: 2021-09-16
-manualLink: "https://vonng.com/cn/db/goodbye-gpl/"
+manual_link: "https://vonng.com/cn/db/goodbye-gpl/"
 author: Martin Kleppmann
 description: |
   DDIA author Martin Kleppmann argues we should move away from GPL licenses. In the 2020s, the enemy of computing freedom is cloud software.

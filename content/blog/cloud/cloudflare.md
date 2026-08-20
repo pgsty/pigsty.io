@@ -1,7 +1,7 @@
 ---
 title: Cloudflare - The Cyber Buddha That Destroys Public Cloud
 date: 2024-04-03
-manualLink: "https://vonng.com/en/cloud/cloudflare/"
+manual_link: "https://vonng.com/en/cloud/cloudflare/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/i4wk9ebyUK7irNSwuT3NWQ)
 

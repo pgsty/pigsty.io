@@ -229,9 +229,7 @@ node_firewall_intranet:
 > **Important**: Pigsty's firewall management is **add-only**. Removing entries from config and re-running
 > **will NOT** delete existing rules. You must remove them manually.
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="EL (firewalld)" %}}
-```bash
+```bash {tab="EL (firewalld)" group="el-firewalld-debian-ufw" value="el-firewalld"}
 # Remove port from public zone
 sudo firewall-cmd --zone=public --remove-port=5432/tcp
 sudo firewall-cmd --runtime-to-permanent
@@ -247,9 +245,8 @@ sudo firewall-cmd --zone=trusted --list-sources
 # Reset to initial state (remove all custom rules)
 sudo firewall-cmd --complete-reload
 ```
-{{% /tab %}}
-{{% tab header="Debian (ufw)" %}}
-```bash
+
+```bash {tab="Debian (ufw)" value="debian-ufw"}
 # Delete port rule
 sudo ufw delete allow 5432/tcp
 
@@ -265,8 +262,6 @@ sudo ufw delete <rule_number>
 # Reset to initial state (remove all rules, keep ufw enabled)
 sudo ufw reset
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 ### Disable Firewall
@@ -283,15 +278,10 @@ node_firewall_mode: off    # completely disable firewall
 
 Or disable manually:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="EL (firewalld)" %}}
-```bash
+```bash {tab="EL (firewalld)" group="el-firewalld-debian-ufw" value="el-firewalld"}
 sudo systemctl disable --now firewalld
 ```
-{{% /tab %}}
-{{% tab header="Debian (ufw)" %}}
-```bash
+
+```bash {tab="Debian (ufw)" value="debian-ufw"}
 sudo ufw disable
 ```
-{{% /tab %}}
-{{< /tabpane >}}

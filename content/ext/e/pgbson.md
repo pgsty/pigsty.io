@@ -170,40 +170,33 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Install" %}}
-```bash
+```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
 pig install pgbson;          # Install for current active PG version
 ```
-{{% /tab %}}
-{{% tab header="pig" %}}
-```bash
+
+```bash {tab="pig" value="pig"}
 pig ext install -y pgbson -v 18  # PG 18
 pig ext install -y pgbson -v 17  # PG 17
 pig ext install -y pgbson -v 16  # PG 16
 pig ext install -y pgbson -v 15  # PG 15
 pig ext install -y pgbson -v 14  # PG 14
 ```
-{{% /tab %}}
-{{% tab header="dnf" %}}
-```bash
+
+```bash {tab="dnf" value="dnf"}
 dnf install -y postgresbson_18       # PG 18
 dnf install -y postgresbson_17       # PG 17
 dnf install -y postgresbson_16       # PG 16
 dnf install -y postgresbson_15       # PG 15
 dnf install -y postgresbson_14       # PG 14
 ```
-{{% /tab %}}
-{{% tab header="apt" %}}
-```bash
+
+```bash {tab="apt" value="apt"}
 apt install -y postgresql-18-pgbson   # PG 18
 apt install -y postgresql-17-pgbson   # PG 17
 apt install -y postgresql-16-pgbson   # PG 16
 apt install -y postgresql-15-pgbson   # PG 15
 apt install -y postgresql-14-pgbson   # PG 14
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Create Extension**:

@@ -2,7 +2,7 @@
 title: AI Large Models and Vector Database PGVector
 linkTitle: AI LLMs and PGVector
 date: 2023-05-10
-manualLink: "https://vonng.com/en/pg/llm-and-pgvector/"
+manual_link: "https://vonng.com/en/pg/llm-and-pgvector/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/R4jp1uTCiLOLGsiADZ9jxQ)
 

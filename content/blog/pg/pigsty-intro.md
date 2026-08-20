@@ -1,7 +1,7 @@
 ---
 title: "Ready-to-Use PostgreSQL Distribution: Pigsty"
 date: 2021-05-24
-manualLink: "https://vonng.com/en/pg/pigsty-intro/"
+manual_link: "https://vonng.com/en/pg/pigsty-intro/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/yumrKS4bjwU-zeMTwJThxw)
 description: |

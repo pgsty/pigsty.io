@@ -1,7 +1,7 @@
 ---
 title: "Alibaba-Cloud: High Availability Disaster Recovery Myth Shattered"
 date: 2024-09-17
-manualLink: "https://vonng.com/en/cloud/aliyun-ha/"
+manual_link: "https://vonng.com/en/cloud/aliyun-ha/"
 author: |
   [Ruohang Feng](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

@@ -167,40 +167,33 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Install" %}}
-```bash
+```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
 pig install pgdd;          # Install for current active PG version
 ```
-{{% /tab %}}
-{{% tab header="pig" %}}
-```bash
+
+```bash {tab="pig" value="pig"}
 pig ext install -y pgdd -v 18  # PG 18
 pig ext install -y pgdd -v 17  # PG 17
 pig ext install -y pgdd -v 16  # PG 16
 pig ext install -y pgdd -v 15  # PG 15
 pig ext install -y pgdd -v 14  # PG 14
 ```
-{{% /tab %}}
-{{% tab header="dnf" %}}
-```bash
+
+```bash {tab="dnf" value="dnf"}
 dnf install -y pgdd_18       # PG 18
 dnf install -y pgdd_17       # PG 17
 dnf install -y pgdd_16       # PG 16
 dnf install -y pgdd_15       # PG 15
 dnf install -y pgdd_14       # PG 14
 ```
-{{% /tab %}}
-{{% tab header="apt" %}}
-```bash
+
+```bash {tab="apt" value="apt"}
 apt install -y postgresql-18-pgdd   # PG 18
 apt install -y postgresql-17-pgdd   # PG 17
 apt install -y postgresql-16-pgdd   # PG 16
 apt install -y postgresql-15-pgdd   # PG 15
 apt install -y postgresql-14-pgdd   # PG 14
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Create Extension**:

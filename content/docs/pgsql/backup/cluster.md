@@ -12,11 +12,10 @@ You can recover accidentally deleted data from the clone, validate backups in a 
 The target must be able to access the source backup repository, may be overwritten, and must use a compatible PostgreSQL major version.
 With a shared [Silo/S3 repository](/docs/pgsql/backup/repository/), each cluster's backups are isolated by a [stanza](/docs/pgsql/backup/mechanism/#stanza-the-clusters-backup-identity) and visible to targets holding the required credentials.
 
-{{% alert color="danger" title="A clone overwrites the target cluster" %}}
-Inspect the target topology with `pig pg list <target-cluster>`, verify the source stanza's recent backups and recovery window with `pig pb info`,
-and have the operator confirm the exact source cluster, target cluster, and recovery point before performing the restore.
-Existing data on the target is overwritten; production work still requires a maintenance window and an independently verified backup.
-{{% /alert %}}
+> [!CAUTION] A clone overwrites the target cluster
+> Inspect the target topology with `pig pg list <target-cluster>`, verify the source stanza's recent backups and recovery window with `pig pb info`,
+> and have the operator confirm the exact source cluster, target cluster, and recovery point before performing the restore.
+> Existing data on the target is overwritten; production work still requires a maintenance window and an independently verified backup.
 
 
 --------
@@ -102,10 +101,9 @@ pig pb create -s pg-test
 pig pb backup full -s pg-test
 ```
 
-{{% alert color="warning" title="Rebuilding permanently discards old recovery history" %}}
-Delete only after checking recent backups, retaining any required independent recovery copy, and having the operator confirm the exact `pg-test` stanza.
-Object-locked versions can remain and continue consuming storage; a successful deletion command does not prove that every underlying version has been physically erased.
-{{% /alert %}}
+> [!WARNING] Rebuilding permanently discards old recovery history
+> Delete only after checking recent backups, retaining any required independent recovery copy, and having the operator confirm the exact `pg-test` stanza.
+> Object-locked versions can remain and continue consuming storage; a successful deletion command does not prove that every underlying version has been physically erased.
 
 
 --------

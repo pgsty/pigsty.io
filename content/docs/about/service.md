@@ -38,9 +38,11 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 
 > **Note on `/price`:** The [**`/price`**](/price/) page is a simplified global pricing landing page (USD pricing, includes the `Standard` tier and node-cap presets). This page is the detailed subscription reference (CNY pricing, delivery scope, and OS/PG compatibility matrix). For technical compatibility boundaries, this page and [**Supported Linux**](/docs/ref/linux/) prevail.
 
-{{< cardpane >}}
+{{< cards >}}
 
-{{< card header="**Pigsty Open Source Edition (OSS)**" title="Free and Open Source" subtitle="No scale limit, no warranty" footer="Self-sufficient open source veterans">}}
+{{< card title="Pigsty Open Source Edition (OSS)" badge="Free and Open Source" >}}
+
+**No scale limit, no warranty**
 
 <p><b>License: <a href="/docs/about/license">Apache-2.0</a></b></p>
 <p><b>PG Support: 18 (default), 14 - 18 available</b></p>
@@ -62,10 +64,14 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 
 <p><b>Support: No person-day support option</b></p>
 <p><b>Repository: Global Cloudflare hosted repository</b></p>
+
+*Self-sufficient open source veterans*
 {{< /card >}}
 
 
-{{< card header="**Pigsty Professional Edition (PRO)**" title="Starting Price: ¥150,000 / year" subtitle="Default choice for regular users" footer="Default choice for regular users">}}
+{{< card title="Pigsty Professional Edition (PRO)" badge="Starting Price: ¥150,000 / year" >}}
+
+**Default choice for regular users**
 
 <p><b>License: Commercial License</b></p>
 <p><b>PG Support: 14 - 18</b></p>
@@ -89,13 +95,17 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 <p><b>Support: 1 person-day included per year</b></p>
 <p><b>Delivery: Standard offline software package</b></p>
 <p><b>Repository: China mainland mirror sites</b></p>
+
+*Default choice for regular users*
 {{< /card >}}
 
 
 
 
 
-{{< card header="**Pigsty Enterprise Edition (ENTERPRISE)**" title="Starting Price: ¥400,000 / year" subtitle="Critical scenarios with strict SLA" footer="Critical scenarios with strict SLA">}}
+{{< card title="Pigsty Enterprise Edition (ENTERPRISE)" badge="Starting Price: ¥400,000 / year" >}}
+
+**Critical scenarios with strict SLA**
 
 <p><b>License: Commercial License</b></p>
 <p><b>PG Support: 14 - 18+ (legacy versions on request)</b></p>
@@ -128,8 +138,9 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 <p><b>Delivery: Customized offline software package</b></p>
 <p><b>Domestic Innovation: <a href="/docs/pgsql/kernel/polardb-o">PolarDB-O</a> support</b></p>
 
+*Critical scenarios with strict SLA*
 {{< /card >}}
-{{< /cardpane >}}
+{{< /cards >}}
 
 
 
@@ -163,7 +174,7 @@ Using the Pigsty open source version allows junior development/operations engine
 
 ## Pigsty Professional Edition (PRO)
 
-{{% alert title="Professional Edition Subscription: Starting Price ¥150,000 / year" color="secondary" %}}{{% /alert %}}
+> [!NOTE] Professional Edition Subscription: Starting Price ¥150,000 / year
 
 Pigsty Professional Edition subscription provides complete functional modules and warranty for Pigsty itself. For defects in PostgreSQL itself and extension plugins, we will make our best efforts to provide feedback and fixes through the PostgreSQL global developer community.
 
@@ -195,7 +206,7 @@ Pigsty Professional Edition starting price is **¥150,000 / year**, equivalent t
 
 ## Pigsty Enterprise Edition
 
-{{% alert title="Enterprise Edition Subscription: Starting Price ¥400,000 / year" color="primary" %}}{{% /alert %}}
+> [!IMPORTANT] Enterprise Edition Subscription: Starting Price ¥400,000 / year
 
 Pigsty Enterprise Edition subscription includes all service content provided by the Pigsty Professional Edition subscription, plus the following value-added service items:
 
@@ -287,35 +298,23 @@ Pigsty provides top-tier PostgreSQL expert services in China and adopts a **per-
 In addition to Pigsty subscription, Pigsty also provides on-demand Pigsty x PostgreSQL expert services - industry-leading database experts available for consultation.
 
 
-{{% alert title="Expert Advisor: ¥300,000 / three years" color="primary" %}}
-
-<br>
-Within three years, provides 10 complex case handling sessions related to PostgreSQL and Pigsty, and unlimited Q&A.
-
-{{% /alert %}}
+> [!IMPORTANT] Expert Advisor: ¥300,000 / three years
+> <br>
+> Within three years, provides 10 complex case handling sessions related to PostgreSQL and Pigsty, and unlimited Q&A.
 
 
-{{% alert title="Expert Support: ¥30,000 / person·day" color="secondary" %}}
+> [!NOTE] Expert Support: ¥30,000 / person·day
+> <br>
+> Industry-leading expert on-site support, available for architecture consultation, fault analysis, problem troubleshooting, database health checks, monitoring interpretation, migration assessment, teaching and training, cloud migration/de-cloud consultation, and other continuous time-consuming scenarios.
 
-<br>
-Industry-leading expert on-site support, available for architecture consultation, fault analysis, problem troubleshooting, database health checks, monitoring interpretation, migration assessment, teaching and training, cloud migration/de-cloud consultation, and other continuous time-consuming scenarios.
+> [!TIP] Expert Consultation: ¥3,000 / case
+> <br>
+> Consult on any questions you want to know about Pigsty, PostgreSQL, databases, cloud computing, AI...
+> Database veterans, cloud computing maverick sharing industry-leading insights, cognition, and judgment.
 
-{{% /alert %}}
-
-{{% alert title="Expert Consultation: ¥3,000 / case" color="success" %}}
-
-<br>
-Consult on any questions you want to know about Pigsty, PostgreSQL, databases, cloud computing, AI...
-Database veterans, cloud computing maverick sharing industry-leading insights, cognition, and judgment.
-
-{{% /alert %}}
-
-{{% alert title="Quick Consultation: ¥300 / question" color="danger" %}}
-
-<br>
-Get a quick diagnostic opinion and response to questions related to PostgreSQL / Pigsty / databases, not exceeding 5 minutes.
-
-{{% /alert %}}
+> [!CAUTION] Quick Consultation: ¥300 / question
+> <br>
+> Get a quick diagnostic opinion and response to questions related to PostgreSQL / Pigsty / databases, not exceeding 5 minutes.
 
 
 

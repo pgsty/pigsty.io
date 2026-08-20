@@ -2,7 +2,7 @@
 title: "Cloud Exit Odyssey: Time to Leave Cloud?"
 linkTitle: "Cloud Exit Odyssey: Time to Leave Cloud?"
 date: 2023-07-07
-manualLink: "https://vonng.com/cn/cloud/odyssey/"
+manual_link: "https://vonng.com/cn/cloud/odyssey/"
 author: DHH
 description: |
   This article chronicles the complete journey of 37Signals moving off the cloud, led by DHH. Valuable reference for both cloud-bound and cloud-native enterprises.

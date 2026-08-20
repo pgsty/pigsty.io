@@ -245,9 +245,8 @@ Check backup freshness — on **all members** for HA, since backups follow the p
 ansible my-test -b -a 'ls -l /data/backups/mysql/my-test/latest'
 ```
 
-{{% alert title="Backup alerting gap" color="warning" %}}
-This version exports no backup-freshness metric and ships no backup alerts: a failed backup is only visible in the `mysql-backup` logs (queryable in VictoriaLogs and on the Instance dashboard's Router / Backup Logs panel). For important environments, add external log checks and rehearse the restore runbook below periodically.
-{{% /alert %}}
+> [!WARNING] Backup alerting gap
+> This version exports no backup-freshness metric and ships no backup alerts: a failed backup is only visible in the `mysql-backup` logs (queryable in VictoriaLogs and on the Instance dashboard's Router / Backup Logs panel). For important environments, add external log checks and rehearse the restore runbook below periodically.
 
 
 --------

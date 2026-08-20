@@ -39,11 +39,8 @@ Pigsty provides three monitoring dashboards for the [`REDIS`](/docs/redis) modul
 
 [Redis Cluster](https://demo.pigsty.io/d/redis-cluster): Details of a single Redis cluster
 
-<details><summary>Redis Cluster Dashboard</summary>
-
-[![redis-cluster.jpg](/img/dashboard/redis-cluster.jpg)](https://demo.pigsty.io/d/redis-cluster)
-
-</details><br>
+> [!DETAILS]- Redis Cluster Dashboard
+> [![redis-cluster.jpg](/img/dashboard/redis-cluster.jpg)](https://demo.pigsty.io/d/redis-cluster)
 
 ----------------
 
@@ -51,11 +48,8 @@ Pigsty provides three monitoring dashboards for the [`REDIS`](/docs/redis) modul
 
 [Redis Instance](https://demo.pigsty.io/d/redis-instance): Details of a single Redis instance
 
-<details><summary>Redis Instance Dashboard</summary>
-
-[![redis-instance](/img/dashboard/redis-instance.jpg)](https://demo.pigsty.io/d/redis-instance)
-
-</details><br>
+> [!DETAILS]- Redis Instance Dashboard
+> [![redis-instance](/img/dashboard/redis-instance.jpg)](https://demo.pigsty.io/d/redis-instance)
 
 
 

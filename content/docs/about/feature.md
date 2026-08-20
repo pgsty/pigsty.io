@@ -227,8 +227,9 @@ Subscription consulting fees of tens of thousands are less than one-thirtieth of
 
 [![pigsty-price.jpg](/img/pigsty/price.jpg)](/docs/about/compare/cost)
 
-{{< echarts height="560px" >}}
-```js
+<script>
+window.OinkEchartsFunctions = window.OinkEchartsFunctions || {};
+(function (registry) {
 var fmtn = function(n) { return Number(n || 0).toLocaleString("en-US"); };
 var yfmt = function(v) { return fmtn(v); };
 var ttfmt = function(params) {
@@ -237,8 +238,13 @@ var ttfmt = function(params) {
     .concat(params.map(function(p) { return p.marker + ' ' + p.seriesName + ': ' + fmtn(p.value); }))
     .join('<br/>');
 };
-```
-```yaml
+registry["fmtn"] = fmtn;
+registry["yfmt"] = yfmt;
+registry["ttfmt"] = ttfmt;
+})(window.OinkEchartsFunctions);
+</script>
+
+```echarts {height="560px"}
 tooltip: { trigger: axis, formatter: $fn:ttfmt }
 legend: { top: 4, itemGap: 16, data: [Oracle, Open-Source PG, Cloud RDS, Pigsty over IaaS, Pigsty over IDC ] }
 grid: { left: 96, right: 36, bottom: 70, top: 50 }
@@ -262,4 +268,3 @@ series:
   - { name: Pigsty over IaaS, type: line, symbolSize: 6, lineStyle: { width: 2 }, itemStyle: { color: "#2ca02c" }, data: [360, 720, 1440, 2160, 2880, 4320, 5760, 9360, 11520, 18720, 23040, 35280, 46080, 69120, 92160] }
   - { name: Pigsty over IDC, type: line, symbolSize: 6, lineStyle: { width: 2 }, itemStyle: { color: "#9467bd" }, data: [38, 76, 152, 228, 304, 456, 608, 988, 1216, 1976, 2432, 3724, 4864, 7296, 9728] }
 ```
-{{< /echarts >}}

@@ -1,7 +1,7 @@
 ---
 title: "NewSQL: Distributive Nonsense"
 date: 2023-05-07
-manualLink: "https://vonng.com/en/db/distributive-bullshit/"
+manual_link: "https://vonng.com/en/db/distributive-bullshit/"
 author: |
   [Ruohang Feng](https://vonng.com/en/) ([@Vonng](https://vonng.com/en/)) | [WeChat Column](https://mp.weixin.qq.com/s/-eaCoZR9Z5srQ-1YZm1QJA)
 

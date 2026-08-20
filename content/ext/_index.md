@@ -117,26 +117,26 @@ Everything can be solved with PostgreSQL! Check out our blog post: [**PostgreSQL
 
 Pigsty provides an unparalleled PostgreSQL extension delivery experience. Several PostgreSQL vendors are using it for delivery.
 
-{{< cardpane >}}
-{{< card header="[**Pigsty**](https://github.com/pgsty/pigsty)" >}}
+{{< cards >}}
+{{< card title="Pigsty" link="https://github.com/pgsty/pigsty" >}}
 Out-of-the-box, open-source, enterprise-grade PostgreSQL RDS distribution
 {{< /card >}}
-{{< card header="[**Omnigres**](https://docs.omnigres.org/quick_start/)" >}}
+{{< card title="Omnigres" link="https://docs.omnigres.org/quick_start/" >}}
 PostgreSQL as a Platform, application development inside the database
 {{< /card >}}
-{{< card header="[**AutoBase**](https://autobase.tech/docs/extensions/install)" >}}
+{{< card title="AutoBase" link="https://autobase.tech/docs/extensions/install" >}}
 Ansible-based PG cluster automation deployment, open-source DBaaS
 {{< /card >}}
-{{< /cardpane >}}
+{{< /cards >}}
 
-{{< cardpane >}}
-{{< card header="[**TensorChord**](https://github.com/tensorchord)" >}}
+{{< cards >}}
+{{< card title="TensorChord" link="https://github.com/tensorchord" >}}
 Cloud-native AI infrastructure, developers of several well-known PG extensions
 {{< /card >}}
-{{< card header="[**WENWU IT**](https://w3.ww-it.cn/)" >}}
+{{< card title="WENWU IT" link="https://w3.ww-it.cn/" >}}
 Enterprise PostgreSQL service provider
 {{< /card >}}
-{{< /cardpane >}}
+{{< /cards >}}
 
 
 --------

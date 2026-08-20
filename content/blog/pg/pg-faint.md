@@ -2,7 +2,7 @@
 title: Don't Upgrade! Released and Immediately Pulled - Even PostgreSQL Isn't Immune to Epic Fails
 linkTitle: Released and Immediately Pulled - Even PostgreSQL Isn't Immune to Epic Fails
 date: 2024-11-16
-manualLink: "https://vonng.com/en/pg/pg-faint/"
+manual_link: "https://vonng.com/en/pg/pg-faint/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [Original WeChat Article](https://mp.weixin.qq.com/s/l1BgfLaRKNNEqHyfx33E6A)
 

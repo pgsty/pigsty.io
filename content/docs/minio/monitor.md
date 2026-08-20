@@ -14,9 +14,8 @@ Silo provides an administration UI through [`minio_admin_port`](/docs/minio/para
 
 Some configuration templates also expose the administration entry point at `m.pigsty`. Login credentials come from [`minio_access_key`](/docs/minio/param#minio_access_key) and [`minio_secret_key`](/docs/minio/param#minio_secret_key).
 
-{{% alert title="HTTPS and Certificate Trust" color="info" %}}
-Object storage uses HTTPS certificates issued by the Pigsty CA by default. Browsers and container clients must trust that CA. Do not substitute disabled certificate verification for a correct trust configuration in production.
-{{% /alert %}}
+> [!NOTE] HTTPS and Certificate Trust
+> Object storage uses HTTPS certificates issued by the Pigsty CA by default. Browsers and container clients must trust that CA. Do not substitute disabled certificate verification for a correct trust configuration in production.
 
 
 ---------

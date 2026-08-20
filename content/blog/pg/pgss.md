@@ -2,7 +2,7 @@
 title: PostgreSQL Macro Query Optimization with pg_stat_statements
 linkTitle: "PG Query Optimization: The Macro Way"
 date: 2023-10-26
-manualLink: "https://vonng.com/en/pg/pgss/"
+manual_link: "https://vonng.com/en/pg/pgss/"
 author: |
   [Nikolay Samokhvalov](https://postgres.ai/) | February 7, 2024 | [Postgres Howto](https://gitlab.com/postgres-ai/postgresql-consulting/postgres-howtos)
 

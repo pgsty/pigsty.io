@@ -73,9 +73,8 @@ Before execution, verify a recent usable backup, record the recovery requirement
 
 With object versioning and [**object-lock retention**](/docs/pgsql/backup/repository/#repository-locking), deletion may create a delete marker while locked historical versions continue consuming storage until their retention period expires.
 
-{{% alert color="warning" title="Backup Deletion" %}}
-Deleting backups can permanently destroy recovery options. Confirm the cluster/stanza, verify a recent backup and an alternative recovery copy, and retain the `pig pb info` output and deletion plan as an audit record.
-{{% /alert %}}
+> [!WARNING] Backup Deletion
+> Deleting backups can permanently destroy recovery options. Confirm the cluster/stanza, verify a recent backup and an alternative recovery copy, and retain the `pig pb info` output and deletion plan as an audit record.
 
 
 --------
@@ -181,9 +180,8 @@ mkdir -p /tmp/data
 cat /pg/backup/backup_pg-meta_20250713.tar.lz4 | unlz4 -d -c | tar -xC /tmp/data
 ```
 
-{{% alert color="warning" title="Legacy Encryption" %}}
-`pg-basebackup -e` uses the obsolete OpenSSL **RC4** cipher and must not be treated as confidentiality protection. For encrypted backups, use a pgBackRest repository configured with AES-256 (`cipher_type: aes-256-cbc`).
-{{% /alert %}}
+> [!WARNING] Legacy Encryption
+> `pg-basebackup -e` uses the obsolete OpenSSL **RC4** cipher and must not be treated as confidentiality protection. For encrypted backups, use a pgBackRest repository configured with AES-256 (`cipher_type: aes-256-cbc`).
 
 ### Logical Backup
 

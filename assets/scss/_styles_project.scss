@@ -240,63 +240,6 @@
   .ext-card--repo { --ext-accent: #64748b; }
   .ext-card--source { --ext-accent: #2563eb; }
 
-  // ---- Top cards (OINK-compatible card shortcode) --------------------------
-  // Keep OINK's `card`/`cardpane` output visually cohesive with extension data.
-  // "ext" look by scoping light restyling under `.ext-topcards`.
-  .ext-topcards {
-    margin: 1rem 0 1.25rem;
-  }
-
-  .ext-topcards .td-card-group {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 0.9rem;
-    margin: 0;
-    margin-bottom: 0 !important; // override Bootstrap `mb-4` class on the shortcode wrapper
-  }
-
-  .ext-topcards .td-card {
-    margin: 0 !important; // override `me-4` from shortcode
-    border-radius: var(--ext-radius);
-    border-color: var(--ext-border) !important;
-    overflow: hidden;
-
-    transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease, background-color 150ms ease;
-  }
-
-  .ext-topcards .td-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--ext-shadow-hover);
-    border-color: color-mix(in srgb, var(--bs-link-color) 24%, var(--ext-border)) !important;
-  }
-
-  .ext-topcards .td-card .card-header {
-    background: var(--ext-surface);
-    border-bottom: 1px solid var(--ext-border);
-    font-weight: 750;
-    letter-spacing: 0.02em;
-  }
-
-  .ext-topcards .td-card .card-title a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .ext-topcards .td-card .card-text {
-    margin-bottom: 0;
-  }
-
-  .ext-topcards .ext-cardlink {
-    text-decoration: none;
-  }
-
-  .ext-topcards .ext-cardlink code {
-    display: inline-block;
-    font-family: var(--bs-font-monospace);
-    word-break: break-word;
-    color: var(--ext-muted);
-  }
-
   // ---- OS/Arch pill ---------------------------------------------------------
   .ext-os {
     --ext-os-bg: var(--ext-surface);
@@ -537,46 +480,6 @@
     color: var(--ext-muted);
     font-family: var(--bs-font-monospace);
   }
-
-  // ---- Tabs (Bootstrap tabpane, restyled) -----------------------------------
-  .ext-tabs {
-    margin: 1rem 0 1.25rem;
-  }
-
-  .ext-tabs .nav-tabs {
-    border-bottom: 1px solid var(--ext-border);
-    gap: 0.25rem;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .ext-tabs .nav-tabs .nav-link {
-    border: 0;
-    border-bottom: 2px solid transparent;
-    background: transparent;
-    color: var(--ext-muted);
-    font-weight: 700;
-    padding: 0.55rem 0.75rem;
-    border-radius: 0.7rem 0.7rem 0 0;
-    white-space: nowrap;
-
-    transition: color 120ms ease, background-color 120ms ease, border-color 120ms ease;
-  }
-
-  .ext-tabs .nav-tabs .nav-link:hover:not(.disabled) {
-    color: var(--bs-body-color);
-    background: var(--ext-surface);
-  }
-
-  .ext-tabs .nav-tabs .nav-link.active {
-    color: color-mix(in srgb, var(--bs-link-color) 90%, var(--bs-body-color));
-    background: var(--bs-body-bg);
-    border-bottom-color: var(--bs-link-color);
-  }
-
-  .ext-tabs .tab-content { padding-top: 0.85rem; }
 
   // ---- Meta tables (optional, add {.ext-table}) ------------------------------
   table.ext-table {

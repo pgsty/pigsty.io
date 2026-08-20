@@ -35,7 +35,7 @@ After configuration, modify placeholder IPs `10.10.10.11` and `10.10.10.12` to a
 
 Source: [`pigsty/conf/ha/trio.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/trio.yml)
 
-{{< readfile file="yaml/ha/trio.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/ha/trio.yml" code=true lang="yaml" >}}
 
 
 --------

@@ -1,7 +1,7 @@
 ---
 title: "Amateur Hour Opera: Alibaba-Cloud PostgreSQL Disaster Chronicle"
 date: 2024-08-19
-manualLink: "https://vonng.com/en/cloud/rds-failure/"
+manual_link: "https://vonng.com/en/cloud/rds-failure/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [Zhihu Column](https://zhuanlan.zhihu.com/p/715479603) | [WeChat Official Account](https://mp.weixin.qq.com/s/kOIw8uPjZUZ0-QisC1TBOA)
 

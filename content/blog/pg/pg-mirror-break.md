@@ -1,7 +1,7 @@
 ---
 title: PGDG Cuts Off Mirror Sync Channel
 date: 2025-07-07
-manualLink: "https://vonng.com/en/pg/pg-mirror-break/"
+manual_link: "https://vonng.com/en/pg/pg-mirror-break/"
 author: vonng
 description: |
   PGDG cuts off FTP rsync sync channels, global mirror sites universally disconnected - this time they really strangled global users' supply chain.

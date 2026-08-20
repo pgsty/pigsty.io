@@ -41,7 +41,7 @@ For example, if you want to install PostgreSQL 16 rather than the default 18, yo
 
 Source: [`pigsty/conf/meta.yml`](https://github.com/pgsty/pigsty/blob/main/conf/meta.yml)
 
-{{< readfile file="yaml/meta.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/meta.yml" code=true lang="yaml" >}}
 
 
 --------

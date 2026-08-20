@@ -2,7 +2,7 @@
 title: "KubeSphere: Trust Crisis Behind Open-Source Supply Cut"
 linkTitle: "KubeSphere: Trust Crisis Behind Open-Source Supply Cut"
 date: 2025-08-02
-manualLink: "https://vonng.com/en/cloud/kubesphere-rugpull/"
+manual_link: "https://vonng.com/en/cloud/kubesphere-rugpull/"
 author: vonng
 description: Deleting images and running away - this isn't about commercial closed-source issues, but supply cut problems that directly destroy years of accumulated community trust.
 images: [/img/hero/cloud/kubesphere-rugpull.jpg]

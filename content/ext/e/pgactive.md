@@ -170,40 +170,33 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Install" %}}
-```bash
+```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
 pig install pgactive;          # Install for current active PG version
 ```
-{{% /tab %}}
-{{% tab header="pig" %}}
-```bash
+
+```bash {tab="pig" value="pig"}
 pig ext install -y pgactive -v 18  # PG 18
 pig ext install -y pgactive -v 17  # PG 17
 pig ext install -y pgactive -v 16  # PG 16
 pig ext install -y pgactive -v 15  # PG 15
 pig ext install -y pgactive -v 14  # PG 14
 ```
-{{% /tab %}}
-{{% tab header="dnf" %}}
-```bash
+
+```bash {tab="dnf" value="dnf"}
 dnf install -y pgactive_18       # PG 18
 dnf install -y pgactive_17       # PG 17
 dnf install -y pgactive_16       # PG 16
 dnf install -y pgactive_15       # PG 15
 dnf install -y pgactive_14       # PG 14
 ```
-{{% /tab %}}
-{{% tab header="apt" %}}
-```bash
+
+```bash {tab="apt" value="apt"}
 apt install -y postgresql-18-pgactive   # PG 18
 apt install -y postgresql-17-pgactive   # PG 17
 apt install -y postgresql-16-pgactive   # PG 16
 apt install -y postgresql-15-pgactive   # PG 15
 apt install -y postgresql-14-pgactive   # PG 14
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Preload**:

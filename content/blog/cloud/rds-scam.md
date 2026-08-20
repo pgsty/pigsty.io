@@ -1,7 +1,7 @@
 ---
 title: "Cloud Database: Michelin Prices for Cafeteria Pre-made Meals"
 date: 2024-10-06
-manualLink: "https://vonng.com/en/cloud/rds-scam/"
+manual_link: "https://vonng.com/en/cloud/rds-scam/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

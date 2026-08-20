@@ -1,7 +1,7 @@
 ---
 title: A Methodology for Diagnosing PostgreSQL Slow Queries
 date: 2021-02-23
-manualLink: "https://vonng.com/en/pg/slow-query/"
+manual_link: "https://vonng.com/en/pg/slow-query/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

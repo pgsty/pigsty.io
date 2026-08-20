@@ -1,7 +1,7 @@
 ---
 title: On Trusting Open-Source Supply Chains
 date: 2025-11-22
-manualLink: "https://vonng.com/en/db/tuna-mirror-site/"
+manual_link: "https://vonng.com/en/db/tuna-mirror-site/"
 author: |
   Feng Ruohang
 

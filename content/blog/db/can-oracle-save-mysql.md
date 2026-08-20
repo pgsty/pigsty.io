@@ -2,7 +2,7 @@
 title: Can Oracle Still Save MySQL?
 linkTitle: Can Oracle Still Save MySQL?
 date: 2024-06-21
-manualLink: "https://vonng.com/cn/db/can-oracle-save-mysql/"
+manual_link: "https://vonng.com/cn/db/can-oracle-save-mysql/"
 author: Peter Zaitsev
 description: |
   Percona founder Peter Zaitsev publicly expressed disappointment with MySQL and Oracle, criticizing the declining performance with newer versions.

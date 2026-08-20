@@ -11,9 +11,8 @@ aliases: [/docs/pilot/kafka/start]
 
 This tutorial starts from a minimal single-node cluster, walking through topic creation and message read/write; it then deploys a separate, secured three-node cluster with application users, ACLs, quotas, and production topics; finally, it demonstrates core parameter changes, client access, monitoring verification, and pre-launch checks.
 
-{{% alert title="Tutorial Scope" color="info" %}}
-Here, "from scratch" means starting before any Kafka is deployed. You will need a working Pigsty admin node with the base [`INFRA`](/docs/infra) services already deployed; if you don't have one yet, complete the [Pigsty quick install](/docs/setup/install) first. The target nodes require SSH/sudo access and must be manageable by the [`NODE`](/docs/node) module.
-{{% /alert %}}
+> [!NOTE] Tutorial Scope
+> Here, "from scratch" means starting before any Kafka is deployed. You will need a working Pigsty admin node with the base [`INFRA`](/docs/infra) services already deployed; if you don't have one yet, complete the [Pigsty quick install](/docs/setup/install) first. The target nodes require SSH/sudo access and must be manageable by the [`NODE`](/docs/node) module.
 
 
 --------
@@ -29,9 +28,8 @@ Here, "from scratch" means starting before any Kafka is deployed. You will need 
 | 5 | Launch acceptance | Check quorum, ISR, end-to-end read/write, monitoring, capacity, and runbooks |
 {.full-width}
 
-{{% alert title="The Two Examples Are Separate Clusters" color="warning" %}}
-The `kf-dev` and `kf-main` below are two separate, brand-new clusters. If you do need it, you can also grow the single-node `kf-dev` into a three-controller cluster in place: declare two new combined nodes and rerun `./kafka.yml -l kf-dev`, and the role formats each one, catches it up as an observer, and promotes it with `add-controller`, one at a time — but for a demo it is still simpler to build a fresh cluster. See [Expand Cluster](/docs/kafka/admin#expand-cluster) for the semantics.
-{{% /alert %}}
+> [!WARNING] The Two Examples Are Separate Clusters
+> The `kf-dev` and `kf-main` below are two separate, brand-new clusters. If you do need it, you can also grow the single-node `kf-dev` into a three-controller cluster in place: declare two new combined nodes and rerun `./kafka.yml -l kf-dev`, and the role formats each one, catches it up as an observer, and promotes it with `add-controller`, one at a time — but for a demo it is still simpler to build a fresh cluster. See [Expand Cluster](/docs/kafka/admin#expand-cluster) for the semantics.
 
 
 --------

@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL's Impressive Scalability
 date: 2024-01-13
-manualLink: "https://vonng.com/en/pg/pg-scalability/"
+manual_link: "https://vonng.com/en/pg/pg-scalability/"
 author: |
   [Ruohang Feng](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

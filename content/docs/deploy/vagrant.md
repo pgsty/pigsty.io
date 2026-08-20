@@ -29,9 +29,8 @@ On macOS, you can use [**Homebrew**](https://brew.sh/) for one-click installatio
 brew install vagrant virtualbox ansible
 ```
 
-{{% alert title="VirtualBox requires reboot after installation" color="warning" %}}
-After installing VirtualBox, you need to restart your system and allow its kernel extensions in System Preferences.
-{{% /alert %}}
+> [!WARNING] VirtualBox requires reboot after installation
+> After installing VirtualBox, you need to restart your system and allow its kernel extensions in System Preferences.
 
 On Linux, you can use VirtualBox or [**vagrant-libvirt**](https://vagrant-libvirt.github.io/vagrant-libvirt/) as the VM provider.
 
@@ -181,9 +180,8 @@ Specs = [
 ]
 ```
 
-{{% alert title="simu and deci specs don't support scaling" color="info" %}}
-The `simu` and `deci` specs don't support resource scaling. The scale parameter is automatically reset to `1` because their resource configurations are already optimized for simulation scenarios.
-{{% /alert %}}
+> [!NOTE] simu and deci specs don't support scaling
+> The `simu` and `deci` specs don't support resource scaling. The scale parameter is automatically reset to `1` because their resource configurations are already optimized for simulation scenarios.
 
 
 ----------------
@@ -268,18 +266,15 @@ export VAGRANT_EXPERIMENTAL=disks  # Enable disks for direct vagrant use; Makefi
 
 ## Notes
 
-{{% alert title="VirtualBox Network Configuration" color="warning" %}}
-When using older versions of VirtualBox as Vagrant provider, additional configuration is required to use `10.x.x.x` CIDR as Host-Only network:
+> [!WARNING] VirtualBox Network Configuration
+> When using older versions of VirtualBox as Vagrant provider, additional configuration is required to use `10.x.x.x` CIDR as Host-Only network:
+>
+> ```bash
+> echo "* 10.0.0.0/8" | sudo tee -a /etc/vbox/networks.conf
+> ```
 
-```bash
-echo "* 10.0.0.0/8" | sudo tee -a /etc/vbox/networks.conf
-```
-{{% /alert %}}
+> [!NOTE] First-time image download is slow
+> The first time you use Vagrant to start a specific operating system, it will download the corresponding Box image file (typically 1-2 GB). After download, the image is cached and reused for subsequent VM creation.
 
-{{% alert title="First-time image download is slow" color="info" %}}
-The first time you use Vagrant to start a specific operating system, it will download the corresponding Box image file (typically 1-2 GB). After download, the image is cached and reused for subsequent VM creation.
-{{% /alert %}}
-
-{{% alert title="libvirt Provider" color="info" %}}
-If you're using libvirt as the provider, you can use `make info` to view VMs, networks, and storage volume information, and `make nuke` to forcefully destroy all related resources.
-{{% /alert %}}
+> [!NOTE] libvirt Provider
+> If you're using libvirt as the provider, you can use `make info` to view VMs, networks, and storage volume information, and `make nuke` to forcefully destroy all related resources.

@@ -39,9 +39,8 @@ To destroy a cluster, run the dedicated [`minio-rm.yml`](/docs/minio/playbook#mi
 
 The removal role also defaults `minio_type` to `silo`; other values are rejected. The examples still spell it out so the backend, cluster identity, and paths are visible during review.
 
-{{% alert title="Architecture Change: Pigsty v3.6+" color="info" %}}
-Starting from Pigsty v3.6, cluster removal has been migrated from `minio.yml` playbook to the dedicated `minio-rm.yml` playbook. The old `minio_clean` task has been deprecated.
-{{% /alert %}}
+> [!NOTE] Architecture Change: Pigsty v3.6+
+> Starting from Pigsty v3.6, cluster removal has been migrated from `minio.yml` playbook to the dedicated `minio-rm.yml` playbook. The old `minio_clean` task has been deprecated.
 
 The removal playbook attempts these operations in order:
 - Deregisters object-storage targets from VictoriaMetrics monitoring

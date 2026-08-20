@@ -35,7 +35,7 @@ Usage:
 
 Source: [`pigsty/conf/ha/citus.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/citus.yml)
 
-{{< readfile file="yaml/ha/citus.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/ha/citus.yml" code=true lang="yaml" >}}
 
 
 --------

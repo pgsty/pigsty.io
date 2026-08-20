@@ -99,9 +99,8 @@ node_etc_hosts: ["10.10.10.10 sss.pigsty"] # domain name for accessing Silo from
 ```
 
 
-{{% alert title="SNSD is for Development Only" color="warning" %}}
-Single-node single-disk mode should only be used for development, testing, and demo purposes, as it cannot tolerate any hardware failure and does not benefit from multi-disk performance improvements. For production, use [Multi-Node Multi-Disk](#multi-node-multi-disk) mode.
-{{% /alert %}}
+> [!WARNING] SNSD is for Development Only
+> Single-node single-disk mode should only be used for development, testing, and demo purposes, as it cannot tolerate any hardware failure and does not benefit from multi-disk performance improvements. For production, use [Multi-Node Multi-Disk](#multi-node-multi-disk) mode.
 
 
 
@@ -121,9 +120,8 @@ minio:
     minio_data: '/data{1...4}'   # minio data dir(s), use {x...y} to specify multi drivers
 ```
 
-{{% alert title="Use Real Disk Mount Points" color="warning" %}}
-Every SNMD data path must reside on a separate filesystem. If multiple paths resolve to the same filesystem, Silo refuses to treat them as separate drives. XFS is recommended for production; the Vagrant test setup can also prepare ext4 data drives when XFS tools are unavailable.
-{{% /alert %}}
+> [!WARNING] Use Real Disk Mount Points
+> Every SNMD data path must reside on a separate filesystem. If multiple paths resolve to the same filesystem, Silo refuses to treat them as separate drives. XFS is recommended for production; the Vagrant test setup can also prepare ext4 data drives when XFS tools are unavailable.
 
 
 

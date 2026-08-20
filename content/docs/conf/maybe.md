@@ -33,7 +33,7 @@ Usage:
 
 Source: [`pigsty/conf/app/maybe.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/maybe.yml)
 
-{{< readfile file="yaml/app/maybe.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/app/maybe.yml" code=true lang="yaml" >}}
 
 
 --------

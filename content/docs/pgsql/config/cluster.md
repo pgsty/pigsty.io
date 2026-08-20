@@ -159,29 +159,26 @@ In this case, the PostgreSQL configuration parameter [`synchronous_standby_names
 synchronous_standby_names = '2 ("pg-test-3","pg-test-2")'
 ```
 
-<details><summary>Example: Using multiple sync standbys</summary>
-
-```bash
-$ pg edit-config pg-test
----
-+synchronous_node_count: 2
-
-Apply these changes? [y/N]: y
-```
-
-After applying the configuration, two sync standbys appear.
-
-```bash
-+ Cluster: pg-test (7080814403632534854) +---------+----+-----------+-----------------+
-| Member    | Host        | Role         | State   | TL | Lag in MB | Tags            |
-+-----------+-------------+--------------+---------+----+-----------+-----------------+
-| pg-test-1 | 10.10.10.10 | Leader       | running |  1 |           | clonefrom: true |
-| pg-test-2 | 10.10.10.11 | Sync Standby | running |  1 |         0 | clonefrom: true |
-| pg-test-3 | 10.10.10.12 | Sync Standby | running |  1 |         0 | clonefrom: true |
-+-----------+-------------+--------------+---------+----+-----------+-----------------+
-```
-
-</details>
+> [!DETAILS]- Example: Using multiple sync standbys
+> ```bash
+> $ pg edit-config pg-test
+> ---
+> +synchronous_node_count: 2
+>
+> Apply these changes? [y/N]: y
+> ```
+>
+> After applying the configuration, two sync standbys appear.
+>
+> ```bash
+> + Cluster: pg-test (7080814403632534854) +---------+----+-----------+-----------------+
+> | Member    | Host        | Role         | State   | TL | Lag in MB | Tags            |
+> +-----------+-------------+--------------+---------+----+-----------+-----------------+
+> | pg-test-1 | 10.10.10.10 | Leader       | running |  1 |           | clonefrom: true |
+> | pg-test-2 | 10.10.10.11 | Sync Standby | running |  1 |         0 | clonefrom: true |
+> | pg-test-3 | 10.10.10.12 | Sync Standby | running |  1 |         0 | clonefrom: true |
+> +-----------+-------------+--------------+---------+----+-----------+-----------------+
+> ```
 
 Another scenario is using **any n** replicas to confirm commits. In this case, the configuration is slightly different. For example, if we only need any one replica to confirm commits:
 
@@ -192,20 +189,17 @@ postgresql:
     synchronous_standby_names: 'ANY 1 (*)'  # you can specify a specific replica list or use * to wildcard all replicas.
 ```
 
-<details><summary>Example: Enable ANY quorum commit</summary>
-
-```bash
-$ pg edit-config pg-test
-
-+    synchronous_standby_names: 'ANY 1 (*)' # in ANY mode, this parameter is needed
-- synchronous_node_count: 2  # in ANY mode, this parameter is not needed
-
-Apply these changes? [y/N]: y
-```
-
-After applying, the configuration takes effect, and all standbys become regular replicas in Patroni. However, in `pg_stat_replication`, you can see `sync_state` becomes `quorum`.
-
-</details>
+> [!DETAILS]- Example: Enable ANY quorum commit
+> ```bash
+> $ pg edit-config pg-test
+>
+> +    synchronous_standby_names: 'ANY 1 (*)' # in ANY mode, this parameter is needed
+> - synchronous_node_count: 2  # in ANY mode, this parameter is not needed
+>
+> Apply these changes? [y/N]: y
+> ```
+>
+> After applying, the configuration takes effect, and all standbys become regular replicas in Patroni. However, in `pg_stat_replication`, you can see `sync_state` becomes `quorum`.
 
 
 
@@ -246,69 +240,60 @@ bin/pgsql-add pg-test     # create original cluster
 bin/pgsql-add pg-test2    # create standby cluster
 ```
 
-<details><summary>Example: Change replication upstream</summary>
-
-If necessary (e.g., upstream primary-standby switchover/failover), you can change the standby cluster's replication upstream through [cluster configuration](/docs/pgsql/admin/cluster#config-cluster).
-
-To do this, simply change `standby_cluster.host` to the new upstream IP address and apply.
-
-```bash
-$ pg edit-config pg-test2
-
- standby_cluster:
-   create_replica_methods:
-   - basebackup
--  host: 10.10.10.13     # <--- old upstream
-+  host: 10.10.10.12     # <--- new upstream
-   port: 5432
-
- Apply these changes? [y/N]: y
-```
-
-</details>
+> [!DETAILS]- Example: Change replication upstream
+> If necessary (e.g., upstream primary-standby switchover/failover), you can change the standby cluster's replication upstream through [cluster configuration](/docs/pgsql/admin/cluster#config-cluster).
+>
+> To do this, simply change `standby_cluster.host` to the new upstream IP address and apply.
+>
+> ```bash
+> $ pg edit-config pg-test2
+>
+>  standby_cluster:
+>    create_replica_methods:
+>    - basebackup
+> -  host: 10.10.10.13     # <--- old upstream
+> +  host: 10.10.10.12     # <--- new upstream
+>    port: 5432
+>
+>  Apply these changes? [y/N]: y
+> ```
 
 
 
-<details><summary>Example: Promote standby cluster</summary>
-
-You can promote the standby cluster to an independent cluster at any time, so the cluster can independently handle write requests and diverge from the original cluster.
-
-To do this, you must [configure](/docs/pgsql/admin/cluster#config-cluster) the cluster and completely erase the `standby_cluster` section, then apply.
-
-```bash
-$ pg edit-config pg-test2
--standby_cluster:
--  create_replica_methods:
--  - basebackup
--  host: 10.10.10.11
--  port: 5432
-
-Apply these changes? [y/N]: y
-```
-
-</details>
+> [!DETAILS]- Example: Promote standby cluster
+> You can promote the standby cluster to an independent cluster at any time, so the cluster can independently handle write requests and diverge from the original cluster.
+>
+> To do this, you must [configure](/docs/pgsql/admin/cluster#config-cluster) the cluster and completely erase the `standby_cluster` section, then apply.
+>
+> ```bash
+> $ pg edit-config pg-test2
+> -standby_cluster:
+> -  create_replica_methods:
+> -  - basebackup
+> -  host: 10.10.10.11
+> -  port: 5432
+>
+> Apply these changes? [y/N]: y
+> ```
 
 
 
- <details><summary>Example: Cascade replication</summary>
-
-If you specify [`pg_upstream`](/docs/pgsql/param#pg_upstream) on a replica instead of the primary, you can configure **cascade replication** for the cluster.
-
-When configuring cascade replication, you must use the IP address of an instance in the cluster as the parameter value, otherwise initialization will fail. The replica performs streaming replication from a specific instance rather than the primary.
-
-The instance acting as a WAL relay is called a **Bridge Instance**. Using a bridge instance can share the burden of sending WAL from the primary. When you have dozens of replicas, using bridge instance cascade replication is a good idea.
-
-```yaml
-pg-test:
-  hosts: # pg-test-1 ---> pg-test-2 ---> pg-test-3
-    10.10.10.11: { pg_seq: 1, pg_role: primary }
-    10.10.10.12: { pg_seq: 2, pg_role: replica } # <--- bridge instance
-    10.10.10.13: { pg_seq: 3, pg_role: replica, pg_upstream: 10.10.10.12 }
-    # ^--- replicate from pg-test-2 (bridge) instead of pg-test-1 (primary)
-  vars: { pg_cluster: pg-test }
-```
-
-</details>
+ > [!DETAILS]- Example: Cascade replication
+ > If you specify [`pg_upstream`](/docs/pgsql/param#pg_upstream) on a replica instead of the primary, you can configure **cascade replication** for the cluster.
+ >
+ > When configuring cascade replication, you must use the IP address of an instance in the cluster as the parameter value, otherwise initialization will fail. The replica performs streaming replication from a specific instance rather than the primary.
+ >
+ > The instance acting as a WAL relay is called a **Bridge Instance**. Using a bridge instance can share the burden of sending WAL from the primary. When you have dozens of replicas, using bridge instance cascade replication is a good idea.
+ >
+ > ```yaml
+ > pg-test:
+ >  hosts: # pg-test-1 ---> pg-test-2 ---> pg-test-3
+ >    10.10.10.11: { pg_seq: 1, pg_role: primary }
+ >    10.10.10.12: { pg_seq: 2, pg_role: replica } # <--- bridge instance
+ >    10.10.10.13: { pg_seq: 3, pg_role: replica, pg_upstream: 10.10.10.12 }
+ >    # ^--- replicate from pg-test-2 (bridge) instead of pg-test-1 (primary)
+ >  vars: { pg_cluster: pg-test }
+ > ```
 
 
 

@@ -2,7 +2,7 @@
 title: The Lost Decade of Small Data
 linkTitle: The Lost Decade of Small Data
 date: 2025-05-23
-manualLink: "https://vonng.com/cn/db/smalldata-decade/"
+manual_link: "https://vonng.com/cn/db/smalldata-decade/"
 author: Hannes Mühleisen
 description: |
   If DuckDB had launched in 2012, the great migration to distributed analytics might never have happened. Data isn't that big after all.

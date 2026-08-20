@@ -21,23 +21,17 @@ pg-meta:
 ```
 
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-user <cls> <username>    # Create/modify <username> user on <cls> cluster
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql-user.yml -l pg-meta -e username=dbuser_app    # Use playbook to create/modify user
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-user pg-meta dbuser_app    # Create/modify dbuser_app user on pg-meta cluster
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 For the complete user definition reference, see [**User Configuration**](/docs/pgsql/config/user). See [**Access Control**](/docs/concept/sec/ac#role-system) for roles and privileges, and [**Authentication**](/docs/concept/sec/auth) for credential management.
 
@@ -62,23 +56,17 @@ Users defined in [**`pg_users`**](/docs/pgsql/param#pg_users) are auto-created d
 
 To create a new user on an existing cluster, add [**user definition**](/docs/pgsql/config/user) to `all.children.<cls>.pg_users`, then execute:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-user <cls> <username>   # Create user <username>
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql-user.yml -l <cls> -e username=<username>   # Use Ansible playbook
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-user pg-meta dbuser_app    # Create dbuser_app user in pg-meta cluster
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 **Example: Create business user `dbuser_app`**
 
@@ -93,9 +81,8 @@ bin/pgsql-user pg-meta dbuser_app    # Create dbuser_app user in pg-meta cluster
 
 **Result**: Creates `dbuser_app` user on primary, sets password, grants `dbrole_readwrite` role, adds to Pgbouncer pool, reloads Pgbouncer config on all instances.
 
-{{% alert title="Recommendation: Use playbook" color="secondary" %}}
-For manual user creation, you must ensure Pgbouncer user list sync yourself.
-{{% /alert %}}
+> [!NOTE] Recommendation: Use playbook
+> For manual user creation, you must ensure Pgbouncer user list sync yourself.
 
 
 ----------------
@@ -104,23 +91,17 @@ For manual user creation, you must ensure Pgbouncer user list sync yourself.
 
 Same command as create - playbook is idempotent. When target user exists, Pigsty modifies properties to match config.
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-user <cls> <user>   # Modify user <user> properties
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql-user.yml -l <cls> -e username=<user>   # Idempotent, can repeat
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-user pg-meta dbuser_app    # Modify dbuser_app to match config
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Not directly mutable**: `name` is the identity key in the declarative definition. The playbook does not rename an existing role. Use a controlled create, ownership/privilege and client migration, validation, and old-role removal sequence.
@@ -198,23 +179,17 @@ All other properties can be modified. Common examples:
 
 Deleting a user terminates sessions, transfers object ownership, revokes grants, and runs `DROP ROLE`; it is irreversible. Confirm the exact cluster, role, successor owner, and a recent backup before setting the user to `state: absent` and applying the change.
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-user <cls> <user>   # Actual deletion after confirmation; config must say state: absent
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql-user.yml -l <cls> -e username=<user>   # Apply the user definition with state: absent
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-user pg-meta dbuser_old    # Delete dbuser_old (config has state: absent)
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 **Config example**:
 
@@ -228,9 +203,8 @@ pg_users:
 
 **Protection**: The Ansible task skips `postgres` and the replication, admin, and monitor usernames configured in inventory. When invoked directly, `pg-drop-role` protects only the hard-coded default names `postgres`, `replicator`, `dbuser_dba`, and `dbuser_monitor`; renamed system accounts are not recognized automatically.
 
-{{% alert title="Dependency-aware, not transactional" color="warning" %}}
-`pg-drop-role` skips `DROP OWNED` in a database if its preceding `REASSIGN OWNED` fails, but the cross-database procedure is not one transaction. A mid-run failure can leave the role `NOLOGIN`, some ownership already transferred, or dependencies still present. The v4.5 Ansible task also uses `ignore_errors`, so a playbook result is not sufficient evidence. Verify role absence, successor ownership, application cutover, and the audit log afterward.
-{{% /alert %}}
+> [!WARNING] Dependency-aware, not transactional
+> `pg-drop-role` skips `DROP OWNED` in a database if its preceding `REASSIGN OWNED` fails, but the cross-database procedure is not one transaction. A mid-run failure can leave the role `NOLOGIN`, some ownership already transferred, or dependencies still present. The v4.5 Ansible task also uses `ignore_errors`, so a playbook result is not sufficient evidence. Verify role absence, successor ownership, application cutover, and the audit log afterward.
 
 In v4.5, `pgsql-user.yml` reloads Pgbouncer but does not reliably prune a deleted role from `/etc/pgbouncer/userlist.txt`. Check every cluster instance after deletion:
 
@@ -429,13 +403,12 @@ Refresh every consumer for the account. Replace `<cls>` and constrain `infra` to
 
 A mismatch between the replication role and Patroni nodes prevents new replication connections, so rotate that credential in a maintenance window and validate promptly. If VIBE or another module has rendered an admin connection string into its workspace context, rerender that module's files as well.
 
-{{% alert title="Check for duplicate Infra .pgpass entries" color="warning" %}}
-In v4.5, `env_pgpass` adds the new line with `lineinfile`; it does not remove older lines by username. Because libpq uses the first matching line, inspect every target Infra node after the refresh and remove obsolete entries through controlled editing without printing secrets:
-
-```bash
-awk -F: '$4=="dbuser_dba" || $4=="dbuser_monitor" || $4=="replicator" {print NR, $4}' ~/.pgpass
-```
-{{% /alert %}}
+> [!WARNING] Check for duplicate Infra .pgpass entries
+> In v4.5, `env_pgpass` adds the new line with `lineinfile`; it does not remove older lines by username. Because libpq uses the first matching line, inspect every target Infra node after the refresh and remove obsolete entries through controlled editing without printing secrets:
+>
+> ```bash
+> awk -F: '$4=="dbuser_dba" || $4=="dbuser_monitor" || $4=="replicator" {print NR, $4}' ~/.pgpass
+> ```
 
 [**`patroni_password`**](/docs/pgsql/param#patroni_password) protects the Patroni REST API; it is not a PostgreSQL role password. After changing it in inventory, refresh the target PostgreSQL cluster and Infra management side separately:
 

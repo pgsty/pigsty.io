@@ -1,7 +1,7 @@
 ---
 title: Bash and psql Tips
 date: 2018-04-07
-manualLink: "https://vonng.com/en/pg/psql-and-bash/"
+manual_link: "https://vonng.com/en/pg/psql-and-bash/"
 author: vonng
 description: Some tips for interacting between PostgreSQL and Bash.
 images: [/img/hero/pg/psql-and-bash.jpg]

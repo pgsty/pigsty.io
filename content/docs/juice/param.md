@@ -85,7 +85,6 @@ Instance fields:
 | `state` | No | `create` | `create` / `absent` |
 {.full-width}
 
-{{% alert title="Note" color="warning" %}}
-- `data` is only used by `juicefs format`, it will not update an existing filesystem.
-- Multiple instances on the same node must use different `port` values.
-{{% /alert %}}
+> [!WARNING] Note
+> - `data` is only used by `juicefs format`, it will not update an existing filesystem.
+> - Multiple instances on the same node must use different `port` values.

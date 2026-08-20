@@ -366,38 +366,26 @@ This playbook is described in more detail in [Playbook: One-Time Installation](/
 
 [Pigsty Home](https://demo.pigsty.io/d/pigsty): Pigsty monitoring system homepage
 
-<details><summary>Pigsty Home Dashboard</summary>
-
-[![pigsty.jpg](/img/dashboard/pigsty.jpg)](https://demo.pigsty.io/d/pigsty/)
-
-</details>
+> [!DETAILS]- Pigsty Home Dashboard
+> [![pigsty.jpg](/img/dashboard/pigsty.jpg)](https://demo.pigsty.io/d/pigsty/)
 
 
 [INFRA Overview](https://demo.pigsty.io/d/infra-overview): Pigsty infrastructure self-monitoring overview
 
-<details><summary>INFRA Overview Dashboard</summary>
-
-[![infra-overview.jpg](/img/dashboard/infra-overview.jpg)](https://demo.pigsty.io/d/infra-overview/)
-
-</details>
+> [!DETAILS]- INFRA Overview Dashboard
+> [![infra-overview.jpg](/img/dashboard/infra-overview.jpg)](https://demo.pigsty.io/d/infra-overview/)
 
 
 [Nginx Instance](https://demo.pigsty.io/d/nginx-instance): Nginx metrics and logs
 
-<details><summary>Nginx Overview Dashboard</summary>
-
-[![nginx-overview.jpg](/img/dashboard/nginx-overview.jpg)](https://demo.pigsty.io/d/nginx-overview)
-
-</details>
+> [!DETAILS]- Nginx Overview Dashboard
+> [![nginx-overview.jpg](/img/dashboard/nginx-overview.jpg)](https://demo.pigsty.io/d/nginx-overview)
 
 
 [Grafana Instance](https://demo.pigsty.io/d/grafana-instance): Grafana metrics and logs
 
-<details><summary>Grafana Overview Dashboard</summary>
-
-[![grafana-overview.jpg](/img/dashboard/grafana-overview.jpg)](https://demo.pigsty.io/d/grafana-overview)
-
-</details>
+> [!DETAILS]- Grafana Overview Dashboard
+> [![grafana-overview.jpg](/img/dashboard/grafana-overview.jpg)](https://demo.pigsty.io/d/grafana-overview)
 
 
 [VictoriaMetrics Instance](https://demo.pigsty.io/d/vmetrics-instance): VictoriaMetrics scraping, querying, and storage metrics
@@ -413,29 +401,20 @@ This playbook is described in more detail in [Playbook: One-Time Installation](/
 
 [Logs Instance](https://demo.pigsty.io/d/logs-instance): Node log search based on Vector + VictoriaLogs
 
-<details><summary>Logs Instance Dashboard</summary>
-
-[![logs-instance.jpg](/img/dashboard/logs-instance.jpg)](https://demo.pigsty.io/d/logs-instance)
-
-</details>
+> [!DETAILS]- Logs Instance Dashboard
+> [![logs-instance.jpg](/img/dashboard/logs-instance.jpg)](https://demo.pigsty.io/d/logs-instance)
 
 
 [CMDB Overview](https://demo.pigsty.io/d/inventory-cmdb): CMDB visualization
 
-<details><summary>CMDB Overview Dashboard</summary>
-
-[![cmdb-overview.jpg](/img/dashboard/cmdb-overview.jpg)](https://demo.pigsty.io/d/inventory-cmdb)
-
-</details>
+> [!DETAILS]- CMDB Overview Dashboard
+> [![cmdb-overview.jpg](/img/dashboard/cmdb-overview.jpg)](https://demo.pigsty.io/d/inventory-cmdb)
 
 
 [ETCD Overview](https://demo.pigsty.io/d/etcd-overview): etcd metrics and logs
 
-<details><summary>ETCD Overview Dashboard</summary>
-
-[![etcd-overview.jpg](/img/dashboard/etcd-overview.jpg)](https://demo.pigsty.io/d/etcd-overview)
-
-</details>
+> [!DETAILS]- ETCD Overview Dashboard
+> [![etcd-overview.jpg](/img/dashboard/etcd-overview.jpg)](https://demo.pigsty.io/d/etcd-overview)
 
 
 
@@ -457,8 +436,5 @@ The [`INFRA`](/docs/infra/param#infra) module has the following 10 parameter gro
 - [`PROMETHEUS`](/docs/infra/param#prometheus): Alertmanager and Blackbox Exporter
 - [`GRAFANA`](/docs/infra/param#grafana): Grafana observability suite
 
-<details><summary>Parameter Overview</summary>
-
-For the latest default values, types, and hierarchy, please refer to the [Parameter Reference](/docs/infra/param/#parameter-overview) to stay consistent with the Pigsty version.
-
-</details>
+> [!DETAILS]- Parameter Overview
+> For the latest default values, types, and hierarchy, please refer to the [Parameter Reference](/docs/infra/param/#parameter-overview) to stay consistent with the Pigsty version.

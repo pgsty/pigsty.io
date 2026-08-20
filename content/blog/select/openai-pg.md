@@ -2,7 +2,7 @@
 title: "Scaling Postgres to the Next Level at OpenAI"
 linkTitle: "OpenAI's PG Scaling"
 date: 2025-05-19
-manualLink: /blog/db/openai-pg/
+manual_link: /blog/db/openai-pg/
 author: Bohan Zhang
 description: >
   At PGConf.Dev 2025, Bohan Zhang from OpenAI shared how they scale PostgreSQL to support millions of queries per second using a single-primary, multi-replica architecture without sharding.

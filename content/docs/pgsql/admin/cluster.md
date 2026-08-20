@@ -31,53 +31,40 @@ For other management tasks, see: [**HA Management**](/docs/pgsql/admin/patroni),
 
 To create a new PostgreSQL cluster, first [**define the cluster**](/docs/pgsql/config/cluster) in the [**inventory**](/docs/concept/iac/inventory), then [**add nodes**](/docs/node/admin#add-node) and initialize:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/node-add  <cls>     # Add nodes in group <cls>
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./node.yml  -l <cls>    # Use Ansible playbook to add nodes in group <cls>
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/node-add pg-test    # Add nodes in pg-test group, runs ./node.yml -l pg-test
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 On managed nodes, create the cluster with: (Execute [**`pgsql.yml`**](/docs/pgsql/playbook#pgsqlyml) playbook on **`<cls>`** group)
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-add <cls>     # Create PostgreSQL cluster <cls>
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql.yml -l <cls>    # Use Ansible playbook to create PostgreSQL cluster <cls>
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-add pg-test   # Create pg-test cluster
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Example: Create 3-node PG cluster `pg-test`**
 
 {{< asciinema file="demo/pgsql.cast" markers="4:Execute" speed="1.3" autoplay="true" loop="true" >}}
 
-{{% alert title="Risk: Re-running create on existing cluster" color="warning" %}}
-If you re-run create on an existing cluster, Pigsty won't remove existing data files, but service configs will be overwritten and the cluster will **restart**!
-Additionally, if you specified a `baseline` SQL in [**database definition**](/docs/pgsql/config/db#baseline), it will re-execute - if it contains delete/overwrite logic, **data loss** may occur.
-{{% /alert %}}
+> [!WARNING] Risk: Re-running create on existing cluster
+> If you re-run create on an existing cluster, Pigsty won't remove existing data files, but service configs will be overwritten and the cluster will **restart**!
+> Additionally, if you specified a `baseline` SQL in [**database definition**](/docs/pgsql/config/db#baseline), it will re-execute - if it contains delete/overwrite logic, **data loss** may occur.
 
 
 
@@ -102,43 +89,31 @@ pg-test:
 
 Scaling out is similar to [**creating a cluster**](#create-cluster). First add the new node to Pigsty: [**Add Node**](/docs/node/admin#add-node):
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/node-add <ip>       # Add node with IP <ip>
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./node.yml -l <ip>      # Use Ansible playbook to add node <ip>
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/node-add 10.10.10.13    # Add node 10.10.10.13, runs ./node.yml -l 10.10.10.13
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 Then run the following on the new node to scale out (Install [**PGSQL module**](/docs/pgsql) on new node with same [**`pg_cluster`**](/docs/pgsql/param#pg_cluster)):
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-add <cls> <ip>  # Add node <ip> to cluster
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql.yml -l <ip>       # Core: Use Ansible playbook to install PGSQL module on <ip>
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-add pg-test 10.10.10.13   # Scale out pg-test with node 10.10.10.13
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 After scaling, you should [**Reload Service**](/docs/pgsql/admin/cluster#reload-service) to add the new member to load balancer.
 
@@ -162,43 +137,31 @@ then have the operator enter the exact `<ip>` and execute only after confirmatio
 
 First uninstall PGSQL module from target node (Execute [**`pgsql-rm.yml`**](/docs/pgsql/playbook#pgsql-rmyml) on **`<ip>`**):
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-rm <cls> <ip>   # Remove the PostgreSQL instance on <ip> from cluster <cls>
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql-rm.yml -l <ip>    # Directly remove the PostgreSQL instance on <ip> with the Ansible playbook
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-rm pg-test 10.10.10.13  # Remove node 10.10.10.13 from pg-test
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 After removing PGSQL module, optionally remove the node from Pigsty: [**Remove Node**](/docs/node/admin#remove-node):
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/node-rm <ip>          # Remove <ip> from Pigsty management
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./node-rm.yml -l <ip>     # Directly remove <ip> from Pigsty management with the Ansible playbook
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/node-rm 10.10.10.13   # Remove 10.10.10.13 from Pigsty management
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 After scaling in, remove the instance from [**inventory**](/docs/concept/iac/inventory), then [**Reload Service**](/docs/pgsql/admin/cluster#reload-service) to remove it from load balancer.
 
@@ -230,43 +193,31 @@ To destroy a cluster, uninstall PGSQL module from all nodes (Execute [**`pgsql-r
 This is irreversible data deletion. Inspect `pig pg list <cls>` and `pig pb info`, verify a recent backup and any independent copy to retain,
 and have the operator enter the exact cluster name. The commands below perform the corresponding destruction directly.
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-rm <cls>        # Destroy the entire PostgreSQL cluster <cls>
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql-rm.yml -l <cls>   # Directly destroy the entire PostgreSQL cluster <cls> with the Ansible playbook
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-rm pg-test      # Destroy cluster pg-test
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 After destroying PGSQL, optionally remove all nodes from Pigsty: [**Remove Node**](/docs/node/admin#remove-node) (optional if other services exist):
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/node-rm <cls>         # Remove every node in group <cls> from Pigsty management
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./node-rm.yml -l <cls>    # Directly remove the nodes in group <cls> from Pigsty management with the Ansible playbook
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/node-rm pg-test       # Remove every node in group pg-test from Pigsty management
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 After removal, delete the entire [**cluster definition**](/docs/pgsql/config/cluster) from [**inventory**](/docs/concept/iac/inventory).
 
@@ -310,26 +261,20 @@ When service definitions, instance weights, or cluster membership change (for ex
 
 To reload service config on entire cluster or specific instances (Execute `pg_service` subtask of [**`pgsql.yml`**](/docs/pgsql/playbook#pgsqlyml) on **`<cls>`** or **`<ip>`**):
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-svc <cls>           # Reload service config for entire cluster <cls>
 bin/pgsql-svc <cls> <ip...>   # Reload service config for specific instances
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql.yml -l <cls> -t pg_service -e pg_reload=true        # Reload entire cluster
 ./pgsql.yml -l <ip>  -t pg_service -e pg_reload=true        # Reload specific instance
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-svc pg-test                 # Reload pg-test cluster service config
 bin/pgsql-svc pg-test 10.10.10.13     # Reload pg-test 10.10.10.13 instance service config
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 > Note: If using dedicated load balancer cluster ([**`pg_service_provider`**](/docs/pgsql/param#pg_service_provider)), only reloading cluster primary updates the LB config.
 
@@ -338,11 +283,8 @@ bin/pgsql-svc pg-test 10.10.10.13     # Reload pg-test 10.10.10.13 instance serv
 
 {{< asciinema file="demo/pgsql-svc.cast" markers="" speed="1.2" autoplay="true" loop="true" >}}
 
-<details><summary>Example: Reload PG Service to Remove Instance</summary>
-
-[![asciicast](https://asciinema.org/a/568815.svg)](https://asciinema.org/a/568815)
-
-</details>
+> [!DETAILS]- Example: Reload PG Service to Remove Instance
+> [![asciicast](https://asciinema.org/a/568815.svg)](https://asciinema.org/a/568815)
 
 
 
@@ -356,26 +298,20 @@ If you have inventory-role-specific HBA rules or address ranges that reference c
 
 To reload PG and Pgbouncer HBA rules on entire cluster or specific instances (Execute HBA subtasks of [**`pgsql.yml`**](/docs/pgsql/playbook#pgsqlyml) on **`<cls>`** or **`<ip>`**):
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-hba <cls>           # Reload HBA rules for entire cluster <cls>
 bin/pgsql-hba <cls> <ip...>   # Reload HBA rules for specific instances
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql.yml -l <cls> -t pg_hba,pg_reload,pgbouncer_hba,pgbouncer_reload -e pg_reload=true   # Reload entire cluster
 ./pgsql.yml -l <ip>  -t pg_hba,pg_reload,pgbouncer_hba,pgbouncer_reload -e pg_reload=true   # Reload specific instance
 ```
-{{% /tab %}}
-{{% tab header="Example" %}}
-```bash
+
+```bash {tab="Example" value="example"}
 bin/pgsql-hba pg-test                 # Reload pg-test cluster HBA rules
 bin/pgsql-hba pg-test 10.10.10.13     # Reload pg-test 10.10.10.13 instance HBA rules
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 
 **Example: Reload `pg-test` cluster HBA rules**
@@ -437,58 +373,47 @@ pg-test2:
 
 Create standby cluster with:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Script" %}}
-```bash
+```bash {tab="Script" group="script-playbook" value="script"}
 bin/pgsql-add pg-test2    # Create standby cluster, auto-clone from upstream pg-test
 ```
-{{% /tab %}}
-{{% tab header="Playbook" %}}
-```bash
+
+```bash {tab="Playbook" value="playbook"}
 ./pgsql.yml -l pg-test2   # Use Ansible playbook to create standby cluster
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 Standby cluster follows upstream, keeping data in sync. **Promote** to independent cluster anytime:
 
-<details><summary>Example: Promote Standby to Independent Cluster</summary>
+> [!DETAILS]- Example: Promote Standby to Independent Cluster
+> Via [**Config Cluster**](#config-cluster), remove `standby_cluster` config to promote:
+>
+> ```bash
+> $ pg edit-config pg-test2
+> -standby_cluster:
+> -  create_replica_methods:
+> -  - basebackup
+> -  host: 10.10.10.11
+> -  port: 5432
+>
+> Apply these changes? [y/N]: y
+> ```
+>
+> After promotion, `pg-test2` becomes independent cluster accepting writes, forked from `pg-test`.
 
-Via [**Config Cluster**](#config-cluster), remove `standby_cluster` config to promote:
-
-```bash
-$ pg edit-config pg-test2
--standby_cluster:
--  create_replica_methods:
--  - basebackup
--  host: 10.10.10.11
--  port: 5432
-
-Apply these changes? [y/N]: y
-```
-
-After promotion, `pg-test2` becomes independent cluster accepting writes, forked from `pg-test`.
-
-</details>
-
-<details><summary>Example: Change Replication Upstream</summary>
-
-If upstream cluster switchover occurs, change standby cluster upstream via [**Config Cluster**](#config-cluster):
-
-```bash
-$ pg edit-config pg-test2
-
- standby_cluster:
-   create_replica_methods:
-   - basebackup
--  host: 10.10.10.11     # <--- old upstream
-+  host: 10.10.10.14     # <--- new upstream
-   port: 5432
-
-Apply these changes? [y/N]: y
-```
-
-</details>
+> [!DETAILS]- Example: Change Replication Upstream
+> If upstream cluster switchover occurs, change standby cluster upstream via [**Config Cluster**](#config-cluster):
+>
+> ```bash
+> $ pg edit-config pg-test2
+>
+>  standby_cluster:
+>    create_replica_methods:
+>    - basebackup
+> -  host: 10.10.10.11     # <--- old upstream
+> +  host: 10.10.10.14     # <--- new upstream
+>    port: 5432
+>
+> Apply these changes? [y/N]: y
+> ```
 
 
 ### Clone via PITR
@@ -513,19 +438,14 @@ pg-meta2:
 
 Execute clone with `pgsql-pitr.yml` playbook:
 
-{{< tabpane text=true persist=header >}}
-{{% tab header="Playbook" %}}
-```bash
+```bash {tab="Playbook" group="playbook-cli" value="playbook"}
 ./pgsql-pitr.yml -l pg-meta2    # Use the explicitly declared action: promote above
 ```
-{{% /tab %}}
-{{% tab header="CLI" %}}
-```bash
+
+```bash {tab="CLI" value="cli"}
 # Specify PITR options via command line
 ./pgsql-pitr.yml -l pg-meta2 -e '{"pg_pitr": {"cluster": "pg-meta", "time": "2025-01-10 10:00:00+00", "archive": false, "action": "promote"}}'
 ```
-{{% /tab %}}
-{{< /tabpane >}}
 
 PITR supports multiple recovery target types:
 
@@ -537,14 +457,13 @@ PITR supports multiple recovery target types:
 | LSN         | `lsn: "0/4001C80"`                   | Recover to specific WAL pos    |
 | Latest      | `pg_pitr: {}`                        | Recover to end of WAL archive  |
 
-{{% alert title="Post-PITR Processing" color="info" %}}
-Pigsty {{< param version_short >}} PITR keeps archiving enabled by default (`archive: true`). If you explicitly set `archive: false` for exploratory recovery, reset `archive_mode`, restart the cluster, and perform a new full backup after confirming the recovered data is correct:
-
-```bash
-psql -c 'ALTER SYSTEM RESET archive_mode;'
-pg restart <cls>
-pg-backup full    # Execute new full backup
-```
-{{% /alert %}}
+> [!NOTE] Post-PITR Processing
+> Pigsty {{< param version_short >}} PITR keeps archiving enabled by default (`archive: true`). If you explicitly set `archive: false` for exploratory recovery, reset `archive_mode`, restart the cluster, and perform a new full backup after confirming the recovered data is correct:
+>
+> ```bash
+> psql -c 'ALTER SYSTEM RESET archive_mode;'
+> pg restart <cls>
+> pg-backup full    # Execute new full backup
+> ```
 
 For detailed PITR usage, see [**Restore Operations**](/docs/pgsql/backup/restore) documentation.

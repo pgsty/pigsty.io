@@ -64,7 +64,7 @@ The container connects to Pigsty's local primary service on port `5436` through 
 
 Source: [`pigsty/conf/mongo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/mongo.yml)
 
-{{< readfile file="yaml/mongo.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/mongo.yml" code=true lang="yaml" >}}
 
 FerretDB settings are ordinary APP overrides under `apps.ferretdb.conf`:
 

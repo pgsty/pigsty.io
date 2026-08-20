@@ -1,7 +1,7 @@
 ---
 title: MySQL is dead, Long live PostgreSQL!
 date: 2024-07-08
-manualLink: "https://vonng.com/en/db/mysql-is-dead/"
+manual_link: "https://vonng.com/en/db/mysql-is-dead/"
 author: |
   [Ruohang Feng](https://vonng.com/en/) ([@Vonng](https://vonng.com/en/)) | [WeChat Column](https://mp.weixin.qq.com/s/JgGCn9o2-DNPNqazPZXTtA)
 

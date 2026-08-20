@@ -35,7 +35,7 @@ categories: [Reference]
 
 Source: [`pigsty/conf/demo/kafka.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/kafka.yml)
 
-{{< readfile file="yaml/demo/kafka.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/demo/kafka.yml" code=true lang="yaml" >}}
 
 
 --------

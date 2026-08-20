@@ -2,7 +2,7 @@
 title: Oracle Finally Killed MySQL
 linkTitle: Oracle Finally Killed MySQL
 date: 2024-06-20
-manualLink: "https://vonng.com/cn/db/oracle-kill-mysql/"
+manual_link: "https://vonng.com/cn/db/oracle-kill-mysql/"
 author: Peter Zaitsev
 description: |
   Peter Zaitsev, founder of Percona, criticizes how Oracles actions and inactions have killed MySQL. About 15 years after acquiring Sun and MySQL.

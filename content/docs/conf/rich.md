@@ -44,7 +44,7 @@ Usage:
 
 Source: [`pigsty/conf/rich.yml`](https://github.com/pgsty/pigsty/blob/main/conf/rich.yml)
 
-{{< readfile file="yaml/rich.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/rich.yml" code=true lang="yaml" >}}
 
 
 --------

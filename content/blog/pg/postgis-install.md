@@ -1,7 +1,7 @@
 ---
 title: Installing PostGIS from Source
 date: 2017-09-07
-manualLink: "https://vonng.com/en/pg/postgis-install/"
+manual_link: "https://vonng.com/en/pg/postgis-install/"
 author: vonng
 description: PostGIS is PostgreSQL's killer extension, but compiling and installing it isn't easy.
 images: [/img/hero/pg/postgis-install.jpg]

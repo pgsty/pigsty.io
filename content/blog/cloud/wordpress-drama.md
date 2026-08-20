@@ -1,7 +1,7 @@
 ---
 title: "WordPress Community Civil War: On Community Boundary Demarcation"
 date: 2024-10-17
-manualLink: "https://vonng.com/en/cloud/wordpress-drama/"
+manual_link: "https://vonng.com/en/cloud/wordpress-drama/"
 author: |
   [Vonng (Feng Ruohang)](https://vonng.com/en/) | [WeChat Public Account](https://blog.vonng.com/en/)
 

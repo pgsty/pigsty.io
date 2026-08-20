@@ -1,7 +1,7 @@
 ---
 title: CDC Change Data Capture Mechanisms
 date: 2019-06-12
-manualLink: "https://vonng.com/en/pg/logical-decoding/"
+manual_link: "https://vonng.com/en/pg/logical-decoding/"
 author: vonng
 description: |
   Change Data Capture is an interesting ETL alternative solution.

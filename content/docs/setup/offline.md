@@ -25,19 +25,17 @@ They ensure all future nodes have consistent software versions with the existing
 and avoid online installation failures caused by upstream changes (quite common!),
 guaranteeing you can run it independently forever.
 
-{{% alert title="Advantages of offline packages" color="success" %}}
-- Easy delivery in Internet-isolated envs.
-- Pre-download all packages in one pass to speed up installation.
-- No need to worry about upstream dependency breakage causing install failures.
-- If you have multiple nodes, all packages only need to be downloaded once, saving bandwidth.
-- Use local repo to ensure all nodes have consistent software versions for unified version management.
-  {{% /alert %}}
+> [!TIP] Advantages of offline packages
+> - Easy delivery in Internet-isolated envs.
+> - Pre-download all packages in one pass to speed up installation.
+> - No need to worry about upstream dependency breakage causing install failures.
+> - If you have multiple nodes, all packages only need to be downloaded once, saving bandwidth.
+> - Use local repo to ensure all nodes have consistent software versions for unified version management.
 
-{{% alert title="Disadvantages of offline packages" color="warning" %}}
-- Offline packages are made for **specific OS minor versions**, typically cannot be used across versions.
-- It's a snapshot at the time of creation, may not include the latest updates and OS security patches.
-- Offline packages are typically about 1GB, while online installation downloads on-demand, saving space.
-{{% /alert %}}
+> [!WARNING] Disadvantages of offline packages
+> - Offline packages are made for **specific OS minor versions**, typically cannot be used across versions.
+> - It's a snapshot at the time of creation, may not include the latest updates and OS security patches.
+> - Offline packages are typically about 1GB, while online installation downloads on-demand, saving space.
 
 
 ------
@@ -84,15 +82,12 @@ dc52b6cee50cf6226e23b065e5aa8395  pigsty-pkg-v4.5.0.u22.x86_64.tgz
 afb5cd77903613cb945bd519e4059c76  pigsty-v4.5.0.tgz
 ```
 
-{{% alert title="Offline packages are made for specific Linux OS minor versions" color="warning" %}}
-
-When OS minor versions don't match, it may work or may fail—we don't recommend taking the risk.
-
-The `v4.5.0` artifacts above were built on EL 9.8/10.2, Debian 12.15/13.6, and Ubuntu 22.04.5/24.04.4/26.04.0.
-Cross-minor installation may fail due to OpenSSL/system library differences.
-Use online installation on matching OS versions to build your own offline package, or contact us for custom packages.
-
-{{% /alert %}}
+> [!WARNING] Offline packages are made for specific Linux OS minor versions
+> When OS minor versions don't match, it may work or may fail—we don't recommend taking the risk.
+>
+> The `v4.5.0` artifacts above were built on EL 9.8/10.2, Debian 12.15/13.6, and Ubuntu 22.04.5/24.04.4/26.04.0.
+> Cross-minor installation may fail due to OpenSSL/system library differences.
+> Use online installation on matching OS versions to build your own offline package, or contact us for custom packages.
 
 
 
@@ -179,14 +174,12 @@ The `bootstrap` script will automatically detect if the offline package exists (
 If it exists, it will extract and use it, then install ansible from it.
 If the offline package doesn't exist, it will try to install ansible from the Internet. If that still fails, you're on your own!
 
-{{% alert title="Where are my yum/apt repo files?" color="warning" %}}
-The bootloader will by default **move away** existing repo configurations to ensure only required repos are enabled.
-You can find them in `/etc/yum.repos.d/backup` (EL) or `/etc/apt/backup` (Debian / Ubuntu).
-
-If you want to keep existing repo configurations during `bootstrap`, use the `-k|--keep` parameter.
-
-```bash
-./bootstrap -k # or --keep
-```
-
-{{% /alert %}}
+> [!WARNING] Where are my yum/apt repo files?
+> The bootloader will by default **move away** existing repo configurations to ensure only required repos are enabled.
+> You can find them in `/etc/yum.repos.d/backup` (EL) or `/etc/apt/backup` (Debian / Ubuntu).
+>
+> If you want to keep existing repo configurations during `bootstrap`, use the `-k|--keep` parameter.
+>
+> ```bash
+> ./bootstrap -k # or --keep
+> ```

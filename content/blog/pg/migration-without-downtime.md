@@ -2,7 +2,7 @@
 title: Changing Engines Mid-Flight — PostgreSQL Zero-Downtime Data Migration
 linkTitle: Zero-Downtime Data Migration Basic Principles
 date: 2018-02-06
-manualLink: "https://vonng.com/en/pg/migration-without-downtime/"
+manual_link: "https://vonng.com/en/pg/migration-without-downtime/"
 author: vonng
 description: Data migration typically involves stopping services for updates. Zero-downtime data migration is a relatively advanced operation.
 images: [/img/hero/pg/migration-without-downtime.jpg]

@@ -1,7 +1,7 @@
 ---
 title: "DHH: Cloud-Exit Saves Over Ten Million, More Than Expected!"
 date: 2023-07-07
-manualLink: "https://vonng.com/en/cloud/odyssey-done/"
+manual_link: "https://vonng.com/en/cloud/odyssey-done/"
 author: |
   [DHH](https://world.hey.com/dhh) | Trans: [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat Official Account](https://mp.weixin.qq.com/s/mknFXO5DSfxw7st8hhxjBQ)
 

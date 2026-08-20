@@ -1,7 +1,7 @@
 ---
 title: "From AGPL to Apache: Why I Changed Pigsty's License"
 date: 2026-01-29
-manualLink: "https://vonng.com/en/pg/pigsty-relicense/"
+manual_link: "https://vonng.com/en/pg/pigsty-relicense/"
 author: Ruohang Feng
 description: >
   Pigsty switched from AGPLv3 to Apache 2.0. Aren't you worried about freeloaders?

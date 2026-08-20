@@ -1,7 +1,7 @@
 ---
 title: "Two Months into Maintaining a MinIO Fork"
 date: 2026-04-17
-manualLink: "https://vonng.com/en/db/minio-promise-kept/"
+manual_link: "https://vonng.com/en/db/minio-promise-kept/"
 author: Ruohang Feng
 description: >
   Two months after forking MinIO, pgsty/minio ships patches for four CVEs and related security issues. No new features, just working builds, a restored console, and timely security fixes.

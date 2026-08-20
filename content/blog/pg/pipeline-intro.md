@@ -1,7 +1,7 @@
 ---
 title: Getting Started with PipelineDB
 date: 2018-09-07
-manualLink: "https://vonng.com/en/pg/pipeline-intro/"
+manual_link: "https://vonng.com/en/pg/pipeline-intro/"
 author: |
   [Feng Ruohang](https://vonng.com) ([@Vonng](https://vonng.com/en/))
 

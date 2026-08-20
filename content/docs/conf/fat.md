@@ -41,7 +41,7 @@ To specify a particular PostgreSQL version:
 
 Source: [`pigsty/conf/fat.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fat.yml)
 
-{{< readfile file="yaml/fat.yml" code="true" lang="yaml" >}}
+{{< include file="yaml/fat.yml" code=true lang="yaml" >}}
 
 
 --------

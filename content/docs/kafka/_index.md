@@ -11,10 +11,9 @@ aliases: [/docs/pilot/kafka]
 
 [Kafka](https://kafka.apache.org/) is a distributed event-streaming platform. Pigsty's [`KAFKA`](/docs/kafka) module deploys **Apache Kafka 4.1+ dynamic KRaft** clusters on managed nodes from RPM/DEB packages, with unified management of security, resources, lifecycle, and observability.
 
-{{% alert title="Current status: Beta module" color="info" %}}
-The Kafka module is currently in Beta. Test it thoroughly and confirm it meets your requirements before using it in serious production.
-That includes dynamic KRaft, strict rolling restart, TLS/SCRAM/ACL, declarative topics/users, credential and certificate rotation, and the full monitoring pipeline.
-{{% /alert %}}
+> [!NOTE] Current status: Beta module
+> The Kafka module is currently in Beta. Test it thoroughly and confirm it meets your requirements before using it in serious production.
+> That includes dynamic KRaft, strict rolling restart, TLS/SCRAM/ACL, declarative topics/users, credential and certificate rotation, and the full monitoring pipeline.
 
 
 --------

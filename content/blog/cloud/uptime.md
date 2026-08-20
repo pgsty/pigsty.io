@@ -1,7 +1,7 @@
 ---
 title: "Cloud-Exit High Availability Secret: Rejecting Complexity Masturbation"
 date: 2024-01-10
-manualLink: "https://vonng.com/en/cloud/uptime/"
+manual_link: "https://vonng.com/en/cloud/uptime/"
 author: |
   [David Heinemeier Hansson](https://world.hey.com/dhh) | Translated by [Vonng](https://vonng.com/en/)
 

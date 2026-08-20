@@ -1,7 +1,7 @@
 ---
 title: Which EL-Series OS Distribution Is Best?
 date: 2023-10-09
-manualLink: "https://vonng.com/en/db/rhel-compatibility/"
+manual_link: "https://vonng.com/en/db/rhel-compatibility/"
 author: |
   [Vonng](https://vonng.com) ([@Vonng](https://vonng.com/en/)) | [WeChat](https://mp.weixin.qq.com/s/xHG8OURTYlmnQTorFkzioA) | [Zhihu](https://zhuanlan.zhihu.com/p/660166371)
 

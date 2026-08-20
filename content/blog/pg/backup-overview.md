@@ -1,7 +1,7 @@
 ---
 title: Backup and Recovery Methods Overview
 date: 2018-02-09
-manualLink: "https://vonng.com/en/pg/backup-overview/"
+manual_link: "https://vonng.com/en/pg/backup-overview/"
 author: vonng
 description: |
   Backup is the foundation of a DBA's livelihood. With backups, there's no need to panic.

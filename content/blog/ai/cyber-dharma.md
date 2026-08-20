@@ -1,7 +1,7 @@
 ---
 title: "Cyber Dharma: A New Engineering Answer to Ancient Questions"
 date: 2026-04-16
-manualLink: "https://vonng.com/en/ai/cyber-dharma/"
+manual_link: "https://vonng.com/en/ai/cyber-dharma/"
 author: Ruohang Feng
 description: >
   A project manifesto: why build Cyber Dharma, and what it is not.
