@@ -1,0 +1,1234 @@
+# Release Log
+
+> pigsty-infra repository changelog and observability package release notes
+
+---
+
+LLMS index: [llms.txt](/llms.txt)
+
+---
+
+## 2026-08-12
+
+| Name                    | Old      | New      | Comment                                                       |
+|:------------------------|:---------|:---------|:--------------------------------------------------------------|
+| `claude`                | 2.1.226  | 2.1.227  | Official manifest verified via proxy; dual-arch RPM/DEB built |
+| `code-server`           | 4.131.0  | 4.132.0  | Official dual-architecture RPM/DEB downloaded and verified    |
+| `grafana-infinity-ds`   | 3.11.2   | 3.11.3   | Built as dual-architecture RPM/DEB                            |
+| `mtail`                 | 3.4.6    | 3.4.7    | Built as dual-architecture RPM/DEB                            |
+| `opencode`              | 1.18.15  | 1.18.16  | Built as dual-architecture RPM/DEB                            |
+| `pg-hardstorage`        | 1.1.1    | 1.2.1    | Official dual-architecture RPM/DEB downloaded and verified    |
+| `pig`                   | 1.6.1    | 1.7.0    | Official dual-architecture RPM/DEB downloaded and verified    |
+| `postgrest`             | 16.0     | 16.1     | Static dual-architecture RPM/DEB; requires PostgreSQL 14+     |
+| `redis-exporter`        | 1.88.0   | 1.89.0   | Built as dual-architecture RPM/DEB                            |
+| `sow`                   | 0.2.0    | 0.3.0    | Official dual-architecture RPM/DEB downloaded and verified    |
+| `stalwart`              | 0.16.16  | 0.16.17  | Built as dual-architecture RPM/DEB                            |
+{.stretch-last}
+
+-------
+
+## 2026-08-08
+
+| Name        | Old      | New      | Comment                                                |
+|:------------|:---------|:---------|:-------------------------------------------------------|
+| `claude`    | 2.1.223  | 2.1.226  | Official manifest verified via proxy; dual-arch built  |
+| `codex`     | 0.146.1  | 0.147.0  | Stable tag `rust-v0.147.0`; dual-arch built            |
+| `crush`     | 0.88.0   | 0.88.1   | Official tarballs repacked as `1PGSTY` with license    |
+| `grafana`   | 13.1.2   | 13.1.3   | Official dual-architecture RPM/DEB artifacts           |
+| `opencode`  | 1.18.14  | 1.18.15  | Built as dual-architecture RPM/DEB                     |
+| `postgrest` | 14.16    | 16.0     | Static dual-architecture assets; requires PostgreSQL 14+ |
+| `rainfrog`  | 0.4.2    | 0.4.3    | Built as dual-architecture RPM/DEB                     |
+| `rustfs`    | 1.0.0-b12 | 1.0.0-rc1 | Upstream `rc.1-preview.1`; dual-arch RPM/DEB built   |
+| `uv`        | 0.12.2   | 0.12.3   | Built as dual-architecture RPM/DEB                     |
+{.stretch-last}
+
+-------
+
+## 2026-08-07
+
+| Name                       | Old            | New            | Comment                                                 |
+|:---------------------------|:---------------|:---------------|:--------------------------------------------------------|
+| `claude`                   | 2.1.222        | 2.1.223        | Official manifest verified via proxy; built             |
+| `codex`                    | 0.146.0        | 0.146.1        | Stable tag `rust-v0.146.1`; built                       |
+| `code`                     | 1.131.0        | 1.132.0        | Official dual-architecture RPM/DEB verified             |
+| `dblab`                    | 0.47.2         | 0.47.4         | Built as dual-architecture RPM/DEB                      |
+| `grafana-infinity-ds`      | 3.11.1         | 3.11.2         | Built as dual-architecture RPM/DEB                      |
+| `grafana-victorialogs-ds`  | 0.30.1         | 0.31.0         | Built as dual-architecture RPM/DEB                      |
+| `k3s`                      | 1.36.2         | 1.36.3         | Official stable channel `v1.36.3+k3s1`; built           |
+| `k3s-images`               | 1.36.2         | 1.36.3         | Exact-match dual-architecture airgap images; built      |
+| `mcli`                     | 20260804000000 | 20260806000000 | Official pgsty fork dual-architecture RPM/DEB verified  |
+| `opencode`                 | 1.18.13        | 1.18.14        | Built as dual-architecture RPM/DEB                      |
+| `pgschema`                 | 1.12.1         | 1.12.2         | Official dual-architecture RPM/DEB verified             |
+| `seaweedfs`                | 4.40           | 4.41           | Built as dual-architecture RPM/DEB                      |
+| `silo`                     | minio 20260804000000 | 20260806000000 | Official replacement; dual-architecture RPM/DEB verified |
+| `uv`                       | 0.12.1         | 0.12.2         | Built as dual-architecture RPM/DEB                      |
+| `victoria-metrics`         | 1.148.0        | 1.149.0        | Main, cluster, and vmutils packages built for both arches |
+{.stretch-last}
+
+`ferretdb2` was also rebuilt at the current `2.7.0` version for both architectures. `silo` now officially replaces `minio` and is included in the Infra repository together with `mcli`.
+
+-------
+
+## 2026-08-05
+
+| Name                    | Old            | New            | Comment                                      |
+|:------------------------|:---------------|:---------------|:---------------------------------------------|
+| `agentsview`            | 0.39.0         | 0.40.1         | Built as dual-architecture RPM/DEB           |
+| `claude`                | 2.1.220        | 2.1.222        | Official manifest verified via proxy; built  |
+| `code-server`           | 4.130.0        | 4.131.0        | Official artifacts downloaded and verified  |
+| `crush`                 | 0.87.0         | 0.88.0         | Official links only; redistribution blocked  |
+| `grafana`               | 13.1.1         | 13.1.2         | Official artifacts verified; security fix    |
+| `juicefs`               | 1.4.0          | 1.4.1          | Built as dual-architecture RPM/DEB           |
+| `mcli`                  | 20260417000000 | 20260804000000 | pgsty fork artifacts downloaded and verified |
+| `minio`                 | 20260618000000 | 20260804000000 | pgsty fork artifacts downloaded and verified |
+| `mongodb-exporter`      | 0.51.0         | 0.52.0         | Built as dual-architecture RPM/DEB           |
+| `mtail`                 | 3.0.8          | 3.4.6          | Built as dual-architecture RPM/DEB           |
+| `nodejs`                | 24.18.1        | 24.19.0        | Node.js 24.x LTS; built                      |
+| `opencode`              | 1.18.9         | 1.18.13        | Built as dual-architecture RPM/DEB           |
+| `pg-hardstorage`        | 1.0.17         | 1.1.1          | Official artifacts downloaded and verified  |
+| `pgbackrest-exporter`   | 0.23.0         | 0.24.0         | Built as dual-architecture RPM/DEB           |
+| `pgstream`              | 1.2.5          | 1.3.1          | Built as dual-architecture RPM/DEB           |
+| `rclone`                | 1.74.4         | 1.75.0         | Official artifacts downloaded and verified  |
+| `rustfs`                | 1.0.0-b11      | 1.0.0-b12      | Beta line; built as dual-architecture RPM/DEB |
+| `stalwart`              | 0.16.15        | 0.16.16        | Built as dual-architecture RPM/DEB           |
+| `uv`                    | 0.12.0         | 0.12.1         | Built as dual-architecture RPM/DEB           |
+| `vray`                  | 5.51.2         | 5.52.0         | Latest stable; built as dual-architecture RPM/DEB |
+| `xray`                  | 26.3.27        | 26.7.28        | Latest dated release; built as dual-architecture RPM/DEB |
+| `prometheus`            | 3.13.1         | 3.13.2         | Security and stability release                         |
+| `pig`                   | 1.6.0          | 1.6.1          | Refreshed extension catalog                            |
+{.stretch-last}
+
+-------
+
+## 2026-07-30
+
+| Name              | Old           | New           | Comment                                        |
+|:------------------|:--------------|:--------------|:-----------------------------------------------|
+| `agentsview`      | 0.38.1        | 0.39.0        |                                                |
+| `claude`          | 2.1.218       | 2.1.220       |                                                |
+| `cloudflared`     | 2026.7.2      | 2026.7.3      |                                                |
+| `code`            | 1.130.0       | 1.131.0       |                                                |
+| `code-server`     | 4.129.0       | 4.130.0       |                                                |
+| `codex`           | 0.145.0       | 0.146.0       | Release tag `rust-v0.146.0`                    |
+| `crush`           | 0.86.0        | 0.87.0        |                                                |
+| `dblab`           | 0.46.0        | 0.47.2        |                                                |
+| `etcd`            | 3.7.0         | 3.7.1         |                                                |
+| `genai-toolbox`   | 1.7.0         | 1.8.0         | Source build; Rocky 8/9 and Debian 12 verified |
+| `headscale`       | 0.29.2        | 0.29.3        |                                                |
+| `nodejs`          | 24.18.0       | 24.18.1       | Security release                               |
+| `opencode`        | 1.18.4        | 1.18.9        |                                                |
+| `pg-exporter`     | 1.4.0         | 1.4.1         | Official release artifacts                     |
+| `pg-hardstorage`  | 1.0.13        | 1.0.17        |                                                |
+| `pgschema`        | 1.12.0        | 1.12.1        |                                                |
+| `pgstream`        | 1.2.2         | 1.2.5         |                                                |
+| `pig`             | 1.5.1         | 1.6.0         |                                                |
+| `postgrest`       | 14.15         | 14.16         |                                                |
+| `rainfrog`        | 0.3.20        | 0.4.2         |                                                |
+| `redis-exporter`  | 1.87.0        | 1.88.0        |                                                |
+| `rustfs`          | 1.0.0-beta.10 | 1.0.0-beta.11 | Preview releases excluded                      |
+| `stalwart`        | 0.16.14       | 0.16.15       |                                                |
+| `uv`              | 0.11.31       | 0.12.0        |                                                |
+| `victoria-traces` | 0.9.4         | 0.10.0        |                                                |
+{.stretch-last}
+
+-------
+
+## 2026-07-23
+
+| Name                       | Old      | New      | Comment                                            |
+|:---------------------------|:---------|:---------|:---------------------------------------------------|
+| `claude`                   | 2.1.215  | 2.1.218  | Verified against the official manifest via proxy   |
+| `codex`                    | 0.144.6  | 0.145.0  | Release tag `rust-v0.145.0`                        |
+| `dblab`                    | 0.44.1   | 0.46.0   |                                                    |
+| `duckdb`                   | 1.5.4    | 1.5.5    |                                                    |
+| `grafana-infinity-ds`      | 3.8.0    | 3.11.1   |                                                    |
+| `grafana-victorialogs-ds`  | 0.30.0   | 0.30.1   |                                                    |
+| `opencode`                 | 1.18.3   | 1.18.4   |                                                    |
+| `pg-timetable`             | 6.3.0    | 7.0.0    | Major release                                      |
+| `pgstream`                 | 1.2.0    | 1.2.2    |                                                    |
+| `stalwart`                 | 0.16.13  | 0.16.14  |                                                    |
+| `uv`                       | 0.11.29  | 0.11.31  |                                                    |
+| `grafana`                  | 13.1.0   | 13.1.1   | Direct-download artifacts                          |
+| `pg-hardstorage`           | 1.0.12   | 1.0.13   | Direct-download artifacts                          |
+| `crush`                    | 0.85.0   | 0.86.0   | Direct-download artifacts                          |
+| `code`                     | 1.129.1  | 1.130.0  | Direct-download artifacts                          |
+{.stretch-last}
+
+-------
+
+## 2026-07-20
+
+Rename `xxx_exporter` rpm packages to `xxx-exporter` style to keep consistent with deb packaging convention.
+
+| Name                       | Old              | New              | Comment                                                              |
+|:---------------------------|:-----------------|:-----------------|:---------------------------------------------------------------------|
+| `pg-exporter`              | 1.3.0            | 1.4.0            | Repackaged from the upstream Linux tarball                            |
+| `victoria-metrics`         | 1.147.0          | 1.148.0          | VictoriaMetrics main package                                         |
+| `victoria-metrics-cluster` | 1.147.0          | 1.148.0          | VictoriaMetrics companion package                                    |
+| `vmutils`                  | 1.147.0          | 1.148.0          | VictoriaMetrics companion package                                    |
+| `victoria-logs`            | 1.51.0           | 1.52.0           | VictoriaLogs main package                                            |
+| `vlogscli`                 | 1.51.0           | 1.52.0           | VictoriaLogs companion package                                       |
+| `vlagent`                  | 1.51.0           | 1.52.0           | VictoriaLogs companion package                                       |
+| `grafana-victorialogs-ds`  | 0.29.0           | 0.30.0           |                                                                      |
+| `seaweedfs`                | 4.39             | 4.40             |                                                                      |
+| `rustfs`                   | 1.0.0-b9         | 1.0.0-b10        | Prerelease line; preview releases excluded                           |
+| `sabiql`                   | 1.14.0           | 1.15.1           |                                                                      |
+| `timescaledb-tools`        | 0.19.0-1         | 0.19.0-2         | Bundles timescaledb-parallel-copy 0.13.0                             |
+| `claude`                   | 2.1.211          | 2.1.215          | Downloaded through the 8118 proxy and verified                       |
+| `codex`                    | 0.144.4          | 0.144.6          | Release tag `rust-v0.144.6`                                          |
+| `genai-toolbox`            | 1.6.0            | 1.7.0            | External build from official GCS binary and arm64 container artifact |
+| `opencode`                 | 1.18.2           | 1.18.3           |                                                                      |
+| `pg-hardstorage`           | 1.0.10           | 1.0.12           | Direct-download artifacts                                            |
+| `code`                     | 1.129.0          | 1.129.1          | Direct-download artifacts                                            |
+| `code-server`              | 4.128.0          | 4.129.0          | Direct-download artifacts                                            |
+| `pev2`                     | 1.22.0           | 1.23.0           | Noarch package                                                       |
+| `k3s`                      | -                | 1.36.2           | Upstream `v1.36.2+k3s1`; amd64 and arm64                             |
+| `k3s-images`               | -                | 1.36.2           | Exact-match system image package for both architectures              |
+{.stretch-last}
+
+-------
+
+## 2026-07-16
+
+| Name               | Old      | New      | Comment                                        |
+|:-------------------|:---------|:---------|:-----------------------------------------------|
+| `jmx-exporter`     | -        | 1.6.0    | New noarch package                             |
+| `node_exporter`    | 1.11.1   | 1.12.1   |                                                |
+| `redis_exporter`   | 1.86.0   | 1.87.0   |                                                |
+| `etcd`             | 3.6.13   | 3.7.0    |                                                |
+| `dblab`            | 0.43.0   | 0.44.1   |                                                |
+| `pgstream`         | 1.1.1    | 1.2.0    |                                                |
+| `rainfrog`         | 0.3.19   | 0.3.20   |                                                |
+| `rustfs`           | 1.0.0-b8 | 1.0.0-b9 | Prerelease line                                |
+| `agentsview`       | 0.37.5   | 0.38.1   |                                                |
+| `claude`           | 2.1.206  | 2.1.211  | Downloaded through the 8118 proxy and verified |
+| `codex`            | 0.144.1  | 0.144.4  | Release tag `rust-v0.144.4`                    |
+| `stalwart`         | 0.16.12  | 0.16.13  |                                                |
+| `npgsqlrest`       | 3.20.0   | 3.21.0   |                                                |
+| `postgrest`        | 14.14    | 14.15    |                                                |
+| `opencode`         | 1.17.18  | 1.18.2   |                                                |
+| `uv`               | 0.11.28  | 0.11.29  |                                                |
+| `vector`           | 0.56.0   | 0.57.0   | Direct-download artifacts                      |
+| `pg-hardstorage`   | 1.0.8    | 1.0.10   | Direct-download artifacts                      |
+| `crush`            | 0.84.0   | 0.85.0   | Direct-download artifacts                      |
+| `code`             | 1.128.0  | 1.129.0  | Direct-download artifacts                      |
+| `code-server`      | 4.127.0  | 4.128.0  | Direct-download artifacts                      |
+| `cloudflared`      | 2026.7.1 | 2026.7.2 | Direct-download artifacts                      |
+{.stretch-last}
+
+-------
+
+## 2026-07-10
+
+| Name          | Old      | New      | Comment                                        |
+|:--------------|:---------|:---------|:-----------------------------------------------|
+| `prometheus`  | 3.13.0   | 3.13.1   |                                                |
+| `seaweedfs`   | 4.38     | 4.39     |                                                |
+| `agentsview`  | 0.36.1   | 0.37.5   |                                                |
+| `claude`      | 2.1.204  | 2.1.206  | Downloaded through the 8118 proxy and verified |
+| `codex`       | 0.143.0  | 0.144.1  | Release tag `rust-v0.144.1`                    |
+| `npgsqlrest`  | 3.19.0   | 3.20.0   |                                                |
+| `opencode`    | 1.17.15  | 1.17.18  |                                                |
+| `crush`       | 0.82.0   | 0.84.0   | Direct-download artifacts                      |
+| `rclone`      | 1.74.3   | 1.74.4   | Direct-download artifacts                      |
+| `cloudflared` | 2026.6.1 | 2026.7.1 | Direct-download artifacts                      |
+{.stretch-last}
+
+-------
+
+## 2026-07-08
+
+| Name                         | Old     | New     | Comment |
+|:-----------------------------|:--------|:--------|:--------|
+| `pg-hardstorage`             | -       | 1.0.8   |         |
+| `alertmanager`               | 0.33.0  | 0.33.1  |         |
+| `victoria-metrics`           | 1.146.0 | 1.147.0 |         |
+| `victoria-metrics-cluster`   | 1.146.0 | 1.147.0 |         |
+| `vmutils`                    | 1.146.0 | 1.147.0 |         |
+| `restic`                     | 0.19.0  | 0.19.1  |         |
+| `juicefs`                    | 1.3.1   | 1.4.0   |         |
+| `dblab`                      | 0.42.1  | 0.43.0  |         |
+| `pgstream`                   | 1.1.0   | 1.1.1   |         |
+| `tigerbeetle`                | 0.17.8  | 0.17.9  |         |
+| `grafana-victoriametrics-ds` | 0.25.1  | 0.25.2  |         |
+| `hugo`                       | 0.163.3 | 0.164.0 |         |
+| `seaweedfs`                  | 4.37    | 4.38    |         |
+| `v2ray`                      | 5.49.0  | 5.51.2  |         |
+| `sabiql`                     | 1.13.0  | 1.14.0  |         |
+| `claude`                     | 2.1.201 | 2.1.204 |         |
+| `codex`                      | 0.142.5 | 0.143.0 |         |
+| `stalwart`                   | 0.16.11 | 0.16.12 |         |
+| `opencode`                   | 1.17.13 | 1.17.15 |         |
+| `uv`                         | 0.11.26 | 0.11.28 |         |
+| `golang`                     | 1.26.4  | 1.26.5  |         |
+| `pgschema`                   | 1.11.1  | 1.12.0  |         |
+| `crush`                      | 0.81.0  | 0.82.0  |         |
+| `code`                       | 1.127.0 | 1.128.0 |         |
+| `pig`                        | 1.5.0   | 1.5.1   |         |
+{.stretch-last}
+
+-------
+
+## 2026-07-04
+
+| Name                         | Old     | New     | Comment |
+|:-----------------------------|:--------|:--------|:--------|
+| `prometheus`                 | 3.12.0  | 3.13.0  |         |
+| `victoria-traces`            | 0.9.3   | 0.9.4   |         |
+| `etcd`                       | 3.6.12  | 3.6.13  |         |
+| `dblab`                      | 0.42.0  | 0.42.1  |         |
+| `grafana-victoriametrics-ds` | 0.25.0  | 0.25.1  |         |
+| `headscale`                  | 0.29.1  | 0.29.2  |         |
+| `seaweedfs`                  | 4.35    | 4.37    |         |
+| `agentsview`                 | 0.34.5  | 0.36.1  |         |
+| `claude`                     | 2.1.187 | 2.1.201 |         |
+| `codex`                      | 0.142.0 | 0.142.5 |         |
+| `stalwart`                   | 0.16.10 | 0.16.11 |         |
+| `genai-toolbox`              | 1.5.0   | 1.6.0   |         |
+| `npgsqlrest`                 | 3.18.1  | 3.19.0  |         |
+| `postgrest`                  | 14.13   | 14.14   |         |
+| `opencode`                   | 1.17.9  | 1.17.13 |         |
+| `uv`                         | 0.11.24 | 0.11.26 |         |
+| `grafana`                    | 13.0.2  | 13.1.0  |         |
+| `crush`                      | 0.79.1  | 0.81.0  |         |
+| `code`                       | 1.125.1 | 1.127.0 |         |
+| `code-server`                | 4.125.0 | 4.127.0 |         |
+| `pig`                        | 1.4.2   | 1.5.0   |         |
+{.stretch-last}
+
+-------
+
+## 2026-07-01
+
+| Name                         | Old Ver        | New Ver        | Note |
+|:-----------------------------|:---------------|:---------------|:-----|
+| `agentsview`                 | 0.32.1         | 0.34.5         |      |
+| `alertmanager`               | 0.32.2         | 0.33.0         |      |
+| `asciinema`                  | 3.2.0          | 3.2.1          |      |
+| `claude`                     | 2.1.172        | 2.1.187        |      |
+| `codex`                      | 0.139.0        | 0.142.0        |      |
+| `dblab`                      | 0.40.1         | 0.42.0         |      |
+| `duckdb`                     | 1.5.3          | 1.5.4          |      |
+| `grafana-victorialogs-ds`    | 0.28.0         | 0.29.0         |      |
+| `headscale`                  | 0.28.0         | 0.29.1         |      |
+| `hugo`                       | 0.163.0        | 0.163.3        |      |
+| `kafka`                      | 4.3.0          | 4.3.1          |      |
+| `minio`                      | 20260417000000 | 20260618000000 |      |
+| `nodejs`                     | 24.16.0        | 24.18.0        |      |
+| `npgsqlrest`                 | 3.16.3         | 3.18.1         |      |
+| `opencode`                   | 1.17.3         | 1.17.9         |      |
+| `pev2`                       | 1.21.0         | 1.22.0         |      |
+| `pg_exporter`                | 1.2.2          | 1.3.0          |      |
+| `pgschema`                   | 1.11.0         | 1.11.1         |      |
+| `pgstream`                   | 1.0.3          | 1.1.0          |      |
+| `pig`                        | 1.4.1          | 1.4.2          |      |
+| `rainfrog`                   | 0.3.18         | 0.3.19         |      |
+| `sabiql`                     | 1.12.3         | 1.13.0         |      |
+| `seaweedfs`                  | 4.32           | 4.35           |      |
+| `stalwart`                   | 0.16.8         | 0.16.10        |      |
+| `tigerbeetle`                | 0.17.6         | 0.17.8         |      |
+| `uv`                         | 0.11.20        | 0.11.24        |      |
+| `victoria-logs`              | 1.50.0         | 1.51.0         |      |
+| `vlagent`                    | 1.50.0         | 1.51.0         |      |
+| `vlogscli`                   | 1.50.0         | 1.51.0         |      |
+| `victoria-metrics`           | 1.145.0        | 1.146.0        |      |
+| `victoria-metrics-cluster`   | 1.145.0        | 1.146.0        |      |
+| `vmutils`                    | 1.145.0        | 1.146.0        |      |
+| `victoria-traces`            | 0.9.2          | 0.9.3          |      |
+| `code`                       | 1.124.0        | 1.125.1        |      |
+| `code-server`                | 4.123.0        | 4.125.0        |      |
+| `cloudflared`                | 2026.6.0       | 2026.6.1       |      |
+| `crush`                      | 0.76.0         | 0.79.1         |      |
+| `genai-toolbox`              | 1.1.0          | 1.5.0          |      |
+{.stretch-last}
+
+-------
+
+## 2026-06-12
+
+| Name                         | Old Ver  | New Ver  | Note                                           |
+|:-----------------------------|:---------|:---------|:-----------------------------------------------|
+| `prometheus`                 | 3.11.3   | 3.12.0   |                                                |
+| `pushgateway`                | 1.11.2   | 1.11.3   |                                                |
+| `alertmanager`               | 0.32.1   | 0.32.2   |                                                |
+| `node_exporter`              | 1.11.1   | 1.11.1   | Tarball cache restored; version metadata fixed |
+| `redis_exporter`             | 1.83.0   | 1.86.0   |                                                |
+| `victoria-metrics`           | 1.143.0  | 1.145.0  | Base package                                   |
+| `victoria-metrics-cluster`   | 1.143.0  | 1.145.0  | VictoriaMetrics companion package              |
+| `vmutils`                    | 1.143.0  | 1.145.0  | VictoriaMetrics companion package              |
+| `victoria-traces`            | 0.8.2    | 0.9.2    |                                                |
+| `duckdb`                     | 1.5.2    | 1.5.3    |                                                |
+| `etcd`                       | 3.6.11   | 3.6.12   |                                                |
+| `restic`                     | 0.18.1   | 0.19.0   |                                                |
+| `tigerfs`                    | 0.6.0    | 0.7.0    |                                                |
+| `dblab`                      | 0.38.0   | 0.40.1   |                                                |
+| `pgstream`                   | 1.0.2    | 1.0.3    |                                                |
+| `tigerbeetle`                | 0.17.4   | 0.17.6   |                                                |
+| `grafana-victorialogs-ds`    | 0.26.3   | 0.28.0   |                                                |
+| `grafana-victoriametrics-ds` | 0.24.0   | 0.25.0   |                                                |
+| `kafka`                      | 4.2.0    | 4.3.0    |                                                |
+| `caddy`                      | 2.11.2   | 2.11.4   |                                                |
+| `hugo`                       | 0.161.1  | 0.163.0  |                                                |
+| `seaweedfs`                  | 4.23     | 4.32     |                                                |
+| `rustfs`                     | 1.0.0-b2 | 1.0.0-b8 | Prerelease line                                |
+| `v2ray`                      | 5.48.0   | 5.49.0   |                                                |
+| `sabiql`                     | 1.12.2   | 1.12.3   |                                                |
+| `agentsview`                 | 0.29.0   | 0.32.1   | Upstream moved to kenn-io/agentsview           |
+| `claude`                     | 2.1.138  | 2.1.172  | Downloaded through the 8118 proxy and verified |
+| `codex`                      | 0.130.0  | 0.139.0  | Release tag `rust-v0.139.0`                    |
+| `stalwart`                   | 0.16.4   | 0.16.8   |                                                |
+| `maddy`                      | 0.9.4    | 0.9.5    |                                                |
+| `npgsqlrest`                 | 3.15.1   | 3.16.3   |                                                |
+| `postgrest`                  | 14.11    | 14.13    |                                                |
+| `opencode`                   | 1.14.48  | 1.17.3   |                                                |
+| `uv`                         | 0.11.13  | 0.11.20  |                                                |
+| `golang`                     | 1.26.3   | 1.26.4   |                                                |
+| `nodejs`                     | 24.15.0  | 24.16.0  | Stayed on the 24.x policy line                 |
+| `grafana`                    | 13.0.1   | 13.0.2   | Skipped 13.1 nightly                           |
+| `vector`                     | 0.55.0   | 0.56.0   |                                                |
+| `pgschema`                   | 1.9.0    | 1.11.0   |                                                |
+| `crush`                      | 0.66.1   | 0.76.0   | Direct-download artifact refresh               |
+| `rclone`                     | 1.74.1   | 1.74.3   | Direct-download artifact refresh               |
+| `code`                       | 1.118.1  | 1.124.0  | Direct-download artifact refresh               |
+| `code-server`                | 4.118.0  | 4.123.0  | Direct-download artifact refresh               |
+| `cloudflared`                | 2026.3.0 | 2026.6.0 | Direct-download artifact refresh               |
+{.stretch-last}
+
+-------
+
+## 2026-05-11
+
+| Name                       | Old Ver  | New Ver  | Note                                           |
+|:---------------------------|:---------|:---------|:-----------------------------------------------|
+| `victoria-metrics`         | 1.142.0  | 1.143.0  |                                                |
+| `victoria-metrics-cluster` | 1.142.0  | 1.143.0  | VictoriaMetrics companion package              |
+| `vmutils`                  | 1.142.0  | 1.143.0  | VictoriaMetrics companion package              |
+| `mongodb_exporter`         | 0.50.0   | 0.51.0   |                                                |
+| `redis_exporter`           | 1.82.0   | 1.83.0   |                                                |
+| `etcd`                     | 3.6.10   | 3.6.11   |                                                |
+| `pgstream`                 | 1.0.1    | 1.0.2    |                                                |
+| `seaweedfs`                | 4.22     | 4.23     |                                                |
+| `rustfs`                   | 1.0.0-b1 | 1.0.0-b2 | Prerelease line                                |
+| `tigerbeetle`              | 0.17.2   | 0.17.4   |                                                |
+| `sabiql`                   | 1.11.1   | 1.12.2   |                                                |
+| `agentsview`               | 0.26.0   | 0.29.0   |                                                |
+| `claude`                   | 2.1.123  | 2.1.138  | Downloaded through the 8118 proxy and verified |
+| `codex`                    | 0.125.0  | 0.130.0  |                                                |
+| `stalwart`                 | 0.16.2   | 0.16.4   |                                                |
+| `maddy`                    | 0.9.3    | 0.9.4    |                                                |
+| `npgsqlrest`               | 3.12.0   | 3.15.1   |                                                |
+| `postgrest`                | 14.10    | 14.11    |                                                |
+| `opencode`                 | 1.14.30  | 1.14.48  |                                                |
+| `uv`                       | 0.11.8   | 0.11.13  |                                                |
+| `golang`                   | 1.26.2   | 1.26.3   |                                                |
+| `crush`                    | 0.64.0   | 0.66.1   | Direct-download artifact refresh               |
+| `rclone`                   | 1.73.5   | 1.74.1   | Direct-download artifact refresh               |
+| `code-server`              | 4.117.0  | 4.118.0  | Direct-download artifact refresh               |
+| `cloudflared`              | 2026.2.0 | 2026.3.0 | Direct-download artifact refresh               |
+{.stretch-last}
+
+-------
+
+## 2026-05-01
+
+| Name                       | Old Ver        | New Ver      | Note                                           |
+|:---------------------------|:---------------|:-------------|:-----------------------------------------------|
+| `prometheus`               | 3.11.2         | 3.11.3       |                                                |
+| `alertmanager`             | 0.32.0         | 0.32.1       |                                                |
+| `victoria-metrics`         | 1.140.0        | 1.142.0      |                                                |
+| `victoria-metrics-cluster` | 1.140.0        | 1.142.0      | VictoriaMetrics companion package              |
+| `vmutils`                  | 1.140.0        | 1.142.0      | VictoriaMetrics companion package              |
+| `victoria-traces`          | 0.8.1          | 0.8.2        |                                                |
+| `tigerbeetle`              | 0.17.1         | 0.17.2       |                                                |
+| `loki`                     | 3.6.7          | 3.6.7        | Obsolete and kept frozen                       |
+| `promtail`                 | 3.6.7          | 3.6.7        | Obsolete and kept frozen                       |
+| `logcli`                   | 3.6.7          | 3.6.7        | Obsolete and kept frozen with Loki             |
+| `hugo`                     | 0.160.1        | 0.161.1      |                                                |
+| `seaweedfs`                | 4.21           | 4.22         |                                                |
+| `rustfs`                   | 1.0.0-alpha.94 | 1.0.0-b1     | Prerelease line                                |
+| `sabiql`                   | 1.11.0         | 1.11.1       |                                                |
+| `timescaledb-tools`        | 0.18.2         | 0.19.0       | Rebuilt timescaledb-tune Linux binaries        |
+| `agentsview`               | 0.25.0         | 0.26.0       |                                                |
+| `claude`                   | 2.1.119        | 2.1.123      | Downloaded through the 8118 proxy and verified |
+| `stalwart`                 | 0.16.0         | 0.16.2       |                                                |
+| `opencode`                 | 1.14.24        | 1.14.30      |                                                |
+| `uv`                       | 0.11.7         | 0.11.8       |                                                |
+| `vip-manager`              | 4.0.0          | 4.2.0        | Direct-download metadata refresh               |
+| `crush`                    | 0.62.1         | 0.64.0       | Direct-download metadata refresh               |
+| `code`                     | 1.115.0        | 1.118.1      | Direct-download metadata refresh               |
+| `pig`                      | 1.4.0          | 1.4.1        | Metadata only                                  |
+{.stretch-last}
+
+-------
+
+## 2026-04-25
+
+| Name                   | Old Ver | New Ver | Note                                           |
+|:-----------------------|:--------|:--------|:-----------------------------------------------|
+| `grafana`              | 13.0.0  | 13.0.1  | Direct-download metadata refresh               |
+| `vector`               | 0.54.0  | 0.55.0  | Direct-download metadata refresh               |
+| `keepalived_exporter`  | 1.7.0   | 1.7.1   |                                                |
+| `seaweedfs`            | 4.20    | 4.21    |                                                |
+| `tigerbeetle`          | 0.17.0  | 0.17.1  |                                                |
+| `agentsview`           | 0.22.2  | 0.25.0  |                                                |
+| `claude`               | 2.1.114 | 2.1.119 | Downloaded through the 8118 proxy and verified |
+| `codex`                | 0.121.0 | 0.125.0 |                                                |
+| `stalwart`             | 0.15.5  | 0.16.0  |                                                |
+| `opencode`             | 1.4.11  | 1.14.24 |                                                |
+| `crush`                | 0.57.0  | 0.62.1  | Direct-download metadata refresh               |
+| `rclone`               | 1.73.4  | 1.73.5  | Direct-download metadata refresh               |
+| `code-server`          | 4.115.0 | 4.117.0 | Direct-download metadata refresh               |
+{.stretch-last}
+
+-------
+
+## 2026-04-19
+
+| Name                         | Old Ver          | New Ver           | Note                                                         |
+|:-----------------------------|:-----------------|:------------------|:-------------------------------------------------------------|
+| `victoria-logs`              | 1.49.0           | 1.50.0            | base package                                                 |
+| `vlagent`                    | 1.49.0           | 1.50.0            | VictoriaLogs companion package                               |
+| `vlogscli`                   | 1.49.0           | 1.50.0            | VictoriaLogs companion package                               |
+| `victoria-traces`            | 0.8.0            | 0.8.1             |                                                              |
+| `dblab`                      | 0.37.1           | 0.38.0            |                                                              |
+| `grafana-victoriametrics-ds` | 0.23.4           | 0.24.0            |                                                              |
+| `grafana-plugins`            | 12.3.0           | 13.0.0            | Noarch plugin bundle, manually curated                       |
+| `garage`                     | 2.2.0            | 2.3.0             |                                                              |
+| `rustfs`                     | 1.0.0-alpha.93   | 1.0.0-alpha.94    |                                                              |
+| `claude`                     | 2.1.107          | 2.1.114           | Refactored to versioned templates and converged on latest stable |
+| `codex`                      | 0.121.0-alpha.7  | 0.121.0           | Switched to the stable release and rebuilt                   |
+| `genai-toolbox`              | 1.0.0            | 1.1.0             | Synced build artifacts from the genai-toolbox project        |
+| `postgrest`                  | 14.9             | 14.10             |                                                              |
+| `opencode`                   | 1.4.3            | 1.4.11            | Switched to versioned cache and rebuilt                      |
+| `uv`                         | 0.11.6           | 0.11.7            |                                                              |
+| `nodejs`                     | 24.14.1          | 24.15.0           | Stayed on the 24.x policy line                               |
+| `minio`                      | 20260325000000   | 20260417000000    | Direct-link metadata refresh; rebuilt from the pgsty fork    |
+| `mcli`                       | 20260321000000   | 20260417000000    | Direct-link metadata refresh; rebuilt from the pgsty fork    |
+| `sabiql`                     | 1.10.0           | 1.11.0            |                                                              |
+| `etcd`                       | 3.6.8            | 3.6.10            | Unified package version                                      |
+| `pig`                        | 1.3.4            | 1.4.0             |                                                              |
+{.stretch-last}
+
+-------
+
+## 2026-04-14
+
+| Name                         | Old Ver          | New Ver           | Note                                                  |
+|:-----------------------------|:-----------------|:------------------|:------------------------------------------------------|
+| `prometheus`                 | 3.10.0           | 3.11.2            |                                                       |
+| `alertmanager`               | 0.31.1           | 0.32.0            |                                                       |
+| `node_exporter`              | 1.10.2           | 1.11.1            |                                                       |
+| `mongodb_exporter`           | 0.49.0           | 0.50.0            |                                                       |
+| `victoria-metrics`           | 1.138.0          | 1.140.0           |                                                       |
+| `victoria-metrics-cluster`   | 1.138.0          | 1.140.0           | VictoriaMetrics companion package                     |
+| `vmutils`                    | 1.138.0          | 1.140.0           | VictoriaMetrics companion package                     |
+| `victoria-logs`              | 1.48.0           | 1.49.0            |                                                       |
+| `vlagent`                    | 1.48.0           | 1.49.0            | VictoriaLogs companion package                        |
+| `vlogscli`                   | 1.48.0           | 1.49.0            | VictoriaLogs companion package                        |
+| `grafana`                    | 12.4.1           | 13.0.0            | Major release upgrade                                 |
+| `duckdb`                     | 1.5.0            | 1.5.2             |                                                       |
+| `dblab`                      | 0.34.3           | 0.37.1            |                                                       |
+| `grafana-victoriametrics-ds` | 0.23.1           | 0.23.4            |                                                       |
+| `grafana-infinity-ds`        | 3.7.4            | 3.8.0             |                                                       |
+| `seaweedfs`                  | 4.17             | 4.20              |                                                       |
+| `rustfs`                     | 1.0.0-alpha.89   | 1.0.0-alpha.93    | Switched to versioned release asset names             |
+| `v2ray`                      | 5.47.0           | 5.48.0            |                                                       |
+| `xray`                       | 26.2.6           | 26.3.27           |                                                       |
+| `agentsview`                 | 0.15.0           | 0.22.2            |                                                       |
+| `claude`                     | 2.1.81           | 2.1.107           | Rebuilt; Makefile now pulls from a versioned bucket   |
+| `codex`                      | 0.116.0          | 0.121.0-alpha.7   | Prerelease chain upgrade; rebuilt                     |
+| `maddy`                      | 0.8.2            | 0.9.3             |                                                       |
+| `genai-toolbox`              | 0.27.0           | 1.0.0             | Metadata-only refresh; upstream renamed to mcp-toolbox |
+| `npgsqlrest`                 | 3.11.1           | 3.12.0            |                                                       |
+| `postgrest`                  | 14.7             | 14.9              |                                                       |
+| `rainfrog`                   | 0.3.17           | 0.3.18            |                                                       |
+| `sqlcmd`                     | 1.9.0            | 1.10.0            |                                                       |
+| `opencode`                   | 1.2.27           | 1.4.3             | Rebuilt                                               |
+| `uv`                         | 0.10.12          | 0.11.6            |                                                       |
+| `golang`                     | 1.26.1           | 1.26.2            |                                                       |
+| `nodejs`                     | 24.14.0          | 24.14.1           | Stayed on the 24.x policy line                        |
+| `pgschema`                   | 1.7.4            | 1.9.0             |                                                       |
+| `crush`                      | 0.51.2           | 0.57.0            |                                                       |
+| `rclone`                     | 1.73.2           | 1.73.4            |                                                       |
+| `code`                       | 1.112.0          | 1.115.0           |                                                       |
+| `code-server`                | 4.112.0          | 4.115.0           |                                                       |
+| `tigerbeetle`                | 0.16.77          | 0.17.0            |                                                       |
+| `tigerfs`                    | 0.5.0            | 0.6.0             |                                                       |
+| `sabiql`                     | 1.8.2            | 1.10.0            |                                                       |
+| `hugo`                       | 0.158.0          | 0.160.1           |                                                       |
+| `etcd`                       | 3.6.9            | 3.6.8             | Frozen at 3.6.8 and README corrected                  |
+| `loki`                       | 3.6.7            | 3.6.7             | Deprecated and kept frozen                            |
+| `promtail`                   | 3.6.7            | 3.6.7             | Deprecated and kept frozen                            |
+| `pg_exporter`                | 1.2.1            | 1.2.2             | Direct-link metadata refresh                          |
+| `pig`                        | 1.3.2            | 1.3.4             | Direct-link metadata refresh                          |
+{.stretch-last}
+
+-------
+
+## 2026-03-21
+
+| Name                       | Old Ver         | New Ver         | Note |
+|:---------------------------|:----------------|:----------------|:-----|
+| `grafana`                  | 12.4.0          | 12.4.1          |      |
+| `pgbackrest_exporter`      | 0.22.0          | 0.23.0          |      |
+| `redis_exporter`           | 1.81.0          | 1.82.0          |      |
+| `victoria-logs`            | 1.47.0          | 1.48.0          |      |
+| `vlagent`                  | 1.47.0          | 1.48.0          |      |
+| `vlogscli`                 | 1.47.0          | 1.48.0          |      |
+| `victoria-traces`          | 0.7.1           | 0.8.0           |      |
+| `duckdb`                   | 1.4.4           | 1.5.0           |      |
+| `pg_timetable`             | 6.2.0           | 6.3.0           |      |
+| `pgschema`                 | 1.4.2           | 1.7.4           |      |
+| `pgstream`                 | -               | 1.0.1           | new  |
+| `tigerbeetle`              | 0.16.75         | 0.16.77         |      |
+| `grafana-victorialogs-ds`  | 0.26.2          | 0.26.3          |      |
+| `grafana-infinity-ds`      | 3.7.3           | 3.7.4           |      |
+| `caddy`                    | 2.11.1          | 2.11.2          |      |
+| `npgsqlrest`               | 3.10.0          | 3.11.1          |      |
+| `postgrest`                | 14.5            | 14.7            |      |
+| `opencode`                 | 1.2.17          | 1.2.27          |      |
+| `pev2`                     | 1.20.2          | 1.21.0          |      |
+| `golang`                   | 1.26.0          | 1.26.1          |      |
+| `vector`                   | 0.53.0          | 0.54.0          |      |
+| `rclone`                   | 1.73.1          | 1.73.2          |      |
+| `code-server`              | 4.109.5         | 4.112.0         |      |
+| `code`                     | 1.109.4         | 1.112.0         |      |
+| `seaweedfs`                | 4.15            | 4.17            |      |
+| `uv`                       | 0.10.8          | 0.10.12         |      |
+| `codex`                    | 0.110.0         | 0.116.0         |      |
+| `v2ray`                    | 5.44.1          | 5.47.0          |      |
+| `sabiql`                   | 1.6.2           | 1.8.2           |      |
+| `sql-studio`               | -               | 0.1.51          | new  |
+| `rainfrog`                 | -               | 0.3.17          | new  |
+| `agentsview`               | 0.10.0          | 0.15.0          |      |
+| `crush`                    | -               | 0.51.2          | new  |
+| `tigerfs`                  | -               | 0.5.0           | new  |
+| `victoria-metrics`         | 1.137.0         | 1.138.0         |      |
+| `victoria-metrics-cluster` | 1.137.0         | 1.138.0         |      |
+| `vmutils`                  | 1.137.0         | 1.138.0         |      |
+| `hugo`                     | 0.157.0         | 0.158.0         |      |
+| `rustfs`                   | 1.0.0-alpha.85  | 1.0.0-alpha.89  |      |
+| `mysqld_exporter`          | 0.18.0          | 0.19.0          |      |
+| `pg_exporter`              | 1.2.0          | 1.2.1          |      |
+| `pig`                      | 1.3.1          | 1.3.2          |      |
+| `minio`                    | 20260214       | 20260321000000 |      |
+| `mcli`                     | 20260213       | 20260321000000 |      |
+| `claude`                   | 2.1.68         | 2.1.81         |      |
+| `ivroysql`                 | 5.1            | 5.3            |      |
+{.stretch-last}
+
+-------
+
+## 2026-03-05
+
+| Name                         | Old Ver         | New Ver         | Note |
+|:-----------------------------|:----------------|:----------------|:-----|
+| `asciinema`                  | 3.1.0           | 3.2.0           |      |
+| `grafana-infinity-ds`        | 3.7.2           | 3.7.3           |      |
+| `victoria-metrics`           | 1.136.0         | 1.137.0         |      |
+| `victoria-metrics-cluster`   | 1.136.0         | 1.137.0         |      |
+| `vmutils`                    | 1.136.0         | 1.137.0         |      |
+| `hugo`                       | 0.155.3         | 0.157.0         |      |
+| `opencode`                   | 1.2.15          | 1.2.17          |      |
+| `rustfs`                     | 1.0.0-alpha.83  | 1.0.0-alpha.85  |      |
+| `seaweedfs`                  | 4.13            | 4.15            |      |
+| `tigerbeetle`                | 0.16.74         | 0.16.75         |      |
+| `uv`                         | 0.10.4          | 0.10.8          |      |
+| `codex`                      | 0.105.0         | 0.110.0         |      |
+| `claude`                     | 2.1.59          | 2.1.68          |      |
+| `xray`                       | -               | 26.2.6          | new  |
+| `gost`                       | -               | 2.12.0          | new  |
+| `sabiql`                     | -               | 1.6.2           | new  |
+| `agentsview`                 | -               | 0.10.0          | new  |
+{.stretch-last}
+
+-------
+
+## 2026-02-26
+
+| Name                         | Old Ver | New Ver | Note |
+|:-----------------------------|:--------|:--------|:-----|
+| `grafana`                    | 12.3.3  | 12.4.0  |      |
+| `prometheus`                 | 3.9.1   | 3.10.0  |      |
+| `mongodb_exporter`           | 0.47.2  | 0.49.0  |      |
+| `victoria-logs`              | 1.45.0  | 1.47.0  |      |
+| `vlagent`                    | 1.45.0  | 1.47.0  |      |
+| `vlogscli`                   | 1.45.0  | 1.47.0  |      |
+| `tigerbeetle`                | 0.16.73 | 0.16.74 |      |
+| `loki`                       | 3.6.6   | 3.6.7   |      |
+| `promtail`                   | 3.6.6   | 3.6.7   |      |
+| `logcli`                     | 3.6.6   | 3.6.7   |      |
+| `grafana-victorialogs-ds`    | 0.25.0  | 0.26.2  |      |
+| `grafana-victoriametrics-ds` | 0.22.0  | 0.23.1  |      |
+| `grafana-infinity-ds`        | 3.7.1   | 3.7.2   |      |
+| `caddy`                      | 2.10.2  | 2.11.1  |      |
+| `npgsqlrest`                 | 3.8.0   | 3.10.0  |      |
+| `opencode`                   | 1.2.10  | 1.2.15  |      |
+| `nodejs`                     | 24.13.1 | 24.14.0 |      |
+| `pev2`                       | 1.20.1  | 1.20.2  |      |
+| `claude`                     | 2.1.45  | 2.1.59  |      |
+| `codex`                      | 0.104.0 | 0.105.0 |      |
+| `pig`                        | 1.2.0   | 1.3.0   |      |
+{.stretch-last}
+
+-------
+
+## 2026-02-22
+
+| Name                       | Old Ver | New Ver | Note |
+|:---------------------------|:--------|:--------|:-----|
+| `victoria-metrics`         | 1.135.0 | 1.136.0 |      |
+| `victoria-metrics-cluster` | 1.135.0 | 1.136.0 |      |
+| `vmutils`                  | 1.135.0 | 1.136.0 |      |
+| `loki`                     | 3.6.5   | 3.6.6   |      |
+| `promtail`                 | 3.6.5   | 3.6.6   |      |
+| `logcli`                   | 3.6.5   | 3.6.6   |      |
+| `opencode`                 | 1.2.6   | 1.2.10  |      |
+| `pig`                      | 1.1.2   | 1.2.0   |      |
+| `stalwart`                 | -       | 0.15.5  | new  |
+| `maddy`                    | -       | 0.8.2   | new  |
+{.stretch-last}
+
+-------
+
+## 2026-02-18
+
+| Name                         | Old Ver        | New Ver        | Note |
+|:-----------------------------|:---------------|:---------------|:-----|
+| `grafana`                    | 12.3.2         | 12.3.3         |      |
+| `grafana-victorialogs-ds`    | 0.24.1         | 0.25.0         |      |
+| `grafana-victoriametrics-ds` | 0.21.0         | 0.22.0         |      |
+| `grafana-infinity-ds`        | 3.7.0          | 3.7.1          |      |
+| `redis_exporter`             | 1.80.2         | 1.81.0         |      |
+| `etcd`                       | 3.6.7          | 3.6.8          |      |
+| `dblab`                      | 0.34.2         | 0.34.3         |      |
+| `tigerbeetle`                | 0.16.72        | 0.16.73        |      |
+| `seaweedfs`                  | 4.09           | 4.13           |      |
+| `rustfs`                     | 1.0.0-alpha.82 | 1.0.0-alpha.83 |      |
+| `uv`                         | 0.10.0         | 0.10.4         |      |
+| `kafka`                      | 4.1.1          | 4.2.0          |      |
+| `npgsqlrest`                 | 3.7.0          | 3.8.0          |      |
+| `postgrest`                  | 14.4           | 14.5           |      |
+| `opencode`                   | 1.1.59         | 1.2.6          |      |
+| `genai-toolbox`              | 0.25.0         | 0.27.0         |      |
+| `claude`                     | 2.1.37         | 2.1.45         |      |
+| `rclone`                     | 1.73.0         | 1.73.1         |      |
+| `code-server`                | 4.108.2        | 4.109.2        |      |
+| `code`                       | 1.109.2        | 1.109.4        |      |
+{.stretch-last}
+
+-------
+
+## 2026-02-12
+
+| Name                  | Old Ver        | New Ver        | Note       |
+|:----------------------|:---------------|:---------------|:-----------|
+| `alertmanager`        | 0.31.0         | 0.31.1         |            |
+| `tigerbeetle`         | 0.16.70        | 0.16.72        |            |
+| `grafana-infinity-ds` | 3.7.0          | 3.7.1          |            |
+| `nodejs`              | 24.13.0        | 24.13.1        |            |
+| `opencode`            | 1.1.53         | 1.1.59         |            |
+| `golang`              | 1.25.7         | 1.26.0         |            |
+| `minio`               | 20251203120000 | 20260214120000 | pgsty fork |
+| `pig`                 | 1.1.0          | 1.1.1          |            |
+{.stretch-last}
+
+-------
+
+## 2026-02-08
+
+| Name                         | Old Ver        | New Ver        | Note |
+|:-----------------------------|:---------------|:---------------|:-----|
+| `alertmanager`               | 0.30.1         | 0.31.0         |      |
+| `victoria-metrics`           | 1.134.0        | 1.135.0        |      |
+| `victoria-metrics-cluster`   | 1.134.0        | 1.135.0        |      |
+| `vmutils`                    | 1.134.0        | 1.135.0        |      |
+| `victoria-logs`              | 1.43.1         | 1.45.0         |      |
+| `vlagent`                    | 1.43.1         | 1.45.0         |      |
+| `vlogscli`                   | 1.43.1         | 1.45.0         |      |
+| `grafana-victorialogs-ds`    | 0.23.5         | 0.24.1         |      |
+| `grafana-victoriametrics-ds` | 0.20.1         | 0.21.0         |      |
+| `tigerbeetle`                | 0.16.68        | 0.16.70        |      |
+| `loki`                       | 3.1.1          | 3.6.5          |      |
+| `promtail`                   | 3.0.0          | 3.6.5          |      |
+| `logcli`                     | 3.1.1          | 3.6.5          |      |
+| `redis_exporter`             | 1.80.1         | 1.80.2         |      |
+| `timescaledb-tools`          | 0.18.1         | 0.18.2         |      |
+| `seaweedfs`                  | 4.06           | 4.09           |      |
+| `rustfs`                     | 1.0.0-alpha.80 | 1.0.0-alpha.82 |      |
+| `uv`                         | 0.9.26         | 0.10.0         |      |
+| `garage`                     | 2.1.0          | 2.2.0          |      |
+| `headscale`                  | 0.27.1         | 0.28.0         |      |
+| `hugo`                       | 0.154.5        | 0.155.2        |      |
+| `pev2`                       | 1.20.0         | 1.20.1         |      |
+| `postgrest`                  | 14.3           | 14.4           |      |
+| `npgsqlrest`                 | 3.4.7          | 3.7.0          |      |
+| `opencode`                   | 1.1.34         | 1.1.53         |      |
+| `golang`                     | 1.25.6         | 1.25.7         |      |
+| `nodejs`                     | 24.12.0        | 24.13.0        |      |
+| `claude`                     | 2.1.19         | 2.1.37         |      |
+| `vector`                     | 0.52.0         | 0.53.0         |      |
+| `code`                       | 1.108.0        | 1.109.0        |      |
+| `code-server`                | 4.108.0        | 4.108.2        |      |
+| `rclone`                     | 1.72.1         | 1.73.0         |      |
+| `pg_exporter`                | 1.1.2          | 1.2.0          |      |
+| `grafana`                    | 12.3.1         | 12.3.2         |      |
+| `pig`                        | 1.0.0          | 1.1.0          |      |
+| `cloudflared`                | 2026.1.1       | 2026.2.0       |      |
+{.stretch-last}
+
+-------
+
+## 2026-01-25
+
+| Name                         | Old Ver | New Ver  | Note |
+|:-----------------------------|:--------|:---------|:-----|
+| `alertmanager`               | 0.30.0  | 0.30.1   |      |
+| `victoria-metrics`           | 1.133.0 | 1.134.0  |      |
+| `victoria-traces`            | 0.5.1   | 0.7.1    |      |
+| `grafana-victorialogs-ds`    | 0.23.3  | 0.23.5   |      |
+| `grafana-victoriametrics-ds` | 0.20.0  | 0.20.1   |      |
+| `npgsqlrest`                 | 3.4.3   | 3.4.7    |      |
+| `claude`                     | 2.1.9   | 2.1.19   |      |
+| `opencode`                   | 1.1.23  | 1.1.34   |      |
+| `caddy`                      | -       | 2.10.2   | new  |
+| `hugo`                       | -       | 0.154.5  | new  |
+| `cloudflared`                | -       | 2026.1.1 | new  |
+| `headscale`                  | -       | 0.27.1   | new  |
+| `pig`                        | 0.9.0   | 1.0.0    |      |
+| `duckdb`                     | 1.4.3   | 1.4.4    |      |
+{.stretch-last}
+
+-------
+
+## 2026-01-16
+
+| Name                         | Old Ver  | New Ver  | Note |
+|:-----------------------------|:---------|:---------|:-----|
+| `prometheus`                 | 3.8.1    | 3.9.1    |      |
+| `victoria-metrics`           | 1.132.0  | 1.133.0  |      |
+| `tigerbeetle`                | 0.16.65  | 0.16.68  |      |
+| `kafka`                      | 4.0.0    | 4.1.1    |      |
+| `grafana-victoriametrics-ds` | 0.19.7   | 0.20.0   |      |
+| `grafana-victorialogs-ds`    | 0.23.2   | 0.23.3   |      |
+| `grafana-infinity-ds`        | 3.6.0    | 3.7.0    |      |
+| `uv`                         | 0.9.18   | 0.9.26   |      |
+| `seaweedfs`                  | 4.01     | 4.06     |      |
+| `rustfs`                     | alpha.71 | alpha.80 |      |
+| `v2ray`                      | 5.28.0   | 5.44.1   |      |
+| `sqlcmd`                     | 1.8.0    | 1.9.0    |      |
+| `opencode`                   | 1.0.223  | 1.1.23   |      |
+| `claude`                     | 2.1.1    | 2.1.9    |      |
+| `golang`                     | 1.25.5   | 1.25.6   |      |
+| `asciinema`                  | 3.0.1    | 3.1.0    |      |
+| `code`                       | 1.107.0  | 1.108.0  |      |
+| `code-server`                | 4.107.0  | 4.108.0  |      |
+| `npgsqlrest`                 | 3.3.0    | 3.4.3    |      |
+| `genai-toolbox`              | 0.24.0   | 0.25.0   |      |
+| `pg_exporter`                | 1.1.1    | 1.1.2    |      |
+| `pig`                        | 0.9.0    | 0.9.1    |      |
+
+-------
+
+## 2026-01-08
+
+| Name            | Old Ver  | New Ver   | Note                         |
+|-----------------|----------|-----------|------------------------------|
+| `pg_exporter`   | `1.1.0`  | `1.1.1`   | new pg_timeline collector    |
+| `npgsqlrest`    |          | `3.3.3`   | new                          |
+| `postgrest`     |          | `14.3`    | new                          |
+| `opencode`      |          | `1.0.223` | new                          |
+| `code-server`   |          | `4.107.0` | new                          |
+| `claude`        | `2.0.76` | `2.1.1`   | update                       |
+| `genai-toolbox` | `0.23.0` | `0.24.0`  | removed broken oracle driver |
+| `golang`        |          | `1.25.5`  | new                          |
+| `nodejs`        |          | `24.12.0` | new                          |
+{.stretch-last}
+
+-------
+
+## 2025-12-25
+
+| Name                        | Old Ver        | New Ver        | Note                       |
+|-----------------------------|----------------|----------------|----------------------------|
+| `pig`                       | `0.8.0`        | `0.9.0`        | routine update             |
+| `etcd`                      | `3.6.6`        | `3.6.7`        | routine update             |
+| `uv`                        | -              | `0.9.18`       | new python package manager |
+| `ccm`                       | -              | `2.0.76`       | new claude code            |
+| `asciinema`                 | -              | `3.0.1`        | new terminal recorder      |
+| `ivorysql`                  | `5.0`          | `5.1`          |                            |
+| `grafana`                   | `12.3.0`       | `12.3.1`       |                            |
+| `vector`                    | `0.51.1`       | `0.52.0`       |                            |
+| `prometheus`                | `3.8.0`        | `3.8.1`        |                            |
+| `alertmanager`              | `0.29.0`       | `0.30.0`       |                            |
+| `victoria-logs`             | `1.41.0`       | `1.43.1`       |                            |
+| `pgbackrest_exporter`       | `0.21.0`       | `0.22.0`       |                            |
+| `grafana-victorialogs-ds`   | `0.22.4`       | `0.23.2`       |                            |
+{.stretch-last}
+
+-------
+
+## 2025-12-16
+
+| Name                | Old Ver          | New Ver          | Note     |
+|---------------------|------------------|------------------|----------|
+| `victoria-metrics`  | `1.131.0`        | `1.132.0`        |          |
+| `victoria-logs`     | `1.40.0`         | `1.41.0`         |          |
+| `blackbox_exporter` | `0.27.0`         | `0.28.0`         |          |
+| `duckdb`            | `1.4.2`          | `1.4.3`          |          |
+| `rclone`            | `1.72.0`         | `1.72.1`         |          |
+| `pev2`              | `1.17.0`         | `1.19.0`         |          |
+| `pg_exporter`       | `1.0.3`          | `1.1.0`          |          |
+| `pig`               | `0.7.4`          | `0.8.0`          |          |
+| `genai-toolbox`     | `0.22.0`         | `0.23.0`         |          |
+| `minio`             | `20250907161309` | `20251203120000` | by pgsty |
+{.stretch-last}
+
+-------
+
+## 2025-12-04
+
+| Name                        | Old Ver     | New Ver       | Note |
+|-----------------------------|-------------|---------------|------|
+| `rustfs`                    | -           | `1.0.0-a71`   | new  |
+| `seaweedfs`                 | -           | `4.1.0`       | new  |
+| `garage`                    | -           | `2.1.0`       | new  |
+| `rclone`                    | `1.71.2`    | `1.72.0`      |      |
+| `vector`                    | `0.51.0`    | `0.51.1`      |      |
+| `prometheus`                | `3.7.3`     | `3.8.0`       |      |
+| `victoria-metrics`          | `0.130.0`   | `0.131.0`     |      |
+| `victoria-logs`             | `0.38.0`    | `0.40.0`      |      |
+| `victoria-traces`           | -           | `0.5.1`       | new  |
+| `grafana-victorialogs-ds`   | `0.22.1`    | `0.22.4`      |      |
+| `redis_exporter`            | `1.80.0`    | `1.80.1`      |      |
+| `mongodb_exporter`          | `0.47.1`    | `0.47.2`      |      |
+| `genai-toolbox`             | `0.21.0`    | `0.22.0`      |      |
+{.stretch-last}
+
+-------
+
+## 2025-11-23
+
+| Name                           | Old Ver     | New Ver     | Note                      |
+|--------------------------------|-------------|-------------|---------------------------|
+| `pgschema`                     | -           | `1.4.2`     | new                       |
+| `pgflo`                        | -           | `0.0.15`    | new                       |
+| `vector`                       | `0.51.0`    | `0.51.1`    | bug fix                   |
+| `sealos`                       | `5.0.1`     | `5.1.1`     |                           |
+| `etcd`                         | `3.6.5`     | `3.6.6`     |                           |
+| `duckdb`                       | `1.4.1`     | `1.4.2`     |                           |
+| `pg_exporter`                  | `1.0.2`     | `1.0.3`     |                           |
+| `pig`                          | `0.7.1`     | `0.7.2`     |                           |
+| `grafana`                      | `12.1.0`    | `12.3.0`    |                           |
+| `pg_timetable`                 | `6.1.0`     | `6.2.0`     |                           |
+| `genai-toolbox`                | `0.16.0`    | `0.21.0`    |                           |
+| `timescaledb-tools`            | `0.18.0`    | `0.18.1`    | moved from PGSQL to INFRA |
+| `timescaledb-event-streamer`   | `0.12.0`    | `0.20.0`    |                           |
+| `tigerbeetle`                  | `0.16.60`   | `0.16.65`   |                           |
+| `victoria-metrics`             | `1.129.1`   | `1.130.0`   |                           |
+| `victoria-logs`                | `1.37.2`    | `1.38.0`    |                           |
+| `grafana-victorialogs-ds`      | `0.21.4`    | `0.22.1`    |                           |
+| `grafana-victoriametrics-ds`   | `0.19.6`    | `0.19.7`    |                           |
+| `grafana-plugins`              | `12.0.0`    | `12.3.0`    |                           |
+{.stretch-last}
+
+-------
+
+## 2025-11-11
+
+| Name                           | Old Ver     | New Ver     | Note                |
+|--------------------------------|-------------|-------------|---------------------|
+| `grafana`                      | `12.1.0`    | `12.2.1`    | download url change |
+| `prometheus`                   | `3.6.0`     | `3.7.3`     |                     |
+| `pushgateway`                  | `1.11.1`    | `1.11.2`    |                     |
+| `alertmanager`                 | `0.28.1`    | `0.29.0`    |                     |
+| `nginx_exporter`               | `1.5.0`     | `1.5.1`     |                     |
+| `node_exporter`                | `1.9.1`     | `1.10.2`    |                     |
+| `pgbackrest_exporter`          | `0.20.0`    | `0.21.0`    |                     |
+| `redis_exporter`               | `1.77.0`    | `1.80.0`    |                     |
+| `duckdb`                       | `1.4.0`     | `1.4.1`     |                     |
+| `dblab`                        | `0.33.0`    | `0.34.2`    |                     |
+| `pg_timetable`                 | `5.13.0`    | `6.1.0`     |                     |
+| `vector`                       | `0.50.0`    | `0.51.0`    |                     |
+| `rclone`                       | `1.71.1`    | `1.71.2`    |                     |
+| `victoria-metrics`             | `1.126.0`   | `1.129.1`   |                     |
+| `victoria-logs`                | `1.35.0`    | `1.37.2`    |                     |
+| `grafana-victorialogs-ds`      | `0.21.0`    | `0.21.4`    |                     |
+| `grafana-victoriametrics-ds`   | `0.19.4`    | `0.19.6`    |                     |
+| `grafana-infinity-ds`          | `3.5.0`     | `3.6.0`     |                     |
+| `genai-toolbox`                | `0.16.0`    | `0.18.0`    |                     |
+| `pev2`                         | `1.16.0`    | `1.17.0`    |                     |
+| `pig`                          | `0.6.2`     | `0.7.1`     |                     |
+{.stretch-last}
+
+-------
+
+## 2025-10-18
+
+| Name                           | Old Ver          | New Ver          | Note |
+|--------------------------------|------------------|------------------|------|
+| `prometheus`                   | `3.5.0`          | `3.6.0`          |      |
+| `nginx_exporter`               | `1.4.2`          | `1.5.0`          |      |
+| `mysqld_exporter`              | `0.17.2`         | `0.18.0`         |      |
+| `redis_exporter`               | `1.75.0`         | `1.77.0`         |      |
+| `mongodb_exporter`             | `0.47.0`         | `0.47.1`         |      |
+| `victoria-metrics`             | `1.121.0`        | `1.126.0`        |      |
+| `victoria-logs`                | `1.25.1`         | `1.35.0`         |      |
+| `duckdb`                       | `1.3.2`          | `1.4.0`          |      |
+| `etcd`                         | `3.6.4`          | `3.6.5`          |      |
+| `restic`                       | `0.18.0`         | `0.18.1`         |      |
+| `tigerbeetle`                  | `0.16.54`        | `0.16.60`        |      |
+| `grafana-victorialogs-ds`      | `0.19.3`         | `0.21.0`         |      |
+| `grafana-victoriametrics-ds`   | `0.18.3`         | `0.19.4`         |      |
+| `grafana-infinity-ds`          | `3.3.0`          | `3.5.0`          |      |
+| `genai-toolbox`                | `0.9.0`          | `0.16.0`         |      |
+| `grafana`                      | `12.1.0`         | `12.2.0`         |      |
+| `vector`                       | `0.49.0`         | `0.50.0`         |      |
+| `rclone`                       | `1.70.3`         | `1.71.1`         |      |
+| `minio`                        | `20250723155402` | `20250907161309` |      |
+| `mcli`                         | `20250721052808` | `20250813083541` |      |
+{.full-width}
+
+-------
+
+## 2025-08-15
+
+| Name                           | Old Ver     | New Ver     | Note |
+|--------------------------------|-------------|-------------|------|
+| `grafana`                      | `12.0.0`    | `12.1.0`    |      |
+| `pg_exporter`                  | `1.0.1`     | `1.0.2`     |      |
+| `pig`                          | `0.6.0`     | `0.6.1`     |      |
+| `vector`                       | `0.48.0`    | `0.49.0`    |      |
+| `redis_exporter`               | `1.74.0`    | `1.75.0`    |      |
+| `mongodb_exporter`             | `0.46.0`    | `0.47.0`    |      |
+| `victoria-metrics`             | `1.121.0`   | `1.123.0`   |      |
+| `victoria-logs`                | `1.25.0`    | `1.28.0`    |      |
+| `grafana-victoriametrics-ds`   | `0.17.0`    | `0.18.3`    |      |
+| `grafana-victorialogs-ds`      | `0.18.3`    | `0.19.3`    |      |
+| `grafana-infinity-ds`          | `3.3.0`     | `3.4.1`     |      |
+| `etcd`                         | `3.6.1`     | `3.6.4`     |      |
+| `ferretdb`                     | `2.3.1`     | `2.5.0`     |      |
+| `tigerbeetle`                  | `0.16.50`   | `0.16.54`   |      |
+| `genai-toolbox`                | `0.9.0`     | `0.12.0`    |      |
+{.stretch-last}
+
+
+-------
+
+## 2025-07-24
+
+| Name       | Old Ver | New Ver                | Note                       |
+|------------|---------|------------------------|----------------------------|
+| `ferretdb` | -       | `2.4.0`                | pair with documentdb 1.105 |
+| `etcd`     | -       | `3.6.3`                |                            |
+| `minio`    | -       | `20250723155402`       |                            |
+| `mcli`     | -       | `20250721052808`       |                            |
+| `ivorysql` | -       | `4.5-0ffca11-20250709` | fix libxcrypt dep issue    |
+{.stretch-last}
+
+## 2025-07-16
+
+| Name                           | Old Ver     | New Ver     | Note                         |
+|--------------------------------|-------------|-------------|------------------------------|
+| `genai-toolbox`                | `0.8.0`     | `0.9.0`     | MCP toolbox for various DBMS |
+| `victoria-metrics`             | `1.120.0`   | `1.121.0`   | split into various packages  |
+| `victoria-logs`                | `1.24.0`    | `1.25.0`    | split into various packages  |
+| `prometheus`                   | `3.4.2`     | `3.5.0`     |                              |
+| `duckdb`                       | `1.3.1`     | `1.3.2`     |                              |
+| `etcd`                         | `3.6.1`     | `3.6.2`     |                              |
+| `tigerbeetle`                  | `0.16.48`   | `0.16.50`   |                              |
+| `grafana-victoriametrics-ds`   | `0.16.0`    | `0.17.0`    |                              |
+| `rclone`                       | `1.69.3`    | `1.70.3`    |                              |
+| `pig`                          | `0.5.0`     | `0.6.0`     |                              |
+| `pev2`                         | `1.15.0`    | `1.16.0`    |                              |
+| `pg_exporter`                  | `1.0.0`     | `1.0.1`     |                              |
+{.stretch-last}
+
+## 2025-07-04
+
+| Name                           | Old Ver     | New Ver     | Note |
+|--------------------------------|-------------|-------------|------|
+| `prometheus`                   | `3.4.1`     | `3.4.2`     |      |
+| `grafana`                      | `12.0.1`    | `12.0.2`    |      |
+| `vector`                       | `0.47.0`    | `0.48.0`    |      |
+| `rclone`                       | `1.69.0`    | `1.70.2`    |      |
+| `vip-manager`                  | `3.0.0`     | `4.0.0`     |      |
+| `blackbox_exporter`            | `0.26.0`    | `0.27.0`    |      |
+| `redis_exporter`               | `1.72.1`    | `1.74.0`    |      |
+| `duckdb`                       | `1.3.0`     | `1.3.1`     |      |
+| `etcd`                         | `3.6.0`     | `3.6.1`     |      |
+| `ferretdb`                     | `2.2.0`     | `2.3.1`     |      |
+| `dblab`                        | `0.32.0`    | `0.33.0`    |      |
+| `tigerbeetle`                  | `0.16.41`   | `0.16.48`   |      |
+| `grafana-victorialogs-ds`      | `0.16.3`    | `0.18.1`    |      |
+| `grafana-victoriametrics-ds`   | `0.15.1`    | `0.16.0`    |      |
+| `grafana-infinity-ds`          | `3.2.1`     | `3.3.0`     |      |
+| `victoria-logs`                | `1.22.2`    | `1.24.0`    |      |
+| `victoria-metrics`             | `1.117.1`   | `1.120.0`   |      |
+{.stretch-last}
+
+## 2025-06-01
+
+| Name                        | Old Ver | New Ver     | Note |
+|-----------------------------|---------|-------------|------|
+| `grafana`                   | -       | `12.0.1`    |      |
+| `prometheus`                | -       | `3.4.1`     |      |
+| `keepalived_exporter`       | -       | `1.7.0`     |      |
+| `redis_exporter`            | -       | `1.73.0`    |      |
+| `victoria-metrics`          | -       | `1.118.0`   |      |
+| `victoria-logs`             | -       | `1.23.1`    |      |
+| `tigerbeetle`               | -       | `0.16.42`   |      |
+| `grafana-victorialogs-ds`   | -       | `0.17.0`    |      |
+| `grafana-infinity-ds`       | -       | `3.2.2`     |      |
+{.stretch-last}
+
+## 2025-05-22
+
+| Name                           | Old Ver | New Ver          | Note                        |
+|--------------------------------|---------|------------------|-----------------------------|
+| `dblab`                        | -       | `0.32.0`         |                             |
+| `prometheus`                   | -       | `3.4.0`          |                             |
+| `duckdb`                       | -       | `1.3.0`          |                             |
+| `etcd`                         | -       | `3.6.0`          |                             |
+| `pg_exporter`                  | -       | `1.0.0`          |                             |
+| `ferretdb`                     | -       | `2.2.0`          |                             |
+| `rclone`                       | -       | `1.69.3`         |                             |
+| `minio`                        | -       | `20250422221226` | last version with admin GUI |
+| `mcli`                         | -       | `20250416181326` |                             |
+| `nginx_exporter`               | -       | `1.4.2`          |                             |
+| `keepalived_exporter`          | -       | `1.6.2`          |                             |
+| `pgbackrest_exporter`          | -       | `0.20.0`         |                             |
+| `redis_exporter`               | -       | `1.27.1`         |                             |
+| `victoria-metrics`             | -       | `1.117.1`        |                             |
+| `victoria-logs`                | -       | `1.22.2`         |                             |
+| `pg_timetable`                 | -       | `5.13.0`         |                             |
+| `tigerbeetle`                  | -       | `0.16.41`        |                             |
+| `pev2`                         | -       | `1.15.0`         |                             |
+| `grafana`                      | -       | `12.0.0`         |                             |
+| `grafana-victorialogs-ds`      | -       | `0.16.3`         |                             |
+| `grafana-victoriametrics-ds`   | -       | `0.15.1`         |                             |
+| `grafana-infinity-ds`          | -       | `3.2.1`          |                             |
+| `grafana-plugins`              | -       | `12.0.0`         |                             |
+{.stretch-last}
+
+-------
+
+## 2025-04-23
+
+| Name                  | Old Ver | New Ver          | Note |
+|-----------------------|---------|------------------|------|
+| `mtail`               | -       | `3.0.8`          | new  |
+| `pig`                 | -       | `0.4.0`          |      |
+| `pg_exporter`         | -       | `0.9.0`          |      |
+| `prometheus`          | -       | `3.3.0`          |      |
+| `pushgateway`         | -       | `1.11.1`         |      |
+| `keepalived_exporter` | -       | `1.6.0`          |      |
+| `redis_exporter`      | -       | `1.70.0`         |      |
+| `victoria-metrics`    | -       | `1.115.0`        |      |
+| `victoria-logs`       | -       | `1.20.0`         |      |
+| `duckdb`              | -       | `1.2.2`          |      |
+| `pg_timetable`        | -       | `5.12.0`         |      |
+| `vector`              | -       | `0.46.1`         |      |
+| `minio`               | -       | `20250422221226` |      |
+| `mcli`                | -       | `20250416181326` |      |
+{.stretch-last}
+
+## 2025-04-05
+
+| Name               | Old Ver | New Ver          | Note |
+|--------------------|---------|------------------|------|
+| `pig`              | -       | `0.3.4`          |      |
+| `etcd`             | -       | `3.5.21`         |      |
+| `restic`           | -       | `0.18.0`         |      |
+| `ferretdb`         | -       | `2.1.0`          |      |
+| `tigerbeetle`      | -       | `0.16.34`        |      |
+| `pg_exporter`      | -       | `0.8.1`          |      |
+| `node_exporter`    | -       | `1.9.1`          |      |
+| `grafana`          | -       | `11.6.0`         |      |
+| `zfs_exporter`     | -       | `3.8.1`          |      |
+| `mongodb_exporter` | -       | `0.44.0`         |      |
+| `victoria-metrics` | -       | `1.114.0`        |      |
+| `minio`            | -       | `20250403145628` |      |
+| `mcli`             | -       | `20250403170756` |      |
+{.stretch-last}
+
+## 2025-03-23
+
+| Name                  | Old Ver | New Ver   | Note    |
+|-----------------------|---------|-----------|---------|
+| `etcd`                | -       | `3.5.20`  |         |
+| `pgbackrest_exporter` | -       | `0.19.0`  | rebuilt |
+| `victoria-logs`       | -       | `1.17.0`  |         |
+| `vlogscli`            | -       | `1.17.0`  |         |
+{.stretch-last}
+
+## 2025-03-17
+
+| Name                           | Old Ver | New Ver   | Note |
+|--------------------------------|---------|-----------|------|
+| `kafka`                        | -       | `4.0.0`   |      |
+| `prometheus`                   | -       | `3.2.1`   |      |
+| `alertmanager`                 | -       | `0.28.1`  |      |
+| `blackbox_exporter`            | -       | `0.26.0`  |      |
+| `node_exporter`                | -       | `1.9.0`   |      |
+| `mysqld_exporter`              | -       | `0.17.2`  |      |
+| `kafka_exporter`               | -       | `1.9.0`   |      |
+| `redis_exporter`               | -       | `1.69.0`  |      |
+| `duckdb`                       | -       | `1.2.1`   |      |
+| `etcd`                         | -       | `3.5.19`  |      |
+| `ferretdb`                     | -       | `2.0.0`   |      |
+| `tigerbeetle`                  | -       | `0.16.31` |      |
+| `vector`                       | -       | `0.45.0`  |      |
+| `victoria-metrics`             | -       | `1.114.0` |      |
+| `victoria-logs`                | -       | `1.16.0`  |      |
+| `rclone`                       | -       | `1.69.1`  |      |
+| `pev2`                         | -       | `1.14.0`  |      |
+| `grafana-victorialogs-ds`      | -       | `0.16.0`  |      |
+| `grafana-victoriametrics-ds`   | -       | `0.14.0`  |      |
+| `grafana-infinity-ds`          | -       | `3.0.0`   |      |
+| `timescaledb-event-streamer`   | -       | `0.12.0`  | new  |
+| `restic`                       | -       | `0.17.3`  | new  |
+| `juicefs`                      | -       | `1.2.3`   | new  |
+{.stretch-last}
+
+## 2025-02-12
+
+| Name                  | Old Ver          | New Ver          | Note |
+|-----------------------|------------------|------------------|------|
+| `pushgateway`         | `1.10.0`         | `1.11.0`         |      |
+| `alertmanager`        | `0.27.0`         | `0.28.0`         |      |
+| `nginx_exporter`      | `1.4.0`          | `1.4.1`          |      |
+| `pgbackrest_exporter` | `0.18.0`         | `0.19.0`         |      |
+| `redis_exporter`      | `1.66.0`         | `1.67.0`         |      |
+| `mongodb_exporter`    | `0.43.0`         | `0.43.1`         |      |
+| `victoria-metrics`    | `1.107.0`        | `1.111.0`        |      |
+| `victoria-logs`       | `1.3.2`          | `1.9.1`          |      |
+| `duckdb`              | `1.1.3`          | `1.2.0`          |      |
+| `etcd`                | `3.5.17`         | `3.5.18`         |      |
+| `pg_timetable`        | `5.10.0`         | `5.11.0`         |      |
+| `ferretdb`            | `1.24.0`         | `2.0.0`          |      |
+| `tigerbeetle`         | `0.16.13`        | `0.16.27`        |      |
+| `grafana`             | `11.4.0`         | `11.5.1`         |      |
+| `vector`              | `0.43.1`         | `0.44.0`         |      |
+| `minio`               | `20241218131544` | `20250207232109` |      |
+| `mcli`                | `20241121172154` | `20250208191421` |      |
+| `rclone`              | `1.68.2`         | `1.69.0`         |      |
+{.stretch-last}
+
+## 2024-11-19
+
+| Name                  | Old Ver   | New Ver   | Note |
+|-----------------------|-----------|-----------|------|
+| `prometheus`          | `2.54.0`  | `3.0.0`   |      |
+| `victoria-metrics`    | `1.102.1` | `1.106.1` |      |
+| `victoria-logs`       | `0.28.0`  | `1.0.0`   |      |
+| `mysqld_exporter`     | `0.15.1`  | `0.16.0`  |      |
+| `redis_exporter`      | `1.62.0`  | `1.66.0`  |      |
+| `mongodb_exporter`    | `0.41.2`  | `0.42.0`  |      |
+| `keepalived_exporter` | `1.3.3`   | `1.4.0`   |      |
+| `duckdb`              | `1.1.2`   | `1.1.3`   |      |
+| `etcd`                | `3.5.16`  | `3.5.17`  |      |
+| `tigerbeetle`         | `16.8`    | `0.16.13` |      |
+| `grafana`             | -         | `11.3.0`  |      |
+| `vector`              | -         | `0.42.0`  |      |
+{.stretch-last}

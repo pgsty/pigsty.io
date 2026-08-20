@@ -1,0 +1,522 @@
+# Managing PostgreSQL Clusters
+
+> Create/destroy PostgreSQL clusters, scale existing clusters, and clone clusters.
+
+---
+
+LLMS index: [llms.txt](/llms.txt)
+
+---
+
+## Quick Reference
+
+| Action                                | Command                       | Description                         |
+|:--------------------------------------|:------------------------------|:------------------------------------|
+| [**Create Cluster**](#create-cluster) | `bin/pgsql-add <cls>`         | Create a new PostgreSQL cluster     |
+| [**Expand Cluster**](#expand-cluster) | `bin/pgsql-add <cls> <ip...>` | Add replica to existing cluster     |
+| [**Shrink Cluster**](#shrink-cluster) | `bin/pgsql-rm <cls> <ip...>`  | Remove instance from cluster        |
+| [**Remove Cluster**](#remove-cluster) | `bin/pgsql-rm <cls>`          | Destroy entire PostgreSQL cluster   |
+| [**Reload Service**](#reload-service) | `bin/pgsql-svc <cls> [ip...]` | Reload cluster load balancer config |
+| [**Reload HBA**](#reload-hba)         | `bin/pgsql-hba <cls> [ip...]` | Reload cluster HBA access rules     |
+| [**Clone Cluster**](#clone-cluster)   | -                             | Clone via standby cluster or PITR   |
+{.full-width}
+
+For other management tasks, see: [**HA Management**](/docs/pgsql/admin/patroni), [**Manage Users**](/docs/pgsql/admin/user/), [**Manage Databases**](/docs/pgsql/admin/db/).
+
+
+----------------
+
+## Create Cluster
+
+To create a new PostgreSQL cluster, first [**define the cluster**](/docs/pgsql/config/cluster) in the [**inventory**](/docs/concept/iac/inventory), then [**add nodes**](/docs/node/admin#add-node) and initialize:
+
+```bash {tab="Script" group="script-playbook-example" value="script"}
+bin/node-add  <cls>     # Add nodes in group <cls>
+```
+
+```bash {tab="Playbook" value="playbook"}
+./node.yml  -l <cls>    # Use Ansible playbook to add nodes in group <cls>
+```
+
+```bash {tab="Example" value="example"}
+bin/node-add pg-test    # Add nodes in pg-test group, runs ./node.yml -l pg-test
+```
+
+On managed nodes, create the cluster with: (Execute [**`pgsql.yml`**](/docs/pgsql/playbook#pgsqlyml) playbook on **`<cls>`** group)
+
+```bash {tab="Script" group="script-playbook-example" value="script"}
+bin/pgsql-add <cls>     # Create PostgreSQL cluster <cls>
+```
+
+```bash {tab="Playbook" value="playbook"}
+./pgsql.yml -l <cls>    # Use Ansible playbook to create PostgreSQL cluster <cls>
+```
+
+```bash {tab="Example" value="example"}
+bin/pgsql-add pg-test   # Create pg-test cluster
+```
+
+
+**Example: Create 3-node PG cluster `pg-test`**
+
+<div id="td-asciinema-bbaec645058227f42673d57f065de673-0" class="td-asciinema td-max-width-on-larger-screens" data-td-asciinema
+  data-td-timer-label="Playback time">
+  <div class="td-asciinema__chrome">
+    <span class="td-asciinema__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="td-asciinema__title" dir="auto">demo/pgsql.cast</span>
+  </div>
+  <div data-td-asciinema-player></div>
+  <script type="application/json" data-td-asciinema-config>{"options":{"autoPlay":true,"fit":"width","loop":true,"markers":[4,"Execute"],"preload":false,"speed":1.3,"startAt":0},"src":"/demo/pgsql.cast","theme":"auto"}</script>
+</div>
+
+
+> [!WARNING] Risk: Re-running create on existing cluster
+> If you re-run create on an existing cluster, Pigsty won't remove existing data files, but service configs will be overwritten and the cluster will **restart**!
+> Additionally, if you specified a `baseline` SQL in [**database definition**](/docs/pgsql/config/db#baseline), it will re-execute - if it contains delete/overwrite logic, **data loss** may occur.
+
+
+
+
+
+
+
+----------------
+
+## Expand Cluster
+
+To add a new replica to an **existing PostgreSQL cluster**, add the [**instance definition**](/docs/pgsql/config/cluster) to [**inventory**](/docs/concept/iac/inventory): `all.children.<cls>.hosts`.
+
+```yaml
+pg-test:
+  hosts:
+    10.10.10.11: { pg_seq: 1, pg_role: primary } # existing member
+    10.10.10.12: { pg_seq: 2, pg_role: replica } # existing member
+    10.10.10.13: { pg_seq: 3, pg_role: replica } # <--- new member
+  vars: { pg_cluster: pg-test }
+```
+
+Scaling out is similar to [**creating a cluster**](#create-cluster). First add the new node to Pigsty: [**Add Node**](/docs/node/admin#add-node):
+
+```bash {tab="Script" group="script-playbook-example" value="script"}
+bin/node-add <ip>       # Add node with IP <ip>
+```
+
+```bash {tab="Playbook" value="playbook"}
+./node.yml -l <ip>      # Use Ansible playbook to add node <ip>
+```
+
+```bash {tab="Example" value="example"}
+bin/node-add 10.10.10.13    # Add node 10.10.10.13, runs ./node.yml -l 10.10.10.13
+```
+
+Then run the following on the new node to scale out (Install [**PGSQL module**](/docs/pgsql) on new node with same [**`pg_cluster`**](/docs/pgsql/param#pg_cluster)):
+
+```bash {tab="Script" group="script-playbook-example" value="script"}
+bin/pgsql-add <cls> <ip>  # Add node <ip> to cluster
+```
+
+```bash {tab="Playbook" value="playbook"}
+./pgsql.yml -l <ip>       # Core: Use Ansible playbook to install PGSQL module on <ip>
+```
+
+```bash {tab="Example" value="example"}
+bin/pgsql-add pg-test 10.10.10.13   # Scale out pg-test with node 10.10.10.13
+```
+
+After scaling, you should [**Reload Service**](/docs/pgsql/admin/cluster#reload-service) to add the new member to load balancer.
+
+**Example: Add replica `10.10.10.13` to 2-node cluster `pg-test`**
+
+<div id="td-asciinema-bbaec645058227f42673d57f065de673-1" class="td-asciinema td-max-width-on-larger-screens" data-td-asciinema
+  data-td-timer-label="Playback time">
+  <div class="td-asciinema__chrome">
+    <span class="td-asciinema__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="td-asciinema__title" dir="auto">demo/pgsql-append.cast</span>
+  </div>
+  <div data-td-asciinema-player></div>
+  <script type="application/json" data-td-asciinema-config>{"options":{"autoPlay":true,"fit":"width","loop":true,"preload":false,"speed":1.2,"startAt":0},"src":"/demo/pgsql-append.cast","theme":"auto"}</script>
+</div>
+
+
+
+
+
+
+
+----------------
+
+## Shrink Cluster
+
+To remove a replica from an **existing PostgreSQL cluster**, remove the [**instance definition**](/docs/pgsql/config/cluster) from [**inventory**](/docs/concept/iac/inventory) `all.children.<cls>.hosts`.
+
+Scale-in stops the instance and deletes its data directory by default. First run `pig pg list <cls>` and `pig pb info`, verify that the target is not the primary and that a recent restorable backup exists,
+then have the operator enter the exact `<ip>` and execute only after confirmation.
+
+First uninstall PGSQL module from target node (Execute [**`pgsql-rm.yml`**](/docs/pgsql/playbook#pgsql-rmyml) on **`<ip>`**):
+
+```bash {tab="Script" group="script-playbook-example" value="script"}
+bin/pgsql-rm <cls> <ip>   # Remove the PostgreSQL instance on <ip> from cluster <cls>
+```
+
+```bash {tab="Playbook" value="playbook"}
+./pgsql-rm.yml -l <ip>    # Directly remove the PostgreSQL instance on <ip> with the Ansible playbook
+```
+
+```bash {tab="Example" value="example"}
+bin/pgsql-rm pg-test 10.10.10.13  # Remove node 10.10.10.13 from pg-test
+```
+
+After removing PGSQL module, optionally remove the node from Pigsty: [**Remove Node**](/docs/node/admin#remove-node):
+
+```bash {tab="Script" group="script-playbook-example" value="script"}
+bin/node-rm <ip>          # Remove <ip> from Pigsty management
+```
+
+```bash {tab="Playbook" value="playbook"}
+./node-rm.yml -l <ip>     # Directly remove <ip> from Pigsty management with the Ansible playbook
+```
+
+```bash {tab="Example" value="example"}
+bin/node-rm 10.10.10.13   # Remove 10.10.10.13 from Pigsty management
+```
+
+After scaling in, remove the instance from [**inventory**](/docs/concept/iac/inventory), then [**Reload Service**](/docs/pgsql/admin/cluster#reload-service) to remove it from load balancer.
+
+```yaml
+pg-test:
+  hosts:
+    10.10.10.11: { pg_seq: 1, pg_role: primary }
+    10.10.10.12: { pg_seq: 2, pg_role: replica }
+    10.10.10.13: { pg_seq: 3, pg_role: replica } # <--- remove after execution
+  vars: { pg_cluster: pg-test }
+```
+
+**Example: Remove replica `10.10.10.13` from 3-node cluster `pg-test`**
+
+<div id="td-asciinema-bbaec645058227f42673d57f065de673-2" class="td-asciinema td-max-width-on-larger-screens" data-td-asciinema
+  data-td-timer-label="Playback time">
+  <div class="td-asciinema__chrome">
+    <span class="td-asciinema__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="td-asciinema__title" dir="auto">demo/pgsql-shrink.cast</span>
+  </div>
+  <div data-td-asciinema-player></div>
+  <script type="application/json" data-td-asciinema-config>{"options":{"autoPlay":true,"fit":"width","loop":true,"preload":false,"speed":1.2,"startAt":0},"src":"/demo/pgsql-shrink.cast","theme":"auto"}</script>
+</div>
+
+
+
+
+
+
+
+
+----------------
+
+## Remove Cluster
+
+To destroy a cluster, uninstall PGSQL module from all nodes (Execute [**`pgsql-rm.yml`**](/docs/pgsql/playbook#pgsql-rmyml) on **`<cls>`**):
+
+This is irreversible data deletion. Inspect `pig pg list <cls>` and `pig pb info`, verify a recent backup and any independent copy to retain,
+and have the operator enter the exact cluster name. The commands below perform the corresponding destruction directly.
+
+```bash {tab="Script" group="script-playbook-example" value="script"}
+bin/pgsql-rm <cls>        # Destroy the entire PostgreSQL cluster <cls>
+```
+
+```bash {tab="Playbook" value="playbook"}
+./pgsql-rm.yml -l <cls>   # Directly destroy the entire PostgreSQL cluster <cls> with the Ansible playbook
+```
+
+```bash {tab="Example" value="example"}
+bin/pgsql-rm pg-test      # Destroy cluster pg-test
+```
+
+After destroying PGSQL, optionally remove all nodes from Pigsty: [**Remove Node**](/docs/node/admin#remove-node) (optional if other services exist):
+
+```bash {tab="Script" group="script-playbook-example" value="script"}
+bin/node-rm <cls>         # Remove every node in group <cls> from Pigsty management
+```
+
+```bash {tab="Playbook" value="playbook"}
+./node-rm.yml -l <cls>    # Directly remove the nodes in group <cls> from Pigsty management with the Ansible playbook
+```
+
+```bash {tab="Example" value="example"}
+bin/node-rm pg-test       # Remove every node in group pg-test from Pigsty management
+```
+
+After removal, delete the entire [**cluster definition**](/docs/pgsql/config/cluster) from [**inventory**](/docs/concept/iac/inventory).
+
+```yaml
+pg-test: # remove this cluster definition group
+  hosts:
+    10.10.10.11: { pg_seq: 1, pg_role: primary }
+    10.10.10.12: { pg_seq: 2, pg_role: replica }
+    10.10.10.13: { pg_seq: 3, pg_role: replica }
+  vars: { pg_cluster: pg-test }
+```
+
+
+**Example: Destroy 3-node PG cluster `pg-test`**
+
+<div id="td-asciinema-bbaec645058227f42673d57f065de673-3" class="td-asciinema td-max-width-on-larger-screens" data-td-asciinema
+  data-td-timer-label="Playback time">
+  <div class="td-asciinema__chrome">
+    <span class="td-asciinema__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="td-asciinema__title" dir="auto">demo/pgsql-rm.cast</span>
+  </div>
+  <div data-td-asciinema-player></div>
+  <script type="application/json" data-td-asciinema-config>{"options":{"autoPlay":true,"fit":"width","loop":true,"preload":false,"speed":1.2,"startAt":0},"src":"/demo/pgsql-rm.cast","theme":"auto"}</script>
+</div>
+
+
+Note: If [**`pg_safeguard`**](/docs/pgsql/param#pg_safeguard) is configured (or globally `true`), `pgsql-rm.yml` will abort to prevent accidental removal.
+Override with playbook command line to force removal.
+By default, cluster backup repo is deleted with the cluster. To preserve backups (e.g., with centralized repo), set [**`pg_rm_backup=false`**](/docs/pgsql/param#pg_rm_backup):
+
+
+```bash
+./pgsql-rm.yml -l pg-meta -e pg_safeguard=false    # Force removal of protected pg-meta
+./pgsql-rm.yml -l pg-meta -e pg_rm_backup=false    # Preserve its backup repository while removing the cluster
+```
+
+
+
+
+
+
+
+
+----------------
+
+## Reload Service
+
+PostgreSQL clusters expose [**services**](/docs/pgsql/service/) via [**HAProxy**](/docs/concept/arch/pgsql#haproxy) on host nodes.
+When service definitions, instance weights, or cluster membership change (for example, [**scale out**](#expand-cluster) or [**scale in**](#shrink-cluster)), reload services to update HAProxy's static member configuration. The default Primary and Replica services detect the current role through Patroni REST API health checks, so ordinary switchover or failover reroutes automatically and does not require regenerating HAProxy configuration.
+
+To reload service config on entire cluster or specific instances (Execute `pg_service` subtask of [**`pgsql.yml`**](/docs/pgsql/playbook#pgsqlyml) on **`<cls>`** or **`<ip>`**):
+
+```bash {tab="Script" group="script-playbook-example" value="script"}
+bin/pgsql-svc <cls>           # Reload service config for entire cluster <cls>
+bin/pgsql-svc <cls> <ip...>   # Reload service config for specific instances
+```
+
+```bash {tab="Playbook" value="playbook"}
+./pgsql.yml -l <cls> -t pg_service -e pg_reload=true        # Reload entire cluster
+./pgsql.yml -l <ip>  -t pg_service -e pg_reload=true        # Reload specific instance
+```
+
+```bash {tab="Example" value="example"}
+bin/pgsql-svc pg-test                 # Reload pg-test cluster service config
+bin/pgsql-svc pg-test 10.10.10.13     # Reload pg-test 10.10.10.13 instance service config
+```
+
+> Note: If using dedicated load balancer cluster ([**`pg_service_provider`**](/docs/pgsql/param#pg_service_provider)), only reloading cluster primary updates the LB config.
+
+
+**Example: Reload `pg-test` cluster service config**
+
+<div id="td-asciinema-bbaec645058227f42673d57f065de673-4" class="td-asciinema td-max-width-on-larger-screens" data-td-asciinema
+  data-td-timer-label="Playback time">
+  <div class="td-asciinema__chrome">
+    <span class="td-asciinema__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="td-asciinema__title" dir="auto">demo/pgsql-svc.cast</span>
+  </div>
+  <div data-td-asciinema-player></div>
+  <script type="application/json" data-td-asciinema-config>{"options":{"autoPlay":true,"fit":"width","loop":true,"preload":false,"speed":1.2,"startAt":0},"src":"/demo/pgsql-svc.cast","theme":"auto"}</script>
+</div>
+
+
+> [!DETAILS]- Example: Reload PG Service to Remove Instance
+> [![asciicast](https://asciinema.org/a/568815.svg)](https://asciinema.org/a/568815)
+
+
+
+
+----------------
+
+## Reload HBA
+
+When HBA configs change, reload HBA rules to apply. ([**`pg_hba_rules`**](/docs/pgsql/param#pg_hba_rules) / [**`pgb_hba_rules`**](/docs/pgsql/param#pgb_hba_rules))
+If you have inventory-role-specific HBA rules or address ranges that reference cluster member aliases, reload HBA after changing `pg_role` labels or scaling the cluster. Role selectors use static inventory variables and do not change automatically after a Patroni switchover.
+
+To reload PG and Pgbouncer HBA rules on entire cluster or specific instances (Execute HBA subtasks of [**`pgsql.yml`**](/docs/pgsql/playbook#pgsqlyml) on **`<cls>`** or **`<ip>`**):
+
+```bash {tab="Script" group="script-playbook-example" value="script"}
+bin/pgsql-hba <cls>           # Reload HBA rules for entire cluster <cls>
+bin/pgsql-hba <cls> <ip...>   # Reload HBA rules for specific instances
+```
+
+```bash {tab="Playbook" value="playbook"}
+./pgsql.yml -l <cls> -t pg_hba,pg_reload,pgbouncer_hba,pgbouncer_reload -e pg_reload=true   # Reload entire cluster
+./pgsql.yml -l <ip>  -t pg_hba,pg_reload,pgbouncer_hba,pgbouncer_reload -e pg_reload=true   # Reload specific instance
+```
+
+```bash {tab="Example" value="example"}
+bin/pgsql-hba pg-test                 # Reload pg-test cluster HBA rules
+bin/pgsql-hba pg-test 10.10.10.13     # Reload pg-test 10.10.10.13 instance HBA rules
+```
+
+
+**Example: Reload `pg-test` cluster HBA rules**
+
+<div id="td-asciinema-bbaec645058227f42673d57f065de673-5" class="td-asciinema td-max-width-on-larger-screens" data-td-asciinema
+  data-td-timer-label="Playback time">
+  <div class="td-asciinema__chrome">
+    <span class="td-asciinema__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="td-asciinema__title" dir="auto">demo/pgsql-hba.cast</span>
+  </div>
+  <div data-td-asciinema-player></div>
+  <script type="application/json" data-td-asciinema-config>{"options":{"autoPlay":true,"fit":"width","loop":true,"preload":false,"speed":1.2,"startAt":0},"src":"/demo/pgsql-hba.cast","theme":"auto"}</script>
+</div>
+
+
+
+----------------
+
+## Config Cluster
+
+PostgreSQL config params are managed by Patroni. Initial params are specified by [**Patroni config template**](/docs/pgsql/template/).
+After cluster init, config is stored in Etcd, dynamically managed and synced by Patroni.
+Most Patroni [**config params**](/docs/pgsql/admin/patroni#edit-config) can be modified via `patronictl`.
+Other params (e.g., etcd DCS config, log/RestAPI config) can be updated via subtasks. For example, when [**etcd**](/docs/etcd) cluster membership changes, refresh Patroni config:
+
+```bash
+./pgsql.yml -l pg-test -t pg_conf                   # Update Patroni config file
+ansible pg-test -b -a 'systemctl reload patroni'    # Reload Patroni service
+```
+
+You can override Patroni-managed defaults at different levels: [**specify params per instance**](/docs/pgsql/param#pg_parameters),
+[**specify params per user**](/docs/pgsql/admin/user), or [**specify params per database**](/docs/pgsql/admin/db).
+
+
+
+----------------
+
+## Clone Cluster
+
+Two ways to clone a cluster: use [**Standby Cluster**](/docs/pgsql/config/cluster#standby-cluster), or use [**Point-in-Time Recovery**](/docs/pgsql/backup/restore#quick-start).
+The former is simple and requires no backup repository, but it does require a reachable replication upstream and can clone only the latest state. The latter requires a centralized [**backup repository**](/docs/pgsql/backup/repository) such as Silo and can clone to any point within the retention period.
+
+| Method          | Pros                        | Cons                         | Use Cases                           |
+|:----------------|:----------------------------|:-----------------------------|:------------------------------------|
+| Standby Cluster | No backup repository needed | Requires reachable upstream; latest state only | DR, read-write separation, migration|
+| PITR            | Recover to any point        | Requires centralized backup  | Undo mistakes, data audit           |
+
+
+### Clone via Standby Cluster
+
+Standby Cluster continuously syncs from upstream cluster via streaming replication - the simplest cloning method.
+Specify [**`pg_upstream`**](/docs/pgsql/param#pg_upstream) on the new cluster primary to auto-pull data from upstream.
+
+```yaml
+# pg-test is the original cluster
+pg-test:
+  hosts:
+    10.10.10.11: { pg_seq: 1, pg_role: primary }
+  vars: { pg_cluster: pg-test }
+
+# pg-test2 is standby cluster (clone) of pg-test
+pg-test2:
+  hosts:
+    10.10.10.12: { pg_seq: 1, pg_role: primary, pg_upstream: 10.10.10.11 }  # specify upstream
+    10.10.10.13: { pg_seq: 2, pg_role: replica }
+  vars: { pg_cluster: pg-test2 }
+```
+
+Create standby cluster with:
+
+```bash {tab="Script" group="script-playbook" value="script"}
+bin/pgsql-add pg-test2    # Create standby cluster, auto-clone from upstream pg-test
+```
+
+```bash {tab="Playbook" value="playbook"}
+./pgsql.yml -l pg-test2   # Use Ansible playbook to create standby cluster
+```
+
+Standby cluster follows upstream, keeping data in sync. **Promote** to independent cluster anytime:
+
+> [!DETAILS]- Example: Promote Standby to Independent Cluster
+> Via [**Config Cluster**](#config-cluster), remove `standby_cluster` config to promote:
+>
+> ```bash
+> $ pg edit-config pg-test2
+> -standby_cluster:
+> -  create_replica_methods:
+> -  - basebackup
+> -  host: 10.10.10.11
+> -  port: 5432
+>
+> Apply these changes? [y/N]: y
+> ```
+>
+> After promotion, `pg-test2` becomes independent cluster accepting writes, forked from `pg-test`.
+
+> [!DETAILS]- Example: Change Replication Upstream
+> If upstream cluster switchover occurs, change standby cluster upstream via [**Config Cluster**](#config-cluster):
+>
+> ```bash
+> $ pg edit-config pg-test2
+>
+>  standby_cluster:
+>    create_replica_methods:
+>    - basebackup
+> -  host: 10.10.10.11     # <--- old upstream
+> +  host: 10.10.10.14     # <--- new upstream
+>    port: 5432
+>
+> Apply these changes? [y/N]: y
+> ```
+
+
+### Clone via PITR
+
+[**Point-in-Time Recovery**](/docs/pgsql/backup/restore) (PITR) allows recovery to any point within backup retention.
+Requires a centralized [**backup repository**](/docs/pgsql/backup/repository) (Silo/S3), but is more powerful.
+
+To clone via PITR, add [**`pg_pitr`**](/docs/pgsql/backup/restore#pitr-parameter-definition) param specifying recovery target:
+
+```yaml
+# Clone new cluster pg-meta2 from pg-meta backup
+pg-meta2:
+  hosts: { 10.10.10.12: { pg_seq: 1, pg_role: primary } }
+  vars:
+    pg_cluster: pg-meta2
+    pg_pitr:
+      cluster: pg-meta                    # Recover from pg-meta backup
+      time: '2025-01-10 10:00:00+00'      # Recover to specific time
+      archive: false                       # Disable archiving during the independent restore
+      action: promote                      # Promote after replay in this one-shot example
+```
+
+Execute clone with `pgsql-pitr.yml` playbook:
+
+```bash {tab="Playbook" group="playbook-cli" value="playbook"}
+./pgsql-pitr.yml -l pg-meta2    # Use the explicitly declared action: promote above
+```
+
+```bash {tab="CLI" value="cli"}
+# Specify PITR options via command line
+./pgsql-pitr.yml -l pg-meta2 -e '{"pg_pitr": {"cluster": "pg-meta", "time": "2025-01-10 10:00:00+00", "archive": false, "action": "promote"}}'
+```
+
+PITR supports multiple recovery target types:
+
+| Target Type | Example                              | Description                    |
+|:------------|:-------------------------------------|:-------------------------------|
+| Time        | `time: "2025-01-10 10:00:00+00"`     | Recover to specific timestamp  |
+| XID         | `xid: "250000"`                      | Recover to before/after txn    |
+| Name        | `name: "before_migration"`           | Recover to named restore point |
+| LSN         | `lsn: "0/4001C80"`                   | Recover to specific WAL pos    |
+| Latest      | `pg_pitr: {}`                        | Recover to end of WAL archive  |
+
+> [!NOTE] Post-PITR Processing
+> Pigsty v4.5 PITR keeps archiving enabled by default (`archive: true`). If you explicitly set `archive: false` for exploratory recovery, reset `archive_mode`, restart the cluster, and perform a new full backup after confirming the recovered data is correct:
+>
+> ```bash
+> psql -c 'ALTER SYSTEM RESET archive_mode;'
+> pg restart <cls>
+> pg-backup full    # Execute new full backup
+> ```
+
+For detailed PITR usage, see [**Restore Operations**](/docs/pgsql/backup/restore) documentation.

@@ -1,0 +1,468 @@
+# PIGSTY
+
+> Pigsty, the FOSS PostgreSQL RDS, self-host PG like a pro, with Monitoring, HA, PITR, IAC, 12 kernels and 576 packaged PG extensions
+
+## Site index
+
+- [Home page](https://pigsty.io/index.md)
+- [Docs](https://pigsty.io/docs/index.md)
+- [Extensions](https://pigsty.io/ext/): Extensions are the soul of PostgreSQL. Pigsty builds, packages, collects, and integrates 576 PG ecosystem extensions for out-of-the-box use.
+- [Blog](https://pigsty.io/blog/index.md): Articles about Pigsty, cloud computing, database industry, AI/Agent, and notes on PostgreSQL development, administration, and internals
+- [Services](https://pigsty.io/price/index.md): Pigsty offers flexible service plans, from free open source to enterprise support, tailored to your needs
+
+## Documentation index
+
+- [Get Started](https://pigsty.io/docs/setup/index.md): Deploy Pigsty single-node version on your laptop/cloud server, access DB and Web UI
+  - [Quick Start](https://pigsty.io/docs/setup/install/index.md): Get started with Pigsty—complete single-node install on a fresh Linux host!
+  - [Docker](https://pigsty.io/docs/setup/docker/index.md): Spin up Pigsty in Docker containers for quick testing on macOS/Windows
+  - [Web UI](https://pigsty.io/docs/setup/webui/index.md): Explore Pigsty's Web graphical management interface, Grafana dashboards, and how to access them via domain names and HTTPS.
+  - [Use PG](https://pigsty.io/docs/setup/pgsql/index.md): Get started with PostgreSQL—connect using CLI and graphical clients
+  - [Customize](https://pigsty.io/docs/setup/config/index.md): Express your infra and clusters with declarative config files
+  - [Playbook](https://pigsty.io/docs/setup/playbook/index.md): Use Ansible playbooks to deploy and manage Pigsty clusters
+  - [Offline](https://pigsty.io/docs/setup/offline/index.md): Install Pigsty in air-gapped env using offline packages
+  - [Slim](https://pigsty.io/docs/setup/slim/index.md): Install only HA PostgreSQL clusters with minimal dependencies
+  - [Security Recommendations](https://pigsty.io/docs/setup/security/index.md): Basic security checks for quick-start and single-node deployments.
+- [Deployment](https://pigsty.io/docs/deploy/index.md): Multi-node, high-availability Pigsty deployment for production environments.
+  - [Prod Install](https://pigsty.io/docs/deploy/install/index.md): How to install Pigsty on Linux hosts for production?
+  - [Preparation](https://pigsty.io/docs/deploy/prepare/index.md): Production deployment preparation including hardware, nodes, disks, network, VIP, domain, software, and filesystem requirements.
+  - [Arch Planning](https://pigsty.io/docs/deploy/planning/index.md): How many nodes? Which modules need HA? How to plan based on available resources and requirements?
+  - [Admin Setup](https://pigsty.io/docs/deploy/admin/index.md): Admin user, sudo, SSH, accessibility verification, and firewall configuration
+  - [Sandbox](https://pigsty.io/docs/deploy/sandbox/index.md): 4-node sandbox environment for learning, testing, and demonstration
+  - [Vagrant](https://pigsty.io/docs/deploy/vagrant/index.md): Create local virtual machine environment with Vagrant
+  - [Terraform](https://pigsty.io/docs/deploy/terraform/index.md): Create virtual machine environment on public cloud with Terraform
+  - [Security Considerations](https://pigsty.io/docs/deploy/security/index.md): Credential, network, authentication, encryption, data protection, and audit checks for production Pigsty deployments.
+- [Concepts](https://pigsty.io/docs/concept/index.md): Understand Pigsty's core concepts, architecture design, learn how high availability, backup recovery, iac, security works
+  - [Expire Failure](https://pigsty.io/docs/concept/ha/failure/passive/index.md): Failover path triggered by node crash causing leader lease expiration and cluster election
+  - [Infra Cluster](https://pigsty.io/docs/concept/model/infra/index.md): Entity-Relationship model for INFRA infrastructure nodes in Pigsty, component composition, and naming conventions.
+  - [RPO Trade-offs](https://pigsty.io/docs/concept/ha/rpo/index.md): Trade-off analysis for RPO (Recovery Point Objective), finding the optimal balance between availability and data loss.
+  - [Crash Failure](https://pigsty.io/docs/concept/ha/failure/active/index.md): PostgreSQL primary process crashes while Patroni stays alive and attempts restart, triggering failover after timeout
+  - [PGSQL Cluster](https://pigsty.io/docs/concept/model/pgsql/index.md): Entity-Relationship model for PostgreSQL clusters in Pigsty, including E-R diagram, entity definitions, and naming conventions.
+  - [Etcd Cluster](https://pigsty.io/docs/concept/model/etcd/index.md): Entity-Relationship model for ETCD clusters in Pigsty, including E-R diagram, entity definitions, and naming conventions.
+  - [Network Partition](https://pigsty.io/docs/concept/ha/failure/partition/index.md): Primary loses DCS connectivity, causing lease expiration and triggering split-brain protection and failover
+  - [Object Storage Cluster](https://pigsty.io/docs/concept/model/minio/index.md): The cluster, instance, and node identity model used when Pigsty's MINIO module deploys Silo.
+  - [Redis Cluster](https://pigsty.io/docs/concept/model/redis/index.md): Entity-Relationship model for Redis clusters in Pigsty, including E-R diagram, entity definitions, and naming conventions.
+  - [Nodes](https://pigsty.io/docs/concept/arch/node/index.md): A node is an abstraction of hardware/OS resources—physical machines, bare metal, VMs, or containers/pods.
+  - [Infrastructure](https://pigsty.io/docs/concept/arch/infra/index.md): Infrastructure module architecture, components, and functionality in Pigsty.
+  - [PGSQL Arch](https://pigsty.io/docs/concept/arch/pgsql/index.md): PostgreSQL module component interactions and data flow.
+  - [RTO Trade-offs](https://pigsty.io/docs/concept/ha/rto/index.md): Trade-off analysis for RTO (Recovery Time Objective), finding the optimal balance between recovery speed and false failover risk.
+  - [Inventory](https://pigsty.io/docs/concept/iac/inventory/index.md): Describe your infrastructure and clusters using declarative configuration files
+  - [Mechanism](https://pigsty.io/docs/concept/pitr/mechanism/index.md): Snapshots, WAL history, recovery windows, recovery targets, and timelines: the five concepts needed to reason accurately about PostgreSQL PITR.
+  - [Architecture](https://pigsty.io/docs/concept/pitr/arch/index.md): Pigsty implements PITR with pgBackRest: repository selection, archive flow, scheduling, primary-aware backup execution, performance defaults, and observability.
+  - [Configure](https://pigsty.io/docs/concept/iac/configure/index.md): Use the configure script to automatically generate recommended configuration files based on your environment.
+  - [Parameters](https://pigsty.io/docs/concept/iac/parameter/index.md): Fine-tune Pigsty customization using configuration parameters
+  - [Tradeoffs](https://pigsty.io/docs/concept/pitr/tradeoff/index.md): Repository location determines the failure domain, retention determines the recovery window, and backup frequency shapes restore time. Together they define a backup policy.
+  - [Recovery](https://pigsty.io/docs/concept/pitr/restore/index.md): Declare the desired pg_pitr recovery target and let pgsql-pitr.yml or pig orchestrate the recovery workflow.
+  - [Scenarios](https://pigsty.io/docs/concept/pitr/scenarios/index.md): How to choose a recovery target and workflow for accidental DML, dropped objects, defective releases, investigations, and site loss — and why recovery drills must be routine.
+  - [Templates](https://pigsty.io/docs/concept/iac/template/index.md): Use pre-made configuration templates to quickly generate configuration files adapted to your environment
+  - [CMDB](https://pigsty.io/docs/concept/iac/cmdb/index.md): Use PostgreSQL as a CMDB metabase to store Ansible inventory.
+  - [Monitoring System](https://pigsty.io/docs/concept/monitor/index.md): How Pigsty's monitoring system is architected and how monitored targets are automatically managed.
+  - [Service Access](https://pigsty.io/docs/concept/ha/svc/index.md): Pigsty uses HAProxy to provide service access, with optional pgBouncer for connection pooling, and optional L2 VIP and DNS access.
+  - [Security Model](https://pigsty.io/docs/concept/sec/level/index.md): Pigsty trust boundaries and defense in depth, with the admin node as a high-trust control plane and a path from the default baseline to production hardening.
+  - [Authentication](https://pigsty.io/docs/concept/sec/auth/index.md): Pigsty manages PostgreSQL and PgBouncer HBA rules declaratively, combining SCRAM passwords and client certificates to define who may connect and how identity is proven.
+  - [Access Control](https://pigsty.io/docs/concept/sec/ac/index.md): Pigsty turns least privilege into reusable declarative cluster configuration through a built-in four-tier role model and default privilege templates.
+  - [Encrypted Communication](https://pigsty.io/docs/concept/sec/ca/index.md): Pigsty provides a self-signed CA that issues certificates and distributes trust for managed components, creating a unified TLS foundation.
+  - [Data Security](https://pigsty.io/docs/concept/sec/data/index.md): Protect PostgreSQL data integrity, recoverability, confidentiality, and traceability with checksums, backup and PITR, encryption, and audit logs.
+  - [Compliance](https://pigsty.io/docs/concept/sec/compliance/index.md): Compliance combines configuration, process, and evidence. This page covers launch hardening, MLPS and SOC 2 control mappings, supply-chain integrity, and vulnerability response.
+- [About](https://pigsty.io/docs/about/index.md): Learn about Pigsty itself in every aspect - features, history, license, privacy policy, community, and news.
+  - [Features](https://pigsty.io/docs/about/feature/index.md): Pigsty's value propositions and highlight features.
+  - [History](https://pigsty.io/docs/about/history/index.md): The origin and motivation of the Pigsty project, its development history, and future goals and vision.
+  - [Events](https://pigsty.io/docs/about/event/index.md): News and events related to Pigsty and PostgreSQL, including latest announcements!
+  - [Roadmap](https://pigsty.io/docs/about/roadmap/index.md): Future feature planning, new feature release schedule, and todo list.
+  - [Community](https://pigsty.io/docs/about/community/index.md): Pigsty is a Build in Public project. We are very active on GitHub, and Chinese users are mainly active in WeChat groups.
+  - [Privacy Policy](https://pigsty.io/docs/about/privacy/index.md): What user data does Pigsty software and website collect, and how will we process your data and protect your privacy?
+  - [License](https://pigsty.io/docs/about/license/index.md): Pigsty's open-source licenses — Apache-2.0 and CC BY 4.0
+  - [Sponsor Us](https://pigsty.io/docs/about/sponsor/index.md): Pigsty sponsors and investors list - thank you for your support of this project!
+  - [User Cases](https://pigsty.io/docs/about/case/index.md): Pigsty customer and application cases across various domains and industries
+  - [Subscription](https://pigsty.io/docs/about/service/index.md): Pigsty Professional/Enterprise subscription service - When you encounter difficulties related to PostgreSQL and Pigsty, our subscription service provides you with comprehensive support.
+  - [FAQ](https://pigsty.io/docs/about/faq/index.md): Answers to frequently asked questions about the Pigsty project itself.
+  - [Release Note](https://pigsty.io/docs/about/release/index.md): Pigsty historical version release notes
+  - [Cost Reference](https://pigsty.io/docs/about/compare/cost/index.md): This article provides cost data to help you evaluate self-hosted Pigsty, cloud RDS costs, and typical DBA salaries.
+  - [Open-Source Impact](https://pigsty.io/docs/about/compare/impact/index.md): Impact comparison of PostgreSQL ecosystem projects, mainly measured by GitHub star counts.
+- [References](https://pigsty.io/docs/ref/index.md): Detailed reference information and lists, supported Linux distros, available modules, metrics, extensions, and more.
+  - [Supported Linux](https://pigsty.io/docs/ref/linux/index.md): Pigsty compatible Linux OS distribution major versions and CPU architectures
+  - [Modules](https://pigsty.io/docs/ref/module/index.md): This article lists available Pigsty modules and the current module planning.
+  - [File Hierarchy](https://pigsty.io/docs/ref/fhs/index.md): How Pigsty's file system structure is designed and organized, and directory structures used by each module.
+  - [Parameters](https://pigsty.io/docs/ref/param/index.md): Pigsty v4.x configuration overview and module parameter navigation
+  - [Playbooks](https://pigsty.io/docs/ref/playbook/index.md): Pigsty v4.x preset Ansible playbook navigation and execution notes
+  - [Port List](https://pigsty.io/docs/ref/port/index.md): Default ports used by Pigsty components, with related parameters and status.
+- [Applications](https://pigsty.io/docs/app/index.md): Pigsty application templates and data applets: run stateless apps with Docker Compose and host state in external PostgreSQL and S3-compatible storage.
+  - [Enterprise Self-Hosted Supabase](https://pigsty.io/docs/app/supabase/index.md): Self-host enterprise-grade Supabase with Pigsty, featuring monitoring, high availability, PITR, IaC, and 575 PostgreSQL extensions.
+  - [Odoo: Self-Hosted Open Source ERP](https://pigsty.io/docs/app/odoo/index.md): How to spin up an out-of-the-box enterprise application suite Odoo and use Pigsty to manage its backend PostgreSQL database.
+  - [Dify: AI Workflow Platform](https://pigsty.io/docs/app/dify/index.md): How to self-host the AI Workflow LLMOps platform — Dify, using external PostgreSQL, PGVector, and Redis for storage with Pigsty?
+  - [InsForge: AI Backend-as-a-Service](https://pigsty.io/docs/app/insforge/index.md): Self-host InsForge OSS with Pigsty and let Pigsty manage PostgreSQL, backups, monitoring, and ingress.
+  - [Hindsight: AI Long-Term Memory](https://pigsty.io/docs/app/hindsight/index.md): Self-host Hindsight with Pigsty and store long-term memory in external PostgreSQL.
+  - [FerretDB: MongoDB Protocol](https://pigsty.io/docs/app/ferretdb/index.md): Deploy a stateless FerretDB proxy on PostgreSQL and DocumentDB managed by Pigsty.
+  - [Enterprise Software](https://pigsty.io/docs/app/_div_enterprise/index.md)
+  - [Teable: AI No-Code Database](https://pigsty.io/docs/app/teable/index.md): Self-host Teable with Pigsty, external PostgreSQL, and Silo.
+  - [Gitea: Git Hosting](https://pigsty.io/docs/app/gitea/index.md): Deploy Gitea with Pigsty's Compose template and connect it to external PostgreSQL.
+  - [NocoDB: Open-Source Airtable](https://pigsty.io/docs/app/nocodb/index.md): Use NocoDB to transform PostgreSQL databases into smart spreadsheets, a no-code database application platform.
+  - [Mattermost: Open-Source Team Collaboration](https://pigsty.io/docs/app/mattermost/index.md): Deploy Mattermost with Pigsty and store state in external PostgreSQL.
+  - [Wiki.js: OSS Wiki Software](https://pigsty.io/docs/app/wiki/index.md): How to self-hosting your own wikipedia with Wiki.js and use Pigsty managed PostgreSQL as the backend database
+  - [Maybe: Self-Hosted Personal Finance](https://pigsty.io/docs/app/maybe/index.md): Self-host the Maybe personal finance application with Pigsty and let Pigsty manage PostgreSQL, backups, monitoring, and ingress.
+  - [Immich: Self-Hosted Photo and Video Library](https://pigsty.io/docs/app/immich/index.md): Self-host Immich, the open-source Google Photos alternative, with Pigsty managing its metadata, vector search, backups, and ingress.
+  - [Kong: API Gateway](https://pigsty.io/docs/app/kong/index.md): Deploy Kong with Pigsty Compose templates and PostgreSQL backend storage.
+  - [Metabase: BI Analytics Tool](https://pigsty.io/docs/app/metabase/index.md): Use Metabase for rapid business intelligence analysis with a user-friendly interface for team self-service data exploration.
+  - [Registry: Container Image Cache](https://pigsty.io/docs/app/registry/index.md): Deploy a Docker Registry pull-through cache and optional web UI with Pigsty.
+  - [JumpServer: Open-Source Bastion Host](https://pigsty.io/docs/app/jumpserver/index.md): Self-host JumpServer Community Edition with Pigsty managing its PostgreSQL backend, backups, ingress, and operations.
+  - [ByteBase: Schema Migration](https://pigsty.io/docs/app/bytebase/index.md): Deploy Bytebase with Pigsty's Docker Compose template and connect it to external PostgreSQL.
+  - [pgAdmin: PostgreSQL GUI](https://pigsty.io/docs/app/pgadmin/index.md): Deploy pgAdmin4 with Pigsty's Docker Compose template and safely load the PostgreSQL server inventory.
+  - [Database Tools](https://pigsty.io/docs/app/_div_tools/index.md)
+  - [PGWeb: Browser-based PostgreSQL Client](https://pigsty.io/docs/app/pgweb/index.md): Run the bundled pgweb Docker application for small, interactive PostgreSQL queries from a browser.
+  - [PostgREST: Auto-Generated API](https://pigsty.io/docs/app/postgrest/index.md): Deploy PostgREST with Pigsty Compose templates and auto-generate REST APIs from PostgreSQL schema.
+  - [Electric: PostgreSQL Sync Engine](https://pigsty.io/docs/app/electric/index.md): Self-host Electric with Pigsty to sync PostgreSQL data to frontend apps with partial replication and real-time delivery.
+  - [Jupyter: Notebooks and Data Analysis](https://pigsty.io/docs/app/jupyter/index.md): Run JupyterLab with Pigsty's standalone Docker Compose template and access PostgreSQL safely.
+  - [Data Applications](https://pigsty.io/docs/app/_div_applet/index.md)
+  - [PGLOG CSV Log Analysis](https://pigsty.io/docs/app/pglog/index.md): A sample Applet included with Pigsty for analyzing PostgreSQL CSV log samples
+  - [ISD Global Weather Data Query](https://pigsty.io/docs/app/isd/index.md): Demonstrate how to import data into a database using the ISD dataset as an example
+  - [WHO COVID-19 Pandemic Dashboard](https://pigsty.io/docs/app/covid/index.md): A sample Applet included with Pigsty for visualizing World Health Organization official pandemic data
+  - [StackOverflow Global Developer Survey](https://pigsty.io/docs/app/sf-survey/index.md): Analyze database-related data from StackOverflow's global developer survey over the past seven years
+  - [DB-Engines Database Popularity Trend Analysis](https://pigsty.io/docs/app/db-engine/index.md): Analyze database management systems on DB-Engines and browse their popularity evolution
+  - [AWS & Aliyun Server Pricing](https://pigsty.io/docs/app/cloud/index.md): Analyze compute and storage pricing on Aliyun / AWS (ECS/ESSD)
+- [Conf Sample](https://pigsty.io/docs/conf/index.md): Batteries-included configuration templates for specific scenarios, with detailed explanations.
+  - [Solo Templates](https://pigsty.io/docs/conf/_div_solo/index.md)
+  - [meta](https://pigsty.io/docs/conf/meta/index.md): Default single-node installation template with extensive configuration parameter descriptions
+  - [rich](https://pigsty.io/docs/conf/rich/index.md): Feature-rich single-node configuration with local software repository, all extensions, Silo backup, and complete examples
+  - [slim](https://pigsty.io/docs/conf/slim/index.md): Minimal installation template without monitoring infrastructure, installs PostgreSQL directly from internet
+  - [fat](https://pigsty.io/docs/conf/fat/index.md): Feature-All-Test template, single-node installation of all extensions, builds local repo with PG 14-18 all versions
+  - [infra](https://pigsty.io/docs/conf/infra/index.md): Only installs observability infrastructure, dedicated template without PostgreSQL and etcd
+  - [vibe](https://pigsty.io/docs/conf/vibe/index.md): VIBE AI coding sandbox config template, integrating Code-Server, JupyterLab, Claude Code, Codex CLI, and JuiceFS
+  - [docker](https://pigsty.io/docs/conf/docker/index.md): Pigsty Docker single-node template for quickly bootstrapping Pigsty in containers.
+  - [Kernel Templates](https://pigsty.io/docs/conf/_div_kernel/index.md)
+  - [pgsql](https://pigsty.io/docs/conf/pgsql/index.md): Native PostgreSQL kernel with stable support for PostgreSQL 14 to 18 and a PG19 Beta evaluation option
+  - [pg19](https://pigsty.io/docs/conf/pg19/index.md): Single-node PostgreSQL 19 Beta evaluation template with the PGDG Beta repository and default backup capabilities
+  - [mssql](https://pigsty.io/docs/conf/mssql/index.md): Babelfish template pinned to a PostgreSQL 17-compatible kernel with SQL Server protocol and T-SQL support
+  - [polar](https://pigsty.io/docs/conf/polar/index.md): PolarDB for PostgreSQL kernel, provides Aurora-style storage-compute separation capability
+  - [cloudberry](https://pigsty.io/docs/conf/cloudberry/index.md): Placeholder for the Cloudberry config template (not yet available).
+  - [ivory](https://pigsty.io/docs/conf/ivory/index.md): IvorySQL kernel, provides Oracle syntax and PL/SQL compatibility
+  - [agens](https://pigsty.io/docs/conf/agens/index.md): AgensGraph kernel template with property graph model and Cypher query support
+  - [pgedge](https://pigsty.io/docs/conf/pgedge/index.md): pgEdge kernel template for distributed multi-master PostgreSQL in edge scenarios
+  - [mysql](https://pigsty.io/docs/conf/mysql/index.md): OpenHalo kernel, provides MySQL protocol and syntax compatibility
+  - [pgtde](https://pigsty.io/docs/conf/pgtde/index.md): Percona PostgreSQL kernel, provides Transparent Data Encryption (pg_tde) capability
+  - [oriole](https://pigsty.io/docs/conf/oriole/index.md): OrioleDB kernel, provides bloat-free OLTP enhanced storage engine
+  - [Mongo](https://pigsty.io/docs/conf/mongo/index.md): Run PostgreSQL in Mongo-compatible mode with DocumentDB and the FerretDB Docker APP.
+  - [HA Templates](https://pigsty.io/docs/conf/_div_ha/index.md)
+  - [ha/simu](https://pigsty.io/docs/conf/simu/index.md): 20-node production environment simulation for large-scale deployment testing
+  - [ha/octo](https://pigsty.io/docs/conf/octo/index.md): Compact eight-node HA simulation with three INFRA nodes, five etcd nodes, eight object-storage nodes, and two PostgreSQL clusters.
+  - [ha/full](https://pigsty.io/docs/conf/full/index.md): Four-node complete feature demonstration environment with two PostgreSQL clusters, Silo, Redis, etc.
+  - [ha/safe](https://pigsty.io/docs/conf/safe/index.md): Three-node high-availability and security-hardening configuration example.
+  - [ha/trio](https://pigsty.io/docs/conf/trio/index.md): Three-node standard HA configuration where PostgreSQL, ETCD, and Silo tolerate one node failure
+  - [ha/dual](https://pigsty.io/docs/conf/dual/index.md): Two-node configuration, limited HA deployment tolerating specific server failure
+  - [ha/citus](https://pigsty.io/docs/conf/citus/index.md): 13-node Citus distributed PostgreSQL cluster, 1 coordinator + 5 worker groups with HA
+  - [App Templates](https://pigsty.io/docs/conf/_div_app/index.md)
+  - [supabase](https://pigsty.io/docs/conf/supabase/index.md): Self-host Supabase using Pigsty-managed PostgreSQL, an open-source Firebase alternative
+  - [app/odoo](https://pigsty.io/docs/conf/odoo/index.md): Deploy Odoo open-source ERP system using Pigsty-managed PostgreSQL
+  - [app/dify](https://pigsty.io/docs/conf/dify/index.md): Deploy Dify AI application development platform using Pigsty-managed PostgreSQL
+  - [app/electric](https://pigsty.io/docs/conf/electric/index.md): Deploy Electric real-time sync service using Pigsty-managed PostgreSQL
+  - [app/maybe](https://pigsty.io/docs/conf/maybe/index.md): Deploy Maybe personal finance management system using Pigsty-managed PostgreSQL
+  - [app/teable](https://pigsty.io/docs/conf/teable/index.md): Deploy Teable open-source Airtable alternative using Pigsty-managed PostgreSQL
+  - [app/mattermost](https://pigsty.io/docs/conf/mattermost/index.md): Mattermost template for one-click team collaboration deployment with Pigsty PostgreSQL and Docker.
+  - [app/registry](https://pigsty.io/docs/conf/registry/index.md): Deploy Docker Registry image proxy and private registry using Pigsty
+  - [app/insforge](https://pigsty.io/docs/conf/insforge/index.md): Deploy the InsForge Backend-as-a-Service platform with Pigsty-managed PostgreSQL
+  - [app/hindsight](https://pigsty.io/docs/conf/hindsight/index.md): Deploy the Hindsight AI long-term memory service with Pigsty-managed PostgreSQL
+  - [app/immich](https://pigsty.io/docs/conf/immich/index.md): Deploy Immich photo and video management with Pigsty-managed PostgreSQL and VectorChord
+  - [app/jumpserver](https://pigsty.io/docs/conf/jumpserver/index.md): Deploy the JumpServer open-source bastion host with Pigsty-managed PostgreSQL
+  - [Misc Templates](https://pigsty.io/docs/conf/_div_misc/index.md)
+  - [demo/bare](https://pigsty.io/docs/conf/bare/index.md): Minimal readable configuration declaring only INFRA, ETCD, and single-node PostgreSQL
+  - [demo/el](https://pigsty.io/docs/conf/el/index.md): Configuration template optimized for Enterprise Linux (RHEL/Rocky/Alma)
+  - [demo/debian](https://pigsty.io/docs/conf/debian/index.md): Configuration template optimized for Debian/Ubuntu
+  - [demo/demo](https://pigsty.io/docs/conf/demo/index.md): Pigsty public demo site configuration, showcasing SSL certificates, domain exposure, and full extension installation
+  - [demo/kernel](https://pigsty.io/docs/conf/kernel/index.md): Ten-node PostgreSQL kernel matrix demo configuration
+  - [demo/minio](https://pigsty.io/docs/conf/minio/index.md): Four-node x four-drive HA S3 object-storage cluster demo; current source defaults to Silo.
+  - [demo/redis](https://pigsty.io/docs/conf/redis/index.md): Four-node demo of Redis replica, Sentinel, and native Cluster modes
+  - [demo/kafka](https://pigsty.io/docs/conf/kafka/index.md): Four-node dynamic KRaft example with a plaintext single-node dev cluster and a three-node TLS/SCRAM HA baseline
+  - [demo/mysql](https://pigsty.io/docs/conf/mysql84/index.md): Native MySQL 8.4 pilot template with a standalone instance and a three-node InnoDB Cluster
+  - [build/oss](https://pigsty.io/docs/conf/oss/index.md): Pigsty open-source edition offline package build environment configuration
+  - [build/dev](https://pigsty.io/docs/conf/dev/index.md): Pigsty three-node local build and development configuration
+  - [demo/remote](https://pigsty.io/docs/conf/remote/index.md): Monitor remote PostgreSQL and cloud RDS with pg_exporter instances on an INFRA node
+  - [demo/saas](https://pigsty.io/docs/conf/saas/index.md): Legacy single-node SaaS bundle with PostgreSQL, Silo, Redis, and multiple application entrypoints
+  - [demo/wool](https://pigsty.io/docs/conf/wool/index.md): Single-node tiny-tuning example for small cloud instances in China
+- [Repository](https://pigsty.io/docs/repo/index.md): The APT / DNF repository to deliver PostgreSQL Kernel, Extensions and Infra packages.
+  - [PGDG Repo](https://pigsty.io/docs/repo/pgdg/index.md): The official PostgreSQL APT/YUM repository
+  - [GPG Key](https://pigsty.io/docs/repo/gpg/index.md): Import the GPG key for Pigsty repository
+  - [Package List](https://pigsty.io/docs/repo/infra/list/index.md): Available packages in the Infra repository
+  - [Release Log](https://pigsty.io/docs/repo/infra/log/index.md): pigsty-infra repository changelog and observability package release notes
+  - [DNF Changelog](https://pigsty.io/docs/repo/pgsql/rpm/index.md): PostgreSQL and Extension RPM package changelog and release notes
+  - [APT Changelog](https://pigsty.io/docs/repo/pgsql/deb/index.md): PostgreSQL and Extension DEB package changelog and release notes
+- [SOP](https://pigsty.io/docs/sop/index.md): Pigsty and PostgreSQL operations documentation index for new users: find the right page by common task.
+- [Module: PGSQL](https://pigsty.io/docs/pgsql/index.md): Declare, deploy, expose, observe, back up, and manage PostgreSQL clusters with Pigsty v4.5.
+  - [PGSQL Cluster](https://pigsty.io/docs/pgsql/dashboard/cluster/pgsql-cluster/index.md): Main dashboard for a PGSQL cluster
+  - [PGSQL Database](https://pigsty.io/docs/pgsql/dashboard/database/pgsql-database/index.md): Main dashboard for a single PGSQL database
+  - [PGSQL Instance](https://pigsty.io/docs/pgsql/dashboard/instance/pgsql-instance/index.md): Main dashboard for a single PGSQL instance
+  - [PGSQL Overview](https://pigsty.io/docs/pgsql/dashboard/overview/pgsql-overview/index.md): Main dashboard for the PGSQL module
+  - [PGCAT Database](https://pigsty.io/docs/pgsql/dashboard/database/pgcat-database/index.md): Database info retrieved directly from database catalog
+  - [PGRDS Cluster](https://pigsty.io/docs/pgsql/dashboard/cluster/pgrds-cluster/index.md): RDS version of PGSQL Cluster focusing on PostgreSQL-native metrics
+  - [PGRDS Instance](https://pigsty.io/docs/pgsql/dashboard/instance/pgrds-instance/index.md): RDS version of PGSQL Instance focusing on PostgreSQL-native metrics
+  - [PGSQL Alert](https://pigsty.io/docs/pgsql/dashboard/overview/pgsql-alert/index.md): Global key metrics and alert events for PGSQL
+  - [PGCAT Instance](https://pigsty.io/docs/pgsql/dashboard/instance/pgcat-instance/index.md): Instance info retrieved directly from database catalog
+  - [PGSQL Activity](https://pigsty.io/docs/pgsql/dashboard/cluster/pgsql-activity/index.md): Session/load/QPS/TPS/locks for PGSQL cluster
+  - [PGSQL Shard](https://pigsty.io/docs/pgsql/dashboard/overview/pgsql-shard/index.md): Overview of horizontally sharded PGSQL clusters
+  - [PGSQL Tables](https://pigsty.io/docs/pgsql/dashboard/database/pgsql-tables/index.md): Table/index access metrics within a single database
+  - [PGSQL Persist](https://pigsty.io/docs/pgsql/dashboard/instance/pgsql-persist/index.md): Persistence metrics - WAL, XID, checkpoint, archive, IO
+  - [PGSQL Replication](https://pigsty.io/docs/pgsql/dashboard/cluster/pgsql-replication/index.md): Replication, slots, and pub/sub for PGSQL cluster
+  - [PGSQL Table](https://pigsty.io/docs/pgsql/dashboard/database/pgsql-table/index.md): Detailed info for a single table (QPS/RT/index/sequence)
+  - [PGCAT Table](https://pigsty.io/docs/pgsql/dashboard/database/pgcat-table/index.md): Detailed table info from database catalog
+  - [PGSQL Proxy](https://pigsty.io/docs/pgsql/dashboard/instance/pgsql-proxy/index.md): Detailed metrics for a single HAProxy load balancer
+  - [PGSQL Service](https://pigsty.io/docs/pgsql/dashboard/cluster/pgsql-service/index.md): Service, proxy, routing, and load balancing for PGSQL cluster
+  - [PGSQL Databases](https://pigsty.io/docs/pgsql/dashboard/cluster/pgsql-databases/index.md): Database CRUD, slow queries, and table statistics across all instances
+  - [PGSQL Pgbouncer](https://pigsty.io/docs/pgsql/dashboard/instance/pgsql-pgbouncer/index.md): Metrics overview for a single Pgbouncer connection pooler
+  - [PGSQL Query](https://pigsty.io/docs/pgsql/dashboard/database/pgsql-query/index.md): Detailed info for a query type (QPS/RT)
+  - [PGCAT Query](https://pigsty.io/docs/pgsql/dashboard/database/pgcat-query/index.md): Query details from database catalog
+  - [PGSQL Patroni](https://pigsty.io/docs/pgsql/dashboard/cluster/pgsql-patroni/index.md): HA status and Patroni component status for cluster
+  - [PGSQL Session](https://pigsty.io/docs/pgsql/dashboard/instance/pgsql-session/index.md): Session and active/idle time metrics for a single instance
+  - [PGCAT Locks](https://pigsty.io/docs/pgsql/dashboard/database/pgcat-locks/index.md): Activity and lock wait info from database catalog
+  - [PGSQL PITR](https://pigsty.io/docs/pgsql/dashboard/cluster/pgsql-pitr/index.md): PITR context for point-in-time recovery assistance
+  - [PGSQL Xacts](https://pigsty.io/docs/pgsql/dashboard/instance/pgsql-xacts/index.md): Transaction, lock, TPS/QPS related metrics
+  - [PGCAT Schema](https://pigsty.io/docs/pgsql/dashboard/database/pgcat-schema/index.md): Schema info from database catalog
+  - [PGSQL Exporter](https://pigsty.io/docs/pgsql/dashboard/instance/pgsql-exporter/index.md): Self-monitoring metrics for Postgres and Pgbouncer exporters
+  - [Cluster / Instance](https://pigsty.io/docs/pgsql/config/cluster/index.md): Choose the appropriate instance and cluster types based on your requirements to configure PostgreSQL database clusters that meet your needs.
+  - [Cluster Admin](https://pigsty.io/docs/pgsql/admin/cluster/index.md): Create/destroy PostgreSQL clusters, scale existing clusters, and clone clusters.
+  - [Optimize Params](https://pigsty.io/docs/pgsql/template/tune/index.md): Learn the parameter optimization strategies Pigsty uses for the 4 different PostgreSQL workload scenarios.
+  - [Kernel Version](https://pigsty.io/docs/pgsql/config/kernel/index.md): How to choose the appropriate PostgreSQL kernel and major version.
+  - [OLTP Template](https://pigsty.io/docs/pgsql/template/oltp/index.md): PostgreSQL config template optimized for online transaction processing workloads
+  - [User Admin](https://pigsty.io/docs/pgsql/admin/user/index.md): User management - create, modify, delete users, manage role membership, connection pool config
+  - [Database Admin](https://pigsty.io/docs/pgsql/admin/db/index.md): Database management - create, modify, delete, rebuild, and clone databases using templates
+  - [OLAP Template](https://pigsty.io/docs/pgsql/template/olap/index.md): PostgreSQL config template optimized for online analytical processing workloads
+  - [Package Alias](https://pigsty.io/docs/pgsql/config/alias/index.md): Pigsty provides a package alias translation mechanism that shields the differences in binary package details across operating systems, making installation easier.
+  - [CRIT Template](https://pigsty.io/docs/pgsql/template/crit/index.md): PostgreSQL parameter template for consistency-first workloads, with strict synchronous replication, data checksums, and detailed connection logging.
+  - [Patroni HA Admin](https://pigsty.io/docs/pgsql/admin/patroni/index.md): Manage PostgreSQL cluster HA with Patroni, including config changes, status check, switchover, restart, and reinit replica.
+  - [User/Role](https://pigsty.io/docs/pgsql/config/user/index.md): How to define and customize PostgreSQL users and roles through configuration?
+  - [Database](https://pigsty.io/docs/pgsql/config/db/index.md): How to define and customize PostgreSQL databases through configuration?
+  - [HBA Admin](https://pigsty.io/docs/pgsql/admin/hba/index.md): HBA management - refresh rules, verify config, troubleshoot, Pgbouncer HBA
+  - [Pgbouncer Admin](https://pigsty.io/docs/pgsql/admin/pgbouncer/index.md): Manage Pgbouncer connection pool, including pause, resume, disable, enable, reconnect, kill, and reload operations.
+  - [TINY Template](https://pigsty.io/docs/pgsql/template/tiny/index.md): PostgreSQL config template optimized for micro instances and resource-constrained environments
+  - [HBA Rules](https://pigsty.io/docs/pgsql/config/hba/index.md): Configuration reference for PostgreSQL and PgBouncer Host-Based Authentication (HBA) rules in Pigsty.
+  - [Access Control](https://pigsty.io/docs/pgsql/config/acl/index.md): Configuration reference for Pigsty built-in roles, users, default privileges, and database ACLs.
+  - [Component Admin](https://pigsty.io/docs/pgsql/admin/component/index.md): Use systemctl to manage PostgreSQL cluster component services - start, stop, restart, reload, and status check.
+  - [Parameters](https://pigsty.io/docs/pgsql/config/param/index.md): Configure PostgreSQL parameters at cluster, instance, database, and user levels
+  - [Crontab Admin](https://pigsty.io/docs/pgsql/admin/crontab/index.md): Configure crontab to schedule PostgreSQL backups, vacuum freeze, and bloat maintenance tasks
+  - [Extension Admin](https://pigsty.io/docs/pgsql/admin/ext/index.md): Extension management - download, install, configure, enable, update, and remove extensions
+  - [Version Upgrade](https://pigsty.io/docs/pgsql/admin/upgrade/index.md): Version upgrade - minor version rolling upgrade, major version migration, extension upgrade
+  - [Core Concepts](https://pigsty.io/docs/pgsql/_div_concept/index.md)
+  - [Service / Access](https://pigsty.io/docs/pgsql/misc/svc/index.md): Separate read and write operations, route traffic correctly, and deliver PostgreSQL cluster capabilities reliably.
+  - [Access Control](https://pigsty.io/docs/pgsql/misc/acl/index.md): Entry points for PostgreSQL access-control concepts, configuration, and administration.
+  - [Administration](https://pigsty.io/docs/pgsql/_div_admin/index.md)
+  - [User / Role](https://pigsty.io/docs/pgsql/misc/user/index.md): Users/roles refer to logical objects within a database cluster created using the SQL commands `CREATE USER/ROLE`.
+  - [Database](https://pigsty.io/docs/pgsql/misc/db/index.md): Database refers to the logical object created using the SQL command `CREATE DATABASE` within a database cluster.
+  - [Authentication / HBA](https://pigsty.io/docs/pgsql/misc/hba/index.md): Detailed explanation of Host-Based Authentication (HBA) in Pigsty.
+  - [Troubleshooting](https://pigsty.io/docs/pgsql/tutorial/failure/index.md): Common failures and analysis troubleshooting approaches
+  - [Backup Mechanism](https://pigsty.io/docs/pgsql/backup/mechanism/index.md): pgBackRest concepts—stanzas, repositories, backup chains, retention, and timelines—and how Pigsty maps parameters to commands.
+  - [Backup Policy](https://pigsty.io/docs/pgsql/backup/policy/index.md): Design backup policies according to your needs
+  - [Backup Repository](https://pigsty.io/docs/pgsql/backup/repository/index.md): Configure local, Silo, and external S3 backup repositories, including retention, encryption, versioning, and Object Lock.
+  - [Admin Commands](https://pigsty.io/docs/pgsql/backup/admin/index.md): Backup administration reference covering setup and removal, manual backups, inspection, expiration, stanza management, logs, and alternative tools.
+  - [Restore Operations](https://pigsty.io/docs/pgsql/backup/restore/index.md): Perform PITR with pgsql-pitr.yml, pig pitr, or pig pb restore; select targets, run stages, and verify the result.
+  - [Clone a PG Cluster](https://pigsty.io/docs/pgsql/backup/cluster/index.md): Restore one cluster's historical state into another for data recovery, restore drills, and forensic inspection.
+  - [Manual PITR Drill](https://pigsty.io/docs/pgsql/tutorial/pitr/index.md): Run, validate, and complete PostgreSQL point-in-time recovery in explicit stages inside an isolated sandbox.
+  - [Enable HugePage](https://pigsty.io/docs/pgsql/tutorial/hugepage/index.md): Enabling HugePage for PostgreSQL to reduce memory fragmentation and improve performance.
+  - [Fork Instance](https://pigsty.io/docs/pgsql/tutorial/pg-fork/index.md): Create a local physical copy with pg-fork and run low-level pgBackRest recovery against a stopped data directory with pg-pitr.
+  - [Reference](https://pigsty.io/docs/pgsql/_div_reference/index.md)
+  - [Metrics](https://pigsty.io/docs/pgsql/metric/index.md): Complete monitoring metrics reference for the Pigsty PGSQL module
+  - [Accidental Deletion](https://pigsty.io/docs/pgsql/tutorial/drop/index.md): Handling accidental data deletion, table deletion, and database deletion
+  - [Playbook](https://pigsty.io/docs/pgsql/playbook/index.md): How to manage PostgreSQL clusters with Ansible playbooks
+  - [HA Drill: 2/3 Failure](https://pigsty.io/docs/pgsql/tutorial/drill/index.md): HA scenario response plan: When two of three nodes fail and auto-failover doesn't work, how to recover from the emergency state?
+  - [PostgreSQL](https://pigsty.io/docs/pgsql/kernel/postgres/index.md): Vanilla PostgreSQL kernel with 575 extensions
+  - [Supabase](https://pigsty.io/docs/pgsql/kernel/supabase/index.md): How to self-host Supabase with Pigsty, deploy an open-source Firebase alternative with a complete backend stack in one click.
+  - [Bind a L2 PG VIP](https://pigsty.io/docs/pgsql/tutorial/pg-vip/index.md)
+  - [Setup HA Citus](https://pigsty.io/docs/pgsql/tutorial/citus/index.md): How to deploy a Citus high-availability distributed cluster?
+  - [Babelfish](https://pigsty.io/docs/pgsql/kernel/babelfish/index.md): Use Babelfish (PG17/18) in Pigsty to provide SQL Server protocol/T-SQL compatibility.
+  - [Percona](https://pigsty.io/docs/pgsql/kernel/percona/index.md): Percona Postgres distribution with TDE transparent encryption support
+  - [openHalo](https://pigsty.io/docs/pgsql/kernel/openhalo/index.md): MySQL-compatible Postgres 14 branch
+  - [OrioleDB](https://pigsty.io/docs/pgsql/kernel/orioledb/index.md): Next-generation OLTP engine for PostgreSQL
+  - [Cloudberry](https://pigsty.io/docs/pgsql/kernel/cloudberry/index.md): Use the Cloudberry open-source MPP data warehouse kernel in Pigsty and manage nodes, monitoring, and configuration through `gpsql` mode.
+  - [AgensGraph](https://pigsty.io/docs/pgsql/kernel/agensgraph/index.md): Use the AgensGraph (PG17) graph database kernel in Pigsty to get property graph and Cypher/SQL hybrid query capabilities within the PostgreSQL ecosystem.
+  - [pgEdge](https://pigsty.io/docs/pgsql/kernel/pgedge/index.md): Use the pgEdge (PG15-18) kernel in Pigsty to build distributed PostgreSQL for edge scenarios on top of Spock multi-master logical replication.
+  - [DocumentDB](https://pigsty.io/docs/pgsql/kernel/documentdb/index.md): DocumentDB and FerretDB provide MongoDB wire-protocol compatibility
+  - [Quick Start](https://pigsty.io/docs/pgsql/ext/start/index.md): Four-step process overview for using extensions
+  - [Introduction](https://pigsty.io/docs/pgsql/ext/intro/index.md): Core concepts of PostgreSQL extensions and the Pigsty extension ecosystem
+  - [Packages](https://pigsty.io/docs/pgsql/ext/pkg/index.md): Extension package aliases and category naming conventions
+  - [Download](https://pigsty.io/docs/pgsql/ext/download/index.md): Download extension packages from software repositories to local
+  - [Install](https://pigsty.io/docs/pgsql/ext/install/index.md): Install extension packages on cluster nodes
+  - [Config](https://pigsty.io/docs/pgsql/ext/config/index.md): Preload extension libraries and configure extension parameters
+  - [Create](https://pigsty.io/docs/pgsql/ext/create/index.md): Create and enable extensions in databases
+  - [Update](https://pigsty.io/docs/pgsql/ext/update/index.md): Upgrade PostgreSQL extension versions
+  - [Remove](https://pigsty.io/docs/pgsql/ext/remove/index.md): Uninstall PostgreSQL extensions
+  - [Default Extensions](https://pigsty.io/docs/pgsql/ext/extension/index.md): PostgreSQL extensions installed by default in Pigsty
+  - [FAQ](https://pigsty.io/docs/pgsql/faq/index.md): Frequently asked questions about PostgreSQL
+  - [Repository](https://pigsty.io/docs/pgsql/ext/repo/index.md): Pigsty extension software repository configuration
+  - [Citus](https://pigsty.io/docs/pgsql/kernel/citus/index.md): Deploy native high-availability Citus horizontally sharded clusters with Pigsty, seamlessly scaling PostgreSQL across multiple shards and accelerating OLTP/OLAP queries.
+  - [IvorySQL](https://pigsty.io/docs/pgsql/kernel/ivorysql/index.md): Use HighGo's open-source IvorySQL kernel to achieve Oracle syntax/PLSQL compatibility based on PostgreSQL clusters.
+  - [PolarDB PG](https://pigsty.io/docs/pgsql/kernel/polardb/index.md): Using Alibaba Cloud's open-source PolarDB for PostgreSQL kernel to provide domestic innovation qualification support, with Oracle RAC-like user experience.
+  - [PolarDB Oracle](https://pigsty.io/docs/pgsql/kernel/polardb-o/index.md): Using Alibaba Cloud's commercial PolarDB for Oracle kernel (closed source, PG14, only available in special enterprise edition customization)
+  - [PostgresML](https://pigsty.io/docs/pgsql/kernel/pgml/index.md): How to deploy PostgresML with Pigsty: ML, training, inference, Embedding, RAG inside DB.
+  - [Greenplum](https://pigsty.io/docs/pgsql/kernel/greenplum/index.md): Deploy/Monitor Greenplum clusters with Pigsty, build Massively Parallel Processing (MPP) PostgreSQL data warehouse clusters!
+  - [Neon](https://pigsty.io/docs/pgsql/kernel/neon/index.md): Use Neon's open-source Serverless PostgreSQL kernel to build flexible, scale-to-zero, forkable PG services.
+- [Module: INFRA](https://pigsty.io/docs/infra/index.md): Optional standalone infrastructure that provides NTP, DNS, observability and other foundational services for PostgreSQL.
+  - [Configuration](https://pigsty.io/docs/infra/config/index.md): How to configure INFRA nodes? Customize Nginx, local repo, DNS, NTP, monitoring components.
+  - [Parameters](https://pigsty.io/docs/infra/param/index.md): INFRA module provides 10 sections with 70+ configurable parameters
+  - [Playbook](https://pigsty.io/docs/infra/playbook/index.md): How to use built-in Ansible playbooks to manage the INFRA module, with a quick reference for common commands.
+  - [Monitoring](https://pigsty.io/docs/infra/monitor/index.md): How to perform self-monitoring of infrastructure in Pigsty?
+  - [Metrics](https://pigsty.io/docs/infra/metric/index.md): Complete list of monitoring metrics provided by the Pigsty INFRA module
+  - [FAQ](https://pigsty.io/docs/infra/faq/index.md): Frequently asked questions about the Pigsty INFRA infrastructure module
+  - [Nginx Management](https://pigsty.io/docs/infra/admin/portal/index.md): Nginx management, web portal configuration, web server, upstream services
+  - [Software Repository](https://pigsty.io/docs/infra/admin/repo/index.md): Create and maintain Pigsty local RPM/APT repositories with SOW, including completion markers, ModuleMD, and forced rebuild semantics.
+  - [Domain Management](https://pigsty.io/docs/infra/admin/domain/index.md): Configure local or public domain names to access Pigsty services.
+  - [Module Management](https://pigsty.io/docs/infra/admin/sop/index.md): INFRA module management SOP: define, create, destroy, scale out, scale in
+  - [CA and Certificates](https://pigsty.io/docs/infra/admin/cert/index.md): Manage Pigsty's self-signed CA, service certificates, and public Certbot certificates.
+  - [Grafana HA](https://pigsty.io/docs/infra/admin/grafana/index.md): Use PostgreSQL instead of SQLite as Grafana's remote storage backend for better performance and availability.
+- [Module: NODE](https://pigsty.io/docs/node/index.md): Tune nodes into the desired state and monitor it, manage node, VIP, HAProxy, and exporters.
+  - [Configuration](https://pigsty.io/docs/node/config/index.md): Configure node identity, cluster, and identity borrowing from PostgreSQL
+  - [Parameters](https://pigsty.io/docs/node/param/index.md): NODE module provides 11 sections with 74 parameters
+  - [Playbook](https://pigsty.io/docs/node/playbook/index.md): How to use built-in Ansible playbooks to manage NODE clusters, with a quick reference for common commands.
+  - [Administration](https://pigsty.io/docs/node/admin/index.md): Node cluster management SOP - create, destroy, expand, shrink, and handle node/disk failures
+  - [Monitoring](https://pigsty.io/docs/node/monitor/index.md): Monitor NODE in Pigsty with dashboards and alerting rules
+  - [Metrics](https://pigsty.io/docs/node/metric/index.md): Complete list of monitoring metrics provided by Pigsty NODE module
+  - [FAQ](https://pigsty.io/docs/node/faq/index.md): Frequently asked questions about Pigsty NODE module
+- [Module: ETCD](https://pigsty.io/docs/etcd/index.md): Pigsty deploys etcd as DCS for reliable distributed config storage, supporting PostgreSQL HA.
+  - [Configuration](https://pigsty.io/docs/etcd/config/index.md): Choose etcd cluster size based on requirements, provide reliable access.
+  - [Parameters](https://pigsty.io/docs/etcd/param/index.md): ETCD module provides 13 configuration parameters for fine-grained control over cluster behavior.
+  - [Administration](https://pigsty.io/docs/etcd/admin/index.md): etcd cluster management SOP: create, destroy, scale, config, and RBAC.
+  - [Playbook](https://pigsty.io/docs/etcd/playbook/index.md): Manage etcd clusters with Ansible playbooks and quick command reference.
+  - [Monitoring](https://pigsty.io/docs/etcd/monitor/index.md): etcd monitoring dashboards, metrics, and alert rules.
+  - [Metrics](https://pigsty.io/docs/etcd/metric/index.md): Complete monitoring metrics list provided by Pigsty ETCD module
+  - [FAQ](https://pigsty.io/docs/etcd/faq/index.md): Frequently asked questions about Pigsty etcd module
+- [Module: MINIO](https://pigsty.io/docs/minio/index.md): Deploy Silo S3-compatible object storage with Pigsty's MINIO compatibility module and use it as a PostgreSQL backup repository.
+  - [Usage](https://pigsty.io/docs/minio/usage/index.md): Quickly use Silo deployed by the MINIO module through mcli, rclone, and pgBackRest.
+  - [Configuration](https://pigsty.io/docs/minio/config/index.md): Deploy Silo with the MINIO module and configure reliable S3 access in single-node, multi-drive, or multi-node modes.
+  - [Parameters](https://pigsty.io/docs/minio/param/index.md): The MINIO module exposes 22 parameters for deploying, configuring, and removing Silo object-storage clusters.
+  - [Playbook](https://pigsty.io/docs/minio/playbook/index.md): Deploy or remove Silo object-storage clusters with the built-in Ansible playbooks.
+  - [Administration](https://pigsty.io/docs/minio/admin/index.md): Create, remove, upgrade, expand, shrink, and recover Silo object-storage clusters.
+  - [Monitoring and Alerting](https://pigsty.io/docs/minio/monitor/index.md): How Pigsty monitors Silo, including its Metrics V3 endpoint, Grafana dashboards, and alert rules.
+  - [Metrics](https://pigsty.io/docs/minio/metric/index.md): The Metrics V3 interface, key metrics, and stable labels used by the Pigsty MINIO module to monitor Silo.
+  - [FAQ](https://pigsty.io/docs/minio/faq/index.md): Frequently asked questions about the Pigsty MINIO object storage module
+- [Module: REDIS](https://pigsty.io/docs/redis/index.md): Deploy Redis or Valkey through one REDIS module, with standalone replication, native cluster, and Sentinel modes.
+  - [Configuration](https://pigsty.io/docs/redis/config/index.md): Choose the appropriate Redis mode for your use case and express your requirements through the inventory
+  - [Parameters](https://pigsty.io/docs/redis/param/index.md): The REDIS module provides 19 deployment and 3 removal parameters, with Redis or Valkey as the engine.
+  - [Playbook](https://pigsty.io/docs/redis/playbook/index.md): Manage Redis clusters with Ansible playbooks and quick command reference.
+  - [Administration](https://pigsty.io/docs/redis/admin/index.md): Redis cluster management SOPs for creating, destroying, scaling, and configuring high availability
+  - [Monitoring](https://pigsty.io/docs/redis/monitor/index.md): How to monitor Redis? What alert rules are worth paying attention to?
+  - [Metrics](https://pigsty.io/docs/redis/metric/index.md): Complete list of monitoring metrics provided by the Pigsty REDIS module with explanations
+  - [FAQ](https://pigsty.io/docs/redis/faq/index.md): Frequently asked questions about the Pigsty REDIS module
+- [Module: DOCKER](https://pigsty.io/docs/docker/index.md): Docker daemon service that enables one-click deployment of containerized stateless software templates and additional functionality.
+  - [Usage](https://pigsty.io/docs/docker/usage/index.md): Docker module quick start guide - installation, removal, download, repository, mirrors, proxy, and image pulling.
+  - [Parameters](https://pigsty.io/docs/docker/param/index.md): DOCKER module provides 8 configuration parameters
+  - [Playbooks](https://pigsty.io/docs/docker/playbook/index.md): How to use the built-in Ansible playbook to manage Docker and quick reference for common management commands.
+  - [Metrics](https://pigsty.io/docs/docker/metric/index.md): Complete list of monitoring metrics provided by the Pigsty Docker module
+  - [FAQ](https://pigsty.io/docs/docker/faq/index.md): Frequently asked questions about the Pigsty Docker module
+- [Module: JUICE](https://pigsty.io/docs/juice/index.md): Use JuiceFS distributed filesystem with PostgreSQL metadata to provide shared POSIX storage.
+  - [Configuration](https://pigsty.io/docs/juice/config/index.md): JUICE module configuration, instance definition, storage backends, and mount options.
+  - [Parameters](https://pigsty.io/docs/juice/param/index.md): JUICE module parameters (2 total).
+  - [Playbook](https://pigsty.io/docs/juice/playbook/index.md): JUICE module playbook guide.
+  - [Administration](https://pigsty.io/docs/juice/admin/index.md): JUICE module operations and troubleshooting guide.
+  - [Monitoring](https://pigsty.io/docs/juice/monitor/index.md): JUICE module monitoring and metrics.
+  - [FAQ](https://pigsty.io/docs/juice/faq/index.md): JUICE module frequently asked questions.
+- [Module: VIBE](https://pigsty.io/docs/vibe/index.md): Deploy an AI coding sandbox with Pigsty: Code-Server, JupyterLab, Node.js, Claude Code, and Codex CLI.
+  - [Configuration](https://pigsty.io/docs/vibe/config/index.md): VIBE module configuration for Code-Server, JupyterLab, Node.js, Claude Code, and Codex CLI.
+  - [Parameters](https://pigsty.io/docs/vibe/param/index.md): VIBE module parameters (18 total).
+  - [Playbook](https://pigsty.io/docs/vibe/playbook/index.md): VIBE module Ansible playbook guide.
+  - [Administration](https://pigsty.io/docs/vibe/admin/index.md): VIBE module operations and common admin tasks.
+  - [Monitoring](https://pigsty.io/docs/vibe/monitor/index.md): VIBE monitoring, focusing on Claude Code observability.
+  - [FAQ](https://pigsty.io/docs/vibe/faq/index.md): VIBE module frequently asked questions.
+- [Module: KAFKA](https://pigsty.io/docs/kafka/index.md): Deploy, secure, and monitor Apache Kafka 4.1+ dynamic KRaft clusters with Pigsty.
+  - [Quick Start](https://pigsty.io/docs/kafka/start/index.md): Deploy single-node and 3-node Kafka clusters from scratch, with secure access, parameter tuning, and launch checklist.
+  - [Configuration](https://pigsty.io/docs/kafka/config/index.md): Plan Kafka dynamic KRaft topology, identity, network, storage, security, and declarative resources.
+  - [Parameters](https://pigsty.io/docs/kafka/param/index.md): 15 persistent public parameters and transient protected operational variables of the KAFKA module.
+  - [Administration](https://pigsty.io/docs/kafka/admin/index.md): Kafka status checks, topic and user management, config changes, scaling, failed-node replacement, and security rotation.
+  - [Playbook](https://pigsty.io/docs/kafka/playbook/index.md): Run dynamic KRaft lifecycle, strict rolling, resource convergence, rotation, and removal with kafka.yml and kafka-rm.yml.
+  - [Monitoring](https://pigsty.io/docs/kafka/monitor/index.md): Kafka metrics collection, Grafana dashboards, log queries, and alerting rules.
+  - [Metrics](https://pigsty.io/docs/kafka/metric/index.md): Kafka JMX, protocol exporter, and recording rule metrics dictionary.
+  - [FAQ](https://pigsty.io/docs/kafka/faq/index.md): Frequently asked questions about the Pigsty Kafka 4.1+ dynamic KRaft module.
+- [Module: MYSQL](https://pigsty.io/docs/mysql/index.md): Deploy native MySQL 8.4 LTS as a standalone instance or a three-node InnoDB Cluster, with TLS, daily backups, and full observability.
+  - [Configuration](https://pigsty.io/docs/mysql/config/index.md): Plan MySQL topology and identity; declare databases, users, parameter overrides, and backup policy.
+  - [Parameters](https://pigsty.io/docs/mysql/param/index.md): The MYSQL module's 13 public parameters: 11 deployment parameters, 2 protected-removal parameters, and fixed platform conventions.
+  - [Administration](https://pigsty.io/docs/mysql/admin/index.md): Status checks, client access, configuration changes, failure handling, and the three recovery runbooks for MySQL clusters.
+  - [Playbook](https://pigsty.io/docs/mysql/playbook/index.md): Deploy, converge, tune, and retire MySQL clusters with mysql.yml and mysql-rm.yml.
+  - [Monitoring](https://pigsty.io/docs/mysql/monitor/index.md): MySQL metric collection, Grafana dashboards, alert rules, and log queries.
+  - [Metrics](https://pigsty.io/docs/mysql/metric/index.md): Label model, derived-metric dictionary, and raw metric families of the MYSQL module.
+  - [FAQ](https://pigsty.io/docs/mysql/faq/index.md): Frequently asked questions and troubleshooting for the Pigsty MySQL pilot module.
+- [Module: PILOT](https://pigsty.io/docs/pilot/index.md): Extra modules in pilot development.
+- [pig](https://pigsty.io/docs/pig/index.md): PostgreSQL Extension Ecosystem Package Manager
+  - [Getting Started](https://pigsty.io/docs/pig/start/index.md): Quick start with pig, the PostgreSQL package manager
+  - [Introduction](https://pigsty.io/docs/pig/intro/index.md): Why do we need yet another package manager? Especially for Postgres extensions?
+  - [Installation](https://pigsty.io/docs/pig/install/index.md): How to download and install the pig package manager
+  - [Release](https://pigsty.io/docs/pig/release/index.md): pig — PostgreSQL Package Manager Release Notes
+  - [Command Reference](https://pigsty.io/docs/pig/_div_cmd/index.md)
+  - [pig](https://pigsty.io/docs/pig/cmd/index.md): pig CLI command reference overview
+  - [pig repo](https://pigsty.io/docs/pig/repo/index.md): Manage software repositories with pig repo
+  - [pig ext](https://pigsty.io/docs/pig/ext/index.md): Manage PostgreSQL extensions with pig ext
+  - [pig build](https://pigsty.io/docs/pig/build/index.md): Build PostgreSQL extensions from source with pig build
+  - [pig sty](https://pigsty.io/docs/pig/sty/index.md): Manage Pigsty installation with pig sty
+  - [pig inventory](https://pigsty.io/docs/pig/inventory/index.md): Inspect, edit, validate, check, and exchange the Pigsty Inventory
+  - [pig postgres](https://pigsty.io/docs/pig/pg/index.md): Manage local PostgreSQL server with pig postgres subcommand
+  - [pig patroni](https://pigsty.io/docs/pig/pt/index.md): Run patronictl transparently, with Pigsty service, config, and log helpers
+  - [pig pgbackrest](https://pigsty.io/docs/pig/pb/index.md): Manage pgBackRest backup and restore primitives with pig pgbackrest
+  - [pig pitr](https://pigsty.io/docs/pig/pitr/index.md): Perform orchestrated point-in-time recovery (PITR) with pig pitr
+- [piglet.run](https://pigsty.io/docs/piglet/index.md): Pigsty Lightweight Runtime, AI Coding sandbox, spin up your cloud coding environment with one click
+- [patroni](https://pigsty.io/docs/patroni/index.md): Overview of Patroni high-availability documentation for PostgreSQL.
+  - [Dynamic Config](https://pigsty.io/docs/patroni/config/dynamic/index.md): Dynamic configuration settings stored in DCS and applied cluster-wide.
+  - [Introduction](https://pigsty.io/docs/patroni/readme/index.md): Patroni introduction, quick start, and core high-availability concepts.
+  - [YAML Config](https://pigsty.io/docs/patroni/config/yaml/index.md): Complete reference for Patroni YAML configuration options and sections.
+  - [Installation](https://pigsty.io/docs/patroni/installation/index.md): Installation and upgrade instructions for Patroni across supported platforms.
+  - [Environment Config](https://pigsty.io/docs/patroni/config/env/index.md): Environment variables for overriding Patroni configuration parameters.
+  - [Patroni REST API](https://pigsty.io/docs/patroni/rest_api/index.md): Reference for Patroni REST API endpoints and operational behaviors.
+  - [patronictl](https://pigsty.io/docs/patroni/patronictl/index.md): Command reference for patronictl configuration, syntax, and subcommands.
+  - [Replica Bootstrap](https://pigsty.io/docs/patroni/replica_bootstrap/index.md): Replica imaging, bootstrap, and custom replica creation workflows.
+  - [Replication modes](https://pigsty.io/docs/patroni/replication_modes/index.md): Asynchronous and synchronous replication modes managed by Patroni.
+  - [Standby cluster](https://pigsty.io/docs/patroni/standby_cluster/index.md): Standby cluster setup, behavior, and replication from remote primary.
+  - [Watchdog support](https://pigsty.io/docs/patroni/watchdog/index.md): Watchdog integration and fencing considerations for Patroni clusters.
+  - [Pause/Resume Cluster](https://pigsty.io/docs/patroni/pause/index.md): Pause and resume mode behavior for Patroni cluster management.
+  - [DCS Failsafe Mode](https://pigsty.io/docs/patroni/dcs_failsafe_mode/index.md): DCS failsafe mode behavior, requirements, and operational caveats.
+  - [Use with Kubernetes](https://pigsty.io/docs/patroni/kubernetes/index.md): Using Patroni with Kubernetes objects, labels, and service discovery.
+  - [Citus support](https://pigsty.io/docs/patroni/citus/index.md): Patroni integration details for Citus coordinator and worker groups.
+  - [Convert Existing Cluster](https://pigsty.io/docs/patroni/existing_data/index.md): Procedure to convert existing PostgreSQL data into a Patroni cluster.
+  - [Tools Integration](https://pigsty.io/docs/patroni/tools_integration/index.md): Integrating Patroni with external backup and orchestration tools.
+  - [Security Considerations](https://pigsty.io/docs/patroni/security/index.md): Security considerations for DCS, REST API, and credential handling.
+  - [HA multi datacenter](https://pigsty.io/docs/patroni/ha_multi_dc/index.md): Multi-datacenter high-availability patterns with Patroni replication.
+  - [FAQ](https://pigsty.io/docs/patroni/faq/index.md): Frequently asked questions about Patroni operation and troubleshooting.
+  - [Release notes](https://pigsty.io/docs/patroni/releases/index.md): Chronological Patroni release notes and change history.
+  - [Contributing](https://pigsty.io/docs/patroni/contributing_guidelines/index.md): Contribution workflow, support channels, and development guidelines.
+- [pgbouncer](https://pigsty.io/docs/pgbouncer/index.md): PgBouncer - Lightweight connection pooler for PostgreSQL
+  - [Features](https://pigsty.io/docs/pgbouncer/features/index.md): PgBouncer features — pooling modes and SQL compatibility
+  - [Config](https://pigsty.io/docs/pgbouncer/config/index.md): PgBouncer configuration file (pgbouncer.ini) reference
+  - [Usage](https://pigsty.io/docs/pgbouncer/usage/index.md): PgBouncer command-line usage and administration console
+  - [Install](https://pigsty.io/docs/pgbouncer/install/index.md): PgBouncer compilation and installation instructions
+  - [Download](https://pigsty.io/docs/pgbouncer/download/index.md): PgBouncer source releases and binary packages
+  - [Changelog](https://pigsty.io/docs/pgbouncer/changelog/index.md): PgBouncer version history and release notes
+  - [Community](https://pigsty.io/docs/pgbouncer/community/index.md): PgBouncer community resources, tutorials, and support
+  - [FAQ](https://pigsty.io/docs/pgbouncer/faq/index.md): PgBouncer frequently asked questions
+- [pgbackrest](https://pigsty.io/docs/pgbackrest/index.md): Reliable PostgreSQL Backup & Restore — pgBackRest documentation and reference.
+  - [annotate](https://pigsty.io/docs/pgbackrest/command/annotate/index.md): Reference for pgBackRest `annotate` command options and behavior.
+  - [News](https://pigsty.io/docs/pgbackrest/news/index.md): Official pgBackRest project news, release announcements, and maintenance updates.
+  - [archive-get](https://pigsty.io/docs/pgbackrest/command/archive-get/index.md): Reference for pgBackRest `archive-get` command options and behavior.
+  - [User Guide (Deb)](https://pigsty.io/docs/pgbackrest/user-guide/index.md): Step-by-step pgBackRest setup and usage guide for Debian and Ubuntu systems.
+  - [archive-push](https://pigsty.io/docs/pgbackrest/command/archive-push/index.md): Reference for pgBackRest `archive-push` command options and behavior.
+  - [User Guide (EL)](https://pigsty.io/docs/pgbackrest/user-guide-rhel/index.md): Step-by-step pgBackRest setup and usage guide for RHEL, Rocky, and AlmaLinux systems.
+  - [backup](https://pigsty.io/docs/pgbackrest/command/backup/index.md): Reference for pgBackRest `backup` command options and behavior.
+  - [check](https://pigsty.io/docs/pgbackrest/command/check/index.md): Reference for pgBackRest `check` command options and behavior.
+  - [Configuration](https://pigsty.io/docs/pgbackrest/configuration/index.md): Complete pgBackRest configuration reference for all settings including archive, backup, repository, and cloud storage options.
+  - [expire](https://pigsty.io/docs/pgbackrest/command/expire/index.md): Reference for pgBackRest `expire` command options and behavior.
+  - [Releases](https://pigsty.io/docs/pgbackrest/release/index.md): pgBackRest release history with detailed changelog for every version.
+  - [FAQ](https://pigsty.io/docs/pgbackrest/faq/index.md): Frequently asked questions about pgBackRest backup, restore, configuration, and troubleshooting.
+  - [help](https://pigsty.io/docs/pgbackrest/command/help/index.md): Reference for pgBackRest `help` command options and behavior.
+  - [info](https://pigsty.io/docs/pgbackrest/command/info/index.md): Reference for pgBackRest `info` command options and behavior.
+  - [Metrics](https://pigsty.io/docs/pgbackrest/metric/index.md): pgBackRest project code coverage metrics and quality statistics.
+  - [repo-get](https://pigsty.io/docs/pgbackrest/command/repo-get/index.md): Reference for pgBackRest `repo-get` command options and behavior.
+  - [repo-ls](https://pigsty.io/docs/pgbackrest/command/repo-ls/index.md): Reference for pgBackRest `repo-ls` command options and behavior.
+  - [restore](https://pigsty.io/docs/pgbackrest/command/restore/index.md): Reference for pgBackRest `restore` command options and behavior.
+  - [server](https://pigsty.io/docs/pgbackrest/command/server/index.md): Reference for pgBackRest `server` command options and behavior.
+  - [server-ping](https://pigsty.io/docs/pgbackrest/command/server-ping/index.md): Reference for pgBackRest `server-ping` command options and behavior.
+  - [stanza-create](https://pigsty.io/docs/pgbackrest/command/stanza-create/index.md): Reference for pgBackRest `stanza-create` command options and behavior.
+  - [stanza-delete](https://pigsty.io/docs/pgbackrest/command/stanza-delete/index.md): Reference for pgBackRest `stanza-delete` command options and behavior.
+  - [stanza-upgrade](https://pigsty.io/docs/pgbackrest/command/stanza-upgrade/index.md): Reference for pgBackRest `stanza-upgrade` command options and behavior.
+  - [start](https://pigsty.io/docs/pgbackrest/command/start/index.md): Reference for pgBackRest `start` command options and behavior.
+  - [stop](https://pigsty.io/docs/pgbackrest/command/stop/index.md): Reference for pgBackRest `stop` command options and behavior.
+  - [verify](https://pigsty.io/docs/pgbackrest/command/verify/index.md): Reference for pgBackRest `verify` command options and behavior.
+  - [version](https://pigsty.io/docs/pgbackrest/command/version/index.md): Reference for pgBackRest `version` command options and behavior.
+- [pg_exporter](https://pigsty.io/docs/pg_exporter/index.md): Advanced PostgreSQL & pgBouncer Metrics Exporter for Prometheus
+  - [Getting Started](https://pigsty.io/docs/pg_exporter/start/index.md): Get pg_exporter running and see PostgreSQL metrics in Prometheus within ten minutes
+  - [Installation](https://pigsty.io/docs/pg_exporter/install/index.md): How to download and install the pg_exporter
+  - [Configuration](https://pigsty.io/docs/pg_exporter/config/index.md)
+  - [API Reference](https://pigsty.io/docs/pg_exporter/api/index.md)
+  - [Deployment](https://pigsty.io/docs/pg_exporter/deploy/index.md): Production deployment — connection & credentials, systemd / Docker / Kubernetes, auto-discovery and alerting
+  - [Release Notes](https://pigsty.io/docs/pg_exporter/release/index.md)
+- [PIGSTY](https://pigsty.io/docs/_div_pigsty/index.md)
+- [Reference](https://pigsty.io/docs/_div_ref/index.md)
+- [Modules](https://pigsty.io/docs/_div_module/index.md)
+- [Miscellaneous](https://pigsty.io/docs/_div_misc/index.md)
+
+## Site locales
+
+- [](https://pigsty.io/index.md)

@@ -1,0 +1,126 @@
+# demo/redis
+
+> Four-node demo of Redis replica, Sentinel, and native Cluster modes
+
+---
+
+LLMS index: [llms.txt](/llms.txt)
+
+---
+
+`demo/redis` demonstrates standalone/replica, Sentinel, and native Cluster modes supported by Pigsty's Redis module in one configuration.
+
+
+--------
+
+## Overview
+
+- Config Name: `demo/redis`
+- Node Count: 4
+- Clusters: `redis-ms`, `redis-meta`, `redis-test`
+- Related: [`demo/demo`](/docs/conf/demo/)
+
+```bash
+./configure -c demo/redis -s
+```
+
+
+--------
+
+## Content
+
+Source: [`pigsty/conf/demo/redis.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/redis.yml)
+
+```yaml
+---
+#==============================================================#
+# File      :   redis.yml
+# Desc      :   pigsty config for redis clusters
+# Ctime     :   2022-11-09
+# Mtime     :   2026-08-02
+# Docs      :   https://pigsty.io/docs/redis
+# License   :   Apache-2.0 @ https://pigsty.io/docs/about/license/
+# Copyright :   2018-2026  Ruohang Feng / Vonng (rh@vonng.com)
+#==============================================================#
+
+
+all:
+  children:
+
+    # infra cluster for proxy, monitor, alert, etc..
+    infra: { hosts: { 10.10.10.10: { infra_seq: 1 } } }
+
+    redis-ms: # redis classic primary & replica
+      hosts: { 10.10.10.10: { redis_node: 1 , redis_instances: { 6379: { }, 6380: { replica_of: '10.10.10.10 6379' } } } }
+      vars: { redis_cluster: redis-ms ,redis_password: 'redis.ms' ,redis_max_memory: 64MB }
+
+    redis-meta: # redis sentinel x 3
+      hosts: { 10.10.10.11: { redis_node: 1 , redis_instances: { 26379: { } ,26380: { } ,26381: { } } } }
+      vars:
+        redis_cluster: redis-meta
+        redis_password: 'redis.meta'
+        redis_mode: sentinel
+        redis_max_memory: 16MB
+        redis_sentinel_monitor: # primary list for redis sentinel, use cls as name, primary ip:port
+          - { name: redis-ms, host: 10.10.10.10, port: 6379 ,password: redis.ms, quorum: 2 }
+
+    redis-test: # redis native cluster: 3m x 3s
+      hosts:
+        10.10.10.12: { redis_node: 1 ,redis_instances: { 6379: { } ,6380: { } ,6381: { } } }
+        10.10.10.13: { redis_node: 2 ,redis_instances: { 6379: { } ,6380: { } ,6381: { } } }
+      vars: { redis_cluster: redis-test ,redis_password: 'redis.test' ,redis_mode: cluster, redis_max_memory: 32MB }
+
+
+  vars:
+    version: v4.5.0                   # pigsty version string
+    admin_ip: 10.10.10.10             # admin node ip address
+    region: default                   # upstream mirror region: default|china|europe
+
+    #================================================================#
+    #                         VARS: REDIS                            #
+    #================================================================#
+    # redis identity
+    #redis_cluster:         <CLUSTER> # redis cluster name, required identity parameter
+    #redis_node: 1             <NODE> # redis node sequence number, node int id required
+    #redis_instances: {}       <NODE> # redis instances definition on this redis node
+
+    # redis node
+    redis_fs_main: /data/redis        # redis main data directory, `/data/redis` by default
+    redis_exporter_enabled: true      # install redis exporter on redis nodes?
+    redis_exporter_port: 9121         # redis exporter listen port, 9121 by default
+    redis_exporter_options: ''        # cli args and extra options for redis exporter
+    redis_type: redis                 # redis implementation: redis or valkey
+
+    # redis instance
+    redis_mode: standalone            # redis mode: standalone,cluster,sentinel
+    redis_conf: redis.conf            # redis config template path, except sentinel
+    redis_bind_address: '0.0.0.0'     # redis bind address, empty string will use host ip
+    redis_max_memory: 32MB            # max memory used by each redis instance
+    redis_mem_policy: allkeys-lru     # redis memory eviction policy
+    redis_password: ''                # redis password, empty string will disable password
+    redis_rdb_save: [ '1200 1' ]      # redis rdb save directives, disable with empty list
+    redis_aof_enabled: false          # enable redis append only file?
+    redis_rename_commands: { }        # rename redis dangerous commands
+    redis_cluster_replicas: 1         # replica number for one master in redis cluster
+    redis_sentinel_monitor: []        # sentinel master list, works on sentinel cluster only
+
+
+    #----------------------------------------------#
+    # PASSWORD : https://pigsty.io/docs/setup/security/
+    #----------------------------------------------#
+    grafana_admin_password: pigsty
+    haproxy_admin_password: pigsty
+...
+```
+
+
+--------
+
+## Explanation
+
+- `redis-ms`: a `6379` primary and `6380` replica on one node
+- `redis-meta`: three Sentinel instances monitoring the `redis-ms` primary
+- `redis-test`: a native Redis Cluster across two nodes with three instances per node
+- Small per-instance memory limits keep the topology suitable for demonstrations
+
+The IP addresses, passwords, and memory limits are demonstration values. Adjust them to the real topology, then install the Redis module with the [`redis.yml`](/docs/redis/) playbook.

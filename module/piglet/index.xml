@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PIGLET on PIGSTY</title><link>https://pigsty.io/module/piglet/</link><description>Recent content in PIGLET on PIGSTY</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 09 Aug 2026 14:49:33 +0800</lastBuildDate><atom:link href="https://pigsty.io/module/piglet/index.xml" rel="self" type="application/rss+xml"/><item><title>Piglet Runtime: AI Runtime Sandbox</title><link>https://pigsty.io/docs/piglet/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/piglet/</guid><description>&lt;p&gt;— &lt;strong&gt;Pigsty Lightweight Runtime, AI Coding Sandbox&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;PIGLET is a lightweight runtime environment based on Pigsty, designed for &lt;strong&gt;AI Web Coding&lt;/strong&gt; cloud sandbox.
+It integrates PostgreSQL database, JuiceFS distributed storage, Code Server, JupyterLab, Claude Code, Codex CLI and more into one,
+enabling zero-friction workflow from &lt;strong&gt;&amp;ldquo;prompting code&amp;rdquo;&lt;/strong&gt; to &lt;strong&gt;&amp;ldquo;production deployment&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="key-features"&gt;Key Features
+&lt;/h2&gt;
+&lt;div class="td-table-scroll td-table-scroll--full td-table-scroll--static"&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th scope="col" style="text-align: center"&gt;Feature&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;🤖 AI Coding&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Pre-installed &lt;strong&gt;Claude Code&lt;/strong&gt;, &lt;strong&gt;Codex CLI&lt;/strong&gt;, OpenCode, VS Code, Jupyter full stack, Python/Go/Node.js dev env ready&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;🐘 Data Capable&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;PostgreSQL 18 + &lt;a href="https://pigsty.io/ext/list"&gt;&lt;strong&gt;576&lt;/strong&gt;&lt;/a&gt; extensions, vector/timeseries/geo/graph/analytics, add Supabase for complex apps&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;💾 Shared Storage&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="https://pigsty.io/docs/juice/"&gt;&lt;strong&gt;JuiceFS&lt;/strong&gt;&lt;/a&gt; stores working directory in database, multi-agent/multi-user collaboration, files never lost, rollback to any point&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;⏱️ Time Machine&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Database &lt;strong&gt;PITR&lt;/strong&gt; + filesystem snapshot sync, messed up? One-click restore to any point in time, keep db and filesystem consistent!&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;🔀 Instant Clone&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;CoW&lt;/strong&gt; sub-second &lt;a href="https://pigsty.io/docs/pgsql/admin/db#clone-database"&gt;&lt;strong&gt;Fork Large Database&lt;/strong&gt;&lt;/a&gt;, fork existing instances/clusters, no extra storage, rebuild anytime, tinker freely!&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;🌐 One-Click Deploy&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Built-in &lt;strong&gt;Nginx&lt;/strong&gt; handles domains, certs, proxy, static/dynamic sites, from prompt to production in one step!&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;📊 Full-Stack Monitoring&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;strong&gt;VictoriaMetrics&lt;/strong&gt; + &lt;strong&gt;Grafana&lt;/strong&gt; panoramic dashboards, Claude Code observability included, all details at your fingertips!&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;🇨🇳 China Accessible&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Global CDN + mirrors, one config for CC + &lt;strong&gt;GLM-5.2&lt;/strong&gt; domestic models, legal and compliant!&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2 id="quick-start"&gt;Quick Start
+&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://pigsty.io/docs/deploy/prepare"&gt;&lt;strong&gt;Prepare&lt;/strong&gt;&lt;/a&gt; a &lt;a href="https://pigsty.io/docs/deploy/prepare#node"&gt;&lt;strong&gt;node&lt;/strong&gt;&lt;/a&gt; with &lt;a href="https://pigsty.io/docs/deploy/admin#ssh"&gt;&lt;strong&gt;SSH access&lt;/strong&gt;&lt;/a&gt;,
+running a &lt;a href="https://pigsty.io/docs/ref/linux/"&gt;&lt;strong&gt;compatible Linux distro&lt;/strong&gt;&lt;/a&gt;, execute with an &lt;a href="https://pigsty.io/docs/deploy/admin"&gt;&lt;strong&gt;admin user&lt;/strong&gt;&lt;/a&gt; having passwordless &lt;a href="https://pigsty.io/docs/deploy/admin#ssh"&gt;&lt;strong&gt;&lt;code&gt;ssh&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; and &lt;a href="https://pigsty.io/docs/deploy/admin#sudo"&gt;&lt;strong&gt;&lt;code&gt;sudo&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;:&lt;/p&gt;</description></item></channel></rss>

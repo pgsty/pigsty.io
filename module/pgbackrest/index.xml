@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PGBACKREST on PIGSTY</title><link>https://pigsty.io/module/pgbackrest/</link><description>Recent content in PGBACKREST on PIGSTY</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 09 Aug 2026 14:49:33 +0800</lastBuildDate><atom:link href="https://pigsty.io/module/pgbackrest/index.xml" rel="self" type="application/rss+xml"/><item><title>Annotate Command (annotate)</title><link>https://pigsty.io/docs/pgbackrest/command/annotate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/annotate/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-annotate"&gt;pgBackRest Command Docs: annotate&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Annotations included with the &lt;code&gt;backup&lt;/code&gt; command can be added, modified, or removed afterwards using the &lt;code&gt;annotate&lt;/code&gt; command.&lt;/p&gt;
+&lt;h2 id="command-options"&gt;Command Options
+&lt;/h2&gt;
+&lt;h3 id="backup-annotation-option---annotation"&gt;Backup Annotation Option (&lt;code&gt;--annotation&lt;/code&gt;)
+&lt;/h3&gt;
+&lt;p&gt;Annotate backup with user-defined key/value pairs.&lt;/p&gt;
+&lt;p&gt;Users can attach informative key/value pairs to the backup. This option may be used multiple times to attach multiple annotations.&lt;/p&gt;
+&lt;p&gt;Annotations are output by the &lt;code&gt;info&lt;/code&gt; command text output when a backup is specified with &lt;code&gt;--set&lt;/code&gt; and always appear in the JSON output.&lt;/p&gt;</description></item><item><title>News</title><link>https://pigsty.io/docs/pgbackrest/news/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/news/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/news.html"&gt;https://pgbackrest.org/news.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="distribution-tarball"&gt;New Distribution Tarball
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;July 20, 2026&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Starting with pgBackRest 2.59.0, every release includes a distribution tarball that makes building from source simpler. Unlike a checkout of the git repository, the tarball ships the generated source and the rendered documentation pre-built, so pgBackRest builds and installs without the code generation or documentation tooling that a repository checkout requires.&lt;/p&gt;
+&lt;p&gt;The tarball contains the pgBackRest source with the pre-generated code, the command reference man page, the HTML documentation, and a smoke test to verify the build. It builds with meson and ninja using only the usual pgBackRest libraries.&lt;/p&gt;</description></item><item><title>Archive Get Command (archive-get)</title><link>https://pigsty.io/docs/pgbackrest/command/archive-get/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/archive-get/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-archive-get"&gt;pgBackRest Command Docs: archive-get&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This command is used by PostgreSQL to restore a backup, perform PITR, or as an alternative to streaming for keeping a replica up to date. WAL segments are required for PostgreSQL recovery or to maintain a replica.&lt;/p&gt;
+&lt;p&gt;When multiple repositories are configured, WAL will be fetched from the repositories in priority order (e.g. &lt;code&gt;repo1&lt;/code&gt;, &lt;code&gt;repo2&lt;/code&gt;, etc.). In general it is better if faster/cheaper storage has higher priority. If a repository is specified with the &lt;code&gt;--repo&lt;/code&gt; option then only that repository will be searched.&lt;/p&gt;</description></item><item><title>User Guide (Debian/Ubuntu)</title><link>https://pigsty.io/docs/pgbackrest/user-guide/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/user-guide/</guid><description>&lt;hr&gt;
+&lt;h2 id="introduction"&gt;Introduction
+&lt;/h2&gt;
+&lt;p&gt;This user guide is intended to be followed sequentially from beginning to end — each section depends on the last. For example, the &lt;a href="#restore-1"&gt;Restore&lt;/a&gt; section relies on setup that is performed in the &lt;a href="#quick-start"&gt;Quick Start&lt;/a&gt; section. Once pgBackRest is up and running then skipping around is possible but following the user guide in order is recommended the first time through.&lt;/p&gt;
+&lt;p&gt;Although the examples in this guide are targeted at Debian/Ubuntu and PostgreSQL 17, it should be fairly easy to apply the examples to any Unix distribution and PostgreSQL version. The only OS-specific commands are those to create, start, stop, and drop PostgreSQL clusters. The pgBackRest commands will be the same on any Unix system though the location of the executable may vary. While pgBackRest strives to operate consistently across versions of PostgreSQL, there are subtle differences between versions of PostgreSQL that may show up in this guide when illustrating certain examples, e.g. PostgreSQL path/file names and settings.&lt;/p&gt;</description></item><item><title>Archive Push Command (archive-push)</title><link>https://pigsty.io/docs/pgbackrest/command/archive-push/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/archive-push/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-archive-push"&gt;pgBackRest Command Docs: archive-push&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Accepts a WAL segment from PostgreSQL and archives it in each repository defined by the indexed &lt;code&gt;repo-path&lt;/code&gt; option (see the &lt;a href="https://pigsty.io/docs/pgbackrest/configuration/#repository-options"&gt;Repository&lt;/a&gt; section for information on configuring repositories). The WAL segment may be pushed immediately to the archive or stored locally depending on the value of &lt;code&gt;archive-async&lt;/code&gt;. With multiple repositories configured, &lt;code&gt;archive-push&lt;/code&gt; will attempt to push to as many repositories as possible.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;archive-push&lt;/code&gt; is intended to be configured and called by PostgreSQL. See &lt;a href="https://pigsty.io/docs/pgbackrest/user-guide/#configure-archiving"&gt;Configure Archiving&lt;/a&gt; for an example.&lt;/p&gt;</description></item><item><title>User Guide (RHEL)</title><link>https://pigsty.io/docs/pgbackrest/user-guide-rhel/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/user-guide-rhel/</guid><description>&lt;hr&gt;
+&lt;h2 id="introduction"&gt;Introduction
+&lt;/h2&gt;
+&lt;p&gt;This user guide is intended to be followed sequentially from beginning to end — each section depends on the last. For example, the &lt;a href="#restore-1"&gt;Restore&lt;/a&gt; section relies on setup that is performed in the &lt;a href="#quick-start"&gt;Quick Start&lt;/a&gt; section. Once pgBackRest is up and running then skipping around is possible but following the user guide in order is recommended the first time through.&lt;/p&gt;
+&lt;p&gt;Although the examples in this guide are targeted at RHEL and PostgreSQL 14, it should be fairly easy to apply the examples to any Unix distribution and PostgreSQL version. The only OS-specific commands are those to create, start, stop, and drop PostgreSQL clusters. The pgBackRest commands will be the same on any Unix system though the location of the executable may vary. While pgBackRest strives to operate consistently across versions of PostgreSQL, there are subtle differences between versions of PostgreSQL that may show up in this guide when illustrating certain examples, e.g. PostgreSQL path/file names and settings.&lt;/p&gt;</description></item><item><title>Backup Command (backup)</title><link>https://pigsty.io/docs/pgbackrest/command/backup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/backup/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-backup"&gt;pgBackRest Command Docs: backup&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;When multiple repositories are configured, pgBackRest will backup to the highest priority repository (e.g. &lt;code&gt;repo1&lt;/code&gt;) unless the &lt;code&gt;--repo&lt;/code&gt; option is specified.&lt;/p&gt;
+&lt;p&gt;pgBackRest does not have a built-in scheduler so it&amp;rsquo;s best to run it from cron or some other scheduling mechanism.&lt;/p&gt;
+&lt;p&gt;See &lt;a href="https://pigsty.io/docs/pgbackrest/user-guide/#perform-a-backup"&gt;Perform a Backup&lt;/a&gt; for more details and examples.&lt;/p&gt;
+&lt;h2 id="command-options"&gt;Command Options
+&lt;/h2&gt;
+&lt;h3 id="backup-annotation-option---annotation"&gt;Backup Annotation Option (&lt;code&gt;--annotation&lt;/code&gt;)
+&lt;/h3&gt;
+&lt;p&gt;Annotate backup with user-defined key/value pairs.&lt;/p&gt;</description></item><item><title>Command Reference</title><link>https://pigsty.io/docs/pgbackrest/command/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html"&gt;https://pgbackrest.org/command.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="introduction"&gt;Introduction
+&lt;/h2&gt;
+&lt;p&gt;Commands are used to execute the various pgBackRest functions. Here the command options are listed exhaustively, that is, each option applicable to a command is listed with that command even if it applies to one or more other commands. This includes all the options that may also be configured in &lt;code&gt;pgbackrest.conf&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Non-boolean options configured in &lt;code&gt;pgbackrest.conf&lt;/code&gt; can be reset to default on the command-line by using the &lt;code&gt;reset-&lt;/code&gt; prefix. This feature may be used to restore a backup directly on a repository host. Normally, pgBackRest will error because it can see that the database host is remote and restores cannot be done remotely. By adding &lt;code&gt;--reset-pg1-host&lt;/code&gt; on the command-line, pgBackRest will ignore the remote database host and restore locally. It may be necessary to pass a new &lt;code&gt;--pg1-path&lt;/code&gt; to force the restore to happen in a specific path, i.e. not the path used on the database host.&lt;/p&gt;</description></item><item><title>Check Command (check)</title><link>https://pigsty.io/docs/pgbackrest/command/check/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/check/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-check"&gt;pgBackRest Command Docs: check&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The &lt;code&gt;check&lt;/code&gt; command validates that pgBackRest and the archive_command setting are configured correctly for archiving and backups for the specified stanza. It will attempt to check all repositories and databases that are configured for the host on which the command is run. It detects misconfigurations, particularly in archiving, that result in incomplete backups because required WAL segments did not reach the archive. The command can be run on the PostgreSQL or repository host. The command may also be run on the standby host, however, since &lt;code&gt;pg_switch_xlog()&lt;/code&gt;/&lt;code&gt;pg_switch_wal()&lt;/code&gt; cannot be performed on the standby, the command will only test the repository configuration.&lt;/p&gt;</description></item><item><title>Configuration Reference</title><link>https://pigsty.io/docs/pgbackrest/configuration/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/configuration/</guid><description>&lt;hr&gt;
+&lt;h2 id="introduction"&gt;Introduction
+&lt;/h2&gt;
+&lt;p&gt;pgBackRest can be used entirely with command-line parameters but a configuration file is more practical for installations that are complex or set a lot of options. The default location for the configuration file is &lt;code&gt;/etc/pgbackrest/pgbackrest.conf&lt;/code&gt;. If no file exists in that location then the old default of &lt;code&gt;/etc/pgbackrest.conf&lt;/code&gt; will be checked.&lt;/p&gt;
+&lt;p&gt;The following option types are used:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;String&lt;/strong&gt;: A text string, commonly an identifier, password, etc.&lt;/p&gt;</description></item><item><title>Expire Command (expire)</title><link>https://pigsty.io/docs/pgbackrest/command/expire/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/expire/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-expire"&gt;pgBackRest Command Docs: expire&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;pgBackRest does full backup rotation based on the retention type which can be a count or a time period. When a count is specified, then expiration is not concerned with when the backups were created but with how many must be retained. Differential backups are count-based but will always be expired when the full backup they depend on is expired. Incremental backups are not expired by retention independently — they are always expired with their related full or differential backup. See sections &lt;a href="https://pigsty.io/docs/pgbackrest/user-guide/#full-backup-retention"&gt;Full Backup Retention&lt;/a&gt; and &lt;a href="https://pigsty.io/docs/pgbackrest/user-guide/#differential-backup-retention"&gt;Differential Backup Retention&lt;/a&gt; for details and examples.&lt;/p&gt;</description></item><item><title>Release Notes</title><link>https://pigsty.io/docs/pgbackrest/release/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/release/</guid><description>&lt;hr&gt;
+&lt;h2 id="introduction"&gt;Introduction
+&lt;/h2&gt;
+&lt;p&gt;pgBackRest release numbers consist of two parts, major and minor. A major release &lt;em&gt;may&lt;/em&gt; break compatibility with the prior major release, but v2 releases are fully compatible with v1 repositories and will accept all v1 options. Minor releases can include bug fixes and features but do not change the repository format and strive to avoid changing options and naming. Documentation for the v1 release can be found &lt;a href="https://pgbackrest.org/1"&gt;here&lt;/a&gt;. The notes for a release may also contain &amp;ldquo;Additional Notes&amp;rdquo; but changes in this section are only to documentation or the test suite and have no direct impact on the pgBackRest codebase.&lt;/p&gt;</description></item><item><title>Frequently Asked Questions</title><link>https://pigsty.io/docs/pgbackrest/faq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/faq/</guid><description>&lt;hr&gt;
+&lt;h2 id="introduction"&gt;Introduction
+&lt;/h2&gt;
+&lt;p&gt;Frequently Asked Questions are intended to provide details for specific questions that may or may not be covered in the User Guide, Configuration, or Command reference. If you are unable to find details for your specific issue here, remember that the pgBackRest &lt;a href="https://github.com/pgbackrest/pgbackrest/issues"&gt;Issues List in GitHub&lt;/a&gt; is also a valuable resource.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="what-if-i-get-the-could-not-find-wal-segment-error"&gt;What if I get the &amp;ldquo;could not find WAL segment&amp;rdquo; error?
+&lt;/h2&gt;
+&lt;p&gt;The cause of this error can be a result of many different issues, some of which may be:&lt;/p&gt;</description></item><item><title>Help Command (help)</title><link>https://pigsty.io/docs/pgbackrest/command/help/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/help/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-help"&gt;pgBackRest Command Docs: help&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Three levels of help are provided. If no command is specified then general help will be displayed. If a command is specified (e.g. &lt;code&gt;pgbackrest help backup&lt;/code&gt;) then a full description of the command will be displayed along with a list of valid options. If an option is specified in addition to a command (e.g. &lt;code&gt;pgbackrest help backup type&lt;/code&gt;) then a full description of the option as it applies to the command will be displayed.&lt;/p&gt;</description></item><item><title>Info Command (info)</title><link>https://pigsty.io/docs/pgbackrest/command/info/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/info/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-info"&gt;pgBackRest Command Docs: info&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The &lt;code&gt;info&lt;/code&gt; command operates on a single stanza or all stanzas. Text output is the default and gives a human-readable summary of backups for the stanza(s) requested. This format is subject to change with any release.&lt;/p&gt;
+&lt;p&gt;For machine-readable output use &lt;code&gt;--output=json&lt;/code&gt;. The JSON output contains far more information than the text output and is kept stable unless a bug is found.&lt;/p&gt;
+&lt;p&gt;To speed up execution, limit the output to only progress information by specifying &lt;code&gt;--detail-level=progress&lt;/code&gt;. Note that this skips all checks except for availability of the stanza.&lt;/p&gt;</description></item><item><title>Project Metrics</title><link>https://pigsty.io/docs/pgbackrest/metric/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/metric/</guid><description>&lt;hr&gt;
+&lt;h2 id="code-coverage"&gt;Code Coverage
+&lt;/h2&gt;
+&lt;p&gt;pgBackRest aims to have complete function/branch/line coverage for the core C code in &lt;code&gt;/src&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Function/line coverage is complete with no exceptions.&lt;/p&gt;
+&lt;p&gt;Branch coverage excludes branches inside macros and &lt;code&gt;assert()&lt;/code&gt; calls. Macros have their own unit tests so they do not need to be tested everywhere they appear. Asserts are not expected to have complete branch coverage since they test cases that should always be true.&lt;/p&gt;</description></item><item><title>Repository Get Command (repo-get)</title><link>https://pigsty.io/docs/pgbackrest/command/repo-get/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/repo-get/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-repo-get"&gt;pgBackRest Command Docs: repo-get&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Similar to the unix &lt;code&gt;cat&lt;/code&gt; command but works on any supported repository type. This command requires a fully qualified file name and is primarily for administration, investigation, and testing. It is not a required part of a normal pgBackRest setup.&lt;/p&gt;
+&lt;p&gt;If the repository is encrypted then &lt;code&gt;repo-get&lt;/code&gt; will automatically decrypt the file. Files are not automatically decompressed but the output can be piped through the appropriate decompression command, e.g. &lt;code&gt;gzip -d&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Repository List Command (repo-ls)</title><link>https://pigsty.io/docs/pgbackrest/command/repo-ls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/repo-ls/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-repo-ls"&gt;pgBackRest Command Docs: repo-ls&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Similar to the unix &lt;code&gt;ls&lt;/code&gt; command but works on any supported repository type. This command accepts a path, absolute or relative to the repository path defined by the &lt;code&gt;--repo-path&lt;/code&gt; option, and is primarily for administration, investigation, and testing. It is not a required part of a normal pgBackRest setup.&lt;/p&gt;
+&lt;p&gt;The default text output prints one file name per line. JSON output is available by specifying &lt;code&gt;--output=json&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Restore Command (restore)</title><link>https://pigsty.io/docs/pgbackrest/command/restore/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/restore/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-restore"&gt;pgBackRest Command Docs: restore&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The restore command automatically defaults to selecting the latest backup from the first repository where backups exist (see &lt;a href="https://pigsty.io/docs/pgbackrest/user-guide/#restore-a-backup"&gt;Quick Start - Restore a Backup&lt;/a&gt;). The order in which the repositories are checked is dictated by the &lt;code&gt;pgbackrest.conf&lt;/code&gt; (e.g. repo1 will be checked before repo2). To select from a specific repository, the &lt;code&gt;--repo&lt;/code&gt; option can be passed (e.g. &lt;code&gt;--repo=1&lt;/code&gt;). The &lt;code&gt;--set&lt;/code&gt; option can be passed if a backup other than the latest is desired.&lt;/p&gt;</description></item><item><title>Server Command (server)</title><link>https://pigsty.io/docs/pgbackrest/command/server/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/server/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-server"&gt;pgBackRest Command Docs: server&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The pgBackRest server allows access to remote hosts without using the SSH protocol.&lt;/p&gt;
+&lt;h2 id="command-options"&gt;Command Options
+&lt;/h2&gt;
+&lt;h3 id="tls-server-address-option---tls-server-address"&gt;TLS Server Address Option (&lt;code&gt;--tls-server-address&lt;/code&gt;)
+&lt;/h3&gt;
+&lt;p&gt;TLS server address.&lt;/p&gt;
+&lt;p&gt;IP address the server will listen on for client requests.&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-4bb5b1e0-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="yaml" data-td-line-count="2"&gt;
+ &lt;div class="td-code__viewport" id="td-code-4bb5b1e0-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;default&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;localhost&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;example&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--&lt;span class="l"&gt;tls-server-address=*&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id="tls-server-authorized-clients-option---tls-server-auth"&gt;TLS Server Authorized Clients Option (&lt;code&gt;--tls-server-auth&lt;/code&gt;)
+&lt;/h3&gt;
+&lt;p&gt;TLS server authorized clients.&lt;/p&gt;</description></item><item><title>Server Ping Command (server-ping)</title><link>https://pigsty.io/docs/pgbackrest/command/server-ping/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/server-ping/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-server-ping"&gt;pgBackRest Command Docs: server-ping&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Ping a pgBackRest TLS server to ensure it is accepting connections. This serves as an aliveness check only since no authentication is attempted.&lt;/p&gt;
+&lt;p&gt;If no host is specified on the command-line then the &lt;code&gt;tls-server-host&lt;/code&gt; option will be used.&lt;/p&gt;
+&lt;h2 id="command-options"&gt;Command Options
+&lt;/h2&gt;
+&lt;h3 id="tls-server-address-option---tls-server-address"&gt;TLS Server Address Option (&lt;code&gt;--tls-server-address&lt;/code&gt;)
+&lt;/h3&gt;
+&lt;p&gt;TLS server address.&lt;/p&gt;
+&lt;p&gt;IP address the server will listen on for client requests.&lt;/p&gt;</description></item><item><title>Stanza Create Command (stanza-create)</title><link>https://pigsty.io/docs/pgbackrest/command/stanza-create/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/stanza-create/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-stanza-create"&gt;pgBackRest Command Docs: stanza-create&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The &lt;code&gt;stanza-create&lt;/code&gt; command must be run after the stanza has been configured in &lt;code&gt;pgbackrest.conf&lt;/code&gt;. If there is more than one repository configured, the stanza will be created on each. Stanzas that have already been created will be skipped so it is always safe to run &lt;code&gt;stanza-create&lt;/code&gt;, even when a new repository has been configured.&lt;/p&gt;
+&lt;p&gt;See &lt;a href="https://pigsty.io/docs/pgbackrest/user-guide/#create-the-stanza"&gt;Create the Stanza&lt;/a&gt; for more information and an example.&lt;/p&gt;
+&lt;h2 id="command-options"&gt;Command Options
+&lt;/h2&gt;
+&lt;h3 id="online-option---online"&gt;Online Option (&lt;code&gt;--online&lt;/code&gt;)
+&lt;/h3&gt;
+&lt;p&gt;Create on an online cluster.&lt;/p&gt;</description></item><item><title>Stanza Delete Command (stanza-delete)</title><link>https://pigsty.io/docs/pgbackrest/command/stanza-delete/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/stanza-delete/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-stanza-delete"&gt;pgBackRest Command Docs: stanza-delete&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The &lt;code&gt;stanza-delete&lt;/code&gt; command removes data in the repository associated with a stanza.&lt;/p&gt;
+&lt;p&gt;WARNING:&lt;/p&gt;
+&lt;p&gt;Use this command with caution — it will permanently remove all backups and archives from the pgBackRest repository for the specified stanza.&lt;/p&gt;
+&lt;p&gt;To delete a stanza:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Shut down the PostgreSQL cluster associated with the stanza (or use &amp;ndash;force to override).&lt;/li&gt;
+&lt;li&gt;Run the &lt;code&gt;stop&lt;/code&gt; command on the host where the &lt;code&gt;stanza-delete&lt;/code&gt; command will be run.&lt;/li&gt;
+&lt;li&gt;Run the &lt;code&gt;stanza-delete&lt;/code&gt; command.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Once the command successfully completes, it is the responsibility of the user to remove the stanza from all pgBackRest configuration files and/or environment variables.&lt;/p&gt;</description></item><item><title>Stanza Upgrade Command (stanza-upgrade)</title><link>https://pigsty.io/docs/pgbackrest/command/stanza-upgrade/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/stanza-upgrade/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-stanza-upgrade"&gt;pgBackRest Command Docs: stanza-upgrade&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Immediately after upgrading PostgreSQL to a newer major version, the &lt;code&gt;pg-path&lt;/code&gt; for all pgBackRest configurations must be set to the new database location and the &lt;code&gt;stanza-upgrade&lt;/code&gt; command run. If there is more than one repository configured on the host, the stanza will be upgraded on each. If the database is offline use the &lt;code&gt;--no-online&lt;/code&gt; option.&lt;/p&gt;
+&lt;h2 id="command-options"&gt;Command Options
+&lt;/h2&gt;
+&lt;h3 id="online-option---online"&gt;Online Option (&lt;code&gt;--online&lt;/code&gt;)
+&lt;/h3&gt;
+&lt;p&gt;Update an online cluster.&lt;/p&gt;</description></item><item><title>Start Command (start)</title><link>https://pigsty.io/docs/pgbackrest/command/start/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/start/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-start"&gt;pgBackRest Command Docs: start&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If the pgBackRest processes were previously stopped using the &lt;code&gt;stop&lt;/code&gt; command then they can be started again using the &lt;code&gt;start&lt;/code&gt; command. Note that this will not immediately start up any pgBackRest processes but they are allowed to run. See &lt;a href="https://pigsty.io/docs/pgbackrest/user-guide/#starting-and-stopping"&gt;Starting and Stopping&lt;/a&gt; for more information and examples.&lt;/p&gt;
+&lt;h2 id="general-options"&gt;General Options
+&lt;/h2&gt;
+&lt;h3 id="allow-run-as-root-option---allow-root"&gt;Allow Run as Root Option (&lt;code&gt;--allow-root&lt;/code&gt;)
+&lt;/h3&gt;
+&lt;p&gt;Allow the command to run as the root user.&lt;/p&gt;</description></item><item><title>Stop Command (stop)</title><link>https://pigsty.io/docs/pgbackrest/command/stop/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/stop/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-stop"&gt;pgBackRest Command Docs: stop&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Does not allow any new pgBackRest processes to run. By default running processes will be allowed to complete successfully. Use the &lt;code&gt;--force&lt;/code&gt; option to terminate running processes.&lt;/p&gt;
+&lt;p&gt;pgBackRest processes will return an error if they are run after the stop command completes. See &lt;a href="https://pigsty.io/docs/pgbackrest/user-guide/#starting-and-stopping"&gt;Starting and Stopping&lt;/a&gt; for more information and examples.&lt;/p&gt;
+&lt;h2 id="command-options"&gt;Command Options
+&lt;/h2&gt;
+&lt;h3 id="force-option---force"&gt;Force Option (&lt;code&gt;--force&lt;/code&gt;)
+&lt;/h3&gt;
+&lt;p&gt;Force all pgBackRest processes to stop.&lt;/p&gt;</description></item><item><title>Verify Command (verify)</title><link>https://pigsty.io/docs/pgbackrest/command/verify/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/verify/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-verify"&gt;pgBackRest Command Docs: verify&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Verify determines if the backups and archives in a repository are valid.&lt;/p&gt;
+&lt;h2 id="command-options"&gt;Command Options
+&lt;/h2&gt;
+&lt;h3 id="output-option---output"&gt;Output Option (&lt;code&gt;--output&lt;/code&gt;)
+&lt;/h3&gt;
+&lt;p&gt;Output type.&lt;/p&gt;
+&lt;p&gt;The following output types are supported:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;none&lt;/code&gt; - No verify output.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;text&lt;/code&gt; - Output verify information to stdout.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-0b746fb1-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="yaml" data-td-line-count="2"&gt;
+ &lt;div class="td-code__viewport" id="td-code-0b746fb1-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;default&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;none&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;example&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--&lt;span class="l"&gt;output=text&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id="set-option---set"&gt;Set Option (&lt;code&gt;--set&lt;/code&gt;)
+&lt;/h3&gt;
+&lt;p&gt;Backup set to verify.&lt;/p&gt;</description></item><item><title>Version Command (version)</title><link>https://pigsty.io/docs/pgbackrest/command/version/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/command/version/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://pgbackrest.org/command.html#command-version"&gt;pgBackRest Command Docs: version&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Displays installed pgBackRest version.&lt;/p&gt;
+&lt;h2 id="command-options"&gt;Command Options
+&lt;/h2&gt;
+&lt;h3 id="output-option---output"&gt;Output Option (&lt;code&gt;--output&lt;/code&gt;)
+&lt;/h3&gt;
+&lt;p&gt;Output type.&lt;/p&gt;
+&lt;p&gt;The following output types are supported:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;text&lt;/code&gt; - Display the installed pgBackRest version as text.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;num&lt;/code&gt; - Display the installed pgBackRest version as an integer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-6fab8499-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="yaml" data-td-line-count="2"&gt;
+ &lt;div class="td-code__viewport" id="td-code-6fab8499-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;default&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;text&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;example&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--&lt;span class="l"&gt;output=num&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>pgBackRest 2.59 Documentation</title><link>https://pigsty.io/docs/pgbackrest/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pgbackrest/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;snapshot of pgBackRest 2.59 documentation: &lt;a href="https://pgbackrest.org/"&gt;https://pgbackrest.org/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="introduction"&gt;Introduction
+&lt;/h2&gt;
+&lt;p&gt;pgBackRest is a reliable backup and restore solution for PostgreSQL that seamlessly scales up to the largest databases and workloads.&lt;/p&gt;
+&lt;p&gt;pgBackRest &lt;a href="https://github.com/pgbackrest/pgbackrest/releases/tag/release/2.59.0"&gt;v2.59.0&lt;/a&gt; is the current stable release. Release notes are on the &lt;a href="https://pigsty.io/docs/pgbackrest/release/"&gt;Releases&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;Please give us a star on &lt;a href="https://github.com/pgbackrest/pgbackrest"&gt;GitHub&lt;/a&gt; if you like pgBackRest!&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="news"&gt;News
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;July 20, 2026&lt;/strong&gt; - &lt;a href="https://pigsty.io/docs/pgbackrest/news/#distribution-tarball"&gt;New Distribution Tarball&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;July 20, 2026&lt;/strong&gt; - &lt;a href="https://pigsty.io/docs/pgbackrest/news/#release-2-59-0"&gt;pgBackRest 2.59.0 Released&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

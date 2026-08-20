@@ -1,0 +1,963 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PIG on PIGSTY</title><link>https://pigsty.io/module/pig/</link><description>Recent content in PIG on PIGSTY</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 21 Aug 2026 00:42:15 +0800</lastBuildDate><atom:link href="https://pigsty.io/module/pig/index.xml" rel="self" type="application/rss+xml"/><item><title>Getting Started</title><link>https://pigsty.io/docs/pig/start/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pig/start/</guid><description>&lt;p&gt;Here is a simple getting started tutorial to help you experience the core capabilities of the PIG package manager.&lt;/p&gt;
+&lt;h2 id="short-version"&gt;Short Version
+&lt;/h2&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-7b20114c-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="3"&gt;
+ &lt;div class="td-code__viewport" id="td-code-7b20114c-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -fsSL https://repo.pigsty.io/pig &lt;span class="p"&gt;|&lt;/span&gt; bash &lt;span class="c1"&gt;# Install PIG from Cloudflare&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig repo &lt;span class="nb"&gt;set&lt;/span&gt; &lt;span class="c1"&gt;# One-time setup for Linux, Pigsty + PGDG repos (overwrites!)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig install -v &lt;span class="m"&gt;18&lt;/span&gt; -y pg18 pg_duckdb vector &lt;span class="c1"&gt;# Install PG 18 kernel, pg_duckdb, pgvector extensions...&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id="installation"&gt;Installation
+&lt;/h2&gt;
+&lt;p&gt;You can &lt;a href="https://pigsty.io/docs/pig/install/"&gt;&lt;strong&gt;install&lt;/strong&gt;&lt;/a&gt; &lt;code&gt;pig&lt;/code&gt; with the following command:&lt;/p&gt;</description></item><item><title>Introduction</title><link>https://pigsty.io/docs/pig/intro/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pig/intro/</guid><description>&lt;p&gt;Have you ever struggled with installing or upgrading PostgreSQL extensions? Digging through outdated documentation, cryptic configuration scripts, or searching GitHub for forks and patches?
+Postgres&amp;rsquo;s rich extension ecosystem also means complex deployment processes, especially across multiple distributions and architectures. PIG can solve these headaches for you.&lt;/p&gt;
+&lt;p&gt;This is exactly why &lt;strong&gt;Pig&lt;/strong&gt; was created. Developed in Go, Pig is dedicated to one-stop management of Postgres and its &lt;a href="https://pigsty.io/ext/list"&gt;576 packaged extensions&lt;/a&gt;.
+Whether it&amp;rsquo;s TimescaleDB, Citus, PGVector, 30+ Rust extensions, or all the components needed to self-host Supabase, Pig&amp;rsquo;s unified CLI makes everything accessible.
+It completely eliminates source compilation and messy repositories, directly providing version-aligned RPM/DEB packages that perfectly support Debian, Ubuntu, RedHat, and other mainstream distributions on both x86 and Arm architectures, no guessing, no hassle.&lt;/p&gt;</description></item><item><title>Installation</title><link>https://pigsty.io/docs/pig/install/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pig/install/</guid><description>&lt;h2 id="script-installation"&gt;Script Installation
+&lt;/h2&gt;
+&lt;p&gt;The simplest way to install &lt;code&gt;pig&lt;/code&gt; is to run the following installation script:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Default Installation&lt;/strong&gt; (Cloudflare CDN):&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-9f0caac9-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="1"&gt;
+ &lt;div class="td-code__viewport" id="td-code-9f0caac9-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -fsSL https://repo.pigsty.io/pig &lt;span class="p"&gt;|&lt;/span&gt; bash&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;China Mirror&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-9f0caac9-fence-1" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="1"&gt;
+ &lt;div class="td-code__viewport" id="td-code-9f0caac9-fence-1-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -fsSL https://repo.pigsty.cc/pig &lt;span class="p"&gt;|&lt;/span&gt; bash&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;This script downloads the latest &lt;code&gt;pig&lt;/code&gt; RPM/DEB package from the Pigsty &lt;a href="https://pigsty.io/docs/repo/"&gt;software repository&lt;/a&gt; and installs it using &lt;code&gt;rpm&lt;/code&gt; or &lt;code&gt;dpkg&lt;/code&gt;.
+Script installation targets Linux x86_64 / aarch64 RPM or DEB distributions. On macOS, use the binary from the release tarball.&lt;/p&gt;</description></item><item><title>Release</title><link>https://pigsty.io/docs/pig/release/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pig/release/</guid><description>&lt;p&gt;The latest stable version is &lt;a href="https://github.com/pgsty/pig/releases/tag/v1.8.0"&gt;v1.8.0&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="td-table-scroll td-table-scroll--static"&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th scope="col" style="text-align: center"&gt;Version&lt;/th&gt;
+ &lt;th scope="col" style="text-align: center"&gt;Date&lt;/th&gt;
+ &lt;th scope="col"&gt;Summary&lt;/th&gt;
+ &lt;th scope="col" style="text-align: center"&gt;GitHub&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v180"&gt;v1.8.0&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2026-08-14&lt;/td&gt;
+ &lt;td&gt;Native &lt;code&gt;sty boot&lt;/code&gt; and &lt;code&gt;sty conf&lt;/code&gt;, 575 packaged extensions&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v1.8.0"&gt;v1.8.0&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v170"&gt;v1.7.0&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2026-08-12&lt;/td&gt;
+ &lt;td&gt;EL module policy, China mirrors, EL7 compatibility, 575 extensions&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v1.7.0"&gt;v1.7.0&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v162"&gt;v1.6.2&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2026-08-11&lt;/td&gt;
+ &lt;td&gt;572 extensions, Grafana schema v2, SOW-first repository generation&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v1.6.2"&gt;v1.6.2&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v161"&gt;v1.6.1&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2026-07-30&lt;/td&gt;
+ &lt;td&gt;Catalog refresh and embedded Pigsty 4.5.0&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v1.6.1"&gt;v1.6.1&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v160"&gt;v1.6.0&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2026-07-28&lt;/td&gt;
+ &lt;td&gt;562 packaged extensions, patronictl passthrough, inventory &amp;amp; CMDB, Grafana&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v1.6.0"&gt;v1.6.0&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v151"&gt;v1.5.1&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2026-07-08&lt;/td&gt;
+ &lt;td&gt;PG kernel fork updates, mirror mode, bug fixes&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v1.5.1"&gt;v1.5.1&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v150"&gt;v1.5.0&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2026-07-04&lt;/td&gt;
+ &lt;td&gt;531 extensions, pigsty v4.4, pg/pt/pb/pitr rework, clone &amp;amp; fork&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v1.5.0"&gt;v1.5.0&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v142"&gt;v1.4.2&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2026-06-18&lt;/td&gt;
+ &lt;td&gt;524 extensions, PG19 beta, pgrx 0.18.1, Patroni fixes&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v1.4.2"&gt;v1.4.2&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v141"&gt;v1.4.1&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2026-05-01&lt;/td&gt;
+ &lt;td&gt;510 extensions, Ubuntu 26.04 support, repo calibration&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v1.4.1"&gt;v1.4.1&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v140"&gt;v1.4.0&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2026-04-19&lt;/td&gt;
+ &lt;td&gt;510 extensions, pgrx 0.18.0, more building specs&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v1.4.0"&gt;v1.4.0&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v134"&gt;v1.3.4&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2026-04-14&lt;/td&gt;
+ &lt;td&gt;504 extensions refreshed, release checksums updated&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v1.3.4"&gt;v1.3.4&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v133"&gt;v1.3.3&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2026-04-10&lt;/td&gt;
+ &lt;td&gt;481 extensions and Go 1.26.2 update&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v1.3.3"&gt;v1.3.3&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v132"&gt;v1.3.2&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2026-03-23&lt;/td&gt;
+ &lt;td&gt;Routine metadata refresh, new &lt;code&gt;pg tune&lt;/code&gt;, new build aliases&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v1.3.2"&gt;v1.3.2&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v131"&gt;v1.3.1&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2026-03-05&lt;/td&gt;
+ &lt;td&gt;Retire PG13 defaults, unify PG14-18 support window, 464 extensions&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v1.3.1"&gt;v1.3.1&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v130"&gt;v1.3.0&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2026-02-27&lt;/td&gt;
+ &lt;td&gt;Build pipeline hardening, 461 extensions, new pgedge/ivory support&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v1.3.0"&gt;v1.3.0&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v120"&gt;v1.2.0&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2026-02-23&lt;/td&gt;
+ &lt;td&gt;Unified aliases, routine updates, plan mode, repo fixes&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v1.2.0"&gt;v1.2.0&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v110"&gt;v1.1.0&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2026-02-12&lt;/td&gt;
+ &lt;td&gt;451 extensions, Agent-Native CLI framework&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v1.1.0"&gt;v1.1.0&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v100"&gt;v1.0.0&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2026-01-26&lt;/td&gt;
+ &lt;td&gt;New pg/pt/pb/pitr commands, availability matrix&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v1.0.0"&gt;v1.0.0&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v080"&gt;v0.8.0&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-12-26&lt;/td&gt;
+ &lt;td&gt;440 extensions, remove sysupdate repo&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.8.0"&gt;v0.8.0&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v075"&gt;v0.7.5&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-12-12&lt;/td&gt;
+ &lt;td&gt;Routine extension update, fixed aliyun mirror&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.7.5"&gt;v0.7.5&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v074"&gt;v0.7.4&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-12-01&lt;/td&gt;
+ &lt;td&gt;Update ivory/pgtde kernel and pgdg extras&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.7.4"&gt;v0.7.4&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v073"&gt;v0.7.3&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-11-24&lt;/td&gt;
+ &lt;td&gt;Fix repo for el10 &amp;amp; debian13&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.7.3"&gt;v0.7.3&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v072"&gt;v0.7.2&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-11-20&lt;/td&gt;
+ &lt;td&gt;437 extensions, fix pig build issue&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.7.2"&gt;v0.7.2&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v071"&gt;v0.7.1&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-11-10&lt;/td&gt;
+ &lt;td&gt;New Website, improve in-docker experience&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.7.1"&gt;v0.7.1&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v070"&gt;v0.7.0&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-11-05&lt;/td&gt;
+ &lt;td&gt;Build Enhancement and massive upgrade&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.7.0"&gt;v0.7.0&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v062"&gt;v0.6.2&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-10-03&lt;/td&gt;
+ &lt;td&gt;PG 18 official Repo&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.6.2"&gt;v0.6.2&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v061"&gt;v0.6.1&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-08-14&lt;/td&gt;
+ &lt;td&gt;CI/CD, el10 stub, PGDG CN Mirror&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.6.1"&gt;v0.6.1&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v060"&gt;v0.6.0&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-07-17&lt;/td&gt;
+ &lt;td&gt;423 extension, percona pg_tde, mcp toolbox&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.6.0"&gt;v0.6.0&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v050"&gt;v0.5.0&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-06-30&lt;/td&gt;
+ &lt;td&gt;422 extension, new extension catalog&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.5.0"&gt;v0.5.0&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v042"&gt;v0.4.2&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-05-27&lt;/td&gt;
+ &lt;td&gt;421 extension, halo &amp;amp; oriole deb&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.4.2"&gt;v0.4.2&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v041"&gt;v0.4.1&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-05-07&lt;/td&gt;
+ &lt;td&gt;414 extension, pg18 alias support&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.4.1"&gt;v0.4.1&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v040"&gt;v0.4.0&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-05-01&lt;/td&gt;
+ &lt;td&gt;do &amp;amp; pt sub-cmd, halo &amp;amp; orioledb&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.4.0"&gt;v0.4.0&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v034"&gt;v0.3.4&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-04-05&lt;/td&gt;
+ &lt;td&gt;routine update&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.3.4"&gt;v0.3.4&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v033"&gt;v0.3.3&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-03-25&lt;/td&gt;
+ &lt;td&gt;alias, repo, deps&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.3.3"&gt;v0.3.3&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v032"&gt;v0.3.2&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-03-21&lt;/td&gt;
+ &lt;td&gt;new extensions&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.3.2"&gt;v0.3.2&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v031"&gt;v0.3.1&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-03-19&lt;/td&gt;
+ &lt;td&gt;minor bug fix&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.3.1"&gt;v0.3.1&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v030"&gt;v0.3.0&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-02-24&lt;/td&gt;
+ &lt;td&gt;new home page and extension catalog&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.3.0"&gt;v0.3.0&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v022"&gt;v0.2.2&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-02-22&lt;/td&gt;
+ &lt;td&gt;404 extensions&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.2.2"&gt;v0.2.2&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v020"&gt;v0.2.0&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-02-14&lt;/td&gt;
+ &lt;td&gt;400 extensions&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.2.0"&gt;v0.2.0&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v014"&gt;v0.1.4&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-02-12&lt;/td&gt;
+ &lt;td&gt;routine bugfix&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.1.4"&gt;v0.1.4&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v013"&gt;v0.1.3&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-01-23&lt;/td&gt;
+ &lt;td&gt;390 extensions&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.1.3"&gt;v0.1.3&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v012"&gt;v0.1.2&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-01-12&lt;/td&gt;
+ &lt;td&gt;the anon extension and 350 other ext&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.1.2"&gt;v0.1.2&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v011"&gt;v0.1.1&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025-01-09&lt;/td&gt;
+ &lt;td&gt;Update Extension List&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.1.1"&gt;v0.1.1&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v010"&gt;v0.1.0&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2024-12-29&lt;/td&gt;
+ &lt;td&gt;repo, ext, sty, and self-update&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.1.0"&gt;v0.1.0&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="#v001"&gt;v0.0.1&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2024-12-23&lt;/td&gt;
+ &lt;td&gt;Genesis Release&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;a href="https://github.com/pgsty/pig/releases/tag/v0.0.1"&gt;v0.0.1&lt;/a&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2 id="v180"&gt;v1.8.0
+&lt;/h2&gt;
+&lt;p&gt;Pig &lt;code&gt;v1.8.0&lt;/code&gt; is a native controller-workflow update on top of &lt;code&gt;v1.7.0&lt;/code&gt;.
+&lt;code&gt;pig sty boot&lt;/code&gt; and &lt;code&gt;pig sty conf&lt;/code&gt; are now implemented in Go instead of wrapping the legacy
+&lt;code&gt;bootstrap&lt;/code&gt; and &lt;code&gt;configure&lt;/code&gt; shell scripts. The packaged PostgreSQL extension count remains
+&lt;strong&gt;575&lt;/strong&gt;, and the embedded Pigsty version remains &lt;code&gt;4.5.0&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>pig</title><link>https://pigsty.io/docs/pig/cmd/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pig/cmd/</guid><description>&lt;p&gt;The &lt;code&gt;pig&lt;/code&gt; CLI provides a comprehensive toolkit for managing PostgreSQL installations, extensions, repositories, and extension builds from source. Use &lt;code&gt;pig help &amp;lt;command&amp;gt;&lt;/code&gt; to view command documentation.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://pigsty.io/docs/pig/repo/"&gt;&lt;strong&gt;pig repo&lt;/strong&gt;&lt;/a&gt;: manage software repositories&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pigsty.io/docs/pig/ext/"&gt;&lt;strong&gt;pig ext&lt;/strong&gt;&lt;/a&gt;: manage PostgreSQL extensions&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pigsty.io/docs/pig/build/"&gt;&lt;strong&gt;pig build&lt;/strong&gt;&lt;/a&gt;: build extensions from source&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pig install&lt;/strong&gt;: install packages with the native package manager and translate PostgreSQL aliases&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pigsty.io/docs/pig/sty/"&gt;&lt;strong&gt;pig sty&lt;/strong&gt;&lt;/a&gt;: manage Pigsty installation and Grafana dashboards&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pigsty.io/docs/pig/inventory/"&gt;&lt;strong&gt;pig inventory&lt;/strong&gt;&lt;/a&gt;: inspect, edit, validate, and exchange the Pigsty inventory (new in v1.6.0)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pig do&lt;/strong&gt;: run Pigsty administration playbook tasks&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pig pe&lt;/strong&gt;: access pg_exporter metrics and configuration&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pigsty.io/docs/pig/pg/"&gt;&lt;strong&gt;pig pg&lt;/strong&gt;&lt;/a&gt;: manage local PostgreSQL servers&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pigsty.io/docs/pig/pt/"&gt;&lt;strong&gt;pig pt&lt;/strong&gt;&lt;/a&gt;: run patronictl transparently with service and config helpers&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pigsty.io/docs/pig/pb/"&gt;&lt;strong&gt;pig pb&lt;/strong&gt;&lt;/a&gt;: manage pgBackRest backup and restore&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pigsty.io/docs/pig/pitr/"&gt;&lt;strong&gt;pig pitr&lt;/strong&gt;&lt;/a&gt;: run the full PITR workflow&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pig context&lt;/strong&gt;: output an environment context snapshot for humans and agents&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pig status / update / version&lt;/strong&gt;: inspect environment status, upgrade pig, and print version information&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="overview"&gt;Overview
+&lt;/h2&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-e6cbcd8f-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="48"&gt;
+ &lt;div class="td-code__viewport" id="td-code-e6cbcd8f-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig - The Linux package manager &lt;span class="k"&gt;for&lt;/span&gt; PostgreSQL
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Usage:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig &lt;span class="o"&gt;[&lt;/span&gt;command&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Examples:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo add -ru &lt;span class="c1"&gt;# overwrite existing repo and update cache&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig install pg18 &lt;span class="c1"&gt;# install PostgreSQL 18 PGDG packages&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig install pg_duckdb &lt;span class="c1"&gt;# install a specific PostgreSQL extension&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig install pgactive -v &lt;span class="m"&gt;18&lt;/span&gt; &lt;span class="c1"&gt;# install extension for a specific PG version&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; visit https://pigsty.io/ext/ &lt;span class="k"&gt;for&lt;/span&gt; details
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;PostgreSQL Extension Manager
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; build Build Postgres extensions
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ext Manage PostgreSQL extensions &lt;span class="o"&gt;(&lt;/span&gt;pgext&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; repo Manage Linux software repo &lt;span class="o"&gt;(&lt;/span&gt;apt/dnf&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Pigsty Management Commands
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; context Show environment context snapshot
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;do&lt;/span&gt; Run admin tasks
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; inventory Inspect, edit, validate, check, and exchange Pigsty Inventory
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; patroni Run patronictl with Pigsty service and config helpers &lt;span class="o"&gt;(&lt;/span&gt;alias: pt&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pg_exporter Manage pg_exporter and metrics &lt;span class="o"&gt;(&lt;/span&gt;alias: pe&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pgbackrest Manage pgBackRest backup and restore &lt;span class="o"&gt;(&lt;/span&gt;alias: pb&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pitr Point-in-time recovery using pgBackRest
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; postgres Manage &lt;span class="nb"&gt;local&lt;/span&gt; PostgreSQL server and databases &lt;span class="o"&gt;(&lt;/span&gt;alias: pg&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; sty Manage Pigsty installation and controller services
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Additional Commands:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; completion Generate shell completion scripts
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;help&lt;/span&gt; Help about any &lt;span class="nb"&gt;command&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; install Install packages using native package manager
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; status Show environment status
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; update Upgrade pig itself
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; version Show pig version info
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Flags:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --debug &lt;span class="nb"&gt;enable&lt;/span&gt; debug mode
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -h, --help &lt;span class="nb"&gt;help&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; pig
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -H, --home string Pigsty home path
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -i, --inventory string config inventory path
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --log-level string log level: debug, info, warn, error, fatal, panic &lt;span class="o"&gt;(&lt;/span&gt;default &lt;span class="s2"&gt;&amp;#34;info&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --log-path string log file path, terminal by default
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -o, --output string output format: text, yaml, json, json-pretty &lt;span class="o"&gt;(&lt;/span&gt;default &lt;span class="s2"&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Use &lt;span class="s2"&gt;&amp;#34;pig [command] --help&amp;#34;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; more information about a command.&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id="pig-repo"&gt;pig repo
+&lt;/h2&gt;
+&lt;p&gt;Manage APT/YUM repositories for PostgreSQL packages. See &lt;a href="https://pigsty.io/docs/pig/repo/"&gt;&lt;code&gt;pig repo&lt;/code&gt;&lt;/a&gt; for details.&lt;/p&gt;</description></item><item><title>pig repo</title><link>https://pigsty.io/docs/pig/repo/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pig/repo/</guid><description>&lt;p&gt;The &lt;code&gt;pig repo&lt;/code&gt; command is a comprehensive package repository manager. It can add, remove, create, and manage repositories on RPM systems (RHEL/CentOS/Rocky/Alma) and Debian systems (Debian/Ubuntu).&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-df70829d-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="23"&gt;
+ &lt;div class="td-code__viewport" id="td-code-df70829d-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig repo - Manage Linux APT/YUM Repo
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo list &lt;span class="c1"&gt;# available repo list (info)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo info &lt;span class="o"&gt;[&lt;/span&gt;repo&lt;span class="p"&gt;|&lt;/span&gt;module...&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# show repo info (info)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo status &lt;span class="c1"&gt;# show current repo status (info)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo add &lt;span class="o"&gt;[&lt;/span&gt;repo&lt;span class="p"&gt;|&lt;/span&gt;module...&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# add repo and modules (root)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo rm &lt;span class="o"&gt;[&lt;/span&gt;repo&lt;span class="p"&gt;|&lt;/span&gt;module...&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# remove repo &amp;amp; modules (root)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo update &lt;span class="c1"&gt;# update repo pkg cache (root)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo create &lt;span class="c1"&gt;# create repo on current system (root)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo boot &lt;span class="c1"&gt;# boot repo from offline package (root)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo cache &lt;span class="c1"&gt;# cache repo as offline package (root)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Examples:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo add -ru &lt;span class="c1"&gt;# add all repo and update cache (brute but effective)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo add pigsty -u &lt;span class="c1"&gt;# gentle version, only add pigsty repo and update cache&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo add node pgdg pigsty &lt;span class="c1"&gt;# essential repo to install postgres packages&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo add all &lt;span class="c1"&gt;# all = node + pgdg + pigsty&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo add all extra &lt;span class="c1"&gt;# extra module has non-free and some 3rd repo for certain extensions&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo add all -m &lt;span class="c1"&gt;# prefer the bundled China-region mirrors&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo update &lt;span class="c1"&gt;# update repo cache&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo create &lt;span class="c1"&gt;# update local repo /www/pigsty meta&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo boot &lt;span class="c1"&gt;# extract /tmp/pkg.tgz to /www/pigsty&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo cache &lt;span class="c1"&gt;# cache /www/pigsty into /tmp/pkg.tgz&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="td-table-scroll td-table-scroll--full td-table-scroll--static"&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Command&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Notes&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;repo list&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Print available repositories and modules&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;repo info&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Show repository details&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;repo status&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Show current repository status&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;repo add&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Add repositories&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;repo set&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Clear, overwrite, and update repositories&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;repo rm&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Remove repositories&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;repo update&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Update repository cache&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;repo create&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Create local YUM/APT repository&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;repo cache&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Create offline package from local repo&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;repo boot&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Bootstrap repository from offline package&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;repo reload&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Refresh repository catalog&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;h2 id="quick-start"&gt;Quick Start
+&lt;/h2&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-df70829d-fence-1" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="15"&gt;
+ &lt;div class="td-code__viewport" id="td-code-df70829d-fence-1-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Method 1: clean existing repositories, add all required repos, and update cache (recommended)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig repo add all --remove --update &lt;span class="c1"&gt;# remove old repos, add all required repos, update cache&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Method 1 variant: one step&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig repo &lt;span class="nb"&gt;set&lt;/span&gt; &lt;span class="c1"&gt;# = pig repo add all --remove --update&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Method 2: gentle mode - only add required repos and keep current repo configuration&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig repo add pgsql &lt;span class="c1"&gt;# add PGDG and Pigsty PGSQL repositories&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig repo add pigsty --region&lt;span class="o"&gt;=&lt;/span&gt;china &lt;span class="c1"&gt;# add Pigsty repositories with China region&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig repo add pgdg --region&lt;span class="o"&gt;=&lt;/span&gt;europe &lt;span class="c1"&gt;# add PGDG repositories with Europe region&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig repo add infra --region&lt;span class="o"&gt;=&lt;/span&gt;default &lt;span class="c1"&gt;# add INFRA repositories with default region&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig repo add all -m &lt;span class="c1"&gt;# explicitly select the bundled China-region mirrors&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# If the commands above did not use -u|--update, run this as an extra step&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig repo update &lt;span class="c1"&gt;# update system package cache&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id="modules"&gt;Modules
+&lt;/h2&gt;
+&lt;p&gt;In pig, APT/YUM repositories are organized as &lt;strong&gt;modules&lt;/strong&gt;: groups of repositories serving a specific purpose.&lt;/p&gt;</description></item><item><title>pig ext</title><link>https://pigsty.io/docs/pig/ext/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pig/ext/</guid><description>&lt;p&gt;The &lt;code&gt;pig ext&lt;/code&gt; command is an all-in-one tool for managing PostgreSQL extensions. It lets you search, install, remove, update, and manage PostgreSQL extensions, and it can also handle PostgreSQL kernel packages.&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-12bca1d4-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="18"&gt;
+ &lt;div class="td-code__viewport" id="td-code-12bca1d4-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig ext - Manage PostgreSQL Extensions
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig repo add -ru &lt;span class="c1"&gt;# add all repo and update cache (brute but effective)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig ext add pg18 &lt;span class="c1"&gt;# install optional postgresql 18 package&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig ext list duck &lt;span class="c1"&gt;# search extension in catalog&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig ext scan -v &lt;span class="m"&gt;18&lt;/span&gt; &lt;span class="c1"&gt;# scan installed extension for pg 18&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig ext add pg_duckdb &lt;span class="c1"&gt;# install certain postgresql extension&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Examples:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig ext list &lt;span class="o"&gt;[&lt;/span&gt;query&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# list &amp;amp; search extension&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig ext info &lt;span class="o"&gt;[&lt;/span&gt;ext...&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# get information of a specific extension&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig ext status &lt;span class="o"&gt;[&lt;/span&gt;-v&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# show installed extension and pg status&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig ext add &lt;span class="o"&gt;[&lt;/span&gt;ext...&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# install extension for current pg version&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig ext rm &lt;span class="o"&gt;[&lt;/span&gt;ext...&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# remove extension for current pg version&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig ext update &lt;span class="o"&gt;[&lt;/span&gt;ext...&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# update extension to the latest version&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig ext import &lt;span class="o"&gt;[&lt;/span&gt;ext...&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# download extension to local repo&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig ext link &lt;span class="o"&gt;[&lt;/span&gt;ext...&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# link postgres installation to path&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig ext reload &lt;span class="c1"&gt;# reload the latest extension catalog data&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="td-table-scroll td-table-scroll--full td-table-scroll--static"&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Command&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Notes&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;ext list&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Search extensions&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;ext info&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Show extension details&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;ext avail&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Show extension availability matrix&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;ext status&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Show installed extensions&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;ext scan&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Scan installed extensions&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;ext add&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Install extensions&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;ext rm&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Remove extensions&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;ext update&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Update extensions&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;ext import&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Download extensions for offline use&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;ext link&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Link a PG version into PATH&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;ext reload&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Refresh extension catalog&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;h2 id="quick-start"&gt;Quick Start
+&lt;/h2&gt;
+&lt;p&gt;Before installing PostgreSQL extensions, add the required repositories with &lt;a href="https://pigsty.io/docs/pig/repo/"&gt;&lt;code&gt;pig repo add&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;</description></item><item><title>pig build</title><link>https://pigsty.io/docs/pig/build/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pig/build/</guid><description>&lt;p&gt;The &lt;code&gt;pig build&lt;/code&gt; command simplifies the full workflow for building PostgreSQL extensions from source. It provides build infrastructure setup, dependency management, and compilation environments for standard and custom PostgreSQL extensions across supported operating systems.&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-f026d679-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="20"&gt;
+ &lt;div class="td-code__viewport" id="td-code-f026d679-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig build - Build Postgres Extension
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Environment Setup:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig build spec &lt;span class="c1"&gt;# init build spec and directory (~ext)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig build repo &lt;span class="c1"&gt;# init build repo (=repo set -ru)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig build repo --beta &lt;span class="c1"&gt;# init build repo with PostgreSQL beta repo&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig build tool &lt;span class="o"&gt;[&lt;/span&gt;mini&lt;span class="p"&gt;|&lt;/span&gt;full&lt;span class="p"&gt;|&lt;/span&gt;...&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# init build toolset&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig build rust &lt;span class="o"&gt;[&lt;/span&gt;-y&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-m&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# install Rust toolchain&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig build pgrx &lt;span class="o"&gt;[&lt;/span&gt;-v &amp;lt;ver&amp;gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-b&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# install &amp;amp; init pgrx (0.19.1)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig build proxy &lt;span class="o"&gt;[&lt;/span&gt;id@host:port &lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# init build proxy (optional)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Package Building:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig build pkg &lt;span class="o"&gt;[&lt;/span&gt;ext&lt;span class="p"&gt;|&lt;/span&gt;pkg...&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# complete pipeline: get + dep + ext&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig build get &lt;span class="o"&gt;[&lt;/span&gt;ext&lt;span class="p"&gt;|&lt;/span&gt;pkg...&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# download extension source tarball&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig build dep &lt;span class="o"&gt;[&lt;/span&gt;ext&lt;span class="p"&gt;|&lt;/span&gt;pkg...&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# install extension build dependencies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig build ext &lt;span class="o"&gt;[&lt;/span&gt;ext&lt;span class="p"&gt;|&lt;/span&gt;pkg...&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# build extension package&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Quick Start:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig build spec &lt;span class="c1"&gt;# setup build spec and directory&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig build pkg citus &lt;span class="c1"&gt;# build citus extension&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="td-table-scroll td-table-scroll--full td-table-scroll--static"&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Command&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Notes&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;build spec&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Initialize build specification directory&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;build repo&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Initialize required repositories&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;build tool&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Initialize build tools&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;build rust&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Install Rust toolchain&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;build pgrx&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Install and initialize pgrx&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;build proxy&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Initialize build proxy&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;build get&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Download source tarballs&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;build dep&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Install extension build dependencies&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;build ext&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Build extension packages&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;build pkg&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Complete pipeline: get, dep, ext&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Requires sudo or root&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;h2 id="quick-start"&gt;Quick Start
+&lt;/h2&gt;
+&lt;p&gt;The fastest way to set up a build environment and build an extension:&lt;/p&gt;</description></item><item><title>pig sty</title><link>https://pigsty.io/docs/pig/sty/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pig/sty/</guid><description>&lt;p&gt;&lt;strong&gt;pig&lt;/strong&gt; can also be used as a CLI tool for Pigsty, a batteries-included free PostgreSQL RDS solution.
+It brings HA, PITR, monitoring, infrastructure as code (IaC), and rich extension support to your PostgreSQL clusters.&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-cd98d02d-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="15"&gt;
+ &lt;div class="td-code__viewport" id="td-code-cd98d02d-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig sty - Init &lt;span class="o"&gt;(&lt;/span&gt;Download&lt;span class="o"&gt;)&lt;/span&gt;, Bootstrap, Configure, and Deploy Pigsty
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig sty init &lt;span class="o"&gt;[&lt;/span&gt;-mpfvd&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# install pigsty (~/pigsty by default)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig sty boot &lt;span class="o"&gt;[&lt;/span&gt;-rmpk&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# native controller bootstrap&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig sty conf &lt;span class="o"&gt;[&lt;/span&gt;mode&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;flags&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# native Inventory-aware configuration&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig sty deploy &lt;span class="c1"&gt;# use pigsty to deploy everything (CAUTION!)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig sty get &lt;span class="c1"&gt;# download pigsty source tarball&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig sty list &lt;span class="c1"&gt;# list available pigsty versions&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig sty grafana &amp;lt;verb&amp;gt; &lt;span class="c1"&gt;# manage grafana dashboards (native HTTP)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Examples:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig sty init &lt;span class="c1"&gt;# extract and init ~/pigsty&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig sty boot &lt;span class="c1"&gt;# install ansible &amp;amp; other deps&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig sty conf &lt;span class="c1"&gt;# generate pigsty.yml config file&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig sty deploy &lt;span class="c1"&gt;# run the deploy.yml playbook&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="td-table-scroll td-table-scroll--full td-table-scroll--static"&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Command&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Notes&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;sty init&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Install Pigsty&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;sty boot&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Bootstrap the Pigsty controller&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Auto-elevates when needed&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;sty conf&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Generate and validate Inventory&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Native Go workflow&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;sty deploy&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Run deployment playbook&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;sty list&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;List available Pigsty versions&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;sty get&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Download Pigsty source tarball&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;sty grafana&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Manage Grafana dashboards (alias &lt;code&gt;gf&lt;/code&gt;)&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;New in v1.6.0&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Since v1.8.0, &lt;code&gt;pig sty boot&lt;/code&gt; and &lt;code&gt;pig sty conf&lt;/code&gt; are native Go workflows. They no longer
+invoke Pigsty&amp;rsquo;s legacy &lt;code&gt;bootstrap&lt;/code&gt; or &lt;code&gt;configure&lt;/code&gt; shell scripts. Since v1.6.0, the former
+&lt;code&gt;pig sty edit&lt;/code&gt; / &lt;code&gt;validate&lt;/code&gt; / &lt;code&gt;check&lt;/code&gt; commands moved to the
+root-level &lt;a href="https://pigsty.io/docs/pig/inventory/"&gt;&lt;code&gt;pig inventory&lt;/code&gt;&lt;/a&gt; command group, and the experimental
+&lt;code&gt;pig sty dashboard&lt;/code&gt; was replaced by &lt;code&gt;pig sty grafana&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>pig inventory</title><link>https://pigsty.io/docs/pig/inventory/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pig/inventory/</guid><description>&lt;p&gt;The &lt;code&gt;pig inventory&lt;/code&gt; command group (alias &lt;code&gt;pig inv&lt;/code&gt;), introduced in v1.6.0, provides
+&lt;strong&gt;lossless&lt;/strong&gt; inspection, editing, validation, and readiness checks for the Pigsty inventory
+(&lt;code&gt;pigsty.yml&lt;/code&gt;), plus an experimental &lt;code&gt;cmdb&lt;/code&gt; subtree that exchanges the inventory with the
+PostgreSQL CMDB.&lt;/p&gt;
+&lt;p&gt;The lossless engine preserves YAML comments, formatting, key order, anchors, and line
+endings byte-for-byte; &lt;code&gt;edit&lt;/code&gt; re-parses the whole document before writing and writes
+atomically — &lt;strong&gt;invalid YAML can never reach disk&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-4e1db33e-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="17"&gt;
+ &lt;div class="td-code__viewport" id="td-code-4e1db33e-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Inspect, edit, validate, check, and exchange Pigsty Inventory
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Usage:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig inventory &lt;span class="o"&gt;[&lt;/span&gt;command&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Aliases:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; inventory, inv
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Available Commands:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; check Check Inventory, controller, and opt-in target readiness
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; cmdb Exchange Inventory with Pigsty&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s existing PostgreSQL CMDB &lt;span class="o"&gt;(&lt;/span&gt;experimental&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; diff Compare declarations without emitting Inventory values
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; edit Edit Inventory or one selected YAML fragment
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; list List ordered Inventory topology and value kinds
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; show Show verbatim Inventory YAML &lt;span class="o"&gt;(&lt;/span&gt;may contain secrets&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; status Inspect the active Inventory &lt;span class="nb"&gt;source&lt;/span&gt; without executing it
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; validate Validate one &lt;span class="nb"&gt;complete&lt;/span&gt; static Pigsty Inventory&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="td-table-scroll td-table-scroll--full td-table-scroll--static"&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Command&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Alias&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;inv status&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Inspect the active inventory source (without executing)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;inv list&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;ls&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;List inventory topology and value kinds (&lt;code&gt;--depth&lt;/code&gt;)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;inv show&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Show verbatim inventory YAML (&lt;strong&gt;may contain secrets&lt;/strong&gt;)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;inv edit&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;e&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Edit the inventory or one fragment in &lt;code&gt;$EDITOR&lt;/code&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;inv validate&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;v&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Validate one complete static Pigsty inventory&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;inv check&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;ck&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Check inventory, controller, and target readiness&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;inv diff&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Compare declarations of two inventories (value-free)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;inv cmdb&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Exchange with the PostgreSQL CMDB (&lt;strong&gt;experimental&lt;/strong&gt;)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The inventory path comes from pig&amp;rsquo;s config resolution (the global &lt;code&gt;-i/--inventory&lt;/code&gt; flag or
+the Pigsty home directory), and every command supports &lt;code&gt;-o json|yaml&lt;/code&gt; structured output.&lt;/p&gt;</description></item><item><title>pig postgres</title><link>https://pigsty.io/docs/pig/pg/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pig/pg/</guid><description>&lt;p&gt;The &lt;code&gt;pig pg&lt;/code&gt; command (alias &lt;code&gt;pig postgres&lt;/code&gt;) manages local PostgreSQL servers and databases. It wraps local primitives such as &lt;code&gt;pg_ctl&lt;/code&gt;, &lt;code&gt;psql&lt;/code&gt;, and &lt;code&gt;vacuumdb&lt;/code&gt;; use &lt;code&gt;pig pt&lt;/code&gt; for Patroni cluster operations and &lt;code&gt;pig pitr&lt;/code&gt; for orchestrated PITR.&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-469489cf-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="41"&gt;
+ &lt;div class="td-code__viewport" id="td-code-469489cf-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig pg - Local PostgreSQL primitives &lt;span class="o"&gt;(&lt;/span&gt;pg_ctl / psql / &lt;span class="nb"&gt;local&lt;/span&gt; files&lt;span class="o"&gt;)&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Server Control &lt;span class="o"&gt;(&lt;/span&gt;via pg_ctl&lt;span class="o"&gt;)&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg init &lt;span class="o"&gt;[&lt;/span&gt;-v ver&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-D datadir&lt;span class="o"&gt;]&lt;/span&gt; initialize data directory
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg start &lt;span class="o"&gt;[&lt;/span&gt;-D datadir&lt;span class="o"&gt;]&lt;/span&gt; start PostgreSQL server
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg stop &lt;span class="o"&gt;[&lt;/span&gt;-D datadir&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-m fast&lt;span class="o"&gt;]&lt;/span&gt; stop PostgreSQL server
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg restart &lt;span class="o"&gt;[&lt;/span&gt;-D datadir&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-m fast&lt;span class="o"&gt;]&lt;/span&gt; restart PostgreSQL server
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg reload &lt;span class="o"&gt;[&lt;/span&gt;-D datadir&lt;span class="o"&gt;]&lt;/span&gt; reload configuration
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg status &lt;span class="o"&gt;[&lt;/span&gt;-D datadir&lt;span class="o"&gt;]&lt;/span&gt; show server status
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg promote &lt;span class="o"&gt;[&lt;/span&gt;-D datadir&lt;span class="o"&gt;]&lt;/span&gt; promote standby to primary
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg role &lt;span class="o"&gt;[&lt;/span&gt;-D datadir&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-V&lt;span class="o"&gt;]&lt;/span&gt; detect instance role &lt;span class="o"&gt;(&lt;/span&gt;primary/replica&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Service Management &lt;span class="o"&gt;(&lt;/span&gt;via systemctl&lt;span class="o"&gt;)&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg svc start start postgres systemd service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg svc stop stop postgres systemd service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg svc restart restart postgres systemd service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg svc reload reload postgres systemd service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg svc status show postgres service status
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Connection &lt;span class="p"&gt;&amp;amp;&lt;/span&gt; Query:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg psql &lt;span class="o"&gt;[&lt;/span&gt;db&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-c cmd&lt;span class="o"&gt;]&lt;/span&gt; connect to database via psql
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg ps &lt;span class="o"&gt;[&lt;/span&gt;-a&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-u user&lt;span class="o"&gt;]&lt;/span&gt; show current connections
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg &lt;span class="nb"&gt;kill&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-x&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-u user&lt;span class="o"&gt;]&lt;/span&gt; terminate connections &lt;span class="o"&gt;(&lt;/span&gt;dry-run by default&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg clone &amp;lt;src&amp;gt; &lt;span class="o"&gt;[&lt;/span&gt;dst&lt;span class="o"&gt;]&lt;/span&gt; clone database with CREATE DATABASE TEMPLATE
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Database Maintenance:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg vacuum &lt;span class="o"&gt;[&lt;/span&gt;db&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-a&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-t table&lt;span class="o"&gt;]&lt;/span&gt; vacuum tables
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg analyze &lt;span class="o"&gt;[&lt;/span&gt;db&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-a&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-t table&lt;span class="o"&gt;]&lt;/span&gt; analyze tables
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg freeze &lt;span class="o"&gt;[&lt;/span&gt;db&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-a&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-t table&lt;span class="o"&gt;]&lt;/span&gt; vacuum freeze tables
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg repack &lt;span class="o"&gt;[&lt;/span&gt;db&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-a&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-t table&lt;span class="o"&gt;]&lt;/span&gt; repack tables &lt;span class="o"&gt;(&lt;/span&gt;online rebuild&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Tuning:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg tune &lt;span class="o"&gt;[&lt;/span&gt;-p profile&lt;span class="o"&gt;]&lt;/span&gt; generate optimized parameters
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Instance Fork:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg fork init &amp;lt;name&amp;gt; &lt;span class="o"&gt;[&lt;/span&gt;-D datadir&lt;span class="o"&gt;]&lt;/span&gt; fork PGDATA into /pg/data-&amp;lt;name&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg fork list list managed forks
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg fork start&lt;span class="p"&gt;|&lt;/span&gt;stop&lt;span class="p"&gt;|&lt;/span&gt;rm &amp;lt;name&amp;gt; manage fork lifecycle
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Utilities:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pg log &amp;lt;list&lt;span class="p"&gt;|&lt;/span&gt;tail&lt;span class="p"&gt;|&lt;/span&gt;cat&lt;span class="p"&gt;|&lt;/span&gt;less&lt;span class="p"&gt;|&lt;/span&gt;grep&amp;gt; view PostgreSQL logs&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id="command-overview"&gt;Command Overview
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Service Control&lt;/strong&gt; (pg_ctl wrapper):&lt;/p&gt;</description></item><item><title>pig patroni</title><link>https://pigsty.io/docs/pig/pt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pig/pt/</guid><description>&lt;p&gt;Since v1.6.0, the &lt;code&gt;pig patroni&lt;/code&gt; command (alias &lt;code&gt;pig pt&lt;/code&gt;) is a &lt;strong&gt;transparent launcher&lt;/strong&gt; for the
+installed &lt;code&gt;patronictl&lt;/code&gt; binary: pig only owns config-file selection and a few local helpers,
+while every other command and all of its arguments are &lt;strong&gt;forwarded unchanged&lt;/strong&gt; to &lt;code&gt;patronictl&lt;/code&gt; —
+with native flags, prompts, output, and exit codes. New patronictl features work without
+waiting for a pig release.&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-aba904b6-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="11"&gt;
+ &lt;div class="td-code__viewport" id="td-code-aba904b6-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig pt transparently launches the installed patronictl binary.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Pig only owns config-file selection and these &lt;span class="nb"&gt;local&lt;/span&gt; helpers:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pt &lt;span class="nb"&gt;set&lt;/span&gt; &lt;span class="nv"&gt;KEY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;VALUE... update PostgreSQL or scalar Patroni settings
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pt start&lt;span class="p"&gt;|&lt;/span&gt;stop manage the &lt;span class="nb"&gt;local&lt;/span&gt; patroni service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pt service &amp;lt;action&amp;gt; start, stop, restart, reload, or show service
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pt status show &lt;span class="nb"&gt;local&lt;/span&gt; and cluster status
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pt log ... view &lt;span class="nb"&gt;local&lt;/span&gt; Patroni logs
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Every other &lt;span class="nb"&gt;command&lt;/span&gt; and all arguments after it are passed unchanged to
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;patronictl. Use &lt;span class="s2"&gt;&amp;#34;pig pt -- COMMAND ...&amp;#34;&lt;/span&gt; to bypass a local-name collision.&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;The first non-option command token decides the dispatch:&lt;/p&gt;</description></item><item><title>pig pgbackrest</title><link>https://pigsty.io/docs/pig/pb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pig/pb/</guid><description>&lt;p&gt;The &lt;code&gt;pig pgbackrest&lt;/code&gt; command (alias &lt;code&gt;pig pb&lt;/code&gt;) manages pgBackRest backups and provides low-level restore primitives.
+It wraps common &lt;code&gt;pgbackrest&lt;/code&gt; operations for a simplified backup management experience. All commands run as the database superuser (default &lt;code&gt;postgres&lt;/code&gt;).
+For orchestrated point-in-time recovery on managed clusters, prefer &lt;a href="https://pigsty.io/docs/pig/pitr/"&gt;&lt;code&gt;pig pitr&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-ca89f1d2-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="34"&gt;
+ &lt;div class="td-code__viewport" id="td-code-ca89f1d2-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig pb - Manage pgBackRest backup and point-in-time recovery.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Information:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb info show backup info
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb list list backups
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb list repo list configured repositories
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb list stanza list all stanzas
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Backup &lt;span class="p"&gt;&amp;amp;&lt;/span&gt; Restore:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb backup create backup &lt;span class="o"&gt;(&lt;/span&gt;auto: full/incr&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb backup full create full backup
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb restore low-level restore primitive
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb restore -t &lt;span class="s2"&gt;&amp;#34;...&amp;#34;&lt;/span&gt; restore to specific &lt;span class="nb"&gt;time&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb expire cleanup expired backups
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Stanza Management:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb create create stanza &lt;span class="o"&gt;(&lt;/span&gt;first-time setup&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb upgrade upgrade stanza &lt;span class="o"&gt;(&lt;/span&gt;after PG upgrade&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb delete delete stanza &lt;span class="o"&gt;(&lt;/span&gt;DANGEROUS!&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Control:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb check verify backup integrity
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb start &lt;span class="nb"&gt;enable&lt;/span&gt; pgBackRest operations
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb stop disable pgBackRest operations
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb log view pgBackRest logs
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Examples:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb info &lt;span class="c1"&gt;# show all backup info&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb backup &lt;span class="c1"&gt;# auto: full if none, else incr&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb backup full &lt;span class="c1"&gt;# full backup&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb restore -d &lt;span class="c1"&gt;# restore to latest (end of WAL)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb restore -t &lt;span class="s2"&gt;&amp;#34;2025-01-01 12:00:00+08&amp;#34;&lt;/span&gt; &lt;span class="c1"&gt;# restore to time&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb create &lt;span class="c1"&gt;# initialize stanza&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; pig pb expire &lt;span class="c1"&gt;# cleanup per retention policy&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id="command-overview"&gt;Command Overview
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Information Query&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>pig pitr</title><link>https://pigsty.io/docs/pig/pitr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pig/pitr/</guid><description>&lt;p&gt;The &lt;code&gt;pig pitr&lt;/code&gt; command performs point-in-time recovery through pgBackRest and conservatively handles the local PostgreSQL and Patroni lifecycle. Unlike the lower-level &lt;code&gt;pig pb restore&lt;/code&gt;, &lt;code&gt;pig pitr&lt;/code&gt; runs pre-restore checks, stops Patroni and PostgreSQL when needed, executes restore, then decides whether to start PostgreSQL based on the selected options.&lt;/p&gt;
+&lt;p&gt;Note: for a managed default data directory, &lt;code&gt;pig pitr&lt;/code&gt; leaves Patroni stopped after recovery. Validate the restored result first, then manually restore Patroni management. This command does not automatically rejoin a Patroni cluster, perform failover, or validate cluster member state.&lt;/p&gt;</description></item><item><title>PIG 1.8 Documentation</title><link>https://pigsty.io/docs/pig/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pig/</guid><description>&lt;p&gt;— &lt;strong&gt;Postgres Install Genius, the missing extension package manager for the PostgreSQL ecosystem&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;PIG is a command-line tool specifically designed for installing, managing, and building PostgreSQL and its extensions. Developed in Go, it is ready to use out of the box, simple, and lightweight (about 5 MB).
+PIG is not a reinvented wheel, but rather a &lt;strong&gt;PiggyBack&lt;/strong&gt; - a high-level abstraction layer that leverages existing Linux distribution package managers (&lt;code&gt;apt&lt;/code&gt;/&lt;code&gt;dnf&lt;/code&gt;).
+It abstracts away the differences between operating systems, chip architectures, and PG major versions, allowing you to install and manage PG kernels and 576 packaged extensions with just a few simple commands.&lt;/p&gt;</description></item></channel></rss>

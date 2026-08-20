@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>JUICE on PIGSTY</title><link>https://pigsty.io/module/juice/</link><description>Recent content in JUICE on PIGSTY</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 21 Aug 2026 00:42:15 +0800</lastBuildDate><atom:link href="https://pigsty.io/module/juice/index.xml" rel="self" type="application/rss+xml"/><item><title>Module: JUICE</title><link>https://pigsty.io/docs/juice/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/juice/</guid><description>&lt;p&gt;&lt;a href="https://juicefs.com/"&gt;JuiceFS&lt;/a&gt; is a high-performance POSIX-compatible distributed filesystem that can mount object storage or databases as a local filesystem.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;JUICE&lt;/code&gt; module depends on &lt;a href="https://pigsty.io/docs/node"&gt;&lt;code&gt;NODE&lt;/code&gt;&lt;/a&gt; for infrastructure and package repo, and typically uses &lt;a href="https://pigsty.io/docs/pgsql"&gt;&lt;code&gt;PGSQL&lt;/code&gt;&lt;/a&gt; as the metadata engine.
+Data storage can be PostgreSQL (in a &lt;code&gt;jfs_blob&lt;/code&gt; table) or Silo / S3-compatible object storage provided by the &lt;a href="https://pigsty.io/docs/minio"&gt;&lt;code&gt;MINIO&lt;/code&gt;&lt;/a&gt; module. Monitoring relies on &lt;a href="https://pigsty.io/docs/infra"&gt;&lt;code&gt;INFRA&lt;/code&gt;&lt;/a&gt; VictoriaMetrics.&lt;/p&gt;
+&lt;pre class="mermaid"&gt;flowchart LR
+ subgraph Client[&amp;#34;App/User&amp;#34;]
+ app[&amp;#34;POSIX Access&amp;#34;]
+ end
+
+ subgraph JUICE[&amp;#34;JUICE&amp;#34;]
+ jfs[&amp;#34;JuiceFS Mount&amp;#34;]
+ end
+
+ subgraph PGSQL[&amp;#34;PGSQL&amp;#34;]
+ meta[&amp;#34;Metadata DB&amp;#34;]
+ blob[&amp;#34;Data DB / jfs_blob (optional)&amp;#34;]
+ end
+
+ subgraph Object[&amp;#34;Object Storage (optional)&amp;#34;]
+ s3[&amp;#34;Silo / S3&amp;#34;]
+ end
+
+ subgraph INFRA[&amp;#34;INFRA (optional)&amp;#34;]
+ vm[&amp;#34;VictoriaMetrics&amp;#34;]
+ end
+
+ app --&amp;gt; jfs
+ jfs --&amp;gt; meta
+ jfs -.-&amp;gt;|alternative data backend| blob
+ jfs -.-&amp;gt;|alternative data backend| s3
+ jfs --&amp;gt;|/metrics| vm
+
+ style JUICE fill:#5B9CD5,stroke:#4178a8,color:#fff
+ style PGSQL fill:#3E668F,stroke:#2d4a66,color:#fff
+ style Object fill:#FCDB72,stroke:#d4b85e,color:#333
+ style INFRA fill:#999,stroke:#666,color:#fff&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id="features"&gt;Features
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;PostgreSQL metadata&lt;/strong&gt;: Metadata stored in PostgreSQL for easy management and backup&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-instance&lt;/strong&gt;: One node can mount multiple independent filesystem instances&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multiple data backends&lt;/strong&gt;: PostgreSQL, Silo/MinIO, S3, and more; metadata and file data remain separate roles&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Monitoring integration&lt;/strong&gt;: Each instance exposes Prometheus / Victoria-format metrics port&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Simple config&lt;/strong&gt;: Describe instances with the &lt;a href="https://pigsty.io/docs/juice/param#juice_instances"&gt;&lt;strong&gt;&lt;code&gt;juice_instances&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; dict&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="quick-start"&gt;Quick Start
+&lt;/h2&gt;
+&lt;p&gt;Minimal config example (single instance):&lt;/p&gt;</description></item><item><title>Configuration</title><link>https://pigsty.io/docs/juice/config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/juice/config/</guid><description>&lt;hr&gt;
+&lt;h2 id="concepts-and-implementation"&gt;Concepts and Implementation
+&lt;/h2&gt;
+&lt;p&gt;JuiceFS consists of a &lt;strong&gt;metadata engine&lt;/strong&gt; and &lt;strong&gt;data storage&lt;/strong&gt;.
+In the current version, &lt;code&gt;meta&lt;/code&gt; is passed through to &lt;code&gt;juicefs&lt;/code&gt; as the metadata engine URL, and PostgreSQL is typically used in production.
+Data storage is defined by &lt;code&gt;data&lt;/code&gt; options passed to &lt;code&gt;juicefs format&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;JUICE module core commands:&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-9387b696-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="5"&gt;
+ &lt;div class="td-code__viewport" id="td-code-9387b696-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Format (only effective on first creation)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;juicefs format --no-update &amp;lt;data&amp;gt; &lt;span class="s2"&gt;&amp;#34;&amp;lt;meta&amp;gt;&amp;#34;&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;lt;name&amp;gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Mount&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;juicefs mount &amp;lt;mount_opts&amp;gt; --cache-dir &amp;lt;juice_cache&amp;gt; --metrics 0.0.0.0:&amp;lt;port&amp;gt; &amp;lt;meta&amp;gt; &amp;lt;path&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Notes:&lt;/p&gt;</description></item><item><title>Parameters</title><link>https://pigsty.io/docs/juice/param/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/juice/param/</guid><description>&lt;p&gt;JUICE module has &lt;strong&gt;2&lt;/strong&gt; parameters:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#juice_cache"&gt;&lt;code&gt;juice_cache&lt;/code&gt;&lt;/a&gt;: shared cache directory&lt;/li&gt;
+&lt;li&gt;&lt;a href="#juice_instances"&gt;&lt;code&gt;juice_instances&lt;/code&gt;&lt;/a&gt;: instance definition dict&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="parameter-overview"&gt;Parameter Overview
+&lt;/h2&gt;
+&lt;div class="td-table-scroll td-table-scroll--full td-table-scroll--static"&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Parameter&lt;/th&gt;
+ &lt;th scope="col" style="text-align: center"&gt;Type&lt;/th&gt;
+ &lt;th scope="col" style="text-align: center"&gt;Level&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#juice_cache"&gt;&lt;code&gt;juice_cache&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;path&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;JuiceFS shared cache directory&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#juice_instances"&gt;&lt;code&gt;juice_instances&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;dict&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;I&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;JuiceFS instance definition dict (can be empty)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Level&lt;/strong&gt;: &lt;code&gt;C&lt;/code&gt; = cluster level, &lt;code&gt;I&lt;/code&gt; = instance level.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="default-parameters"&gt;Default Parameters
+&lt;/h2&gt;
+&lt;p&gt;Defined in &lt;a href="https://github.com/pgsty/pigsty/blob/main/roles/juice/defaults/main.yml"&gt;&lt;code&gt;roles/juice/defaults/main.yml&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-d8e92c9f-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="yaml" data-td-line-count="5"&gt;
+ &lt;div class="td-code__viewport" id="td-code-d8e92c9f-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;#-----------------------------------------------------------------&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# JUICE&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;#-----------------------------------------------------------------&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;juice_cache&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;/data/juice&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;juice_instances&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;{}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="juice_cache"&gt;&lt;code&gt;juice_cache&lt;/code&gt;
+&lt;/h2&gt;
+&lt;p&gt;Parameter: &lt;code&gt;juice_cache&lt;/code&gt;, type: &lt;code&gt;path&lt;/code&gt;, level: &lt;code&gt;C&lt;/code&gt;&lt;/p&gt;</description></item><item><title>Playbook</title><link>https://pigsty.io/docs/juice/playbook/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/juice/playbook/</guid><description>&lt;p&gt;JUICE module provides &lt;code&gt;juice.yml&lt;/code&gt; playbook to deploy and remove JuiceFS instances.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="juiceyml"&gt;&lt;code&gt;juice.yml&lt;/code&gt;
+&lt;/h2&gt;
+&lt;p&gt;Task structure in &lt;a href="https://github.com/pgsty/pigsty/blob/main/juice.yml"&gt;&lt;code&gt;juice.yml&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-bc40b6df-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="10"&gt;
+ &lt;div class="td-code__viewport" id="td-code-bc40b6df-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;juice_id : validate config, check port conflicts
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;juice_install : install juicefs package
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;juice_cache : create shared cache dir
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;juice_clean : remove instance &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;absent&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;juice_instance : create instance &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;create&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - juice_init : format filesystem &lt;span class="o"&gt;(&lt;/span&gt;--no-update&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - juice_dir : create mount dir
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - juice_config: render env file and systemd unit
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; - juice_launch: start service and &lt;span class="nb"&gt;wait&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; metrics port
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;juice_register : register to VictoriaMetrics targets&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="scope"&gt;Scope
+&lt;/h2&gt;
+&lt;div class="td-table-scroll td-table-scroll--full td-table-scroll--static"&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Scope&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Limit&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Node&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;-l &amp;lt;host&amp;gt;&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Deploy all instances on the node&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Instance&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;-l &amp;lt;host&amp;gt; -e fsname=&amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Only handle specified instance&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Examples:&lt;/p&gt;</description></item><item><title>Administration</title><link>https://pigsty.io/docs/juice/admin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/juice/admin/</guid><description>&lt;p&gt;Common operations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#initialize-instance"&gt;Initialize Instance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#reconfigure"&gt;Reconfigure&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#remove-instance"&gt;Remove Instance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#add-new-instance"&gt;Add New Instance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#shared-mount-across-nodes"&gt;Shared Mount Across Nodes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#pitr-recovery"&gt;PITR Recovery&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#troubleshooting"&gt;Troubleshooting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#performance-tuning"&gt;Performance Tuning&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;See &lt;a href="https://pigsty.io/docs/juice/faq/"&gt;FAQ&lt;/a&gt; for more.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="initialize-instance"&gt;Initialize Instance
+&lt;/h2&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-90c680cd-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="2"&gt;
+ &lt;div class="td-code__viewport" id="td-code-90c680cd-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./juice.yml -l &amp;lt;host&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./juice.yml -l &amp;lt;host&amp;gt; -e &lt;span class="nv"&gt;fsname&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;name&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Initialization steps:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install &lt;code&gt;juicefs&lt;/code&gt; package&lt;/li&gt;
+&lt;li&gt;Create shared cache dir (default &lt;code&gt;/data/juice&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;juicefs format --no-update&lt;/code&gt; (only effective on first creation)&lt;/li&gt;
+&lt;li&gt;Create mount point and set permissions&lt;/li&gt;
+&lt;li&gt;Render systemd unit and env files&lt;/li&gt;
+&lt;li&gt;Start service and wait for metrics port&lt;/li&gt;
+&lt;li&gt;Register to VictoriaMetrics (if infra node exists)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="reconfigure"&gt;Reconfigure
+&lt;/h2&gt;
+&lt;p&gt;After changing config, it&amp;rsquo;s recommended to run (update config and ensure service is online):&lt;/p&gt;</description></item><item><title>Monitoring</title><link>https://pigsty.io/docs/juice/monitor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/juice/monitor/</guid><description>&lt;p&gt;JuiceFS instances expose Prometheus metrics via &lt;code&gt;juicefs mount --metrics&lt;/code&gt;.
+In JUICE, metrics listen on &lt;code&gt;0.0.0.0:&amp;lt;port&amp;gt;&lt;/code&gt;, default port &lt;code&gt;9567&lt;/code&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="monitoring-architecture"&gt;Monitoring Architecture
+&lt;/h2&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-d9871b71-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="text" data-td-line-count="5"&gt;
+ &lt;div class="td-code__viewport" id="td-code-d9871b71-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;JuiceFS Mount (metrics: 0.0.0.0:&amp;lt;port&amp;gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;VictoriaMetrics (scrape)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Grafana Dashboard&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;If &lt;a href="https://pigsty.io/docs/infra"&gt;&lt;code&gt;INFRA&lt;/code&gt;&lt;/a&gt; is deployed, &lt;code&gt;juice_register&lt;/code&gt; writes scrape targets to:&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-d9871b71-fence-1" data-td-code data-td-code-auto-id
+ data-td-language="text" data-td-line-count="1"&gt;
+ &lt;div class="td-code__viewport" id="td-code-d9871b71-fence-1-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/infra/targets/juice/&amp;lt;hostname&amp;gt;.yml&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;The current source includes the &lt;a href="https://demo.pigsty.io/d/node-juice"&gt;Node JuiceFS&lt;/a&gt; dashboard (UID: &lt;code&gt;node-juice&lt;/code&gt;) for capacity, cache, object-storage, metadata-transaction, and client-resource metrics across JuiceFS mounts on a node.&lt;/p&gt;</description></item><item><title>FAQ</title><link>https://pigsty.io/docs/juice/faq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/juice/faq/</guid><description>&lt;hr&gt;
+&lt;h2 id="port-conflicts"&gt;Port Conflicts?
+&lt;/h2&gt;
+&lt;p&gt;Multiple instances on the same node must use different &lt;code&gt;port&lt;/code&gt; values. Example:&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-7a4f68bd-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="yaml" data-td-line-count="9"&gt;
+ &lt;div class="td-code__viewport" id="td-code-7a4f68bd-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;juice_instances&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;fs1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;/fs1&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;postgres://...&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;port&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;9567&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;fs2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;/fs2&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;postgres://...&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;port&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;9568&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="why-does-changing-data-not-take-effect"&gt;Why does changing &lt;code&gt;data&lt;/code&gt; not take effect?
+&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;data&lt;/code&gt; is only used by &lt;code&gt;juicefs format --no-update&lt;/code&gt;. After filesystem creation it will not change.
+To switch backend, migrate data and reformat manually.&lt;/p&gt;</description></item></channel></rss>
