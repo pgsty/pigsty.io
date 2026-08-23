@@ -97,7 +97,7 @@ The `meta` node also hosts:
 
 ## Creating Sandbox
 
-Pigsty provides out-of-the-box templates. You can use [**Vagrant**](/docs/deploy/vagrant/) to create a local sandbox, or use [**Terraform**](/docs/deploy/terraform/) to create a cloud sandbox.
+Pigsty provides out-of-the-box templates. You can use [**Vagrant**](/docs/deploy/vagrant/) to create a local sandbox, or use [**OpenTofu**](/docs/deploy/terraform/) to create a cloud sandbox.
 
 
 ### Local Sandbox (Vagrant)
@@ -131,7 +131,7 @@ terraform init
 terraform apply
 ```
 
-For more details, please refer to [**Terraform**](/docs/deploy/terraform/) documentation.
+For more details, please refer to the [**OpenTofu**](/docs/deploy/terraform/) documentation.
 
 
 

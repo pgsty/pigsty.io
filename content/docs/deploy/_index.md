@@ -15,7 +15,7 @@ This chapter helps you understand the complete deployment process and provides b
 --------
 
 Before deploying to production, we recommend testing in Pigsty's [**Sandbox**](/docs/deploy/sandbox) to fully understand the workflow.
-Use [**Vagrant**](/docs/deploy/vagrant/) to create a local 4-node sandbox, or leverage [**Terraform**](/docs/deploy/terraform/) to provision larger simulation environments in the cloud.
+Use [**Vagrant**](/docs/deploy/vagrant/) to create a local 4-node sandbox, or leverage [**OpenTofu**](/docs/deploy/terraform/) to provision larger simulation environments in the cloud.
 
 [![pigsty-sandbox](/img/pigsty/sandbox.png)](/docs/concept/arch)
 

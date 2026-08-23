@@ -1,50 +1,52 @@
 ---
-title: Terraform
+title: OpenTofu
 weight: 390
-description: Create virtual machine environment on public cloud with Terraform
+description: Create virtual machine environments on public clouds with OpenTofu
 icon: fa-solid fa-cloud
 module: [PIGSTY]
 categories: [Tutorial]
 ---
 
-[**Terraform**](https://www.terraform.io/) is a popular "Infrastructure as Code" tool that you can use to create virtual machines on public clouds with one click.
+[**OpenTofu**](https://opentofu.org/) is an open-source "Infrastructure as Code" tool that you can use to create virtual machines on public clouds with one click.
 
-Pigsty currently provides example Terraform templates for Alibaba Cloud, AWS (global and China), Azure, GCP, Tencent Cloud, Hetzner, Vultr, DigitalOcean, and Linode. The `aliyun-s3.tf` template also creates a private OSS bucket and dedicated RAM read/write credentials for S3/pgBackRest scenarios.
+Pigsty uses OpenTofu by default and provides Terraform-compatible `.tf` templates for Alibaba Cloud, AWS (global and China), Azure, GCP, Tencent Cloud, Hetzner, Vultr, DigitalOcean, and Linode. The `aliyun-s3.tf` template also creates a private OSS bucket and dedicated RAM read/write credentials for S3/pgBackRest scenarios.
 
 
 ----------------
 
 ## Quick Start
 
-### Install Terraform
+### Install OpenTofu
 
-On macOS, you can use [**Homebrew**](https://brew.sh/) to install Terraform:
+On macOS, you can use [**Homebrew**](https://brew.sh/) to install OpenTofu:
 
 ```bash
-brew install terraform
+brew install opentofu
+tofu version
 ```
 
-For other platforms, refer to the [**Terraform Official Installation Guide**](https://developer.hashicorp.com/terraform/install).
+For Debian, Ubuntu, RHEL, and other platforms, refer to the [**OpenTofu installation guide**](https://opentofu.org/docs/intro/install/). The package and command name is `tofu`.
 
 ### Initialize and Apply
 
-Enter the Terraform directory, select a template, initialize provider plugins, and apply the configuration:
+Enter the cloud-template directory, select a template, initialize provider plugins, and apply the configuration:
 
 ```bash
 cd ~/pigsty/terraform
 cp spec/aliyun.tf terraform.tf         # Select template
-terraform init                         # Install cloud provider plugins (first use)
-terraform apply                        # Generate execution plan and create resources
+tofu init                              # Install cloud provider plugins (first use)
+tofu plan                              # Review the execution plan
+tofu apply                             # Create resources after interactive confirmation
 ```
 
-After running the `apply` command, type `yes` to confirm when prompted. Terraform will create VMs and related cloud resources for you.
+After reviewing the plan, run `tofu apply` and type `yes` to confirm. OpenTofu will then create VMs and related cloud resources.
 
 ### Get IP Address
 
 After creation, print the public IP address of the admin node:
 
 ```bash
-terraform output -raw meta_ip
+tofu output -raw meta_ip
 ```
 
 ### Configure SSH Access
@@ -52,10 +54,10 @@ terraform output -raw meta_ip
 Global-cloud templates usually also provide an executable `ssh_command` output:
 
 ```bash
-terraform output -raw ssh_command
+tofu output -raw ssh_command
 ```
 
-The repository's `./ssh` script is a compatibility tool for legacy templates whose outputs are all IP addresses and whose root password is `PigstyDemo4`. It iterates over **every** Terraform output, treats it as an IP address, writes it to `~/.ssh/pigsty_config`, and distributes keys with `sshpass`. It is suitable for compatibility templates such as `aliyun.tf`, `aliyun-full.tf`, `aliyun-oss.tf`, and `aliyun-pro.tf`. Do not run it against modern templates that output `ssh_command`, private IPs, or access keys.
+The repository's `./ssh` script is a compatibility tool for legacy templates whose outputs are all IP addresses and whose root password is `PigstyDemo4`. It iterates over the IaC outputs, treats them as IP addresses, writes them to `~/.ssh/pigsty_config`, and distributes keys with `sshpass`. It is suitable for compatibility templates such as `aliyun.tf`, `aliyun-full.tf`, `aliyun-oss.tf`, and `aliyun-pro.tf`. Do not run it against modern templates that output `ssh_command`, private IPs, or access keys.
 
 When using a compatible template:
 
@@ -76,8 +78,30 @@ ssh meta    # Login using hostname instead of IP
 After testing, you can destroy all created cloud resources with one click:
 
 ```bash
-terraform destroy
+tofu destroy
 ```
+
+
+----------------
+
+## Terraform Compatibility and Migration
+
+The directory and file names remain `terraform/`, `.tf`, `terraform.tfvars`, `.terraform.lock.hcl`, and `terraform.tfstate` because OpenTofu intentionally supports these compatibility names. Terraform remains available as an explicit compatibility option:
+
+```bash
+make IAC_CLI=terraform plan
+```
+
+Use only one CLI in a working directory at a time. Before migrating existing state, preserve it and compare both plans:
+
+```bash
+cp -p terraform.tfstate "terraform.tfstate.pre-tofu.$(date +%Y%m%d%H%M%S)"
+terraform plan
+tofu init
+tofu plan
+```
+
+Continue only when the OpenTofu plan contains the changes you expect. Never delete `terraform.tfstate` while reinitializing providers.
 
 
 ----------------
@@ -109,7 +133,7 @@ When using a template, copy the template file to `terraform.tf`:
 ```bash
 cd ~/pigsty/terraform
 cp spec/aliyun-full.tf terraform.tf   # Use Alibaba Cloud 4-node sandbox template
-terraform init && terraform apply
+tofu init && tofu apply
 ```
 
 
@@ -265,35 +289,38 @@ export DIGITALOCEAN_TOKEN="<api_token>"
 export LINODE_TOKEN="<api_token>"
 ```
 
-The GCP template also requires a `project` variable, for example `terraform apply -var="project=my-project"`. Except for AWS China, current key-based templates read `~/.ssh/id_rsa.pub` by default; edit the selected template to use another public-key path.
+The GCP template also requires a `project` variable, for example `tofu apply -var="project=my-project"`. Except for AWS China, current key-based templates read `~/.ssh/id_rsa.pub` by default; edit the selected template to use another public-key path.
 
 
 ----------------
 
 ## Shortcut Commands
 
-Pigsty provides some Makefile shortcuts for Terraform operations:
+Pigsty provides OpenTofu-first Makefile shortcuts. Set `IAC_CLI=terraform` explicitly to use Terraform instead.
 
 ```bash
 cd ~/pigsty/terraform
 
-make u          # terraform apply -auto-approve + run legacy ./ssh (compatible templates only)
-make d          # terraform destroy -auto-approve
-make apply      # terraform apply (interactive confirmation)
-make destroy    # terraform destroy (interactive confirmation)
-make out        # terraform output
+make init       # tofu init
+make validate   # tofu validate
+make plan       # tofu plan
+make u          # interactive tofu apply + legacy ./ssh (compatible templates only)
+make d          # interactive tofu destroy
+make apply      # interactive tofu apply
+make destroy    # interactive tofu destroy
+make out        # tofu output
 make ssh        # Run ssh script to configure SSH access
 make r          # Reset terraform.tf to repository state
 ```
 
-For modern templates with `ssh_command`, private-IP, or other non-IP outputs, run `terraform apply` directly; do not use `make u`, which invokes the legacy `./ssh` script afterward.
+For modern templates with `ssh_command`, private-IP, or other non-IP outputs, run `tofu apply` directly; do not use `make u`, which invokes the legacy `./ssh` script afterward. Automatic confirmation is available only through deliberately named `up-auto`, `apply-auto`, and `destroy-auto` targets.
 
 ----------------
 
 ## Notes
 
 > [!WARNING] Cloud Resource Costs
-> Cloud resources created with Terraform incur costs. After testing, promptly use `terraform destroy` to destroy resources to avoid unnecessary expenses.
+> Cloud resources created with OpenTofu incur costs. After testing, promptly use `tofu destroy` to destroy resources to avoid unnecessary expenses.
 >
 > It's recommended to use pay-as-you-go instance types for testing. Templates default to using Spot Instances to reduce costs.
 

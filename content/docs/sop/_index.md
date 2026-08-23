@@ -30,7 +30,7 @@ categories: [Tutorial, Reference]
 |:---|:---|:---|
 | Prepare servers, disks, networks, VIPs | [**Preparation**](/docs/deploy/prepare/), [**Planning**](/docs/deploy/planning/), [**Linux Compatibility**](/docs/ref/linux/) | [**Production Deployment**](/docs/deploy/install/) |
 | Prepare SSH, sudo, and admin users | [**Administration Model**](/docs/deploy/admin/) | [**Production Deployment**](/docs/deploy/install/) |
-| Build a local or cloud sandbox | [**Sandbox**](/docs/deploy/sandbox/) | [**Vagrant**](/docs/deploy/vagrant/), [**Terraform**](/docs/deploy/terraform/) |
+| Build a local or cloud sandbox | [**Sandbox**](/docs/deploy/sandbox/) | [**Vagrant**](/docs/deploy/vagrant/), [**OpenTofu**](/docs/deploy/terraform/) |
 | Single-node trial | [**Quick Start**](/docs/setup/install/) | `./configure -g`, `./deploy.yml` |
 | Multi-node production deployment | [**Deployment**](/docs/deploy/), [**Production Deployment**](/docs/deploy/install/) | `./deploy.yml`, `./pgsql.yml` |
 | Deploy in an offline environment | [**Offline Installation**](/docs/setup/offline/) | [**Repository Management**](/docs/infra/admin/repo/) |

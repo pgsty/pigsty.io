@@ -56,7 +56,7 @@ Spin up a single-node Pigsty on your laptop or cloud server, and access database
 {{< card title="Deploy" link="/docs/deploy/" icon="fa-solid fa-download" >}}
 Plan, prepare, and roll out multi-node, high-availability Pigsty deployments in production environments.
 
-[Planning](/docs/deploy/planning) [Preparation](/docs/deploy/prepare) [Production](/docs/deploy/install) [Sandbox](/docs/deploy/sandbox) [Vagrant](/docs/deploy/vagrant) [Terraform](/docs/deploy/terraform)
+[Planning](/docs/deploy/planning) [Preparation](/docs/deploy/prepare) [Production](/docs/deploy/install) [Sandbox](/docs/deploy/sandbox) [Vagrant](/docs/deploy/vagrant) [OpenTofu](/docs/deploy/terraform)
 {{< /card >}}
 {{< /cards >}}
 

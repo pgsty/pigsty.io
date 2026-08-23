@@ -14,7 +14,7 @@ Pigsty uses a scalable architecture design, suitable for both [**large-scale pro
 If you intend to learn about Pigsty, you can start with the [**Quick Start**](/docs/setup/install/) single-node deployment. A Linux virtual machine with 1C/2G is sufficient to run Pigsty.
 
 You can use a Linux MiniPC, free/discounted virtual machines provided by cloud providers, Windows WSL, or create a virtual machine on your own laptop for Pigsty deployment.
-Pigsty provides out-of-the-box [**Vagrant**](/docs/deploy/vagrant/) templates and [**Terraform**](/docs/deploy/terraform/) templates to help you provision Linux VMs with one click locally or in the cloud.
+Pigsty provides out-of-the-box [**Vagrant**](/docs/deploy/vagrant/) templates and [**OpenTofu**](/docs/deploy/terraform/) templates to help you provision Linux VMs with one click locally or in the cloud.
 
 [![pigsty-arch](/img/pigsty/arch.png)](/docs/concept/arch)
 
