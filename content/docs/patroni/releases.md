@@ -13,6 +13,32 @@ categories: [Reference]
 
 --------
 
+## Version 4.1.5
+
+Released 2026-08-12
+
+**Compatibility improvements**
+
+- Compatibility with PostgreSQL 14.24, 15.19, 16.15, 17.11, 18.6 (Alexander Kukushkin)
+
+  Add the new `output_plugin_libraries` GUC, which restricts logical decoding output plugins.
+
+**Improvements**
+
+- Log REST API connection resets at `DEBUG` instead of `WARNING` (Kyle McLaren)
+
+  Ensure the common "client went away mid-write" variants are silenced without affecting the handling of genuine (non-connection) errors.
+
+**Bugfixes**
+
+- Fix `thread_stack_size` validation alignment (Sundong Kim)
+
+  Correct the `aligned` value from `65535` to `65536` in the `thread_stack_size` schema entry. Previously, `patroni --validate-config` rejected almost every realistic value, including the `524288` default applied by the daemon itself.
+
+- Allow validation of `synchronous_mode` to accept `'quorum'` and boolean-like strings (Eray Araz)
+
+  `patroni --validate-config` previously rejected `synchronous_mode` values such as `quorum` and the PostgreSQL-style boolean strings that are accepted at runtime.
+
 ## Version 4.1.4
 
 Released 2026-07-07
@@ -2556,7 +2582,7 @@ This version adds compatibility with PostgreSQL 12, makes is possible to run pg_
 
 - Compatibility with PostgreSQL 12 (Alexander Kukushkin)
 
-  Starting from PostgreSQL 12 there is no `recovery.conf` anymore and all former recovery parameters are converted into [GUC](https://www.enterprisedb.com/blog/what-is-a-guc-variable). In order to protect from `ALTER SYSTEM SET primary_conninfo` or similar, Patroni will parse `postgresql.auto.conf` and remove all standby and recovery parameters from there. Patroni config remains backward compatible. For example despite `restore_command` being a GUC, one can still specify it in the `postgresql.recovery_conf.restore_command` section and Patroni will write it into `postgresql.conf` for PostgreSQL 12.
+  Starting from PostgreSQL 12 there is no `recovery.conf` anymore and all former recovery parameters are converted into [GUC](https://www.enterprisedb.com/blog/what-guc-variable). In order to protect from `ALTER SYSTEM SET primary_conninfo` or similar, Patroni will parse `postgresql.auto.conf` and remove all standby and recovery parameters from there. Patroni config remains backward compatible. For example despite `restore_command` being a GUC, one can still specify it in the `postgresql.recovery_conf.restore_command` section and Patroni will write it into `postgresql.conf` for PostgreSQL 12.
 
 - Make it possible to use `pg_rewind` without superuser on PostgreSQL 11 and newer (Alexander Kukushkin)
 
@@ -3468,7 +3494,7 @@ There are no known compatibility issues with the new version of Patroni. Configu
 
 Released 2016-12-13
 
-This version introduces significant improvements over the handling of synchronous replication, makes the startup process and failover more reliable, adds PostgreSQL 9.6 support and fixes plenty of bugs. In addition, the documentation, including these release notes, has been moved to </docs/patroni>.
+This version introduces significant improvements over the handling of synchronous replication, makes the startup process and failover more reliable, adds PostgreSQL 9.6 support and fixes plenty of bugs. In addition, the documentation, including these release notes, has been moved to [Patroni documentation](/docs/patroni/).
 
 **Synchronous replication**
 
@@ -3542,7 +3568,7 @@ This version introduces significant improvements over the handling of synchronou
 
 - Improve README, adding the Helm chart and links to release notes. (Lauri Apple)
 
-- Move Patroni documentation to `Read the Docs`. The up-to-date documentation is available at </docs/patroni>. (Oleksii Kliukin)
+- Move Patroni documentation to `Read the Docs`. The up-to-date documentation is available at [Patroni documentation](/docs/patroni/). (Oleksii Kliukin)
 
   Makes the documentation easily viewable from different devices (including smartphones) and searchable.
 

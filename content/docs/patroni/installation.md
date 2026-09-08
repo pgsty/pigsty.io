@@ -27,7 +27,7 @@ brew install postgresql etcd haproxy libyaml python
 
 ## Psycopg
 
-Starting from [psycopg2-2.8](http://initd.org/psycopg/articles/2019/04/04/psycopg-28-released/) the binary version of psycopg2 will no longer be installed by default. Installing it from the source code requires C compiler and postgres+python dev packages. Since in the python world it is not possible to specify dependency as `psycopg2 OR psycopg2-binary` you will have to decide how to install it.
+Starting from [psycopg2-2.8](https://www.psycopg.org/articles/2019/04/04/psycopg-28-released/) the binary version of psycopg2 will no longer be installed by default. Installing it from the source code requires C compiler and postgres+python dev packages. Since in the python world it is not possible to specify dependency as `psycopg2 OR psycopg2-binary` you will have to decide how to install it.
 
 There are a few options available:
 

@@ -59,7 +59,7 @@ You will then see a high-availability cluster start up. Test different settings 
 
 Add more `postgres*.yml` files to create an even larger cluster.
 
-Patroni provides an [HAProxy](http://www.haproxy.org/) configuration, which will give your application a single endpoint for connecting to the cluster's leader. To configure, run:
+Patroni provides an [HAProxy](https://www.haproxy.org/) configuration, which will give your application a single endpoint for connecting to the cluster's leader. To configure, run:
 
     > haproxy -f haproxy.cfg
 
