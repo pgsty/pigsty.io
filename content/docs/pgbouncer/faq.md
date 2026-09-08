@@ -32,7 +32,7 @@ It is possible via external tools:
 
 2.  Use a TCP connection load-balancer. Either
     [LVS](http://www.linuxvirtualserver.org/) or
-    [HAProxy](http://www.haproxy.org/) seem to be good choices. On the
+    [HAProxy](https://www.haproxy.org/) seem to be good choices. On the
     PgBouncer side it may be a good idea to make `server_lifetime` smaller
     and also turn `server_round_robin` on: by default, idle connections
     are reused by a LIFO algorithm, which may work not so well when

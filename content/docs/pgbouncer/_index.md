@@ -1,5 +1,5 @@
 ---
-title: "pgBouncer 1.25 Documentation"
+title: "PgBouncer 1.25.2 Documentation"
 linkTitle: pgbouncer
 weight: 8100
 description: >
