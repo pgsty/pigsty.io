@@ -1,5 +1,5 @@
 ---
-title: "pgBackRest 2.59 Documentation"
+title: "pgBackRest 2.59.1 Documentation"
 linkTitle: "pgbackrest"
 weight: 8200
 icon: fas fa-couch
@@ -9,7 +9,7 @@ module: [PGBACKREST]
 categories: [Concept]
 ---
 
-> snapshot of pgBackRest 2.59 documentation: <https://pgbackrest.org/>
+> snapshot of pgBackRest 2.59.1 documentation: <https://pgbackrest.org/>
 
 
 --------
@@ -18,7 +18,7 @@ categories: [Concept]
 
 pgBackRest is a reliable backup and restore solution for PostgreSQL that seamlessly scales up to the largest databases and workloads.
 
-pgBackRest [v2.59.0](https://github.com/pgbackrest/pgbackrest/releases/tag/release/2.59.0) is the current stable release. Release notes are on the [Releases](/docs/pgbackrest/release/) page.
+pgBackRest [v2.59.1](https://github.com/pgbackrest/pgbackrest/releases/tag/release/2.59.1) is the current stable release. Release notes are on the [Releases](/docs/pgbackrest/release/) page.
 
 Please give us a star on [GitHub](https://github.com/pgbackrest/pgbackrest) if you like pgBackRest!
 
@@ -27,11 +27,11 @@ Please give us a star on [GitHub](https://github.com/pgbackrest/pgbackrest) if y
 
 ## News
 
+**August 17, 2026** - [pgBackRest 2.59.1 Released](/docs/pgbackrest/news/#release-2-59-1)
+
 **July 20, 2026** - [New Distribution Tarball](/docs/pgbackrest/news/#distribution-tarball)
 
 **July 20, 2026** - [pgBackRest 2.59.0 Released](/docs/pgbackrest/news/#release-2-59-0)
-
-**May 18, 2026** - [pgBackRest Will Continue!](/docs/pgbackrest/news/#will-continue)
 
 
 --------
