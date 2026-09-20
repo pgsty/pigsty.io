@@ -11,10 +11,10 @@ weight: 9570
     <div class="ext-card__title">pgEdge/spock</div>
     <div class="ext-card__desc">https://github.com/pgEdge/spock</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/spock-5.0.10.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/spock-5.0.11.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">spock-5.0.10.tar.gz</div>
-    <div class="ext-card__desc">spock-5.0.10.tar.gz</div>
+    <div class="ext-card__title">spock-5.0.11.tar.gz</div>
+    <div class="ext-card__desc">spock-5.0.11.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 9570
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`spock`**](/ext/e/spock) | `5.0.10` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`spock`**](/ext/e/spock) | `5.0.11` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,16 +38,16 @@ weight: 9570
 {.ext-table .ext-table--rel}
 
 
-> works on pgedge kernel fork
+> Bundled with pgEdge 15.19/16.15/17.11/18.6.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `5.0.10` | {{< pgvers "18,17,16,15" >}} | `spock` | - |
-| [**RPM**](/ext/rpm#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `18.4` | {{< pgvers "18,17,16,15" >}} | `pgedge-$v` | - |
-| [**DEB**](/ext/deb#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `18.4` | {{< pgvers "18,17,16,15" >}} | `pgedge-$v` | - |
+| [**EXT**](/ext/list#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `5.0.11` | {{< pgvers "18,17,16,15" >}} | `spock` | - |
+| [**RPM**](/ext/rpm#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `18.6` | {{< pgvers "18,17,16,15" >}} | `pgedge-$v` | - |
+| [**DEB**](/ext/deb#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `18.6` | {{< pgvers "18,17,16,15" >}} | `pgedge-$v` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -154,7 +154,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install spock;          # Install for current active PG version
 ```
 

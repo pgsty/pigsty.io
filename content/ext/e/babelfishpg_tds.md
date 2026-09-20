@@ -11,10 +11,10 @@ weight: 9320
     <div class="ext-card__title">https://babelfishpg.org/</div>
     <div class="ext-card__desc">https://babelfishpg.org/</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/babelfish-17-17.7-5.4.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/babelfish-18-18.4-6.2.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">babelfish-17-17.7-5.4.0.tar.gz</div>
-    <div class="ext-card__desc">babelfish-17-17.7-5.4.0.tar.gz</div>
+    <div class="ext-card__title">babelfish-18-18.4-6.2.0.tar.gz</div>
+    <div class="ext-card__desc">babelfish-18-18.4-6.2.0.tar.gz</div>
   </a>
 </div>
 
@@ -33,7 +33,7 @@ weight: 9320
 | 9300  | [**`babelfishpg_common`**](/ext/e/babelfishpg_common) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 | 9310  | [**`babelfishpg_tsql`**](/ext/e/babelfishpg_tsql) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 | 9320  | [**`babelfishpg_tds`**](/ext/e/babelfishpg_tds) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
-| 9330  | [**`babelfishpg_money`**](/ext/e/babelfishpg_money) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 9330  | [**`babelfishpg_money`**](/ext/e/babelfishpg_money) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
 | **Related** | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) [`tds_fdw`](/ext/e/tds_fdw) [`odbc_fdw`](/ext/e/odbc_fdw) [`jdbc_fdw`](/ext/e/jdbc_fdw) [`wrappers`](/ext/e/wrappers) [`multicorn`](/ext/e/multicorn) [`orafce`](/ext/e/orafce) [`db2fce`](/ext/e/db2fce) |
@@ -41,7 +41,7 @@ weight: 9320
 {.ext-table .ext-table--rel}
 
 
-> special case: this extension only works on wiltondb kernel fork
+> PG17: Babelfish 5.7.0; PG18: 6.2.0. Package fields use PG18.
 
 
 ## Version
@@ -49,8 +49,8 @@ weight: 9320
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
 | [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0.0` | {{< pgvers "18,17" >}} | `babelfish` | `babelfishpg_tsql` |
-| [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `6.0.0` | {{< pgvers "18,17" >}} | `babelfish-$v` | `antlr4-runtime413` |
-| [**DEB**](/ext/deb#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `6.0.0` | {{< pgvers "18,17" >}} | `babelfish-$v` | `libantlr4-runtime413` |
+| [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `6.2.0` | {{< pgvers "18,17" >}} | `babelfish-$v` | `antlr4-runtime413` |
+| [**DEB**](/ext/deb#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `6.2.0` | {{< pgvers "18,17" >}} | `babelfish-$v` | `libantlr4-runtime413` |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -93,7 +93,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install babelfish;          # Install for current active PG version
 ```
 

@@ -39,7 +39,7 @@ weight: 4300
 {.ext-table .ext-table--rel}
 
 
-> Catalog release is 0.7.1; PGDG remains the RPM maintainer at 0.7.0, so the PIGSTY 0.7.1 RPM must not be published; PIGSTY maintains the 0.7.1 DEB package.
+> RPM: PGDG 0.7.1; DEB: PIGSTY 0.7.1.
 
 
 ## Version
@@ -47,19 +47,19 @@ weight: 4300
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
 | [**EXT**](/ext/list#util) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `0.7.1` | {{< pgvers "14,15,16,17,18" >}} | `pg_readme` | `hstore` |
-| [**RPM**](/ext/rpm#util) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `0.7.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_readme_$v` | - |
+| [**RPM**](/ext/rpm#util) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `0.7.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_readme_$v` | - |
 | [**DEB**](/ext/deb#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.7.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-readme` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PGDG 0.7.0 1 | AVAIL PGDG 0.7.0 1 | AVAIL PGDG 0.7.0 1 | AVAIL PGDG 0.7.0 1 | AVAIL PGDG 0.7.0 1 |
-| el8.aarch64 | AVAIL PGDG 0.7.0 1 | AVAIL PGDG 0.7.0 1 | AVAIL PGDG 0.7.0 1 | AVAIL PGDG 0.7.0 1 | AVAIL PGDG 0.7.0 1 |
-| el9.x86_64 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 |
-| el9.aarch64 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 |
-| el10.x86_64 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 |
-| el10.aarch64 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 | AVAIL PGDG 0.7.0 2 |
+| el8.x86_64 | AVAIL PGDG 0.7.1 2 | AVAIL PGDG 0.7.1 2 | AVAIL PGDG 0.7.1 2 | AVAIL PGDG 0.7.1 2 | AVAIL PGDG 0.7.1 2 |
+| el8.aarch64 | AVAIL PGDG 0.7.1 2 | AVAIL PGDG 0.7.1 2 | AVAIL PGDG 0.7.1 2 | AVAIL PGDG 0.7.1 2 | AVAIL PGDG 0.7.1 2 |
+| el9.x86_64 | AVAIL PGDG 0.7.1 3 | AVAIL PGDG 0.7.1 3 | AVAIL PGDG 0.7.1 3 | AVAIL PGDG 0.7.1 3 | AVAIL PGDG 0.7.1 3 |
+| el9.aarch64 | AVAIL PGDG 0.7.1 3 | AVAIL PGDG 0.7.1 3 | AVAIL PGDG 0.7.1 3 | AVAIL PGDG 0.7.1 3 | AVAIL PGDG 0.7.1 3 |
+| el10.x86_64 | AVAIL PGDG 0.7.1 3 | AVAIL PGDG 0.7.1 3 | AVAIL PGDG 0.7.1 3 | AVAIL PGDG 0.7.1 3 | AVAIL PGDG 0.7.1 3 |
+| el10.aarch64 | AVAIL PGDG 0.7.1 3 | AVAIL PGDG 0.7.1 3 | AVAIL PGDG 0.7.1 3 | AVAIL PGDG 0.7.1 3 | AVAIL PGDG 0.7.1 3 |
 | d12.x86_64 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 |
 | d12.aarch64 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 |
 | d13.x86_64 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 |
@@ -70,14 +70,20 @@ weight: 4300
 | u24.aarch64 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 |
 | u26.x86_64 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 |
 | u26.aarch64 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 | AVAIL PIGSTY 0.7.1 1 |
+@ el8.x86_64 18 pg_readme_18 pg_readme_18-0.7.1-1PGDG.rhel8.10.noarch.rpm pgdg 0.7.1 32.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pg_readme_18-0.7.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.x86_64 18 pg_readme_18 pg_readme_18-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pg_readme_18-0.7.0-1PGDG.rhel8.noarch.rpm
+@ el8.aarch64 18 pg_readme_18 pg_readme_18-0.7.1-1PGDG.rhel8.10.noarch.rpm pgdg 0.7.1 32.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pg_readme_18-0.7.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.aarch64 18 pg_readme_18 pg_readme_18-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pg_readme_18-0.7.0-1PGDG.rhel8.noarch.rpm
+@ el9.x86_64 18 pg_readme_18 pg_readme_18-0.7.1-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.1 31.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pg_readme_18-0.7.1-1PGDG.rhel9.8.noarch.rpm
 @ el9.x86_64 18 pg_readme_18 pg_readme_18-0.7.0-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pg_readme_18-0.7.0-1PGDG.rhel9.8.noarch.rpm
 @ el9.x86_64 18 pg_readme_18 pg_readme_18-0.7.0-1PGDG.rhel9.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pg_readme_18-0.7.0-1PGDG.rhel9.noarch.rpm
+@ el9.aarch64 18 pg_readme_18 pg_readme_18-0.7.1-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.1 31.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pg_readme_18-0.7.1-1PGDG.rhel9.8.noarch.rpm
 @ el9.aarch64 18 pg_readme_18 pg_readme_18-0.7.0-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.0 30.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pg_readme_18-0.7.0-1PGDG.rhel9.8.noarch.rpm
 @ el9.aarch64 18 pg_readme_18 pg_readme_18-0.7.0-1PGDG.rhel9.noarch.rpm pgdg 0.7.0 30.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pg_readme_18-0.7.0-1PGDG.rhel9.noarch.rpm
+@ el10.x86_64 18 pg_readme_18 pg_readme_18-0.7.1-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.1 32.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_readme_18-0.7.1-1PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 18 pg_readme_18 pg_readme_18-0.7.0-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.0 31.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_readme_18-0.7.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 18 pg_readme_18 pg_readme_18-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_readme_18-0.7.0-1PGDG.rhel10.noarch.rpm
+@ el10.aarch64 18 pg_readme_18 pg_readme_18-0.7.1-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.1 31.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_readme_18-0.7.1-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 18 pg_readme_18 pg_readme_18-0.7.0-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.0 31.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_readme_18-0.7.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 18 pg_readme_18 pg_readme_18-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_readme_18-0.7.0-1PGDG.rhel10.noarch.rpm
 @ d12.x86_64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb
@@ -90,14 +96,20 @@ weight: 4300
 @ u24.aarch64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.1-1PIGSTY~noble_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.1-1PIGSTY~noble_all.deb
 @ u26.x86_64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.1-1PIGSTY~resolute_all.deb pigsty 0.7.1 20.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.1-1PIGSTY~resolute_all.deb
 @ u26.aarch64 18 postgresql-18-pg-readme postgresql-18-pg-readme_0.7.1-1PIGSTY~resolute_all.deb pigsty 0.7.1 20.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-18-pg-readme_0.7.1-1PIGSTY~resolute_all.deb
+@ el8.x86_64 17 pg_readme_17 pg_readme_17-0.7.1-1PGDG.rhel8.10.noarch.rpm pgdg 0.7.1 32.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pg_readme_17-0.7.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.x86_64 17 pg_readme_17 pg_readme_17-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pg_readme_17-0.7.0-1PGDG.rhel8.noarch.rpm
+@ el8.aarch64 17 pg_readme_17 pg_readme_17-0.7.1-1PGDG.rhel8.10.noarch.rpm pgdg 0.7.1 32.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/pg_readme_17-0.7.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.aarch64 17 pg_readme_17 pg_readme_17-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/pg_readme_17-0.7.0-1PGDG.rhel8.noarch.rpm
+@ el9.x86_64 17 pg_readme_17 pg_readme_17-0.7.1-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.1 31.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pg_readme_17-0.7.1-1PGDG.rhel9.8.noarch.rpm
 @ el9.x86_64 17 pg_readme_17 pg_readme_17-0.7.0-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pg_readme_17-0.7.0-1PGDG.rhel9.8.noarch.rpm
 @ el9.x86_64 17 pg_readme_17 pg_readme_17-0.7.0-1PGDG.rhel9.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pg_readme_17-0.7.0-1PGDG.rhel9.noarch.rpm
+@ el9.aarch64 17 pg_readme_17 pg_readme_17-0.7.1-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.1 31.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pg_readme_17-0.7.1-1PGDG.rhel9.8.noarch.rpm
 @ el9.aarch64 17 pg_readme_17 pg_readme_17-0.7.0-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.0 30.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pg_readme_17-0.7.0-1PGDG.rhel9.8.noarch.rpm
 @ el9.aarch64 17 pg_readme_17 pg_readme_17-0.7.0-1PGDG.rhel9.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pg_readme_17-0.7.0-1PGDG.rhel9.noarch.rpm
+@ el10.x86_64 17 pg_readme_17 pg_readme_17-0.7.1-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.1 32.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_readme_17-0.7.1-1PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 17 pg_readme_17 pg_readme_17-0.7.0-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.0 31.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_readme_17-0.7.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 17 pg_readme_17 pg_readme_17-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_readme_17-0.7.0-1PGDG.rhel10.noarch.rpm
+@ el10.aarch64 17 pg_readme_17 pg_readme_17-0.7.1-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.1 31.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_readme_17-0.7.1-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 17 pg_readme_17 pg_readme_17-0.7.0-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.0 31.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_readme_17-0.7.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 17 pg_readme_17 pg_readme_17-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_readme_17-0.7.0-1PGDG.rhel10.noarch.rpm
 @ d12.x86_64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb
@@ -110,14 +122,20 @@ weight: 4300
 @ u24.aarch64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.1-1PIGSTY~noble_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.1-1PIGSTY~noble_all.deb
 @ u26.x86_64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.1-1PIGSTY~resolute_all.deb pigsty 0.7.1 20.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.1-1PIGSTY~resolute_all.deb
 @ u26.aarch64 17 postgresql-17-pg-readme postgresql-17-pg-readme_0.7.1-1PIGSTY~resolute_all.deb pigsty 0.7.1 20.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-17-pg-readme_0.7.1-1PIGSTY~resolute_all.deb
+@ el8.x86_64 16 pg_readme_16 pg_readme_16-0.7.1-1PGDG.rhel8.10.noarch.rpm pgdg 0.7.1 32.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_readme_16-0.7.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.x86_64 16 pg_readme_16 pg_readme_16-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_readme_16-0.7.0-1PGDG.rhel8.noarch.rpm
+@ el8.aarch64 16 pg_readme_16 pg_readme_16-0.7.1-1PGDG.rhel8.10.noarch.rpm pgdg 0.7.1 32.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_readme_16-0.7.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.aarch64 16 pg_readme_16 pg_readme_16-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_readme_16-0.7.0-1PGDG.rhel8.noarch.rpm
+@ el9.x86_64 16 pg_readme_16 pg_readme_16-0.7.1-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.1 31.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_readme_16-0.7.1-1PGDG.rhel9.8.noarch.rpm
 @ el9.x86_64 16 pg_readme_16 pg_readme_16-0.7.0-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_readme_16-0.7.0-1PGDG.rhel9.8.noarch.rpm
 @ el9.x86_64 16 pg_readme_16 pg_readme_16-0.7.0-1PGDG.rhel9.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_readme_16-0.7.0-1PGDG.rhel9.noarch.rpm
+@ el9.aarch64 16 pg_readme_16 pg_readme_16-0.7.1-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.1 31.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_readme_16-0.7.1-1PGDG.rhel9.8.noarch.rpm
 @ el9.aarch64 16 pg_readme_16 pg_readme_16-0.7.0-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_readme_16-0.7.0-1PGDG.rhel9.8.noarch.rpm
 @ el9.aarch64 16 pg_readme_16 pg_readme_16-0.7.0-1PGDG.rhel9.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_readme_16-0.7.0-1PGDG.rhel9.noarch.rpm
+@ el10.x86_64 16 pg_readme_16 pg_readme_16-0.7.1-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.1 32.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_readme_16-0.7.1-1PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 16 pg_readme_16 pg_readme_16-0.7.0-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.0 31.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_readme_16-0.7.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 16 pg_readme_16 pg_readme_16-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_readme_16-0.7.0-1PGDG.rhel10.noarch.rpm
+@ el10.aarch64 16 pg_readme_16 pg_readme_16-0.7.1-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.1 31.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_readme_16-0.7.1-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 16 pg_readme_16 pg_readme_16-0.7.0-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.0 31.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_readme_16-0.7.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 16 pg_readme_16 pg_readme_16-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_readme_16-0.7.0-1PGDG.rhel10.noarch.rpm
 @ d12.x86_64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb
@@ -130,14 +148,20 @@ weight: 4300
 @ u24.aarch64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.1-1PIGSTY~noble_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.1-1PIGSTY~noble_all.deb
 @ u26.x86_64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.1-1PIGSTY~resolute_all.deb pigsty 0.7.1 20.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.1-1PIGSTY~resolute_all.deb
 @ u26.aarch64 16 postgresql-16-pg-readme postgresql-16-pg-readme_0.7.1-1PIGSTY~resolute_all.deb pigsty 0.7.1 20.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-16-pg-readme_0.7.1-1PIGSTY~resolute_all.deb
+@ el8.x86_64 15 pg_readme_15 pg_readme_15-0.7.1-1PGDG.rhel8.10.noarch.rpm pgdg 0.7.1 32.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_readme_15-0.7.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.x86_64 15 pg_readme_15 pg_readme_15-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_readme_15-0.7.0-1PGDG.rhel8.noarch.rpm
+@ el8.aarch64 15 pg_readme_15 pg_readme_15-0.7.1-1PGDG.rhel8.10.noarch.rpm pgdg 0.7.1 32.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pg_readme_15-0.7.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.aarch64 15 pg_readme_15 pg_readme_15-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pg_readme_15-0.7.0-1PGDG.rhel8.noarch.rpm
+@ el9.x86_64 15 pg_readme_15 pg_readme_15-0.7.1-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.1 31.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_readme_15-0.7.1-1PGDG.rhel9.8.noarch.rpm
 @ el9.x86_64 15 pg_readme_15 pg_readme_15-0.7.0-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_readme_15-0.7.0-1PGDG.rhel9.8.noarch.rpm
 @ el9.x86_64 15 pg_readme_15 pg_readme_15-0.7.0-1PGDG.rhel9.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_readme_15-0.7.0-1PGDG.rhel9.noarch.rpm
+@ el9.aarch64 15 pg_readme_15 pg_readme_15-0.7.1-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.1 31.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_readme_15-0.7.1-1PGDG.rhel9.8.noarch.rpm
 @ el9.aarch64 15 pg_readme_15 pg_readme_15-0.7.0-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.0 30.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_readme_15-0.7.0-1PGDG.rhel9.8.noarch.rpm
 @ el9.aarch64 15 pg_readme_15 pg_readme_15-0.7.0-1PGDG.rhel9.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_readme_15-0.7.0-1PGDG.rhel9.noarch.rpm
+@ el10.x86_64 15 pg_readme_15 pg_readme_15-0.7.1-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.1 32.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_readme_15-0.7.1-1PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 15 pg_readme_15 pg_readme_15-0.7.0-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.0 31.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_readme_15-0.7.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 15 pg_readme_15 pg_readme_15-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_readme_15-0.7.0-1PGDG.rhel10.noarch.rpm
+@ el10.aarch64 15 pg_readme_15 pg_readme_15-0.7.1-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.1 31.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_readme_15-0.7.1-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 15 pg_readme_15 pg_readme_15-0.7.0-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.0 31.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_readme_15-0.7.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 15 pg_readme_15 pg_readme_15-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_readme_15-0.7.0-1PGDG.rhel10.noarch.rpm
 @ d12.x86_64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb
@@ -150,14 +174,20 @@ weight: 4300
 @ u24.aarch64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.1-1PIGSTY~noble_all.deb pigsty 0.7.1 20.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.1-1PIGSTY~noble_all.deb
 @ u26.x86_64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.1-1PIGSTY~resolute_all.deb pigsty 0.7.1 20.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.1-1PIGSTY~resolute_all.deb
 @ u26.aarch64 15 postgresql-15-pg-readme postgresql-15-pg-readme_0.7.1-1PIGSTY~resolute_all.deb pigsty 0.7.1 20.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-readme/postgresql-15-pg-readme_0.7.1-1PIGSTY~resolute_all.deb
+@ el8.x86_64 14 pg_readme_14 pg_readme_14-0.7.1-1PGDG.rhel8.10.noarch.rpm pgdg 0.7.1 32.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_readme_14-0.7.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.x86_64 14 pg_readme_14 pg_readme_14-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_readme_14-0.7.0-1PGDG.rhel8.noarch.rpm
+@ el8.aarch64 14 pg_readme_14 pg_readme_14-0.7.1-1PGDG.rhel8.10.noarch.rpm pgdg 0.7.1 32.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pg_readme_14-0.7.1-1PGDG.rhel8.10.noarch.rpm
 @ el8.aarch64 14 pg_readme_14 pg_readme_14-0.7.0-1PGDG.rhel8.noarch.rpm pgdg 0.7.0 31.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pg_readme_14-0.7.0-1PGDG.rhel8.noarch.rpm
+@ el9.x86_64 14 pg_readme_14 pg_readme_14-0.7.1-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.1 31.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_readme_14-0.7.1-1PGDG.rhel9.8.noarch.rpm
 @ el9.x86_64 14 pg_readme_14 pg_readme_14-0.7.0-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_readme_14-0.7.0-1PGDG.rhel9.8.noarch.rpm
 @ el9.x86_64 14 pg_readme_14 pg_readme_14-0.7.0-1PGDG.rhel9.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_readme_14-0.7.0-1PGDG.rhel9.noarch.rpm
+@ el9.aarch64 14 pg_readme_14 pg_readme_14-0.7.1-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.1 31.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_readme_14-0.7.1-1PGDG.rhel9.8.noarch.rpm
 @ el9.aarch64 14 pg_readme_14 pg_readme_14-0.7.0-1PGDG.rhel9.8.noarch.rpm pgdg 0.7.0 30.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_readme_14-0.7.0-1PGDG.rhel9.8.noarch.rpm
 @ el9.aarch64 14 pg_readme_14 pg_readme_14-0.7.0-1PGDG.rhel9.noarch.rpm pgdg 0.7.0 30.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_readme_14-0.7.0-1PGDG.rhel9.noarch.rpm
+@ el10.x86_64 14 pg_readme_14 pg_readme_14-0.7.1-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.1 32.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_readme_14-0.7.1-1PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 14 pg_readme_14 pg_readme_14-0.7.0-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.0 31.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_readme_14-0.7.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 14 pg_readme_14 pg_readme_14-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_readme_14-0.7.0-1PGDG.rhel10.noarch.rpm
+@ el10.aarch64 14 pg_readme_14 pg_readme_14-0.7.1-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.1 31.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_readme_14-0.7.1-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 14 pg_readme_14 pg_readme_14-0.7.0-1PGDG.rhel10.2.noarch.rpm pgdg 0.7.0 31.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_readme_14-0.7.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 14 pg_readme_14 pg_readme_14-0.7.0-1PGDG.rhel10.noarch.rpm pgdg 0.7.0 31.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_readme_14-0.7.0-1PGDG.rhel10.noarch.rpm
 @ d12.x86_64 14 postgresql-14-pg-readme postgresql-14-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb pigsty 0.7.1 19.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-readme/postgresql-14-pg-readme_0.7.1-1PIGSTY~bookworm_all.deb
@@ -191,7 +221,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_readme;          # Install for current active PG version
 ```
 

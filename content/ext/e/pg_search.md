@@ -11,10 +11,10 @@ weight: 2100
     <div class="ext-card__title">main/pg_search</div>
     <div class="ext-card__desc">https://github.com/paradedb/paradedb/tree/main/pg_search</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_search-0.25.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_search-0.25.6.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_search-0.25.2.tar.gz</div>
-    <div class="ext-card__desc">pg_search-0.25.2.tar.gz</div>
+    <div class="ext-card__title">pg_search-0.25.6.tar.gz</div>
+    <div class="ext-card__desc">pg_search-0.25.6.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2100
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_search`**](/ext/e/pg_search) | `0.25.2` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`pg_search`**](/ext/e/pg_search) | `0.25.6` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,16 +38,16 @@ weight: 2100
 {.ext-table .ext-table--rel}
 
 
-> Requires shared_preload_libraries=pg_search and pgvector; bm25 access method conflicts with pg_textsearch and vchord_bm25; PIGSTY uses pgrx 0.19.1 for upstream pgrx 0.19.0.
+> Requires preload and pgvector; conflicts with pg_textsearch and vchord_bm25. pgrx 0.19.2.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.25.2` | {{< pgvers "15,16,17,18" >}} | `pg_search` | `vector` |
-| [**RPM**](/ext/rpm#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.25.2` | {{< pgvers "18,17,16,15" >}} | `pg_search_$v` | `pgvector_$v`, `openblas` |
-| [**DEB**](/ext/deb#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.25.2` | {{< pgvers "18,17,16,15" >}} | `postgresql-$v-pg-search` | `postgresql-$v-pgvector`, `libopenblas0` |
+| [**EXT**](/ext/list#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.25.6` | {{< pgvers "18,17,16,15" >}} | `pg_search` | `vector` |
+| [**RPM**](/ext/rpm#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.25.6` | {{< pgvers "18,17,16,15" >}} | `pg_search_$v` | `pgvector_$v`, `openblas` |
+| [**DEB**](/ext/deb#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.25.6` | {{< pgvers "18,17,16,15" >}} | `postgresql-$v-pg-search` | `postgresql-$v-pgvector`, `libopenblas0` |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -154,7 +154,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_search;          # Install for current active PG version
 ```
 
@@ -197,19 +197,19 @@ CREATE EXTENSION pg_search CASCADE;  -- requires: vector
 
 Sources:
 
-- [pg_search v0.25.2 README](https://github.com/paradedb/paradedb/blob/v0.25.2/pg_search/README.md)
-- [pg_search v0.25.2 release](https://github.com/paradedb/paradedb/releases/tag/v0.25.2)
-- [pg_search v0.25.2 changelog](https://github.com/paradedb/paradedb/blob/v0.25.2/docs/changelog/0.25.2.mdx)
-- [pg_search v0.25.1 migration notes](https://github.com/paradedb/paradedb/blob/v0.25.2/docs/changelog/0.25.1.mdx)
-- [Create a ParadeDB index](https://github.com/paradedb/paradedb/blob/v0.25.2/docs/documentation/indexing/create-index.mdx)
-- [Full-text match operators](https://github.com/paradedb/paradedb/blob/v0.25.2/docs/documentation/full-text/match.mdx)
-- [BM25 scoring](https://github.com/paradedb/paradedb/blob/v0.25.2/docs/documentation/sorting/score.mdx)
-- [Highlighting and snippets](https://github.com/paradedb/paradedb/blob/v0.25.2/docs/documentation/full-text/highlight.mdx)
-- [Index vectors](https://github.com/paradedb/paradedb/blob/v0.25.2/docs/documentation/indexing/indexing-vectors.mdx)
-- [Query vectors](https://github.com/paradedb/paradedb/blob/v0.25.2/docs/documentation/vector/querying.mdx)
-- [Hybrid-search overview](https://github.com/paradedb/paradedb/blob/v0.25.2/docs/documentation/hybrid/overview.mdx)
+- [pg_search v0.25.6 README](https://github.com/paradedb/paradedb/blob/v0.25.6/pg_search/README.md)
+- [pg_search v0.25.6 release](https://github.com/paradedb/paradedb/releases/tag/v0.25.6)
+- [PGXN 0.25.6 metadata](https://api.pgxn.org/src/pg_search/pg_search-0.25.6/META.json)
+- [pg_search v0.25.1 migration notes](https://github.com/paradedb/paradedb/blob/v0.25.6/docs/changelog/0.25.1.mdx)
+- [Create a ParadeDB index](https://github.com/paradedb/paradedb/blob/v0.25.6/docs/documentation/indexing/create-index.mdx)
+- [Full-text match operators](https://github.com/paradedb/paradedb/blob/v0.25.6/docs/documentation/full-text/match.mdx)
+- [BM25 scoring](https://github.com/paradedb/paradedb/blob/v0.25.6/docs/documentation/sorting/score.mdx)
+- [Highlighting and snippets](https://github.com/paradedb/paradedb/blob/v0.25.6/docs/documentation/full-text/highlight.mdx)
+- [Index vectors](https://github.com/paradedb/paradedb/blob/v0.25.6/docs/documentation/indexing/indexing-vectors.mdx)
+- [Query vectors](https://github.com/paradedb/paradedb/blob/v0.25.6/docs/documentation/vector/querying.mdx)
+- [Hybrid-search overview](https://github.com/paradedb/paradedb/blob/v0.25.6/docs/documentation/hybrid/overview.mdx)
 
-`pg_search` 0.25.2 adds ParadeDB's full-text, structured, vector, and hybrid search index to PostgreSQL. Version 0.25 uses the `paradedb` index access method; the older `bm25` access-method name remains a compatibility alias. The extension requires `vector`, supports PostgreSQL 15-18 upstream, and must be loaded through `shared_preload_libraries`.
+`pg_search` 0.25.6 adds ParadeDB's full-text, structured, vector, and hybrid search index to PostgreSQL. Version 0.25 uses the `paradedb` index access method; the older `bm25` access-method name remains a compatibility alias. The extension requires `vector`, supports PostgreSQL 15-18 upstream, and must be loaded through `shared_preload_libraries`.
 
 ### Install and Build an Index
 
@@ -287,11 +287,12 @@ ORDER BY embedding <=> $1::vector, id
 LIMIT 20;
 ```
 
-### Version 0.25.2 and Caveats
+### Version 0.25.6 and Caveats
 
 - Version 0.25 renamed the primary index access method from `bm25` to `paradedb`. Existing `USING bm25` definitions remain supported, but new examples should use `USING paradedb`.
 - Version 0.25.1 supports deterministic vector tie breakers and pushes the vector arm of reciprocal-rank-fusion queries into the index. It also adds `paradedb.vector_clustering_threshold`, whose default is 500, and caps vector-index build parallelism at four workers.
 - Version 0.25.1 removes `paradedb.vector_cluster_probe_epsilon` and changes the vector-index bounds gate. After upgrading a database from 0.25.0, `REINDEX` every ParadeDB index that contains a vector field; installing the new shared library and running `ALTER EXTENSION` alone is not sufficient for those indexes.
 - Version 0.25.2 is a stability and correctness release. It fixes fieldless `more_like_this` with vector columns, `pdb.fuzzy` under generic prepared plans, orphaned dynamic filters, several parallel subplan and MPP plan-shape errors, and tightens access controls for typemod definitions. It adds no further index migration beyond the inherited 0.25.0 vector-index rebuild.
+- Versions 0.25.4 through 0.25.6 add `paradedb.vector_clusters`, partition-aware index builds, aggregate score joins, unified planner-warning controls, and bitmap-scan intersection. They also fix dropped bitmap-intersection children and sortable encoding for negative high-precision `numeric` values. Validate plans and ordering after the upgrade even when no explicit new index migration is documented.
 - `CREATE EXTENSION pg_search CASCADE` can install the required `vector` extension, but every server process still needs the preload configuration and restart first. Loading it only with `LOAD` or `session_preload_libraries` is insufficient.
 - Query plans, tokenization, and ranking can change when an index is rebuilt with different field options. Test relevance and vector recall with production-shaped data before rollout.

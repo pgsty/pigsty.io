@@ -11,10 +11,10 @@ weight: 1010
     <div class="ext-card__title">timescale/timescaledb-toolkit</div>
     <div class="ext-card__desc">https://github.com/timescale/timescaledb-toolkit</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/timescaledb-toolkit-1.23.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/timescaledb-toolkit-1.26.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">timescaledb-toolkit-1.23.0.tar.gz</div>
-    <div class="ext-card__desc">timescaledb-toolkit-1.23.0.tar.gz</div>
+    <div class="ext-card__title">timescaledb-toolkit-1.26.0.tar.gz</div>
+    <div class="ext-card__desc">timescaledb-toolkit-1.26.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,12 +25,12 @@ weight: 1010
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`timescaledb_toolkit`**](/ext/e/timescaledb_toolkit) | `1.23.0` | <a class="ext-badge ext-badge--cate time" href="/ext/cate/time">TIME</a> | <a class="ext-badge ext-badge--license timescale" href="/ext/license#timescale">Timescale</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`timescaledb_toolkit`**](/ext/e/timescaledb_toolkit) | `1.26.0` | <a class="ext-badge ext-badge--cate time" href="/ext/cate/time">TIME</a> | <a class="ext-badge ext-badge--license timescale" href="/ext/license#timescale">Timescale</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 1010  | [**`timescaledb_toolkit`**](/ext/e/timescaledb_toolkit) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 1010  | [**`timescaledb_toolkit`**](/ext/e/timescaledb_toolkit) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
 | **Related** | [`timescaledb`](/ext/e/timescaledb) [`timeseries`](/ext/e/timeseries) [`pg_stl`](/ext/e/pg_stl) [`first_last_agg`](/ext/e/first_last_agg) [`extra_window_functions`](/ext/e/extra_window_functions) [`quantile`](/ext/e/quantile) [`tdigest`](/ext/e/tdigest) [`topn`](/ext/e/topn) [`tablefunc`](/ext/e/tablefunc) |
@@ -38,13 +38,16 @@ weight: 1010
 {.ext-table .ext-table--rel}
 
 
+> PG16-18; trusted; pgrx 0.19.2.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#time) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.23.0` | {{< pgvers "18,17,16,15" >}} | `timescaledb_toolkit` | - |
-| [**RPM**](/ext/rpm#time) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.23.0` | {{< pgvers "18,17,16,15" >}} | `timescaledb-toolkit_$v` | - |
-| [**DEB**](/ext/deb#time) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.23.0` | {{< pgvers "18,17,16,15" >}} | `postgresql-$v-timescaledb-toolkit` | - |
+| [**EXT**](/ext/list#time) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.26.0` | {{< pgvers "18,17,16" >}} | `timescaledb_toolkit` | - |
+| [**RPM**](/ext/rpm#time) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.26.0` | {{< pgvers "18,17,16" >}} | `timescaledb-toolkit_$v` | - |
+| [**DEB**](/ext/deb#time) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.26.0` | {{< pgvers "18,17,16" >}} | `postgresql-$v-timescaledb-toolkit` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -157,7 +160,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install timescaledb_toolkit;          # Install for current active PG version
 ```
 
@@ -165,21 +168,18 @@ pig install timescaledb_toolkit;          # Install for current active PG versio
 pig ext install -y timescaledb_toolkit -v 18  # PG 18
 pig ext install -y timescaledb_toolkit -v 17  # PG 17
 pig ext install -y timescaledb_toolkit -v 16  # PG 16
-pig ext install -y timescaledb_toolkit -v 15  # PG 15
 ```
 
 ```bash {tab="dnf" value="dnf"}
 dnf install -y timescaledb-toolkit_18       # PG 18
 dnf install -y timescaledb-toolkit_17       # PG 17
 dnf install -y timescaledb-toolkit_16       # PG 16
-dnf install -y timescaledb-toolkit_15       # PG 15
 ```
 
 ```bash {tab="apt" value="apt"}
 apt install -y postgresql-18-timescaledb-toolkit   # PG 18
 apt install -y postgresql-17-timescaledb-toolkit   # PG 17
 apt install -y postgresql-16-timescaledb-toolkit   # PG 16
-apt install -y postgresql-15-timescaledb-toolkit   # PG 15
 ```
 
 

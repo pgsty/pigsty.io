@@ -208,7 +208,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install temporal_tables;          # Install for current active PG version
 ```
 
@@ -258,7 +258,7 @@ There is [a fantastic tutorial](http://clarkdave.net/2015/02/historical-records-
 
 The extension uses a general trigger function to maintain system-period temporal table behaviour:
 
-```text
+```
 versioning(<system_period_column_name>, <history_table_name>, <adjust>)
 ```
 

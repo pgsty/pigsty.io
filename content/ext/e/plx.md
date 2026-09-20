@@ -11,10 +11,10 @@ weight: 3140
     <div class="ext-card__title">commandprompt/plx</div>
     <div class="ext-card__desc">https://github.com/commandprompt/plx</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/plx-1.3.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/plx-2.0.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">plx-1.3.1.tar.gz</div>
-    <div class="ext-card__desc">plx-1.3.1.tar.gz</div>
+    <div class="ext-card__title">plx-2.0.1.tar.gz</div>
+    <div class="ext-card__desc">plx-2.0.1.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 3140
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`plx`**](/ext/e/plx) | `1.3.1` | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`plx`**](/ext/e/plx) | `2.0.1` | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,16 +38,16 @@ weight: 3140
 {.ext-table .ext-table--rel}
 
 
-> Uses PostgreSQL's built-in PL/pgSQL call handler; no control-file dependency is declared.
+> Package 2.0.1; SQL version 2.0.0.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#lang) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.3.1` | {{< pgvers "18,17,16,15,14" >}} | `plx` | - |
-| [**RPM**](/ext/rpm#lang) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.3.1` | {{< pgvers "18,17,16,15,14" >}} | `plx_$v` | - |
-| [**DEB**](/ext/deb#lang) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.3.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-plx` | - |
+| [**EXT**](/ext/list#lang) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.0.1` | {{< pgvers "18,17,16,15,14" >}} | `plx` | - |
+| [**RPM**](/ext/rpm#lang) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.0.1` | {{< pgvers "18,17,16,15,14" >}} | `plx_$v` | - |
+| [**DEB**](/ext/deb#lang) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.0.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-plx` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -170,7 +170,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install plx;          # Install for current active PG version
 ```
 
@@ -209,11 +209,11 @@ CREATE EXTENSION plx;
 
 Sources:
 
-- [plx 1.3.1 README](https://github.com/commandprompt/plx/blob/v1.3.1/README.md)
-- [plx documentation](https://commandprompt.github.io/plx/)
-- [plx user guide](https://github.com/commandprompt/plx/blob/v1.3.1/doc/USERGUIDE.md)
-- [plx limitations](https://github.com/commandprompt/plx/blob/v1.3.1/doc/LIMITATIONS.md)
-- [plx 1.3.1 release](https://github.com/commandprompt/plx/releases/tag/v1.3.1)
+- [PGXN plx 2.0.1 README](https://pgxn.org/dist/plx/2.0.1/README.html)
+- [plx 2.0.1 user guide](https://api.pgxn.org/src/plx/plx-2.0.1/doc/USERGUIDE.md)
+- [plx 2.0.1 compatibility notes](https://api.pgxn.org/src/plx/plx-2.0.1/doc/COMPATIBILITY.md)
+- [plx 2.0.1 changelog](https://api.pgxn.org/src/plx/plx-2.0.1/CHANGELOG.md)
+- [plx control file](https://api.pgxn.org/src/plx/plx-2.0.1/plx.control)
 
 `plx` provides familiar procedural-language dialects that transpile to ordinary PL/pgSQL when `CREATE FUNCTION` runs. PostgreSQL stores and executes the generated PL/pgSQL with its built-in trusted handler; no Ruby, PHP, JavaScript, Python, Go, COBOL, Oracle, or SQL Server runtime is loaded into the backend.
 
@@ -301,4 +301,4 @@ The builder remains correct on PostgreSQL 13-17, but its in-place optimization r
 - Parameters and return types must be PostgreSQL types. Type inference for locals is limited; explicitly declare types for calls and compound expressions.
 - SQL uses three-valued logic and PostgreSQL numeric/string semantics. Source-language truthiness and string concatenation with `+` are not reproduced.
 - Locals are hoisted into one PL/pgSQL `DECLARE` block, so block-local scope and redeclaration with a different type are unavailable.
-- Version 1.3.1 is a code-only safety release: it adds lexer/string-builder capacity guards, stack-depth checks, bounded indentation handling, and fixes for raw-string, PHP interpolation, and non-decimal integer literal parsing. After installing the binary, run `ALTER EXTENSION plx UPDATE TO '1.3.1'`.
+- Distribution 2.0.1 installs extension version 2.0.0; 2.0.1 changes PGXN packaging only and has no SQL upgrade of its own. Version 2.0.0 changes interpolation in `plxruby`, `plxphp`, `plxjs`, `plxts`, `plxpython3`, and `plxgo`: a NULL operand now makes the whole interpolated string NULL instead of silently becoming an empty string. Run `ALTER EXTENSION plx UPDATE TO '2.0.0'`, then redeploy affected functions because existing generated PL/pgSQL in `pg_proc.prosrc` is not rewritten by the extension update.

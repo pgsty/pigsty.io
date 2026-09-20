@@ -11,10 +11,10 @@ weight: 5820
     <div class="ext-card__title">eradman/pg-safeupdate</div>
     <div class="ext-card__desc">https://github.com/eradman/pg-safeupdate</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg-safeupdate-1.5.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg-safeupdate-1.7.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg-safeupdate-1.5.tar.gz</div>
-    <div class="ext-card__desc">pg-safeupdate-1.5.tar.gz</div>
+    <div class="ext-card__title">pg-safeupdate-1.7.tar.gz</div>
+    <div class="ext-card__desc">pg-safeupdate-1.7.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 5820
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`safeupdate`**](/ext/e/safeupdate) | `1.5` | <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | <a class="ext-badge ext-badge--license isc" href="/ext/license#isc">ISC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`safeupdate`**](/ext/e/safeupdate) | `1.7` | <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | <a class="ext-badge ext-badge--license isc" href="/ext/license#isc">ISC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -42,9 +42,9 @@ weight: 5820
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.5` | {{< pgvers "18,17,16,15,14" >}} | `safeupdate` | - |
-| [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.5` | {{< pgvers "18,17,16,15,14" >}} | `safeupdate_$v` | - |
-| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.5` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-safeupdate` | - |
+| [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.7` | {{< pgvers "18,17,16,15,14" >}} | `safeupdate` | - |
+| [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.7` | {{< pgvers "18,17,16,15,14" >}} | `safeupdate_$v` | - |
+| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.7` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-safeupdate` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -187,10 +187,10 @@ weight: 5820
 
 ## Build
 
-You can build the DEB packages for `safeupdate` using `pig build`:
+You can build the RPM / DEB packages for `safeupdate` using `pig build`:
 
 ```bash
-pig build pkg safeupdate         # build DEB packages
+pig build pkg safeupdate         # build RPM / DEB packages
 ```
 
 
@@ -204,7 +204,7 @@ pig repo add pgdg -u          # Add PGDG repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install safeupdate;          # Install for current active PG version
 ```
 

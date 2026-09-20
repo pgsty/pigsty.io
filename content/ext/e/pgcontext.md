@@ -11,10 +11,10 @@ weight: 1960
     <div class="ext-card__title">https://pgxn.org/dist/pgContext/0.2.0/</div>
     <div class="ext-card__desc">https://pgxn.org/dist/pgContext/0.2.0/</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgcontext-0.2.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgcontext-0.3.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pgcontext-0.2.0.tar.gz</div>
-    <div class="ext-card__desc">pgcontext-0.2.0.tar.gz</div>
+    <div class="ext-card__title">pgcontext-0.3.0.tar.gz</div>
+    <div class="ext-card__desc">pgcontext-0.3.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 1960
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pgcontext`**](/ext/e/pgcontext) | `0.2.0` | <a class="ext-badge ext-badge--cate rag" href="/ext/cate/rag">RAG</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`pgcontext`**](/ext/e/pgcontext) | `0.3.0` | <a class="ext-badge ext-badge--cate rag" href="/ext/cate/rag">RAG</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -36,20 +36,19 @@ weight: 1960
 
 | **Related** | [`vector`](/ext/e/vector) [`vectorize`](/ext/e/vectorize) [`vchord`](/ext/e/vchord) [`vectorscale`](/ext/e/vectorscale) [`pg_rrf`](/ext/e/pg_rrf) [`pg_search`](/ext/e/pg_search) [`pg_bestmatch`](/ext/e/pg_bestmatch) [`vchord_bm25`](/ext/e/vchord_bm25) [`pgmnemo`](/ext/e/pgmnemo) [`pg_summarize`](/ext/e/pg_summarize) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Depended By** | [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) |
 {.ext-table .ext-table--rel}
 
 
-> Upstream 0.2.0 and PIGSTY packages support PostgreSQL 17 and 18; pgcontext_pgvector ships in the same package.
+> PG17-18; 0.3.0 is clean-install-only and retires pgcontext_pgvector.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2.0` | {{< pgvers "18,17" >}} | `pgcontext` | - |
-| [**RPM**](/ext/rpm#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2.0` | {{< pgvers "18,17" >}} | `pgcontext_$v` | - |
-| [**DEB**](/ext/deb#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2.0` | {{< pgvers "18,17" >}} | `postgresql-$v-pgcontext` | - |
+| [**EXT**](/ext/list#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3.0` | {{< pgvers "18,17" >}} | `pgcontext` | - |
+| [**RPM**](/ext/rpm#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3.0` | {{< pgvers "18,17" >}} | `pgcontext_$v` | - |
+| [**DEB**](/ext/deb#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3.0` | {{< pgvers "18,17" >}} | `postgresql-$v-pgcontext` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -124,7 +123,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pgcontext;          # Install for current active PG version
 ```
 

@@ -27,7 +27,7 @@ There are **26** extensions in **26** packages.
 | [`informix_fdw`](/ext/e/informix_fdw) | [`informix_fdw`](https://github.com/credativ/informix_fdw) | `0.6.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Foreign data wrapper for Informix access |
 | [`nominatim_fdw`](/ext/e/nominatim_fdw) | [`nominatim_fdw`](https://github.com/jimjonesbr/nominatim_fdw) | `2.1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Nominatim Foreign Data Wrapper for PostgreSQL |
 | [`mongo_fdw`](/ext/e/mongo_fdw) | [`mongo_fdw`](https://github.com/EnterpriseDB/mongo_fdw) | `5.5.3` | <a class="ext-badge ext-badge--license lgpl30" href="/ext/license#lgpl30">LGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | foreign data wrapper for MongoDB access |
-| [`redis_fdw`](/ext/e/redis_fdw) | [`redis_fdw`](https://github.com/pg-redis-fdw/redis_fdw) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Foreign data wrapper for querying a Redis server |
+| [`redis_fdw`](/ext/e/redis_fdw) | [`redis_fdw`](https://github.com/pg-redis-fdw/redis_fdw) | `2.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Foreign data wrapper for querying a Redis server |
 | [`redis`](/ext/e/redis) | [`pg_redis_pubsub`](https://github.com/brettlaforge/pg_redis_pubsub) | `0.0.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Send redis pub/sub messages to Redis from PostgreSQL Directly |
 | [`kafka_fdw`](/ext/e/kafka_fdw) | [`kafka_fdw`](https://github.com/adjust/kafka_fdw) | `0.0.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | kafka Foreign Data Wrapper for CSV formatted messages |
 | [`hdfs_fdw`](/ext/e/hdfs_fdw) | [`hdfs_fdw`](https://github.com/EnterpriseDB/hdfs_fdw) | `2.0.5` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | foreign-data wrapper for remote hdfs servers |
@@ -301,7 +301,7 @@ There are **26** extensions in **26** packages.
 | **RPM** | `nominatim_fdw_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **DEB** | `postgresql-$v-nominatim-fdw` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
@@ -330,7 +330,7 @@ There are **26** extensions in **26** packages.
 
 ## redis_fdw {#redis_fdw}
 
-[**`redis_fdw`**](/ext/e/redis_fdw) - `1.0` : Foreign data wrapper for querying a Redis server
+[**`redis_fdw`**](/ext/e/redis_fdw) - `2.0` : Foreign data wrapper for querying a Redis server
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

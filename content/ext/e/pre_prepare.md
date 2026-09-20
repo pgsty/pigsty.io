@@ -167,7 +167,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install preprepare;          # Install for current active PG version
 ```
 
@@ -215,7 +215,7 @@ pre_prepare automatically prepares SQL statements at connection time so clients 
 
 Configure in `postgresql.conf`:
 
-```text
+```
 preprepare.relation = 'preprepare.statements'
 preprepare.at_init = on    -- auto-prepare on connection (requires local_preload_libraries)
 ```

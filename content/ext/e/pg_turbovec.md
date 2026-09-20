@@ -11,10 +11,10 @@ weight: 1980
     <div class="ext-card__title">https://codeberg.org/gregburd/pg_turbovec</div>
     <div class="ext-card__desc">https://codeberg.org/gregburd/pg_turbovec</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_turbovec-1.29.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_turbovec-2.0.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_turbovec-1.29.0.tar.gz</div>
-    <div class="ext-card__desc">pg_turbovec-1.29.0.tar.gz</div>
+    <div class="ext-card__title">pg_turbovec-2.0.0.tar.gz</div>
+    <div class="ext-card__desc">pg_turbovec-2.0.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 1980
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_turbovec`**](/ext/e/pg_turbovec) | `1.29.0` | <a class="ext-badge ext-badge--cate rag" href="/ext/cate/rag">RAG</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`pg_turbovec`**](/ext/e/pg_turbovec) | `2.0.0` | <a class="ext-badge ext-badge--cate rag" href="/ext/cate/rag">RAG</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,16 +38,16 @@ weight: 1980
 {.ext-table .ext-table--rel}
 
 
-> Upstream v1.29.0 supports PostgreSQL 13-18 with PG19 experimental; PIGSTY RPM and DEB ship 1.29.0 for PostgreSQL 14-18, built with pgrx 0.19.1 against OpenBLAS.
+> Built with pgrx 0.19.2 and OpenBLAS.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.29.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_turbovec` | - |
-| [**RPM**](/ext/rpm#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.29.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_turbovec_$v` | `openblas` |
-| [**DEB**](/ext/deb#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.29.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-turbovec` | `libopenblas0` |
+| [**EXT**](/ext/list#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.0.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_turbovec` | - |
+| [**RPM**](/ext/rpm#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.0.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_turbovec_$v` | `openblas` |
+| [**DEB**](/ext/deb#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.0.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-turbovec` | `libopenblas0` |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -170,7 +170,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_turbovec;          # Install for current active PG version
 ```
 

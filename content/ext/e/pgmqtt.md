@@ -11,10 +11,10 @@ weight: 9620
     <div class="ext-card__title">RayElg/pgmqtt</div>
     <div class="ext-card__desc">https://github.com/RayElg/pgmqtt</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgmqtt-0.4.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgmqtt-0.4.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pgmqtt-0.4.1.tar.gz</div>
-    <div class="ext-card__desc">pgmqtt-0.4.1.tar.gz</div>
+    <div class="ext-card__title">pgmqtt-0.4.2.tar.gz</div>
+    <div class="ext-card__desc">pgmqtt-0.4.2.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 9620
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pgmqtt`**](/ext/e/pgmqtt) | `0.4.1` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license elastic20" href="/ext/license#elastic20">Elastic-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`pgmqtt`**](/ext/e/pgmqtt) | `0.4.2` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license elastic20" href="/ext/license#elastic20">Elastic-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -45,9 +45,9 @@ weight: 9620
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.1` | {{< pgvers "18,17,16,15,14" >}} | `pgmqtt` | - |
-| [**RPM**](/ext/rpm#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.1` | {{< pgvers "18,17,16,15,14" >}} | `pgmqtt_$v` | - |
-| [**DEB**](/ext/deb#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgmqtt` | - |
+| [**EXT**](/ext/list#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.2` | {{< pgvers "18,17,16,15,14" >}} | `pgmqtt` | - |
+| [**RPM**](/ext/rpm#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.2` | {{< pgvers "18,17,16,15,14" >}} | `pgmqtt_$v` | - |
+| [**DEB**](/ext/deb#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.2` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgmqtt` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -170,7 +170,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pgmqtt;          # Install for current active PG version
 ```
 

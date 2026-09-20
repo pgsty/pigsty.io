@@ -11,10 +11,10 @@ weight: 1560
     <div class="ext-card__title">tvondra/geoip</div>
     <div class="ext-card__desc">https://github.com/tvondra/geoip</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/geoip-0.3.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/geoip-0.4.0+git20250804.fcad7f1.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">geoip-0.3.0.tar.gz</div>
-    <div class="ext-card__desc">geoip-0.3.0.tar.gz</div>
+    <div class="ext-card__title">geoip-0.4.0+git20250804.fcad7f1.tar.gz</div>
+    <div class="ext-card__desc">geoip-0.4.0+git20250804.fcad7f1.tar.gz</div>
   </a>
 </div>
 
@@ -25,12 +25,12 @@ weight: 1560
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`geoip`**](/ext/e/geoip) | `0.3.0` | <a class="ext-badge ext-badge--cate gis" href="/ext/cate/gis">GIS</a> | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
+| [**`geoip`**](/ext/e/geoip) | `0.4.0` | <a class="ext-badge ext-badge--cate gis" href="/ext/cate/gis">GIS</a> | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 1560  | [**`geoip`**](/ext/e/geoip) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `geoip` |
+| 1560  | [**`geoip`**](/ext/e/geoip) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `geoip` |
 {.ext-table}
 
 | **Related** | [`ip4r`](/ext/e/ip4r) [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) [`tzf`](/ext/e/tzf) [`nominatim_fdw`](/ext/e/nominatim_fdw) [`pg_geohash`](/ext/e/pg_geohash) |
@@ -45,9 +45,9 @@ weight: 1560
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#gis) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `0.3.0` | {{< pgvers "18,17,16,15,14" >}} | `geoip` | `ip4r` |
-| [**RPM**](/ext/rpm#gis) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3.0` | {{< pgvers "18,17,16,15,14" >}} | `geoip_$v` | - |
-| [**DEB**](/ext/deb#gis) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-geoip` | - |
+| [**EXT**](/ext/list#gis) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `0.4.0` | {{< pgvers "18,17,16,15,14" >}} | `geoip` | `ip4r` |
+| [**RPM**](/ext/rpm#gis) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.0` | {{< pgvers "18,17,16,15,14" >}} | `geoip_$v` | `ip4r_$v` |
+| [**DEB**](/ext/deb#gis) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.0+git20250804.fcad7f1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-geoip` | `postgresql-$v-ip4r` |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -178,7 +178,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install geoip;          # Install for current active PG version
 ```
 

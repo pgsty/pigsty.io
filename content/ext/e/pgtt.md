@@ -11,6 +11,11 @@ weight: 9110
     <div class="ext-card__title">darold/pgtt</div>
     <div class="ext-card__desc">https://github.com/darold/pgtt</div>
   </a>
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgtt-4.6.tar.gz">
+    <div class="ext-card__kicker">Source</div>
+    <div class="ext-card__title">pgtt-4.6.tar.gz</div>
+    <div class="ext-card__desc">pgtt-4.6.tar.gz</div>
+  </a>
 </div>
 
 
@@ -464,6 +469,14 @@ weight: 9110
 @ u26.aarch64 14 postgresql-14-pgtt postgresql-14-pgtt_4.4-1PIGSTY~resolute_arm64.deb pigsty 4.4 48.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgtt/postgresql-14-pgtt_4.4-1PIGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
+## Build
+
+You can build the RPM / DEB packages for `pgtt` using `pig build`:
+
+```bash
+pig build pkg pgtt         # build RPM / DEB packages
+```
+
 
 ## Install
 
@@ -475,7 +488,7 @@ pig repo add pgdg -u          # Add PGDG repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pgtt;          # Install for current active PG version
 ```
 

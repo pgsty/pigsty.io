@@ -11,10 +11,10 @@ weight: 2890
     <div class="ext-card__title">profundium/pg_local_cache</div>
     <div class="ext-card__desc">https://github.com/profundium/pg_local_cache</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_local_cache-1.3.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_local_cache-2.0.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_local_cache-1.3.0.tar.gz</div>
-    <div class="ext-card__desc">pg_local_cache-1.3.0.tar.gz</div>
+    <div class="ext-card__title">pg_local_cache-2.0.1.tar.gz</div>
+    <div class="ext-card__desc">pg_local_cache-2.0.1.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2890
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_local_cache`**](/ext/e/pg_local_cache) | `1.3.0` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_local_cache`**](/ext/e/pg_local_cache) | `2.0.1` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -34,16 +34,16 @@ weight: 2890
 {.ext-table}
 
 
-> Requires shared_preload_libraries=pg_local_cache and a restart; CREATE EXTENSION requires superuser; v1.3.0 supports PostgreSQL 14-18, one configured database, and one writable primary.
+> PG14-18; requires preload.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.3.0` | {{< pgvers "14,15,16,17,18" >}} | `pg_local_cache` | - |
-| [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.3.0` | {{< pgvers "14,15,16,17,18" >}} | `pg_local_cache_$v` | - |
-| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.3.0` | {{< pgvers "14,15,16,17,18" >}} | `postgresql-$v-pg-local-cache` | - |
+| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.0.1` | {{< pgvers "14,15,16,17,18" >}} | `pg_local_cache` | - |
+| [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.0.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_local_cache_$v` | - |
+| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.0.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-local-cache` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -166,7 +166,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_local_cache;          # Install for current active PG version
 ```
 

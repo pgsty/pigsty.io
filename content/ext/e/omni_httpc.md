@@ -11,10 +11,10 @@ weight: 2950
     <div class="ext-card__title">https://docs.omnigres.org/omni_httpc/reference/</div>
     <div class="ext-card__desc">https://docs.omnigres.org/omni_httpc/reference/</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/omnigres-20251108.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/omnigres-20260212.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">omnigres-20251108.tar.gz</div>
-    <div class="ext-card__desc">omnigres-20251108.tar.gz</div>
+    <div class="ext-card__title">omnigres-20260212.tar.gz</div>
+    <div class="ext-card__desc">omnigres-20260212.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2950
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`omnigres`**](/ext/e/omni) | `0.1.10` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`omnigres`**](/ext/e/omni) | `0.1.11` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -79,9 +79,9 @@ weight: 2950
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.1.10` | {{< pgvers "18,17,16,15,14" >}} | `omnigres` | `omni_http`, `omni_types` |
-| [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `20251108` | {{< pgvers "18,17,16,15,14" >}} | `omnigres_$v` | - |
-| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `20251108` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-omnigres` | - |
+| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.1.11` | {{< pgvers "18,17,16,15,14" >}} | `omnigres` | `omni_http`, `omni_types` |
+| [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `20260212` | {{< pgvers "18,17,16,15,14" >}} | `omnigres_$v` | `postgresql$v-contrib`, `postgresql$v-plpython3`, `python3-pip` |
+| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `20260212` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-omnigres` | `postgresql-plpython3-$v`, `python3-pip` |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -124,7 +124,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install omnigres;          # Install for current active PG version
 ```
 

@@ -25,7 +25,7 @@ weight: 7020
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pgsodium`**](/ext/e/pgsodium) | `3.1.11` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pgsodium`**](/ext/e/pgsodium) | `3.1.11` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -39,7 +39,7 @@ weight: 7020
 {.ext-table .ext-table--rel}
 
 
-> +fix missing pg17
+> Uses private libsodium 1.0.22; no external runtime dependency.
 
 
 ## Version
@@ -48,7 +48,7 @@ weight: 7020
 |:----:|:----:|:----:|:------:|:--------:|:----:|
 | [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `3.1.11` | {{< pgvers "18,17,16,15,14" >}} | `pgsodium` | - |
 | [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `3.1.11` | {{< pgvers "18,17,16,15,14" >}} | `pgsodium_$v` | - |
-| [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.1.9` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgsodium` | - |
+| [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.1.11` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgsodium` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -323,7 +323,7 @@ pig repo add pgdg -u          # Add PGDG repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pgsodium;          # Install for current active PG version
 ```
 

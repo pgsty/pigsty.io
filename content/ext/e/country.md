@@ -11,10 +11,10 @@ weight: 3660
     <div class="ext-card__title">adjust/pg-country</div>
     <div class="ext-card__desc">https://github.com/adjust/pg-country</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg-country-0.0.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg-country-0.0.4.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg-country-0.0.3.tar.gz</div>
-    <div class="ext-card__desc">pg-country-0.0.3.tar.gz</div>
+    <div class="ext-card__title">pg-country-0.0.4.tar.gz</div>
+    <div class="ext-card__desc">pg-country-0.0.4.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 3660
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_country`**](/ext/e/country) | `0.0.3` | <a class="ext-badge ext-badge--cate type" href="/ext/cate/type">TYPE</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_country`**](/ext/e/country) | `0.0.4` | <a class="ext-badge ext-badge--cate type" href="/ext/cate/type">TYPE</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -42,9 +42,9 @@ weight: 3660
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.3` | {{< pgvers "18,17,16,15,14" >}} | `pg_country` | - |
-| [**RPM**](/ext/rpm#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.3` | {{< pgvers "18,17,16,15,14" >}} | `pg_country_$v` | - |
-| [**DEB**](/ext/deb#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.3` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-country` | - |
+| [**EXT**](/ext/list#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.4` | {{< pgvers "18,17,16,15,14" >}} | `pg_country` | - |
+| [**RPM**](/ext/rpm#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.4` | {{< pgvers "18,17,16,15,14" >}} | `pg_country_$v` | - |
+| [**DEB**](/ext/deb#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.4` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-country` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -167,7 +167,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_country;          # Install for current active PG version
 ```
 

@@ -167,7 +167,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_geohash;          # Install for current active PG version
 ```
 
@@ -246,7 +246,7 @@ ORDER BY 2 DESC
 LIMIT 10;
 ```
 
-```text
+```
  geohash | count
 ---------+-------
  dp3w7   | 72404

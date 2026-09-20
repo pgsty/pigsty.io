@@ -53,12 +53,12 @@ weight: 2850
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 1.5.0 2 | AVAIL PIGSTY 1.5.0 2 | AVAIL PIGSTY 1.5.0 2 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el8.aarch64 | AVAIL PIGSTY 1.5.0 2 | AVAIL PIGSTY 1.5.0 2 | AVAIL PIGSTY 1.5.0 2 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.x86_64 | AVAIL PIGSTY 1.5.0 3 | AVAIL PIGSTY 1.5.0 3 | AVAIL PIGSTY 1.5.0 3 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.aarch64 | AVAIL PIGSTY 1.5.0 3 | AVAIL PIGSTY 1.5.0 3 | AVAIL PIGSTY 1.5.0 3 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.x86_64 | AVAIL PIGSTY 1.5.0 3 | AVAIL PIGSTY 1.5.0 3 | AVAIL PIGSTY 1.5.0 3 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.aarch64 | AVAIL PIGSTY 1.5.0 3 | AVAIL PIGSTY 1.5.0 3 | AVAIL PIGSTY 1.5.0 3 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el8.x86_64 | AVAIL PIGSTY 1.5.0 3 | AVAIL PIGSTY 1.5.0 3 | AVAIL PIGSTY 1.5.0 3 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el8.aarch64 | AVAIL PIGSTY 1.5.0 3 | AVAIL PIGSTY 1.5.0 3 | AVAIL PIGSTY 1.5.0 3 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.x86_64 | AVAIL PIGSTY 1.5.0 4 | AVAIL PIGSTY 1.5.0 4 | AVAIL PIGSTY 1.5.0 4 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.aarch64 | AVAIL PIGSTY 1.5.0 4 | AVAIL PIGSTY 1.5.0 4 | AVAIL PIGSTY 1.5.0 4 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.x86_64 | AVAIL PIGSTY 1.5.0 4 | AVAIL PIGSTY 1.5.0 4 | AVAIL PIGSTY 1.5.0 4 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.aarch64 | AVAIL PIGSTY 1.5.0 4 | AVAIL PIGSTY 1.5.0 4 | AVAIL PIGSTY 1.5.0 4 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 | d12.x86_64 | AVAIL PIGSTY 1.5.0 1 | AVAIL PIGSTY 1.5.0 1 | AVAIL PIGSTY 1.5.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 | d12.aarch64 | AVAIL PIGSTY 1.5.0 1 | AVAIL PIGSTY 1.5.0 1 | AVAIL PIGSTY 1.5.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 | d13.x86_64 | AVAIL PIGSTY 1.5.0 1 | AVAIL PIGSTY 1.5.0 1 | AVAIL PIGSTY 1.5.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
@@ -70,19 +70,25 @@ weight: 2850
 | u26.x86_64 | AVAIL PIGSTY 1.5.0 1 | AVAIL PIGSTY 1.5.0 1 | AVAIL PIGSTY 1.5.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 | u26.aarch64 | AVAIL PIGSTY 1.5.0 1 | AVAIL PIGSTY 1.5.0 1 | AVAIL PIGSTY 1.5.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 @ el8.x86_64 18 pg_incremental_18 pg_incremental_18-1.5.0-1PIGSTY.el8.x86_64.rpm pigsty 1.5.0 33.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_incremental_18-1.5.0-1PIGSTY.el8.x86_64.rpm
+@ el8.x86_64 18 pg_incremental_18 pg_incremental_18-1.5.0-1PGDG.rhel8.10.x86_64.rpm pgdg 1.5.0 33.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pg_incremental_18-1.5.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 pg_incremental_18 pg_incremental_18-1.0.0-1PGDG.rhel8.x86_64.rpm pgdg 1.0.0 26.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pg_incremental_18-1.0.0-1PGDG.rhel8.x86_64.rpm
 @ el8.aarch64 18 pg_incremental_18 pg_incremental_18-1.5.0-1PIGSTY.el8.aarch64.rpm pigsty 1.5.0 33.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_incremental_18-1.5.0-1PIGSTY.el8.aarch64.rpm
+@ el8.aarch64 18 pg_incremental_18 pg_incremental_18-1.5.0-1PGDG.rhel8.10.aarch64.rpm pgdg 1.5.0 32.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pg_incremental_18-1.5.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 pg_incremental_18 pg_incremental_18-1.0.0-1PGDG.rhel8.aarch64.rpm pgdg 1.0.0 26.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pg_incremental_18-1.0.0-1PGDG.rhel8.aarch64.rpm
 @ el9.x86_64 18 pg_incremental_18 pg_incremental_18-1.5.0-1PIGSTY.el9.x86_64.rpm pigsty 1.5.0 31.8KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_incremental_18-1.5.0-1PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 18 pg_incremental_18 pg_incremental_18-1.5.0-1PGDG.rhel9.8.x86_64.rpm pgdg 1.5.0 32.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pg_incremental_18-1.5.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 pg_incremental_18 pg_incremental_18-1.0.0-3PGDG.rhel9.8.x86_64.rpm pgdg 1.0.0 26.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pg_incremental_18-1.0.0-3PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 pg_incremental_18 pg_incremental_18-1.0.0-1PGDG.rhel9.x86_64.rpm pgdg 1.0.0 26.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pg_incremental_18-1.0.0-1PGDG.rhel9.x86_64.rpm
 @ el9.aarch64 18 pg_incremental_18 pg_incremental_18-1.5.0-1PIGSTY.el9.aarch64.rpm pigsty 1.5.0 31.6KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_incremental_18-1.5.0-1PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 18 pg_incremental_18 pg_incremental_18-1.5.0-1PGDG.rhel9.8.aarch64.rpm pgdg 1.5.0 32.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pg_incremental_18-1.5.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 pg_incremental_18 pg_incremental_18-1.0.0-3PGDG.rhel9.8.aarch64.rpm pgdg 1.0.0 25.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pg_incremental_18-1.0.0-3PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 pg_incremental_18 pg_incremental_18-1.0.0-1PGDG.rhel9.aarch64.rpm pgdg 1.0.0 25.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pg_incremental_18-1.0.0-1PGDG.rhel9.aarch64.rpm
 @ el10.x86_64 18 pg_incremental_18 pg_incremental_18-1.5.0-1PIGSTY.el10.x86_64.rpm pigsty 1.5.0 32.4KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_incremental_18-1.5.0-1PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 18 pg_incremental_18 pg_incremental_18-1.5.0-1PGDG.rhel10.2.x86_64.rpm pgdg 1.5.0 33.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_incremental_18-1.5.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 pg_incremental_18 pg_incremental_18-1.0.0-3PGDG.rhel10.2.x86_64.rpm pgdg 1.0.0 26.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_incremental_18-1.0.0-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 pg_incremental_18 pg_incremental_18-1.0.0-1PGDG.rhel10.x86_64.rpm pgdg 1.0.0 26.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_incremental_18-1.0.0-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 18 pg_incremental_18 pg_incremental_18-1.5.0-1PIGSTY.el10.aarch64.rpm pigsty 1.5.0 31.9KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_incremental_18-1.5.0-1PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 18 pg_incremental_18 pg_incremental_18-1.5.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.5.0 32.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_incremental_18-1.5.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 pg_incremental_18 pg_incremental_18-1.0.0-3PGDG.rhel10.2.aarch64.rpm pgdg 1.0.0 26.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_incremental_18-1.0.0-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 pg_incremental_18 pg_incremental_18-1.0.0-1PGDG.rhel10.aarch64.rpm pgdg 1.0.0 26.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_incremental_18-1.0.0-1PGDG.rhel10.aarch64.rpm
 @ d12.x86_64 18 postgresql-18-pg-incremental postgresql-18-pg-incremental_1.5.0-1PIGSTY~bookworm_amd64.deb pigsty 1.5.0 55.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-incremental/postgresql-18-pg-incremental_1.5.0-1PIGSTY~bookworm_amd64.deb
@@ -96,19 +102,25 @@ weight: 2850
 @ u26.x86_64 18 postgresql-18-pg-incremental postgresql-18-pg-incremental_1.5.0-1PIGSTY~resolute_amd64.deb pigsty 1.5.0 56.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-incremental/postgresql-18-pg-incremental_1.5.0-1PIGSTY~resolute_amd64.deb
 @ u26.aarch64 18 postgresql-18-pg-incremental postgresql-18-pg-incremental_1.5.0-1PIGSTY~resolute_arm64.deb pigsty 1.5.0 55.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-incremental/postgresql-18-pg-incremental_1.5.0-1PIGSTY~resolute_arm64.deb
 @ el8.x86_64 17 pg_incremental_17 pg_incremental_17-1.5.0-1PIGSTY.el8.x86_64.rpm pigsty 1.5.0 33.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_incremental_17-1.5.0-1PIGSTY.el8.x86_64.rpm
+@ el8.x86_64 17 pg_incremental_17 pg_incremental_17-1.5.0-1PGDG.rhel8.10.x86_64.rpm pgdg 1.5.0 33.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pg_incremental_17-1.5.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 pg_incremental_17 pg_incremental_17-1.0.0-1PGDG.rhel8.x86_64.rpm pgdg 1.0.0 26.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pg_incremental_17-1.0.0-1PGDG.rhel8.x86_64.rpm
 @ el8.aarch64 17 pg_incremental_17 pg_incremental_17-1.5.0-1PIGSTY.el8.aarch64.rpm pigsty 1.5.0 33.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_incremental_17-1.5.0-1PIGSTY.el8.aarch64.rpm
+@ el8.aarch64 17 pg_incremental_17 pg_incremental_17-1.5.0-1PGDG.rhel8.10.aarch64.rpm pgdg 1.5.0 32.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/pg_incremental_17-1.5.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 pg_incremental_17 pg_incremental_17-1.0.0-1PGDG.rhel8.aarch64.rpm pgdg 1.0.0 26.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/pg_incremental_17-1.0.0-1PGDG.rhel8.aarch64.rpm
 @ el9.x86_64 17 pg_incremental_17 pg_incremental_17-1.5.0-1PIGSTY.el9.x86_64.rpm pigsty 1.5.0 31.8KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_incremental_17-1.5.0-1PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 17 pg_incremental_17 pg_incremental_17-1.5.0-1PGDG.rhel9.8.x86_64.rpm pgdg 1.5.0 32.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pg_incremental_17-1.5.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 pg_incremental_17 pg_incremental_17-1.0.0-3PGDG.rhel9.8.x86_64.rpm pgdg 1.0.0 26.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pg_incremental_17-1.0.0-3PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 pg_incremental_17 pg_incremental_17-1.0.0-1PGDG.rhel9.x86_64.rpm pgdg 1.0.0 26.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pg_incremental_17-1.0.0-1PGDG.rhel9.x86_64.rpm
 @ el9.aarch64 17 pg_incremental_17 pg_incremental_17-1.5.0-1PIGSTY.el9.aarch64.rpm pigsty 1.5.0 31.6KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_incremental_17-1.5.0-1PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 17 pg_incremental_17 pg_incremental_17-1.5.0-1PGDG.rhel9.8.aarch64.rpm pgdg 1.5.0 32.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pg_incremental_17-1.5.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 pg_incremental_17 pg_incremental_17-1.0.0-3PGDG.rhel9.8.aarch64.rpm pgdg 1.0.0 25.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pg_incremental_17-1.0.0-3PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 pg_incremental_17 pg_incremental_17-1.0.0-1PGDG.rhel9.aarch64.rpm pgdg 1.0.0 25.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pg_incremental_17-1.0.0-1PGDG.rhel9.aarch64.rpm
 @ el10.x86_64 17 pg_incremental_17 pg_incremental_17-1.5.0-1PIGSTY.el10.x86_64.rpm pigsty 1.5.0 32.4KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_incremental_17-1.5.0-1PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 17 pg_incremental_17 pg_incremental_17-1.5.0-1PGDG.rhel10.2.x86_64.rpm pgdg 1.5.0 33.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_incremental_17-1.5.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 pg_incremental_17 pg_incremental_17-1.0.0-3PGDG.rhel10.2.x86_64.rpm pgdg 1.0.0 26.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_incremental_17-1.0.0-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 pg_incremental_17 pg_incremental_17-1.0.0-1PGDG.rhel10.x86_64.rpm pgdg 1.0.0 26.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_incremental_17-1.0.0-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 17 pg_incremental_17 pg_incremental_17-1.5.0-1PIGSTY.el10.aarch64.rpm pigsty 1.5.0 31.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_incremental_17-1.5.0-1PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 17 pg_incremental_17 pg_incremental_17-1.5.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.5.0 32.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_incremental_17-1.5.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 pg_incremental_17 pg_incremental_17-1.0.0-3PGDG.rhel10.2.aarch64.rpm pgdg 1.0.0 26.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_incremental_17-1.0.0-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 pg_incremental_17 pg_incremental_17-1.0.0-1PGDG.rhel10.aarch64.rpm pgdg 1.0.0 26.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_incremental_17-1.0.0-1PGDG.rhel10.aarch64.rpm
 @ d12.x86_64 17 postgresql-17-pg-incremental postgresql-17-pg-incremental_1.5.0-1PIGSTY~bookworm_amd64.deb pigsty 1.5.0 55.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-incremental/postgresql-17-pg-incremental_1.5.0-1PIGSTY~bookworm_amd64.deb
@@ -122,19 +134,25 @@ weight: 2850
 @ u26.x86_64 17 postgresql-17-pg-incremental postgresql-17-pg-incremental_1.5.0-1PIGSTY~resolute_amd64.deb pigsty 1.5.0 56.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-incremental/postgresql-17-pg-incremental_1.5.0-1PIGSTY~resolute_amd64.deb
 @ u26.aarch64 17 postgresql-17-pg-incremental postgresql-17-pg-incremental_1.5.0-1PIGSTY~resolute_arm64.deb pigsty 1.5.0 55.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-incremental/postgresql-17-pg-incremental_1.5.0-1PIGSTY~resolute_arm64.deb
 @ el8.x86_64 16 pg_incremental_16 pg_incremental_16-1.5.0-1PIGSTY.el8.x86_64.rpm pigsty 1.5.0 33.5KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_incremental_16-1.5.0-1PIGSTY.el8.x86_64.rpm
+@ el8.x86_64 16 pg_incremental_16 pg_incremental_16-1.5.0-1PGDG.rhel8.10.x86_64.rpm pgdg 1.5.0 33.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_incremental_16-1.5.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 pg_incremental_16 pg_incremental_16-1.0.0-1PGDG.rhel8.x86_64.rpm pgdg 1.0.0 26.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_incremental_16-1.0.0-1PGDG.rhel8.x86_64.rpm
 @ el8.aarch64 16 pg_incremental_16 pg_incremental_16-1.5.0-1PIGSTY.el8.aarch64.rpm pigsty 1.5.0 33.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_incremental_16-1.5.0-1PIGSTY.el8.aarch64.rpm
+@ el8.aarch64 16 pg_incremental_16 pg_incremental_16-1.5.0-1PGDG.rhel8.10.aarch64.rpm pgdg 1.5.0 32.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_incremental_16-1.5.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 pg_incremental_16 pg_incremental_16-1.0.0-1PGDG.rhel8.aarch64.rpm pgdg 1.0.0 26.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_incremental_16-1.0.0-1PGDG.rhel8.aarch64.rpm
 @ el9.x86_64 16 pg_incremental_16 pg_incremental_16-1.5.0-1PIGSTY.el9.x86_64.rpm pigsty 1.5.0 31.8KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_incremental_16-1.5.0-1PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 16 pg_incremental_16 pg_incremental_16-1.5.0-1PGDG.rhel9.8.x86_64.rpm pgdg 1.5.0 32.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_incremental_16-1.5.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 pg_incremental_16 pg_incremental_16-1.0.0-3PGDG.rhel9.8.x86_64.rpm pgdg 1.0.0 26.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_incremental_16-1.0.0-3PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 pg_incremental_16 pg_incremental_16-1.0.0-1PGDG.rhel9.x86_64.rpm pgdg 1.0.0 26.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_incremental_16-1.0.0-1PGDG.rhel9.x86_64.rpm
 @ el9.aarch64 16 pg_incremental_16 pg_incremental_16-1.5.0-1PIGSTY.el9.aarch64.rpm pigsty 1.5.0 31.6KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_incremental_16-1.5.0-1PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 16 pg_incremental_16 pg_incremental_16-1.5.0-1PGDG.rhel9.8.aarch64.rpm pgdg 1.5.0 32.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_incremental_16-1.5.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 pg_incremental_16 pg_incremental_16-1.0.0-3PGDG.rhel9.8.aarch64.rpm pgdg 1.0.0 25.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_incremental_16-1.0.0-3PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 pg_incremental_16 pg_incremental_16-1.0.0-1PGDG.rhel9.aarch64.rpm pgdg 1.0.0 25.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_incremental_16-1.0.0-1PGDG.rhel9.aarch64.rpm
 @ el10.x86_64 16 pg_incremental_16 pg_incremental_16-1.5.0-1PIGSTY.el10.x86_64.rpm pigsty 1.5.0 32.4KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_incremental_16-1.5.0-1PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 16 pg_incremental_16 pg_incremental_16-1.5.0-1PGDG.rhel10.2.x86_64.rpm pgdg 1.5.0 33.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_incremental_16-1.5.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 pg_incremental_16 pg_incremental_16-1.0.0-3PGDG.rhel10.2.x86_64.rpm pgdg 1.0.0 26.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_incremental_16-1.0.0-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 pg_incremental_16 pg_incremental_16-1.0.0-1PGDG.rhel10.x86_64.rpm pgdg 1.0.0 26.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_incremental_16-1.0.0-1PGDG.rhel10.x86_64.rpm
 @ el10.aarch64 16 pg_incremental_16 pg_incremental_16-1.5.0-1PIGSTY.el10.aarch64.rpm pigsty 1.5.0 31.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_incremental_16-1.5.0-1PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 16 pg_incremental_16 pg_incremental_16-1.5.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.5.0 32.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_incremental_16-1.5.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 pg_incremental_16 pg_incremental_16-1.0.0-3PGDG.rhel10.2.aarch64.rpm pgdg 1.0.0 26.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_incremental_16-1.0.0-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 pg_incremental_16 pg_incremental_16-1.0.0-1PGDG.rhel10.aarch64.rpm pgdg 1.0.0 26.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_incremental_16-1.0.0-1PGDG.rhel10.aarch64.rpm
 @ d12.x86_64 16 postgresql-16-pg-incremental postgresql-16-pg-incremental_1.5.0-1PIGSTY~bookworm_amd64.deb pigsty 1.5.0 55.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-incremental/postgresql-16-pg-incremental_1.5.0-1PIGSTY~bookworm_amd64.deb
@@ -168,7 +186,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_incremental;          # Install for current active PG version
 ```
 

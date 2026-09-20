@@ -17,21 +17,21 @@ There are **42** extensions in **41** packages.
 | [`pg_text_semver`](/ext/e/pg_text_semver) | [`pg_text_semver`](https://github.com/bigsmoke/pg_text_semver) | `1.2.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Semantic version domain and comparison operators for PostgreSQL |
 | [`unit`](/ext/e/unit) | [`pgunit`](https://github.com/df7cb/postgresql-unit) | `7.10` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | SI units extension |
 | [`pgpdf`](/ext/e/pgpdf) | [`pgpdf`](https://github.com/Florents-Tselai/pgpdf) | `0.1.0` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PDF type with meta admin & Full-Text Search |
-| [`pglite_fusion`](/ext/e/pglite_fusion) | [`pglite_fusion`](https://github.com/frectonz/pglite-fusion) | `0.0.6` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Embed an SQLite database in your PostgreSQL table |
+| [`pglite_fusion`](/ext/e/pglite_fusion) | [`pglite_fusion`](https://github.com/frectonz/pglite-fusion) | `0.0.7` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Embed an SQLite database in your PostgreSQL table |
 | [`md5hash`](/ext/e/md5hash) | [`md5hash`](https://github.com/tvondra/md5hash) | `1.0.1` | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | type for storing 128-bit binary data inline |
 | [`asn1oid`](/ext/e/asn1oid) | [`asn1oid`](https://github.com/df7cb/pgsql-asn1oid) | `1.6` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | asn1oid extension |
 | [`roaringbitmap`](/ext/e/roaringbitmap) | [`pg_roaringbitmap`](https://github.com/ChenHuajun/pg_roaringbitmap) | `1.2.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | support for Roaring Bitmaps |
 | [`pgfaceting`](/ext/e/pgfaceting) | [`pgfaceting`](https://github.com/cybertec-postgresql/pgfaceting) | `0.2.0` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | fast faceting queries using an inverted index |
 | [`pg_sphere`](/ext/e/pg_sphere) | [`pgsphere`](https://github.com/postgrespro/pgsphere) | `1.5.2` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | spherical objects with useful functions, operators and index support |
-| [`country`](/ext/e/country) | [`pg_country`](https://github.com/adjust/pg-country) | `0.0.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Country data type, ISO 3166-1 |
+| [`country`](/ext/e/country) | [`pg_country`](https://github.com/adjust/pg-country) | `0.0.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Country data type, ISO 3166-1 |
 | [`pg_xenophile`](/ext/e/pg_xenophile) | [`pg_xenophile`](https://github.com/bigsmoke/pg_xenophile) | `0.8.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | More than the bare necessities for PostgreSQL i18n and l10n. |
 | [`l10n_table_dependent_extension`](/ext/e/l10n_table_dependent_extension) | [`pg_xenophile`](https://github.com/bigsmoke/pg_xenophile) | `0.8.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | PostgreSQL l10n toolbox |
-| [`currency`](/ext/e/currency) | [`pg_currency`](https://github.com/adjust/pg-currency) | `0.0.3` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Custom PostgreSQL currency type in 1Byte |
-| [`collection`](/ext/e/collection) | [`pgcollection`](https://github.com/aws/pgcollection) | `2.0.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Memory optimized data type to be used inside of plpglsql func |
+| [`currency`](/ext/e/currency) | [`pg_currency`](https://github.com/adjust/pg-currency) | `0.0.4` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Custom PostgreSQL currency type in 1Byte |
+| [`collection`](/ext/e/collection) | [`pgcollection`](https://github.com/aws/pgcollection) | `2.1.3` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Memory optimized data type to be used inside of plpglsql func |
 | [`pgmp`](/ext/e/pgmp) | [`pgmp`](https://github.com/dvarrazzo/pgmp/) | `1.0.6` | <a class="ext-badge ext-badge--license lgpl30" href="/ext/license#lgpl30">LGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Multiple Precision Arithmetic extension |
 | [`numeral`](/ext/e/numeral) | [`numeral`](https://github.com/df7cb/postgresql-numeral) | `1.3` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | numeral datatypes extension |
 | [`pg_rational`](/ext/e/pg_rational) | [`pg_rational`](https://github.com/begriffs/pg_rational) | `0.0.3` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | bigint fractions |
-| [`uint`](/ext/e/uint) | [`pguint`](https://github.com/petere/pguint) | `1.20250815` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | unsigned integer types |
+| [`uint`](/ext/e/uint) | [`pguint`](https://github.com/petere/pguint) | `1.20260630` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | unsigned integer types |
 | [`uint128`](/ext/e/uint128) | [`pg_uint128`](https://github.com/pg-uint/pg-uint128) | `1.2.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Native uint128 type |
 | [`hashtypes`](/ext/e/hashtypes) | [`hashtypes`](https://github.com/adjust/hashtypes/) | `0.1.5` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | sha1, md5 and other data types for PostgreSQL |
 | [`postbis`](/ext/e/postbis) | [`postbis`](https://github.com/no0p/postbis) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Adds compressed DNA, RNA, amino-acid, and aligned sequence types with casts, operators, indexes, and bioinformatics functions. |
@@ -156,7 +156,7 @@ There are **42** extensions in **41** packages.
 
 ## pglite_fusion {#pglite_fusion}
 
-[**`pglite_fusion`**](/ext/e/pglite_fusion) - `0.0.6` : Embed an SQLite database in your PostgreSQL table
+[**`pglite_fusion`**](/ext/e/pglite_fusion) - `0.0.7` : Embed an SQLite database in your PostgreSQL table
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -270,7 +270,7 @@ There are **42** extensions in **41** packages.
 
 ## country {#country}
 
-[**`pg_country`**](/ext/e/country) - `0.0.3` : Country data type, ISO 3166-1
+[**`pg_country`**](/ext/e/country) - `0.0.4` : Country data type, ISO 3166-1
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -327,7 +327,7 @@ There are **42** extensions in **41** packages.
 
 ## currency {#currency}
 
-[**`pg_currency`**](/ext/e/currency) - `0.0.3` : Custom PostgreSQL currency type in 1Byte
+[**`pg_currency`**](/ext/e/currency) - `0.0.4` : Custom PostgreSQL currency type in 1Byte
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -346,7 +346,7 @@ There are **42** extensions in **41** packages.
 
 ## collection {#collection}
 
-[**`pgcollection`**](/ext/e/collection) - `2.0.0` : Memory optimized data type to be used inside of plpglsql func
+[**`pgcollection`**](/ext/e/collection) - `2.1.3` : Memory optimized data type to be used inside of plpglsql func
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -422,7 +422,7 @@ There are **42** extensions in **41** packages.
 
 ## uint {#uint}
 
-[**`pguint`**](/ext/e/uint) - `1.20250815` : unsigned integer types
+[**`pguint`**](/ext/e/uint) - `1.20260630` : unsigned integer types
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

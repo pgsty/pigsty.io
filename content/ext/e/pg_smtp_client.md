@@ -167,7 +167,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_smtp_client;          # Install for current active PG version
 ```
 
@@ -238,7 +238,7 @@ Use the `smtp_client.send_email()` function to send an email.
 
 You can configure the following system-wide default values for some of the parameters (as indiciated in the table above) like this:
 
-```text
+```
 ALTER SYSTEM SET smtp_client.server TO 'smtp.example.com';
 ALTER SYSTEM SET smtp_client.port TO 587;
 ALTER SYSTEM SET smtp_client.tls TO true;

@@ -11,10 +11,10 @@ weight: 3590
     <div class="ext-card__title">frectonz/pglite-fusion</div>
     <div class="ext-card__desc">https://github.com/frectonz/pglite-fusion</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pglite-fusion-0.0.6.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pglite-fusion-0.0.7.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pglite-fusion-0.0.6.tar.gz</div>
-    <div class="ext-card__desc">pglite-fusion-0.0.6.tar.gz</div>
+    <div class="ext-card__title">pglite-fusion-0.0.7.tar.gz</div>
+    <div class="ext-card__desc">pglite-fusion-0.0.7.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 3590
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pglite_fusion`**](/ext/e/pglite_fusion) | `0.0.6` | <a class="ext-badge ext-badge--cate type" href="/ext/cate/type">TYPE</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`pglite_fusion`**](/ext/e/pglite_fusion) | `0.0.7` | <a class="ext-badge ext-badge--cate type" href="/ext/cate/type">TYPE</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -42,9 +42,9 @@ weight: 3590
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.6` | {{< pgvers "18,17,16,15,14" >}} | `pglite_fusion` | - |
-| [**RPM**](/ext/rpm#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.6` | {{< pgvers "18,17,16,15,14" >}} | `pglite_fusion_$v` | - |
-| [**DEB**](/ext/deb#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.6` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pglite-fusion` | - |
+| [**EXT**](/ext/list#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.7` | {{< pgvers "18,17,16,15,14" >}} | `pglite_fusion` | - |
+| [**RPM**](/ext/rpm#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.7` | {{< pgvers "18,17,16,15,14" >}} | `pglite_fusion_$v` | - |
+| [**DEB**](/ext/deb#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.7` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pglite-fusion` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -167,7 +167,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pglite_fusion;          # Install for current active PG version
 ```
 
@@ -345,7 +345,6 @@ CREATE TABLE people (
 -----
 
 ### `get_sqlite_text`
-
 Extracts a text value from a specific column in a row returned by `query_sqlite`. Use this function to retrieve text values from query results.
 
 #### Parameters:

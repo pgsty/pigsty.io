@@ -11,10 +11,10 @@ weight: 3730
     <div class="ext-card__title">petere/pguint</div>
     <div class="ext-card__desc">https://github.com/petere/pguint</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pguint-1.20250815.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pguint-1.20260630.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pguint-1.20250815.tar.gz</div>
-    <div class="ext-card__desc">pguint-1.20250815.tar.gz</div>
+    <div class="ext-card__title">pguint-1.20260630.tar.gz</div>
+    <div class="ext-card__desc">pguint-1.20260630.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 3730
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pguint`**](/ext/e/uint) | `1.20250815` | <a class="ext-badge ext-badge--cate type" href="/ext/cate/type">TYPE</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pguint`**](/ext/e/uint) | `1.20260630` | <a class="ext-badge ext-badge--cate type" href="/ext/cate/type">TYPE</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -45,9 +45,9 @@ weight: 3730
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#type) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `1.20250815` | {{< pgvers "18,17,16,15,14" >}} | `pguint` | - |
-| [**RPM**](/ext/rpm#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.20250815` | {{< pgvers "18,17,16,15,14" >}} | `pguint_$v` | - |
-| [**DEB**](/ext/deb#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.20250815` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pguint` | - |
+| [**EXT**](/ext/list#type) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `1.20260630` | {{< pgvers "18,17,16,15,14" >}} | `pguint` | - |
+| [**RPM**](/ext/rpm#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.20260630` | {{< pgvers "18,17,16,15,14" >}} | `pguint_$v` | - |
+| [**DEB**](/ext/deb#type) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.20260630` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pguint` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -232,7 +232,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pguint;          # Install for current active PG version
 ```
 

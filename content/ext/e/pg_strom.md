@@ -139,7 +139,7 @@ pig repo add pgdg -u          # Add PGDG repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_strom;          # Install for current active PG version
 ```
 
@@ -229,7 +229,7 @@ EXPLAIN (ANALYZE, COSTS OFF)
 SELECT * FROM lineorder WHERE lo_quantity > 40 AND lo_discount BETWEEN 1 AND 3;
 ```
 
-```text
+```
  Custom Scan (GpuScan) on lineorder
    GPU Filter: ((lo_quantity > 40) AND (lo_discount >= 1) AND (lo_discount <= 3))
    Rows Removed by GPU Filter: 59532300
@@ -254,7 +254,7 @@ SELECT d_year, s_nation, sum(lo_revenue) AS revenue
  ORDER BY d_year, s_nation;
 ```
 
-```text
+```
  Sort
    Sort Key: date1.d_year, supplier.s_nation
    ->  Custom Scan (GpuPreAgg) on lineorder
@@ -281,7 +281,7 @@ SELECT lo_shipmode, count(*), avg(lo_quantity)
  GROUP BY lo_shipmode;
 ```
 
-```text
+```
  Finalize GroupAggregate
    Group Key: lo_shipmode
    ->  Custom Scan (GpuPreAgg) on lineorder
@@ -414,7 +414,7 @@ SELECT a.id, b.name
  WHERE st_contains(b.geom, st_makepoint(a.longitude, a.latitude));
 ```
 
-```text
+```
  Custom Scan (GpuJoin) on gps_points a
    GPU Projection: a.id, b.name
    GPU GiST Join Quals [1]: st_contains(b.geom, st_makepoint(a.longitude, a.latitude))

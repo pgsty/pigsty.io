@@ -26,9 +26,9 @@ There are **31** extensions in **15** packages.
 | [`h3_postgis`](/ext/e/h3_postgis) | [`pg_h3`](https://github.com/zachasme/h3-pg) | `4.2.3` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | H3 PostGIS integration |
 | [`q3c`](/ext/e/q3c) | [`q3c`](https://github.com/segasai/q3c) | `2.0.5` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | q3c sky indexing plugin |
 | [`ogr_fdw`](/ext/e/ogr_fdw) | [`ogr_fdw`](https://github.com/pramsey/pgsql-ogr-fdw) | `1.1.9` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | foreign-data wrapper for GIS data access |
-| [`geoip`](/ext/e/geoip) | [`geoip`](https://github.com/tvondra/geoip) | `0.3.0` | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | IP-based geolocation query |
+| [`geoip`](/ext/e/geoip) | [`geoip`](https://github.com/tvondra/geoip) | `0.4.0` | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | IP-based geolocation query |
 | [`pg_polyline`](/ext/e/pg_polyline) | [`pg_polyline`](https://github.com/yihong0618/pg_polyline) | `0.0.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Fast Google Encoded Polyline encoding & decoding for postgres |
-| [`pg_eviltransform`](/ext/e/pg_eviltransform) | [`pg_eviltransform`](https://github.com/aiyou178/pg_eviltransform) | `0.0.4` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Coordinate transforms for BD09/GCJ02 via PostGIS ST_Transform |
+| [`pg_eviltransform`](/ext/e/pg_eviltransform) | [`pg_eviltransform`](https://github.com/aiyou178/pg_eviltransform) | `0.0.5` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Coordinate transforms for BD09/GCJ02 via PostGIS ST_Transform |
 | [`pg_geohash`](/ext/e/pg_geohash) | [`pg_geohash`](https://github.com/jistok/pg_geohash) | `1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Handle geohash based functionality for spatial coordinates |
 | [`pghydro`](/ext/e/pghydro) | [`pghydro`](https://github.com/pghydro/pghydro) | `6.6` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Drainage network analysis core for PostgreSQL and PostGIS |
 | [`pgh_raster`](/ext/e/pgh_raster) | [`pghydro`](https://github.com/pghydro/pghydro) | `6.6` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Raster hydrology extension for PgHydro |
@@ -39,7 +39,7 @@ There are **31** extensions in **15** packages.
 | [`pgh_consistency`](/ext/e/pgh_consistency) | [`pghydro`](https://github.com/pghydro/pghydro) | `6.6` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Pfafstetter consistency checks for PgHydro |
 | [`mobilitydb`](/ext/e/mobilitydb) | [`mobilitydb`](https://github.com/MobilityDB/MobilityDB) | `1.3.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | MobilityDB geospatial trajectory data management & analysis platform |
 | [`mobilitydb_datagen`](/ext/e/mobilitydb_datagen) | [`mobilitydb`](https://github.com/MobilityDB/MobilityDB) | `1.3.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | MobilityDB random data generator functions |
-| [`tzf`](/ext/e/tzf) | [`pg_tzf`](https://github.com/ringsaturn/pg-tzf) | `0.3.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Fast lookup timezone name by GPS coordinates |
+| [`tzf`](/ext/e/tzf) | [`pg_tzf`](https://github.com/ringsaturn/pg-tzf) | `0.3.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Fast lookup timezone name by GPS coordinates |
 | [`earthdistance`](/ext/e/earthdistance) | [`earthdistance`](https://www.postgresql.org/docs/current/earthdistance.html) | `1.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | calculate great-circle distances on the surface of the Earth |
 | [`qdgc`](/ext/e/qdgc) | [`qdgc`](https://pgxn.org/dist/qdgc/0.1.0/) | `0.1.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Encode, decode, navigate, and fill Extended Quarter Degree Grid Cell codes in pure SQL. |
 | [`qdgc_postgis`](/ext/e/qdgc_postgis) | [`qdgc`](https://pgxn.org/dist/qdgc/0.1.0/) | `0.1.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Add PostGIS geometry and geography bindings plus area-to-cell fills for QDGC. |
@@ -316,7 +316,7 @@ There are **31** extensions in **15** packages.
 
 ## geoip {#geoip}
 
-[**`geoip`**](/ext/e/geoip) - `0.3.0` : IP-based geolocation query
+[**`geoip`**](/ext/e/geoip) - `0.4.0` : IP-based geolocation query
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -354,7 +354,7 @@ There are **31** extensions in **15** packages.
 
 ## pg_eviltransform {#pg_eviltransform}
 
-[**`pg_eviltransform`**](/ext/e/pg_eviltransform) - `0.0.4` : Coordinate transforms for BD09/GCJ02 via PostGIS ST_Transform
+[**`pg_eviltransform`**](/ext/e/pg_eviltransform) - `0.0.5` : Coordinate transforms for BD09/GCJ02 via PostGIS ST_Transform
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -563,7 +563,7 @@ There are **31** extensions in **15** packages.
 
 ## tzf {#tzf}
 
-[**`pg_tzf`**](/ext/e/tzf) - `0.3.0` : Fast lookup timezone name by GPS coordinates
+[**`pg_tzf`**](/ext/e/tzf) - `0.3.1` : Fast lookup timezone name by GPS coordinates
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

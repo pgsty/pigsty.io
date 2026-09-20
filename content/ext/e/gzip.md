@@ -11,10 +11,10 @@ weight: 4010
     <div class="ext-card__title">pramsey/pgsql-gzip</div>
     <div class="ext-card__desc">https://github.com/pramsey/pgsql-gzip</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgsql-gzip-1.1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgsql-gzip-1.1.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pgsql-gzip-1.1.0.tar.gz</div>
-    <div class="ext-card__desc">pgsql-gzip-1.1.0.tar.gz</div>
+    <div class="ext-card__title">pgsql-gzip-1.1.1.tar.gz</div>
+    <div class="ext-card__desc">pgsql-gzip-1.1.1.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 4010
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_gzip`**](/ext/e/gzip) | `1.1.0` | <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_gzip`**](/ext/e/gzip) | `1.1.1` | <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -42,20 +42,20 @@ weight: 4010
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#util) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `1.1.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_gzip` | - |
-| [**RPM**](/ext/rpm#util) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.1.0` | {{< pgvers "18,17,16,15,14" >}} | `pgsql_gzip_$v` | - |
-| [**DEB**](/ext/deb#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.1.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-gzip` | - |
+| [**EXT**](/ext/list#util) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `1.1.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_gzip` | - |
+| [**RPM**](/ext/rpm#util) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.1.1` | {{< pgvers "18,17,16,15,14" >}} | `pgsql_gzip_$v` | - |
+| [**DEB**](/ext/deb#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.1.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-gzip` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 1.1.0 3 | AVAIL PIGSTY 1.1.0 3 | AVAIL PIGSTY 1.1.0 3 | AVAIL PIGSTY 1.1.0 3 | AVAIL PIGSTY 1.1.0 3 |
-| el8.aarch64 | AVAIL PIGSTY 1.1.0 3 | AVAIL PIGSTY 1.1.0 3 | AVAIL PIGSTY 1.1.0 3 | AVAIL PIGSTY 1.1.0 3 | AVAIL PIGSTY 1.1.0 3 |
-| el9.x86_64 | AVAIL PIGSTY 1.1.0 4 | AVAIL PIGSTY 1.1.0 4 | AVAIL PIGSTY 1.1.0 4 | AVAIL PIGSTY 1.1.0 4 | AVAIL PIGSTY 1.1.0 4 |
-| el9.aarch64 | AVAIL PIGSTY 1.1.0 6 | AVAIL PIGSTY 1.1.0 6 | AVAIL PIGSTY 1.1.0 6 | AVAIL PIGSTY 1.1.0 6 | AVAIL PIGSTY 1.1.0 6 |
-| el10.x86_64 | AVAIL PIGSTY 1.1.0 4 | AVAIL PIGSTY 1.1.0 4 | AVAIL PIGSTY 1.1.0 4 | AVAIL PIGSTY 1.1.0 4 | AVAIL PIGSTY 1.1.0 4 |
-| el10.aarch64 | AVAIL PIGSTY 1.1.0 4 | AVAIL PIGSTY 1.1.0 4 | AVAIL PIGSTY 1.1.0 4 | AVAIL PIGSTY 1.1.0 4 | AVAIL PIGSTY 1.1.0 4 |
+| el8.x86_64 | AVAIL PGDG 1.1.1 4 | AVAIL PGDG 1.1.1 4 | AVAIL PGDG 1.1.1 4 | AVAIL PGDG 1.1.1 4 | AVAIL PGDG 1.1.1 4 |
+| el8.aarch64 | AVAIL PGDG 1.1.1 4 | AVAIL PGDG 1.1.1 4 | AVAIL PGDG 1.1.1 4 | AVAIL PGDG 1.1.1 4 | AVAIL PGDG 1.1.1 4 |
+| el9.x86_64 | AVAIL PGDG 1.1.1 5 | AVAIL PGDG 1.1.1 5 | AVAIL PGDG 1.1.1 5 | AVAIL PGDG 1.1.1 5 | AVAIL PGDG 1.1.1 5 |
+| el9.aarch64 | AVAIL PGDG 1.1.1 7 | AVAIL PGDG 1.1.1 7 | AVAIL PGDG 1.1.1 7 | AVAIL PGDG 1.1.1 7 | AVAIL PGDG 1.1.1 7 |
+| el10.x86_64 | AVAIL PGDG 1.1.1 5 | AVAIL PGDG 1.1.1 5 | AVAIL PGDG 1.1.1 5 | AVAIL PGDG 1.1.1 5 | AVAIL PGDG 1.1.1 5 |
+| el10.aarch64 | AVAIL PGDG 1.1.1 5 | AVAIL PGDG 1.1.1 5 | AVAIL PGDG 1.1.1 5 | AVAIL PGDG 1.1.1 5 | AVAIL PGDG 1.1.1 5 |
 | d12.x86_64 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 |
 | d12.aarch64 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 |
 | d13.x86_64 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 |
@@ -66,26 +66,32 @@ weight: 4010
 | u24.aarch64 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 |
 | u26.x86_64 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 |
 | u26.aarch64 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 | AVAIL PIGSTY 1.1.0 1 |
+@ el8.x86_64 18 pgsql_gzip_18 pgsql_gzip_18-1.1.1-1PGDG.rhel8.10.x86_64.rpm pgdg 1.1.1 14.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pgsql_gzip_18-1.1.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 pgsql_gzip_18 pgsql_gzip_18-1.1.0-1PIGSTY.el8.x86_64.rpm pigsty 1.1.0 14.1KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgsql_gzip_18-1.1.0-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 18 pgsql_gzip_18 pgsql_gzip_18-1.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 1.1.0 13.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pgsql_gzip_18-1.1.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 pgsql_gzip_18 pgsql_gzip_18-1.0.0-6PGDG.rhel8.x86_64.rpm pgdg 1.0.0 12.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pgsql_gzip_18-1.0.0-6PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 18 pgsql_gzip_18 pgsql_gzip_18-1.1.1-1PGDG.rhel8.10.aarch64.rpm pgdg 1.1.1 14.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pgsql_gzip_18-1.1.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 pgsql_gzip_18 pgsql_gzip_18-1.1.0-1PIGSTY.el8.aarch64.rpm pigsty 1.1.0 14.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgsql_gzip_18-1.1.0-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 18 pgsql_gzip_18 pgsql_gzip_18-1.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 1.1.0 13.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pgsql_gzip_18-1.1.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 pgsql_gzip_18 pgsql_gzip_18-1.0.0-6PGDG.rhel8.aarch64.rpm pgdg 1.0.0 12.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pgsql_gzip_18-1.0.0-6PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 18 pgsql_gzip_18 pgsql_gzip_18-1.1.1-1PGDG.rhel9.8.x86_64.rpm pgdg 1.1.1 13.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pgsql_gzip_18-1.1.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 pgsql_gzip_18 pgsql_gzip_18-1.1.0-1PIGSTY.el9.x86_64.rpm pigsty 1.1.0 14.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgsql_gzip_18-1.1.0-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 18 pgsql_gzip_18 pgsql_gzip_18-1.1.0-1PGDG.rhel9.8.x86_64.rpm pgdg 1.1.0 13.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pgsql_gzip_18-1.1.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 pgsql_gzip_18 pgsql_gzip_18-1.0.0-8PGDG.rhel9.8.x86_64.rpm pgdg 1.0.0 13.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pgsql_gzip_18-1.0.0-8PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 pgsql_gzip_18 pgsql_gzip_18-1.0.0-6PGDG.rhel9.x86_64.rpm pgdg 1.0.0 12.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pgsql_gzip_18-1.0.0-6PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 18 pgsql_gzip_18 pgsql_gzip_18-1.1.1-1PGDG.rhel9.8.aarch64.rpm pgdg 1.1.1 13.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pgsql_gzip_18-1.1.1-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 pgsql_gzip_18 pgsql_gzip_18-1.1.0-1PIGSTY.el9.aarch64.rpm pigsty 1.1.0 13.9KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgsql_gzip_18-1.1.0-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 18 pgsql_gzip_18 pgsql_gzip_18-1.1.0-1PGDG.rhel9.8.aarch64.rpm pgdg 1.1.0 12.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pgsql_gzip_18-1.1.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 pgsql_gzip_18 pgsql_gzip_18-1.0.0-8PGDG.rhel9.8.aarch64.rpm pgdg 1.0.0 12.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pgsql_gzip_18-1.0.0-8PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 pgsql_gzip_18 pgsql_gzip_18-1.0.0-8PGDG.rhel9.7.aarch64.rpm pgdg 1.0.0 12.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pgsql_gzip_18-1.0.0-8PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 18 pgsql_gzip_18 pgsql_gzip_18-1.0.0-8PGDG.rhel9.6.aarch64.rpm pgdg 1.0.0 12.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pgsql_gzip_18-1.0.0-8PGDG.rhel9.6.aarch64.rpm
 @ el9.aarch64 18 pgsql_gzip_18 pgsql_gzip_18-1.0.0-6PGDG.rhel9.aarch64.rpm pgdg 1.0.0 12.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pgsql_gzip_18-1.0.0-6PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 18 pgsql_gzip_18 pgsql_gzip_18-1.1.1-1PGDG.rhel10.2.x86_64.rpm pgdg 1.1.1 14.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pgsql_gzip_18-1.1.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 pgsql_gzip_18 pgsql_gzip_18-1.1.0-1PIGSTY.el10.x86_64.rpm pigsty 1.1.0 14.0KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgsql_gzip_18-1.1.0-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 18 pgsql_gzip_18 pgsql_gzip_18-1.1.0-1PGDG.rhel10.2.x86_64.rpm pgdg 1.1.0 13.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pgsql_gzip_18-1.1.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 pgsql_gzip_18 pgsql_gzip_18-1.0.0-8PGDG.rhel10.2.x86_64.rpm pgdg 1.0.0 13.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pgsql_gzip_18-1.0.0-8PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 pgsql_gzip_18 pgsql_gzip_18-1.0.0-6PGDG.rhel10.x86_64.rpm pgdg 1.0.0 13.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pgsql_gzip_18-1.0.0-6PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 18 pgsql_gzip_18 pgsql_gzip_18-1.1.1-1PGDG.rhel10.2.aarch64.rpm pgdg 1.1.1 14.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pgsql_gzip_18-1.1.1-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 pgsql_gzip_18 pgsql_gzip_18-1.1.0-1PIGSTY.el10.aarch64.rpm pigsty 1.1.0 14.1KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgsql_gzip_18-1.1.0-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 18 pgsql_gzip_18 pgsql_gzip_18-1.1.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.1.0 13.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pgsql_gzip_18-1.1.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 pgsql_gzip_18 pgsql_gzip_18-1.0.0-8PGDG.rhel10.2.aarch64.rpm pgdg 1.0.0 13.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pgsql_gzip_18-1.0.0-8PGDG.rhel10.2.aarch64.rpm
@@ -100,26 +106,32 @@ weight: 4010
 @ u24.aarch64 18 postgresql-18-gzip postgresql-18-gzip_1.1.0-1PIGSTY~noble_arm64.deb pigsty 1.1.0 12.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgsql-gzip/postgresql-18-gzip_1.1.0-1PIGSTY~noble_arm64.deb
 @ u26.x86_64 18 postgresql-18-gzip postgresql-18-gzip_1.1.0-1PIGSTY~resolute_amd64.deb pigsty 1.1.0 13.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgsql-gzip/postgresql-18-gzip_1.1.0-1PIGSTY~resolute_amd64.deb
 @ u26.aarch64 18 postgresql-18-gzip postgresql-18-gzip_1.1.0-1PIGSTY~resolute_arm64.deb pigsty 1.1.0 13.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgsql-gzip/postgresql-18-gzip_1.1.0-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 17 pgsql_gzip_17 pgsql_gzip_17-1.1.1-1PGDG.rhel8.10.x86_64.rpm pgdg 1.1.1 14.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pgsql_gzip_17-1.1.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 pgsql_gzip_17 pgsql_gzip_17-1.1.0-1PIGSTY.el8.x86_64.rpm pigsty 1.1.0 14.1KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgsql_gzip_17-1.1.0-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 17 pgsql_gzip_17 pgsql_gzip_17-1.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 1.1.0 13.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pgsql_gzip_17-1.1.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 pgsql_gzip_17 pgsql_gzip_17-1.0.0-3PGDG.rhel8.x86_64.rpm pgdg 1.0.0 12.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pgsql_gzip_17-1.0.0-3PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 17 pgsql_gzip_17 pgsql_gzip_17-1.1.1-1PGDG.rhel8.10.aarch64.rpm pgdg 1.1.1 14.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/pgsql_gzip_17-1.1.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 pgsql_gzip_17 pgsql_gzip_17-1.1.0-1PIGSTY.el8.aarch64.rpm pigsty 1.1.0 14.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgsql_gzip_17-1.1.0-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 17 pgsql_gzip_17 pgsql_gzip_17-1.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 1.1.0 13.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/pgsql_gzip_17-1.1.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 pgsql_gzip_17 pgsql_gzip_17-1.0.0-3PGDG.rhel8.aarch64.rpm pgdg 1.0.0 12.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/pgsql_gzip_17-1.0.0-3PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 17 pgsql_gzip_17 pgsql_gzip_17-1.1.1-1PGDG.rhel9.8.x86_64.rpm pgdg 1.1.1 13.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pgsql_gzip_17-1.1.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 pgsql_gzip_17 pgsql_gzip_17-1.1.0-1PIGSTY.el9.x86_64.rpm pigsty 1.1.0 13.9KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgsql_gzip_17-1.1.0-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 17 pgsql_gzip_17 pgsql_gzip_17-1.1.0-1PGDG.rhel9.8.x86_64.rpm pgdg 1.1.0 13.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pgsql_gzip_17-1.1.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 pgsql_gzip_17 pgsql_gzip_17-1.0.0-8PGDG.rhel9.8.x86_64.rpm pgdg 1.0.0 13.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pgsql_gzip_17-1.0.0-8PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 pgsql_gzip_17 pgsql_gzip_17-1.0.0-3PGDG.rhel9.x86_64.rpm pgdg 1.0.0 12.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pgsql_gzip_17-1.0.0-3PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 17 pgsql_gzip_17 pgsql_gzip_17-1.1.1-1PGDG.rhel9.8.aarch64.rpm pgdg 1.1.1 13.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pgsql_gzip_17-1.1.1-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 pgsql_gzip_17 pgsql_gzip_17-1.1.0-1PIGSTY.el9.aarch64.rpm pigsty 1.1.0 13.9KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgsql_gzip_17-1.1.0-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 17 pgsql_gzip_17 pgsql_gzip_17-1.1.0-1PGDG.rhel9.8.aarch64.rpm pgdg 1.1.0 12.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pgsql_gzip_17-1.1.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 pgsql_gzip_17 pgsql_gzip_17-1.0.0-8PGDG.rhel9.8.aarch64.rpm pgdg 1.0.0 12.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pgsql_gzip_17-1.0.0-8PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 pgsql_gzip_17 pgsql_gzip_17-1.0.0-8PGDG.rhel9.7.aarch64.rpm pgdg 1.0.0 12.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pgsql_gzip_17-1.0.0-8PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 17 pgsql_gzip_17 pgsql_gzip_17-1.0.0-8PGDG.rhel9.6.aarch64.rpm pgdg 1.0.0 12.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pgsql_gzip_17-1.0.0-8PGDG.rhel9.6.aarch64.rpm
 @ el9.aarch64 17 pgsql_gzip_17 pgsql_gzip_17-1.0.0-3PGDG.rhel9.aarch64.rpm pgdg 1.0.0 12.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pgsql_gzip_17-1.0.0-3PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 17 pgsql_gzip_17 pgsql_gzip_17-1.1.1-1PGDG.rhel10.2.x86_64.rpm pgdg 1.1.1 14.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pgsql_gzip_17-1.1.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 pgsql_gzip_17 pgsql_gzip_17-1.1.0-1PIGSTY.el10.x86_64.rpm pigsty 1.1.0 14.0KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgsql_gzip_17-1.1.0-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 17 pgsql_gzip_17 pgsql_gzip_17-1.1.0-1PGDG.rhel10.2.x86_64.rpm pgdg 1.1.0 13.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pgsql_gzip_17-1.1.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 pgsql_gzip_17 pgsql_gzip_17-1.0.0-8PGDG.rhel10.2.x86_64.rpm pgdg 1.0.0 13.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pgsql_gzip_17-1.0.0-8PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 pgsql_gzip_17 pgsql_gzip_17-1.0.0-6PGDG.rhel10.x86_64.rpm pgdg 1.0.0 13.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pgsql_gzip_17-1.0.0-6PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 17 pgsql_gzip_17 pgsql_gzip_17-1.1.1-1PGDG.rhel10.2.aarch64.rpm pgdg 1.1.1 14.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pgsql_gzip_17-1.1.1-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 pgsql_gzip_17 pgsql_gzip_17-1.1.0-1PIGSTY.el10.aarch64.rpm pigsty 1.1.0 14.1KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgsql_gzip_17-1.1.0-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 17 pgsql_gzip_17 pgsql_gzip_17-1.1.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.1.0 13.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pgsql_gzip_17-1.1.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 pgsql_gzip_17 pgsql_gzip_17-1.0.0-8PGDG.rhel10.2.aarch64.rpm pgdg 1.0.0 13.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pgsql_gzip_17-1.0.0-8PGDG.rhel10.2.aarch64.rpm
@@ -134,26 +146,32 @@ weight: 4010
 @ u24.aarch64 17 postgresql-17-gzip postgresql-17-gzip_1.1.0-1PIGSTY~noble_arm64.deb pigsty 1.1.0 12.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgsql-gzip/postgresql-17-gzip_1.1.0-1PIGSTY~noble_arm64.deb
 @ u26.x86_64 17 postgresql-17-gzip postgresql-17-gzip_1.1.0-1PIGSTY~resolute_amd64.deb pigsty 1.1.0 13.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgsql-gzip/postgresql-17-gzip_1.1.0-1PIGSTY~resolute_amd64.deb
 @ u26.aarch64 17 postgresql-17-gzip postgresql-17-gzip_1.1.0-1PIGSTY~resolute_arm64.deb pigsty 1.1.0 13.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgsql-gzip/postgresql-17-gzip_1.1.0-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 16 pgsql_gzip_16 pgsql_gzip_16-1.1.1-1PGDG.rhel8.10.x86_64.rpm pgdg 1.1.1 14.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pgsql_gzip_16-1.1.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 pgsql_gzip_16 pgsql_gzip_16-1.1.0-1PIGSTY.el8.x86_64.rpm pigsty 1.1.0 14.1KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgsql_gzip_16-1.1.0-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 16 pgsql_gzip_16 pgsql_gzip_16-1.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 1.1.0 13.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pgsql_gzip_16-1.1.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 pgsql_gzip_16 pgsql_gzip_16-1.0.0-2PGDG.rhel8.x86_64.rpm pgdg 1.0.0 12.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pgsql_gzip_16-1.0.0-2PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 16 pgsql_gzip_16 pgsql_gzip_16-1.1.1-1PGDG.rhel8.10.aarch64.rpm pgdg 1.1.1 14.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pgsql_gzip_16-1.1.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 pgsql_gzip_16 pgsql_gzip_16-1.1.0-1PIGSTY.el8.aarch64.rpm pigsty 1.1.0 14.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgsql_gzip_16-1.1.0-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 16 pgsql_gzip_16 pgsql_gzip_16-1.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 1.1.0 13.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pgsql_gzip_16-1.1.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 pgsql_gzip_16 pgsql_gzip_16-1.0.0-1PGDG.rhel8.aarch64.rpm pgdg 1.0.0 12.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pgsql_gzip_16-1.0.0-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 16 pgsql_gzip_16 pgsql_gzip_16-1.1.1-1PGDG.rhel9.8.x86_64.rpm pgdg 1.1.1 13.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pgsql_gzip_16-1.1.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 pgsql_gzip_16 pgsql_gzip_16-1.1.0-1PIGSTY.el9.x86_64.rpm pigsty 1.1.0 14.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgsql_gzip_16-1.1.0-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 16 pgsql_gzip_16 pgsql_gzip_16-1.1.0-1PGDG.rhel9.8.x86_64.rpm pgdg 1.1.0 13.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pgsql_gzip_16-1.1.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 pgsql_gzip_16 pgsql_gzip_16-1.0.0-8PGDG.rhel9.8.x86_64.rpm pgdg 1.0.0 13.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pgsql_gzip_16-1.0.0-8PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 pgsql_gzip_16 pgsql_gzip_16-1.0.0-2PGDG.rhel9.x86_64.rpm pgdg 1.0.0 12.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pgsql_gzip_16-1.0.0-2PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 16 pgsql_gzip_16 pgsql_gzip_16-1.1.1-1PGDG.rhel9.8.aarch64.rpm pgdg 1.1.1 13.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pgsql_gzip_16-1.1.1-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 pgsql_gzip_16 pgsql_gzip_16-1.1.0-1PIGSTY.el9.aarch64.rpm pigsty 1.1.0 13.9KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgsql_gzip_16-1.1.0-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 16 pgsql_gzip_16 pgsql_gzip_16-1.1.0-1PGDG.rhel9.8.aarch64.rpm pgdg 1.1.0 12.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pgsql_gzip_16-1.1.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 pgsql_gzip_16 pgsql_gzip_16-1.0.0-8PGDG.rhel9.8.aarch64.rpm pgdg 1.0.0 12.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pgsql_gzip_16-1.0.0-8PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 pgsql_gzip_16 pgsql_gzip_16-1.0.0-8PGDG.rhel9.7.aarch64.rpm pgdg 1.0.0 12.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pgsql_gzip_16-1.0.0-8PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 16 pgsql_gzip_16 pgsql_gzip_16-1.0.0-8PGDG.rhel9.6.aarch64.rpm pgdg 1.0.0 12.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pgsql_gzip_16-1.0.0-8PGDG.rhel9.6.aarch64.rpm
 @ el9.aarch64 16 pgsql_gzip_16 pgsql_gzip_16-1.0.0-1PGDG.rhel9.aarch64.rpm pgdg 1.0.0 12.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pgsql_gzip_16-1.0.0-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 16 pgsql_gzip_16 pgsql_gzip_16-1.1.1-1PGDG.rhel10.2.x86_64.rpm pgdg 1.1.1 14.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pgsql_gzip_16-1.1.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 pgsql_gzip_16 pgsql_gzip_16-1.1.0-1PIGSTY.el10.x86_64.rpm pigsty 1.1.0 14.0KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgsql_gzip_16-1.1.0-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 16 pgsql_gzip_16 pgsql_gzip_16-1.1.0-1PGDG.rhel10.2.x86_64.rpm pgdg 1.1.0 13.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pgsql_gzip_16-1.1.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 pgsql_gzip_16 pgsql_gzip_16-1.0.0-8PGDG.rhel10.2.x86_64.rpm pgdg 1.0.0 13.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pgsql_gzip_16-1.0.0-8PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 pgsql_gzip_16 pgsql_gzip_16-1.0.0-6PGDG.rhel10.x86_64.rpm pgdg 1.0.0 13.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pgsql_gzip_16-1.0.0-6PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 16 pgsql_gzip_16 pgsql_gzip_16-1.1.1-1PGDG.rhel10.2.aarch64.rpm pgdg 1.1.1 14.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pgsql_gzip_16-1.1.1-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 pgsql_gzip_16 pgsql_gzip_16-1.1.0-1PIGSTY.el10.aarch64.rpm pigsty 1.1.0 14.1KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgsql_gzip_16-1.1.0-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 16 pgsql_gzip_16 pgsql_gzip_16-1.1.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.1.0 13.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pgsql_gzip_16-1.1.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 pgsql_gzip_16 pgsql_gzip_16-1.0.0-8PGDG.rhel10.2.aarch64.rpm pgdg 1.0.0 13.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pgsql_gzip_16-1.0.0-8PGDG.rhel10.2.aarch64.rpm
@@ -168,26 +186,32 @@ weight: 4010
 @ u24.aarch64 16 postgresql-16-gzip postgresql-16-gzip_1.1.0-1PIGSTY~noble_arm64.deb pigsty 1.1.0 12.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgsql-gzip/postgresql-16-gzip_1.1.0-1PIGSTY~noble_arm64.deb
 @ u26.x86_64 16 postgresql-16-gzip postgresql-16-gzip_1.1.0-1PIGSTY~resolute_amd64.deb pigsty 1.1.0 13.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgsql-gzip/postgresql-16-gzip_1.1.0-1PIGSTY~resolute_amd64.deb
 @ u26.aarch64 16 postgresql-16-gzip postgresql-16-gzip_1.1.0-1PIGSTY~resolute_arm64.deb pigsty 1.1.0 13.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgsql-gzip/postgresql-16-gzip_1.1.0-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 15 pgsql_gzip_15 pgsql_gzip_15-1.1.1-1PGDG.rhel8.10.x86_64.rpm pgdg 1.1.1 14.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pgsql_gzip_15-1.1.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 pgsql_gzip_15 pgsql_gzip_15-1.1.0-1PIGSTY.el8.x86_64.rpm pigsty 1.1.0 14.1KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgsql_gzip_15-1.1.0-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 15 pgsql_gzip_15 pgsql_gzip_15-1.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 1.1.0 13.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pgsql_gzip_15-1.1.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 pgsql_gzip_15 pgsql_gzip_15-1.0.0-2PGDG.rhel8.x86_64.rpm pgdg 1.0.0 12.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pgsql_gzip_15-1.0.0-2PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 15 pgsql_gzip_15 pgsql_gzip_15-1.1.1-1PGDG.rhel8.10.aarch64.rpm pgdg 1.1.1 14.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pgsql_gzip_15-1.1.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 15 pgsql_gzip_15 pgsql_gzip_15-1.1.0-1PIGSTY.el8.aarch64.rpm pigsty 1.1.0 14.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgsql_gzip_15-1.1.0-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 15 pgsql_gzip_15 pgsql_gzip_15-1.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 1.1.0 13.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pgsql_gzip_15-1.1.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 15 pgsql_gzip_15 pgsql_gzip_15-1.0.0-1PGDG.rhel8.aarch64.rpm pgdg 1.0.0 12.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pgsql_gzip_15-1.0.0-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 15 pgsql_gzip_15 pgsql_gzip_15-1.1.1-1PGDG.rhel9.8.x86_64.rpm pgdg 1.1.1 13.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pgsql_gzip_15-1.1.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 pgsql_gzip_15 pgsql_gzip_15-1.1.0-1PIGSTY.el9.x86_64.rpm pigsty 1.1.0 14.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgsql_gzip_15-1.1.0-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 15 pgsql_gzip_15 pgsql_gzip_15-1.1.0-1PGDG.rhel9.8.x86_64.rpm pgdg 1.1.0 13.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pgsql_gzip_15-1.1.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 pgsql_gzip_15 pgsql_gzip_15-1.0.0-8PGDG.rhel9.8.x86_64.rpm pgdg 1.0.0 13.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pgsql_gzip_15-1.0.0-8PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 pgsql_gzip_15 pgsql_gzip_15-1.0.0-2PGDG.rhel9.x86_64.rpm pgdg 1.0.0 12.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pgsql_gzip_15-1.0.0-2PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 15 pgsql_gzip_15 pgsql_gzip_15-1.1.1-1PGDG.rhel9.8.aarch64.rpm pgdg 1.1.1 13.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pgsql_gzip_15-1.1.1-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 pgsql_gzip_15 pgsql_gzip_15-1.1.0-1PIGSTY.el9.aarch64.rpm pigsty 1.1.0 13.9KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgsql_gzip_15-1.1.0-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 15 pgsql_gzip_15 pgsql_gzip_15-1.1.0-1PGDG.rhel9.8.aarch64.rpm pgdg 1.1.0 12.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pgsql_gzip_15-1.1.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 pgsql_gzip_15 pgsql_gzip_15-1.0.0-8PGDG.rhel9.8.aarch64.rpm pgdg 1.0.0 12.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pgsql_gzip_15-1.0.0-8PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 pgsql_gzip_15 pgsql_gzip_15-1.0.0-8PGDG.rhel9.7.aarch64.rpm pgdg 1.0.0 12.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pgsql_gzip_15-1.0.0-8PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 15 pgsql_gzip_15 pgsql_gzip_15-1.0.0-8PGDG.rhel9.6.aarch64.rpm pgdg 1.0.0 12.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pgsql_gzip_15-1.0.0-8PGDG.rhel9.6.aarch64.rpm
 @ el9.aarch64 15 pgsql_gzip_15 pgsql_gzip_15-1.0.0-1PGDG.rhel9.aarch64.rpm pgdg 1.0.0 12.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pgsql_gzip_15-1.0.0-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 15 pgsql_gzip_15 pgsql_gzip_15-1.1.1-1PGDG.rhel10.2.x86_64.rpm pgdg 1.1.1 14.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pgsql_gzip_15-1.1.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 pgsql_gzip_15 pgsql_gzip_15-1.1.0-1PIGSTY.el10.x86_64.rpm pigsty 1.1.0 14.0KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgsql_gzip_15-1.1.0-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 15 pgsql_gzip_15 pgsql_gzip_15-1.1.0-1PGDG.rhel10.2.x86_64.rpm pgdg 1.1.0 13.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pgsql_gzip_15-1.1.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 pgsql_gzip_15 pgsql_gzip_15-1.0.0-8PGDG.rhel10.2.x86_64.rpm pgdg 1.0.0 13.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pgsql_gzip_15-1.0.0-8PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 pgsql_gzip_15 pgsql_gzip_15-1.0.0-6PGDG.rhel10.x86_64.rpm pgdg 1.0.0 13.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pgsql_gzip_15-1.0.0-6PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 15 pgsql_gzip_15 pgsql_gzip_15-1.1.1-1PGDG.rhel10.2.aarch64.rpm pgdg 1.1.1 14.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pgsql_gzip_15-1.1.1-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 pgsql_gzip_15 pgsql_gzip_15-1.1.0-1PIGSTY.el10.aarch64.rpm pigsty 1.1.0 14.1KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgsql_gzip_15-1.1.0-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 15 pgsql_gzip_15 pgsql_gzip_15-1.1.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.1.0 13.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pgsql_gzip_15-1.1.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 pgsql_gzip_15 pgsql_gzip_15-1.0.0-8PGDG.rhel10.2.aarch64.rpm pgdg 1.0.0 13.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pgsql_gzip_15-1.0.0-8PGDG.rhel10.2.aarch64.rpm
@@ -202,26 +226,32 @@ weight: 4010
 @ u24.aarch64 15 postgresql-15-gzip postgresql-15-gzip_1.1.0-1PIGSTY~noble_arm64.deb pigsty 1.1.0 12.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pgsql-gzip/postgresql-15-gzip_1.1.0-1PIGSTY~noble_arm64.deb
 @ u26.x86_64 15 postgresql-15-gzip postgresql-15-gzip_1.1.0-1PIGSTY~resolute_amd64.deb pigsty 1.1.0 13.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgsql-gzip/postgresql-15-gzip_1.1.0-1PIGSTY~resolute_amd64.deb
 @ u26.aarch64 15 postgresql-15-gzip postgresql-15-gzip_1.1.0-1PIGSTY~resolute_arm64.deb pigsty 1.1.0 13.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pgsql-gzip/postgresql-15-gzip_1.1.0-1PIGSTY~resolute_arm64.deb
+@ el8.x86_64 14 pgsql_gzip_14 pgsql_gzip_14-1.1.1-1PGDG.rhel8.10.x86_64.rpm pgdg 1.1.1 14.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pgsql_gzip_14-1.1.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 pgsql_gzip_14 pgsql_gzip_14-1.1.0-1PIGSTY.el8.x86_64.rpm pigsty 1.1.0 14.1KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgsql_gzip_14-1.1.0-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 14 pgsql_gzip_14 pgsql_gzip_14-1.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 1.1.0 13.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pgsql_gzip_14-1.1.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 pgsql_gzip_14 pgsql_gzip_14-1.0.0-2PGDG.rhel8.x86_64.rpm pgdg 1.0.0 12.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pgsql_gzip_14-1.0.0-2PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 14 pgsql_gzip_14 pgsql_gzip_14-1.1.1-1PGDG.rhel8.10.aarch64.rpm pgdg 1.1.1 14.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pgsql_gzip_14-1.1.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 14 pgsql_gzip_14 pgsql_gzip_14-1.1.0-1PIGSTY.el8.aarch64.rpm pigsty 1.1.0 14.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgsql_gzip_14-1.1.0-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 14 pgsql_gzip_14 pgsql_gzip_14-1.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 1.1.0 13.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pgsql_gzip_14-1.1.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 14 pgsql_gzip_14 pgsql_gzip_14-1.0.0-1PGDG.rhel8.aarch64.rpm pgdg 1.0.0 12.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pgsql_gzip_14-1.0.0-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 14 pgsql_gzip_14 pgsql_gzip_14-1.1.1-1PGDG.rhel9.8.x86_64.rpm pgdg 1.1.1 13.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pgsql_gzip_14-1.1.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 pgsql_gzip_14 pgsql_gzip_14-1.1.0-1PIGSTY.el9.x86_64.rpm pigsty 1.1.0 13.9KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgsql_gzip_14-1.1.0-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 14 pgsql_gzip_14 pgsql_gzip_14-1.1.0-1PGDG.rhel9.8.x86_64.rpm pgdg 1.1.0 13.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pgsql_gzip_14-1.1.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 pgsql_gzip_14 pgsql_gzip_14-1.0.0-8PGDG.rhel9.8.x86_64.rpm pgdg 1.0.0 13.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pgsql_gzip_14-1.0.0-8PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 pgsql_gzip_14 pgsql_gzip_14-1.0.0-2PGDG.rhel9.x86_64.rpm pgdg 1.0.0 12.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pgsql_gzip_14-1.0.0-2PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 14 pgsql_gzip_14 pgsql_gzip_14-1.1.1-1PGDG.rhel9.8.aarch64.rpm pgdg 1.1.1 13.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pgsql_gzip_14-1.1.1-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 pgsql_gzip_14 pgsql_gzip_14-1.1.0-1PIGSTY.el9.aarch64.rpm pigsty 1.1.0 13.9KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgsql_gzip_14-1.1.0-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 14 pgsql_gzip_14 pgsql_gzip_14-1.1.0-1PGDG.rhel9.8.aarch64.rpm pgdg 1.1.0 12.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pgsql_gzip_14-1.1.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 pgsql_gzip_14 pgsql_gzip_14-1.0.0-8PGDG.rhel9.8.aarch64.rpm pgdg 1.0.0 12.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pgsql_gzip_14-1.0.0-8PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 pgsql_gzip_14 pgsql_gzip_14-1.0.0-8PGDG.rhel9.7.aarch64.rpm pgdg 1.0.0 12.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pgsql_gzip_14-1.0.0-8PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 14 pgsql_gzip_14 pgsql_gzip_14-1.0.0-8PGDG.rhel9.6.aarch64.rpm pgdg 1.0.0 12.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pgsql_gzip_14-1.0.0-8PGDG.rhel9.6.aarch64.rpm
 @ el9.aarch64 14 pgsql_gzip_14 pgsql_gzip_14-1.0.0-1PGDG.rhel9.aarch64.rpm pgdg 1.0.0 12.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pgsql_gzip_14-1.0.0-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 14 pgsql_gzip_14 pgsql_gzip_14-1.1.1-1PGDG.rhel10.2.x86_64.rpm pgdg 1.1.1 14.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pgsql_gzip_14-1.1.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 pgsql_gzip_14 pgsql_gzip_14-1.1.0-1PIGSTY.el10.x86_64.rpm pigsty 1.1.0 14.0KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgsql_gzip_14-1.1.0-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 14 pgsql_gzip_14 pgsql_gzip_14-1.1.0-1PGDG.rhel10.2.x86_64.rpm pgdg 1.1.0 13.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pgsql_gzip_14-1.1.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 pgsql_gzip_14 pgsql_gzip_14-1.0.0-8PGDG.rhel10.2.x86_64.rpm pgdg 1.0.0 13.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pgsql_gzip_14-1.0.0-8PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 pgsql_gzip_14 pgsql_gzip_14-1.0.0-6PGDG.rhel10.x86_64.rpm pgdg 1.0.0 13.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pgsql_gzip_14-1.0.0-6PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 14 pgsql_gzip_14 pgsql_gzip_14-1.1.1-1PGDG.rhel10.2.aarch64.rpm pgdg 1.1.1 14.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pgsql_gzip_14-1.1.1-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 pgsql_gzip_14 pgsql_gzip_14-1.1.0-1PIGSTY.el10.aarch64.rpm pigsty 1.1.0 14.1KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgsql_gzip_14-1.1.0-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 14 pgsql_gzip_14 pgsql_gzip_14-1.1.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.1.0 13.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pgsql_gzip_14-1.1.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 pgsql_gzip_14 pgsql_gzip_14-1.0.0-8PGDG.rhel10.2.aarch64.rpm pgdg 1.0.0 13.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pgsql_gzip_14-1.0.0-8PGDG.rhel10.2.aarch64.rpm
@@ -257,7 +287,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_gzip;          # Install for current active PG version
 ```
 

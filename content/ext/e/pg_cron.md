@@ -342,7 +342,7 @@ pig repo add pgdg -u          # Add PGDG repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_cron;          # Install for current active PG version
 ```
 
@@ -391,7 +391,7 @@ CREATE EXTENSION pg_cron;
 
 beware that `cron.database` has to be set before adding to `shared_preload_libraries`
 
-```text
+```
 -- Delete old data on Saturday at 3:30am (GMT)
 SELECT cron.schedule('30 3 * * 6', $$DELETE FROM events WHERE event_time < now() - interval '1 week'$$);
  schedule
@@ -436,7 +436,7 @@ SELECT cron.schedule('process-payroll', '0 12 $ * *', 'CALL process_payroll()');
 
 Crontab format:
 
-```text
+```
  ┌───────────── min (0 - 59)
  │ ┌────────────── hour (0 - 23)
  │ │ ┌─────────────── day of month (1 - 31) or last day of the month ($)

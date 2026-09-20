@@ -22,27 +22,27 @@ There are **47** extensions in **45** packages.
 | [`ddlx`](/ext/e/ddlx) | [`pg_ddlx`](https://github.com/lacanoid/pgddl) | `0.30` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | DDL eXtractor functions |
 | [`pglinter`](/ext/e/pglinter) | [`pglinter`](https://github.com/pmpetit/pglinter) | `2.0.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | PostgreSQL Linting and Analysis Extension |
 | [`prioritize`](/ext/e/prioritize) | [`pg_prioritize`](https://github.com/schmiddy/pg_prioritize) | `1.0.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | get and set the priority of PostgreSQL backends |
-| [`pg_checksums`](/ext/e/pg_checksums) | [`pg_checksums`](https://github.com/credativ/pg_checksums) | `1.3` | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Activate/deactivate/verify checksums in offline Postgres clusters |
+| [`pg_checksums`](/ext/e/pg_checksums) | [`pg_checksums`](https://github.com/credativ/pg_checksums) | `1.4` | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Activate/deactivate/verify checksums in offline Postgres clusters |
 | [`pg_readonly`](/ext/e/pg_readonly) | [`pg_readonly`](https://github.com/pierreforstmann/pg_readonly) | `1.0.6` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | cluster database read only |
 | [`pgdd`](/ext/e/pgdd) | [`pgdd`](https://github.com/rustprooflabs/pgdd) | `0.6.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Introspect pg data dictionary via standard SQL |
-| [`pg_permissions`](/ext/e/pg_permissions) | [`pg_permissions`](https://github.com/cybertec-postgresql/pg_permissions) | `1.4.1` | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | view object permissions and compare them with the desired state |
+| [`pg_permissions`](/ext/e/pg_permissions) | [`pg_permissions`](https://github.com/cybertec-postgresql/pg_permissions) | `1.4.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | view object permissions and compare them with the desired state |
 | [`pgautofailover`](/ext/e/pgautofailover) | [`pgautofailover`](https://github.com/hapostgres/pg_auto_failover) | `2.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | pg_auto_failover |
 | [`pg_catcheck`](/ext/e/pg_catcheck) | [`pg_catcheck`](https://github.com/EnterpriseDB/pg_catcheck) | `1.6.0` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Diagnosing system catalog corruption |
 | [`pre_prepare`](/ext/e/pre_prepare) | [`preprepare`](https://github.com/dimitri/preprepare) | `0.9` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Pre Prepare your Statement server side |
 | [`pg_upless`](/ext/e/pg_upless) | [`pg_upless`](https://github.com/rodo/pg_upless) | `0.0.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Detect Useless UPDATE |
 | [`pgcozy`](/ext/e/pgcozy) | [`pgcozy`](https://github.com/vventirozos/pgcozy) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Pre-warming shared buffers according to previous pg_buffercache snapshots for PostgreSQL. |
 | [`pg_orphaned`](/ext/e/pg_orphaned) | [`pg_orphaned`](https://github.com/bdrouvot/pg_orphaned) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Deal with orphaned files |
-| [`pg_crash`](/ext/e/pg_crash) | [`pg_crash`](https://github.com/cybertec-postgresql/pg_crash) | `1.0` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Send random signals to random processes |
+| [`pg_crash`](/ext/e/pg_crash) | [`pg_crash`](https://github.com/cybertec-postgresql/pg_crash) | `0.3` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Send random signals to random processes |
 | [`pg_cheat_funcs`](/ext/e/pg_cheat_funcs) | [`pg_cheat_funcs`](https://github.com/MasaoFujii/pg_cheat_funcs) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Provides cheat (but useful) functions |
 | [`fio`](/ext/e/fio) | [`pg_fio`](https://github.com/csimsek/pgsql-fio) | `1.0` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostgreSQL File I/O Functions |
-| [`qos`](/ext/e/qos) | [`pg_qos`](https://github.com/appstonia/pg_qos) | `1.0` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | QoS resource governor extension for PostgreSQL sessions and queries |
+| [`qos`](/ext/e/qos) | [`pg_qos`](https://github.com/appstonia/pg_qos) | `1.1.0` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | QoS resource governor extension for PostgreSQL sessions and queries |
 | [`pg_pathcheck`](/ext/e/pg_pathcheck) | [`pg_pathcheck`](https://github.com/danolivo/pg_pathcheck) | `0.9.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Validate planner Path trees for freed or corrupt memory |
 | [`pgdisablelogerror`](/ext/e/pgdisablelogerror) | [`pgdisablelogerror`](https://github.com/fmbiete/pgdisablelogerror) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Disable selected SQLSTATE error codes from PostgreSQL server logging. |
 | [`online_advisor`](/ext/e/online_advisor) | [`online_advisor`](https://github.com/knizhnik/online_advisor) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Suggest missing indexes and extended statistics online |
 | [`pg_column_tetris`](/ext/e/pg_column_tetris) | [`pg_column_tetris`](https://github.com/rogerwelin/pg_column_tetris) | `0.1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Enforce optimal column alignment to minimize row padding |
 | [`cat_tools`](/ext/e/cat_tools) | [`cat_tools`](https://github.com/Postgres-Extensions/cat_tools) | `0.3.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Tools for interfacing with the PostgreSQL catalog |
 | [`pg_savior`](/ext/e/pg_savior) | [`pg_savior`](https://github.com/viggy28/pg_savior) | `0.1.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Postgres extension to save OOPS mistakes |
-| [`safeupdate`](/ext/e/safeupdate) | [`safeupdate`](https://github.com/eradman/pg-safeupdate) | `1.5` | <a class="ext-badge ext-badge--license isc" href="/ext/license#isc">ISC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Require criteria for UPDATE and DELETE |
+| [`safeupdate`](/ext/e/safeupdate) | [`safeupdate`](https://github.com/eradman/pg-safeupdate) | `1.7` | <a class="ext-badge ext-badge--license isc" href="/ext/license#isc">ISC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Require criteria for UPDATE and DELETE |
 | [`pg_strict`](/ext/e/pg_strict) | [`pg_strict`](https://github.com/spa5k/pg_strict) | `1.0.5` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Prevent dangerous UPDATE and DELETE without WHERE clause |
 | [`pg_drop_events`](/ext/e/pg_drop_events) | [`pg_drop_events`](https://github.com/bolajiwahab/pg_drop_events) | `0.1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | logs transaction ids of drop table, drop column, drop materialized view statements |
 | [`table_log`](/ext/e/table_log) | [`table_log`](https://github.com/df7cb/table_log) | `0.6.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | record table modification logs and PITR for table/row |
@@ -256,7 +256,7 @@ There are **47** extensions in **45** packages.
 
 ## pg_checksums {#pg_checksums}
 
-[**`pg_checksums`**](/ext/e/pg_checksums) - `1.3` : Activate/deactivate/verify checksums in offline Postgres clusters
+[**`pg_checksums`**](/ext/e/pg_checksums) - `1.4` : Activate/deactivate/verify checksums in offline Postgres clusters
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -284,7 +284,7 @@ There are **47** extensions in **45** packages.
 | **RPM** | `pg_readonly_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **DEB** | `postgresql-$v-pg-readonly` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
@@ -322,8 +322,8 @@ There are **47** extensions in **45** packages.
 | **RPM** | `pg_permissions_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **DEB** | `postgresql-$v-pg-permissions` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
 
@@ -446,7 +446,7 @@ There are **47** extensions in **45** packages.
 
 ## pg_crash {#pg_crash}
 
-[**`pg_crash`**](/ext/e/pg_crash) - `1.0` : Send random signals to random processes
+[**`pg_crash`**](/ext/e/pg_crash) - `0.3` : Send random signals to random processes
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -503,7 +503,7 @@ There are **47** extensions in **45** packages.
 
 ## qos {#qos}
 
-[**`pg_qos`**](/ext/e/qos) - `1.0` : QoS resource governor extension for PostgreSQL sessions and queries
+[**`pg_qos`**](/ext/e/qos) - `1.1.0` : QoS resource governor extension for PostgreSQL sessions and queries
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -636,7 +636,7 @@ There are **47** extensions in **45** packages.
 
 ## safeupdate {#safeupdate}
 
-[**`safeupdate`**](/ext/e/safeupdate) - `1.5` : Require criteria for UPDATE and DELETE
+[**`safeupdate`**](/ext/e/safeupdate) - `1.7` : Require criteria for UPDATE and DELETE
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

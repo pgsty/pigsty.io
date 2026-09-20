@@ -11,10 +11,10 @@ weight: 2470
     <div class="ext-card__title">alitrack/duckdb_fdw</div>
     <div class="ext-card__desc">https://github.com/alitrack/duckdb_fdw</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/duckdb_fdw-1.4.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/duckdb_fdw-2.0.1+git20260529.9354241.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">duckdb_fdw-1.4.3.tar.gz</div>
-    <div class="ext-card__desc">duckdb_fdw-1.4.3.tar.gz</div>
+    <div class="ext-card__title">duckdb_fdw-2.0.1+git20260529.9354241.tar.gz</div>
+    <div class="ext-card__desc">duckdb_fdw-2.0.1+git20260529.9354241.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2470
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`duckdb_fdw`**](/ext/e/duckdb_fdw) | `1.4.3` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`duckdb_fdw`**](/ext/e/duckdb_fdw) | `2.0.1` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,16 +38,16 @@ weight: 2470
 {.ext-table .ext-table--rel}
 
 
-> depend on pg_duckdb's libduckdb, memory mode is break
+> Uses libduckdb 1.5.5; no longer depends on pg_duckdb.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.3` | {{< pgvers "18,17,16,15,14" >}} | `duckdb_fdw` | - |
-| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.3` | {{< pgvers "18,17,16,15,14" >}} | `duckdb_fdw_$v` | `pg_duckdb_$v` |
-| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.3` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-duckdb-fdw` | `postgresql-$v-pg-duckdb` |
+| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.0.1` | {{< pgvers "18,17,16,15,14" >}} | `duckdb_fdw` | - |
+| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.0.1` | {{< pgvers "18,17,16,15,14" >}} | `duckdb_fdw_$v` | `libduckdb` |
+| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.0.1+git20260529.9354241` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-duckdb-fdw` | `libduckdb` |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -170,7 +170,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install duckdb_fdw;          # Install for current active PG version
 ```
 

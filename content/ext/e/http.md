@@ -11,10 +11,10 @@ weight: 4070
     <div class="ext-card__title">pramsey/pgsql-http</div>
     <div class="ext-card__desc">https://github.com/pramsey/pgsql-http</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgsql-http-1.7.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgsql-http-1.7.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pgsql-http-1.7.1.tar.gz</div>
-    <div class="ext-card__desc">pgsql-http-1.7.1.tar.gz</div>
+    <div class="ext-card__title">pgsql-http-1.7.2.tar.gz</div>
+    <div class="ext-card__desc">pgsql-http-1.7.2.tar.gz</div>
   </a>
 </div>
 
@@ -449,10 +449,10 @@ weight: 4070
 
 ## Build
 
-You can build the RPM packages for `pg_http` using `pig build`:
+You can build the RPM / DEB packages for `pg_http` using `pig build`:
 
 ```bash
-pig build pkg pg_http         # build RPM packages
+pig build pkg pg_http         # build RPM / DEB packages
 ```
 
 
@@ -466,7 +466,7 @@ pig repo add pgdg -u          # Add PGDG repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_http;          # Install for current active PG version
 ```
 

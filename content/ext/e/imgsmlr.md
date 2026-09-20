@@ -11,10 +11,10 @@ weight: 2830
     <div class="ext-card__title">postgrespro/imgsmlr</div>
     <div class="ext-card__desc">https://github.com/postgrespro/imgsmlr</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/imgsmlr-1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/imgsmlr-1.0+git20180223.c484a15.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">imgsmlr-1.0.tar.gz</div>
-    <div class="ext-card__desc">imgsmlr-1.0.tar.gz</div>
+    <div class="ext-card__title">imgsmlr-1.0+git20180223.c484a15.tar.gz</div>
+    <div class="ext-card__desc">imgsmlr-1.0+git20180223.c484a15.tar.gz</div>
   </a>
 </div>
 
@@ -47,7 +47,7 @@ weight: 2830
 |:----:|:----:|:----:|:------:|:--------:|:----:|
 | [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18,17,16,15,14" >}} | `imgsmlr` | - |
 | [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18,17,16,15,14" >}} | `imgsmlr_$v` | - |
-| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-imgsmlr` | - |
+| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0+git20180223.c484a15` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-imgsmlr` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -170,7 +170,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install imgsmlr;          # Install for current active PG version
 ```
 

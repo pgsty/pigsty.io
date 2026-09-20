@@ -167,7 +167,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_relusage;          # Install for current active PG version
 ```
 
@@ -221,7 +221,7 @@ SELECT * FROM pg_stats LIMIT 1;
 ```
 
 Produces log output:
-```text
+```
 relations used: pg_stats,pg_statistic,pg_class,pg_attribute,pg_namespace
 ```
 

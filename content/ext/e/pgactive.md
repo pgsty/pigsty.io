@@ -11,10 +11,10 @@ weight: 9560
     <div class="ext-card__title">aws/pgactive</div>
     <div class="ext-card__desc">https://github.com/aws/pgactive</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgactive-2.1.7.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgactive-2.1.9.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pgactive-2.1.7.tar.gz</div>
-    <div class="ext-card__desc">pgactive-2.1.7.tar.gz</div>
+    <div class="ext-card__title">pgactive-2.1.9.tar.gz</div>
+    <div class="ext-card__desc">pgactive-2.1.9.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 9560
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pgactive`**](/ext/e/pgactive) | `2.1.7` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pgactive`**](/ext/e/pgactive) | `2.1.9` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,16 +38,16 @@ weight: 9560
 {.ext-table .ext-table--rel}
 
 
-> require libpgfeutils
+> Package 2.1.9; SQL version 2.1.8.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.1.7` | {{< pgvers "18,17,16,15,14" >}} | `pgactive` | - |
-| [**RPM**](/ext/rpm#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.1.7` | {{< pgvers "18,17,16,15,14" >}} | `pgactive_$v` | - |
-| [**DEB**](/ext/deb#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.1.7` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgactive` | - |
+| [**EXT**](/ext/list#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.1.9` | {{< pgvers "18,17,16,15,14" >}} | `pgactive` | - |
+| [**RPM**](/ext/rpm#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.1.9` | {{< pgvers "18,17,16,15,14" >}} | `pgactive_$v` | - |
+| [**DEB**](/ext/deb#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.1.9` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgactive` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -170,7 +170,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pgactive;          # Install for current active PG version
 ```
 

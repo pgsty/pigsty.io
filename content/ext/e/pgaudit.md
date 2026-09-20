@@ -207,7 +207,7 @@ pig repo add pgdg -u          # Add PGDG repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pgaudit;          # Install for current active PG version
 ```
 
@@ -294,7 +294,7 @@ SET pgaudit.log = 'all, -misc';
 ```
 
 Example output:
-```text
+```
 AUDIT: SESSION,1,1,DDL,CREATE TABLE,TABLE,public.account,create table account(...)
 AUDIT: SESSION,2,1,READ,SELECT,,,select * from account
 ```

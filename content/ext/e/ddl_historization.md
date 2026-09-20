@@ -11,10 +11,10 @@ weight: 4310
     <div class="ext-card__title">rodo/pg_ddl_historization</div>
     <div class="ext-card__desc">https://github.com/rodo/pg_ddl_historization</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_ddl_historization-0.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_ddl_historization-1.0.0+git20241205.18eb9a4.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_ddl_historization-0.2.tar.gz</div>
-    <div class="ext-card__desc">pg_ddl_historization-0.2.tar.gz</div>
+    <div class="ext-card__title">pg_ddl_historization-1.0.0+git20241205.18eb9a4.tar.gz</div>
+    <div class="ext-card__desc">pg_ddl_historization-1.0.0+git20241205.18eb9a4.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 4310
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`ddl_historization`**](/ext/e/ddl_historization) | `0.2` | <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
+| [**`ddl_historization`**](/ext/e/ddl_historization) | `1.0.0` | <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -43,9 +43,9 @@ weight: 4310
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2` | {{< pgvers "18,17,16,15,14" >}} | `ddl_historization` | `plpgsql` |
-| [**RPM**](/ext/rpm#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2` | {{< pgvers "18,17,16,15,14" >}} | `ddl_historization_$v` | - |
-| [**DEB**](/ext/deb#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-ddl-historization` | - |
+| [**EXT**](/ext/list#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0.0` | {{< pgvers "18,17,16,15,14" >}} | `ddl_historization` | `plpgsql` |
+| [**RPM**](/ext/rpm#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0.0` | {{< pgvers "18,17,16,15,14" >}} | `ddl_historization_$v` | - |
+| [**DEB**](/ext/deb#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0.0+git20241205.18eb9a4` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-ddl-historization` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -168,7 +168,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install ddl_historization;          # Install for current active PG version
 ```
 

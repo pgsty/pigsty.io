@@ -11,10 +11,10 @@ weight: 8730
     <div class="ext-card__title">adjust/kafka_fdw</div>
     <div class="ext-card__desc">https://github.com/adjust/kafka_fdw</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/kafka_fdw-0.0.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/kafka_fdw-0.0.3+git20251030.8615082.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">kafka_fdw-0.0.3.tar.gz</div>
-    <div class="ext-card__desc">kafka_fdw-0.0.3.tar.gz</div>
+    <div class="ext-card__title">kafka_fdw-0.0.3+git20251030.8615082.tar.gz</div>
+    <div class="ext-card__desc">kafka_fdw-0.0.3+git20251030.8615082.tar.gz</div>
   </a>
 </div>
 
@@ -44,7 +44,7 @@ weight: 8730
 |:----:|:----:|:----:|:------:|:--------:|:----:|
 | [**EXT**](/ext/list#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.3` | {{< pgvers "18,17,16,15,14" >}} | `kafka_fdw` | - |
 | [**RPM**](/ext/rpm#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.3` | {{< pgvers "18,17,16,15,14" >}} | `kafka_fdw_$v` | - |
-| [**DEB**](/ext/deb#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.3` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-kafka-fdw` | - |
+| [**DEB**](/ext/deb#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.3+git20251030.8615082` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-kafka-fdw` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -167,7 +167,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install kafka_fdw;          # Install for current active PG version
 ```
 

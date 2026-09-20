@@ -19,14 +19,14 @@ There are **22** extensions in **21** packages.
 | [`logical_ddl`](/ext/e/logical_ddl) | [`logical_ddl`](https://github.com/samedyildirim/logical_ddl) | `0.1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Replicate supported DDL changes over PostgreSQL logical replication |
 | [`pg_failover_slots`](/ext/e/pg_failover_slots) | [`pg_failover_slots`](https://github.com/EnterpriseDB/pg_failover_slots) | `1.2.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PG Failover Slots extension |
 | [`db_migrator`](/ext/e/db_migrator) | [`db_migrator`](https://github.com/cybertec-postgresql/db_migrator) | `1.0.0` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Tools to migrate other databases to PostgreSQL |
-| [`pgactive`](/ext/e/pgactive) | [`pgactive`](https://github.com/aws/pgactive) | `2.1.7` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Active-Active Replication Extension for PostgreSQL |
-| [`spock`](/ext/e/spock) | [`spock`](https://github.com/pgEdge/spock) | `5.0.10` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Multi-master logical replication extension for PostgreSQL |
+| [`pgactive`](/ext/e/pgactive) | [`pgactive`](https://github.com/aws/pgactive) | `2.1.9` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Active-Active Replication Extension for PostgreSQL |
+| [`spock`](/ext/e/spock) | [`spock`](https://github.com/pgEdge/spock) | `5.0.11` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Multi-master logical replication extension for PostgreSQL |
 | [`lolor`](/ext/e/lolor) | [`lolor`](https://github.com/pgEdge/lolor) | `1.2.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Logical-replication-friendly replacement for PostgreSQL large objects |
 | [`pgclone`](/ext/e/pgclone) | [`pgclone`](https://github.com/valehdba/pgclone) | `4.4.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Clone PostgreSQL databases, schemas, tables, and functions across environments |
-| [`pgmqtt`](/ext/e/pgmqtt) | [`pgmqtt`](https://github.com/RayElg/pgmqtt) | `0.4.1` | <a class="ext-badge ext-badge--license elastic20" href="/ext/license#elastic20">Elastic-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | CDC-to-MQTT broker for PostgreSQL |
+| [`pgmqtt`](/ext/e/pgmqtt) | [`pgmqtt`](https://github.com/RayElg/pgmqtt) | `0.4.2` | <a class="ext-badge ext-badge--license elastic20" href="/ext/license#elastic20">Elastic-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | CDC-to-MQTT broker for PostgreSQL |
 | [`wal2json`](/ext/e/wal2json) | [`wal2json`](https://github.com/eulerto/wal2json) | `2.6` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Changing data capture in JSON format |
 | [`wal2mongo`](/ext/e/wal2mongo) | [`wal2mongo`](https://github.com/HighgoSoftware/wal2mongo) | `1.0.7` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostgreSQL logical decoding output plugin for MongoDB |
-| [`decoderbufs`](/ext/e/decoderbufs) | [`decoderbufs`](https://github.com/debezium/postgres-decoderbufs) | `3.6.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Logical decoding plugin that delivers WAL stream changes using a Protocol Buffer format |
+| [`decoderbufs`](/ext/e/decoderbufs) | [`decoderbufs`](https://github.com/debezium/postgres-decoderbufs) | `3.6.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Logical decoding plugin that delivers WAL stream changes using a Protocol Buffer format |
 | [`decoder_raw`](/ext/e/decoder_raw) | [`decoder_raw`](https://github.com/michaelpq/pg_plugins/blob/main/decoder_raw/) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Output plugin for logical replication in Raw SQL format |
 | [`mimeo`](/ext/e/mimeo) | [`mimeo`](https://github.com/omniti-labs/mimeo) | `1.5.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Extension for specialized, per-table replication between PostgreSQL instances |
 | [`repmgr`](/ext/e/repmgr) | [`repmgr`](https://github.com/EnterpriseDB/repmgr) | `5.5.0` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Replication manager for PostgreSQL |
@@ -174,7 +174,7 @@ There are **22** extensions in **21** packages.
 
 ## pgactive {#pgactive}
 
-[**`pgactive`**](/ext/e/pgactive) - `2.1.7` : Active-Active Replication Extension for PostgreSQL
+[**`pgactive`**](/ext/e/pgactive) - `2.1.9` : Active-Active Replication Extension for PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -193,7 +193,7 @@ There are **22** extensions in **21** packages.
 
 ## spock {#spock}
 
-[**`spock`**](/ext/e/spock) - `5.0.10` : Multi-master logical replication extension for PostgreSQL
+[**`spock`**](/ext/e/spock) - `5.0.11` : Multi-master logical replication extension for PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -250,7 +250,7 @@ There are **22** extensions in **21** packages.
 
 ## pgmqtt {#pgmqtt}
 
-[**`pgmqtt`**](/ext/e/pgmqtt) - `0.4.1` : CDC-to-MQTT broker for PostgreSQL
+[**`pgmqtt`**](/ext/e/pgmqtt) - `0.4.2` : CDC-to-MQTT broker for PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -307,7 +307,7 @@ There are **22** extensions in **21** packages.
 
 ## decoderbufs {#decoderbufs}
 
-[**`decoderbufs`**](/ext/e/decoderbufs) - `3.6.0` : Logical decoding plugin that delivers WAL stream changes using a Protocol Buffer format
+[**`decoderbufs`**](/ext/e/decoderbufs) - `3.6.1` : Logical decoding plugin that delivers WAL stream changes using a Protocol Buffer format
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

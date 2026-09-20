@@ -171,7 +171,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_duckdb;          # Install for current active PG version
 ```
 
@@ -267,7 +267,7 @@ EXPLAIN ANALYZE SELECT count(*) FROM pgbench_accounts;
 
 The result would be 8s -> 4s on 4c VM on local laptop) :
 
-```text
+```
 postgres@el9:5432/postgres=# SET duckdb.force_execution = true;
 EXPLAIN ANALYZE SELECT count(*) FROM pgbench_accounts;
 SET

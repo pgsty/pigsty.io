@@ -20,8 +20,8 @@ There are **54** extensions in **54** packages.
 | [`pg_hashids`](/ext/e/pg_hashids) | [`pg_hashids`](https://github.com/iCyberon/pg_hashids) | `1.3` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Short unique id generator for PostgreSQL, using hashids |
 | [`pg_slug_gen`](/ext/e/pg_slug_gen) | [`pg_slug_gen`](https://github.com/nandoolle/pg_slug_gen) | `1.0.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Generate cryptographically secure timestamp-based slugs |
 | [`sequential_uuids`](/ext/e/sequential_uuids) | [`sequential_uuids`](https://github.com/tvondra/sequential-uuids) | `1.0.3` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | generator of sequential UUIDs |
-| [`typeid`](/ext/e/typeid) | [`pg_typeid`](https://github.com/blitss/typeid-postgres) | `0.3.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Allows to use TypeIDs in Postgres natively |
-| [`snowflake`](/ext/e/snowflake) | [`snowflake`](https://github.com/pgEdge/snowflake) | `2.5.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Snowflake-style 64-bit ID generator and sequence utilities for PostgreSQL |
+| [`typeid`](/ext/e/typeid) | [`pg_typeid`](https://github.com/blitss/typeid-postgres) | `0.4.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Allows to use TypeIDs in Postgres natively |
+| [`snowflake`](/ext/e/snowflake) | [`snowflake`](https://github.com/pgEdge/snowflake) | `2.6.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Snowflake-style 64-bit ID generator and sequence utilities for PostgreSQL |
 | [`topn`](/ext/e/topn) | [`topn`](https://github.com/citusdata/postgresql-topn) | `2.7.1` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | type for top-n JSONB |
 | [`quantile`](/ext/e/quantile) | [`quantile`](https://github.com/tvondra/quantile) | `1.1.8` | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Quantile aggregation function |
 | [`lower_quantile`](/ext/e/lower_quantile) | [`lower_quantile`](https://github.com/tvondra/lower_quantile) | `1.0.3` | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Lower quantile aggregate function |
@@ -44,11 +44,11 @@ There are **54** extensions in **54** packages.
 | [`arraymath`](/ext/e/arraymath) | [`pg_arraymath`](https://github.com/pramsey/pgsql-arraymath) | `1.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Array math and operators that work element by element on the contents of arrays |
 | [`pg_math`](/ext/e/pg_math) | [`pg_math`](https://github.com/chanukyasds/pg_math) | `1.1.0` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | GSL statistical functions for postgresql |
 | [`random`](/ext/e/random) | [`pg_random`](https://github.com/tvondra/random) | `2.0.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | random data generator |
-| [`base36`](/ext/e/base36) | [`pg_base36`](https://github.com/adjust/pg-base36) | `1.0.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Integer Base36 types |
+| [`base36`](/ext/e/base36) | [`pg_base36`](https://github.com/adjust/pg-base36) | `1.1.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Integer Base36 types |
 | [`base62`](/ext/e/base62) | [`pg_base62`](https://github.com/adjust/pg-base62) | `0.0.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Base62 extension for PostgreSQL |
 | [`pg_base58`](/ext/e/pg_base58) | [`pg_base58`](https://github.com/Fell-x27/pg_base58) | `0.0.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Base58 Encoder/Decoder Extension for PostgreSQL |
 | [`financial`](/ext/e/financial) | [`pg_financial`](https://github.com/intgr/pg_financial) | `1.0.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Financial aggregate functions |
-| [`pg_accumulator`](/ext/e/pg_accumulator) | [`pg_accumulator`](https://github.com/Treedo/pg_accumulator) | `1.1.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Accumulation registers for balance and turnover tracking in PostgreSQL |
+| [`pg_accumulator`](/ext/e/pg_accumulator) | [`pg_accumulator`](https://github.com/Treedo/pg_accumulator) | `1.2.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Accumulation registers for balance and turnover tracking in PostgreSQL |
 | [`convert`](/ext/e/convert) | [`pg_convert`](https://github.com/rustprooflabs/convert) | `0.1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | conversion functions for spatial, routing and other specialized uses |
 | [`parray_gin`](/ext/e/parray_gin) | [`parray_gin`](https://github.com/theirix/parray_gin) | `1.5.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | GIN index operator class and partial-match operators for text arrays |
 | [`refint`](/ext/e/refint) | [`refint`](https://www.postgresql.org/docs/current/contrib-spi.html#CONTRIB-SPI-REFINT) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | functions for implementing referential integrity (obsolete) |
@@ -225,7 +225,7 @@ There are **54** extensions in **54** packages.
 
 ## typeid {#typeid}
 
-[**`pg_typeid`**](/ext/e/typeid) - `0.3.0` : Allows to use TypeIDs in Postgres natively
+[**`pg_typeid`**](/ext/e/typeid) - `0.4.1` : Allows to use TypeIDs in Postgres natively
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -244,7 +244,7 @@ There are **54** extensions in **54** packages.
 
 ## snowflake {#snowflake}
 
-[**`snowflake`**](/ext/e/snowflake) - `2.5.0` : Snowflake-style 64-bit ID generator and sequence utilities for PostgreSQL
+[**`snowflake`**](/ext/e/snowflake) - `2.6.0` : Snowflake-style 64-bit ID generator and sequence utilities for PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -272,7 +272,7 @@ There are **54** extensions in **54** packages.
 | **RPM** | `topn_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **DEB** | `postgresql-$v-topn` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
@@ -681,7 +681,7 @@ There are **54** extensions in **54** packages.
 
 ## base36 {#base36}
 
-[**`pg_base36`**](/ext/e/base36) - `1.0.0` : Integer Base36 types
+[**`pg_base36`**](/ext/e/base36) - `1.1.1` : Integer Base36 types
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -757,7 +757,7 @@ There are **54** extensions in **54** packages.
 
 ## pg_accumulator {#pg_accumulator}
 
-[**`pg_accumulator`**](/ext/e/pg_accumulator) - `1.1.3` : Accumulation registers for balance and turnover tracking in PostgreSQL
+[**`pg_accumulator`**](/ext/e/pg_accumulator) - `1.2.0` : Accumulation registers for balance and turnover tracking in PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

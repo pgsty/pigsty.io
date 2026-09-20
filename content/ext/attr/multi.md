@@ -85,7 +85,7 @@ Package [`pgcontext`](/ext/e/pgcontext) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 1960 | [**`pgcontext`**](/ext/e/pgcontext) | `0.2.0` | `--s-d--` | `pgcontext` | Vector, filter-aware HNSW, and hybrid retrieval over authoritative PostgreSQL tables. |
+| 1960 | [**`pgcontext`**](/ext/e/pgcontext) | `0.3.0` | `--s-d--` | `pgcontext` | Vector, filter-aware HNSW, and hybrid retrieval over authoritative PostgreSQL tables. |
 | 1970 | [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) | `0.2.0` | `--s-d--` | - | Optional pgvector compatibility bridge for pgcontext HNSW indexes. |
 {.ext-table}
 
@@ -95,8 +95,8 @@ Package [`pgroonga`](/ext/e/pgroonga) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 2110 | [**`pgroonga`**](/ext/e/pgroonga) | `4.0.4` | `--s-dtr` | - | Use Groonga as index, fast full text search platform for all languages! |
-| 2111 | [`pgroonga_database`](/ext/e/pgroonga_database) | `4.0.4` | `--s-dtr` | - | PGroonga database management module |
+| 2110 | [**`pgroonga`**](/ext/e/pgroonga) | `4.0.8` | `-bs-d--` | - | Use Groonga as index, fast full text search platform for all languages! |
+| 2111 | [`pgroonga_database`](/ext/e/pgroonga_database) | `4.0.8` | `--s-d--` | - | PGroonga database management module |
 {.ext-table}
 
 ## hunspell
@@ -157,7 +157,7 @@ Package [`omnigres`](/ext/e/omni) contains **37** extensions:
 | 2945 | [`omni_credentials`](/ext/e/omni_credentials) | `0.2.0` | `----d--` | `omni_credentials` | Application credential management |
 | 2948 | [`omni_email`](/ext/e/omni_email) | `0.1.0` | `----d--` | `omni_email` | E-mail framework |
 | 2949 | [`omni_http`](/ext/e/omni_http) | `0.1.0` | `----d--` | `omni_http` | Basic HTTP types |
-| 2950 | [`omni_httpc`](/ext/e/omni_httpc) | `0.1.10` | `--s-d--` | `omni_httpc` | HTTP client |
+| 2950 | [`omni_httpc`](/ext/e/omni_httpc) | `0.1.11` | `--s-d--` | `omni_httpc` | HTTP client |
 | 2951 | [`omni_httpd`](/ext/e/omni_httpd) | `0.4.11` | `--s-d--` | `omni_httpd` | HTTP server |
 | 2952 | [`omni_id`](/ext/e/omni_id) | `0.4.3` | `--s-d-r` | - | Identity types |
 | 2953 | [`omni_json`](/ext/e/omni_json) | `0.1.1` | `----dt-` | `omni_json` | JSON toolkit |
@@ -295,8 +295,8 @@ Package [`pg_flight_recorder`](/ext/e/pgfr_record) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 6060 | [**`pgfr_record`**](/ext/e/pgfr_record) | `2.29.2` | `----d--` | `pgfr_record` | Server-side PostgreSQL performance flight recorder |
-| 6061 | [`pgfr_analyze`](/ext/e/pgfr_analyze) | `2.29.2` | `----d--` | `pgfr_analyze` | Reporting and analysis functions for pgfr_record |
+| 6060 | [**`pgfr_record`**](/ext/e/pgfr_record) | `2.32.1` | `----d--` | `pgfr_record` | Server-side PostgreSQL performance flight recorder |
+| 6061 | [`pgfr_analyze`](/ext/e/pgfr_analyze) | `2.32.1` | `----d--` | `pgfr_analyze` | Reporting and analysis functions for pgfr_record |
 {.ext-table}
 
 ## pgnodemx
@@ -315,10 +315,10 @@ Package [`documentdb`](/ext/e/documentdb) contains **4** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 9000 | [**`documentdb`**](/ext/e/documentdb) | `0.114` | `--sLd--` | - | API surface for DocumentDB for PostgreSQL |
-| 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `0.114` | `--sLd--` | - | Core API surface for DocumentDB on PostgreSQL |
-| 9020 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `0.114` | `--sLd--` | - | Multi-Node API surface for DocumentDB |
-| 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `0.114` | `--sLd-r` | - | DocumentDB Extended RUM index access method |
+| 9000 | [**`documentdb`**](/ext/e/documentdb) | `0.116` | `--sLd--` | - | API surface for DocumentDB for PostgreSQL |
+| 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `0.116` | `--sLd--` | - | Core API surface for DocumentDB on PostgreSQL |
+| 9020 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `0.116` | `--sLd--` | - | Multi-Node API surface for DocumentDB |
+| 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `0.116` | `--sLd-r` | - | DocumentDB Extended RUM index access method |
 {.ext-table}
 
 ## ivorysql
@@ -341,10 +341,10 @@ Package [`babelfish`](/ext/e/babelfishpg_common) contains **4** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 9300 | [**`babelfishpg_common`**](/ext/e/babelfishpg_common) | `5.4.0` | `--s-d-r` | - | SQL Server Transact SQL Datatype Support |
-| 9310 | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | `5.4.0` | `--s-d-r` | - | SQL Server Transact SQL compatibility |
+| 9300 | [**`babelfishpg_common`**](/ext/e/babelfishpg_common) | `6.2.0` | `--s-d-r` | - | SQL Server Transact SQL Datatype Support |
+| 9310 | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | `6.2.0` | `--s-d-r` | - | SQL Server Transact SQL compatibility |
 | 9320 | [`babelfishpg_tds`](/ext/e/babelfishpg_tds) | `1.0.0` | `--sLd-r` | - | SQL Server TDS protocol extension |
-| 9330 | [`babelfishpg_money`](/ext/e/babelfishpg_money) | `1.1.0` | `--s-dt-` | - | SQL Server Money Data Type |
+| 9330 | [`babelfishpg_money`](/ext/e/babelfishpg_money) | `1.1.0` | `--s-d--` | - | SQL Server Money Data Type |
 {.ext-table}
 
 ## pglogical

@@ -11,10 +11,10 @@ weight: 7010
     <div class="ext-card__title">supabase/supautils</div>
     <div class="ext-card__desc">https://github.com/supabase/supautils</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/supautils-3.2.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/supautils-3.4.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">supautils-3.2.1.tar.gz</div>
-    <div class="ext-card__desc">supautils-3.2.1.tar.gz</div>
+    <div class="ext-card__title">supautils-3.4.3.tar.gz</div>
+    <div class="ext-card__desc">supautils-3.4.3.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 7010
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`supautils`**](/ext/e/supautils) | `3.2.1` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`supautils`**](/ext/e/supautils) | `3.4.3` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,13 +38,16 @@ weight: 7010
 {.ext-table .ext-table--rel}
 
 
+> Hook library only; no CREATE EXTENSION objects.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.2.1` | {{< pgvers "18,17,16,15,14" >}} | `supautils` | - |
-| [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.2.1` | {{< pgvers "18,17,16,15,14" >}} | `supautils_$v` | - |
-| [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.2.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-supautils` | - |
+| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.4.3` | {{< pgvers "18,17,16,15,14" >}} | `supautils` | - |
+| [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.4.3` | {{< pgvers "18,17,16,15,14" >}} | `supautils_$v` | - |
+| [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.4.3` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-supautils` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -167,7 +170,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install supautils;          # Install for current active PG version
 ```
 

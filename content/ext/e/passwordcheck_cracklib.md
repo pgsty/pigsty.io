@@ -11,10 +11,10 @@ weight: 7000
     <div class="ext-card__title">devrimgunduz/passwordcheck_cracklib</div>
     <div class="ext-card__desc">https://github.com/devrimgunduz/passwordcheck_cracklib</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/passwordcheck_cracklib-3.1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/passwordcheck_cracklib-3.2.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">passwordcheck_cracklib-3.1.0.tar.gz</div>
-    <div class="ext-card__desc">passwordcheck_cracklib-3.1.0.tar.gz</div>
+    <div class="ext-card__title">passwordcheck_cracklib-3.2.0.tar.gz</div>
+    <div class="ext-card__desc">passwordcheck_cracklib-3.2.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 7000
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`passwordcheck_cracklib`**](/ext/e/passwordcheck_cracklib) | `3.1.0` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license lgpl21" href="/ext/license#lgpl21">LGPL-2.1</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`passwordcheck_cracklib`**](/ext/e/passwordcheck_cracklib) | `3.2.0` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license lgpl21" href="/ext/license#lgpl21">LGPL-2.1</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,13 +38,16 @@ weight: 7000
 {.ext-table .ext-table--rel}
 
 
+> Preload-only; requires cracklib dictionaries.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `3.1.0` | {{< pgvers "18,17,16,15,14" >}} | `passwordcheck_cracklib` | - |
-| [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `3.1.0` | {{< pgvers "18,17,16,15,14" >}} | `passwordcheck_cracklib_$v` | - |
-| [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.1.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-passwordcheck-cracklib` | - |
+| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.2.0` | {{< pgvers "18,17,16,15,14" >}} | `passwordcheck_cracklib` | - |
+| [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.2.0` | {{< pgvers "18,17,16,15,14" >}} | `passwordcheck_cracklib_$v` | `cracklib-dicts` |
+| [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.2.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-passwordcheck-cracklib` | `cracklib-runtime`, `libcrack2` |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -172,10 +175,10 @@ weight: 7000
 
 ## Build
 
-You can build the DEB packages for `passwordcheck_cracklib` using `pig build`:
+You can build the RPM / DEB packages for `passwordcheck_cracklib` using `pig build`:
 
 ```bash
-pig build pkg passwordcheck_cracklib         # build DEB packages
+pig build pkg passwordcheck_cracklib         # build RPM / DEB packages
 ```
 
 
@@ -189,7 +192,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install passwordcheck_cracklib;          # Install for current active PG version
 ```
 

@@ -11,10 +11,10 @@ weight: 4845
     <div class="ext-card__title">Treedo/pg_accumulator</div>
     <div class="ext-card__desc">https://github.com/Treedo/pg_accumulator</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_accumulator-1.1.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_accumulator-1.2.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_accumulator-1.1.3.tar.gz</div>
-    <div class="ext-card__desc">pg_accumulator-1.1.3.tar.gz</div>
+    <div class="ext-card__title">pg_accumulator-1.2.0.tar.gz</div>
+    <div class="ext-card__desc">pg_accumulator-1.2.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 4845
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_accumulator`**](/ext/e/pg_accumulator) | `1.1.3` | <a class="ext-badge ext-badge--cate func" href="/ext/cate/func">FUNC</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_accumulator`**](/ext/e/pg_accumulator) | `1.2.0` | <a class="ext-badge ext-badge--cate func" href="/ext/cate/func">FUNC</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -42,9 +42,9 @@ weight: 4845
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#func) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.1.3` | {{< pgvers "18,17,16,15,14" >}} | `pg_accumulator` | `plpgsql` |
-| [**RPM**](/ext/rpm#func) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.1.3` | {{< pgvers "18,17,16,15,14" >}} | `pg_accumulator_$v` | - |
-| [**DEB**](/ext/deb#func) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.1.3` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-accumulator` | - |
+| [**EXT**](/ext/list#func) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.2.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_accumulator` | `plpgsql` |
+| [**RPM**](/ext/rpm#func) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.2.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_accumulator_$v` | - |
+| [**DEB**](/ext/deb#func) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.2.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-accumulator` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -167,7 +167,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_accumulator;          # Install for current active PG version
 ```
 

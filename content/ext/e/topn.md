@@ -11,10 +11,10 @@ weight: 4600
     <div class="ext-card__title">citusdata/postgresql-topn</div>
     <div class="ext-card__desc">https://github.com/citusdata/postgresql-topn</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/postgresql-topn-2.7.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/postgresql-topn-2.7.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">postgresql-topn-2.7.0.tar.gz</div>
-    <div class="ext-card__desc">postgresql-topn-2.7.0.tar.gz</div>
+    <div class="ext-card__title">postgresql-topn-2.7.1.tar.gz</div>
+    <div class="ext-card__desc">postgresql-topn-2.7.1.tar.gz</div>
   </a>
 </div>
 
@@ -38,16 +38,13 @@ weight: 4600
 {.ext-table .ext-table--rel}
 
 
-> Latest PGDG RPM/catalog version is 2.7.1; EL8/EL9 x86_64, Pigsty DEB, and Pigsty source remain on 2.7.0.
-
-
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#func) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `2.7.1` | {{< pgvers "18,17,16,15,14" >}} | `topn` | - |
-| [**RPM**](/ext/rpm#func) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `2.7.1` | {{< pgvers "18,17,16,15,14" >}} | `topn_$v` | - |
-| [**DEB**](/ext/deb#func) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.7.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-topn` | - |
+| [**EXT**](/ext/list#func) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.7.1` | {{< pgvers "18,17,16,15,14" >}} | `topn` | - |
+| [**RPM**](/ext/rpm#func) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.7.1` | {{< pgvers "18,17,16,15,14" >}} | `topn_$v` | - |
+| [**DEB**](/ext/deb#func) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.7.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-topn` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -204,24 +201,24 @@ weight: 4600
 
 ## Build
 
-You can build the DEB packages for `topn` using `pig build`:
+You can build the RPM / DEB packages for `topn` using `pig build`:
 
 ```bash
-pig build pkg topn         # build DEB packages
+pig build pkg topn         # build RPM / DEB packages
 ```
 
 
 ## Install
 
-You can install `topn` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) repository is added and enabled:
+You can install `topn` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) and [**PIGSTY**](/docs/repo/pgsql) repositories are added and enabled:
 
 ```bash
-pig repo add pgdg -u          # Add PGDG repo and update cache
+pig repo add pgsql -u          # Add repo and update cache
 ```
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install topn;          # Install for current active PG version
 ```
 

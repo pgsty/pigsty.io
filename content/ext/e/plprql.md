@@ -167,7 +167,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install plprql;          # Install for current active PG version
 ```
 
@@ -261,7 +261,7 @@ SELECT prql_to_sql('from matches | filter player == "Player1"');
 
 PRQL uses pipeline transformations:
 
-```text
+```
 from employees                    # data source
 filter department == "Engineering" # row filtering
 derive monthly_salary = salary / 12 # computed columns

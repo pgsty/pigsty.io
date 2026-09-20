@@ -12,7 +12,7 @@ There are **41** extensions in **40** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
-| [`gzip`](/ext/e/gzip) | [`pg_gzip`](https://github.com/pramsey/pgsql-gzip) | `1.1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | gzip and gunzip functions. |
+| [`gzip`](/ext/e/gzip) | [`pg_gzip`](https://github.com/pramsey/pgsql-gzip) | `1.1.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | gzip and gunzip functions. |
 | [`bzip`](/ext/e/bzip) | [`pg_bzip`](https://github.com/steve-chavez/pg_bzip) | `1.0.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Bzip compression and decompression |
 | [`zstd`](/ext/e/zstd) | [`pg_zstd`](https://github.com/grahamedgecombe/pgzstd) | `1.1.2` | <a class="ext-badge ext-badge--license isc" href="/ext/license#isc">ISC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Zstandard compression algorithm implementation in PostgreSQL |
 | [`http`](/ext/e/http) | [`pg_http`](https://github.com/pramsey/pgsql-http) | `1.7.2` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | HTTP client for PostgreSQL, allows web page retrieval inside the database. |
@@ -42,9 +42,9 @@ There are **41** extensions in **40** packages.
 | [`pg_render`](/ext/e/pg_render) | [`pg_render`](https://github.com/mkaski/pg_render) | `0.1.3` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Render HTML in SQL |
 | [`pg_readme`](/ext/e/pg_readme) | [`pg_readme`](https://github.com/bigsmoke/pg_readme) | `0.7.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Generate a Markdown README from PostgreSQL COMMENT objects |
 | [`pg_readme_test_extension`](/ext/e/pg_readme_test_extension) | [`pg_readme`](https://github.com/bigsmoke/pg_readme/tree/master/pg_readme_test_extension) | `0.7.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Fixture extension used to test pg_readme document generation |
-| [`ddl_historization`](/ext/e/ddl_historization) | [`ddl_historization`](https://github.com/rodo/pg_ddl_historization) | `0.2` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Historize the ddl changes inside PostgreSQL database |
+| [`ddl_historization`](/ext/e/ddl_historization) | [`ddl_historization`](https://github.com/rodo/pg_ddl_historization) | `1.0.0` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Historize the ddl changes inside PostgreSQL database |
 | [`data_historization`](/ext/e/data_historization) | [`data_historization`](https://github.com/rodo/postgresql-data-historization) | `1.1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | PLPGSQL Script to historize data in partitionned table |
-| [`schedoc`](/ext/e/schedoc) | [`pg_schedoc`](https://github.com/ZeroGachis/pg_schedoc) | `0.0.1` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Cross documentation between Django and DBT projects |
+| [`schedoc`](/ext/e/schedoc) | [`pg_schedoc`](https://github.com/ZeroGachis/pg_schedoc) | `0.0.2` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Cross documentation between Django and DBT projects |
 | [`pg_isok`](/ext/e/pg_isok) | [`pg_isok`](https://codeberg.org/kop/pg_isok) | `1.4.1` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Query-based data integrity management and soft alerting for PostgreSQL |
 | [`pg_describe`](/ext/e/pg_describe) | [`pg_describe`](https://github.com/sajonaro/pg_describe) | `1.0.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Report a query's parameters and result columns without executing it |
 | [`hashlib`](/ext/e/hashlib) | [`pg_hashlib`](https://github.com/markokr/pghashlib) | `1.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Stable hash functions for Postgres |
@@ -60,7 +60,7 @@ There are **41** extensions in **40** packages.
 
 ## gzip {#gzip}
 
-[**`pg_gzip`**](/ext/e/gzip) - `1.1.0` : gzip and gunzip functions.
+[**`pg_gzip`**](/ext/e/gzip) - `1.1.1` : gzip and gunzip functions.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -630,7 +630,7 @@ There are **41** extensions in **40** packages.
 
 ## ddl_historization {#ddl_historization}
 
-[**`ddl_historization`**](/ext/e/ddl_historization) - `0.2` : Historize the ddl changes inside PostgreSQL database
+[**`ddl_historization`**](/ext/e/ddl_historization) - `1.0.0` : Historize the ddl changes inside PostgreSQL database
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -668,7 +668,7 @@ There are **41** extensions in **40** packages.
 
 ## schedoc {#schedoc}
 
-[**`pg_schedoc`**](/ext/e/schedoc) - `0.0.1` : Cross documentation between Django and DBT projects
+[**`pg_schedoc`**](/ext/e/schedoc) - `0.0.2` : Cross documentation between Django and DBT projects
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

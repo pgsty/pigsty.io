@@ -11,10 +11,10 @@ weight: 2740
     <div class="ext-card__title">supabase/pg_graphql</div>
     <div class="ext-card__desc">https://github.com/supabase/pg_graphql</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_graphql-1.6.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_graphql-1.6.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_graphql-1.6.1.tar.gz</div>
-    <div class="ext-card__desc">pg_graphql-1.6.1.tar.gz</div>
+    <div class="ext-card__title">pg_graphql-1.6.2.tar.gz</div>
+    <div class="ext-card__desc">pg_graphql-1.6.2.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2740
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_graphql`**](/ext/e/pg_graphql) | `1.6.1` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`pg_graphql`**](/ext/e/pg_graphql) | `1.6.2` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -45,9 +45,9 @@ weight: 2740
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.6.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_graphql` | - |
-| [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.6.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_graphql_$v` | - |
-| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.6.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-graphql` | - |
+| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.6.2` | {{< pgvers "18,17,16,15,14" >}} | `pg_graphql` | - |
+| [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.6.2` | {{< pgvers "18,17,16,15,14" >}} | `pg_graphql_$v` | - |
+| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.6.2` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-graphql` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -170,7 +170,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_graphql;          # Install for current active PG version
 ```
 

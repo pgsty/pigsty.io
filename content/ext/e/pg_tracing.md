@@ -167,7 +167,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_tracing;          # Install for current active PG version
 ```
 
@@ -269,7 +269,7 @@ SELECT pg_tracing_reset();
 
 Configure in `postgresql.conf`:
 
-```text
+```
 pg_tracing.otel_endpoint = http://127.0.0.1:4318/v1/traces
 pg_tracing.otel_naptime = 2000
 ```

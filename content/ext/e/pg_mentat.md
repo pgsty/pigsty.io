@@ -11,10 +11,10 @@ weight: 2980
     <div class="ext-card__title">https://codeberg.org/gregburd/pg_mentat</div>
     <div class="ext-card__desc">https://codeberg.org/gregburd/pg_mentat</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_mentat-1.5.7.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_mentat-1.6.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_mentat-1.5.7.tar.gz</div>
-    <div class="ext-card__desc">pg_mentat-1.5.7.tar.gz</div>
+    <div class="ext-card__title">pg_mentat-1.6.0.tar.gz</div>
+    <div class="ext-card__desc">pg_mentat-1.6.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2980
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_mentat`**](/ext/e/pg_mentat) | `1.5.7` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`pg_mentat`**](/ext/e/pg_mentat) | `1.6.0` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,16 +38,16 @@ weight: 2980
 {.ext-table .ext-table--rel}
 
 
-> The PIGSTY package omits optional mentatd and installs no user-facing binary; listed integrations are soft dependencies. Effective build uses pgrx 0.19.1, migrated from upstream 0.17.0.
+> No mentatd binary; integrations are optional. pgrx 0.19.2.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.5.7` | {{< pgvers "18,17,16,15,14" >}} | `pg_mentat` | - |
-| [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.5.7` | {{< pgvers "18,17,16,15,14" >}} | `pg_mentat_$v` | - |
-| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.5.7` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-mentat` | - |
+| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.6.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_mentat` | - |
+| [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.6.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_mentat_$v` | - |
+| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.6.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-mentat` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -170,7 +170,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_mentat;          # Install for current active PG version
 ```
 

@@ -11,10 +11,10 @@ weight: 5120
     <div class="ext-card__title">pierreforstmann/pg_readonly</div>
     <div class="ext-card__desc">https://github.com/pierreforstmann/pg_readonly</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_readonly-1.0.5.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_readonly-1.0.6.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_readonly-1.0.5.tar.gz</div>
-    <div class="ext-card__desc">pg_readonly-1.0.5.tar.gz</div>
+    <div class="ext-card__title">pg_readonly-1.0.6.tar.gz</div>
+    <div class="ext-card__desc">pg_readonly-1.0.6.tar.gz</div>
   </a>
 </div>
 
@@ -38,16 +38,16 @@ weight: 5120
 {.ext-table .ext-table--rel}
 
 
-> Latest PGDG RPM/catalog version is 1.0.6; PIGSTY DEB and source remain on 1.0.5.
+> Requires preload.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `1.0.6` | {{< pgvers "18,17,16,15,14" >}} | `pg_readonly` | - |
-| [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.0.6` | {{< pgvers "18,17,16,15,14" >}} | `pg_readonly_$v` | - |
-| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0.5` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-readonly` | - |
+| [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0.6` | {{< pgvers "18,17,16,15,14" >}} | `pg_readonly` | - |
+| [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0.6` | {{< pgvers "18,17,16,15,14" >}} | `pg_readonly_$v` | - |
+| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0.6` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-readonly` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -287,10 +287,10 @@ weight: 5120
 
 ## Build
 
-You can build the DEB packages for `pg_readonly` using `pig build`:
+You can build the RPM / DEB packages for `pg_readonly` using `pig build`:
 
 ```bash
-pig build pkg pg_readonly         # build DEB packages
+pig build pkg pg_readonly         # build RPM / DEB packages
 ```
 
 
@@ -304,7 +304,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_readonly;          # Install for current active PG version
 ```
 

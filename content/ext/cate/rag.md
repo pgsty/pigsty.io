@@ -15,7 +15,7 @@ There are **16** extensions in **15** packages.
 | [`vector`](/ext/e/vector) | [`pgvector`](https://github.com/pgvector/pgvector) | `0.8.6` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | vector data type and ivfflat and hnsw access methods |
 | [`vchord`](/ext/e/vchord) | [`vchord`](https://github.com/tensorchord/VectorChord) | `1.1.1` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Vector database plugin for Postgres, written in Rust |
 | [`vectorscale`](/ext/e/vectorscale) | [`pgvectorscale`](https://github.com/timescale/pgvectorscale) | `0.9.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Advanced indexing for vector data with DiskANN |
-| [`vectorize`](/ext/e/vectorize) | [`pg_vectorize`](https://github.com/ChuckHend/pg_vectorize) | `0.26.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | The simplest way to do vector search on Postgres |
+| [`vectorize`](/ext/e/vectorize) | [`pg_vectorize`](https://github.com/ChuckHend/pg_vectorize) | `0.27.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | The simplest way to do vector search on Postgres |
 | [`pg_similarity`](/ext/e/pg_similarity) | [`pg_similarity`](https://github.com/eulerto/pg_similarity) | `1.0` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | support similarity queries |
 | [`pg_rrf`](/ext/e/pg_rrf) | [`pg_rrf`](https://github.com/yuiseki/pg_rrf) | `0.0.3` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Reciprocal rank fusion functions for hybrid search |
 | [`smlar`](/ext/e/smlar) | [`smlar`](https://github.com/jirutka/smlar) | `1.0` | <a class="ext-badge ext-badge--license unknown" href="/ext/license#unknown">Unknown</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Effective similarity search |
@@ -24,10 +24,10 @@ There are **16** extensions in **15** packages.
 | [`pg_tiktoken_c`](/ext/e/pg_tiktoken_c) | [`pg_tiktoken_c`](https://github.com/relytcloud/pg_tiktoken_c) | `1.1` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Fast tiktoken BPE tokenizer for PostgreSQL implemented in C |
 | [`pg4ml`](/ext/e/pg4ml) | [`pg4ml`](https://gitee.com/guotiecheng/plpgsql_pg4ml) | `2.0` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Machine learning framework for PostgreSQL |
 | [`pgml`](/ext/e/pgml) | [`pgml`](https://github.com/postgresml/postgresml) | `2.10.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Run AL/ML workloads with SQL interface |
-| [`pgmnemo`](/ext/e/pgmnemo) | [`pgmnemo`](https://github.com/pgmnemo/pgmnemo) | `0.16.1` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Single-plan multimodal agent memory for PostgreSQL |
-| [`pgcontext`](/ext/e/pgcontext) | [`pgcontext`](https://pgxn.org/dist/pgContext/0.2.0/) | `0.2.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Vector, filter-aware HNSW, and hybrid retrieval over authoritative PostgreSQL tables. |
+| [`pgmnemo`](/ext/e/pgmnemo) | [`pgmnemo`](https://github.com/pgmnemo/pgmnemo) | `0.20.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Single-plan multimodal agent memory for PostgreSQL |
+| [`pgcontext`](/ext/e/pgcontext) | [`pgcontext`](https://pgxn.org/dist/pgContext/0.2.0/) | `0.3.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Vector, filter-aware HNSW, and hybrid retrieval over authoritative PostgreSQL tables. |
 | [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) | [`pgcontext`](https://pgxn.org/dist/pgContext/0.2.0/) | `0.2.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Optional pgvector compatibility bridge for pgcontext HNSW indexes. |
-| [`pg_turbovec`](/ext/e/pg_turbovec) | [`pg_turbovec`](https://codeberg.org/gregburd/pg_turbovec) | `1.29.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | TurboQuant-compressed vector type and ANN index access method for PostgreSQL. |
+| [`pg_turbovec`](/ext/e/pg_turbovec) | [`pg_turbovec`](https://codeberg.org/gregburd/pg_turbovec) | `2.0.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | TurboQuant-compressed vector type and ANN index access method for PostgreSQL. |
 {.ext-table}
 
 
@@ -92,7 +92,7 @@ There are **16** extensions in **15** packages.
 
 ## vectorize {#vectorize}
 
-[**`pg_vectorize`**](/ext/e/vectorize) - `0.26.2` : The simplest way to do vector search on Postgres
+[**`pg_vectorize`**](/ext/e/vectorize) - `0.27.0` : The simplest way to do vector search on Postgres
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -263,7 +263,7 @@ There are **16** extensions in **15** packages.
 
 ## pgmnemo {#pgmnemo}
 
-[**`pgmnemo`**](/ext/e/pgmnemo) - `0.16.1` : Single-plan multimodal agent memory for PostgreSQL
+[**`pgmnemo`**](/ext/e/pgmnemo) - `0.20.0` : Single-plan multimodal agent memory for PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -282,7 +282,7 @@ There are **16** extensions in **15** packages.
 
 ## pgcontext {#pgcontext}
 
-[**`pgcontext`**](/ext/e/pgcontext) - `0.2.0` : Vector, filter-aware HNSW, and hybrid retrieval over authoritative PostgreSQL tables.
+[**`pgcontext`**](/ext/e/pgcontext) - `0.3.0` : Vector, filter-aware HNSW, and hybrid retrieval over authoritative PostgreSQL tables.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -320,7 +320,7 @@ There are **16** extensions in **15** packages.
 
 ## pg_turbovec {#pg_turbovec}
 
-[**`pg_turbovec`**](/ext/e/pg_turbovec) - `1.29.0` : TurboQuant-compressed vector type and ANN index access method for PostgreSQL.
+[**`pg_turbovec`**](/ext/e/pg_turbovec) - `2.0.0` : TurboQuant-compressed vector type and ANN index access method for PostgreSQL.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

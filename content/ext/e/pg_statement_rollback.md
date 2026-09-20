@@ -11,10 +11,10 @@ weight: 9130
     <div class="ext-card__title">lzlabs/pg_statement_rollback</div>
     <div class="ext-card__desc">https://github.com/lzlabs/pg_statement_rollback</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_statement_rollback-1.5.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_statement_rollback-1.6.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_statement_rollback-1.5.tar.gz</div>
-    <div class="ext-card__desc">pg_statement_rollback-1.5.tar.gz</div>
+    <div class="ext-card__title">pg_statement_rollback-1.6.tar.gz</div>
+    <div class="ext-card__desc">pg_statement_rollback-1.6.tar.gz</div>
   </a>
 </div>
 
@@ -43,9 +43,9 @@ weight: 9130
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `1.6` | {{< pgvers "18,17,16,15,14" >}} | `pg_statement_rollback` | - |
-| [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.6` | {{< pgvers "18,17,16,15,14" >}} | `pg_statement_rollback_$v` | - |
-| [**DEB**](/ext/deb#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.5` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-statement-rollback` | - |
+| [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.6` | {{< pgvers "18,17,16,15,14" >}} | `pg_statement_rollback` | - |
+| [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.6` | {{< pgvers "18,17,16,15,14" >}} | `pg_statement_rollback_$v` | - |
+| [**DEB**](/ext/deb#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.6` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-statement-rollback` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -208,10 +208,10 @@ weight: 9130
 
 ## Build
 
-You can build the DEB packages for `pg_statement_rollback` using `pig build`:
+You can build the RPM / DEB packages for `pg_statement_rollback` using `pig build`:
 
 ```bash
-pig build pkg pg_statement_rollback         # build DEB packages
+pig build pkg pg_statement_rollback         # build RPM / DEB packages
 ```
 
 
@@ -225,7 +225,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_statement_rollback;          # Install for current active PG version
 ```
 

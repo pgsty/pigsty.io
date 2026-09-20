@@ -25,11 +25,11 @@ There are **42** extensions in **26** packages.
 | [`plprofiler`](/ext/e/plprofiler) | [`plprofiler`](https://github.com/bigsql/plprofiler) | `4.2.5` | <a class="ext-badge ext-badge--license artistic10" href="/ext/license#artistic10">Artistic-1.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | server-side support for profiling PL/pgSQL functions |
 | [`plsh`](/ext/e/plsh) | [`plsh`](https://github.com/petere/plsh) | `1.20220917` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PL/sh procedural language |
 | [`pljava`](/ext/e/pljava) | [`pljava`](https://github.com/tada/pljava) | `1.6.10` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang java" href="/ext/language#java">Java</a> | PL/Java procedural language |
-| [`plr`](/ext/e/plr) | [`plr`](https://github.com/postgres-plr/plr) | `8.4.8.6` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | load R interpreter and execute R script from within a database |
+| [`plr`](/ext/e/plr) | [`plr`](https://github.com/postgres-plr/plr) | `8.4.8.7` | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | load R interpreter and execute R script from within a database |
 | [`plxslt`](/ext/e/plxslt) | [`plxslt`](https://github.com/petere/plxslt) | `0.20140221` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | XSLT procedural language for PostgreSQL |
 | [`pg_mockable`](/ext/e/pg_mockable) | [`pg_mockable`](https://github.com/bigsmoke/pg_mockable) | `1.1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Create mockable wrappers for PostgreSQL functions in tests |
 | [`pgsqlmock`](/ext/e/pgsqlmock) | [`pgsqlmock`](https://github.com/v-maliutin/pgSQLMock) | `1.0.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Mocking and faking helpers for PostgreSQL unit tests |
-| [`plx`](/ext/e/plx) | [`plx`](https://github.com/commandprompt/plx) | `1.3.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Transpile multiple procedural dialects to PL/pgSQL |
+| [`plx`](/ext/e/plx) | [`plx`](https://github.com/commandprompt/plx) | `2.0.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Transpile multiple procedural dialects to PL/pgSQL |
 | [`pgwasm`](/ext/e/pgwasm) | [`pgwasm`](https://github.com/jnicholls/pgwasm) | `0.1.0` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Run sandboxed WebAssembly components as strongly typed PostgreSQL SQL functions. |
 | [`plruby`](/ext/e/plruby) | [`plruby`](https://github.com/commandprompt/plruby) | `2.5` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Embed MRI Ruby as an untrusted PostgreSQL procedural language |
 | [`jsonb_plruby`](/ext/e/jsonb_plruby) | [`plruby`](https://github.com/commandprompt/plruby) | `1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Transform between jsonb and native Ruby data for PL/Ruby |
@@ -37,7 +37,7 @@ There are **42** extensions in **26** packages.
 | [`ltree_plruby`](/ext/e/ltree_plruby) | [`plruby`](https://github.com/commandprompt/plruby) | `1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Transform between ltree and Ruby Arrays for PL/Ruby |
 | [`pgtap`](/ext/e/pgtap) | [`pgtap`](https://github.com/theory/pgtap) | `1.3.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Unit testing for PostgreSQL |
 | [`faker`](/ext/e/faker) | [`faker`](https://gitlab.com/dalibo/postgresql_faker) | `0.5.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang python" href="/ext/language#python">Python</a> | Wrapper for the Faker Python library |
-| [`dbt2`](/ext/e/dbt2) | [`dbt2`](https://github.com/osdldbt/dbt2) | `0.61.7` | <a class="ext-badge ext-badge--license artistic20" href="/ext/license#artistic20">Artistic-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | OSDL-DBT-2 test kit |
+| [`dbt2`](/ext/e/dbt2) | [`dbt2`](https://github.com/osdldbt/dbt2) | `0.62.0` | <a class="ext-badge ext-badge--license artistic20" href="/ext/license#artistic20">Artistic-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | OSDL-DBT-2 test kit |
 | [`pg_regresql`](/ext/e/pg_regresql) | [`pg_regresql`](https://github.com/boringsql/regresql) | `2.0.0` | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Trust pg_class statistics for planning instead of physical relation size |
 | [`pltcl`](/ext/e/pltcl) | [`pltcl`](https://www.postgresql.org/docs/current/pltcl.html) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PL/Tcl procedural language |
 | [`pltclu`](/ext/e/pltclu) | [`pltcl`](https://www.postgresql.org/docs/current/pltcl.html) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PL/TclU untrusted procedural language |
@@ -308,7 +308,7 @@ There are **42** extensions in **26** packages.
 
 ## plr {#plr}
 
-[**`plr`**](/ext/e/plr) - `8.4.8.6` : load R interpreter and execute R script from within a database
+[**`plr`**](/ext/e/plr) - `8.4.8.7` : load R interpreter and execute R script from within a database
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -384,7 +384,7 @@ There are **42** extensions in **26** packages.
 
 ## plx {#plx}
 
-[**`plx`**](/ext/e/plx) - `1.3.1` : Transpile multiple procedural dialects to PL/pgSQL
+[**`plx`**](/ext/e/plx) - `2.0.1` : Transpile multiple procedural dialects to PL/pgSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -536,7 +536,7 @@ There are **42** extensions in **26** packages.
 
 ## dbt2 {#dbt2}
 
-[**`dbt2`**](/ext/e/dbt2) - `0.61.7` : OSDL-DBT-2 test kit
+[**`dbt2`**](/ext/e/dbt2) - `0.62.0` : OSDL-DBT-2 test kit
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

@@ -11,10 +11,10 @@ weight: 6020
     <div class="ext-card__title">ClickHouse/pg_stat_ch</div>
     <div class="ext-card__desc">https://github.com/ClickHouse/pg_stat_ch</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_stat_ch-0.3.6.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_stat_ch-0.4.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_stat_ch-0.3.6.tar.gz</div>
-    <div class="ext-card__desc">pg_stat_ch-0.3.6.tar.gz</div>
+    <div class="ext-card__title">pg_stat_ch-0.4.0.tar.gz</div>
+    <div class="ext-card__desc">pg_stat_ch-0.4.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 6020
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_stat_ch`**](/ext/e/pg_stat_ch) | `0.3.6` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> |
+| [**`pg_stat_ch`**](/ext/e/pg_stat_ch) | `0.4.0` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -45,9 +45,9 @@ weight: 6020
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3.6` | {{< pgvers "18,17,16" >}} | `pg_stat_ch` | - |
-| [**RPM**](/ext/rpm#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3.6` | {{< pgvers "18,17,16" >}} | `pg_stat_ch_$v` | - |
-| [**DEB**](/ext/deb#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3.6` | {{< pgvers "18,17,16" >}} | `postgresql-$v-pg-stat-ch` | - |
+| [**EXT**](/ext/list#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.0` | {{< pgvers "18,17,16" >}} | `pg_stat_ch` | - |
+| [**RPM**](/ext/rpm#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.0` | {{< pgvers "18,17,16" >}} | `pg_stat_ch_$v` | - |
+| [**DEB**](/ext/deb#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.0` | {{< pgvers "18,17,16" >}} | `postgresql-$v-pg-stat-ch` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -132,7 +132,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_stat_ch;          # Install for current active PG version
 ```
 

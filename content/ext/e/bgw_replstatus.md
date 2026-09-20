@@ -192,7 +192,7 @@ pig repo add pgdg -u          # Add PGDG repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install bgw_replstatus;          # Install for current active PG version
 ```
 
@@ -250,7 +250,7 @@ nc localhost 5400
 
 ### HAProxy Configuration Example
 
-```text
+```
 frontend test
     bind 127.0.0.1:5999
     default_backend pgcluster

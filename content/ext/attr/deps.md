@@ -5,11 +5,11 @@ description: "PostgreSQL extensions with dependency relationships"
 weight: 30
 ---
 
-**130** extensions depend on other extensions, **76** extensions are depended upon by others.
+**129** extensions depend on other extensions, **75** extensions are depended upon by others.
 
 ## Upstream Dependencies
 
-The following **130** extensions require other extensions to be installed first:
+The following **129** extensions require other extensions to be installed first:
 
 | **Extension** | **Requires** | **Description** |
 |:-----------|:-------------|:---------|
@@ -44,7 +44,6 @@ The following **130** extensions require other extensions to be installed first:
 | [`vectorize`](/ext/e/vectorize) | [`pg_cron`](/ext/e/pg_cron) [`pgmq`](/ext/e/pgmq) [`vector`](/ext/e/vector) | The simplest way to do vector search on Postgres |
 | [`pg4ml`](/ext/e/pg4ml) | [`plpgsql`](/ext/e/plpgsql) [`tablefunc`](/ext/e/tablefunc) [`cube`](/ext/e/cube) [`plpython3u`](/ext/e/plpython3u) | Machine learning framework for PostgreSQL |
 | [`pgmnemo`](/ext/e/pgmnemo) | [`vector`](/ext/e/vector) | Single-plan multimodal agent memory for PostgreSQL |
-| [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) | [`pgcontext`](/ext/e/pgcontext) [`vector`](/ext/e/vector) | Optional pgvector compatibility bridge for pgcontext HNSW indexes. |
 | [`pg_search`](/ext/e/pg_search) | [`vector`](/ext/e/vector) | Full text search for PostgreSQL using BM25 |
 | [`biscuit`](/ext/e/biscuit) | [`plpgsql`](/ext/e/plpgsql) | IAM-LIKE pattern matching with bitmap indexing |
 | [`pg_mooncake`](/ext/e/pg_mooncake) | [`pg_duckdb`](/ext/e/pg_duckdb) | Columnstore Table in Postgres |
@@ -147,7 +146,7 @@ The following **130** extensions require other extensions to be installed first:
 
 ## Downstream Dependencies
 
-The following **76** extensions are depended upon by other extensions:
+The following **75** extensions are depended upon by other extensions:
 
 | **Extension** | **Required By** | **Description** |
 |:-----------|:-------------|:---------|
@@ -160,8 +159,7 @@ The following **76** extensions are depended upon by other extensions:
 | [`pgh_raster`](/ext/e/pgh_raster) | [`pgh_hgm`](/ext/e/pgh_hgm) | Raster hydrology extension for PgHydro |
 | [`mobilitydb`](/ext/e/mobilitydb) | [`mobilitydb_datagen`](/ext/e/mobilitydb_datagen) | MobilityDB geospatial trajectory data management & analysis platform |
 | [`qdgc`](/ext/e/qdgc) | [`qdgc_postgis`](/ext/e/qdgc_postgis) | Encode, decode, navigate, and fill Extended Quarter Degree Grid Cell codes in pure SQL. |
-| [`vector`](/ext/e/vector) | `ai` `alloydb_scann` `avocado` [`documentdb`](/ext/e/documentdb) `embedding_search` `hybrid_search` `maludb_core` `pg_cuvs` `pg_diskann` `pg_gembed` `pg_knowledge_graph` `pg_llm` `pg_llm_helper` [`pg_search`](/ext/e/pg_search) `pg_semantic_cache` `pg_sentence_transformer` `pg_splade` `pg_turboquant` [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) `pgedge_vectorizer` [`pgmnemo`](/ext/e/pgmnemo) `pgpu` `pgturbohybrid` `pgvecutils` `rag` `rag_bge_small_en_v15` `rag_jina_reranker_v1_tiny_en` `rds_ai` `rds_embedding` [`vchord`](/ext/e/vchord) [`vectorize`](/ext/e/vectorize) [`vectorscale`](/ext/e/vectorscale) | vector data type and ivfflat and hnsw access methods |
-| [`pgcontext`](/ext/e/pgcontext) | [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) | Vector, filter-aware HNSW, and hybrid retrieval over authoritative PostgreSQL tables. |
+| [`vector`](/ext/e/vector) | `ai` `alloydb_scann` `avocado` [`documentdb`](/ext/e/documentdb) `embedding_search` `hybrid_search` `maludb_core` `pg_cuvs` `pg_diskann` `pg_gembed` `pg_knowledge_graph` `pg_llm` `pg_llm_helper` [`pg_search`](/ext/e/pg_search) `pg_semantic_cache` `pg_sentence_transformer` `pg_splade` `pg_turboquant` `pgedge_vectorizer` [`pgmnemo`](/ext/e/pgmnemo) `pgpu` `pgturbohybrid` `pgvecutils` `rag` `rag_bge_small_en_v15` `rag_jina_reranker_v1_tiny_en` `rds_ai` `rds_embedding` [`vchord`](/ext/e/vchord) [`vectorize`](/ext/e/vectorize) [`vectorscale`](/ext/e/vectorscale) | vector data type and ivfflat and hnsw access methods |
 | [`fuzzystrmatch`](/ext/e/fuzzystrmatch) | [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) | determine similarities and distance between strings |
 | [`citus`](/ext/e/citus) | `cigration` [`documentdb_distributed`](/ext/e/documentdb_distributed) | Distributed PostgreSQL as an extension |
 | [`pg_duckdb`](/ext/e/pg_duckdb) | [`pg_mooncake`](/ext/e/pg_mooncake) | DuckDB Embedded in Postgres |

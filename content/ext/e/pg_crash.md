@@ -11,10 +11,10 @@ weight: 5210
     <div class="ext-card__title">cybertec-postgresql/pg_crash</div>
     <div class="ext-card__desc">https://github.com/cybertec-postgresql/pg_crash</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_crash-1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_crash-0.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_crash-1.0.tar.gz</div>
-    <div class="ext-card__desc">pg_crash-1.0.tar.gz</div>
+    <div class="ext-card__title">pg_crash-0.3.tar.gz</div>
+    <div class="ext-card__desc">pg_crash-0.3.tar.gz</div>
   </a>
 </div>
 
@@ -25,12 +25,12 @@ weight: 5210
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_crash`**](/ext/e/pg_crash) | `1.0` | <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_crash`**](/ext/e/pg_crash) | `0.3` | <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 5210  | [**`pg_crash`**](/ext/e/pg_crash) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 5210  | [**`pg_crash`**](/ext/e/pg_crash) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`pg_dirtyread`](/ext/e/pg_dirtyread) [`pg_savior`](/ext/e/pg_savior) [`pg_cheat_funcs`](/ext/e/pg_cheat_funcs) |
@@ -38,13 +38,16 @@ weight: 5210
 {.ext-table .ext-table--rel}
 
 
+> Requires preload; empty extension SQL preserves historical 1.0 catalog compatibility.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_crash` | - |
-| [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_crash_$v` | - |
-| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-crash` | - |
+| [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3` | {{< pgvers "18,17,16,15,14" >}} | `pg_crash` | - |
+| [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3` | {{< pgvers "18,17,16,15,14" >}} | `pg_crash_$v` | - |
+| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-crash` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -201,7 +204,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_crash;          # Install for current active PG version
 ```
 
@@ -237,6 +240,12 @@ shared_preload_libraries = 'pg_crash';
 ```
 
 
+**Create Extension**:
+
+```sql
+CREATE EXTENSION pg_crash;
+```
+
 
 
 
@@ -250,7 +259,7 @@ pg_crash is a chaos engineering extension that periodically sends kill signals t
 
 Add to `postgresql.conf`:
 
-```text
+```
 shared_preload_libraries = 'pg_crash'
 
 # POSIX signals to send (space-separated)

@@ -167,7 +167,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_rrf;          # Install for current active PG version
 ```
 
@@ -206,7 +206,6 @@ CREATE EXTENSION pg_rrf;
 
 
 ## Usage
-
 > Sources: [README](https://github.com/yuiseki/pg_rrf/blob/main/README.md), [v0.0.3 release](https://github.com/yuiseki/pg_rrf/releases/tag/v0.0.3)
 
 `pg_rrf` provides Reciprocal Rank Fusion functions for hybrid search score fusion.

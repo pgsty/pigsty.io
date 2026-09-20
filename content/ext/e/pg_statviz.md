@@ -20,7 +20,7 @@ weight: 6080
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_statviz`**](/ext/e/pg_statviz) | `1.1` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
+| [**`pg_statviz`**](/ext/e/pg_statviz) | `1.2.1` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -33,16 +33,16 @@ weight: 6080
 {.ext-table .ext-table--rel}
 
 
-> Cataloged but hidden from default package groups. GitHub release and control are 1.1 while PGXN still serves 1.0. PGDG DEB 1.1 covers active PG14-18 except Ubuntu 22.04 and recommends the separate Python utility, so a normal APT install can pull its Python stack. PGDG RPM remains at 0.9, lacks PG17, and provides PG18 only on EL10; its metadata declares no PostgreSQL dependency, labels GPLv2+ although upstream uses the PostgreSQL License, and describes a CLI although the subpackage contains only extension SQL and control files. The extension itself is pure SQL and PL/pgSQL and needs no preload.
+> DEB 1.2.1; RPM 0.9 lacks PG17. SQL-only.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#stat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_statviz` | `plpgsql` |
+| [**EXT**](/ext/list#stat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.2.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_statviz` | `plpgsql` |
 | [**RPM**](/ext/rpm#stat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `0.9` | {{< pgvers "18,16,15,14" >}} | `pg_statviz_extension_$v` | - |
-| [**DEB**](/ext/deb#stat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-statviz` | - |
+| [**DEB**](/ext/deb#stat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.2.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-statviz` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -54,69 +54,69 @@ weight: 6080
 | el9.aarch64 | MISS PGDG - 0 | MISS PGDG - 0 | AVAIL PGDG 0.9 3 | AVAIL PGDG 0.9 5 | AVAIL PGDG 0.9 5 |
 | el10.x86_64 | AVAIL PGDG 0.9 3 | MISS PGDG - 0 | AVAIL PGDG 0.9 4 | AVAIL PGDG 0.9 4 | AVAIL PGDG 0.9 4 |
 | el10.aarch64 | AVAIL PGDG 0.9 2 | MISS PGDG - 0 | AVAIL PGDG 0.9 3 | AVAIL PGDG 0.9 3 | AVAIL PGDG 0.9 3 |
-| d12.x86_64 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 |
-| d12.aarch64 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 |
-| d13.x86_64 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 |
-| d13.aarch64 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 |
+| d12.x86_64 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 |
+| d12.aarch64 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 |
+| d13.x86_64 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 |
+| d13.aarch64 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 |
 | u22.x86_64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
 | u22.aarch64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
-| u24.x86_64 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 |
-| u24.aarch64 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 |
-| u26.x86_64 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 |
-| u26.aarch64 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 | AVAIL PGDG 1.1 3 |
+| u24.x86_64 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 |
+| u24.aarch64 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 |
+| u26.x86_64 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 |
+| u26.aarch64 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 |
 @ el10.x86_64 18 pg_statviz_extension_18 pg_statviz_extension_18-0.9-1PGDG.rhel10.2.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_statviz_extension_18-0.9-1PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 18 pg_statviz_extension_18 pg_statviz_extension_18-0.9-1PGDG.rhel10.1.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_statviz_extension_18-0.9-1PGDG.rhel10.1.noarch.rpm
 @ el10.x86_64 18 pg_statviz_extension_18 pg_statviz_extension_18-0.9-1PGDG.rhel10.0.noarch.rpm pgdg 0.9 15.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_statviz_extension_18-0.9-1PGDG.rhel10.0.noarch.rpm
 @ el10.aarch64 18 pg_statviz_extension_18 pg_statviz_extension_18-0.9-1PGDG.rhel10.1.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_statviz_extension_18-0.9-1PGDG.rhel10.1.noarch.rpm
 @ el10.aarch64 18 pg_statviz_extension_18 pg_statviz_extension_18-0.9-1PGDG.rhel10.0.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_statviz_extension_18-0.9-1PGDG.rhel10.0.noarch.rpm
+@ d12.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.2.1-1.pgdg12+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.2.1-1.pgdg12+1_all.deb
 @ d12.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.1-1.pgdg12+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.1-1.pgdg12+1_all.deb
 @ d12.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.0-2.pgdg12+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-2.pgdg12+1_all.deb
-@ d12.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.0-1.pgdg12+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-1.pgdg12+1_all.deb
+@ d12.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.2.1-1.pgdg12+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.2.1-1.pgdg12+1_all.deb
 @ d12.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.1-1.pgdg12+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.1-1.pgdg12+1_all.deb
 @ d12.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.0-2.pgdg12+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-2.pgdg12+1_all.deb
-@ d12.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.0-1.pgdg12+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-1.pgdg12+1_all.deb
+@ d13.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.2.1-1.pgdg13+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.2.1-1.pgdg13+1_all.deb
 @ d13.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.1-1.pgdg13+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.1-1.pgdg13+1_all.deb
 @ d13.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.0-2.pgdg13+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-2.pgdg13+1_all.deb
-@ d13.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.0-1.pgdg13+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-1.pgdg13+1_all.deb
+@ d13.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.2.1-1.pgdg13+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.2.1-1.pgdg13+1_all.deb
 @ d13.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.1-1.pgdg13+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.1-1.pgdg13+1_all.deb
 @ d13.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.0-2.pgdg13+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-2.pgdg13+1_all.deb
-@ d13.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.0-1.pgdg13+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-1.pgdg13+1_all.deb
+@ u24.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.2.1-1.pgdg24.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.2.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.1-1.pgdg24.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.0-2.pgdg24.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-2.pgdg24.04+1_all.deb
-@ u24.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.0-1.pgdg24.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-1.pgdg24.04+1_all.deb
+@ u24.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.2.1-1.pgdg24.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.2.1-1.pgdg24.04+1_all.deb
 @ u24.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.1-1.pgdg24.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.1-1.pgdg24.04+1_all.deb
 @ u24.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.0-2.pgdg24.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-2.pgdg24.04+1_all.deb
-@ u24.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.0-1.pgdg24.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-1.pgdg24.04+1_all.deb
+@ u26.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.2.1-1.pgdg26.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.2.1-1.pgdg26.04+1_all.deb
 @ u26.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.1-1.pgdg26.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.1-1.pgdg26.04+1_all.deb
 @ u26.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.0-2.pgdg26.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-2.pgdg26.04+1_all.deb
-@ u26.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.0-1.pgdg26.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-1.pgdg26.04+1_all.deb
+@ u26.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.2.1-1.pgdg26.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.2.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.1-1.pgdg26.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.0-2.pgdg26.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-2.pgdg26.04+1_all.deb
-@ u26.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.0-1.pgdg26.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-1.pgdg26.04+1_all.deb
+@ d12.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.2.1-1.pgdg12+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.2.1-1.pgdg12+1_all.deb
 @ d12.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.1-1.pgdg12+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.1-1.pgdg12+1_all.deb
 @ d12.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.0-2.pgdg12+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-2.pgdg12+1_all.deb
-@ d12.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.0-1.pgdg12+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-1.pgdg12+1_all.deb
+@ d12.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.2.1-1.pgdg12+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.2.1-1.pgdg12+1_all.deb
 @ d12.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.1-1.pgdg12+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.1-1.pgdg12+1_all.deb
 @ d12.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.0-2.pgdg12+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-2.pgdg12+1_all.deb
-@ d12.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.0-1.pgdg12+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-1.pgdg12+1_all.deb
+@ d13.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.2.1-1.pgdg13+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.2.1-1.pgdg13+1_all.deb
 @ d13.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.1-1.pgdg13+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.1-1.pgdg13+1_all.deb
 @ d13.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.0-2.pgdg13+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-2.pgdg13+1_all.deb
-@ d13.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.0-1.pgdg13+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-1.pgdg13+1_all.deb
+@ d13.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.2.1-1.pgdg13+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.2.1-1.pgdg13+1_all.deb
 @ d13.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.1-1.pgdg13+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.1-1.pgdg13+1_all.deb
 @ d13.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.0-2.pgdg13+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-2.pgdg13+1_all.deb
-@ d13.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.0-1.pgdg13+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-1.pgdg13+1_all.deb
+@ u24.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.2.1-1.pgdg24.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.2.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.1-1.pgdg24.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.0-2.pgdg24.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-2.pgdg24.04+1_all.deb
-@ u24.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.0-1.pgdg24.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-1.pgdg24.04+1_all.deb
+@ u24.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.2.1-1.pgdg24.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.2.1-1.pgdg24.04+1_all.deb
 @ u24.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.1-1.pgdg24.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.1-1.pgdg24.04+1_all.deb
 @ u24.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.0-2.pgdg24.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-2.pgdg24.04+1_all.deb
-@ u24.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.0-1.pgdg24.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-1.pgdg24.04+1_all.deb
+@ u26.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.2.1-1.pgdg26.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.2.1-1.pgdg26.04+1_all.deb
 @ u26.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.1-1.pgdg26.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.1-1.pgdg26.04+1_all.deb
 @ u26.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.0-2.pgdg26.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-2.pgdg26.04+1_all.deb
-@ u26.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.0-1.pgdg26.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-1.pgdg26.04+1_all.deb
+@ u26.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.2.1-1.pgdg26.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.2.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.1-1.pgdg26.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.0-2.pgdg26.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-2.pgdg26.04+1_all.deb
-@ u26.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.0-1.pgdg26.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-1.pgdg26.04+1_all.deb
 @ el8.x86_64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.9-1PGDG.rhel8.10.noarch.rpm pgdg 0.9 15.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_statviz_extension_16-0.9-1PGDG.rhel8.10.noarch.rpm
 @ el8.x86_64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.6-1PGDG.rhel8.noarch.rpm pgdg 0.6 11.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_statviz_extension_16-0.6-1PGDG.rhel8.noarch.rpm
 @ el8.aarch64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.9-1PGDG.rhel8.10.noarch.rpm pgdg 0.9 15.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_statviz_extension_16-0.9-1PGDG.rhel8.10.noarch.rpm
@@ -134,30 +134,30 @@ weight: 6080
 @ el10.aarch64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.9-1PGDG.rhel10.1.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_statviz_extension_16-0.9-1PGDG.rhel10.1.noarch.rpm
 @ el10.aarch64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.9-1PGDG.rhel10.0.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_statviz_extension_16-0.9-1PGDG.rhel10.0.noarch.rpm
 @ el10.aarch64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.6-1PGDG.rhel10.noarch.rpm pgdg 0.6 12.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_statviz_extension_16-0.6-1PGDG.rhel10.noarch.rpm
+@ d12.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.2.1-1.pgdg12+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.2.1-1.pgdg12+1_all.deb
 @ d12.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.1-1.pgdg12+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.1-1.pgdg12+1_all.deb
 @ d12.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.0-2.pgdg12+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-2.pgdg12+1_all.deb
-@ d12.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.0-1.pgdg12+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-1.pgdg12+1_all.deb
+@ d12.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.2.1-1.pgdg12+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.2.1-1.pgdg12+1_all.deb
 @ d12.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.1-1.pgdg12+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.1-1.pgdg12+1_all.deb
 @ d12.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.0-2.pgdg12+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-2.pgdg12+1_all.deb
-@ d12.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.0-1.pgdg12+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-1.pgdg12+1_all.deb
+@ d13.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.2.1-1.pgdg13+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.2.1-1.pgdg13+1_all.deb
 @ d13.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.1-1.pgdg13+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.1-1.pgdg13+1_all.deb
 @ d13.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.0-2.pgdg13+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-2.pgdg13+1_all.deb
-@ d13.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.0-1.pgdg13+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-1.pgdg13+1_all.deb
+@ d13.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.2.1-1.pgdg13+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.2.1-1.pgdg13+1_all.deb
 @ d13.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.1-1.pgdg13+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.1-1.pgdg13+1_all.deb
 @ d13.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.0-2.pgdg13+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-2.pgdg13+1_all.deb
-@ d13.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.0-1.pgdg13+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-1.pgdg13+1_all.deb
+@ u24.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.2.1-1.pgdg24.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.2.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.1-1.pgdg24.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.0-2.pgdg24.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-2.pgdg24.04+1_all.deb
-@ u24.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.0-1.pgdg24.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-1.pgdg24.04+1_all.deb
+@ u24.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.2.1-1.pgdg24.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.2.1-1.pgdg24.04+1_all.deb
 @ u24.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.1-1.pgdg24.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.1-1.pgdg24.04+1_all.deb
 @ u24.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.0-2.pgdg24.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-2.pgdg24.04+1_all.deb
-@ u24.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.0-1.pgdg24.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-1.pgdg24.04+1_all.deb
+@ u26.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.2.1-1.pgdg26.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.2.1-1.pgdg26.04+1_all.deb
 @ u26.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.1-1.pgdg26.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.1-1.pgdg26.04+1_all.deb
 @ u26.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.0-2.pgdg26.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-2.pgdg26.04+1_all.deb
-@ u26.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.0-1.pgdg26.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-1.pgdg26.04+1_all.deb
+@ u26.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.2.1-1.pgdg26.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.2.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.1-1.pgdg26.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.0-2.pgdg26.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-2.pgdg26.04+1_all.deb
-@ u26.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.0-1.pgdg26.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-1.pgdg26.04+1_all.deb
 @ el8.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.9-1PGDG.rhel8.10.noarch.rpm pgdg 0.9 15.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_statviz_extension_15-0.9-1PGDG.rhel8.10.noarch.rpm
 @ el8.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.6-1PGDG.rhel8.noarch.rpm pgdg 0.6 11.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_statviz_extension_15-0.6-1PGDG.rhel8.noarch.rpm
 @ el8.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.5-1PGDG.rhel8.noarch.rpm pgdg 0.5 11.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_statviz_extension_15-0.5-1PGDG.rhel8.noarch.rpm
@@ -183,30 +183,30 @@ weight: 6080
 @ el10.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.9-1PGDG.rhel10.1.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_statviz_extension_15-0.9-1PGDG.rhel10.1.noarch.rpm
 @ el10.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.9-1PGDG.rhel10.0.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_statviz_extension_15-0.9-1PGDG.rhel10.0.noarch.rpm
 @ el10.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.6-1PGDG.rhel10.noarch.rpm pgdg 0.6 12.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_statviz_extension_15-0.6-1PGDG.rhel10.noarch.rpm
+@ d12.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.2.1-1.pgdg12+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.2.1-1.pgdg12+1_all.deb
 @ d12.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.1-1.pgdg12+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.1-1.pgdg12+1_all.deb
 @ d12.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.0-2.pgdg12+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-2.pgdg12+1_all.deb
-@ d12.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.0-1.pgdg12+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-1.pgdg12+1_all.deb
+@ d12.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.2.1-1.pgdg12+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.2.1-1.pgdg12+1_all.deb
 @ d12.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.1-1.pgdg12+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.1-1.pgdg12+1_all.deb
 @ d12.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.0-2.pgdg12+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-2.pgdg12+1_all.deb
-@ d12.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.0-1.pgdg12+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-1.pgdg12+1_all.deb
+@ d13.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.2.1-1.pgdg13+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.2.1-1.pgdg13+1_all.deb
 @ d13.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.1-1.pgdg13+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.1-1.pgdg13+1_all.deb
 @ d13.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.0-2.pgdg13+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-2.pgdg13+1_all.deb
-@ d13.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.0-1.pgdg13+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-1.pgdg13+1_all.deb
+@ d13.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.2.1-1.pgdg13+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.2.1-1.pgdg13+1_all.deb
 @ d13.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.1-1.pgdg13+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.1-1.pgdg13+1_all.deb
 @ d13.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.0-2.pgdg13+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-2.pgdg13+1_all.deb
-@ d13.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.0-1.pgdg13+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-1.pgdg13+1_all.deb
+@ u24.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.2.1-1.pgdg24.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.2.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.1-1.pgdg24.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.0-2.pgdg24.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-2.pgdg24.04+1_all.deb
-@ u24.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.0-1.pgdg24.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-1.pgdg24.04+1_all.deb
+@ u24.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.2.1-1.pgdg24.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.2.1-1.pgdg24.04+1_all.deb
 @ u24.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.1-1.pgdg24.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.1-1.pgdg24.04+1_all.deb
 @ u24.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.0-2.pgdg24.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-2.pgdg24.04+1_all.deb
-@ u24.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.0-1.pgdg24.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-1.pgdg24.04+1_all.deb
+@ u26.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.2.1-1.pgdg26.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.2.1-1.pgdg26.04+1_all.deb
 @ u26.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.1-1.pgdg26.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.1-1.pgdg26.04+1_all.deb
 @ u26.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.0-2.pgdg26.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-2.pgdg26.04+1_all.deb
-@ u26.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.0-1.pgdg26.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-1.pgdg26.04+1_all.deb
+@ u26.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.2.1-1.pgdg26.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.2.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.1-1.pgdg26.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.0-2.pgdg26.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-2.pgdg26.04+1_all.deb
-@ u26.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.0-1.pgdg26.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-1.pgdg26.04+1_all.deb
 @ el8.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.9-1PGDG.rhel8.10.noarch.rpm pgdg 0.9 15.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_statviz_extension_14-0.9-1PGDG.rhel8.10.noarch.rpm
 @ el8.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.6-1PGDG.rhel8.noarch.rpm pgdg 0.6 11.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_statviz_extension_14-0.6-1PGDG.rhel8.noarch.rpm
 @ el8.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.5-1PGDG.rhel8.noarch.rpm pgdg 0.5 11.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_statviz_extension_14-0.5-1PGDG.rhel8.noarch.rpm
@@ -232,30 +232,30 @@ weight: 6080
 @ el10.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.9-1PGDG.rhel10.1.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_statviz_extension_14-0.9-1PGDG.rhel10.1.noarch.rpm
 @ el10.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.9-1PGDG.rhel10.0.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_statviz_extension_14-0.9-1PGDG.rhel10.0.noarch.rpm
 @ el10.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.6-1PGDG.rhel10.noarch.rpm pgdg 0.6 12.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_statviz_extension_14-0.6-1PGDG.rhel10.noarch.rpm
+@ d12.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.2.1-1.pgdg12+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.2.1-1.pgdg12+1_all.deb
 @ d12.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.1-1.pgdg12+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.1-1.pgdg12+1_all.deb
 @ d12.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.0-2.pgdg12+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-2.pgdg12+1_all.deb
-@ d12.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.0-1.pgdg12+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-1.pgdg12+1_all.deb
+@ d12.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.2.1-1.pgdg12+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.2.1-1.pgdg12+1_all.deb
 @ d12.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.1-1.pgdg12+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.1-1.pgdg12+1_all.deb
 @ d12.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.0-2.pgdg12+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-2.pgdg12+1_all.deb
-@ d12.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.0-1.pgdg12+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-1.pgdg12+1_all.deb
+@ d13.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.2.1-1.pgdg13+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.2.1-1.pgdg13+1_all.deb
 @ d13.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.1-1.pgdg13+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.1-1.pgdg13+1_all.deb
 @ d13.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.0-2.pgdg13+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-2.pgdg13+1_all.deb
-@ d13.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.0-1.pgdg13+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-1.pgdg13+1_all.deb
+@ d13.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.2.1-1.pgdg13+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.2.1-1.pgdg13+1_all.deb
 @ d13.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.1-1.pgdg13+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.1-1.pgdg13+1_all.deb
 @ d13.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.0-2.pgdg13+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-2.pgdg13+1_all.deb
-@ d13.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.0-1.pgdg13+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-1.pgdg13+1_all.deb
+@ u24.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.2.1-1.pgdg24.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.2.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.1-1.pgdg24.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.0-2.pgdg24.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-2.pgdg24.04+1_all.deb
-@ u24.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.0-1.pgdg24.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-1.pgdg24.04+1_all.deb
+@ u24.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.2.1-1.pgdg24.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.2.1-1.pgdg24.04+1_all.deb
 @ u24.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.1-1.pgdg24.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.1-1.pgdg24.04+1_all.deb
 @ u24.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.0-2.pgdg24.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-2.pgdg24.04+1_all.deb
-@ u24.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.0-1.pgdg24.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-1.pgdg24.04+1_all.deb
+@ u26.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.2.1-1.pgdg26.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.2.1-1.pgdg26.04+1_all.deb
 @ u26.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.1-1.pgdg26.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.1-1.pgdg26.04+1_all.deb
 @ u26.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.0-2.pgdg26.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-2.pgdg26.04+1_all.deb
-@ u26.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.0-1.pgdg26.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-1.pgdg26.04+1_all.deb
+@ u26.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.2.1-1.pgdg26.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.2.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.1-1.pgdg26.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.0-2.pgdg26.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-2.pgdg26.04+1_all.deb
-@ u26.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.0-1.pgdg26.04+1_all.deb pgdg 1.0 12.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-1.pgdg26.04+1_all.deb
 {{< /pgext_matrix >}}
 
 
@@ -269,7 +269,7 @@ pig repo add pgdg -u          # Add PGDG repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_statviz;          # Install for current active PG version
 ```
 
@@ -308,16 +308,17 @@ CREATE EXTENSION pg_statviz CASCADE;  -- requires: plpgsql
 
 Sources:
 
-- [pg_statviz v1.1 release](https://github.com/vyruss/pg_statviz/releases/tag/v1.1)
-- [pg_statviz v1.1 README](https://github.com/vyruss/pg_statviz/blob/v1.1/README.md)
-- [pg_statviz v1.1 installation SQL](https://github.com/vyruss/pg_statviz/blob/v1.1/pg_statviz--1.1.sql)
-- [pg_statviz v1.1 control file](https://github.com/vyruss/pg_statviz/blob/v1.1/pg_statviz.control)
-- [pg_statviz v1.1 metadata](https://github.com/vyruss/pg_statviz/blob/v1.1/META.json)
-- [pg_statviz v1.1 Python package metadata](https://github.com/vyruss/pg_statviz/blob/v1.1/pyproject.toml)
-- [pg_statviz v1.1 AI provider implementation](https://github.com/vyruss/pg_statviz/blob/v1.1/src/pg_statviz/libs/ai.py)
-- [Official PGXN distribution](https://pgxn.org/dist/pg_statviz/)
+- [pg_statviz v1.2 release](https://github.com/vyruss/pg_statviz/releases/tag/v1.2)
+- [pg_statviz v1.2 README](https://github.com/vyruss/pg_statviz/blob/v1.2/README.md)
+- [pg_statviz v1.2 installation SQL](https://github.com/vyruss/pg_statviz/blob/v1.2/pg_statviz--1.2.sql)
+- [pg_statviz v1.1 to v1.2 upgrade SQL](https://github.com/vyruss/pg_statviz/blob/v1.2/pg_statviz--1.1--1.2.sql)
+- [pg_statviz v1.2 control file](https://github.com/vyruss/pg_statviz/blob/v1.2/pg_statviz.control)
+- [pg_statviz v1.2 metadata](https://github.com/vyruss/pg_statviz/blob/v1.2/META.json)
+- [pg_statviz v1.2 Python package metadata](https://github.com/vyruss/pg_statviz/blob/v1.2/pyproject.toml)
+- [pg_statviz v1.2 AI provider implementation](https://github.com/vyruss/pg_statviz/blob/v1.2/src/pg_statviz/libs/ai.py)
+- [Official PGXN v1.2.0 distribution](https://pgxn.org/dist/pg_statviz/1.2.0/README.html)
 
-`pg_statviz` v1.1 is a pure SQL and PL/pgSQL statistics snapshot extension plus a separately installed Python visualization utility. The extension stores cumulative and dynamic PostgreSQL statistics in the fixed `pgstatviz` schema; the utility reads a selected time range and generates charts or optional AI-assisted HTML reports. It requires PostgreSQL 13 or later, needs no `shared_preload_libraries`, and does not require a restart. The utility requires Python 3.11 or later.
+`pg_statviz` v1.2 (distributed by PGXN as 1.2.0) is a pure SQL and PL/pgSQL statistics snapshot extension plus a separately installed Python visualization utility. The extension stores cumulative and dynamic PostgreSQL statistics in the fixed `pgstatviz` schema; the utility reads a selected time range and generates charts or optional AI-assisted HTML reports. It requires PostgreSQL 13 or later and supports PostgreSQL through version 19, needs no `shared_preload_libraries`, and does not require a restart. The utility requires Python 3.11 or later.
 
 ### Capture and Retain Snapshots
 
@@ -338,15 +339,15 @@ Deleting parent rows cascades to the associated samples. `pgstatviz.delete_snaps
 
 ### Stored Data and Version Boundaries
 
-The main relations are `pgstatviz.snapshots`, `pgstatviz.buf`, `pgstatviz.conf`, `pgstatviz.conn`, `pgstatviz.db`, `pgstatviz.io`, `pgstatviz.lock`, `pgstatviz.repl`, `pgstatviz.slru`, `pgstatviz.wait`, and `pgstatviz.wal`. Samples include configuration values, connection user names and ages, replication application and slot names, waits, locks, I/O, database counters, and WAL counters. Protect the tables, dumps, charts, and reports as operational data.
+The main relations are `pgstatviz.snapshots`, `pgstatviz.blocking`, `pgstatviz.buf`, `pgstatviz.conf`, `pgstatviz.conn`, `pgstatviz.db`, `pgstatviz.io`, `pgstatviz.lock`, `pgstatviz.repl`, `pgstatviz.slru`, `pgstatviz.wait`, and `pgstatviz.wal`. Samples include configuration values, connection user names and ages, replication application and slot names, waits, blocking and ordinary locks, I/O, database counters, and WAL counters. Protect the tables, dumps, charts, and reports as operational data.
 
-Configuration is stored only when it changes, so `pgstatviz.conf` need not contain one row for every snapshot. `pg_stat_wal` data is collected on PostgreSQL 14 and later; `pg_stat_io` data is collected on PostgreSQL 16 and later, with PostgreSQL 18's byte-based fields handled separately. On older supported versions those tables remain part of the schema, but the unavailable collectors are skipped.
+Configuration is stored only when it changes, so `pgstatviz.conf` need not contain one row for every snapshot. `pg_stat_wal` data is collected on PostgreSQL 14 and later; `pg_stat_io` data is collected on PostgreSQL 16 and later, with PostgreSQL 18's byte-based fields handled separately. Version 1.2 also records PostgreSQL 19's `wal_fpi_bytes` and captures the new PostgreSQL 18/19 I/O-worker, effective-WAL-level, and autovacuum-scoring settings when those settings exist. On older supported versions the tables remain part of the schema, but unavailable collectors and settings are skipped.
 
 The extension marks its snapshot tables for extension-aware dumps. This allows history to be moved with `pg_dump`, but retention and backup size still need deliberate limits.
 
 ### Visualize a Time Range
 
-Install the utility separately and pass normal libpq connection options. The `analyze` command runs every analysis module; individual modules such as `conn`, `io`, `wait`, and `wal` can be selected when a narrower report is sufficient.
+Install the utility separately and pass normal libpq connection options. The `analyze` command runs every analysis module; individual modules such as `blocking`, `conn`, `io`, `wait`, and `wal` can be selected when a narrower report is sufficient. The v1.2 `blocking` module summarizes blocked and blocking session counts by lock type using snapshots built from `pg_blocking_pids()`; it therefore includes soft blocks as well as hard lock conflicts.
 
 ```bash
 pip install pg_statviz
@@ -361,13 +362,23 @@ Restrict database credentials and report-directory access. A visualization role 
 
 ### Privilege Boundary
 
-The v1.1 installation SQL grants every member of `pg_monitor` schema usage, function execution, and `SELECT`, `INSERT`, `DELETE`, and `TRUNCATE` on all `pgstatviz` tables. Consequently, membership allows both snapshot collection and complete history removal through `pgstatviz.delete_snapshots()`; it is not a read-only visualization role.
+The v1.2 installation SQL grants every member of `pg_monitor` schema usage, function execution, and `SELECT`, `INSERT`, `DELETE`, and `TRUNCATE` on all `pgstatviz` tables. Consequently, membership allows both snapshot collection and complete history removal through `pgstatviz.delete_snapshots()`; it is not a read-only visualization role.
 
 If collection, visualization, and retention administration must be separated, revise the default grants after installation and grant only the required functions and table privileges to dedicated roles. Recheck those grants after an extension update.
 
+### Upgrade to v1.2
+
+After installing the v1.2 extension files, upgrade each database that already has `pg_statviz` installed:
+
+```sql
+ALTER EXTENSION pg_statviz UPDATE TO '1.2';
+```
+
+The v1.1-to-v1.2 migration adds `pgstatviz.blocking`, adds `pgstatviz.wal.wal_fpi_bytes`, replaces the snapshot functions, grants `pg_monitor` access to the new table, and marks it for extension-aware dumps. Replacing package files alone does not apply these database changes. Back up operational history and account for the added table and column before upgrading any external report or restore workflow that assumes the v1.1 schema.
+
 ### Optional AI and Cloud Data Review
 
-Normal chart generation makes no LLM request. AI mode requires the optional `pg_statviz[ai]` dependencies and an explicit `--ai` flag. Claude is the default cloud provider and reads `ANTHROPIC_API_KEY`; Gemini reads `GOOGLE_API_KEY`; `--ai local` uses a local Ollama service. The current defaults are `claude-sonnet-4-6`, `gemini-2.5-flash`, and `gemma4:e4b`; these are implementation defaults, not a guarantee that a provider account or local runtime will continue to offer them.
+Normal chart generation makes no LLM request. AI mode requires the optional `pg_statviz[ai]` dependencies and an explicit `--ai` flag. Claude is the default cloud provider and reads `ANTHROPIC_API_KEY`; Gemini reads `GOOGLE_API_KEY`; OpenAI or an OpenAI-compatible endpoint reads `OPENAI_API_KEY` and can be redirected with `OPENAI_BASE_URL`; `--ai local` uses a local Ollama service. The current defaults are `claude-sonnet-5`, `gemini-3.7-flash`, `gpt-5.6-luna`, and `gemma4:e4b`; `OPENAI_MODEL` overrides the OpenAI-compatible model. These are implementation defaults, not a guarantee that a provider account or local runtime will continue to offer them.
 
 ```bash
 pip install 'pg_statviz[ai]'

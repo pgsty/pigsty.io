@@ -11,10 +11,10 @@ weight: 6500
     <div class="ext-card__title">kouber/pg_sqlog</div>
     <div class="ext-card__desc">https://github.com/kouber/pg_sqlog</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_sqlog-1.6.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_sqlog-1.7+git20241118.b016539.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_sqlog-1.6.tar.gz</div>
-    <div class="ext-card__desc">pg_sqlog-1.6.tar.gz</div>
+    <div class="ext-card__title">pg_sqlog-1.7+git20241118.b016539.tar.gz</div>
+    <div class="ext-card__desc">pg_sqlog-1.7+git20241118.b016539.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 6500
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_sqlog`**](/ext/e/pg_sqlog) | `1.6` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
+| [**`pg_sqlog`**](/ext/e/pg_sqlog) | `1.7` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -45,9 +45,9 @@ weight: 6500
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.6` | {{< pgvers "18,17,16,15,14" >}} | `pg_sqlog` | `file_fdw` |
-| [**RPM**](/ext/rpm#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.6` | {{< pgvers "18,17,16,15,14" >}} | `pg_sqlog_$v` | - |
-| [**DEB**](/ext/deb#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.6` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-sqlog` | - |
+| [**EXT**](/ext/list#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.7` | {{< pgvers "18,17,16,15,14" >}} | `pg_sqlog` | `file_fdw` |
+| [**RPM**](/ext/rpm#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.7` | {{< pgvers "18,17,16,15,14" >}} | `pg_sqlog_$v` | - |
+| [**DEB**](/ext/deb#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.7+git20241118.b016539` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-sqlog` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -170,7 +170,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_sqlog;          # Install for current active PG version
 ```
 
@@ -275,7 +275,7 @@ SELECT * FROM sqlog.autoanalyze() LIMIT 5;
 
 Required `postgresql.conf` settings:
 
-```text
+```
 log_destination = 'syslog,csvlog'
 log_filename = 'postgresql.%F'
 logging_collector = 'on'

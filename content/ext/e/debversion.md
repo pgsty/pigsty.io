@@ -123,7 +123,7 @@ pig repo add pgdg -u          # Add PGDG repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install debversion;          # Install for current active PG version
 ```
 

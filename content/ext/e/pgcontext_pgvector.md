@@ -11,11 +11,6 @@ weight: 1970
     <div class="ext-card__title">https://pgxn.org/dist/pgContext/0.2.0/</div>
     <div class="ext-card__desc">https://pgxn.org/dist/pgContext/0.2.0/</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgcontext-0.2.0.tar.gz">
-    <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pgcontext-0.2.0.tar.gz</div>
-    <div class="ext-card__desc">pgcontext-0.2.0.tar.gz</div>
-  </a>
 </div>
 
 
@@ -34,21 +29,21 @@ weight: 1970
 | 1970  | [**`pgcontext_pgvector`**](/ext/e/pgcontext_pgvector) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`pgcontext`](/ext/e/pgcontext) [`vector`](/ext/e/vector) [`vector`](/ext/e/vector) [`vchord`](/ext/e/vchord) [`vectorscale`](/ext/e/vectorscale) [`vectorize`](/ext/e/vectorize) [`pg_rrf`](/ext/e/pg_rrf) [`pg_search`](/ext/e/pg_search) [`pg_bestmatch`](/ext/e/pg_bestmatch) [`vchord_bm25`](/ext/e/vchord_bm25) [`pgml`](/ext/e/pgml) |
+| **Related** | [`vector`](/ext/e/vector) [`vchord`](/ext/e/vchord) [`vectorscale`](/ext/e/vectorscale) [`vectorize`](/ext/e/vectorize) [`pg_rrf`](/ext/e/pg_rrf) [`pg_search`](/ext/e/pg_search) [`pg_bestmatch`](/ext/e/pg_bestmatch) [`vchord_bm25`](/ext/e/vchord_bm25) [`pgml`](/ext/e/pgml) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 
 
-> Optional control shipped by pgcontext 0.2.0; requires pgcontext and vector.
+> Removed in pgcontext 0.3.0; migrate to pgcontext.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2.0` | {{< pgvers "18,17" >}} | `pgcontext` | `pgcontext`, `vector` |
-| [**RPM**](/ext/rpm#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2.0` | {{< pgvers "18,17" >}} | `pgcontext_$v` | - |
-| [**DEB**](/ext/deb#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2.0` | {{< pgvers "18,17" >}} | `postgresql-$v-pgcontext` | - |
+| [**EXT**](/ext/list#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2.0` | {{< pgvers "18,17" >}} | `pgcontext` | - |
+| [**RPM**](/ext/rpm#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | - | - | `pgcontext_$v` | - |
+| [**DEB**](/ext/deb#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | - | - | `postgresql-$v-pgcontext` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -72,14 +67,6 @@ weight: 1970
 | u26.aarch64 | AVAIL PIGSTY 0.2.0 1 | AVAIL PIGSTY 0.2.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 {{< /pgext_matrix >}}
 
-## Build
-
-You can build the RPM / DEB packages for `pgcontext` using `pig build`:
-
-```bash
-pig build pkg pgcontext         # build RPM / DEB packages
-```
-
 
 ## Install
 
@@ -91,7 +78,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pgcontext;          # Install for current active PG version
 ```
 
@@ -114,7 +101,7 @@ apt install -y postgresql-17-pgcontext   # PG 17
 **Create Extension**:
 
 ```sql
-CREATE EXTENSION pgcontext_pgvector CASCADE;  -- requires: pgcontext, vector
+CREATE EXTENSION pgcontext_pgvector;
 ```
 
 ## Usage

@@ -2,7 +2,7 @@
 title: Pigsty Packaged Extension Catalog
 linkTitle: Pigsty Packaged Extension Catalog
 description: >
-  Extensions are the soul of PostgreSQL. Pigsty builds, packages, collects, and integrates 576 PG ecosystem extensions for out-of-the-box use.
+  Extensions are the soul of PostgreSQL. Pigsty builds, packages, collects, and integrates 577 PG ecosystem extensions for out-of-the-box use.
 weight: 20
 outputs:
   - HTML
@@ -14,7 +14,7 @@ cascade:
 
 Pigsty provides the following three pieces of infrastructure to help users harness the collaborative superpowers of the PostgreSQL extension ecosystem:
 
-- [**Packaged Extension Catalog**](/ext/list): Browse detailed information, usage, metadata, download links and docs for [**576 packaged extensions**](/ext/list)
+- [**Packaged Extension Catalog**](/ext/list): Browse detailed information, usage, metadata, download links and docs for [**577 packaged extensions**](/ext/list)
 - [**Extension Repository**](/docs/repo/pgsql): Get pre-built RPM/DEB binary packages, available on [**16 Linux systems**](/ext/os)
 - [**Package Manager**](https://pig.pgsty.com): Use the [`pig`](https://pig.pgsty.com) CLI tool to abstract away OS and architecture differences
 
@@ -33,7 +33,7 @@ Everything can be solved with PostgreSQL! Check out our blog post: [**PostgreSQL
 
 ## Key Features
 
-- **Quantity**: Unparalleled extension count: **576 packaged extensions**, the most in the PG extension ecosystem
+- **Quantity**: Unparalleled extension count: **577 packaged extensions**, the most in the PG extension ecosystem
 - **Quality**: Native Linux RPM/DEB packages, fully compatible with PGDG packaging standards
 - **Ease of Use**: Provides the [**`pig`**](https://pig.pgsty.com) package manager, abstracting away OS and architecture differences for out-of-the-box use
 - **Compatibility**: Extensions are fully compatible with PGDG packaging standards, seamlessly usable with PGDG repositories
@@ -47,9 +47,9 @@ Everything can be solved with PostgreSQL! Check out our blog post: [**PostgreSQL
 
 | **Type** | **All** | **PGDG** | **PIGSTY** | **CONTRIB** | | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:------:|:------:|:------:|:------:|:------:|:---:|:------:|:------:|:------:|:------:|:------:|
-| **ALL** | 576 | 161 | 410 | 71 | | 571 | 557 | 543 | 522 | 500 |
-| **EL** | 575 | 123 | 381 | 71 | | 570 | 555 | 542 | 521 | 499 |
-| **Debian** | 573 | 112 | 390 | 71 | | 568 | 554 | 540 | 519 | 497 |
+| **ALL** | 577 | 157 | 415 | 71 | | 572 | 558 | 544 | 522 | 501 |
+| **EL** | 576 | 119 | 386 | 71 | | 570 | 555 | 543 | 521 | 501 |
+| **Debian** | 574 | 110 | 393 | 71 | | 567 | 554 | 541 | 519 | 498 |
 {.ext-table}
 
 > See: [Extension List](/ext/list), [RPM List](/ext/rpm), [DEB List](/ext/deb), [Repository](/ext/repo)
@@ -64,7 +64,7 @@ Everything can be solved with PostgreSQL! Check out our blog post: [**PostgreSQL
 | <a class="ext-badge ext-badge--cate time" href="/ext/cate/time">TIME</a> | [`timescaledb`](/ext/e/timescaledb)  [`timescaledb_toolkit`](/ext/e/timescaledb_toolkit)  [`pg_timeseries`](/ext/e/timeseries)  [`periods`](/ext/e/periods)  [`temporal_tables`](/ext/e/temporal_tables)  [`emaj`](/ext/e/emaj)  [`table_version`](/ext/e/table_version)  [`pg_cron`](/ext/e/pg_cron)  [`pg_task`](/ext/e/pg_task)  [`pg_later`](/ext/e/pg_later)  [`pg_dispatch`](/ext/e/pg_dispatch)  [`pg_background`](/ext/e/pg_background)  [`pg_when`](/ext/e/pg_when)  [`pg_stl`](/ext/e/pg_stl)  [`cron_utils`](/ext/e/cron_utils) |
 | <a class="ext-badge ext-badge--cate gis" href="/ext/cate/gis">GIS</a> | [`postgis`](/ext/e/postgis)  [`pgrouting`](/ext/e/pgrouting)  [`pointcloud`](/ext/e/pointcloud)  [`pg_h3`](/ext/e/h3)  [`q3c`](/ext/e/q3c)  [`ogr_fdw`](/ext/e/ogr_fdw)  [`geoip`](/ext/e/geoip)  [`pg_polyline`](/ext/e/pg_polyline)  [`pg_eviltransform`](/ext/e/pg_eviltransform)  [`pg_geohash`](/ext/e/pg_geohash)  [`pghydro`](/ext/e/pghydro)  [`mobilitydb`](/ext/e/mobilitydb)  [`pg_tzf`](/ext/e/tzf)  [`qdgc`](/ext/e/qdgc) |
 | <a class="ext-badge ext-badge--cate rag" href="/ext/cate/rag">RAG</a> | [`pgvector`](/ext/e/vector)  [`vchord`](/ext/e/vchord)  [`pgvectorscale`](/ext/e/vectorscale)  [`pg_vectorize`](/ext/e/vectorize)  [`pg_similarity`](/ext/e/pg_similarity)  [`pg_rrf`](/ext/e/pg_rrf)  [`smlar`](/ext/e/smlar)  [`pg_summarize`](/ext/e/pg_summarize)  [`pg_tiktoken`](/ext/e/pg_tiktoken)  [`pg_tiktoken_c`](/ext/e/pg_tiktoken_c)  [`pg4ml`](/ext/e/pg4ml)  [`pgml`](/ext/e/pgml)  [`pgmnemo`](/ext/e/pgmnemo)  [`pgcontext`](/ext/e/pgcontext)  [`pg_turbovec`](/ext/e/pg_turbovec) |
-| <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | [`pg_search`](/ext/e/pg_search)  [`pgroonga`](/ext/e/pgroonga)  [`pg_bigm`](/ext/e/pg_bigm)  [`zhparser`](/ext/e/zhparser)  [`pg_bestmatch`](/ext/e/pg_bestmatch)  [`vchord_bm25`](/ext/e/vchord_bm25)  [`pg_tokenizer`](/ext/e/pg_tokenizer)  [`pg_biscuit`](/ext/e/biscuit)  [`pg_textsearch`](/ext/e/pg_textsearch)  [`pg_pinyin`](/ext/e/pg_pinyin)  [`pg_kazsearch`](/ext/e/pg_kazsearch)  [`psql_bm25s`](/ext/e/psql_bm25s)  [`pg_fts`](/ext/e/pg_fts)  [`pg_cjk_parser`](/ext/e/pg_cjk_parser)  [`pg_jieba`](/ext/e/pg_jieba)  [`hunspell`](/ext/e/hunspell_cs_cz) |
+| <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | [`pg_search`](/ext/e/pg_search)  [`pgroonga`](/ext/e/pgroonga)  [`pg_bigm`](/ext/e/pg_bigm)  [`zhparser`](/ext/e/zhparser)  [`pg_bestmatch`](/ext/e/pg_bestmatch)  [`vchord_bm25`](/ext/e/vchord_bm25)  [`pg_tokenizer`](/ext/e/pg_tokenizer)  [`pg_biscuit`](/ext/e/biscuit)  [`pg_textsearch`](/ext/e/pg_textsearch)  [`pg_pinyin`](/ext/e/pg_pinyin)  [`pg_kazsearch`](/ext/e/pg_kazsearch)  [`psql_bm25s`](/ext/e/psql_bm25s)  [`pg_fts`](/ext/e/pg_fts)  [`pg_cjk_parser`](/ext/e/pg_cjk_parser)  [`pg_jieba`](/ext/e/pg_jieba)  [`acdat`](/ext/e/acdat)  [`hunspell`](/ext/e/hunspell_cs_cz) |
 | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | [`citus`](/ext/e/citus)  [`hydra`](/ext/e/columnar)  [`pg_duckdb`](/ext/e/pg_duckdb)  [`pg_mooncake`](/ext/e/pg_mooncake)  [`storage_engine`](/ext/e/storage_engine)  [`pg_clickhouse`](/ext/e/pg_clickhouse)  [`duckdb_fdw`](/ext/e/duckdb_fdw)  [`pg_parquet`](/ext/e/pg_parquet)  [`pg_ducklake`](/ext/e/pg_ducklake)  [`pg_fkpart`](/ext/e/pg_fkpart)  [`pg_partman`](/ext/e/pg_partman)  [`plproxy`](/ext/e/plproxy)  [`pg_strom`](/ext/e/pg_strom)  [`pg_orca`](/ext/e/pg_orca)  [`pg_sorted_heap`](/ext/e/pg_sorted_heap)  [`pg_lake`](/ext/e/pg_lake) |
 | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | [`age`](/ext/e/age)  [`pg_liquid`](/ext/e/pg_liquid)  [`one_sparse`](/ext/e/onesparse)  [`pggraph`](/ext/e/graph)  [`pgrdf`](/ext/e/pgrdf)  [`pgq`](/ext/e/pgq)  [`pgmq`](/ext/e/pgmq)  [`pgmb`](/ext/e/pgmb)  [`ulak`](/ext/e/ulak)  [`fsm_core`](/ext/e/fsm_core)  [`hll`](/ext/e/hll)  [`rum`](/ext/e/rum)  [`pg_ai_query`](/ext/e/pg_ai_query)  [`pg_ttl_index`](/ext/e/pg_ttl_index)  [`pg_graphql`](/ext/e/pg_graphql)  [`pg_jsonschema`](/ext/e/pg_jsonschema)  [`jsonschema`](/ext/e/jsonschema)  [`jsquery`](/ext/e/jsquery)  [`pg_hint_plan`](/ext/e/pg_hint_plan)  [`hypopg`](/ext/e/hypopg)  [`index_advisor`](/ext/e/index_advisor)  [`pg_plan_filter`](/ext/e/plan_filter)  [`pg_variables`](/ext/e/pg_variables)  [`imgsmlr`](/ext/e/imgsmlr)  [`pg_ivm`](/ext/e/pg_ivm)  [`pg_incremental`](/ext/e/pg_incremental)  [`pg_trickle`](/ext/e/pg_trickle)  [`pg_durable`](/ext/e/pg_durable)  [`pg_disorder`](/ext/e/pg_disorder)  [`pg_local_cache`](/ext/e/pg_local_cache)  [`provsql`](/ext/e/provsql)  [`orioledb`](/ext/e/orioledb)  [`pg_cardano`](/ext/e/pg_cardano)  [`rdkit`](/ext/e/rdkit)  [`omnigres`](/ext/e/omni)  [`pg_mentat`](/ext/e/pg_mentat) |
 | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | [`pg_tle`](/ext/e/pg_tle)  [`plv8`](/ext/e/plv8)  [`pljs`](/ext/e/pljs)  [`pllua`](/ext/e/pllua)  [`plprql`](/ext/e/plprql)  [`pldebugger`](/ext/e/pldbgapi)  [`plpgsql_check`](/ext/e/plpgsql_check)  [`plprofiler`](/ext/e/plprofiler)  [`plsh`](/ext/e/plsh)  [`pljava`](/ext/e/pljava)  [`plr`](/ext/e/plr)  [`plxslt`](/ext/e/plxslt)  [`pg_mockable`](/ext/e/pg_mockable)  [`pgsqlmock`](/ext/e/pgsqlmock)  [`plx`](/ext/e/plx)  [`pgwasm`](/ext/e/pgwasm)  [`plruby`](/ext/e/plruby)  [`pgtap`](/ext/e/pgtap)  [`faker`](/ext/e/faker)  [`dbt2`](/ext/e/dbt2)  [`pg_regresql`](/ext/e/pg_regresql) |
@@ -117,26 +117,12 @@ Everything can be solved with PostgreSQL! Check out our blog post: [**PostgreSQL
 
 Pigsty provides an unparalleled PostgreSQL extension delivery experience. Several PostgreSQL vendors are using it for delivery.
 
-{{< cards >}}
-{{< card title="Pigsty" link="https://github.com/pgsty/pigsty" >}}
-Out-of-the-box, open-source, enterprise-grade PostgreSQL RDS distribution
-{{< /card >}}
-{{< card title="Omnigres" link="https://docs.omnigres.org/quick_start/" >}}
-PostgreSQL as a Platform, application development inside the database
-{{< /card >}}
-{{< card title="AutoBase" link="https://autobase.tech/docs/extensions/install" >}}
-Ansible-based PG cluster automation deployment, open-source DBaaS
-{{< /card >}}
-{{< /cards >}}
-
-{{< cards >}}
-{{< card title="TensorChord" link="https://github.com/tensorchord" >}}
-Cloud-native AI infrastructure, developers of several well-known PG extensions
-{{< /card >}}
-{{< card title="WENWU IT" link="https://w3.ww-it.cn/" >}}
-Enterprise PostgreSQL service provider
-{{< /card >}}
-{{< /cards >}}
+- [Pigsty](https://github.com/pgsty/pigsty) — Out-of-the-box, open-source, enterprise-grade PostgreSQL RDS distribution
+- [Omnigres](https://docs.omnigres.org/quick_start/) — PostgreSQL as a Platform, application development inside the database
+- [AutoBase](https://autobase.tech/docs/extensions/install) — Ansible-based PG cluster automation deployment, open-source DBaaS
+- [TensorChord](https://github.com/tensorchord) — Cloud-native AI infrastructure, developers of several well-known PG extensions
+- [WENWU IT](https://w3.ww-it.cn/) — Enterprise PostgreSQL service provider
+{.cards}
 
 
 --------

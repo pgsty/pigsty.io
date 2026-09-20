@@ -11,10 +11,10 @@ weight: 9660
     <div class="ext-card__title">main/decoder_raw</div>
     <div class="ext-card__desc">https://github.com/michaelpq/pg_plugins/blob/main/decoder_raw/</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/decoder_raw-1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/decoder_raw-1.0+git20260728.2271b0d.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">decoder_raw-1.0.tar.gz</div>
-    <div class="ext-card__desc">decoder_raw-1.0.tar.gz</div>
+    <div class="ext-card__title">decoder_raw-1.0+git20260728.2271b0d.tar.gz</div>
+    <div class="ext-card__desc">decoder_raw-1.0+git20260728.2271b0d.tar.gz</div>
   </a>
 </div>
 
@@ -44,7 +44,7 @@ weight: 9660
 |:----:|:----:|:----:|:------:|:--------:|:----:|
 | [**EXT**](/ext/list#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18,17,16,15,14" >}} | `decoder_raw` | - |
 | [**RPM**](/ext/rpm#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18,17,16,15,14" >}} | `decoder_raw_$v` | - |
-| [**DEB**](/ext/deb#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-decoder-raw` | - |
+| [**DEB**](/ext/deb#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0+git20260728.2271b0d` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-decoder-raw` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -167,7 +167,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install decoder_raw;          # Install for current active PG version
 ```
 

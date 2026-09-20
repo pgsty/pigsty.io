@@ -35,11 +35,8 @@ weight: 1800
 
 | **Related** | [`vchord`](/ext/e/vchord) [`vectorscale`](/ext/e/vectorscale) [`pgcontext`](/ext/e/pgcontext) [`vectorize`](/ext/e/vectorize) [`pg_rrf`](/ext/e/pg_rrf) [`pg_search`](/ext/e/pg_search) [`vchord_bm25`](/ext/e/vchord_bm25) [`pg_bestmatch`](/ext/e/pg_bestmatch) [`pgml`](/ext/e/pgml) [`pg4ml`](/ext/e/pg4ml) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Depended By** | `ai` `alloydb_scann` `avocado` [`documentdb`](/ext/e/documentdb) `embedding_search` `hybrid_search` `maludb_core` `pg_cuvs` `pg_diskann` `pg_gembed` `pg_knowledge_graph` `pg_llm` `pg_llm_helper` [`pg_search`](/ext/e/pg_search) `pg_semantic_cache` `pg_sentence_transformer` `pg_splade` `pg_turboquant` [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) `pgedge_vectorizer` [`pgmnemo`](/ext/e/pgmnemo) `pgpu` `pgturbohybrid` `pgvecutils` `rag` `rag_bge_small_en_v15` `rag_jina_reranker_v1_tiny_en` `rds_ai` `rds_embedding` [`vchord`](/ext/e/vchord) [`vectorize`](/ext/e/vectorize) [`vectorscale`](/ext/e/vectorscale) |
+| **Depended By** | `ai` `alloydb_scann` `avocado` [`documentdb`](/ext/e/documentdb) `embedding_search` `hybrid_search` `maludb_core` `pg_cuvs` `pg_diskann` `pg_gembed` `pg_knowledge_graph` `pg_llm` `pg_llm_helper` [`pg_search`](/ext/e/pg_search) `pg_semantic_cache` `pg_sentence_transformer` `pg_splade` `pg_turboquant` `pgedge_vectorizer` [`pgmnemo`](/ext/e/pgmnemo) `pgpu` `pgturbohybrid` `pgvecutils` `rag` `rag_bge_small_en_v15` `rag_jina_reranker_v1_tiny_en` `rds_ai` `rds_embedding` [`vchord`](/ext/e/vchord) [`vectorize`](/ext/e/vectorize) [`vectorscale`](/ext/e/vectorscale) |
 {.ext-table .ext-table--rel}
-
-
-> Upstream and source archive are at pgvector 0.8.6; indexed PGDG RPM and DEB packages remain at 0.8.5 for PostgreSQL 14-18.
 
 
 ## Version
@@ -637,7 +634,7 @@ pig repo add pgdg -u          # Add PGDG repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pgvector;          # Install for current active PG version
 ```
 

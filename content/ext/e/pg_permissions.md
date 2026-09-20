@@ -11,6 +11,11 @@ weight: 5140
     <div class="ext-card__title">cybertec-postgresql/pg_permissions</div>
     <div class="ext-card__desc">https://github.com/cybertec-postgresql/pg_permissions</div>
   </a>
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_permissions-REL_1_4_1.tar.gz">
+    <div class="ext-card__kicker">Source</div>
+    <div class="ext-card__title">pg_permissions-REL_1_4_1.tar.gz</div>
+    <div class="ext-card__desc">pg_permissions-REL_1_4_1.tar.gz</div>
+  </a>
 </div>
 
 
@@ -20,12 +25,12 @@ weight: 5140
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_permissions`**](/ext/e/pg_permissions) | `1.4.1` | <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
+| [**`pg_permissions`**](/ext/e/pg_permissions) | `1.4.1` | <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 5140  | [**`pg_permissions`**](/ext/e/pg_permissions) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 5140  | [**`pg_permissions`**](/ext/e/pg_permissions) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
 | **Related** | [`set_user`](/ext/e/set_user) [`pg_roast`](/ext/e/pg_roast) [`pg_readonly`](/ext/e/pg_readonly) [`pgaudit`](/ext/e/pgaudit) [`pg_command_fw`](/ext/e/pg_command_fw) [`acl`](/ext/e/acl) [`pg_auditor`](/ext/e/pg_auditor) [`pg_snakeoil`](/ext/e/pg_snakeoil) |
@@ -33,16 +38,16 @@ weight: 5140
 {.ext-table .ext-table--rel}
 
 
-> Latest PGDG RPM/catalog version is 1.4.1; PGDG DEB remains on 1.4.
+> Package 1.4.1; SQL version 1.4.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.4.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_permissions` | - |
-| [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.4.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_permissions_$v` | - |
-| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.4` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-permissions` | - |
+| [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_permissions` | - |
+| [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_permissions_$v` | - |
+| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-permissions` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -328,18 +333,26 @@ weight: 5140
 @ u26.aarch64 14 postgresql-14-pg-permissions postgresql-14-pg-permissions_1.3-1PIGSTY~resolute_arm64.deb pigsty 1.3 7.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-permissions/postgresql-14-pg-permissions_1.3-1PIGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
+## Build
+
+You can build the RPM / DEB packages for `pg_permissions` using `pig build`:
+
+```bash
+pig build pkg pg_permissions         # build RPM / DEB packages
+```
+
 
 ## Install
 
-You can install `pg_permissions` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) repository is added and enabled:
+You can install `pg_permissions` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) and [**PIGSTY**](/docs/repo/pgsql) repositories are added and enabled:
 
 ```bash
-pig repo add pgdg -u          # Add PGDG repo and update cache
+pig repo add pgsql -u          # Add repo and update cache
 ```
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_permissions;          # Install for current active PG version
 ```
 

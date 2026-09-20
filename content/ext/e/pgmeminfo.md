@@ -11,10 +11,10 @@ weight: 6520
     <div class="ext-card__title">okbob/pgmeminfo</div>
     <div class="ext-card__desc">https://github.com/okbob/pgmeminfo</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgmeminfo-VERSION_1_0_0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgmeminfo-VERSION_1_0_1.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pgmeminfo-VERSION_1_0_0.tar.gz</div>
-    <div class="ext-card__desc">pgmeminfo-VERSION_1_0_0.tar.gz</div>
+    <div class="ext-card__title">pgmeminfo-VERSION_1_0_1.tar.gz</div>
+    <div class="ext-card__desc">pgmeminfo-VERSION_1_0_1.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 6520
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pgmeminfo`**](/ext/e/pgmeminfo) | `1.0.0` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pgmeminfo`**](/ext/e/pgmeminfo) | `1.0.1` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -45,9 +45,9 @@ weight: 6520
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#stat) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `1.0.0` | {{< pgvers "18,17,16,15,14" >}} | `pgmeminfo` | - |
-| [**RPM**](/ext/rpm#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0.0` | {{< pgvers "18,17,16,15,14" >}} | `pgmeminfo_$v` | - |
-| [**DEB**](/ext/deb#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgmeminfo` | - |
+| [**EXT**](/ext/list#stat) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `1.0.1` | {{< pgvers "18,17,16,15,14" >}} | `pgmeminfo` | - |
+| [**RPM**](/ext/rpm#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0.1` | {{< pgvers "18,17,16,15,14" >}} | `pgmeminfo_$v` | - |
+| [**DEB**](/ext/deb#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgmeminfo` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -220,7 +220,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pgmeminfo;          # Install for current active PG version
 ```
 

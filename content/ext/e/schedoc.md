@@ -11,10 +11,10 @@ weight: 4330
     <div class="ext-card__title">ZeroGachis/pg_schedoc</div>
     <div class="ext-card__desc">https://github.com/ZeroGachis/pg_schedoc</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_schedoc-0.0.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_schedoc-0.0.2+git20260430.9f135c3.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_schedoc-0.0.1.tar.gz</div>
-    <div class="ext-card__desc">pg_schedoc-0.0.1.tar.gz</div>
+    <div class="ext-card__title">pg_schedoc-0.0.2+git20260430.9f135c3.tar.gz</div>
+    <div class="ext-card__desc">pg_schedoc-0.0.2+git20260430.9f135c3.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 4330
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_schedoc`**](/ext/e/schedoc) | `0.0.1` | <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
+| [**`pg_schedoc`**](/ext/e/schedoc) | `0.0.2` | <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -42,9 +42,9 @@ weight: 4330
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_schedoc` | `ddl_historization` |
-| [**RPM**](/ext/rpm#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_schedoc_$v` | `ddl_historization_$v` |
-| [**DEB**](/ext/deb#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-schedoc` | `postgresql-$v-ddl-historization` |
+| [**EXT**](/ext/list#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.2` | {{< pgvers "18,17,16,15,14" >}} | `pg_schedoc` | `ddl_historization` |
+| [**RPM**](/ext/rpm#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.2` | {{< pgvers "18,17,16,15,14" >}} | `pg_schedoc_$v` | `ddl_historization_$v` |
+| [**DEB**](/ext/deb#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.2+git20260430.9f135c3` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-schedoc` | `postgresql-$v-ddl-historization` |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -167,7 +167,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_schedoc;          # Install for current active PG version
 ```
 
@@ -238,7 +238,7 @@ SELECT * FROM schedoc_column_comments;
 
 Result:
 
-```text
+```
  databasename | tablename | columnname | status
 --------------+-----------+------------+---------
  mydb         | my_table  | id         | private

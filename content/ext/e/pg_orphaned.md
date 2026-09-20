@@ -11,10 +11,10 @@ weight: 5200
     <div class="ext-card__title">bdrouvot/pg_orphaned</div>
     <div class="ext-card__desc">https://github.com/bdrouvot/pg_orphaned</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_orphaned-1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_orphaned-git20260427.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_orphaned-1.0.tar.gz</div>
-    <div class="ext-card__desc">pg_orphaned-1.0.tar.gz</div>
+    <div class="ext-card__title">pg_orphaned-git20260427.tar.gz</div>
+    <div class="ext-card__desc">pg_orphaned-git20260427.tar.gz</div>
   </a>
 </div>
 
@@ -30,7 +30,7 @@ weight: 5200
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 5200  | [**`pg_orphaned`**](/ext/e/pg_orphaned) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 5200  | [**`pg_orphaned`**](/ext/e/pg_orphaned) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`pg_checksums`](/ext/e/pg_checksums) [`amcheck`](/ext/e/amcheck) [`pg_catcheck`](/ext/e/pg_catcheck) [`pg_pathcheck`](/ext/e/pg_pathcheck) [`pg_surgery`](/ext/e/pg_surgery) [`pageinspect`](/ext/e/pageinspect) [`pg_isok`](/ext/e/pg_isok) |
@@ -44,7 +44,7 @@ weight: 5200
 |:----:|:----:|:----:|:------:|:--------:|:----:|
 | [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_orphaned` | - |
 | [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_orphaned_$v` | - |
-| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-orphaned` | - |
+| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0+git20260427` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-orphaned` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -167,7 +167,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_orphaned;          # Install for current active PG version
 ```
 

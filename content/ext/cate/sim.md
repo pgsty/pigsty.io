@@ -12,14 +12,14 @@ There are **28** extensions in **17** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
-| [`documentdb`](/ext/e/documentdb) | [`documentdb`](https://github.com/documentdb/documentdb) | `0.114` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | API surface for DocumentDB for PostgreSQL |
-| [`documentdb_core`](/ext/e/documentdb_core) | [`documentdb`](https://github.com/documentdb/documentdb) | `0.114` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Core API surface for DocumentDB on PostgreSQL |
-| [`documentdb_distributed`](/ext/e/documentdb_distributed) | [`documentdb`](https://github.com/documentdb/documentdb) | `0.114` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Multi-Node API surface for DocumentDB |
-| [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | [`documentdb`](https://github.com/documentdb/documentdb) | `0.114` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | DocumentDB Extended RUM index access method |
+| [`documentdb`](/ext/e/documentdb) | [`documentdb`](https://github.com/documentdb/documentdb) | `0.116` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | API surface for DocumentDB for PostgreSQL |
+| [`documentdb_core`](/ext/e/documentdb_core) | [`documentdb`](https://github.com/documentdb/documentdb) | `0.116` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Core API surface for DocumentDB on PostgreSQL |
+| [`documentdb_distributed`](/ext/e/documentdb_distributed) | [`documentdb`](https://github.com/documentdb/documentdb) | `0.116` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Multi-Node API surface for DocumentDB |
+| [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | [`documentdb`](https://github.com/documentdb/documentdb) | `0.116` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | DocumentDB Extended RUM index access method |
 | [`pg_projection`](/ext/e/pg_projection) | [`pg_projection`](https://github.com/suissa/pg_projection) | `1.0.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | MongoDB-like read projections for JSONB in PostgreSQL |
-| [`orafce`](/ext/e/orafce) | [`orafce`](https://github.com/orafce/orafce) | `4.16.7` | <a class="ext-badge ext-badge--license 0bsd" href="/ext/license#0bsd">0BSD</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Functions and operators that emulate a subset of functions and packages from the Oracle RDBMS |
+| [`orafce`](/ext/e/orafce) | [`orafce`](https://github.com/orafce/orafce) | `4.16.8` | <a class="ext-badge ext-badge--license 0bsd" href="/ext/license#0bsd">0BSD</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Functions and operators that emulate a subset of functions and packages from the Oracle RDBMS |
 | [`pgtt`](/ext/e/pgtt) | [`pgtt`](https://github.com/darold/pgtt) | `4.6` | <a class="ext-badge ext-badge--license isc" href="/ext/license#isc">ISC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Extension to add Global Temporary Tables feature to PostgreSQL |
-| [`session_variable`](/ext/e/session_variable) | [`session_variable`](https://github.com/splendiddata/session_variable) | `3.4` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Registration and manipulation of session variables and constants |
+| [`session_variable`](/ext/e/session_variable) | [`session_variable`](https://github.com/splendiddata/session_variable) | `3.5` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Registration and manipulation of session variables and constants |
 | [`pg_statement_rollback`](/ext/e/pg_statement_rollback) | [`pg_statement_rollback`](https://github.com/lzlabs/pg_statement_rollback) | `1.6` | <a class="ext-badge ext-badge--license isc" href="/ext/license#isc">ISC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Server side rollback at statement level for PostgreSQL like Oracle or DB2 |
 | [`ivorysql_ora`](/ext/e/ivorysql_ora) | [`ivorysql`](https://github.com/IvorySQL/IvorySQL/tree/master/contrib/ivorysql_ora) | `1.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Oracle Compatible extension on Postgres Database |
 | [`ora_btree_gin`](/ext/e/ora_btree_gin) | [`ivorysql`](https://github.com/IvorySQL/IvorySQL/tree/master/contrib/ora_btree_gin) | `1.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Support for indexing oracle datatypes in GIN |
@@ -34,8 +34,8 @@ There are **28** extensions in **17** packages.
 | [`pg_dbms_job`](/ext/e/pg_dbms_job) | [`pg_dbms_job`](https://github.com/HexaCluster/pg_dbms_job) | `2.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Extension to add Oracle DBMS_JOB full compatibility to PostgreSQL |
 | [`pg_dbms_errlog`](/ext/e/pg_dbms_errlog) | [`pg_dbms_errlog`](https://github.com/HexaCluster/pg_dbms_errlog) | `2.4` | <a class="ext-badge ext-badge--license isc" href="/ext/license#isc">ISC</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Emulate DBMS_ERRLOG Oracle module to log DML errors in a dedicated table. |
 | [`pg_utl_smtp`](/ext/e/pg_utl_smtp) | [`pg_utl_smtp`](https://github.com/hexacluster/pg_utl_smtp) | `1.0.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Oracle UTL_SMTP compatibility extension for PostgreSQL |
-| [`babelfishpg_common`](/ext/e/babelfishpg_common) | [`babelfish`](https://babelfishpg.org/) | `5.4.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | SQL Server Transact SQL Datatype Support |
-| [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | [`babelfish`](https://babelfishpg.org/) | `5.4.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | SQL Server Transact SQL compatibility |
+| [`babelfishpg_common`](/ext/e/babelfishpg_common) | [`babelfish`](https://babelfishpg.org/) | `6.2.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | SQL Server Transact SQL Datatype Support |
+| [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | [`babelfish`](https://babelfishpg.org/) | `6.2.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | SQL Server Transact SQL compatibility |
 | [`babelfishpg_tds`](/ext/e/babelfishpg_tds) | [`babelfish`](https://babelfishpg.org/) | `1.0.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | SQL Server TDS protocol extension |
 | [`babelfishpg_money`](/ext/e/babelfishpg_money) | [`babelfish`](https://babelfishpg.org/) | `1.1.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | SQL Server Money Data Type |
 | [`pgmemcache`](/ext/e/pgmemcache) | [`pgmemcache`](https://github.com/ohmu/pgmemcache) | `2.3.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | memcached interface |
@@ -47,7 +47,7 @@ There are **28** extensions in **17** packages.
 
 ## documentdb {#documentdb}
 
-[**`documentdb`**](/ext/e/documentdb) - `0.114` : API surface for DocumentDB for PostgreSQL
+[**`documentdb`**](/ext/e/documentdb) - `0.116` : API surface for DocumentDB for PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -66,7 +66,7 @@ There are **28** extensions in **17** packages.
 
 ## documentdb_core {#documentdb_core}
 
-[**`documentdb`**](/ext/e/documentdb_core) - `0.114` : Core API surface for DocumentDB on PostgreSQL
+[**`documentdb`**](/ext/e/documentdb_core) - `0.116` : Core API surface for DocumentDB on PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -85,7 +85,7 @@ There are **28** extensions in **17** packages.
 
 ## documentdb_distributed {#documentdb_distributed}
 
-[**`documentdb`**](/ext/e/documentdb_distributed) - `0.114` : Multi-Node API surface for DocumentDB
+[**`documentdb`**](/ext/e/documentdb_distributed) - `0.116` : Multi-Node API surface for DocumentDB
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -104,7 +104,7 @@ There are **28** extensions in **17** packages.
 
 ## documentdb_extended_rum {#documentdb_extended_rum}
 
-[**`documentdb`**](/ext/e/documentdb_extended_rum) - `0.114` : DocumentDB Extended RUM index access method
+[**`documentdb`**](/ext/e/documentdb_extended_rum) - `0.116` : DocumentDB Extended RUM index access method
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -142,7 +142,7 @@ There are **28** extensions in **17** packages.
 
 ## orafce {#orafce}
 
-[**`orafce`**](/ext/e/orafce) - `4.16.7` : Functions and operators that emulate a subset of functions and packages from the Oracle RDBMS
+[**`orafce`**](/ext/e/orafce) - `4.16.8` : Functions and operators that emulate a subset of functions and packages from the Oracle RDBMS
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -180,7 +180,7 @@ There are **28** extensions in **17** packages.
 
 ## session_variable {#session_variable}
 
-[**`session_variable`**](/ext/e/session_variable) - `3.4` : Registration and manipulation of session variables and constants
+[**`session_variable`**](/ext/e/session_variable) - `3.5` : Registration and manipulation of session variables and constants
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -208,7 +208,7 @@ There are **28** extensions in **17** packages.
 | **RPM** | `pg_statement_rollback_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **DEB** | `postgresql-$v-pg-statement-rollback` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license isc" href="/ext/license#isc">ISC</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate}
@@ -465,7 +465,7 @@ There are **28** extensions in **17** packages.
 
 ## babelfishpg_common {#babelfishpg_common}
 
-[**`babelfish`**](/ext/e/babelfishpg_common) - `5.4.0` : SQL Server Transact SQL Datatype Support
+[**`babelfish`**](/ext/e/babelfishpg_common) - `6.2.0` : SQL Server Transact SQL Datatype Support
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -484,7 +484,7 @@ There are **28** extensions in **17** packages.
 
 ## babelfishpg_tsql {#babelfishpg_tsql}
 
-[**`babelfish`**](/ext/e/babelfishpg_tsql) - `5.4.0` : SQL Server Transact SQL compatibility
+[**`babelfish`**](/ext/e/babelfishpg_tsql) - `6.2.0` : SQL Server Transact SQL compatibility
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

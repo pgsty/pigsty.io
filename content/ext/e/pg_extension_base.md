@@ -11,10 +11,10 @@ weight: 2561
     <div class="ext-card__title">main/pg_extension_base</div>
     <div class="ext-card__desc">https://github.com/Snowflake-Labs/pg_lake/tree/main/pg_extension_base</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_lake-3.4.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_lake-3.4.4.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_lake-3.4.0.tar.gz</div>
-    <div class="ext-card__desc">pg_lake-3.4.0.tar.gz</div>
+    <div class="ext-card__title">pg_lake-3.4.4.tar.gz</div>
+    <div class="ext-card__desc">pg_lake-3.4.4.tar.gz</div>
   </a>
 </div>
 
@@ -46,7 +46,7 @@ weight: 2561
 {.ext-table .ext-table--rel}
 
 
-> Set shared_preload_libraries=pg_extension_base. It auto-loads dependent libraries declared through the pg_lake control-file marker and manages extension lifecycle background workers. Extension SQL/control version is 3.4; source and DEB/RPM package version is 3.4.0.
+> pg_lake preload entry point. Package 3.4.4; SQL 3.4.
 
 
 ## Version
@@ -54,8 +54,8 @@ weight: 2561
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
 | [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.4` | {{< pgvers "18,17,16" >}} | `pg_lake` | - |
-| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.4.0` | {{< pgvers "18,17,16" >}} | `pg_lake_$v` | - |
-| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.4.0` | {{< pgvers "18,17,16" >}} | `postgresql-$v-pg-lake` | - |
+| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.4.4` | {{< pgvers "18,17,16" >}} | `pg_lake_$v` | - |
+| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.4.4` | {{< pgvers "18,17,16" >}} | `postgresql-$v-pg-lake` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -98,7 +98,7 @@ pig repo add pgsql -u          # Add repo and update cache
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
-```bash {tab="Install" group="install-pig-dnf-apt" value="install"}
+```bash {tab="Install" group="extension-install" value="install"}
 pig install pg_lake;          # Install for current active PG version
 ```
 
