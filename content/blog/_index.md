@@ -5,7 +5,7 @@ description: Articles about Pigsty, cloud computing, database industry, AI/Agent
 icon: fas fa-blog
 sidebar_root_for: self
 weight: 30
-footer_style: slim
+footer_style: fat
 outputs:
   - HTML
   - RSS
@@ -17,7 +17,7 @@ cascade:
     - print
     - markdown
   params:
-    footer_style: slim
+    footer_style: fat
     sidebar_menu_foldable: false
     sidebar_menu_compact: false
     sidebar_expand_levels: 3

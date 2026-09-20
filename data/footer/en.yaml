@@ -9,21 +9,29 @@ columns:
       - { label: Quick Start, url: /docs/setup/install/ }
       - { label: Production, url: /docs/deploy/ }
       - { label: Pricing, url: /price/ }
-  - title: Docs
+      - { label: About Pigsty, url: /docs/about/ }
+      - { label: Releases, url: /docs/about/release/ }
+  - title: "Resources"
     links:
-      - { label: PostgreSQL, url: /docs/pgsql/ }
-      - { label: Extensions, url: /ext/ }
-      - { label: Config Templates, url: /docs/conf/ }
-      - { label: Components, url: /docs/pig/ }
+      - { label: "EN Docs", url: "/docs/" }
+      - { label: "CN Docs", url: "https://pigsty.cc/docs/", external: true }
+      - { label: "Ext Catalog", url: "/ext/" }
+      - { label: "Compare", url: "/docs/about/compare/" }
+      - { label: "Examples", url: "/docs/conf/" }
+      - { label: "Application", url: "/docs/app/" }
   - title: Community
     links:
       - { label: GitHub, url: "https://github.com/pgsty/pigsty", external: true }
       - { label: Discussions, url: "https://github.com/orgs/pgsty/discussions", external: true }
       - { label: Discord, url: "https://discord.gg/wDzt5VyWEz", external: true }
       - { label: Blog, url: /blog/ }
-  - title: About
-    links:
-      - { label: About Pigsty, url: /docs/about/ }
-      - { label: Releases, url: /docs/about/release/ }
       - { label: License, url: /docs/about/license/ }
       - { label: Privacy, url: /docs/about/privacy/ }
+  - title: "Ecosystem"
+    links:
+      - { label: "PGSQL.CC", url: "https://pgsql.cc/", external: true }
+      - { label: "PG Center", url: "https://pg.center/", external: true }
+      - { label: "Silo OSS", url: "https://silo.pgsty.com/", external: true }
+      - { label: "Oink Theme", url: "https://oink.pgsty.com/", external: true }
+      - { label: "PGEXT.CLOUD", url: "https://pgext.cloud/", external: true }
+      - { label: "PIG CLI", url: "https://pig.pgsty.com/", external: true }

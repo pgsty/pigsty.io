@@ -1,0 +1,28 @@
+{{- /* Render the Star growth snapshot table from data/star_history.json.
+     Refresh it with bin/update-star-history.py. */ -}}
+{{- $data := hugo.Data.star_history -}}
+
+<div class="td-table-scroll td-table-scroll--full" tabindex="0" role="region" aria-label="GitHub star growth comparison">
+  <table class="full-width star-history-table">
+    <thead>
+      <tr>
+        <th scope="col">Project</th>
+        <th scope="col">{{ $data.baseline_date }}</th>
+        <th scope="col">{{ $data.updated_at }}</th>
+        <th scope="col">Growth</th>
+        <th scope="col">Growth (%)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{- range $project := $data.repositories }}
+      <tr>
+        <td><a href="https://github.com/{{ $project.repo }}"><code>{{ $project.repo }}</code></a></td>
+        <td>{{ $project.baseline }}</td>
+        <td><strong>{{ $project.current }}</strong></td>
+        <td>+{{ $project.growth }}</td>
+        <td>+{{ printf "%.2f" $project.growth_pct }}%</td>
+      </tr>
+      {{- end }}
+    </tbody>
+  </table>
+</div>

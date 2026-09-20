@@ -149,7 +149,12 @@ services:
 #=======================================#
 imaging:
   resampleFilter: CatmullRom
-  quality: 75
+  jpeg:
+    quality: 75
+  webp:
+    quality: 75
+  avif:
+    quality: 75
   anchor: smart
 
 #=======================================#
@@ -219,7 +224,7 @@ params:
   pigsty_version: 4.5.0     # Pigsty version embedded in PIG, {{< param pigsty_version >}} in PIG docs
   pgext_count: 576          # Number of packaged PG extensions, {{< param pgext_count >}} in content
   pgext_url: https://pgext.cloud  # PG extension catalog site; link prefix for the landing-page extension index and metric cards
-  github_stars: '5.52k'     # Approximate GitHub star count shown in the custom navbar
+  github_stars: '5.66 K'     # Approximate GitHub star count shown in the custom navbar
   copyright:
     authors: Ruohang Feng
     from_year: 2018
@@ -278,7 +283,7 @@ params:
     landing_search: true
     section_index: cards
     lastmod_commit: subject
-    github_stars: '5.52k'
+    github_stars: '5.66 K'
     alt_site:
       label: 中文
       url: https://pigsty.cc

@@ -8,7 +8,7 @@ module: [PIGSTY]
 categories: [Reference]
 no_list: true
 feedback: false
-footer_style: slim
+footer_style: fat
 outputs:
   - HTML
   - RSS
@@ -16,7 +16,7 @@ outputs:
   - markdown
 cascade:
   params:
-    footer_style: slim
+    footer_style: fat
   outputs:
     - HTML
     - print
