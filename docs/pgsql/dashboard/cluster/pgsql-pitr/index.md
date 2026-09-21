@@ -1,0 +1,15 @@
+# PGSQL PITR
+
+> PITR context for point-in-time recovery assistance
+
+---
+
+LLMS index: [llms.txt](/llms.txt)
+
+---
+
+> PITR context for point-in-time recovery: [Demo](https://demo.pigsty.io/ui/d/pgsql-pitr)
+
+PGSQL PITR provides context information for point-in-time recovery operations, showing backup status and WAL timeline.
+
+[![pgsql-pitr](/img/panel/pgsql-pitr.webp)](https://demo.pigsty.io/ui/d/pgsql-pitr)

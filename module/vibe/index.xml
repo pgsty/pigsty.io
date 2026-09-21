@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VIBE on PIGSTY</title><link>https://pigsty.io/module/vibe/</link><description>Recent content in VIBE on PIGSTY</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 21 Aug 2026 00:42:15 +0800</lastBuildDate><atom:link href="https://pigsty.io/module/vibe/index.xml" rel="self" type="application/rss+xml"/><item><title>Module: VIBE</title><link>https://pigsty.io/docs/vibe/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/vibe/</guid><description>&lt;p&gt;The VIBE module provides a &lt;strong&gt;browser-based dev environment&lt;/strong&gt; with Code-Server, JupyterLab, Node.js, Claude Code, and Codex CLI,
+and can work with &lt;a href="https://pigsty.io/docs/juice"&gt;&lt;code&gt;JUICE&lt;/code&gt;&lt;/a&gt; shared storage and &lt;a href="https://pigsty.io/docs/pgsql"&gt;&lt;code&gt;PGSQL&lt;/code&gt;&lt;/a&gt; database capabilities.&lt;/p&gt;
+&lt;p&gt;VIBE depends on &lt;a href="https://pigsty.io/docs/node"&gt;&lt;code&gt;NODE&lt;/code&gt;&lt;/a&gt; and &lt;a href="https://pigsty.io/docs/infra"&gt;&lt;code&gt;INFRA&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;NODE&lt;/code&gt; provides base software and Python &lt;code&gt;uv&lt;/code&gt; environment&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;INFRA&lt;/code&gt; provides Nginx reverse proxy, Grafana and portal entry&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="components"&gt;Components
+&lt;/h2&gt;
+&lt;div class="td-table-scroll td-table-scroll--full td-table-scroll--static"&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Component&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;th scope="col" style="text-align: center"&gt;Local Port&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Access Path&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Code-Server&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;VS Code in browser&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;8443&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;/code/&lt;/code&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;JupyterLab&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Interactive notebooks&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;8888&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;/jupyter/&lt;/code&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Node.js&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Runtime and npm&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;-&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;CLI&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Claude Code&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;CLI + observability config&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;-&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;CLI / Grafana&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Codex CLI&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;CLI installation; configuration is not managed&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;-&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;CLI&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Notes:&lt;/p&gt;</description></item><item><title>Configuration</title><link>https://pigsty.io/docs/vibe/config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/vibe/config/</guid><description>&lt;p&gt;VIBE supports enabling components on demand and exposes services via a unified workspace and Nginx portal.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview
+&lt;/h2&gt;
+&lt;div class="td-table-scroll td-table-scroll--full td-table-scroll--static"&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Component&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Enable Param&lt;/th&gt;
+ &lt;th scope="col" style="text-align: center"&gt;Default&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Code-Server&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;code_enabled&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;Enabled&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;VS Code in browser&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;JupyterLab&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;jupyter_enabled&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;Disabled&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Notebook / terminal / editor&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Node.js&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;nodejs_enabled&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;Enabled&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Node.js runtime and npm&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Claude Code&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;claude_enabled&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;Enabled&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;CLI installation, config, and observability&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;Codex CLI&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;codex_enabled&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;Enabled&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;CLI installation only; configuration is not managed&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Note: module default is &lt;code&gt;jupyter_enabled: false&lt;/code&gt;, while &lt;code&gt;conf/vibe.yml&lt;/code&gt; explicitly sets it to &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Parameters</title><link>https://pigsty.io/docs/vibe/param/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/vibe/param/</guid><description>&lt;p&gt;VIBE module has &lt;strong&gt;18&lt;/strong&gt; parameters, grouped as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Common&lt;/li&gt;
+&lt;li&gt;Code-Server&lt;/li&gt;
+&lt;li&gt;JupyterLab&lt;/li&gt;
+&lt;li&gt;Node.js&lt;/li&gt;
+&lt;li&gt;Claude Code&lt;/li&gt;
+&lt;li&gt;Codex CLI&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview
+&lt;/h2&gt;
+&lt;div class="td-table-scroll td-table-scroll--full td-table-scroll--static"&gt;
+&lt;table class="full-width"&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Parameter&lt;/th&gt;
+ &lt;th scope="col" style="text-align: center"&gt;Type&lt;/th&gt;
+ &lt;th scope="col" style="text-align: center"&gt;Level&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Default&lt;/th&gt;
+ &lt;th scope="col" style="text-align: left"&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#vibe_data"&gt;&lt;code&gt;vibe_data&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;path&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;/fs&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Workspace dir&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#code_enabled"&gt;&lt;code&gt;code_enabled&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;bool&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Enable Code-Server&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#code_port"&gt;&lt;code&gt;code_port&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;port&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;8443&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Code-Server port&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#code_data"&gt;&lt;code&gt;code_data&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;path&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;/data/code&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Code-Server data dir&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#code_password"&gt;&lt;code&gt;code_password&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;string&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;Vibe.Coding&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Code-Server password&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#code_gallery"&gt;&lt;code&gt;code_gallery&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;enum&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;openvsx&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Extension marketplace&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#jupyter_enabled"&gt;&lt;code&gt;jupyter_enabled&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;bool&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Enable JupyterLab&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#jupyter_port"&gt;&lt;code&gt;jupyter_port&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;port&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;8888&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;JupyterLab port&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#jupyter_data"&gt;&lt;code&gt;jupyter_data&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;path&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;/data/jupyter&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;JupyterLab data dir&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#jupyter_password"&gt;&lt;code&gt;jupyter_password&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;string&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;Vibe.Coding&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;JupyterLab token&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#jupyter_venv"&gt;&lt;code&gt;jupyter_venv&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;path&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;/data/venv&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Python venv path&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#nodejs_enabled"&gt;&lt;code&gt;nodejs_enabled&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;bool&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Enable Node.js&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#nodejs_registry"&gt;&lt;code&gt;nodejs_registry&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;url&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;''&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;npm registry mirror&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#npm_packages"&gt;&lt;code&gt;npm_packages&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;string[]&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;[]&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Additional global npm packages&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#claude_enabled"&gt;&lt;code&gt;claude_enabled&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;bool&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Install and configure Claude Code&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#claude_package"&gt;&lt;code&gt;claude_package&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;string&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;@anthropic-ai/claude-code&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Claude Code npm package&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#claude_env"&gt;&lt;code&gt;claude_env&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;dict&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;{}&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Claude env vars&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: left"&gt;&lt;a href="#codex_enabled"&gt;&lt;code&gt;codex_enabled&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;bool&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;code&gt;C&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+ &lt;td style="text-align: left"&gt;Install Codex CLI&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h2 id="default-parameters"&gt;Default Parameters
+&lt;/h2&gt;
+&lt;p&gt;Defined in &lt;a href="https://github.com/pgsty/pigsty/blob/main/roles/vibe/defaults/main.yml"&gt;&lt;code&gt;roles/vibe/defaults/main.yml&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;</description></item><item><title>Playbook</title><link>https://pigsty.io/docs/vibe/playbook/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/vibe/playbook/</guid><description>&lt;p&gt;VIBE provides the &lt;code&gt;vibe.yml&lt;/code&gt; playbook to deploy Code-Server, JupyterLab, Node.js, Claude Code, and Codex CLI.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;vibe.yml&lt;/code&gt; includes only &lt;code&gt;node_id&lt;/code&gt; and &lt;code&gt;vibe&lt;/code&gt; roles, it does not include &lt;code&gt;node/infra&lt;/code&gt;.
+Run &lt;a href="https://pigsty.io/docs/deploy/"&gt;&lt;code&gt;deploy.yml&lt;/code&gt;&lt;/a&gt; first, or explicitly run &lt;a href="https://pigsty.io/docs/node/playbook"&gt;&lt;code&gt;node.yml&lt;/code&gt;&lt;/a&gt; and &lt;a href="https://pigsty.io/docs/infra/playbook"&gt;&lt;code&gt;infra.yml&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="vibeyml"&gt;&lt;code&gt;vibe.yml&lt;/code&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/pgsty/pigsty/blob/main/vibe.yml"&gt;&lt;code&gt;vibe.yml&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-c3999bd2-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="yaml" data-td-line-count="7"&gt;
+ &lt;div class="td-code__viewport" id="td-code-c3999bd2-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;- &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;VIBE&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;hosts&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;all&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;become&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;gather_facts&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;no&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;roles&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- {&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;role&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;node_id, tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;id }&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- {&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;role&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;vibe, tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;vibe }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="task-structure"&gt;Task Structure
+&lt;/h2&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-c3999bd2-fence-1" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="21"&gt;
+ &lt;div class="td-code__viewport" id="td-code-c3999bd2-fence-1-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;vibe
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── vibe_dir &lt;span class="c1"&gt;# create workspace and context files&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── code &lt;span class="c1"&gt;# Code-Server&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── code_install
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── code_dir
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── code_config
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── code_launch
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── jupyter &lt;span class="c1"&gt;# JupyterLab&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── jupyter_install
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── jupyter_dir
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── jupyter_config
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── jupyter_launch
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── nodejs &lt;span class="c1"&gt;# Node.js runtime and additional npm packages&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── nodejs_install
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ ├── nodejs_config
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── nodejs_pkg
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── codex &lt;span class="c1"&gt;# Codex CLI&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ └── codex_install
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── claude &lt;span class="c1"&gt;# Claude Code&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ├── claude_install
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; └── claude_config&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Notes:&lt;/p&gt;</description></item><item><title>Administration</title><link>https://pigsty.io/docs/vibe/admin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/vibe/admin/</guid><description>&lt;hr&gt;
+&lt;h2 id="service-management"&gt;Service Management
+&lt;/h2&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-9e3720d6-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="4"&gt;
+ &lt;div class="td-code__viewport" id="td-code-9e3720d6-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl status code-server
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl restart code-server
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl status jupyter
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl restart jupyter&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Logs:&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-9e3720d6-fence-1" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="2"&gt;
+ &lt;div class="td-code__viewport" id="td-code-9e3720d6-fence-1-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;journalctl -u code-server -f
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;journalctl -u jupyter -f&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="workspace-and-context"&gt;Workspace and Context
+&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;vibe_dir&lt;/code&gt; creates these under &lt;code&gt;vibe_data&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;AGENTS.md&lt;/code&gt;: Context file rendered from the role template&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CLAUDE.md&lt;/code&gt;: Symlink to &lt;code&gt;AGENTS.md&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Default locations (adjustable via &lt;code&gt;vibe_data&lt;/code&gt;):&lt;/p&gt;</description></item><item><title>Monitoring</title><link>https://pigsty.io/docs/vibe/monitor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/vibe/monitor/</guid><description>&lt;p&gt;VIBE monitoring mainly focuses on Claude Code OpenTelemetry data.
+Code-Server and JupyterLab do not expose Prometheus metrics; use systemd and logs for health checks.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="claude-code-observability"&gt;Claude Code Observability
+&lt;/h2&gt;
+&lt;p&gt;VIBE writes default OpenTelemetry env vars into &lt;code&gt;~/.claude/settings.json&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-9297681f-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="json" data-td-line-count="12"&gt;
+ &lt;div class="td-code__viewport" id="td-code-9297681f-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-json" data-lang="json"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;env&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;CLAUDE_CODE_ENABLE_TELEMETRY&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;1&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;OTEL_METRICS_EXPORTER&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;otlp&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;OTEL_LOGS_EXPORTER&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;otlp&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;OTEL_EXPORTER_OTLP_METRICS_PROTOCOL&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;http/protobuf&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;OTEL_EXPORTER_OTLP_LOGS_PROTOCOL&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;http/protobuf&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;OTEL_EXPORTER_OTLP_METRICS_ENDPOINT&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;http://127.0.0.1:8428/opentelemetry/v1/metrics&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;OTEL_EXPORTER_OTLP_LOGS_ENDPOINT&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;http://127.0.0.1:9428/insert/opentelemetry/v1/logs&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;OTEL_RESOURCE_ATTRIBUTES&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;ip=&amp;lt;host&amp;gt;,job=claude&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;claude_env&lt;/code&gt; is merged with the defaults, and can be used for API keys or custom endpoints.&lt;/p&gt;</description></item><item><title>FAQ</title><link>https://pigsty.io/docs/vibe/faq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/vibe/faq/</guid><description>&lt;hr&gt;
+&lt;h2 id="deployment"&gt;Deployment
+&lt;/h2&gt;
+&lt;h3 id="code-server-package-not-found"&gt;code-server package not found
+&lt;/h3&gt;
+&lt;p&gt;Ensure &lt;a href="https://pigsty.io/docs/node"&gt;&lt;code&gt;NODE&lt;/code&gt;&lt;/a&gt; and repo config are in place:&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-be5674fd-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="3"&gt;
+ &lt;div class="td-code__viewport" id="td-code-be5674fd-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yum repolist &lt;span class="c1"&gt;# EL&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;apt-cache policy &lt;span class="c1"&gt;# Debian/Ubuntu, read-only inspection&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./infra.yml -l infra -t repo --check&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id="jupyterlab-installation-failed"&gt;JupyterLab installation failed
+&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;jupyter_venv&lt;/code&gt; must exist:&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-be5674fd-fence-1" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="3"&gt;
+ &lt;div class="td-code__viewport" id="td-code-be5674fd-fence-1-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;uv venv /data/venv
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./vibe.yml -l &amp;lt;host&amp;gt; -t jupyter --check
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./vibe.yml -l &amp;lt;host&amp;gt; -t jupyter&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="access"&gt;Access
+&lt;/h2&gt;
+&lt;h3 id="cannot-access-code-or-jupyter"&gt;Cannot access &lt;code&gt;/code/&lt;/code&gt; or &lt;code&gt;/jupyter/&lt;/code&gt;
+&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Check service status&lt;/li&gt;
+&lt;li&gt;Check port listening&lt;/li&gt;
+&lt;li&gt;Check Nginx config&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-be5674fd-fence-2" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="5"&gt;
+ &lt;div class="td-code__viewport" id="td-code-be5674fd-fence-2-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl status code-server
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl status jupyter
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ss -tlnp &lt;span class="p"&gt;|&lt;/span&gt; grep &lt;span class="m"&gt;8443&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ss -tlnp &lt;span class="p"&gt;|&lt;/span&gt; grep &lt;span class="m"&gt;8888&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;nginx -t&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id="websocket-connection-fails"&gt;WebSocket connection fails
+&lt;/h3&gt;
+&lt;p&gt;Ensure Nginx enables WebSocket (default is enabled).
+If using custom &lt;code&gt;infra_portal&lt;/code&gt;, set &lt;code&gt;websocket: true&lt;/code&gt;.&lt;/p&gt;</description></item></channel></rss>

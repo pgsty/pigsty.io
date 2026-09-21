@@ -1,0 +1,151 @@
+# FAQ
+
+> VIBE module frequently asked questions.
+
+---
+
+LLMS index: [llms.txt](/llms.txt)
+
+---
+
+--------
+
+## Deployment
+
+### code-server package not found
+
+Ensure [`NODE`](/docs/node) and repo config are in place:
+
+```bash
+yum repolist    # EL
+apt-cache policy   # Debian/Ubuntu, read-only inspection
+./infra.yml -l infra -t repo --check
+```
+
+### JupyterLab installation failed
+
+`jupyter_venv` must exist:
+
+```bash
+uv venv /data/venv
+./vibe.yml -l <host> -t jupyter --check
+./vibe.yml -l <host> -t jupyter
+```
+
+--------
+
+## Access
+
+### Cannot access `/code/` or `/jupyter/`
+
+1. Check service status
+2. Check port listening
+3. Check Nginx config
+
+```bash
+systemctl status code-server
+systemctl status jupyter
+ss -tlnp | grep 8443
+ss -tlnp | grep 8888
+nginx -t
+```
+
+### WebSocket connection fails
+
+Ensure Nginx enables WebSocket (default is enabled).
+If using custom `infra_portal`, set `websocket: true`.
+
+--------
+
+## Password and Token
+
+### Change Code-Server password
+
+Persist the new password in inventory first so it does not enter shell history:
+
+```bash
+./vibe.yml -l <host> -t code_config,code_launch --check
+./vibe.yml -l <host> -t code_config,code_launch
+```
+
+### Change JupyterLab token
+
+Persist a high-entropy random token in inventory first. The current template allows any Origin and disables XSRF checks, so never use an example token or expose TCP/8888 directly:
+
+```bash
+./vibe.yml -l <host> -t jupyter_config --check
+./vibe.yml -l <host> -t jupyter_config
+ssh <host> sudo systemctl restart jupyter
+```
+
+--------
+
+## Claude Code
+
+### CLI not found
+
+First check whether `claude_install` completed:
+
+```bash
+which claude
+npm list -g --depth=0 | grep '@anthropic-ai/claude-code'
+./vibe.yml -l <host> -t claude_install
+```
+
+If `claude_enabled` is disabled, install manually:
+
+```bash
+npm install -g @anthropic-ai/claude-code
+```
+
+Use `claude_package` to select a different npm package.
+
+### Codex CLI not found
+
+```bash
+which codex
+npm list -g --depth=0 | grep '@openai/codex'
+./vibe.yml -l <host> -t codex_install
+```
+
+Confirm that `codex_enabled: true`. VIBE installs Codex CLI only and does not generate Codex configuration.
+
+### API key not set
+
+```bash
+export ANTHROPIC_API_KEY=sk-ant-xxx
+# or set in claude_env
+```
+
+### Telemetry not showing
+
+Check local VictoriaMetrics/VictoriaLogs:
+
+```bash
+curl http://127.0.0.1:8428/api/v1/status/buildinfo
+curl http://127.0.0.1:9428/select/logsql/stats_query
+```
+
+Ensure OTEL endpoints in `~/.claude/settings.json` are correct.
+
+--------
+
+## Extensions and Plugins
+
+### Code-Server extension install fails
+
+- Check network
+- Try switching `code_gallery`
+- Or install VSIX manually
+
+```bash
+code-server --install-extension /path/to/extension.vsix
+```
+
+### JupyterLab extension install fails
+
+```bash
+source /data/venv/bin/activate
+pip install jupyterlab-git
+systemctl restart jupyter
+```
