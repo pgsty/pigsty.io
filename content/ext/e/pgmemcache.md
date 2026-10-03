@@ -33,7 +33,7 @@ weight: 9410
 {.ext-table .ext-table--rel}
 
 
-> missing pg12-14 on el.aarch64
+> PGDG packages remain absent for PG14 on EL8 aarch64.
 
 
 ## Version
@@ -259,14 +259,15 @@ apt install -y postgresql-14-pgmemcache   # PG 14
 CREATE EXTENSION pgmemcache;
 ```
 
-
-
-
 ## Usage
 
-> [pgmemcache: memcached interface](https://github.com/ohmu/pgmemcache)
+Sources:
 
-Provides PostgreSQL user-defined functions for interacting with memcached servers.
+- [2.3.0 README](https://github.com/ohmu/pgmemcache/blob/2.3.0/README.rst)
+- [2.3.0 release notes](https://github.com/ohmu/pgmemcache/blob/2.3.0/NEWS)
+- [SQL API](https://github.com/ohmu/pgmemcache/blob/2.3.0/ext/pgmemcache.sql)
+
+`pgmemcache` provides PostgreSQL user-defined functions for interacting with memcached servers.
 
 ### Enabling
 
@@ -340,7 +341,7 @@ Invalidate cache on table updates:
 CREATE OR REPLACE FUNCTION auth_passwd_upd()
 RETURNS TRIGGER LANGUAGE plpgsql AS $$
 BEGIN
-    IF OLD.passwd <> NEW.passwd THEN
+    IF OLD.passwd IS DISTINCT FROM NEW.passwd THEN
         PERFORM memcache_delete('user_id_' || NEW.user_id || '_password');
     END IF;
     RETURN NEW;
@@ -350,3 +351,11 @@ $$;
 CREATE TRIGGER auth_passwd_upd_trg AFTER UPDATE ON passwd
     FOR EACH ROW EXECUTE PROCEDURE auth_passwd_upd();
 ```
+
+### Configuration and Failure Boundaries
+
+The library needs a reachable memcached service plus libmemcached or OMcache. The configured preload path requires a PostgreSQL restart. Server lists added with `memcache_server_add` belong to the current backend; arrange initialization for each new connection when not using configured defaults.
+
+`pgmemcache.flush_on_commit` can flush buffered requests on commit. With buffered requests, set-related calls may return NULL because the final result is not yet known; this differs from `memcache_get` returning NULL for a missing key. Cache operations are external effects and database rollback does not undo already-sent changes. Do not use memcached as the authoritative durable copy.
+
+`memcache_flush_all()` removes data from all configured cache servers. Restrict function grants and network access, especially where cache keys or values contain credentials.

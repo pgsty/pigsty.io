@@ -11,10 +11,10 @@ weight: 2562
     <div class="ext-card__title">main/pg_extension_updater</div>
     <div class="ext-card__desc">https://github.com/Snowflake-Labs/pg_lake/tree/main/pg_extension_updater</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_lake-3.4.4.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_lake-3.5.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_lake-3.4.4.tar.gz</div>
-    <div class="ext-card__desc">pg_lake-3.4.4.tar.gz</div>
+    <div class="ext-card__title">pg_lake-3.5.3.tar.gz</div>
+    <div class="ext-card__desc">pg_lake-3.5.3.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2562
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_lake`**](/ext/e/pg_lake) | `3.4` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_lake`**](/ext/e/pg_lake) | `3.5` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -45,16 +45,16 @@ weight: 2562
 {.ext-table .ext-table--rel}
 
 
-> Optional startup updater. Package 3.4.4; SQL 3.4.
+> Optional startup updater. Package 3.5.3; SQL 3.5.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.4` | {{< pgvers "18,17,16" >}} | `pg_lake` | `pg_extension_base` |
-| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.4.4` | {{< pgvers "18,17,16" >}} | `pg_lake_$v` | - |
-| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.4.4` | {{< pgvers "18,17,16" >}} | `postgresql-$v-pg-lake` | - |
+| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.5` | {{< pgvers "18,17,16" >}} | `pg_lake` | `pg_extension_base` |
+| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.5.3` | {{< pgvers "18,17,16" >}} | `pg_lake_$v` | - |
+| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.5.3` | {{< pgvers "18,17,16" >}} | `postgresql-$v-pg-lake` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -62,20 +62,20 @@ weight: 2562
 |:--:|:--:|:--:|:--:|:--:|:--:|
 | el8.x86_64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 | el8.aarch64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.x86_64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.aarch64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.x86_64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.aarch64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d12.x86_64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d12.aarch64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d13.x86_64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d13.aarch64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u22.x86_64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u22.aarch64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u24.x86_64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u24.aarch64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u26.x86_64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u26.aarch64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d12.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d12.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d13.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d13.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u22.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u22.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u24.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u24.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u26.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 {{< /pgext_matrix >}}
 
 ## Build
@@ -137,13 +137,15 @@ CREATE EXTENSION pg_extension_updater CASCADE;  -- requires: pg_extension_base
 
 Sources:
 
-- [Official pg_extension_updater README](https://github.com/Snowflake-Labs/pg_lake/blob/44134cc33fb152716e10752d0a345c6e1acb8725/pg_extension_updater/README.md)
-- [Version 3.4 control file](https://github.com/Snowflake-Labs/pg_lake/blob/44134cc33fb152716e10752d0a345c6e1acb8725/pg_extension_updater/pg_extension_updater.control)
-- [Worker registration SQL](https://github.com/Snowflake-Labs/pg_lake/blob/44134cc33fb152716e10752d0a345c6e1acb8725/pg_extension_updater/pg_extension_updater--1.1.sql)
-- [Updater implementation and configuration](https://github.com/Snowflake-Labs/pg_lake/blob/44134cc33fb152716e10752d0a345c6e1acb8725/pg_extension_updater/src/pg_extension_updater.c)
-- [pg_extension_base preload documentation](https://github.com/Snowflake-Labs/pg_lake/blob/44134cc33fb152716e10752d0a345c6e1acb8725/pg_extension_base/README.md)
+- [Official pg_extension_updater README](https://github.com/Snowflake-Labs/pg_lake/blob/v3.5.3/pg_extension_updater/README.md)
+- [Version 3.5 control file](https://github.com/Snowflake-Labs/pg_lake/blob/v3.5.3/pg_extension_updater/pg_extension_updater.control)
+- [Worker registration SQL](https://github.com/Snowflake-Labs/pg_lake/blob/v3.5.3/pg_extension_updater/pg_extension_updater--1.1.sql)
+- [Updater implementation and configuration](https://github.com/Snowflake-Labs/pg_lake/blob/v3.5.3/pg_extension_updater/src/pg_extension_updater.c)
+- [pg_extension_base preload documentation](https://github.com/Snowflake-Labs/pg_lake/blob/v3.5.3/pg_extension_base/README.md)
 
 `pg_extension_updater` runs `ALTER EXTENSION ... UPDATE` for each extension whose installed version differs from its available default version when the database lifecycle worker starts. It is intended to reduce SQL/binary version mismatches after new extension files are deployed; it does not install missing extensions or replace release testing.
+
+The pg_lake release and package version is `3.5.3`; the SQL extension version is `3.5`. Keep the libraries and query server from the same release.
 
 ### Enable Automatic Updates
 
@@ -173,5 +175,5 @@ Creating it in `template1` causes new databases cloned from that template to con
 
 - Automatic migration can execute arbitrary upgrade SQL supplied by every installed extension. Validate packages and upgrade paths before enabling it on production databases.
 - Review extension dependency changes and take application-specific backups independently; a warning does not roll back unrelated successful extension updates.
-- There is no user-facing force-update function or per-extension allowlist in version `3.4`.
-- Version `3.4` changes no updater SQL API relative to `3.3`.
+- There is no user-facing force-update function or per-extension allowlist in version `3.5`.
+- The `3.4` to `3.5` updater migration is empty; automatic updates still depend on reviewed upgrade scripts for each installed extension.

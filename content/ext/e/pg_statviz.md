@@ -11,6 +11,11 @@ weight: 6080
     <div class="ext-card__title">vyruss/pg_statviz</div>
     <div class="ext-card__desc">https://github.com/vyruss/pg_statviz</div>
   </a>
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_statviz-1.2.1.tar.gz">
+    <div class="ext-card__kicker">Source</div>
+    <div class="ext-card__title">pg_statviz-1.2.1.tar.gz</div>
+    <div class="ext-card__desc">pg_statviz-1.2.1.tar.gz</div>
+  </a>
 </div>
 
 
@@ -20,7 +25,7 @@ weight: 6080
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_statviz`**](/ext/e/pg_statviz) | `1.2.1` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
+| [**`pg_statviz`**](/ext/e/pg_statviz) | `1.2` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -33,40 +38,48 @@ weight: 6080
 {.ext-table .ext-table--rel}
 
 
-> DEB 1.2.1; RPM 0.9 lacks PG17. SQL-only.
+> Package/source 1.2.1 installs SQL extension 1.2. PIGSTY provides all RPM targets and Ubuntu 22.04 DEB; other DEB targets use PGDG 1.2.1. Pure SQL/PLpgSQL; no preload or Python CLI in the extension package.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#stat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.2.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_statviz` | `plpgsql` |
-| [**RPM**](/ext/rpm#stat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `0.9` | {{< pgvers "18,16,15,14" >}} | `pg_statviz_extension_$v` | - |
+| [**EXT**](/ext/list#stat) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `1.2` | {{< pgvers "18,17,16,15,14" >}} | `pg_statviz` | `plpgsql` |
+| [**RPM**](/ext/rpm#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.2.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_statviz_extension_$v` | - |
 | [**DEB**](/ext/deb#stat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.2.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-statviz` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | MISS PGDG - 0 | MISS PGDG - 0 | AVAIL PGDG 0.9 2 | AVAIL PGDG 0.9 4 | AVAIL PGDG 0.9 4 |
-| el8.aarch64 | MISS PGDG - 0 | MISS PGDG - 0 | AVAIL PGDG 0.9 2 | AVAIL PGDG 0.9 4 | AVAIL PGDG 0.9 4 |
-| el9.x86_64 | MISS PGDG - 0 | MISS PGDG - 0 | AVAIL PGDG 0.9 3 | AVAIL PGDG 0.9 5 | AVAIL PGDG 0.9 5 |
-| el9.aarch64 | MISS PGDG - 0 | MISS PGDG - 0 | AVAIL PGDG 0.9 3 | AVAIL PGDG 0.9 5 | AVAIL PGDG 0.9 5 |
-| el10.x86_64 | AVAIL PGDG 0.9 3 | MISS PGDG - 0 | AVAIL PGDG 0.9 4 | AVAIL PGDG 0.9 4 | AVAIL PGDG 0.9 4 |
-| el10.aarch64 | AVAIL PGDG 0.9 2 | MISS PGDG - 0 | AVAIL PGDG 0.9 3 | AVAIL PGDG 0.9 3 | AVAIL PGDG 0.9 3 |
+| el8.x86_64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 3 | AVAIL PIGSTY 1.2.1 5 | AVAIL PIGSTY 1.2.1 5 |
+| el8.aarch64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 3 | AVAIL PIGSTY 1.2.1 5 | AVAIL PIGSTY 1.2.1 5 |
+| el9.x86_64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 4 | AVAIL PIGSTY 1.2.1 6 | AVAIL PIGSTY 1.2.1 6 |
+| el9.aarch64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 4 | AVAIL PIGSTY 1.2.1 6 | AVAIL PIGSTY 1.2.1 6 |
+| el10.x86_64 | AVAIL PIGSTY 1.2.1 5 | AVAIL PIGSTY 1.2.1 2 | AVAIL PIGSTY 1.2.1 6 | AVAIL PIGSTY 1.2.1 6 | AVAIL PIGSTY 1.2.1 6 |
+| el10.aarch64 | AVAIL PIGSTY 1.2.1 4 | AVAIL PIGSTY 1.2.1 2 | AVAIL PIGSTY 1.2.1 5 | AVAIL PIGSTY 1.2.1 5 | AVAIL PIGSTY 1.2.1 5 |
 | d12.x86_64 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 |
 | d12.aarch64 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 |
 | d13.x86_64 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 |
 | d13.aarch64 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 |
-| u22.x86_64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
-| u22.aarch64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
+| u22.x86_64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 |
+| u22.aarch64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 |
 | u24.x86_64 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 |
 | u24.aarch64 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 |
 | u26.x86_64 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 |
 | u26.aarch64 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 | AVAIL PGDG 1.2.1 3 |
+@ el8.x86_64 18 pg_statviz_extension_18 pg_statviz_extension_18-1.2.1-1PGSTY.el8.noarch.rpm pigsty 1.2.1 21.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_statviz_extension_18-1.2.1-1PGSTY.el8.noarch.rpm
+@ el8.aarch64 18 pg_statviz_extension_18 pg_statviz_extension_18-1.2.1-1PGSTY.el8.noarch.rpm pigsty 1.2.1 21.4KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_statviz_extension_18-1.2.1-1PGSTY.el8.noarch.rpm
+@ el9.x86_64 18 pg_statviz_extension_18 pg_statviz_extension_18-1.2.1-1PGSTY.el9.noarch.rpm pigsty 1.2.1 21.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_statviz_extension_18-1.2.1-1PGSTY.el9.noarch.rpm
+@ el9.aarch64 18 pg_statviz_extension_18 pg_statviz_extension_18-1.2.1-1PGSTY.el9.noarch.rpm pigsty 1.2.1 21.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_statviz_extension_18-1.2.1-1PGSTY.el9.noarch.rpm
+@ el10.x86_64 18 pg_statviz_extension_18 pg_statviz_extension_18-1.2.1-1PGSTY.el10.noarch.rpm pigsty 1.2.1 21.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_statviz_extension_18-1.2.1-1PGSTY.el10.noarch.rpm
+@ el10.x86_64 18 pg_statviz_extension_18 pg_statviz_extension_18-1.2-2PGDG.rhel10.2.noarch.rpm pgdg 1.2 16.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_statviz_extension_18-1.2-2PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 18 pg_statviz_extension_18 pg_statviz_extension_18-0.9-1PGDG.rhel10.2.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_statviz_extension_18-0.9-1PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 18 pg_statviz_extension_18 pg_statviz_extension_18-0.9-1PGDG.rhel10.1.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_statviz_extension_18-0.9-1PGDG.rhel10.1.noarch.rpm
 @ el10.x86_64 18 pg_statviz_extension_18 pg_statviz_extension_18-0.9-1PGDG.rhel10.0.noarch.rpm pgdg 0.9 15.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_statviz_extension_18-0.9-1PGDG.rhel10.0.noarch.rpm
+@ el10.aarch64 18 pg_statviz_extension_18 pg_statviz_extension_18-1.2.1-1PGSTY.el10.noarch.rpm pigsty 1.2.1 21.1KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_statviz_extension_18-1.2.1-1PGSTY.el10.noarch.rpm
+@ el10.aarch64 18 pg_statviz_extension_18 pg_statviz_extension_18-1.2-2PGDG.rhel10.2.noarch.rpm pgdg 1.2 16.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_statviz_extension_18-1.2-2PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 18 pg_statviz_extension_18 pg_statviz_extension_18-0.9-1PGDG.rhel10.1.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_statviz_extension_18-0.9-1PGDG.rhel10.1.noarch.rpm
 @ el10.aarch64 18 pg_statviz_extension_18 pg_statviz_extension_18-0.9-1PGDG.rhel10.0.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_statviz_extension_18-0.9-1PGDG.rhel10.0.noarch.rpm
 @ d12.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.2.1-1.pgdg12+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.2.1-1.pgdg12+1_all.deb
@@ -81,6 +94,8 @@ weight: 6080
 @ d13.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.2.1-1.pgdg13+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.2.1-1.pgdg13+1_all.deb
 @ d13.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.1-1.pgdg13+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.1-1.pgdg13+1_all.deb
 @ d13.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.0-2.pgdg13+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-2.pgdg13+1_all.deb
+@ u22.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.2.1-1PGSTY~jammy_all.deb pigsty 1.2.1 13.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-statviz/postgresql-18-statviz_1.2.1-1PGSTY~jammy_all.deb
+@ u22.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.2.1-1PGSTY~jammy_all.deb pigsty 1.2.1 13.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-statviz/postgresql-18-statviz_1.2.1-1PGSTY~jammy_all.deb
 @ u24.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.2.1-1.pgdg24.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.2.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.1-1.pgdg24.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 18 postgresql-18-statviz postgresql-18-statviz_1.0-2.pgdg24.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-2.pgdg24.04+1_all.deb
@@ -93,6 +108,14 @@ weight: 6080
 @ u26.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.2.1-1.pgdg26.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.2.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.1-1.pgdg26.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 18 postgresql-18-statviz postgresql-18-statviz_1.0-2.pgdg26.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-18-statviz_1.0-2.pgdg26.04+1_all.deb
+@ el8.x86_64 17 pg_statviz_extension_17 pg_statviz_extension_17-1.2.1-1PGSTY.el8.noarch.rpm pigsty 1.2.1 21.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_statviz_extension_17-1.2.1-1PGSTY.el8.noarch.rpm
+@ el8.aarch64 17 pg_statviz_extension_17 pg_statviz_extension_17-1.2.1-1PGSTY.el8.noarch.rpm pigsty 1.2.1 21.4KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_statviz_extension_17-1.2.1-1PGSTY.el8.noarch.rpm
+@ el9.x86_64 17 pg_statviz_extension_17 pg_statviz_extension_17-1.2.1-1PGSTY.el9.noarch.rpm pigsty 1.2.1 21.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_statviz_extension_17-1.2.1-1PGSTY.el9.noarch.rpm
+@ el9.aarch64 17 pg_statviz_extension_17 pg_statviz_extension_17-1.2.1-1PGSTY.el9.noarch.rpm pigsty 1.2.1 21.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_statviz_extension_17-1.2.1-1PGSTY.el9.noarch.rpm
+@ el10.x86_64 17 pg_statviz_extension_17 pg_statviz_extension_17-1.2.1-1PGSTY.el10.noarch.rpm pigsty 1.2.1 21.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_statviz_extension_17-1.2.1-1PGSTY.el10.noarch.rpm
+@ el10.x86_64 17 pg_statviz_extension_17 pg_statviz_extension_17-1.2-2PGDG.rhel10.2.noarch.rpm pgdg 1.2 16.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_statviz_extension_17-1.2-2PGDG.rhel10.2.noarch.rpm
+@ el10.aarch64 17 pg_statviz_extension_17 pg_statviz_extension_17-1.2.1-1PGSTY.el10.noarch.rpm pigsty 1.2.1 21.1KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_statviz_extension_17-1.2.1-1PGSTY.el10.noarch.rpm
+@ el10.aarch64 17 pg_statviz_extension_17 pg_statviz_extension_17-1.2-2PGDG.rhel10.2.noarch.rpm pgdg 1.2 16.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_statviz_extension_17-1.2-2PGDG.rhel10.2.noarch.rpm
 @ d12.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.2.1-1.pgdg12+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.2.1-1.pgdg12+1_all.deb
 @ d12.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.1-1.pgdg12+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.1-1.pgdg12+1_all.deb
 @ d12.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.0-2.pgdg12+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-2.pgdg12+1_all.deb
@@ -105,6 +128,8 @@ weight: 6080
 @ d13.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.2.1-1.pgdg13+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.2.1-1.pgdg13+1_all.deb
 @ d13.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.1-1.pgdg13+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.1-1.pgdg13+1_all.deb
 @ d13.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.0-2.pgdg13+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-2.pgdg13+1_all.deb
+@ u22.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.2.1-1PGSTY~jammy_all.deb pigsty 1.2.1 13.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-statviz/postgresql-17-statviz_1.2.1-1PGSTY~jammy_all.deb
+@ u22.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.2.1-1PGSTY~jammy_all.deb pigsty 1.2.1 13.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-statviz/postgresql-17-statviz_1.2.1-1PGSTY~jammy_all.deb
 @ u24.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.2.1-1.pgdg24.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.2.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.1-1.pgdg24.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 17 postgresql-17-statviz postgresql-17-statviz_1.0-2.pgdg24.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-2.pgdg24.04+1_all.deb
@@ -117,20 +142,28 @@ weight: 6080
 @ u26.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.2.1-1.pgdg26.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.2.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.1-1.pgdg26.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 17 postgresql-17-statviz postgresql-17-statviz_1.0-2.pgdg26.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-17-statviz_1.0-2.pgdg26.04+1_all.deb
+@ el8.x86_64 16 pg_statviz_extension_16 pg_statviz_extension_16-1.2.1-1PGSTY.el8.noarch.rpm pigsty 1.2.1 21.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_statviz_extension_16-1.2.1-1PGSTY.el8.noarch.rpm
 @ el8.x86_64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.9-1PGDG.rhel8.10.noarch.rpm pgdg 0.9 15.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_statviz_extension_16-0.9-1PGDG.rhel8.10.noarch.rpm
 @ el8.x86_64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.6-1PGDG.rhel8.noarch.rpm pgdg 0.6 11.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_statviz_extension_16-0.6-1PGDG.rhel8.noarch.rpm
+@ el8.aarch64 16 pg_statviz_extension_16 pg_statviz_extension_16-1.2.1-1PGSTY.el8.noarch.rpm pigsty 1.2.1 21.4KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_statviz_extension_16-1.2.1-1PGSTY.el8.noarch.rpm
 @ el8.aarch64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.9-1PGDG.rhel8.10.noarch.rpm pgdg 0.9 15.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_statviz_extension_16-0.9-1PGDG.rhel8.10.noarch.rpm
 @ el8.aarch64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.6-1PGDG.rhel8.noarch.rpm pgdg 0.6 11.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_statviz_extension_16-0.6-1PGDG.rhel8.noarch.rpm
+@ el9.x86_64 16 pg_statviz_extension_16 pg_statviz_extension_16-1.2.1-1PGSTY.el9.noarch.rpm pigsty 1.2.1 21.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_statviz_extension_16-1.2.1-1PGSTY.el9.noarch.rpm
 @ el9.x86_64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.9-1PGDG.rhel9.7.noarch.rpm pgdg 0.9 14.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_statviz_extension_16-0.9-1PGDG.rhel9.7.noarch.rpm
 @ el9.x86_64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.9-1PGDG.rhel9.6.noarch.rpm pgdg 0.9 14.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_statviz_extension_16-0.9-1PGDG.rhel9.6.noarch.rpm
 @ el9.x86_64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.6-1PGDG.rhel9.noarch.rpm pgdg 0.6 11.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_statviz_extension_16-0.6-1PGDG.rhel9.noarch.rpm
+@ el9.aarch64 16 pg_statviz_extension_16 pg_statviz_extension_16-1.2.1-1PGSTY.el9.noarch.rpm pigsty 1.2.1 21.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_statviz_extension_16-1.2.1-1PGSTY.el9.noarch.rpm
 @ el9.aarch64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.9-1PGDG.rhel9.7.noarch.rpm pgdg 0.9 14.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_statviz_extension_16-0.9-1PGDG.rhel9.7.noarch.rpm
 @ el9.aarch64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.9-1PGDG.rhel9.6.noarch.rpm pgdg 0.9 14.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_statviz_extension_16-0.9-1PGDG.rhel9.6.noarch.rpm
 @ el9.aarch64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.6-1PGDG.rhel9.noarch.rpm pgdg 0.6 11.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_statviz_extension_16-0.6-1PGDG.rhel9.noarch.rpm
+@ el10.x86_64 16 pg_statviz_extension_16 pg_statviz_extension_16-1.2.1-1PGSTY.el10.noarch.rpm pigsty 1.2.1 21.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_statviz_extension_16-1.2.1-1PGSTY.el10.noarch.rpm
+@ el10.x86_64 16 pg_statviz_extension_16 pg_statviz_extension_16-1.2-2PGDG.rhel10.2.noarch.rpm pgdg 1.2 16.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_statviz_extension_16-1.2-2PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.9-1PGDG.rhel10.2.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_statviz_extension_16-0.9-1PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.9-1PGDG.rhel10.1.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_statviz_extension_16-0.9-1PGDG.rhel10.1.noarch.rpm
 @ el10.x86_64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.9-1PGDG.rhel10.0.noarch.rpm pgdg 0.9 15.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_statviz_extension_16-0.9-1PGDG.rhel10.0.noarch.rpm
 @ el10.x86_64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.6-1PGDG.rhel10.noarch.rpm pgdg 0.6 12.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_statviz_extension_16-0.6-1PGDG.rhel10.noarch.rpm
+@ el10.aarch64 16 pg_statviz_extension_16 pg_statviz_extension_16-1.2.1-1PGSTY.el10.noarch.rpm pigsty 1.2.1 21.1KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_statviz_extension_16-1.2.1-1PGSTY.el10.noarch.rpm
+@ el10.aarch64 16 pg_statviz_extension_16 pg_statviz_extension_16-1.2-2PGDG.rhel10.2.noarch.rpm pgdg 1.2 16.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_statviz_extension_16-1.2-2PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.9-1PGDG.rhel10.1.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_statviz_extension_16-0.9-1PGDG.rhel10.1.noarch.rpm
 @ el10.aarch64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.9-1PGDG.rhel10.0.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_statviz_extension_16-0.9-1PGDG.rhel10.0.noarch.rpm
 @ el10.aarch64 16 pg_statviz_extension_16 pg_statviz_extension_16-0.6-1PGDG.rhel10.noarch.rpm pgdg 0.6 12.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_statviz_extension_16-0.6-1PGDG.rhel10.noarch.rpm
@@ -146,6 +179,8 @@ weight: 6080
 @ d13.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.2.1-1.pgdg13+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.2.1-1.pgdg13+1_all.deb
 @ d13.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.1-1.pgdg13+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.1-1.pgdg13+1_all.deb
 @ d13.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.0-2.pgdg13+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-2.pgdg13+1_all.deb
+@ u22.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.2.1-1PGSTY~jammy_all.deb pigsty 1.2.1 13.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-statviz/postgresql-16-statviz_1.2.1-1PGSTY~jammy_all.deb
+@ u22.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.2.1-1PGSTY~jammy_all.deb pigsty 1.2.1 13.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-statviz/postgresql-16-statviz_1.2.1-1PGSTY~jammy_all.deb
 @ u24.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.2.1-1.pgdg24.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.2.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.1-1.pgdg24.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 16 postgresql-16-statviz postgresql-16-statviz_1.0-2.pgdg24.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-2.pgdg24.04+1_all.deb
@@ -158,28 +193,36 @@ weight: 6080
 @ u26.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.2.1-1.pgdg26.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.2.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.1-1.pgdg26.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 16 postgresql-16-statviz postgresql-16-statviz_1.0-2.pgdg26.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-16-statviz_1.0-2.pgdg26.04+1_all.deb
+@ el8.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-1.2.1-1PGSTY.el8.noarch.rpm pigsty 1.2.1 21.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_statviz_extension_15-1.2.1-1PGSTY.el8.noarch.rpm
 @ el8.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.9-1PGDG.rhel8.10.noarch.rpm pgdg 0.9 15.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_statviz_extension_15-0.9-1PGDG.rhel8.10.noarch.rpm
 @ el8.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.6-1PGDG.rhel8.noarch.rpm pgdg 0.6 11.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_statviz_extension_15-0.6-1PGDG.rhel8.noarch.rpm
 @ el8.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.5-1PGDG.rhel8.noarch.rpm pgdg 0.5 11.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_statviz_extension_15-0.5-1PGDG.rhel8.noarch.rpm
 @ el8.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.4-1PGDG.rhel8.noarch.rpm pgdg 0.4 11.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_statviz_extension_15-0.4-1PGDG.rhel8.noarch.rpm
+@ el8.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-1.2.1-1PGSTY.el8.noarch.rpm pigsty 1.2.1 21.4KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_statviz_extension_15-1.2.1-1PGSTY.el8.noarch.rpm
 @ el8.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.9-1PGDG.rhel8.10.noarch.rpm pgdg 0.9 15.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pg_statviz_extension_15-0.9-1PGDG.rhel8.10.noarch.rpm
 @ el8.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.6-1PGDG.rhel8.noarch.rpm pgdg 0.6 11.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pg_statviz_extension_15-0.6-1PGDG.rhel8.noarch.rpm
 @ el8.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.5-1PGDG.rhel8.noarch.rpm pgdg 0.5 11.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pg_statviz_extension_15-0.5-1PGDG.rhel8.noarch.rpm
 @ el8.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.4-1PGDG.rhel8.noarch.rpm pgdg 0.4 11.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pg_statviz_extension_15-0.4-1PGDG.rhel8.noarch.rpm
+@ el9.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-1.2.1-1PGSTY.el9.noarch.rpm pigsty 1.2.1 21.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_statviz_extension_15-1.2.1-1PGSTY.el9.noarch.rpm
 @ el9.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.9-1PGDG.rhel9.7.noarch.rpm pgdg 0.9 14.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_statviz_extension_15-0.9-1PGDG.rhel9.7.noarch.rpm
 @ el9.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.9-1PGDG.rhel9.6.noarch.rpm pgdg 0.9 14.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_statviz_extension_15-0.9-1PGDG.rhel9.6.noarch.rpm
 @ el9.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.6-1PGDG.rhel9.noarch.rpm pgdg 0.6 11.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_statviz_extension_15-0.6-1PGDG.rhel9.noarch.rpm
 @ el9.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.5-1PGDG.rhel9.noarch.rpm pgdg 0.5 11.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_statviz_extension_15-0.5-1PGDG.rhel9.noarch.rpm
 @ el9.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.4-1PGDG.rhel9.noarch.rpm pgdg 0.4 11.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_statviz_extension_15-0.4-1PGDG.rhel9.noarch.rpm
+@ el9.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-1.2.1-1PGSTY.el9.noarch.rpm pigsty 1.2.1 21.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_statviz_extension_15-1.2.1-1PGSTY.el9.noarch.rpm
 @ el9.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.9-1PGDG.rhel9.7.noarch.rpm pgdg 0.9 14.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_statviz_extension_15-0.9-1PGDG.rhel9.7.noarch.rpm
 @ el9.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.9-1PGDG.rhel9.6.noarch.rpm pgdg 0.9 14.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_statviz_extension_15-0.9-1PGDG.rhel9.6.noarch.rpm
 @ el9.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.6-1PGDG.rhel9.noarch.rpm pgdg 0.6 11.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_statviz_extension_15-0.6-1PGDG.rhel9.noarch.rpm
 @ el9.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.5-1PGDG.rhel9.noarch.rpm pgdg 0.5 11.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_statviz_extension_15-0.5-1PGDG.rhel9.noarch.rpm
 @ el9.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.4-1PGDG.rhel9.noarch.rpm pgdg 0.4 11.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_statviz_extension_15-0.4-1PGDG.rhel9.noarch.rpm
+@ el10.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-1.2.1-1PGSTY.el10.noarch.rpm pigsty 1.2.1 21.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_statviz_extension_15-1.2.1-1PGSTY.el10.noarch.rpm
+@ el10.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-1.2-2PGDG.rhel10.2.noarch.rpm pgdg 1.2 16.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_statviz_extension_15-1.2-2PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.9-1PGDG.rhel10.2.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_statviz_extension_15-0.9-1PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.9-1PGDG.rhel10.1.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_statviz_extension_15-0.9-1PGDG.rhel10.1.noarch.rpm
 @ el10.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.9-1PGDG.rhel10.0.noarch.rpm pgdg 0.9 15.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_statviz_extension_15-0.9-1PGDG.rhel10.0.noarch.rpm
 @ el10.x86_64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.6-1PGDG.rhel10.noarch.rpm pgdg 0.6 12.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_statviz_extension_15-0.6-1PGDG.rhel10.noarch.rpm
+@ el10.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-1.2.1-1PGSTY.el10.noarch.rpm pigsty 1.2.1 21.1KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_statviz_extension_15-1.2.1-1PGSTY.el10.noarch.rpm
+@ el10.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-1.2-2PGDG.rhel10.2.noarch.rpm pgdg 1.2 16.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_statviz_extension_15-1.2-2PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.9-1PGDG.rhel10.1.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_statviz_extension_15-0.9-1PGDG.rhel10.1.noarch.rpm
 @ el10.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.9-1PGDG.rhel10.0.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_statviz_extension_15-0.9-1PGDG.rhel10.0.noarch.rpm
 @ el10.aarch64 15 pg_statviz_extension_15 pg_statviz_extension_15-0.6-1PGDG.rhel10.noarch.rpm pgdg 0.6 12.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_statviz_extension_15-0.6-1PGDG.rhel10.noarch.rpm
@@ -195,6 +238,8 @@ weight: 6080
 @ d13.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.2.1-1.pgdg13+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.2.1-1.pgdg13+1_all.deb
 @ d13.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.1-1.pgdg13+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.1-1.pgdg13+1_all.deb
 @ d13.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.0-2.pgdg13+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-2.pgdg13+1_all.deb
+@ u22.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.2.1-1PGSTY~jammy_all.deb pigsty 1.2.1 13.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-statviz/postgresql-15-statviz_1.2.1-1PGSTY~jammy_all.deb
+@ u22.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.2.1-1PGSTY~jammy_all.deb pigsty 1.2.1 13.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-statviz/postgresql-15-statviz_1.2.1-1PGSTY~jammy_all.deb
 @ u24.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.2.1-1.pgdg24.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.2.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.1-1.pgdg24.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 15 postgresql-15-statviz postgresql-15-statviz_1.0-2.pgdg24.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-2.pgdg24.04+1_all.deb
@@ -207,28 +252,36 @@ weight: 6080
 @ u26.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.2.1-1.pgdg26.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.2.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.1-1.pgdg26.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.1-1.pgdg26.04+1_all.deb
 @ u26.aarch64 15 postgresql-15-statviz postgresql-15-statviz_1.0-2.pgdg26.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-15-statviz_1.0-2.pgdg26.04+1_all.deb
+@ el8.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-1.2.1-1PGSTY.el8.noarch.rpm pigsty 1.2.1 21.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_statviz_extension_14-1.2.1-1PGSTY.el8.noarch.rpm
 @ el8.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.9-1PGDG.rhel8.10.noarch.rpm pgdg 0.9 15.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_statviz_extension_14-0.9-1PGDG.rhel8.10.noarch.rpm
 @ el8.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.6-1PGDG.rhel8.noarch.rpm pgdg 0.6 11.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_statviz_extension_14-0.6-1PGDG.rhel8.noarch.rpm
 @ el8.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.5-1PGDG.rhel8.noarch.rpm pgdg 0.5 11.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_statviz_extension_14-0.5-1PGDG.rhel8.noarch.rpm
 @ el8.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.4-1PGDG.rhel8.noarch.rpm pgdg 0.4 11.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_statviz_extension_14-0.4-1PGDG.rhel8.noarch.rpm
+@ el8.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-1.2.1-1PGSTY.el8.noarch.rpm pigsty 1.2.1 21.4KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_statviz_extension_14-1.2.1-1PGSTY.el8.noarch.rpm
 @ el8.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.9-1PGDG.rhel8.10.noarch.rpm pgdg 0.9 15.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pg_statviz_extension_14-0.9-1PGDG.rhel8.10.noarch.rpm
 @ el8.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.6-1PGDG.rhel8.noarch.rpm pgdg 0.6 11.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pg_statviz_extension_14-0.6-1PGDG.rhel8.noarch.rpm
 @ el8.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.5-1PGDG.rhel8.noarch.rpm pgdg 0.5 11.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pg_statviz_extension_14-0.5-1PGDG.rhel8.noarch.rpm
 @ el8.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.4-1PGDG.rhel8.noarch.rpm pgdg 0.4 11.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pg_statviz_extension_14-0.4-1PGDG.rhel8.noarch.rpm
+@ el9.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-1.2.1-1PGSTY.el9.noarch.rpm pigsty 1.2.1 21.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_statviz_extension_14-1.2.1-1PGSTY.el9.noarch.rpm
 @ el9.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.9-1PGDG.rhel9.7.noarch.rpm pgdg 0.9 14.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_statviz_extension_14-0.9-1PGDG.rhel9.7.noarch.rpm
 @ el9.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.9-1PGDG.rhel9.6.noarch.rpm pgdg 0.9 14.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_statviz_extension_14-0.9-1PGDG.rhel9.6.noarch.rpm
 @ el9.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.6-1PGDG.rhel9.noarch.rpm pgdg 0.6 11.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_statviz_extension_14-0.6-1PGDG.rhel9.noarch.rpm
 @ el9.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.5-1PGDG.rhel9.noarch.rpm pgdg 0.5 11.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_statviz_extension_14-0.5-1PGDG.rhel9.noarch.rpm
 @ el9.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.4-1PGDG.rhel9.noarch.rpm pgdg 0.4 11.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_statviz_extension_14-0.4-1PGDG.rhel9.noarch.rpm
+@ el9.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-1.2.1-1PGSTY.el9.noarch.rpm pigsty 1.2.1 21.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_statviz_extension_14-1.2.1-1PGSTY.el9.noarch.rpm
 @ el9.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.9-1PGDG.rhel9.7.noarch.rpm pgdg 0.9 14.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_statviz_extension_14-0.9-1PGDG.rhel9.7.noarch.rpm
 @ el9.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.9-1PGDG.rhel9.6.noarch.rpm pgdg 0.9 14.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_statviz_extension_14-0.9-1PGDG.rhel9.6.noarch.rpm
 @ el9.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.6-1PGDG.rhel9.noarch.rpm pgdg 0.6 11.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_statviz_extension_14-0.6-1PGDG.rhel9.noarch.rpm
 @ el9.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.5-1PGDG.rhel9.noarch.rpm pgdg 0.5 11.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_statviz_extension_14-0.5-1PGDG.rhel9.noarch.rpm
 @ el9.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.4-1PGDG.rhel9.noarch.rpm pgdg 0.4 11.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_statviz_extension_14-0.4-1PGDG.rhel9.noarch.rpm
+@ el10.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-1.2.1-1PGSTY.el10.noarch.rpm pigsty 1.2.1 21.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_statviz_extension_14-1.2.1-1PGSTY.el10.noarch.rpm
+@ el10.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-1.2-2PGDG.rhel10.2.noarch.rpm pgdg 1.2 16.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_statviz_extension_14-1.2-2PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.9-1PGDG.rhel10.2.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_statviz_extension_14-0.9-1PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.9-1PGDG.rhel10.1.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_statviz_extension_14-0.9-1PGDG.rhel10.1.noarch.rpm
 @ el10.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.9-1PGDG.rhel10.0.noarch.rpm pgdg 0.9 15.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_statviz_extension_14-0.9-1PGDG.rhel10.0.noarch.rpm
 @ el10.x86_64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.6-1PGDG.rhel10.noarch.rpm pgdg 0.6 12.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_statviz_extension_14-0.6-1PGDG.rhel10.noarch.rpm
+@ el10.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-1.2.1-1PGSTY.el10.noarch.rpm pigsty 1.2.1 21.1KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_statviz_extension_14-1.2.1-1PGSTY.el10.noarch.rpm
+@ el10.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-1.2-2PGDG.rhel10.2.noarch.rpm pgdg 1.2 16.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_statviz_extension_14-1.2-2PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.9-1PGDG.rhel10.1.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_statviz_extension_14-0.9-1PGDG.rhel10.1.noarch.rpm
 @ el10.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.9-1PGDG.rhel10.0.noarch.rpm pgdg 0.9 14.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_statviz_extension_14-0.9-1PGDG.rhel10.0.noarch.rpm
 @ el10.aarch64 14 pg_statviz_extension_14 pg_statviz_extension_14-0.6-1PGDG.rhel10.noarch.rpm pgdg 0.6 12.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_statviz_extension_14-0.6-1PGDG.rhel10.noarch.rpm
@@ -244,6 +297,8 @@ weight: 6080
 @ d13.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.2.1-1.pgdg13+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.2.1-1.pgdg13+1_all.deb
 @ d13.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.1-1.pgdg13+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.1-1.pgdg13+1_all.deb
 @ d13.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.0-2.pgdg13+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-2.pgdg13+1_all.deb
+@ u22.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.2.1-1PGSTY~jammy_all.deb pigsty 1.2.1 13.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-statviz/postgresql-14-statviz_1.2.1-1PGSTY~jammy_all.deb
+@ u22.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.2.1-1PGSTY~jammy_all.deb pigsty 1.2.1 13.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-statviz/postgresql-14-statviz_1.2.1-1PGSTY~jammy_all.deb
 @ u24.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.2.1-1.pgdg24.04+1_all.deb pgdg 1.2.1 13.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.2.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.1-1.pgdg24.04+1_all.deb pgdg 1.1 12.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.1-1.pgdg24.04+1_all.deb
 @ u24.x86_64 14 postgresql-14-statviz postgresql-14-statviz_1.0-2.pgdg24.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-2.pgdg24.04+1_all.deb
@@ -258,13 +313,21 @@ weight: 6080
 @ u26.aarch64 14 postgresql-14-statviz postgresql-14-statviz_1.0-2.pgdg26.04+1_all.deb pgdg 1.0 12.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-statviz/postgresql-14-statviz_1.0-2.pgdg26.04+1_all.deb
 {{< /pgext_matrix >}}
 
+## Build
+
+You can build the RPM / DEB packages for `pg_statviz` using `pig build`:
+
+```bash
+pig build pkg pg_statviz         # build RPM / DEB packages
+```
+
 
 ## Install
 
-You can install `pg_statviz` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) repository is added and enabled:
+You can install `pg_statviz` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) and [**PIGSTY**](/docs/repo/pgsql) repositories are added and enabled:
 
 ```bash
-pig repo add pgdg -u          # Add PGDG repo and update cache
+pig repo add pgsql -u          # Add repo and update cache
 ```
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
@@ -308,14 +371,14 @@ CREATE EXTENSION pg_statviz CASCADE;  -- requires: plpgsql
 
 Sources:
 
-- [pg_statviz v1.2 release](https://github.com/vyruss/pg_statviz/releases/tag/v1.2)
-- [pg_statviz v1.2 README](https://github.com/vyruss/pg_statviz/blob/v1.2/README.md)
-- [pg_statviz v1.2 installation SQL](https://github.com/vyruss/pg_statviz/blob/v1.2/pg_statviz--1.2.sql)
-- [pg_statviz v1.1 to v1.2 upgrade SQL](https://github.com/vyruss/pg_statviz/blob/v1.2/pg_statviz--1.1--1.2.sql)
-- [pg_statviz v1.2 control file](https://github.com/vyruss/pg_statviz/blob/v1.2/pg_statviz.control)
-- [pg_statviz v1.2 metadata](https://github.com/vyruss/pg_statviz/blob/v1.2/META.json)
-- [pg_statviz v1.2 Python package metadata](https://github.com/vyruss/pg_statviz/blob/v1.2/pyproject.toml)
-- [pg_statviz v1.2 AI provider implementation](https://github.com/vyruss/pg_statviz/blob/v1.2/src/pg_statviz/libs/ai.py)
+- [pg_statviz v1.2.1 release](https://github.com/vyruss/pg_statviz/releases/tag/v1.2.1)
+- [pg_statviz v1.2.1 README](https://github.com/vyruss/pg_statviz/blob/v1.2.1/README.md)
+- [pg_statviz v1.2 installation SQL](https://github.com/vyruss/pg_statviz/blob/v1.2.1/pg_statviz--1.2.sql)
+- [pg_statviz v1.1 to v1.2 upgrade SQL](https://github.com/vyruss/pg_statviz/blob/v1.2.1/pg_statviz--1.1--1.2.sql)
+- [pg_statviz v1.2 control file](https://github.com/vyruss/pg_statviz/blob/v1.2.1/pg_statviz.control)
+- [pg_statviz v1.2 metadata](https://github.com/vyruss/pg_statviz/blob/v1.2.1/META.json)
+- [pg_statviz v1.2.1 Python package metadata](https://github.com/vyruss/pg_statviz/blob/v1.2.1/pyproject.toml)
+- [pg_statviz v1.2.1 AI provider implementation](https://github.com/vyruss/pg_statviz/blob/v1.2.1/src/pg_statviz/libs/ai.py)
 - [Official PGXN v1.2.0 distribution](https://pgxn.org/dist/pg_statviz/1.2.0/README.html)
 
 `pg_statviz` v1.2 (distributed by PGXN as 1.2.0) is a pure SQL and PL/pgSQL statistics snapshot extension plus a separately installed Python visualization utility. The extension stores cumulative and dynamic PostgreSQL statistics in the fixed `pgstatviz` schema; the utility reads a selected time range and generates charts or optional AI-assisted HTML reports. It requires PostgreSQL 13 or later and supports PostgreSQL through version 19, needs no `shared_preload_libraries`, and does not require a restart. The utility requires Python 3.11 or later.
@@ -391,3 +454,7 @@ pg_statviz analyze \
 ```
 
 For a cloud provider, the request can include chart images and summarized series together with the captured PostgreSQL version, primary/standby role, hostname, relevant configuration values, deterministic findings, user or role names, and replication identifiers. Treat that as an explicit operational-data export: review provider retention and regional policy, minimize the selected time range, secure generated HTML and PNG files, and use an approved outbound path. The prompt's data envelopes reduce prompt-injection risk but do not provide confidentiality, authorization, or a substitute for provider governance.
+
+### 1.2.1 Companion-Utility Fix
+
+Source tag 1.2.1 retains SQL/control version 1.2 and Python package metadata version 1.2. Its only code change relative to 1.2 is the local Ollama client compatibility fix: the utility omits the `think` argument for ollama-python below 0.5.0 or when version metadata is unavailable. Installing the updated utility addresses that failure; an additional SQL extension update beyond 1.2 is not required.

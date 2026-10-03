@@ -42,8 +42,8 @@ weight: 4600
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#func) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.7.1` | {{< pgvers "18,17,16,15,14" >}} | `topn` | - |
-| [**RPM**](/ext/rpm#func) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.7.1` | {{< pgvers "18,17,16,15,14" >}} | `topn_$v` | - |
+| [**EXT**](/ext/list#func) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `2.7.1` | {{< pgvers "18,17,16,15,14" >}} | `topn` | - |
+| [**RPM**](/ext/rpm#func) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `2.7.1` | {{< pgvers "18,17,16,15,14" >}} | `topn_$v` | - |
 | [**DEB**](/ext/deb#func) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.7.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-topn` | - |
 {.ext-table}
 
@@ -210,10 +210,10 @@ pig build pkg topn         # build RPM / DEB packages
 
 ## Install
 
-You can install `topn` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) and [**PIGSTY**](/docs/repo/pgsql) repositories are added and enabled:
+You can install `topn` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) repository is added and enabled:
 
 ```bash
-pig repo add pgsql -u          # Add repo and update cache
+pig repo add pgdg -u          # Add PGDG repo and update cache
 ```
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:

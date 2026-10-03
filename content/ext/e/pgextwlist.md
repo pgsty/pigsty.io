@@ -11,10 +11,10 @@ weight: 7390
     <div class="ext-card__title">dimitri/pgextwlist</div>
     <div class="ext-card__desc">https://github.com/dimitri/pgextwlist</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgextwlist-1.19.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgextwlist-1.20.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pgextwlist-1.19.tar.gz</div>
-    <div class="ext-card__desc">pgextwlist-1.19.tar.gz</div>
+    <div class="ext-card__title">pgextwlist-1.20.tar.gz</div>
+    <div class="ext-card__desc">pgextwlist-1.20.tar.gz</div>
   </a>
 </div>
 
@@ -50,250 +50,270 @@ weight: 7390
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 |
-| el8.aarch64 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 |
-| el9.x86_64 | AVAIL PGDG 1.20 5 | AVAIL PGDG 1.20 5 | AVAIL PGDG 1.20 5 | AVAIL PGDG 1.20 5 | AVAIL PGDG 1.20 5 |
-| el9.aarch64 | AVAIL PGDG 1.20 5 | AVAIL PGDG 1.20 5 | AVAIL PGDG 1.20 5 | AVAIL PGDG 1.20 5 | AVAIL PGDG 1.20 5 |
-| el10.x86_64 | AVAIL PGDG 1.20 5 | AVAIL PGDG 1.20 5 | AVAIL PGDG 1.20 5 | AVAIL PGDG 1.20 5 | AVAIL PGDG 1.20 5 |
-| el10.aarch64 | AVAIL PGDG 1.20 5 | AVAIL PGDG 1.20 5 | AVAIL PGDG 1.20 5 | AVAIL PGDG 1.20 5 | AVAIL PGDG 1.20 5 |
-| d12.x86_64 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 |
-| d12.aarch64 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 |
-| d13.x86_64 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 |
-| d13.aarch64 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 |
-| u22.x86_64 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 |
-| u22.aarch64 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 |
-| u24.x86_64 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 |
-| u24.aarch64 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 |
-| u26.x86_64 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 |
-| u26.aarch64 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 |
+| el8.x86_64 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 |
+| el8.aarch64 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 | AVAIL PGDG 1.20 2 |
+| el9.x86_64 | AVAIL PGDG 1.20 4 | AVAIL PGDG 1.20 4 | AVAIL PGDG 1.20 4 | AVAIL PGDG 1.20 4 | AVAIL PGDG 1.20 4 |
+| el9.aarch64 | AVAIL PGDG 1.20 4 | AVAIL PGDG 1.20 4 | AVAIL PGDG 1.20 4 | AVAIL PGDG 1.20 4 | AVAIL PGDG 1.20 4 |
+| el10.x86_64 | AVAIL PGDG 1.20 4 | AVAIL PGDG 1.20 4 | AVAIL PGDG 1.20 4 | AVAIL PGDG 1.20 4 | AVAIL PGDG 1.20 4 |
+| el10.aarch64 | AVAIL PGDG 1.20 4 | AVAIL PGDG 1.20 4 | AVAIL PGDG 1.20 4 | AVAIL PGDG 1.20 4 | AVAIL PGDG 1.20 4 |
+| d12.x86_64 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 |
+| d12.aarch64 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 |
+| d13.x86_64 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 |
+| d13.aarch64 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 |
+| u22.x86_64 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 |
+| u22.aarch64 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 |
+| u24.x86_64 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 |
+| u24.aarch64 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 |
+| u26.x86_64 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 |
+| u26.aarch64 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 | AVAIL PGDG 1.20 3 |
 @ el8.x86_64 18 pgextwlist_18 pgextwlist_18-1.20-1PGDG.rhel8.10.x86_64.rpm pgdg 1.20 22.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pgextwlist_18-1.20-1PGDG.rhel8.10.x86_64.rpm
-@ el8.x86_64 18 pgextwlist_18 pgextwlist_18-1.19-1PIGSTY.el8.x86_64.rpm pigsty 1.19 20.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgextwlist_18-1.19-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 18 pgextwlist_18 pgextwlist_18-1.19-1PGDG.rhel8.10.x86_64.rpm pgdg 1.19 20.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pgextwlist_18-1.19-1PGDG.rhel8.10.x86_64.rpm
 @ el8.aarch64 18 pgextwlist_18 pgextwlist_18-1.20-1PGDG.rhel8.10.aarch64.rpm pgdg 1.20 22.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pgextwlist_18-1.20-1PGDG.rhel8.10.aarch64.rpm
-@ el8.aarch64 18 pgextwlist_18 pgextwlist_18-1.19-1PIGSTY.el8.aarch64.rpm pigsty 1.19 20.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgextwlist_18-1.19-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 18 pgextwlist_18 pgextwlist_18-1.19-1PGDG.rhel8.10.aarch64.rpm pgdg 1.19 20.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pgextwlist_18-1.19-1PGDG.rhel8.10.aarch64.rpm
 @ el9.x86_64 18 pgextwlist_18 pgextwlist_18-1.20-1PGDG.rhel9.8.x86_64.rpm pgdg 1.20 22.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pgextwlist_18-1.20-1PGDG.rhel9.8.x86_64.rpm
-@ el9.x86_64 18 pgextwlist_18 pgextwlist_18-1.19-1PIGSTY.el9.x86_64.rpm pigsty 1.19 20.4KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgextwlist_18-1.19-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 18 pgextwlist_18 pgextwlist_18-1.19-1PGDG.rhel9.8.x86_64.rpm pgdg 1.19 20.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pgextwlist_18-1.19-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 pgextwlist_18 pgextwlist_18-1.19-1PGDG.rhel9.7.x86_64.rpm pgdg 1.19 20.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pgextwlist_18-1.19-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 18 pgextwlist_18 pgextwlist_18-1.19-1PGDG.rhel9.6.x86_64.rpm pgdg 1.19 20.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pgextwlist_18-1.19-1PGDG.rhel9.6.x86_64.rpm
 @ el9.aarch64 18 pgextwlist_18 pgextwlist_18-1.20-1PGDG.rhel9.8.aarch64.rpm pgdg 1.20 21.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pgextwlist_18-1.20-1PGDG.rhel9.8.aarch64.rpm
-@ el9.aarch64 18 pgextwlist_18 pgextwlist_18-1.19-1PIGSTY.el9.aarch64.rpm pigsty 1.19 20.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgextwlist_18-1.19-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 18 pgextwlist_18 pgextwlist_18-1.19-1PGDG.rhel9.8.aarch64.rpm pgdg 1.19 20.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pgextwlist_18-1.19-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 pgextwlist_18 pgextwlist_18-1.19-1PGDG.rhel9.7.aarch64.rpm pgdg 1.19 20.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pgextwlist_18-1.19-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 18 pgextwlist_18 pgextwlist_18-1.19-1PGDG.rhel9.6.aarch64.rpm pgdg 1.19 20.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pgextwlist_18-1.19-1PGDG.rhel9.6.aarch64.rpm
 @ el10.x86_64 18 pgextwlist_18 pgextwlist_18-1.20-1PGDG.rhel10.2.x86_64.rpm pgdg 1.20 22.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pgextwlist_18-1.20-1PGDG.rhel10.2.x86_64.rpm
-@ el10.x86_64 18 pgextwlist_18 pgextwlist_18-1.19-1PIGSTY.el10.x86_64.rpm pigsty 1.19 20.2KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgextwlist_18-1.19-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 18 pgextwlist_18 pgextwlist_18-1.19-1PGDG.rhel10.2.x86_64.rpm pgdg 1.19 20.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pgextwlist_18-1.19-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 pgextwlist_18 pgextwlist_18-1.19-1PGDG.rhel10.1.x86_64.rpm pgdg 1.19 20.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pgextwlist_18-1.19-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 18 pgextwlist_18 pgextwlist_18-1.19-1PGDG.rhel10.0.x86_64.rpm pgdg 1.19 21.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pgextwlist_18-1.19-1PGDG.rhel10.0.x86_64.rpm
 @ el10.aarch64 18 pgextwlist_18 pgextwlist_18-1.20-1PGDG.rhel10.2.aarch64.rpm pgdg 1.20 22.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pgextwlist_18-1.20-1PGDG.rhel10.2.aarch64.rpm
-@ el10.aarch64 18 pgextwlist_18 pgextwlist_18-1.19-1PIGSTY.el10.aarch64.rpm pigsty 1.19 20.2KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgextwlist_18-1.19-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 18 pgextwlist_18 pgextwlist_18-1.19-1PGDG.rhel10.2.aarch64.rpm pgdg 1.19 20.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pgextwlist_18-1.19-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 pgextwlist_18 pgextwlist_18-1.19-1PGDG.rhel10.1.aarch64.rpm pgdg 1.19 20.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pgextwlist_18-1.19-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 18 pgextwlist_18 pgextwlist_18-1.19-1PGDG.rhel10.0.aarch64.rpm pgdg 1.19 20.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pgextwlist_18-1.19-1PGDG.rhel10.0.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg12+2_amd64.deb pgdg 1.20 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg12+2_amd64.deb
 @ d12.x86_64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg12+1_amd64.deb pgdg 1.20 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg12+1_amd64.deb
 @ d12.x86_64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.19-2.pgdg12+1_amd64.deb pgdg 1.19 29.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.19-2.pgdg12+1_amd64.deb
+@ d12.aarch64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg12+2_arm64.deb pgdg 1.20 34.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg12+2_arm64.deb
 @ d12.aarch64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg12+1_arm64.deb pgdg 1.20 34.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg12+1_arm64.deb
 @ d12.aarch64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.19-2.pgdg12+1_arm64.deb pgdg 1.19 28.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.19-2.pgdg12+1_arm64.deb
+@ d13.x86_64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg13+2_amd64.deb pgdg 1.20 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg13+2_amd64.deb
 @ d13.x86_64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg13+1_amd64.deb pgdg 1.20 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg13+1_amd64.deb
 @ d13.x86_64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.19-2.pgdg13+1_amd64.deb pgdg 1.19 29.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.19-2.pgdg13+1_amd64.deb
+@ d13.aarch64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg13+2_arm64.deb pgdg 1.20 34.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg13+2_arm64.deb
 @ d13.aarch64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg13+1_arm64.deb pgdg 1.20 34.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg13+1_arm64.deb
 @ d13.aarch64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.19-2.pgdg13+1_arm64.deb pgdg 1.19 28.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.19-2.pgdg13+1_arm64.deb
+@ u22.x86_64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg22.04+2_amd64.deb pgdg 1.20 35.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg22.04+1_amd64.deb pgdg 1.20 35.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.19-2.pgdg22.04+1_amd64.deb pgdg 1.19 30.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.19-2.pgdg22.04+1_amd64.deb
+@ u22.aarch64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg22.04+2_arm64.deb pgdg 1.20 34.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg22.04+1_arm64.deb pgdg 1.20 34.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.19-2.pgdg22.04+1_arm64.deb pgdg 1.19 29.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.19-2.pgdg22.04+1_arm64.deb
+@ u24.x86_64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg24.04+2_amd64.deb pgdg 1.20 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg24.04+1_amd64.deb pgdg 1.20 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.19-2.pgdg24.04+1_amd64.deb pgdg 1.19 29.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.19-2.pgdg24.04+1_amd64.deb
+@ u24.aarch64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg24.04+2_arm64.deb pgdg 1.20 34.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg24.04+1_arm64.deb pgdg 1.20 34.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.19-2.pgdg24.04+1_arm64.deb pgdg 1.19 28.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.19-2.pgdg24.04+1_arm64.deb
+@ u26.x86_64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg26.04+2_amd64.deb pgdg 1.20 34.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg26.04+1_amd64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.19-2.pgdg26.04+1_amd64.deb pgdg 1.19 29.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.19-2.pgdg26.04+1_amd64.deb
+@ u26.aarch64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg26.04+2_arm64.deb pgdg 1.20 33.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.20-1.pgdg26.04+1_arm64.deb pgdg 1.20 33.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.20-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 18 postgresql-18-pgextwlist postgresql-18-pgextwlist_1.19-2.pgdg26.04+1_arm64.deb pgdg 1.19 28.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-18-pgextwlist_1.19-2.pgdg26.04+1_arm64.deb
 @ el8.x86_64 17 pgextwlist_17 pgextwlist_17-1.20-1PGDG.rhel8.10.x86_64.rpm pgdg 1.20 22.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pgextwlist_17-1.20-1PGDG.rhel8.10.x86_64.rpm
-@ el8.x86_64 17 pgextwlist_17 pgextwlist_17-1.19-1PIGSTY.el8.x86_64.rpm pigsty 1.19 20.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgextwlist_17-1.19-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 17 pgextwlist_17 pgextwlist_17-1.19-1PGDG.rhel8.10.x86_64.rpm pgdg 1.19 20.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pgextwlist_17-1.19-1PGDG.rhel8.10.x86_64.rpm
 @ el8.aarch64 17 pgextwlist_17 pgextwlist_17-1.20-1PGDG.rhel8.10.aarch64.rpm pgdg 1.20 22.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/pgextwlist_17-1.20-1PGDG.rhel8.10.aarch64.rpm
-@ el8.aarch64 17 pgextwlist_17 pgextwlist_17-1.19-1PIGSTY.el8.aarch64.rpm pigsty 1.19 20.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgextwlist_17-1.19-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 17 pgextwlist_17 pgextwlist_17-1.19-1PGDG.rhel8.10.aarch64.rpm pgdg 1.19 20.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/pgextwlist_17-1.19-1PGDG.rhel8.10.aarch64.rpm
 @ el9.x86_64 17 pgextwlist_17 pgextwlist_17-1.20-1PGDG.rhel9.8.x86_64.rpm pgdg 1.20 22.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pgextwlist_17-1.20-1PGDG.rhel9.8.x86_64.rpm
-@ el9.x86_64 17 pgextwlist_17 pgextwlist_17-1.19-1PIGSTY.el9.x86_64.rpm pigsty 1.19 20.4KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgextwlist_17-1.19-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 17 pgextwlist_17 pgextwlist_17-1.19-1PGDG.rhel9.8.x86_64.rpm pgdg 1.19 20.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pgextwlist_17-1.19-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 pgextwlist_17 pgextwlist_17-1.19-1PGDG.rhel9.7.x86_64.rpm pgdg 1.19 20.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pgextwlist_17-1.19-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 17 pgextwlist_17 pgextwlist_17-1.19-1PGDG.rhel9.6.x86_64.rpm pgdg 1.19 20.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pgextwlist_17-1.19-1PGDG.rhel9.6.x86_64.rpm
 @ el9.aarch64 17 pgextwlist_17 pgextwlist_17-1.20-1PGDG.rhel9.8.aarch64.rpm pgdg 1.20 21.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pgextwlist_17-1.20-1PGDG.rhel9.8.aarch64.rpm
-@ el9.aarch64 17 pgextwlist_17 pgextwlist_17-1.19-1PIGSTY.el9.aarch64.rpm pigsty 1.19 20.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgextwlist_17-1.19-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 17 pgextwlist_17 pgextwlist_17-1.19-1PGDG.rhel9.8.aarch64.rpm pgdg 1.19 20.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pgextwlist_17-1.19-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 pgextwlist_17 pgextwlist_17-1.19-1PGDG.rhel9.7.aarch64.rpm pgdg 1.19 20.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pgextwlist_17-1.19-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 17 pgextwlist_17 pgextwlist_17-1.19-1PGDG.rhel9.6.aarch64.rpm pgdg 1.19 20.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pgextwlist_17-1.19-1PGDG.rhel9.6.aarch64.rpm
 @ el10.x86_64 17 pgextwlist_17 pgextwlist_17-1.20-1PGDG.rhel10.2.x86_64.rpm pgdg 1.20 22.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pgextwlist_17-1.20-1PGDG.rhel10.2.x86_64.rpm
-@ el10.x86_64 17 pgextwlist_17 pgextwlist_17-1.19-1PIGSTY.el10.x86_64.rpm pigsty 1.19 20.3KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgextwlist_17-1.19-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 17 pgextwlist_17 pgextwlist_17-1.19-1PGDG.rhel10.2.x86_64.rpm pgdg 1.19 20.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pgextwlist_17-1.19-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 pgextwlist_17 pgextwlist_17-1.19-1PGDG.rhel10.1.x86_64.rpm pgdg 1.19 20.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pgextwlist_17-1.19-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 17 pgextwlist_17 pgextwlist_17-1.19-1PGDG.rhel10.0.x86_64.rpm pgdg 1.19 21.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pgextwlist_17-1.19-1PGDG.rhel10.0.x86_64.rpm
 @ el10.aarch64 17 pgextwlist_17 pgextwlist_17-1.20-1PGDG.rhel10.2.aarch64.rpm pgdg 1.20 22.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pgextwlist_17-1.20-1PGDG.rhel10.2.aarch64.rpm
-@ el10.aarch64 17 pgextwlist_17 pgextwlist_17-1.19-1PIGSTY.el10.aarch64.rpm pigsty 1.19 20.2KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgextwlist_17-1.19-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 17 pgextwlist_17 pgextwlist_17-1.19-1PGDG.rhel10.2.aarch64.rpm pgdg 1.19 20.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pgextwlist_17-1.19-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 pgextwlist_17 pgextwlist_17-1.19-1PGDG.rhel10.1.aarch64.rpm pgdg 1.19 20.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pgextwlist_17-1.19-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 17 pgextwlist_17 pgextwlist_17-1.19-1PGDG.rhel10.0.aarch64.rpm pgdg 1.19 20.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pgextwlist_17-1.19-1PGDG.rhel10.0.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg12+2_amd64.deb pgdg 1.20 34.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg12+2_amd64.deb
 @ d12.x86_64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg12+1_amd64.deb pgdg 1.20 34.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg12+1_amd64.deb
 @ d12.x86_64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.19-2.pgdg12+1_amd64.deb pgdg 1.19 29.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.19-2.pgdg12+1_amd64.deb
+@ d12.aarch64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg12+2_arm64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg12+2_arm64.deb
 @ d12.aarch64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg12+1_arm64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg12+1_arm64.deb
 @ d12.aarch64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.19-2.pgdg12+1_arm64.deb pgdg 1.19 28.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.19-2.pgdg12+1_arm64.deb
+@ d13.x86_64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg13+2_amd64.deb pgdg 1.20 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg13+2_amd64.deb
 @ d13.x86_64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg13+1_amd64.deb pgdg 1.20 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg13+1_amd64.deb
 @ d13.x86_64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.19-2.pgdg13+1_amd64.deb pgdg 1.19 29.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.19-2.pgdg13+1_amd64.deb
+@ d13.aarch64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg13+2_arm64.deb pgdg 1.20 34.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg13+2_arm64.deb
 @ d13.aarch64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg13+1_arm64.deb pgdg 1.20 34.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg13+1_arm64.deb
 @ d13.aarch64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.19-2.pgdg13+1_arm64.deb pgdg 1.19 28.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.19-2.pgdg13+1_arm64.deb
+@ u22.x86_64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg22.04+2_amd64.deb pgdg 1.20 44.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg22.04+1_amd64.deb pgdg 1.20 44.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.19-2.pgdg22.04+1_amd64.deb pgdg 1.19 38.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.19-2.pgdg22.04+1_amd64.deb
+@ u22.aarch64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg22.04+2_arm64.deb pgdg 1.20 43.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg22.04+1_arm64.deb pgdg 1.20 43.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.19-2.pgdg22.04+1_arm64.deb pgdg 1.19 37.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.19-2.pgdg22.04+1_arm64.deb
+@ u24.x86_64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg24.04+2_amd64.deb pgdg 1.20 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg24.04+1_amd64.deb pgdg 1.20 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.19-2.pgdg24.04+1_amd64.deb pgdg 1.19 29.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.19-2.pgdg24.04+1_amd64.deb
+@ u24.aarch64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg24.04+2_arm64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg24.04+1_arm64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.19-2.pgdg24.04+1_arm64.deb pgdg 1.19 28.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.19-2.pgdg24.04+1_arm64.deb
+@ u26.x86_64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg26.04+2_amd64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg26.04+1_amd64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.19-2.pgdg26.04+1_amd64.deb pgdg 1.19 29.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.19-2.pgdg26.04+1_amd64.deb
+@ u26.aarch64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg26.04+2_arm64.deb pgdg 1.20 33.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.20-1.pgdg26.04+1_arm64.deb pgdg 1.20 33.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.20-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 17 postgresql-17-pgextwlist postgresql-17-pgextwlist_1.19-2.pgdg26.04+1_arm64.deb pgdg 1.19 28.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-17-pgextwlist_1.19-2.pgdg26.04+1_arm64.deb
 @ el8.x86_64 16 pgextwlist_16 pgextwlist_16-1.20-1PGDG.rhel8.10.x86_64.rpm pgdg 1.20 22.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pgextwlist_16-1.20-1PGDG.rhel8.10.x86_64.rpm
-@ el8.x86_64 16 pgextwlist_16 pgextwlist_16-1.19-1PIGSTY.el8.x86_64.rpm pigsty 1.19 20.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgextwlist_16-1.19-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 16 pgextwlist_16 pgextwlist_16-1.19-1PGDG.rhel8.10.x86_64.rpm pgdg 1.19 20.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pgextwlist_16-1.19-1PGDG.rhel8.10.x86_64.rpm
 @ el8.aarch64 16 pgextwlist_16 pgextwlist_16-1.20-1PGDG.rhel8.10.aarch64.rpm pgdg 1.20 22.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pgextwlist_16-1.20-1PGDG.rhel8.10.aarch64.rpm
-@ el8.aarch64 16 pgextwlist_16 pgextwlist_16-1.19-1PIGSTY.el8.aarch64.rpm pigsty 1.19 20.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgextwlist_16-1.19-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 16 pgextwlist_16 pgextwlist_16-1.19-1PGDG.rhel8.10.aarch64.rpm pgdg 1.19 20.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pgextwlist_16-1.19-1PGDG.rhel8.10.aarch64.rpm
 @ el9.x86_64 16 pgextwlist_16 pgextwlist_16-1.20-1PGDG.rhel9.8.x86_64.rpm pgdg 1.20 22.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pgextwlist_16-1.20-1PGDG.rhel9.8.x86_64.rpm
-@ el9.x86_64 16 pgextwlist_16 pgextwlist_16-1.19-1PIGSTY.el9.x86_64.rpm pigsty 1.19 20.4KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgextwlist_16-1.19-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 16 pgextwlist_16 pgextwlist_16-1.19-1PGDG.rhel9.8.x86_64.rpm pgdg 1.19 20.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pgextwlist_16-1.19-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 pgextwlist_16 pgextwlist_16-1.19-1PGDG.rhel9.7.x86_64.rpm pgdg 1.19 20.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pgextwlist_16-1.19-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 16 pgextwlist_16 pgextwlist_16-1.19-1PGDG.rhel9.6.x86_64.rpm pgdg 1.19 20.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pgextwlist_16-1.19-1PGDG.rhel9.6.x86_64.rpm
 @ el9.aarch64 16 pgextwlist_16 pgextwlist_16-1.20-1PGDG.rhel9.8.aarch64.rpm pgdg 1.20 21.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pgextwlist_16-1.20-1PGDG.rhel9.8.aarch64.rpm
-@ el9.aarch64 16 pgextwlist_16 pgextwlist_16-1.19-1PIGSTY.el9.aarch64.rpm pigsty 1.19 20.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgextwlist_16-1.19-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 16 pgextwlist_16 pgextwlist_16-1.19-1PGDG.rhel9.8.aarch64.rpm pgdg 1.19 20.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pgextwlist_16-1.19-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 pgextwlist_16 pgextwlist_16-1.19-1PGDG.rhel9.7.aarch64.rpm pgdg 1.19 20.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pgextwlist_16-1.19-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 16 pgextwlist_16 pgextwlist_16-1.19-1PGDG.rhel9.6.aarch64.rpm pgdg 1.19 20.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pgextwlist_16-1.19-1PGDG.rhel9.6.aarch64.rpm
 @ el10.x86_64 16 pgextwlist_16 pgextwlist_16-1.20-1PGDG.rhel10.2.x86_64.rpm pgdg 1.20 22.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pgextwlist_16-1.20-1PGDG.rhel10.2.x86_64.rpm
-@ el10.x86_64 16 pgextwlist_16 pgextwlist_16-1.19-1PIGSTY.el10.x86_64.rpm pigsty 1.19 20.2KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgextwlist_16-1.19-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 16 pgextwlist_16 pgextwlist_16-1.19-1PGDG.rhel10.2.x86_64.rpm pgdg 1.19 20.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pgextwlist_16-1.19-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 pgextwlist_16 pgextwlist_16-1.19-1PGDG.rhel10.1.x86_64.rpm pgdg 1.19 20.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pgextwlist_16-1.19-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 16 pgextwlist_16 pgextwlist_16-1.19-1PGDG.rhel10.0.x86_64.rpm pgdg 1.19 21.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pgextwlist_16-1.19-1PGDG.rhel10.0.x86_64.rpm
 @ el10.aarch64 16 pgextwlist_16 pgextwlist_16-1.20-1PGDG.rhel10.2.aarch64.rpm pgdg 1.20 22.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pgextwlist_16-1.20-1PGDG.rhel10.2.aarch64.rpm
-@ el10.aarch64 16 pgextwlist_16 pgextwlist_16-1.19-1PIGSTY.el10.aarch64.rpm pigsty 1.19 20.2KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgextwlist_16-1.19-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 16 pgextwlist_16 pgextwlist_16-1.19-1PGDG.rhel10.2.aarch64.rpm pgdg 1.19 20.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pgextwlist_16-1.19-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 pgextwlist_16 pgextwlist_16-1.19-1PGDG.rhel10.1.aarch64.rpm pgdg 1.19 20.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pgextwlist_16-1.19-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 16 pgextwlist_16 pgextwlist_16-1.19-1PGDG.rhel10.0.aarch64.rpm pgdg 1.19 20.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pgextwlist_16-1.19-1PGDG.rhel10.0.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg12+2_amd64.deb pgdg 1.20 34.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg12+2_amd64.deb
 @ d12.x86_64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg12+1_amd64.deb pgdg 1.20 34.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg12+1_amd64.deb
 @ d12.x86_64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.19-2.pgdg12+1_amd64.deb pgdg 1.19 29.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.19-2.pgdg12+1_amd64.deb
+@ d12.aarch64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg12+2_arm64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg12+2_arm64.deb
 @ d12.aarch64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg12+1_arm64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg12+1_arm64.deb
 @ d12.aarch64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.19-2.pgdg12+1_arm64.deb pgdg 1.19 28.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.19-2.pgdg12+1_arm64.deb
+@ d13.x86_64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg13+2_amd64.deb pgdg 1.20 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg13+2_amd64.deb
 @ d13.x86_64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg13+1_amd64.deb pgdg 1.20 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg13+1_amd64.deb
 @ d13.x86_64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.19-2.pgdg13+1_amd64.deb pgdg 1.19 29.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.19-2.pgdg13+1_amd64.deb
+@ d13.aarch64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg13+2_arm64.deb pgdg 1.20 34.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg13+2_arm64.deb
 @ d13.aarch64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg13+1_arm64.deb pgdg 1.20 34.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg13+1_arm64.deb
 @ d13.aarch64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.19-2.pgdg13+1_arm64.deb pgdg 1.19 28.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.19-2.pgdg13+1_arm64.deb
+@ u22.x86_64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg22.04+2_amd64.deb pgdg 1.20 43.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg22.04+1_amd64.deb pgdg 1.20 43.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.19-2.pgdg22.04+1_amd64.deb pgdg 1.19 37.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.19-2.pgdg22.04+1_amd64.deb
+@ u22.aarch64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg22.04+2_arm64.deb pgdg 1.20 42.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg22.04+1_arm64.deb pgdg 1.20 42.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.19-2.pgdg22.04+1_arm64.deb pgdg 1.19 37.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.19-2.pgdg22.04+1_arm64.deb
+@ u24.x86_64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg24.04+2_amd64.deb pgdg 1.20 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg24.04+1_amd64.deb pgdg 1.20 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.19-2.pgdg24.04+1_amd64.deb pgdg 1.19 29.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.19-2.pgdg24.04+1_amd64.deb
+@ u24.aarch64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg24.04+2_arm64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg24.04+1_arm64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.19-2.pgdg24.04+1_arm64.deb pgdg 1.19 28.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.19-2.pgdg24.04+1_arm64.deb
+@ u26.x86_64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg26.04+2_amd64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg26.04+1_amd64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.19-2.pgdg26.04+1_amd64.deb pgdg 1.19 29.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.19-2.pgdg26.04+1_amd64.deb
+@ u26.aarch64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg26.04+2_arm64.deb pgdg 1.20 33.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.20-1.pgdg26.04+1_arm64.deb pgdg 1.20 33.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.20-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 16 postgresql-16-pgextwlist postgresql-16-pgextwlist_1.19-2.pgdg26.04+1_arm64.deb pgdg 1.19 28.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-16-pgextwlist_1.19-2.pgdg26.04+1_arm64.deb
 @ el8.x86_64 15 pgextwlist_15 pgextwlist_15-1.20-1PGDG.rhel8.10.x86_64.rpm pgdg 1.20 22.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pgextwlist_15-1.20-1PGDG.rhel8.10.x86_64.rpm
-@ el8.x86_64 15 pgextwlist_15 pgextwlist_15-1.19-1PIGSTY.el8.x86_64.rpm pigsty 1.19 20.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgextwlist_15-1.19-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 15 pgextwlist_15 pgextwlist_15-1.19-1PGDG.rhel8.10.x86_64.rpm pgdg 1.19 20.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pgextwlist_15-1.19-1PGDG.rhel8.10.x86_64.rpm
 @ el8.aarch64 15 pgextwlist_15 pgextwlist_15-1.20-1PGDG.rhel8.10.aarch64.rpm pgdg 1.20 22.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pgextwlist_15-1.20-1PGDG.rhel8.10.aarch64.rpm
-@ el8.aarch64 15 pgextwlist_15 pgextwlist_15-1.19-1PIGSTY.el8.aarch64.rpm pigsty 1.19 20.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgextwlist_15-1.19-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 15 pgextwlist_15 pgextwlist_15-1.19-1PGDG.rhel8.10.aarch64.rpm pgdg 1.19 20.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pgextwlist_15-1.19-1PGDG.rhel8.10.aarch64.rpm
 @ el9.x86_64 15 pgextwlist_15 pgextwlist_15-1.20-1PGDG.rhel9.8.x86_64.rpm pgdg 1.20 23.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pgextwlist_15-1.20-1PGDG.rhel9.8.x86_64.rpm
-@ el9.x86_64 15 pgextwlist_15 pgextwlist_15-1.19-1PIGSTY.el9.x86_64.rpm pigsty 1.19 20.4KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgextwlist_15-1.19-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 15 pgextwlist_15 pgextwlist_15-1.19-1PGDG.rhel9.8.x86_64.rpm pgdg 1.19 20.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pgextwlist_15-1.19-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 pgextwlist_15 pgextwlist_15-1.19-1PGDG.rhel9.7.x86_64.rpm pgdg 1.19 20.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pgextwlist_15-1.19-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 15 pgextwlist_15 pgextwlist_15-1.19-1PGDG.rhel9.6.x86_64.rpm pgdg 1.19 21.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pgextwlist_15-1.19-1PGDG.rhel9.6.x86_64.rpm
 @ el9.aarch64 15 pgextwlist_15 pgextwlist_15-1.20-1PGDG.rhel9.8.aarch64.rpm pgdg 1.20 22.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pgextwlist_15-1.20-1PGDG.rhel9.8.aarch64.rpm
-@ el9.aarch64 15 pgextwlist_15 pgextwlist_15-1.19-1PIGSTY.el9.aarch64.rpm pigsty 1.19 20.1KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgextwlist_15-1.19-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 15 pgextwlist_15 pgextwlist_15-1.19-1PGDG.rhel9.8.aarch64.rpm pgdg 1.19 20.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pgextwlist_15-1.19-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 pgextwlist_15 pgextwlist_15-1.19-1PGDG.rhel9.7.aarch64.rpm pgdg 1.19 20.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pgextwlist_15-1.19-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 15 pgextwlist_15 pgextwlist_15-1.19-1PGDG.rhel9.6.aarch64.rpm pgdg 1.19 20.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pgextwlist_15-1.19-1PGDG.rhel9.6.aarch64.rpm
 @ el10.x86_64 15 pgextwlist_15 pgextwlist_15-1.20-1PGDG.rhel10.2.x86_64.rpm pgdg 1.20 23.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pgextwlist_15-1.20-1PGDG.rhel10.2.x86_64.rpm
-@ el10.x86_64 15 pgextwlist_15 pgextwlist_15-1.19-1PIGSTY.el10.x86_64.rpm pigsty 1.19 20.4KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgextwlist_15-1.19-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 15 pgextwlist_15 pgextwlist_15-1.19-1PGDG.rhel10.2.x86_64.rpm pgdg 1.19 20.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pgextwlist_15-1.19-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 pgextwlist_15 pgextwlist_15-1.19-1PGDG.rhel10.1.x86_64.rpm pgdg 1.19 20.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pgextwlist_15-1.19-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 15 pgextwlist_15 pgextwlist_15-1.19-1PGDG.rhel10.0.x86_64.rpm pgdg 1.19 21.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pgextwlist_15-1.19-1PGDG.rhel10.0.x86_64.rpm
 @ el10.aarch64 15 pgextwlist_15 pgextwlist_15-1.20-1PGDG.rhel10.2.aarch64.rpm pgdg 1.20 22.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pgextwlist_15-1.20-1PGDG.rhel10.2.aarch64.rpm
-@ el10.aarch64 15 pgextwlist_15 pgextwlist_15-1.19-1PIGSTY.el10.aarch64.rpm pigsty 1.19 20.3KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgextwlist_15-1.19-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 15 pgextwlist_15 pgextwlist_15-1.19-1PGDG.rhel10.2.aarch64.rpm pgdg 1.19 20.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pgextwlist_15-1.19-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 pgextwlist_15 pgextwlist_15-1.19-1PGDG.rhel10.1.aarch64.rpm pgdg 1.19 20.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pgextwlist_15-1.19-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 15 pgextwlist_15 pgextwlist_15-1.19-1PGDG.rhel10.0.aarch64.rpm pgdg 1.19 20.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pgextwlist_15-1.19-1PGDG.rhel10.0.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg12+2_amd64.deb pgdg 1.20 34.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg12+2_amd64.deb
 @ d12.x86_64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg12+1_amd64.deb pgdg 1.20 34.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg12+1_amd64.deb
 @ d12.x86_64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.19-2.pgdg12+1_amd64.deb pgdg 1.19 28.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.19-2.pgdg12+1_amd64.deb
+@ d12.aarch64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg12+2_arm64.deb pgdg 1.20 33.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg12+2_arm64.deb
 @ d12.aarch64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg12+1_arm64.deb pgdg 1.20 33.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg12+1_arm64.deb
 @ d12.aarch64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.19-2.pgdg12+1_arm64.deb pgdg 1.19 28.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.19-2.pgdg12+1_arm64.deb
+@ d13.x86_64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg13+2_amd64.deb pgdg 1.20 34.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg13+2_amd64.deb
 @ d13.x86_64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg13+1_amd64.deb pgdg 1.20 34.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg13+1_amd64.deb
 @ d13.x86_64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.19-2.pgdg13+1_amd64.deb pgdg 1.19 28.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.19-2.pgdg13+1_amd64.deb
+@ d13.aarch64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg13+2_arm64.deb pgdg 1.20 34.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg13+2_arm64.deb
 @ d13.aarch64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg13+1_arm64.deb pgdg 1.20 34.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg13+1_arm64.deb
 @ d13.aarch64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.19-2.pgdg13+1_arm64.deb pgdg 1.19 28.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.19-2.pgdg13+1_arm64.deb
+@ u22.x86_64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg22.04+2_amd64.deb pgdg 1.20 43.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg22.04+1_amd64.deb pgdg 1.20 43.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.19-2.pgdg22.04+1_amd64.deb pgdg 1.19 37.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.19-2.pgdg22.04+1_amd64.deb
+@ u22.aarch64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg22.04+2_arm64.deb pgdg 1.20 42.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg22.04+1_arm64.deb pgdg 1.20 42.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.19-2.pgdg22.04+1_arm64.deb pgdg 1.19 36.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.19-2.pgdg22.04+1_arm64.deb
+@ u24.x86_64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg24.04+2_amd64.deb pgdg 1.20 34.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg24.04+1_amd64.deb pgdg 1.20 34.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.19-2.pgdg24.04+1_amd64.deb pgdg 1.19 29.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.19-2.pgdg24.04+1_amd64.deb
+@ u24.aarch64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg24.04+2_arm64.deb pgdg 1.20 33.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg24.04+1_arm64.deb pgdg 1.20 33.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.19-2.pgdg24.04+1_arm64.deb pgdg 1.19 28.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.19-2.pgdg24.04+1_arm64.deb
+@ u26.x86_64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg26.04+2_amd64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg26.04+1_amd64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.19-2.pgdg26.04+1_amd64.deb pgdg 1.19 29.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.19-2.pgdg26.04+1_amd64.deb
+@ u26.aarch64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg26.04+2_arm64.deb pgdg 1.20 33.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.20-1.pgdg26.04+1_arm64.deb pgdg 1.20 33.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.20-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 15 postgresql-15-pgextwlist postgresql-15-pgextwlist_1.19-2.pgdg26.04+1_arm64.deb pgdg 1.19 28.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-15-pgextwlist_1.19-2.pgdg26.04+1_arm64.deb
 @ el8.x86_64 14 pgextwlist_14 pgextwlist_14-1.20-1PGDG.rhel8.10.x86_64.rpm pgdg 1.20 22.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pgextwlist_14-1.20-1PGDG.rhel8.10.x86_64.rpm
-@ el8.x86_64 14 pgextwlist_14 pgextwlist_14-1.19-1PIGSTY.el8.x86_64.rpm pigsty 1.19 20.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pgextwlist_14-1.19-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 14 pgextwlist_14 pgextwlist_14-1.19-1PGDG.rhel8.10.x86_64.rpm pgdg 1.19 20.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pgextwlist_14-1.19-1PGDG.rhel8.10.x86_64.rpm
 @ el8.aarch64 14 pgextwlist_14 pgextwlist_14-1.20-1PGDG.rhel8.10.aarch64.rpm pgdg 1.20 22.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pgextwlist_14-1.20-1PGDG.rhel8.10.aarch64.rpm
-@ el8.aarch64 14 pgextwlist_14 pgextwlist_14-1.19-1PIGSTY.el8.aarch64.rpm pigsty 1.19 20.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pgextwlist_14-1.19-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 14 pgextwlist_14 pgextwlist_14-1.19-1PGDG.rhel8.10.aarch64.rpm pgdg 1.19 20.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pgextwlist_14-1.19-1PGDG.rhel8.10.aarch64.rpm
 @ el9.x86_64 14 pgextwlist_14 pgextwlist_14-1.20-1PGDG.rhel9.8.x86_64.rpm pgdg 1.20 23.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pgextwlist_14-1.20-1PGDG.rhel9.8.x86_64.rpm
-@ el9.x86_64 14 pgextwlist_14 pgextwlist_14-1.19-1PIGSTY.el9.x86_64.rpm pigsty 1.19 20.4KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pgextwlist_14-1.19-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 14 pgextwlist_14 pgextwlist_14-1.19-1PGDG.rhel9.8.x86_64.rpm pgdg 1.19 20.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pgextwlist_14-1.19-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 pgextwlist_14 pgextwlist_14-1.19-1PGDG.rhel9.7.x86_64.rpm pgdg 1.19 20.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pgextwlist_14-1.19-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 14 pgextwlist_14 pgextwlist_14-1.19-1PGDG.rhel9.6.x86_64.rpm pgdg 1.19 21.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pgextwlist_14-1.19-1PGDG.rhel9.6.x86_64.rpm
 @ el9.aarch64 14 pgextwlist_14 pgextwlist_14-1.20-1PGDG.rhel9.8.aarch64.rpm pgdg 1.20 22.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pgextwlist_14-1.20-1PGDG.rhel9.8.aarch64.rpm
-@ el9.aarch64 14 pgextwlist_14 pgextwlist_14-1.19-1PIGSTY.el9.aarch64.rpm pigsty 1.19 20.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pgextwlist_14-1.19-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 14 pgextwlist_14 pgextwlist_14-1.19-1PGDG.rhel9.8.aarch64.rpm pgdg 1.19 20.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pgextwlist_14-1.19-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 pgextwlist_14 pgextwlist_14-1.19-1PGDG.rhel9.7.aarch64.rpm pgdg 1.19 20.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pgextwlist_14-1.19-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 14 pgextwlist_14 pgextwlist_14-1.19-1PGDG.rhel9.6.aarch64.rpm pgdg 1.19 20.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pgextwlist_14-1.19-1PGDG.rhel9.6.aarch64.rpm
 @ el10.x86_64 14 pgextwlist_14 pgextwlist_14-1.20-1PGDG.rhel10.2.x86_64.rpm pgdg 1.20 23.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pgextwlist_14-1.20-1PGDG.rhel10.2.x86_64.rpm
-@ el10.x86_64 14 pgextwlist_14 pgextwlist_14-1.19-1PIGSTY.el10.x86_64.rpm pigsty 1.19 20.3KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pgextwlist_14-1.19-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 14 pgextwlist_14 pgextwlist_14-1.19-1PGDG.rhel10.2.x86_64.rpm pgdg 1.19 20.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pgextwlist_14-1.19-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 pgextwlist_14 pgextwlist_14-1.19-1PGDG.rhel10.1.x86_64.rpm pgdg 1.19 21.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pgextwlist_14-1.19-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 14 pgextwlist_14 pgextwlist_14-1.19-1PGDG.rhel10.0.x86_64.rpm pgdg 1.19 21.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pgextwlist_14-1.19-1PGDG.rhel10.0.x86_64.rpm
 @ el10.aarch64 14 pgextwlist_14 pgextwlist_14-1.20-1PGDG.rhel10.2.aarch64.rpm pgdg 1.20 22.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pgextwlist_14-1.20-1PGDG.rhel10.2.aarch64.rpm
-@ el10.aarch64 14 pgextwlist_14 pgextwlist_14-1.19-1PIGSTY.el10.aarch64.rpm pigsty 1.19 20.2KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pgextwlist_14-1.19-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 14 pgextwlist_14 pgextwlist_14-1.19-1PGDG.rhel10.2.aarch64.rpm pgdg 1.19 20.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pgextwlist_14-1.19-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 pgextwlist_14 pgextwlist_14-1.19-1PGDG.rhel10.1.aarch64.rpm pgdg 1.19 20.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pgextwlist_14-1.19-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 14 pgextwlist_14 pgextwlist_14-1.19-1PGDG.rhel10.0.aarch64.rpm pgdg 1.19 20.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pgextwlist_14-1.19-1PGDG.rhel10.0.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg12+2_amd64.deb pgdg 1.20 34.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg12+2_amd64.deb
 @ d12.x86_64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg12+1_amd64.deb pgdg 1.20 34.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg12+1_amd64.deb
 @ d12.x86_64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.19-2.pgdg12+1_amd64.deb pgdg 1.19 28.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.19-2.pgdg12+1_amd64.deb
+@ d12.aarch64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg12+2_arm64.deb pgdg 1.20 33.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg12+2_arm64.deb
 @ d12.aarch64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg12+1_arm64.deb pgdg 1.20 33.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg12+1_arm64.deb
 @ d12.aarch64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.19-2.pgdg12+1_arm64.deb pgdg 1.19 28.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.19-2.pgdg12+1_arm64.deb
+@ d13.x86_64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg13+2_amd64.deb pgdg 1.20 34.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg13+2_amd64.deb
 @ d13.x86_64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg13+1_amd64.deb pgdg 1.20 34.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg13+1_amd64.deb
 @ d13.x86_64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.19-2.pgdg13+1_amd64.deb pgdg 1.19 28.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.19-2.pgdg13+1_amd64.deb
+@ d13.aarch64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg13+2_arm64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg13+2_arm64.deb
 @ d13.aarch64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg13+1_arm64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg13+1_arm64.deb
 @ d13.aarch64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.19-2.pgdg13+1_arm64.deb pgdg 1.19 28.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.19-2.pgdg13+1_arm64.deb
+@ u22.x86_64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg22.04+2_amd64.deb pgdg 1.20 43.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg22.04+1_amd64.deb pgdg 1.20 43.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.19-2.pgdg22.04+1_amd64.deb pgdg 1.19 37.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.19-2.pgdg22.04+1_amd64.deb
+@ u22.aarch64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg22.04+2_arm64.deb pgdg 1.20 42.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg22.04+1_arm64.deb pgdg 1.20 42.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.19-2.pgdg22.04+1_arm64.deb pgdg 1.19 36.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.19-2.pgdg22.04+1_arm64.deb
+@ u24.x86_64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg24.04+2_amd64.deb pgdg 1.20 34.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg24.04+1_amd64.deb pgdg 1.20 34.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.19-2.pgdg24.04+1_amd64.deb pgdg 1.19 29.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.19-2.pgdg24.04+1_amd64.deb
+@ u24.aarch64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg24.04+2_arm64.deb pgdg 1.20 33.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg24.04+1_arm64.deb pgdg 1.20 33.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.19-2.pgdg24.04+1_arm64.deb pgdg 1.19 28.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.19-2.pgdg24.04+1_arm64.deb
+@ u26.x86_64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg26.04+2_amd64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg26.04+1_amd64.deb pgdg 1.20 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.19-2.pgdg26.04+1_amd64.deb pgdg 1.19 28.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.19-2.pgdg26.04+1_amd64.deb
+@ u26.aarch64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg26.04+2_arm64.deb pgdg 1.20 33.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.20-1.pgdg26.04+1_arm64.deb pgdg 1.20 33.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.20-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 14 postgresql-14-pgextwlist postgresql-14-pgextwlist_1.19-2.pgdg26.04+1_arm64.deb pgdg 1.19 28.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgextwlist/postgresql-14-pgextwlist_1.19-2.pgdg26.04+1_arm64.deb
 {{< /pgext_matrix >}}
@@ -383,7 +403,7 @@ Reconnect after changing local_preload_libraries. A whitelisted user can then ru
     COMMENT ON EXTENSION hstore IS 'approved utility';
     DROP EXTENSION hstore;
 
-An extension not named in extwlist.extensions is rejected.
+Extensions outside extwlist.extensions fall through to PostgreSQL's normal privilege checks. Trusted extensions retain their ordinary installation path; the allowlist controls the elevated path.
 
 ### Restrict Database Ownership
 

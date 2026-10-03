@@ -33,9 +33,6 @@ weight: 3100
 {.ext-table .ext-table--rel}
 
 
-> missing el10.x86_64
-
-
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
@@ -93,36 +90,36 @@ weight: 3100
 @ el10.aarch64 18 plr_18 plr_18-8.4.8.4-1PGDG.rhel10.1.aarch64.rpm pgdg 8.4.8.4 74.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/plr_18-8.4.8.4-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 18 plr_18 plr_18-8.4.8.4-1PGDG.rhel10.0.aarch64.rpm pgdg 8.4.8.4 74.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/plr_18-8.4.8.4-1PGDG.rhel10.0.aarch64.rpm
 @ el10.aarch64 18 plr_18 plr_18-8.4.8-1PGDG.rhel10.aarch64.rpm pgdg 8.4.8 73.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/plr_18-8.4.8-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg12+2_amd64.deb pgdg 8.4.8.7 135.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg12+2_amd64.deb
 @ d12.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg12+1_amd64.deb pgdg 8.4.8.7 135.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg12+1_amd64.deb
 @ d12.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.6-1.pgdg12+1_amd64.deb pgdg 8.4.8.6 135.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.6-1.pgdg12+1_amd64.deb
-@ d12.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.4-1.pgdg12+1_amd64.deb pgdg 8.4.8.4 135.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.4-1.pgdg12+1_amd64.deb
+@ d12.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg12+2_arm64.deb pgdg 8.4.8.7 132.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg12+2_arm64.deb
 @ d12.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg12+1_arm64.deb pgdg 8.4.8.7 132.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg12+1_arm64.deb
 @ d12.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.6-1.pgdg12+1_arm64.deb pgdg 8.4.8.6 132.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.6-1.pgdg12+1_arm64.deb
-@ d12.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.4-1.pgdg12+1_arm64.deb pgdg 8.4.8.4 132.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.4-1.pgdg12+1_arm64.deb
+@ d13.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg13+2_amd64.deb pgdg 8.4.8.7 136.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg13+2_amd64.deb
 @ d13.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg13+1_amd64.deb pgdg 8.4.8.7 136.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg13+1_amd64.deb
 @ d13.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.6-1.pgdg13+1_amd64.deb pgdg 8.4.8.6 136.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.6-1.pgdg13+1_amd64.deb
-@ d13.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.4-1.pgdg13+1_amd64.deb pgdg 8.4.8.4 136.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.4-1.pgdg13+1_amd64.deb
+@ d13.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg13+2_arm64.deb pgdg 8.4.8.7 132.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg13+2_arm64.deb
 @ d13.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg13+1_arm64.deb pgdg 8.4.8.7 132.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg13+1_arm64.deb
 @ d13.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.6-1.pgdg13+1_arm64.deb pgdg 8.4.8.6 132.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.6-1.pgdg13+1_arm64.deb
-@ d13.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.4-1.pgdg13+1_arm64.deb pgdg 8.4.8.4 132.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.4-1.pgdg13+1_arm64.deb
+@ u22.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg22.04+2_amd64.deb pgdg 8.4.8.7 131.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg22.04+1_amd64.deb pgdg 8.4.8.7 131.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.6-1.pgdg22.04+1_amd64.deb pgdg 8.4.8.6 131.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.6-1.pgdg22.04+1_amd64.deb
-@ u22.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.4-1.pgdg22.04+1_amd64.deb pgdg 8.4.8.4 131.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.4-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg22.04+2_arm64.deb pgdg 8.4.8.7 128.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg22.04+1_arm64.deb pgdg 8.4.8.7 128.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.6-1.pgdg22.04+1_arm64.deb pgdg 8.4.8.6 128.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.6-1.pgdg22.04+1_arm64.deb
-@ u22.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.4-1.pgdg22.04+1_arm64.deb pgdg 8.4.8.4 128.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.4-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg24.04+2_amd64.deb pgdg 8.4.8.7 127.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg24.04+1_amd64.deb pgdg 8.4.8.7 127.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.6-1.pgdg24.04+1_amd64.deb pgdg 8.4.8.6 127.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.6-1.pgdg24.04+1_amd64.deb
-@ u24.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.4-1.pgdg24.04+1_amd64.deb pgdg 8.4.8.4 127.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.4-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg24.04+2_arm64.deb pgdg 8.4.8.7 123.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg24.04+1_arm64.deb pgdg 8.4.8.7 123.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.6-1.pgdg24.04+1_arm64.deb pgdg 8.4.8.6 123.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.6-1.pgdg24.04+1_arm64.deb
-@ u24.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.4-1.pgdg24.04+1_arm64.deb pgdg 8.4.8.4 123.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.4-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg26.04+2_amd64.deb pgdg 8.4.8.7 125.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg26.04+1_amd64.deb pgdg 8.4.8.7 125.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.6-1.pgdg26.04+1_amd64.deb pgdg 8.4.8.6 125.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.6-1.pgdg26.04+1_amd64.deb
-@ u26.x86_64 18 postgresql-18-plr postgresql-18-plr_8.4.8.4-1.pgdg26.04+1_amd64.deb pgdg 8.4.8.4 125.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.4-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg26.04+2_arm64.deb pgdg 8.4.8.7 122.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.7-1.pgdg26.04+1_arm64.deb pgdg 8.4.8.7 122.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.7-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.6-1.pgdg26.04+1_arm64.deb pgdg 8.4.8.6 122.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.6-1.pgdg26.04+1_arm64.deb
-@ u26.aarch64 18 postgresql-18-plr postgresql-18-plr_8.4.8.4-1.pgdg26.04+1_arm64.deb pgdg 8.4.8.4 122.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-18-plr_8.4.8.4-1.pgdg26.04+1_arm64.deb
 @ el8.x86_64 17 plr_17 plr_17-8.4.8.6-1PGDG.rhel8.10.x86_64.rpm pgdg 8.4.8.6 77.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/plr_17-8.4.8.6-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 plr_17 plr_17-8.4.8.4-1PGDG.rhel8.10.x86_64.rpm pgdg 8.4.8.4 77.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/plr_17-8.4.8.4-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 plr_17 plr_17-8.4.8-1PGDG.rhel8.x86_64.rpm pgdg 8.4.8 76.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/plr_17-8.4.8-1PGDG.rhel8.x86_64.rpm
@@ -156,36 +153,36 @@ weight: 3100
 @ el10.aarch64 17 plr_17 plr_17-8.4.8.4-1PGDG.rhel10.1.aarch64.rpm pgdg 8.4.8.4 74.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/plr_17-8.4.8.4-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 17 plr_17 plr_17-8.4.8.4-1PGDG.rhel10.0.aarch64.rpm pgdg 8.4.8.4 74.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/plr_17-8.4.8.4-1PGDG.rhel10.0.aarch64.rpm
 @ el10.aarch64 17 plr_17 plr_17-8.4.8-1PGDG.rhel10.aarch64.rpm pgdg 8.4.8 73.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/plr_17-8.4.8-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg12+2_amd64.deb pgdg 8.4.8.7 136.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg12+2_amd64.deb
 @ d12.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg12+1_amd64.deb pgdg 8.4.8.7 135.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg12+1_amd64.deb
 @ d12.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.6-1.pgdg12+1_amd64.deb pgdg 8.4.8.6 135.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.6-1.pgdg12+1_amd64.deb
-@ d12.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.4-1.pgdg12+1_amd64.deb pgdg 8.4.8.4 135.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.4-1.pgdg12+1_amd64.deb
+@ d12.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg12+2_arm64.deb pgdg 8.4.8.7 132.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg12+2_arm64.deb
 @ d12.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg12+1_arm64.deb pgdg 8.4.8.7 132.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg12+1_arm64.deb
 @ d12.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.6-1.pgdg12+1_arm64.deb pgdg 8.4.8.6 132.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.6-1.pgdg12+1_arm64.deb
-@ d12.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.4-1.pgdg12+1_arm64.deb pgdg 8.4.8.4 132.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.4-1.pgdg12+1_arm64.deb
+@ d13.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg13+2_amd64.deb pgdg 8.4.8.7 136.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg13+2_amd64.deb
 @ d13.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg13+1_amd64.deb pgdg 8.4.8.7 136.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg13+1_amd64.deb
 @ d13.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.6-1.pgdg13+1_amd64.deb pgdg 8.4.8.6 136.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.6-1.pgdg13+1_amd64.deb
-@ d13.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.4-1.pgdg13+1_amd64.deb pgdg 8.4.8.4 135.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.4-1.pgdg13+1_amd64.deb
+@ d13.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg13+2_arm64.deb pgdg 8.4.8.7 132.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg13+2_arm64.deb
 @ d13.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg13+1_arm64.deb pgdg 8.4.8.7 132.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg13+1_arm64.deb
 @ d13.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.6-1.pgdg13+1_arm64.deb pgdg 8.4.8.6 132.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.6-1.pgdg13+1_arm64.deb
-@ d13.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.4-1.pgdg13+1_arm64.deb pgdg 8.4.8.4 132.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.4-1.pgdg13+1_arm64.deb
+@ u22.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg22.04+2_amd64.deb pgdg 8.4.8.7 155.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg22.04+1_amd64.deb pgdg 8.4.8.7 155.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.6-1.pgdg22.04+1_amd64.deb pgdg 8.4.8.6 155.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.6-1.pgdg22.04+1_amd64.deb
-@ u22.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.4-1.pgdg22.04+1_amd64.deb pgdg 8.4.8.4 155.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.4-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg22.04+2_arm64.deb pgdg 8.4.8.7 152.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg22.04+1_arm64.deb pgdg 8.4.8.7 152.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.6-1.pgdg22.04+1_arm64.deb pgdg 8.4.8.6 152.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.6-1.pgdg22.04+1_arm64.deb
-@ u22.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.4-1.pgdg22.04+1_arm64.deb pgdg 8.4.8.4 152.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.4-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg24.04+2_amd64.deb pgdg 8.4.8.7 127.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg24.04+1_amd64.deb pgdg 8.4.8.7 127.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.6-1.pgdg24.04+1_amd64.deb pgdg 8.4.8.6 127.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.6-1.pgdg24.04+1_amd64.deb
-@ u24.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.4-1.pgdg24.04+1_amd64.deb pgdg 8.4.8.4 127.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.4-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg24.04+2_arm64.deb pgdg 8.4.8.7 123.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg24.04+1_arm64.deb pgdg 8.4.8.7 123.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.6-1.pgdg24.04+1_arm64.deb pgdg 8.4.8.6 123.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.6-1.pgdg24.04+1_arm64.deb
-@ u24.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.4-1.pgdg24.04+1_arm64.deb pgdg 8.4.8.4 123.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.4-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg26.04+2_amd64.deb pgdg 8.4.8.7 125.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg26.04+1_amd64.deb pgdg 8.4.8.7 125.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.6-1.pgdg26.04+1_amd64.deb pgdg 8.4.8.6 125.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.6-1.pgdg26.04+1_amd64.deb
-@ u26.x86_64 17 postgresql-17-plr postgresql-17-plr_8.4.8.4-1.pgdg26.04+1_amd64.deb pgdg 8.4.8.4 125.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.4-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg26.04+2_arm64.deb pgdg 8.4.8.7 122.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.7-1.pgdg26.04+1_arm64.deb pgdg 8.4.8.7 122.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.7-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.6-1.pgdg26.04+1_arm64.deb pgdg 8.4.8.6 122.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.6-1.pgdg26.04+1_arm64.deb
-@ u26.aarch64 17 postgresql-17-plr postgresql-17-plr_8.4.8.4-1.pgdg26.04+1_arm64.deb pgdg 8.4.8.4 122.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-17-plr_8.4.8.4-1.pgdg26.04+1_arm64.deb
 @ el8.x86_64 16 plr_16 plr_16-8.4.8.6-1PGDG.rhel8.10.x86_64.rpm pgdg 8.4.8.6 77.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/plr_16-8.4.8.6-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 plr_16 plr_16-8.4.8.4-1PGDG.rhel8.10.x86_64.rpm pgdg 8.4.8.4 77.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/plr_16-8.4.8.4-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 plr_16 plr_16-8.4.8-1PGDG.rhel8.x86_64.rpm pgdg 8.4.8 76.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/plr_16-8.4.8-1PGDG.rhel8.x86_64.rpm
@@ -225,36 +222,36 @@ weight: 3100
 @ el10.aarch64 16 plr_16 plr_16-8.4.8.4-1PGDG.rhel10.1.aarch64.rpm pgdg 8.4.8.4 74.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/plr_16-8.4.8.4-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 16 plr_16 plr_16-8.4.8.4-1PGDG.rhel10.0.aarch64.rpm pgdg 8.4.8.4 74.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/plr_16-8.4.8.4-1PGDG.rhel10.0.aarch64.rpm
 @ el10.aarch64 16 plr_16 plr_16-8.4.8-1PGDG.rhel10.aarch64.rpm pgdg 8.4.8 73.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/plr_16-8.4.8-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg12+2_amd64.deb pgdg 8.4.8.7 136.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg12+2_amd64.deb
 @ d12.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg12+1_amd64.deb pgdg 8.4.8.7 136.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg12+1_amd64.deb
 @ d12.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.6-1.pgdg12+1_amd64.deb pgdg 8.4.8.6 136.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.6-1.pgdg12+1_amd64.deb
-@ d12.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.4-1.pgdg12+1_amd64.deb pgdg 8.4.8.4 135.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.4-1.pgdg12+1_amd64.deb
+@ d12.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg12+2_arm64.deb pgdg 8.4.8.7 132.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg12+2_arm64.deb
 @ d12.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg12+1_arm64.deb pgdg 8.4.8.7 132.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg12+1_arm64.deb
 @ d12.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.6-1.pgdg12+1_arm64.deb pgdg 8.4.8.6 132.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.6-1.pgdg12+1_arm64.deb
-@ d12.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.4-1.pgdg12+1_arm64.deb pgdg 8.4.8.4 132.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.4-1.pgdg12+1_arm64.deb
+@ d13.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg13+2_amd64.deb pgdg 8.4.8.7 136.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg13+2_amd64.deb
 @ d13.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg13+1_amd64.deb pgdg 8.4.8.7 136.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg13+1_amd64.deb
 @ d13.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.6-1.pgdg13+1_amd64.deb pgdg 8.4.8.6 136.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.6-1.pgdg13+1_amd64.deb
-@ d13.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.4-1.pgdg13+1_amd64.deb pgdg 8.4.8.4 135.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.4-1.pgdg13+1_amd64.deb
+@ d13.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg13+2_arm64.deb pgdg 8.4.8.7 132.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg13+2_arm64.deb
 @ d13.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg13+1_arm64.deb pgdg 8.4.8.7 132.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg13+1_arm64.deb
 @ d13.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.6-1.pgdg13+1_arm64.deb pgdg 8.4.8.6 132.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.6-1.pgdg13+1_arm64.deb
-@ d13.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.4-1.pgdg13+1_arm64.deb pgdg 8.4.8.4 132.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.4-1.pgdg13+1_arm64.deb
+@ u22.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg22.04+2_amd64.deb pgdg 8.4.8.7 151.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg22.04+1_amd64.deb pgdg 8.4.8.7 151.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.6-1.pgdg22.04+1_amd64.deb pgdg 8.4.8.6 151.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.6-1.pgdg22.04+1_amd64.deb
-@ u22.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.4-1.pgdg22.04+1_amd64.deb pgdg 8.4.8.4 151.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.4-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg22.04+2_arm64.deb pgdg 8.4.8.7 148.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg22.04+1_arm64.deb pgdg 8.4.8.7 148.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.6-1.pgdg22.04+1_arm64.deb pgdg 8.4.8.6 148.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.6-1.pgdg22.04+1_arm64.deb
-@ u22.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.4-1.pgdg22.04+1_arm64.deb pgdg 8.4.8.4 148.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.4-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg24.04+2_amd64.deb pgdg 8.4.8.7 127.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg24.04+1_amd64.deb pgdg 8.4.8.7 127.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.6-1.pgdg24.04+1_amd64.deb pgdg 8.4.8.6 127.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.6-1.pgdg24.04+1_amd64.deb
-@ u24.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.4-1.pgdg24.04+1_amd64.deb pgdg 8.4.8.4 127.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.4-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg24.04+2_arm64.deb pgdg 8.4.8.7 123.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg24.04+1_arm64.deb pgdg 8.4.8.7 123.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.6-1.pgdg24.04+1_arm64.deb pgdg 8.4.8.6 123.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.6-1.pgdg24.04+1_arm64.deb
-@ u24.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.4-1.pgdg24.04+1_arm64.deb pgdg 8.4.8.4 123.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.4-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg26.04+2_amd64.deb pgdg 8.4.8.7 125.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg26.04+1_amd64.deb pgdg 8.4.8.7 125.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.6-1.pgdg26.04+1_amd64.deb pgdg 8.4.8.6 125.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.6-1.pgdg26.04+1_amd64.deb
-@ u26.x86_64 16 postgresql-16-plr postgresql-16-plr_8.4.8.4-1.pgdg26.04+1_amd64.deb pgdg 8.4.8.4 125.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.4-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg26.04+2_arm64.deb pgdg 8.4.8.7 122.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.7-1.pgdg26.04+1_arm64.deb pgdg 8.4.8.7 122.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.7-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.6-1.pgdg26.04+1_arm64.deb pgdg 8.4.8.6 122.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.6-1.pgdg26.04+1_arm64.deb
-@ u26.aarch64 16 postgresql-16-plr postgresql-16-plr_8.4.8.4-1.pgdg26.04+1_arm64.deb pgdg 8.4.8.4 122.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-16-plr_8.4.8.4-1.pgdg26.04+1_arm64.deb
 @ el8.x86_64 15 plr_15 plr_15-8.4.8.6-1PGDG.rhel8.10.x86_64.rpm pgdg 8.4.8.6 78.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/plr_15-8.4.8.6-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 plr_15 plr_15-8.4.8.4-1PGDG.rhel8.10.x86_64.rpm pgdg 8.4.8.4 77.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/plr_15-8.4.8.4-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 plr_15 plr_15-8.4.8-1PGDG.rhel8.x86_64.rpm pgdg 8.4.8 76.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/plr_15-8.4.8-1PGDG.rhel8.x86_64.rpm
@@ -294,36 +291,36 @@ weight: 3100
 @ el10.aarch64 15 plr_15 plr_15-8.4.8.4-1PGDG.rhel10.1.aarch64.rpm pgdg 8.4.8.4 74.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/plr_15-8.4.8.4-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 15 plr_15 plr_15-8.4.8.4-1PGDG.rhel10.0.aarch64.rpm pgdg 8.4.8.4 74.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/plr_15-8.4.8.4-1PGDG.rhel10.0.aarch64.rpm
 @ el10.aarch64 15 plr_15 plr_15-8.4.8-1PGDG.rhel10.aarch64.rpm pgdg 8.4.8 74.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/plr_15-8.4.8-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg12+2_amd64.deb pgdg 8.4.8.7 136.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg12+2_amd64.deb
 @ d12.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg12+1_amd64.deb pgdg 8.4.8.7 136.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg12+1_amd64.deb
 @ d12.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.6-1.pgdg12+1_amd64.deb pgdg 8.4.8.6 136.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.6-1.pgdg12+1_amd64.deb
-@ d12.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.4-1.pgdg12+1_amd64.deb pgdg 8.4.8.4 136.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.4-1.pgdg12+1_amd64.deb
+@ d12.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg12+2_arm64.deb pgdg 8.4.8.7 132.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg12+2_arm64.deb
 @ d12.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg12+1_arm64.deb pgdg 8.4.8.7 132.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg12+1_arm64.deb
 @ d12.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.6-1.pgdg12+1_arm64.deb pgdg 8.4.8.6 132.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.6-1.pgdg12+1_arm64.deb
-@ d12.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.4-1.pgdg12+1_arm64.deb pgdg 8.4.8.4 132.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.4-1.pgdg12+1_arm64.deb
+@ d13.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg13+2_amd64.deb pgdg 8.4.8.7 136.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg13+2_amd64.deb
 @ d13.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg13+1_amd64.deb pgdg 8.4.8.7 136.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg13+1_amd64.deb
 @ d13.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.6-1.pgdg13+1_amd64.deb pgdg 8.4.8.6 136.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.6-1.pgdg13+1_amd64.deb
-@ d13.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.4-1.pgdg13+1_amd64.deb pgdg 8.4.8.4 136.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.4-1.pgdg13+1_amd64.deb
+@ d13.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg13+2_arm64.deb pgdg 8.4.8.7 132.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg13+2_arm64.deb
 @ d13.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg13+1_arm64.deb pgdg 8.4.8.7 132.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg13+1_arm64.deb
 @ d13.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.6-1.pgdg13+1_arm64.deb pgdg 8.4.8.6 132.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.6-1.pgdg13+1_arm64.deb
-@ d13.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.4-1.pgdg13+1_arm64.deb pgdg 8.4.8.4 132.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.4-1.pgdg13+1_arm64.deb
+@ u22.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg22.04+2_amd64.deb pgdg 8.4.8.7 151.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg22.04+1_amd64.deb pgdg 8.4.8.7 151.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.6-1.pgdg22.04+1_amd64.deb pgdg 8.4.8.6 151.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.6-1.pgdg22.04+1_amd64.deb
-@ u22.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.4-1.pgdg22.04+1_amd64.deb pgdg 8.4.8.4 151.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.4-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg22.04+2_arm64.deb pgdg 8.4.8.7 148.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg22.04+1_arm64.deb pgdg 8.4.8.7 148.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.6-1.pgdg22.04+1_arm64.deb pgdg 8.4.8.6 148.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.6-1.pgdg22.04+1_arm64.deb
-@ u22.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.4-1.pgdg22.04+1_arm64.deb pgdg 8.4.8.4 148.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.4-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg24.04+2_amd64.deb pgdg 8.4.8.7 127.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg24.04+1_amd64.deb pgdg 8.4.8.7 127.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.6-1.pgdg24.04+1_amd64.deb pgdg 8.4.8.6 127.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.6-1.pgdg24.04+1_amd64.deb
-@ u24.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.4-1.pgdg24.04+1_amd64.deb pgdg 8.4.8.4 127.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.4-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg24.04+2_arm64.deb pgdg 8.4.8.7 123.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg24.04+1_arm64.deb pgdg 8.4.8.7 123.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.6-1.pgdg24.04+1_arm64.deb pgdg 8.4.8.6 123.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.6-1.pgdg24.04+1_arm64.deb
-@ u24.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.4-1.pgdg24.04+1_arm64.deb pgdg 8.4.8.4 123.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.4-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg26.04+2_amd64.deb pgdg 8.4.8.7 125.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg26.04+1_amd64.deb pgdg 8.4.8.7 125.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.6-1.pgdg26.04+1_amd64.deb pgdg 8.4.8.6 125.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.6-1.pgdg26.04+1_amd64.deb
-@ u26.x86_64 15 postgresql-15-plr postgresql-15-plr_8.4.8.4-1.pgdg26.04+1_amd64.deb pgdg 8.4.8.4 125.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.4-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg26.04+2_arm64.deb pgdg 8.4.8.7 122.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.7-1.pgdg26.04+1_arm64.deb pgdg 8.4.8.7 122.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.7-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.6-1.pgdg26.04+1_arm64.deb pgdg 8.4.8.6 122.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.6-1.pgdg26.04+1_arm64.deb
-@ u26.aarch64 15 postgresql-15-plr postgresql-15-plr_8.4.8.4-1.pgdg26.04+1_arm64.deb pgdg 8.4.8.4 122.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-15-plr_8.4.8.4-1.pgdg26.04+1_arm64.deb
 @ el8.x86_64 14 plr_14 plr_14-8.4.8.6-1PGDG.rhel8.10.x86_64.rpm pgdg 8.4.8.6 78.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/plr_14-8.4.8.6-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 plr_14 plr_14-8.4.8.4-1PGDG.rhel8.10.x86_64.rpm pgdg 8.4.8.4 77.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/plr_14-8.4.8.4-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 plr_14 plr_14-8.4.8-1PGDG.rhel8.x86_64.rpm pgdg 8.4.8 76.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/plr_14-8.4.8-1PGDG.rhel8.x86_64.rpm
@@ -364,36 +361,36 @@ weight: 3100
 @ el10.aarch64 14 plr_14 plr_14-8.4.8.4-1PGDG.rhel10.1.aarch64.rpm pgdg 8.4.8.4 74.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/plr_14-8.4.8.4-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 14 plr_14 plr_14-8.4.8.4-1PGDG.rhel10.0.aarch64.rpm pgdg 8.4.8.4 74.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/plr_14-8.4.8.4-1PGDG.rhel10.0.aarch64.rpm
 @ el10.aarch64 14 plr_14 plr_14-8.4.8-1PGDG.rhel10.aarch64.rpm pgdg 8.4.8 74.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/plr_14-8.4.8-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg12+2_amd64.deb pgdg 8.4.8.7 136.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg12+2_amd64.deb
 @ d12.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg12+1_amd64.deb pgdg 8.4.8.7 136.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg12+1_amd64.deb
 @ d12.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.6-1.pgdg12+1_amd64.deb pgdg 8.4.8.6 136.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.6-1.pgdg12+1_amd64.deb
-@ d12.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.4-1.pgdg12+1_amd64.deb pgdg 8.4.8.4 136.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.4-1.pgdg12+1_amd64.deb
+@ d12.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg12+2_arm64.deb pgdg 8.4.8.7 132.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg12+2_arm64.deb
 @ d12.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg12+1_arm64.deb pgdg 8.4.8.7 132.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg12+1_arm64.deb
 @ d12.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.6-1.pgdg12+1_arm64.deb pgdg 8.4.8.6 132.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.6-1.pgdg12+1_arm64.deb
-@ d12.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.4-1.pgdg12+1_arm64.deb pgdg 8.4.8.4 132.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.4-1.pgdg12+1_arm64.deb
+@ d13.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg13+2_amd64.deb pgdg 8.4.8.7 136.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg13+2_amd64.deb
 @ d13.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg13+1_amd64.deb pgdg 8.4.8.7 136.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg13+1_amd64.deb
 @ d13.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.6-1.pgdg13+1_amd64.deb pgdg 8.4.8.6 136.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.6-1.pgdg13+1_amd64.deb
-@ d13.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.4-1.pgdg13+1_amd64.deb pgdg 8.4.8.4 136.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.4-1.pgdg13+1_amd64.deb
+@ d13.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg13+2_arm64.deb pgdg 8.4.8.7 132.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg13+2_arm64.deb
 @ d13.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg13+1_arm64.deb pgdg 8.4.8.7 132.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg13+1_arm64.deb
 @ d13.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.6-1.pgdg13+1_arm64.deb pgdg 8.4.8.6 132.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.6-1.pgdg13+1_arm64.deb
-@ d13.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.4-1.pgdg13+1_arm64.deb pgdg 8.4.8.4 132.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.4-1.pgdg13+1_arm64.deb
+@ u22.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg22.04+2_amd64.deb pgdg 8.4.8.7 151.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg22.04+1_amd64.deb pgdg 8.4.8.7 151.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.6-1.pgdg22.04+1_amd64.deb pgdg 8.4.8.6 151.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.6-1.pgdg22.04+1_amd64.deb
-@ u22.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.4-1.pgdg22.04+1_amd64.deb pgdg 8.4.8.4 151.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.4-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg22.04+2_arm64.deb pgdg 8.4.8.7 148.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg22.04+1_arm64.deb pgdg 8.4.8.7 148.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.6-1.pgdg22.04+1_arm64.deb pgdg 8.4.8.6 148.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.6-1.pgdg22.04+1_arm64.deb
-@ u22.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.4-1.pgdg22.04+1_arm64.deb pgdg 8.4.8.4 148.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.4-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg24.04+2_amd64.deb pgdg 8.4.8.7 127.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg24.04+1_amd64.deb pgdg 8.4.8.7 127.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.6-1.pgdg24.04+1_amd64.deb pgdg 8.4.8.6 127.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.6-1.pgdg24.04+1_amd64.deb
-@ u24.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.4-1.pgdg24.04+1_amd64.deb pgdg 8.4.8.4 127.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.4-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg24.04+2_arm64.deb pgdg 8.4.8.7 123.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg24.04+1_arm64.deb pgdg 8.4.8.7 123.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.6-1.pgdg24.04+1_arm64.deb pgdg 8.4.8.6 123.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.6-1.pgdg24.04+1_arm64.deb
-@ u24.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.4-1.pgdg24.04+1_arm64.deb pgdg 8.4.8.4 123.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.4-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg26.04+2_amd64.deb pgdg 8.4.8.7 125.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg26.04+1_amd64.deb pgdg 8.4.8.7 125.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.6-1.pgdg26.04+1_amd64.deb pgdg 8.4.8.6 125.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.6-1.pgdg26.04+1_amd64.deb
-@ u26.x86_64 14 postgresql-14-plr postgresql-14-plr_8.4.8.4-1.pgdg26.04+1_amd64.deb pgdg 8.4.8.4 125.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.4-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg26.04+2_arm64.deb pgdg 8.4.8.7 122.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.7-1.pgdg26.04+1_arm64.deb pgdg 8.4.8.7 122.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.7-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.6-1.pgdg26.04+1_arm64.deb pgdg 8.4.8.6 122.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.6-1.pgdg26.04+1_arm64.deb
-@ u26.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.4-1.pgdg26.04+1_arm64.deb pgdg 8.4.8.4 122.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.4-1.pgdg26.04+1_arm64.deb
 {{< /pgext_matrix >}}
 
 
@@ -442,12 +439,14 @@ apt install -y postgresql-14-plr   # PG 14
 CREATE EXTENSION plr;
 ```
 
-
-
-
 ## Usage
 
-> [plr: load R interpreter and execute R script from within a database](https://github.com/postgres-plr/plr)
+Sources:
+
+- [8.4.8.7 README](https://github.com/postgres-plr/plr/blob/REL8_4_8_7/README.md)
+- [Versioned user guide](https://github.com/postgres-plr/plr/blob/REL8_4_8_7/userguide.md)
+- [Control file](https://github.com/postgres-plr/plr/blob/REL8_4_8_7/plr.control)
+- [Version 8.4.8.7 SQL](https://github.com/postgres-plr/plr/blob/REL8_4_8_7/plr--8.4.8.7.sql)
 
 `plr` enables writing PostgreSQL functions in the R programming language, providing full access to R's statistical and data analysis capabilities.
 
@@ -480,10 +479,10 @@ SELECT sd(ARRAY[1.0, 2.0, 3.0, 4.0, 5.0]);
 
 ### Argument Handling
 
-- Arguments are available as `arg1`, `arg2`, ... or by named parameter
-- NULL arguments become R `NA` values (unless function is `STRICT`)
+- Unnamed arguments are available as `arg1`, `arg2`, ...; an explicitly named parameter replaces its corresponding `argN` variable.
+- Scalar SQL NULL becomes R NULL; null array elements become R `NA`. A `STRICT` function skips calls with a whole NULL argument, not arrays containing null elements.
 - Composite types (rows) are passed as R data.frames
-- Arrays are passed as R vectors
+- One-dimensional arrays become R vectors; two-dimensional arrays become matrices and three-dimensional arrays become R arrays. Higher dimensions are unsupported.
 
 ```sql
 CREATE OR REPLACE FUNCTION r_max(integer, integer) RETURNS integer AS '
@@ -510,22 +509,30 @@ SELECT * FROM test_spi('SELECT oid, typname FROM pg_type LIMIT 5')
   AS t(oid oid, typname name);
 ```
 
-Prepared statements:
+Initialize the type OID variables in the same connection before calling a function that prepares a parameterized query:
 
 ```sql
--- Prepare
-sp <<- pg.spi.prepare('SELECT * FROM pg_type WHERE typname = $1', c(NAMEOID))
--- Execute
-pg.spi.execp(sp, list('text'))
+SELECT load_r_typenames();
+
+CREATE OR REPLACE FUNCTION lookup_type(type_name text)
+RETURNS SETOF record AS $$
+sp <- pg.spi.prepare(
+  'SELECT oid, typname FROM pg_type WHERE typname = $1',
+  c(NAMEOID)
+)
+pg.spi.execp(sp, list(type_name))
+$$ LANGUAGE plr;
+
+SELECT * FROM lookup_type('text') AS t(oid oid, typname name);
 ```
 
 ### Set-Returning Functions
 
-Return a data.frame for set-returning functions:
+Return an R vector for a set of scalar values:
 
 ```sql
 CREATE OR REPLACE FUNCTION get_numbers(n int) RETURNS SETOF integer AS '
-1:arg1
+1:n
 ' LANGUAGE plr;
 
 SELECT * FROM get_numbers(5);
@@ -553,7 +560,7 @@ Persist data across function calls using R's global environment:
 
 ```sql
 CREATE OR REPLACE FUNCTION set_state(key text, val text) RETURNS void AS '
-assign(arg1, arg2, env=.GlobalEnv)
+assign(key, val, env=.GlobalEnv)
 ' LANGUAGE plr;
 ```
 
@@ -568,3 +575,9 @@ SELECT plr_version();        -- PL/R version
 ### Trigger Functions
 
 PL/R supports trigger functions with access to `pg.tg.name`, `pg.tg.relname`, `pg.tg.when`, `pg.tg.level`, `pg.tg.op`, `pg.tg.new`, and `pg.tg.old`.
+
+### Runtime and Privileges
+
+This page follows PL/R 8.4.8.7. PL/R is an untrusted language: creating its functions requires a superuser, and R code runs with the PostgreSQL operating-system user's access to files and processes. Review function bodies and EXECUTE grants accordingly. The R shared library must be available, and upstream requires `R_HOME` in the PostgreSQL server process environment before startup on Unix systems. Adding it only to an interactive client shell does not configure the server.
+
+SQL scalar NULL converts to R NULL, while null elements within an array convert to R NA; declaring a function STRICT prevents calls with null arguments. R global state belongs to a backend process, not to all sessions or to a durable database table. Upstream revokes PUBLIC execution of environment-changing helpers including `plr_set_rhome(text)`; use an administrator-managed runtime rather than exposing these helpers to application roles. Normal usage does not require shared preload.

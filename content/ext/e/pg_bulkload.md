@@ -46,7 +46,7 @@ weight: 9830
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
 | [**EXT**](/ext/list#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.1.23` | {{< pgvers "18,17,16,15,14" >}} | `pg_bulkload` | - |
-| [**RPM**](/ext/rpm#etl) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `3.1.23` | {{< pgvers "18,17,16,15,14" >}} | `pg_bulkload_$v` | - |
+| [**RPM**](/ext/rpm#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.1.23` | {{< pgvers "18,17,16,15,14" >}} | `pg_bulkload_$v` | - |
 | [**DEB**](/ext/deb#etl) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.1.23` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-bulkload` | - |
 {.ext-table}
 
@@ -283,7 +283,7 @@ pg_bulkload sample_csv.ctl
 
 Output:
 
-```text
+```
 NOTICE: BULK LOAD START
 NOTICE: BULK LOAD END
     0 Rows skipped.

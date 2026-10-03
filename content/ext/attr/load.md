@@ -5,7 +5,7 @@ description: "PostgreSQL extensions that require dynamic loading"
 weight: 10
 ---
 
-The following **126** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
+The following **130** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
 
 You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) parameter in `postgresql.conf`, add the extension library, and restart the database.
 
@@ -71,6 +71,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pg_pathcheck`](/ext/e/pg_pathcheck) | `pg_pathcheck` | Validate planner Path trees for freed or corrupt memory |
 | [`pgdisablelogerror`](/ext/e/pgdisablelogerror) | `$libdir/pgdisablelogerror` | Disable selected SQLSTATE error codes from PostgreSQL server logging. |
 | [`online_advisor`](/ext/e/online_advisor) | `online_advisor` | Suggest missing indexes and extended statistics online |
+| [`pg_circuit`](/ext/e/pg_circuit) | `pg_circuit` | Runtime observation, warnings and blocking for dangerous SQL statements |
 | [`safeupdate`](/ext/e/safeupdate) | `safeupdate` | Require criteria for UPDATE and DELETE |
 | [`pg_strict`](/ext/e/pg_strict) | `pg_strict` | Prevent dangerous UPDATE and DELETE without WHERE clause |
 | [`pg_prewarm`](/ext/e/pg_prewarm) | `pg_prewarm` | prewarm relation data |
@@ -129,12 +130,15 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pg_dbms_job`](/ext/e/pg_dbms_job) | `pg_dbms_job` | Extension to add Oracle DBMS_JOB full compatibility to PostgreSQL |
 | [`pg_dbms_errlog`](/ext/e/pg_dbms_errlog) | `pg_dbms_errlog` | Emulate DBMS_ERRLOG Oracle module to log DML errors in a dedicated table. |
 | [`babelfishpg_tds`](/ext/e/babelfishpg_tds) | `babelfishpg_tds` | SQL Server TDS protocol extension |
+| [`pgs3`](/ext/e/pgs3) | `pgs3` | S3-compatible object storage endpoint implemented inside PostgreSQL |
+| [`kafgres`](/ext/e/kafgres) | `kafgres` | Kafka protocol broker embedded in PostgreSQL |
 | [`pglogical`](/ext/e/pglogical) | `pglogical` | PostgreSQL Logical Replication |
 | [`pglogical_ticker`](/ext/e/pglogical_ticker) | `pglogical_ticker` | Have an accurate view on pglogical replication delay |
 | [`pg_failover_slots`](/ext/e/pg_failover_slots) | `pg_failover_slots` | PG Failover Slots extension |
 | [`pgactive`](/ext/e/pgactive) | `pgactive` | Active-Active Replication Extension for PostgreSQL |
 | [`spock`](/ext/e/spock) | `spock` | Multi-master logical replication extension for PostgreSQL |
 | [`pgclone`](/ext/e/pgclone) | `pgclone` | Clone PostgreSQL databases, schemas, tables, and functions across environments |
+| [`pgmqtt`](/ext/e/pgmqtt) | `pgmqtt` | CDC-to-MQTT broker for PostgreSQL |
 | [`decoderbufs`](/ext/e/decoderbufs) | `decoderbufs` | Logical decoding plugin that delivers WAL stream changes using a Protocol Buffer format |
 | [`repmgr`](/ext/e/repmgr) | `repmgr` | Replication manager for PostgreSQL |
 {.ext-table}

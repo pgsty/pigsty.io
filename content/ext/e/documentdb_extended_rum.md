@@ -11,10 +11,10 @@ weight: 9030
     <div class="ext-card__title">documentdb/documentdb</div>
     <div class="ext-card__desc">https://github.com/documentdb/documentdb</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/documentdb-0.116-0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/documentdb-0.117-0.tar.gz intelrdfpmath-applied-2.0u3-1.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">documentdb-0.116-0.tar.gz</div>
-    <div class="ext-card__desc">documentdb-0.116-0.tar.gz</div>
+    <div class="ext-card__title">documentdb-0.117-0.tar.gz intelrdfpmath-applied-2.0u3-1.tar.gz</div>
+    <div class="ext-card__desc">documentdb-0.117-0.tar.gz intelrdfpmath-applied-2.0u3-1.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 9030
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`documentdb`**](/ext/e/documentdb) | `0.116` | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`documentdb`**](/ext/e/documentdb) | `0.117` | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -45,30 +45,30 @@ weight: 9030
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.116` | {{< pgvers "18,17,16,15" >}} | `documentdb` | `documentdb` |
-| [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.116` | {{< pgvers "18,17,16,15" >}} | `documentdb_$v` | `postgresql$v-contrib`, `pg_cron_$v`, `pgvector_$v`, `rum_$v`, `postgis36_$v` |
-| [**DEB**](/ext/deb#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.116` | {{< pgvers "18,17,16,15" >}} | `postgresql-$v-documentdb` | `postgresql-$v-cron`, `postgresql-$v-pgvector`, `postgresql-$v-rum`, `postgresql-$v-postgis-3` |
+| [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.117` | {{< pgvers "18,17,16,15" >}} | `documentdb` | `documentdb` |
+| [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.117` | {{< pgvers "18,17,16,15" >}} | `documentdb_$v` | `postgresql$v-contrib`, `pg_cron_$v`, `pgvector_$v`, `rum_$v`, `postgis36_$v` |
+| [**DEB**](/ext/deb#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.117` | {{< pgvers "18,17,16,15" >}} | `postgresql-$v-documentdb` | `postgresql-$v-cron`, `postgresql-$v-pgvector`, `postgresql-$v-rum`, `postgresql-$v-postgis-3` |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| el8.aarch64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| el9.x86_64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| el9.aarch64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| el10.x86_64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| el10.aarch64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| d12.x86_64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| d12.aarch64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| d13.x86_64 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | N/A PIGSTY - 0 |
-| d13.aarch64 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | N/A PIGSTY - 0 |
-| u22.x86_64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| u22.aarch64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| u24.x86_64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| u24.aarch64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| u26.x86_64 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | N/A PIGSTY - 0 |
-| u26.aarch64 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | N/A PIGSTY - 0 |
+| el8.x86_64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| el8.aarch64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| el9.x86_64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| el9.aarch64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| el10.x86_64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| el10.aarch64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| d12.x86_64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| d12.aarch64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| d13.x86_64 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | N/A PIGSTY - 0 |
+| d13.aarch64 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | N/A PIGSTY - 0 |
+| u22.x86_64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| u22.aarch64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| u24.x86_64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| u24.aarch64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| u26.x86_64 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | N/A PIGSTY - 0 |
+| u26.aarch64 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | N/A PIGSTY - 0 |
 {{< /pgext_matrix >}}
 
 ## Build
@@ -133,10 +133,10 @@ CREATE EXTENSION documentdb_extended_rum CASCADE;  -- requires: documentdb
 
 Sources:
 
-- [DocumentDB Extended RUM README](https://github.com/documentdb/documentdb/blob/v0.114-0/pg_documentdb_extended_rum/README.md)
-- [`documentdb_extended_rum` control file](https://github.com/documentdb/documentdb/blob/v0.114-0/pg_documentdb_extended_rum/documentdb_extended_rum.control)
-- [Access-method SQL definitions](https://github.com/documentdb/documentdb/blob/v0.114-0/pg_documentdb_extended_rum/sql/documentdb_extended_rum--0.106-0.sql)
-- [DocumentDB v0.114-0 changelog](https://github.com/documentdb/documentdb/blob/v0.114-0/CHANGELOG.md)
+- [DocumentDB Extended RUM README](https://github.com/documentdb/documentdb/blob/v0.117-0/pg_documentdb_extended_rum/README.md)
+- [`documentdb_extended_rum` control file](https://github.com/documentdb/documentdb/blob/v0.117-0/pg_documentdb_extended_rum/documentdb_extended_rum.control)
+- [Access-method SQL definitions](https://github.com/documentdb/documentdb/blob/v0.117-0/pg_documentdb_extended_rum/sql/documentdb_extended_rum--0.106-0.sql)
+- [DocumentDB v0.117-0 changelog](https://github.com/documentdb/documentdb/blob/v0.117-0/CHANGELOG.md)
 
 `documentdb_extended_rum` is DocumentDB's extended RUM index access method. It is an implementation component selected by DocumentDB's indexing layer, not a general-purpose application index or a replacement for installing `documentdb`.
 
@@ -146,7 +146,7 @@ The library can only be initialized from `shared_preload_libraries`. Preload it 
 
 ```conf
 shared_preload_libraries = 'pg_cron, pg_documentdb_core, pg_documentdb, pg_documentdb_extended_rum'
-documentdb.alternate_index_handler_name = 'extended_rum'
+documentdb.rum_library_load_option = 'require_documentdb_extended_rum'
 ```
 
 Then install the extension using the same release as the base stack:
@@ -162,11 +162,11 @@ DocumentDB deployment tooling normally owns this configuration. Existing databas
 
 - `documentdb_extended_rum` is the index access method registered by the extension.
 - `documentdb_extended_rum_catalog` contains BSON operator families and classes used by DocumentDB.
-- `documentdb.alternate_index_handler_name = 'extended_rum'` directs the DocumentDB index layer to the adapter.
+- `documentdb.rum_library_load_option = 'require_documentdb_extended_rum'` directs the DocumentDB index layer to the adapter.
 - The implementation is a RUM fork whose on-disk layout and content are designed to remain backward compatible with upstream RUM while changing query and volatile paths for document workloads.
 
 ### Operational Boundaries
 
 Install and upgrade this component with matching `documentdb` and `documentdb_core` binaries. Do not build indexes with its internal operator classes directly unless following upstream development guidance; create and manage indexes through the DocumentDB APIs so metadata stays consistent.
 
-The v0.114-0 changelog describes a RUM WAL page-reuse marker and targeted posting-tree pruning, but both are feature-flagged and disabled by default pending stabilization. They are not default user-visible capabilities of this release.
+In 0.117-0, `documentdb.rum_library_load_option` defaults to `require_documentdb_extended_rum` on every supported PostgreSQL major. The release improves empty posting-page reclamation and protects incomplete splits during vacuum. Performance features described as guarded in the changelog remain subject to their individual settings; do not enable them by copying an unrelated release configuration.

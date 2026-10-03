@@ -11,10 +11,10 @@ weight: 9120
     <div class="ext-card__title">splendiddata/session_variable</div>
     <div class="ext-card__desc">https://github.com/splendiddata/session_variable</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/session_variable-3.5.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/session_variable-3.6.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">session_variable-3.5.tar.gz</div>
-    <div class="ext-card__desc">session_variable-3.5.tar.gz</div>
+    <div class="ext-card__title">session_variable-3.6.tar.gz</div>
+    <div class="ext-card__desc">session_variable-3.6.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 9120
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`session_variable`**](/ext/e/session_variable) | `3.5` | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`session_variable`**](/ext/e/session_variable) | `3.6` | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -42,110 +42,110 @@ weight: 9120
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.5` | {{< pgvers "18,17,16,15,14" >}} | `session_variable` | - |
-| [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.5` | {{< pgvers "18,17,16,15,14" >}} | `session_variable_$v` | - |
-| [**DEB**](/ext/deb#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.5` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-session-variable` | - |
+| [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.6` | {{< pgvers "18,17,16,15,14" >}} | `session_variable` | - |
+| [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.6` | {{< pgvers "18,17,16,15,14" >}} | `session_variable_$v` | - |
+| [**DEB**](/ext/deb#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.6` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-session-variable` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 |
-| el8.aarch64 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 |
-| el9.x86_64 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 |
-| el9.aarch64 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 |
-| el10.x86_64 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 |
-| el10.aarch64 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 |
-| d12.x86_64 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 |
-| d12.aarch64 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 |
-| d13.x86_64 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 |
-| d13.aarch64 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 |
-| u22.x86_64 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 |
-| u22.aarch64 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 |
-| u24.x86_64 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 |
-| u24.aarch64 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 |
-| u26.x86_64 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 |
-| u26.aarch64 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 | AVAIL PIGSTY 3.4 1 |
-@ el8.x86_64 18 session_variable_18 session_variable_18-3.4-1PIGSTY.el8.x86_64.rpm pigsty 3.4 35.1KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/session_variable_18-3.4-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 18 session_variable_18 session_variable_18-3.4-1PIGSTY.el8.aarch64.rpm pigsty 3.4 34.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/session_variable_18-3.4-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 18 session_variable_18 session_variable_18-3.4-1PIGSTY.el9.x86_64.rpm pigsty 3.4 34.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/session_variable_18-3.4-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 18 session_variable_18 session_variable_18-3.4-1PIGSTY.el9.aarch64.rpm pigsty 3.4 33.8KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/session_variable_18-3.4-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 18 session_variable_18 session_variable_18-3.4-1PIGSTY.el10.x86_64.rpm pigsty 3.4 34.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/session_variable_18-3.4-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 18 session_variable_18 session_variable_18-3.4-1PIGSTY.el10.aarch64.rpm pigsty 3.4 34.0KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/session_variable_18-3.4-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-session-variable postgresql-18-session-variable_3.4-1PIGSTY~bookworm_amd64.deb pigsty 3.4 62.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-18-session-variable_3.4-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-session-variable postgresql-18-session-variable_3.4-1PIGSTY~bookworm_arm64.deb pigsty 3.4 61.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-18-session-variable_3.4-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-session-variable postgresql-18-session-variable_3.4-1PIGSTY~trixie_amd64.deb pigsty 3.4 62.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-18-session-variable_3.4-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-session-variable postgresql-18-session-variable_3.4-1PIGSTY~trixie_arm64.deb pigsty 3.4 61.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-18-session-variable_3.4-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-session-variable postgresql-18-session-variable_3.4-1PIGSTY~jammy_amd64.deb pigsty 3.4 66.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-18-session-variable_3.4-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-session-variable postgresql-18-session-variable_3.4-1PIGSTY~jammy_arm64.deb pigsty 3.4 66.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-18-session-variable_3.4-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-session-variable postgresql-18-session-variable_3.4-1PIGSTY~noble_amd64.deb pigsty 3.4 65.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-18-session-variable_3.4-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-session-variable postgresql-18-session-variable_3.4-1PIGSTY~noble_arm64.deb pigsty 3.4 64.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-18-session-variable_3.4-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-session-variable postgresql-18-session-variable_3.4-1PIGSTY~resolute_amd64.deb pigsty 3.4 60.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-18-session-variable_3.4-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-session-variable postgresql-18-session-variable_3.4-1PIGSTY~resolute_arm64.deb pigsty 3.4 59.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-18-session-variable_3.4-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 17 session_variable_17 session_variable_17-3.4-1PIGSTY.el8.x86_64.rpm pigsty 3.4 35.0KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/session_variable_17-3.4-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 17 session_variable_17 session_variable_17-3.4-1PIGSTY.el8.aarch64.rpm pigsty 3.4 34.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/session_variable_17-3.4-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 17 session_variable_17 session_variable_17-3.4-1PIGSTY.el9.x86_64.rpm pigsty 3.4 34.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/session_variable_17-3.4-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 17 session_variable_17 session_variable_17-3.4-1PIGSTY.el9.aarch64.rpm pigsty 3.4 33.8KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/session_variable_17-3.4-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 17 session_variable_17 session_variable_17-3.4-1PIGSTY.el10.x86_64.rpm pigsty 3.4 34.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/session_variable_17-3.4-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 17 session_variable_17 session_variable_17-3.4-1PIGSTY.el10.aarch64.rpm pigsty 3.4 34.0KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/session_variable_17-3.4-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-session-variable postgresql-17-session-variable_3.4-1PIGSTY~bookworm_amd64.deb pigsty 3.4 62.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-17-session-variable_3.4-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-session-variable postgresql-17-session-variable_3.4-1PIGSTY~bookworm_arm64.deb pigsty 3.4 61.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-17-session-variable_3.4-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-session-variable postgresql-17-session-variable_3.4-1PIGSTY~trixie_amd64.deb pigsty 3.4 62.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-17-session-variable_3.4-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-session-variable postgresql-17-session-variable_3.4-1PIGSTY~trixie_arm64.deb pigsty 3.4 61.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-17-session-variable_3.4-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-session-variable postgresql-17-session-variable_3.4-1PIGSTY~jammy_amd64.deb pigsty 3.4 72.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-17-session-variable_3.4-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-session-variable postgresql-17-session-variable_3.4-1PIGSTY~jammy_arm64.deb pigsty 3.4 71.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-17-session-variable_3.4-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-session-variable postgresql-17-session-variable_3.4-1PIGSTY~noble_amd64.deb pigsty 3.4 65.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-17-session-variable_3.4-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-session-variable postgresql-17-session-variable_3.4-1PIGSTY~noble_arm64.deb pigsty 3.4 64.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-17-session-variable_3.4-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-session-variable postgresql-17-session-variable_3.4-1PIGSTY~resolute_amd64.deb pigsty 3.4 60.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-17-session-variable_3.4-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-session-variable postgresql-17-session-variable_3.4-1PIGSTY~resolute_arm64.deb pigsty 3.4 59.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-17-session-variable_3.4-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 16 session_variable_16 session_variable_16-3.4-1PIGSTY.el8.x86_64.rpm pigsty 3.4 35.1KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/session_variable_16-3.4-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 16 session_variable_16 session_variable_16-3.4-1PIGSTY.el8.aarch64.rpm pigsty 3.4 34.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/session_variable_16-3.4-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 16 session_variable_16 session_variable_16-3.4-1PIGSTY.el9.x86_64.rpm pigsty 3.4 34.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/session_variable_16-3.4-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 16 session_variable_16 session_variable_16-3.4-1PIGSTY.el9.aarch64.rpm pigsty 3.4 33.8KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/session_variable_16-3.4-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 16 session_variable_16 session_variable_16-3.4-1PIGSTY.el10.x86_64.rpm pigsty 3.4 34.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/session_variable_16-3.4-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 16 session_variable_16 session_variable_16-3.4-1PIGSTY.el10.aarch64.rpm pigsty 3.4 34.0KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/session_variable_16-3.4-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 16 postgresql-16-session-variable postgresql-16-session-variable_3.4-1PIGSTY~bookworm_amd64.deb pigsty 3.4 62.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-16-session-variable_3.4-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-session-variable postgresql-16-session-variable_3.4-1PIGSTY~bookworm_arm64.deb pigsty 3.4 61.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-16-session-variable_3.4-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-session-variable postgresql-16-session-variable_3.4-1PIGSTY~trixie_amd64.deb pigsty 3.4 62.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-16-session-variable_3.4-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-session-variable postgresql-16-session-variable_3.4-1PIGSTY~trixie_arm64.deb pigsty 3.4 61.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-16-session-variable_3.4-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-session-variable postgresql-16-session-variable_3.4-1PIGSTY~jammy_amd64.deb pigsty 3.4 71.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-16-session-variable_3.4-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-session-variable postgresql-16-session-variable_3.4-1PIGSTY~jammy_arm64.deb pigsty 3.4 71.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-16-session-variable_3.4-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-session-variable postgresql-16-session-variable_3.4-1PIGSTY~noble_amd64.deb pigsty 3.4 65.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-16-session-variable_3.4-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-session-variable postgresql-16-session-variable_3.4-1PIGSTY~noble_arm64.deb pigsty 3.4 64.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-16-session-variable_3.4-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-session-variable postgresql-16-session-variable_3.4-1PIGSTY~resolute_amd64.deb pigsty 3.4 60.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-16-session-variable_3.4-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-session-variable postgresql-16-session-variable_3.4-1PIGSTY~resolute_arm64.deb pigsty 3.4 59.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-16-session-variable_3.4-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 15 session_variable_15 session_variable_15-3.4-1PIGSTY.el8.x86_64.rpm pigsty 3.4 35.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/session_variable_15-3.4-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 15 session_variable_15 session_variable_15-3.4-1PIGSTY.el8.aarch64.rpm pigsty 3.4 34.6KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/session_variable_15-3.4-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 15 session_variable_15 session_variable_15-3.4-1PIGSTY.el9.x86_64.rpm pigsty 3.4 34.8KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/session_variable_15-3.4-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 15 session_variable_15 session_variable_15-3.4-1PIGSTY.el9.aarch64.rpm pigsty 3.4 34.1KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/session_variable_15-3.4-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 15 session_variable_15 session_variable_15-3.4-1PIGSTY.el10.x86_64.rpm pigsty 3.4 35.0KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/session_variable_15-3.4-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 15 session_variable_15 session_variable_15-3.4-1PIGSTY.el10.aarch64.rpm pigsty 3.4 34.4KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/session_variable_15-3.4-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 15 postgresql-15-session-variable postgresql-15-session-variable_3.4-1PIGSTY~bookworm_amd64.deb pigsty 3.4 62.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-15-session-variable_3.4-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 15 postgresql-15-session-variable postgresql-15-session-variable_3.4-1PIGSTY~bookworm_arm64.deb pigsty 3.4 62.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-15-session-variable_3.4-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 15 postgresql-15-session-variable postgresql-15-session-variable_3.4-1PIGSTY~trixie_amd64.deb pigsty 3.4 62.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-15-session-variable_3.4-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 15 postgresql-15-session-variable postgresql-15-session-variable_3.4-1PIGSTY~trixie_arm64.deb pigsty 3.4 62.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-15-session-variable_3.4-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 15 postgresql-15-session-variable postgresql-15-session-variable_3.4-1PIGSTY~jammy_amd64.deb pigsty 3.4 71.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-15-session-variable_3.4-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 15 postgresql-15-session-variable postgresql-15-session-variable_3.4-1PIGSTY~jammy_arm64.deb pigsty 3.4 71.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-15-session-variable_3.4-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 15 postgresql-15-session-variable postgresql-15-session-variable_3.4-1PIGSTY~noble_amd64.deb pigsty 3.4 65.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-15-session-variable_3.4-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 15 postgresql-15-session-variable postgresql-15-session-variable_3.4-1PIGSTY~noble_arm64.deb pigsty 3.4 64.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-15-session-variable_3.4-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 15 postgresql-15-session-variable postgresql-15-session-variable_3.4-1PIGSTY~resolute_amd64.deb pigsty 3.4 60.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-15-session-variable_3.4-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 15 postgresql-15-session-variable postgresql-15-session-variable_3.4-1PIGSTY~resolute_arm64.deb pigsty 3.4 60.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-15-session-variable_3.4-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 14 session_variable_14 session_variable_14-3.4-1PIGSTY.el8.x86_64.rpm pigsty 3.4 35.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/session_variable_14-3.4-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 14 session_variable_14 session_variable_14-3.4-1PIGSTY.el8.aarch64.rpm pigsty 3.4 34.6KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/session_variable_14-3.4-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 14 session_variable_14 session_variable_14-3.4-1PIGSTY.el9.x86_64.rpm pigsty 3.4 34.8KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/session_variable_14-3.4-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 14 session_variable_14 session_variable_14-3.4-1PIGSTY.el9.aarch64.rpm pigsty 3.4 34.1KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/session_variable_14-3.4-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 14 session_variable_14 session_variable_14-3.4-1PIGSTY.el10.x86_64.rpm pigsty 3.4 35.0KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/session_variable_14-3.4-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 14 session_variable_14 session_variable_14-3.4-1PIGSTY.el10.aarch64.rpm pigsty 3.4 34.4KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/session_variable_14-3.4-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 14 postgresql-14-session-variable postgresql-14-session-variable_3.4-1PIGSTY~bookworm_amd64.deb pigsty 3.4 62.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-14-session-variable_3.4-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 14 postgresql-14-session-variable postgresql-14-session-variable_3.4-1PIGSTY~bookworm_arm64.deb pigsty 3.4 62.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-14-session-variable_3.4-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 14 postgresql-14-session-variable postgresql-14-session-variable_3.4-1PIGSTY~trixie_amd64.deb pigsty 3.4 62.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-14-session-variable_3.4-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 14 postgresql-14-session-variable postgresql-14-session-variable_3.4-1PIGSTY~trixie_arm64.deb pigsty 3.4 62.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-14-session-variable_3.4-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 14 postgresql-14-session-variable postgresql-14-session-variable_3.4-1PIGSTY~jammy_amd64.deb pigsty 3.4 70.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-14-session-variable_3.4-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 14 postgresql-14-session-variable postgresql-14-session-variable_3.4-1PIGSTY~jammy_arm64.deb pigsty 3.4 70.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-14-session-variable_3.4-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 14 postgresql-14-session-variable postgresql-14-session-variable_3.4-1PIGSTY~noble_amd64.deb pigsty 3.4 65.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-14-session-variable_3.4-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 14 postgresql-14-session-variable postgresql-14-session-variable_3.4-1PIGSTY~noble_arm64.deb pigsty 3.4 64.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-14-session-variable_3.4-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 14 postgresql-14-session-variable postgresql-14-session-variable_3.4-1PIGSTY~resolute_amd64.deb pigsty 3.4 60.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-14-session-variable_3.4-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 14 postgresql-14-session-variable postgresql-14-session-variable_3.4-1PIGSTY~resolute_arm64.deb pigsty 3.4 60.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-14-session-variable_3.4-1PIGSTY~resolute_arm64.deb
+| el8.x86_64 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 |
+| el8.aarch64 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 |
+| el9.x86_64 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 |
+| el9.aarch64 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 |
+| el10.x86_64 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 |
+| el10.aarch64 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 |
+| d12.x86_64 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 |
+| d12.aarch64 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 |
+| d13.x86_64 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 |
+| d13.aarch64 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 |
+| u22.x86_64 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 |
+| u22.aarch64 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 |
+| u24.x86_64 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 |
+| u24.aarch64 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 |
+| u26.x86_64 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 |
+| u26.aarch64 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 | AVAIL PIGSTY 3.6 1 |
+@ el8.x86_64 18 session_variable_18 session_variable_18-3.6-1PGSTY.el8.x86_64.rpm pigsty 3.6 61.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/session_variable_18-3.6-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 18 session_variable_18 session_variable_18-3.6-1PGSTY.el8.aarch64.rpm pigsty 3.6 60.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/session_variable_18-3.6-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 18 session_variable_18 session_variable_18-3.6-1PGSTY.el9.x86_64.rpm pigsty 3.6 61.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/session_variable_18-3.6-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 18 session_variable_18 session_variable_18-3.6-1PGSTY.el9.aarch64.rpm pigsty 3.6 60.2KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/session_variable_18-3.6-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 18 session_variable_18 session_variable_18-3.6-1PGSTY.el10.x86_64.rpm pigsty 3.6 61.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/session_variable_18-3.6-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 18 session_variable_18 session_variable_18-3.6-1PGSTY.el10.aarch64.rpm pigsty 3.6 60.4KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/session_variable_18-3.6-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-session-variable postgresql-18-session-variable_3.6-1PGSTY~bookworm_amd64.deb pigsty 3.6 58.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-18-session-variable_3.6-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-session-variable postgresql-18-session-variable_3.6-1PGSTY~bookworm_arm64.deb pigsty 3.6 57.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-18-session-variable_3.6-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-session-variable postgresql-18-session-variable_3.6-1PGSTY~trixie_amd64.deb pigsty 3.6 58.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-18-session-variable_3.6-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-session-variable postgresql-18-session-variable_3.6-1PGSTY~trixie_arm64.deb pigsty 3.6 57.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-18-session-variable_3.6-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-session-variable postgresql-18-session-variable_3.6-1PGSTY~jammy_amd64.deb pigsty 3.6 61.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-18-session-variable_3.6-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-session-variable postgresql-18-session-variable_3.6-1PGSTY~jammy_arm64.deb pigsty 3.6 61.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-18-session-variable_3.6-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-session-variable postgresql-18-session-variable_3.6-1PGSTY~noble_amd64.deb pigsty 3.6 60.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-18-session-variable_3.6-1PGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-session-variable postgresql-18-session-variable_3.6-1PGSTY~noble_arm64.deb pigsty 3.6 59.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-18-session-variable_3.6-1PGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-session-variable postgresql-18-session-variable_3.6-1PGSTY~resolute_amd64.deb pigsty 3.6 59.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-18-session-variable_3.6-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-session-variable postgresql-18-session-variable_3.6-1PGSTY~resolute_arm64.deb pigsty 3.6 58.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-18-session-variable_3.6-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 17 session_variable_17 session_variable_17-3.6-1PGSTY.el8.x86_64.rpm pigsty 3.6 61.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/session_variable_17-3.6-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 17 session_variable_17 session_variable_17-3.6-1PGSTY.el8.aarch64.rpm pigsty 3.6 59.9KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/session_variable_17-3.6-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 17 session_variable_17 session_variable_17-3.6-1PGSTY.el9.x86_64.rpm pigsty 3.6 61.5KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/session_variable_17-3.6-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 17 session_variable_17 session_variable_17-3.6-1PGSTY.el9.aarch64.rpm pigsty 3.6 60.1KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/session_variable_17-3.6-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 17 session_variable_17 session_variable_17-3.6-1PGSTY.el10.x86_64.rpm pigsty 3.6 61.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/session_variable_17-3.6-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 17 session_variable_17 session_variable_17-3.6-1PGSTY.el10.aarch64.rpm pigsty 3.6 60.3KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/session_variable_17-3.6-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-session-variable postgresql-17-session-variable_3.6-1PGSTY~bookworm_amd64.deb pigsty 3.6 58.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-17-session-variable_3.6-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-session-variable postgresql-17-session-variable_3.6-1PGSTY~bookworm_arm64.deb pigsty 3.6 57.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-17-session-variable_3.6-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-session-variable postgresql-17-session-variable_3.6-1PGSTY~trixie_amd64.deb pigsty 3.6 58.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-17-session-variable_3.6-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-session-variable postgresql-17-session-variable_3.6-1PGSTY~trixie_arm64.deb pigsty 3.6 57.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-17-session-variable_3.6-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-session-variable postgresql-17-session-variable_3.6-1PGSTY~jammy_amd64.deb pigsty 3.6 67.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-17-session-variable_3.6-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-session-variable postgresql-17-session-variable_3.6-1PGSTY~jammy_arm64.deb pigsty 3.6 66.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-17-session-variable_3.6-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-session-variable postgresql-17-session-variable_3.6-1PGSTY~noble_amd64.deb pigsty 3.6 60.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-17-session-variable_3.6-1PGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-session-variable postgresql-17-session-variable_3.6-1PGSTY~noble_arm64.deb pigsty 3.6 59.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-17-session-variable_3.6-1PGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-session-variable postgresql-17-session-variable_3.6-1PGSTY~resolute_amd64.deb pigsty 3.6 59.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-17-session-variable_3.6-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-session-variable postgresql-17-session-variable_3.6-1PGSTY~resolute_arm64.deb pigsty 3.6 58.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-17-session-variable_3.6-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 16 session_variable_16 session_variable_16-3.6-1PGSTY.el8.x86_64.rpm pigsty 3.6 61.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/session_variable_16-3.6-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 16 session_variable_16 session_variable_16-3.6-1PGSTY.el8.aarch64.rpm pigsty 3.6 60.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/session_variable_16-3.6-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 16 session_variable_16 session_variable_16-3.6-1PGSTY.el9.x86_64.rpm pigsty 3.6 61.5KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/session_variable_16-3.6-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 16 session_variable_16 session_variable_16-3.6-1PGSTY.el9.aarch64.rpm pigsty 3.6 60.1KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/session_variable_16-3.6-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 16 session_variable_16 session_variable_16-3.6-1PGSTY.el10.x86_64.rpm pigsty 3.6 61.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/session_variable_16-3.6-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 16 session_variable_16 session_variable_16-3.6-1PGSTY.el10.aarch64.rpm pigsty 3.6 60.3KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/session_variable_16-3.6-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-session-variable postgresql-16-session-variable_3.6-1PGSTY~bookworm_amd64.deb pigsty 3.6 58.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-16-session-variable_3.6-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 16 postgresql-16-session-variable postgresql-16-session-variable_3.6-1PGSTY~bookworm_arm64.deb pigsty 3.6 57.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-16-session-variable_3.6-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 16 postgresql-16-session-variable postgresql-16-session-variable_3.6-1PGSTY~trixie_amd64.deb pigsty 3.6 58.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-16-session-variable_3.6-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 16 postgresql-16-session-variable postgresql-16-session-variable_3.6-1PGSTY~trixie_arm64.deb pigsty 3.6 57.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-16-session-variable_3.6-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 16 postgresql-16-session-variable postgresql-16-session-variable_3.6-1PGSTY~jammy_amd64.deb pigsty 3.6 66.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-16-session-variable_3.6-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 16 postgresql-16-session-variable postgresql-16-session-variable_3.6-1PGSTY~jammy_arm64.deb pigsty 3.6 66.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-16-session-variable_3.6-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 16 postgresql-16-session-variable postgresql-16-session-variable_3.6-1PGSTY~noble_amd64.deb pigsty 3.6 60.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-16-session-variable_3.6-1PGSTY~noble_amd64.deb
+@ u24.aarch64 16 postgresql-16-session-variable postgresql-16-session-variable_3.6-1PGSTY~noble_arm64.deb pigsty 3.6 59.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-16-session-variable_3.6-1PGSTY~noble_arm64.deb
+@ u26.x86_64 16 postgresql-16-session-variable postgresql-16-session-variable_3.6-1PGSTY~resolute_amd64.deb pigsty 3.6 59.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-16-session-variable_3.6-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 16 postgresql-16-session-variable postgresql-16-session-variable_3.6-1PGSTY~resolute_arm64.deb pigsty 3.6 58.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-16-session-variable_3.6-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 15 session_variable_15 session_variable_15-3.6-1PGSTY.el8.x86_64.rpm pigsty 3.6 61.6KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/session_variable_15-3.6-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 15 session_variable_15 session_variable_15-3.6-1PGSTY.el8.aarch64.rpm pigsty 3.6 60.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/session_variable_15-3.6-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 15 session_variable_15 session_variable_15-3.6-1PGSTY.el9.x86_64.rpm pigsty 3.6 62.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/session_variable_15-3.6-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 15 session_variable_15 session_variable_15-3.6-1PGSTY.el9.aarch64.rpm pigsty 3.6 60.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/session_variable_15-3.6-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 15 session_variable_15 session_variable_15-3.6-1PGSTY.el10.x86_64.rpm pigsty 3.6 62.2KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/session_variable_15-3.6-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 15 session_variable_15 session_variable_15-3.6-1PGSTY.el10.aarch64.rpm pigsty 3.6 61.0KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/session_variable_15-3.6-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-session-variable postgresql-15-session-variable_3.6-1PGSTY~bookworm_amd64.deb pigsty 3.6 58.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-15-session-variable_3.6-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 15 postgresql-15-session-variable postgresql-15-session-variable_3.6-1PGSTY~bookworm_arm64.deb pigsty 3.6 57.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-15-session-variable_3.6-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 15 postgresql-15-session-variable postgresql-15-session-variable_3.6-1PGSTY~trixie_amd64.deb pigsty 3.6 58.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-15-session-variable_3.6-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 15 postgresql-15-session-variable postgresql-15-session-variable_3.6-1PGSTY~trixie_arm64.deb pigsty 3.6 57.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-15-session-variable_3.6-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 15 postgresql-15-session-variable postgresql-15-session-variable_3.6-1PGSTY~jammy_amd64.deb pigsty 3.6 67.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-15-session-variable_3.6-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 15 postgresql-15-session-variable postgresql-15-session-variable_3.6-1PGSTY~jammy_arm64.deb pigsty 3.6 66.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-15-session-variable_3.6-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 15 postgresql-15-session-variable postgresql-15-session-variable_3.6-1PGSTY~noble_amd64.deb pigsty 3.6 60.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-15-session-variable_3.6-1PGSTY~noble_amd64.deb
+@ u24.aarch64 15 postgresql-15-session-variable postgresql-15-session-variable_3.6-1PGSTY~noble_arm64.deb pigsty 3.6 60.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-15-session-variable_3.6-1PGSTY~noble_arm64.deb
+@ u26.x86_64 15 postgresql-15-session-variable postgresql-15-session-variable_3.6-1PGSTY~resolute_amd64.deb pigsty 3.6 60.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-15-session-variable_3.6-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 15 postgresql-15-session-variable postgresql-15-session-variable_3.6-1PGSTY~resolute_arm64.deb pigsty 3.6 59.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-15-session-variable_3.6-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 14 session_variable_14 session_variable_14-3.6-1PGSTY.el8.x86_64.rpm pigsty 3.6 61.6KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/session_variable_14-3.6-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 14 session_variable_14 session_variable_14-3.6-1PGSTY.el8.aarch64.rpm pigsty 3.6 60.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/session_variable_14-3.6-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 14 session_variable_14 session_variable_14-3.6-1PGSTY.el9.x86_64.rpm pigsty 3.6 62.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/session_variable_14-3.6-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 14 session_variable_14 session_variable_14-3.6-1PGSTY.el9.aarch64.rpm pigsty 3.6 60.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/session_variable_14-3.6-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 14 session_variable_14 session_variable_14-3.6-1PGSTY.el10.x86_64.rpm pigsty 3.6 62.3KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/session_variable_14-3.6-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 14 session_variable_14 session_variable_14-3.6-1PGSTY.el10.aarch64.rpm pigsty 3.6 61.0KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/session_variable_14-3.6-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-session-variable postgresql-14-session-variable_3.6-1PGSTY~bookworm_amd64.deb pigsty 3.6 58.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-14-session-variable_3.6-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 14 postgresql-14-session-variable postgresql-14-session-variable_3.6-1PGSTY~bookworm_arm64.deb pigsty 3.6 57.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/session-variable/postgresql-14-session-variable_3.6-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 14 postgresql-14-session-variable postgresql-14-session-variable_3.6-1PGSTY~trixie_amd64.deb pigsty 3.6 58.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-14-session-variable_3.6-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 14 postgresql-14-session-variable postgresql-14-session-variable_3.6-1PGSTY~trixie_arm64.deb pigsty 3.6 57.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/session-variable/postgresql-14-session-variable_3.6-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 14 postgresql-14-session-variable postgresql-14-session-variable_3.6-1PGSTY~jammy_amd64.deb pigsty 3.6 66.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-14-session-variable_3.6-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 14 postgresql-14-session-variable postgresql-14-session-variable_3.6-1PGSTY~jammy_arm64.deb pigsty 3.6 65.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/session-variable/postgresql-14-session-variable_3.6-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 14 postgresql-14-session-variable postgresql-14-session-variable_3.6-1PGSTY~noble_amd64.deb pigsty 3.6 60.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-14-session-variable_3.6-1PGSTY~noble_amd64.deb
+@ u24.aarch64 14 postgresql-14-session-variable postgresql-14-session-variable_3.6-1PGSTY~noble_arm64.deb pigsty 3.6 59.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/session-variable/postgresql-14-session-variable_3.6-1PGSTY~noble_arm64.deb
+@ u26.x86_64 14 postgresql-14-session-variable postgresql-14-session-variable_3.6-1PGSTY~resolute_amd64.deb pigsty 3.6 60.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-14-session-variable_3.6-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 14 postgresql-14-session-variable postgresql-14-session-variable_3.6-1PGSTY~resolute_arm64.deb pigsty 3.6 59.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/session-variable/postgresql-14-session-variable_3.6-1PGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -202,12 +202,16 @@ apt install -y postgresql-14-session-variable   # PG 14
 CREATE EXTENSION session_variable;
 ```
 
-
-
-
 ## Usage
 
-> [session_variable: Registration and manipulation of session variables and constants](https://github.com/splendiddata/session_variable)
+Sources:
+
+- [3.6 README](https://github.com/splendiddata/session_variable/blob/3.6/README.md)
+- [3.6 SQL API](https://github.com/splendiddata/session_variable/blob/3.6/session_variable--3.6.sql)
+- [3.6 control file](https://github.com/splendiddata/session_variable/blob/3.6/session_variable.control)
+- [3.6 initialization code](https://github.com/splendiddata/session_variable/blob/3.6/session_variable.c)
+
+`session_variable` defines database-level variables and constants with a separate value in each session. Changes to session-local values do not affect other connections.
 
 ### Creating Variables and Constants
 
@@ -230,7 +234,7 @@ SELECT session_variable.create_constant('my_env', 'text'::regtype, 'Production':
 -- Get variable value (second arg is type hint)
 SELECT session_variable.get('my_var', null::text);
 
--- Set variable value (returns previous value)
+-- Set variable value (returns true on success)
 SELECT session_variable.set('my_var', 'new text'::text);
 ```
 
@@ -273,3 +277,13 @@ SELECT session_variable.type_of('my_var');
 - `alter_value()` changes the stored value; new sessions see it, existing sessions need `init()` to refresh
 - Constants cannot be changed via `set()`, only via `alter_value()`
 - Variable and constant names must be unique across both types
+
+### Privileges, Reads and Version Boundaries
+
+A superuser installs this non-relocatable extension in schema `session_variable`; no shared preload or restart is required for the SQL workflow. Grant `session_variable_administrator_role` to manage definitions and `session_variable_user_role` for ordinary access. The administrator role includes the user role.
+
+`session_variable.set` and `session_variable.alter_value` return boolean true on success, not the previous value. A successful stored-definition change becomes visible in the caller immediately and in future sessions after commit; existing sessions keep their local state until `session_variable.init()` resets all values. Definitions are stored in `session_variable.variables` and included in logical backups.
+
+`session_variable.get_stable` may cache a value during a statement; use the regular getter when a trigger changes that value within the same statement. `session_variable.get_constant` is IMMUTABLE and can return cached results after administrative constant changes; use the regular getter during such changes.
+
+Release 3.6 removes obsolete version-1 initialization support. The preceding 3.5 rejects non-null initial values for `collection` and `icollection` because text initialization can crash a backend. For those types, create a null-initialized variable and follow the source's initialization hook `session_variable.variable_initialisation()`; the README's alternate hook name is inconsistent with the implementation. Upstream lists PostgreSQL 14-18 and provisional PostgreSQL 19 support.

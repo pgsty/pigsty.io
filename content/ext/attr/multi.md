@@ -40,8 +40,8 @@ Package [`pg_h3`](/ext/e/h3) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 1530 | [**`h3`**](/ext/e/h3) | `4.2.3` | `--s-d-r` | - | H3 bindings for PostgreSQL |
-| 1531 | [`h3_postgis`](/ext/e/h3_postgis) | `4.2.3` | `--s-d-r` | - | H3 PostGIS integration |
+| 1530 | [**`h3`**](/ext/e/h3) | `4.5.0` | `--s-d-r` | - | H3 bindings for PostgreSQL |
+| 1531 | [`h3_postgis`](/ext/e/h3_postgis) | `4.5.0` | `--s-d-r` | - | H3 PostGIS integration |
 {.ext-table}
 
 ## pghydro
@@ -65,8 +65,8 @@ Package [`mobilitydb`](/ext/e/mobilitydb) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 1650 | [**`mobilitydb`**](/ext/e/mobilitydb) | `1.3.0` | `--sLd--` | - | MobilityDB geospatial trajectory data management & analysis platform |
-| 1651 | [`mobilitydb_datagen`](/ext/e/mobilitydb_datagen) | `1.3.0` | `----d-r` | - | MobilityDB random data generator functions |
+| 1650 | [**`mobilitydb`**](/ext/e/mobilitydb) | `1.3.1` | `--sLd--` | - | MobilityDB geospatial trajectory data management & analysis platform |
+| 1651 | [`mobilitydb_datagen`](/ext/e/mobilitydb_datagen) | `1.3.1` | `----d-r` | - | MobilityDB random data generator functions |
 {.ext-table}
 
 ## qdgc
@@ -95,8 +95,8 @@ Package [`pgroonga`](/ext/e/pgroonga) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 2110 | [**`pgroonga`**](/ext/e/pgroonga) | `4.0.8` | `-bs-d--` | - | Use Groonga as index, fast full text search platform for all languages! |
-| 2111 | [`pgroonga_database`](/ext/e/pgroonga_database) | `4.0.8` | `--s-d--` | - | PGroonga database management module |
+| 2110 | [**`pgroonga`**](/ext/e/pgroonga) | `4.0.9` | `-bs-d--` | - | Use Groonga as index, fast full text search platform for all languages! |
+| 2111 | [`pgroonga_database`](/ext/e/pgroonga_database) | `4.0.9` | `--s-d--` | - | PGroonga database management module |
 {.ext-table}
 
 ## hunspell
@@ -133,14 +133,14 @@ Package [`pg_lake`](/ext/e/pg_lake) contains **8** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 2560 | [**`pg_lake`**](/ext/e/pg_lake) | `3.4` | `-bsLd--` | `lake` | Data lake extension by Snowflake |
-| 2561 | [`pg_extension_base`](/ext/e/pg_extension_base) | `3.4` | `--sLd--` | `extension_base` | Extension development kit by Snowflake |
-| 2562 | [`pg_extension_updater`](/ext/e/pg_extension_updater) | `3.4` | `--sLd--` | `extension_updater` | Automatic extension updater |
-| 2563 | [`pg_map`](/ext/e/pg_map) | `3.4` | `--s-d--` | `map_type` | Map type for PostgreSQL, bundled as a required pg_lake component. |
-| 2564 | [`pg_lake_engine`](/ext/e/pg_lake_engine) | `3.4` | `--sLd--` | `__lake__internal__nsp__` | Query engine for data lake queries |
-| 2565 | [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) | `3.4` | `--s-d--` | `lake_iceberg` | Iceberg implementation in Postgres |
-| 2566 | [`pg_lake_table`](/ext/e/pg_lake_table) | `3.4` | `--sLd--` | `__pg_lake_table_writes` | Data lake tables and Iceberg tables |
-| 2567 | [`pg_lake_copy`](/ext/e/pg_lake_copy) | `3.4` | `--sLd--` | `pg_catalog` | Copy to/from data lake files |
+| 2560 | [**`pg_lake`**](/ext/e/pg_lake) | `3.5` | `-bsLd--` | `lake` | Data lake extension by Snowflake |
+| 2561 | [`pg_extension_base`](/ext/e/pg_extension_base) | `3.5` | `--sLd--` | `extension_base` | Extension development kit by Snowflake |
+| 2562 | [`pg_extension_updater`](/ext/e/pg_extension_updater) | `3.5` | `--sLd--` | `extension_updater` | Automatic extension updater |
+| 2563 | [`pg_map`](/ext/e/pg_map) | `3.5` | `--s-d--` | `map_type` | Map type for PostgreSQL, bundled as a required pg_lake component. |
+| 2564 | [`pg_lake_engine`](/ext/e/pg_lake_engine) | `3.5` | `--sLd--` | `__lake__internal__nsp__` | Query engine for data lake queries |
+| 2565 | [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) | `3.5` | `--s-d--` | `lake_iceberg` | Iceberg implementation in Postgres |
+| 2566 | [`pg_lake_table`](/ext/e/pg_lake_table) | `3.5` | `--sLd--` | `__pg_lake_table_writes` | Data lake tables and Iceberg tables |
+| 2567 | [`pg_lake_copy`](/ext/e/pg_lake_copy) | `3.5` | `--sLd--` | `pg_catalog` | Copy to/from data lake files |
 {.ext-table}
 
 ## omnigres
@@ -284,7 +284,7 @@ Package [`pgpool`](/ext/e/pgpool_adm) contains **3** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 5900 | [**`pgpool_adm`**](/ext/e/pgpool_adm) | `4.7.2` | `----d--` | - | Administrative functions for pgPool |
+| 5900 | [**`pgpool_adm`**](/ext/e/pgpool_adm) | `4.7.3` | `----d-r` | - | Administrative functions for pgPool |
 | 5910 | [`pgpool_recovery`](/ext/e/pgpool_recovery) | `4.7.2` | `----d--` | - | recovery functions for pgpool-II for V4.3 |
 | 5920 | [`pgpool_regclass`](/ext/e/pgpool_regclass) | `4.7.2` | `----d--` | - | replacement for regclass |
 {.ext-table}
@@ -315,10 +315,10 @@ Package [`documentdb`](/ext/e/documentdb) contains **4** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 9000 | [**`documentdb`**](/ext/e/documentdb) | `0.116` | `--sLd--` | - | API surface for DocumentDB for PostgreSQL |
-| 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `0.116` | `--sLd--` | - | Core API surface for DocumentDB on PostgreSQL |
+| 9000 | [**`documentdb`**](/ext/e/documentdb) | `0.117` | `--sLd--` | - | API surface for DocumentDB for PostgreSQL |
+| 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `0.117` | `--sLd--` | - | Core API surface for DocumentDB on PostgreSQL |
 | 9020 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `0.116` | `--sLd--` | - | Multi-Node API surface for DocumentDB |
-| 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `0.116` | `--sLd-r` | - | DocumentDB Extended RUM index access method |
+| 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `0.117` | `--sLd-r` | - | DocumentDB Extended RUM index access method |
 {.ext-table}
 
 ## ivorysql

@@ -11,10 +11,10 @@ weight: 2630
     <div class="ext-card__title">evokoa/pggraph</div>
     <div class="ext-card__desc">https://github.com/evokoa/pggraph</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pggraph-1.2.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pggraph-1.2.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pggraph-1.2.0.tar.gz</div>
-    <div class="ext-card__desc">pggraph-1.2.0.tar.gz</div>
+    <div class="ext-card__title">pggraph-1.2.1.tar.gz</div>
+    <div class="ext-card__desc">pggraph-1.2.1.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2630
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pggraph`**](/ext/e/graph) | `1.2.0` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`pggraph`**](/ext/e/graph) | `1.2.1` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -45,110 +45,110 @@ weight: 2630
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.2.0` | {{< pgvers "18,17,16,15,14" >}} | `pggraph` | - |
-| [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.2.0` | {{< pgvers "18,17,16,15,14" >}} | `pggraph_$v` | - |
-| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.2.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pggraph` | - |
+| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.2.1` | {{< pgvers "18,17,16,15,14" >}} | `pggraph` | - |
+| [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.2.1` | {{< pgvers "18,17,16,15,14" >}} | `pggraph_$v` | - |
+| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.2.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pggraph` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
-| el8.aarch64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
-| el9.x86_64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
-| el9.aarch64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
-| el10.x86_64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
-| el10.aarch64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
-| d12.x86_64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
-| d12.aarch64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
-| d13.x86_64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
-| d13.aarch64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
-| u22.x86_64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
-| u22.aarch64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
-| u24.x86_64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
-| u24.aarch64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
-| u26.x86_64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
-| u26.aarch64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
-@ el8.x86_64 18 pggraph_18 pggraph_18-1.0.0-1PIGSTY.el8.x86_64.rpm pigsty 1.0.0 4.0MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pggraph_18-1.0.0-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 18 pggraph_18 pggraph_18-1.0.0-1PIGSTY.el8.aarch64.rpm pigsty 1.0.0 3.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pggraph_18-1.0.0-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 18 pggraph_18 pggraph_18-1.0.0-1PIGSTY.el9.x86_64.rpm pigsty 1.0.0 3.9MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pggraph_18-1.0.0-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 18 pggraph_18 pggraph_18-1.0.0-1PIGSTY.el9.aarch64.rpm pigsty 1.0.0 3.5MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pggraph_18-1.0.0-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 18 pggraph_18 pggraph_18-1.0.0-1PIGSTY.el10.x86_64.rpm pigsty 1.0.0 3.9MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pggraph_18-1.0.0-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 18 pggraph_18 pggraph_18-1.0.0-1PIGSTY.el10.aarch64.rpm pigsty 1.0.0 3.5MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pggraph_18-1.0.0-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-pggraph postgresql-18-pggraph_1.0.0-1PIGSTY~bookworm_amd64.deb pigsty 1.0.0 3.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-18-pggraph_1.0.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-pggraph postgresql-18-pggraph_1.0.0-1PIGSTY~bookworm_arm64.deb pigsty 1.0.0 2.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-18-pggraph_1.0.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-pggraph postgresql-18-pggraph_1.0.0-1PIGSTY~trixie_amd64.deb pigsty 1.0.0 3.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-18-pggraph_1.0.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-pggraph postgresql-18-pggraph_1.0.0-1PIGSTY~trixie_arm64.deb pigsty 1.0.0 2.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-18-pggraph_1.0.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-pggraph postgresql-18-pggraph_1.0.0-1PIGSTY~jammy_amd64.deb pigsty 1.0.0 3.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-18-pggraph_1.0.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-pggraph postgresql-18-pggraph_1.0.0-1PIGSTY~jammy_arm64.deb pigsty 1.0.0 3.1MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-18-pggraph_1.0.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-pggraph postgresql-18-pggraph_1.0.0-1PIGSTY~noble_amd64.deb pigsty 1.0.0 3.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-18-pggraph_1.0.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-pggraph postgresql-18-pggraph_1.0.0-1PIGSTY~noble_arm64.deb pigsty 1.0.0 3.1MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-18-pggraph_1.0.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-pggraph postgresql-18-pggraph_1.0.0-1PIGSTY~resolute_amd64.deb pigsty 1.0.0 3.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-18-pggraph_1.0.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-pggraph postgresql-18-pggraph_1.0.0-1PIGSTY~resolute_arm64.deb pigsty 1.0.0 3.1MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-18-pggraph_1.0.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 17 pggraph_17 pggraph_17-1.0.0-1PIGSTY.el8.x86_64.rpm pigsty 1.0.0 4.0MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pggraph_17-1.0.0-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 17 pggraph_17 pggraph_17-1.0.0-1PIGSTY.el8.aarch64.rpm pigsty 1.0.0 3.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pggraph_17-1.0.0-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 17 pggraph_17 pggraph_17-1.0.0-1PIGSTY.el9.x86_64.rpm pigsty 1.0.0 3.9MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pggraph_17-1.0.0-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 17 pggraph_17 pggraph_17-1.0.0-1PIGSTY.el9.aarch64.rpm pigsty 1.0.0 3.5MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pggraph_17-1.0.0-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 17 pggraph_17 pggraph_17-1.0.0-1PIGSTY.el10.x86_64.rpm pigsty 1.0.0 3.9MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pggraph_17-1.0.0-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 17 pggraph_17 pggraph_17-1.0.0-1PIGSTY.el10.aarch64.rpm pigsty 1.0.0 3.5MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pggraph_17-1.0.0-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-pggraph postgresql-17-pggraph_1.0.0-1PIGSTY~bookworm_amd64.deb pigsty 1.0.0 3.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-17-pggraph_1.0.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-pggraph postgresql-17-pggraph_1.0.0-1PIGSTY~bookworm_arm64.deb pigsty 1.0.0 2.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-17-pggraph_1.0.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-pggraph postgresql-17-pggraph_1.0.0-1PIGSTY~trixie_amd64.deb pigsty 1.0.0 3.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-17-pggraph_1.0.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-pggraph postgresql-17-pggraph_1.0.0-1PIGSTY~trixie_arm64.deb pigsty 1.0.0 2.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-17-pggraph_1.0.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-pggraph postgresql-17-pggraph_1.0.0-1PIGSTY~jammy_amd64.deb pigsty 1.0.0 3.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-17-pggraph_1.0.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-pggraph postgresql-17-pggraph_1.0.0-1PIGSTY~jammy_arm64.deb pigsty 1.0.0 3.1MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-17-pggraph_1.0.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-pggraph postgresql-17-pggraph_1.0.0-1PIGSTY~noble_amd64.deb pigsty 1.0.0 3.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-17-pggraph_1.0.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-pggraph postgresql-17-pggraph_1.0.0-1PIGSTY~noble_arm64.deb pigsty 1.0.0 3.1MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-17-pggraph_1.0.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-pggraph postgresql-17-pggraph_1.0.0-1PIGSTY~resolute_amd64.deb pigsty 1.0.0 3.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-17-pggraph_1.0.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-pggraph postgresql-17-pggraph_1.0.0-1PIGSTY~resolute_arm64.deb pigsty 1.0.0 3.1MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-17-pggraph_1.0.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 16 pggraph_16 pggraph_16-1.0.0-1PIGSTY.el8.x86_64.rpm pigsty 1.0.0 4.0MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pggraph_16-1.0.0-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 16 pggraph_16 pggraph_16-1.0.0-1PIGSTY.el8.aarch64.rpm pigsty 1.0.0 3.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pggraph_16-1.0.0-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 16 pggraph_16 pggraph_16-1.0.0-1PIGSTY.el9.x86_64.rpm pigsty 1.0.0 3.9MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pggraph_16-1.0.0-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 16 pggraph_16 pggraph_16-1.0.0-1PIGSTY.el9.aarch64.rpm pigsty 1.0.0 3.5MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pggraph_16-1.0.0-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 16 pggraph_16 pggraph_16-1.0.0-1PIGSTY.el10.x86_64.rpm pigsty 1.0.0 3.9MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pggraph_16-1.0.0-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 16 pggraph_16 pggraph_16-1.0.0-1PIGSTY.el10.aarch64.rpm pigsty 1.0.0 3.5MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pggraph_16-1.0.0-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 16 postgresql-16-pggraph postgresql-16-pggraph_1.0.0-1PIGSTY~bookworm_amd64.deb pigsty 1.0.0 3.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-16-pggraph_1.0.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-pggraph postgresql-16-pggraph_1.0.0-1PIGSTY~bookworm_arm64.deb pigsty 1.0.0 2.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-16-pggraph_1.0.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-pggraph postgresql-16-pggraph_1.0.0-1PIGSTY~trixie_amd64.deb pigsty 1.0.0 3.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-16-pggraph_1.0.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-pggraph postgresql-16-pggraph_1.0.0-1PIGSTY~trixie_arm64.deb pigsty 1.0.0 2.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-16-pggraph_1.0.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-pggraph postgresql-16-pggraph_1.0.0-1PIGSTY~jammy_amd64.deb pigsty 1.0.0 3.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-16-pggraph_1.0.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-pggraph postgresql-16-pggraph_1.0.0-1PIGSTY~jammy_arm64.deb pigsty 1.0.0 3.1MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-16-pggraph_1.0.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-pggraph postgresql-16-pggraph_1.0.0-1PIGSTY~noble_amd64.deb pigsty 1.0.0 3.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-16-pggraph_1.0.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-pggraph postgresql-16-pggraph_1.0.0-1PIGSTY~noble_arm64.deb pigsty 1.0.0 3.1MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-16-pggraph_1.0.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-pggraph postgresql-16-pggraph_1.0.0-1PIGSTY~resolute_amd64.deb pigsty 1.0.0 3.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-16-pggraph_1.0.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-pggraph postgresql-16-pggraph_1.0.0-1PIGSTY~resolute_arm64.deb pigsty 1.0.0 3.1MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-16-pggraph_1.0.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 15 pggraph_15 pggraph_15-1.0.0-1PIGSTY.el8.x86_64.rpm pigsty 1.0.0 4.0MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pggraph_15-1.0.0-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 15 pggraph_15 pggraph_15-1.0.0-1PIGSTY.el8.aarch64.rpm pigsty 1.0.0 3.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pggraph_15-1.0.0-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 15 pggraph_15 pggraph_15-1.0.0-1PIGSTY.el9.x86_64.rpm pigsty 1.0.0 3.9MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pggraph_15-1.0.0-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 15 pggraph_15 pggraph_15-1.0.0-1PIGSTY.el9.aarch64.rpm pigsty 1.0.0 3.5MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pggraph_15-1.0.0-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 15 pggraph_15 pggraph_15-1.0.0-1PIGSTY.el10.x86_64.rpm pigsty 1.0.0 3.9MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pggraph_15-1.0.0-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 15 pggraph_15 pggraph_15-1.0.0-1PIGSTY.el10.aarch64.rpm pigsty 1.0.0 3.5MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pggraph_15-1.0.0-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 15 postgresql-15-pggraph postgresql-15-pggraph_1.0.0-1PIGSTY~bookworm_amd64.deb pigsty 1.0.0 3.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-15-pggraph_1.0.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 15 postgresql-15-pggraph postgresql-15-pggraph_1.0.0-1PIGSTY~bookworm_arm64.deb pigsty 1.0.0 2.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-15-pggraph_1.0.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 15 postgresql-15-pggraph postgresql-15-pggraph_1.0.0-1PIGSTY~trixie_amd64.deb pigsty 1.0.0 3.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-15-pggraph_1.0.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 15 postgresql-15-pggraph postgresql-15-pggraph_1.0.0-1PIGSTY~trixie_arm64.deb pigsty 1.0.0 2.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-15-pggraph_1.0.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 15 postgresql-15-pggraph postgresql-15-pggraph_1.0.0-1PIGSTY~jammy_amd64.deb pigsty 1.0.0 3.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-15-pggraph_1.0.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 15 postgresql-15-pggraph postgresql-15-pggraph_1.0.0-1PIGSTY~jammy_arm64.deb pigsty 1.0.0 3.1MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-15-pggraph_1.0.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 15 postgresql-15-pggraph postgresql-15-pggraph_1.0.0-1PIGSTY~noble_amd64.deb pigsty 1.0.0 3.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-15-pggraph_1.0.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 15 postgresql-15-pggraph postgresql-15-pggraph_1.0.0-1PIGSTY~noble_arm64.deb pigsty 1.0.0 3.1MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-15-pggraph_1.0.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 15 postgresql-15-pggraph postgresql-15-pggraph_1.0.0-1PIGSTY~resolute_amd64.deb pigsty 1.0.0 3.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-15-pggraph_1.0.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 15 postgresql-15-pggraph postgresql-15-pggraph_1.0.0-1PIGSTY~resolute_arm64.deb pigsty 1.0.0 3.1MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-15-pggraph_1.0.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 14 pggraph_14 pggraph_14-1.0.0-1PIGSTY.el8.x86_64.rpm pigsty 1.0.0 4.0MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pggraph_14-1.0.0-1PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 14 pggraph_14 pggraph_14-1.0.0-1PIGSTY.el8.aarch64.rpm pigsty 1.0.0 3.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pggraph_14-1.0.0-1PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 14 pggraph_14 pggraph_14-1.0.0-1PIGSTY.el9.x86_64.rpm pigsty 1.0.0 3.9MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pggraph_14-1.0.0-1PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 14 pggraph_14 pggraph_14-1.0.0-1PIGSTY.el9.aarch64.rpm pigsty 1.0.0 3.5MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pggraph_14-1.0.0-1PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 14 pggraph_14 pggraph_14-1.0.0-1PIGSTY.el10.x86_64.rpm pigsty 1.0.0 3.9MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pggraph_14-1.0.0-1PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 14 pggraph_14 pggraph_14-1.0.0-1PIGSTY.el10.aarch64.rpm pigsty 1.0.0 3.5MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pggraph_14-1.0.0-1PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 14 postgresql-14-pggraph postgresql-14-pggraph_1.0.0-1PIGSTY~bookworm_amd64.deb pigsty 1.0.0 3.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-14-pggraph_1.0.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 14 postgresql-14-pggraph postgresql-14-pggraph_1.0.0-1PIGSTY~bookworm_arm64.deb pigsty 1.0.0 2.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-14-pggraph_1.0.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 14 postgresql-14-pggraph postgresql-14-pggraph_1.0.0-1PIGSTY~trixie_amd64.deb pigsty 1.0.0 3.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-14-pggraph_1.0.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 14 postgresql-14-pggraph postgresql-14-pggraph_1.0.0-1PIGSTY~trixie_arm64.deb pigsty 1.0.0 2.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-14-pggraph_1.0.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 14 postgresql-14-pggraph postgresql-14-pggraph_1.0.0-1PIGSTY~jammy_amd64.deb pigsty 1.0.0 3.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-14-pggraph_1.0.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 14 postgresql-14-pggraph postgresql-14-pggraph_1.0.0-1PIGSTY~jammy_arm64.deb pigsty 1.0.0 3.1MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-14-pggraph_1.0.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 14 postgresql-14-pggraph postgresql-14-pggraph_1.0.0-1PIGSTY~noble_amd64.deb pigsty 1.0.0 3.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-14-pggraph_1.0.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 14 postgresql-14-pggraph postgresql-14-pggraph_1.0.0-1PIGSTY~noble_arm64.deb pigsty 1.0.0 3.1MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-14-pggraph_1.0.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 14 postgresql-14-pggraph postgresql-14-pggraph_1.0.0-1PIGSTY~resolute_amd64.deb pigsty 1.0.0 3.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-14-pggraph_1.0.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 14 postgresql-14-pggraph postgresql-14-pggraph_1.0.0-1PIGSTY~resolute_arm64.deb pigsty 1.0.0 3.1MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-14-pggraph_1.0.0-1PIGSTY~resolute_arm64.deb
+| el8.x86_64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 |
+| el8.aarch64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 |
+| el9.x86_64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 |
+| el9.aarch64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 |
+| el10.x86_64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 |
+| el10.aarch64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 |
+| d12.x86_64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 |
+| d12.aarch64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 |
+| d13.x86_64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 |
+| d13.aarch64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 |
+| u22.x86_64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 |
+| u22.aarch64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 |
+| u24.x86_64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 |
+| u24.aarch64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 |
+| u26.x86_64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 |
+| u26.aarch64 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 | AVAIL PIGSTY 1.2.1 1 |
+@ el8.x86_64 18 pggraph_18 pggraph_18-1.2.1-1PGSTY.el8.x86_64.rpm pigsty 1.2.1 4.3MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pggraph_18-1.2.1-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 18 pggraph_18 pggraph_18-1.2.1-1PGSTY.el8.aarch64.rpm pigsty 1.2.1 3.5MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pggraph_18-1.2.1-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 18 pggraph_18 pggraph_18-1.2.1-1PGSTY.el9.x86_64.rpm pigsty 1.2.1 4.2MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pggraph_18-1.2.1-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 18 pggraph_18 pggraph_18-1.2.1-1PGSTY.el9.aarch64.rpm pigsty 1.2.1 3.7MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pggraph_18-1.2.1-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 18 pggraph_18 pggraph_18-1.2.1-1PGSTY.el10.x86_64.rpm pigsty 1.2.1 4.2MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pggraph_18-1.2.1-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 18 pggraph_18 pggraph_18-1.2.1-1PGSTY.el10.aarch64.rpm pigsty 1.2.1 3.7MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pggraph_18-1.2.1-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-pggraph postgresql-18-pggraph_1.2.1-1PGSTY~bookworm_amd64.deb pigsty 1.2.1 3.6MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-18-pggraph_1.2.1-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-pggraph postgresql-18-pggraph_1.2.1-1PGSTY~bookworm_arm64.deb pigsty 1.2.1 3.0MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-18-pggraph_1.2.1-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-pggraph postgresql-18-pggraph_1.2.1-1PGSTY~trixie_amd64.deb pigsty 1.2.1 3.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-18-pggraph_1.2.1-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-pggraph postgresql-18-pggraph_1.2.1-1PGSTY~trixie_arm64.deb pigsty 1.2.1 3.0MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-18-pggraph_1.2.1-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-pggraph postgresql-18-pggraph_1.2.1-1PGSTY~jammy_amd64.deb pigsty 1.2.1 4.0MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-18-pggraph_1.2.1-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-pggraph postgresql-18-pggraph_1.2.1-1PGSTY~jammy_arm64.deb pigsty 1.2.1 3.5MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-18-pggraph_1.2.1-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-pggraph postgresql-18-pggraph_1.2.1-1PGSTY~noble_amd64.deb pigsty 1.2.1 3.9MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-18-pggraph_1.2.1-1PGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-pggraph postgresql-18-pggraph_1.2.1-1PGSTY~noble_arm64.deb pigsty 1.2.1 3.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-18-pggraph_1.2.1-1PGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-pggraph postgresql-18-pggraph_1.2.1-1PGSTY~resolute_amd64.deb pigsty 1.2.1 3.9MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-18-pggraph_1.2.1-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-pggraph postgresql-18-pggraph_1.2.1-1PGSTY~resolute_arm64.deb pigsty 1.2.1 3.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-18-pggraph_1.2.1-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 17 pggraph_17 pggraph_17-1.2.1-1PGSTY.el8.x86_64.rpm pigsty 1.2.1 4.3MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pggraph_17-1.2.1-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 17 pggraph_17 pggraph_17-1.2.1-1PGSTY.el8.aarch64.rpm pigsty 1.2.1 3.5MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pggraph_17-1.2.1-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 17 pggraph_17 pggraph_17-1.2.1-1PGSTY.el9.x86_64.rpm pigsty 1.2.1 4.2MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pggraph_17-1.2.1-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 17 pggraph_17 pggraph_17-1.2.1-1PGSTY.el9.aarch64.rpm pigsty 1.2.1 3.7MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pggraph_17-1.2.1-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 17 pggraph_17 pggraph_17-1.2.1-1PGSTY.el10.x86_64.rpm pigsty 1.2.1 4.2MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pggraph_17-1.2.1-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 17 pggraph_17 pggraph_17-1.2.1-1PGSTY.el10.aarch64.rpm pigsty 1.2.1 3.7MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pggraph_17-1.2.1-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-pggraph postgresql-17-pggraph_1.2.1-1PGSTY~bookworm_amd64.deb pigsty 1.2.1 3.6MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-17-pggraph_1.2.1-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-pggraph postgresql-17-pggraph_1.2.1-1PGSTY~bookworm_arm64.deb pigsty 1.2.1 3.0MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-17-pggraph_1.2.1-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-pggraph postgresql-17-pggraph_1.2.1-1PGSTY~trixie_amd64.deb pigsty 1.2.1 3.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-17-pggraph_1.2.1-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-pggraph postgresql-17-pggraph_1.2.1-1PGSTY~trixie_arm64.deb pigsty 1.2.1 3.0MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-17-pggraph_1.2.1-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-pggraph postgresql-17-pggraph_1.2.1-1PGSTY~jammy_amd64.deb pigsty 1.2.1 4.0MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-17-pggraph_1.2.1-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-pggraph postgresql-17-pggraph_1.2.1-1PGSTY~jammy_arm64.deb pigsty 1.2.1 3.5MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-17-pggraph_1.2.1-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-pggraph postgresql-17-pggraph_1.2.1-1PGSTY~noble_amd64.deb pigsty 1.2.1 3.9MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-17-pggraph_1.2.1-1PGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-pggraph postgresql-17-pggraph_1.2.1-1PGSTY~noble_arm64.deb pigsty 1.2.1 3.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-17-pggraph_1.2.1-1PGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-pggraph postgresql-17-pggraph_1.2.1-1PGSTY~resolute_amd64.deb pigsty 1.2.1 3.9MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-17-pggraph_1.2.1-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-pggraph postgresql-17-pggraph_1.2.1-1PGSTY~resolute_arm64.deb pigsty 1.2.1 3.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-17-pggraph_1.2.1-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 16 pggraph_16 pggraph_16-1.2.1-1PGSTY.el8.x86_64.rpm pigsty 1.2.1 4.3MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pggraph_16-1.2.1-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 16 pggraph_16 pggraph_16-1.2.1-1PGSTY.el8.aarch64.rpm pigsty 1.2.1 3.5MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pggraph_16-1.2.1-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 16 pggraph_16 pggraph_16-1.2.1-1PGSTY.el9.x86_64.rpm pigsty 1.2.1 4.2MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pggraph_16-1.2.1-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 16 pggraph_16 pggraph_16-1.2.1-1PGSTY.el9.aarch64.rpm pigsty 1.2.1 3.7MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pggraph_16-1.2.1-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 16 pggraph_16 pggraph_16-1.2.1-1PGSTY.el10.x86_64.rpm pigsty 1.2.1 4.2MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pggraph_16-1.2.1-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 16 pggraph_16 pggraph_16-1.2.1-1PGSTY.el10.aarch64.rpm pigsty 1.2.1 3.7MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pggraph_16-1.2.1-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-pggraph postgresql-16-pggraph_1.2.1-1PGSTY~bookworm_amd64.deb pigsty 1.2.1 3.6MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-16-pggraph_1.2.1-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 16 postgresql-16-pggraph postgresql-16-pggraph_1.2.1-1PGSTY~bookworm_arm64.deb pigsty 1.2.1 3.0MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-16-pggraph_1.2.1-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 16 postgresql-16-pggraph postgresql-16-pggraph_1.2.1-1PGSTY~trixie_amd64.deb pigsty 1.2.1 3.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-16-pggraph_1.2.1-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 16 postgresql-16-pggraph postgresql-16-pggraph_1.2.1-1PGSTY~trixie_arm64.deb pigsty 1.2.1 3.0MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-16-pggraph_1.2.1-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 16 postgresql-16-pggraph postgresql-16-pggraph_1.2.1-1PGSTY~jammy_amd64.deb pigsty 1.2.1 4.0MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-16-pggraph_1.2.1-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 16 postgresql-16-pggraph postgresql-16-pggraph_1.2.1-1PGSTY~jammy_arm64.deb pigsty 1.2.1 3.5MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-16-pggraph_1.2.1-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 16 postgresql-16-pggraph postgresql-16-pggraph_1.2.1-1PGSTY~noble_amd64.deb pigsty 1.2.1 3.9MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-16-pggraph_1.2.1-1PGSTY~noble_amd64.deb
+@ u24.aarch64 16 postgresql-16-pggraph postgresql-16-pggraph_1.2.1-1PGSTY~noble_arm64.deb pigsty 1.2.1 3.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-16-pggraph_1.2.1-1PGSTY~noble_arm64.deb
+@ u26.x86_64 16 postgresql-16-pggraph postgresql-16-pggraph_1.2.1-1PGSTY~resolute_amd64.deb pigsty 1.2.1 3.9MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-16-pggraph_1.2.1-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 16 postgresql-16-pggraph postgresql-16-pggraph_1.2.1-1PGSTY~resolute_arm64.deb pigsty 1.2.1 3.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-16-pggraph_1.2.1-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 15 pggraph_15 pggraph_15-1.2.1-1PGSTY.el8.x86_64.rpm pigsty 1.2.1 4.3MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pggraph_15-1.2.1-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 15 pggraph_15 pggraph_15-1.2.1-1PGSTY.el8.aarch64.rpm pigsty 1.2.1 3.5MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pggraph_15-1.2.1-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 15 pggraph_15 pggraph_15-1.2.1-1PGSTY.el9.x86_64.rpm pigsty 1.2.1 4.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pggraph_15-1.2.1-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 15 pggraph_15 pggraph_15-1.2.1-1PGSTY.el9.aarch64.rpm pigsty 1.2.1 3.7MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pggraph_15-1.2.1-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 15 pggraph_15 pggraph_15-1.2.1-1PGSTY.el10.x86_64.rpm pigsty 1.2.1 4.2MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pggraph_15-1.2.1-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 15 pggraph_15 pggraph_15-1.2.1-1PGSTY.el10.aarch64.rpm pigsty 1.2.1 3.7MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pggraph_15-1.2.1-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-pggraph postgresql-15-pggraph_1.2.1-1PGSTY~bookworm_amd64.deb pigsty 1.2.1 3.6MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-15-pggraph_1.2.1-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 15 postgresql-15-pggraph postgresql-15-pggraph_1.2.1-1PGSTY~bookworm_arm64.deb pigsty 1.2.1 3.0MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-15-pggraph_1.2.1-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 15 postgresql-15-pggraph postgresql-15-pggraph_1.2.1-1PGSTY~trixie_amd64.deb pigsty 1.2.1 3.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-15-pggraph_1.2.1-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 15 postgresql-15-pggraph postgresql-15-pggraph_1.2.1-1PGSTY~trixie_arm64.deb pigsty 1.2.1 3.0MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-15-pggraph_1.2.1-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 15 postgresql-15-pggraph postgresql-15-pggraph_1.2.1-1PGSTY~jammy_amd64.deb pigsty 1.2.1 3.9MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-15-pggraph_1.2.1-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 15 postgresql-15-pggraph postgresql-15-pggraph_1.2.1-1PGSTY~jammy_arm64.deb pigsty 1.2.1 3.5MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-15-pggraph_1.2.1-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 15 postgresql-15-pggraph postgresql-15-pggraph_1.2.1-1PGSTY~noble_amd64.deb pigsty 1.2.1 3.9MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-15-pggraph_1.2.1-1PGSTY~noble_amd64.deb
+@ u24.aarch64 15 postgresql-15-pggraph postgresql-15-pggraph_1.2.1-1PGSTY~noble_arm64.deb pigsty 1.2.1 3.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-15-pggraph_1.2.1-1PGSTY~noble_arm64.deb
+@ u26.x86_64 15 postgresql-15-pggraph postgresql-15-pggraph_1.2.1-1PGSTY~resolute_amd64.deb pigsty 1.2.1 3.9MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-15-pggraph_1.2.1-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 15 postgresql-15-pggraph postgresql-15-pggraph_1.2.1-1PGSTY~resolute_arm64.deb pigsty 1.2.1 3.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-15-pggraph_1.2.1-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 14 pggraph_14 pggraph_14-1.2.1-1PGSTY.el8.x86_64.rpm pigsty 1.2.1 4.3MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pggraph_14-1.2.1-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 14 pggraph_14 pggraph_14-1.2.1-1PGSTY.el8.aarch64.rpm pigsty 1.2.1 3.5MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pggraph_14-1.2.1-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 14 pggraph_14 pggraph_14-1.2.1-1PGSTY.el9.x86_64.rpm pigsty 1.2.1 4.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pggraph_14-1.2.1-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 14 pggraph_14 pggraph_14-1.2.1-1PGSTY.el9.aarch64.rpm pigsty 1.2.1 3.7MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pggraph_14-1.2.1-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 14 pggraph_14 pggraph_14-1.2.1-1PGSTY.el10.x86_64.rpm pigsty 1.2.1 4.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pggraph_14-1.2.1-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 14 pggraph_14 pggraph_14-1.2.1-1PGSTY.el10.aarch64.rpm pigsty 1.2.1 3.7MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pggraph_14-1.2.1-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-pggraph postgresql-14-pggraph_1.2.1-1PGSTY~bookworm_amd64.deb pigsty 1.2.1 3.6MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-14-pggraph_1.2.1-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 14 postgresql-14-pggraph postgresql-14-pggraph_1.2.1-1PGSTY~bookworm_arm64.deb pigsty 1.2.1 3.0MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pggraph/postgresql-14-pggraph_1.2.1-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 14 postgresql-14-pggraph postgresql-14-pggraph_1.2.1-1PGSTY~trixie_amd64.deb pigsty 1.2.1 3.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-14-pggraph_1.2.1-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 14 postgresql-14-pggraph postgresql-14-pggraph_1.2.1-1PGSTY~trixie_arm64.deb pigsty 1.2.1 3.0MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pggraph/postgresql-14-pggraph_1.2.1-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 14 postgresql-14-pggraph postgresql-14-pggraph_1.2.1-1PGSTY~jammy_amd64.deb pigsty 1.2.1 3.9MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-14-pggraph_1.2.1-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 14 postgresql-14-pggraph postgresql-14-pggraph_1.2.1-1PGSTY~jammy_arm64.deb pigsty 1.2.1 3.5MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pggraph/postgresql-14-pggraph_1.2.1-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 14 postgresql-14-pggraph postgresql-14-pggraph_1.2.1-1PGSTY~noble_amd64.deb pigsty 1.2.1 3.9MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-14-pggraph_1.2.1-1PGSTY~noble_amd64.deb
+@ u24.aarch64 14 postgresql-14-pggraph postgresql-14-pggraph_1.2.1-1PGSTY~noble_arm64.deb pigsty 1.2.1 3.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pggraph/postgresql-14-pggraph_1.2.1-1PGSTY~noble_arm64.deb
+@ u26.x86_64 14 postgresql-14-pggraph postgresql-14-pggraph_1.2.1-1PGSTY~resolute_amd64.deb pigsty 1.2.1 3.9MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-14-pggraph_1.2.1-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 14 postgresql-14-pggraph postgresql-14-pggraph_1.2.1-1PGSTY~resolute_arm64.deb pigsty 1.2.1 3.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pggraph/postgresql-14-pggraph_1.2.1-1PGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -209,18 +209,18 @@ CREATE EXTENSION graph;
 
 Sources:
 
-- [pgGraph v1.2.0 README](https://github.com/Evokoa/pgGraph/blob/v1.2.0/README.md)
-- [v1.2.0 release notes](https://github.com/Evokoa/pgGraph/releases/tag/v1.2.0)
-- [SQL API Reference](https://github.com/Evokoa/pgGraph/blob/v1.2.0/docs/user_guide/api-reference.mdx)
-- [Schema Registration](https://github.com/Evokoa/pgGraph/blob/v1.2.0/docs/user_guide/schema-registration.mdx)
-- [Administration and Security](https://github.com/Evokoa/pgGraph/blob/v1.2.0/docs/user_guide/administration-and-security.mdx)
-- [Troubleshooting](https://github.com/Evokoa/pgGraph/blob/v1.2.0/docs/user_guide/troubleshooting.mdx)
-- [Extension control file](https://github.com/Evokoa/pgGraph/blob/v1.2.0/graph/graph.control)
-- [v1.1.0 to v1.2.0 upgrade SQL](https://github.com/Evokoa/pgGraph/blob/v1.2.0/graph/sql/graph--1.1.0--1.2.0.sql)
+- [pgGraph v1.2.1 README](https://github.com/Evokoa/pgGraph/blob/v1.2.1/README.md)
+- [v1.2.1 release notes](https://github.com/Evokoa/pgGraph/releases/tag/v1.2.1)
+- [SQL API Reference](https://github.com/Evokoa/pgGraph/blob/v1.2.1/docs/user_guide/api-reference.mdx)
+- [Schema Registration](https://github.com/Evokoa/pgGraph/blob/v1.2.1/docs/user_guide/schema-registration.mdx)
+- [Administration and Security](https://github.com/Evokoa/pgGraph/blob/v1.2.1/docs/user_guide/administration-and-security.mdx)
+- [Troubleshooting](https://github.com/Evokoa/pgGraph/blob/v1.2.1/docs/user_guide/troubleshooting.mdx)
+- [Extension control file](https://github.com/Evokoa/pgGraph/blob/v1.2.1/graph/graph.control)
+- [v1.2.0 to v1.2.1 upgrade SQL](https://github.com/Evokoa/pgGraph/blob/v1.2.1/graph/sql/graph--1.2.0--1.2.1.sql)
 
 `pggraph` is the package and PGXN distribution name, but the installed PostgreSQL extension is `graph`. The extension builds derived graph artifacts from ordinary PostgreSQL tables, keeps those tables as the source of truth, and exposes graph search, traversal, shortest path, GQL-style reads, and selected mapped writes through the `graph` schema.
 
-Version 1.2.0 supports PostgreSQL 14-18, named graphs, graph-scoped grants and quotas, durable synchronization, bounded traversal and analytics, maintenance jobs, and selected GQL read/write profiles. It also removes the historical 254-label relationship-type ceiling through a bounded open-vocabulary type dictionary. It does not claim full ISO GQL, full openCypher, or a public SQL/PGQ `GRAPH_TABLE` surface. Standard PostgreSQL SQLSTATEs are paired with stable `PGxxx` details for application diagnostics.
+Version 1.2.1 supports PostgreSQL 14-18, named graphs, graph-scoped grants and quotas, durable synchronization, bounded traversal and analytics, maintenance jobs, and selected GQL read/write profiles. It also removes the historical 254-label relationship-type ceiling through a bounded open-vocabulary type dictionary. It does not claim full ISO GQL, full openCypher, or a public SQL/PGQ `GRAPH_TABLE` surface. Standard PostgreSQL SQLSTATEs are paired with stable `PGxxx` details for application diagnostics.
 
 ### Basic Graph Build
 
@@ -382,19 +382,20 @@ SELECT * FROM graph.projection_status();
 
 Graph administration covers catalog mutation, builds, sync replay, maintenance, quotas, runtime graph loading, and global analytics. Named graph privileges are `read`, `write`, `build`, and `admin`, but graph `read` is not enough by itself: hydrated reads still require `SELECT` on source tables. A selected graph tenant also scopes traversal, search, GQL, and Cypher calls unless an explicit matching tenant is supplied.
 
-### Upgrading to 1.2.0
+### Upgrading to 1.2.1
 
-The 1.1.0 to 1.2.0 catalog update is additive: it installs `graph.edge_types()` and `graph.reset(boolean)` without replacing existing function objects, owners, or explicit grants.
+Back up PostgreSQL before installing the matching 1.2.1 package. Update each database and rebuild every registered graph. Named graphs must each be selected before their rebuild:
 
 ```sql
-ALTER EXTENSION graph UPDATE TO '1.2.0';
-
-SELECT extversion
-FROM pg_extension
-WHERE extname = 'graph';
+ALTER EXTENSION graph UPDATE TO '1.2.1';
+SELECT * FROM graph.build();
+SELECT extversion FROM pg_extension WHERE extname = 'graph';
+SELECT * FROM graph.status();
 ```
 
-Existing v6 artifacts remain readable. New builds publish v7 artifacts; rebuild when the base artifact itself must represent more than 254 relationship types. In-place downgrade is unsupported because a 1.1 binary cannot read v7 artifacts. Rollback requires restoring the pre-upgrade PostgreSQL backup with the matching 1.1.0 package and rebuilding derived graph state from the restored source tables.
+This rebuild is mandatory for database-scoped file roots, catalog provenance checks, and transactional generation state. Earlier artifacts are not adopted automatically; source tables and registrations remain authoritative. Logical restores also require rebuilding. The update preserves existing SQL object identities, owners, and explicit grants. In-place binary downgrade is unsupported: restore the pre-upgrade backup with its matching older package, then rebuild derived graph state.
+
+New `graph.sync_retention()` is an administrator diagnostic for the selected graph's sync-log retention and pruning blockers. It neither prunes nor takes the writer lock. Version 1.2.1 also fixes sync replay, transaction rollback, cross-database artifact isolation, and several GQL result-correctness issues.
 
 ### Caveats
 

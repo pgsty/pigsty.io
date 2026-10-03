@@ -12,7 +12,7 @@ These extensions typically exist as shared libraries (hooks) or standalone tools
 
 | **Extension** | **Package** | **Version** | **Attr** | **Description** |
 |:-----------|:-------------|:--------:|:--------:|:---------|
-| [`pg_task`](/ext/e/pg_task) | [`pg_task`](https://github.com/RekGRpth/pg_task) | `2.1.29` | `--sL---` | execute any sql command at any specific time at background |
+| [`pg_task`](/ext/e/pg_task) | [`pg_task`](https://github.com/RekGRpth/pg_task) | `3.0.0` | `--sL---` | execute any sql command at any specific time at background |
 | [`plan_filter`](/ext/e/plan_filter) | [`pg_plan_filter`](https://github.com/pgexperts/pg_plan_filter) | `1.0.0` | `--sL---` | filter statements by their execution plans. |
 | [`pg_disorder`](/ext/e/pg_disorder) | [`pg_disorder`](https://github.com/viralpraxis/pg_disorder) | `0.1.0` | `--sL---` | Perturb unordered SELECT row order to expose order-dependent tests |
 | [`pg_relation_sql`](/ext/e/pg_relation_sql) | [`pg_relation_sql`](https://github.com/asmgit/pg_relation_sql) | `0.2.2` | `-------` | Generate inlinable SQL functions for navigating PostgreSQL foreign-key relations |
@@ -25,8 +25,8 @@ These extensions typically exist as shared libraries (hooks) or standalone tools
 | [`pg_relusage`](/ext/e/pg_relusage) | [`pg_relusage`](https://github.com/adept/pg_relusage) | `0.0.1` | `--sL---` | Log all the queries that reference a particular column |
 | [`pg_overexplain`](/ext/e/pg_overexplain) | [`pg_overexplain`](https://www.postgresql.org/docs/devel/pgoverexplain.html) | `1.0` | `c-sL---` | Allow EXPLAIN to dump even more details |
 | [`auto_explain`](/ext/e/auto_explain) | [`auto_explain`](https://www.postgresql.org/docs/current/auto-explain.html) | `-` | `c-sL---` | Provides a means for logging execution plans of slow statements automatically |
-| [`passwordcheck_cracklib`](/ext/e/passwordcheck_cracklib) | [`passwordcheck_cracklib`](https://github.com/devrimgunduz/passwordcheck_cracklib) | `3.2.0` | `--sL---` | Strengthen PostgreSQL user password checks with cracklib |
-| [`supautils`](/ext/e/supautils) | [`supautils`](https://github.com/supabase/supautils) | `3.4.3` | `--sL---` | Extension that secures a cluster on a cloud environment |
+| [`passwordcheck_cracklib`](/ext/e/passwordcheck_cracklib) | [`passwordcheck_cracklib`](https://github.com/devrimgunduz/passwordcheck_cracklib) | `3.2.1` | `--sL---` | Strengthen PostgreSQL user password checks with cracklib |
+| [`supautils`](/ext/e/supautils) | [`supautils`](https://github.com/supabase/supautils) | `3.4.4` | `--sL---` | Extension that secures a cluster on a cloud environment |
 | [`pg_oidc_validator`](/ext/e/pg_oidc_validator) | [`pg_oidc_validator`](https://github.com/percona/pg_oidc_validator) | `1.1.0` | `--sL---` | OAuth and OIDC token validator for PostgreSQL 18 |
 | [`oidc_validator`](/ext/e/oidc_validator) | [`pg_oidc_validator_rust`](https://github.com/UnAfraid/pg_oidc_validator_rust) | `0.1.0` | `--sL---` | PostgreSQL 18 OIDC bearer-token validator plugin written in Rust |
 | [`pgextwlist`](/ext/e/pgextwlist) | [`pgextwlist`](https://github.com/dimitri/pgextwlist) | `1.20` | `--sL---` | PostgreSQL Extension Whitelisting |
@@ -34,7 +34,7 @@ These extensions typically exist as shared libraries (hooks) or standalone tools
 | [`sepgsql`](/ext/e/sepgsql) | [`sepgsql`](https://www.postgresql.org/docs/current/sepgsql.html) | `-` | `c-sL---` | label-based mandatory access control (MAC) based on SELinux security policy. |
 | [`auth_delay`](/ext/e/auth_delay) | [`auth_delay`](https://www.postgresql.org/docs/current/auth-delay.html) | `-` | `c-sL---` | pause briefly before reporting authentication failure |
 | [`passwordcheck`](/ext/e/passwordcheck) | [`passwordcheck`](https://www.postgresql.org/docs/current/passwordcheck.html) | `-` | `c-sL---` | checks user passwords and reject weak password |
-| [`pg_statement_rollback`](/ext/e/pg_statement_rollback) | [`pg_statement_rollback`](https://github.com/lzlabs/pg_statement_rollback) | `1.6` | `--sL---` | Server side rollback at statement level for PostgreSQL like Oracle or DB2 |
+| [`pg_statement_rollback`](/ext/e/pg_statement_rollback) | [`pg_statement_rollback`](https://github.com/HexaCluster/pg_statement_rollback) | `1.6` | `--sL---` | Server side rollback at statement level for PostgreSQL like Oracle or DB2 |
 | [`pg_failover_slots`](/ext/e/pg_failover_slots) | [`pg_failover_slots`](https://github.com/EnterpriseDB/pg_failover_slots) | `1.2.1` | `--sL--r` | PG Failover Slots extension |
 | [`wal2json`](/ext/e/wal2json) | [`wal2json`](https://github.com/eulerto/wal2json) | `2.6` | `--s----` | Changing data capture in JSON format |
 | [`wal2mongo`](/ext/e/wal2mongo) | [`wal2mongo`](https://github.com/HighgoSoftware/wal2mongo) | `1.0.7` | `--s----` | PostgreSQL logical decoding output plugin for MongoDB |

@@ -11,10 +11,10 @@ weight: 1651
     <div class="ext-card__title">MobilityDB/MobilityDB</div>
     <div class="ext-card__desc">https://github.com/MobilityDB/MobilityDB</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/mobilitydb-1.3.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/mobilitydb-1.3.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">mobilitydb-1.3.0.tar.gz</div>
-    <div class="ext-card__desc">mobilitydb-1.3.0.tar.gz</div>
+    <div class="ext-card__title">mobilitydb-1.3.1.tar.gz</div>
+    <div class="ext-card__desc">mobilitydb-1.3.1.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 1651
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`mobilitydb`**](/ext/e/mobilitydb) | `1.3.0` | <a class="ext-badge ext-badge--cate gis" href="/ext/cate/gis">GIS</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
+| [**`mobilitydb`**](/ext/e/mobilitydb) | `1.3.1` | <a class="ext-badge ext-badge--cate gis" href="/ext/cate/gis">GIS</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -39,42 +39,45 @@ weight: 1651
 {.ext-table .ext-table--rel}
 
 
+> Pigsty 1.3.1 bundles MobilityDB DataGen; upgrading from 1.2 to 1.3 requires upstream backup/restore.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#gis) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `1.3.0` | {{< pgvers "18,17,16,15,14" >}} | `mobilitydb` | `mobilitydb` |
-| [**RPM**](/ext/rpm#gis) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.3.0` | {{< pgvers "18,17,16,15,14" >}} | `mobilitydb_$v` | `postgis36_$v` |
-| [**DEB**](/ext/deb#gis) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.3.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-mobilitydb` | `postgresql-$v-postgis-3` |
+| [**EXT**](/ext/list#gis) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.3.1` | {{< pgvers "18,17,16,15,14" >}} | `mobilitydb` | `mobilitydb` |
+| [**RPM**](/ext/rpm#gis) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.3.1` | {{< pgvers "18,17,16,15,14" >}} | `mobilitydb_$v` | `postgis36_$v` |
+| [**DEB**](/ext/deb#gis) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.3.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-mobilitydb` | `postgresql-$v-postgis-3` |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 |
-| el8.aarch64 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 |
-| el9.x86_64 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 |
-| el9.aarch64 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 |
-| el10.x86_64 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 |
-| el10.aarch64 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 | AVAIL PIGSTY 1.3.0 1 |
-| d12.x86_64 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 |
-| d12.aarch64 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 |
-| d13.x86_64 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 |
-| d13.aarch64 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 |
-| u22.x86_64 | AVAIL PIGSTY 1.3.0 1 | AVAIL PGDG 1.2.0 1 | AVAIL PGDG 1.2.0 1 | AVAIL PGDG 1.2.0 1 | AVAIL PGDG 1.2.0 1 |
-| u22.aarch64 | AVAIL PIGSTY 1.3.0 1 | AVAIL PGDG 1.2.0 1 | AVAIL PGDG 1.2.0 1 | AVAIL PGDG 1.2.0 1 | AVAIL PGDG 1.2.0 1 |
-| u24.x86_64 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 |
-| u24.aarch64 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 |
-| u26.x86_64 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 |
-| u26.aarch64 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 | AVAIL PGDG 1.3.0 3 |
+| el8.x86_64 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 |
+| el8.aarch64 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 |
+| el9.x86_64 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 |
+| el9.aarch64 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 |
+| el10.x86_64 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 |
+| el10.aarch64 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 1 |
+| d12.x86_64 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 |
+| d12.aarch64 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 |
+| d13.x86_64 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 |
+| d13.aarch64 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 |
+| u22.x86_64 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 2 | AVAIL PIGSTY 1.3.1 2 | AVAIL PIGSTY 1.3.1 2 | AVAIL PIGSTY 1.3.1 2 |
+| u22.aarch64 | AVAIL PIGSTY 1.3.1 1 | AVAIL PIGSTY 1.3.1 2 | AVAIL PIGSTY 1.3.1 2 | AVAIL PIGSTY 1.3.1 2 | AVAIL PIGSTY 1.3.1 2 |
+| u24.x86_64 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 |
+| u24.aarch64 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 |
+| u26.x86_64 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 |
+| u26.aarch64 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 | AVAIL PIGSTY 1.3.1 4 |
 {{< /pgext_matrix >}}
 
 ## Build
 
-You can build the RPM packages for `mobilitydb` using `pig build`:
+You can build the RPM / DEB packages for `mobilitydb` using `pig build`:
 
 ```bash
-pig build pkg mobilitydb         # build RPM packages
+pig build pkg mobilitydb         # build RPM / DEB packages
 ```
 
 
@@ -123,14 +126,16 @@ apt install -y postgresql-14-mobilitydb   # PG 14
 CREATE EXTENSION mobilitydb_datagen CASCADE;  -- requires: mobilitydb
 ```
 
-
-
-
 ## Usage
 
-Sources: [repository](https://github.com/MobilityDB/MobilityDB), [synthetic data generator docs](https://docs.mobilitydb.com/MobilityDB/develop/apb.html), [control file](https://github.com/MobilityDB/MobilityDB/blob/master/mobilitydb/datagen/mobilitydb_datagen.in.control), [temporal generators](https://github.com/MobilityDB/MobilityDB/blob/master/mobilitydb/datagen/temporal/random_temporal.sql), [temporal point generators](https://github.com/MobilityDB/MobilityDB/blob/master/mobilitydb/datagen/geo/random_tpoint.sql)
+Sources:
 
-`mobilitydb_datagen` provides PL/pgSQL functions for generating synthetic PostgreSQL, PostGIS, and MobilityDB values. It is mainly useful for regression data, demos, and benchmark fixtures that need random temporal values or trajectories.
+- [Version 1.3.1 data-generator manual](https://github.com/MobilityDB/MobilityDB/blob/v1.3.1/doc/data_generator.xml)
+- [Extension control file](https://github.com/MobilityDB/MobilityDB/blob/v1.3.1/mobilitydb/datagen/mobilitydb_datagen.in.control)
+- [Temporal generators](https://github.com/MobilityDB/MobilityDB/blob/v1.3.1/mobilitydb/datagen/temporal/random_temporal.sql)
+- [Temporal point generators](https://github.com/MobilityDB/MobilityDB/blob/v1.3.1/mobilitydb/datagen/geo/random_tpoint.sql)
+
+`mobilitydb_datagen` 1.3.1 provides PL/pgSQL functions for generating synthetic PostgreSQL, PostGIS, and MobilityDB values. It is mainly useful for regression data, demos, and benchmark fixtures that need random temporal values or trajectories.
 
 ```sql
 -- After the main MobilityDB extension is loaded:
@@ -190,5 +195,7 @@ FROM generate_series(1, 1000) AS vehicle_id;
 ### Caveats
 
 - The control file requires the main `mobilitydb` extension; `mobilitydb_datagen` is not standalone.
-- The package row in `db/extension.csv` lists version `1.3.0`, package `mobilitydb`, and PostgreSQL support for 14 through 18.
+- The generator is distributed with `mobilitydb` version `1.3.1`. Keep the dependency and generator files aligned; build flags and package availability determine which optional type families are present.
 - Upstream docs intentionally omit detailed parameter lists for many generator functions and point users to the SQL source files for exact signatures.
+
+The generator functions create synthetic values, not reproducible application datasets by default. Set a deliberate random seed when comparing runs, and review bounds, time zones, interpolation, and SRID for the workload.

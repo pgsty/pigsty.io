@@ -11,10 +11,10 @@ weight: 2930
     <div class="ext-card__title">rdkit/rdkit</div>
     <div class="ext-card__desc">https://github.com/rdkit/rdkit</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/rdkit_202603.6.orig.tar.xz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/rdkit_202603.6.orig.tar.xz better-enums-0.11.3-enum.h rdkit_202603.6-1PGSTY~resolute.dsc rdkit_202603.6-1PGSTY~resolute.debian.tar.xz rdkit_202303.3.orig.tar.xz rdkit_202303.3-3.pgdg120+1.dsc rdkit_202303.3-3.pgdg120+1.debian.tar.xz rdkit_202303.3-3.pgdg22.04+1.dsc rdkit_202303.3-3.pgdg22.04+1.debian.tar.xz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">rdkit_202603.6.orig.tar.xz</div>
-    <div class="ext-card__desc">rdkit_202603.6.orig.tar.xz</div>
+    <div class="ext-card__title">rdkit_202603.6.orig.tar.xz better-enums-0.11.3-enum.h rdkit_202603.6-1PGSTY~resolute.dsc rdkit_202603.6-1PGSTY~resolute.debian.tar.xz rdkit_202303.3.orig.tar.xz rdkit_202303.3-3.pgdg120+1.dsc rdkit_202303.3-3.pgdg120+1.debian.tar.xz rdkit_202303.3-3.pgdg22.04+1.dsc rdkit_202303.3-3.pgdg22.04+1.debian.tar.xz</div>
+    <div class="ext-card__desc">rdkit_202603.6.orig.tar.xz better-enums-0.11.3-enum.h rdkit_202603.6-1PGSTY~resolute.dsc rdkit_202603.6-1PGSTY~resolute.debian.tar.xz rdkit_202303.3.orig.tar.xz rdkit_202303.3-3.pgdg120+1.dsc rdkit_202303.3-3.pgdg120+1.debian.tar.xz rdkit_202303.3-3.pgdg22.04+1.dsc rdkit_202303.3-3.pgdg22.04+1.debian.tar.xz</div>
   </a>
 </div>
 
@@ -45,7 +45,7 @@ weight: 2930
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `202603.6` | {{< pgvers "18,17,16,15,14" >}} | `rdkit` | - |
+| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `202603.6` | {{< pgvers "18,17,16,15,14" >}} | `rdkit` | - |
 | [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `202603.6` | {{< pgvers "18,17,16,15,14" >}} | `rdkit_$v` | `rdkit` |
 | [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `202603.6` | {{< pgvers "17,16,15,14" >}} | `postgresql-$v-rdkit` | `librdkit1t64` |
 {.ext-table}
@@ -237,14 +237,16 @@ apt install -y postgresql-14-rdkit   # PG 14
 CREATE EXTENSION rdkit;
 ```
 
-
-
-
 ## Usage
 
-- Sources: [project README](https://github.com/rdkit/rdkit/blob/master/README.md), [cartridge docs](https://www.rdkit.org/docs/Cartridge.html), [2025.03.6 release](https://github.com/rdkit/rdkit/releases/tag/Release_2025.03.6)
+Sources:
 
-RDKit ships a PostgreSQL cartridge for cheminformatics storage, search, fingerprints, and descriptors. The cartridge docs remain the main upstream usage reference; the 2025.03.6 release notes do not call out cartridge-specific user-facing changes.
+- [Cartridge documentation](https://github.com/rdkit/rdkit/blob/Release_2026_03_6/Docs/Book/Cartridge.md)
+- [Control](https://github.com/rdkit/rdkit/blob/Release_2026_03_6/Code/PgSQL/rdkit/rdkit.control)
+- [SQL template](https://github.com/rdkit/rdkit/blob/Release_2026_03_6/Code/PgSQL/rdkit/rdkit.sql.in)
+- [Upgrade script](https://github.com/rdkit/rdkit/blob/Release_2026_03_6/Code/PgSQL/rdkit/update_sql/rdkit--4.7.0--4.8.0.sql.in)
+
+`rdkit` provides molecular types, substructure search, fingerprints and chemical descriptors. This page follows the PostgreSQL cartridge shipped in RDKit 2026.03.6.
 
 ### Create The Extension
 
@@ -289,3 +291,7 @@ The cartridge docs also expose validation and descriptor helpers such as:
 - `mol_numrings()`
 
 These functions are the main user-facing surface for SQL analytics on molecular structures.
+
+### Version and Upgrade Boundary
+
+The RDKit toolkit release 2026.03.6 contains SQL extension version `4.8.0`; these are different version namespaces. The upstream `4.7.0` to `4.8.0` SQL template changes function costs, but its `fmcs_smiles` statement has a line comment that swallows the cost clause and terminator. Do not assume an unpatched `ALTER EXTENSION rdkit UPDATE` path works: verify the installed upgrade script and test the update on a restored copy first. A packaging patch is distinct from the upstream source.

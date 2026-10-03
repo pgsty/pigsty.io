@@ -11,10 +11,10 @@ weight: 9010
     <div class="ext-card__title">documentdb/documentdb</div>
     <div class="ext-card__desc">https://github.com/documentdb/documentdb</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/documentdb-0.116-0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/documentdb-0.117-0.tar.gz intelrdfpmath-applied-2.0u3-1.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">documentdb-0.116-0.tar.gz</div>
-    <div class="ext-card__desc">documentdb-0.116-0.tar.gz</div>
+    <div class="ext-card__title">documentdb-0.117-0.tar.gz intelrdfpmath-applied-2.0u3-1.tar.gz</div>
+    <div class="ext-card__desc">documentdb-0.117-0.tar.gz intelrdfpmath-applied-2.0u3-1.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 9010
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`documentdb`**](/ext/e/documentdb) | `0.116` | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`documentdb`**](/ext/e/documentdb) | `0.117` | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -46,30 +46,30 @@ weight: 9010
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.116` | {{< pgvers "18,17,16,15" >}} | `documentdb` | - |
-| [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.116` | {{< pgvers "18,17,16,15" >}} | `documentdb_$v` | `postgresql$v-contrib`, `pg_cron_$v`, `pgvector_$v`, `rum_$v`, `postgis36_$v` |
-| [**DEB**](/ext/deb#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.116` | {{< pgvers "18,17,16,15" >}} | `postgresql-$v-documentdb` | `postgresql-$v-cron`, `postgresql-$v-pgvector`, `postgresql-$v-rum`, `postgresql-$v-postgis-3` |
+| [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.117` | {{< pgvers "18,17,16,15" >}} | `documentdb` | - |
+| [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.117` | {{< pgvers "18,17,16,15" >}} | `documentdb_$v` | `postgresql$v-contrib`, `pg_cron_$v`, `pgvector_$v`, `rum_$v`, `postgis36_$v` |
+| [**DEB**](/ext/deb#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.117` | {{< pgvers "18,17,16,15" >}} | `postgresql-$v-documentdb` | `postgresql-$v-cron`, `postgresql-$v-pgvector`, `postgresql-$v-rum`, `postgresql-$v-postgis-3` |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| el8.aarch64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| el9.x86_64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| el9.aarch64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| el10.x86_64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| el10.aarch64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| d12.x86_64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| d12.aarch64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| d13.x86_64 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | N/A PIGSTY - 0 |
-| d13.aarch64 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | N/A PIGSTY - 0 |
-| u22.x86_64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| u22.aarch64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| u24.x86_64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| u24.aarch64 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | AVAIL PIGSTY 0.114 1 | N/A PIGSTY - 0 |
-| u26.x86_64 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | N/A PIGSTY - 0 |
-| u26.aarch64 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | AVAIL PGDG 0.116 4 | N/A PIGSTY - 0 |
+| el8.x86_64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| el8.aarch64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| el9.x86_64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| el9.aarch64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| el10.x86_64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| el10.aarch64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| d12.x86_64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| d12.aarch64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| d13.x86_64 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | N/A PIGSTY - 0 |
+| d13.aarch64 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | N/A PIGSTY - 0 |
+| u22.x86_64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| u22.aarch64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| u24.x86_64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| u24.aarch64 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | AVAIL PIGSTY 0.117 1 | N/A PIGSTY - 0 |
+| u26.x86_64 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | N/A PIGSTY - 0 |
+| u26.aarch64 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | AVAIL PGDG 1.0 4 | N/A PIGSTY - 0 |
 {{< /pgext_matrix >}}
 
 ## Build
@@ -134,10 +134,10 @@ CREATE EXTENSION documentdb_core;
 
 Sources:
 
-- [DocumentDB v0.114-0 README](https://github.com/documentdb/documentdb/blob/v0.114-0/README.md)
-- [`documentdb_core` control file](https://github.com/documentdb/documentdb/blob/v0.114-0/pg_documentdb_core/documentdb_core.control)
-- [BSON SQL definitions](https://github.com/documentdb/documentdb/blob/v0.114-0/pg_documentdb_core/sql/udfs/bson_io/bson_io--latest.sql)
-- [Official preload helper](https://github.com/documentdb/documentdb/blob/v0.114-0/scripts/preload_libraries.sh)
+- [DocumentDB v0.117-0 README](https://github.com/documentdb/documentdb/blob/v0.117-0/README.md)
+- [`documentdb_core` control file](https://github.com/documentdb/documentdb/blob/v0.117-0/pg_documentdb_core/documentdb_core.control)
+- [BSON SQL definitions](https://github.com/documentdb/documentdb/blob/v0.117-0/pg_documentdb_core/sql/udfs/bson_io/bson_io--latest.sql)
+- [Official preload helper](https://github.com/documentdb/documentdb/blob/v0.117-0/scripts/preload_libraries.sh)
 
 `documentdb_core` is the low-level BSON type and operator layer used by DocumentDB. It is normally installed as a dependency of `documentdb`; by itself it does not provide collection CRUD, the MongoDB wire protocol, or the gateway.
 
@@ -189,4 +189,4 @@ Use explicit schema qualification unless `documentdb_core` is in `search_path`.
 
 BSON comparison, indexing, and numeric semantics follow DocumentDB's implementation and should not be assumed to match PostgreSQL `jsonb`. Most objects are infrastructure for `documentdb`; applications seeking collections and MongoDB commands should use the parent extension or gateway rather than building directly on internal types.
 
-Version 0.114-0 keeps `documentdb_core` aligned with the rest of the DocumentDB stack. The upstream changelog does not identify a separate end-user core API migration for this release, so no new standalone workflow is claimed.
+Use SQL extension version 0.117-0 with matching DocumentDB components. This core layer continues to supply BSON infrastructure; collection and gateway workflows belong to the parent extension.

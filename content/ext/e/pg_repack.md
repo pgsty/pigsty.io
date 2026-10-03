@@ -51,16 +51,16 @@ weight: 5010
 | el9.aarch64 | AVAIL PGDG 1.5.3 3 | AVAIL PGDG 1.5.3 4 | AVAIL PGDG 1.5.3 4 | AVAIL PGDG 1.5.3 5 | AVAIL PGDG 1.5.3 5 |
 | el10.x86_64 | AVAIL PGDG 1.5.3 3 | AVAIL PGDG 1.5.3 3 | AVAIL PGDG 1.5.3 3 | AVAIL PGDG 1.5.3 3 | AVAIL PGDG 1.5.3 3 |
 | el10.aarch64 | AVAIL PGDG 1.5.3 3 | AVAIL PGDG 1.5.3 3 | AVAIL PGDG 1.5.3 3 | AVAIL PGDG 1.5.3 3 | AVAIL PGDG 1.5.3 3 |
-| d12.x86_64 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 |
-| d12.aarch64 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 |
-| d13.x86_64 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 |
-| d13.aarch64 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 |
-| u22.x86_64 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 |
-| u22.aarch64 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 |
-| u24.x86_64 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 |
-| u24.aarch64 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 |
-| u26.x86_64 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 |
-| u26.aarch64 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 | AVAIL PGDG 1.5.3 1 |
+| d12.x86_64 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 |
+| d12.aarch64 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 |
+| d13.x86_64 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 |
+| d13.aarch64 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 |
+| u22.x86_64 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 |
+| u22.aarch64 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 |
+| u24.x86_64 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 |
+| u24.aarch64 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 |
+| u26.x86_64 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 |
+| u26.aarch64 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 | AVAIL PGDG 1.5.3 2 |
 @ el8.x86_64 18 pg_repack_18 pg_repack_18-1.5.3-1PGDG.rhel8.x86_64.rpm pgdg 1.5.3 76.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pg_repack_18-1.5.3-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 18 pg_repack_18 pg_repack_18-1.5.2-5PGDG.rhel8.x86_64.rpm pgdg 1.5.2 75.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pg_repack_18-1.5.2-5PGDG.rhel8.x86_64.rpm
 @ el8.aarch64 18 pg_repack_18 pg_repack_18-1.5.3-1PGDG.rhel8.aarch64.rpm pgdg 1.5.3 75.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pg_repack_18-1.5.3-1PGDG.rhel8.aarch64.rpm
@@ -77,15 +77,25 @@ weight: 5010
 @ el10.aarch64 18 pg_repack_18 pg_repack_18-1.5.3-3PGDG.rhel10.2.aarch64.rpm pgdg 1.5.3 67.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_repack_18-1.5.3-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 pg_repack_18 pg_repack_18-1.5.3-1PGDG.rhel10.aarch64.rpm pgdg 1.5.3 67.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_repack_18-1.5.3-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 18 pg_repack_18 pg_repack_18-1.5.2-5PGDG.rhel10.aarch64.rpm pgdg 1.5.2 67.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_repack_18-1.5.2-5PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg12+2_amd64.deb pgdg 1.5.3 102.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg12+2_amd64.deb
 @ d12.x86_64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg12+1_amd64.deb pgdg 1.5.3 101.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg12+1_amd64.deb
+@ d12.aarch64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg12+2_arm64.deb pgdg 1.5.3 99.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg12+2_arm64.deb
 @ d12.aarch64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg12+1_arm64.deb pgdg 1.5.3 99.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg12+1_arm64.deb
+@ d13.x86_64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg13+2_amd64.deb pgdg 1.5.3 102.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg13+2_amd64.deb
 @ d13.x86_64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg13+1_amd64.deb pgdg 1.5.3 102.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg13+1_amd64.deb
+@ d13.aarch64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg13+2_arm64.deb pgdg 1.5.3 100.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg13+2_arm64.deb
 @ d13.aarch64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg13+1_arm64.deb pgdg 1.5.3 100.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg13+1_arm64.deb
+@ u22.x86_64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg22.04+2_amd64.deb pgdg 1.5.3 101.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg22.04+1_amd64.deb pgdg 1.5.3 100.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg22.04+2_arm64.deb pgdg 1.5.3 98.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg22.04+1_arm64.deb pgdg 1.5.3 97.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg24.04+2_amd64.deb pgdg 1.5.3 99.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg24.04+1_amd64.deb pgdg 1.5.3 98.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg24.04+2_arm64.deb pgdg 1.5.3 97.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg24.04+1_arm64.deb pgdg 1.5.3 96.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg26.04+2_amd64.deb pgdg 1.5.3 99.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg26.04+1_amd64.deb pgdg 1.5.3 99.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg26.04+2_arm64.deb pgdg 1.5.3 97.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 18 postgresql-18-repack postgresql-18-repack_1.5.3-1.pgdg26.04+1_arm64.deb pgdg 1.5.3 97.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-18-repack_1.5.3-1.pgdg26.04+1_arm64.deb
 @ el8.x86_64 17 pg_repack_17 pg_repack_17-1.5.3-1PGDG.rhel8.x86_64.rpm pgdg 1.5.3 76.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pg_repack_17-1.5.3-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 17 pg_repack_17 pg_repack_17-1.5.2-1PGDG.rhel8.x86_64.rpm pgdg 1.5.2 75.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pg_repack_17-1.5.2-1PGDG.rhel8.x86_64.rpm
@@ -107,15 +117,25 @@ weight: 5010
 @ el10.aarch64 17 pg_repack_17 pg_repack_17-1.5.3-3PGDG.rhel10.2.aarch64.rpm pgdg 1.5.3 67.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_repack_17-1.5.3-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 pg_repack_17 pg_repack_17-1.5.3-1PGDG.rhel10.aarch64.rpm pgdg 1.5.3 67.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_repack_17-1.5.3-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 17 pg_repack_17 pg_repack_17-1.5.2-4PGDG.rhel10.aarch64.rpm pgdg 1.5.2 67.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_repack_17-1.5.2-4PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg12+2_amd64.deb pgdg 1.5.3 102.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg12+2_amd64.deb
 @ d12.x86_64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg12+1_amd64.deb pgdg 1.5.3 101.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg12+1_amd64.deb
+@ d12.aarch64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg12+2_arm64.deb pgdg 1.5.3 99.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg12+2_arm64.deb
 @ d12.aarch64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg12+1_arm64.deb pgdg 1.5.3 99.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg12+1_arm64.deb
+@ d13.x86_64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg13+2_amd64.deb pgdg 1.5.3 102.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg13+2_amd64.deb
 @ d13.x86_64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg13+1_amd64.deb pgdg 1.5.3 102.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg13+1_amd64.deb
+@ d13.aarch64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg13+2_arm64.deb pgdg 1.5.3 100.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg13+2_arm64.deb
 @ d13.aarch64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg13+1_arm64.deb pgdg 1.5.3 100.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg13+1_arm64.deb
+@ u22.x86_64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg22.04+2_amd64.deb pgdg 1.5.3 106.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg22.04+1_amd64.deb pgdg 1.5.3 106.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg22.04+2_arm64.deb pgdg 1.5.3 103.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg22.04+1_arm64.deb pgdg 1.5.3 102.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg24.04+2_amd64.deb pgdg 1.5.3 99.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg24.04+1_amd64.deb pgdg 1.5.3 99.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg24.04+2_arm64.deb pgdg 1.5.3 97.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg24.04+1_arm64.deb pgdg 1.5.3 96.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg26.04+2_amd64.deb pgdg 1.5.3 99.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg26.04+1_amd64.deb pgdg 1.5.3 99.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg26.04+2_arm64.deb pgdg 1.5.3 97.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 17 postgresql-17-repack postgresql-17-repack_1.5.3-1.pgdg26.04+1_arm64.deb pgdg 1.5.3 97.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-17-repack_1.5.3-1.pgdg26.04+1_arm64.deb
 @ el8.x86_64 16 pg_repack_16 pg_repack_16-1.5.3-1PGDG.rhel8.x86_64.rpm pgdg 1.5.3 76.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_repack_16-1.5.3-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 16 pg_repack_16 pg_repack_16-1.5.2-1PGDG.rhel8.x86_64.rpm pgdg 1.5.2 75.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_repack_16-1.5.2-1PGDG.rhel8.x86_64.rpm
@@ -137,15 +157,25 @@ weight: 5010
 @ el10.aarch64 16 pg_repack_16 pg_repack_16-1.5.3-3PGDG.rhel10.2.aarch64.rpm pgdg 1.5.3 67.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_repack_16-1.5.3-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 pg_repack_16 pg_repack_16-1.5.3-1PGDG.rhel10.aarch64.rpm pgdg 1.5.3 67.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_repack_16-1.5.3-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 16 pg_repack_16 pg_repack_16-1.5.2-4PGDG.rhel10.aarch64.rpm pgdg 1.5.2 67.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_repack_16-1.5.2-4PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg12+2_amd64.deb pgdg 1.5.3 102.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg12+2_amd64.deb
 @ d12.x86_64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg12+1_amd64.deb pgdg 1.5.3 102.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg12+1_amd64.deb
+@ d12.aarch64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg12+2_arm64.deb pgdg 1.5.3 100.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg12+2_arm64.deb
 @ d12.aarch64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg12+1_arm64.deb pgdg 1.5.3 99.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg12+1_arm64.deb
+@ d13.x86_64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg13+2_amd64.deb pgdg 1.5.3 103.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg13+2_amd64.deb
 @ d13.x86_64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg13+1_amd64.deb pgdg 1.5.3 102.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg13+1_amd64.deb
+@ d13.aarch64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg13+2_arm64.deb pgdg 1.5.3 101.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg13+2_arm64.deb
 @ d13.aarch64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg13+1_arm64.deb pgdg 1.5.3 100.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg13+1_arm64.deb
+@ u22.x86_64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg22.04+2_amd64.deb pgdg 1.5.3 106.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg22.04+1_amd64.deb pgdg 1.5.3 105.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg22.04+2_arm64.deb pgdg 1.5.3 102.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg22.04+1_arm64.deb pgdg 1.5.3 102.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg24.04+2_amd64.deb pgdg 1.5.3 99.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg24.04+1_amd64.deb pgdg 1.5.3 99.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg24.04+2_arm64.deb pgdg 1.5.3 97.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg24.04+1_arm64.deb pgdg 1.5.3 97.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg26.04+2_amd64.deb pgdg 1.5.3 99.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg26.04+1_amd64.deb pgdg 1.5.3 99.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg26.04+2_arm64.deb pgdg 1.5.3 97.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 16 postgresql-16-repack postgresql-16-repack_1.5.3-1.pgdg26.04+1_arm64.deb pgdg 1.5.3 97.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-16-repack_1.5.3-1.pgdg26.04+1_arm64.deb
 @ el8.x86_64 15 pg_repack_15 pg_repack_15-1.5.3-1PGDG.rhel8.x86_64.rpm pgdg 1.5.3 76.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_repack_15-1.5.3-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 15 pg_repack_15 pg_repack_15-1.5.2-1PGDG.rhel8.x86_64.rpm pgdg 1.5.2 75.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_repack_15-1.5.2-1PGDG.rhel8.x86_64.rpm
@@ -171,15 +201,25 @@ weight: 5010
 @ el10.aarch64 15 pg_repack_15 pg_repack_15-1.5.3-3PGDG.rhel10.2.aarch64.rpm pgdg 1.5.3 68.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_repack_15-1.5.3-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 pg_repack_15 pg_repack_15-1.5.3-1PGDG.rhel10.aarch64.rpm pgdg 1.5.3 68.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_repack_15-1.5.3-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 15 pg_repack_15 pg_repack_15-1.5.2-4PGDG.rhel10.aarch64.rpm pgdg 1.5.2 67.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_repack_15-1.5.2-4PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg12+2_amd64.deb pgdg 1.5.3 102.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg12+2_amd64.deb
 @ d12.x86_64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg12+1_amd64.deb pgdg 1.5.3 102.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg12+1_amd64.deb
+@ d12.aarch64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg12+2_arm64.deb pgdg 1.5.3 100.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg12+2_arm64.deb
 @ d12.aarch64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg12+1_arm64.deb pgdg 1.5.3 99.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg12+1_arm64.deb
+@ d13.x86_64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg13+2_amd64.deb pgdg 1.5.3 103.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg13+2_amd64.deb
 @ d13.x86_64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg13+1_amd64.deb pgdg 1.5.3 102.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg13+1_amd64.deb
+@ d13.aarch64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg13+2_arm64.deb pgdg 1.5.3 101.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg13+2_arm64.deb
 @ d13.aarch64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg13+1_arm64.deb pgdg 1.5.3 100.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg13+1_arm64.deb
+@ u22.x86_64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg22.04+2_amd64.deb pgdg 1.5.3 106.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg22.04+1_amd64.deb pgdg 1.5.3 105.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg22.04+2_arm64.deb pgdg 1.5.3 103.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg22.04+1_arm64.deb pgdg 1.5.3 102.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg24.04+2_amd64.deb pgdg 1.5.3 100.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg24.04+1_amd64.deb pgdg 1.5.3 99.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg24.04+2_arm64.deb pgdg 1.5.3 97.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg24.04+1_arm64.deb pgdg 1.5.3 97.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg26.04+2_amd64.deb pgdg 1.5.3 100.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg26.04+1_amd64.deb pgdg 1.5.3 99.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg26.04+2_arm64.deb pgdg 1.5.3 97.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 15 postgresql-15-repack postgresql-15-repack_1.5.3-1.pgdg26.04+1_arm64.deb pgdg 1.5.3 97.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-15-repack_1.5.3-1.pgdg26.04+1_arm64.deb
 @ el8.x86_64 14 pg_repack_14 pg_repack_14-1.5.3-1PGDG.rhel8.x86_64.rpm pgdg 1.5.3 75.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_repack_14-1.5.3-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 14 pg_repack_14 pg_repack_14-1.5.2-1PGDG.rhel8.x86_64.rpm pgdg 1.5.2 73.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_repack_14-1.5.2-1PGDG.rhel8.x86_64.rpm
@@ -207,15 +247,25 @@ weight: 5010
 @ el10.aarch64 14 pg_repack_14 pg_repack_14-1.5.3-3PGDG.rhel10.2.aarch64.rpm pgdg 1.5.3 67.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_repack_14-1.5.3-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 pg_repack_14 pg_repack_14-1.5.3-1PGDG.rhel10.aarch64.rpm pgdg 1.5.3 67.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_repack_14-1.5.3-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 14 pg_repack_14 pg_repack_14-1.5.2-4PGDG.rhel10.aarch64.rpm pgdg 1.5.2 66.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_repack_14-1.5.2-4PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg12+2_amd64.deb pgdg 1.5.3 102.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg12+2_amd64.deb
 @ d12.x86_64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg12+1_amd64.deb pgdg 1.5.3 101.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg12+1_amd64.deb
+@ d12.aarch64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg12+2_arm64.deb pgdg 1.5.3 100.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg12+2_arm64.deb
 @ d12.aarch64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg12+1_arm64.deb pgdg 1.5.3 99.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg12+1_arm64.deb
+@ d13.x86_64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg13+2_amd64.deb pgdg 1.5.3 102.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg13+2_amd64.deb
 @ d13.x86_64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg13+1_amd64.deb pgdg 1.5.3 101.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg13+1_amd64.deb
+@ d13.aarch64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg13+2_arm64.deb pgdg 1.5.3 100.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg13+2_arm64.deb
 @ d13.aarch64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg13+1_arm64.deb pgdg 1.5.3 100.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg13+1_arm64.deb
+@ u22.x86_64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg22.04+2_amd64.deb pgdg 1.5.3 104.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg22.04+1_amd64.deb pgdg 1.5.3 104.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg22.04+2_arm64.deb pgdg 1.5.3 101.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg22.04+1_arm64.deb pgdg 1.5.3 101.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg24.04+2_amd64.deb pgdg 1.5.3 99.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg24.04+1_amd64.deb pgdg 1.5.3 99.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg24.04+2_arm64.deb pgdg 1.5.3 97.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg24.04+1_arm64.deb pgdg 1.5.3 96.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg26.04+2_amd64.deb pgdg 1.5.3 99.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg26.04+1_amd64.deb pgdg 1.5.3 98.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg26.04+2_arm64.deb pgdg 1.5.3 97.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 14 postgresql-14-repack postgresql-14-repack_1.5.3-1.pgdg26.04+1_arm64.deb pgdg 1.5.3 97.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-repack/postgresql-14-repack_1.5.3-1.pgdg26.04+1_arm64.deb
 {{< /pgext_matrix >}}
 
@@ -271,7 +321,7 @@ CREATE EXTENSION pg_repack;
 ## About
 
 - GitHub Repo: [`reorg/pg_repack`](https://github.com/reorg/pg_repack)
-- [**HomePage**](https://reorg.github.io/pg_repack/)
+- [**HomePage**](https://reorg.github.io/pg_repack/) 
 
 pg_repack is a PostgreSQL extension which lets you remove bloat from
 tables and indexes, and optionally restore the physical order of clustered
@@ -361,13 +411,13 @@ version.
 
 ## Usage
 
-```text
+```
 pg_repack [OPTION]... [DBNAME]
 ```
 
 The following options can be specified in `OPTIONS`.
 
-```text
+```
 Options:
   -a, --all                          repack all databases
   -t, --table=TABLE                  repack specific table only

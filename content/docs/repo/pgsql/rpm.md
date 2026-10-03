@@ -9,6 +9,46 @@ categories: [Reference]
 
 ------
 
+## 2026-09-24
+
+| Name | Old | New | Comment |
+|:---|:---|:---|:---|
+| biscuit | 3.0.0 | 3.1.0 | PG16-18 |
+| ddlx | 0.30 | 0.31 | PG14-18; SQL-only |
+| documentdb | 0.114 | 0.117 | PG15-18 |
+| ivorysql-18 | 5.4 | 5.6 | PG18.6 kernel |
+| jev | - | 0.2.0 | PG14-17; PL/Python, TypeSafe |
+| kafgres | - | 0.1.0 | PG16; Kafka broker; ELv2 |
+| log_fdw | 1.4 | 1.5 | PG14-18 |
+| macavity | - | 0.1.0 | PG16-18; testing only |
+| nominatim_fdw | 2.1.0 | 2.2.0 | PG14-18; SQL 2.2 |
+| pg_circuit | - | 0.1.0 | PG16-18; preload |
+| pg_curl | 2.4.5 | 2.4.6 | PG14-18; SQL 2.4.1 |
+| pg_durable | 0.2.3 | 0.2.8 | PG14-18 |
+| pg_fts | 0.2.0 | 1.8.3 | PG17-18 |
+| pg_grammar_guard | - | 0.4.1 | PG14-18; requires pg_living_assertions |
+| pg_lake | 3.4.0 | 3.5.1 | PG16-18; SQL 3.5; EL9/10 |
+| pg_living_assertions | - | 0.4.2 | PG14-18; SQL 0.4.1 |
+| pg_local_cache | 1.3.0 | 2.0.4 | PG14-18; preload |
+| pg_profile | 4.11 | 4.16 | PG14-18; SQL-only |
+| pg_search | 0.25.2 | 0.25.9 | PG15-18; preload |
+| pg_stat_monitor | 2.3.2 | 2.4.0 | PG14-18; preload |
+| pg_task | 2.1.29 | 3.0.0 | PG14-18; preload |
+| pg_trickle | 0.81.0 | 0.107.0 | PG18; V2 migration required |
+| pg_vault_tde | 1.7.0 | 1.7.1 | PG17-18; export before upgrade; EL9/10 |
+| pgmq | 1.12.0 | 1.13.0 | PG14-18; SQL-only |
+| pgrdf | 0.6.20 | 0.6.36 | PG14-18 |
+| plpgsql_check | 2.10.4 | 2.10.10 | PG14-18 |
+| plprql | 18.0.1 | 18.0.2 | PG14-18 |
+| psql_bm25s | 0.4.13 | 0.4.14 | PG17-18 |
+| timescaledb | 2.29.1 | 2.30.1 | PG16-18; TSL |
+| ulak | 0.0.2 | 0.2.0 | PG14-18; preload |
+| vectorize | 0.26.2 | 0.27.1 | PG14-18; SQL 0.23.0; multi-row fix |
+| wrappers | 0.6.2 | 0.6.3 | PG14-18 |
+{.stretch-last}
+
+------
+
 ## 2026-08-14
 
 This batch adds `pg_relation_sql`, upgrades `pg_oidc_validator` and `pg_when`, and rebuilds existing packages after correcting license metadata. `pg_relation_sql` is standalone SQL and does not support `CREATE EXTENSION`.

@@ -11,10 +11,10 @@ weight: 2566
     <div class="ext-card__title">main/pg_lake_table</div>
     <div class="ext-card__desc">https://github.com/Snowflake-Labs/pg_lake/tree/main/pg_lake_table</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_lake-3.4.4.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_lake-3.5.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_lake-3.4.4.tar.gz</div>
-    <div class="ext-card__desc">pg_lake-3.4.4.tar.gz</div>
+    <div class="ext-card__title">pg_lake-3.5.3.tar.gz</div>
+    <div class="ext-card__desc">pg_lake-3.5.3.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2566
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_lake`**](/ext/e/pg_lake) | `3.4` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_lake`**](/ext/e/pg_lake) | `3.5` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -46,16 +46,16 @@ weight: 2566
 {.ext-table .ext-table--rel}
 
 
-> Lake table component. Package 3.4.4; SQL 3.4.
+> Lake table component. Package 3.5.3; SQL 3.5.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.4` | {{< pgvers "18,17,16" >}} | `pg_lake` | `btree_gist`, `pg_lake_engine`, `pg_lake_iceberg` |
-| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.4.4` | {{< pgvers "18,17,16" >}} | `pg_lake_$v` | - |
-| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.4.4` | {{< pgvers "18,17,16" >}} | `postgresql-$v-pg-lake` | - |
+| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.5` | {{< pgvers "18,17,16" >}} | `pg_lake` | `btree_gist`, `pg_lake_engine`, `pg_lake_iceberg` |
+| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.5.3` | {{< pgvers "18,17,16" >}} | `pg_lake_$v` | - |
+| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.5.3` | {{< pgvers "18,17,16" >}} | `postgresql-$v-pg-lake` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -63,20 +63,20 @@ weight: 2566
 |:--:|:--:|:--:|:--:|:--:|:--:|
 | el8.x86_64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 | el8.aarch64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.x86_64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.aarch64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.x86_64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.aarch64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d12.x86_64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d12.aarch64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d13.x86_64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d13.aarch64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u22.x86_64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u22.aarch64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u24.x86_64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u24.aarch64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u26.x86_64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u26.aarch64 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | AVAIL PIGSTY 3.4.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d12.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d12.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d13.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d13.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u22.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u22.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u24.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u24.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u26.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 {{< /pgext_matrix >}}
 
 ## Build
@@ -138,12 +138,16 @@ CREATE EXTENSION pg_lake_table CASCADE;  -- requires: btree_gist, pg_lake_engine
 
 Sources:
 
-- [Official data-lake file query guide](https://github.com/Snowflake-Labs/pg_lake/blob/44134cc33fb152716e10752d0a345c6e1acb8725/docs/query-data-lake-files.md)
-- [Official Iceberg table guide](https://github.com/Snowflake-Labs/pg_lake/blob/44134cc33fb152716e10752d0a345c6e1acb8725/docs/iceberg-tables.md)
-- [Version 3.4 control file](https://github.com/Snowflake-Labs/pg_lake/blob/44134cc33fb152716e10752d0a345c6e1acb8725/pg_lake_table/pg_lake_table.control)
-- [FDW, server, utility, and access-method SQL](https://github.com/Snowflake-Labs/pg_lake/blob/44134cc33fb152716e10752d0a345c6e1acb8725/pg_lake_table/pg_lake_table--3.0.sql)
+- [Official data-lake file query guide](https://github.com/Snowflake-Labs/pg_lake/blob/v3.5.3/docs/query-data-lake-files.md)
+- [Official Iceberg table guide](https://github.com/Snowflake-Labs/pg_lake/blob/v3.5.3/docs/iceberg-tables.md)
+- [Version 3.5 control file](https://github.com/Snowflake-Labs/pg_lake/blob/v3.5.3/pg_lake_table/pg_lake_table.control)
+- [3.4 to 3.5 catalog indexes](https://github.com/Snowflake-Labs/pg_lake/blob/v3.5.3/pg_lake_table/pg_lake_table--3.4--3.5.sql)
+- [FDW, server, utility, and access-method SQL](https://github.com/Snowflake-Labs/pg_lake/blob/v3.5.3/pg_lake_table/pg_lake_table--3.0.sql)
 
 `pg_lake_table` exposes object-store files as PostgreSQL foreign tables and provides the `USING iceberg` table syntax. It owns the `pg_lake` and `pg_lake_iceberg` foreign servers, file inspection/cache utilities, table catalogs, and transaction hooks; Iceberg metadata encoding is delegated to `pg_lake_iceberg`.
+
+
+The pg_lake release and package version is `3.5.3`; the SQL extension version is `3.5`. Keep the libraries and query server from the same release.
 
 ### Query External Files
 
@@ -201,3 +205,5 @@ FROM lake_file.preview('s3://analytics-bucket/events/sample.parquet');
 - External tables are references to files, not imported copies. File replacement, cross-region access, and cache invalidation can change latency or results independently of PostgreSQL catalog state.
 - Iceberg inserts are optimized for batches rather than single rows. Use a staging heap table for high-rate row-at-a-time ingestion and periodically flush batches.
 - Internal `lake_table.*` catalogs track files, field IDs, partitions, and recovery state. Do not modify them directly.
+
+Version `3.5` adds indexes to file-deletion mappings, column statistics, and partition-value catalogs to avoid repeated child-catalog scans during bulk removal. Apply the SQL migration as well as installing the new library.

@@ -20,7 +20,7 @@ weight: 6050
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_stat_plans`**](/ext/e/pg_stat_plans) | `2.1.0` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_stat_plans`**](/ext/e/pg_stat_plans) | `2.1.1` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -37,9 +37,9 @@ weight: 6050
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#stat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `2.1.0` | {{< pgvers "18,17,16" >}} | `pg_stat_plans` | - |
+| [**EXT**](/ext/list#stat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `2.1.1` | {{< pgvers "18,17,16" >}} | `pg_stat_plans` | - |
 | [**RPM**](/ext/rpm#stat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `2.1.0` | {{< pgvers "18,17,16" >}} | `pg_stat_plans_$v` | - |
-| [**DEB**](/ext/deb#stat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `2.1.0` | {{< pgvers "18,17,16" >}} | `postgresql-$v-pg-stat-plans` | - |
+| [**DEB**](/ext/deb#stat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `2.1.1` | {{< pgvers "18,17,16" >}} | `postgresql-$v-pg-stat-plans` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -51,16 +51,16 @@ weight: 6050
 | el9.aarch64 | AVAIL PGDG 2.1.0 3 | AVAIL PGDG 2.1.0 3 | AVAIL PGDG 2.1.0 3 | N/A PGDG - 0 | N/A PGDG - 0 |
 | el10.x86_64 | AVAIL PGDG 2.1.0 3 | AVAIL PGDG 2.1.0 3 | AVAIL PGDG 2.1.0 3 | N/A PGDG - 0 | N/A PGDG - 0 |
 | el10.aarch64 | AVAIL PGDG 2.1.0 3 | AVAIL PGDG 2.1.0 3 | AVAIL PGDG 2.1.0 3 | N/A PGDG - 0 | N/A PGDG - 0 |
-| d12.x86_64 | AVAIL PGDG 2.1.0 2 | AVAIL PGDG 2.1.0 1 | AVAIL PGDG 2.1.0 1 | N/A PGDG - 0 | N/A PGDG - 0 |
-| d12.aarch64 | AVAIL PGDG 2.1.0 2 | AVAIL PGDG 2.1.0 1 | AVAIL PGDG 2.1.0 1 | N/A PGDG - 0 | N/A PGDG - 0 |
-| d13.x86_64 | AVAIL PGDG 2.1.0 2 | AVAIL PGDG 2.1.0 1 | AVAIL PGDG 2.1.0 1 | N/A PGDG - 0 | N/A PGDG - 0 |
-| d13.aarch64 | AVAIL PGDG 2.1.0 2 | AVAIL PGDG 2.1.0 1 | AVAIL PGDG 2.1.0 1 | N/A PGDG - 0 | N/A PGDG - 0 |
-| u22.x86_64 | AVAIL PGDG 2.1.0 2 | AVAIL PGDG 2.1.0 1 | AVAIL PGDG 2.1.0 1 | N/A PGDG - 0 | N/A PGDG - 0 |
-| u22.aarch64 | AVAIL PGDG 2.1.0 2 | AVAIL PGDG 2.1.0 1 | AVAIL PGDG 2.1.0 1 | N/A PGDG - 0 | N/A PGDG - 0 |
-| u24.x86_64 | AVAIL PGDG 2.1.0 2 | AVAIL PGDG 2.1.0 1 | AVAIL PGDG 2.1.0 1 | N/A PGDG - 0 | N/A PGDG - 0 |
-| u24.aarch64 | AVAIL PGDG 2.1.0 2 | AVAIL PGDG 2.1.0 1 | AVAIL PGDG 2.1.0 1 | N/A PGDG - 0 | N/A PGDG - 0 |
-| u26.x86_64 | AVAIL PGDG 2.1.0 2 | AVAIL PGDG 2.1.0 1 | AVAIL PGDG 2.1.0 1 | N/A PGDG - 0 | N/A PGDG - 0 |
-| u26.aarch64 | AVAIL PGDG 2.1.0 2 | AVAIL PGDG 2.1.0 1 | AVAIL PGDG 2.1.0 1 | N/A PGDG - 0 | N/A PGDG - 0 |
+| d12.x86_64 | AVAIL PGDG 2.1.1 3 | AVAIL PGDG 2.1.1 2 | AVAIL PGDG 2.1.1 2 | N/A PGDG - 0 | N/A PGDG - 0 |
+| d12.aarch64 | AVAIL PGDG 2.1.1 3 | AVAIL PGDG 2.1.1 2 | AVAIL PGDG 2.1.1 2 | N/A PGDG - 0 | N/A PGDG - 0 |
+| d13.x86_64 | AVAIL PGDG 2.1.1 3 | AVAIL PGDG 2.1.1 2 | AVAIL PGDG 2.1.1 2 | N/A PGDG - 0 | N/A PGDG - 0 |
+| d13.aarch64 | AVAIL PGDG 2.1.1 3 | AVAIL PGDG 2.1.1 2 | AVAIL PGDG 2.1.1 2 | N/A PGDG - 0 | N/A PGDG - 0 |
+| u22.x86_64 | AVAIL PGDG 2.1.1 3 | AVAIL PGDG 2.1.1 2 | AVAIL PGDG 2.1.1 2 | N/A PGDG - 0 | N/A PGDG - 0 |
+| u22.aarch64 | AVAIL PGDG 2.1.1 3 | AVAIL PGDG 2.1.1 2 | AVAIL PGDG 2.1.1 2 | N/A PGDG - 0 | N/A PGDG - 0 |
+| u24.x86_64 | AVAIL PGDG 2.1.1 3 | AVAIL PGDG 2.1.1 2 | AVAIL PGDG 2.1.1 2 | N/A PGDG - 0 | N/A PGDG - 0 |
+| u24.aarch64 | AVAIL PGDG 2.1.1 3 | AVAIL PGDG 2.1.1 2 | AVAIL PGDG 2.1.1 2 | N/A PGDG - 0 | N/A PGDG - 0 |
+| u26.x86_64 | AVAIL PGDG 2.1.1 3 | AVAIL PGDG 2.1.1 2 | AVAIL PGDG 2.1.1 2 | N/A PGDG - 0 | N/A PGDG - 0 |
+| u26.aarch64 | AVAIL PGDG 2.1.1 3 | AVAIL PGDG 2.1.1 2 | AVAIL PGDG 2.1.1 2 | N/A PGDG - 0 | N/A PGDG - 0 |
 @ el8.x86_64 18 pg_stat_plans_18 pg_stat_plans_18-2.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 2.1.0 44.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pg_stat_plans_18-2.1.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.aarch64 18 pg_stat_plans_18 pg_stat_plans_18-2.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 2.1.0 42.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pg_stat_plans_18-2.1.0-1PGDG.rhel8.10.aarch64.rpm
 @ el9.x86_64 18 pg_stat_plans_18 pg_stat_plans_18-2.1.0-1PGDG.rhel9.8.x86_64.rpm pgdg 2.1.0 42.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pg_stat_plans_18-2.1.0-1PGDG.rhel9.8.x86_64.rpm
@@ -75,24 +75,34 @@ weight: 6050
 @ el10.aarch64 18 pg_stat_plans_18 pg_stat_plans_18-2.1.0-1PGDG.rhel10.2.aarch64.rpm pgdg 2.1.0 42.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_stat_plans_18-2.1.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 pg_stat_plans_18 pg_stat_plans_18-2.1.0-1PGDG.rhel10.1.aarch64.rpm pgdg 2.1.0 42.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_stat_plans_18-2.1.0-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 18 pg_stat_plans_18 pg_stat_plans_18-2.1.0-1PGDG.rhel10.0.aarch64.rpm pgdg 2.1.0 42.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_stat_plans_18-2.1.0-1PGDG.rhel10.0.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.1-1.pgdg12+1_amd64.deb pgdg 2.1.1 85.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.1-1.pgdg12+1_amd64.deb
 @ d12.x86_64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.0-1.pgdg12+1_amd64.deb pgdg 2.1.0 85.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.0-1.pgdg12+1_amd64.deb
 @ d12.x86_64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.0.0-1.pgdg12+1_amd64.deb pgdg 2.0.0 81.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.0.0-1.pgdg12+1_amd64.deb
+@ d12.aarch64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.1-1.pgdg12+1_arm64.deb pgdg 2.1.1 83.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.1-1.pgdg12+1_arm64.deb
 @ d12.aarch64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.0-1.pgdg12+1_arm64.deb pgdg 2.1.0 83.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.0-1.pgdg12+1_arm64.deb
 @ d12.aarch64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.0.0-1.pgdg12+1_arm64.deb pgdg 2.0.0 79.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.0.0-1.pgdg12+1_arm64.deb
+@ d13.x86_64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.1-1.pgdg13+1_amd64.deb pgdg 2.1.1 86.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.1-1.pgdg13+1_amd64.deb
 @ d13.x86_64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.0-1.pgdg13+1_amd64.deb pgdg 2.1.0 85.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.0-1.pgdg13+1_amd64.deb
 @ d13.x86_64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.0.0-1.pgdg13+1_amd64.deb pgdg 2.0.0 81.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.0.0-1.pgdg13+1_amd64.deb
+@ d13.aarch64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.1-1.pgdg13+1_arm64.deb pgdg 2.1.1 83.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.1-1.pgdg13+1_arm64.deb
 @ d13.aarch64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.0-1.pgdg13+1_arm64.deb pgdg 2.1.0 83.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.0-1.pgdg13+1_arm64.deb
 @ d13.aarch64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.0.0-1.pgdg13+1_arm64.deb pgdg 2.0.0 79.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.0.0-1.pgdg13+1_arm64.deb
+@ u22.x86_64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.1-1.pgdg22.04+1_amd64.deb pgdg 2.1.1 89.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.1-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.0-1.pgdg22.04+1_amd64.deb pgdg 2.1.0 89.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.0-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.0.0-1.pgdg22.04+1_amd64.deb pgdg 2.0.0 84.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.0.0-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.1-1.pgdg22.04+1_arm64.deb pgdg 2.1.1 86.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.1-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.0-1.pgdg22.04+1_arm64.deb pgdg 2.1.0 86.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.0-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.0.0-1.pgdg22.04+1_arm64.deb pgdg 2.0.0 82.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.0.0-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.1-1.pgdg24.04+1_amd64.deb pgdg 2.1.1 83.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.1-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.0-1.pgdg24.04+1_amd64.deb pgdg 2.1.0 83.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.0-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.0.0-1.pgdg24.04+1_amd64.deb pgdg 2.0.0 80.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.0.0-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.1-1.pgdg24.04+1_arm64.deb pgdg 2.1.1 81.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.1-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.0-1.pgdg24.04+1_arm64.deb pgdg 2.1.0 81.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.0-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.0.0-1.pgdg24.04+1_arm64.deb pgdg 2.0.0 78.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.0.0-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.1-1.pgdg26.04+1_amd64.deb pgdg 2.1.1 82.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.1-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.0-1.pgdg26.04+1_amd64.deb pgdg 2.1.0 82.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.0-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.0.0-1.pgdg26.04+1_amd64.deb pgdg 2.0.0 80.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.0.0-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.1-1.pgdg26.04+1_arm64.deb pgdg 2.1.1 80.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.1-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.1.0-1.pgdg26.04+1_arm64.deb pgdg 2.1.0 80.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.1.0-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 18 postgresql-18-pg-stat-plans postgresql-18-pg-stat-plans_2.0.0-1.pgdg26.04+1_arm64.deb pgdg 2.0.0 77.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-18-pg-stat-plans_2.0.0-1.pgdg26.04+1_arm64.deb
 @ el8.x86_64 17 pg_stat_plans_17 pg_stat_plans_17-2.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 2.1.0 47.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pg_stat_plans_17-2.1.0-1PGDG.rhel8.10.x86_64.rpm
@@ -109,15 +119,25 @@ weight: 6050
 @ el10.aarch64 17 pg_stat_plans_17 pg_stat_plans_17-2.1.0-1PGDG.rhel10.2.aarch64.rpm pgdg 2.1.0 44.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_stat_plans_17-2.1.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 pg_stat_plans_17 pg_stat_plans_17-2.1.0-1PGDG.rhel10.1.aarch64.rpm pgdg 2.1.0 44.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_stat_plans_17-2.1.0-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 17 pg_stat_plans_17 pg_stat_plans_17-2.1.0-1PGDG.rhel10.0.aarch64.rpm pgdg 2.1.0 44.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_stat_plans_17-2.1.0-1PGDG.rhel10.0.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.1-1.pgdg12+1_amd64.deb pgdg 2.1.1 101.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.1-1.pgdg12+1_amd64.deb
 @ d12.x86_64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.0-1.pgdg12+1_amd64.deb pgdg 2.1.0 101.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.0-1.pgdg12+1_amd64.deb
+@ d12.aarch64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.1-1.pgdg12+1_arm64.deb pgdg 2.1.1 98.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.1-1.pgdg12+1_arm64.deb
 @ d12.aarch64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.0-1.pgdg12+1_arm64.deb pgdg 2.1.0 97.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.0-1.pgdg12+1_arm64.deb
+@ d13.x86_64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.1-1.pgdg13+1_amd64.deb pgdg 2.1.1 101.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.1-1.pgdg13+1_amd64.deb
 @ d13.x86_64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.0-1.pgdg13+1_amd64.deb pgdg 2.1.0 101.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.0-1.pgdg13+1_amd64.deb
+@ d13.aarch64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.1-1.pgdg13+1_arm64.deb pgdg 2.1.1 98.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.1-1.pgdg13+1_arm64.deb
 @ d13.aarch64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.0-1.pgdg13+1_arm64.deb pgdg 2.1.0 98.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.0-1.pgdg13+1_arm64.deb
+@ u22.x86_64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.1-1.pgdg22.04+1_amd64.deb pgdg 2.1.1 109.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.1-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.0-1.pgdg22.04+1_amd64.deb pgdg 2.1.0 109.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.0-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.1-1.pgdg22.04+1_arm64.deb pgdg 2.1.1 106.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.1-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.0-1.pgdg22.04+1_arm64.deb pgdg 2.1.0 106.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.0-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.1-1.pgdg24.04+1_amd64.deb pgdg 2.1.1 98.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.1-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.0-1.pgdg24.04+1_amd64.deb pgdg 2.1.0 98.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.0-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.1-1.pgdg24.04+1_arm64.deb pgdg 2.1.1 95.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.1-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.0-1.pgdg24.04+1_arm64.deb pgdg 2.1.0 95.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.0-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.1-1.pgdg26.04+1_amd64.deb pgdg 2.1.1 98.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.1-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.0-1.pgdg26.04+1_amd64.deb pgdg 2.1.0 98.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.0-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.1-1.pgdg26.04+1_arm64.deb pgdg 2.1.1 95.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.1-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 17 postgresql-17-pg-stat-plans postgresql-17-pg-stat-plans_2.1.0-1.pgdg26.04+1_arm64.deb pgdg 2.1.0 95.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-17-pg-stat-plans_2.1.0-1.pgdg26.04+1_arm64.deb
 @ el8.x86_64 16 pg_stat_plans_16 pg_stat_plans_16-2.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 2.1.0 46.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_stat_plans_16-2.1.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.aarch64 16 pg_stat_plans_16 pg_stat_plans_16-2.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 2.1.0 44.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_stat_plans_16-2.1.0-1PGDG.rhel8.10.aarch64.rpm
@@ -133,15 +153,25 @@ weight: 6050
 @ el10.aarch64 16 pg_stat_plans_16 pg_stat_plans_16-2.1.0-1PGDG.rhel10.2.aarch64.rpm pgdg 2.1.0 43.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_stat_plans_16-2.1.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 pg_stat_plans_16 pg_stat_plans_16-2.1.0-1PGDG.rhel10.1.aarch64.rpm pgdg 2.1.0 43.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_stat_plans_16-2.1.0-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 16 pg_stat_plans_16 pg_stat_plans_16-2.1.0-1PGDG.rhel10.0.aarch64.rpm pgdg 2.1.0 43.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_stat_plans_16-2.1.0-1PGDG.rhel10.0.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.1-1.pgdg12+1_amd64.deb pgdg 2.1.1 100.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.1-1.pgdg12+1_amd64.deb
 @ d12.x86_64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.0-1.pgdg12+1_amd64.deb pgdg 2.1.0 100.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.0-1.pgdg12+1_amd64.deb
+@ d12.aarch64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.1-1.pgdg12+1_arm64.deb pgdg 2.1.1 97.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.1-1.pgdg12+1_arm64.deb
 @ d12.aarch64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.0-1.pgdg12+1_arm64.deb pgdg 2.1.0 97.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.0-1.pgdg12+1_arm64.deb
+@ d13.x86_64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.1-1.pgdg13+1_amd64.deb pgdg 2.1.1 100.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.1-1.pgdg13+1_amd64.deb
 @ d13.x86_64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.0-1.pgdg13+1_amd64.deb pgdg 2.1.0 100.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.0-1.pgdg13+1_amd64.deb
+@ d13.aarch64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.1-1.pgdg13+1_arm64.deb pgdg 2.1.1 97.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.1-1.pgdg13+1_arm64.deb
 @ d13.aarch64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.0-1.pgdg13+1_arm64.deb pgdg 2.1.0 97.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.0-1.pgdg13+1_arm64.deb
+@ u22.x86_64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.1-1.pgdg22.04+1_amd64.deb pgdg 2.1.1 107.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.1-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.0-1.pgdg22.04+1_amd64.deb pgdg 2.1.0 107.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.0-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.1-1.pgdg22.04+1_arm64.deb pgdg 2.1.1 105.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.1-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.0-1.pgdg22.04+1_arm64.deb pgdg 2.1.0 104.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.0-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.1-1.pgdg24.04+1_amd64.deb pgdg 2.1.1 97.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.1-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.0-1.pgdg24.04+1_amd64.deb pgdg 2.1.0 98.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.0-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.1-1.pgdg24.04+1_arm64.deb pgdg 2.1.1 94.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.1-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.0-1.pgdg24.04+1_arm64.deb pgdg 2.1.0 94.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.0-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.1-1.pgdg26.04+1_amd64.deb pgdg 2.1.1 97.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.1-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.0-1.pgdg26.04+1_amd64.deb pgdg 2.1.0 97.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.0-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.1-1.pgdg26.04+1_arm64.deb pgdg 2.1.1 94.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.1-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.0-1.pgdg26.04+1_arm64.deb pgdg 2.1.0 94.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.0-1.pgdg26.04+1_arm64.deb
 {{< /pgext_matrix >}}
 
@@ -192,12 +222,14 @@ shared_preload_libraries = '$libdir/pg_stat_plans';
 CREATE EXTENSION pg_stat_plans;
 ```
 
-
-
-
 ## Usage
 
-Sources: [README](https://github.com/pganalyze/pg_stat_plans/blob/main/README.md), [v2.1.0 release](https://github.com/pganalyze/pg_stat_plans/releases/tag/v2.1.0), [SQL objects](https://github.com/pganalyze/pg_stat_plans/blob/main/pg_stat_plans--2.0.sql)
+Sources:
+
+- [2.1.1 README](https://github.com/pganalyze/pg_stat_plans/blob/v2.1.1/README.md)
+- [2.1.1 changelog](https://github.com/pganalyze/pg_stat_plans/blob/v2.1.1/CHANGELOG.md)
+- [SQL2.1 upgrade](https://github.com/pganalyze/pg_stat_plans/blob/v2.1.1/pg_stat_plans--2.0--2.1.sql)
+- [Visibility checks](https://github.com/pganalyze/pg_stat_plans/blob/v2.1.1/pg_stat_plans.c)
 
 `pg_stat_plans` tracks aggregate statistics for PostgreSQL plan shapes. It hashes planned query trees into plan IDs, stores example `EXPLAIN` text in shared memory, and helps identify when the same query ID is executed with different plans.
 
@@ -214,7 +246,7 @@ pg_stat_plans.compress = 'zstd'
 CREATE EXTENSION pg_stat_plans;
 ```
 
-Using `pg_stat_statements` alongside it is recommended so plan IDs can be correlated with query text.
+Restart after changing the preload list. Using `pg_stat_statements` alongside it is recommended so plan IDs can be correlated with query text. Optional zstd compression requires a build with zstd support.
 
 ### Query Plans
 
@@ -223,7 +255,7 @@ SELECT *
 FROM pg_stat_plans;
 ```
 
-The view exposes `userid`, `dbid`, `toplevel`, `queryid`, `planid`, `calls`, `total_exec_time`, and `plan`. To omit stored plan text for lighter queries:
+The view exposes `userid`, `dbid`, `toplevel`, `queryid`, `planid`, `calls`, `total_exec_time`, `plan`, and `plan_advice`. To omit stored plan text for lighter queries:
 
 ```sql
 SELECT *
@@ -258,3 +290,11 @@ Important settings include `pg_stat_plans.max`, `pg_stat_plans.max_size`, `pg_st
 ### Notes
 
 Statistics use PostgreSQL's cumulative statistics system, so counters are flushed at transaction end and may be delayed. Plan IDs describe plan shape and can change when partitions, casts, or expression details change.
+
+### Version, Memory and Visibility
+
+Release 2.1.1 uses SQL extension version 2.1. After installing new files and reloading the library at restart, update existing SQL objects with `ALTER EXTENSION pg_stat_plans UPDATE`. The 2.1 upgrade drops and recreates the function and views; dependent user objects can prevent the update.
+
+`pg_stat_plans.max_plan_memory` limits total plan-text storage. A full memory budget or oversized plan text can leave the text empty while counters remain tracked. `pg_stat_plans.plan_advice` requires PostgreSQL 19 or later and `pg_plan_advice` in the preload list.
+
+Plan text and query IDs for other users require superuser access or `pg_read_all_stats`; otherwise only the caller's own query details are shown. The reset function is not granted to PUBLIC. Collected plan text can contain sensitive constants; restrict monitoring privileges accordingly.

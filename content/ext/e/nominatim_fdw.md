@@ -11,10 +11,10 @@ weight: 8680
     <div class="ext-card__title">jimjonesbr/nominatim_fdw</div>
     <div class="ext-card__desc">https://github.com/jimjonesbr/nominatim_fdw</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/nominatim_fdw-2.1.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/nominatim_fdw-2.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">nominatim_fdw-2.1.0.tar.gz</div>
-    <div class="ext-card__desc">nominatim_fdw-2.1.0.tar.gz</div>
+    <div class="ext-card__title">nominatim_fdw-2.3.tar.gz</div>
+    <div class="ext-card__desc">nominatim_fdw-2.3.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 8680
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`nominatim_fdw`**](/ext/e/nominatim_fdw) | `2.1.0` | <a class="ext-badge ext-badge--cate fdw" href="/ext/cate/fdw">FDW</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`nominatim_fdw`**](/ext/e/nominatim_fdw) | `2.3` | <a class="ext-badge ext-badge--cate fdw" href="/ext/cate/fdw">FDW</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,49 +38,53 @@ weight: 8680
 {.ext-table .ext-table--rel}
 
 
-> RPM: PGDG 2.1; DEB/source: PIGSTY 2.1.0.
+> Package 2.2.0; SQL control version 2.2. Maintained in the local RPM and DEB recipes.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#fdw) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `2.1.0` | {{< pgvers "18,17,16,15,14" >}} | `nominatim_fdw` | - |
-| [**RPM**](/ext/rpm#fdw) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `2.1` | {{< pgvers "18,17,16,15,14" >}} | `nominatim_fdw_$v` | - |
-| [**DEB**](/ext/deb#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.1.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-nominatim-fdw` | - |
+| [**EXT**](/ext/list#fdw) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `2.3` | {{< pgvers "18,17,16,15,14" >}} | `nominatim_fdw` | - |
+| [**RPM**](/ext/rpm#fdw) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `2.3` | {{< pgvers "18,17,16,15,14" >}} | `nominatim_fdw_$v` | - |
+| [**DEB**](/ext/deb#fdw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.3` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-nominatim-fdw` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 2.1.0 5 | AVAIL PIGSTY 2.1.0 5 | AVAIL PIGSTY 2.1.0 5 | AVAIL PIGSTY 2.1.0 5 | AVAIL PIGSTY 2.1.0 5 |
-| el8.aarch64 | AVAIL PIGSTY 2.1.0 5 | AVAIL PIGSTY 2.1.0 5 | AVAIL PIGSTY 2.1.0 5 | AVAIL PIGSTY 2.1.0 5 | AVAIL PIGSTY 2.1.0 5 |
-| el9.x86_64 | AVAIL PGDG 2.1 11 | AVAIL PGDG 2.1 11 | AVAIL PGDG 2.1 11 | AVAIL PGDG 2.1 11 | AVAIL PGDG 2.1 11 |
-| el9.aarch64 | AVAIL PGDG 2.1 11 | AVAIL PGDG 2.1 11 | AVAIL PGDG 2.1 11 | AVAIL PGDG 2.1 11 | AVAIL PGDG 2.1 11 |
-| el10.x86_64 | AVAIL PGDG 2.1 11 | AVAIL PGDG 2.1 11 | AVAIL PGDG 2.1 11 | AVAIL PGDG 2.1 11 | AVAIL PGDG 2.1 11 |
-| el10.aarch64 | AVAIL PGDG 2.1 11 | AVAIL PGDG 2.1 11 | AVAIL PGDG 2.1 11 | AVAIL PGDG 2.1 11 | AVAIL PGDG 2.1 11 |
-| d12.x86_64 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 |
-| d12.aarch64 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 |
-| d13.x86_64 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 |
-| d13.aarch64 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 |
-| u22.x86_64 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 |
-| u22.aarch64 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 |
-| u24.x86_64 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 |
-| u24.aarch64 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 |
-| u26.x86_64 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 |
-| u26.aarch64 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 | AVAIL PIGSTY 2.1.0 1 |
-@ el8.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-2.1.0-1PIGSTY.el8.x86_64.rpm pigsty 2.1.0 36.2KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/nominatim_fdw_18-2.1.0-1PIGSTY.el8.x86_64.rpm
+| el8.x86_64 | AVAIL PIGSTY 2.3 6 | AVAIL PIGSTY 2.3 6 | AVAIL PIGSTY 2.3 6 | AVAIL PIGSTY 2.3 6 | AVAIL PIGSTY 2.3 6 |
+| el8.aarch64 | AVAIL PIGSTY 2.3 6 | AVAIL PIGSTY 2.3 6 | AVAIL PIGSTY 2.3 6 | AVAIL PIGSTY 2.3 6 | AVAIL PIGSTY 2.3 6 |
+| el9.x86_64 | AVAIL PIGSTY 2.3 13 | AVAIL PIGSTY 2.3 13 | AVAIL PIGSTY 2.3 13 | AVAIL PIGSTY 2.3 13 | AVAIL PIGSTY 2.3 13 |
+| el9.aarch64 | AVAIL PIGSTY 2.3 13 | AVAIL PIGSTY 2.3 13 | AVAIL PIGSTY 2.3 13 | AVAIL PIGSTY 2.3 13 | AVAIL PIGSTY 2.3 13 |
+| el10.x86_64 | AVAIL PIGSTY 2.3 13 | AVAIL PIGSTY 2.3 13 | AVAIL PIGSTY 2.3 13 | AVAIL PIGSTY 2.3 13 | AVAIL PIGSTY 2.3 13 |
+| el10.aarch64 | AVAIL PIGSTY 2.3 13 | AVAIL PIGSTY 2.3 13 | AVAIL PIGSTY 2.3 13 | AVAIL PIGSTY 2.3 13 | AVAIL PIGSTY 2.3 13 |
+| d12.x86_64 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 |
+| d12.aarch64 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 |
+| d13.x86_64 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 |
+| d13.aarch64 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 |
+| u22.x86_64 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 |
+| u22.aarch64 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 |
+| u24.x86_64 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 |
+| u24.aarch64 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 |
+| u26.x86_64 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 |
+| u26.aarch64 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 | AVAIL PIGSTY 2.3 1 |
+@ el8.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-2.3-1PGSTY.el8.x86_64.rpm pigsty 2.3 89.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/nominatim_fdw_18-2.3-1PGSTY.el8.x86_64.rpm
+@ el8.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-2.3-1PGDG.rhel8.10.x86_64.rpm pgdg 2.3 44.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/nominatim_fdw_18-2.3-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-1.3-2PGDG.rhel8.10.x86_64.rpm pgdg 1.3 32.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/nominatim_fdw_18-1.3-2PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-1.3-1PGDG.rhel8.10.x86_64.rpm pgdg 1.3 31.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/nominatim_fdw_18-1.3-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-1.2-1PGDG.rhel8.10.x86_64.rpm pgdg 1.2 30.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/nominatim_fdw_18-1.2-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-1.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 1.1.0 30.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/nominatim_fdw_18-1.1.0-1PGDG.rhel8.10.x86_64.rpm
-@ el8.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-2.1.0-1PIGSTY.el8.aarch64.rpm pigsty 2.1.0 35.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/nominatim_fdw_18-2.1.0-1PIGSTY.el8.aarch64.rpm
+@ el8.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-2.3-1PGSTY.el8.aarch64.rpm pigsty 2.3 87.5KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/nominatim_fdw_18-2.3-1PGSTY.el8.aarch64.rpm
+@ el8.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-2.3-1PGDG.rhel8.10.aarch64.rpm pgdg 2.3 42.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/nominatim_fdw_18-2.3-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-1.3-2PGDG.rhel8.10.aarch64.rpm pgdg 1.3 31.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/nominatim_fdw_18-1.3-2PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-1.3-1PGDG.rhel8.10.aarch64.rpm pgdg 1.3 30.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/nominatim_fdw_18-1.3-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-1.2-1PGDG.rhel8.10.aarch64.rpm pgdg 1.2 29.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/nominatim_fdw_18-1.2-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-1.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 1.1.0 29.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/nominatim_fdw_18-1.1.0-1PGDG.rhel8.10.aarch64.rpm
+@ el9.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-2.3-1PGSTY.el9.x86_64.rpm pigsty 2.3 91.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/nominatim_fdw_18-2.3-1PGSTY.el9.x86_64.rpm
+@ el9.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-2.3-1PGDG.rhel9.8.x86_64.rpm pgdg 2.3 45.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/nominatim_fdw_18-2.3-1PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-2.2-1PGDG.rhel9.8.x86_64.rpm pgdg 2.2 40.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/nominatim_fdw_18-2.2-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-2.1-1PGDG.rhel9.8.x86_64.rpm pgdg 2.1 37.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/nominatim_fdw_18-2.1-1PGDG.rhel9.8.x86_64.rpm
-@ el9.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-2.1.0-1PIGSTY.el9.x86_64.rpm pigsty 2.1.0 36.9KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/nominatim_fdw_18-2.1.0-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-1.3-2PGDG.rhel9.8.x86_64.rpm pgdg 1.3 32.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/nominatim_fdw_18-1.3-2PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-1.3-2PGDG.rhel9.7.x86_64.rpm pgdg 1.3 32.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/nominatim_fdw_18-1.3-2PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-1.3-2PGDG.rhel9.6.x86_64.rpm pgdg 1.3 32.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/nominatim_fdw_18-1.3-2PGDG.rhel9.6.x86_64.rpm
@@ -90,8 +94,10 @@ weight: 8680
 @ el9.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-1.2-1PGDG.rhel9.6.x86_64.rpm pgdg 1.2 31.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/nominatim_fdw_18-1.2-1PGDG.rhel9.6.x86_64.rpm
 @ el9.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-1.1.0-1PGDG.rhel9.7.x86_64.rpm pgdg 1.1.0 30.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/nominatim_fdw_18-1.1.0-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-1.1.0-1PGDG.rhel9.6.x86_64.rpm pgdg 1.1.0 30.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/nominatim_fdw_18-1.1.0-1PGDG.rhel9.6.x86_64.rpm
+@ el9.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-2.3-1PGSTY.el9.aarch64.rpm pigsty 2.3 89.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/nominatim_fdw_18-2.3-1PGSTY.el9.aarch64.rpm
+@ el9.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-2.3-1PGDG.rhel9.8.aarch64.rpm pgdg 2.3 43.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/nominatim_fdw_18-2.3-1PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-2.2-1PGDG.rhel9.8.aarch64.rpm pgdg 2.2 39.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/nominatim_fdw_18-2.2-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-2.1-1PGDG.rhel9.8.aarch64.rpm pgdg 2.1 36.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/nominatim_fdw_18-2.1-1PGDG.rhel9.8.aarch64.rpm
-@ el9.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-2.1.0-1PIGSTY.el9.aarch64.rpm pigsty 2.1.0 36.2KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/nominatim_fdw_18-2.1.0-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-1.3-2PGDG.rhel9.8.aarch64.rpm pgdg 1.3 31.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/nominatim_fdw_18-1.3-2PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-1.3-2PGDG.rhel9.7.aarch64.rpm pgdg 1.3 31.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/nominatim_fdw_18-1.3-2PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-1.3-2PGDG.rhel9.6.aarch64.rpm pgdg 1.3 31.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/nominatim_fdw_18-1.3-2PGDG.rhel9.6.aarch64.rpm
@@ -101,8 +107,10 @@ weight: 8680
 @ el9.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-1.2-1PGDG.rhel9.6.aarch64.rpm pgdg 1.2 30.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/nominatim_fdw_18-1.2-1PGDG.rhel9.6.aarch64.rpm
 @ el9.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-1.1.0-1PGDG.rhel9.7.aarch64.rpm pgdg 1.1.0 29.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/nominatim_fdw_18-1.1.0-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-1.1.0-1PGDG.rhel9.6.aarch64.rpm pgdg 1.1.0 30.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/nominatim_fdw_18-1.1.0-1PGDG.rhel9.6.aarch64.rpm
+@ el10.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-2.3-1PGSTY.el10.x86_64.rpm pigsty 2.3 91.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/nominatim_fdw_18-2.3-1PGSTY.el10.x86_64.rpm
+@ el10.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-2.3-1PGDG.rhel10.2.x86_64.rpm pgdg 2.3 45.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/nominatim_fdw_18-2.3-1PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-2.2-1PGDG.rhel10.2.x86_64.rpm pgdg 2.2 40.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/nominatim_fdw_18-2.2-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-2.1-1PGDG.rhel10.2.x86_64.rpm pgdg 2.1 37.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/nominatim_fdw_18-2.1-1PGDG.rhel10.2.x86_64.rpm
-@ el10.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-2.1.0-1PIGSTY.el10.x86_64.rpm pigsty 2.1.0 37.5KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/nominatim_fdw_18-2.1.0-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-1.3-2PGDG.rhel10.2.x86_64.rpm pgdg 1.3 32.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/nominatim_fdw_18-1.3-2PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-1.3-2PGDG.rhel10.1.x86_64.rpm pgdg 1.3 32.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/nominatim_fdw_18-1.3-2PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-1.3-2PGDG.rhel10.0.x86_64.rpm pgdg 1.3 33.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/nominatim_fdw_18-1.3-2PGDG.rhel10.0.x86_64.rpm
@@ -112,8 +120,10 @@ weight: 8680
 @ el10.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-1.2-1PGDG.rhel10.0.x86_64.rpm pgdg 1.2 31.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/nominatim_fdw_18-1.2-1PGDG.rhel10.0.x86_64.rpm
 @ el10.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-1.1.0-1PGDG.rhel10.1.x86_64.rpm pgdg 1.1.0 30.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/nominatim_fdw_18-1.1.0-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 18 nominatim_fdw_18 nominatim_fdw_18-1.1.0-1PGDG.rhel10.0.x86_64.rpm pgdg 1.1.0 31.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/nominatim_fdw_18-1.1.0-1PGDG.rhel10.0.x86_64.rpm
+@ el10.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-2.3-1PGSTY.el10.aarch64.rpm pigsty 2.3 90.6KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/nominatim_fdw_18-2.3-1PGSTY.el10.aarch64.rpm
+@ el10.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-2.3-1PGDG.rhel10.2.aarch64.rpm pgdg 2.3 44.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/nominatim_fdw_18-2.3-1PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-2.2-1PGDG.rhel10.2.aarch64.rpm pgdg 2.2 39.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/nominatim_fdw_18-2.2-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-2.1-1PGDG.rhel10.2.aarch64.rpm pgdg 2.1 36.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/nominatim_fdw_18-2.1-1PGDG.rhel10.2.aarch64.rpm
-@ el10.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-2.1.0-1PIGSTY.el10.aarch64.rpm pigsty 2.1.0 36.6KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/nominatim_fdw_18-2.1.0-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-1.3-2PGDG.rhel10.2.aarch64.rpm pgdg 1.3 32.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/nominatim_fdw_18-1.3-2PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-1.3-2PGDG.rhel10.1.aarch64.rpm pgdg 1.3 32.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/nominatim_fdw_18-1.3-2PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-1.3-2PGDG.rhel10.0.aarch64.rpm pgdg 1.3 32.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/nominatim_fdw_18-1.3-2PGDG.rhel10.0.aarch64.rpm
@@ -123,28 +133,32 @@ weight: 8680
 @ el10.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-1.2-1PGDG.rhel10.0.aarch64.rpm pgdg 1.2 30.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/nominatim_fdw_18-1.2-1PGDG.rhel10.0.aarch64.rpm
 @ el10.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-1.1.0-1PGDG.rhel10.1.aarch64.rpm pgdg 1.1.0 30.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/nominatim_fdw_18-1.1.0-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 18 nominatim_fdw_18 nominatim_fdw_18-1.1.0-1PGDG.rhel10.0.aarch64.rpm pgdg 1.1.0 30.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/nominatim_fdw_18-1.1.0-1PGDG.rhel10.0.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~bookworm_amd64.deb pigsty 2.1.0 66.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~bookworm_arm64.deb pigsty 2.1.0 65.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~trixie_amd64.deb pigsty 2.1.0 67.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~trixie_arm64.deb pigsty 2.1.0 65.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~jammy_amd64.deb pigsty 2.1.0 69.1KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~jammy_arm64.deb pigsty 2.1.0 68.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~noble_amd64.deb pigsty 2.1.0 67.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~noble_arm64.deb pigsty 2.1.0 66.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~resolute_amd64.deb pigsty 2.1.0 66.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~resolute_arm64.deb pigsty 2.1.0 66.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.1.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-2.1.0-1PIGSTY.el8.x86_64.rpm pigsty 2.1.0 36.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/nominatim_fdw_17-2.1.0-1PIGSTY.el8.x86_64.rpm
+@ d12.x86_64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.3-1PGSTY~bookworm_amd64.deb pigsty 2.3 88.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.3-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.3-1PGSTY~bookworm_arm64.deb pigsty 2.3 86.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.3-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.3-1PGSTY~trixie_amd64.deb pigsty 2.3 88.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.3-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.3-1PGSTY~trixie_arm64.deb pigsty 2.3 86.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.3-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.3-1PGSTY~jammy_amd64.deb pigsty 2.3 85.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.3-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.3-1PGSTY~jammy_arm64.deb pigsty 2.3 84.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.3-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.3-1PGSTY~noble_amd64.deb pigsty 2.3 82.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.3-1PGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.3-1PGSTY~noble_arm64.deb pigsty 2.3 81.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.3-1PGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.3-1PGSTY~resolute_amd64.deb pigsty 2.3 81.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.3-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-nominatim-fdw postgresql-18-nominatim-fdw_2.3-1PGSTY~resolute_arm64.deb pigsty 2.3 80.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-18-nominatim-fdw_2.3-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-2.3-1PGSTY.el8.x86_64.rpm pigsty 2.3 89.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/nominatim_fdw_17-2.3-1PGSTY.el8.x86_64.rpm
+@ el8.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-2.3-1PGDG.rhel8.10.x86_64.rpm pgdg 2.3 44.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/nominatim_fdw_17-2.3-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-1.3-2PGDG.rhel8.10.x86_64.rpm pgdg 1.3 32.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/nominatim_fdw_17-1.3-2PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-1.3-1PGDG.rhel8.10.x86_64.rpm pgdg 1.3 31.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/nominatim_fdw_17-1.3-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-1.2-1PGDG.rhel8.10.x86_64.rpm pgdg 1.2 30.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/nominatim_fdw_17-1.2-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-1.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 1.1.0 30.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/nominatim_fdw_17-1.1.0-1PGDG.rhel8.10.x86_64.rpm
-@ el8.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-2.1.0-1PIGSTY.el8.aarch64.rpm pigsty 2.1.0 35.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/nominatim_fdw_17-2.1.0-1PIGSTY.el8.aarch64.rpm
+@ el8.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-2.3-1PGSTY.el8.aarch64.rpm pigsty 2.3 87.4KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/nominatim_fdw_17-2.3-1PGSTY.el8.aarch64.rpm
+@ el8.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-2.3-1PGDG.rhel8.10.aarch64.rpm pgdg 2.3 42.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/nominatim_fdw_17-2.3-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-1.3-2PGDG.rhel8.10.aarch64.rpm pgdg 1.3 31.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/nominatim_fdw_17-1.3-2PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-1.3-1PGDG.rhel8.10.aarch64.rpm pgdg 1.3 30.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/nominatim_fdw_17-1.3-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-1.2-1PGDG.rhel8.10.aarch64.rpm pgdg 1.2 29.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/nominatim_fdw_17-1.2-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-1.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 1.1.0 29.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/nominatim_fdw_17-1.1.0-1PGDG.rhel8.10.aarch64.rpm
+@ el9.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-2.3-1PGSTY.el9.x86_64.rpm pigsty 2.3 91.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/nominatim_fdw_17-2.3-1PGSTY.el9.x86_64.rpm
+@ el9.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-2.3-1PGDG.rhel9.8.x86_64.rpm pgdg 2.3 45.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/nominatim_fdw_17-2.3-1PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-2.2-1PGDG.rhel9.8.x86_64.rpm pgdg 2.2 40.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/nominatim_fdw_17-2.2-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-2.1-1PGDG.rhel9.8.x86_64.rpm pgdg 2.1 37.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/nominatim_fdw_17-2.1-1PGDG.rhel9.8.x86_64.rpm
-@ el9.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-2.1.0-1PIGSTY.el9.x86_64.rpm pigsty 2.1.0 36.9KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/nominatim_fdw_17-2.1.0-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-1.3-2PGDG.rhel9.8.x86_64.rpm pgdg 1.3 32.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/nominatim_fdw_17-1.3-2PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-1.3-2PGDG.rhel9.7.x86_64.rpm pgdg 1.3 32.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/nominatim_fdw_17-1.3-2PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-1.3-2PGDG.rhel9.6.x86_64.rpm pgdg 1.3 32.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/nominatim_fdw_17-1.3-2PGDG.rhel9.6.x86_64.rpm
@@ -154,8 +168,10 @@ weight: 8680
 @ el9.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-1.2-1PGDG.rhel9.6.x86_64.rpm pgdg 1.2 31.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/nominatim_fdw_17-1.2-1PGDG.rhel9.6.x86_64.rpm
 @ el9.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-1.1.0-1PGDG.rhel9.7.x86_64.rpm pgdg 1.1.0 30.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/nominatim_fdw_17-1.1.0-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-1.1.0-1PGDG.rhel9.6.x86_64.rpm pgdg 1.1.0 30.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/nominatim_fdw_17-1.1.0-1PGDG.rhel9.6.x86_64.rpm
+@ el9.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-2.3-1PGSTY.el9.aarch64.rpm pigsty 2.3 89.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/nominatim_fdw_17-2.3-1PGSTY.el9.aarch64.rpm
+@ el9.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-2.3-1PGDG.rhel9.8.aarch64.rpm pgdg 2.3 43.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/nominatim_fdw_17-2.3-1PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-2.2-1PGDG.rhel9.8.aarch64.rpm pgdg 2.2 39.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/nominatim_fdw_17-2.2-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-2.1-1PGDG.rhel9.8.aarch64.rpm pgdg 2.1 36.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/nominatim_fdw_17-2.1-1PGDG.rhel9.8.aarch64.rpm
-@ el9.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-2.1.0-1PIGSTY.el9.aarch64.rpm pigsty 2.1.0 36.2KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/nominatim_fdw_17-2.1.0-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-1.3-2PGDG.rhel9.8.aarch64.rpm pgdg 1.3 31.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/nominatim_fdw_17-1.3-2PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-1.3-2PGDG.rhel9.7.aarch64.rpm pgdg 1.3 31.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/nominatim_fdw_17-1.3-2PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-1.3-2PGDG.rhel9.6.aarch64.rpm pgdg 1.3 31.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/nominatim_fdw_17-1.3-2PGDG.rhel9.6.aarch64.rpm
@@ -165,8 +181,10 @@ weight: 8680
 @ el9.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-1.2-1PGDG.rhel9.6.aarch64.rpm pgdg 1.2 30.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/nominatim_fdw_17-1.2-1PGDG.rhel9.6.aarch64.rpm
 @ el9.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-1.1.0-1PGDG.rhel9.7.aarch64.rpm pgdg 1.1.0 29.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/nominatim_fdw_17-1.1.0-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-1.1.0-1PGDG.rhel9.6.aarch64.rpm pgdg 1.1.0 30.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/nominatim_fdw_17-1.1.0-1PGDG.rhel9.6.aarch64.rpm
+@ el10.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-2.3-1PGSTY.el10.x86_64.rpm pigsty 2.3 91.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/nominatim_fdw_17-2.3-1PGSTY.el10.x86_64.rpm
+@ el10.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-2.3-1PGDG.rhel10.2.x86_64.rpm pgdg 2.3 45.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/nominatim_fdw_17-2.3-1PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-2.2-1PGDG.rhel10.2.x86_64.rpm pgdg 2.2 40.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/nominatim_fdw_17-2.2-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-2.1-1PGDG.rhel10.2.x86_64.rpm pgdg 2.1 38.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/nominatim_fdw_17-2.1-1PGDG.rhel10.2.x86_64.rpm
-@ el10.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-2.1.0-1PIGSTY.el10.x86_64.rpm pigsty 2.1.0 37.5KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/nominatim_fdw_17-2.1.0-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-1.3-2PGDG.rhel10.2.x86_64.rpm pgdg 1.3 32.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/nominatim_fdw_17-1.3-2PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-1.3-2PGDG.rhel10.1.x86_64.rpm pgdg 1.3 32.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/nominatim_fdw_17-1.3-2PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-1.3-2PGDG.rhel10.0.x86_64.rpm pgdg 1.3 33.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/nominatim_fdw_17-1.3-2PGDG.rhel10.0.x86_64.rpm
@@ -176,8 +194,10 @@ weight: 8680
 @ el10.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-1.2-1PGDG.rhel10.0.x86_64.rpm pgdg 1.2 31.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/nominatim_fdw_17-1.2-1PGDG.rhel10.0.x86_64.rpm
 @ el10.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-1.1.0-1PGDG.rhel10.1.x86_64.rpm pgdg 1.1.0 30.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/nominatim_fdw_17-1.1.0-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 17 nominatim_fdw_17 nominatim_fdw_17-1.1.0-1PGDG.rhel10.0.x86_64.rpm pgdg 1.1.0 31.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/nominatim_fdw_17-1.1.0-1PGDG.rhel10.0.x86_64.rpm
+@ el10.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-2.3-1PGSTY.el10.aarch64.rpm pigsty 2.3 90.4KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/nominatim_fdw_17-2.3-1PGSTY.el10.aarch64.rpm
+@ el10.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-2.3-1PGDG.rhel10.2.aarch64.rpm pgdg 2.3 44.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/nominatim_fdw_17-2.3-1PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-2.2-1PGDG.rhel10.2.aarch64.rpm pgdg 2.2 39.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/nominatim_fdw_17-2.2-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-2.1-1PGDG.rhel10.2.aarch64.rpm pgdg 2.1 37.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/nominatim_fdw_17-2.1-1PGDG.rhel10.2.aarch64.rpm
-@ el10.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-2.1.0-1PIGSTY.el10.aarch64.rpm pigsty 2.1.0 36.6KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/nominatim_fdw_17-2.1.0-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-1.3-2PGDG.rhel10.2.aarch64.rpm pgdg 1.3 32.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/nominatim_fdw_17-1.3-2PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-1.3-2PGDG.rhel10.1.aarch64.rpm pgdg 1.3 32.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/nominatim_fdw_17-1.3-2PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-1.3-2PGDG.rhel10.0.aarch64.rpm pgdg 1.3 32.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/nominatim_fdw_17-1.3-2PGDG.rhel10.0.aarch64.rpm
@@ -187,28 +207,32 @@ weight: 8680
 @ el10.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-1.2-1PGDG.rhel10.0.aarch64.rpm pgdg 1.2 30.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/nominatim_fdw_17-1.2-1PGDG.rhel10.0.aarch64.rpm
 @ el10.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-1.1.0-1PGDG.rhel10.1.aarch64.rpm pgdg 1.1.0 30.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/nominatim_fdw_17-1.1.0-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 17 nominatim_fdw_17 nominatim_fdw_17-1.1.0-1PGDG.rhel10.0.aarch64.rpm pgdg 1.1.0 30.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/nominatim_fdw_17-1.1.0-1PGDG.rhel10.0.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~bookworm_amd64.deb pigsty 2.1.0 66.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~bookworm_arm64.deb pigsty 2.1.0 65.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~trixie_amd64.deb pigsty 2.1.0 66.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~trixie_arm64.deb pigsty 2.1.0 65.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~jammy_amd64.deb pigsty 2.1.0 77.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~jammy_arm64.deb pigsty 2.1.0 76.1KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~noble_amd64.deb pigsty 2.1.0 67.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~noble_arm64.deb pigsty 2.1.0 66.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~resolute_amd64.deb pigsty 2.1.0 66.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~resolute_arm64.deb pigsty 2.1.0 66.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.1.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-2.1.0-1PIGSTY.el8.x86_64.rpm pigsty 2.1.0 36.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/nominatim_fdw_16-2.1.0-1PIGSTY.el8.x86_64.rpm
+@ d12.x86_64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.3-1PGSTY~bookworm_amd64.deb pigsty 2.3 88.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.3-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.3-1PGSTY~bookworm_arm64.deb pigsty 2.3 86.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.3-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.3-1PGSTY~trixie_amd64.deb pigsty 2.3 89.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.3-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.3-1PGSTY~trixie_arm64.deb pigsty 2.3 86.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.3-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.3-1PGSTY~jammy_amd64.deb pigsty 2.3 94.1KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.3-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.3-1PGSTY~jammy_arm64.deb pigsty 2.3 92.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.3-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.3-1PGSTY~noble_amd64.deb pigsty 2.3 82.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.3-1PGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.3-1PGSTY~noble_arm64.deb pigsty 2.3 81.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.3-1PGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.3-1PGSTY~resolute_amd64.deb pigsty 2.3 81.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.3-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-nominatim-fdw postgresql-17-nominatim-fdw_2.3-1PGSTY~resolute_arm64.deb pigsty 2.3 80.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-17-nominatim-fdw_2.3-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-2.3-1PGSTY.el8.x86_64.rpm pigsty 2.3 89.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/nominatim_fdw_16-2.3-1PGSTY.el8.x86_64.rpm
+@ el8.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-2.3-1PGDG.rhel8.10.x86_64.rpm pgdg 2.3 44.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/nominatim_fdw_16-2.3-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-1.3-2PGDG.rhel8.10.x86_64.rpm pgdg 1.3 32.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/nominatim_fdw_16-1.3-2PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-1.3-1PGDG.rhel8.10.x86_64.rpm pgdg 1.3 31.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/nominatim_fdw_16-1.3-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-1.2-1PGDG.rhel8.10.x86_64.rpm pgdg 1.2 30.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/nominatim_fdw_16-1.2-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-1.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 1.1.0 30.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/nominatim_fdw_16-1.1.0-1PGDG.rhel8.10.x86_64.rpm
-@ el8.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-2.1.0-1PIGSTY.el8.aarch64.rpm pigsty 2.1.0 35.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/nominatim_fdw_16-2.1.0-1PIGSTY.el8.aarch64.rpm
+@ el8.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-2.3-1PGSTY.el8.aarch64.rpm pigsty 2.3 87.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/nominatim_fdw_16-2.3-1PGSTY.el8.aarch64.rpm
+@ el8.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-2.3-1PGDG.rhel8.10.aarch64.rpm pgdg 2.3 42.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/nominatim_fdw_16-2.3-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-1.3-2PGDG.rhel8.10.aarch64.rpm pgdg 1.3 31.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/nominatim_fdw_16-1.3-2PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-1.3-1PGDG.rhel8.10.aarch64.rpm pgdg 1.3 31.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/nominatim_fdw_16-1.3-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-1.2-1PGDG.rhel8.10.aarch64.rpm pgdg 1.2 29.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/nominatim_fdw_16-1.2-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-1.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 1.1.0 29.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/nominatim_fdw_16-1.1.0-1PGDG.rhel8.10.aarch64.rpm
+@ el9.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-2.3-1PGSTY.el9.x86_64.rpm pigsty 2.3 91.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/nominatim_fdw_16-2.3-1PGSTY.el9.x86_64.rpm
+@ el9.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-2.3-1PGDG.rhel9.8.x86_64.rpm pgdg 2.3 45.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/nominatim_fdw_16-2.3-1PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-2.2-1PGDG.rhel9.8.x86_64.rpm pgdg 2.2 40.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/nominatim_fdw_16-2.2-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-2.1-1PGDG.rhel9.8.x86_64.rpm pgdg 2.1 37.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/nominatim_fdw_16-2.1-1PGDG.rhel9.8.x86_64.rpm
-@ el9.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-2.1.0-1PIGSTY.el9.x86_64.rpm pigsty 2.1.0 36.9KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/nominatim_fdw_16-2.1.0-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-1.3-2PGDG.rhel9.8.x86_64.rpm pgdg 1.3 32.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/nominatim_fdw_16-1.3-2PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-1.3-2PGDG.rhel9.7.x86_64.rpm pgdg 1.3 32.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/nominatim_fdw_16-1.3-2PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-1.3-2PGDG.rhel9.6.x86_64.rpm pgdg 1.3 32.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/nominatim_fdw_16-1.3-2PGDG.rhel9.6.x86_64.rpm
@@ -218,8 +242,10 @@ weight: 8680
 @ el9.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-1.2-1PGDG.rhel9.6.x86_64.rpm pgdg 1.2 31.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/nominatim_fdw_16-1.2-1PGDG.rhel9.6.x86_64.rpm
 @ el9.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-1.1.0-1PGDG.rhel9.7.x86_64.rpm pgdg 1.1.0 30.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/nominatim_fdw_16-1.1.0-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-1.1.0-1PGDG.rhel9.6.x86_64.rpm pgdg 1.1.0 30.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/nominatim_fdw_16-1.1.0-1PGDG.rhel9.6.x86_64.rpm
+@ el9.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-2.3-1PGSTY.el9.aarch64.rpm pigsty 2.3 89.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/nominatim_fdw_16-2.3-1PGSTY.el9.aarch64.rpm
+@ el9.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-2.3-1PGDG.rhel9.8.aarch64.rpm pgdg 2.3 44.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/nominatim_fdw_16-2.3-1PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-2.2-1PGDG.rhel9.8.aarch64.rpm pgdg 2.2 39.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/nominatim_fdw_16-2.2-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-2.1-1PGDG.rhel9.8.aarch64.rpm pgdg 2.1 36.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/nominatim_fdw_16-2.1-1PGDG.rhel9.8.aarch64.rpm
-@ el9.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-2.1.0-1PIGSTY.el9.aarch64.rpm pigsty 2.1.0 36.3KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/nominatim_fdw_16-2.1.0-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-1.3-2PGDG.rhel9.8.aarch64.rpm pgdg 1.3 31.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/nominatim_fdw_16-1.3-2PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-1.3-2PGDG.rhel9.7.aarch64.rpm pgdg 1.3 31.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/nominatim_fdw_16-1.3-2PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-1.3-2PGDG.rhel9.6.aarch64.rpm pgdg 1.3 31.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/nominatim_fdw_16-1.3-2PGDG.rhel9.6.aarch64.rpm
@@ -229,8 +255,10 @@ weight: 8680
 @ el9.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-1.2-1PGDG.rhel9.6.aarch64.rpm pgdg 1.2 30.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/nominatim_fdw_16-1.2-1PGDG.rhel9.6.aarch64.rpm
 @ el9.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-1.1.0-1PGDG.rhel9.7.aarch64.rpm pgdg 1.1.0 29.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/nominatim_fdw_16-1.1.0-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-1.1.0-1PGDG.rhel9.6.aarch64.rpm pgdg 1.1.0 30.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/nominatim_fdw_16-1.1.0-1PGDG.rhel9.6.aarch64.rpm
+@ el10.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-2.3-1PGSTY.el10.x86_64.rpm pigsty 2.3 91.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/nominatim_fdw_16-2.3-1PGSTY.el10.x86_64.rpm
+@ el10.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-2.3-1PGDG.rhel10.2.x86_64.rpm pgdg 2.3 45.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/nominatim_fdw_16-2.3-1PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-2.2-1PGDG.rhel10.2.x86_64.rpm pgdg 2.2 40.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/nominatim_fdw_16-2.2-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-2.1-1PGDG.rhel10.2.x86_64.rpm pgdg 2.1 38.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/nominatim_fdw_16-2.1-1PGDG.rhel10.2.x86_64.rpm
-@ el10.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-2.1.0-1PIGSTY.el10.x86_64.rpm pigsty 2.1.0 37.5KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/nominatim_fdw_16-2.1.0-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-1.3-2PGDG.rhel10.2.x86_64.rpm pgdg 1.3 32.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/nominatim_fdw_16-1.3-2PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-1.3-2PGDG.rhel10.1.x86_64.rpm pgdg 1.3 32.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/nominatim_fdw_16-1.3-2PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-1.3-2PGDG.rhel10.0.x86_64.rpm pgdg 1.3 33.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/nominatim_fdw_16-1.3-2PGDG.rhel10.0.x86_64.rpm
@@ -240,8 +268,10 @@ weight: 8680
 @ el10.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-1.2-1PGDG.rhel10.0.x86_64.rpm pgdg 1.2 31.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/nominatim_fdw_16-1.2-1PGDG.rhel10.0.x86_64.rpm
 @ el10.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-1.1.0-1PGDG.rhel10.1.x86_64.rpm pgdg 1.1.0 30.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/nominatim_fdw_16-1.1.0-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 16 nominatim_fdw_16 nominatim_fdw_16-1.1.0-1PGDG.rhel10.0.x86_64.rpm pgdg 1.1.0 31.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/nominatim_fdw_16-1.1.0-1PGDG.rhel10.0.x86_64.rpm
+@ el10.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-2.3-1PGSTY.el10.aarch64.rpm pigsty 2.3 90.5KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/nominatim_fdw_16-2.3-1PGSTY.el10.aarch64.rpm
+@ el10.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-2.3-1PGDG.rhel10.2.aarch64.rpm pgdg 2.3 44.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/nominatim_fdw_16-2.3-1PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-2.2-1PGDG.rhel10.2.aarch64.rpm pgdg 2.2 39.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/nominatim_fdw_16-2.2-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-2.1-1PGDG.rhel10.2.aarch64.rpm pgdg 2.1 37.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/nominatim_fdw_16-2.1-1PGDG.rhel10.2.aarch64.rpm
-@ el10.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-2.1.0-1PIGSTY.el10.aarch64.rpm pigsty 2.1.0 36.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/nominatim_fdw_16-2.1.0-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-1.3-2PGDG.rhel10.2.aarch64.rpm pgdg 1.3 32.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/nominatim_fdw_16-1.3-2PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-1.3-2PGDG.rhel10.1.aarch64.rpm pgdg 1.3 32.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/nominatim_fdw_16-1.3-2PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-1.3-2PGDG.rhel10.0.aarch64.rpm pgdg 1.3 32.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/nominatim_fdw_16-1.3-2PGDG.rhel10.0.aarch64.rpm
@@ -251,28 +281,32 @@ weight: 8680
 @ el10.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-1.2-1PGDG.rhel10.0.aarch64.rpm pgdg 1.2 31.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/nominatim_fdw_16-1.2-1PGDG.rhel10.0.aarch64.rpm
 @ el10.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-1.1.0-1PGDG.rhel10.1.aarch64.rpm pgdg 1.1.0 30.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/nominatim_fdw_16-1.1.0-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 16 nominatim_fdw_16 nominatim_fdw_16-1.1.0-1PGDG.rhel10.0.aarch64.rpm pgdg 1.1.0 30.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/nominatim_fdw_16-1.1.0-1PGDG.rhel10.0.aarch64.rpm
-@ d12.x86_64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~bookworm_amd64.deb pigsty 2.1.0 66.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~bookworm_arm64.deb pigsty 2.1.0 65.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~trixie_amd64.deb pigsty 2.1.0 66.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~trixie_arm64.deb pigsty 2.1.0 65.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~jammy_amd64.deb pigsty 2.1.0 76.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~jammy_arm64.deb pigsty 2.1.0 76.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~noble_amd64.deb pigsty 2.1.0 67.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~noble_arm64.deb pigsty 2.1.0 66.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~resolute_amd64.deb pigsty 2.1.0 66.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~resolute_arm64.deb pigsty 2.1.0 66.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.1.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-2.1.0-1PIGSTY.el8.x86_64.rpm pigsty 2.1.0 36.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/nominatim_fdw_15-2.1.0-1PIGSTY.el8.x86_64.rpm
+@ d12.x86_64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.3-1PGSTY~bookworm_amd64.deb pigsty 2.3 88.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.3-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.3-1PGSTY~bookworm_arm64.deb pigsty 2.3 86.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.3-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.3-1PGSTY~trixie_amd64.deb pigsty 2.3 88.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.3-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.3-1PGSTY~trixie_arm64.deb pigsty 2.3 86.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.3-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.3-1PGSTY~jammy_amd64.deb pigsty 2.3 94.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.3-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.3-1PGSTY~jammy_arm64.deb pigsty 2.3 92.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.3-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.3-1PGSTY~noble_amd64.deb pigsty 2.3 82.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.3-1PGSTY~noble_amd64.deb
+@ u24.aarch64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.3-1PGSTY~noble_arm64.deb pigsty 2.3 81.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.3-1PGSTY~noble_arm64.deb
+@ u26.x86_64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.3-1PGSTY~resolute_amd64.deb pigsty 2.3 81.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.3-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 16 postgresql-16-nominatim-fdw postgresql-16-nominatim-fdw_2.3-1PGSTY~resolute_arm64.deb pigsty 2.3 80.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-16-nominatim-fdw_2.3-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-2.3-1PGSTY.el8.x86_64.rpm pigsty 2.3 89.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/nominatim_fdw_15-2.3-1PGSTY.el8.x86_64.rpm
+@ el8.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-2.3-1PGDG.rhel8.10.x86_64.rpm pgdg 2.3 44.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/nominatim_fdw_15-2.3-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-1.3-2PGDG.rhel8.10.x86_64.rpm pgdg 1.3 32.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/nominatim_fdw_15-1.3-2PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-1.3-1PGDG.rhel8.10.x86_64.rpm pgdg 1.3 31.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/nominatim_fdw_15-1.3-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-1.2-1PGDG.rhel8.10.x86_64.rpm pgdg 1.2 30.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/nominatim_fdw_15-1.2-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-1.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 1.1.0 30.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/nominatim_fdw_15-1.1.0-1PGDG.rhel8.10.x86_64.rpm
-@ el8.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-2.1.0-1PIGSTY.el8.aarch64.rpm pigsty 2.1.0 35.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/nominatim_fdw_15-2.1.0-1PIGSTY.el8.aarch64.rpm
+@ el8.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-2.3-1PGSTY.el8.aarch64.rpm pigsty 2.3 87.4KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/nominatim_fdw_15-2.3-1PGSTY.el8.aarch64.rpm
+@ el8.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-2.3-1PGDG.rhel8.10.aarch64.rpm pgdg 2.3 42.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/nominatim_fdw_15-2.3-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-1.3-2PGDG.rhel8.10.aarch64.rpm pgdg 1.3 31.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/nominatim_fdw_15-1.3-2PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-1.3-1PGDG.rhel8.10.aarch64.rpm pgdg 1.3 31.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/nominatim_fdw_15-1.3-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-1.2-1PGDG.rhel8.10.aarch64.rpm pgdg 1.2 29.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/nominatim_fdw_15-1.2-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-1.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 1.1.0 29.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/nominatim_fdw_15-1.1.0-1PGDG.rhel8.10.aarch64.rpm
+@ el9.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-2.3-1PGSTY.el9.x86_64.rpm pigsty 2.3 91.2KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/nominatim_fdw_15-2.3-1PGSTY.el9.x86_64.rpm
+@ el9.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-2.3-1PGDG.rhel9.8.x86_64.rpm pgdg 2.3 45.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/nominatim_fdw_15-2.3-1PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-2.2-1PGDG.rhel9.8.x86_64.rpm pgdg 2.2 40.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/nominatim_fdw_15-2.2-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-2.1-1PGDG.rhel9.8.x86_64.rpm pgdg 2.1 37.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/nominatim_fdw_15-2.1-1PGDG.rhel9.8.x86_64.rpm
-@ el9.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-2.1.0-1PIGSTY.el9.x86_64.rpm pigsty 2.1.0 36.9KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/nominatim_fdw_15-2.1.0-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-1.3-2PGDG.rhel9.8.x86_64.rpm pgdg 1.3 32.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/nominatim_fdw_15-1.3-2PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-1.3-2PGDG.rhel9.7.x86_64.rpm pgdg 1.3 32.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/nominatim_fdw_15-1.3-2PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-1.3-2PGDG.rhel9.6.x86_64.rpm pgdg 1.3 32.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/nominatim_fdw_15-1.3-2PGDG.rhel9.6.x86_64.rpm
@@ -282,8 +316,10 @@ weight: 8680
 @ el9.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-1.2-1PGDG.rhel9.6.x86_64.rpm pgdg 1.2 31.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/nominatim_fdw_15-1.2-1PGDG.rhel9.6.x86_64.rpm
 @ el9.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-1.1.0-1PGDG.rhel9.7.x86_64.rpm pgdg 1.1.0 30.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/nominatim_fdw_15-1.1.0-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-1.1.0-1PGDG.rhel9.6.x86_64.rpm pgdg 1.1.0 30.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/nominatim_fdw_15-1.1.0-1PGDG.rhel9.6.x86_64.rpm
+@ el9.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-2.3-1PGSTY.el9.aarch64.rpm pigsty 2.3 89.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/nominatim_fdw_15-2.3-1PGSTY.el9.aarch64.rpm
+@ el9.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-2.3-1PGDG.rhel9.8.aarch64.rpm pgdg 2.3 43.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/nominatim_fdw_15-2.3-1PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-2.2-1PGDG.rhel9.8.aarch64.rpm pgdg 2.2 39.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/nominatim_fdw_15-2.2-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-2.1-1PGDG.rhel9.8.aarch64.rpm pgdg 2.1 36.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/nominatim_fdw_15-2.1-1PGDG.rhel9.8.aarch64.rpm
-@ el9.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-2.1.0-1PIGSTY.el9.aarch64.rpm pigsty 2.1.0 36.3KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/nominatim_fdw_15-2.1.0-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-1.3-2PGDG.rhel9.8.aarch64.rpm pgdg 1.3 31.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/nominatim_fdw_15-1.3-2PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-1.3-2PGDG.rhel9.7.aarch64.rpm pgdg 1.3 31.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/nominatim_fdw_15-1.3-2PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-1.3-2PGDG.rhel9.6.aarch64.rpm pgdg 1.3 31.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/nominatim_fdw_15-1.3-2PGDG.rhel9.6.aarch64.rpm
@@ -293,8 +329,10 @@ weight: 8680
 @ el9.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-1.2-1PGDG.rhel9.6.aarch64.rpm pgdg 1.2 30.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/nominatim_fdw_15-1.2-1PGDG.rhel9.6.aarch64.rpm
 @ el9.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-1.1.0-1PGDG.rhel9.7.aarch64.rpm pgdg 1.1.0 29.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/nominatim_fdw_15-1.1.0-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-1.1.0-1PGDG.rhel9.6.aarch64.rpm pgdg 1.1.0 30.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/nominatim_fdw_15-1.1.0-1PGDG.rhel9.6.aarch64.rpm
+@ el10.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-2.3-1PGSTY.el10.x86_64.rpm pigsty 2.3 91.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/nominatim_fdw_15-2.3-1PGSTY.el10.x86_64.rpm
+@ el10.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-2.3-1PGDG.rhel10.2.x86_64.rpm pgdg 2.3 45.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/nominatim_fdw_15-2.3-1PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-2.2-1PGDG.rhel10.2.x86_64.rpm pgdg 2.2 40.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/nominatim_fdw_15-2.2-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-2.1-1PGDG.rhel10.2.x86_64.rpm pgdg 2.1 38.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/nominatim_fdw_15-2.1-1PGDG.rhel10.2.x86_64.rpm
-@ el10.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-2.1.0-1PIGSTY.el10.x86_64.rpm pigsty 2.1.0 37.5KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/nominatim_fdw_15-2.1.0-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-1.3-2PGDG.rhel10.2.x86_64.rpm pgdg 1.3 32.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/nominatim_fdw_15-1.3-2PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-1.3-2PGDG.rhel10.1.x86_64.rpm pgdg 1.3 32.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/nominatim_fdw_15-1.3-2PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-1.3-2PGDG.rhel10.0.x86_64.rpm pgdg 1.3 33.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/nominatim_fdw_15-1.3-2PGDG.rhel10.0.x86_64.rpm
@@ -304,8 +342,10 @@ weight: 8680
 @ el10.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-1.2-1PGDG.rhel10.0.x86_64.rpm pgdg 1.2 31.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/nominatim_fdw_15-1.2-1PGDG.rhel10.0.x86_64.rpm
 @ el10.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-1.1.0-1PGDG.rhel10.1.x86_64.rpm pgdg 1.1.0 30.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/nominatim_fdw_15-1.1.0-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 15 nominatim_fdw_15 nominatim_fdw_15-1.1.0-1PGDG.rhel10.0.x86_64.rpm pgdg 1.1.0 31.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/nominatim_fdw_15-1.1.0-1PGDG.rhel10.0.x86_64.rpm
+@ el10.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-2.3-1PGSTY.el10.aarch64.rpm pigsty 2.3 90.5KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/nominatim_fdw_15-2.3-1PGSTY.el10.aarch64.rpm
+@ el10.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-2.3-1PGDG.rhel10.2.aarch64.rpm pgdg 2.3 44.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/nominatim_fdw_15-2.3-1PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-2.2-1PGDG.rhel10.2.aarch64.rpm pgdg 2.2 39.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/nominatim_fdw_15-2.2-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-2.1-1PGDG.rhel10.2.aarch64.rpm pgdg 2.1 37.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/nominatim_fdw_15-2.1-1PGDG.rhel10.2.aarch64.rpm
-@ el10.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-2.1.0-1PIGSTY.el10.aarch64.rpm pigsty 2.1.0 36.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/nominatim_fdw_15-2.1.0-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-1.3-2PGDG.rhel10.2.aarch64.rpm pgdg 1.3 32.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/nominatim_fdw_15-1.3-2PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-1.3-2PGDG.rhel10.1.aarch64.rpm pgdg 1.3 32.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/nominatim_fdw_15-1.3-2PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-1.3-2PGDG.rhel10.0.aarch64.rpm pgdg 1.3 32.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/nominatim_fdw_15-1.3-2PGDG.rhel10.0.aarch64.rpm
@@ -315,28 +355,32 @@ weight: 8680
 @ el10.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-1.2-1PGDG.rhel10.0.aarch64.rpm pgdg 1.2 30.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/nominatim_fdw_15-1.2-1PGDG.rhel10.0.aarch64.rpm
 @ el10.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-1.1.0-1PGDG.rhel10.1.aarch64.rpm pgdg 1.1.0 30.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/nominatim_fdw_15-1.1.0-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 15 nominatim_fdw_15 nominatim_fdw_15-1.1.0-1PGDG.rhel10.0.aarch64.rpm pgdg 1.1.0 30.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/nominatim_fdw_15-1.1.0-1PGDG.rhel10.0.aarch64.rpm
-@ d12.x86_64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~bookworm_amd64.deb pigsty 2.1.0 66.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~bookworm_arm64.deb pigsty 2.1.0 65.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~trixie_amd64.deb pigsty 2.1.0 66.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~trixie_arm64.deb pigsty 2.1.0 65.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~jammy_amd64.deb pigsty 2.1.0 76.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~jammy_arm64.deb pigsty 2.1.0 75.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~noble_amd64.deb pigsty 2.1.0 67.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~noble_arm64.deb pigsty 2.1.0 66.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~resolute_amd64.deb pigsty 2.1.0 66.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~resolute_arm64.deb pigsty 2.1.0 66.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.1.0-1PIGSTY~resolute_arm64.deb
-@ el8.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-2.1.0-1PIGSTY.el8.x86_64.rpm pigsty 2.1.0 36.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/nominatim_fdw_14-2.1.0-1PIGSTY.el8.x86_64.rpm
+@ d12.x86_64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.3-1PGSTY~bookworm_amd64.deb pigsty 2.3 88.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.3-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.3-1PGSTY~bookworm_arm64.deb pigsty 2.3 86.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.3-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.3-1PGSTY~trixie_amd64.deb pigsty 2.3 88.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.3-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.3-1PGSTY~trixie_arm64.deb pigsty 2.3 86.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.3-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.3-1PGSTY~jammy_amd64.deb pigsty 2.3 93.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.3-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.3-1PGSTY~jammy_arm64.deb pigsty 2.3 92.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.3-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.3-1PGSTY~noble_amd64.deb pigsty 2.3 82.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.3-1PGSTY~noble_amd64.deb
+@ u24.aarch64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.3-1PGSTY~noble_arm64.deb pigsty 2.3 81.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.3-1PGSTY~noble_arm64.deb
+@ u26.x86_64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.3-1PGSTY~resolute_amd64.deb pigsty 2.3 81.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.3-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 15 postgresql-15-nominatim-fdw postgresql-15-nominatim-fdw_2.3-1PGSTY~resolute_arm64.deb pigsty 2.3 80.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-15-nominatim-fdw_2.3-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-2.3-1PGSTY.el8.x86_64.rpm pigsty 2.3 89.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/nominatim_fdw_14-2.3-1PGSTY.el8.x86_64.rpm
+@ el8.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-2.3-1PGDG.rhel8.10.x86_64.rpm pgdg 2.3 44.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/nominatim_fdw_14-2.3-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-1.3-2PGDG.rhel8.10.x86_64.rpm pgdg 1.3 32.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/nominatim_fdw_14-1.3-2PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-1.3-1PGDG.rhel8.10.x86_64.rpm pgdg 1.3 31.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/nominatim_fdw_14-1.3-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-1.2-1PGDG.rhel8.10.x86_64.rpm pgdg 1.2 30.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/nominatim_fdw_14-1.2-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-1.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 1.1.0 30.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/nominatim_fdw_14-1.1.0-1PGDG.rhel8.10.x86_64.rpm
-@ el8.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-2.1.0-1PIGSTY.el8.aarch64.rpm pigsty 2.1.0 35.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/nominatim_fdw_14-2.1.0-1PIGSTY.el8.aarch64.rpm
+@ el8.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-2.3-1PGSTY.el8.aarch64.rpm pigsty 2.3 87.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/nominatim_fdw_14-2.3-1PGSTY.el8.aarch64.rpm
+@ el8.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-2.3-1PGDG.rhel8.10.aarch64.rpm pgdg 2.3 42.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/nominatim_fdw_14-2.3-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-1.3-2PGDG.rhel8.10.aarch64.rpm pgdg 1.3 31.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/nominatim_fdw_14-1.3-2PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-1.3-1PGDG.rhel8.10.aarch64.rpm pgdg 1.3 30.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/nominatim_fdw_14-1.3-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-1.2-1PGDG.rhel8.10.aarch64.rpm pgdg 1.2 29.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/nominatim_fdw_14-1.2-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-1.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 1.1.0 29.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/nominatim_fdw_14-1.1.0-1PGDG.rhel8.10.aarch64.rpm
+@ el9.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-2.3-1PGSTY.el9.x86_64.rpm pigsty 2.3 91.2KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/nominatim_fdw_14-2.3-1PGSTY.el9.x86_64.rpm
+@ el9.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-2.3-1PGDG.rhel9.8.x86_64.rpm pgdg 2.3 45.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/nominatim_fdw_14-2.3-1PGDG.rhel9.8.x86_64.rpm
+@ el9.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-2.2-1PGDG.rhel9.8.x86_64.rpm pgdg 2.2 40.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/nominatim_fdw_14-2.2-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-2.1-1PGDG.rhel9.8.x86_64.rpm pgdg 2.1 37.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/nominatim_fdw_14-2.1-1PGDG.rhel9.8.x86_64.rpm
-@ el9.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-2.1.0-1PIGSTY.el9.x86_64.rpm pigsty 2.1.0 36.9KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/nominatim_fdw_14-2.1.0-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-1.3-2PGDG.rhel9.8.x86_64.rpm pgdg 1.3 32.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/nominatim_fdw_14-1.3-2PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-1.3-2PGDG.rhel9.7.x86_64.rpm pgdg 1.3 32.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/nominatim_fdw_14-1.3-2PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-1.3-2PGDG.rhel9.6.x86_64.rpm pgdg 1.3 32.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/nominatim_fdw_14-1.3-2PGDG.rhel9.6.x86_64.rpm
@@ -346,8 +390,10 @@ weight: 8680
 @ el9.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-1.2-1PGDG.rhel9.6.x86_64.rpm pgdg 1.2 31.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/nominatim_fdw_14-1.2-1PGDG.rhel9.6.x86_64.rpm
 @ el9.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-1.1.0-1PGDG.rhel9.7.x86_64.rpm pgdg 1.1.0 30.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/nominatim_fdw_14-1.1.0-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-1.1.0-1PGDG.rhel9.6.x86_64.rpm pgdg 1.1.0 30.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/nominatim_fdw_14-1.1.0-1PGDG.rhel9.6.x86_64.rpm
+@ el9.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-2.3-1PGSTY.el9.aarch64.rpm pigsty 2.3 89.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/nominatim_fdw_14-2.3-1PGSTY.el9.aarch64.rpm
+@ el9.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-2.3-1PGDG.rhel9.8.aarch64.rpm pgdg 2.3 43.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/nominatim_fdw_14-2.3-1PGDG.rhel9.8.aarch64.rpm
+@ el9.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-2.2-1PGDG.rhel9.8.aarch64.rpm pgdg 2.2 39.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/nominatim_fdw_14-2.2-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-2.1-1PGDG.rhel9.8.aarch64.rpm pgdg 2.1 36.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/nominatim_fdw_14-2.1-1PGDG.rhel9.8.aarch64.rpm
-@ el9.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-2.1.0-1PIGSTY.el9.aarch64.rpm pigsty 2.1.0 36.2KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/nominatim_fdw_14-2.1.0-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-1.3-2PGDG.rhel9.8.aarch64.rpm pgdg 1.3 31.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/nominatim_fdw_14-1.3-2PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-1.3-2PGDG.rhel9.7.aarch64.rpm pgdg 1.3 31.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/nominatim_fdw_14-1.3-2PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-1.3-2PGDG.rhel9.6.aarch64.rpm pgdg 1.3 31.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/nominatim_fdw_14-1.3-2PGDG.rhel9.6.aarch64.rpm
@@ -357,8 +403,10 @@ weight: 8680
 @ el9.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-1.2-1PGDG.rhel9.6.aarch64.rpm pgdg 1.2 30.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/nominatim_fdw_14-1.2-1PGDG.rhel9.6.aarch64.rpm
 @ el9.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-1.1.0-1PGDG.rhel9.7.aarch64.rpm pgdg 1.1.0 29.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/nominatim_fdw_14-1.1.0-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-1.1.0-1PGDG.rhel9.6.aarch64.rpm pgdg 1.1.0 30.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/nominatim_fdw_14-1.1.0-1PGDG.rhel9.6.aarch64.rpm
+@ el10.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-2.3-1PGSTY.el10.x86_64.rpm pigsty 2.3 91.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/nominatim_fdw_14-2.3-1PGSTY.el10.x86_64.rpm
+@ el10.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-2.3-1PGDG.rhel10.2.x86_64.rpm pgdg 2.3 45.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/nominatim_fdw_14-2.3-1PGDG.rhel10.2.x86_64.rpm
+@ el10.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-2.2-1PGDG.rhel10.2.x86_64.rpm pgdg 2.2 40.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/nominatim_fdw_14-2.2-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-2.1-1PGDG.rhel10.2.x86_64.rpm pgdg 2.1 38.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/nominatim_fdw_14-2.1-1PGDG.rhel10.2.x86_64.rpm
-@ el10.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-2.1.0-1PIGSTY.el10.x86_64.rpm pigsty 2.1.0 37.5KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/nominatim_fdw_14-2.1.0-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-1.3-2PGDG.rhel10.2.x86_64.rpm pgdg 1.3 32.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/nominatim_fdw_14-1.3-2PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-1.3-2PGDG.rhel10.1.x86_64.rpm pgdg 1.3 32.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/nominatim_fdw_14-1.3-2PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-1.3-2PGDG.rhel10.0.x86_64.rpm pgdg 1.3 33.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/nominatim_fdw_14-1.3-2PGDG.rhel10.0.x86_64.rpm
@@ -368,8 +416,10 @@ weight: 8680
 @ el10.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-1.2-1PGDG.rhel10.0.x86_64.rpm pgdg 1.2 31.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/nominatim_fdw_14-1.2-1PGDG.rhel10.0.x86_64.rpm
 @ el10.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-1.1.0-1PGDG.rhel10.1.x86_64.rpm pgdg 1.1.0 30.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/nominatim_fdw_14-1.1.0-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 14 nominatim_fdw_14 nominatim_fdw_14-1.1.0-1PGDG.rhel10.0.x86_64.rpm pgdg 1.1.0 31.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/nominatim_fdw_14-1.1.0-1PGDG.rhel10.0.x86_64.rpm
+@ el10.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-2.3-1PGSTY.el10.aarch64.rpm pigsty 2.3 90.4KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/nominatim_fdw_14-2.3-1PGSTY.el10.aarch64.rpm
+@ el10.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-2.3-1PGDG.rhel10.2.aarch64.rpm pgdg 2.3 44.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/nominatim_fdw_14-2.3-1PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-2.2-1PGDG.rhel10.2.aarch64.rpm pgdg 2.2 39.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/nominatim_fdw_14-2.2-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-2.1-1PGDG.rhel10.2.aarch64.rpm pgdg 2.1 37.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/nominatim_fdw_14-2.1-1PGDG.rhel10.2.aarch64.rpm
-@ el10.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-2.1.0-1PIGSTY.el10.aarch64.rpm pigsty 2.1.0 36.7KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/nominatim_fdw_14-2.1.0-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-1.3-2PGDG.rhel10.2.aarch64.rpm pgdg 1.3 32.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/nominatim_fdw_14-1.3-2PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-1.3-2PGDG.rhel10.1.aarch64.rpm pgdg 1.3 32.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/nominatim_fdw_14-1.3-2PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-1.3-2PGDG.rhel10.0.aarch64.rpm pgdg 1.3 32.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/nominatim_fdw_14-1.3-2PGDG.rhel10.0.aarch64.rpm
@@ -379,16 +429,16 @@ weight: 8680
 @ el10.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-1.2-1PGDG.rhel10.0.aarch64.rpm pgdg 1.2 30.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/nominatim_fdw_14-1.2-1PGDG.rhel10.0.aarch64.rpm
 @ el10.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-1.1.0-1PGDG.rhel10.1.aarch64.rpm pgdg 1.1.0 30.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/nominatim_fdw_14-1.1.0-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 14 nominatim_fdw_14 nominatim_fdw_14-1.1.0-1PGDG.rhel10.0.aarch64.rpm pgdg 1.1.0 30.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/nominatim_fdw_14-1.1.0-1PGDG.rhel10.0.aarch64.rpm
-@ d12.x86_64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~bookworm_amd64.deb pigsty 2.1.0 66.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~bookworm_arm64.deb pigsty 2.1.0 65.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~trixie_amd64.deb pigsty 2.1.0 66.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~trixie_amd64.deb
-@ d13.aarch64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~trixie_arm64.deb pigsty 2.1.0 65.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~trixie_arm64.deb
-@ u22.x86_64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~jammy_amd64.deb pigsty 2.1.0 76.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~jammy_amd64.deb
-@ u22.aarch64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~jammy_arm64.deb pigsty 2.1.0 75.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~jammy_arm64.deb
-@ u24.x86_64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~noble_amd64.deb pigsty 2.1.0 67.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~noble_amd64.deb
-@ u24.aarch64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~noble_arm64.deb pigsty 2.1.0 66.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~noble_arm64.deb
-@ u26.x86_64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~resolute_amd64.deb pigsty 2.1.0 66.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~resolute_amd64.deb
-@ u26.aarch64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~resolute_arm64.deb pigsty 2.1.0 66.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.1.0-1PIGSTY~resolute_arm64.deb
+@ d12.x86_64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.3-1PGSTY~bookworm_amd64.deb pigsty 2.3 88.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.3-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.3-1PGSTY~bookworm_arm64.deb pigsty 2.3 86.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.3-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.3-1PGSTY~trixie_amd64.deb pigsty 2.3 88.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.3-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.3-1PGSTY~trixie_arm64.deb pigsty 2.3 86.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.3-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.3-1PGSTY~jammy_amd64.deb pigsty 2.3 93.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.3-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.3-1PGSTY~jammy_arm64.deb pigsty 2.3 92.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.3-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.3-1PGSTY~noble_amd64.deb pigsty 2.3 82.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.3-1PGSTY~noble_amd64.deb
+@ u24.aarch64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.3-1PGSTY~noble_arm64.deb pigsty 2.3 81.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.3-1PGSTY~noble_arm64.deb
+@ u26.x86_64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.3-1PGSTY~resolute_amd64.deb pigsty 2.3 81.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.3-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 14 postgresql-14-nominatim-fdw postgresql-14-nominatim-fdw_2.3-1PGSTY~resolute_arm64.deb pigsty 2.3 80.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/n/nominatim-fdw/postgresql-14-nominatim-fdw_2.3-1PGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -449,9 +499,9 @@ CREATE EXTENSION nominatim_fdw;
 
 Sources:
 
-- [nominatim_fdw v2.1 README](https://github.com/jimjonesbr/nominatim_fdw/blob/v2.1/README.md)
-- [nominatim_fdw v2.1 changelog](https://github.com/jimjonesbr/nominatim_fdw/blob/v2.1/CHANGELOG.md)
-- [nominatim_fdw v2.1 control file](https://github.com/jimjonesbr/nominatim_fdw/blob/v2.1/nominatim_fdw.control)
+- [nominatim_fdw v2.3 README](https://github.com/jimjonesbr/nominatim_fdw/blob/v2.3/README.md)
+- [nominatim_fdw v2.3 changelog](https://github.com/jimjonesbr/nominatim_fdw/blob/v2.3/CHANGELOG.md)
+- [nominatim_fdw v2.3 control file](https://github.com/jimjonesbr/nominatim_fdw/blob/v2.3/nominatim_fdw.control)
 - [Official Nominatim API overview](https://nominatim.org/release-docs/develop/api/Overview/)
 - [OpenStreetMap Nominatim usage policy](https://operations.osmfoundation.org/policies/nominatim/)
 
@@ -526,16 +576,27 @@ FROM nominatim_lookup(
 
 All endpoint functions are `STRICT`: an explicit SQL `NULL` argument returns no rows without sending a request. In 2.0 they are correctly declared `VOLATILE`, because responses are remote and can change.
 
-### Version 2.1 Changes and Caveats
+### Version 2.3 Changes and Caveats
 
 Version 2.0 validates reverse coordinates, adds `email`, `polygon_threshold`, and `entrances`, exposes dependency settings, and fixes JSON escaping for returned detail fields. It also has user-visible compatibility changes: reverse output uses `display_name`; `addressparts` becomes `addressdetails`; address details default to true for reverse and lookup; and version output is shorter.
 
-After installing the 2.1 package files, upgrade existing databases:
+After installing the 2.3 extension files, upgrade existing databases:
 
 ```sql
-ALTER EXTENSION nominatim_fdw UPDATE TO '2.1';
+ALTER EXTENSION nominatim_fdw UPDATE TO '2.3';
 ```
 
 Version 2.1 adds Basic-auth mapping and initializes libcurl once per PostgreSQL backend instead of relying on implicit per-request initialization. The libcurl fix requires no new SQL or preload setting.
 
-Each call performs network I/O in the database statement. Use finite timeouts, constrain who can create or alter servers, and avoid invoking a public service once per row in a large query. The upstream build requires PostgreSQL 10 or newer, libxml2 2.5 or newer, and libcurl 7.74 or newer.
+Each call performs network I/O in the database statement. Use finite timeouts, constrain who can create or alter servers, and avoid invoking a public service once per row in a large query. The upstream build requires PostgreSQL 10 or newer, libxml2 2.6.0 or newer, and libcurl 7.74 or newer.
+
+### 2.3 Privileges and Request Limits
+
+The SQL/control version is 2.3; the PGXN distribution version is 2.3.0. Query functions now enforce foreign-server `USAGE`; grant it to roles that need access:
+
+```sql
+GRANT USAGE ON FOREIGN SERVER osm TO app_user;
+ALTER SERVER osm OPTIONS (ADD max_response_size '10485760');
+```
+
+`max_response_size` is in bytes, defaults to 0 for no additional limit, and accepts a maximum of 1 GiB. 2.3 allows only HTTP/HTTPS and rejects CR/LF in request headers; `polygon_threshold` must be finite and nonnegative. `zoom` preserves -1 as the default and clamps other values to 0–18. It also fixes response encoding, XML root validation and cleanup after cancellation. The catalog version does not imply that existing 2.2.0 packages contain these fixes.

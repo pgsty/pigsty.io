@@ -11,6 +11,11 @@ weight: 2530
     <div class="ext-card__title">heterodb/pg-strom</div>
     <div class="ext-card__desc">https://github.com/heterodb/pg-strom</div>
   </a>
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_strom-6.1.0.tar.gz">
+    <div class="ext-card__kicker">Source</div>
+    <div class="ext-card__title">pg_strom-6.1.0.tar.gz</div>
+    <div class="ext-card__desc">pg_strom-6.1.0.tar.gz</div>
+  </a>
 </div>
 
 
@@ -33,15 +38,15 @@ weight: 2530
 {.ext-table .ext-table--rel}
 
 
-> RPM only: version 6.1 is available for PostgreSQL 15-18; PostgreSQL 14 remains on 3.5; no DEB package is available.
+> RPM only: PGDG provides version 6.1 for PostgreSQL 15-18; the local 3.5/PG14 compatibility spec is a quarantined legacy orphan and is not scheduled; no DEB package is available.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `6.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_strom` | - |
-| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `6.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_strom_$v` | - |
+| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `6.1` | {{< pgvers "18,17,16,15" >}} | `pg_strom` | - |
+| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `6.1` | {{< pgvers "18,17,16,15" >}} | `pg_strom_$v` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -148,7 +153,6 @@ pig ext install -y pg_strom -v 18  # PG 18
 pig ext install -y pg_strom -v 17  # PG 17
 pig ext install -y pg_strom -v 16  # PG 16
 pig ext install -y pg_strom -v 15  # PG 15
-pig ext install -y pg_strom -v 14  # PG 14
 ```
 
 ```bash {tab="dnf" value="dnf"}
@@ -156,7 +160,6 @@ dnf install -y pg_strom_18       # PG 18
 dnf install -y pg_strom_17       # PG 17
 dnf install -y pg_strom_16       # PG 16
 dnf install -y pg_strom_15       # PG 15
-dnf install -y pg_strom_14       # PG 14
 ```
 
 
@@ -229,7 +232,7 @@ EXPLAIN (ANALYZE, COSTS OFF)
 SELECT * FROM lineorder WHERE lo_quantity > 40 AND lo_discount BETWEEN 1 AND 3;
 ```
 
-```text
+```
  Custom Scan (GpuScan) on lineorder
    GPU Filter: ((lo_quantity > 40) AND (lo_discount >= 1) AND (lo_discount <= 3))
    Rows Removed by GPU Filter: 59532300
@@ -254,7 +257,7 @@ SELECT d_year, s_nation, sum(lo_revenue) AS revenue
  ORDER BY d_year, s_nation;
 ```
 
-```text
+```
  Sort
    Sort Key: date1.d_year, supplier.s_nation
    ->  Custom Scan (GpuPreAgg) on lineorder
@@ -281,7 +284,7 @@ SELECT lo_shipmode, count(*), avg(lo_quantity)
  GROUP BY lo_shipmode;
 ```
 
-```text
+```
  Finalize GroupAggregate
    Group Key: lo_shipmode
    ->  Custom Scan (GpuPreAgg) on lineorder
@@ -414,7 +417,7 @@ SELECT a.id, b.name
  WHERE st_contains(b.geom, st_makepoint(a.longitude, a.latitude));
 ```
 
-```text
+```
  Custom Scan (GpuJoin) on gps_points a
    GPU Projection: a.id, b.name
    GPU GiST Join Quals [1]: st_contains(b.geom, st_makepoint(a.longitude, a.latitude))

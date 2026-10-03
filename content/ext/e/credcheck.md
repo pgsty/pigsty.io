@@ -6,10 +6,10 @@ weight: 7310
 ---
 
 <div class="ext-cards">
-  <a class="ext-card ext-card--repo" href="https://github.com/MigOpsRepos/credcheck">
+  <a class="ext-card ext-card--repo" href="https://github.com/HexaCluster/credcheck">
     <div class="ext-card__kicker">Repository</div>
-    <div class="ext-card__title">MigOpsRepos/credcheck</div>
-    <div class="ext-card__desc">https://github.com/MigOpsRepos/credcheck</div>
+    <div class="ext-card__title">HexaCluster/credcheck</div>
+    <div class="ext-card__desc">https://github.com/HexaCluster/credcheck</div>
   </a>
 </div>
 
@@ -132,36 +132,36 @@ weight: 7310
 @ el10.aarch64 18 credcheck_18 credcheck_18-4.2-1PGDG.rhel10.aarch64.rpm pgdg 4.2 39.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/credcheck_18-4.2-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 18 credcheck_18 credcheck_18-4.1-1PGDG.rhel10.aarch64.rpm pgdg 4.1 39.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/credcheck_18-4.1-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 18 credcheck_18 credcheck_18-3.0-2PGDG.rhel10.aarch64.rpm pgdg 3.0 36.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/credcheck_18-3.0-2PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg12+2_amd64.deb pgdg 5.0 80.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg12+2_amd64.deb
 @ d12.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg12+1_amd64.deb pgdg 5.0 80.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg12+1_amd64.deb
 @ d12.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-1.pgdg12+1_amd64.deb pgdg 5.0 80.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-1.pgdg12+1_amd64.deb
-@ d12.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_4.7-1.pgdg12+1_amd64.deb pgdg 4.7 75.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_4.7-1.pgdg12+1_amd64.deb
+@ d12.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg12+2_arm64.deb pgdg 5.0 79.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg12+2_arm64.deb
 @ d12.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg12+1_arm64.deb pgdg 5.0 79.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg12+1_arm64.deb
 @ d12.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-1.pgdg12+1_arm64.deb pgdg 5.0 79.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-1.pgdg12+1_arm64.deb
-@ d12.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_4.7-1.pgdg12+1_arm64.deb pgdg 4.7 74.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_4.7-1.pgdg12+1_arm64.deb
+@ d13.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg13+2_amd64.deb pgdg 5.0 80.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg13+2_amd64.deb
 @ d13.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg13+1_amd64.deb pgdg 5.0 80.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg13+1_amd64.deb
 @ d13.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-1.pgdg13+1_amd64.deb pgdg 5.0 80.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-1.pgdg13+1_amd64.deb
-@ d13.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_4.7-1.pgdg13+1_amd64.deb pgdg 4.7 75.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_4.7-1.pgdg13+1_amd64.deb
+@ d13.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg13+2_arm64.deb pgdg 5.0 79.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg13+2_arm64.deb
 @ d13.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg13+1_arm64.deb pgdg 5.0 79.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg13+1_arm64.deb
 @ d13.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-1.pgdg13+1_arm64.deb pgdg 5.0 79.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-1.pgdg13+1_arm64.deb
-@ d13.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_4.7-1.pgdg13+1_arm64.deb pgdg 4.7 73.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_4.7-1.pgdg13+1_arm64.deb
+@ u22.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg22.04+2_amd64.deb pgdg 5.0 74.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg22.04+2_amd64.deb
 @ u22.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg22.04+1_amd64.deb pgdg 5.0 74.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg22.04+1_amd64.deb
 @ u22.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-1.pgdg22.04+1_amd64.deb pgdg 5.0 74.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-1.pgdg22.04+1_amd64.deb
-@ u22.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_4.7-1.pgdg22.04+1_amd64.deb pgdg 4.7 69.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_4.7-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg22.04+2_arm64.deb pgdg 5.0 73.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg22.04+2_arm64.deb
 @ u22.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg22.04+1_arm64.deb pgdg 5.0 73.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg22.04+1_arm64.deb
 @ u22.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-1.pgdg22.04+1_arm64.deb pgdg 5.0 73.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-1.pgdg22.04+1_arm64.deb
-@ u22.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_4.7-1.pgdg22.04+1_arm64.deb pgdg 4.7 68.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_4.7-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg24.04+2_amd64.deb pgdg 5.0 74.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg24.04+2_amd64.deb
 @ u24.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg24.04+1_amd64.deb pgdg 5.0 74.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg24.04+1_amd64.deb
 @ u24.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-1.pgdg24.04+1_amd64.deb pgdg 5.0 74.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-1.pgdg24.04+1_amd64.deb
-@ u24.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_4.7-1.pgdg24.04+1_amd64.deb pgdg 4.7 68.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_4.7-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg24.04+2_arm64.deb pgdg 5.0 72.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg24.04+2_arm64.deb
 @ u24.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg24.04+1_arm64.deb pgdg 5.0 72.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg24.04+1_arm64.deb
 @ u24.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-1.pgdg24.04+1_arm64.deb pgdg 5.0 72.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-1.pgdg24.04+1_arm64.deb
-@ u24.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_4.7-1.pgdg24.04+1_arm64.deb pgdg 4.7 67.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_4.7-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg26.04+2_amd64.deb pgdg 5.0 73.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg26.04+2_amd64.deb
 @ u26.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg26.04+1_amd64.deb pgdg 5.0 73.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg26.04+1_amd64.deb
 @ u26.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-1.pgdg26.04+1_amd64.deb pgdg 5.0 73.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-1.pgdg26.04+1_amd64.deb
-@ u26.x86_64 18 postgresql-18-credcheck postgresql-18-credcheck_4.7-1.pgdg26.04+1_amd64.deb pgdg 4.7 68.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_4.7-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg26.04+2_arm64.deb pgdg 5.0 72.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg26.04+2_arm64.deb
 @ u26.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-2.pgdg26.04+1_arm64.deb pgdg 5.0 72.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-2.pgdg26.04+1_arm64.deb
 @ u26.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_5.0-1.pgdg26.04+1_arm64.deb pgdg 5.0 72.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_5.0-1.pgdg26.04+1_arm64.deb
-@ u26.aarch64 18 postgresql-18-credcheck postgresql-18-credcheck_4.7-1.pgdg26.04+1_arm64.deb pgdg 4.7 67.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-18-credcheck_4.7-1.pgdg26.04+1_arm64.deb
 @ el8.x86_64 17 credcheck_17 credcheck_17-4.7-1PGDG.rhel8.10.x86_64.rpm pgdg 4.7 42.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/credcheck_17-4.7-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 credcheck_17 credcheck_17-4.6-1PGDG.rhel8.10.x86_64.rpm pgdg 4.6 41.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/credcheck_17-4.6-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 credcheck_17 credcheck_17-4.5-1PGDG.rhel8.10.x86_64.rpm pgdg 4.5 41.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/credcheck_17-4.5-1PGDG.rhel8.10.x86_64.rpm
@@ -237,36 +237,36 @@ weight: 7310
 @ el10.aarch64 17 credcheck_17 credcheck_17-4.2-1PGDG.rhel10.aarch64.rpm pgdg 4.2 40.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/credcheck_17-4.2-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 17 credcheck_17 credcheck_17-4.1-1PGDG.rhel10.aarch64.rpm pgdg 4.1 39.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/credcheck_17-4.1-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 17 credcheck_17 credcheck_17-3.0-2PGDG.rhel10.aarch64.rpm pgdg 3.0 36.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/credcheck_17-3.0-2PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg12+2_amd64.deb pgdg 5.0 80.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg12+2_amd64.deb
 @ d12.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg12+1_amd64.deb pgdg 5.0 80.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg12+1_amd64.deb
 @ d12.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-1.pgdg12+1_amd64.deb pgdg 5.0 80.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-1.pgdg12+1_amd64.deb
-@ d12.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_4.7-1.pgdg12+1_amd64.deb pgdg 4.7 75.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_4.7-1.pgdg12+1_amd64.deb
+@ d12.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg12+2_arm64.deb pgdg 5.0 79.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg12+2_arm64.deb
 @ d12.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg12+1_arm64.deb pgdg 5.0 79.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg12+1_arm64.deb
 @ d12.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-1.pgdg12+1_arm64.deb pgdg 5.0 79.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-1.pgdg12+1_arm64.deb
-@ d12.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_4.7-1.pgdg12+1_arm64.deb pgdg 4.7 74.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_4.7-1.pgdg12+1_arm64.deb
+@ d13.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg13+2_amd64.deb pgdg 5.0 80.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg13+2_amd64.deb
 @ d13.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg13+1_amd64.deb pgdg 5.0 81.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg13+1_amd64.deb
 @ d13.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-1.pgdg13+1_amd64.deb pgdg 5.0 80.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-1.pgdg13+1_amd64.deb
-@ d13.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_4.7-1.pgdg13+1_amd64.deb pgdg 4.7 74.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_4.7-1.pgdg13+1_amd64.deb
+@ d13.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg13+2_arm64.deb pgdg 5.0 79.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg13+2_arm64.deb
 @ d13.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg13+1_arm64.deb pgdg 5.0 79.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg13+1_arm64.deb
 @ d13.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-1.pgdg13+1_arm64.deb pgdg 5.0 79.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-1.pgdg13+1_arm64.deb
-@ d13.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_4.7-1.pgdg13+1_arm64.deb pgdg 4.7 73.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_4.7-1.pgdg13+1_arm64.deb
+@ u22.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg22.04+2_amd64.deb pgdg 5.0 81.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg22.04+2_amd64.deb
 @ u22.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg22.04+1_amd64.deb pgdg 5.0 81.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg22.04+1_amd64.deb
 @ u22.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-1.pgdg22.04+1_amd64.deb pgdg 5.0 81.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-1.pgdg22.04+1_amd64.deb
-@ u22.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_4.7-1.pgdg22.04+1_amd64.deb pgdg 4.7 76.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_4.7-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg22.04+2_arm64.deb pgdg 5.0 80.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg22.04+2_arm64.deb
 @ u22.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg22.04+1_arm64.deb pgdg 5.0 80.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg22.04+1_arm64.deb
 @ u22.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-1.pgdg22.04+1_arm64.deb pgdg 5.0 80.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-1.pgdg22.04+1_arm64.deb
-@ u22.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_4.7-1.pgdg22.04+1_arm64.deb pgdg 4.7 74.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_4.7-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg24.04+2_amd64.deb pgdg 5.0 74.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg24.04+2_amd64.deb
 @ u24.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg24.04+1_amd64.deb pgdg 5.0 74.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg24.04+1_amd64.deb
 @ u24.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-1.pgdg24.04+1_amd64.deb pgdg 5.0 74.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-1.pgdg24.04+1_amd64.deb
-@ u24.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_4.7-1.pgdg24.04+1_amd64.deb pgdg 4.7 68.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_4.7-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg24.04+2_arm64.deb pgdg 5.0 72.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg24.04+2_arm64.deb
 @ u24.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg24.04+1_arm64.deb pgdg 5.0 72.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg24.04+1_arm64.deb
 @ u24.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-1.pgdg24.04+1_arm64.deb pgdg 5.0 72.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-1.pgdg24.04+1_arm64.deb
-@ u24.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_4.7-1.pgdg24.04+1_arm64.deb pgdg 4.7 67.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_4.7-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg26.04+2_amd64.deb pgdg 5.0 73.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg26.04+2_amd64.deb
 @ u26.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg26.04+1_amd64.deb pgdg 5.0 73.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg26.04+1_amd64.deb
 @ u26.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-1.pgdg26.04+1_amd64.deb pgdg 5.0 73.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-1.pgdg26.04+1_amd64.deb
-@ u26.x86_64 17 postgresql-17-credcheck postgresql-17-credcheck_4.7-1.pgdg26.04+1_amd64.deb pgdg 4.7 68.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_4.7-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg26.04+2_arm64.deb pgdg 5.0 71.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg26.04+2_arm64.deb
 @ u26.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-2.pgdg26.04+1_arm64.deb pgdg 5.0 71.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-2.pgdg26.04+1_arm64.deb
 @ u26.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_5.0-1.pgdg26.04+1_arm64.deb pgdg 5.0 71.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_5.0-1.pgdg26.04+1_arm64.deb
-@ u26.aarch64 17 postgresql-17-credcheck postgresql-17-credcheck_4.7-1.pgdg26.04+1_arm64.deb pgdg 4.7 67.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-17-credcheck_4.7-1.pgdg26.04+1_arm64.deb
 @ el8.x86_64 16 credcheck_16 credcheck_16-4.7-1PGDG.rhel8.10.x86_64.rpm pgdg 4.7 42.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/credcheck_16-4.7-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 credcheck_16 credcheck_16-4.6-1PGDG.rhel8.10.x86_64.rpm pgdg 4.6 41.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/credcheck_16-4.6-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 credcheck_16 credcheck_16-4.5-1PGDG.rhel8.10.x86_64.rpm pgdg 4.5 41.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/credcheck_16-4.5-1PGDG.rhel8.10.x86_64.rpm
@@ -354,36 +354,36 @@ weight: 7310
 @ el10.aarch64 16 credcheck_16 credcheck_16-4.2-1PGDG.rhel10.aarch64.rpm pgdg 4.2 40.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/credcheck_16-4.2-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 16 credcheck_16 credcheck_16-4.1-1PGDG.rhel10.aarch64.rpm pgdg 4.1 39.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/credcheck_16-4.1-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 16 credcheck_16 credcheck_16-3.0-2PGDG.rhel10.aarch64.rpm pgdg 3.0 36.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/credcheck_16-3.0-2PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg12+2_amd64.deb pgdg 5.0 80.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg12+2_amd64.deb
 @ d12.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg12+1_amd64.deb pgdg 5.0 80.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg12+1_amd64.deb
 @ d12.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-1.pgdg12+1_amd64.deb pgdg 5.0 80.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-1.pgdg12+1_amd64.deb
-@ d12.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_4.7-1.pgdg12+1_amd64.deb pgdg 4.7 75.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_4.7-1.pgdg12+1_amd64.deb
+@ d12.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg12+2_arm64.deb pgdg 5.0 79.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg12+2_arm64.deb
 @ d12.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg12+1_arm64.deb pgdg 5.0 79.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg12+1_arm64.deb
 @ d12.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-1.pgdg12+1_arm64.deb pgdg 5.0 79.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-1.pgdg12+1_arm64.deb
-@ d12.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_4.7-1.pgdg12+1_arm64.deb pgdg 4.7 74.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_4.7-1.pgdg12+1_arm64.deb
+@ d13.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg13+2_amd64.deb pgdg 5.0 80.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg13+2_amd64.deb
 @ d13.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg13+1_amd64.deb pgdg 5.0 80.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg13+1_amd64.deb
 @ d13.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-1.pgdg13+1_amd64.deb pgdg 5.0 80.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-1.pgdg13+1_amd64.deb
-@ d13.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_4.7-1.pgdg13+1_amd64.deb pgdg 4.7 74.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_4.7-1.pgdg13+1_amd64.deb
+@ d13.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg13+2_arm64.deb pgdg 5.0 79.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg13+2_arm64.deb
 @ d13.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg13+1_arm64.deb pgdg 5.0 79.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg13+1_arm64.deb
 @ d13.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-1.pgdg13+1_arm64.deb pgdg 5.0 79.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-1.pgdg13+1_arm64.deb
-@ d13.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_4.7-1.pgdg13+1_arm64.deb pgdg 4.7 73.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_4.7-1.pgdg13+1_arm64.deb
+@ u22.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg22.04+2_amd64.deb pgdg 5.0 81.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg22.04+2_amd64.deb
 @ u22.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg22.04+1_amd64.deb pgdg 5.0 81.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg22.04+1_amd64.deb
 @ u22.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-1.pgdg22.04+1_amd64.deb pgdg 5.0 81.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-1.pgdg22.04+1_amd64.deb
-@ u22.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_4.7-1.pgdg22.04+1_amd64.deb pgdg 4.7 76.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_4.7-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg22.04+2_arm64.deb pgdg 5.0 80.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg22.04+2_arm64.deb
 @ u22.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg22.04+1_arm64.deb pgdg 5.0 80.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg22.04+1_arm64.deb
 @ u22.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-1.pgdg22.04+1_arm64.deb pgdg 5.0 80.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-1.pgdg22.04+1_arm64.deb
-@ u22.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_4.7-1.pgdg22.04+1_arm64.deb pgdg 4.7 74.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_4.7-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg24.04+2_amd64.deb pgdg 5.0 74.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg24.04+2_amd64.deb
 @ u24.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg24.04+1_amd64.deb pgdg 5.0 74.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg24.04+1_amd64.deb
 @ u24.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-1.pgdg24.04+1_amd64.deb pgdg 5.0 73.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-1.pgdg24.04+1_amd64.deb
-@ u24.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_4.7-1.pgdg24.04+1_amd64.deb pgdg 4.7 68.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_4.7-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg24.04+2_arm64.deb pgdg 5.0 72.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg24.04+2_arm64.deb
 @ u24.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg24.04+1_arm64.deb pgdg 5.0 72.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg24.04+1_arm64.deb
 @ u24.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-1.pgdg24.04+1_arm64.deb pgdg 5.0 72.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-1.pgdg24.04+1_arm64.deb
-@ u24.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_4.7-1.pgdg24.04+1_arm64.deb pgdg 4.7 67.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_4.7-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg26.04+2_amd64.deb pgdg 5.0 73.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg26.04+2_amd64.deb
 @ u26.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg26.04+1_amd64.deb pgdg 5.0 73.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg26.04+1_amd64.deb
 @ u26.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-1.pgdg26.04+1_amd64.deb pgdg 5.0 73.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-1.pgdg26.04+1_amd64.deb
-@ u26.x86_64 16 postgresql-16-credcheck postgresql-16-credcheck_4.7-1.pgdg26.04+1_amd64.deb pgdg 4.7 68.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_4.7-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg26.04+2_arm64.deb pgdg 5.0 71.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg26.04+2_arm64.deb
 @ u26.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-2.pgdg26.04+1_arm64.deb pgdg 5.0 71.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-2.pgdg26.04+1_arm64.deb
 @ u26.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_5.0-1.pgdg26.04+1_arm64.deb pgdg 5.0 71.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_5.0-1.pgdg26.04+1_arm64.deb
-@ u26.aarch64 16 postgresql-16-credcheck postgresql-16-credcheck_4.7-1.pgdg26.04+1_arm64.deb pgdg 4.7 67.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-16-credcheck_4.7-1.pgdg26.04+1_arm64.deb
 @ el8.x86_64 15 credcheck_15 credcheck_15-4.7-1PGDG.rhel8.10.x86_64.rpm pgdg 4.7 42.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/credcheck_15-4.7-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 credcheck_15 credcheck_15-4.6-1PGDG.rhel8.10.x86_64.rpm pgdg 4.6 41.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/credcheck_15-4.6-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 credcheck_15 credcheck_15-4.5-1PGDG.rhel8.10.x86_64.rpm pgdg 4.5 41.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/credcheck_15-4.5-1PGDG.rhel8.10.x86_64.rpm
@@ -491,36 +491,36 @@ weight: 7310
 @ el10.aarch64 15 credcheck_15 credcheck_15-4.2-1PGDG.rhel10.aarch64.rpm pgdg 4.2 39.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/credcheck_15-4.2-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 15 credcheck_15 credcheck_15-4.1-1PGDG.rhel10.aarch64.rpm pgdg 4.1 39.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/credcheck_15-4.1-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 15 credcheck_15 credcheck_15-3.0-2PGDG.rhel10.aarch64.rpm pgdg 3.0 36.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/credcheck_15-3.0-2PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg12+2_amd64.deb pgdg 5.0 80.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg12+2_amd64.deb
 @ d12.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg12+1_amd64.deb pgdg 5.0 80.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg12+1_amd64.deb
 @ d12.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-1.pgdg12+1_amd64.deb pgdg 5.0 80.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-1.pgdg12+1_amd64.deb
-@ d12.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_4.7-1.pgdg12+1_amd64.deb pgdg 4.7 74.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_4.7-1.pgdg12+1_amd64.deb
+@ d12.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg12+2_arm64.deb pgdg 5.0 79.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg12+2_arm64.deb
 @ d12.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg12+1_arm64.deb pgdg 5.0 79.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg12+1_arm64.deb
 @ d12.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-1.pgdg12+1_arm64.deb pgdg 5.0 79.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-1.pgdg12+1_arm64.deb
-@ d12.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_4.7-1.pgdg12+1_arm64.deb pgdg 4.7 73.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_4.7-1.pgdg12+1_arm64.deb
+@ d13.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg13+2_amd64.deb pgdg 5.0 80.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg13+2_amd64.deb
 @ d13.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg13+1_amd64.deb pgdg 5.0 80.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg13+1_amd64.deb
 @ d13.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-1.pgdg13+1_amd64.deb pgdg 5.0 80.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-1.pgdg13+1_amd64.deb
-@ d13.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_4.7-1.pgdg13+1_amd64.deb pgdg 4.7 74.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_4.7-1.pgdg13+1_amd64.deb
+@ d13.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg13+2_arm64.deb pgdg 5.0 79.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg13+2_arm64.deb
 @ d13.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg13+1_arm64.deb pgdg 5.0 79.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg13+1_arm64.deb
 @ d13.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-1.pgdg13+1_arm64.deb pgdg 5.0 79.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-1.pgdg13+1_arm64.deb
-@ d13.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_4.7-1.pgdg13+1_arm64.deb pgdg 4.7 73.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_4.7-1.pgdg13+1_arm64.deb
+@ u22.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg22.04+2_amd64.deb pgdg 5.0 81.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg22.04+2_amd64.deb
 @ u22.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg22.04+1_amd64.deb pgdg 5.0 81.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg22.04+1_amd64.deb
 @ u22.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-1.pgdg22.04+1_amd64.deb pgdg 5.0 81.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-1.pgdg22.04+1_amd64.deb
-@ u22.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_4.7-1.pgdg22.04+1_amd64.deb pgdg 4.7 75.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_4.7-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg22.04+2_arm64.deb pgdg 5.0 79.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg22.04+2_arm64.deb
 @ u22.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg22.04+1_arm64.deb pgdg 5.0 79.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg22.04+1_arm64.deb
 @ u22.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-1.pgdg22.04+1_arm64.deb pgdg 5.0 79.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-1.pgdg22.04+1_arm64.deb
-@ u22.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_4.7-1.pgdg22.04+1_arm64.deb pgdg 4.7 74.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_4.7-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg24.04+2_amd64.deb pgdg 5.0 73.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg24.04+2_amd64.deb
 @ u24.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg24.04+1_amd64.deb pgdg 5.0 73.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg24.04+1_amd64.deb
 @ u24.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-1.pgdg24.04+1_amd64.deb pgdg 5.0 73.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-1.pgdg24.04+1_amd64.deb
-@ u24.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_4.7-1.pgdg24.04+1_amd64.deb pgdg 4.7 68.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_4.7-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg24.04+2_arm64.deb pgdg 5.0 72.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg24.04+2_arm64.deb
 @ u24.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg24.04+1_arm64.deb pgdg 5.0 72.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg24.04+1_arm64.deb
 @ u24.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-1.pgdg24.04+1_arm64.deb pgdg 5.0 72.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-1.pgdg24.04+1_arm64.deb
-@ u24.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_4.7-1.pgdg24.04+1_arm64.deb pgdg 4.7 67.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_4.7-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg26.04+2_amd64.deb pgdg 5.0 73.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg26.04+2_amd64.deb
 @ u26.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg26.04+1_amd64.deb pgdg 5.0 73.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg26.04+1_amd64.deb
 @ u26.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-1.pgdg26.04+1_amd64.deb pgdg 5.0 73.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-1.pgdg26.04+1_amd64.deb
-@ u26.x86_64 15 postgresql-15-credcheck postgresql-15-credcheck_4.7-1.pgdg26.04+1_amd64.deb pgdg 4.7 68.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_4.7-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg26.04+2_arm64.deb pgdg 5.0 71.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg26.04+2_arm64.deb
 @ u26.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-2.pgdg26.04+1_arm64.deb pgdg 5.0 71.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-2.pgdg26.04+1_arm64.deb
 @ u26.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_5.0-1.pgdg26.04+1_arm64.deb pgdg 5.0 71.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_5.0-1.pgdg26.04+1_arm64.deb
-@ u26.aarch64 15 postgresql-15-credcheck postgresql-15-credcheck_4.7-1.pgdg26.04+1_arm64.deb pgdg 4.7 66.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-15-credcheck_4.7-1.pgdg26.04+1_arm64.deb
 @ el8.x86_64 14 credcheck_14 credcheck_14-4.7-1PGDG.rhel8.10.x86_64.rpm pgdg 4.7 42.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/credcheck_14-4.7-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 credcheck_14 credcheck_14-4.6-1PGDG.rhel8.10.x86_64.rpm pgdg 4.6 41.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/credcheck_14-4.6-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 credcheck_14 credcheck_14-4.5-1PGDG.rhel8.10.x86_64.rpm pgdg 4.5 41.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/credcheck_14-4.5-1PGDG.rhel8.10.x86_64.rpm
@@ -627,36 +627,36 @@ weight: 7310
 @ el10.aarch64 14 credcheck_14 credcheck_14-4.2-1PGDG.rhel10.aarch64.rpm pgdg 4.2 39.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/credcheck_14-4.2-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 14 credcheck_14 credcheck_14-4.1-1PGDG.rhel10.aarch64.rpm pgdg 4.1 39.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/credcheck_14-4.1-1PGDG.rhel10.aarch64.rpm
 @ el10.aarch64 14 credcheck_14 credcheck_14-3.0-2PGDG.rhel10.aarch64.rpm pgdg 3.0 36.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/credcheck_14-3.0-2PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg12+2_amd64.deb pgdg 5.0 75.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg12+2_amd64.deb
 @ d12.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg12+1_amd64.deb pgdg 5.0 75.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg12+1_amd64.deb
 @ d12.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-1.pgdg12+1_amd64.deb pgdg 5.0 75.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-1.pgdg12+1_amd64.deb
-@ d12.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_4.7-1.pgdg12+1_amd64.deb pgdg 4.7 74.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_4.7-1.pgdg12+1_amd64.deb
+@ d12.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg12+2_arm64.deb pgdg 5.0 74.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg12+2_arm64.deb
 @ d12.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg12+1_arm64.deb pgdg 5.0 74.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg12+1_arm64.deb
 @ d12.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-1.pgdg12+1_arm64.deb pgdg 5.0 74.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-1.pgdg12+1_arm64.deb
-@ d12.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_4.7-1.pgdg12+1_arm64.deb pgdg 4.7 73.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_4.7-1.pgdg12+1_arm64.deb
+@ d13.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg13+2_amd64.deb pgdg 5.0 75.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg13+2_amd64.deb
 @ d13.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg13+1_amd64.deb pgdg 5.0 75.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg13+1_amd64.deb
 @ d13.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-1.pgdg13+1_amd64.deb pgdg 5.0 75.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-1.pgdg13+1_amd64.deb
-@ d13.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_4.7-1.pgdg13+1_amd64.deb pgdg 4.7 74.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_4.7-1.pgdg13+1_amd64.deb
+@ d13.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg13+2_arm64.deb pgdg 5.0 74.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg13+2_arm64.deb
 @ d13.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg13+1_arm64.deb pgdg 5.0 74.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg13+1_arm64.deb
 @ d13.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-1.pgdg13+1_arm64.deb pgdg 5.0 74.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-1.pgdg13+1_arm64.deb
-@ d13.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_4.7-1.pgdg13+1_arm64.deb pgdg 4.7 73.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_4.7-1.pgdg13+1_arm64.deb
+@ u22.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg22.04+2_amd64.deb pgdg 5.0 75.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg22.04+2_amd64.deb
 @ u22.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg22.04+1_amd64.deb pgdg 5.0 75.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg22.04+1_amd64.deb
 @ u22.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-1.pgdg22.04+1_amd64.deb pgdg 5.0 75.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-1.pgdg22.04+1_amd64.deb
-@ u22.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_4.7-1.pgdg22.04+1_amd64.deb pgdg 4.7 75.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_4.7-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg22.04+2_arm64.deb pgdg 5.0 74.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg22.04+2_arm64.deb
 @ u22.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg22.04+1_arm64.deb pgdg 5.0 74.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg22.04+1_arm64.deb
 @ u22.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-1.pgdg22.04+1_arm64.deb pgdg 5.0 74.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-1.pgdg22.04+1_arm64.deb
-@ u22.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_4.7-1.pgdg22.04+1_arm64.deb pgdg 4.7 74.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_4.7-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg24.04+2_amd64.deb pgdg 5.0 69.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg24.04+2_amd64.deb
 @ u24.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg24.04+1_amd64.deb pgdg 5.0 69.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg24.04+1_amd64.deb
 @ u24.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-1.pgdg24.04+1_amd64.deb pgdg 5.0 68.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-1.pgdg24.04+1_amd64.deb
-@ u24.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_4.7-1.pgdg24.04+1_amd64.deb pgdg 4.7 68.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_4.7-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg24.04+2_arm64.deb pgdg 5.0 67.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg24.04+2_arm64.deb
 @ u24.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg24.04+1_arm64.deb pgdg 5.0 67.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg24.04+1_arm64.deb
 @ u24.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-1.pgdg24.04+1_arm64.deb pgdg 5.0 67.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-1.pgdg24.04+1_arm64.deb
-@ u24.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_4.7-1.pgdg24.04+1_arm64.deb pgdg 4.7 67.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_4.7-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg26.04+2_amd64.deb pgdg 5.0 68.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg26.04+2_amd64.deb
 @ u26.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg26.04+1_amd64.deb pgdg 5.0 68.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg26.04+1_amd64.deb
 @ u26.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-1.pgdg26.04+1_amd64.deb pgdg 5.0 68.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-1.pgdg26.04+1_amd64.deb
-@ u26.x86_64 14 postgresql-14-credcheck postgresql-14-credcheck_4.7-1.pgdg26.04+1_amd64.deb pgdg 4.7 68.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_4.7-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg26.04+2_arm64.deb pgdg 5.0 66.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg26.04+2_arm64.deb
 @ u26.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-2.pgdg26.04+1_arm64.deb pgdg 5.0 66.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-2.pgdg26.04+1_arm64.deb
 @ u26.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_5.0-1.pgdg26.04+1_arm64.deb pgdg 5.0 66.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_5.0-1.pgdg26.04+1_arm64.deb
-@ u26.aarch64 14 postgresql-14-credcheck postgresql-14-credcheck_4.7-1.pgdg26.04+1_arm64.deb pgdg 4.7 66.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/c/credcheck/postgresql-14-credcheck_4.7-1.pgdg26.04+1_arm64.deb
 {{< /pgext_matrix >}}
 
 
@@ -712,142 +712,88 @@ shared_preload_libraries = 'credcheck';
 CREATE EXTENSION credcheck;
 ```
 
-
-
-
 ## Usage
 
-Sources: [README](https://github.com/HexaCluster/credcheck#readme), [release 4.7](https://github.com/HexaCluster/credcheck/releases/tag/v4.7)
+Sources:
 
-`credcheck` enforces configurable rules for PostgreSQL usernames and passwords during `CREATE ROLE`, `ALTER ROLE`, password changes, and role renames. It can reject weak credentials, enforce password expiration windows, track password reuse, ban users after repeated authentication failures, delay failed authentication responses, force first-login password changes, and block password changes for ordinary users.
+- [v5.0 README](https://github.com/HexaCluster/credcheck/blob/v5.0/README.md)
+- [v5.0 changelog](https://github.com/HexaCluster/credcheck/blob/v5.0/ChangeLog)
+- [SQL objects 5.0.0](https://github.com/HexaCluster/credcheck/blob/v5.0/sql/credcheck--5.0.0.sql)
+- [Password history WAL implementation](https://github.com/HexaCluster/credcheck/blob/v5.0/credcheck.c)
+- [Login-event setup](https://github.com/HexaCluster/credcheck/blob/v5.0/event_trigger.sql)
 
-### Required Setup
+`credcheck` enforces username and plaintext-password rules during role creation, password changes and role renames. It also tracks password reuse, bans repeated authentication failures and can require a password change at first login. Configure policy as a superuser; the defaults do not enforce a comprehensive password-strength policy.
 
-Add to `postgresql.conf`:
+### Enable and Set Policy
+
+Add the library to the existing preload list and restart PostgreSQL. Install SQL objects in each database where administrators need its views and reset functions:
 
 ```ini
 shared_preload_libraries = 'credcheck'
+credcheck.password_min_length = 12
+credcheck.password_contain_username = on
+credcheck.password_reuse_history = 2
+credcheck.password_reuse_interval = 365
 ```
-
-Restart PostgreSQL after changing preload libraries. Password reuse history, authentication failure banning, first-login password changes, and login-time expiry warnings depend on preload or login-event support described in the upstream README.
-
-### Configuration Parameters
-
-#### Username Checks
-
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| `credcheck.username_min_length` | Minimum username length | `4` |
-| `credcheck.username_min_special` | Minimum special characters | `1` |
-| `credcheck.username_min_digit` | Minimum digit characters | `1` |
-| `credcheck.username_min_upper` | Minimum uppercase characters | `2` |
-| `credcheck.username_min_lower` | Minimum lowercase characters | `1` |
-| `credcheck.username_min_repeat` | Max adjacent repeat characters | `2` |
-| `credcheck.username_contain` | Must contain one of these chars | `a,b,c` |
-| `credcheck.username_not_contain` | Must not contain these chars | `x,y,z` |
-| `credcheck.username_contain_password` | Username must not contain password | `on` |
-| `credcheck.username_ignore_case` | Ignore case for username checks | `on` |
-
-#### Password Checks
-
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| `credcheck.password_min_length` | Minimum password length | `8` |
-| `credcheck.password_min_special` | Minimum special characters | `1` |
-| `credcheck.password_min_digit` | Minimum digit characters | `1` |
-| `credcheck.password_min_upper` | Minimum uppercase characters | `1` |
-| `credcheck.password_min_lower` | Minimum lowercase characters | `1` |
-| `credcheck.password_min_repeat` | Max adjacent repeat characters | `3` |
-| `credcheck.password_contain_username` | Password must not contain username | `on` |
-| `credcheck.password_contain` | Must contain one of these chars | `a,b,c` |
-| `credcheck.password_not_contain` | Must not contain these chars | `!@=$#` |
-| `credcheck.password_ignore_case` | Ignore case for password checks | `on` |
-| `credcheck.password_valid_until` | Minimum days for VALID UNTIL | `60` |
-| `credcheck.password_valid_max` | Maximum days for VALID UNTIL | `365` |
-| `credcheck.password_valid_warning` | Warn before password expiry; PostgreSQL 17+ login event trigger | `7` |
-| `credcheck.password_change_first_login` | Force a new user to change password before normal queries | `true` |
-| `credcheck.whitelist` | Usernames excluded from checks | `admin,super` |
-| `credcheck.superuser_nocheck` | Skip policy checks for changes made by a superuser | `on` |
-| `credcheck.disallow_password_change` | Disallow users from changing their own password | `on` |
-
-If built with cracklib support, `credcheck` can also reject passwords that are easy to crack.
-
-### Examples
 
 ```sql
--- Rejected: username too short
-CREATE USER abc WITH PASSWORD 'pass';
--- ERROR: username length should match the configured credcheck.username_min_length
-
--- Rejected: password contains username
-CREATE USER abcd$ WITH PASSWORD 'abcd$xyz';
--- ERROR: password should not contain username
+CREATE EXTENSION credcheck;
+CREATE ROLE app_user LOGIN PASSWORD 'example-Strong-Pass#123';
+SELECT rolename, password_date FROM pg_password_history;
 ```
 
-Enforce password lifetime bounds:
+The interval is in days. Installing the SQL extension is separate from loading the server-wide hooks. Upstream release 5.0 uses SQL extension version 5.0.0; installing upgraded files requires a restart to reload the library.
+
+### Policy Index
+
+| Settings | Purpose |
+|---|---|
+| `credcheck.username_min_length`, `credcheck.username_min_special`, `credcheck.username_min_digit`, `credcheck.username_min_upper`, `credcheck.username_min_lower` | Username length and character requirements |
+| `credcheck.password_min_length`, `credcheck.password_min_special`, `credcheck.password_min_digit`, `credcheck.password_min_upper`, `credcheck.password_min_lower` | Password length and character requirements |
+| `credcheck.username_min_repeat`, `credcheck.password_min_repeat` | Maximum adjacent repetitions, despite the parameter names |
+| `credcheck.username_contain`, `credcheck.username_not_contain`, `credcheck.password_contain`, `credcheck.password_not_contain` | Required or forbidden content |
+| `credcheck.username_contain_password`, `credcheck.password_contain_username` | Reject credentials containing one another |
+| `credcheck.username_ignore_case`, `credcheck.password_ignore_case` | Case handling |
+| `credcheck.password_min_length_su`, `credcheck.password_valid_until_su` | Separate superuser requirements |
+| `credcheck.password_valid_until`, `credcheck.password_valid_max` | Minimum and maximum password lifetime; the minimum also supplies an omitted expiry when a password is changed |
+| `credcheck.whitelist`, `credcheck.superuser_nocheck` | Explicit policy exemptions |
+| `credcheck.no_password_logging` | Suppress passwords in policy-error logs; enabled by default |
+
+CrackLib strength checking is available only when the library was built with that support and its dictionary is available.
+
+### Password History and Replication
+
+History contains SHA-256 password hashes, is shared across databases, and is persisted in `$PGDATA/pg_password_history`. Include that file in backup planning and protect access to the SQL history view, which is granted to PUBLIC by default. `credcheck.history_max_size` changes the shared-memory capacity and requires a restart.
+
+Version 5.0 replicates history changes through custom WAL resource manager ID 150 on PostgreSQL 15 and later. Keep the matching library preloaded on replicas and recovery servers that replay its WAL. Earlier PostgreSQL versions retain the file-backed history path without this replication support. History-reset and timestamp-test functions reject execution during recovery.
 
 ```sql
-SET credcheck.password_valid_until = 30;
-SET credcheck.password_valid_max = 180;
-
-CREATE USER abcd$;
--- ERROR: require a VALID UNTIL option with a date older than 30 days
+SELECT pg_password_history_reset('app_user');
 ```
 
-### Password Reuse Policy
+Resetting history removes reuse protection for those records; reserve it for administrators.
+
+### Authentication and Password Changes
+
+```ini
+credcheck.max_auth_failure = 3
+credcheck.auth_delay_ms = 1000
+credcheck.whitelist_auth_failure = 'service_user'
+credcheck.password_change_first_login = true
+```
 
 ```sql
-SET credcheck.password_reuse_history = 2;
-SET credcheck.password_reuse_interval = 365;  -- days
+SELECT * FROM pg_banned_role;
+SELECT pg_banned_role_reset('app_user');
+ALTER ROLE app_user SET credcheck_internal.force_change_password = true;
 ```
 
-View password history:
+Bans remain until reset and their cache is lost at restart. `credcheck.reset_superuser` provides the documented superuser recovery path; `credcheck.auth_failure_cache_size` requires a restart.
 
-```sql
-SELECT rolename, password_hash FROM pg_password_history;
-```
+Use the actual parameter `credcheck.disallow_change_password` to prohibit password changes. Even superusers are affected unless they enable `credcheck.superuser_nocheck` in their session. This exemption bypasses all corresponding role checks and must be controlled.
 
-The upstream README says password hashes are kept in shared memory and saved to `$PGDATA/pg_password_history`, so include that file in backup planning. Use `credcheck.history_max_size` to size the cache; changing it requires a PostgreSQL restart.
+`credcheck.password_valid_warning` needs PostgreSQL 17 or later and the official login event trigger installed separately in every relevant database; SQL extension creation does not install that trigger.
 
-### Authentication Failure Ban
+### Plaintext Boundary
 
-```sql
-SET credcheck.max_auth_failure = 3;  -- ban after 3 failures
-SET credcheck.auth_delay_ms = 1000;  -- delay failed authentication
-SET credcheck.whitelist_auth_failure = 'appuser1,appuser2';
-```
-
-Reset banned users:
-
-```sql
-SELECT pg_banned_role_reset();              -- reset all
-SELECT pg_banned_role_reset('username');     -- reset specific user
-```
-
-`credcheck.reset_superuser` can force superusers to be exempt from banning or reset a banned superuser.
-
-### First-Login And Password-Change Controls
-
-Force a new user to change the password before running normal queries:
-
-```sql
-SET credcheck.password_change_first_login = true;
-CREATE USER user1 PASSWORD 'Rkd89,34' VALID UNTIL '2050-12-31';
--- first login:
--- ERROR: you must change your password first.
-ALTER USER user1 PASSWORD 'Zkd89,34';
-```
-
-Force the same behavior later:
-
-```sql
-ALTER USER user1 SET credcheck_internal.force_change_password = true;
-```
-
-Version 4.7 adds `credcheck.disallow_password_change` for sites where users must not change their own password:
-
-```sql
-SET credcheck.disallow_password_change = on;
-ALTER ROLE user1 PASSWORD 'My-New-Pass#123';
--- ERROR: you are not allowed to change your password.
-```
+Strength and reuse checks need plaintext at password-change time. Already hashed passwords are rejected by default, including passwords sent by psql's `\password`. Setting `credcheck.encrypted_password_allowed` accepts them without providing equivalent plaintext checks. Protect the password-change connection and do not assume existing credentials are scanned retroactively. Username checks are skipped when creating a role without a password or renaming a role with no password.
