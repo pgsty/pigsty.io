@@ -21,6 +21,31 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 ## Current Stable Release
 
 
+### v2.59.2 Release Notes
+
+*PostgreSQL 19beta4 Support*
+
+*Released September 27, 2026*
+
+**Bug Fixes:**
+
+- Fix empty block map when file is truncated to zero during backup. (*Reviewed by Douglas J Hunley. Reported by JPCOSTA78.*)
+- Disable read retry when filters are passed to the driver. (*Reviewed by Douglas J Hunley. Reported by megamaced.*)
+- Fix pagination of S3 version listing. (*Reviewed by Douglas J Hunley, guruguruguru. Reported by guruguruguru.*)
+- Set the Azure version header for SAS authentication. (*Reviewed by Douglas J Hunley. Reported by Florian Helmberger.*)
+- Fix async `archive-push` stalling on a zero-size backup history file. (*Fixed by Andrew Kroh. Reviewed by David Steele, Douglas J Hunley.*)
+- Fix `annotate` command on a remote encrypted repository. (*Fixed by Douglas J Hunley. Reviewed by David Steele.*)
+
+**Features:**
+
+- PostgreSQL 19beta4 support.
+
+
+--------
+
+## Stable Releases
+
+
 ### v2.59.1 Release Notes
 
 *PostgreSQL 19beta3 Support*
@@ -41,11 +66,6 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 - Document exception for dots in S3 bucket names when `repo-s3-uri-style=path`.
 - Remove explicit `hot_standby` configuration from user guide.
-
-
---------
-
-## Stable Releases
 
 
 ### v2.59.0 Release Notes
