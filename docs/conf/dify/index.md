@@ -1,0 +1,229 @@
+# app/dify
+
+> Deploy Dify AI application development platform using Pigsty-managed PostgreSQL
+
+---
+
+LLMS index: [llms.txt](/llms.txt)
+
+---
+
+The `app/dify` configuration template provides a reference configuration for self-hosting Dify AI application development platform, using Pigsty-managed PostgreSQL and pgvector as vector storage.
+
+For more details, see **[Dify Deployment Tutorial](/docs/app/dify)**
+
+
+--------
+
+## Overview
+
+- Config Name: `app/dify`
+- Node Count: Single node
+- Description: Deploy Dify using Pigsty-managed PostgreSQL
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
+- OS Arch: `x86_64`, `aarch64`
+- Related: [`meta`](/docs/conf/meta/)
+
+Usage:
+
+```bash
+./configure -c app/dify [-i <primary_ip>]
+```
+
+
+--------
+
+## Content
+
+Source: [`pigsty/conf/app/dify.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/dify.yml)
+
+```yaml
+---
+#==============================================================#
+# File      :   dify.yml
+# Desc      :   pigsty config for running 1-node dify app
+# Ctime     :   2025-02-24
+# Mtime     :   2026-07-09
+# Docs      :   https://pigsty.io/docs/app/dify
+# License   :   Apache-2.0 @ https://pigsty.io/docs/about/license/
+# Copyright :   2018-2026  Ruohang Feng / Vonng (rh@vonng.com)
+#==============================================================#
+# Last Verified Dify Version: v1.15.0 on 2026-07-09
+# tutorial: https://pigsty.io/docs/app/dify
+# how to use this template:
+#
+#  curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
+# ./bootstrap               # prepare local repo & ansible
+# ./configure -c app/dify   # use this dify config template
+# vi pigsty.yml             # IMPORTANT: CHANGE CREDENTIALS!!
+# ./deploy.yml              # install pigsty & pgsql
+# ./docker.yml              # install docker & docker-compose
+# ./app.yml                 # install dify with docker-compose
+#
+# To replace domain name:
+#   sed -ie 's/dify.pigsty/dify.pigsty.cc/g' pigsty.yml
+
+
+all:
+  children:
+
+    # the dify application
+    dify:
+      hosts: { 10.10.10.10: {} }
+      vars:
+        app: dify   # specify app name to be installed (in the apps)
+        apps:       # define all applications
+          dify:     # app name, should have corresponding ~/pigsty/app/dify folder
+            file:   # data directory to be created
+              - { path: /data/dify ,state: directory ,mode: 0755 }
+            conf:   # override /opt/dify/.env config file
+
+              # change domain, mirror, proxy, secret key
+              NGINX_SERVER_NAME: dify.pigsty
+              # A secret key for signing and encryption, gen with `openssl rand -base64 42` (CHANGE PASSWORD!)
+              SECRET_KEY: sk-somerandomkey
+              # expose DIFY nginx service with port 5001 by default
+              DIFY_PORT: 5001
+              # where to store dify files? the default is ./volume, we'll use another volume created above
+              DIFY_DATA: /data/dify
+              # enable the upstream websocket sidecar, while keeping PostgreSQL/pgvector external
+              COMPOSE_PROFILES: collaboration
+              NEXT_PUBLIC_SOCKET_URL: ws://dify.pigsty
+              TRIGGER_URL: http://dify.pigsty
+              ENDPOINT_URL_TEMPLATE: http://dify.pigsty/e/{hook_id}
+
+              # proxy and mirror settings
+              #PIP_MIRROR_URL: https://pypi.tuna.tsinghua.edu.cn/simple
+              #SANDBOX_HTTP_PROXY: http://10.10.10.10:12345
+              #SANDBOX_HTTPS_PROXY: http://10.10.10.10:12345
+
+              # database credentials
+              DB_TYPE: postgresql
+              DB_USERNAME: dify
+              DB_PASSWORD: difyai123456
+              DB_HOST: 10.10.10.10
+              DB_PORT: 5432
+              DB_DATABASE: dify
+              DB_SSL_MODE: disable
+              VECTOR_STORE: pgvector
+              PGVECTOR_HOST: 10.10.10.10
+              PGVECTOR_PORT: 5432
+              PGVECTOR_USER: dify
+              PGVECTOR_PASSWORD: difyai123456
+              PGVECTOR_DATABASE: dify
+              PGVECTOR_MIN_CONNECTION: 2
+              PGVECTOR_MAX_CONNECTION: 10
+
+              # optional MinIO/S3 storage, disabled by default to avoid touching backup MinIO
+              #STORAGE_TYPE: s3
+              #S3_ENDPOINT: http://10.10.10.10:9000
+              #S3_BUCKET_NAME: dify
+              #S3_ACCESS_KEY: dify
+              #S3_SECRET_KEY: S3User.Dify
+              #S3_REGION: us-east-1
+              #S3_ADDRESS_STYLE: path
+
+    pg-meta:
+      hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary } }
+      vars:
+        pg_cluster: pg-meta
+        pg_extensions: [ pgvector ]
+        pg_users:
+          - { name: dify ,password: difyai123456 ,pgbouncer: true ,roles: [ dbrole_admin ] ,superuser: true ,comment: dify superuser }
+        pg_databases:
+          - { name: dify        ,owner: dify ,extensions: [ { name: vector } ] ,comment: dify main database  }
+          - { name: dify_plugin ,owner: dify ,comment: dify plugin daemon database }
+        pg_hba_rules:
+          - { user: dify ,db: all ,addr: 172.16.0.0/12  ,auth: pwd ,title: 'allow dify access from local docker networks' }
+        pg_crontab: [ '00 01 * * * /pg/bin/pg-backup full' ] # make a full backup every 1am
+
+    infra: { hosts: { 10.10.10.10: { infra_seq: 1 } } }
+    etcd:  { hosts: { 10.10.10.10: { etcd_seq: 1 } }, vars: { etcd_cluster: etcd } }
+    #minio: { hosts: { 10.10.10.10: { minio_seq: 1 } }, vars: { minio_cluster: minio } }
+
+  vars:                               # global variables
+    version: v4.5.0                   # pigsty version string
+    admin_ip: 10.10.10.10             # admin node ip address
+    region: default                   # upstream mirror region: default|china|europe
+    node_tune: oltp                   # node tuning specs: oltp,olap,tiny,crit
+    pg_conf: oltp.yml                 # pgsql tuning specs: {oltp,olap,tiny,crit}.yml
+
+    docker_enabled: true              # enable docker on app group
+    #docker_registry_mirrors: ["https://docker.1panel.live","https://docker.1ms.run","https://docker.xuanyuan.me","https://registry-1.docker.io"]
+
+    proxy_env:                        # global proxy env when downloading packages & pull docker images
+      no_proxy: "localhost,127.0.0.1,10.0.0.0/8,192.168.0.0/16,*.pigsty,*.aliyun.com,mirrors.*,*.tsinghua.edu.cn"
+      #http_proxy:  127.0.0.1:12345 # add your proxy env here for downloading packages or pull images
+      #https_proxy: 127.0.0.1:12345 # usually the proxy is format as http://user:pass@proxy.xxx.com
+      #all_proxy:   127.0.0.1:12345
+
+    infra_portal:                     # domain names and upstream servers
+      home   :  { domain: i.pigsty }
+      #minio :  { domain: m.pigsty    ,endpoint: "${admin_ip}:9001" ,scheme: https ,websocket: true }
+      dify:                            # nginx server config for dify
+        domain: dify.pigsty            # REPLACE WITH YOUR OWN DOMAIN!
+        endpoint: "10.10.10.10:5001"   # dify service endpoint: IP:PORT
+        websocket: true                # add websocket support
+        certbot: dify.pigsty           # certbot cert name, apply with `make cert`
+
+    repo_enabled: false
+    node_repo_modules: node,infra,pgsql
+    # Dify v1.15.0 is patched in app/dify/patches for PostgreSQL 18's built-in uuidv7().
+    pg_version: 18
+
+    #----------------------------------------------#
+    # PASSWORD : https://pigsty.io/docs/setup/security/
+    #----------------------------------------------#
+    grafana_admin_password: pigsty
+    grafana_view_password: DBUser.Viewer
+    pg_admin_password: DBUser.DBA
+    pg_monitor_password: DBUser.Monitor
+    pg_replication_password: DBUser.Replicator
+    patroni_password: Patroni.API
+    haproxy_admin_password: pigsty
+    minio_secret_key: S3User.MinIO
+    etcd_root_password: Etcd.Root
+...
+```
+
+
+--------
+
+## Explanation
+
+The `app/dify` template provides a one-click deployment solution for Dify and is currently validated with Dify v1.15.0.
+
+**What is Dify**:
+- Open-source LLM application development platform
+- Supports RAG, Agent, Workflow and other AI application modes
+- Provides visual Prompt orchestration and application building interface
+- Supports multiple LLM backends (OpenAI, Claude, local models, etc.)
+
+**Key Features**:
+- Uses Pigsty-managed PostgreSQL instead of Dify's built-in database
+- Uses pgvector as vector storage (replaces Weaviate/Qdrant)
+- Enables the `collaboration` Compose profile and WebSocket sidecar
+- Supports HTTPS and custom domain names
+- Data persisted to independent directory `/data/dify`
+
+**Access**:
+
+```bash
+# Direct Dify Web access
+http://<IP>:5001
+
+# Or via Nginx proxy
+https://dify.pigsty
+```
+
+**Use Cases**:
+- Enterprise internal AI application development platform
+- RAG knowledge base Q&A systems
+- LLM-driven automated workflows
+- AI Agent development and deployment
+
+**Notes**:
+- Must change `SECRET_KEY`, generate with `openssl rand -base64 42`
+- Configure LLM API keys (e.g., OpenAI API Key)
+- Docker networks need access to PostgreSQL (the template configures a `172.16.0.0/12` HBA rule)
+- Recommend configuring proxy to accelerate Python package downloads

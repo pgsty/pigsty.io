@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PILOT on PIGSTY</title><link>https://pigsty.io/module/pilot/</link><description>Recent content in PILOT on PIGSTY</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 21 Aug 2026 00:42:15 +0800</lastBuildDate><atom:link href="https://pigsty.io/module/pilot/index.xml" rel="self" type="application/rss+xml"/><item><title>Module: PILOT</title><link>https://pigsty.io/docs/pilot/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pilot/</guid><description/></item><item><title>Module: DuckDB</title><link>https://pigsty.io/docs/pilot/duckdb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pilot/duckdb/</guid><description>&lt;p&gt;&lt;a href="https://github.com/duckdb/duckdb/"&gt;DuckDB&lt;/a&gt; is a high-performance embedded analytical database.&lt;/p&gt;
+&lt;p&gt;DuckDB is embedded, so it does not require deployment or service management. Install the DuckDB package on the node and use it directly.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="installation"&gt;Installation
+&lt;/h2&gt;
+&lt;p&gt;The current Pigsty node platform mapping includes the &lt;code&gt;duckdb&lt;/code&gt; package, which can be installed directly from the Infra repository:&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-b272f6c0-fence-0" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="1"&gt;
+ &lt;div class="td-code__viewport" id="td-code-b272f6c0-fence-0-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./node.yml -t node_install -e &lt;span class="s1"&gt;&amp;#39;{&amp;#34;node_repo_modules&amp;#34;:&amp;#34;infra&amp;#34;,&amp;#34;node_packages&amp;#34;:[&amp;#34;duckdb&amp;#34;]}&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Install with pig:&lt;/p&gt;
+&lt;div class="td-code td-code--untitled" id="td-code-b272f6c0-fence-1" data-td-code data-td-code-auto-id
+ data-td-language="bash" data-td-line-count="2"&gt;
+ &lt;div class="td-code__viewport" id="td-code-b272f6c0-fence-1-viewport" data-td-code-viewport&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig repo add infra -u &lt;span class="c1"&gt;# add Infra repo&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;pig install duckdb &lt;span class="c1"&gt;# install DuckDB package&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="resources"&gt;Resources
+&lt;/h2&gt;
+&lt;p&gt;Pigsty provides DuckDB-related PostgreSQL extensions:&lt;/p&gt;</description></item><item><title>Module: TigerBeetle</title><link>https://pigsty.io/docs/pilot/tigerbeetle/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pilot/tigerbeetle/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="https://tigerbeetle.com/"&gt;TigerBeetle&lt;/a&gt; is a financial accounting transaction database offering extreme performance and reliability.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;Overview
+&lt;/h2&gt;
+&lt;p&gt;The current open-source tree has no TigerBeetle role or dedicated playbook. It only provides the &lt;code&gt;tigerbeetle&lt;/code&gt; installation alias in the node platform package map; initialize and manage the service according to the official TigerBeetle documentation.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="installation"&gt;Installation
+&lt;/h2&gt;
+&lt;p&gt;Use the following command to install the mapped package from the Pigsty Infra repository:&lt;/p&gt;</description></item><item><title>Module: Kubernetes</title><link>https://pigsty.io/docs/pilot/kube/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pilot/kube/</guid><description>&lt;p&gt;&lt;a href="https://kubernetes.io/"&gt;Kubernetes&lt;/a&gt; is a production-grade, open-source container orchestration platform. It helps you automate, deploy, scale, and manage containerized applications.&lt;/p&gt;
+&lt;p&gt;Pigsty has native support for &lt;a href="https://pigsty.io/docs/etcd/"&gt;&lt;strong&gt;&lt;code&gt;ETCD&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; clusters, which can be used as external etcd for Kubernetes.&lt;/p&gt;
+&lt;p&gt;The current open-source tree has no &lt;code&gt;kube.yml&lt;/code&gt; playbook, Kubernetes role, or &lt;code&gt;kube_*&lt;/code&gt; parameters. Pigsty provides software repositories and base-node provisioning here; cluster initialization, networking, control-plane management, and upgrades must still be handled by kubeadm, SealOS, or another Kubernetes tool.&lt;/p&gt;</description></item><item><title>Module: Consul</title><link>https://pigsty.io/docs/pilot/consul/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://pigsty.io/docs/pilot/consul/</guid><description>&lt;p&gt;Consul is a distributed DCS, KV, DNS, and service registry/discovery component.&lt;/p&gt;
+&lt;p&gt;Pigsty 1.x used Consul as its high-availability DCS. The current open-source tree has removed the Consul role, playbook, and &lt;code&gt;consul_*&lt;/code&gt; parameters, so the legacy inventory shown on older versions cannot be used to deploy it. Current Pigsty DCS integration is provided by the &lt;a href="https://pigsty.io/docs/etcd/"&gt;ETCD&lt;/a&gt; module.&lt;/p&gt;</description></item></channel></rss>
