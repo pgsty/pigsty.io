@@ -23,7 +23,7 @@ make up
 Default endpoints:
 
 - Web: `http://git.pigsty` or `http://<IP>:8889`
-- SSH: `<IP>:2222`
+- SSH: `<IP>:222`
 
 ## Database Preparation
 
@@ -37,6 +37,17 @@ Connection string example:
 ```bash
 postgres://dbuser_gitea:DBUser.Gitea@10.10.10.10:5432/gitea
 ```
+
+## Reverse Proxy and Upgrades
+
+Gitea 28 serves notifications at `/-/ws`. Enable WebSocket support on the Nginx portal:
+
+```yaml
+infra_portal:
+  gitea: { domain: git.pigsty, endpoint: "127.0.0.1:8889", websocket: true }
+```
+
+Before upgrading, back up PostgreSQL and `/data/gitea` together and record the running image digest. Restore matching database and file backups when rolling back. Gitea 28 defaults to removing completed Actions runs, logs, and artifacts after 400 days; check retention settings if those records need to be kept longer. See the [Gitea 28 release notes](https://blog.gitea.com/release-of-28.0.0/).
 
 ## Common Commands
 
