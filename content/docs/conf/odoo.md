@@ -6,7 +6,7 @@ icon: fa-solid fa-building
 categories: [Reference]
 ---
 
-The `app/odoo` configuration template provides a reference configuration for self-hosting Odoo open-source ERP system, using Pigsty-managed PostgreSQL as the database.
+The `app/odoo` template provides a reference configuration to self-host Odoo Community 19. It uses PostgreSQL managed by Pigsty.
 
 For more details, see **[Odoo Deployment Tutorial](/docs/app/odoo)**
 
@@ -42,37 +42,28 @@ Source: [`pigsty/conf/app/odoo.yml`](https://github.com/pgsty/pigsty/blob/main/c
 
 ## Explanation
 
-The `app/odoo` template provides a one-click deployment solution for Odoo open-source ERP system.
-
-**What is Odoo**:
-- World's most popular open-source ERP system
-- Covers CRM, Sales, Purchasing, Inventory, Finance, HR, and other enterprise management modules
-- Supports thousands of community and official application extensions
-- Provides web interface and mobile support
+This single-node template runs Odoo Community 19 in Docker and uses Pigsty-managed PostgreSQL.
 
 **Key Features**:
-- Uses Pigsty-managed PostgreSQL instead of Odoo's built-in database
-- Supports Odoo 19.0 latest version
-- Data persisted to independent directory `/data/odoo`
-- Supports custom plugin directory `/data/odoo/addons`
+
+- Uses the Odoo `19.0` image and PostgreSQL 18, with a dedicated role, database, and `unaccent` / `pg_trgm` extensions
+- Publishes port 8069 on all host interfaces, supporting direct access and the Nginx portal
+- Stores filestore data in `/data/odoo/webdata` and addons in `/data/odoo/addons`
 
 **Access**:
 
 ```bash
-# Odoo Web interface
-http://<IP>:8069
+http://<ip>:8069
 http://odoo.pigsty
-
-# Create or set the administrator account on first access
 ```
 
-**Use Cases**:
-- SMB ERP systems
-- Alternative to SAP, Oracle ERP and other commercial solutions
-- Enterprise applications requiring customized business processes
+Point `odoo.pigsty` to the Nginx host. The initial application login is `admin` / `admin`; change the password at first login.
 
 **Notes**:
-- Odoo container runs as uid=100, gid=101, data directory needs correct permissions
-- First access requires creating database and setting admin password
-- Production environments should enable HTTPS
-- Custom modules can be installed via `/data/odoo/addons`
+
+- Change the database password and `ODOO_ADMIN_PASSWORD` before deployment; the master password is separate from the application login
+- `./app.yml` initializes the existing empty database before starting the web container; the database manager is disabled
+- Set `ODOO_PORT` to the published port number; update the Nginx `endpoint` port if you change it
+- Use `ODOO_PROXY_MODE=true` for proxy access and `false` for direct access only; use HTTPS in production
+- Set data directory ownership to uid=100, gid=101
+- Manage filestore and addon backups yourself with Restic or PGFS
