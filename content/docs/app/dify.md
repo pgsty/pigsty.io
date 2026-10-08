@@ -17,9 +17,10 @@ Pigsty provides support for self-hosted Dify, allowing you to deploy Dify with a
 - [Configuration](#configuration)
 - [Checklist](#checklist)
 - [Domain and SSL](#domain-and-ssl)
+- [Upgrading](#upgrading)
 - [File Backup](#file-backup)
 
-> `app/dify` template latest verified Dify version: `v1.15.0` (2026-07-09). The template includes a Dify migration compatibility patch for PostgreSQL 18's built-in `uuidv7()`.
+> The template uses Dify `v1.17.1` with plugin daemon `v0.6.10-local` and sandbox `v0.2.15`. Validation on 2026-10-08 covered login, an existing Code workflow, and service connections on Linux amd64 with PostgreSQL 18.6. Dify v1.16 and later handle PostgreSQL 18's built-in `uuidv7()` without a local migration patch.
 
 ------
 
@@ -50,7 +51,7 @@ There are many reasons to self-host Dify, but the primary motivation is data sec
 
 Pigsty provides declarative Dify deployment and can use mirrors to address image access in China. The template puts PostgreSQL and pgvector under Pigsty management and deploys Compose Redis, VictoriaMetrics/Grafana monitoring, and an Nginx reverse proxy. It can request a Let's Encrypt certificate after public DNS, ports, and Certbot are configured. Files are stored in `DIFY_DATA` (`/data/dify`) by default, with optional Silo/S3 object storage.
 
-The current template places PostgreSQL/pgvector in an externally managed Pigsty database and directs API files and plugin data to `DIFY_DATA` (`/data/dify` by default). However, the built-in Compose Redis data remains under `/opt/dify/volumes/redis/data`, while Sandbox dependencies and Certbot data are also stored under `/opt/dify/volumes/`. The complete application stack is therefore not fully stateless, and a backup cannot retain only the database.
+The current template places PostgreSQL/pgvector in an externally managed Pigsty database and directs API files and plugin data to `DIFY_DATA` (`/data/dify` by default). However, the built-in Compose Redis data remains under `/opt/dify/volumes/redis/data`, while Sandbox dependencies and Certbot data are also stored under `/opt/dify/volumes/`. The Agent local sandbox also stores `/home/dify` and `/workspace` in separate named volumes. Backups must include these volumes as well as the database and host directories.
 
 ------
 
@@ -116,6 +117,7 @@ Here's a checklist of configuration items you need to pay attention to:
   - In the Dify configuration block, modify `DB_USERNAME`, `DB_PASSWORD`, `PGVECTOR_USER`, `PGVECTOR_PASSWORD` accordingly
 - Have you changed Dify's default encryption key?
   - You can randomly generate a password string with `openssl rand -base64 42` and fill in the `SECRET_KEY` parameter
+  - Also replace the three Agent development secrets: `DIFY_AGENT_API_TOKEN`, `DIFY_AGENT_SERVER_SECRET_KEY`, and `DIFY_AGENT_LOCAL_SANDBOX_AUTH_TOKEN`. Generate independent random values; use the format produced by `secrets.token_urlsafe(32)` for the server secret.
 - Have you changed the domain used by Dify?
   - Replace placeholder domain `dify.pigsty` with your actual domain, e.g., `dify.pigsty.io`
   - You can use `sed -ie 's/dify.pigsty/dify.pigsty.io/g' pigsty.yml` to modify Dify's domain
@@ -166,9 +168,31 @@ Run the `app.yml` playbook to redeploy Dify service for the `NGINX_SERVER_NAME` 
 
 ------
 
+## Upgrading
+
+Before upgrading, verify the PostgreSQL backup and back up the files and named volumes listed below. With `MIGRATION_ENABLED=true`, the API container runs database migrations at startup. After updating configuration, pulling the new images, and recreating the API container, confirm that it runs the new version before invoking migrations explicitly:
+
+```bash
+docker compose exec api flask db upgrade
+```
+
+Dify 1.17.1 includes the pre-1.15 legacy model type migration in this process. The separate `flask data-migrate legacy-model-types` command is no longer needed. Deployments upgrading from before 1.15 that have not completed the plugin auto-upgrade backfill must still run it once:
+
+```bash
+docker compose exec api flask backfill-plugin-auto-upgrade
+```
+
+When upgrading from 1.16, rename `EDITION` to `DEPLOYMENT_EDITION`, `DIFY_AGENT_SHELLCTL_AUTH_TOKEN` to `DIFY_AGENT_LOCAL_SANDBOX_AUTH_TOKEN`, `DIFY_AGENT_SHELLCTL_ENTRYPOINT` to `DIFY_AGENT_LOCAL_SANDBOX_ENDPOINT`, and `AGENT_BACKEND_RUN_TIMEOUT_SECONDS` to `DIFY_AGENT_RUN_TIMEOUT_SECONDS` in deployment overrides. Use `DIFY_AGENT_RUNTIME_BACKEND=local` for the bundled self-hosted sandbox.
+
+Version 1.17.1 fixes document extraction, Human Input workflows, collaboration, and Agent behavior. Re-import CSV, Notion, and XLS documents that were previously extracted incorrectly; replacing the image does not repair indexed text. See the [1.17.1 release notes](https://github.com/langgenius/dify/releases/tag/1.17.1).
+
+The Agent feature remains Beta and should be exposed only to trusted users. `SSRF_PROXY_ALLOW_PRIVATE_IPS` and `SSRF_PROXY_ALLOW_PRIVATE_DOMAINS` apply to both workflow and Agent proxies. Leave them empty for the default private-network deny policy. Explicitly allowlisting `api`, `agent_backend`, or a network covering their addresses also allows their other ordinary paths; use precise targets. The Agent shellctl control network still permits direct access from the local sandbox to `agent_backend`.
+
+------
+
 ## File Backup
 
-You can use `restic` to back up Dify's file state. The current template requires at least `/data/dify`, `/opt/dify/.env`, and `/opt/dify/volumes/`; the latter contains Compose Redis, Sandbox dependencies, and any Certbot data. Dify data in PostgreSQL should still be backed up separately with Pigsty/pgBackRest.
+You can use `restic` to back up Dify's file state. The current template requires at least `/data/dify`, `/opt/dify/.env`, and `/opt/dify/volumes/`; the latter contains Compose Redis, Sandbox dependencies, and any Certbot data. Dify data in PostgreSQL should still be backed up separately with Pigsty/pgBackRest. Also back up the `dify_agent_local_sandbox_home` and `dify_agent_local_sandbox_workspace` named volumes, whose actual names include the Compose project prefix. The Restic commands below do not include these two volumes.
 
 ```bash
 export RESTIC_REPOSITORY=/data/backups/dify   # Specify dify backup directory

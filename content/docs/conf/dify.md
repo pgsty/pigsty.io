@@ -42,7 +42,7 @@ Source: [`pigsty/conf/app/dify.yml`](https://github.com/pgsty/pigsty/blob/main/c
 
 ## Explanation
 
-The `app/dify` template provides a one-click deployment solution for Dify and is currently validated with Dify v1.15.0.
+The `app/dify` template provides a one-click deployment solution for Dify; basic functionality was validated with Dify v1.17.1 on Linux amd64 with PostgreSQL 18.6 (2026-10-08).
 
 **What is Dify**:
 - Open-source LLM application development platform
@@ -55,7 +55,7 @@ The `app/dify` template provides a one-click deployment solution for Dify and is
 - Uses pgvector as vector storage (replaces Weaviate/Qdrant)
 - Enables the `collaboration` Compose profile and WebSocket sidecar
 - Supports HTTPS and custom domain names
-- Data persisted to independent directory `/data/dify`
+- API and plugin files use `/data/dify`; Redis, Sandbox dependencies, and Agent named volumes also need backups
 
 **Access**:
 
@@ -74,7 +74,8 @@ https://dify.pigsty
 - AI Agent development and deployment
 
 **Notes**:
-- Must change `SECRET_KEY`, generate with `openssl rand -base64 42`
+- Must change `SECRET_KEY` and the three `DIFY_AGENT_*` development secrets; see the [deployment checklist](/docs/app/dify/#checklist).
+- Dify v1.16 and later support PostgreSQL 18's `uuidv7()` without a local migration patch.
 - Configure LLM API keys (e.g., OpenAI API Key)
 - Docker networks need access to PostgreSQL (the template configures a `172.16.0.0/12` HBA rule)
 - Recommend configuring proxy to accelerate Python package downloads
