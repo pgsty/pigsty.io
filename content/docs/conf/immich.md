@@ -6,7 +6,7 @@ icon: fa-solid fa-images
 categories: [Reference]
 ---
 
-The `app/immich` template deploys Immich with Pigsty-managed PostgreSQL 18 for metadata and vector indexes. The current template is validated with Immich v3.0.1.
+The `app/immich` template deploys Immich with Pigsty-managed PostgreSQL 18 for metadata and vector indexes. The template follows `v3`. On 2026-10-08, validation of Immich 3.3.0 on Linux amd64 with PostgreSQL 18.6 used a new media library and covered uploads, thumbnails, and machine-learning inference.
 
 
 --------
@@ -41,9 +41,9 @@ Source: [`pigsty/conf/app/immich.yml`](https://github.com/pgsty/pigsty/blob/main
 
 - Persists application media under `/data/immich/library`
 - Creates the `pg-immich` PostgreSQL cluster and matching database/service account
-- Installs `pgvector` and `vchord`, then creates `vchord` and `earthdistance` in the database
+- Installs `pgvector` and `vchord`, then creates `vchord` and `earthdistance`, plus `pg_trgm` in `public`
 - Preloads `vchord.so` and sets `DB_VECTOR_EXTENSION: vectorchord`
-- Uses the local Valkey service from the application Compose stack rather than a Pigsty Redis cluster
+- Uses a local Valkey 9 service pinned by digest to match Immich 3.3.0's official Compose, rather than a Pigsty Redis cluster
 - Proxies `photo.pigsty` to `10.10.10.10:2283`
 
 Change the database password, domain, and media path before deployment. The target platform must also provide a `vchord` package matching PostgreSQL 18.

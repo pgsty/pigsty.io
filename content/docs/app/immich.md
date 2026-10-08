@@ -10,7 +10,7 @@ categories: [Reference]
 It provides web and mobile uploads, album sharing, timelines, maps, EXIF and RAW support, LivePhoto, semantic search, facial recognition, and automatic backups under the AGPL-3.0 license.
 
 Pigsty's `app/immich` template runs the Immich application layer with Docker Compose and stores metadata in Pigsty-managed PostgreSQL.
-The current template follows the Immich v3 layout and uses VectorChord by default for similar-image search, smart search, and face-search vectors.
+The template follows Immich `v3` and uses VectorChord by default for similar-image search, smart search, and face-search vectors. On 2026-10-08, both Server and ML images resolved to `3.3.0`. Validation used a new media library on Linux amd64 with PostgreSQL 18.6 and covered uploads, thumbnails, and real machine-learning inference.
 
 Unlike Immich's official single-node Compose template, PostgreSQL does not run in an application container. Pigsty manages it instead, providing monitoring, backups, PITR, extension management, and high-availability access.
 
@@ -91,6 +91,7 @@ The template installs the extension packages on the `pg-immich` cluster and crea
 ```sql
 CREATE EXTENSION vchord CASCADE;
 CREATE EXTENSION earthdistance CASCADE;
+CREATE EXTENSION pg_trgm WITH SCHEMA public;
 ```
 
 `vchord` must be added to `shared_preload_libraries` through `pg_libs`; the template already configures it:
@@ -99,6 +100,8 @@ CREATE EXTENSION earthdistance CASCADE;
 pg_extensions: [ pgvector, vchord ]
 pg_libs: 'vchord.so, pg_stat_statements, auto_explain'
 ```
+
+`pg_trgm` must be in `public` because Immich migrations reference `gin_trgm_ops` without a schema qualifier. Check its location when reusing a database from another template; `CREATE EXTENSION IF NOT EXISTS` does not move an installed extension.
 
 The default connection goes directly to PostgreSQL on port `5432`. Do not point Immich at PgBouncer transaction pooling. Direct PostgreSQL connections or session pooling are more reliable for migrations, indexes, and prepared statements.
 
@@ -132,10 +135,12 @@ The default images come from GHCR and Docker Hub:
 ```bash
 docker pull ghcr.io/immich-app/immich-server:v3
 docker pull ghcr.io/immich-app/immich-machine-learning:v3
-docker pull docker.io/valkey/valkey:9
+docker pull docker.io/valkey/valkey:9@sha256:c123e3715db63d06d4ad6964884037aa0d5d4d703939b9929954112889708e1d
 ```
 
-If image pulls are slow or restricted, configure `proxy_env` or `docker_registry_mirrors` in `pigsty.yml`.
+The Valkey digest matches the [Immich 3.3.0 release Compose](https://github.com/immich-app/immich/releases/download/v3.3.0/docker-compose.yml). Both `make pull` and `make save` resolve the same image reference from Compose.
+
+If pulls are slow or restricted, configure the Docker daemon proxy; shell `proxy_env` alone does not configure Docker image pulls. Docker Hub mirrors do not cover GHCR. Use `docker compose config --images` to check the resolved image set.
 
 ------
 
@@ -157,7 +162,7 @@ make down     # Stop and remove containers
 To pin a specific Immich version, set the following in `pigsty.yml`:
 
 ```yaml
-IMMICH_VERSION: v3.0.1
+IMMICH_VERSION: v3.3.0  # optional exact pin; the template defaults to v3
 ```
 
 Read the upstream release notes before upgrading Immich or VectorChord. After upgrading the VectorChord package, you will usually also need to update the extension and rebuild the related indexes in the `immich` database:
