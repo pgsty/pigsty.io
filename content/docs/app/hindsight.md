@@ -37,8 +37,11 @@ Default access URLs:
 - `HINDSIGHT_API_VECTOR_EXTENSION`: default `pgvector`
 - `HINDSIGHT_API_TEXT_SEARCH_EXTENSION`: default `native`
 - `HINDSIGHT_API_LLM_PROVIDER`: default `none`
+- `HF_HUB_OFFLINE`: defaults to `1` to use bundled models; set it to `0` and provide outbound network access to download uncached models
 
-The default `none` LLM provider only ensures the service can start. Fact extraction, reflection, and consolidation require configuring Ollama or an OpenAI-compatible API.
+The default `none` LLM provider allows Hindsight to retain text and recall it using local embedding/reranker models. Fact extraction, reflection, and consolidation require configuring Ollama or an OpenAI-compatible API.
+
+The template preserves bundled and downloaded models in the `hindsight-cache` named volume. The database needs `vector`, plus `pg_trgm` installed in `public`. Check the `pg_trgm` location when reusing a database from another template; `CREATE EXTENSION IF NOT EXISTS` does not move an existing extension.
 
 ## Operations
 

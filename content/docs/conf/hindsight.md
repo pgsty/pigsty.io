@@ -48,7 +48,8 @@ The `app/hindsight` template deploys by default:
 - UI port: `9999`
 - API port: `8888`
 - PostgreSQL database: `hindsight`
-- Default vector extension: `vector`
+- Default vector extension: `vector`; also creates `pg_trgm` in `public`
+- Persists models in the `hindsight-cache` named volume, with `HF_HUB_OFFLINE=1` by default
 - Nginx entrypoints: `hs.pigsty` -> `9999`, `hs-api.pigsty` -> `8888`
 
 **Access**:
@@ -60,4 +61,4 @@ http://<IP>:9999
 http://<IP>:8888
 ```
 
-The template sets `HINDSIGHT_API_LLM_PROVIDER=none` by default, so the service can start first. Fact extraction and reflection require configuring a real LLM backend later.
+With the default `HINDSIGHT_API_LLM_PROVIDER=none`, Hindsight can retain text and recall it using local models. Fact extraction and reflection require a real LLM backend. To use an uncached Hugging Face model, set `HF_HUB_OFFLINE=0` and provide outbound network access.
