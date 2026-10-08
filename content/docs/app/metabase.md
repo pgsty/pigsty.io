@@ -10,6 +10,8 @@ categories: [Reference]
 
 Metabase provides a friendly user interface with rich chart types and supports connecting to various databases, making it an ideal choice for enterprise data analysis.
 
+The template defaults to `metabase/metabase:v0.64.1.x`. Use the single `METABASE_IMAGE` setting to override the full image reference. On 2026-10-08, the tag resolved to `0.64.1.1`; validation on PostgreSQL 18.6 covered upgrading a restored metadata database, login, and querying an existing saved question.
+
 
 ## Quick Start
 
@@ -25,6 +27,8 @@ Review and modify the `.env` configuration file:
 vim .env    # Check configuration, recommend changing default credentials
 ```
 
+Before starting, create a dedicated `metabase` database and `dbuser_metabase` role matching the `.env` connection settings. Do not share the Pigsty CMDB database.
+
 Start the service:
 
 ```bash
@@ -33,8 +37,8 @@ make up     # Start Metabase with Docker Compose
 
 Access Metabase:
 
-- Default URL: http://metabase.pigsty
-- Alternate URL: http://10.10.10.10:3001
+- Default URL: http://mtbs.pigsty
+- Alternate URL: http://10.10.10.10:9004
 - First-time access requires initial setup
 
 
@@ -44,13 +48,13 @@ Pigsty provides convenient Makefile commands to manage Metabase:
 
 ```bash
 make up      # Start Metabase service
-make run     # Start with Docker (connect to external PostgreSQL)
+make run     # Alias for make up
 make view    # Display Metabase access URL
 make log     # View container logs
 make info    # View service details
 make stop    # Stop the service
 make clean   # Stop and remove containers
-make pull    # Pull the latest image
+make pull    # Pull the configured image
 make rmi     # Remove Metabase image
 make save    # Save image to file
 make load    # Load image from file
@@ -93,7 +97,11 @@ After successful connection, Metabase will automatically scan the database schem
 Metabase configuration is in the `.env` file:
 
 ```bash
-# Metabase metadata database (PostgreSQL recommended)
+# Image and host port
+METABASE_IMAGE=metabase/metabase:v0.64.1.x
+MB_PORT=9004
+
+# Metabase metadata database
 MB_DB_TYPE=postgres
 MB_DB_DBNAME=metabase
 MB_DB_PORT=5432
@@ -101,8 +109,6 @@ MB_DB_USER=dbuser_metabase
 MB_DB_PASS=DBUser.Metabase
 MB_DB_HOST=10.10.10.10
 
-# Application configuration
-JAVA_OPTS=-Xmx2g
 ```
 
 **Recommended**: Use a dedicated PostgreSQL database for storing Metabase metadata.
@@ -112,13 +118,15 @@ JAVA_OPTS=-Xmx2g
 
 Metabase metadata (users, questions, dashboards, etc.) is stored in the configured database.
 
-If using H2 database (default), data is saved in the `/data/metabase` directory. Using PostgreSQL as the metadata database is strongly recommended for production environments.
+The template uses external PostgreSQL by default and does not configure a persistent `/data/metabase` directory for H2. Its `/api/health` check covers both the application and metadata database. Wait for healthy status during initial migrations.
+
+Upgrading from Metabase 63 to 64 automatically migrates the metadata database. Back it up and record the old image digest first, then test on a restored copy. Rollback requires the matching database backup and old image; replacing the image alone does not undo database migrations. See the [upgrade guide](https://www.metabase.com/docs/latest/installation-and-operation/upgrading-metabase).
 
 
 ## Performance Optimization
 
-- **Use PostgreSQL**: Replace the default H2 database
-- **Increase Memory**: Add JVM memory with `JAVA_OPTS=-Xmx4g`
+- **Use PostgreSQL**: Allocate separate resources for the metadata database and monitor its workload
+- **Increase Memory**: Pass `JAVA_OPTS` explicitly in Compose's `environment` to tune JVM memory; adding it to `.env` alone does not pass it into the container
 - **Database Indexes**: Create indexes for frequently queried fields
 - **Result Caching**: Enable Metabase query result caching
 - **Scheduled Updates**: Set reasonable dashboard auto-refresh frequency
