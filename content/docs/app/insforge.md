@@ -10,7 +10,7 @@ categories: [Reference]
 
 Pigsty provides the `app/insforge` configuration template, which runs InsForge OSS stateless services in Docker Compose while placing the most critical state in PostgreSQL managed by Pigsty. This lets you continue using Pigsty's high availability, backup and recovery, monitoring, ingress domains, and infrastructure capabilities instead of hiding the database in an ephemeral container volume.
 
-The current template targets InsForge OSS `v2.2.6`, uses external PostgreSQL, and exposes three services by default: the InsForge Dashboard/API, PostgREST, and Deno Runtime.
+The current template targets InsForge OSS `v2.3.3`, uses external PostgreSQL, and exposes three services by default: the InsForge Dashboard/API, PostgREST, and Deno Runtime. The latter two bind only to host loopback.
 
 ------
 
@@ -24,10 +24,18 @@ curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
 ./configure -c app/insforge  # Use the InsForge configuration template
 vi pigsty.yml                # Required: keys, admin account, database password, domain
 
-./deploy.yml                 # Install Pigsty, Infra, Etcd, and PostgreSQL
+./infra.yml                  # Create the CA and initialize infrastructure first
+./node.yml -l pg-meta         # Provision PostgreSQL nodes
+./pgsql.yml -l pg-meta -t pg_install # Install PostgreSQL packages only
+# Install the utility library on every PostgreSQL node; Debian/Ubuntu PG18 example
+sudo apt-get install -y postgresql-server-dev-18 build-essential curl patch
+sudo env PG_CONFIG=/usr/lib/postgresql/18/bin/pg_config bash app/insforge/pgutils/install.sh
+./deploy.yml                 # Initialize PostgreSQL with the library preloaded and deploy Pigsty
 ./docker.yml                 # Install Docker and Compose
 ./app.yml                    # Install InsForge
 ```
+
+On a fresh deployment, run `infra.yml` first so `node.yml` can use its CA. Existing Pigsty deployments should retain their INFRA/ETCD inventory and avoid repeating initialization. See [Database and Permissions](#database-and-permissions) for the utility library requirements on every database node.
 
 After installation, the default access URLs are:
 
@@ -54,7 +62,7 @@ To expose the service to the public internet, use a real domain and HTTPS certif
 - [ ] Generate new `JWT_SECRET` and `ENCRYPTION_KEY` values separately with `openssl rand -base64 32`.
 - [ ] Keep `POSTGRES_PASSWORD` consistent with the password of `dbuser_insforge` in `pg_users`.
 - [ ] For public access, configure a real domain, an HTTPS certificate, and firewall access rules.
-- [ ] Confirm that PostgreSQL extension packages are installed correctly, and run `pig pb info` after deployment.
+- [ ] Install and preload `insforge_pg_utils` on every PostgreSQL node, verify the extension packages, and run `pig pb info` after deployment.
 
 ------
 
@@ -82,9 +90,9 @@ The InsForge template separates the database from the application containers by 
 
 Components:
 
-- **InsForge App**: `ghcr.io/insforge/insforge-oss:v2.2.6`, providing the Dashboard and main API on port `7130`.
-- **PostgREST**: `postgrest/postgrest:v12.2.12`, generating REST APIs from PostgreSQL schemas; exposed on host port `5430`.
-- **Deno Runtime**: `ghcr.io/insforge/deno-runtime:latest`, the edge function runtime, listening on port `7133`.
+- **InsForge App**: `ghcr.io/insforge/insforge-oss:v2.3.3`, providing the Dashboard and main API on port `7130`.
+- **PostgREST**: `postgrest/postgrest:v12.2.12`, generating REST APIs from PostgreSQL schemas; bound to `127.0.0.1:5430` on the host.
+- **Deno Runtime**: `denoland/deno:alpine-2.0.6`, running the bundled, pinned function host and bound to `127.0.0.1:7133` on the host.
 - **PostgreSQL**: Managed by Pigsty for persistent state, backup, monitoring, and high availability.
 
 ------
@@ -132,11 +140,14 @@ pg-meta:
         owner: dbuser_insforge
         baseline: insforge.sql
         extensions: [pgcrypto, http, pg_cron]
-    pg_libs: 'pg_cron, pg_stat_statements, auto_explain'
+    pg_libs: 'pg_cron, insforge_pg_utils, pg_stat_statements, auto_explain'
     pg_parameters:
       cron.database_name: insforge
+      cron.use_background_workers: true
       app.encryption_key: your-encryption-key-here-must-be-32-char-or-above
       insforge.policy_grant_role: project_admin
+      insforge.extension_grant_role: project_admin
+      insforge.policy_grant_tables: 'storage.objects,realtime.channels,realtime.messages,payments.stripe_checkout_sessions,payments.stripe_customer_portal_sessions,payments.razorpay_orders,payments.razorpay_subscriptions'
       insforge.internal_schemas: 'ai,auth,compute,deployments,email,functions,memory,payments,realtime,schedules,storage,system'
     pg_extensions: [ pg_cron, pg_http ]
     pg_hba_rules:
@@ -159,11 +170,12 @@ pg-meta:
 | `POSTGRES_DB` | `insforge` | InsForge database |
 | `POSTGRES_USER` | `dbuser_insforge` | Application user that connects InsForge to PostgreSQL |
 | `POSTGRES_PASSWORD` | `DBUser.Insforge` | Application user password; must be replaced in production |
-| `INSFORGE_VERSION` | `v2.2.6` | InsForge OSS image tag |
-| `DENO_RUNTIME_VERSION` | `latest` | Deno Runtime image tag |
+| `INSFORGE_VERSION` | `v2.3.3` | InsForge OSS image tag |
+| `DENO_RUNTIME_IMAGE` | `denoland/deno:alpine-2.0.6` | Full Deno Runtime image reference |
+| `INSFORGE_IMAGE` | Empty | Optional full app image override, taking precedence over `INSFORGE_VERSION` |
 | `APP_PORT` | `7130` | External InsForge App port |
-| `POSTGREST_PORT` | `5430` | External PostgREST port |
-| `DENO_PORT` | `7133` | External Deno Runtime port |
+| `POSTGREST_PORT` | `5430` | PostgREST loopback port |
+| `DENO_PORT` | `7133` | Deno Runtime loopback port |
 | `ACCESS_API_KEY` | Empty | Optional MCP / API access key; generated by InsForge when empty |
 | `ACCESS_ANON_KEY` | Empty | Optional anonymous frontend access key; should begin with `anon_` when set |
 | `OPENROUTER_API_KEY` | Empty | Optional OpenRouter model gateway key |
@@ -213,7 +225,11 @@ NOTIFY pgrst, 'reload schema';
 
 This notifies PostgREST to reload its schema.
 
-The upstream InsForge PostgreSQL image preinstalls `insforge_pg_utils`. The current Pigsty template does not depend on this extension package. Instead, it uses `pgcrypto`, `http`, and `pg_cron` already provided by Pigsty, while application migrations by InsForge manage runtime schemas.
+`insforge_pg_utils` is a required PostgreSQL utility library. It lets `project_admin` manage RLS policies on managed tables and manage extensions; application migrations do not replace it. Copy the complete `app/insforge/pgutils/` directory to every database node, install it before PostgreSQL initialization, and preload it through `pg_libs`. It exposes no SQL objects, so no `CREATE EXTENSION` is needed.
+
+`pgutils/install.sh` downloads and verifies pinned official source, applies the PG16–18 compatibility patch, and builds it with PGXS. For PG18 on Debian/Ubuntu, use `postgresql-server-dev-18` and `/usr/lib/postgresql/18/bin/pg_config`. On EL/RPM, use `postgresql18-devel`, `gcc`, `make`, `curl`, `patch`, and `/usr/pgsql-18/bin/pg_config`. The script does not change configuration or restart a cluster; plan preload configuration and restart separately for an existing deployment.
+
+`cron.use_background_workers: true` runs scheduled jobs as background workers without adding a loopback `trust` rule. Reserve enough `max_worker_processes` slots for cron, replication, and other extensions.
 
 ------
 
@@ -224,8 +240,10 @@ The default Docker Compose services are:
 | Service | Container | Host Port | Description |
 |---------|-----------|-----------|-------------|
 | InsForge App | `insforge` | `7130` | Dashboard and main API |
-| PostgREST | `insforge-postgrest` | `5430` | Automatically generated REST API |
-| Deno Runtime | `insforge-deno` | `7133` | Edge function runtime |
+| PostgREST | `insforge-postgrest` | `127.0.0.1:5430` | Automatically generated REST API |
+| Deno Runtime | `insforge-deno` | `127.0.0.1:7133` | Edge function runtime |
+
+Remote clients use the main InsForge API for data and functions; do not expose PostgREST or Deno directly. The Docker compute provider is optional, and the template does not mount the Docker socket by default. Enabling that mount grants the container root-equivalent access to the host.
 
 The default Docker volumes are:
 
@@ -301,6 +319,16 @@ make clean    # Remove stopped containers
 make edit     # Edit .env
 ```
 
+### Upgrade to v2.3.3
+
+Before upgrading, back up PostgreSQL, including `system.migrations`, file storage, and deployment overrides. Preserve the existing JWT and credential-encryption keys. After you pull the new image and recreate the InsForge container, its startup migration runner applies and records `065_restrict-http-extension-to-admin`.
+
+This migration revokes `PUBLIC EXECUTE` on 13 outbound HTTP and curl-option function signatures from the `http` extension while retaining `project_admin` execution. This prevents normal users and anonymous API keys from invoking them through RPC. The new-install `files/insforge.sql` baseline includes the same restriction. **Do not replay the full baseline on an existing database or run a separate copy of migration 065 manually.**
+
+After upgrading, check the migration ledger and actual function privileges. The defaults should be `anon=false`, `authenticated=false`, and `project_admin=true`. Custom role memberships or explicit grants can still confer additional access. See the [template upgrade checks](https://github.com/pgsty/pigsty/tree/main/app/insforge#upgrade-to-v233) and [official migration](https://github.com/InsForge/InsForge/blob/636d1e207d2bca246f7b8ccd0e0b6572528809fa/backend/src/infra/database/migrations/065_restrict-http-extension-to-admin.sql).
+
+### Offline Deployment
+
 For offline environments, save the images in advance:
 
 ```bash
@@ -309,6 +337,8 @@ make pull
 make save
 make tarball
 ```
+
+The first Deno startup needs access to `deno.land` and `registry.npmjs.org` to pre-cache the function host and worker dependencies. The SDK is pinned to `@insforge/sdk@1.5.2`, and `functions/deno.lock` fixes the dependency graph. Configure `DENO_HTTP_PROXY` / `DENO_HTTPS_PROXY` if needed. `make save` archives images only, not the `deno_cache` volume; prepare and transfer that cache separately for offline use.
 
 Default artifact locations:
 

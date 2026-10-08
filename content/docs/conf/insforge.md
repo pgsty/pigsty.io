@@ -44,14 +44,16 @@ Source: [`pigsty/conf/app/insforge.yml`](https://github.com/pgsty/pigsty/blob/ma
 
 The `app/insforge` template deploys by default:
 
-- InsForge main service: `ghcr.io/insforge/insforge-oss:v2.2.6`, port `7130`
-- PostgREST: `postgrest/postgrest:v12.2.12`, port `5430`
-- Deno Runtime: port `7133`
+- InsForge main service: `ghcr.io/insforge/insforge-oss:v2.3.3`, port `7130`
+- PostgREST: `postgrest/postgrest:v12.2.12`, loopback endpoint `127.0.0.1:5430`
+- Deno Runtime: `denoland/deno:alpine-2.0.6`, loopback endpoint `127.0.0.1:7133`
 - PostgreSQL database: `insforge`
-- Extensions: `pgcrypto`, `http`, `pg_cron`
+- Extensions: `pgcrypto`, `http`, `pg_cron`; also install and preload `insforge_pg_utils` on every database node
 - PostgreSQL 18 with `BYPASSRLS` enabled for `project_admin`
 - Local Docker-network HBA range: `172.16.0.0/12`
 - Nginx entrypoint: `isf.pigsty` -> `10.10.10.10:7130`
+
+For a fresh deployment, initialize INFRA, install PostgreSQL packages and the `pgutils` library, then initialize the database. See the [deployment steps](/docs/app/insforge/#quick-start). When upgrading an existing database to v2.3.3, let the application run migration 065 automatically; do not replay `files/insforge.sql`.
 
 **Access**:
 
