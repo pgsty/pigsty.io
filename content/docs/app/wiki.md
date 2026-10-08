@@ -12,6 +12,8 @@ Public Demo: [http://wiki.pigsty.cc](http://wiki.pigsty.cc)
 
 ![Wiki.js](/img/docs/app/wiki.jpg)
 
+The current Compose uses the untagged `requarks/wiki` image. Stable 2.x releases are maintained in [`requarks/wiki-v2`](https://github.com/requarks/wiki-v2/releases); the original `requarks/wiki` repository contains 3.x Beta releases. The image resolved to 2.5.316 during validation on 2026-10-08. Record and verify the actual image version before production upgrades.
+
 
 ## TL; DR
 
@@ -37,11 +39,10 @@ bin/pgsql-db   pg-meta wiki
 ## Configuration
 
 ```yaml
-version: "3"
 services:
   wiki:
     container_name: wiki
-    image: requarks/wiki:2
+    image: requarks/wiki
     environment:
       DB_TYPE: postgres
       DB_HOST: 10.10.10.10
@@ -59,8 +60,8 @@ services:
 * Default Port for wiki: 9002
 
 ```yaml
-# add to nginx_upstream
-- { name: wiki  , domain: wiki.pigsty.cc , endpoint: "127.0.0.1:9002"   }
+infra_portal:
+  wiki: { domain: wiki.pigsty.io, endpoint: "127.0.0.1:9002" }
 ```
 
 ```bash
