@@ -21,6 +21,8 @@ For more details, see **[Supabase Self-Hosting Tutorial](/docs/app/supabase/)**
 - OS Distro: `el8`, `el9`, `d12`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - PostgreSQL: `15`, `16`, `17`, `18` (template default: `18`)
+- Supabase: `self-hosted/v0.8.2` (commit `564eab8`, with coordinated application images)
+- API Gateway: Envoy `1.39.1` by default; Kong `3.9.3` is optional
 - Related: [`meta`](/docs/conf/meta/), [`rich`](/docs/conf/rich/)
 
 Usage:
@@ -54,11 +56,13 @@ The `supabase` template provides a complete self-hosted Supabase solution, allow
 **Architecture**:
 - **PostgreSQL**: Production-grade Pigsty-managed PostgreSQL (with HA support)
 - **Docker Containers**: Supabase stateless services (Auth, Storage, Realtime, Edge Functions, etc.)
+- **API Gateway**: Envoy by default, using the `api-gw` service for HTTP port `8000`
 - **Silo**: S3-compatible object storage deployed by the MINIO module for file storage and PostgreSQL backup
 - **Nginx**: Reverse proxy and HTTPS termination
 
 **Key Features**:
 - Uses Pigsty-managed PostgreSQL instead of Supabase's built-in database container
+- Defaults to PG18; the current service combination has passed basic functional checks on external PG18.6
 - Supports PostgreSQL high availability (can be expanded to three-node cluster)
 - Installs all Supabase-required extensions (pg_net, pgjwt, pg_graphql, vector, etc.)
 - Stores internal analytics data in the dedicated `_supabase` database and advances processing with the scheduled `supa-kick` task
@@ -96,4 +100,5 @@ psql postgres://supabase_admin:DBUser.Supa@10.10.10.10:5432/postgres
 - **Must change JWT_SECRET**: Use at least 32-character random string, and regenerate ANON_KEY and SERVICE_ROLE_KEY
 - Configure proper domain names (`SITE_URL`, `API_EXTERNAL_URL`)
 - Production environments should enable HTTPS (can use certbot for auto certificates)
-- Docker network needs access to PostgreSQL (172.17.0.0/16 HBA rule configured)
+- Docker networks need PostgreSQL access. The template allows `172.16.0.0/12` for `postgres` and `_supabase`; narrow this range to match your actual network.
+- For existing deployments, follow the [upgrade procedure](/docs/app/supabase/#upgrading-existing-deployments) for the gateway service rename and `files/supabase-0.8.2.sql`. Do not replay the fresh-install baseline `files/supabase.sql`.

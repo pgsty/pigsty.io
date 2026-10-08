@@ -29,14 +29,14 @@ For the complete self-hosting tutorial, please refer to: [**Supabase Self-Hostin
 ## Quick Start
 
 Pigsty's default [`supabase.yml`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml) configuration template defines a single-node Supabase.
+The current application combination tracks `self-hosted/v0.8.2` (commit `564eab8`), with Envoy and external Pigsty-managed PostgreSQL 18 as the defaults. The template still supports PostgreSQL 15–18. See the [self-hosting guide](/docs/app/supabase) for complete versions and the upgrade procedure for existing deployments.
 
 First, use Pigsty's [standard installation process](/docs/setup/install) to install the Silo and PostgreSQL instances required for Supabase:
 
 ```bash
- curl -fsSL https://repo.pigsty.io/get | bash
-./bootstrap          # Environment check, install dependencies
+curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
 ./configure -c supabase  # Important: modify passwords and other key info in config!
-./deploy.yml         # Install Pigsty, deploy PGSQL and MINIO!
+./deploy.yml         # Install Pigsty, PostgreSQL, and Silo
 ```
 
 Before deploying Supabase, please modify the [Supabase parameters](#configuration-details) in the `pigsty.yml` config file according to your actual situation (mainly passwords!)
@@ -44,8 +44,8 @@ Before deploying Supabase, please modify the [Supabase parameters](#configuratio
 Then, run [`docker.yml`](/docs/docker/playbook) and [`app.yml`](/docs/docker/playbook) to complete the remaining work and deploy Supabase containers:
 
 ```bash
-./docker.yml       # Install Docker module
-./app.yml          # Start Supabase stateless components!
+./docker.yml -l supabase  # Install Docker on the supabase group
+./app.yml -l supabase     # Start stateless containers on the supabase group
 ```
 
 For users in China, please configure appropriate Docker mirror sites or proxy servers to bypass GFW to pull DockerHub images.
@@ -57,3 +57,12 @@ then access `https://supa.pigsty` through a browser to enter the Supabase Studio
 > Default username and password: supabase / pigsty
 
 {{< asciinema file="demo/supabase.cast" markers="0:Check,11:Install,43:Config,307:Docker,321:Domain,340:App,350:Verify" theme="solarized-light" speed="1.3" autoplay="true" loop="true" >}}
+
+
+-------
+
+## Configuration Details
+
+`./configure -c supabase` generates `~/pigsty/pigsty.yml`. Before running `./deploy.yml`, review and update at least the passwords, keys, and domains in this file.
+
+For complete configuration guidance, see the [Supabase Self-Hosting Guide](/docs/app/supabase).
