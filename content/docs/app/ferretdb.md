@@ -6,14 +6,14 @@ module: [SOFTWARE]
 categories: [Reference]
 ---
 
-[**FerretDB**](https://www.ferretdb.com/) provides a MongoDB-compatible protocol over PostgreSQL and the DocumentDB extension. Pigsty's `app/ferretdb` runs only the stateless protocol proxy; PostgreSQL, the `postgres` database, the DocumentDB extensions, and the backend PostgreSQL login role must already exist. The [`mongo` configuration template](/docs/conf/mongo/) prepares these dependencies together.
+[**FerretDB**](https://www.ferretdb.com/) provides a MongoDB-compatible protocol over PostgreSQL and the DocumentDB extension. Pigsty's `app/ferretdb` runs only the stateless protocol proxy; PostgreSQL, the `postgres` database, the DocumentDB extensions, and the backend PostgreSQL login role must already exist. The [`fork/mongo` configuration template](/docs/conf/mongo/) prepares these dependencies together.
 
 ## Quick Start
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
 ./bootstrap
-./configure -c mongo
+./configure -c fork/mongo
 ./deploy.yml
 ./docker.yml -l pg-meta
 ./app.yml -l pg-meta
@@ -50,10 +50,10 @@ FerretDB releases specify a preferred DocumentDB version, while Pigsty may ship 
 
 ## Optional Three-Node Topology
 
-The [`mongo` template](/docs/conf/mongo/) includes a commented three-node PostgreSQL / DocumentDB cluster. Each node runs a FerretDB container, and HAProxy exposes standard port `27017` at the floating endpoint `10.10.10.4:27017` (`mongo.pigsty`). After enabling the complete `pg-mongo` cluster and the additional etcd members, run:
+The [`fork/mongo` template](/docs/conf/mongo/) includes a commented three-node PostgreSQL / DocumentDB cluster. Each node runs a FerretDB container, and HAProxy exposes standard port `27017` at the floating endpoint `10.10.10.4:27017` (`mongo.pigsty`). After enabling the complete `pg-mongo` cluster and the additional etcd members, run:
 
 ```bash
-./configure -c mongo
+./configure -c fork/mongo
 ./deploy.yml
 ./docker.yml -l pg-mongo
 ./app.yml -l pg-mongo

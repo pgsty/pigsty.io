@@ -53,7 +53,7 @@ These templates work out of the box and align with the `./configure -c ...` + `.
 
 For apps like `bytebase`, `gitea`, `jupyter`, `kong`, `metabase`, `minio`, `nocodb`, `pgadmin`, `pgweb`, `postgrest`, `pg_exporter`, and `wiki`, you can also use the per-app Compose templates directly.
 
-[FerretDB](/docs/app/ferretdb/) is provided as the Docker APP layer of [PostgreSQL Mongo mode](/docs/conf/mongo/). Deploy it from the `mongo` configuration template with `docker.yml` and `app.yml`.
+[FerretDB](/docs/app/ferretdb/) is provided as the Docker APP layer of [PostgreSQL Mongo mode](/docs/conf/mongo/). Deploy it from the `fork/mongo` configuration template with `docker.yml` and `app.yml`.
 
 ```bash
 cd ~/pigsty/app/<name>
