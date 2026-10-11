@@ -6,6 +6,32 @@ icon: fa-solid fa-clipboard-list
 categories: [Reference]
 ---
 
+## 2026-10-11
+
+| Name | Old | New | Comment |
+|:---|:---|:---|:---|
+| agentsview | 0.44.0 | 0.45.0 | Both architectures; imported locally |
+| blackbox-exporter | 0.28.0 | 0.29.0 | Both architectures; imported locally |
+| claude | 2.1.289 | 2.1.296 | Both architectures; imported locally |
+| cloudflared | 2026.9.3 | 2026.10.0 | Both architectures; imported locally |
+| code | 1.140.0 | 1.141.0 | Upstream DEB/RPM; imported locally |
+| code-server | 4.140.0 | 4.141.0 | Upstream DEB/RPM; imported locally |
+| codex | 0.160.0 | 0.162.1 | Both architectures; imported locally |
+| crush | 0.97.1 | 0.98.1 | Both architectures; imported locally |
+| dblab | 0.51.0 | 0.52.1 | Both architectures; imported locally |
+| golang | 1.27.1 | 1.27.2 | Both architectures; imported locally |
+| grafana-infinity-ds | 4.0.0 | 4.1.1 | Both architectures; imported locally |
+| grafana-plugins | 13.2.2 | 13.2.3 | Noarch; JSON datasource 1.4.3; imported locally |
+| jmx-exporter | 1.6.0 | 1.7.0 | Noarch; imported locally |
+| mcp-toolbox | 1.13.1 | 1.14.0 | CGO source build; glibc 2.28; imported locally |
+| opencode | 1.18.34 | 1.18.35 | Both architectures; imported locally |
+| pig | 1.8.1 | 1.9.0 | Both architectures; imported locally |
+| pushgateway | 1.11.3 | 1.11.4 | Both architectures; imported locally |
+| rclone | 1.75.1 | 1.75.2 | Both architectures; imported locally |
+| stalwart | 0.16.24 | 0.16.25 | Both architectures; imported locally |
+| uv | 0.12.23 | 0.13.0 | Both architectures; imported locally |
+| vector | 0.58.0 | 0.59.0 | Upstream DEB/RPM; imported locally |
+
 ## 2026-09-29
 
 Local build batch: 26 recipes upgraded and cargo-pgrx-0193 added, producing 116 RPM/DEB artifacts for 29 packages. Downloads used the port 8888 Xray proxy. MCP Toolbox is handled separately. This entry does not imply publication to the live repository.
